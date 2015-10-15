@@ -1,0 +1,4 @@
+platform :ios, '7.0'
+pod 'Google/AdMob’, :path => '~/CocoaPods/'
+
+link_with 'AdMobExample', 'AdMobExampleSwift', 'AdMobExample Tests', 'AdMobExampleSwift Tests'

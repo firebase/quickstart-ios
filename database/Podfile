@@ -1,0 +1,4 @@
+# DatabaseExample
+platform :ios, '7.0'
+pod 'Firebase'
+link_with 'DatabaseExample', 'DatabaseExampleSwift', 'DatabaseExampleTests'

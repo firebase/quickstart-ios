@@ -18,9 +18,6 @@
 		105919B71ADDA97D00344065 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF86EE2419787E6B00411520 /* Main.storyboard */; };
 		105919B91ADDAA5900344065 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105919B31ADDA93F00344065 /* AppDelegate.swift */; };
 		105919BA1ADDAA5D00344065 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105919B41ADDA93F00344065 /* ViewController.swift */; };
-		10AA98DE1AFD4D2200A178B1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 10AA98DD1AFD4D2200A178B1 /* GoogleService-Info.plist */; };
-		10AA98DF1AFD4D2200A178B1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 10AA98DD1AFD4D2200A178B1 /* GoogleService-Info.plist */; };
-		10FD9E911B06B241006086D9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 10AA98DD1AFD4D2200A178B1 /* GoogleService-Info.plist */; };
 		353B751DB86BBBAEBE2E04EE /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A61AF2A76422378AC9C8F5CD /* libPods.a */; };
 		72C14A57B7BA63CA8D9A5059 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A61AF2A76422378AC9C8F5CD /* libPods.a */; };
 		CF86EE1D19787E6B00411520 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CF86EE1C19787E6B00411520 /* main.m */; };
@@ -58,11 +55,9 @@
 		1054149F1B163EB20006C828 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ../../shared/Images.xcassets; sourceTree = "<group>"; };
 		105414A01B163EB20006C828 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LaunchScreen.xib; path = ../../shared/LaunchScreen.xib; sourceTree = "<group>"; };
 		1059198A1ADDA8F700344065 /* AdMobExampleSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AdMobExampleSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		1059198D1ADDA8F700344065 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		105919B01ADDA92E00344065 /* AdMobExampleSwift-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AdMobExampleSwift-Bridging-Header.h"; sourceTree = "<group>"; };
 		105919B31ADDA93F00344065 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		105919B41ADDA93F00344065 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		10AA98DD1AFD4D2200A178B1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		10BCC1C31B06474800B5A8B2 /* ViewController_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController_Private.h; sourceTree = "<group>"; };
 		187CD65AE197182A002BF8AE /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		A61AF2A76422378AC9C8F5CD /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -170,7 +165,6 @@
 			isa = PBXGroup;
 			children = (
 				105919B01ADDA92E00344065 /* AdMobExampleSwift-Bridging-Header.h */,
-				1059198D1ADDA8F700344065 /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -226,7 +220,6 @@
 		CF86EE1A19787E6B00411520 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				10AA98DD1AFD4D2200A178B1 /* GoogleService-Info.plist */,
 				CF86EE1B19787E6B00411520 /* Info.plist */,
 				CF86EE1C19787E6B00411520 /* main.m */,
 			);
@@ -324,7 +317,7 @@
 			attributes = {
 				LastSwiftMigration = 0700;
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0600;
+				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = Google;
 				TargetAttributes = {
 					1021DD211B05187A0018763B = {
@@ -376,7 +369,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1048165E1B068A0300139095 /* Main.storyboard in Resources */,
-				10FD9E911B06B241006086D9 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -387,7 +379,6 @@
 				105414A61B163EB20006C828 /* LaunchScreen.xib in Resources */,
 				105919B71ADDA97D00344065 /* Main.storyboard in Resources */,
 				105414A41B163EB20006C828 /* Images.xcassets in Resources */,
-				10AA98DF1AFD4D2200A178B1 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -398,7 +389,6 @@
 				105414A51B163EB20006C828 /* LaunchScreen.xib in Resources */,
 				CF86EE2619787E6B00411520 /* Main.storyboard in Resources */,
 				105414A31B163EB20006C828 /* Images.xcassets in Resources */,
-				10AA98DE1AFD4D2200A178B1 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -639,6 +629,7 @@
 				INFOPLIST_FILE = AdMobExampleTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.google.firebase.quickstart.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AdMobExample.app/AdMobExample";
 			};
@@ -659,6 +650,7 @@
 				INFOPLIST_FILE = AdMobExampleTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.google.firebase.quickstart.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AdMobExample.app/AdMobExample";
 			};
@@ -681,6 +673,7 @@
 				INFOPLIST_FILE = AdMobExampleSwiftTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.google.firebase.quickstart.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "AdMobExampleSwift/AdMobExampleSwift-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -701,6 +694,7 @@
 				INFOPLIST_FILE = AdMobExampleSwiftTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.google.firebase.quickstart.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "AdMobExampleSwift/AdMobExampleSwift-Bridging-Header.h";
 			};
@@ -720,6 +714,7 @@
 				INFOPLIST_FILE = AdMobExampleSwift/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.AdMobExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "AdMobExampleSwift/AdMobExampleSwift-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -737,6 +732,7 @@
 				INFOPLIST_FILE = AdMobExampleSwift/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.AdMobExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "AdMobExampleSwift/AdMobExampleSwift-Bridging-Header.h";
 			};
@@ -763,6 +759,7 @@
 				COPY_PHASE_STRIP = NO;
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -831,6 +828,7 @@
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = AdMobExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.google.firebase.quickstart.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -844,6 +842,7 @@
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = AdMobExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.google.firebase.quickstart.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

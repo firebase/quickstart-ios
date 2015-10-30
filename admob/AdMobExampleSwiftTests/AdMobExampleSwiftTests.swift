@@ -21,7 +21,7 @@ import UIKit
 import XCTest
 
 //  Important: Import the project module
-import AdMobExampleSwift
+@testable import AdMobExampleSwift
 
 class AdMobExampleSwiftTests: XCTestCase {
 
@@ -32,7 +32,7 @@ class AdMobExampleSwiftTests: XCTestCase {
     super.setUp()
     let storyboard:UIStoryboard = UIStoryboard(name: "Main", bundle: NSBundle(forClass: self.dynamicType))
     vcToTest = storyboard.instantiateViewControllerWithIdentifier("ViewController") as! ViewController
-    let view = vcToTest.view
+    let _ = vcToTest.view
   }
 
   func testBannerView() {

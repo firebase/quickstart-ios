@@ -17,7 +17,7 @@
 //  AdMobExampleSwift
 //
 
-// [START gmp_banner_example]
+// [START firebase_banner_example]
 import UIKit
 
 // Makes ViewController available to Objc classes.
@@ -29,18 +29,18 @@ class ViewController: UIViewController, GADInterstitialDelegate {
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    self.bannerView.adUnitID = GGLContext.sharedInstance().adUnitIDForBannerTest
+    self.bannerView.adUnitID = FIRContext.sharedInstance().adUnitIDForBannerTest
     self.bannerView.rootViewController = self
     self.bannerView.loadRequest(GADRequest())
-    // [END gmp_banner_example]
+    // [END firebase_banner_example]
 
-    // [START gmp_interstitial_example]
+    // [START firebase_interstitial_example]
     self.interstitial = createAndLoadInterstitial()
   }
 
   func createAndLoadInterstitial() -> GADInterstitial {
     let interstitial =
-        GADInterstitial(adUnitID: GGLContext.sharedInstance().adUnitIDForInterstitialTest)
+        GADInterstitial(adUnitID: FIRContext.sharedInstance().adUnitIDForInterstitialTest)
     interstitial.delegate = self
     interstitial.loadRequest(GADRequest())
     return interstitial
@@ -57,4 +57,4 @@ class ViewController: UIViewController, GADInterstitialDelegate {
     }
   }
 }
-// [END gmp_interstitial_example]
+// [END firebase_interstitial_example]

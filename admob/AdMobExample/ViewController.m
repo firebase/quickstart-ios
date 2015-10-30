@@ -17,9 +17,9 @@
 //  AdMobExample
 //
 
-// [START gmp_banner_example]
+// [START firebase_banner_example]
 #import "ViewController.h"
-#import <Google/AdMob.h>
+#import <Firebase/AdMob.h>
 
 @interface ViewController () <GADInterstitialDelegate>
 
@@ -42,18 +42,18 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
 
-  self.bannerView.adUnitID = [GGLContext sharedInstance].adUnitIDForBannerTest;
+  self.bannerView.adUnitID = [FIRContext sharedInstance].adUnitIDForBannerTest;
   self.bannerView.rootViewController = self;
   [self.bannerView loadRequest:[GADRequest request]];
-  // [END gmp_banner_example]
+  // [END firebase_banner_example]
 
-  // [START gmp_interstitial_example]
+  // [START firebase_interstitial_example]
   self.interstitial = [self createAndLoadInterstitial];
 }
 
 - (GADInterstitial *)createAndLoadInterstitial {
   GADInterstitial *interstitial = [[GADInterstitial alloc]
-      initWithAdUnitID:[GGLContext sharedInstance].adUnitIDForInterstitialTest];
+      initWithAdUnitID:[FIRContext sharedInstance].adUnitIDForInterstitialTest];
   interstitial.delegate = self;
   [interstitial loadRequest:[GADRequest request]];
   return interstitial;
@@ -70,4 +70,4 @@
 }
 
 @end
-// [END gmp_interstitial_example]
+// [END firebase_interstitial_example]

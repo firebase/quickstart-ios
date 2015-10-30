@@ -29,12 +29,9 @@
 - (BOOL)application:(UIApplication *)application
     didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   // Use Firebase library to configure APIs
-  NSError* configureError;
+  NSError *configureError;
   BOOL status = [[FIRContext sharedInstance] configure:&configureError];
-  if (status != YES) {
-    // show an error.
-    NSAssert(!configureError, @"Error configuring Firebase services: %@", configureError);
-  }
+  NSAssert(status, @"Error configuring Firebase services: %@", configureError);
   return YES;
 }
 // [END firebase_config]

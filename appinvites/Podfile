@@ -1,0 +1,7 @@
+source 'sso://cpdc-eap/spec.git'
+source 'https://github.com/CocoaPods/Specs.git'
+
+platform :ios, '7.0'
+pod 'Firebase/AppInvite'
+
+link_with 'AppInvitesExample', 'AppInvitesExampleSwift', 'AppInvitesExampleTests'

@@ -1,7 +1,6 @@
 # Config
 source 'sso://cpdc-eap/spec.git'
 source 'https://github.com/CocoaPods/Specs.git'
-pod 'Firebase'
-pod 'Firebase/ConfigService'
+pod 'Firebase/RemoteConfig'
 platform :ios, '7.0'
 link_with 'Config', 'ConfigSwift', 'ConfigTests'

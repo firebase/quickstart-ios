@@ -15,7 +15,7 @@
 //
 
 #import "ViewController.h"
-#import <Firebase/ConfigService.h>
+#import <Firebase/Config.h>
 
 @implementation ViewController
 

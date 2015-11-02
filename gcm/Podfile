@@ -1,0 +1,6 @@
+# Gcm
+source 'sso://cpdc-eap/spec.git'
+source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, '7.0'
+pod 'Firebase/CloudMessaging'
+link_with 'Gcm', 'GcmSwift', 'GcmTests'

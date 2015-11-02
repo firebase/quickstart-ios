@@ -1,0 +1,65 @@
+//
+//  Copyright (c) 2015 Google Inc.
+//
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//  http://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
+
+#import "AppDelegate.h"
+
+#import "ViewController.h"
+#import "Firebase/Core.h"
+#import "FirebaseAuth/FIRAuth.h"
+#import "FirebaseAuth/FIRFirebaseApp.h"
+#import "FirebaseAuth/FIRFirebaseOptions.h"
+
+/*! @var kFirebaseAppId
+ @brief The application's Firebase application ID.
+ */
+//static NSString *const kFirebaseAppId = @"Placeholder";
+
+/*! @var kWidgetURL
+ @brief The GITkit widget URL.
+ */
+static NSString* const kWidgetURL = @"https://gitkitmobile.appspot.com/gitkit.jsp";
+
+@implementation AppDelegate
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+  // Use Firebase library to configure APIs
+  NSError *configureError;
+  BOOL status = [[FIRContext sharedInstance] configure:&configureError];
+  NSAssert(status, @"Error configuring Firebase services: %@", configureError);
+
+  // Configure the default Firebase application:
+  FIRFirebaseOptions *firebaseOptions = [[FIRFirebaseOptions alloc] init];
+  firebaseOptions.GITkitAPIKey =
+  [FIRContext sharedInstance].serviceInfo.apiKey;
+  firebaseOptions.GITkitWidgetURL = [NSURL URLWithString:kWidgetURL];
+  [FIRFirebaseApp initializedAppWithAppId:[FIRContext sharedInstance]
+   .serviceInfo.googleAppID options:firebaseOptions];
+
+  return YES;
+}
+
+- (BOOL)application:(nonnull UIApplication *)application
+            openURL:(nonnull NSURL *)url
+            options:(nonnull NSDictionary<NSString *,id> *)options {
+  if ([FIRFirebaseApp handleOpenURL:url
+                  sourceApplication:options[UIApplicationOpenURLOptionsSourceApplicationKey]]) {
+    return YES;
+  }
+
+  return NO;
+}
+
+@end

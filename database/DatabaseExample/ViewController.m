@@ -20,24 +20,52 @@
   FirebaseHandle _refHandle;
 }
 
+
+#pragma mark -
+#pragma mark UIViewController lifecycle methods
 - (void)viewDidLoad {
   [super viewDidLoad];
-  
-  NSDictionary *plist = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Info" ofType:@"plist"]];
+
+  NSDictionary *plist = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"GoogleService-Info" ofType:@"plist"]];
   if (plist) {
-    self.ref = [[Firebase alloc] initWithUrl:plist[@"kFirebaseUrl"]];
+    self.ref = [[Firebase alloc] initWithUrl:plist[@"FIREBASE_DATABASE_URL"]];
+    [self.ref unauth]; //Remove this hack pending b/25426664
   }
-  
+
+  self.messages = [[NSMutableArray alloc] init];
+
+  [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"tableViewCell"];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-  _refHandle = [self.ref observeEventType:FEventTypeChildAdded withBlock:^(FDataSnapshot *snapshot) {
-    // Populate view here
+  [self.messages removeAllObjects];
+  _refHandle = [[self.ref childByAppendingPath:@"messages"] observeEventType:FEventTypeChildAdded withBlock:^(FDataSnapshot *snapshot) {
+    [self.messages addObject:snapshot];
+    [self.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:[self.messages count]-1 inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
   }];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
   [self.ref removeObserverWithHandle:_refHandle];
+}
+
+#pragma mark -
+#pragma mark UITableViewDataSource protocol methods
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+  return [self.messages count];
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+  // Dequeue cell
+  UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"tableViewCell" forIndexPath:indexPath];
+
+  // Unpack message from Firebase DataSnapshot
+  FDataSnapshot *snapshot = self.messages[indexPath.row];
+  NSString *name = snapshot.value[@"name"];
+  NSString *text = snapshot.value[@"text"];
+  cell.textLabel.text = [NSString stringWithFormat:@"%@ says %@", name, text];
+
+  return cell;
 }
 
 @end

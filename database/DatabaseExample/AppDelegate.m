@@ -19,7 +19,14 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-  return YES;
+
+  NSError* error;
+  BOOL success = [[FIRContext sharedInstance] configure:&error];
+  if (!success) {
+    NSLog(@"Error: %@", error);
+  }
+
+  return success;
 }
 
 @end

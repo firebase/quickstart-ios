@@ -15,29 +15,59 @@
 //
 
 import UIKit
-/* Note that "import Firebase" is included in BridgingHeader.h */
+/* Note that "import FirebaseDatabase" is included in BridgingHeader.h */
 
 @objc(ViewController)
-class ViewController: UIViewController {
-  
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+
+  // Instance variables
   var ref: Firebase!
+  var messages: [FDataSnapshot]! = []
   private var _refHandle: FirebaseHandle!
 
+  // Outlets
+  @IBOutlet weak var tableView: UITableView!
+
+  // UIView lifecycle methods
   override func viewDidLoad() {
     super.viewDidLoad()
-    if let plist = NSDictionary(contentsOfFile: NSBundle.mainBundle().pathForResource("Info", ofType: "plist")!) {
-      self.ref = Firebase(url: plist["kFirebaseUrl"] as! String)
+
+    if let plist = NSDictionary(contentsOfFile: NSBundle.mainBundle().pathForResource("GoogleService-Info", ofType: "plist")!) {
+      self.ref = Firebase(url: plist["FIREBASE_DATABASE_URL"] as! String)
+      ref.unauth() //Remove this hack pending b/25426664
     }
+
+    self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "tableViewCell")
   }
   
   override func viewWillAppear(animated: Bool) {
-    _refHandle = self.ref.observeEventType(.ChildAdded, withBlock: { (snapshot) -> Void in
-      // Populate view here
+    self.messages.removeAll()
+    _refHandle = self.ref.childByAppendingPath("messages").observeEventType(.ChildAdded, withBlock: { (snapshot) -> Void in
+      self.messages.append(snapshot)
+      self.tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: self.messages.count-1, inSection: 0)], withRowAnimation: UITableViewRowAnimation.Automatic)
     })
   }
-  
+
   override func viewWillDisappear(animated: Bool) {
     self.ref.removeObserverWithHandle(_refHandle)
   }
 
+  // UITableViewDataSource protocol methods
+  func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return messages.count
+  }
+
+  func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    // Dequeue cell
+    let cell: UITableViewCell! = self.tableView .dequeueReusableCellWithIdentifier("tableViewCell", forIndexPath: indexPath)
+
+    // Unpack message from Firebase DataSnapshot
+    let messageSnapshot: FDataSnapshot! = self.messages[indexPath.row]
+    let message = messageSnapshot.value as! Dictionary<String, String>
+    let name = message["name"] as String!
+    let text = message["text"] as String!
+    cell!.textLabel?.text = name + " says " + text
+
+    return cell!
+  }
 }

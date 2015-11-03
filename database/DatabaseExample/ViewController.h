@@ -15,10 +15,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <Firebase/Firebase.h>
+#import <FirebaseDatabase/Firebase.h>
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property(strong, nonatomic) Firebase *ref;
+@property(strong, nonatomic) NSMutableArray *messages;
+
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end

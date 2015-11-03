@@ -15,6 +15,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Firebase/FIRContext.h>
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 

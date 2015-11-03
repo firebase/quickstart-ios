@@ -17,9 +17,9 @@
 //  AdMobExample
 //
 
-// [START gmp_config]
+// [START firebase_config]
 #import "AppDelegate.h"
-#import <Google/Core.h>
+#import <Firebase/Core.h>
 
 @interface AppDelegate ()
 
@@ -28,13 +28,13 @@
 
 - (BOOL)application:(UIApplication *)application
     didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-  // Use Google library to configure APIs
+  // Use Firebase library to configure APIs
   NSError *configureError;
-  [[GGLContext sharedInstance] configureWithError:&configureError];
-  NSAssert(!configureError, @"Error configuring Google services: %@", configureError);
+  BOOL status = [[FIRContext sharedInstance] configure:&configureError];
+  NSAssert(status, @"Error configuring Firebase services: %@", configureError);
   return YES;
 }
-// [END gmp_config]
+// [END firebase_config]
 
 - (void)applicationWillResignActive:(UIApplication *)application {
   // Sent when the application is about to move from active to inactive state. This can occur for

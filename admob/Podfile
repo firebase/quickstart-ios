@@ -1,4 +1,7 @@
+source 'sso://cpdc-eap/spec.git'
+source 'https://github.com/CocoaPods/Specs.git'
+
 platform :ios, '7.0'
-pod 'Google/AdMob’, :path => '~/CocoaPods/'
+pod 'Firebase/AdMob'
 
 link_with 'AdMobExample', 'AdMobExampleSwift', 'AdMobExample Tests', 'AdMobExampleSwift Tests'

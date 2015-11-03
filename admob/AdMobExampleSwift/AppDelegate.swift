@@ -17,7 +17,7 @@
 //  AdMobExampleSwift
 //
 
-// [START gmp_config]
+// [START firebase_config]
 import UIKit
 
 @UIApplicationMain
@@ -27,13 +27,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-    var configureError:NSError?
-    // Use Google library to configure APIs
-    GGLContext.sharedInstance().configureWithError(&configureError)
-    assert(configureError == nil, "Error configuring Google services: \(configureError)")
+    // Use Firebase library to configure APIs
+    do {
+      try FIRContext.sharedInstance().configure()
+    } catch let configureError as NSError{
+      print ("Error configuring Firebase services: \(configureError)")
+    }
     return true
   }
-// [END gmp_config]
+// [END firebase_config]
 
   func applicationWillResignActive(application: UIApplication) {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

@@ -15,3 +15,11 @@
 //
 //  Use this file to import your target's public headers that you would like to expose to Swift.
 //
+
+#import "Firebase/Core.h"
+#import "FirebaseAuth/FIRAuth.h"
+#import "FirebaseAuth/FIRAuthUI.h"
+#import "FirebaseAuth/FIRGoogleSignInAuthProvider.h"
+#import "FirebaseAuth/FIRUser.h"
+#import "FirebaseAuth/FIRFirebaseApp.h"
+#import "FirebaseAuth/FIRFirebaseOptions.h"

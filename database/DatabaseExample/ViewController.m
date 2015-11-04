@@ -18,6 +18,7 @@
 
 @implementation ViewController {
   FirebaseHandle _refHandle;
+  UInt32 _userInt;
 }
 
 
@@ -33,8 +34,8 @@
     [self.ref unauth]; //Remove this hack pending b/25426664
   }
 
+  _userInt = arc4random();
   self.messages = [[NSMutableArray alloc] init];
-
   [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"tableViewCell"];
 }
 
@@ -74,7 +75,7 @@
 #pragma mark UITableViewDataSource protocol methods
 -(BOOL)textFieldShouldReturn:(UITextField *)textField {
   // Push data to Firebase Database
-  [[[self.ref childByAppendingPath:@"messages"] childByAutoId] setValue:@{@"name": @"User", @"text":textField.text}];
+  [[[self.ref childByAppendingPath:@"messages"] childByAutoId] setValue:@{@"name": [NSString stringWithFormat:@"User %d", _userInt], @"text":textField.text}];
   textField.text = @"";
   return YES;
 }

@@ -18,7 +18,7 @@ import UIKit
 /* Note that "import FirebaseDatabase" is included in BridgingHeader.h */
 
 @objc(ViewController)
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
 
   // Instance variables
   var ref: Firebase!
@@ -27,11 +27,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
   // Outlets
   @IBOutlet weak var tableView: UITableView!
+  @IBOutlet weak var textField: UITextField!
 
   // UIView lifecycle methods
   override func viewDidLoad() {
     super.viewDidLoad()
 
+    // This will change pending in cl/106974108
     if let plist = NSDictionary(contentsOfFile: NSBundle.mainBundle().pathForResource("GoogleService-Info", ofType: "plist")!) {
       self.ref = Firebase(url: plist["FIREBASE_DATABASE_URL"] as! String)
       ref.unauth() //Remove this hack pending b/25426664
@@ -42,6 +44,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
   
   override func viewWillAppear(animated: Bool) {
     self.messages.removeAll()
+    // Listen for new messages in the Firebase database
     _refHandle = self.ref.childByAppendingPath("messages").observeEventType(.ChildAdded, withBlock: { (snapshot) -> Void in
       self.messages.append(snapshot)
       self.tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: self.messages.count-1, inSection: 0)], withRowAnimation: UITableViewRowAnimation.Automatic)
@@ -69,5 +72,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     cell!.textLabel?.text = name + " says " + text
 
     return cell!
+  }
+
+  // UITextViewDelegate protocol methods
+  func textFieldShouldReturn(textField: UITextField) -> Bool {
+    // Push data to Firebase Database
+    self.ref.childByAppendingPath("messages").childByAutoId().setValue(["name": "User", "text": textField.text as String!])
+    textField.text = ""
+    return true
   }
 }

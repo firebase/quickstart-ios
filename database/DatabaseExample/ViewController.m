@@ -26,6 +26,7 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
 
+  // This will change pending in cl/106974108
   NSDictionary *plist = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"GoogleService-Info" ofType:@"plist"]];
   if (plist) {
     self.ref = [[Firebase alloc] initWithUrl:plist[@"FIREBASE_DATABASE_URL"]];
@@ -39,6 +40,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
   [self.messages removeAllObjects];
+  // Listen for new messages in the Firebase database
   _refHandle = [[self.ref childByAppendingPath:@"messages"] observeEventType:FEventTypeChildAdded withBlock:^(FDataSnapshot *snapshot) {
     [self.messages addObject:snapshot];
     [self.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:[self.messages count]-1 inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
@@ -66,6 +68,15 @@
   cell.textLabel.text = [NSString stringWithFormat:@"%@ says %@", name, text];
 
   return cell;
+}
+
+#pragma mark -
+#pragma mark UITableViewDataSource protocol methods
+-(BOOL)textFieldShouldReturn:(UITextField *)textField {
+  // Push data to Firebase Database
+  [[[self.ref childByAppendingPath:@"messages"] childByAutoId] setValue:@{@"name": @"User", @"text":textField.text}];
+  textField.text = @"";
+  return YES;
 }
 
 @end

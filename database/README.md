@@ -1,12 +1,12 @@
-Google PRODUCTNAME Quickstart
+FirebaseDatabase Quickstart
 =============================
 
-The Google PRODUCTNAME iOS quickstart demonstrates how to ...
+The FirebaseDatabase iOS quickstart demonstrates how to ...
 
 Introduction
 ------------
 
-- [Read more about Google PRODUCTNAME](https://developers.google.com/)
+- [Read more about FirebaseDatabase](https://developers.google.com/)
 
 Getting Started
 ---------------

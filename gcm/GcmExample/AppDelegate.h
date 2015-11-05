@@ -14,11 +14,16 @@
 //  limitations under the License.
 //
 
+//#import <Google/CloudMessaging.h>
+@import Firebase.CloudMessaging;
 #import <UIKit/UIKit.h>
-#import <Firebase/CloudMessaging.h>
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate, GCMReceiverDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate, GGLInstanceIDDelegate, GCMReceiverDelegate>
 
-@property (nonatomic, strong) UIWindow *window;
+@property(nonatomic, strong) UIWindow *window;
+@property(nonatomic, readonly, strong) NSString *registrationKey;
+@property(nonatomic, readonly, strong) NSString *messageKey;
+@property(nonatomic, readonly, strong) NSString *gcmSenderID;
+@property(nonatomic, readonly, strong) NSDictionary *registrationOptions;
 
 @end

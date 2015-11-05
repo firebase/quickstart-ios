@@ -13,8 +13,5 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 //
-
-#import <UIKit/UIKit.h>
-
-@interface ViewController : UIViewController
-@end
+//  Use this file to import your target's public headers that you would like to expose to Swift.
+//

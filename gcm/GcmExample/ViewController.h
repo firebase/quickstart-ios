@@ -14,14 +14,9 @@
 //  limitations under the License.
 //
 
-import UIKit
+#import <UIKit/UIKit.h>
 
-@objc(ViewController)
-class ViewController: UIViewController {
-
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    // TODO: Add your initialization code here.
-  }
-
-}
+@interface ViewController : UIViewController
+@property(nonatomic, weak) IBOutlet UILabel *registeringLabel;
+@property(nonatomic, weak) IBOutlet UIActivityIndicatorView *registrationProgressing;
+@end

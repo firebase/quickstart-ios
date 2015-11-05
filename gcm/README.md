@@ -1,35 +1,37 @@
-Google PRODUCTNAME Quickstart
-=============================
+Google Cloud Messaging Quickstart
+=================================
 
-The Google PRODUCTNAME iOS quickstart demonstrates how to ...
+The Google Cloud Messaging iOS Quickstart app demonstrates how to connect
+an iOS app to GCM and how to receive messages.
 
 Introduction
 ------------
 
-- [Read more about Google PRODUCTNAME](https://developers.google.com/)
+TODO(ianbarber): instructions for EAP
 
 Getting Started
 ---------------
 
-- Follow the [quickstart guide](https://developers.google.com/) to set up your project.
-- Run the sample on your iOS device or emulator.
+TODO(ianbarber): setup instructions for eap
+- Under **Project Settings > Notifications**, make sure to add a development APNs certificate (if you
+want to use a production certificate, you need to change the value of kGGLInstanceIDAPNSServerTypeSandboxOption in the call to `tokenWithAuthorizedEntity` accordingly).
+- Run the sample on your iOS device.
+- Navigate to **Notifications**, and click **NEW MESSAGE**
+- Fill in the message text and optionally the label; for target, you can choose one of:
+    - **Topic**; if you choose this option, use `/topics/global` as your target;
+    - **Single Device**; if you choose this option, insert the registration token that the sample app has printed in the XCode debug console as your target.
+- Click **SEND MESSAGE**. A notification will be sent to your device.
 
-Note: You will need Swift 1.2 to run the Swift version of this quickstart.
+Note: You need Swift 2.0 to run the Swift version of this quickstart.
 
 Screenshots
 -----------
+![Screenshot](Screenshot/gcm-sample.png)
 
 Support
 -------
 
-- Stack Overflow: http://stackoverflow.com/questions/tagged/PRODUCTNAME
-- [Developer forum](groups.google.com/group/PRODUCTNAME)
-
-If you've found an error in this sample, please file an issue:
-https://github.com/googlesamples/google-services/issues
-
-Patches are encouraged, and may be submitted by forking this project and
-submitting a pull request through GitHub.
+TODO(ianbarber): fill this if needed.
 
 License
 -------

@@ -1,0 +1,11 @@
+# DurableLinksExample
+
+# TODO (ulukaya): Remove EAP before after internal hackathon.
+source 'sso://cpdc-eap/spec.git'
+source 'https://github.com/CocoaPods/Specs.git'
+
+platform :ios, '8.0'
+pod 'Firebase/Core'
+pod 'DurableDeepLink’, ‘~>1.0.1’
+
+link_with 'DurableLinksExample', 'DurableLinksExampleSwift', 'DurableLinksExampleTests'

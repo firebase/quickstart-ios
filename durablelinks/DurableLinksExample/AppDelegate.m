@@ -52,8 +52,6 @@
     [self showDeepLinkAlertViewWithMessage:message];
     return YES;
   }
-  // Show the deep link that the app was called with.
-  [self showDeepLinkAlertViewWithMessage:[NSString stringWithFormat:@"openURL:\n%@", url]];
   return NO;
 }
 
@@ -78,12 +76,19 @@
 }
 
 - (void)showDeepLinkAlertViewWithMessage:(NSString *)message {
-  UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Deep-link Data"
-                                                      message:message
-                                                     delegate:nil
-                                            cancelButtonTitle:@"OK"
-                                            otherButtonTitles:nil];
-  [alertView show];
+  UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"
+                                                     style:UIAlertActionStyleDefault
+                                                   handler:^(UIAlertAction *action) {
+                                                     NSLog(@"OK");
+                                                   }];
+
+  UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Deep-link Data"
+                                                                          message:message
+                                                        preferredStyle:UIAlertControllerStyleAlert];
+  [alertController addAction:okAction];
+  [self.window.rootViewController presentViewController:alertController
+                                               animated:YES
+                                             completion:nil];
 }
 
 @end

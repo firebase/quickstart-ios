@@ -16,11 +16,13 @@
 
 #import "ViewController.h"
 
+// [START usermanagement_view_import]
 #import "FirebaseAuth/FIRAuth.h"
 #import "FirebaseAuth/FIRAuthUI.h"
 #import "FirebaseAuth/FIRGoogleSignInAuthProvider.h"
 #import "FirebaseAuth/FIRUser.h"
 #import "Firebase/Core.h"
+// [END usermanagement_view_import]
 
 /*! @var kSignInButtonText
  @brief The text of the "Sign In" button.
@@ -89,11 +91,15 @@ static const CGFloat kSignInButtonHeight = 30;
  @param sender The sign in button.
  */
 - (void)signInPressed:(UIButton *)sender {
+  // [START usermanagement_config]
   FIRAuth *firebaseAuth = [FIRAuth auth];
   FIRAuthUIOptions *firebaseAuthUIOptions = [[FIRAuthUIOptions alloc] init];
   FIRGoogleSignInAuthProvider *googleSignIn =
-  [[FIRGoogleSignInAuthProvider alloc] initWithClientId:[FIRContext sharedInstance].serviceInfo.clientID];
+  [[FIRGoogleSignInAuthProvider alloc] initWithClientId:
+      [FIRContext sharedInstance].serviceInfo.clientID];
   [firebaseAuthUIOptions addProvider:googleSignIn];
+  // [END usermanagement_config]
+
   FIRAuthUI *firebaseAuthUI =
   [FIRAuthUI authUIWithAuth:firebaseAuth options:firebaseAuthUIOptions delegate:self];
   [firebaseAuthUI presentSignInWithCallback:^(FIRUser *_Nullable user,

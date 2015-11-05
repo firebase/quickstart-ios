@@ -22,18 +22,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   var window: UIWindow?
 
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    // [START firebase_configure]
     // Use Firebase library to configure APIs
     do {
       try FIRContext.sharedInstance().configure()
     } catch let configureError as NSError{
       print ("Error configuring Firebase services: \(configureError)")
     }
+    // [END firebase_configure]
 
+    // [START usermanagement_initialize]
     // Configure the default Firebase application:
     let firebaseOptions = FIRFirebaseOptions()
     firebaseOptions.GITkitAPIKey = FIRContext.sharedInstance().serviceInfo.apiKey
     firebaseOptions.GITkitWidgetURL = NSURL(string: "https://gitkitmobile.appspot.com/gitkit.jsp")
     FIRFirebaseApp.initializedAppWithAppId(FIRContext.sharedInstance().serviceInfo.googleAppID, options: firebaseOptions)
+    // [END usermanagement_initialize]
 
     return true
   }

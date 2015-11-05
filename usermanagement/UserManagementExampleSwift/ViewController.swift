@@ -74,10 +74,12 @@ class ViewController: UIViewController, FIRAuthUIDelegate {
   @param sender The sign in button.
   */
   func signInPressed(sender: UIButton) {
+    // [START usermanagement_config]
     let firebaseAuth = FIRAuth.init(forApp:FIRFirebaseApp.initializedAppWithAppId(FIRContext.sharedInstance().serviceInfo.googleAppID)!)
     let authUIOptions = FIRAuthUIOptions()
     let googleSignIn = FIRGoogleSignInAuthProvider(clientId: FIRContext.sharedInstance().serviceInfo.clientID)
     authUIOptions.addProvider(googleSignIn!)
+    // [END usermanagement_config]
     let firebaseAuthUI:FIRAuthUI = FIRAuthUI.init(auth: firebaseAuth!, options: authUIOptions, delegate: self)
     
     firebaseAuthUI.presentSignInWithCallback({(user, error) in

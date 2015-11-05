@@ -15,12 +15,14 @@
 //
 
 #import "AppDelegate.h"
-
 #import "ViewController.h"
+
+// [START usermanagement_import]
 #import "Firebase/Core.h"
 #import "FirebaseAuth/FIRAuth.h"
 #import "FirebaseAuth/FIRFirebaseApp.h"
 #import "FirebaseAuth/FIRFirebaseOptions.h"
+// [END usermanagement_import]
 
 /*! @var kFirebaseAppId
  @brief The application's Firebase application ID.
@@ -35,11 +37,14 @@ static NSString* const kWidgetURL = @"https://gitkitmobile.appspot.com/gitkit.js
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+  // [START firebase_configure]
   // Use Firebase library to configure APIs
   NSError *configureError;
   BOOL status = [[FIRContext sharedInstance] configure:&configureError];
   NSAssert(status, @"Error configuring Firebase services: %@", configureError);
+  // [END firebase_configure]
 
+  // [START usermanagement_initialize]
   // Configure the default Firebase application:
   FIRFirebaseOptions *firebaseOptions = [[FIRFirebaseOptions alloc] init];
   firebaseOptions.GITkitAPIKey =
@@ -47,6 +52,7 @@ static NSString* const kWidgetURL = @"https://gitkitmobile.appspot.com/gitkit.js
   firebaseOptions.GITkitWidgetURL = [NSURL URLWithString:kWidgetURL];
   [FIRFirebaseApp initializedAppWithAppId:[FIRContext sharedInstance]
    .serviceInfo.googleAppID options:firebaseOptions];
+  // [END usermanagement_initialize]
 
   return YES;
 }

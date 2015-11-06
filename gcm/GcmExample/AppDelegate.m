@@ -20,7 +20,7 @@
 @property(nonatomic, strong) void (^registrationHandler)
     (NSString *registrationToken, NSError *error);
 @property(nonatomic, assign) BOOL connectedToGCM;
-@property(nonatomic, strong) NSString* registrationToken;
+@property(nonatomic, strong) NSString *registrationToken;
 @property(nonatomic, assign) BOOL subscribedToTopic;
 @end
 
@@ -30,13 +30,13 @@ NSString *const SubscriptionTopic = @"/topics/global";
 
 // [START register_for_remote_notifications]
 - (BOOL)application:(UIApplication *)application
-      didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   // [START_EXCLUDE]
   _registrationKey = @"onRegistrationCompleted";
   _messageKey = @"onMessageReceived";
   // Configure the Firebase context: parses the GoogleService-Info.plist, and initializes
   // the services that have entries in the file
-  NSError* configureError;
+  NSError *configureError;
   BOOL status = [[FIRContext sharedInstance] configure:&configureError];
   NSAssert(status, @"Error configuring Google services: %@", configureError);
   //_gcmSenderID = [[[GGLContext sharedInstance] configuration] gcmSenderID];
@@ -46,7 +46,8 @@ NSString *const SubscriptionTopic = @"/topics/global";
   if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_7_1) {
     // iOS 7.1 or earlier
     UIRemoteNotificationType allNotificationTypes =
-        (UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeBadge);
+        (UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert |
+         UIRemoteNotificationTypeBadge);
     [application registerForRemoteNotificationTypes:allNotificationTypes];
   } else {
     // iOS 8 or later
@@ -66,18 +67,18 @@ NSString *const SubscriptionTopic = @"/topics/global";
   // [END start_gcm_service]
   __weak typeof(self) weakSelf = self;
   // Handler for registration token request
-  _registrationHandler = ^(NSString *registrationToken, NSError *error){
+  _registrationHandler = ^(NSString *registrationToken, NSError *error) {
     if (registrationToken != nil) {
       weakSelf.registrationToken = registrationToken;
       NSLog(@"Registration Token: %@", registrationToken);
       [weakSelf subscribeToTopic];
-      NSDictionary *userInfo = @{@"registrationToken":registrationToken};
+      NSDictionary *userInfo = @{ @"registrationToken" : registrationToken };
       [[NSNotificationCenter defaultCenter] postNotificationName:weakSelf.registrationKey
                                                           object:nil
                                                         userInfo:userInfo];
     } else {
       NSLog(@"Registration to GCM failed with error: %@", error.localizedDescription);
-      NSDictionary *userInfo = @{@"error":error.localizedDescription};
+      NSDictionary *userInfo = @{ @"error" : error.localizedDescription };
       [[NSNotificationCenter defaultCenter] postNotificationName:weakSelf.registrationKey
                                                           object:nil
                                                         userInfo:userInfo];
@@ -140,7 +141,7 @@ NSString *const SubscriptionTopic = @"/topics/global";
 // [START receive_apns_token]
 - (void)application:(UIApplication *)application
     didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-// [END receive_apns_token]
+  // [END receive_apns_token]
   // [START get_gcm_reg_token]
   // Create a config and set a delegate that implements the GGLInstaceIDDelegate protocol.
   GGLInstanceIDConfig *instanceIDConfig = [GGLInstanceIDConfig defaultConfig];
@@ -148,8 +149,10 @@ NSString *const SubscriptionTopic = @"/topics/global";
   // Start the GGLInstanceID shared instance with the that config and request a registration
   // token to enable reception of notifications
   [[GGLInstanceID sharedInstance] startWithConfig:instanceIDConfig];
-  _registrationOptions = @{kGGLInstanceIDRegisterAPNSOption:deviceToken,
-                           kGGLInstanceIDAPNSServerTypeSandboxOption:@YES};
+  _registrationOptions = @{
+    kGGLInstanceIDRegisterAPNSOption : deviceToken,
+    kGGLInstanceIDAPNSServerTypeSandboxOption : @YES
+  };
   [[GGLInstanceID sharedInstance] tokenWithAuthorizedEntity:_gcmSenderID
                                                       scope:kGGLInstanceIDScopeGCM
                                                     options:_registrationOptions
@@ -161,8 +164,8 @@ NSString *const SubscriptionTopic = @"/topics/global";
 - (void)application:(UIApplication *)application
     didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
   NSLog(@"Registration for remote notification failed with error: %@", error.localizedDescription);
-// [END receive_apns_token_error]
-  NSDictionary *userInfo = @{@"error" :error.localizedDescription};
+  // [END receive_apns_token_error]
+  NSDictionary *userInfo = @{ @"error" : error.localizedDescription };
   [[NSNotificationCenter defaultCenter] postNotificationName:_registrationKey
                                                       object:nil
                                                     userInfo:userInfo];
@@ -184,7 +187,7 @@ NSString *const SubscriptionTopic = @"/topics/global";
 
 - (void)application:(UIApplication *)application
     didReceiveRemoteNotification:(NSDictionary *)userInfo
-    fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))handler {
+          fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))handler {
   NSLog(@"Notification received: %@", userInfo);
   // This works only if the app started the GCM service
   [[GCMService sharedInstance] appDidReceiveMessage:userInfo];

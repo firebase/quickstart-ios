@@ -40,15 +40,14 @@
             openURL:(NSURL *)url
   sourceApplication:(NSString *)sourceApplication
          annotation:(id)annotation {
-  GINReceivedInvite *invite = [GINDeepLink handleURL:url
-                                   sourceApplication:sourceApplication
-                                          annotation:annotation];
+  GINReceivedInvite *invite =
+      [GINDeepLink handleURL:url sourceApplication:sourceApplication annotation:annotation];
   if (invite.deepLink) {
-    NSString *matchType = (invite.matchType == kGINReceivedInviteMatchTypeWeak) ?
-        @"Weak" : @"Strong";
-    NSString *message = [NSString stringWithFormat:
-                         @"Deep link from: %@\nDeep Link: %@\nMatch Type: %@\n",
-                         sourceApplication, invite.deepLink, matchType];
+    NSString *matchType =
+        (invite.matchType == kGINReceivedInviteMatchTypeWeak) ? @"Weak" : @"Strong";
+    NSString *message =
+        [NSString stringWithFormat:@"Deep link from: %@\nDeep Link: %@\nMatch Type: %@\n",
+                                   sourceApplication, invite.deepLink, matchType];
     [self showDeepLinkAlertViewWithMessage:message];
     return YES;
   }
@@ -59,17 +58,17 @@
     continueUserActivity:(NSUserActivity *)userActivity
       restorationHandler:(void (^)(NSArray *))restorationHandler {
   // Show the deep link URL from userActivity.
-  NSString *message = [NSString stringWithFormat:@"continueUserActivity webPageURL:\n%@",
-                       userActivity.webpageURL];
+  NSString *message =
+      [NSString stringWithFormat:@"continueUserActivity webPageURL:\n%@", userActivity.webpageURL];
   [self showDeepLinkAlertViewWithMessage:message];
 
-  GINReceivedInvite *invite = [GINDeepLink continueUserActivity:userActivity
-                                             restorationHandler:restorationHandler];
+  GINReceivedInvite *invite =
+      [GINDeepLink continueUserActivity:userActivity restorationHandler:restorationHandler];
   if (invite.deepLink) {
     [self application:application
-              openURL:[NSURL URLWithString:invite.deepLink]
-    sourceApplication:@"com.apple.mobilesafari"
-           annotation:@{}];
+                  openURL:[NSURL URLWithString:invite.deepLink]
+        sourceApplication:@"com.apple.mobilesafari"
+               annotation:@{}];
     return YES;
   }
   return NO;
@@ -82,9 +81,10 @@
                                                      NSLog(@"OK");
                                                    }];
 
-  UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Deep-link Data"
-                                                                          message:message
-                                                        preferredStyle:UIAlertControllerStyleAlert];
+  UIAlertController *alertController =
+      [UIAlertController alertControllerWithTitle:@"Deep-link Data"
+                                          message:message
+                                   preferredStyle:UIAlertControllerStyleAlert];
   [alertController addAction:okAction];
   [self.window.rootViewController presentViewController:alertController
                                                animated:YES

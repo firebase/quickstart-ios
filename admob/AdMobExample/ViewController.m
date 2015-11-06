@@ -21,7 +21,7 @@
 #import "ViewController.h"
 #import <Firebase/AdMob.h>
 
-@interface ViewController () <GADInterstitialDelegate>
+@interface ViewController ()<GADInterstitialDelegate>
 
 /**
  * @property

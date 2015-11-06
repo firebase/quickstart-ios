@@ -21,19 +21,18 @@
 
 // [START display_link]
 - (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    // This notification is sent the first time the app launches
-    [[NSNotificationCenter defaultCenter] addObserver: self
-                                             selector: @selector(applicationBecameActive:)
-                                                 name: UIApplicationDidBecomeActiveNotification
-                                               object: nil];
+  [super viewDidLoad];
+
+  // This notification is sent the first time the app launches
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(applicationBecameActive:)
+                                               name:UIApplicationDidBecomeActiveNotification
+                                             object:nil];
 }
 
 - (void)applicationBecameActive:(NSNotification *)notification {
-    AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    self.deepLinkLabel.text = appDelegate.currentDeepLink;
-    
+  AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+  self.deepLinkLabel.text = appDelegate.currentDeepLink;
 }
 // [END display_link]
 

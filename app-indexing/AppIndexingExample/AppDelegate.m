@@ -19,16 +19,19 @@
 
 @implementation AppDelegate
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+- (BOOL)application:(UIApplication *)application
+    didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   return YES;
 }
 
 // [START handle_link]
-- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url
-  sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
-    NSURL *sanitizedURL = [GSDDeepLink handleDeepLink:url];
-    self.currentDeepLink = sanitizedURL.absoluteString;
-    return true;
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation {
+  NSURL *sanitizedURL = [GSDDeepLink handleDeepLink:url];
+  self.currentDeepLink = sanitizedURL.absoluteString;
+  return true;
 }
 // [END handle_link]
 

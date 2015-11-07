@@ -14,7 +14,7 @@ Getting Started
 - Follow the [quickstart guide](https://developers.google.com/) to set up your project.
 - Run the sample on your iOS device or emulator.
 
-Note: You will need Swift 1.2 to run the Swift version of this quickstart.
+Note: You will need Swift 2.0 to run the Swift version of this quickstart.
 
 Screenshots
 -----------

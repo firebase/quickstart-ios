@@ -15,29 +15,47 @@
 //
 
 #import "ViewController.h"
-#import <Firebase/Config.h>
+@import Firebase.Config;
 
 @implementation ViewController
 
 - (void)viewDidLoad {
   [super viewDidLoad];
+  // [START completion_handler]
   GCSDefaultConfigCompletion completion = ^void(GCSConfig *config, GCSConfigStatus status, NSError *error) {
     if (error) {
       // There has been an error fetching the config
       NSLog(@"Error fetching config: %@", error.localizedDescription);
     } else {
+      // Parse your config data
+      // [START_EXCLUDE]
+      // [START read_data]
       BOOL isPromo = config[@"is-promotion-on"].boolValue;
-      NSNumber* discount = config[@"discount"].numberValue;
-      NSLog(@"isPromo: %d", isPromo);
-      NSLog(@"discount: %@", discount);
+      NSNumber *discount = config[@"discount"].numberValue;
+      // [END read_data]
+      double price = 100.00;
+      if(isPromo) {
+        price = (price / 100) * (price - [discount doubleValue]);
+      }
+      NSString *priceMsg = [NSString stringWithFormat:@"Your price is $%.02f", price];
+      _priceLabel.text = priceMsg;
+      BOOL isDevBuild = [config boolForKey:@"dev-features-on" defaultValue:NO];
+      if (isDevBuild) {
+        NSString *debugMsg = [NSString stringWithFormat:@"Config set size: %ld", (long)config.count];
+        _debugLabel.text = debugMsg;
+      }
+      // [END_EXCLUDE]
     }
   };
+  // [END completion_handler]
 
+  // [START fetch_config]
   NSDictionary *customVariables = @{@"build":@"dev"};
   // 43200 secs = 12 hours
   [GCSConfig fetchDefaultConfigWithExpirationDuration:43200
                                       customVariables:customVariables
                                     completionHandler:completion];
+  // [END fetch_config]
 }
 
 @end

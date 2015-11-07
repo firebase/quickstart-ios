@@ -24,6 +24,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
   var ref: Firebase!
   var messages: [FDataSnapshot]! = []
   private var _refHandle: FirebaseHandle!
+  private var userInt: UInt32 = arc4random()
 
   // Outlets
   @IBOutlet weak var tableView: UITableView!
@@ -35,7 +36,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
     // This will change pending in cl/106974108
     if let plist = NSDictionary(contentsOfFile: NSBundle.mainBundle().pathForResource("GoogleService-Info", ofType: "plist")!) {
-      self.ref = Firebase(url: plist["FIREBASE_DATABASE_URL"] as! String)
+    self.ref = Firebase(url: plist["FIREBASE_DATABASE_URL"] as! String)
       ref.unauth() //Remove this hack pending b/25426664
     }
 
@@ -77,7 +78,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
   // UITextViewDelegate protocol methods
   func textFieldShouldReturn(textField: UITextField) -> Bool {
     // Push data to Firebase Database
-    self.ref.childByAppendingPath("messages").childByAutoId().setValue(["name": "User", "text": textField.text as String!])
+    self.ref.childByAppendingPath("messages").childByAutoId().setValue(["name": "User\(self.userInt)", "text": textField.text as String!])
     textField.text = ""
     return true
   }

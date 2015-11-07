@@ -18,6 +18,6 @@
 
 @interface ViewController : UIViewController
 
-@property (nonatomic, strong) IBOutlet UILabel *deepLinkLabel;
+@property(nonatomic, strong) IBOutlet UILabel *deepLinkLabel;
 
 @end

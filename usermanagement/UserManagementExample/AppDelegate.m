@@ -27,16 +27,17 @@
 /*! @var kFirebaseAppId
  @brief The application's Firebase application ID.
  */
-//static NSString *const kFirebaseAppId = @"Placeholder";
+// static NSString *const kFirebaseAppId = @"Placeholder";
 
 /*! @var kWidgetURL
  @brief The GITkit widget URL.
  */
-static NSString* const kWidgetURL = @"https://gitkitmobile.appspot.com/gitkit.jsp";
+static NSString *const kWidgetURL = @"https://gitkitmobile.appspot.com/gitkit.jsp";
 
 @implementation AppDelegate
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+- (BOOL)application:(UIApplication *)application
+    didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   // [START firebase_configure]
   // Use Firebase library to configure APIs
   NSError *configureError;
@@ -47,11 +48,10 @@ static NSString* const kWidgetURL = @"https://gitkitmobile.appspot.com/gitkit.js
   // [START usermanagement_initialize]
   // Configure the default Firebase application:
   FIRFirebaseOptions *firebaseOptions = [[FIRFirebaseOptions alloc] init];
-  firebaseOptions.GITkitAPIKey =
-  [FIRContext sharedInstance].serviceInfo.apiKey;
+  firebaseOptions.GITkitAPIKey = [FIRContext sharedInstance].serviceInfo.apiKey;
   firebaseOptions.GITkitWidgetURL = [NSURL URLWithString:kWidgetURL];
-  [FIRFirebaseApp initializedAppWithAppId:[FIRContext sharedInstance]
-   .serviceInfo.googleAppID options:firebaseOptions];
+  [FIRFirebaseApp initializedAppWithAppId:[FIRContext sharedInstance].serviceInfo.googleAppID
+                                  options:firebaseOptions];
   // [END usermanagement_initialize]
 
   return YES;
@@ -59,7 +59,7 @@ static NSString* const kWidgetURL = @"https://gitkitmobile.appspot.com/gitkit.js
 
 - (BOOL)application:(nonnull UIApplication *)application
             openURL:(nonnull NSURL *)url
-            options:(nonnull NSDictionary<NSString *,id> *)options {
+            options:(nonnull NSDictionary<NSString *, id> *)options {
   if ([FIRFirebaseApp handleOpenURL:url
                   sourceApplication:options[UIApplicationOpenURLOptionsSourceApplicationKey]]) {
     return YES;

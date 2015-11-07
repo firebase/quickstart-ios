@@ -18,7 +18,8 @@
 @import Firebase.CloudMessaging;
 #import <UIKit/UIKit.h>
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate, GGLInstanceIDDelegate, GCMReceiverDelegate>
+@interface AppDelegate
+    : UIResponder<UIApplicationDelegate, GGLInstanceIDDelegate, GCMReceiverDelegate>
 
 @property(nonatomic, strong) UIWindow *window;
 @property(nonatomic, readonly, strong) NSString *registrationKey;

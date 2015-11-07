@@ -54,7 +54,7 @@ static const CGFloat kSignInButtonWidth = 200;
  */
 static const CGFloat kSignInButtonHeight = 30;
 
-@interface ViewController () <FIRAuthUIDelegate>
+@interface ViewController ()<FIRAuthUIDelegate>
 @end
 @implementation ViewController
 
@@ -76,12 +76,11 @@ static const CGFloat kSignInButtonHeight = 30;
          forControlEvents:UIControlEventTouchUpInside];
 
   signInButton.center =
-  CGPointMake(CGRectGetMidX(self.view.bounds), CGRectGetMidY(self.view.bounds));
+      CGPointMake(CGRectGetMidX(self.view.bounds), CGRectGetMidY(self.view.bounds));
 
-  signInButton.autoresizingMask = UIViewAutoresizingFlexibleTopMargin
-  | UIViewAutoresizingFlexibleRightMargin
-  | UIViewAutoresizingFlexibleBottomMargin
-  | UIViewAutoresizingFlexibleLeftMargin;
+  signInButton.autoresizingMask =
+      UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleRightMargin |
+      UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin;
 
   [self.view addSubview:signInButton];
 }
@@ -94,46 +93,38 @@ static const CGFloat kSignInButtonHeight = 30;
   // [START usermanagement_config]
   FIRAuth *firebaseAuth = [FIRAuth auth];
   FIRAuthUIOptions *firebaseAuthUIOptions = [[FIRAuthUIOptions alloc] init];
-  FIRGoogleSignInAuthProvider *googleSignIn =
-  [[FIRGoogleSignInAuthProvider alloc] initWithClientId:
-      [FIRContext sharedInstance].serviceInfo.clientID];
+  FIRGoogleSignInAuthProvider *googleSignIn = [[FIRGoogleSignInAuthProvider alloc]
+      initWithClientId:[FIRContext sharedInstance].serviceInfo.clientID];
   [firebaseAuthUIOptions addProvider:googleSignIn];
   // [END usermanagement_config]
 
   FIRAuthUI *firebaseAuthUI =
-  [FIRAuthUI authUIWithAuth:firebaseAuth options:firebaseAuthUIOptions delegate:self];
-  [firebaseAuthUI presentSignInWithCallback:^(FIRUser *_Nullable user,
-                                              NSError *_Nullable error) {
-    UIAlertAction *okAction = [UIAlertAction
-                               actionWithTitle:kOKButtonText
-                               style:UIAlertActionStyleDefault
-                               handler:^(UIAlertAction *action)
-                               {
-                                 NSLog(kOKButtonText);
-                               }];
+      [FIRAuthUI authUIWithAuth:firebaseAuth options:firebaseAuthUIOptions delegate:self];
+  [firebaseAuthUI presentSignInWithCallback:^(FIRUser *_Nullable user, NSError *_Nullable error) {
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:kOKButtonText
+                                                       style:UIAlertActionStyleDefault
+                                                     handler:^(UIAlertAction *action) {
+                                                       NSLog(kOKButtonText);
+                                                     }];
     if (error) {
-      UIAlertController *alertController = [UIAlertController
-                                            alertControllerWithTitle:kSignInErrorAlertTitle
-                                            message:error.localizedDescription
-                                            preferredStyle:UIAlertControllerStyleAlert];
+      UIAlertController *alertController =
+          [UIAlertController alertControllerWithTitle:kSignInErrorAlertTitle
+                                              message:error.localizedDescription
+                                       preferredStyle:UIAlertControllerStyleAlert];
       [alertController addAction:okAction];
-      [self presentViewController:alertController
-                         animated:YES
-                       completion:nil];
+      [self presentViewController:alertController animated:YES completion:nil];
       return;
     }
 
     // Log sign in event to Scion.
     [GMRAppMeasurement logEventWithName:kGMREventLogin parameters:nil];
 
-    UIAlertController *alertController = [UIAlertController
-                                          alertControllerWithTitle:kSignedInAlertTitle
-                                          message:user.displayName
-                                          preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alertController =
+        [UIAlertController alertControllerWithTitle:kSignedInAlertTitle
+                                            message:user.displayName
+                                     preferredStyle:UIAlertControllerStyleAlert];
     [alertController addAction:okAction];
-    [self presentViewController:alertController 
-                       animated:YES 
-                     completion:nil];
+    [self presentViewController:alertController animated:YES completion:nil];
   }];
 }
 

@@ -17,13 +17,13 @@
 #import "AppDelegate.h"
 #import <Firebase/AppInvite.h>
 
-static NSString* kTrackingID = @"YOUR_TRACKING_ID";
+static NSString *kTrackingID = @"YOUR_TRACKING_ID";
 
 @implementation AppDelegate
 
 // [START didfinishlaunching]
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:
-      (NSDictionary *)launchOptions {
+- (BOOL)application:(UIApplication *)application
+    didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   NSError *configureError;
   BOOL status = [[FIRContext sharedInstance] configure:&configureError];
   NSAssert(status, @"Error configuring Firebase services: %@", configureError);
@@ -31,12 +31,11 @@ static NSString* kTrackingID = @"YOUR_TRACKING_ID";
   [GINInvite applicationDidFinishLaunching];
 
   if ([kTrackingID compare:@"YOUR_TRACKING_ID"] != NSOrderedSame) {
-    [GINInvite setGoogleAnalyticsTrackingId: kTrackingID];
+    [GINInvite setGoogleAnalyticsTrackingId:kTrackingID];
   }
   return YES;
 }
 // [END didfinishlaunching]
-
 
 // [START openurl]
 - (BOOL)application:(UIApplication *)application
@@ -44,16 +43,15 @@ static NSString* kTrackingID = @"YOUR_TRACKING_ID";
   sourceApplication:(NSString *)sourceApplication
          annotation:(id)annotation {
   // Handle App Invite requests
-  GINReceivedInvite *invite = [GINInvite handleURL:url
-                                 sourceApplication:sourceApplication
-                                        annotation:annotation];
+  GINReceivedInvite *invite =
+      [GINInvite handleURL:url sourceApplication:sourceApplication annotation:annotation];
   if (invite) {
     [GINInvite completeInvitation];
     NSString *matchType =
         (invite.matchType == kGINReceivedInviteMatchTypeWeak) ? @"Weak" : @"Strong";
     NSString *message =
         [NSString stringWithFormat:@"Deep link from %@ \nInvite ID: %@\nApp URL: %@\nMatch Type:%@",
-            sourceApplication, invite.inviteId, invite.deepLink, matchType];
+                                   sourceApplication, invite.inviteId, invite.deepLink, matchType];
 
     [[[UIAlertView alloc] initWithTitle:@"Deep-link Data"
                                 message:message

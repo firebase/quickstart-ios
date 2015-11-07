@@ -20,16 +20,15 @@
 #import <GoogleSignIn/GIDSignIn.h>
 #import <GoogleSignIn/GIDSignInButton.h>
 
-@interface SignInViewController () <GIDSignInDelegate, GIDSignInUIDelegate>
-@property (weak, nonatomic) IBOutlet GIDSignInButton *signInButton;
-@property (weak, nonatomic) IBOutlet UILabel *bgText;
+@interface SignInViewController ()<GIDSignInDelegate, GIDSignInUIDelegate>
+@property(weak, nonatomic) IBOutlet GIDSignInButton *signInButton;
+@property(weak, nonatomic) IBOutlet UILabel *bgText;
 @end
-
 
 @implementation SignInViewController
 
 - (void)viewDidAppear:(BOOL)animated {
-  [super viewDidAppear: animated];
+  [super viewDidAppear:animated];
 
   self.bgText.text = @"App Invites\niOS demo";
 
@@ -41,10 +40,11 @@
   [GIDSignIn sharedInstance].delegate = self;
 }
 
-- (void)signIn:(GIDSignIn *)signIn didSignInForUser:(GIDGoogleUser *)user
-     withError:(NSError *)error {
+- (void)signIn:(GIDSignIn *)signIn
+    didSignInForUser:(GIDGoogleUser *)user
+           withError:(NSError *)error {
   if (error == nil) {
-    [self performSegueWithIdentifier: @"SignedInScreen" sender: self];
+    [self performSegueWithIdentifier:@"SignedInScreen" sender:self];
   } else {
     // Something went wrong; for example, the user could haved clicked cancel.
   }
@@ -54,7 +54,7 @@
   return UIStatusBarStyleLightContent;
 }
 
-- (IBAction)unwindToSignIn:(UIStoryboardSegue*)sender {
+- (IBAction)unwindToSignIn:(UIStoryboardSegue *)sender {
   [GIDSignIn sharedInstance].delegate = self;
 }
 @end

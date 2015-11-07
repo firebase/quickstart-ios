@@ -1,0 +1,4 @@
+BasedOnStyle: Google
+ColumnLimit: 100
+BinPackParameters: false
+AllowAllParametersOfDeclarationOnNextLine: true

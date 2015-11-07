@@ -34,7 +34,7 @@
   [_registrationProgressing startAnimating];
 }
 
-- (void) updateRegistrationStatus:(NSNotification *) notification {
+- (void)updateRegistrationStatus:(NSNotification *)notification {
   [_registrationProgressing stopAnimating];
   if ([notification.userInfo objectForKey:@"error"]) {
     _registeringLabel.text = @"Error registering!";
@@ -42,17 +42,17 @@
   } else {
     _registeringLabel.text = @"Registered!";
     NSString *message = @"Check the xcode debug console for the registration token that you can"
-        " use with the demo server to send notifications to your device";
+                         " use with the demo server to send notifications to your device";
     [self showAlert:@"Registration Successful" withMessage:message];
   };
 }
 
-- (void) showReceivedMessage:(NSNotification *) notification {
+- (void)showReceivedMessage:(NSNotification *)notification {
   NSString *message = notification.userInfo[@"aps"][@"alert"];
   [self showAlert:@"Message received" withMessage:message];
 }
 
-- (void)showAlert:(NSString *)title withMessage:(NSString *) message{
+- (void)showAlert:(NSString *)title withMessage:(NSString *)message {
   if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_7_1) {
     // iOS 7.1 or earlier
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title
@@ -62,15 +62,14 @@
                                           otherButtonTitles:nil];
     [alert show];
   } else {
-    //iOS 8 or later
+    // iOS 8 or later
     UIAlertController *alert =
         [UIAlertController alertControllerWithTitle:title
                                             message:message
                                      preferredStyle:UIAlertControllerStyleAlert];
 
-    UIAlertAction *dismissAction = [UIAlertAction actionWithTitle:@"Dismiss"
-                                                            style:UIAlertActionStyleDestructive
-                                                          handler:nil];
+    UIAlertAction *dismissAction =
+        [UIAlertAction actionWithTitle:@"Dismiss" style:UIAlertActionStyleDestructive handler:nil];
 
     [alert addAction:dismissAction];
     [self presentViewController:alert animated:YES completion:nil];

@@ -23,16 +23,16 @@
 #import <GoogleSignIn/GIDSignInButton.h>
 
 // [START viewcontroller_interfaces]
-@interface ViewController () <GINInviteDelegate, GIDSignInDelegate, GIDSignInUIDelegate>
+@interface ViewController ()<GINInviteDelegate, GIDSignInDelegate, GIDSignInUIDelegate>
 // [END viewcontroller_interfaces]
 // [START viewcontroller_vars]
-@property (weak, nonatomic) IBOutlet GIDSignInButton *signInButton;
-@property (weak, nonatomic) IBOutlet UIButton *signOutButton;
-@property (weak, nonatomic) IBOutlet UIButton *disconnectButton;
-@property (weak, nonatomic) IBOutlet UIButton *inviteButton;
-@property (weak, nonatomic) IBOutlet UILabel *statusText;
+@property(weak, nonatomic) IBOutlet GIDSignInButton *signInButton;
+@property(weak, nonatomic) IBOutlet UIButton *signOutButton;
+@property(weak, nonatomic) IBOutlet UIButton *disconnectButton;
+@property(weak, nonatomic) IBOutlet UIButton *inviteButton;
+@property(weak, nonatomic) IBOutlet UILabel *statusText;
 // [END viewcontroler_vars]
-@property (strong, nonatomic) id<GINInviteBuilder> inviteDialog;
+@property(strong, nonatomic) id<GINInviteBuilder> inviteDialog;
 @end
 
 @implementation ViewController
@@ -54,11 +54,8 @@
 // [END viewdidload]
 
 - (void)setupUI {
-  float grayValue = (204.0/255);
-  UIColor* grayColor = [UIColor colorWithRed:grayValue
-                                       green:grayValue
-                                        blue:grayValue
-                                       alpha:1.0];
+  float grayValue = (204.0 / 255);
+  UIColor *grayColor = [UIColor colorWithRed:grayValue green:grayValue blue:grayValue alpha:1.0];
 
   self.inviteButton.layer.cornerRadius = 3;
   self.inviteButton.layer.shadowRadius = 1;
@@ -84,11 +81,11 @@
 }
 
 // [START signin_handler]
-- (void)signIn:(GIDSignIn *)signIn didSignInForUser:(GIDGoogleUser *)user
-     withError:(NSError *)error {
+- (void)signIn:(GIDSignIn *)signIn
+    didSignInForUser:(GIDGoogleUser *)user
+           withError:(NSError *)error {
   // Perform any operations on signed in user here.
-  self.statusText.text = [NSString stringWithFormat:@"Signed in as %@",
-                          user.profile.name];
+  self.statusText.text = [NSString stringWithFormat:@"Signed in as %@", user.profile.name];
   [self toggleAuthUI];
 }
 // [END signin_handler]
@@ -120,29 +117,30 @@
 // [START invite_tapped]
 - (IBAction)inviteTapped:(id)sender {
   self.inviteDialog = [GINInvite inviteDialog];
-  [self.inviteDialog setInviteDelegate: self];
+  [self.inviteDialog setInviteDelegate:self];
 
   // NOTE: You must have the App Store ID set in your developer console project
   // in order for invitations to successfully be sent.
-  NSString *message = [NSString stringWithFormat:@"Try this out!\n -%@",
-                       [[GIDSignIn sharedInstance] currentUser].profile.name];
+  NSString *message =
+      [NSString stringWithFormat:@"Try this out!\n -%@",
+                                 [[GIDSignIn sharedInstance] currentUser].profile.name];
 
   // A message hint for the dialog. Note this manifests differently depending on the
   // received invation type. For example, in an email invite this appears as the subject.
   [self.inviteDialog setMessage:message];
 
   // Title for the dialog, this is what the user sees before sending the invites.
-  [self.inviteDialog setTitle: @"App Invites Example"];
-  [self.inviteDialog setDeepLink: @"app_url"];
+  [self.inviteDialog setTitle:@"App Invites Example"];
+  [self.inviteDialog setDeepLink:@"app_url"];
   [self.inviteDialog open];
 }
 // [END invite_tapped]
 
 // [START invite_finished]
-- (void)inviteFinishedWithInvitations:(NSArray *)invitationIds
-                                error:(NSError *)error {
-  NSString *message = error ? error.localizedDescription :
-      [NSString stringWithFormat:@"%lu invites sent", (unsigned long)invitationIds.count];
+- (void)inviteFinishedWithInvitations:(NSArray *)invitationIds error:(NSError *)error {
+  NSString *message =
+      error ? error.localizedDescription
+            : [NSString stringWithFormat:@"%lu invites sent", (unsigned long)invitationIds.count];
   [[[UIAlertView alloc] initWithTitle:@"Done"
                               message:message
                              delegate:nil

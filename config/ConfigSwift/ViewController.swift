@@ -15,13 +15,52 @@
 //
 
 import UIKit
+import Firebase.Config
 
 @objc(ViewController)
 class ViewController: UIViewController {
 
+  @IBOutlet weak var priceLabel: UILabel!
+  @IBOutlet weak var debugLabel: UILabel!
+
   override func viewDidLoad() {
+
     super.viewDidLoad()
-    // TODO: Add your initialization code here.
+
+    // [START completion_handler]
+    let completion:GCSDefaultConfigCompletion = {(config:GCSConfig!, status:GCSConfigStatus, error:NSError!) -> Void in
+      if (error != nil) {
+        // There has been an error fetching the config
+        print("Error fetching config: \(error.localizedDescription)")
+      } else {
+        // Parse your config data
+        // [START_EXCLUDE]
+        // [START read_data]
+        let isPromo = config.boolForKey("is-promo-on", defaultValue: false)
+        let discount = config.numberForKey("discount", defaultValue: 0)
+        // [END read_data]
+        var price = 100.00
+        if(isPromo) {
+          price = (price / 100) * (price - discount.doubleValue);
+        }
+        let priceMsg = String(format:"Your price is $%.02f", price)
+        self.priceLabel.text = priceMsg
+        let isDevBuild = config.boolForKey("dev-features-on", defaultValue: false)
+        if (isDevBuild) {
+          let debugMsg = "Config set size: \(config.count)"
+          self.debugLabel.text = debugMsg
+        }
+        // [END_EXCLUDE]
+      }
+    }
+    // [END completion_handler]
+
+    // [START fetch_config]
+    let customVariables = ["build": "dev"]
+    // 43200 secs = 12 hours
+    GCSConfig.fetchDefaultConfigWithExpirationDuration(43200, customVariables: customVariables,
+        completionHandler: completion)
+    // [END fetch_config]
   }
 
 }

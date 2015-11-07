@@ -18,9 +18,9 @@
 
 @implementation AppDelegate
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-
-  NSError* error;
+- (BOOL)application:(UIApplication *)application
+    didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+  NSError *error;
   BOOL success = [[FIRContext sharedInstance] configure:&error];
   if (!success) {
     NSLog(@"Error: %@", error);

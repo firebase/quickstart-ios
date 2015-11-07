@@ -17,12 +17,13 @@
 #import <UIKit/UIKit.h>
 #import <FirebaseDatabase/Firebase.h>
 
-@interface ViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
+@interface ViewController
+    : UIViewController<UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
 
 @property(strong, nonatomic) Firebase *ref;
 @property(strong, nonatomic) NSMutableArray *messages;
 
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (weak, nonatomic) IBOutlet UITextField *textField;
+@property(weak, nonatomic) IBOutlet UITableView *tableView;
+@property(weak, nonatomic) IBOutlet UITextField *textField;
 
 @end

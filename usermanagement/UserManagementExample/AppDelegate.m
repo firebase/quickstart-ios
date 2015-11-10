@@ -20,14 +20,10 @@
 // [START usermanagement_import]
 #import "Firebase/Core.h"
 #import "FirebaseAuth/FIRAuth.h"
-#import "FirebaseAuth/FIRFirebaseApp.h"
-#import "FirebaseAuth/FIRFirebaseOptions.h"
+#import "FirebaseApp/FIRFirebaseApp.h"
+#import "FirebaseApp/FIRFirebaseOptions.h"
+#import "FirebaseAuth/FIRGoogleSignInAuthProvider.h"
 // [END usermanagement_import]
-
-/*! @var kFirebaseAppId
- @brief The application's Firebase application ID.
- */
-// static NSString *const kFirebaseAppId = @"Placeholder";
 
 /*! @var kWidgetURL
  @brief The GITkit widget URL.
@@ -46,7 +42,11 @@ static NSString *const kWidgetURL = @"https://gitkitmobile.appspot.com/gitkit.js
   // [END firebase_configure]
 
   // [START usermanagement_initialize]
-  // Configure the default Firebase application:
+  // Configure the default Firebase application
+  FIRGoogleSignInAuthProvider *googleSignIn =
+  [[FIRGoogleSignInAuthProvider alloc] initWithClientId:
+      [FIRContext sharedInstance].serviceInfo.clientID];
+
   FIRFirebaseOptions *firebaseOptions = [[FIRFirebaseOptions alloc] init];
   firebaseOptions.GITkitAPIKey = [FIRContext sharedInstance].serviceInfo.apiKey;
   firebaseOptions.GITkitWidgetURL = [NSURL URLWithString:kWidgetURL];

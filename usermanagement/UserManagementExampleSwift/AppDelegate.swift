@@ -32,7 +32,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // [END firebase_configure]
 
     // [START usermanagement_initialize]
-    // Configure the default Firebase application:
+    // Configure the default Firebase application
+    let googleSignIn = FIRGoogleSignInAuthProvider.init(clientId: FIRContext.sharedInstance().serviceInfo.clientID)
+
     let firebaseOptions = FIRFirebaseOptions()
     firebaseOptions.GITkitAPIKey = FIRContext.sharedInstance().serviceInfo.apiKey
     firebaseOptions.GITkitWidgetURL = NSURL(string: "https://gitkitmobile.appspot.com/gitkit.jsp")

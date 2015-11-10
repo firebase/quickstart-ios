@@ -19,40 +19,117 @@ import UIKit
 @objc(ViewController)
 class ViewController: UIViewController, FIRAuthUIDelegate {
 
+  weak var _userEmailLabel:UILabel!
+
+  /*! @var kTokenRefreshButtonText
+  @brief The text of the "Refresh Token" button.
+  */
+  var kTokenRefreshButtonText = "Get Token"
+
+  /*! @var kTokenRefreshedAlertTitle
+  @brief The title of the "Token Refreshed" alert.
+  */
+  var kTokenRefreshedAlertTitle = "Token"
+
+  /*! @var kTokenRefreshErrorAlertTitle
+  @brief The title of the "Token Refresh error" alert.
+  */
+  var kTokenRefreshErrorAlertTitle = "Get Token Error"
+
   /*! @var kSignInButtonText
   @brief The text of the "Sign In" button.
   */
-  var kSignInButtonText = "Sign In";
+  var kSignInButtonText = "Sign In"
 
   /*! @var kSignedInAlertTitle
   @brief The text of the "Sign In Succeeded" alert.
   */
-  var kSignedInAlertTitle = "Signed In";
+  var kSignedInAlertTitle = "Signed In"
 
   /*! @var kSignInErrorAlertTitle
   @brief The text of the "Sign In Encountered an Error" alert.
   */
-  var kSignInErrorAlertTitle = "Sign-In Error";
+  var kSignInErrorAlertTitle = "Sign-In Error"
+
+  /*! @var kSignOutButtonText
+  @brief The text of the "Sign Out" button.
+  */
+  var kSignOutButtonText = "Sign Out"
 
   /*! @var kOKButtonText
   @brief The text of the "OK" button for the Sign In result dialogs.
   */
-  var kOKButtonText = "OK";
+  var kOKButtonText = "OK"
 
   /*! @var kSignInButtonWidth
   @brief The width of the "Sign In" button.
   */
-  var kSignInButtonWidth:CGFloat = 200;
+  var kSignInButtonWidth:CGFloat = 200
 
   /*! @var kSignInButtonHeight
   @brief The height of the "Sign In" button.
   */
-  var kSignInButtonHeight:CGFloat = 30;
+  var kSignInButtonHeight:CGFloat = 30
+
+  /*! @var kUserEmailLabelHeight
+  @brief The height of the user's email address label.
+  */
+  var kUserEmailLabelHeight:CGFloat = 20
 
   override func loadView() {
     super.loadView()
     self.view.backgroundColor = UIColor.whiteColor()
     self.loadSignInButton()
+    self.loadTokenRefreshButton()
+    self.loadSignOutButton()
+    self.loadUserEmailLabel()
+    _userEmailLabel.text = FIRAuth.init(forApp:FIRFirebaseApp.initializedAppWithAppId(FIRContext.sharedInstance().serviceInfo.googleAppID)!)!.currentUser?.email
+  }
+
+  /*! @fn loadSignOutButton
+  @brief Loads the "sign out" button.
+  */
+  func loadSignOutButton() {
+    let signOutButton = UIButton.init(type: UIButtonType.System)
+    signOutButton.frame = CGRectMake(0, 0, kSignInButtonWidth, kSignInButtonHeight)
+    signOutButton.setTitle(kSignOutButtonText, forState: UIControlState.Normal)
+    signOutButton.addTarget(self, action: "signOutPressed:", forControlEvents: UIControlEvents.TouchUpInside)
+    signOutButton.center = CGPointMake(CGRectGetMidX(self.view.bounds), CGRectGetMidY(self.view.bounds) - kSignInButtonHeight)
+
+    signOutButton.autoresizingMask = [UIViewAutoresizing.FlexibleTopMargin, UIViewAutoresizing.FlexibleRightMargin, UIViewAutoresizing.FlexibleBottomMargin, UIViewAutoresizing.FlexibleLeftMargin]
+    self.view.addSubview(signOutButton)
+  }
+
+  /*! @fn loadUserEmailLabel
+  @brief Loads the label which displays the user's email address.
+  */
+  func loadUserEmailLabel() {
+  let userEmailLabelFrame =
+  CGRectMake(0, 0, self.view.bounds.size.width, kUserEmailLabelHeight)
+  let userEmailLabel = UILabel.init(frame: userEmailLabelFrame)
+  userEmailLabel.textAlignment = NSTextAlignment.Center
+  userEmailLabel.center = self.view.center
+  userEmailLabel.center =
+  CGPointMake(self.view.center.x, self.view.center.y + (kSignInButtonHeight * 2))
+  self.view.addSubview(userEmailLabel)
+  _userEmailLabel = userEmailLabel;
+  }
+
+  /*! @fn loadTokenRefreshButton
+  @brief Loads the "refresh token" button.
+  */
+  func loadTokenRefreshButton() {
+  let tokenRefreshButton = UIButton.init(type: UIButtonType.System)
+  tokenRefreshButton.frame = CGRectMake(0, 0, kSignInButtonWidth, kSignInButtonHeight)
+  tokenRefreshButton.setTitle(kTokenRefreshButtonText, forState: UIControlState.Normal)
+  tokenRefreshButton.addTarget(self, action: "refreshTokenPressed:", forControlEvents: UIControlEvents.TouchUpInside)
+
+  tokenRefreshButton.center =
+  CGPointMake(CGRectGetMidX(self.view.bounds),
+  CGRectGetMidY(self.view.bounds) + kSignInButtonHeight)
+
+  tokenRefreshButton.autoresizingMask = [UIViewAutoresizing.FlexibleTopMargin, UIViewAutoresizing.FlexibleRightMargin, UIViewAutoresizing.FlexibleBottomMargin, UIViewAutoresizing.FlexibleLeftMargin]
+  self.view.addSubview(tokenRefreshButton)
   }
 
   /*! @fn loadSignInButton
@@ -76,11 +153,8 @@ class ViewController: UIViewController, FIRAuthUIDelegate {
   func signInPressed(sender: UIButton) {
     // [START usermanagement_config]
     let firebaseAuth = FIRAuth.init(forApp:FIRFirebaseApp.initializedAppWithAppId(FIRContext.sharedInstance().serviceInfo.googleAppID)!)
-    let authUIOptions = FIRAuthUIOptions()
-    let googleSignIn = FIRGoogleSignInAuthProvider(clientId: FIRContext.sharedInstance().serviceInfo.clientID)
-    authUIOptions.addProvider(googleSignIn!)
     // [END usermanagement_config]
-    let firebaseAuthUI:FIRAuthUI = FIRAuthUI.init(auth: firebaseAuth!, options: authUIOptions, delegate: self)
+    let firebaseAuthUI:FIRAuthUI = FIRAuthUI.init(auth: firebaseAuth!, delegate: self)
     
     firebaseAuthUI.presentSignInWithCallback({(user, error) in
       if #available(iOS 8.0, *) {
@@ -100,6 +174,40 @@ class ViewController: UIViewController, FIRAuthUIDelegate {
         self.presentViewController(alertController, animated: true, completion: nil)
       } else {
           // Fallback on earlier versions
+      }
+    })
+  }
+
+  func signOutPressed(sender: UIButton) {
+    let firebaseAuth = FIRAuth.init(forApp:FIRFirebaseApp.initializedAppWithAppId(FIRContext.sharedInstance().serviceInfo.googleAppID)!)
+    firebaseAuth?.signOut()
+    _userEmailLabel.text = firebaseAuth!.currentUser!.email
+  }
+
+  /*! @fn refreshTokenPressed:
+  @brief Invoked when the token refresh button is pressed.
+  @param sender The token refresh button.
+  */
+  func refreshTokenPressed(sender: UIButton) {
+    let firebaseAuth = FIRAuth.init(forApp:FIRFirebaseApp.initializedAppWithAppId(FIRContext.sharedInstance().serviceInfo.googleAppID)!)
+    firebaseAuth!.getTokenForcingRefresh(false, withCallback: {(token, error) in
+      if #available(iOS 8.0, *) {
+        let okAction = UIAlertAction.init(title: self.kOKButtonText, style: UIAlertActionStyle.Default, handler: {action in print(self.kOKButtonText)})
+        if ((error) != nil) {
+          let alertController  = UIAlertController.init(title: self.kTokenRefreshErrorAlertTitle, message: error!.localizedDescription, preferredStyle: UIAlertControllerStyle.Alert)
+          alertController.addAction(okAction)
+          self.presentViewController(alertController, animated: true, completion: nil)
+          return
+        }
+
+        // Log sign in event to Scion.
+        GMRAppMeasurement.logEventWithName("tokenrefresh", parameters: nil)
+
+        let alertController = UIAlertController.init(title: self.kTokenRefreshedAlertTitle, message: token, preferredStyle: UIAlertControllerStyle.Alert)
+        alertController.addAction(okAction)
+        self.presentViewController(alertController, animated: true, completion: nil)
+      } else {
+        // Fallback on earlier versions
       }
     })
   }

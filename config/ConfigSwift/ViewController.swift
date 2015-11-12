@@ -36,7 +36,7 @@ class ViewController: UIViewController {
         // Parse your config data
         // [START_EXCLUDE]
         // [START read_data]
-        let isPromo = config.boolForKey("is-promo-on", defaultValue: false)
+        let isPromo = config.boolForKey("is_promo_on", defaultValue: false)
         let discount = config.numberForKey("discount", defaultValue: 0)
         // [END read_data]
         var price = 100.00
@@ -45,7 +45,7 @@ class ViewController: UIViewController {
         }
         let priceMsg = String(format:"Your price is $%.02f", price)
         self.priceLabel.text = priceMsg
-        let isDevBuild = config.boolForKey("dev-features-on", defaultValue: false)
+        let isDevBuild = config.boolForKey("dev_features_on", defaultValue: false)
         if (isDevBuild) {
           let debugMsg = "Config set size: \(config.count)"
           self.debugLabel.text = debugMsg

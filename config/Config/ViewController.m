@@ -30,7 +30,7 @@
       // Parse your config data
       // [START_EXCLUDE]
       // [START read_data]
-      BOOL isPromo = config[@"is-promotion-on"].boolValue;
+      BOOL isPromo = config[@"is_promotion_on"].boolValue;
       NSNumber *discount = config[@"discount"].numberValue;
       // [END read_data]
       double price = 100.00;
@@ -39,7 +39,7 @@
       }
       NSString *priceMsg = [NSString stringWithFormat:@"Your price is $%.02f", price];
       _priceLabel.text = priceMsg;
-      BOOL isDevBuild = [config boolForKey:@"dev-features-on" defaultValue:NO];
+      BOOL isDevBuild = [config boolForKey:@"dev_features_on" defaultValue:NO];
       if (isDevBuild) {
         NSString *debugMsg = [NSString stringWithFormat:@"Config set size: %ld", (long)config.count];
         _debugLabel.text = debugMsg;

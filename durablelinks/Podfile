@@ -6,6 +6,6 @@ source 'https://github.com/CocoaPods/Specs.git'
 
 platform :ios, '8.0'
 pod 'Firebase/Core'
-pod 'DurableDeepLink’, ‘~>1.0.1’
+pod 'DurableDeepLink'
 
 link_with 'DurableLinksExample', 'DurableLinksExampleSwift', 'DurableLinksExampleTests'

@@ -28,7 +28,7 @@ class ViewController: UIViewController {
     super.viewDidLoad()
 
     // [START completion_handler]
-    let completion:GCSDefaultConfigCompletion = {(config:GCSConfig!, status:GCSConfigStatus, error:NSError!) -> Void in
+    let completion:RCNDefaultConfigCompletion = {(config:RCNConfig!, status:RCNConfigStatus, error:NSError!) -> Void in
       if (error != nil) {
         // There has been an error fetching the config
         print("Error fetching config: \(error.localizedDescription)")
@@ -58,7 +58,7 @@ class ViewController: UIViewController {
     // [START fetch_config]
     let customVariables = ["build": "dev"]
     // 43200 secs = 12 hours
-    GCSConfig.fetchDefaultConfigWithExpirationDuration(43200, customVariables: customVariables,
+    RCNConfig.fetchDefaultConfigWithExpirationDuration(43200, customVariables: customVariables,
         completionHandler: completion)
     // [END fetch_config]
   }

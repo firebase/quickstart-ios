@@ -22,7 +22,7 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   // [START completion_handler]
-  GCSDefaultConfigCompletion completion = ^void(GCSConfig *config, GCSConfigStatus status, NSError *error) {
+  RCNDefaultConfigCompletion completion = ^void(RCNConfig *config, RCNConfigStatus status, NSError *error) {
     if (error) {
       // There has been an error fetching the config
       NSLog(@"Error fetching config: %@", error.localizedDescription);
@@ -52,7 +52,7 @@
   // [START fetch_config]
   NSDictionary *customVariables = @{@"build":@"dev"};
   // 43200 secs = 12 hours
-  [GCSConfig fetchDefaultConfigWithExpirationDuration:43200
+  [RCNConfig fetchDefaultConfigWithExpirationDuration:43200
                                       customVariables:customVariables
                                     completionHandler:completion];
   // [END fetch_config]

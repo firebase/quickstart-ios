@@ -19,6 +19,7 @@
 
 // [START firebase_config]
 import UIKit
+import Firebase.Core
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

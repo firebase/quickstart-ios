@@ -19,6 +19,7 @@
 
 // [START firebase_banner_example]
 import UIKit
+import Firebase.AdMob
 
 // Makes ViewController available to Objc classes.
 @objc(ViewController)

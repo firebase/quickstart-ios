@@ -14,7 +14,7 @@
 //  limitations under the License.
 //
 import UIKit
-
+import Firebase.AppInvite
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

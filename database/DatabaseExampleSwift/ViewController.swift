@@ -15,6 +15,7 @@
 //
 
 import UIKit
+import FirebaseDatabase
 /* Note that "import FirebaseDatabase" is included in BridgingHeader.h */
 
 @objc(ViewController)

@@ -23,16 +23,15 @@ class ViewController: UIViewController {
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(true)
 
-    let name = "Pattern~\(title!)"
+    let name = "Pattern~\(title!)",
+        text = "I'd love you to hear about\(name)";
 
-    // [START screen_view_hit_swift]
-    GMRAppMeasurement.logEventWithName(kGMREventViewContent,
-      parameters: [
-        kGMRParameterProductID : title!,
-        kGMRParameterProductName : name,
-        kGMRParameterProductCategory : "pattern",
+    // [START custom_event_swift]
+    GMRAppMeasurement.logEventWithName("share_image", parameters: [
+      "name": name,
+      "full_text": text
       ])
-    // [END screen_view_hit_swift]
+    // [END custom_event_swift]
   }
 
 }

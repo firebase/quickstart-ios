@@ -24,15 +24,15 @@
   [super viewWillAppear:animated];
 
   NSString *name = [NSString stringWithFormat:@"Pattern~%@", self.title];
+  NSString *text = [NSString stringWithFormat:@"I'd love you to hear about %@", name];
 
-  // [START screen_view_hit_objc]
-  [GMRAppMeasurement logEventWithName:kGMREventViewContent
+  // [START custom_event_objc]
+  [GMRAppMeasurement logEventWithName:@"share_image"
                            parameters:@{
-                                        kGMRParameterProductID: self.title,
-                                        kGMRParameterProductName: name,
-                                        kGMRParameterProductCategory: @"pattern",
+                                        @"name": name,
+                                        @"full_text": text
                                         }];
-  // [END screen_view_hit_objc]
+  // [END custom_event_objc]
 }
 
 @end

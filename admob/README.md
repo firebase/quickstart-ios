@@ -2,8 +2,7 @@ Google AdMob Quickstart
 =======================
 
 The Google AdMob iOS quickstart demonstrates how to display an interstitial ad and a simple banner 
-ad.  GADBannerView is used to display a banner ad and GADInterstitial is used to display the 
-interstitial ad.
+ad.
 
 Introduction
 ------------
@@ -13,9 +12,9 @@ Introduction
 Getting Started
 ---------------
 
+- [Add Firebase to your iOS Project](https://developers.google.com/firebase/docs/ios/setup).
 - Follow the [quickstart guide](https://developers.google.com/admob/ios/start) to set up your project.
 - Run the sample on your iOS device or emulator.
-- The running sample displays a test banner ad and a test interstitial add.
 
 Note: You will need Swift 2.0 to run the Swift version of this quickstart.
 

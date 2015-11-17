@@ -1,7 +1,7 @@
 Firebase Analytics Quickstart
 ===========================
 
-Firebase Measurement iOS Quickstart app demonstrates collecting
+Firebase Analytics iOS Quickstart app demonstrates collecting
 app usage analytics via the Measurement API.
 
 Introduction
@@ -12,11 +12,10 @@ Introduction
 Getting Started
 ---------------
 
-- Follow the [quickstart guide](https://developers.google.com/analytics/devguides/collection/mobile/)
+- [Add Firebase to your iOS Project](https://developers.google.com/firebase/docs/ios/setup).
+- Follow the [quickstart guide]- [Add Firebase to your iOS Project](https://developers.google.com/firebase/docs/ios/setup).).
   to set up your project in XCode.
 - Run the sample on your iOS device or emulator.
-- Swipe between images to register screen views.
-- View collected analytics via [Google Analytics](https://www.google.com/analytics/web).
 
 Note: You will need Swift 2.0 to run the Swift version of this quickstart.
 
@@ -27,13 +26,7 @@ Screenshots
 Support
 -------
 
-- Stack Overflow: http://stackoverflow.com/questions/tagged/google-analytics
-
-If you've found an error in this sample, please file an issue:
-https://github.com/googlesamples/google-services/issues
-
-Patches are encouraged, and may be submitted by forking this project and
-submitting a pull request through GitHub.
+https://developers.google.com/cloud-messaging/support
 
 License
 -------

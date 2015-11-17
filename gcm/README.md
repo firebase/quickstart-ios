@@ -1,28 +1,22 @@
-Google Cloud Messaging Quickstart
+Firebase Notifications Quickstart
 =================================
 
-The Google Cloud Messaging iOS Quickstart app demonstrates how to connect
+The Firebase Notifications iOS Quickstart app demonstrates how to connect
 an iOS app to GCM and how to receive messages.
 
 Introduction
 ------------
 
-TODO(ianbarber): instructions for EAP
+- [Read more about Firebase Notifications](https://developers.google.com/firebase/)
 
 Getting Started
 ---------------
 
-TODO(ianbarber): setup instructions for eap
-- Under **Project Settings > Notifications**, make sure to add a development APNs certificate (if you
-want to use a production certificate, you need to change the value of kGGLInstanceIDAPNSServerTypeSandboxOption in the call to `tokenWithAuthorizedEntity` accordingly).
-- Run the sample on your iOS device.
-- Navigate to **Notifications**, and click **NEW MESSAGE**
-- Fill in the message text and optionally the label; for target, you can choose one of:
-    - **Topic**; if you choose this option, use `/topics/global` as your target;
-    - **Single Device**; if you choose this option, insert the registration token that the sample app has printed in the XCode debug console as your target.
-- Click **SEND MESSAGE**. A notification will be sent to your device.
+- [Add Firebase to your iOS Project](https://developers.google.com/firebase/docs/ios/setup).
+- Follow the [quickstart guide](https://developers.google.com/cloud-messaging/ios/start) to set up your project.
+- Run the sample on your iOS device or emulator.
 
-Note: You need Swift 2.0 to run the Swift version of this quickstart.
+Note: You will need Swift 2.0 to run the Swift version of this quickstart.
 
 Screenshots
 -----------
@@ -31,7 +25,7 @@ Screenshots
 Support
 -------
 
-TODO(ianbarber): fill this if needed.
+https://developers.google.com/firebase/support
 
 License
 -------

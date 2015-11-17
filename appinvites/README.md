@@ -1,20 +1,19 @@
-Google App Invites Quickstart
+Firebase App Invites Quickstart
 =============================
 
-The Google App Invites iOS quickstart demonstrates how to enable your users to share your app with 
-people they know.  GINInviteBuilder is used to send an invitation.
+The Google App Invites iOS quickstart demonstrates how to enable your users to share your app with people they know.
 
 Introduction
 ------------
 
-- [Read more about Google App Invites](https://developers.google.com/app-invites/)
+- [Read more about Firebase App Invites](https://developers.google.com/firebase/)
 
 Getting Started
 ---------------
 
+- [Add Firebase to your iOS Project](https://developers.google.com/firebase/docs/ios/setup).
 - Follow the [quickstart guide](https://developers.google.com/app-invites/ios/guides/start) to set up your project.
 - Run the sample on your iOS device or emulator.
-- The running allows you to send and receive app invites.
 
 Note: You will need Swift 1.2 to run the Swift version of this quickstart.
 
@@ -25,11 +24,7 @@ Screenshots
 Support
 -------
 
-If you've found an error in this sample, please file an issue:
-https://github.com/googlesamples/google-services/issues
-
-Patches are encouraged, and may be submitted by forking this project and
-submitting a pull request through GitHub.
+https://developers.google.com/firebase/support/
 
 License
 -------

@@ -1,31 +1,26 @@
-Google App Indexing Quickstart
+Firebase App Indexing Quickstart
 ==============================
 
-The Google App Indexing iOS quickstart demonstrates how to help get your app found in Google Search.
-GSDDeepLink is used to handle deep links.
+The Firebase App Indexing iOS quickstart demonstrates how to help get your app found in Google Search.
 
 Introduction
 ------------
 
-- [Read more about Google App Indexing](https://developers.google.com/app-indexing/)
+- [Read more about Firebase App Indexing](https://developers.google.com/firebase/)
 
 Getting Started
 ---------------
 
-- Open the App Indexing project.
+- [Add Firebase to your iOS Project](https://developers.google.com/firebase/docs/ios/setup).
+- Follow the [quickstart guide](https://developers.google.com/app-indexing/ios/app) to set up your project.
 - Run the sample on your iOS device or emulator.
-- The running sample handles incoming deep links.
+
+Note: You will need Swift 2.0 to run the Swift version of this quickstart.
 
 Support
 -------
 
-- Stack Overflow: http://stackoverflow.com/questions/tagged/google-search-platform
-
-If you've found an error in this sample, please file an issue:
-https://github.com/googlesamples/google-services/issues
-
-Patches are encouraged, and may be submitted by forking this project and
-submitting a pull request through GitHub.
+https://developers.google.com/firebase/support/
 
 License
 -------

@@ -1,5 +1,5 @@
 ### Remove this when it goes to GA ###
-source 'sso://cpdc-eap/spec.git'
+source 'https://cpdc-eap.googlesource.com/spec.git'
 source 'https://github.com/CocoaPods/Specs.git'
 ## End remove ###
 # GcmExample

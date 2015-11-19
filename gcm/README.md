@@ -13,8 +13,10 @@ Getting Started
 ---------------
 
 - [Add Firebase to your iOS Project](https://developers.google.com/firebase/docs/ios/setup).
-- Follow the [quickstart guide](https://developers.google.com/cloud-messaging/ios/start) to set up your project.
-- Run the sample on your iOS device or emulator.
+- Add APNS certs to your project in Settings > Notifications in the [console](https://g.co/firebase)
+- Run `pod install`
+- Copy in the GoogleServices-Info.plist to your project
+- Run the sample on your iOS device.
 
 Note: You will need Swift 2.0 to run the Swift version of this quickstart.
 

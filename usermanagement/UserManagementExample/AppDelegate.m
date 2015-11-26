@@ -22,7 +22,7 @@
 #import "FirebaseAuth/FIRAuth.h"
 #import "FirebaseApp/FIRFirebaseApp.h"
 #import "FirebaseApp/FIRFirebaseOptions.h"
-#import "FirebaseAuth/FIRGoogleSignInAuthProvider.h"
+#import "FirebaseAuthProviderGoogle/FIRGoogleSignInAuthProvider.h"
 // [END usermanagement_import]
 
 /*! @var kWidgetURL
@@ -48,8 +48,8 @@ static NSString *const kWidgetURL = @"https://gitkitmobile.appspot.com/gitkit.js
       [FIRContext sharedInstance].serviceInfo.clientID];
 
   FIRFirebaseOptions *firebaseOptions = [[FIRFirebaseOptions alloc] init];
-  firebaseOptions.GITkitAPIKey = [FIRContext sharedInstance].serviceInfo.apiKey;
-  firebaseOptions.GITkitWidgetURL = [NSURL URLWithString:kWidgetURL];
+  firebaseOptions.APIKey = [FIRContext sharedInstance].serviceInfo.apiKey;
+  firebaseOptions.authWidgetURL = [NSURL URLWithString:kWidgetURL];
   firebaseOptions.signInProviders = @[ googleSignIn ];
   [FIRFirebaseApp initializedAppWithAppId:[FIRContext sharedInstance].serviceInfo.googleAppID
                                   options:firebaseOptions];

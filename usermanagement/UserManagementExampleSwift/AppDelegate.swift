@@ -36,8 +36,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let googleSignIn = FIRGoogleSignInAuthProvider.init(clientId: FIRContext.sharedInstance().serviceInfo.clientID)
 
     let firebaseOptions = FIRFirebaseOptions()
-    firebaseOptions.GITkitAPIKey = FIRContext.sharedInstance().serviceInfo.apiKey
-    firebaseOptions.GITkitWidgetURL = NSURL(string: "https://gitkitmobile.appspot.com/gitkit.jsp")
+    firebaseOptions.APIKey = FIRContext.sharedInstance().serviceInfo.apiKey
+    firebaseOptions.authWidgetURL = NSURL(string: "https://gitkitmobile.appspot.com/gitkit.jsp")
     firebaseOptions.signInProviders = [googleSignIn!];
     FIRFirebaseApp.initializedAppWithAppId(FIRContext.sharedInstance().serviceInfo.googleAppID, options: firebaseOptions)
     // [END usermanagement_initialize]

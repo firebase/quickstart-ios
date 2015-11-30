@@ -18,9 +18,9 @@
 
 // [START usermanagement_import]
 #import "Firebase/Core.h"
+#import "FirebaseAuthUI/FIRAuthUI.h"
 #import "FirebaseAuth/FIRAuth.h"
-#import "FirebaseAuth/FIRAuthUI.h"
-#import "FirebaseAuth/FIRGoogleSignInAuthProvider.h"
+#import "FirebaseAuthProviderGoogle/FIRGoogleSignInAuthProvider.h"
 #import "FirebaseAuth/FIRUser.h"
 #import "FirebaseApp/FIRFirebaseApp.h"
 #import "FirebaseApp/FIRFirebaseOptions.h"

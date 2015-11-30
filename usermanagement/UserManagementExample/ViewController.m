@@ -18,8 +18,8 @@
 
 // [START usermanagement_view_import]
 #import "FirebaseAuth/FIRAuth.h"
-#import "FirebaseAuth/FIRAuthUI.h"
-#import "FirebaseAuth/FIRGoogleSignInAuthProvider.h"
+#import "FirebaseAuthUI/FIRAuthUI.h"
+#import "FirebaseAuthProviderGoogle/FIRGoogleSignInAuthProvider.h"
 #import "FirebaseAuth/FIRUser.h"
 #import "Firebase/Core.h"
 // [END usermanagement_view_import]

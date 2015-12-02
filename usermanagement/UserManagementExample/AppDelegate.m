@@ -14,6 +14,12 @@
 //  limitations under the License.
 //
 
+//
+// For more information on setting up and running this sample code, see
+// https://developers.google.com/firebase/docs/auth/ios/user-auth
+//
+
+
 #import "AppDelegate.h"
 #import "ViewController.h"
 

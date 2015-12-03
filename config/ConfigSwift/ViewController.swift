@@ -36,7 +36,7 @@ class ViewController: UIViewController {
         // Parse your config data
         // [START_EXCLUDE]
         // [START read_data]
-        let isPromo = config.boolForKey("is_promo_on", defaultValue: false)
+        let isPromo = config.boolForKey("is_promotion_on", defaultValue: false)
         let discount = config.numberForKey("discount", defaultValue: 0)
         // [END read_data]
         var price = 100.00

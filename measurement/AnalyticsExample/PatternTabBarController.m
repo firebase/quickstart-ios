@@ -14,6 +14,11 @@
 //  limitations under the License.
 //
 
+//
+// For more information on setting up and running this sample code, see
+// https://developers.google.com/firebase/docs/analytics/analytics-ios
+//
+
 #import "PatternTabBarController.h"
 
 @import Firebase.Core;

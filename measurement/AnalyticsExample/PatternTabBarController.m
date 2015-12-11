@@ -27,10 +27,10 @@
 
 - (void)didTapShare:(id)sender {
   // [START custom_event_objc]
-  [GMRAppMeasurement logEventWithName:kGMREventShare parameters:@{
-                                                                  kGMRParameterContentType:@"cont",
-                                                                  kGMRParameterContentID:@"1"
-                                                                  }];
+  [FIRAnalytics logEventWithName:kFIREventShare parameters:@{
+                                                             kFIRParameterContentType:@"cont",
+                                                             kFIRParameterContentID:@"1"
+                                                             }];
   // [END custom_event_objc]
 
   NSString *title = [NSString stringWithFormat:@"Share: %@",

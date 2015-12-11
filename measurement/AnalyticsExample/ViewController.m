@@ -32,7 +32,7 @@
   NSString *text = [NSString stringWithFormat:@"I'd love you to hear about %@", name];
 
   // [START custom_event_objc]
-  [GMRAppMeasurement logEventWithName:@"share_image"
+  [FIRAnalytics logEventWithName:@"share_image"
                            parameters:@{
                                         @"name": name,
                                         @"full_text": text

@@ -27,7 +27,7 @@ class ViewController: UIViewController {
         text = "I'd love you to hear about\(name)";
 
     // [START custom_event_swift]
-    GMRAppMeasurement.logEventWithName("share_image", parameters: [
+    FIRAnalytics.logEventWithName("share_image", parameters: [
       "name": name,
       "full_text": text
       ])

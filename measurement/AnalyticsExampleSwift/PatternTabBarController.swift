@@ -27,9 +27,9 @@ class PatternTabBarController: UITabBarController {
 
   @IBAction func didTapShare(sender: AnyObject) {
     // [START custom_event_swift]
-    GMRAppMeasurement.logEventWithName(kGMREventShare, parameters: [
-      kGMRParameterContentType:"cont",
-      kGMRParameterContentID:"1"
+    FIRAnalytics.logEventWithName(kFIREventShare, parameters: [
+      kFIRParameterContentType:"cont",
+      kFIRParameterContentID:"1"
       ]);
     // [END custom_event_swift]
 

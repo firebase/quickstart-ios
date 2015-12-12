@@ -16,11 +16,14 @@
 
 #import "AppDelegate.h"
 
+// [START import]
 #import <Firebase/Core.h>
 #import <GINDeepLink/GINDeepLink.h>
+// [END import]
 
 @implementation AppDelegate
 
+// [START didfinishlaunching]
 - (BOOL)application:(UIApplication *)application
     didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   // Use Firebase library to configure APIs
@@ -35,7 +38,9 @@
   [GINDeepLink applicationDidFinishLaunchingWithOptions:launchOptions];
   return YES;
 }
+// [END didfinishlaunching]
 
+// [START openurl]
 - (BOOL)application:(UIApplication *)application
             openURL:(NSURL *)url
   sourceApplication:(NSString *)sourceApplication
@@ -43,25 +48,30 @@
   GINReceivedInvite *invite =
       [GINDeepLink handleURL:url sourceApplication:sourceApplication annotation:annotation];
   if (invite.deepLink) {
+    // [START_EXCLUDE]
     NSString *matchType =
         (invite.matchType == kGINReceivedInviteMatchTypeWeak) ? @"Weak" : @"Strong";
     NSString *message =
         [NSString stringWithFormat:@"Deep link from: %@\nDeep Link: %@\nMatch Type: %@\n",
                                    sourceApplication, invite.deepLink, matchType];
     [self showDeepLinkAlertViewWithMessage:message];
+    // [END_EXCLUDE]
     return YES;
   }
   return NO;
 }
+// [END openurl]
 
+// [START continueuseractivity]
 - (BOOL)application:(UIApplication *)application
     continueUserActivity:(NSUserActivity *)userActivity
       restorationHandler:(void (^)(NSArray *))restorationHandler {
+  // [START_EXCLUDE silent]
   // Show the deep link URL from userActivity.
   NSString *message =
       [NSString stringWithFormat:@"continueUserActivity webPageURL:\n%@", userActivity.webpageURL];
   [self showDeepLinkAlertViewWithMessage:message];
-
+  // [END_EXCLUDE]
   GINReceivedInvite *invite =
       [GINDeepLink continueUserActivity:userActivity restorationHandler:restorationHandler];
   if (invite.deepLink) {
@@ -73,6 +83,7 @@
   }
   return NO;
 }
+// [END continueuseractivity]
 
 - (void)showDeepLinkAlertViewWithMessage:(NSString *)message {
   UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"

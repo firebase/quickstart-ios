@@ -83,6 +83,9 @@ static const CGFloat kUserEmailLabelHeight = 20;
 @end
 @implementation ViewController {
   __weak UILabel *_userEmailLabel;
+  __weak UIButton *_signOutButton;
+  __weak UIButton *_signInButton;
+  __weak UIButton *_tokenRefreshButton;
 }
 
 - (void)loadView {
@@ -92,7 +95,14 @@ static const CGFloat kUserEmailLabelHeight = 20;
   [self loadTokenRefreshButton];
   [self loadSignOutButton];
   [self loadUserEmailLabel];
-  _userEmailLabel.text = [FIRAuth auth].currentUser.email;
+  FIRUser *currentUser = [FIRAuth auth].currentUser;
+  if (currentUser) {
+    _userEmailLabel.text = currentUser.email;
+    _signInButton.enabled = NO;
+  } else {
+    _signOutButton.enabled = NO;
+    _tokenRefreshButton.enabled = NO;
+  }
 }
 
 /*! @fn loadSignOutButton
@@ -116,6 +126,7 @@ static const CGFloat kUserEmailLabelHeight = 20;
   | UIViewAutoresizingFlexibleLeftMargin;
 
   [self.view addSubview:signOutButton];
+  _signOutButton = signOutButton;
 }
 
 /*! @fn loadUserEmailLabel
@@ -154,6 +165,7 @@ static const CGFloat kUserEmailLabelHeight = 20;
   | UIViewAutoresizingFlexibleLeftMargin;
 
   [self.view addSubview:tokenRefreshButton];
+  _tokenRefreshButton = tokenRefreshButton;
 }
 
 /*! @fn loadSignInButton
@@ -176,6 +188,7 @@ static const CGFloat kUserEmailLabelHeight = 20;
   | UIViewAutoresizingFlexibleLeftMargin;
 
   [self.view addSubview:signInButton];
+  _signInButton = signInButton;
 }
 
 #pragma mark - Actions
@@ -206,7 +219,10 @@ static const CGFloat kUserEmailLabelHeight = 20;
       return;
     }
 
-    _userEmailLabel.text = [FIRAuth auth].currentUser.email;
+    _signInButton.enabled = NO;
+    _signOutButton.enabled = YES;
+    _tokenRefreshButton.enabled = YES;
+    _userEmailLabel.text = user.email;
     [GMRAppMeasurement logEventWithName:kGMREventLogin parameters:nil];
 
     UIAlertController *alertController =
@@ -221,7 +237,10 @@ static const CGFloat kUserEmailLabelHeight = 20;
 - (void)signOutPressed:(UIButton *)sender {
   FIRAuth *firebaseAuth = [FIRAuth auth];
   [firebaseAuth signOut];
-  _userEmailLabel.text = firebaseAuth.currentUser.email;
+  _signInButton.enabled = YES;
+  _signOutButton.enabled = NO;
+  _tokenRefreshButton.enabled = NO;
+  _userEmailLabel.text = nil;
 }
 
 /*! @fn refreshTokenPressed:

@@ -25,14 +25,7 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
 
-  // This will change pending in cl/106974108
-  NSDictionary *plist = [NSDictionary
-      dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"GoogleService-Info"
-                                                                   ofType:@"plist"]];
-  if (plist) {
-    self.ref = [[Firebase alloc] initWithUrl:plist[@"FIREBASE_DATABASE_URL"]];
-    [self.ref unauth];  // Remove this hack pending b/25426664
-  }
+  self.ref = [[Firebase alloc] initWithUrl:[FIRContext sharedInstance].serviceInfo.databaseURL];
 
   _userInt = arc4random();
   self.messages = [[NSMutableArray alloc] init];

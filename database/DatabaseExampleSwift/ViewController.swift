@@ -15,6 +15,7 @@
 //
 
 import UIKit
+import Firebase.Core
 import FirebaseDatabase
 /* Note that "import FirebaseDatabase" is included in BridgingHeader.h */
 
@@ -35,11 +36,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    // This will change pending in cl/106974108
-    if let plist = NSDictionary(contentsOfFile: NSBundle.mainBundle().pathForResource("GoogleService-Info", ofType: "plist")!) {
-    self.ref = Firebase(url: plist["FIREBASE_DATABASE_URL"] as! String)
-      ref.unauth() //Remove this hack pending b/25426664
-    }
+    self.ref = Firebase(url: FIRContext.sharedInstance().serviceInfo.databaseURL)
 
     self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "tableViewCell")
   }

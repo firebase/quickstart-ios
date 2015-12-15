@@ -188,7 +188,7 @@ class ViewController: UIViewController, FIRAuthUIDelegate {
         self.userEmailLabel.text = user!.email;
 
         // Log sign in event to Scion.
-        GMRAppMeasurement.logEventWithName(kGMREventLogin, parameters: nil)
+        FIRAnalytics.logEventWithName(kFIREventLogin, parameters: nil)
 
         let alertController = UIAlertController.init(title: self.kSignedInAlertTitle, message: user!.displayName, preferredStyle: .Alert)
         alertController.addAction(okAction)
@@ -225,7 +225,7 @@ class ViewController: UIViewController, FIRAuthUIDelegate {
         }
 
         // Log sign in event to Scion.
-        GMRAppMeasurement.logEventWithName("tokenrefresh", parameters: nil)
+        FIRAnalytics.logEventWithName("tokenrefresh", parameters: nil)
 
         let alertController = UIAlertController.init(title: self.kTokenRefreshedAlertTitle, message: token, preferredStyle: .Alert)
         alertController.addAction(okAction)

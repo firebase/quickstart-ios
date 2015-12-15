@@ -223,7 +223,7 @@ static const CGFloat kUserEmailLabelHeight = 20;
     _signOutButton.enabled = YES;
     _tokenRefreshButton.enabled = YES;
     _userEmailLabel.text = user.email;
-    [GMRAppMeasurement logEventWithName:kGMREventLogin parameters:nil];
+    [FIRAnalytics logEventWithName:kFIREventLogin parameters:nil];
 
     UIAlertController *alertController =
     [UIAlertController alertControllerWithTitle:kSignedInAlertTitle
@@ -266,7 +266,7 @@ static const CGFloat kUserEmailLabelHeight = 20;
       return;
     }
 
-    [GMRAppMeasurement logEventWithName:@"tokenrefresh" parameters:nil];
+    [FIRAnalytics logEventWithName:@"tokenrefresh" parameters:nil];
 
     UIAlertController *alertController =
        [UIAlertController alertControllerWithTitle:kTokenRefreshedAlertTitle

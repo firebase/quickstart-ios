@@ -17,8 +17,8 @@
 #import "AppDelegate.h"
 
 // [START import]
-#import <Firebase/Core.h>
-#import <GINDeepLink/GINDeepLink.h>
+@import Firebase.DurableDeepLink;
+@import Firebase.Core;
 // [END import]
 
 @implementation AppDelegate
@@ -32,10 +32,13 @@
   NSAssert(status, @"Error configuring Firebase services: %@", configureError);
 
   // Override point for customization after application launch.
-  [GINDeepLink setClientID:[FIRContext sharedInstance].serviceInfo.clientID];
-  [GINDeepLink setAPIKey:[FIRContext sharedInstance].serviceInfo.apiKey];
-  [GINDeepLink setURLScheme:@"ddlurl"];
-  [GINDeepLink applicationDidFinishLaunchingWithOptions:launchOptions];
+  [[GINDurableDeepLinkService sharedInstance]
+      setUpWithLaunchOptions:launchOptions
+                      apiKey:[FIRContext sharedInstance].serviceInfo.apiKey
+                    clientID:[FIRContext sharedInstance].serviceInfo.clientID
+                   urlScheme:@"gindeeplinkurl"
+                userDefaults:nil];
+  [[GINDurableDeepLinkService sharedInstance] checkForPendingDeepLink];
   return YES;
 }
 // [END didfinishlaunching]
@@ -45,19 +48,26 @@
             openURL:(NSURL *)url
   sourceApplication:(NSString *)sourceApplication
          annotation:(id)annotation {
-  GINReceivedInvite *invite =
-      [GINDeepLink handleURL:url sourceApplication:sourceApplication annotation:annotation];
-  if (invite.deepLink) {
+  GINDeepLink *deepLink =
+  [[GINDurableDeepLinkService sharedInstance] deepLinkFromCustomSchemeURL:url];
+  if (deepLink) {
     // [START_EXCLUDE]
-    NSString *matchType =
-        (invite.matchType == kGINReceivedInviteMatchTypeWeak) ? @"Weak" : @"Strong";
-    NSString *message =
-        [NSString stringWithFormat:@"Deep link from: %@\nDeep Link: %@\nMatch Type: %@\n",
-                                   sourceApplication, invite.deepLink, matchType];
+    NSString *matchConfidence;
+    if (deepLink.matchConfidence == GINDeepLinkMatchConfidenceWeak) {
+      matchConfidence = @"Weak";
+    } else {
+      matchConfidence = @"Strong";
+    }
+    NSString *message = [NSString stringWithFormat:@"App URL: %@\n"
+                         @"Match Confidence: %@\n",
+                         deepLink.url, matchConfidence];
     [self showDeepLinkAlertViewWithMessage:message];
     // [END_EXCLUDE]
     return YES;
   }
+
+  // Show the deep link that the app was called with.
+  [self showDeepLinkAlertViewWithMessage:[NSString stringWithFormat:@"openURL:\n%@", url]];
   return NO;
 }
 // [END openurl]
@@ -72,13 +82,14 @@
       [NSString stringWithFormat:@"continueUserActivity webPageURL:\n%@", userActivity.webpageURL];
   [self showDeepLinkAlertViewWithMessage:message];
   // [END_EXCLUDE]
-  GINReceivedInvite *invite =
-      [GINDeepLink continueUserActivity:userActivity restorationHandler:restorationHandler];
-  if (invite.deepLink) {
+
+  GINDeepLink *deepLink = [[GINDurableDeepLinkService sharedInstance]
+                           deepLinkFromUniversalLinkURL:userActivity.webpageURL];
+  if (deepLink.url) {
     [self application:application
-                  openURL:[NSURL URLWithString:invite.deepLink]
-        sourceApplication:@"com.apple.mobilesafari"
-               annotation:@{}];
+              openURL:deepLink.url
+    sourceApplication:@"com.apple.mobilesafari"
+           annotation:@{}];
     return YES;
   }
   return NO;

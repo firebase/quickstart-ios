@@ -5,7 +5,6 @@ source 'https://cpdc-eap.googlesource.com/spec.git'
 source 'https://github.com/CocoaPods/Specs.git'
 
 platform :ios, '8.0'
-pod 'Firebase/Core'
-pod 'DurableDeepLink'
+pod 'Firebase/DurableDeepLink'
 
 link_with 'DurableLinksExample', 'DurableLinksExampleSwift', 'DurableLinksExampleTests'

@@ -37,8 +37,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     super.viewDidLoad()
 
     self.ref = Firebase(url: FIRContext.sharedInstance().serviceInfo.databaseURL)
-
-    self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "tableViewCell")
   }
   
   override func viewWillAppear(animated: Bool) {

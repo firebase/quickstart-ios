@@ -15,6 +15,7 @@
 //
 
 #import "ViewController.h"
+@import Firebase.Core;
 
 @implementation ViewController {
   FirebaseHandle _refHandle;

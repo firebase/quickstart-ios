@@ -33,7 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       }
 
       // Initialize sign-in
-      GINInvite.applicationDidFinishLaunching()
+      GINInvite.applicationDidFinishLaunchingWithOptions(launchOptions)
 
       if (kTrackingID != "YOUR_TRACKING_ID") {
         GINInvite.setGoogleAnalyticsTrackingId(kTrackingID)
@@ -45,15 +45,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   // [START openurl]
   func application(application: UIApplication,
     openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
-      let invite = GINInvite.handleURL(url, sourceApplication:sourceApplication, annotation:annotation)
+      let invite: AnyObject? = GINInvite.handleURL(url, sourceApplication:sourceApplication, annotation:annotation)
 
       if (invite != nil) {
-        GINInvite.completeInvitation()
         let matchType =
-            (invite.matchType == GINReceivedInviteMatchType.Weak) ? "Weak" : "Strong"
-        print("Invite received from: \(sourceApplication) Deeplink: \(invite.deepLink)," +
-            "Id: \(invite.inviteId), Type: \(matchType)")
-        GINInvite.convertInvitation(invite.inviteId)
+            (invite!.matchType == GINReceivedInviteMatchType.Weak) ? "Weak" : "Strong"
+        print("Invite received from: \(sourceApplication) Deeplink: \(invite!.deepLink)," +
+            "Id: \(invite!.inviteId), Type: \(matchType)")
+        GINInvite.convertInvitation(invite!.inviteId)
         return true
       }
 

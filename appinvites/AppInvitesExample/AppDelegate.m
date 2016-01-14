@@ -28,7 +28,7 @@ static NSString *kTrackingID = @"YOUR_TRACKING_ID";
   BOOL status = [[FIRContext sharedInstance] configure:&configureError];
   NSAssert(status, @"Error configuring Firebase services: %@", configureError);
 
-  [GINInvite applicationDidFinishLaunching];
+  [GINInvite applicationDidFinishLaunchingWithOptions:launchOptions];
 
   if ([kTrackingID compare:@"YOUR_TRACKING_ID"] != NSOrderedSame) {
     [GINInvite setGoogleAnalyticsTrackingId:kTrackingID];
@@ -46,7 +46,6 @@ static NSString *kTrackingID = @"YOUR_TRACKING_ID";
   GINReceivedInvite *invite =
       [GINInvite handleURL:url sourceApplication:sourceApplication annotation:annotation];
   if (invite) {
-    [GINInvite completeInvitation];
     NSString *matchType =
         (invite.matchType == kGINReceivedInviteMatchTypeWeak) ? @"Weak" : @"Strong";
     NSString *message =

@@ -214,7 +214,7 @@ class ViewController: UIViewController, FIRAuthUIDelegate {
   */
   func refreshTokenPressed(sender: UIButton) {
     let firebaseAuth = FIRAuth.init(forApp:FIRFirebaseApp.initializedAppWithAppId(FIRContext.sharedInstance().serviceInfo.googleAppID)!)
-    firebaseAuth!.getTokenForcingRefresh(false, withCallback: {(token, error) in
+    firebaseAuth!.currentUser!.getTokenForcingRefresh(false, withCallback: {(token, error) in
       if #available(iOS 8.0, *) {
         let okAction = UIAlertAction.init(title: self.kOKButtonText, style: UIAlertActionStyle.Default, handler: {action in print(self.kOKButtonText)})
         if ((error) != nil) {

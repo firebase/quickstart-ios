@@ -248,7 +248,7 @@ static const CGFloat kUserEmailLabelHeight = 20;
  @param sender The token refresh button.
  */
 - (void)refreshTokenPressed:(UIButton *)sender {
-  [[FIRAuth auth] getTokenForcingRefresh:NO
+  [[FIRAuth auth].currentUser getTokenForcingRefresh:NO
                             withCallback:^(NSString * _Nullable token, NSError * _Nullable error) {
 
     UIAlertAction *okAction = [UIAlertAction actionWithTitle:kOKButtonText

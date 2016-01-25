@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Google Inc.
+//  Copyright (c) 2015 Google Inc.
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -14,43 +14,22 @@
 //  limitations under the License.
 //
 
-
-// This ViewController demonstrates logging events leading up to a crash and
-// reporting that crash. Crashes are automatically reported.
-//
-// Events are logged using FCRLog().
-//
-// Check https://developers.google.com/firebase/console to view and analyze your crash reports.
-//
-// Check https://developers.google.com/firebase/docs/crash/crash-ios for more on
-// Firebase Crash on iOS.
-
-
 #import "ViewController.h"
-#import "Firebase/CrashReporting.h"
 
 @import Firebase;
-
-@interface ViewController ()
-
-@end
 
 @implementation ViewController
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
- 
-    // FCRLog provides a boolean that allows you to specify whether or not to include the
-    // logged event in the console output. In this case the "View loaded" event will
-    // be shown in the console output.
-    // [START log_event]
-    FCRLog(TRUE, @"View loaded");
-    // [END log_event]
+  [super viewDidLoad];
 }
 
 - (IBAction)initiateCrash:(id)sender {
+    // FCRLog is used here with NO to indicate that the log message
+    // will not be shown in the console output. Use YES to have the
+    // log message show in the console output.
     // [START log_and_crash]
-    FCRLog(FALSE, @"Cause crash button clicked");
+    FCRLog(NO, @"Cause Crash button clicked");
     assert(NO);
     // [END log_and_crash]
 }

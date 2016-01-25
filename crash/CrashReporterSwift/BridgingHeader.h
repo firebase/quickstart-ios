@@ -13,24 +13,5 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 //
-
-#import "AppDelegate.h"
-
-@import Firebase;
-
-@implementation AppDelegate
-
-- (BOOL)application:(UIApplication *)application
-    didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-
-  // Initialize Firebase service.
-  NSError *error;
-  BOOL success = [[FIRContext sharedInstance] configure:&error];
-  if (!success) {
-    NSLog(@"Error configuring Firebase service: %@", error);
-  }
-
-  return YES;
-}
-
-@end
+//  Use this file to import your target's public headers that you would like to expose to Swift.
+//

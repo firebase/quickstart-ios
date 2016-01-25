@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Google Inc.
+//  Copyright (c) 2015 Google Inc.
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -14,23 +14,27 @@
 //  limitations under the License.
 //
 
-#import "AppDelegate.h"
+#import <UIKit/UIKit.h>
+#import <XCTest/XCTest.h>
 
-@import Firebase;
+@interface AppTests : XCTestCase
+@end
 
-@implementation AppDelegate
+@implementation AppTests
 
-- (BOOL)application:(UIApplication *)application
-    didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+- (void)setUp {
+  [super setUp];
+  // Put setup code here. This method is called before the invocation of each test method in the class.
+}
 
-  // Initialize Firebase service.
-  NSError *error;
-  BOOL success = [[FIRContext sharedInstance] configure:&error];
-  if (!success) {
-    NSLog(@"Error configuring Firebase service: %@", error);
-  }
+- (void)tearDown {
+  // Put teardown code here. This method is called after the invocation of each test method in the class.
+  [super tearDown];
+}
 
-  return YES;
+- (void)testExample {
+  // This is an example of a functional test case.
+  XCTAssert(YES, @"Pass");
 }
 
 @end

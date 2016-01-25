@@ -14,11 +14,12 @@
 //  limitations under the License.
 //
 
-#import <UIKit/UIKit.h>
+@import UIKit;
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@import Firebase;
 
-@property (strong, nonatomic) UIWindow *window;
+@interface AppDelegate : UIResponder<UIApplicationDelegate>
+
+@property(nonatomic, strong) UIWindow *window;
 
 @end
-

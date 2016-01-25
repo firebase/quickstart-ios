@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Google Inc.
+//  Copyright (c) 2015 Google Inc.
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -14,23 +14,23 @@
 //  limitations under the License.
 //
 
-#import "AppDelegate.h"
+import UIKit
+import Firebase
 
-@import Firebase;
+@UIApplicationMain
+class AppDelegate: UIResponder, UIApplicationDelegate {
 
-@implementation AppDelegate
+  var window: UIWindow?
 
-- (BOOL)application:(UIApplication *)application
-    didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-
-  // Initialize Firebase service.
-  NSError *error;
-  BOOL success = [[FIRContext sharedInstance] configure:&error];
-  if (!success) {
-    NSLog(@"Error configuring Firebase service: %@", error);
+  func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    // Initialize Firebase service.
+    do {
+        try FIRContext.sharedInstance().configure()
+    } catch let error as NSError {
+        assert(false, "Error configuring Firebase service: \(error)")
+    }
+    return true
   }
 
-  return YES;
 }
 
-@end

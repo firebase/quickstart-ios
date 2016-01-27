@@ -31,7 +31,7 @@ class ViewController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    // [BEGIN init_app]
+    // [START init_app]
     let opts = FIRFirebaseOptions.init()
     opts.APIKey = FIRContext.sharedInstance().serviceInfo.apiKey
     opts.authWidgetURL = NSURL(string: "https://gitkitmobile.appspot.com/gitkit.jsp")

@@ -35,7 +35,7 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
 
-  // [BEGIN init_app]
+  // [START init_app]
   FIRFirebaseOptions *opts = [[FIRFirebaseOptions alloc] init];
   opts.APIKey = [FIRContext sharedInstance].serviceInfo.apiKey;
   opts.authWidgetURL = [NSURL URLWithString:@"https://gitkitmobile.appspot.com/gitkit.jsp"];

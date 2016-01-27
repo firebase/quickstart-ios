@@ -103,8 +103,10 @@ class ViewController: UIViewController, FIRAuthUIDelegate {
     let signOutButton = UIButton.init(type: UIButtonType.System)
     signOutButton.frame = CGRectMake(0, 0, kSignInButtonWidth, kSignInButtonHeight)
     signOutButton.setTitle(kSignOutButtonText, forState: UIControlState.Normal)
-    signOutButton.addTarget(self, action: "signOutPressed:", forControlEvents: UIControlEvents.TouchUpInside)
-    signOutButton.center = CGPointMake(CGRectGetMidX(self.view.bounds), CGRectGetMidY(self.view.bounds) - kSignInButtonHeight)
+    signOutButton.addTarget(self, action: "signOutPressed:",
+        forControlEvents: UIControlEvents.TouchUpInside)
+    signOutButton.center = CGPointMake(CGRectGetMidX(self.view.bounds),
+        CGRectGetMidY(self.view.bounds) - kSignInButtonHeight)
 
     signOutButton.autoresizingMask =
         [.FlexibleTopMargin, .FlexibleRightMargin, .FlexibleBottomMargin, .FlexibleLeftMargin]
@@ -134,7 +136,8 @@ class ViewController: UIViewController, FIRAuthUIDelegate {
     let tokenRefreshButton = UIButton.init(type: UIButtonType.System)
     tokenRefreshButton.frame = CGRectMake(0, 0, kSignInButtonWidth, kSignInButtonHeight)
     tokenRefreshButton.setTitle(kTokenRefreshButtonText, forState: UIControlState.Normal)
-    tokenRefreshButton.addTarget(self, action: "refreshTokenPressed:", forControlEvents: UIControlEvents.TouchUpInside)
+    tokenRefreshButton.addTarget(self, action: "refreshTokenPressed:",
+        forControlEvents: UIControlEvents.TouchUpInside)
 
     tokenRefreshButton.center =
         CGPointMake(CGRectGetMidX(self.view.bounds),
@@ -153,8 +156,10 @@ class ViewController: UIViewController, FIRAuthUIDelegate {
     let signInButton = UIButton.init(type: UIButtonType.System)
     signInButton.frame = CGRectMake(0, 0, kSignInButtonWidth, kSignInButtonHeight)
     signInButton.setTitle(kSignInButtonText, forState: UIControlState.Normal)
-    signInButton.addTarget(self, action: "signInPressed:", forControlEvents: UIControlEvents.TouchUpInside)
-    signInButton.center = CGPointMake(CGRectGetMidX(self.view.bounds), CGRectGetMidY(self.view.bounds))
+    signInButton.addTarget(self, action: "signInPressed:",
+        forControlEvents: UIControlEvents.TouchUpInside)
+    signInButton.center = CGPointMake(CGRectGetMidX(self.view.bounds),
+        CGRectGetMidY(self.view.bounds))
 
     signInButton.autoresizingMask =
         [.FlexibleTopMargin, .FlexibleRightMargin, .FlexibleBottomMargin, .FlexibleLeftMargin]
@@ -168,15 +173,18 @@ class ViewController: UIViewController, FIRAuthUIDelegate {
   */
   func signInPressed(sender: UIButton) {
     // [START usermanagement_config]
-    let firebaseAuth = FIRAuth.init(forApp:FIRFirebaseApp.initializedAppWithAppId(FIRContext.sharedInstance().serviceInfo.googleAppID)!)
+    let firebaseAuth = FIRAuth.init(forApp:FIRFirebaseApp.initializedAppWithAppId(
+        FIRContext.sharedInstance().serviceInfo.googleAppID)!)
     // [END usermanagement_config]
     let firebaseAuthUI:FIRAuthUI = FIRAuthUI.init(auth: firebaseAuth!, delegate: self)
     
     firebaseAuthUI.presentSignInWithCallback({(user, error) in
       if #available(iOS 8.0, *) {
-        let okAction = UIAlertAction.init(title: self.kOKButtonText, style: .Default, handler: {action in print(self.kOKButtonText)})
+        let okAction = UIAlertAction.init(title: self.kOKButtonText, style: .Default,
+            handler: {action in print(self.kOKButtonText)})
         if ((error) != nil) {
-          let alertController  = UIAlertController.init(title: self.kSignInErrorAlertTitle, message: error!.localizedDescription, preferredStyle: .Alert)
+          let alertController  = UIAlertController.init(title: self.kSignInErrorAlertTitle,
+              message: error!.localizedDescription, preferredStyle: .Alert)
           alertController.addAction(okAction)
           self.presentViewController(alertController, animated: true, completion: nil)
           return
@@ -190,7 +198,8 @@ class ViewController: UIViewController, FIRAuthUIDelegate {
         // Log sign in event to Scion.
         FIRAnalytics.logEventWithName(kFIREventLogin, parameters: nil)
 
-        let alertController = UIAlertController.init(title: self.kSignedInAlertTitle, message: user!.displayName, preferredStyle: .Alert)
+        let alertController = UIAlertController.init(title: self.kSignedInAlertTitle,
+            message: user!.displayName, preferredStyle: .Alert)
         alertController.addAction(okAction)
         self.presentViewController(alertController, animated: true, completion: nil)
       } else {
@@ -200,7 +209,8 @@ class ViewController: UIViewController, FIRAuthUIDelegate {
   }
 
   func signOutPressed(sender: UIButton) {
-    let firebaseAuth = FIRAuth.init(forApp:FIRFirebaseApp.initializedAppWithAppId(FIRContext.sharedInstance().serviceInfo.googleAppID)!)
+    let firebaseAuth = FIRAuth.init(forApp:FIRFirebaseApp.initializedAppWithAppId(
+        FIRContext.sharedInstance().serviceInfo.googleAppID)!)
     firebaseAuth?.signOut()
     signInButton.enabled = true
     signOutButton.enabled = false
@@ -213,12 +223,15 @@ class ViewController: UIViewController, FIRAuthUIDelegate {
   @param sender The token refresh button.
   */
   func refreshTokenPressed(sender: UIButton) {
-    let firebaseAuth = FIRAuth.init(forApp:FIRFirebaseApp.initializedAppWithAppId(FIRContext.sharedInstance().serviceInfo.googleAppID)!)
+    let firebaseAuth = FIRAuth.init(forApp:FIRFirebaseApp.initializedAppWithAppId(
+        FIRContext.sharedInstance().serviceInfo.googleAppID)!)
     firebaseAuth!.currentUser!.getTokenForcingRefresh(false, withCallback: {(token, error) in
       if #available(iOS 8.0, *) {
-        let okAction = UIAlertAction.init(title: self.kOKButtonText, style: UIAlertActionStyle.Default, handler: {action in print(self.kOKButtonText)})
+        let okAction = UIAlertAction.init(title: self.kOKButtonText,
+            style: UIAlertActionStyle.Default, handler: {action in print(self.kOKButtonText)})
         if ((error) != nil) {
-          let alertController  = UIAlertController.init(title: self.kTokenRefreshErrorAlertTitle, message: error!.localizedDescription, preferredStyle: .Alert)
+          let alertController  = UIAlertController.init(title: self.kTokenRefreshErrorAlertTitle,
+              message: error!.localizedDescription, preferredStyle: .Alert)
           alertController.addAction(okAction)
           self.presentViewController(alertController, animated: true, completion: nil)
           return
@@ -227,7 +240,8 @@ class ViewController: UIViewController, FIRAuthUIDelegate {
         // Log sign in event to Scion.
         FIRAnalytics.logEventWithName("tokenrefresh", parameters: nil)
 
-        let alertController = UIAlertController.init(title: self.kTokenRefreshedAlertTitle, message: token, preferredStyle: .Alert)
+        let alertController = UIAlertController.init(title: self.kTokenRefreshedAlertTitle,
+            message: token, preferredStyle: .Alert)
         alertController.addAction(okAction)
         self.presentViewController(alertController, animated: true, completion: nil)
       } else {

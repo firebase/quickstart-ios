@@ -50,7 +50,7 @@ static NSString *const kWidgetURL = @"https://gitkitmobile.appspot.com/gitkit.js
   // [START usermanagement_initialize]
   // Configure the default Firebase application
   FIRGoogleSignInAuthProvider *googleSignIn =
-  [[FIRGoogleSignInAuthProvider alloc] initWithClientId:
+  [[FIRGoogleSignInAuthProvider alloc] initWithClientID:
       [FIRContext sharedInstance].serviceInfo.clientID];
 
   FIRFirebaseOptions *firebaseOptions = [[FIRFirebaseOptions alloc] init];

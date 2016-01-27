@@ -26,7 +26,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   var window: UIWindow?
 
-  func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+  func application(application: UIApplication, didFinishLaunchingWithOptions
+      launchOptions: [NSObject: AnyObject]?) -> Bool {
     // [START firebase_configure]
     // Use Firebase library to configure APIs
     do {
@@ -38,13 +39,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     // [START usermanagement_initialize]
     // Configure the default Firebase application
-    let googleSignIn = FIRGoogleSignInAuthProvider.init(clientId: FIRContext.sharedInstance().serviceInfo.clientID)
+    let googleSignIn = FIRGoogleSignInAuthProvider.init(
+        clientID: FIRContext.sharedInstance().serviceInfo.clientID)
 
     let firebaseOptions = FIRFirebaseOptions()
     firebaseOptions.APIKey = FIRContext.sharedInstance().serviceInfo.apiKey
     firebaseOptions.authWidgetURL = NSURL(string: "https://gitkitmobile.appspot.com/gitkit.jsp")
     firebaseOptions.signInProviders = [googleSignIn!];
-    FIRFirebaseApp.initializedAppWithAppId(FIRContext.sharedInstance().serviceInfo.googleAppID, options: firebaseOptions)
+    FIRFirebaseApp.initializedAppWithAppId(FIRContext.sharedInstance().serviceInfo.googleAppID,
+        options: firebaseOptions)
     // [END usermanagement_initialize]
 
     return true
@@ -52,11 +55,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   func application(app: UIApplication, openURL url: NSURL, options: [String : AnyObject]) -> Bool {
     if #available(iOS 9.0, *) {
-      if (FIRFirebaseApp.handleOpenURL(url, sourceApplication: options[UIApplicationOpenURLOptionsSourceApplicationKey] as! String)) {
-          return true
-        }
+      if (FIRFirebaseApp.handleOpenURL(url,
+          sourceApplication: options[UIApplicationOpenURLOptionsSourceApplicationKey] as! String)) {
+        return true
+      }
     } else {
-        // Fallback on earlier versions
+      // Fallback on earlier versions
     }
     return false
   }

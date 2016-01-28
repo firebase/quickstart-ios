@@ -99,10 +99,9 @@ class ViewController: UIViewController, GIDSignInDelegate, GIDSignInUIDelegate, 
   // [END toggle_auth]
 
   // [START invite_finished]
-  func inviteFinishedWithInvitations(invitationIds: [AnyObject], error: NSError) {
-    let err: NSError? = error;
-    if (err != nil) {
-      print("Failed: " + err!.localizedDescription)
+  func inviteFinishedWithInvitations(invitationIds: [AnyObject], error: NSError?) {
+    if (error != nil) {
+      print("Failed: " + error!.localizedDescription)
     } else {
       print("Invitations sent")
     }

@@ -22,6 +22,11 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
+
+  // Log that the view did load, true is used here so the log message will be
+  // shown in the console output. If false is used the message is not shown in
+  // the console output.
+  FCRLog(YES, @"View loaded");
 }
 
 - (IBAction)initiateCrash:(id)sender {

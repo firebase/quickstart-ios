@@ -4,4 +4,6 @@ source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '8.0'
 pod 'Firebase/AppInvites'
 
-link_with 'AppInvitesExample', 'AppInvitesExampleSwift', 'AppInvitesExampleTests'
+target 'AppInvitesExample'
+target 'AppInvitesExampleSwift'
+target 'AppInvitesExampleTests'

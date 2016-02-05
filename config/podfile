@@ -1,6 +1,10 @@
 # Config
 source 'https://cpdc-eap.googlesource.com/spec.git'
 source 'https://github.com/CocoaPods/Specs.git'
+
 pod 'Firebase/RemoteConfig'
 platform :ios, '7.0'
-link_with 'Config', 'ConfigSwift', 'ConfigTests'
+
+target 'Config'
+target 'ConfigSwift'
+target 'ConfigTests'

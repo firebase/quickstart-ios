@@ -1,10 +1,13 @@
 source 'https://cpdc-eap.googlesource.com/spec.git'
 source 'https://github.com/CocoaPods/Specs.git'
 
+platform :ios, '7.0'
 # [START customauth_pods]
 pod 'Firebase/Core'
 pod 'FirebaseAuth'
 # [END customauth_pods]
 pod 'FirebaseDatabase'
 
-link_with 'CustomAuth', 'CustomAuthSwift', 'CustomAuthTests'
+target 'CustomAuth'
+target 'CustomAuthSwift'
+target 'CustomAuthTests'

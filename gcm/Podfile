@@ -4,5 +4,6 @@ source 'https://github.com/CocoaPods/Specs.git'
 ## End remove ###
 # GcmExample
 platform :ios, '7.0'
-link_with 'GcmExample', 'GcmExampleSwift'
+target 'GcmExample'
+target 'GcmExampleSwift'
 pod 'Firebase/CloudMessaging'

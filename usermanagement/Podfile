@@ -10,4 +10,6 @@ pod 'FirebaseAuthUI'
 pod 'FirebaseAuthProviderGoogle'
 pod 'FirebaseAuthProviderFacebook'
 
-link_with 'UserManagementExample', 'UserManagementExampleSwift', 'UserManagementExampleTests'
+target 'UserManagementExample'
+target 'UserManagementExampleSwift'
+target 'UserManagementExampleTests'

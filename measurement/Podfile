@@ -3,4 +3,6 @@ source 'https://github.com/CocoaPods/Specs.git'
 # AnalyticsExample
 platform :ios, '7.0'
 pod 'Firebase/Core'
-link_with 'AnalyticsExample', 'AnalyticsExampleSwift', 'AnalyticsExampleTests'
+target 'AnalyticsExample'
+target 'AnalyticsExampleSwift'
+target 'AnalyticsExampleTests'

@@ -5,4 +5,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '7.0'
 pod 'Firebase/Core'
 pod 'FirebaseDatabase'
-link_with 'DatabaseExample', 'DatabaseExampleSwift', 'DatabaseExampleTests'
+
+target 'DatabaseExample'
+target 'DatabaseExampleSwift'
+target 'DatabaseExampleTests'

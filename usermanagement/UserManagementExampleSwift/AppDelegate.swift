@@ -1,5 +1,5 @@
 //
-//  Copyright (c) 2015 Google Inc.
+//  Copyright (c) 2016 Google Inc.
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -21,10 +21,18 @@
 
 import UIKit
 
+// [START usermanagement_import]
+import Firebase.Core
+import FirebaseApp
+import FirebaseFacebookAuthProvider
+import FirebaseGoogleAuthProvider
+// [END usermanagement_import]
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
   var window: UIWindow?
+  let kFacebookAppID = "Placeholder"
 
   func application(application: UIApplication, didFinishLaunchingWithOptions
       launchOptions: [NSObject: AnyObject]?) -> Bool {
@@ -39,13 +47,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     // [START usermanagement_initialize]
     // Configure the default Firebase application
-    let googleSignIn = FIRGoogleSignInAuthProvider.init(
+    let googleProvider = FIRGoogleAuthProvider.init(
         clientID: FIRContext.sharedInstance().serviceInfo.clientID)
+    let facebookProvider = FIRFacebookAuthProvider.init(
+        appID: kFacebookAppID)
 
     let firebaseOptions = FIRFirebaseOptions()
     firebaseOptions.APIKey = FIRContext.sharedInstance().serviceInfo.apiKey
-    firebaseOptions.authWidgetURL = NSURL(string: "https://gitkitmobile.appspot.com/gitkit.jsp")
-    firebaseOptions.signInProviders = [googleSignIn!];
+    firebaseOptions.signInProviders = [googleProvider!, facebookProvider!];
     FIRFirebaseApp.initializedAppWithAppId(FIRContext.sharedInstance().serviceInfo.googleAppID,
         options: firebaseOptions)
     // [END usermanagement_initialize]

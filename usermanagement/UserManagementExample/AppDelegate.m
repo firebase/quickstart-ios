@@ -1,5 +1,5 @@
 //
-//  Copyright (c) 2015 Google Inc.
+//  Copyright (c) 2016 Google Inc.
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -21,20 +21,22 @@
 
 
 #import "AppDelegate.h"
-#import "ViewController.h"
 
 // [START usermanagement_import]
-#import "Firebase/Core.h"
-#import "FirebaseAuth/FIRAuth.h"
-#import "FirebaseApp/FIRFirebaseApp.h"
-#import "FirebaseApp/FIRFirebaseOptions.h"
-#import "FirebaseAuthProviderGoogle/FIRGoogleSignInAuthProvider.h"
+@import Firebase.Core;
+@import FirebaseApp;
+@import FirebaseFacebookAuthProvider;
+@import FirebaseGoogleAuthProvider;
 // [END usermanagement_import]
 
-/*! @var kWidgetURL
- @brief The GITkit widget URL.
+#import <GoogleSignIn/GIDSignIn.h>
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+
+/** @var kFacebookAppId
+ @brief The App ID for the Facebook SDK.
  */
-static NSString *const kWidgetURL = @"https://gitkitmobile.appspot.com/gitkit.jsp";
+static NSString *const kFacebookAppID = @"Placeholder";
+
 
 @implementation AppDelegate
 
@@ -49,18 +51,20 @@ static NSString *const kWidgetURL = @"https://gitkitmobile.appspot.com/gitkit.js
 
   // [START usermanagement_initialize]
   // Configure the default Firebase application
-  FIRGoogleSignInAuthProvider *googleSignIn =
-  [[FIRGoogleSignInAuthProvider alloc] initWithClientID:
+  FIRGoogleAuthProvider *googleProvider = [[FIRGoogleAuthProvider alloc] initWithClientID:
       [FIRContext sharedInstance].serviceInfo.clientID];
+  FIRFacebookAuthProvider *facebookProvider =
+      [[FIRFacebookAuthProvider alloc] initWithAppID: kFacebookAppID];
 
   FIRFirebaseOptions *firebaseOptions = [[FIRFirebaseOptions alloc] init];
   firebaseOptions.APIKey = [FIRContext sharedInstance].serviceInfo.apiKey;
-  firebaseOptions.authWidgetURL = [NSURL URLWithString:kWidgetURL];
-  firebaseOptions.signInProviders = @[ googleSignIn ];
+  firebaseOptions.signInProviders = @[ googleProvider, facebookProvider ];
   [FIRFirebaseApp initializedAppWithAppId:[FIRContext sharedInstance].serviceInfo.googleAppID
                                   options:firebaseOptions];
   // [END usermanagement_initialize]
 
+  [[FBSDKApplicationDelegate sharedInstance] application:application
+                           didFinishLaunchingWithOptions:launchOptions];
   return YES;
 }
 
@@ -73,6 +77,20 @@ static NSString *const kWidgetURL = @"https://gitkitmobile.appspot.com/gitkit.js
   }
 
   return NO;
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url
+    sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+  if ([[GIDSignIn sharedInstance] handleURL:url
+                      sourceApplication:sourceApplication
+                                 annotation:annotation]) {
+    return YES;
+  }
+  return [[FBSDKApplicationDelegate sharedInstance] application:application
+                                                        openURL:url
+                                              sourceApplication:sourceApplication
+                                                     annotation:annotation
+          ];
 }
 
 @end

@@ -7,8 +7,10 @@ platform :ios, '7.0'
 pod 'Firebase/Core'
 pod 'FirebaseAuth'
 pod 'FirebaseAuthUI'
-pod 'FirebaseAuthProviderGoogle'
-pod 'FirebaseAuthProviderFacebook'
+pod 'FirebaseGoogleAuthProvider'
+pod 'FirebaseFacebookAuthProvider'
+
+pod 'FBSDKLoginKit'
 
 target 'UserManagementExample'
 target 'UserManagementExampleSwift'

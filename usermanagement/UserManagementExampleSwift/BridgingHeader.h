@@ -21,12 +21,4 @@
 // https://developers.google.com/firebase/docs/auth/ios/user-auth
 //
 
-// [START usermanagement_import]
-#import "Firebase/Core.h"
-#import "FirebaseAuthUI/FIRAuthUI.h"
-#import "FirebaseAuth/FIRAuth.h"
-#import "FirebaseAuthProviderGoogle/FIRGoogleSignInAuthProvider.h"
-#import "FirebaseAuth/FIRUser.h"
-#import "FirebaseApp/FIRFirebaseApp.h"
-#import "FirebaseApp/FIRFirebaseOptions.h"
-// [END usermanagement_import]
+#import "UIViewController+Alerts.h"

@@ -19,10 +19,7 @@
 // https://developers.google.com/firebase/docs/auth/ios/user-auth
 //
 
-#import <UIKit/UIKit.h>
+import UIKit
 
-@interface AppDelegate : UIResponder<UIApplicationDelegate>
-
-@property(nonatomic, strong) UIWindow *window;
-
-@end
+class SelectViewController: UIViewController {
+}

@@ -25,6 +25,13 @@
 
 @implementation PatternTabBarController
 
+- (void)viewDidAppear:(BOOL)animated {
+  // For first run, ask for the user's favorite food.
+  if (![self getUserFavoriteFood]) {
+    [self askForFavoriteFood];
+  }
+}
+
 - (void)didTapShare:(id)sender {
   // [START custom_event_objc]
   [FIRAnalytics logEventWithName:kFIREventShare parameters:@{
@@ -43,6 +50,18 @@
                                         cancelButtonTitle:@"Ok"
                                         otherButtonTitles:nil];
   [alert show];
+}
+
+- (NSString *)getUserFavoriteFood {
+  return [[NSUserDefaults standardUserDefaults] valueForKey:@"favorite_food"];
+}
+
+- (void)askForFavoriteFood {
+  [self performSegueWithIdentifier:@"pickFavoriteFood" sender:self];
+}
+
+-(IBAction)unwindToHome:(UIStoryboardSegue *)segue {
+
 }
 
 @end

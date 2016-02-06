@@ -29,6 +29,8 @@
 		99C3977D32009FD348B1D6BD /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 015473BF00CF94FE37903C76 /* libPods.a */; };
 		EF01600C1BD07C1F00F8DA01 /* AnalyticsImages.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF01600B1BD07C1F00F8DA01 /* AnalyticsImages.xcassets */; };
 		EF01600D1BD07C1F00F8DA01 /* AnalyticsImages.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF01600B1BD07C1F00F8DA01 /* AnalyticsImages.xcassets */; };
+		EFB6C1B61C6524F4007CCA78 /* FoodPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB6C1B51C6524F4007CCA78 /* FoodPickerViewController.m */; };
+		EFB6C1BA1C656D38007CCA78 /* FoodPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFB6C1B91C656D38007CCA78 /* FoodPickerViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +71,9 @@
 		5FDE05631B0DAD5C0037B82F /* AppTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppTests.m; sourceTree = "<group>"; };
 		8E083FEDD04CD62E5A34D032 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		EF01600B1BD07C1F00F8DA01 /* AnalyticsImages.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = AnalyticsImages.xcassets; sourceTree = "<group>"; };
+		EFB6C1B41C6524F4007CCA78 /* FoodPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FoodPickerViewController.h; sourceTree = "<group>"; };
+		EFB6C1B51C6524F4007CCA78 /* FoodPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FoodPickerViewController.m; sourceTree = "<group>"; };
+		EFB6C1B91C656D38007CCA78 /* FoodPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodPickerViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +133,8 @@
 			children = (
 				5F5A53531ADE670C00F81DF0 /* AppDelegate.h */,
 				5F5A53541ADE670C00F81DF0 /* AppDelegate.m */,
+				EFB6C1B41C6524F4007CCA78 /* FoodPickerViewController.h */,
+				EFB6C1B51C6524F4007CCA78 /* FoodPickerViewController.m */,
 				5FC04A7D1AF1DCAA00F787CA /* PatternTabBarController.h */,
 				5FC04A7E1AF1DCAA00F787CA /* PatternTabBarController.m */,
 				5F5A53561ADE670C00F81DF0 /* ViewController.h */,
@@ -153,6 +160,7 @@
 			isa = PBXGroup;
 			children = (
 				5F5A537D1ADE67D500F81DF0 /* AppDelegate.swift */,
+				EFB6C1B91C656D38007CCA78 /* FoodPickerViewController.swift */,
 				5FC04A801AF1DF8300F787CA /* PatternTabBarController.swift */,
 				5F5A537F1ADE67D500F81DF0 /* ViewController.swift */,
 				5F5A537B1ADE67D500F81DF0 /* Supporting Files */,
@@ -499,6 +507,7 @@
 				5F5A53551ADE670C00F81DF0 /* AppDelegate.m in Sources */,
 				5FC04A7F1AF1DCAA00F787CA /* PatternTabBarController.m in Sources */,
 				5F3B16801AFC453200860007 /* CircleImageView.m in Sources */,
+				EFB6C1B61C6524F4007CCA78 /* FoodPickerViewController.m in Sources */,
 				5F5A53521ADE670C00F81DF0 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -510,6 +519,7 @@
 				5F3B16811AFC453200860007 /* CircleImageView.m in Sources */,
 				5FC04A811AF1DF8300F787CA /* PatternTabBarController.swift in Sources */,
 				5F5A53801ADE67D500F81DF0 /* ViewController.swift in Sources */,
+				EFB6C1BA1C656D38007CCA78 /* FoodPickerViewController.swift in Sources */,
 				5F5A537E1ADE67D500F81DF0 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

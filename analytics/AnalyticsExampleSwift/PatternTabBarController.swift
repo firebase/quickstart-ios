@@ -25,6 +25,12 @@ import Firebase.Core
 @objc(PatternTabBarController)  // match the ObjC symbol name inside Storyboard
 class PatternTabBarController: UITabBarController {
 
+  override func viewDidAppear(animated: Bool) {
+    if (getUserFavoriteFood() == nil) {
+      askForFavoriteFood()
+    }
+  }
+
   @IBAction func didTapShare(sender: AnyObject) {
     // [START custom_event_swift]
     FIRAnalytics.logEventWithName(kFIREventShare, parameters: [
@@ -37,6 +43,18 @@ class PatternTabBarController: UITabBarController {
         message = "Share event sent to Analytics; actual share not implemented in this quickstart",
         alert = UIAlertView(title: title, message: message, delegate: nil, cancelButtonTitle: "Ok")
     alert.show()
+  }
+
+  @IBAction func unwindToHome (segue: UIStoryboardSegue?) {
+
+  }
+
+  func getUserFavoriteFood() -> String? {
+    return NSUserDefaults.standardUserDefaults().valueForKey("favorite_food") as! String?
+  }
+
+  func askForFavoriteFood() {
+    performSegueWithIdentifier("pickFavoriteFood", sender: self)
   }
 
 }

@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="aUL-89-tJW">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9527.1" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="aUL-89-tJW">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9525.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--A-->
@@ -14,7 +15,7 @@
                         <viewControllerLayoutGuide type="bottom" id="ABr-eH-ePx"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="M3b-jw-4PX">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="256" verticalHuggingPriority="256" image="favorite.png" translatesAutoresizingMaskIntoConstraints="NO" id="zIB-UN-zJs" customClass="CircleImageView">
@@ -37,6 +38,60 @@
             </objects>
             <point key="canvasLocation" x="149" y="428"/>
         </scene>
+        <!--Food Picker View Controller-->
+        <scene sceneID="0XD-OC-caG">
+            <objects>
+                <viewController id="9aa-Nc-DxV" customClass="FoodPickerViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="7Bw-iC-Vpq"/>
+                        <viewControllerLayoutGuide type="bottom" id="558-dG-rhb"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="e62-9h-gXP">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pick Your Favorite Food!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mef-P0-8Mc">
+                                <rect key="frame" x="166" y="20" width="267" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dRL-3M-rXu">
+                                <rect key="frame" x="20" y="70" width="560" height="530"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="9aa-Nc-DxV" id="kYj-ND-lI1"/>
+                                    <outlet property="delegate" destination="9aa-Nc-DxV" id="Xef-kO-iZt"/>
+                                </connections>
+                            </pickerView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="dRL-3M-rXu" firstAttribute="centerX" secondItem="e62-9h-gXP" secondAttribute="centerX" id="9Y9-R2-3DA"/>
+                            <constraint firstItem="dRL-3M-rXu" firstAttribute="top" secondItem="mef-P0-8Mc" secondAttribute="bottom" constant="20" id="B6c-W7-SlD"/>
+                            <constraint firstItem="dRL-3M-rXu" firstAttribute="centerY" secondItem="e62-9h-gXP" secondAttribute="centerY" id="JWr-a8-Oxd"/>
+                            <constraint firstItem="558-dG-rhb" firstAttribute="top" secondItem="dRL-3M-rXu" secondAttribute="bottom" id="KRN-TO-ihk"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="dRL-3M-rXu" secondAttribute="trailing" id="W8N-19-sBA"/>
+                            <constraint firstItem="mef-P0-8Mc" firstAttribute="top" secondItem="7Bw-iC-Vpq" secondAttribute="bottom" id="bx7-0K-Fbl"/>
+                            <constraint firstItem="dRL-3M-rXu" firstAttribute="leading" secondItem="e62-9h-gXP" secondAttribute="leadingMargin" id="iGi-SV-I0G"/>
+                            <constraint firstItem="mef-P0-8Mc" firstAttribute="centerX" secondItem="e62-9h-gXP" secondAttribute="centerX" id="yIO-gY-HbY"/>
+                            <constraint firstItem="dRL-3M-rXu" firstAttribute="top" secondItem="e62-9h-gXP" secondAttribute="topMargin" id="zIS-hz-XAw"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="JWr-a8-Oxd"/>
+                                <exclude reference="zIS-hz-XAw"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <segue destination="7au-gI-Ntw" kind="unwind" identifier="unwindToHome" unwindAction="unwindToHome:" id="SU5-Ts-bmt"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5uu-Qe-mNi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="7au-gI-Ntw" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="22" y="-929"/>
+        </scene>
         <!--B-->
         <scene sceneID="T4b-ot-V0m">
             <objects>
@@ -46,7 +101,7 @@
                         <viewControllerLayoutGuide type="bottom" id="dJb-g6-QTF"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="QBZ-F6-IFj">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="256" verticalHuggingPriority="256" image="flash_on.png" translatesAutoresizingMaskIntoConstraints="NO" id="fu5-Ys-Uq9" customClass="CircleImageView">
@@ -113,6 +168,7 @@
                         <segue destination="A0V-En-EJl" kind="relationship" relationship="viewControllers" id="Hhg-ek-N8J"/>
                         <segue destination="Vqn-rV-AtV" kind="relationship" relationship="viewControllers" id="aTh-1Q-AeJ"/>
                         <segue destination="vhB-Nv-UYJ" kind="relationship" relationship="viewControllers" id="gcf-rD-9bU"/>
+                        <segue destination="9aa-Nc-DxV" kind="presentation" identifier="pickFavoriteFood" id="iI6-jC-cjj"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E1m-Ew-oHW" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -133,7 +189,7 @@
                         <viewControllerLayoutGuide type="bottom" id="bYg-H7-CJJ"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="6t9-j2-aMP">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="256" verticalHuggingPriority="256" image="tag_faces.png" translatesAutoresizingMaskIntoConstraints="NO" id="xHb-8o-vTm" customClass="CircleImageView">
@@ -165,7 +221,7 @@
                         <viewControllerLayoutGuide type="bottom" id="iEu-NN-tCj"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="7nq-AR-YU8">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="256" verticalHuggingPriority="256" image="wb_incandescent.png" translatesAutoresizingMaskIntoConstraints="NO" id="8t4-48-5D9" customClass="CircleImageView">

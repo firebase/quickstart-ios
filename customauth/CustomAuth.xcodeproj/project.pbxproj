@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		095C3D93C459C698B8F4868B /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 778C7012D96F84FB6F25F28E /* libPods.a */; };
+		136232D4544B632A4446C9A2 /* libPods-CustomAuthSwift.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 47A0A325902D49B006F70F4E /* libPods-CustomAuthSwift.a */; };
 		1DA64625B62B72DF26F2F399 /* libPods-CustomAuth.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 834C5B79A735874D384A622F /* libPods-CustomAuth.a */; };
 		29C6499405761CE0D676C90F /* libPods-CustomAuth.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 834C5B79A735874D384A622F /* libPods-CustomAuth.a */; };
 		5AB6A8F0550C925445830F9A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 778C7012D96F84FB6F25F28E /* libPods.a */; };
@@ -23,6 +24,7 @@
 		5F99610C1AE0CF4F0034F503 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F9961071AE0CF4F0034F503 /* LaunchScreen.xib */; };
 		5F99610D1AE0CF4F0034F503 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F9961071AE0CF4F0034F503 /* LaunchScreen.xib */; };
 		5FDE055D1B0DAA090037B82F /* AppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FDE055C1B0DAA090037B82F /* AppTests.m */; };
+		6C74B975CCE41D0360E1B158 /* libPods-CustomAuthTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A107C0A5534D67C5BB0468E /* libPods-CustomAuthTests.a */; };
 		ACDF54252C102D7BFD6C1435 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 778C7012D96F84FB6F25F28E /* libPods.a */; };
 		ECD1E8A1DE6F0B01288A23D2 /* libPods-CustomAuth.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 834C5B79A735874D384A622F /* libPods-CustomAuth.a */; };
 		EFFF5C3C1C50691E00101596 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EFFF5C3B1C50691E00101596 /* GoogleService-Info.plist */; };
@@ -42,6 +44,8 @@
 /* Begin PBXFileReference section */
 		32E2A16120970719CDB5FE32 /* Pods-tokengenerator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tokengenerator.debug.xcconfig"; path = "Pods/Target Support Files/Pods-tokengenerator/Pods-tokengenerator.debug.xcconfig"; sourceTree = "<group>"; };
 		384AC9A17371D4469B32D6EA /* libPods-tokengenerator.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-tokengenerator.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		47A0A325902D49B006F70F4E /* libPods-CustomAuthSwift.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CustomAuthSwift.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5A107C0A5534D67C5BB0468E /* libPods-CustomAuthTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CustomAuthTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F5A534C1ADE670C00F81DF0 /* CustomAuth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CustomAuth.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F5A53501ADE670C00F81DF0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5F5A53511ADE670C00F81DF0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -58,10 +62,16 @@
 		5F9961071AE0CF4F0034F503 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		5FDE05581B0DAA090037B82F /* CustomAuthTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CustomAuthTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FDE055C1B0DAA090037B82F /* AppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppTests.m; sourceTree = "<group>"; };
+		6B5322644C974C85F2DDC558 /* Pods-CustomAuthSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CustomAuthSwift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CustomAuthSwift/Pods-CustomAuthSwift.debug.xcconfig"; sourceTree = "<group>"; };
 		778C7012D96F84FB6F25F28E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		834C5B79A735874D384A622F /* libPods-CustomAuth.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CustomAuth.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9472027A65111734592F93FD /* Pods-CustomAuth.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CustomAuth.release.xcconfig"; path = "Pods/Target Support Files/Pods-CustomAuth/Pods-CustomAuth.release.xcconfig"; sourceTree = "<group>"; };
+		953509A24EC1A0D9F8D11032 /* Pods-CustomAuthSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CustomAuthSwift.release.xcconfig"; path = "Pods/Target Support Files/Pods-CustomAuthSwift/Pods-CustomAuthSwift.release.xcconfig"; sourceTree = "<group>"; };
 		9CD51098BF13943FF160FDEB /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		BB9150F0DA4CF634AF172FB1 /* Pods-CustomAuth.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CustomAuth.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CustomAuth/Pods-CustomAuth.debug.xcconfig"; sourceTree = "<group>"; };
+		BF8328214B6B18C626F9DE3C /* Pods-CustomAuthTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CustomAuthTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CustomAuthTests/Pods-CustomAuthTests.debug.xcconfig"; sourceTree = "<group>"; };
 		CB3A7D8BB499165A7BC9BB63 /* Pods-tokengenerator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tokengenerator.release.xcconfig"; path = "Pods/Target Support Files/Pods-tokengenerator/Pods-tokengenerator.release.xcconfig"; sourceTree = "<group>"; };
+		CEAEF8A84D552D8CDED35129 /* Pods-CustomAuthTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CustomAuthTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CustomAuthTests/Pods-CustomAuthTests.release.xcconfig"; sourceTree = "<group>"; };
 		D22FE058A530EA223804518B /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		EFFF5C3B1C50691E00101596 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -82,6 +92,7 @@
 			files = (
 				5AB6A8F0550C925445830F9A /* libPods.a in Frameworks */,
 				1DA64625B62B72DF26F2F399 /* libPods-CustomAuth.a in Frameworks */,
+				136232D4544B632A4446C9A2 /* libPods-CustomAuthSwift.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -91,6 +102,7 @@
 			files = (
 				ACDF54252C102D7BFD6C1435 /* libPods.a in Frameworks */,
 				ECD1E8A1DE6F0B01288A23D2 /* libPods-CustomAuth.a in Frameworks */,
+				6C74B975CCE41D0360E1B158 /* libPods-CustomAuthTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -103,6 +115,8 @@
 				778C7012D96F84FB6F25F28E /* libPods.a */,
 				384AC9A17371D4469B32D6EA /* libPods-tokengenerator.a */,
 				834C5B79A735874D384A622F /* libPods-CustomAuth.a */,
+				47A0A325902D49B006F70F4E /* libPods-CustomAuthSwift.a */,
+				5A107C0A5534D67C5BB0468E /* libPods-CustomAuthTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -197,6 +211,12 @@
 				9CD51098BF13943FF160FDEB /* Pods.release.xcconfig */,
 				32E2A16120970719CDB5FE32 /* Pods-tokengenerator.debug.xcconfig */,
 				CB3A7D8BB499165A7BC9BB63 /* Pods-tokengenerator.release.xcconfig */,
+				BB9150F0DA4CF634AF172FB1 /* Pods-CustomAuth.debug.xcconfig */,
+				9472027A65111734592F93FD /* Pods-CustomAuth.release.xcconfig */,
+				6B5322644C974C85F2DDC558 /* Pods-CustomAuthSwift.debug.xcconfig */,
+				953509A24EC1A0D9F8D11032 /* Pods-CustomAuthSwift.release.xcconfig */,
+				BF8328214B6B18C626F9DE3C /* Pods-CustomAuthTests.debug.xcconfig */,
+				CEAEF8A84D552D8CDED35129 /* Pods-CustomAuthTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -208,10 +228,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5F5A536F1ADE670C00F81DF0 /* Build configuration list for PBXNativeTarget "CustomAuth" */;
 			buildPhases = (
+				71DA7989A38C21A2A5B2C08C /* Check Pods Manifest.lock */,
 				5F5A53481ADE670C00F81DF0 /* Sources */,
 				5F5A53491ADE670C00F81DF0 /* Frameworks */,
 				5F5A534A1ADE670C00F81DF0 /* Resources */,
 				116F26AE3E8D2FB45C419B8B /* Embed Pods Frameworks */,
+				4286369EF9DACF8DE37B373A /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -350,7 +372,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CustomAuth/Pods-CustomAuth-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		2C4FF6EA978817A35313533A /* Check Pods Manifest.lock */ = {
@@ -380,7 +402,37 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CustomAuthSwift/Pods-CustomAuthSwift-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4286369EF9DACF8DE37B373A /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CustomAuth/Pods-CustomAuth-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		71DA7989A38C21A2A5B2C08C /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		A8D851A53695D4EF05434AE5 /* Copy Pods Resources */ = {
@@ -395,7 +447,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CustomAuthTests/Pods-CustomAuthTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		B6E007D5E91FB4F5945F3262 /* Copy Pods Resources */ = {
@@ -410,7 +462,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CustomAuthSwift/Pods-CustomAuthSwift-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C1F333AC334446CF5F5DB963 /* Embed Pods Frameworks */ = {
@@ -425,7 +477,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CustomAuthTests/Pods-CustomAuthTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E3049BFFD2388312C4F493A6 /* Check Pods Manifest.lock */ = {
@@ -580,7 +632,7 @@
 		};
 		5F5A53701ADE670C00F81DF0 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D22FE058A530EA223804518B /* Pods.debug.xcconfig */;
+			baseConfigurationReference = BB9150F0DA4CF634AF172FB1 /* Pods-CustomAuth.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -594,7 +646,7 @@
 		};
 		5F5A53711ADE670C00F81DF0 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9CD51098BF13943FF160FDEB /* Pods.release.xcconfig */;
+			baseConfigurationReference = 9472027A65111734592F93FD /* Pods-CustomAuth.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -608,7 +660,7 @@
 		};
 		5F5A53951ADE67D500F81DF0 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D22FE058A530EA223804518B /* Pods.debug.xcconfig */;
+			baseConfigurationReference = 6B5322644C974C85F2DDC558 /* Pods-CustomAuthSwift.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -622,7 +674,7 @@
 		};
 		5F5A53961ADE67D500F81DF0 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9CD51098BF13943FF160FDEB /* Pods.release.xcconfig */;
+			baseConfigurationReference = 953509A24EC1A0D9F8D11032 /* Pods-CustomAuthSwift.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -636,7 +688,7 @@
 		};
 		5FDE05601B0DAA090037B82F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D22FE058A530EA223804518B /* Pods.debug.xcconfig */;
+			baseConfigurationReference = BF8328214B6B18C626F9DE3C /* Pods-CustomAuthTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -664,7 +716,7 @@
 		};
 		5FDE05611B0DAA090037B82F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9CD51098BF13943FF160FDEB /* Pods.release.xcconfig */;
+			baseConfigurationReference = CEAEF8A84D552D8CDED35129 /* Pods-CustomAuthTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;

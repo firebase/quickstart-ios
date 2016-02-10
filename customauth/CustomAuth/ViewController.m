@@ -16,8 +16,8 @@
 
 #import "ViewController.h"
 // [START customauth_headers]
-#import <FirebaseApp/FirebaseApp.h>
-#import <FirebaseAuth/FirebaseAuth.h>
+@import FirebaseApp;
+@import FirebaseAuth;
 
 @import Firebase.Core;
 // [END customauth_headers]
@@ -38,7 +38,6 @@
   // [START init_app]
   FIRFirebaseOptions *opts = [[FIRFirebaseOptions alloc] init];
   opts.APIKey = [FIRContext sharedInstance].serviceInfo.apiKey;
-  opts.authWidgetURL = [NSURL URLWithString:@"https://gitkitmobile.appspot.com/gitkit.jsp"];
   FIRFirebaseApp *app =
       [FIRFirebaseApp initializedAppWithAppId:[FIRContext sharedInstance].serviceInfo.googleAppID
                                       options:opts];
@@ -57,7 +56,9 @@
 - (IBAction)didTapSignIn:(id)sender {
   FIRAuth *auth = [FIRAuth auth];
   if (auth.currentUser) {
-    [auth signOut];
+    NSError *signOutError;
+    BOOL status = [auth signOut:&signOutError];
+    NSAssert(status, @"Error signing out: %@", signOutError);
     [self isSignedOut];
     return;
   }

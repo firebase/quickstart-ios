@@ -15,9 +15,3 @@
 //
 //  Use this file to import your target's public headers that you would like to expose to Swift.
 //
-
-// [START customauth_bridging_headers]
-#import <FirebaseApp/FirebaseApp.h>
-#import <FirebaseAuth/FirebaseAuth.h>
-
-// [END customauth_bridging_headers]

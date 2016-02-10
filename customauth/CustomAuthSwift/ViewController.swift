@@ -15,7 +15,11 @@
 //
 
 import UIKit
+// [START customauth_swift_headers]
 import Firebase.Core
+import FirebaseApp
+import FirebaseAuth
+// [END customauth_swift_headers]
 import FirebaseDatabase
 
 
@@ -34,7 +38,6 @@ class ViewController: UIViewController {
     // [START init_app]
     let opts = FIRFirebaseOptions.init()
     opts.APIKey = FIRContext.sharedInstance().serviceInfo.apiKey
-    opts.authWidgetURL = NSURL(string: "https://gitkitmobile.appspot.com/gitkit.jsp")
     let app =
         FIRFirebaseApp.initializedAppWithAppId(FIRContext.sharedInstance().serviceInfo.googleAppID,
         options: opts)
@@ -63,8 +66,12 @@ class ViewController: UIViewController {
 
   @IBAction func didTapSignIn (sender:AnyObject) {
     if (auth.currentUser != nil) {
-      auth.signOut()
-      isSignedOut()
+      do {
+        try auth.signOut()
+        isSignedOut()
+      } catch {
+        print ("Could not sign out.")
+      }
       return
     }
 

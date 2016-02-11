@@ -40,7 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Use Firebase library to configure APIs
     do {
       try FIRContext.sharedInstance().configure()
-    } catch let configureError as NSError{
+    } catch let configureError as NSError {
       print ("Error configuring Firebase services: \(configureError)")
     }
     // [END firebase_configure]
@@ -59,6 +59,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         options: firebaseOptions)
     // [END usermanagement_initialize]
 
+    FBSDKApplicationDelegate.sharedInstance().application(application,
+        didFinishLaunchingWithOptions:launchOptions)
     return true
   }
 
@@ -72,6 +74,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       // Fallback on earlier versions
     }
     return false
+  }
+
+  func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
+    if GIDSignIn.sharedInstance().handleURL(url, sourceApplication: sourceApplication, annotation: annotation) {
+      return true
+    }
+    return FBSDKApplicationDelegate.sharedInstance().application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)
   }
 }
 

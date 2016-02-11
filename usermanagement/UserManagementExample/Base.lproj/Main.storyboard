@@ -259,9 +259,9 @@
                     <navigationItem key="navigationItem" id="S9H-6f-PBV"/>
                     <connections>
                         <outlet property="emailField" destination="F4F-GQ-QyF" id="qfk-FS-usb"/>
-                        <outlet property="facebookLoginButton" destination="Qcr-e5-WUh" id="7vK-EW-goa"/>
+                        <outlet property="facebookLoginButton" destination="Qcr-e5-WUh" id="lC3-Vt-pf5"/>
                         <outlet property="passwordField" destination="UDs-9N-0uM" id="xKk-q3-uCw"/>
-                        <outlet property="signInButton" destination="GmX-By-PJS" id="WU8-V5-oV0"/>
+                        <outlet property="signInButton" destination="GmX-By-PJS" id="TwZ-Mc-gd2"/>
                         <segue destination="nRh-q9-XjR" kind="show" identifier="CustomSignIn" id="4ds-Cw-hOQ"/>
                     </connections>
                 </viewController>

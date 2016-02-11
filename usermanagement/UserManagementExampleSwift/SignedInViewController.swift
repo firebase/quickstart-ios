@@ -23,30 +23,13 @@ import UIKit
 
 // [START usermanagement_view_import]
 import FirebaseAuth
-import FirebaseAuthUI
 import FirebaseFacebookAuthProvider
 import FirebaseGoogleAuthProvider
-import Firebase.Analytics
+import Firebase.Core
 // [END usermanagement_view_import]
 
-@objc(MainViewController)
-class MainViewController: UIViewController {
-
-  /** @property tableViewManager
-  @brief A @c StaticContentTableViewManager which is used to manage the contents of the table
-  view.
-  */
-  @IBOutlet var tableViewManager:StaticContentTableViewManager!
-
-  /** @property tableView
-  @brief A UITableView which is used to display user info and a list of actions.
-  */
-  @IBOutlet weak var tableView:UITableView!
-
-  /** @property userInfoTableViewCell
-  @brief A custom UITableViewCell for displaying the user info.
-  */
-  @IBOutlet var userInfoTableViewCell:UITableViewCell!
+@objc(SignedInViewController)
+class SignedInViewController: UIViewController {
 
   /** @property userInfoProfileURLImageView
   @brief A UIImageView whose image is set to the user's profile URL.
@@ -74,108 +57,41 @@ class MainViewController: UIViewController {
   */
   @IBOutlet weak var userInfoProviderListLabel:UILabel!
 
-  /*! @var kTokenRefreshButtonText
-  @brief The text of the "Refresh Token" button.
+  /*! @var kOKButtonText
+  @brief The text of the "OK" button for the Sign In result dialogs.
   */
-  var kTokenRefreshButtonText = "Get Token"
+  let kOKButtonText = "OK"
 
   /*! @var kTokenRefreshedAlertTitle
   @brief The title of the "Token Refreshed" alert.
   */
-  var kTokenRefreshedAlertTitle = "Token"
+  let kTokenRefreshedAlertTitle = "Token"
 
   /*! @var kTokenRefreshErrorAlertTitle
   @brief The title of the "Token Refresh error" alert.
   */
-  var kTokenRefreshErrorAlertTitle = "Get Token Error"
-
-  /*! @var kSignInButtonText
-  @brief The text of the "Sign In" button.
-  */
-  var kSignInButtonText = "Sign In"
-
-  /*! @var kSignedInAlertTitle
-  @brief The text of the "Sign In Succeeded" alert.
-  */
-  var kSignedInAlertTitle = "Signed In"
-
-  /*! @var kSignInErrorAlertTitle
-  @brief The text of the "Sign In Encountered an Error" alert.
-  */
-  var kSignInErrorAlertTitle = "Sign-In Error"
-
-  /*! @var kSignOutButtonText
-  @brief The text of the "Sign Out" button.
-  */
-  var kSignOutButtonText = "Sign Out"
-
-  /*! @var kOKButtonText
-  @brief The text of the "OK" button for the Sign In result dialogs.
-  */
-  var kOKButtonText = "OK"
+  let kTokenRefreshErrorAlertTitle = "Get Token Error"
 
   /** @var kSetDisplayNameTitle
   @brief The title of the "Set Display Name" error dialog.
   */
-  var kSetDisplayNameTitle = "Set Display Name"
+  let kSetDisplayNameTitle = "Set Display Name"
+
+  /** @var kUnlinkTitle
+   @brief The text of the "Unlink from Provider" error Dialog.
+   */
+  let kUnlinkTitle = "Unlink from Provider"
 
   /** @var kChangeEmailText
   @brief The title of the "Change Email" button.
   */
-  var kChangeEmailText = "Change Email"
+  let kChangeEmailText = "Change Email"
 
   /** @var kChangePasswordText
   @brief The title of the "Change Password" button.
   */
-  var kChangePasswordText = "Change Password"
+  let kChangePasswordText = "Change Password"
 
-  /** @var kUnlinkTitle
-  @brief The text of the "Unlink from Provider" error Dialog.
-  */
-  var kUnlinkTitle = "Unlink from Provider"
-
-  /** @var kUnlinkFromGoogle
-  @brief The text of the "Unlink from Google" button.
-  */
-  var kUnlinkFromGoogle = "Unlink from Google"
-
-  /** @var kUnlinkFromFacebook
-  @brief The text of the "Unlink from Facebook" button.
-  */
-  var kUnlinkFromFacebook = "Unlink from Facebook"
-
-  /** @var kGetProvidersForEmail
-  @brief The text of the "Get Provider IDs for Email" button.
-  */
-  var kGetProvidersForEmail = "Get Provider IDs for Email"
-
-  /** @var kRequestVerifyEmail
-  @brief The text of the "Request Verify Email Link" button.
-  */
-  var kRequestVerifyEmail = "Request Verify Email Link"
-
-  /** @var kRequestPasswordReset
-  @brief The text of the "Password Reset" button.
-  */
-  var kRequestPasswordReset = "Password Reset"
-
-  /** @var kNoNotificationMessage
-  @brief The text of the notification box if actions doesn't carry notification.
-  */
-  var kNoNotificationMessage = "-"
-
-  /** @fn initWithNibName:bundle:
-   @brief Overridden default initializer.
-   */
-  override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
-    super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-    NSNotificationCenter.defaultCenter().addObserver(self, selector: "authStateChangedForAuth:",
-        name: FIRAuthStateDidChangeNotification, object: nil)
-  }
-
-  required init?(coder aDecoder: NSCoder) {
-    super.init(coder: aDecoder)
-  }
 
   override func viewDidLoad() {
     // Give us a circle for the image view:
@@ -183,110 +99,35 @@ class MainViewController: UIViewController {
       userInfoProfileURLImageView.frame.size.width / 2.0
     userInfoProfileURLImageView.layer.masksToBounds = true
     updateUserInfo(FIRAuth.auth()!)
-    loadTableviewWithNotificationFlag(false)
-  }
-
-  /** @fn loadTableviewWithNotificationFlag:
-  @brief Invoked to update the contents of tableview.
-  @param hasNotification Flag tells us if action carried notificaiton.
-  */
-  func loadTableviewWithNotificationFlag(notificationFlag: Bool) {
-
-  var notificationMessage = kNoNotificationMessage;
-  if (notificationFlag) {
-    let locale = NSLocale.currentLocale()
-    let dateDescription = NSDate().descriptionWithLocale(locale)
-    notificationMessage = "Notif: \(dateDescription)"
-  }
-
-  tableViewManager.contents = StaticContentTableViewContent.init(sections: [
-    StaticContentTableViewSection.init(title: "Signed-In User Details", cells: [
-      StaticContentTableViewCell.init(customCell: userInfoTableViewCell)!
-      ])!,
-    StaticContentTableViewSection.init(title: "Actions", cells: [
-      StaticContentTableViewCell.init(title: kSignInButtonText,
-        action: {[weak self] in self!.signIn()})!,
-      StaticContentTableViewCell.init(title: kSignOutButtonText,
-        action: {[weak self] in self!.signOut()})!,
-      StaticContentTableViewCell.init(title: kTokenRefreshButtonText,
-        action: {[weak self] in self!.forceTokenRefresh()})!,
-      StaticContentTableViewCell.init(title: kSetDisplayNameTitle,
-        action: {[weak self] in self!.setDisplayName()})!,
-      StaticContentTableViewCell.init(title: kUnlinkFromGoogle,
-        action: {self.unlinkFromProvider(FIRGoogleAuthProviderID)})!,
-      StaticContentTableViewCell.init(title: kUnlinkFromFacebook,
-        action: {self.unlinkFromProvider(FIRFacebookAuthProviderID)})!,
-      StaticContentTableViewCell.init(title: kGetProvidersForEmail,
-        action: {[weak self] in self!.getProvidersForEmail()})!,
-      StaticContentTableViewCell.init(title: kRequestVerifyEmail,
-        action: {[weak self] in self!.requestVerifyEmail()})!,
-      StaticContentTableViewCell.init(title: kRequestPasswordReset,
-        action: {[weak self] in self!.requestPasswordReset()})!,
-      StaticContentTableViewCell.init(title: kChangeEmailText,
-        action: {[weak self] in self!.changeEmail()})!,
-      StaticContentTableViewCell.init(title: kChangePasswordText,
-        action: {[weak self] in self!.changePassword()})!
-      ])!,
-    StaticContentTableViewSection.init(title: "Notifications", cells: [
-      StaticContentTableViewCell.init(title: notificationMessage)!
-      ])!
-    ]);
-  }
-
-  // MARK: - Actions
-
-  /** @fn signIn
-   @brief Invoked when the sign in row is pressed.
-   */
-  func signIn() {
-    // [START usermanagement_config]
-    let firebaseAuth = FIRAuth.auth
-    // [END usermanagement_config]
-    let firebaseAuthUI:FIRAuthUI = FIRAuthUI.init(forApp: firebaseAuth()!.app!)!
-
-    firebaseAuthUI.presentSignInWithViewController(self, callback: {(user, error) in
-      let okAction = UIAlertAction.init(title: self.kOKButtonText, style: .Default,
-          handler: {action in print(self.kOKButtonText)})
-      if ((error) != nil) {
-        let alertController  = UIAlertController.init(title: self.kSignInErrorAlertTitle,
-            message: error!.localizedDescription, preferredStyle: .Alert)
-        alertController.addAction(okAction)
-        self.presentViewController(alertController, animated: true, completion: nil)
-        return
-      }
-
-      // Log sign in event to Scion.
-      FIRAnalytics.logEventWithName(kFIREventLogin, parameters: nil)
-
-      let alertController = UIAlertController.init(title: self.kSignedInAlertTitle,
-          message: user!.displayName, preferredStyle: .Alert)
-      alertController.addAction(okAction)
-      self.presentViewController(alertController, animated: true, completion: nil)
-    })
   }
 
   /** @fn signOut
    @brief Signs the user out.
    */
-  func signOut() {
+  @IBAction func didSignOut(sender: AnyObject) {
+    // [START auth_signout]
     let firebaseAuth = FIRAuth.auth()
     do {
       try firebaseAuth?.signOut()
-    } catch {
-      print ("Could not sign out.")
+      // [START_EXCLUDE]
+      performSegueWithIdentifier("SignOut", sender: nil)
+      // [END_EXCLUDE]
+    } catch let signOutError as NSError {
+      print ("Error signing out: %@", signOutError)
     }
+    // [END auth_signout]
   }
 
   /** @fn forceTokenRefresh
    @brief Invoked when the token refresh row is pressed.
    */
-  func forceTokenRefresh() {
+  @IBAction func didTokenRefresh(sender: AnyObject) {
     let action: FIRAuthTokenCallback = {(token, error) in
-      let okAction = UIAlertAction.init(title: self.kOKButtonText, style: .Default,
-        handler: {action in print(self.kOKButtonText)})
-      if (error != nil) {
+      let okAction = UIAlertAction.init(title: self.kOKButtonText, style: .Default)
+        {action in print(self.kOKButtonText)}
+      if let error = error {
         let alertController  = UIAlertController.init(title: self.kTokenRefreshErrorAlertTitle,
-          message: error!.localizedDescription, preferredStyle: .Alert)
+          message: error.localizedDescription, preferredStyle: .Alert)
         alertController.addAction(okAction)
         self.presentViewController(alertController, animated: true, completion: nil)
         return
@@ -300,29 +141,42 @@ class MainViewController: UIViewController {
         alertController.addAction(okAction)
         self.presentViewController(alertController, animated: true, completion: nil)
     }
+    // [START token_refresh]
     FIRAuth.auth()?.currentUser?.getTokenForcingRefresh(true, callback: action)
+    // [END token_refresh]
   }
 
   /** @fn setDisplayName
   @brief Changes the display name of the current user.
   */
-  func setDisplayName() {
-    showTextInputPromptWithMessage("Display Name:", completionBlock: { (userPressedOK, userInput) in
+  @IBAction func didSetDisplayName(sender: AnyObject) {
+    showTextInputPromptWithMessage("Display Name:") { (userPressedOK, userInput) in
       if (userPressedOK != true) || userInput!.isEmpty {
         return
       }
 
       self.showSpinner({
+        // [START profile_change]
         let changeRequest = FIRAuth.auth()?.currentUser?.profileChangeRequest()
         changeRequest?.displayName = userInput!
         changeRequest?.commitChangesWithCallback({ (error) in
+          // [END profile_change]
           self.hideSpinner({
             self.showTypicalUIForUserUpdateResultsWithTitle(self.kSetDisplayNameTitle, error: error)
             self.updateUserInfo(FIRAuth.auth()!)
           })
         })
       })
-    })
+    }
+  }
+
+
+  @IBAction func didUnlinkFacebook(sender: AnyObject) {
+    unlinkFromProvider(FIRFacebookAuthProviderID)
+  }
+
+  @IBAction func didUnlinkGoogle(sender: AnyObject) {
+    unlinkFromProvider(FIRGoogleAuthProviderID)
   }
 
   /** @fn unlinkFromProvider:
@@ -330,46 +184,25 @@ class MainViewController: UIViewController {
   @param provider The provider ID of the provider to unlink the current user's account from.
   */
   func unlinkFromProvider(provider: String) {
-    FIRAuth.auth()?.currentUser?.unlinkFromProvider(provider, callback: { (user, error) in
+    // [START unlink_provider]
+    FIRAuth.auth()?.currentUser?.unlinkFromProvider(provider) { (user, error) in
       self.showTypicalUIForUserUpdateResultsWithTitle(self.kUnlinkTitle, error: error)
       self.updateUserInfo(FIRAuth.auth()!)
-    })
-  }
-
-  /** @fn getProvidersForEmail
-  @brief Prompts the user for an email address, calls @c FIRAuth.getProvidersForEmail:callback:
-  and displays the result.
-  */
-  func getProvidersForEmail() {
-    showTextInputPromptWithMessage("Email:", completionBlock: { (userPressedOK, userInput) in
-      if (userPressedOK != true) || userInput!.isEmpty {
-        return
-      }
-
-      self.showSpinner({
-        FIRAuth.auth()!.getProvidersForEmail(userInput!, callback: { (providers, error) in
-          self.hideSpinner({
-            if (error != nil) {
-              self.showMessagePrompt(error!.localizedDescription)
-              return
-            }
-
-            self.showMessagePrompt(providers!.joinWithSeparator(", "))
-          })
-        })
-      })
-    })
+    }
+    // [END unlink_provider]
   }
 
   /** @fn requestVerifyEmail
   @brief Requests a "verify email" email be sent.
   */
-  func requestVerifyEmail() {
+  @IBAction func didRequestVerifyEmail(sender: AnyObject) {
     showSpinner({
+      // [START send_verification_email]
       FIRAuth.auth()!.currentUser!.sendEmailVerification({ (error) in
+        // [END send_verification_email]
         self.hideSpinner({
-          if (error != nil) {
-            self.showMessagePrompt(error!.localizedDescription)
+          if let error = error {
+            self.showMessagePrompt(error.localizedDescription)
             return
           }
 
@@ -379,68 +212,48 @@ class MainViewController: UIViewController {
     })
   }
 
-  /** @fn requestPasswordReset
-  @brief Requests a "password reset" email be sent.
-  */
-  func requestPasswordReset() {
-    showTextInputPromptWithMessage("Email:", completionBlock:{ (userPressedOK, userInput) in
-      if (userPressedOK != true) || userInput!.isEmpty {
-        return
-      }
-
-      self.showSpinner({
-        FIRAuth.auth()!.sendPasswordResetWithEmail(userInput!, callback:{ (error) in
-          self.hideSpinner({
-            if (error != nil) {
-              self.showMessagePrompt(error!.localizedDescription)
-              return
-            }
-
-            self.showMessagePrompt("Sent")
-          })
-        })
-      })
-    })
-  }
-
   /** @fn changeEmail
   @brief Changes the email address of the current user.
   */
-  func changeEmail() {
-    showTextInputPromptWithMessage("Email Address:", completionBlock:{ (userPressedOK, userInput) in
+  @IBAction func didChangeEmail(sender: AnyObject) {
+    showTextInputPromptWithMessage("Email Address:") { (userPressedOK, userInput) in
       if (userPressedOK != true) || userInput!.isEmpty {
         return
       }
 
       self.showSpinner({
-        FIRAuth.auth()!.currentUser!.changeEmail(userInput!, callback:{ (error) in
+        // [START change_email]
+        FIRAuth.auth()!.currentUser!.changeEmail(userInput!) { (error) in
+          // [END change_email]
           self.hideSpinner({
             self.showTypicalUIForUserUpdateResultsWithTitle(self.kChangeEmailText, error:error)
             self.updateUserInfo(FIRAuth.auth()!)
           })
-        })
+        }
       })
-    })
+    }
   }
 
   /** @fn changePassword
   @brief Changes the password of the current user.
   */
-  func changePassword() {
-    showTextInputPromptWithMessage("New Password:", completionBlock:{ (userPressedOK, userInput) in
+  @IBAction func didChangePassword(sender: AnyObject) {
+    showTextInputPromptWithMessage("New Password:") { (userPressedOK, userInput) in
       if (userPressedOK != true) || userInput!.isEmpty {
         return
       }
 
       self.showSpinner({
-        FIRAuth.auth()!.currentUser!.changePassword(userInput!, callback:{ (error) in
+        // [START change_password]
+        FIRAuth.auth()!.currentUser!.changePassword(userInput!) { (error) in
+          // [END change_password]
           self.hideSpinner({
             self.showTypicalUIForUserUpdateResultsWithTitle(self.kChangePasswordText, error:error)
             self.updateUserInfo(FIRAuth.auth()!)
           })
-        })
+        }
       })
-    })
+    }
   }
 
   // MARK: - Helpers
@@ -451,10 +264,10 @@ class MainViewController: UIViewController {
   @param error The error details to display if non-nil.
   */
   func showTypicalUIForUserUpdateResultsWithTitle(resultsTitle: String, error: NSError?) {
-    if (error != nil) {
-      let message = "\(error!.domain) (\(error!.code))\n\(error!.localizedDescription)"
-      let okAction = UIAlertAction.init(title: self.kOKButtonText, style: .Default,
-        handler: {action in print(self.kOKButtonText)})
+    if let error = error {
+      let message = "\(error.domain) (\(error.code))\n\(error.localizedDescription)"
+      let okAction = UIAlertAction.init(title: self.kOKButtonText, style: .Default)
+        {action in print(self.kOKButtonText)}
       let alertController  = UIAlertController.init(title: resultsTitle,
         message: message, preferredStyle: .Alert)
       alertController.addAction(okAction)
@@ -492,11 +305,5 @@ class MainViewController: UIViewController {
     } else {
       userInfoProfileURLImageView.image = nil
     }
-  }
-
-  func authStateChangedForAuth(notification: NSNotification) {
-    let auth = notification.object as! FIRAuth
-    updateUserInfo(auth)
-    loadTableviewWithNotificationFlag(true)
   }
 }

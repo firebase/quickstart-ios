@@ -21,9 +21,10 @@
 
 #import "SignedInViewController.h"
 #import "UIViewController+Alerts.h"
-@import Firebase.Core;
+@import FirebaseAuth;
 @import FirebaseFacebookAuthProvider;
 @import FirebaseGoogleAuthProvider;
+@import Firebase.Core;
 
 @interface SignedInViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *userInfoEmailLabel;
@@ -83,8 +84,15 @@ static NSString *const kChangePasswordText = @"Change Password";
  @brief Signs the user out.
  */
 - (IBAction)didSignOut:(id)sender {
+  // [START auth_signout]
   FIRAuth *firebaseAuth = [FIRAuth auth];
-  [firebaseAuth signOut:NULL];
+  NSError *signOutError;
+  BOOL status = [firebaseAuth signOut:&signOutError];
+  if (!status) {
+    NSLog(@"Error signing out: %@", signOutError);
+    return;
+  }
+  // [END auth_signout]
   [self performSegueWithIdentifier:@"SignOut" sender:nil];
 }
 
@@ -118,7 +126,9 @@ static NSString *const kChangePasswordText = @"Change Password";
     [alertController addAction:okAction];
     [self presentViewController:alertController animated:YES completion:nil];
   };
+  // [START token_refresh]
   [[FIRAuth auth].currentUser getTokenForcingRefresh:YES callback:action];
+  // [END token_refresh]
 }
 
 /** @fn setDisplayName
@@ -132,10 +142,12 @@ static NSString *const kChangePasswordText = @"Change Password";
                          }
 
                          [self showSpinner:^{
+                           // [START profile_change]
                            FIRUserProfileChangeRequest *changeRequest =
                            [[FIRAuth auth].currentUser profileChangeRequest];
                            changeRequest.displayName = userInput;
                            [changeRequest commitChangesWithCallback:^(NSError *_Nullable error) {
+                             // [END profile_change]
                              [self hideSpinner:^{
                                [self showTypicalUIForUserUpdateResultsWithTitle:kSetDisplayNameTitle error:error];
                                [self updateUserInfo:[FIRAuth auth]];
@@ -158,11 +170,13 @@ static NSString *const kChangePasswordText = @"Change Password";
  @param provider The provider ID of the provider to unlink the current user's account from.
  */
 - (void)unlinkFromProvider:(NSString *)provider {
+  // [START unlink_provider]
   [[FIRAuth auth].currentUser unlinkFromProvider:provider
                                         callback:^(FIRUser *_Nullable user, NSError *_Nullable error) {
                                           [self showTypicalUIForUserUpdateResultsWithTitle:kUnlinkTitle error:error];
                                           [self updateUserInfo:[FIRAuth auth]];
                                         }];
+  // [END unlink_provider]
 }
 
 /** @fn requestVerifyEmail
@@ -170,7 +184,9 @@ static NSString *const kChangePasswordText = @"Change Password";
  */
 - (IBAction)didRequestVerifyEmail:(id)sender {
   [self showSpinner:^{
+    // [START send_verification_email]
     [[FIRAuth auth].currentUser sendEmailVerification:^(NSError * _Nullable error) {
+      // [END send_verification_email]
       [self hideSpinner:^{
         if (error) {
           [self showMessagePrompt:error.localizedDescription];
@@ -194,7 +210,9 @@ static NSString *const kChangePasswordText = @"Change Password";
                          }
 
                          [self showSpinner:^{
+                           // [START change_email]
                            [[FIRAuth auth].currentUser changeEmail:userInput callback:^(NSError *_Nullable error) {
+                             // [END change_email]
                              [self hideSpinner:^{
                                [self showTypicalUIForUserUpdateResultsWithTitle:kChangeEmailText error:error];
                                [self updateUserInfo:[FIRAuth auth]];
@@ -215,7 +233,9 @@ static NSString *const kChangePasswordText = @"Change Password";
                          }
 
                          [self showSpinner:^{
+                           // [START change_password]
                            [[FIRAuth auth].currentUser changePassword:userInput callback:^(NSError *_Nullable error) {
+                             // [END change_password]
                              [self hideSpinner:^{
                                [self showTypicalUIForUserUpdateResultsWithTitle:kChangePasswordText error:error];
                                [self updateUserInfo:[FIRAuth auth]];

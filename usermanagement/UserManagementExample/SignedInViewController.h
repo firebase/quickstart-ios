@@ -20,7 +20,6 @@
 //
 
 #import <UIKit/UIKit.h>
-@import FirebaseAuth;
 
 @interface SignedInViewController : UIViewController
 @end

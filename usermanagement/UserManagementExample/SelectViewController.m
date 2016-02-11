@@ -49,10 +49,12 @@ static NSString *const kSignInErrorAlertTitle = @"Sign-In Error";
 @implementation SelectViewController
 
 - (IBAction)didUISignIn:(UIButton *)sender {
+  // [START firebase_auth_ui]
   FIRAuth *firebaseAuth = [FIRAuth auth];
   FIRAuthUI *firebaseAuthUI = [FIRAuthUI authUIForApp:firebaseAuth.app];
   [firebaseAuthUI presentSignInWithViewController:self callback:^(FIRUser *_Nullable user,
                                                                   NSError *_Nullable error) {
+    // [END firebase_auth_ui]
     UIAlertAction *okAction = [UIAlertAction actionWithTitle:kOKButtonText
                                                        style:UIAlertActionStyleDefault
                                                      handler:^(UIAlertAction *action) {

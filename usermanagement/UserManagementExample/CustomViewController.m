@@ -78,13 +78,15 @@ static NSString *const kOKButtonText = @"OK";
 }
 
 - (void)loginButton:(FBSDKLoginButton *)loginButton
-    didCompleteWithResult: (FBSDKLoginManagerLoginResult *)result error:	(NSError *)error {
+    didCompleteWithResult:(FBSDKLoginManagerLoginResult *)result error:(NSError *)error {
   if (error == nil) {
+    // [START headless_facebook_auth]
     FIRAuthCredential *credential = [FIRFacebookAuthProvider
         credentialWithAccessToken: [FBSDKAccessToken currentAccessToken].tokenString];
 
     [[FIRAuth auth] signInWithCredential:credential
                                 callback:^(FIRUser *user, NSError *error) {
+                                  // [END headless_facebook_auth]
                                   if (error) {
                                     [self showMessagePrompt:error.localizedDescription];
                                     return;
@@ -98,6 +100,11 @@ static NSString *const kOKButtonText = @"OK";
   }
 }
 
+- (void)loginButtonDidLogOut:(FBSDKLoginButton *)loginButton {
+  [self showMessagePrompt:@"User logged out!"];
+}
+
+// [START headless_google_auth]
 - (void)signIn:(GIDSignIn *)signIn didSignInForUser:(GIDGoogleUser *)user
     withError:(NSError *)error {
   if (error == nil) {
@@ -107,6 +114,7 @@ static NSString *const kOKButtonText = @"OK";
 
     [[FIRAuth auth] signInWithCredential:credential
                                 callback:^(FIRUser *user, NSError *error) {
+                                  // [END headless_google_auth]
                                   if (error) {
                                     [self showMessagePrompt:error.localizedDescription];
                                     return;
@@ -121,9 +129,11 @@ static NSString *const kOKButtonText = @"OK";
 }
 
 - (IBAction)didTapEmailLogin:(id)sender {
+  // [START headless_email_auth]
   [[FIRAuth auth] signInWithEmail:_emailField.text
                          password:_passwordField.text
                          callback:^(FIRUser *user, NSError *error) {
+                           // [END headless_email_auth]
                            if (error) {
                              [self showMessagePrompt:error.localizedDescription];
                              return;
@@ -142,12 +152,14 @@ static NSString *const kOKButtonText = @"OK";
   [self showTextInputPromptWithMessage:@"Email:"
       completionBlock:^(BOOL userPressedOK, NSString *_Nullable userInput) {
         if (!userPressedOK || !userInput.length) {
-         return;
+          return;
         }
 
         [self showSpinner:^{
+          // [START password_reset]
           [[FIRAuth auth] sendPasswordResetWithEmail:userInput
               callback:^(NSError * _Nullable error) {
+                // [END password_reset]
                 [self hideSpinner:^{
                   if (error) {
                     [self showMessagePrompt:error.localizedDescription];
@@ -173,8 +185,10 @@ static NSString *const kOKButtonText = @"OK";
         }
 
         [self showSpinner:^{
+          // [START get_providers]
           [[FIRAuth auth] getProvidersForEmail:userInput
               callback:^(NSArray<NSString *> *_Nullable providers, NSError *_Nullable error) {
+                // [END get_providers]
                 [self hideSpinner:^{
                   if (error) {
                     [self showMessagePrompt:error.localizedDescription];
@@ -202,8 +216,10 @@ static NSString *const kOKButtonText = @"OK";
               }
 
               [self showSpinner:^{
+                // [START create_user]
                 [[FIRAuth auth] createUserWithEmail:email password:password
                     callback:^(FIRUser * _Nullable user, NSError * _Nullable error) {
+                      // [END create_user]
                       [self hideSpinner:^{
                         if (error) {
                           [self showMessagePrompt:error.localizedDescription];

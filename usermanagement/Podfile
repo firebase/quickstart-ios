@@ -10,8 +10,6 @@ pod 'FirebaseAuthUI'
 pod 'FirebaseGoogleAuthProvider'
 pod 'FirebaseFacebookAuthProvider'
 
-pod 'FBSDKLoginKit'
-
 target 'UserManagementExample'
 target 'UserManagementExampleSwift'
 target 'UserManagementExampleTests'

@@ -22,8 +22,6 @@
 		6D194559832F1730B4E6F7B8 /* libPods-StorageExample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B95001E5C5FF4C3F040D689 /* libPods-StorageExample.a */; };
 		97179AE5993C61562FE19B7E /* libPods-StorageExampleSwift.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D966F0B50860CDD898C9202A /* libPods-StorageExampleSwift.a */; };
 		CBE18797B4FE805C6C4B5191 /* libPods-StorageExampleTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AF727038B0DD71632A061113 /* libPods-StorageExampleTests.a */; };
-		EF86D6151C6EC4DC00DEA2D9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EF86D6141C6EC4DC00DEA2D9 /* GoogleService-Info.plist */; };
-		EF86D6161C6EC4DC00DEA2D9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EF86D6141C6EC4DC00DEA2D9 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,7 +59,6 @@
 		979D20600605DFD5CCCD1F20 /* Pods-StorageExampleSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StorageExampleSwift.release.xcconfig"; path = "Pods/Target Support Files/Pods-StorageExampleSwift/Pods-StorageExampleSwift.release.xcconfig"; sourceTree = "<group>"; };
 		AF727038B0DD71632A061113 /* libPods-StorageExampleTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-StorageExampleTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D966F0B50860CDD898C9202A /* libPods-StorageExampleSwift.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-StorageExampleSwift.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		EF86D6141C6EC4DC00DEA2D9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F0D5F359D342CBC49772C5D0 /* Pods-StorageExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StorageExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-StorageExample/Pods-StorageExample.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -120,7 +117,6 @@
 		5F5A534E1ADE670C00F81DF0 /* StorageExample */ = {
 			isa = PBXGroup;
 			children = (
-				EF86D6141C6EC4DC00DEA2D9 /* GoogleService-Info.plist */,
 				5F5A53531ADE670C00F81DF0 /* AppDelegate.h */,
 				5F5A53541ADE670C00F81DF0 /* AppDelegate.m */,
 				5F5A53561ADE670C00F81DF0 /* ViewController.h */,
@@ -311,7 +307,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5F99610C1AE0CF4F0034F503 /* LaunchScreen.xib in Resources */,
-				EF86D6151C6EC4DC00DEA2D9 /* GoogleService-Info.plist in Resources */,
 				5F99610A1AE0CF4F0034F503 /* Images.xcassets in Resources */,
 				5F5A535B1ADE670C00F81DF0 /* Main.storyboard in Resources */,
 			);
@@ -322,7 +317,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5F99610D1AE0CF4F0034F503 /* LaunchScreen.xib in Resources */,
-				EF86D6161C6EC4DC00DEA2D9 /* GoogleService-Info.plist in Resources */,
 				5F5A539C1ADE69AA00F81DF0 /* Main.storyboard in Resources */,
 				5F99610B1AE0CF4F0034F503 /* Images.xcassets in Resources */,
 			);
@@ -641,6 +635,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = "$(SRCROOT)/StorageExample/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.StorageExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = StorageExampleSwift/BridgingHeader.h;
 			};
@@ -654,6 +649,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = "$(SRCROOT)/StorageExample/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.StorageExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = StorageExampleSwift/BridgingHeader.h;
 			};

@@ -15,13 +15,23 @@
 //
 
 import UIKit
+import Firebase.Core;
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
   var window: UIWindow?
 
-  func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+  func application(application: UIApplication,
+      didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    // [START firebase_configure]
+    // Use Firebase library to configure APIs
+    do {
+      try FIRContext.sharedInstance().configure()
+    } catch let configureError as NSError {
+      print ("Error configuring Firebase services: \(configureError)")
+    }
+    // [END firebase_configure]
     return true
   }
 

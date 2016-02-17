@@ -37,84 +37,97 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rqW-0n-Tf6">
-                                <rect key="frame" x="111" y="142" width="192" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="rqW-0n-Tf6" secondAttribute="height" multiplier="32:5" id="aWg-f7-3n4"/>
-                                </constraints>
+                                <rect key="frame" x="70" y="142" width="274" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="L0w-x5-Qyx">
-                                <rect key="frame" x="111" y="193" width="192" height="30"/>
+                                <rect key="frame" x="70" y="193" width="274" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="L0w-x5-Qyx" secondAttribute="height" multiplier="32:5" id="XiS-QF-3SG"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="go" secureTextEntry="YES"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="XiS-QF-3SG"/>
+                                    </mask>
+                                </variation>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UAB-WB-Pqj">
-                                <rect key="frame" x="116" y="252" width="47" height="30"/>
+                                <rect key="frame" x="70" y="252" width="47" height="30"/>
                                 <state key="normal" title="Sign In"/>
                                 <connections>
                                     <action selector="didTapSignIn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7It-bE-T6v"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3hu-fi-Nb8">
-                                <rect key="frame" x="257" y="252" width="55" height="30"/>
+                                <rect key="frame" x="289" y="252" width="55" height="30"/>
                                 <state key="normal" title="Sign Up"/>
                                 <connections>
                                     <action selector="didTapSignUp:" destination="BYZ-38-t0r" eventType="touchUpInside" id="uvY-R1-p50"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g4V-CR-dck">
-                                <rect key="frame" x="164.5" y="346" width="85" height="30"/>
+                                <rect key="frame" x="164" y="346" width="85" height="30"/>
                                 <state key="normal" title="Take Picture"/>
                                 <connections>
                                     <action selector="didTapTakePicture:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ydh-qg-AYm"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" editable="NO" text=" " textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="H8c-gN-cFS">
-                                <rect key="frame" x="40" y="444" width="334" height="16"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Sign in to Firebase above in order to upload files to your Firebase Storage bucket. " textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VGJ-fy-4EJ">
+                                <rect key="frame" x="87" y="636" width="240" height="80"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="Osb-RS-bMZ"/>
+                                    <constraint firstAttribute="height" constant="80" id="JFi-t0-dqB"/>
+                                    <constraint firstAttribute="width" secondItem="VGJ-fy-4EJ" secondAttribute="height" multiplier="3:1" id="WTw-O3-Ktz"/>
+                                </constraints>
+                                <color key="textColor" red="0.46290091617682688" green="0.47843137250000001" blue="0.47222186235276881" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <textView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" editable="NO" text=" " textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="H8c-gN-cFS">
+                                <rect key="frame" x="40" y="396" width="334" height="80"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="80" id="Osb-RS-bMZ"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <dataDetectorType key="dataDetectorTypes" link="YES"/>
                             </textView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Sign in to Firebase above in order to upload files to your Firebase Storage bucket. " textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VGJ-fy-4EJ">
-                                <rect key="frame" x="87" y="553" width="240" height="128"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="128" id="JFi-t0-dqB"/>
-                                    <constraint firstAttribute="width" secondItem="VGJ-fy-4EJ" secondAttribute="height" multiplier="15:8" id="WTw-O3-Ktz"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="VGJ-fy-4EJ" secondAttribute="bottom" constant="55" id="10G-De-U8f"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="VGJ-fy-4EJ" secondAttribute="bottom" constant="20" id="10G-De-U8f"/>
+                            <constraint firstItem="rqW-0n-Tf6" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="50" id="6Q6-Wm-obB"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="rqW-0n-Tf6" secondAttribute="trailing" constant="50" id="7wN-EB-Ua6"/>
                             <constraint firstItem="3hu-fi-Nb8" firstAttribute="top" secondItem="L0w-x5-Qyx" secondAttribute="bottom" constant="29" id="AIJ-GM-nE7"/>
                             <constraint firstItem="rqW-0n-Tf6" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="78" id="B7F-QR-2Yd"/>
                             <constraint firstItem="UAB-WB-Pqj" firstAttribute="top" secondItem="L0w-x5-Qyx" secondAttribute="bottom" constant="29" id="Dps-o0-UAm"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="L0w-x5-Qyx" secondAttribute="trailing" constant="50" id="Ei3-Lh-ClG"/>
                             <constraint firstItem="L0w-x5-Qyx" firstAttribute="top" secondItem="rqW-0n-Tf6" secondAttribute="bottom" constant="21" id="GQ1-5o-80x"/>
                             <constraint firstItem="H8c-gN-cFS" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="GkR-fA-aLk"/>
                             <constraint firstItem="VGJ-fy-4EJ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="J3z-cr-yYa"/>
                             <constraint firstItem="g4V-CR-dck" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="JRo-FU-sZN"/>
                             <constraint firstItem="rqW-0n-Tf6" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Lei-9j-z15"/>
                             <constraint firstItem="L0w-x5-Qyx" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Nvx-3b-CBR"/>
-                            <constraint firstItem="UAB-WB-Pqj" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="96" id="PXq-pX-DKM"/>
+                            <constraint firstItem="UAB-WB-Pqj" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="50" id="PXq-pX-DKM"/>
                             <constraint firstItem="g4V-CR-dck" firstAttribute="top" secondItem="L0w-x5-Qyx" secondAttribute="bottom" constant="123" id="TS6-RJ-lf2"/>
-                            <constraint firstItem="H8c-gN-cFS" firstAttribute="top" secondItem="g4V-CR-dck" secondAttribute="bottom" constant="68" id="UFL-OL-qBp"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="3hu-fi-Nb8" secondAttribute="trailing" constant="82" id="ZR6-hd-AuP"/>
+                            <constraint firstItem="H8c-gN-cFS" firstAttribute="top" secondItem="g4V-CR-dck" secondAttribute="bottom" constant="20" id="UFL-OL-qBp"/>
+                            <constraint firstItem="L0w-x5-Qyx" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="90" id="UXg-ps-47Y"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="3hu-fi-Nb8" secondAttribute="trailing" constant="50" id="ZR6-hd-AuP"/>
                             <constraint firstItem="H8c-gN-cFS" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="20" id="eoL-DC-apd"/>
                             <constraint firstAttribute="trailingMargin" secondItem="H8c-gN-cFS" secondAttribute="trailing" constant="20" id="nVn-UI-YtJ"/>
+                            <constraint firstItem="L0w-x5-Qyx" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="50" id="yBt-Dg-rQD"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="UXg-ps-47Y"/>
+                            </mask>
+                        </variation>
                     </view>
-                    <navigationItem key="navigationItem" id="lX3-oi-C1r"/>
+                    <navigationItem key="navigationItem" title="Firebase Storage Example" id="lX3-oi-C1r"/>
                     <connections>
                         <outlet property="emailField" destination="rqW-0n-Tf6" id="lZh-lE-Ej0"/>
                         <outlet property="passwordField" destination="L0w-x5-Qyx" id="0Ul-hK-zVL"/>

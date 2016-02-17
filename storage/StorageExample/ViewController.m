@@ -41,7 +41,7 @@
   // [START configurestorage]
   FIRFirebaseApp *app = [FIRFirebaseApp app];
   // Configure manually with a storage bucket.
-  NSString *bucket = @"testcrash-6f435.storage.firebase.com";
+  NSString *bucket = @"YOUR_PROJECT.storage.firebase.com";
   self.storageRef = [[FIRStorage alloc] initWithApp:app bucketName:bucket];
   // [END configurestorage]
 }
@@ -67,28 +67,26 @@
   UIImage *image = info[UIImagePickerControllerOriginalImage];
   NSData *imageData = UIImageJPEGRepresentation(image, 0.8);
   _urlTextView.text = @"Beginning Upload";
+
   // [START uploadimage]
   FIRStorageMetadata *metadata = [FIRStorageMetadata new];
   metadata.contentType = @"image/jpeg";
-  FIRStorageUploadTask *upload = [[_storageRef childByAppendingString:@"photo.jpg"]
-                                  putData:imageData ];
-  //  metadata:metadata];
+  FIRStorageUploadTask *upload = [[_storageRef childByAppendingString:@"myimage.jpg"]
+                                  putData:imageData
+                                  metadata:metadata];
 
 
   // [END uploadimage]
 
   // [START oncomplete]
   [upload observeStatus:FIRTaskStatusComplete
-      withErrorCallback:^(FIRStorageUploadTask *task, NSError *error) {
-        if (error) {
-          NSLog(@"Error uploading: %@", error);
-          _urlTextView.text = @"Upload Failed";
-          return;
-        }
+      withCallback:^(FIRStorageUploadTask *task) {
+        _urlTextView.text = @"Upload Succeeded!";
         [self onSuccesfulUpload];
       }];
   // [END oncomplete]
 
+  // [START onfailure]
   [upload observeStatus:FIRTaskStatusFailure
       withErrorCallback:^(FIRStorageUploadTask *task, NSError *error) {
         if (error) {
@@ -96,21 +94,22 @@
         }
         _urlTextView.text = @"Upload Failed";
       }];
-
+  // [END onfailure]
 }
 
 - (void)onSuccesfulUpload {
   NSLog(@"Retrieving metadata");
   _urlTextView.text = @"Fetching Metadata";
   // [START getmetadata]
-  [[_storageRef childByAppendingString:@"photo.jpg"]
+  [[_storageRef childByAppendingString:@"myimage.jpg"]
       metadataWithCompletion:^(FIRStorageMetadata *metadata, NSError *error) {
         if (error) {
           NSLog(@"Error retrieving metadata: %@", error);
           _urlTextView.text = @"Error Fetching Metadata";
           return;
         }
-        _urlTextView.text = metadata.mediaLink;
+        // Get first download URL to display.
+        _urlTextView.text = [metadata.downloadURLs[0] absoluteString];
         NSLog(@"Retrieved metadata: %@", metadata);
       }];
   // [END getmetadata]

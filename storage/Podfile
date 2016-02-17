@@ -1,5 +1,4 @@
 # StorageExample
-source 'sso://cpdc-internal/spec.git'
 source 'https://cpdc-eap.googlesource.com/spec.git'
 source 'http://github.com/CocoaPods/Specs.git'
 platform :ios, '7.0'

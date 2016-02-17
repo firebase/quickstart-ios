@@ -15,6 +15,7 @@
 //
 
 #import "AppDelegate.h"
+@import Firebase.Core;
 
 @interface AppDelegate ()
 @property(nonatomic, strong) void (^registrationHandler)
@@ -39,8 +40,7 @@ NSString *const SubscriptionTopic = @"/topics/global";
   NSError *configureError;
   BOOL status = [[FIRContext sharedInstance] configure:&configureError];
   NSAssert(status, @"Error configuring Google services: %@", configureError);
-  //_gcmSenderID = [[[GGLContext sharedInstance] configuration] gcmSenderID];
-  //_gcmSenderID = [[[GGLContext sharedInstance] serviceInfo] gcmSenderID];
+
   _gcmSenderID = [FIRContext sharedInstance].gcmSenderID;
   // Register for remote notifications
   if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_7_1) {

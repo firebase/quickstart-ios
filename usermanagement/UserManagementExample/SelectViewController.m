@@ -81,7 +81,9 @@ static NSString *const kSignInErrorAlertTitle = @"Sign-In Error";
     [self presentViewController:alertController animated:YES completion:nil];
     [self performSegueWithIdentifier:@"UISignIn" sender:nil];
   }];
+}
 
+-(IBAction)prepareForUnwind:(UIStoryboardSegue *)segue {
 }
 
 @end

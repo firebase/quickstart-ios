@@ -96,7 +96,7 @@ static NSString *const kOKButtonText = @"OK";
                                   [self performSegueWithIdentifier:@"CustomSignIn" sender:nil];
                                 }];
   } else {
-    NSLog(error.localizedDescription);
+    NSLog(@"%@", error.localizedDescription);
   }
 }
 
@@ -124,7 +124,7 @@ static NSString *const kOKButtonText = @"OK";
                                   [self performSegueWithIdentifier:@"CustomSignIn" sender:nil];
                                 }];
   } else {
-    NSLog(error.localizedDescription);
+    NSLog(@"%@", error.localizedDescription);
   }
 }
 
@@ -139,8 +139,7 @@ static NSString *const kOKButtonText = @"OK";
                              return;
                            }
 
-                           [self showMessagePrompt:user.displayName];
-                           [self performSegueWithIdentifier:@"CustomSignIn" sender:nil];
+                           [self performSegueWithIdentifier:@"CustomSignIn" sender:self];
                          }];
 }
 

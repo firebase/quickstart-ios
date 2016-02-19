@@ -24,12 +24,10 @@ import UIKit
 // [START usermanagement_view_import]
 import FirebaseAuth
 import Firebase.Core
-import FirebaseFacebookAuthProvider
-import FirebaseGoogleAuthProvider
 // [END usermanagement_view_import]
 
 @objc(CustomViewController)
-class CustomViewController: UIViewController, GIDSignInDelegate, GIDSignInUIDelegate, FBSDKLoginButtonDelegate {
+class CustomViewController: UIViewController {
 
   /*! @var kSignedInAlertTitle
   @brief The text of the "Sign In Succeeded" alert.
@@ -46,72 +44,8 @@ class CustomViewController: UIViewController, GIDSignInDelegate, GIDSignInUIDele
   */
   let kOKButtonText = "OK"
 
-  @IBOutlet weak var facebookLoginButton: FBSDKLoginButton!
-  @IBOutlet weak var signInButton: GIDSignInButton!
   @IBOutlet weak var emailField: UITextField!
   @IBOutlet weak var passwordField: UITextField!
-
-  override func viewDidLoad() {
-    super.viewDidLoad()
-
-    GIDSignIn.sharedInstance().clientID = FIRContext.sharedInstance().serviceInfo.clientID
-    GIDSignIn.sharedInstance().uiDelegate = self
-
-    // TODO(developer): Configure the sign-in button look/feel
-    GIDSignIn.sharedInstance().delegate = self
-
-    let loginButton = FBSDKLoginButton()
-    loginButton.delegate = self
-  }
-
-  func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError?) {
-    if let error = error {
-      print(error.localizedDescription)
-      return
-    }
-
-    // [START headless_facebook_auth]
-    let credential = FIRFacebookAuthProvider.credentialWithAccessToken(FBSDKAccessToken.currentAccessToken().tokenString)
-
-    FIRAuth.auth()?.signInWithCredential(credential) { (user, error) in
-      if let error = error {
-        self.showMessagePrompt(error.localizedDescription)
-        return
-      }
-
-      self.showMessagePrompt(user!.displayName ?? "Display name is not set for user")
-      // [START_EXCLUDE]
-      self.performSegueWithIdentifier("CustomSignIn", sender: nil)
-      // [END_EXCLUDE]
-    }
-    // [END headless_facebook_auth]
-  }
-
-  func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
-    self.showMessagePrompt("User logged out!")
-  }
-
-  // [START headless_google_auth]
-  func signIn(signIn: GIDSignIn!, didSignInForUser user: GIDGoogleUser!, withError error: NSError?) {
-    if let error = error {
-      print(error.localizedDescription)
-      return
-    }
-
-    let authentication = user.authentication
-    let credential = FIRGoogleAuthProvider.credentialWithIDToken(authentication.idToken, accessToken: authentication.accessToken)
-
-    FIRAuth.auth()?.signInWithCredential(credential) { (user, error) in
-      // [END headless_google_auth]
-      if let error = error {
-        print(error.localizedDescription)
-        return
-      }
-
-      self.showMessagePrompt(user!.displayName ?? "Display name is not set for user")
-      self.performSegueWithIdentifier("CustomSignIn", sender: nil)
-    }
-  }
 
   @IBAction func didTapEmailLogin(sender: AnyObject) {
     // [START headless_email_auth]

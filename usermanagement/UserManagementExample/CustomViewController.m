@@ -20,22 +20,11 @@
 //
 
 #import "CustomViewController.h"
-#import "SignedInViewController.h"
 #import "UIViewController+Alerts.h"
-
-#import <GoogleSignIn/GIDSignIn.h>
-#import <GoogleSignIn/GIDSignInButton.h>
-#import <GoogleSignIn/GIDGoogleUser.h>
-#import <GoogleSignIn/GIDAuthentication.h>
-
-#import <FBSDKCoreKit/FBSDKCoreKit.h>
-#import <FBSDKLoginKit/FBSDKLoginKit.h>
 
 // [START usermanagement_view_import]
 @import FirebaseAuth;
 @import Firebase.Core;
-@import FirebaseFacebookAuthProvider;
-@import FirebaseGoogleAuthProvider;
 // [END usermanagement_view_import]
 
 
@@ -55,78 +44,11 @@ static NSString *const kSignInErrorAlertTitle = @"Sign-In Error";
 static NSString *const kOKButtonText = @"OK";
 
 
-@interface CustomViewController ()<GIDSignInDelegate, GIDSignInUIDelegate, FBSDKLoginButtonDelegate>
+@interface CustomViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *emailField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
-@property (weak, nonatomic) IBOutlet FBSDKLoginButton *facebookLoginButton;
-@property (weak, nonatomic) IBOutlet GIDSignInButton *signInButton;
 @end
 @implementation CustomViewController
-
-
-- (void)viewDidLoad {
-  [super viewDidLoad];
-
-  [GIDSignIn sharedInstance].clientID = [FIRContext sharedInstance].serviceInfo.clientID;
-  [GIDSignIn sharedInstance].uiDelegate = self;
-
-  // TODO(developer): Configure the sign-in button look/feel
-  [GIDSignIn sharedInstance].delegate = self;
-
-  FBSDKLoginButton *loginButton = [[FBSDKLoginButton alloc] init];
-  loginButton.delegate = self;
-}
-
-- (void)loginButton:(FBSDKLoginButton *)loginButton
-    didCompleteWithResult:(FBSDKLoginManagerLoginResult *)result error:(NSError *)error {
-  if (error == nil) {
-    // [START headless_facebook_auth]
-    FIRAuthCredential *credential = [FIRFacebookAuthProvider
-        credentialWithAccessToken: [FBSDKAccessToken currentAccessToken].tokenString];
-
-    [[FIRAuth auth] signInWithCredential:credential
-                                callback:^(FIRUser *user, NSError *error) {
-                                  // [END headless_facebook_auth]
-                                  if (error) {
-                                    [self showMessagePrompt:error.localizedDescription];
-                                    return;
-                                  }
-
-                                  [self showMessagePrompt:user.displayName];
-                                  [self performSegueWithIdentifier:@"CustomSignIn" sender:nil];
-                                }];
-  } else {
-    NSLog(@"%@", error.localizedDescription);
-  }
-}
-
-- (void)loginButtonDidLogOut:(FBSDKLoginButton *)loginButton {
-  [self showMessagePrompt:@"User logged out!"];
-}
-
-// [START headless_google_auth]
-- (void)signIn:(GIDSignIn *)signIn didSignInForUser:(GIDGoogleUser *)user
-    withError:(NSError *)error {
-  if (error == nil) {
-    GIDAuthentication *authentication = user.authentication;
-    FIRAuthCredential *credential =
-    [FIRGoogleAuthProvider credentialWithIDToken:authentication.idToken accessToken:authentication.accessToken];
-
-    [[FIRAuth auth] signInWithCredential:credential
-                                callback:^(FIRUser *user, NSError *error) {
-                                  // [END headless_google_auth]
-                                  if (error) {
-                                    [self showMessagePrompt:error.localizedDescription];
-                                    return;
-                                  }
-
-                                  [self showMessagePrompt:user.displayName];
-                                  [self performSegueWithIdentifier:@"CustomSignIn" sender:nil];
-                                }];
-  } else {
-    NSLog(@"%@", error.localizedDescription);
-  }
-}
 
 - (IBAction)didTapEmailLogin:(id)sender {
   // [START headless_email_auth]

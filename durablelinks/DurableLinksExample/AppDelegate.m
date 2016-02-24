@@ -51,7 +51,10 @@
   GINDeepLink *deepLink =
   [[GINDurableDeepLinkService sharedInstance] deepLinkFromCustomSchemeURL:url];
   if (deepLink) {
+    // Handle the deep link. For example, show the deep-linked content or apply
+    // a promotional offer to the user's account.
     // [START_EXCLUDE]
+    // In this sample, we just open an alert.
     NSString *matchConfidence;
     if (deepLink.matchConfidence == GINDeepLinkMatchConfidenceWeak) {
       matchConfidence = @"Weak";
@@ -66,8 +69,10 @@
     return YES;
   }
 
+  // [START_EXCLUDE silent]
   // Show the deep link that the app was called with.
   [self showDeepLinkAlertViewWithMessage:[NSString stringWithFormat:@"openURL:\n%@", url]];
+  // [END_EXCLUDE]
   return NO;
 }
 // [END openurl]

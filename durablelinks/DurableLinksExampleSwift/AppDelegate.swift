@@ -50,7 +50,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
     let deepLink:GINDeepLink? = GINDurableDeepLinkService.sharedInstance().deepLinkFromCustomSchemeURL(url)
     if (deepLink != nil) {
+      // Handle the deep link. For example, show the deep-linked content or
+      // apply a promotional offer to the user's account.
       // [START_EXCLUDE]
+      // In this sample, we just open an alert.
       let matchConfidence: String
       if (deepLink!.matchConfidence == GINDeepLinkMatchConfidence.Weak) {
         matchConfidence = "Weak";
@@ -67,12 +70,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       return true
     }
 
+    // [START_EXCLUDE silent]
     // Show the deep link that the app was called with.
     if #available(iOS 8.0, *) {
         showDeepLinkAlertViewWithMessage("openURL:\n\(url)")
     } else {
         // Fallback on earlier versions
     }
+    // [END_EXCLUDE]
     return false
   }
   // [END openurl]

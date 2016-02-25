@@ -1,3 +1,7 @@
+# Note: CocoaPods version 1.0.0.beta.* or later is required for this Podfile.
+#       If on an older version use "gem install cocoapods --pre" to update to
+#       beta.
+
 # CrashReporter
 source 'https://cpdc-eap.googlesource.com/spec.git'
 source 'https://github.com/CocoaPods/Specs.git'

@@ -1,10 +1,10 @@
-Firebase User Management Quickstart
+Firebase Authentication Quickstart
 =============================
 
 Introduction
 ------------
 
-- [Read more about Firebase User Management](https://developers.google.com/firebase)
+- [Read more about Firebase Authentication](https://developers.google.com/firebase)
 
 Getting Started
 ---------------

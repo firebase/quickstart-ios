@@ -1,4 +1,4 @@
-# UserManagementExample
+# AuthenticationExample
 
 source 'https://cpdc-eap.googlesource.com/spec.git'
 source 'https://github.com/CocoaPods/Specs.git'
@@ -9,6 +9,6 @@ pod 'Firebase/AuthUI'
 pod 'Firebase/GoogleAuthProvider'
 pod 'Firebase/FacebookAuthProvider'
 
-target 'UserManagementExample'
-target 'UserManagementExampleSwift'
-target 'UserManagementExampleTests'
+target 'AuthenticationExample'
+target 'AuthenticationExampleSwift'
+target 'AuthenticationExampleTests'

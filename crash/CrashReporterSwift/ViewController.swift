@@ -36,10 +36,14 @@ class ViewController: UIViewController {
     // [END log_and_crash_swift]
   }
 
-  // GCRLog is a convenience method for using FCRLogv.
+  // GCRLog is a convenience method for using FCRNSLogv and FCRLogv.
   func GCRLog(logToConsole: Bool, _ format: String, _ args: CVarArgType...) {
     withVaList(args) {
-      FCRLogv(logToConsole, format, $0)
+        if (logToConsole) {
+            FCRNSLogv(format, $0)
+        } else {
+            FCRLogv(format, $0)
+        }
     }
   }
 }

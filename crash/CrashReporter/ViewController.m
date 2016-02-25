@@ -23,18 +23,18 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
 
-  // Log that the view did load, true is used here so the log message will be
-  // shown in the console output. If false is used the message is not shown in
+  // Log that the view did load, FCRNSLog is used here so the log message will be
+  // shown in the console output. If FCRLog is used the message is not shown in
   // the console output.
-  FCRLog(YES, @"View loaded");
+  FCRNSLog(@"View loaded");
 }
 
 - (IBAction)initiateCrash:(id)sender {
-    // FCRLog is used here with NO to indicate that the log message
-    // will not be shown in the console output. Use YES to have the
+    // FCRLog is used here to indicate that the log message
+    // will not be shown in the console output. Use FCRNSLog to have the
     // log message show in the console output.
     // [START log_and_crash]
-    FCRLog(NO, @"Cause Crash button clicked");
+    FCRLog(@"Cause Crash button clicked");
     assert(NO);
     // [END log_and_crash]
 }

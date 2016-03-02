@@ -83,6 +83,19 @@ static NSString *const kSignInErrorAlertTitle = @"Sign-In Error";
   }];
 }
 
+- (IBAction)didTapGuestSignIn:(id)sender {
+  // [START firebase_auth_anonymous]
+  [[FIRAuth auth] signInAnonymouslyWithCallback:^(FIRUser *_Nullable user,
+                                                  NSError *_Nullable error) {
+    // [END firebase_auth_anonymous]
+    if (error) {
+      NSLog(@"%@", error.localizedDescription);
+      return;
+    }
+    [self performSegueWithIdentifier:@"UISignIn" sender:nil];
+  }];
+}
+
 -(IBAction)prepareForUnwind:(UIStoryboardSegue *)segue {
 }
 

@@ -19,8 +19,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DP3-qh-D6w">
-                                <rect key="frame" x="238" y="212" width="124" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DP3-qh-D6w">
+                                <rect key="frame" x="238" y="150" width="124" height="30"/>
                                 <state key="normal" title="Firebase UI SignIn"/>
                                 <connections>
                                     <action selector="didUISignIn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Bm9-mt-XUK"/>
@@ -29,28 +29,49 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xhP-I3-Yqg">
                                 <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="or" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AUr-eJ-XHZ">
-                                <rect key="frame" x="292" y="284" width="16" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="or" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AUr-eJ-XHZ">
+                                <rect key="frame" x="292" y="222" width="16" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qgc-3m-16a">
-                                <rect key="frame" x="248" y="357" width="104" height="30"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="or" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rRS-rA-RlG">
+                                <rect key="frame" x="292" y="362" width="16" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="Rio-Ow-gCS"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qgc-3m-16a">
+                                <rect key="frame" x="249" y="285" width="104" height="30"/>
                                 <state key="normal" title="Custom Sign In"/>
                                 <connections>
                                     <segue destination="Rld-rq-KZI" kind="show" id="3EL-6L-xxe"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IKx-2w-nBy">
+                                <rect key="frame" x="238" y="431" width="126" height="30"/>
+                                <state key="normal" title="Continue as Guest"/>
+                                <connections>
+                                    <action selector="didTapGuestSignIn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jPA-OU-VMx"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="IKx-2w-nBy" firstAttribute="top" secondItem="rRS-rA-RlG" secondAttribute="bottom" constant="48" id="5mT-Gm-WlL"/>
                             <constraint firstItem="qgc-3m-16a" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="An7-pg-8U8"/>
                             <constraint firstItem="AUr-eJ-XHZ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Inm-lT-5Kf"/>
                             <constraint firstItem="DP3-qh-D6w" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="148" id="KfY-NZ-RtF"/>
+                            <constraint firstItem="rRS-rA-RlG" firstAttribute="top" secondItem="qgc-3m-16a" secondAttribute="bottom" constant="47" id="NOw-FX-4Dl"/>
+                            <constraint firstItem="rRS-rA-RlG" firstAttribute="leading" secondItem="AUr-eJ-XHZ" secondAttribute="leading" id="PDs-ZJ-6CY"/>
+                            <constraint firstAttribute="bottom" secondItem="rRS-rA-RlG" secondAttribute="bottom" constant="217" id="cDJ-0X-dv8"/>
                             <constraint firstItem="qgc-3m-16a" firstAttribute="top" secondItem="AUr-eJ-XHZ" secondAttribute="bottom" constant="52" id="ceR-pP-MN8"/>
                             <constraint firstItem="DP3-qh-D6w" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="eQ3-pu-MES"/>
                             <constraint firstItem="AUr-eJ-XHZ" firstAttribute="top" secondItem="DP3-qh-D6w" secondAttribute="bottom" constant="42" id="hS3-i1-oSI"/>
+                            <constraint firstItem="IKx-2w-nBy" firstAttribute="leading" secondItem="DP3-qh-D6w" secondAttribute="leading" id="sfr-NM-2I6"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="qlN-t1-iaJ"/>

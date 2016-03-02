@@ -71,4 +71,19 @@ class SelectViewController: UIViewController {
       self.performSegueWithIdentifier("UISignIn", sender:nil)
     }
   }
+
+  @IBAction func didTapGuestSignIn(sender: AnyObject) {
+    // [START firebase_auth_anonymous]
+    FIRAuth.auth()?.signInAnonymouslyWithCallback() { (user, error) in
+    // [END firebase_auth_anonymous]
+      if let error = error {
+        print(error.localizedDescription)
+        return
+      }
+      self.performSegueWithIdentifier("UISignIn", sender:nil)
+    }
+  }
+
+  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+  }
 }

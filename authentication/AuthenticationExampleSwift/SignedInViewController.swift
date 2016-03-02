@@ -159,13 +159,13 @@ class SignedInViewController: UIViewController {
         // [START profile_change]
         let changeRequest = FIRAuth.auth()?.currentUser?.profileChangeRequest()
         changeRequest?.displayName = userInput!
-        changeRequest?.commitChangesWithCallback({ (error) in
+        changeRequest?.commitChangesWithCallback() { (error) in
           // [END profile_change]
           self.hideSpinner({
             self.showTypicalUIForUserUpdateResultsWithTitle(self.kSetDisplayNameTitle, error: error)
             self.updateUserInfo(FIRAuth.auth()!)
           })
-        })
+        }
       })
     }
   }

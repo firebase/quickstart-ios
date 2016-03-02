@@ -15,6 +15,7 @@
 //
 
 #import "ViewController.h"
+#import "DownloadViewController.h"
 #import "FirebaseStorage.h"
 
 @import Firebase.Auth;
@@ -26,6 +27,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *signinButton;
 @property (weak, nonatomic) IBOutlet UIButton *signUpButton;
 @property (weak, nonatomic) IBOutlet UIButton *takePicButton;
+@property (weak, nonatomic) IBOutlet UIButton *downloadPicButton;
 @property (weak, nonatomic) IBOutlet UITextView *urlTextView;
 
 @property (strong, nonatomic) FIRStorage *storageRef;
@@ -129,6 +131,7 @@
     [_signinButton setTitle:@"Sign Out" forState:UIControlStateNormal];
     _signUpButton.enabled = NO;
     _takePicButton.enabled = YES;
+    _downloadPicButton.enabled = YES;
     _urlTextView.text = @"";
   } else {
     _emailField.enabled = YES;
@@ -136,6 +139,7 @@
     [_signinButton setTitle:@"Sign In" forState:UIControlStateNormal];
     _signUpButton.enabled = YES;
     _takePicButton.enabled = NO;
+    _downloadPicButton.enabled = NO;
     _urlTextView.text = @"";
   }
 }

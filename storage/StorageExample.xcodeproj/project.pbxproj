@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		10D187C31C8640E300D0DC91 /* DownloadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10D187C21C8640E300D0DC91 /* DownloadViewController.m */; };
+		10D187C51C87608900D0DC91 /* DownloadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D187C41C87608900D0DC91 /* DownloadViewController.swift */; };
 		5F5A53521ADE670C00F81DF0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5A53511ADE670C00F81DF0 /* main.m */; };
 		5F5A53551ADE670C00F81DF0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5A53541ADE670C00F81DF0 /* AppDelegate.m */; };
 		5F5A53581ADE670C00F81DF0 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5A53571ADE670C00F81DF0 /* ViewController.m */; };
@@ -32,6 +34,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		10D187C11C8640E300D0DC91 /* DownloadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadViewController.h; sourceTree = "<group>"; };
+		10D187C21C8640E300D0DC91 /* DownloadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadViewController.m; sourceTree = "<group>"; };
+		10D187C41C87608900D0DC91 /* DownloadViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadViewController.swift; sourceTree = "<group>"; };
 		5F5A534C1ADE670C00F81DF0 /* StorageExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StorageExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F5A53501ADE670C00F81DF0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5F5A53511ADE670C00F81DF0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -102,6 +107,8 @@
 			children = (
 				5F5A53531ADE670C00F81DF0 /* AppDelegate.h */,
 				5F5A53541ADE670C00F81DF0 /* AppDelegate.m */,
+				10D187C11C8640E300D0DC91 /* DownloadViewController.h */,
+				10D187C21C8640E300D0DC91 /* DownloadViewController.m */,
 				5F5A53561ADE670C00F81DF0 /* ViewController.h */,
 				5F5A53571ADE670C00F81DF0 /* ViewController.m */,
 				5F5A534F1ADE670C00F81DF0 /* Supporting Files */,
@@ -123,6 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				5F5A537D1ADE67D500F81DF0 /* AppDelegate.swift */,
+				10D187C41C87608900D0DC91 /* DownloadViewController.swift */,
 				5F5A537F1ADE67D500F81DF0 /* ViewController.swift */,
 				5F5A537B1ADE67D500F81DF0 /* Supporting Files */,
 			);
@@ -289,6 +297,7 @@
 			files = (
 				5F5A53581ADE670C00F81DF0 /* ViewController.m in Sources */,
 				5F5A53551ADE670C00F81DF0 /* AppDelegate.m in Sources */,
+				10D187C31C8640E300D0DC91 /* DownloadViewController.m in Sources */,
 				5F5A53521ADE670C00F81DF0 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -298,6 +307,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5F5A53801ADE67D500F81DF0 /* ViewController.swift in Sources */,
+				10D187C51C87608900D0DC91 /* DownloadViewController.swift in Sources */,
 				5F5A537E1ADE67D500F81DF0 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

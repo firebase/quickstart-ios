@@ -28,6 +28,7 @@ class ViewController: UIViewController,
   @IBOutlet weak var signinButton:UIButton!
   @IBOutlet weak var signUpButton:UIButton!
   @IBOutlet weak var takePicButton:UIButton!
+  @IBOutlet weak var downloadPicButton:UIButton!
   @IBOutlet weak var urlTextView:UITextField!
 
   var storageRef:FIRStorage!
@@ -156,6 +157,7 @@ class ViewController: UIViewController,
       signinButton.setTitle("Sign Out", forState: UIControlState.Normal)
       signUpButton.enabled = false
       takePicButton.enabled = true
+      downloadPicButton.enabled = true
       urlTextView.text = ""
     } else {
       emailField.enabled = true
@@ -163,6 +165,7 @@ class ViewController: UIViewController,
       signinButton.setTitle("Sign In", forState: UIControlState.Normal)
       signUpButton.enabled = true
       takePicButton.enabled = false
+      downloadPicButton.enabled = false
       urlTextView.text = ""
     }
   }

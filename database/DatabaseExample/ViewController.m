@@ -26,7 +26,7 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
 
-  self.ref = [[Firebase alloc] initWithUrl:[FIRContext sharedInstance].serviceInfo.databaseURL];
+  self.ref = [FIRDatabase database].reference;
 
   _userInt = arc4random();
   self.messages = [[NSMutableArray alloc] init];
@@ -37,8 +37,8 @@
   [self.messages removeAllObjects];
   // Listen for new messages in the Firebase database
   _refHandle = [[self.ref childByAppendingPath:@"messages"]
-      observeEventType:FEventTypeChildAdded
-             withBlock:^(FDataSnapshot *snapshot) {
+      observeEventType:FIRDataEventTypeChildAdded
+             withBlock:^(FIRDataSnapshot *snapshot) {
                [self.messages addObject:snapshot];
                [self.tableView insertRowsAtIndexPaths:@[
                  [NSIndexPath indexPathForRow:[self.messages count] - 1 inSection:0]
@@ -62,7 +62,7 @@
       [self.tableView dequeueReusableCellWithIdentifier:@"tableViewCell" forIndexPath:indexPath];
 
   // Unpack message from Firebase DataSnapshot
-  FDataSnapshot *snapshot = self.messages[indexPath.row];
+  FIRDataSnapshot *snapshot = self.messages[indexPath.row];
   NSString *name = snapshot.value[@"name"];
   NSString *text = snapshot.value[@"text"];
   cell.textLabel.text = [NSString stringWithFormat:@"%@ says %@", name, text];

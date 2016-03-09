@@ -14,13 +14,13 @@
 //  limitations under the License.
 //
 
-#import <UIKit/UIKit.h>
-#import <FirebaseDatabase/Firebase.h>
+@import UIKit;
+@import FirebaseDatabase;
 
 @interface ViewController
     : UIViewController<UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
 
-@property(strong, nonatomic) Firebase *ref;
+@property(strong, nonatomic) FIRDatabaseReference *ref;
 @property(strong, nonatomic) NSMutableArray *messages;
 
 @property(weak, nonatomic) IBOutlet UITableView *tableView;

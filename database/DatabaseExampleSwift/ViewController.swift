@@ -17,14 +17,13 @@
 import UIKit
 import Firebase.Core
 import FirebaseDatabase
-/* Note that "import FirebaseDatabase" is included in BridgingHeader.h */
 
 @objc(ViewController)
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
 
   // Instance variables
-  var ref: Firebase!
-  var messages: [FDataSnapshot]! = []
+  var ref: FIRDatabaseReference!
+  var messages: [FIRDataSnapshot]! = []
   private var _refHandle: FirebaseHandle!
   private var userInt: UInt32 = arc4random()
 
@@ -36,7 +35,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    self.ref = Firebase(url: FIRContext.sharedInstance().serviceInfo.databaseURL)
+    self.ref = FIRDatabase().reference
   }
   
   override func viewWillAppear(animated: Bool) {
@@ -62,7 +61,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     let cell: UITableViewCell! = self.tableView .dequeueReusableCellWithIdentifier("tableViewCell", forIndexPath: indexPath)
 
     // Unpack message from Firebase DataSnapshot
-    let messageSnapshot: FDataSnapshot! = self.messages[indexPath.row]
+    let messageSnapshot: FIRDataSnapshot! = self.messages[indexPath.row]
     let message = messageSnapshot.value as! Dictionary<String, String>
     let name = message["name"] as String!
     let text = message["text"] as String!

@@ -15,8 +15,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FIRRemoteConfig.h"
 
 @interface ViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UILabel *priceLabel;
-@property (weak, nonatomic) IBOutlet UILabel *debugLabel;
+@property (weak, nonatomic) IBOutlet UIButton *fetchButton;
+@property (nonatomic, strong) FIRRemoteConfig *remoteConfig;
 @end

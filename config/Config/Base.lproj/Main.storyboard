@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -18,29 +18,30 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dxp-zT-dza">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Checking your price..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dxp-zT-dza">
                                 <rect key="frame" x="25" y="30" width="0.0" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6hk-t5-COH">
-                                <rect key="frame" x="25" y="40" width="0.0" height="0.0"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nBV-2k-pcf">
+                                <rect key="frame" x="228" y="285" width="145" height="30"/>
+                                <state key="normal" title="Fetch Remote Config"/>
+                                <connections>
+                                    <action selector="handleFetchTouch:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fsQ-5q-8bx"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="dxp-zT-dza" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="10" id="1dv-7V-uCV"/>
-                            <constraint firstItem="6hk-t5-COH" firstAttribute="leading" secondItem="dxp-zT-dza" secondAttribute="leading" id="ekx-Qw-jbR"/>
+                            <constraint firstItem="nBV-2k-pcf" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="EEC-hX-bbN"/>
+                            <constraint firstItem="nBV-2k-pcf" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="oRs-QV-USX"/>
                             <constraint firstItem="dxp-zT-dza" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="5" id="qMY-qz-eav"/>
-                            <constraint firstItem="6hk-t5-COH" firstAttribute="top" secondItem="dxp-zT-dza" secondAttribute="bottom" constant="10" id="tvT-8c-m0d"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="debugLabel" destination="6hk-t5-COH" id="cGF-AH-NhN"/>
+                        <outlet property="fetchButton" destination="nBV-2k-pcf" id="ZEb-Q7-bpn"/>
                         <outlet property="priceLabel" destination="dxp-zT-dza" id="bf5-SN-EYO"/>
                     </connections>
                 </viewController>

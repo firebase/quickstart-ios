@@ -57,7 +57,7 @@ class CustomViewController: UIViewController {
       }
 
       self.showMessagePrompt(user!.displayName ?? "Display name is not set for user")
-      self.performSegueWithIdentifier("CustomSignIn", sender: nil)
+      self.performSegueWithIdentifier("EmailSignIn", sender: nil)
     }
   }
 

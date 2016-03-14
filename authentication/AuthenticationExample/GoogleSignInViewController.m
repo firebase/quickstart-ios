@@ -28,7 +28,6 @@
 #import <GoogleSignIn/GIDAuthentication.h>
 
 @import FirebaseAuth;
-@import FirebaseGoogleAuthProvider;
 @import Firebase.Core;
 
 @interface GoogleSignInViewController ()<GIDSignInDelegate, GIDSignInUIDelegate>

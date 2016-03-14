@@ -61,7 +61,7 @@ static NSString *const kOKButtonText = @"OK";
                              return;
                            }
 
-                           [self performSegueWithIdentifier:@"CustomSignIn" sender:self];
+                           [self performSegueWithIdentifier:@"EmailSignIn" sender:self];
                          }];
 }
 

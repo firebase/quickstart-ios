@@ -5,9 +5,9 @@ source 'https://github.com/CocoaPods/Specs.git'
 
 platform :ios, '7.0'
 pod 'Firebase/Auth'
-pod 'Firebase/AuthUI'
-pod 'Firebase/GoogleAuthProvider'
-pod 'Firebase/FacebookAuthProvider'
+pod 'FirebaseAuthUI'
+pod 'FirebaseGoogleAuthUI'
+pod 'FirebaseFacebookAuthUI'
 
 target 'AuthenticationExample'
 target 'AuthenticationExampleSwift'

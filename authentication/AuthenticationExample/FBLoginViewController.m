@@ -26,7 +26,6 @@
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 
 @import FirebaseAuth;
-@import FirebaseFacebookAuthProvider;
 
 @interface FBLoginViewController ()<FBSDKLoginButtonDelegate>
 @property (weak, nonatomic) IBOutlet FBSDKLoginButton *facebookLoginButton;

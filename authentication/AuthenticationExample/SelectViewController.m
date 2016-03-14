@@ -24,8 +24,6 @@
 @import FirebaseAuth;
 @import FirebaseAuthUI;
 @import Firebase.Core;
-@import FirebaseFacebookAuthProvider;
-@import FirebaseGoogleAuthProvider;
 
 /*! @var kOKButtonText
  @brief The text of the "OK" button for the Sign In result dialogs.

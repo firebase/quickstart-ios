@@ -15,14 +15,12 @@
 //
 
 #import "AppDelegate.h"
-@import Firebase;
+@import Firebase.Core;
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-  NSError* configureError;
-  BOOL status = [[FIRContext sharedInstance] configure:&configureError];
-  NSAssert(status, @"Error configuring Firebase services: %@", configureError);
+  [FIRApp configure];
   return YES;
 }
 

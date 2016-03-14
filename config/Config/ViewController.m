@@ -20,47 +20,74 @@
 //
 
 #import "ViewController.h"
-@import Firebase.Config;
+#import "FIRRemoteConfig.h"
 
 @implementation ViewController
 
-- (void)viewDidLoad {
-  [super viewDidLoad];
-  // [START completion_handler]
-  RCNDefaultConfigCompletion completion = ^void(RCNConfig *config, RCNConfigStatus status, NSError *error) {
-    if (error) {
-      // There has been an error fetching the config
-      NSLog(@"Error fetching config: %@", error.localizedDescription);
-    } else {
-      // Parse your config data
-      // [START_EXCLUDE]
-      // [START read_data]
-      BOOL isPromo = config[@"is_promotion_on"].boolValue;
-      NSNumber *discount = config[@"discount"].numberValue;
-      // [END read_data]
-      double price = 100.00;
-      if(isPromo) {
-        price = (price / 100) * (price - [discount doubleValue]);
-      }
-      NSString *priceMsg = [NSString stringWithFormat:@"Your price is $%.02f", price];
-      _priceLabel.text = priceMsg;
-      BOOL isDevBuild = [config boolForKey:@"dev_features_on" defaultValue:NO];
-      if (isDevBuild) {
-        NSString *debugMsg = [NSString stringWithFormat:@"Config set size: %ld", (long)config.count];
-        _debugLabel.text = debugMsg;
-      }
-      // [END_EXCLUDE]
-    }
-  };
-  // [END completion_handler]
+const long PRICE = 100;
+NSString *const PRICE_PREFIX = @"Your price is $";
 
-  // [START fetch_config]
-  NSDictionary *customVariables = @{@"build":@"dev"};
-  // 43200 secs = 12 hours
-  [RCNConfig fetchDefaultConfigWithExpirationDuration:43200
-                                      customVariables:customVariables
-                                    completionHandler:completion];
-  // [END fetch_config]
+- (void)viewDidLoad {
+    [super viewDidLoad];
+
+    self.remoteConfig = [FIRRemoteConfig remoteConfig];
+
+    // Create Remote Config Setting to enable developer mode.
+    // Fetching configs from the server is normally limited to 5 requests per hour.
+    // Enabling developer mode allows many more requests to be made per hour, so developers
+    // can test different config values during development.
+    // [START enable_dev_mode]
+    FIRRemoteConfigSettings *remoteConfigSettings = [[FIRRemoteConfigSettings alloc] init];
+    remoteConfigSettings.developerModeEnabled = YES;
+    self.remoteConfig.configSettings = remoteConfigSettings;
+    // [END enable_dev_mode]
+
+    [self fetchConfig];
+}
+
+- (void)fetchConfig {
+    _priceLabel.text = @"Checking your price...";
+
+    long expirationDuration = 3600;
+    // If in developer mode cacheExpiration is set to 0 so each fetch will retrieve values from
+    // the server.
+    if (self.remoteConfig.configSettings.developerModeEnabled) {
+        expirationDuration = 0;
+    }
+
+    // cacheExpirationSeconds is set to cacheExpiration here, indicating that any previously
+    // fetched and cached config would be considered expired because it would have been fetched
+    // more than cacheExpiration seconds ago. Thus the next fetch would go to the server unless
+    // throttling is in progress. The default expiration duration is 43200 (12 hours).
+    // [START fetch_config_with_callback]
+    [self.remoteConfig fetchWithExpirationDuration:expirationDuration completionHandler:^(FIRRemoteConfigStatus status, NSError *error) {
+        if (status == FIRRemoteConfigStatusSuccess) {
+            NSLog(@"Config fetched!");
+            [self.remoteConfig activateFetched];
+            [self displayPrice];
+        } else {
+            NSLog(@"Config not fetched");
+            NSLog(@"Error %@", error);
+            self.priceLabel.text = [NSString stringWithFormat:@"%@%ld", PRICE_PREFIX, PRICE];
+        }
+    }];
+    // [END fetch_config_with_callback]
+}
+
+// Display price with discount applied if promotion is on. Otherwise display original price.
+- (void)displayPrice {
+    if (self.remoteConfig[@"is_promotion_on"].boolValue) {
+        // [START get_config_value]
+        long discountedPrice = PRICE - self.remoteConfig[@"discount"].numberValue.longValue;
+        // [END get_config_value]
+        self.priceLabel.text = [NSString stringWithFormat:@"%@%ld", PRICE_PREFIX, discountedPrice];
+    } else {
+        self.priceLabel.text = [NSString stringWithFormat:@"%@%ld", PRICE_PREFIX, PRICE];
+    }
+}
+
+- (IBAction)handleFetchTouch:(id)sender {
+    [self fetchConfig];
 }
 
 @end

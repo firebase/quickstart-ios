@@ -22,7 +22,7 @@
 @interface DownloadViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UITextView *statusTextView;
-@property (strong, nonatomic) FIRStorage *storageRef;
+@property (strong, nonatomic) FIRStorageReference *storageRef;
 @end
 
 @implementation DownloadViewController
@@ -30,21 +30,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
   FIRFirebaseApp *app = [FIRFirebaseApp app];
-  // Configure manually with a storage bucket.
-  NSString *bucket = @"YOUR_PROJECT.storage.firebase.com";
-  self.storageRef = [[FIRStorage alloc] initWithApp:app bucketName:bucket];
+  self.storageRef = [[FIRStorage storageWithApp:app] reference];
 
   NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
   NSString *documentsDirectory = [paths objectAtIndex:0];
   NSString *filePath = [NSString stringWithFormat:@"file:%@/myimage.jpg", documentsDirectory];
 
   // [START downloadimage]
-  FIRStorageDownloadTask *download = [[_storageRef childByAppendingString:@"myimage.jpg"]
+  FIRStorageDownloadTask *download = [[_storageRef childByAppendingPath:@"myimage.jpg"]
                                       fileByWritingToPath:filePath];
   // [END downloadimage]
 
   // [START downloadcomplete]
-  [download observeStatus:FIRTaskStatusComplete withCallback:^(FIRStorageDownloadTask *task) {
+  [download observeStatus:FIRTaskStatusSuccess withCallback:^(FIRStorageDownloadTask *task) {
              _statusTextView.text = @"Download Succeeded!";
     [self onSuccesfulDownload:filePath];
            }];

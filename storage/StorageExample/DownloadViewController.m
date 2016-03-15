@@ -30,7 +30,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
   FIRFirebaseApp *app = [FIRFirebaseApp app];
-  self.storageRef = [[FIRStorage storageWithApp:app] reference];
+  self.storageRef = [[FIRStorage storageForApp:app] reference];
 
   NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
   NSString *documentsDirectory = [paths objectAtIndex:0];

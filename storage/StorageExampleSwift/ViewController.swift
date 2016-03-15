@@ -83,40 +83,17 @@ class ViewController: UIViewController,
       // [START uploadimage]
       let metadata = FIRStorageMetadata()
       metadata.contentType = "image/jpeg"
-      let upload:FIRStorageUploadTask = storageRef.childByAppendingPath("myimage.jpg")
-                          .putData(imageData!, metadata: metadata)
-      // [END uploadimage]
-
-      // [START oncomplete]
-      upload.observeStatus(.Success, withCallback: { (task) in
-        self.urlTextView.text = "Upload Succeeded!"
-        self.onSuccessfulUpload()
-      })
-      // [END oncomplete]
-
-      // [START onfailure]
-      upload.observeStatus(.Failure) { (task, error) in
-        if let error = error {
-          print("Error uploading: \(error.description)")
+      storageRef.childByAppendingPath("myimage.jpg")
+        .putData(imageData!, metadata: metadata) { (metadata, error) in
+          if let error = error {
+            print("Error uploading: \(error)")
+            self.urlTextView.text = "Upload Failed"
+            return
+          }
+          print("Upload Succeeded!")
+          self.urlTextView.text = metadata!.downloadURL()!.absoluteString
         }
-        self.urlTextView.text = "Upload Failed"
-      }
-      // [END onfailure]
-  }
-
-  func onSuccessfulUpload () {
-    print("Retrieving metadata")
-    urlTextView.text = "Fetching Metadata"
-    // [START getmetadata]
-    storageRef.childByAppendingPath("myimage.jpg").downloadURLWithCompletion({ (url:NSURL?, error:NSError?) in
-      if let error = error {
-        print("Error retrieving download URL: \(error)")
-        self.urlTextView.text = "Error fetching download URL"
-        return;
-      }
-      self.urlTextView.text = url!.absoluteString
-    });
-    // [END getmetadata]
+      // [END uploadimage]
   }
 
   func imagePickerControllerDidCancel(picker: UIImagePickerController) {

@@ -37,7 +37,7 @@
 
   // [START configurestorage]
   FIRFirebaseApp *app = [FIRFirebaseApp app];
-  self.storageRef = [[FIRStorage storageWithApp:app] reference];
+  self.storageRef = [[FIRStorage storageForApp:app] reference];
   // [END configurestorage]
 
   // [START storageauth]
@@ -84,48 +84,20 @@
   // [START uploadimage]
   FIRStorageMetadata *metadata = [FIRStorageMetadata new];
   metadata.contentType = @"image/jpeg";
-  FIRStorageUploadTask *upload = [[_storageRef childByAppendingPath:@"myimage.jpg"]
-                                  putData:imageData
-                                  metadata:metadata];
-
-
-  // [END uploadimage]
-
-  // [START oncomplete]
-  [upload observeStatus:FIRTaskStatusSuccess
-      withCallback:^(FIRStorageUploadTask *task) {
-        _urlTextView.text = @"Upload Succeeded!";
-        [self onSuccesfulUpload];
-      }];
-  // [END oncomplete]
-
-  // [START onfailure]
-  [upload observeStatus:FIRTaskStatusFailure
-      withErrorCallback:^(FIRStorageUploadTask *task, NSError *error) {
-        if (error) {
-          NSLog(@"Error uploading: %@", error);
-        }
-        _urlTextView.text = @"Upload Failed";
-      }];
-  // [END onfailure]
-}
-
-- (void)onSuccesfulUpload {
-  NSLog(@"Retrieving metadata");
-  _urlTextView.text = @"Fetching Metadata";
-  // [START getmetadata]
   [[_storageRef childByAppendingPath:@"myimage.jpg"]
-    downloadURLWithCompletion:^(NSURL * _Nullable URL, NSError * _Nullable error) {
-      if (error) {
-        NSLog(@"Error retrieving metadata: %@", error);
-        _urlTextView.text = @"Error Fetching Metadata";
-        return;
-      }
-
-      _urlTextView.text = [URL absoluteString];
-      NSLog(@"Uplodaded and retrieved URL: %@", URL);
-    }];
-  // [END getmetadata]
+                             putData:imageData
+                            metadata:metadata
+                      withCompletion:^(FIRStorageMetadata * _Nullable metadata, NSError * _Nullable error) {
+                        if (error) {
+                          NSLog(@"Error uploading: %@", error);
+                          _urlTextView.text = @"Upload Failed";
+                          return;
+                        }
+                        NSLog(@"Upload Succeeded!");
+                        _urlTextView.text = [metadata.downloadURL absoluteString];
+                      }
+   ];
+  // [END uploadimage]
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {

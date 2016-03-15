@@ -25,8 +25,10 @@
 // [START usermanagement_import]
 @import Firebase.Core;
 @import FirebaseApp;
-@import FirebaseFacebookAuthProvider;
-@import FirebaseGoogleAuthProvider;
+@import FirebaseAuth;
+@import FirebaseAuthUI;
+@import FirebaseFacebookAuthUI;
+@import FirebaseGoogleAuthUI;
 // [END usermanagement_import]
 
 #import <GoogleSignIn/GIDSignIn.h>
@@ -48,20 +50,6 @@ static NSString *const kFacebookAppID = @"Placeholder";
   BOOL status = [[FIRContext sharedInstance] configure:&configureError];
   NSAssert(status, @"Error configuring Firebase services: %@", configureError);
   // [END firebase_configure]
-
-  // [START usermanagement_initialize]
-  // Configure the default Firebase application
-  FIRGoogleAuthProvider *googleProvider = [[FIRGoogleAuthProvider alloc] initWithClientID:
-      [FIRContext sharedInstance].serviceInfo.clientID];
-  FIRFacebookAuthProvider *facebookProvider =
-      [[FIRFacebookAuthProvider alloc] initWithAppID: kFacebookAppID];
-
-  FIRFirebaseOptions *firebaseOptions = [[FIRFirebaseOptions alloc] init];
-  firebaseOptions.APIKey = [FIRContext sharedInstance].serviceInfo.apiKey;
-  firebaseOptions.signInProviders = @[ googleProvider, facebookProvider ];
-  [FIRFirebaseApp initializedAppWithAppId:[FIRContext sharedInstance].serviceInfo.googleAppID
-                                  options:firebaseOptions];
-  // [END usermanagement_initialize]
 
   [[FBSDKApplicationDelegate sharedInstance] application:application
                            didFinishLaunchingWithOptions:launchOptions];

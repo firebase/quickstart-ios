@@ -81,7 +81,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1212" y="122"/>
+            <point key="canvasLocation" x="1212" y="-454"/>
         </scene>
         <!--Signed In View Controller-->
         <scene sceneID="n1k-Fp-ZFh">
@@ -237,7 +237,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eXM-hT-NKe" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="Bc2-6p-LZA" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3018" y="171"/>
+            <point key="canvasLocation" x="2636" y="27"/>
         </scene>
         <!--Custom View Controller-->
         <scene sceneID="gmn-If-K9x">
@@ -362,11 +362,12 @@
                         <outlet property="facebookLoginButton" destination="Qcr-e5-WUh" id="lC3-Vt-pf5"/>
                         <outlet property="passwordField" destination="UDs-9N-0uM" id="xKk-q3-uCw"/>
                         <outlet property="signInButton" destination="GmX-By-PJS" id="TwZ-Mc-gd2"/>
+                        <segue destination="jdH-TX-Xb5" kind="show" identifier="EmailSignIn" id="yP1-4I-zuK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9cR-Ek-Ymc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1088" y="1119"/>
+            <point key="canvasLocation" x="1212" y="279"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="Kcl-sS-EEW">
@@ -400,7 +401,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Zp-yy-KA3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1980" y="1458"/>
+            <point key="canvasLocation" x="856" y="1062"/>
         </scene>
         <!--Google Sign In View Controller-->
         <scene sceneID="Xpy-qf-A5e">
@@ -435,7 +436,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l6j-eQ-Oh7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1980" y="741"/>
+            <point key="canvasLocation" x="1552" y="1062"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="gnH-ze-6S0">
@@ -453,10 +454,10 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cTo-aT-Di9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="480" y="115"/>
+            <point key="canvasLocation" x="460" y="-449"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="von-zr-o8s"/>
+        <segue reference="yP1-4I-zuK"/>
     </inferredMetricsTieBreakers>
 </document>

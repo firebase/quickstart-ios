@@ -24,8 +24,10 @@ import UIKit
 // [START usermanagement_import]
 import Firebase.Core
 import FirebaseApp
-import FirebaseFacebookAuthProvider
-import FirebaseGoogleAuthProvider
+import FirebaseAuth
+import FirebaseAuthUI
+import FirebaseFacebookAuthUI
+import FirebaseGoogleAuthUI
 // [END usermanagement_import]
 
 @UIApplicationMain
@@ -44,20 +46,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       print ("Error configuring Firebase services: \(configureError)")
     }
     // [END firebase_configure]
-
-    // [START usermanagement_initialize]
-    // Configure the default Firebase application
-    let googleProvider = FIRGoogleAuthProvider.init(
-        clientID: FIRContext.sharedInstance().serviceInfo.clientID)
-    let facebookProvider = FIRFacebookAuthProvider.init(
-        appID: kFacebookAppID)
-
-    let firebaseOptions = FIRFirebaseOptions()
-    firebaseOptions.APIKey = FIRContext.sharedInstance().serviceInfo.apiKey
-    firebaseOptions.signInProviders = [googleProvider!, facebookProvider!];
-    FIRFirebaseApp.initializedAppWithAppId(FIRContext.sharedInstance().serviceInfo.googleAppID,
-        options: firebaseOptions)
-    // [END usermanagement_initialize]
 
     FBSDKApplicationDelegate.sharedInstance().application(application,
         didFinishLaunchingWithOptions:launchOptions)

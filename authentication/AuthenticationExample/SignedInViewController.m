@@ -22,8 +22,6 @@
 #import "SignedInViewController.h"
 #import "UIViewController+Alerts.h"
 @import FirebaseAuth;
-@import FirebaseFacebookAuthProvider;
-@import FirebaseGoogleAuthProvider;
 @import Firebase.Core;
 
 @interface SignedInViewController ()
@@ -211,7 +209,7 @@ static NSString *const kChangePasswordText = @"Change Password";
 
                          [self showSpinner:^{
                            // [START change_email]
-                           [[FIRAuth auth].currentUser changeEmail:userInput callback:^(NSError *_Nullable error) {
+                           [[FIRAuth auth].currentUser updateEmail:userInput callback:^(NSError *_Nullable error) {
                              // [END change_email]
                              [self hideSpinner:^{
                                [self showTypicalUIForUserUpdateResultsWithTitle:kChangeEmailText error:error];
@@ -234,7 +232,7 @@ static NSString *const kChangePasswordText = @"Change Password";
 
                          [self showSpinner:^{
                            // [START change_password]
-                           [[FIRAuth auth].currentUser changePassword:userInput callback:^(NSError *_Nullable error) {
+                           [[FIRAuth auth].currentUser updatePassword:userInput callback:^(NSError *_Nullable error) {
                              // [END change_password]
                              [self hideSpinner:^{
                                [self showTypicalUIForUserUpdateResultsWithTitle:kChangePasswordText error:error];
@@ -274,7 +272,7 @@ static NSString *const kChangePasswordText = @"Change Password";
   FIRUser *user = firebaseAuth.currentUser;
   _userInfoDisplayNameLabel.text = user.displayName;
   _userInfoEmailLabel.text = user.email;
-  _userInfoUserIDLabel.text = user.userID;
+  _userInfoUserIDLabel.text = user.uid;
 
   NSMutableArray<NSString *> *providerIDs = [NSMutableArray array];
   for (id<FIRUserInfo> userInfo in user.providerData) {

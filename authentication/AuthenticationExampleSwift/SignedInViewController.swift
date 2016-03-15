@@ -23,8 +23,6 @@ import UIKit
 
 // [START usermanagement_view_import]
 import FirebaseAuth
-import FirebaseFacebookAuthProvider
-import FirebaseGoogleAuthProvider
 import Firebase.Core
 // [END usermanagement_view_import]
 
@@ -223,7 +221,7 @@ class SignedInViewController: UIViewController {
 
       self.showSpinner({
         // [START change_email]
-        FIRAuth.auth()!.currentUser!.changeEmail(userInput!) { (error) in
+        FIRAuth.auth()!.currentUser!.updateEmail(userInput!) { (error) in
           // [END change_email]
           self.hideSpinner({
             self.showTypicalUIForUserUpdateResultsWithTitle(self.kChangeEmailText, error:error)
@@ -245,7 +243,7 @@ class SignedInViewController: UIViewController {
 
       self.showSpinner({
         // [START change_password]
-        FIRAuth.auth()!.currentUser!.changePassword(userInput!) { (error) in
+        FIRAuth.auth()!.currentUser!.updatePassword(userInput!) { (error) in
           // [END change_password]
           self.hideSpinner({
             self.showTypicalUIForUserUpdateResultsWithTitle(self.kChangePasswordText, error:error)
@@ -280,7 +278,7 @@ class SignedInViewController: UIViewController {
     let user = firebaseAuth.currentUser
     userInfoDisplayNameLabel.text = user!.displayName
     userInfoEmailLabel.text = user!.email
-    userInfoUserIDLabel.text = user!.userID
+    userInfoUserIDLabel.text = user!.uid
 
     var providerIDs = [String]()
     for userInfo in user!.providerData {

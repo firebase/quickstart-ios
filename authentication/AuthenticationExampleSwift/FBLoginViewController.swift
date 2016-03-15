@@ -22,7 +22,6 @@
 import UIKit
 
 import FirebaseAuth
-import FirebaseFacebookAuthProvider
 import Firebase.Core
 
 @objc(FBLoginViewController)

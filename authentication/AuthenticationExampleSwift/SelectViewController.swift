@@ -24,8 +24,6 @@ import UIKit
 import FirebaseAuth
 import FirebaseAuthUI
 import Firebase.Core
-import FirebaseFacebookAuthProvider
-import FirebaseGoogleAuthProvider
 
 @objc(SelectViewController)
 class SelectViewController: UIViewController {

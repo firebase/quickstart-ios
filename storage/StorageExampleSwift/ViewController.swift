@@ -23,10 +23,6 @@ import Firebase.Auth
 class ViewController: UIViewController,
                       UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
-  @IBOutlet weak var emailField:UITextField!
-  @IBOutlet weak var passwordField:UITextField!
-  @IBOutlet weak var signinButton:UIButton!
-  @IBOutlet weak var signUpButton:UIButton!
   @IBOutlet weak var takePicButton:UIButton!
   @IBOutlet weak var downloadPicButton:UIButton!
   @IBOutlet weak var urlTextView:UITextField!
@@ -36,12 +32,29 @@ class ViewController: UIViewController,
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    updateUIForUser(FIRAuth.auth()?.currentUser)
 
     // [START configurestorage]
     let app = FIRFirebaseApp.app()
     storageRef = FIRStorage.storage(app: app!).reference
     // [END configurestorage]
+
+    // [START storageauth]
+    // Using Firebase Storage requires the user be authenticated. Here we are using
+    // anonymous authentication.
+    if (FIRAuth.auth()?.currentUser == nil) {
+      FIRAuth.auth()?.signInAnonymouslyWithCallback({ (user:FIRUser?, error:NSError?) in
+        if (error != nil) {
+          self.urlTextView.text = error?.description
+          self.takePicButton.enabled = false
+          self.downloadPicButton.enabled = false
+        } else {
+          self.urlTextView.text = ""
+          self.takePicButton.enabled = true
+          self.downloadPicButton.enabled = true
+        }
+      })
+    }
+    // [END storageauth]
   }
 
   // MARK: - Image Picker
@@ -95,76 +108,18 @@ class ViewController: UIViewController,
     print("Retrieving metadata")
     urlTextView.text = "Fetching Metadata"
     // [START getmetadata]
-    storageRef.childByAppendingPath("myimage.jpg").metadataWithCompletion { (metadata, error) in
+    storageRef.childByAppendingPath("myimage.jpg").downloadURLWithCompletion({ (url:NSURL?, error:NSError?) in
       if let error = error {
-        print("Error retrieving metadata: \(error)")
-        self.urlTextView.text = "Error fetching metadata"
+        print("Error retrieving download URL: \(error)")
+        self.urlTextView.text = "Error fetching download URL"
         return;
       }
-      // Get first download URL to display.
-      self.urlTextView.text = metadata!.downloadURLs![0].absoluteString
-    }
+      self.urlTextView.text = url!.absoluteString
+    });
     // [END getmetadata]
   }
 
   func imagePickerControllerDidCancel(picker: UIImagePickerController) {
     picker.dismissViewControllerAnimated(true, completion:nil)
-  }
-
-
-  // MARK: - Sign In
-
-  @IBAction func didTapSignIn(_: AnyObject) {
-    if (FIRAuth.auth()?.currentUser != nil) {
-      // Sign out.
-      do {
-        try FIRAuth.auth()?.signOut()
-      } catch let signOutError as NSError {
-        print ("Error signing out: %@", signOutError)
-      }
-      updateUIForUser(FIRAuth.auth()?.currentUser)
-      return
-    }
-
-
-    let email = emailField.text, password = passwordField.text
-    FIRAuth.auth()?.signInWithEmail(email!, password: password!,
-        callback: { (user:FIRUser?, error:NSError?) -> Void in
-          if let error = error {
-            print("Error with sign in: \(error.description)")
-            self.urlTextView.text = error.description
-          }
-          self.updateUIForUser(user)
-    })
-  }
-
-  @IBAction func didTapSignUp(_: AnyObject) {
-    let email = emailField.text, password = passwordField.text
-    FIRAuth.auth()?.createUserWithEmail(email!, password: password!,
-        callback: { (user:FIRUser?, error:NSError?) -> Void in
-      self.updateUIForUser(user)
-    })
-  }
-
-  func updateUIForUser(user: FIRUser?) {
-    if (user != nil) {
-      emailField.enabled = false
-      passwordField.enabled = false
-      emailField.text = ""
-      passwordField.text = "";
-      signinButton.setTitle("Sign Out", forState: UIControlState.Normal)
-      signUpButton.enabled = false
-      takePicButton.enabled = true
-      downloadPicButton.enabled = true
-      urlTextView.text = ""
-    } else {
-      emailField.enabled = true
-      passwordField.enabled = true
-      signinButton.setTitle("Sign In", forState: UIControlState.Normal)
-      signUpButton.enabled = true
-      takePicButton.enabled = false
-      downloadPicButton.enabled = false
-      urlTextView.text = ""
-    }
   }
 }

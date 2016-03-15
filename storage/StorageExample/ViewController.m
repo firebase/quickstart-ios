@@ -22,10 +22,6 @@
 
 @interface ViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
-@property (weak, nonatomic) IBOutlet UITextField *emailField;
-@property (weak, nonatomic) IBOutlet UITextField *passwordField;
-@property (weak, nonatomic) IBOutlet UIButton *signinButton;
-@property (weak, nonatomic) IBOutlet UIButton *signUpButton;
 @property (weak, nonatomic) IBOutlet UIButton *takePicButton;
 @property (weak, nonatomic) IBOutlet UIButton *downloadPicButton;
 @property (weak, nonatomic) IBOutlet UITextView *urlTextView;
@@ -38,12 +34,29 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-  [self updateUIForUser:[FIRAuth auth].currentUser];
 
   // [START configurestorage]
   FIRFirebaseApp *app = [FIRFirebaseApp app];
   self.storageRef = [[FIRStorage storageWithApp:app] reference];
   // [END configurestorage]
+
+  // [START storageauth]
+  // Using Firebase Storage requires the user be authenticated. Here we are using
+  // anonymous authentication.
+  if (![FIRAuth auth].currentUser) {
+    [[FIRAuth auth] signInAnonymouslyWithCallback:^(FIRUser * _Nullable user, NSError * _Nullable error) {
+      if (error) {
+        _urlTextView.text = error.description;
+        _takePicButton.enabled = NO;
+        _downloadPicButton.enabled = NO;
+      } else {
+        _takePicButton.enabled = YES;
+        _downloadPicButton.enabled = YES;
+        _urlTextView.text = @"";
+      }
+    }];
+  }
+  // [END storageauth]
 }
 
 # pragma mark - Image Picker
@@ -102,16 +115,16 @@
   _urlTextView.text = @"Fetching Metadata";
   // [START getmetadata]
   [[_storageRef childByAppendingPath:@"myimage.jpg"]
-      metadataWithCompletion:^(FIRStorageMetadata *metadata, NSError *error) {
-        if (error) {
-          NSLog(@"Error retrieving metadata: %@", error);
-          _urlTextView.text = @"Error Fetching Metadata";
-          return;
-        }
-        // Get first download URL to display.
-        _urlTextView.text = [metadata.downloadURLs[0] absoluteString];
-        NSLog(@"Retrieved metadata: %@", metadata);
-      }];
+    downloadURLWithCompletion:^(NSURL * _Nullable URL, NSError * _Nullable error) {
+      if (error) {
+        NSLog(@"Error retrieving metadata: %@", error);
+        _urlTextView.text = @"Error Fetching Metadata";
+        return;
+      }
+
+      _urlTextView.text = [URL absoluteString];
+      NSLog(@"Uplodaded and retrieved URL: %@", URL);
+    }];
   // [END getmetadata]
 }
 
@@ -119,60 +132,5 @@
   [picker dismissViewControllerAnimated:YES completion:NULL];
 }
 
-# pragma mark - Sign In
-
-- (void)updateUIForUser:(FIRUser *)user {
-  if (user) {
-    _emailField.enabled = NO;
-    _passwordField.enabled = NO;
-    _emailField.text = _passwordField.text = @"";
-    [_signinButton setTitle:@"Sign Out" forState:UIControlStateNormal];
-    _signUpButton.enabled = NO;
-    _takePicButton.enabled = YES;
-    _downloadPicButton.enabled = YES;
-    _urlTextView.text = @"";
-  } else {
-    _emailField.enabled = YES;
-    _passwordField.enabled = YES;
-    [_signinButton setTitle:@"Sign In" forState:UIControlStateNormal];
-    _signUpButton.enabled = YES;
-    _takePicButton.enabled = NO;
-    _downloadPicButton.enabled = NO;
-    _urlTextView.text = @"";
-  }
-}
-
-- (IBAction)didTapSignIn:(id)sender {
-  if ([FIRAuth auth].currentUser) {
-    // Sign Out.
-    NSError *error;
-    [[FIRAuth auth] signOut:&error];
-    if (!error) {
-      [self updateUIForUser:nil];
-    }
-    return;
-  }
-  // Sign In with credentials.
-  NSString *email = _emailField.text;
-  NSString *password = _passwordField.text;
-  [[FIRAuth auth] signInWithEmail:email
-                         password:password
-                         callback:^(FIRUser * _Nullable user, NSError * _Nullable error) {
-                           if (error) {
-                             _urlTextView.text = error.description;
-                           }
-                           [self updateUIForUser:user];
-  }];
-}
-
-- (IBAction)didTapSignUp:(id)sender {
-  NSString *email = _emailField.text;
-  NSString *password = _passwordField.text;
-  [[FIRAuth auth] createUserWithEmail:email
-                         password:password
-                         callback:^(FIRUser * _Nullable user, NSError * _Nullable error) {
-                           [self updateUIForUser:user];
-                         }];
-}
 
 @end

@@ -43,9 +43,9 @@
 
   // [START downloadcomplete]
   [download observeStatus:FIRTaskStatusSuccess withCallback:^(FIRStorageDownloadTask *task) {
-             _statusTextView.text = @"Download Succeeded!";
-    [self onSuccesfulDownload:filePath];
-           }];
+      _statusTextView.text = @"Download Succeeded!";
+      [self onSuccesfulDownload:filePath];
+  }];
   // [END downloadcomplete]
 
   // [START downloadfailure]

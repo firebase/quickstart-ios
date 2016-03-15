@@ -23,14 +23,12 @@ class DownloadViewController: UIViewController {
 
   @IBOutlet weak var imageView:UIImageView!
   @IBOutlet weak var statusTextView:UITextView!
-  var storageRef:FIRStorage!
+  var storageRef:FIRStorageReference!
 
   override func viewDidLoad() {
     super.viewDidLoad()
     let app = FIRFirebaseApp.app()
-    // Configure manually with a storage bucket.
-    let bucket = "YOUR_PROJECT.storage.firebase.com"
-    storageRef = FIRStorage.init(app: app!, bucketName: bucket)
+    storageRef = FIRStorage.storage(app: app!).reference
 
     let paths = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory,
         NSSearchPathDomainMask.UserDomainMask, true)
@@ -38,11 +36,11 @@ class DownloadViewController: UIViewController {
     let filePath = "file:\(documentsDirectory)/myimage.jpg"
 
     // [START downloadimage]
-    let download: FIRStorageDownloadTask = storageRef.childByAppendingString("myimage.jpg").fileByWritingToPath(filePath)
+    let download: FIRStorageDownloadTask = storageRef.childByAppendingPath("myimage.jpg").fileByWritingToPath(filePath)
     // [END downloadimage]
 
     // [START downloadcomplete]
-    download.observeStatus(.Complete, withCallback: { (task) in
+    download.observeStatus(.Success, withCallback: { (task) in
       self.statusTextView.text = "Download Succeeded!"
       self.onSuccesfulDownload(filePath)
     })

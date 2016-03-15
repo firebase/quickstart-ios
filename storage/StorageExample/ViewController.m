@@ -30,7 +30,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *downloadPicButton;
 @property (weak, nonatomic) IBOutlet UITextView *urlTextView;
 
-@property (strong, nonatomic) FIRStorage *storageRef;
+@property (strong, nonatomic) FIRStorageReference *storageRef;
 
 @end
 
@@ -42,9 +42,7 @@
 
   // [START configurestorage]
   FIRFirebaseApp *app = [FIRFirebaseApp app];
-  // Configure manually with a storage bucket.
-  NSString *bucket = @"YOUR_PROJECT.storage.firebase.com";
-  self.storageRef = [[FIRStorage alloc] initWithApp:app bucketName:bucket];
+  self.storageRef = [[FIRStorage storageWithApp:app] reference];
   // [END configurestorage]
 }
 
@@ -73,7 +71,7 @@
   // [START uploadimage]
   FIRStorageMetadata *metadata = [FIRStorageMetadata new];
   metadata.contentType = @"image/jpeg";
-  FIRStorageUploadTask *upload = [[_storageRef childByAppendingString:@"myimage.jpg"]
+  FIRStorageUploadTask *upload = [[_storageRef childByAppendingPath:@"myimage.jpg"]
                                   putData:imageData
                                   metadata:metadata];
 
@@ -81,7 +79,7 @@
   // [END uploadimage]
 
   // [START oncomplete]
-  [upload observeStatus:FIRTaskStatusComplete
+  [upload observeStatus:FIRTaskStatusSuccess
       withCallback:^(FIRStorageUploadTask *task) {
         _urlTextView.text = @"Upload Succeeded!";
         [self onSuccesfulUpload];
@@ -103,7 +101,7 @@
   NSLog(@"Retrieving metadata");
   _urlTextView.text = @"Fetching Metadata";
   // [START getmetadata]
-  [[_storageRef childByAppendingString:@"myimage.jpg"]
+  [[_storageRef childByAppendingPath:@"myimage.jpg"]
       metadataWithCompletion:^(FIRStorageMetadata *metadata, NSError *error) {
         if (error) {
           NSLog(@"Error retrieving metadata: %@", error);

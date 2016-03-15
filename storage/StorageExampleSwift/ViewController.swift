@@ -31,7 +31,7 @@ class ViewController: UIViewController,
   @IBOutlet weak var downloadPicButton:UIButton!
   @IBOutlet weak var urlTextView:UITextField!
 
-  var storageRef:FIRStorage!
+  var storageRef:FIRStorageReference!
 
 
   override func viewDidLoad() {
@@ -40,9 +40,7 @@ class ViewController: UIViewController,
 
     // [START configurestorage]
     let app = FIRFirebaseApp.app()
-    // Configure manually with a storage bucket.
-    let bucket = "YOUR_PROJECT.storage.firebase.com"
-    storageRef = FIRStorage.init(app: app!, bucketName: bucket)
+    storageRef = FIRStorage.storage(app: app!).reference
     // [END configurestorage]
   }
 
@@ -72,20 +70,20 @@ class ViewController: UIViewController,
       // [START uploadimage]
       let metadata = FIRStorageMetadata()
       metadata.contentType = "image/jpeg"
-      let upload:FIRStorageUploadTask = storageRef .childByAppendingString("myimage.jpg")
+      let upload:FIRStorageUploadTask = storageRef.childByAppendingPath("myimage.jpg")
                           .putData(imageData!, metadata: metadata)
       // [END uploadimage]
 
       // [START oncomplete]
-      upload.observeStatus(FIRTaskStatus.Complete) { (task:FIRStorageUploadTask!) -> Void in
+      upload.observeStatus(.Success, withCallback: { (task) in
         self.urlTextView.text = "Upload Succeeded!"
         self.onSuccessfulUpload()
-      }
+      })
       // [END oncomplete]
 
       // [START onfailure]
-      upload.observeStatus(FIRTaskStatus.Failure) { (task:FIRStorageUploadTask!, error:NSError!) -> Void in
-        if (error != nil) {
+      upload.observeStatus(.Failure) { (task, error) in
+        if let error = error {
           print("Error uploading: \(error.description)")
         }
         self.urlTextView.text = "Upload Failed"
@@ -97,14 +95,14 @@ class ViewController: UIViewController,
     print("Retrieving metadata")
     urlTextView.text = "Fetching Metadata"
     // [START getmetadata]
-    storageRef.childByAppendingString("myimage.jpg") .metadataWithCompletion { (metadata:FIRStorageMetadata!, error:NSError!) -> Void in
-      if (error != nil) {
+    storageRef.childByAppendingPath("myimage.jpg").metadataWithCompletion { (metadata, error) in
+      if let error = error {
         print("Error retrieving metadata: \(error)")
         self.urlTextView.text = "Error fetching metadata"
         return;
       }
       // Get first download URL to display.
-      self.urlTextView.text = metadata.downloadURLs![0].absoluteString
+      self.urlTextView.text = metadata!.downloadURLs![0].absoluteString
     }
     // [END getmetadata]
   }

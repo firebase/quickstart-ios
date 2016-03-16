@@ -49,6 +49,7 @@ static NSString *const kFacebookAppID = @"Placeholder";
   NSError *configureError;
   BOOL status = [[FIRContext sharedInstance] configure:&configureError];
   NSAssert(status, @"Error configuring Firebase services: %@", configureError);
+  [FIRApp configure];
   // [END firebase_configure]
 
   [[FBSDKApplicationDelegate sharedInstance] application:application

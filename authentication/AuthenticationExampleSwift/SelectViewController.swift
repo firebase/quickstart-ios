@@ -62,10 +62,6 @@ class SelectViewController: UIViewController {
       // Log token refresh event to Firebase Analytics.
       FIRAnalytics.logEventWithName(kFIREventLogin, parameters: nil)
 
-      let alertController = UIAlertController.init(title: self.kSignInErrorAlertTitle,
-        message: user?.displayName, preferredStyle: .Alert)
-      alertController.addAction(okAction)
-      self.presentViewController(alertController, animated: true, completion: nil)
       self.performSegueWithIdentifier("UISignIn", sender:nil)
     }
   }

@@ -45,6 +45,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     } catch let configureError as NSError {
       print ("Error configuring Firebase services: \(configureError)")
     }
+    FIRApp.configure()
     // [END firebase_configure]
 
     FBSDKApplicationDelegate.sharedInstance().application(application,

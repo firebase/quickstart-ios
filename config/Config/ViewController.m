@@ -28,8 +28,6 @@ const long PRICE = 100;
 NSString *const PRICE_PREFIX = @"Your price is $";
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
-
     self.remoteConfig = [FIRRemoteConfig remoteConfig];
 
     // Create Remote Config Setting to enable developer mode.
@@ -43,6 +41,7 @@ NSString *const PRICE_PREFIX = @"Your price is $";
     // [END enable_dev_mode]
 
     [self fetchConfig];
+    [super viewDidLoad];
 }
 
 - (void)fetchConfig {
@@ -60,8 +59,8 @@ NSString *const PRICE_PREFIX = @"Your price is $";
     // more than cacheExpiration seconds ago. Thus the next fetch would go to the server unless
     // throttling is in progress. The default expiration duration is 43200 (12 hours).
     // [START fetch_config_with_callback]
-    [self.remoteConfig fetchWithExpirationDuration:expirationDuration completionHandler:^(FIRRemoteConfigStatus status, NSError *error) {
-        if (status == FIRRemoteConfigStatusSuccess) {
+    [self.remoteConfig fetchWithExpirationDuration:expirationDuration completionHandler:^(FIRRemoteConfigFetchStatus status, NSError *error) {
+        if (status == FIRRemoteConfigFetchStatusSuccess) {
             NSLog(@"Config fetched!");
             [self.remoteConfig activateFetched];
             [self displayPrice];

@@ -75,7 +75,7 @@ static NSString *const kChangePasswordText = @"Change Password";
   _userInfoProfileURLImageView.layer.cornerRadius =
   _userInfoProfileURLImageView.frame.size.width / 2.0f;
   _userInfoProfileURLImageView.layer.masksToBounds = YES;
-  [self updateUserInfo:[FIRAuth auth]];
+  [self updateUserInfo];
 }
 
 /** @fn signOut
@@ -148,7 +148,7 @@ static NSString *const kChangePasswordText = @"Change Password";
                              // [END profile_change]
                              [self hideSpinner:^{
                                [self showTypicalUIForUserUpdateResultsWithTitle:kSetDisplayNameTitle error:error];
-                               [self updateUserInfo:[FIRAuth auth]];
+                               [self updateUserInfo];
                              }];
                            }];
                          }];
@@ -172,7 +172,7 @@ static NSString *const kChangePasswordText = @"Change Password";
   [[FIRAuth auth].currentUser unlinkFromProvider:provider
                                         callback:^(FIRUser *_Nullable user, NSError *_Nullable error) {
                                           [self showTypicalUIForUserUpdateResultsWithTitle:kUnlinkTitle error:error];
-                                          [self updateUserInfo:[FIRAuth auth]];
+                                          [self updateUserInfo];
                                         }];
   // [END unlink_provider]
 }
@@ -213,7 +213,7 @@ static NSString *const kChangePasswordText = @"Change Password";
                              // [END change_email]
                              [self hideSpinner:^{
                                [self showTypicalUIForUserUpdateResultsWithTitle:kChangeEmailText error:error];
-                               [self updateUserInfo:[FIRAuth auth]];
+                               [self updateUserInfo];
                              }];
                            }];
                          }];
@@ -236,7 +236,7 @@ static NSString *const kChangePasswordText = @"Change Password";
                              // [END change_password]
                              [self hideSpinner:^{
                                [self showTypicalUIForUserUpdateResultsWithTitle:kChangePasswordText error:error];
-                               [self updateUserInfo:[FIRAuth auth]];
+                               [self updateUserInfo];
                              }];
                            }];
                          }];
@@ -268,8 +268,8 @@ static NSString *const kChangePasswordText = @"Change Password";
   }
 }
 
-- (void)updateUserInfo:(FIRAuth *)firebaseAuth {
-  FIRUser *user = firebaseAuth.currentUser;
+- (void)updateUserInfo {
+  FIRUser *user = [FIRAuth auth].currentUser;
   _userInfoDisplayNameLabel.text = user.displayName;
   _userInfoEmailLabel.text = user.email;
   _userInfoUserIDLabel.text = user.uid;

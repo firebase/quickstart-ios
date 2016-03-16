@@ -71,12 +71,6 @@ static NSString *const kSignInErrorAlertTitle = @"Sign-In Error";
     // Log sign in event to Firebase Analytics.
     [FIRAnalytics logEventWithName:kFIREventLogin parameters:nil];
 
-    UIAlertController *alertController =
-    [UIAlertController alertControllerWithTitle:kSignedInAlertTitle
-                                        message:user.displayName
-                                 preferredStyle:UIAlertControllerStyleAlert];
-    [alertController addAction:okAction];
-    [self presentViewController:alertController animated:YES completion:nil];
     [self performSegueWithIdentifier:@"UISignIn" sender:nil];
   }];
 }

@@ -20,12 +20,13 @@
 
 - (BOOL)application:(UIApplication *)application
     didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+  // [START initialize_firebase]
   NSError *error;
   BOOL success = [[FIRContext sharedInstance] configure:&error];
   if (!success) {
     NSLog(@"Error: %@", error);
   }
-
+  // [END initialize_firebase]
   return success;
 }
 

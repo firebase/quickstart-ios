@@ -26,7 +26,9 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
 
+  // [START create_database_reference]
   self.ref = [FIRDatabase database].reference;
+  // [END create_database_reference]
 
   _userInt = arc4random();
   self.messages = [[NSMutableArray alloc] init];

@@ -35,9 +35,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
   override func viewDidLoad() {
     super.viewDidLoad()
 
+    // [START create_database_reference]
     self.ref = FIRDatabase().reference
+    // [END create_database_reference]
   }
-  
+
   override func viewWillAppear(animated: Bool) {
     self.messages.removeAll()
     // Listen for new messages in the Firebase database

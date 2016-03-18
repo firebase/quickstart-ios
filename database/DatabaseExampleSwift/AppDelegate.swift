@@ -23,13 +23,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   var window: UIWindow?
 
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-
+    // [START initialize_firebase]
     do {
       try FIRContext.sharedInstance().configure();
     } catch {
       print("Application configured incorrectly!")
     }
-
+    // [END initialize_firebase]
     return true
   }
 

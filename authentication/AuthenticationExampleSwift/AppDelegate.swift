@@ -30,6 +30,9 @@ import FirebaseFacebookAuthUI
 import FirebaseGoogleAuthUI
 // [END usermanagement_import]
 
+import Fabric
+import TwitterKit
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -50,6 +53,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     FBSDKApplicationDelegate.sharedInstance().application(application,
         didFinishLaunchingWithOptions:launchOptions)
+    Fabric.with([Twitter.self])
     return true
   }
 

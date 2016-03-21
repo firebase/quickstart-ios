@@ -96,7 +96,7 @@ class SignedInViewController: UIViewController {
     userInfoProfileURLImageView.layer.cornerRadius =
       userInfoProfileURLImageView.frame.size.width / 2.0
     userInfoProfileURLImageView.layer.masksToBounds = true
-    updateUserInfo()
+    updateUserInfo(FIRAuth.auth())
   }
 
   /** @fn signOut
@@ -161,7 +161,7 @@ class SignedInViewController: UIViewController {
           // [END profile_change]
           self.hideSpinner({
             self.showTypicalUIForUserUpdateResultsWithTitle(self.kSetDisplayNameTitle, error: error)
-            self.updateUserInfo()
+            //self.updateUserInfo(FIRAuth.auth())
           })
         }
       })
@@ -185,7 +185,7 @@ class SignedInViewController: UIViewController {
     // [START unlink_provider]
     FIRAuth.auth()?.currentUser?.unlinkFromProvider(provider) { (user, error) in
       self.showTypicalUIForUserUpdateResultsWithTitle(self.kUnlinkTitle, error: error)
-      self.updateUserInfo()
+      //self.updateUserInfo(FIRAuth.auth())
     }
     // [END unlink_provider]
   }
@@ -225,7 +225,7 @@ class SignedInViewController: UIViewController {
           // [END change_email]
           self.hideSpinner({
             self.showTypicalUIForUserUpdateResultsWithTitle(self.kChangeEmailText, error:error)
-            self.updateUserInfo()
+            //self.updateUserInfo(FIRAuth.auth())
           })
         }
       })
@@ -247,7 +247,7 @@ class SignedInViewController: UIViewController {
           // [END change_password]
           self.hideSpinner({
             self.showTypicalUIForUserUpdateResultsWithTitle(self.kChangePasswordText, error:error)
-            self.updateUserInfo()
+            //self.updateUserInfo(FIRAuth.auth())
           })
         }
       })
@@ -274,19 +274,16 @@ class SignedInViewController: UIViewController {
     }
   }
 
-  func updateUserInfo() {
-    let user = FIRAuth.auth()!.currentUser
-    userInfoDisplayNameLabel.text = user!.displayName
-    userInfoEmailLabel.text = user!.email
-    userInfoUserIDLabel.text = user!.uid
+  func updateUserInfo(auth: FIRAuth?) {
+    let user = auth?.currentUser
+    userInfoDisplayNameLabel.text = user?.displayName
+    userInfoEmailLabel.text = user?.email
+    userInfoUserIDLabel.text = user?.uid
 
-    var providerIDs = [String]()
-    for userInfo in user!.providerData {
-      providerIDs.append(userInfo.providerID)
-    }
-    userInfoProviderListLabel.text = providerIDs.joinWithSeparator(", ")
+    let providers = user?.providerData.map { userInfo in userInfo.providerID }
+    userInfoProviderListLabel.text = providers?.joinWithSeparator(", ")
 
-    let photoURL = user!.photoURL
+    let photoURL = user?.photoURL
     struct last {
       static var photoURL: NSURL? = nil
     }

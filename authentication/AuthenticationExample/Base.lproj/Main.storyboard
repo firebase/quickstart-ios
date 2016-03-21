@@ -270,20 +270,6 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dhk-bF-HQV">
-                                <rect key="frame" x="243" y="490" width="115" height="30"/>
-                                <state key="normal" title="Forgot Password"/>
-                                <connections>
-                                    <action selector="didRequestPasswordReset:" destination="Rld-rq-KZI" eventType="touchUpInside" id="ye8-U4-n7s"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Vu-2N-7cg">
-                                <rect key="frame" x="222" y="452" width="156" height="30"/>
-                                <state key="normal" title="Get providers for email"/>
-                                <connections>
-                                    <action selector="didGetProvidersForEmail:" destination="Rld-rq-KZI" eventType="touchUpInside" id="rZL-By-FEb"/>
-                                </connections>
-                            </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="F4F-GQ-QyF">
                                 <rect key="frame" x="200" y="72" width="200" height="30"/>
                                 <constraints>
@@ -313,6 +299,16 @@
                                     <segue destination="mlu-ej-gsg" kind="show" id="QyU-eb-QeH"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kaY-CC-wLW">
+                                <rect key="frame" x="200" y="452" width="200" height="30"/>
+                                <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Log in with Twitter">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="eCl-vf-3f4" kind="show" id="jG3-8X-PWm"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZOO-gt-FhL">
                                 <rect key="frame" x="200" y="148" width="200" height="30"/>
                                 <color key="backgroundColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -334,13 +330,6 @@
                                     <action selector="didTapEmailLogin:" destination="Rld-rq-KZI" eventType="touchUpInside" id="YEH-rE-QK5"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dX1-Dn-VUM">
-                                <rect key="frame" x="247" y="528" width="107" height="30"/>
-                                <state key="normal" title="Create Account"/>
-                                <connections>
-                                    <action selector="didCreateAccount:" destination="Rld-rq-KZI" eventType="touchUpInside" id="ePZ-IY-THr"/>
-                                </connections>
-                            </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="9iD-w5-yZZ">
                                 <rect key="frame" x="180" y="208" width="240" height="100"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -352,34 +341,58 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dhk-bF-HQV">
+                                <rect key="frame" x="243" y="532" width="115" height="30"/>
+                                <state key="normal" title="Forgot Password"/>
+                                <connections>
+                                    <action selector="didRequestPasswordReset:" destination="Rld-rq-KZI" eventType="touchUpInside" id="ye8-U4-n7s"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Vu-2N-7cg">
+                                <rect key="frame" x="222" y="494" width="156" height="30"/>
+                                <state key="normal" title="Get providers for email"/>
+                                <connections>
+                                    <action selector="didGetProvidersForEmail:" destination="Rld-rq-KZI" eventType="touchUpInside" id="rZL-By-FEb"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dX1-Dn-VUM">
+                                <rect key="frame" x="247" y="570" width="107" height="30"/>
+                                <state key="normal" title="Create Account"/>
+                                <connections>
+                                    <action selector="didCreateAccount:" destination="Rld-rq-KZI" eventType="touchUpInside" id="ePZ-IY-THr"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="dX1-Dn-VUM" firstAttribute="top" secondItem="Dhk-bF-HQV" secondAttribute="bottom" constant="8" symbolic="YES" id="032-sW-2dS"/>
-                            <constraint firstItem="oX3-Oc-vcb" firstAttribute="trailing" secondItem="ZOO-gt-FhL" secondAttribute="trailing" id="3c9-UM-O7L"/>
-                            <constraint firstItem="oX3-Oc-vcb" firstAttribute="top" secondItem="Ndd-88-2nn" secondAttribute="bottom" constant="30" id="4NF-tu-6hD"/>
+                            <constraint firstItem="1Vu-2N-7cg" firstAttribute="centerX" secondItem="Dhk-bF-HQV" secondAttribute="centerX" id="1uR-xO-t22"/>
                             <constraint firstItem="ZOO-gt-FhL" firstAttribute="top" secondItem="UDs-9N-0uM" secondAttribute="bottom" constant="8" symbolic="YES" id="6BZ-6r-yGf"/>
-                            <constraint firstItem="oX3-Oc-vcb" firstAttribute="trailing" secondItem="Ndd-88-2nn" secondAttribute="trailing" id="9ot-os-obf"/>
                             <constraint firstItem="9iD-w5-yZZ" firstAttribute="centerX" secondItem="Ndd-88-2nn" secondAttribute="centerX" id="BrQ-N8-sz1"/>
-                            <constraint firstItem="L8N-zB-kjH" firstAttribute="top" secondItem="oX3-Oc-vcb" secondAttribute="bottom" constant="8" symbolic="YES" id="C7k-mi-Tzf"/>
                             <constraint firstItem="9iD-w5-yZZ" firstAttribute="top" secondItem="ZOO-gt-FhL" secondAttribute="bottom" constant="30" id="Cs0-F2-8V3"/>
+                            <constraint firstItem="1Vu-2N-7cg" firstAttribute="top" secondItem="kaY-CC-wLW" secondAttribute="bottom" constant="12" id="EiW-rK-aU8"/>
+                            <constraint firstItem="oX3-Oc-vcb" firstAttribute="leading" secondItem="ZOO-gt-FhL" secondAttribute="leading" id="Gvt-vw-AGJ"/>
+                            <constraint firstItem="dX1-Dn-VUM" firstAttribute="bottom" secondItem="s40-5n-Ac8" secondAttribute="top" id="I5s-OE-rYh"/>
                             <constraint firstItem="UDs-9N-0uM" firstAttribute="top" secondItem="F4F-GQ-QyF" secondAttribute="bottom" constant="8" symbolic="YES" id="IEW-gq-D72"/>
-                            <constraint firstItem="oX3-Oc-vcb" firstAttribute="trailing" secondItem="L8N-zB-kjH" secondAttribute="trailing" id="KLa-nv-KLh"/>
+                            <constraint firstItem="L8N-zB-kjH" firstAttribute="top" secondItem="oX3-Oc-vcb" secondAttribute="bottom" constant="8" symbolic="YES" id="J9Z-QN-3F7"/>
                             <constraint firstItem="UDs-9N-0uM" firstAttribute="trailing" secondItem="F4F-GQ-QyF" secondAttribute="trailing" id="M1k-ZD-CVL"/>
-                            <constraint firstItem="1Vu-2N-7cg" firstAttribute="centerX" secondItem="Dhk-bF-HQV" secondAttribute="centerX" id="OVU-Kh-rTB"/>
-                            <constraint firstItem="1Vu-2N-7cg" firstAttribute="top" secondItem="L8N-zB-kjH" secondAttribute="bottom" constant="8" symbolic="YES" id="Qtt-0j-8U7"/>
+                            <constraint firstItem="kaY-CC-wLW" firstAttribute="centerX" secondItem="1Vu-2N-7cg" secondAttribute="centerX" id="R9e-Ps-yuu"/>
+                            <constraint firstItem="L8N-zB-kjH" firstAttribute="trailing" secondItem="kaY-CC-wLW" secondAttribute="trailing" id="SMt-tv-rWf"/>
+                            <constraint firstItem="dX1-Dn-VUM" firstAttribute="top" secondItem="Dhk-bF-HQV" secondAttribute="bottom" constant="8" symbolic="YES" id="U5H-gY-GZs"/>
                             <constraint firstItem="UDs-9N-0uM" firstAttribute="leading" secondItem="F4F-GQ-QyF" secondAttribute="leading" id="V3i-mb-rhh"/>
-                            <constraint firstItem="oX3-Oc-vcb" firstAttribute="leading" secondItem="Ndd-88-2nn" secondAttribute="leading" id="VLz-8p-YAq"/>
-                            <constraint firstItem="Dhk-bF-HQV" firstAttribute="top" secondItem="1Vu-2N-7cg" secondAttribute="bottom" constant="8" symbolic="YES" id="XBB-DZ-Jrw"/>
+                            <constraint firstItem="oX3-Oc-vcb" firstAttribute="leading" secondItem="L8N-zB-kjH" secondAttribute="leading" id="VWQ-fJ-VVa"/>
+                            <constraint firstItem="Dhk-bF-HQV" firstAttribute="top" secondItem="1Vu-2N-7cg" secondAttribute="bottom" constant="8" symbolic="YES" id="Y0p-0X-HGj"/>
                             <constraint firstItem="F4F-GQ-QyF" firstAttribute="top" secondItem="ntJ-N4-k7G" secondAttribute="bottom" constant="8" id="bX2-6D-lq3"/>
+                            <constraint firstItem="L8N-zB-kjH" firstAttribute="leading" secondItem="kaY-CC-wLW" secondAttribute="leading" id="cLB-M4-B52"/>
+                            <constraint firstItem="Dhk-bF-HQV" firstAttribute="centerX" secondItem="dX1-Dn-VUM" secondAttribute="centerX" id="dmq-fD-qVy"/>
+                            <constraint firstItem="oX3-Oc-vcb" firstAttribute="trailing" secondItem="ZOO-gt-FhL" secondAttribute="trailing" id="dz2-nw-aMK"/>
                             <constraint firstItem="Ndd-88-2nn" firstAttribute="top" secondItem="9iD-w5-yZZ" secondAttribute="bottom" constant="8" symbolic="YES" id="eEB-9p-sdj"/>
+                            <constraint firstItem="oX3-Oc-vcb" firstAttribute="leading" secondItem="Ndd-88-2nn" secondAttribute="leading" id="ed8-hb-Zwd"/>
                             <constraint firstItem="ZOO-gt-FhL" firstAttribute="leading" secondItem="UDs-9N-0uM" secondAttribute="leading" id="es4-bP-PfO"/>
                             <constraint firstItem="F4F-GQ-QyF" firstAttribute="centerX" secondItem="a8B-qs-gd1" secondAttribute="centerX" id="ie9-kq-p4U"/>
+                            <constraint firstItem="kaY-CC-wLW" firstAttribute="top" secondItem="L8N-zB-kjH" secondAttribute="bottom" constant="8" symbolic="YES" id="khB-cF-NTY"/>
                             <constraint firstItem="ZOO-gt-FhL" firstAttribute="trailing" secondItem="UDs-9N-0uM" secondAttribute="trailing" id="lUG-6w-Xdv"/>
-                            <constraint firstItem="Dhk-bF-HQV" firstAttribute="centerX" secondItem="dX1-Dn-VUM" secondAttribute="centerX" id="o0Y-BJ-w8G"/>
-                            <constraint firstItem="L8N-zB-kjH" firstAttribute="centerX" secondItem="1Vu-2N-7cg" secondAttribute="centerX" id="seJ-4Z-uiM"/>
-                            <constraint firstItem="oX3-Oc-vcb" firstAttribute="leading" secondItem="L8N-zB-kjH" secondAttribute="leading" id="uY2-WD-EMx"/>
-                            <constraint firstItem="oX3-Oc-vcb" firstAttribute="leading" secondItem="ZOO-gt-FhL" secondAttribute="leading" id="yrl-Xt-hez"/>
+                            <constraint firstItem="oX3-Oc-vcb" firstAttribute="trailing" secondItem="Ndd-88-2nn" secondAttribute="trailing" id="nzI-9u-1Qq"/>
+                            <constraint firstItem="oX3-Oc-vcb" firstAttribute="trailing" secondItem="L8N-zB-kjH" secondAttribute="trailing" id="uqC-34-YJN"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="S9H-6f-PBV"/>
@@ -428,7 +441,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Zp-yy-KA3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="856" y="1062"/>
+            <point key="canvasLocation" x="476" y="1062"/>
         </scene>
         <!--Google Sign In View Controller-->
         <scene sceneID="Xpy-qf-A5e">
@@ -463,7 +476,28 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l6j-eQ-Oh7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1552" y="1062"/>
+            <point key="canvasLocation" x="1232" y="1070"/>
+        </scene>
+        <!--Twitter Login View Controller-->
+        <scene sceneID="tY8-Ml-v0Q">
+            <objects>
+                <viewController id="eCl-vf-3f4" customClass="TwitterLoginViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Rh4-od-PnO"/>
+                        <viewControllerLayoutGuide type="bottom" id="Zy7-G4-vVV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="fZj-cW-Qga">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <segue destination="jdH-TX-Xb5" kind="show" identifier="TwitterLogin" id="vnq-hQ-hCI"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gWl-9H-7H3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1977" y="1062"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="gnH-ze-6S0">

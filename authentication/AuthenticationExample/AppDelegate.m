@@ -27,12 +27,12 @@
 @import FirebaseApp;
 @import FirebaseAuth;
 @import FirebaseAuthUI;
-@import FirebaseFacebookAuthUI;
-@import FirebaseGoogleAuthUI;
 // [END usermanagement_import]
 
 #import <GoogleSignIn/GIDSignIn.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
+@import Fabric;
+@import TwitterKit;
 
 /** @var kFacebookAppId
  @brief The App ID for the Facebook SDK.
@@ -54,6 +54,7 @@ static NSString *const kFacebookAppID = @"Placeholder";
 
   [[FBSDKApplicationDelegate sharedInstance] application:application
                            didFinishLaunchingWithOptions:launchOptions];
+  [Fabric with:@[[Twitter class]]];
   return YES;
 }
 

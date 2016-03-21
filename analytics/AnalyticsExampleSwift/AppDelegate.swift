@@ -26,11 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     // [START tracker_swift]
     // Configure app ID from GoogleService-Info.plist.
-    do {
-      try FIRContext.sharedInstance().configure()
-    } catch let error as NSError {
-      assert(false, "Error configuring Firebase services: \(error.localizedDescription)")
-    }
+    FIRApp.configure()
     // [END tracker_swift]
 
     // Set a white background so that patterns are showcased.

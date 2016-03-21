@@ -28,9 +28,11 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   // [START configure]
   // Configure tracker from GoogleService-Info.plist.
-  NSError *configureError;
-  [[FIRContext sharedInstance] configure:&configureError];
-  NSAssert(!configureError, @"Error configuring Firebase services: %@", configureError);
+  @try {
+    [FIRApp configure];
+  } @catch (NSException *e) {
+    NSLog(@"Error configuring Firebase services: %@", e.reason);
+  }
   // [END configure]
 
   // Set a white background so that patterns are showcased.

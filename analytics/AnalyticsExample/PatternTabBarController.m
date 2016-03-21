@@ -36,7 +36,7 @@
   // [START custom_event_objc]
   [FIRAnalytics logEventWithName:kFIREventShare parameters:@{
                                                              kFIRParameterContentType:@"cont",
-                                                             kFIRParameterContentID:@"1"
+                                                             kFIRParameterContent:@"1"
                                                              }];
   // [END custom_event_objc]
 

@@ -47,6 +47,7 @@ static NSString *const kOKButtonText = @"OK";
 @interface CustomViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *emailField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
+@property (weak, nonatomic) IBOutlet UITextView *tokenField;
 @end
 @implementation CustomViewController
 
@@ -63,6 +64,21 @@ static NSString *const kOKButtonText = @"OK";
 
                            [self performSegueWithIdentifier:@"EmailSignIn" sender:self];
                          }];
+}
+
+- (IBAction)didTapCustomTokenLogin:(id)sender {
+  NSString *customToken = _tokenField.text;
+  // [START signinwithcustomtoken]
+  [[FIRAuth auth] signInWithCustomToken:customToken callback:^(FIRUser * _Nullable user,
+                                                     NSError * _Nullable error) {
+    if (error) {
+      [self showMessagePrompt:error.localizedDescription];
+      return;
+    }
+
+    [self performSegueWithIdentifier:@"EmailSignIn" sender:self];
+  }];
+  // [END signinwithcustomtoken]
 }
 
 

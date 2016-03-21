@@ -4,10 +4,10 @@ source 'https://cpdc-eap.googlesource.com/spec.git'
 source 'https://github.com/CocoaPods/Specs.git'
 
 platform :ios, '7.0'
+# [START auth_pod]
 pod 'Firebase/Auth'
+# [END auth_pod]
 pod 'FirebaseAuthUI'
-pod 'FirebaseGoogleAuthUI'
-pod 'FirebaseFacebookAuthUI'
 
 target 'AuthenticationExample'
 target 'AuthenticationExampleSwift'

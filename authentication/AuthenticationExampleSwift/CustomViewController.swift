@@ -46,6 +46,7 @@ class CustomViewController: UIViewController {
 
   @IBOutlet weak var emailField: UITextField!
   @IBOutlet weak var passwordField: UITextField!
+  @IBOutlet weak var tokenField: UITextView!
 
   @IBAction func didTapEmailLogin(sender: AnyObject) {
     // [START headless_email_auth]
@@ -59,6 +60,20 @@ class CustomViewController: UIViewController {
       self.showMessagePrompt(user!.displayName ?? "Display name is not set for user")
       self.performSegueWithIdentifier("EmailSignIn", sender: nil)
     }
+  }
+
+  @IBAction func didTapCustomTokenLogin(sender: AnyObject) {
+    let customToken = tokenField.text
+    // [START signinwithcustomtoken]
+    FIRAuth.auth()?.signInWithCustomToken(customToken) { (user, error) in
+      if let error = error {
+        self.showMessagePrompt(error.localizedDescription)
+        return
+      }
+
+      self.performSegueWithIdentifier("EmailSignIn", sender: nil)
+    }
+    // [END signinwithcustomtoken]
   }
 
   /** @fn requestPasswordReset

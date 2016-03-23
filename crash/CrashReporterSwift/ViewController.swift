@@ -26,24 +26,17 @@ class ViewController: UIViewController {
     // Log that the view did load, true is used here so the log message will be
     // shown in the console output. If false is used the message is not shown in
     // the console output.
-    GCRLog(true, "View loaded", [])
+    withVaList([]) {
+        FCRNSLogv("View loaded", $0)
+    }
   }
 
   @IBAction func initiateCrash(sender: AnyObject) {
     // [START log_and_crash_swift]
-    GCRLog(false, "Cause Crash button clicked", [])
+    withVaList([]){
+        FCRLogv("Cause Crash button clicked", $0)
+    }
     fatalError()
     // [END log_and_crash_swift]
-  }
-
-  // GCRLog is a convenience method for using FCRNSLogv and FCRLogv.
-  func GCRLog(logToConsole: Bool, _ format: String, _ args: CVarArgType...) {
-    withVaList(args) {
-        if (logToConsole) {
-            FCRNSLogv(format, $0)
-        } else {
-            FCRLogv(format, $0)
-        }
-    }
   }
 }

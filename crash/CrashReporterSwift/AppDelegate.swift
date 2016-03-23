@@ -24,11 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
     // Initialize Firebase service.
-    do {
-        try FIRContext.sharedInstance().configure()
-    } catch let error as NSError {
-        assert(false, "Error configuring Firebase service: \(error)")
-    }
+    FIRApp.configure()
     return true
   }
 

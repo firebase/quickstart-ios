@@ -15,6 +15,7 @@
 //
 
 #import "ViewController.h"
+#import "FCRLog.h"
 
 @import Firebase;
 

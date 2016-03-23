@@ -24,12 +24,7 @@
     didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
   // Initialize Firebase service.
-  NSError *error;
-  BOOL success = [[FIRContext sharedInstance] configure:&error];
-  if (!success) {
-    NSLog(@"Error configuring Firebase service: %@", error);
-  }
-
+  [FIRApp configure];
   return YES;
 }
 

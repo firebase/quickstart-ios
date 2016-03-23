@@ -32,9 +32,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print("Error configuring Firebase services: \(configureError)")
       }
 
-      // Initialize sign-in
-      GINInvite.applicationDidFinishLaunchingWithOptions(launchOptions)
-
       if (kTrackingID != "YOUR_TRACKING_ID") {
         GINInvite.setGoogleAnalyticsTrackingId(kTrackingID)
       }

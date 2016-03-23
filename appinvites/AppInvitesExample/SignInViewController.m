@@ -17,8 +17,7 @@
 #import "SignInViewController.h"
 #import "ViewController.h"
 
-#import <GoogleSignIn/GIDSignIn.h>
-#import <GoogleSignIn/GIDSignInButton.h>
+@import Firebase.AppInvite;
 
 @interface SignInViewController ()<GIDSignInDelegate, GIDSignInUIDelegate>
 @property(weak, nonatomic) IBOutlet GIDSignInButton *signInButton;
@@ -30,7 +29,7 @@
 - (void)viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
 
-  self.bgText.text = @"App Invites\niOS demo";
+  _bgText.text = @"App Invites\niOS demo";
 
   // Sign the user in automatically
   [GIDSignIn sharedInstance].uiDelegate = self;

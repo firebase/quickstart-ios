@@ -16,11 +16,7 @@
 
 #import "ViewController.h"
 
-#import <Firebase/AppInvite.h>
-#import <GoogleSignIn/GIDGoogleUser.h>
-#import <GoogleSignIn/GIDProfileData.h>
-#import <GoogleSignIn/GIDSignIn.h>
-#import <GoogleSignIn/GIDSignInButton.h>
+@import Firebase.AppInvite;
 
 // [START viewcontroller_interfaces]
 @interface ViewController ()<GINInviteDelegate, GIDSignInDelegate, GIDSignInUIDelegate>
@@ -57,27 +53,27 @@
   float grayValue = (204.0 / 255);
   UIColor *grayColor = [UIColor colorWithRed:grayValue green:grayValue blue:grayValue alpha:1.0];
 
-  self.inviteButton.layer.cornerRadius = 3;
-  self.inviteButton.layer.shadowRadius = 1;
-  self.inviteButton.layer.shadowOffset = CGSizeMake(0, 0.5);
-  self.inviteButton.layer.shadowColor = [UIColor blackColor].CGColor;
-  self.inviteButton.layer.shadowOpacity = .7;
+  _inviteButton.layer.cornerRadius = 3;
+  _inviteButton.layer.shadowRadius = 1;
+  _inviteButton.layer.shadowOffset = CGSizeMake(0, 0.5);
+  _inviteButton.layer.shadowColor = [UIColor blackColor].CGColor;
+  _inviteButton.layer.shadowOpacity = .7;
 
-  self.signOutButton.layer.borderWidth = .5;
-  self.signOutButton.layer.borderColor = grayColor.CGColor;
-  self.signOutButton.layer.cornerRadius = 2;
-  self.signOutButton.layer.shadowRadius = .5;
-  self.signOutButton.layer.shadowOffset = CGSizeMake(0, 0.5);
-  self.signOutButton.layer.shadowColor = [UIColor blackColor].CGColor;
-  self.signOutButton.layer.shadowOpacity = .4;
+  _signOutButton.layer.borderWidth = .5;
+  _signOutButton.layer.borderColor = grayColor.CGColor;
+  _signOutButton.layer.cornerRadius = 2;
+  _signOutButton.layer.shadowRadius = .5;
+  _signOutButton.layer.shadowOffset = CGSizeMake(0, 0.5);
+  _signOutButton.layer.shadowColor = [UIColor blackColor].CGColor;
+  _signOutButton.layer.shadowOpacity = .4;
 
-  self.disconnectButton.layer.borderWidth = .5;
-  self.disconnectButton.layer.borderColor = grayColor.CGColor;
-  self.disconnectButton.layer.cornerRadius = 2;
-  self.disconnectButton.layer.shadowRadius = .5;
-  self.disconnectButton.layer.shadowOffset = CGSizeMake(0, 0.5);
-  self.disconnectButton.layer.shadowColor = [UIColor blackColor].CGColor;
-  self.disconnectButton.layer.shadowOpacity = .4;
+  _disconnectButton.layer.borderWidth = .5;
+  _disconnectButton.layer.borderColor = grayColor.CGColor;
+  _disconnectButton.layer.cornerRadius = 2;
+  _disconnectButton.layer.shadowRadius = .5;
+  _disconnectButton.layer.shadowOffset = CGSizeMake(0, 0.5);
+  _disconnectButton.layer.shadowColor = [UIColor blackColor].CGColor;
+  _disconnectButton.layer.shadowOpacity = .4;
 }
 
 // [START signin_handler]
@@ -85,7 +81,7 @@
     didSignInForUser:(GIDGoogleUser *)user
            withError:(NSError *)error {
   // Perform any operations on signed in user here.
-  self.statusText.text = [NSString stringWithFormat:@"Signed in as %@", user.profile.name];
+  _statusText.text = [NSString stringWithFormat:@"Signed in as %@", user.profile.name];
   [self toggleAuthUI];
 }
 // [END signin_handler]
@@ -95,7 +91,7 @@
     didDisconnectWithUser:(GIDGoogleUser *)user
                 withError:(NSError *)error {
   // Perform any operations when the user disconnects from app here.
-  self.statusText.text = @"Disconnected user";
+  _statusText.text = @"Disconnected user";
   [self toggleAuthUI];
 }
 // [END disconnect_handler]
@@ -103,7 +99,7 @@
 // [START signout_tapped]
 - (IBAction)signOutTapped:(id)sender {
   [[GIDSignIn sharedInstance] signOut];
-  self.statusText.text = @"Signed out";
+  _statusText.text = @"Signed out";
   [self toggleAuthUI];
 }
 // [END signout_tapped]
@@ -116,8 +112,8 @@
 
 // [START invite_tapped]
 - (IBAction)inviteTapped:(id)sender {
-  self.inviteDialog = [GINInvite inviteDialog];
-  [self.inviteDialog setInviteDelegate:self];
+  _inviteDialog = [GINInvite inviteDialog];
+  [_inviteDialog setInviteDelegate:self];
 
   // NOTE: You must have the App Store ID set in your developer console project
   // in order for invitations to successfully be sent.
@@ -127,12 +123,14 @@
 
   // A message hint for the dialog. Note this manifests differently depending on the
   // received invation type. For example, in an email invite this appears as the subject.
-  [self.inviteDialog setMessage:message];
+  [_inviteDialog setMessage:message];
 
   // Title for the dialog, this is what the user sees before sending the invites.
-  [self.inviteDialog setTitle:@"App Invites Example"];
-  [self.inviteDialog setDeepLink:@"app_url"];
-  [self.inviteDialog open];
+  [_inviteDialog setTitle:@"App Invites Example"];
+  [_inviteDialog setDeepLink:@"app_url"];
+  [_inviteDialog setCallToActionText:@"Install!"];
+  [_inviteDialog setCustomImage:@"https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png"];
+  [_inviteDialog open];
 }
 // [END invite_tapped]
 
@@ -153,17 +151,17 @@
 - (void)toggleAuthUI {
   if ([GIDSignIn sharedInstance].currentUser.authentication == nil) {
     // Not signed in
-    self.signInButton.enabled = YES;
-    self.signOutButton.enabled = NO;
-    self.disconnectButton.enabled = NO;
-    self.inviteButton.enabled = NO;
+    _signInButton.enabled = YES;
+    _signOutButton.enabled = NO;
+    _disconnectButton.enabled = NO;
+    _inviteButton.enabled = NO;
     [self performSegueWithIdentifier:@"SignedOutScreen" sender:self];
   } else {
     // Signed in
-    self.signInButton.enabled = NO;
-    self.signOutButton.enabled = YES;
-    self.disconnectButton.enabled = YES;
-    self.inviteButton.enabled = YES;
+    _signInButton.enabled = NO;
+    _signOutButton.enabled = YES;
+    _disconnectButton.enabled = YES;
+    _inviteButton.enabled = YES;
   }
 }
 // [END toggle_auth]

@@ -30,6 +30,8 @@ static NSString *kTrackingID = @"YOUR_TRACKING_ID";
   BOOL status = [[FIRContext sharedInstance] configure:&configureError];
   NSAssert(status, @"Error configuring Firebase services: %@", configureError);
 
+  [GINInvite applicationDidFinishLaunchingWithOptions:launchOptions];
+
   if ([kTrackingID compare:@"YOUR_TRACKING_ID"] != NSOrderedSame) {
     [GINInvite setGoogleAnalyticsTrackingId:kTrackingID];
   }

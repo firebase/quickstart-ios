@@ -28,14 +28,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Use Firebase library to configure APIs
     do {
         try FIRContext.sharedInstance().configure()
-      } catch let configureError as NSError {
+    } catch let configureError as NSError {
         print("Error configuring Firebase services: \(configureError)")
-      }
+    }
 
-      if (kTrackingID != "YOUR_TRACKING_ID") {
-        GINInvite.setGoogleAnalyticsTrackingId(kTrackingID)
-      }
-      return true
+    // Initialize sign-in
+    GINInvite.applicationDidFinishLaunchingWithOptions(launchOptions)
+
+    if (kTrackingID != "YOUR_TRACKING_ID") {
+      GINInvite.setGoogleAnalyticsTrackingId(kTrackingID)
+    }
+    return true
   }
   // [END didfinishlaunching]
 

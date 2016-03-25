@@ -15,6 +15,7 @@
 //
 
 import UIKit
+import Photos
 import FirebaseApp
 import Firebase.Auth
 /* Note that "#import "FirebaseStorage.h" is included in BridgingHeader.h */
@@ -75,25 +76,32 @@ class ViewController: UIViewController,
     didFinishPickingMediaWithInfo info: [String : AnyObject]) {
       picker.dismissViewControllerAnimated(true, completion:nil)
 
-      let image = info[UIImagePickerControllerOriginalImage] as! UIImage,
-          imageData = UIImageJPEGRepresentation(image, 0.8)
-
-      urlTextView.text = "Beginning Upload";
-
-      // [START uploadimage]
-      let metadata = FIRStorageMetadata()
-      metadata.contentType = "image/jpeg"
-      storageRef.childByAppendingPath("myimage.jpg")
-        .putData(imageData!, metadata: metadata) { (metadata, error) in
-          if let error = error {
-            print("Error uploading: \(error)")
-            self.urlTextView.text = "Upload Failed"
-            return
-          }
-          print("Upload Succeeded!")
-          self.urlTextView.text = metadata!.downloadURL()!.absoluteString
+    urlTextView.text = "Beginning Upload";
+    let referenceUrl = info[UIImagePickerControllerReferenceURL] as! NSURL
+    if #available(iOS 8.0, *) {
+      let assets = PHAsset.fetchAssetsWithALAssetURLs([referenceUrl], options: nil)
+      let asset = assets.firstObject
+      asset?.requestContentEditingInputWithOptions(nil, completionHandler: { (contentEditingInput, info) in
+        let imageFile = contentEditingInput?.fullSizeImageURL?.absoluteString
+        let filePath = "\(FIRAuth.auth()?.currentUser?.uid)/\(Int(NSDate.timeIntervalSinceReferenceDate() * 1000))/\(referenceUrl.lastPathComponent!)"
+        // [START uploadimage]
+        let metadata = FIRStorageMetadata()
+        metadata.contentType = "image/jpeg"
+        self.storageRef.childByAppendingPath(filePath)
+          .putFile(imageFile!, metadata: metadata) { (metadata, error) in
+            if let error = error {
+              print("Error uploading: \(error)")
+              self.urlTextView.text = "Upload Failed"
+              return
+            }
+            print("Upload Succeeded!")
+            self.urlTextView.text = metadata!.downloadURL()!.absoluteString
         }
-      // [END uploadimage]
+        // [END uploadimage]
+      })
+    } else {
+      // Fallback on earlier versions
+    }
   }
 
   func imagePickerControllerDidCancel(picker: UIImagePickerController) {

@@ -14,10 +14,11 @@
 //  limitations under the License.
 //
 
+@import Photos;
 #import "ViewController.h"
 #import "DownloadViewController.h"
-#import "FirebaseStorage.h"
 
+#import "FirebaseStorage.h"
 @import Firebase.Auth;
 
 @interface ViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
@@ -77,27 +78,34 @@
     didFinishPickingMediaWithInfo:(NSDictionary *)info {
   [picker dismissViewControllerAnimated:YES completion:NULL];
 
-  UIImage *image = info[UIImagePickerControllerOriginalImage];
-  NSData *imageData = UIImageJPEGRepresentation(image, 0.8);
   _urlTextView.text = @"Beginning Upload";
-
-  // [START uploadimage]
-  FIRStorageMetadata *metadata = [FIRStorageMetadata new];
-  metadata.contentType = @"image/jpeg";
-  [[_storageRef childByAppendingPath:@"myimage.jpg"]
-                             putData:imageData
-                            metadata:metadata
-                      withCompletion:^(FIRStorageMetadata * _Nullable metadata, NSError * _Nullable error) {
-                        if (error) {
-                          NSLog(@"Error uploading: %@", error);
-                          _urlTextView.text = @"Upload Failed";
-                          return;
-                        }
-                        NSLog(@"Upload Succeeded!");
-                        _urlTextView.text = [metadata.downloadURL absoluteString];
-                      }
-   ];
-  // [END uploadimage]
+  NSURL *referenceUrl = info[UIImagePickerControllerReferenceURL];
+  PHFetchResult* assets = [PHAsset fetchAssetsWithALAssetURLs:@[referenceUrl] options:nil];
+  PHAsset *asset = [assets firstObject];
+  [asset requestContentEditingInputWithOptions:nil
+                             completionHandler:^(PHContentEditingInput *contentEditingInput, NSDictionary *info) {
+                               NSString *imageFile = [contentEditingInput.fullSizeImageURL absoluteString];
+                               NSString *filePath =
+                                   [NSString stringWithFormat:@"%@/%lld/%@",
+                                       [FIRAuth auth].currentUser.uid,
+                                       (long long)([[NSDate date] timeIntervalSince1970] * 1000.0),
+                                       [referenceUrl lastPathComponent]];
+                               // [START uploadimage]
+                               FIRStorageMetadata *metadata = [FIRStorageMetadata new];
+                               metadata.contentType = @"image/jpeg";
+                               [[_storageRef childByAppendingPath:filePath]
+                                putFile:imageFile metadata:metadata
+                                withCompletion:^(FIRStorageMetadata *metadata, NSError *error) {
+                                  if (error) {
+                                    NSLog(@"Error uploading: %@", error);
+                                    _urlTextView.text = @"Upload Failed";
+                                    return;
+                                  }
+                                  NSLog(@"Upload Succeeded!");
+                                  _urlTextView.text = [metadata.downloadURL absoluteString];
+                                }];
+                               // [END uploadimage]
+                             }];
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {

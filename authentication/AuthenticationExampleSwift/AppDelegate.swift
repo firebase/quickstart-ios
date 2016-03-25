@@ -26,8 +26,7 @@ import Firebase.Core
 import FirebaseApp
 import FirebaseAuth
 import FirebaseAuthUI
-import FirebaseFacebookAuthUI
-import FirebaseGoogleAuthUI
+import Firebase.SignIn
 // [END usermanagement_import]
 
 import Fabric

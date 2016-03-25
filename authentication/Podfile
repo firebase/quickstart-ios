@@ -8,9 +8,10 @@ platform :ios, '7.0'
 pod 'Firebase/Auth'
 # [END auth_pod]
 pod 'FirebaseAuthUI'
-pod 'FirebaseGoogleAuthUI'
-pod 'FirebaseFacebookAuthUI'
+pod 'Firebase/SignIn'
 
+pod 'FBSDKCoreKit'
+pod 'FBSDKLoginKit'
 pod 'TwitterKit'
 
 target 'AuthenticationExample'

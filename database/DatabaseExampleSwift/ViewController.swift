@@ -47,6 +47,23 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
       self.messages.append(snapshot)
       self.tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: self.messages.count-1, inSection: 0)], withRowAnimation: UITableViewRowAnimation.Automatic)
     })
+    // Listen for deleted messages in the Firebase database
+    self.ref.childByAppendingPath("messages").observeEventType(.ChildRemoved, withBlock: { (snapshot) -> Void in
+      let index = self.indexOfMessage(snapshot)
+      self.messages.removeAtIndex(index)
+      self.tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: index, inSection: 0)], withRowAnimation: UITableViewRowAnimation.Automatic)
+    })
+  }
+
+  func indexOfMessage(snapshot: FIRDataSnapshot) -> Int {
+    var index = 0
+    for  message in self.messages {
+      if (snapshot.key == message.key) {
+        return index
+      }
+      index += 1
+    }
+    return -1
   }
 
   override func viewWillDisappear(animated: Bool) {

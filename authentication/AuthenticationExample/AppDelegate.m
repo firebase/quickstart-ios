@@ -27,9 +27,9 @@
 @import FirebaseApp;
 @import FirebaseAuth;
 @import FirebaseAuthUI;
+@import Firebase.SignIn;
 // [END usermanagement_import]
 
-#import <GoogleSignIn/GIDSignIn.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 @import Fabric;
 @import TwitterKit;

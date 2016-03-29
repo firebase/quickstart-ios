@@ -4,13 +4,13 @@ Firebase Database Quickstart
 Introduction
 ------------
 
-- [Read more about Firebase Database](https://developers.google.com/firebase)
+- [Read more about Firebase Database](https://developers.google.com/firebase/docs/database/)
 
 Getting Started
 ---------------
 
 - [Add Firebase to your iOS Project](https://developers.google.com/firebase/docs/ios/setup).
-- Follow the [quickstart guide](https://developers.google.com/firebase/docs/storage/ios/setup) to set up your project.
+- Follow the [quickstart guide](https://developers.google.com/firebase/docs/database/ios/setup) to set up your project.
 - Run the sample on your iOS device or emulator.
 
 Note: You will need Swift 1.2 to run the Swift version of this quickstart.

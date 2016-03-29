@@ -22,9 +22,13 @@
 #import "GoogleSignInViewController.h"
 #import "UIViewController+Alerts.h"
 
+#import <GoogleSignIn/GIDSignIn.h>
+#import <GoogleSignIn/GIDSignInButton.h>
+#import <GoogleSignIn/GIDGoogleUser.h>
+#import <GoogleSignIn/GIDAuthentication.h>
+
 @import FirebaseAuth;
 @import Firebase.Core;
-@import Firebase.SignIn;
 
 @interface GoogleSignInViewController ()<GIDSignInDelegate, GIDSignInUIDelegate>
 @property (weak, nonatomic) IBOutlet GIDSignInButton *signInButton;

@@ -46,6 +46,27 @@
                  [NSIndexPath indexPathForRow:[self.messages count] - 1 inSection:0]
                ] withRowAnimation:UITableViewRowAnimationAutomatic];
              }];
+  // Listen for deleted messages in the Firebase database
+  [[self.ref childByAppendingPath:@"messages"]
+      observeEventType:FIRDataEventTypeChildRemoved
+             withBlock:^(FIRDataSnapshot *snapshot) {
+               int index = [self indexOfMessage:snapshot];
+               [self.messages removeObjectAtIndex:index];
+               [self.tableView deleteRowsAtIndexPaths:@[
+                 [NSIndexPath indexPathForRow:index inSection:0]
+               ] withRowAnimation:UITableViewRowAnimationAutomatic];
+             }];
+}
+
+- (int) indexOfMessage:(FIRDataSnapshot *)snapshot {
+  int index = 0;
+  for (FIRDataSnapshot *message in _messages) {
+    if ([snapshot.key isEqualToString:message.key]) {
+      return index;
+    }
+    ++index;
+  }
+  return -1;
 }
 
 - (void)viewDidDisappear:(BOOL)animated {

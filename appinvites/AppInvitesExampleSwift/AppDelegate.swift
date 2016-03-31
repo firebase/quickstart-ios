@@ -20,8 +20,6 @@ import Firebase.AppInvite
 class AppDelegate: UIResponder, UIApplicationDelegate {
   var window: UIWindow?
 
-  var kTrackingID = "YOUR_TRACKING_ID"
-
   // [START didfinishlaunching]
   func application(application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
@@ -35,10 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Initialize sign-in
     GINInvite.applicationDidFinishLaunchingWithOptions(launchOptions)
 
-    if (kTrackingID != "YOUR_TRACKING_ID") {
-      GINInvite.setGoogleAnalyticsTrackingId(kTrackingID)
-    }
-    return true
+      return true
   }
   // [END didfinishlaunching]
 
@@ -50,7 +45,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             (invite.matchType == GINReceivedInviteMatchType.Weak) ? "Weak" : "Strong"
         print("Invite received from: \(sourceApplication) Deeplink: \(invite.deepLink)," +
             "Id: \(invite.inviteId), Type: \(matchType)")
-        GINInvite.convertInvitation(invite.inviteId)
         return true
       }
 

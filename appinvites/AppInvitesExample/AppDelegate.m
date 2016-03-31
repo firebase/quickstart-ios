@@ -19,8 +19,6 @@
 @import Firebase.Core;
 
 
-static NSString *kTrackingID = @"YOUR_TRACKING_ID";
-
 @implementation AppDelegate
 
 // [START didfinishlaunching]
@@ -32,9 +30,6 @@ static NSString *kTrackingID = @"YOUR_TRACKING_ID";
 
   [GINInvite applicationDidFinishLaunchingWithOptions:launchOptions];
 
-  if ([kTrackingID compare:@"YOUR_TRACKING_ID"] != NSOrderedSame) {
-    [GINInvite setGoogleAnalyticsTrackingId:kTrackingID];
-  }
   return YES;
 }
 // [END didfinishlaunching]
@@ -60,7 +55,6 @@ static NSString *kTrackingID = @"YOUR_TRACKING_ID";
                       cancelButtonTitle:@"OK"
                       otherButtonTitles:nil] show];
 
-    [GINInvite convertInvitation:invite.inviteId];
     return YES;
   }
 

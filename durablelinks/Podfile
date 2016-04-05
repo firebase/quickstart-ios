@@ -9,6 +9,10 @@ platform :ios, '8.0'
 pod 'Firebase/DurableDeepLink'
 # [END pod_ddl]
 
-target 'DurableLinksExample'
-target 'DurableLinksExampleSwift'
-target 'DurableLinksExampleTests'
+# If using CocoaPods 1.0.0+, use the new target syntax.
+# target 'DurableLinksExample'
+# target 'DurableLinksExampleSwift'
+# target 'DurableLinksExampleTests'
+
+# and delete the link_with command.
+link_with 'DurableLinksExample', 'DurableLinksExampleSwift', 'DurableLinksExampleTests'

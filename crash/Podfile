@@ -9,6 +9,10 @@ source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '8.0'
 pod 'Firebase/CrashReporting'
 
-target 'CrashReporter'
-target 'CrashReporterSwift'
-target 'CrashReporterTests'
+# If using CocoaPods 1.0.0+, use the new target syntax.
+# target 'CrashReporter'
+# target 'CrashReporterSwift'
+# target 'CrashReporterTests'
+
+# and delete the link_with command.
+link_with 'CrashReporter', 'CrashReporterSwift', 'CrashReporterTests'

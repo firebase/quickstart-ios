@@ -2,5 +2,9 @@
 platform :ios, '7.0'
 pod 'GoogleAppIndexing'
 
-target 'AppIndexingExample'
-target 'AppIndexingExampleSwift'
+# If using CocoaPods 1.0.0+, use the new target syntax.
+# target 'AppIndexingExample'
+# target 'AppIndexingExampleSwift'
+
+# and delete the link_with command.
+link_with 'AppIndexingExample', 'AppIndexingExampleSwift'

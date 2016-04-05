@@ -3,6 +3,11 @@ source 'https://github.com/CocoaPods/Specs.git'
 # AnalyticsExample
 platform :ios, '7.0'
 pod 'Firebase/Core'
-target 'AnalyticsExample'
-target 'AnalyticsExampleSwift'
-target 'AnalyticsExampleTests'
+
+# If using CocoaPods 1.0.0+, use the new target syntax.
+# target 'AnalyticsExample'
+# target 'AnalyticsExampleSwift'
+# target 'AnalyticsExampleTests'
+
+# and delete the link_with command.
+link_with 'AnalyticsExample', 'AnalyticsExampleSwift', 'AnalyticsExampleTests'

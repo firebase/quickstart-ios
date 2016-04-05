@@ -4,6 +4,10 @@ source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '8.0'
 pod 'Firebase/AppInvites'
 
-target 'AppInvitesExample'
-target 'AppInvitesExampleSwift'
-target 'AppInvitesExampleTests'
+# If using CocoaPods 1.0.0+, use the new target syntax.
+# target 'AppInvitesExample'
+# target 'AppInvitesExampleSwift'
+# target 'AppInvitesExampleTests'
+
+# and delete the link_with command.
+link_with 'AppInvitesExample', 'AppInvitesExampleSwift', 'AppInvitesExampleTests'

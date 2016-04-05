@@ -6,6 +6,10 @@ platform :ios, '7.0'
 pod 'Firebase/Core'
 pod 'FirebaseDatabase'
 
-target 'DatabaseExample'
-target 'DatabaseExampleSwift'
-target 'DatabaseExampleTests'
+# If using CocoaPods 1.0.0+, use the new target syntax.
+# target 'DatabaseExample'
+# target 'DatabaseExampleSwift'
+# target 'DatabaseExampleTests'
+
+# and delete the link_with command.
+link_with 'DatabaseExample', 'DatabaseExampleSwift', 'DatabaseExampleTests'

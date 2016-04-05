@@ -7,5 +7,9 @@ platform :ios, '7.0'
 pod 'Firebase/Core'
 pod 'Firebase/RemoteConfig'
 
-target 'Config'
-target 'ConfigTests'
+# If using CocoaPods 1.0.0+, use the new target syntax.
+# target 'Config'
+# target 'ConfigTests'
+
+# and delete the link_with command.
+link_with 'Config', 'ConfigTests'

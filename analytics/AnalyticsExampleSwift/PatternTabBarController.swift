@@ -15,7 +15,7 @@
 //
 
 import Foundation
-import Firebase.Core
+import FirebaseAnalytics
 
 /**
 * PatternTabBarController exists as a subclass of UITabBarConttroller that
@@ -35,7 +35,7 @@ class PatternTabBarController: UITabBarController {
     // [START custom_event_swift]
     FIRAnalytics.logEventWithName(kFIREventShare, parameters: [
       kFIRParameterContentType:"cont",
-      kFIRParameterContent:"1"
+      kFIRParameterValue:"1"
       ]);
     // [END custom_event_swift]
 

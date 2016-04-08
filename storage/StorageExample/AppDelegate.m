@@ -15,18 +15,13 @@
 //
 
 #import "AppDelegate.h"
-@import Firebase.Core;
+@import FirebaseAnalytics;
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application
     didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-  NSError *error;
-  BOOL success = [[FIRContext sharedInstance] configure:&error];
-  if (!success) {
-    NSLog(@"Error: %@", error);
-    assert(success);
-  }
+  [FIRApp configure];
   return YES;
 }
 

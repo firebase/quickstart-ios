@@ -51,7 +51,6 @@
 		1054149F1B163EB20006C828 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ../../shared/Images.xcassets; sourceTree = "<group>"; };
 		105414A01B163EB20006C828 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LaunchScreen.xib; path = ../../shared/LaunchScreen.xib; sourceTree = "<group>"; };
 		1059198A1ADDA8F700344065 /* AdMobExampleSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AdMobExampleSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		105919B01ADDA92E00344065 /* AdMobExampleSwift-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AdMobExampleSwift-Bridging-Header.h"; sourceTree = "<group>"; };
 		105919B31ADDA93F00344065 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		105919B41ADDA93F00344065 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		10BCC1C31B06474800B5A8B2 /* ViewController_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController_Private.h; sourceTree = "<group>"; };
@@ -137,17 +136,8 @@
 			children = (
 				105919B31ADDA93F00344065 /* AppDelegate.swift */,
 				105919B41ADDA93F00344065 /* ViewController.swift */,
-				1059198C1ADDA8F700344065 /* Supporting Files */,
 			);
 			path = AdMobExampleSwift;
-			sourceTree = "<group>";
-		};
-		1059198C1ADDA8F700344065 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				105919B01ADDA92E00344065 /* AdMobExampleSwift-Bridging-Header.h */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		CF86EE0E19787E6B00411520 = {
@@ -203,9 +193,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1021DD2C1B05187A0018763B /* Build configuration list for PBXNativeTarget "AdMobExampleTests" */;
 			buildPhases = (
+				7FC39F0E4C7A6A2B88C544C0 /* 📦 Check Pods Manifest.lock */,
 				1021DD1E1B05187A0018763B /* Sources */,
 				1021DD1F1B05187A0018763B /* Frameworks */,
 				1021DD201B05187A0018763B /* Resources */,
+				A8AB575B548EE7CCD0809E5E /* 📦 Embed Pods Frameworks */,
+				D9268A493CE44CA739EF30E1 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -221,9 +214,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1021DD391B0518E40018763B /* Build configuration list for PBXNativeTarget "AdMobExampleSwiftTests" */;
 			buildPhases = (
+				33F41760D4F681908C4FB296 /* 📦 Check Pods Manifest.lock */,
 				1021DD2D1B0518E40018763B /* Sources */,
 				1021DD2E1B0518E40018763B /* Frameworks */,
 				1021DD2F1B0518E40018763B /* Resources */,
+				6E1CE6B41C638D128CC6AC67 /* 📦 Embed Pods Frameworks */,
+				01AFF2DEFD623B68C875EEF5 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -239,9 +235,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 105919AA1ADDA8F800344065 /* Build configuration list for PBXNativeTarget "AdMobExampleSwift" */;
 			buildPhases = (
+				351C6B0FDEE8C72B45E7DA18 /* 📦 Check Pods Manifest.lock */,
 				105919861ADDA8F700344065 /* Sources */,
 				105919871ADDA8F700344065 /* Frameworks */,
 				105919881ADDA8F700344065 /* Resources */,
+				6C725BC108B255ECA558FBFB /* 📦 Embed Pods Frameworks */,
+				ADFDAF72FE36B8AE92142D0F /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -256,9 +255,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CF86EE3719787E6B00411520 /* Build configuration list for PBXNativeTarget "AdMobExample" */;
 			buildPhases = (
+				3786A425488E9762E473D245 /* 📦 Check Pods Manifest.lock */,
 				CF86EE1319787E6B00411520 /* Sources */,
 				CF86EE1419787E6B00411520 /* Frameworks */,
 				CF86EE1519787E6B00411520 /* Resources */,
+				EF751FC131181FC98D4BC35A /* 📦 Embed Pods Frameworks */,
+				D5B7EC1687F5DD74A78852E3 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -353,6 +355,189 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		01AFF2DEFD623B68C875EEF5 /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AdMobExampleSwiftTests/Pods-AdMobExampleSwiftTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		33F41760D4F681908C4FB296 /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		351C6B0FDEE8C72B45E7DA18 /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		3786A425488E9762E473D245 /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		6C725BC108B255ECA558FBFB /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AdMobExampleSwift/Pods-AdMobExampleSwift-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6E1CE6B41C638D128CC6AC67 /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AdMobExampleSwiftTests/Pods-AdMobExampleSwiftTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7FC39F0E4C7A6A2B88C544C0 /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		A8AB575B548EE7CCD0809E5E /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AdMobExampleTests/Pods-AdMobExampleTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		ADFDAF72FE36B8AE92142D0F /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AdMobExampleSwift/Pods-AdMobExampleSwift-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D5B7EC1687F5DD74A78852E3 /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AdMobExample/Pods-AdMobExample-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D9268A493CE44CA739EF30E1 /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AdMobExampleTests/Pods-AdMobExampleTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EF751FC131181FC98D4BC35A /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AdMobExample/Pods-AdMobExample-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1021DD1E1B05187A0018763B /* Sources */ = {
@@ -518,7 +703,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.AdMobExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "AdMobExampleSwift/AdMobExampleSwift-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -535,7 +719,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.AdMobExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "AdMobExampleSwift/AdMobExampleSwift-Bridging-Header.h";
 			};
 			name = Release;
 		};

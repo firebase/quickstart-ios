@@ -15,8 +15,7 @@
 //
 
 import UIKit
-
-import FirebaseApp
+import FirebaseStorage
 
 @objc(DownloadViewController)
 class DownloadViewController: UIViewController {
@@ -27,8 +26,7 @@ class DownloadViewController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    let app = FIRFirebaseApp.app()
-    storageRef = FIRStorage.storage(app: app!).reference
+    storageRef = FIRStorage.storage().reference()
 
     let paths = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory,
         NSSearchPathDomainMask.UserDomainMask, true)
@@ -36,27 +34,15 @@ class DownloadViewController: UIViewController {
     let filePath = "file:\(documentsDirectory)/myimage.jpg"
 
     // [START downloadimage]
-    let download: FIRStorageDownloadTask = storageRef.childByAppendingPath("myimage.jpg").fileByWritingToPath(filePath)
-    // [END downloadimage]
-
-    // [START downloadcomplete]
-    download.observeStatus(.Success, withCallback: { (task) in
-      self.statusTextView.text = "Download Succeeded!"
-      self.onSuccesfulDownload(filePath)
-    })
-    // [END downloadcomplete]
-
-    // [START downloadfailure]
-    download.observeStatus(.Failure) { (task, error) in
+    storageRef.child("myimage.jpg").writeToFile(NSURL.fileURLWithPath(filePath), completion: { (url, error) in
       if let error = error {
         print("Error downloading:\(error)")
+        self.statusTextView.text = "Download Failed"
+        return
       }
-      self.statusTextView.text = "Download Failed"
-    }
-    // [END downloadfailure]
-  }
-
-  func onSuccesfulDownload(filePath: String) {
-    imageView.image = UIImage.init(contentsOfFile: filePath)
+      self.statusTextView.text = "Download Succeeded!"
+      self.imageView.image = UIImage.init(contentsOfFile: filePath)
+    })
+    // [END downloadimage]
   }
 }

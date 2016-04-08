@@ -18,8 +18,8 @@
 #import "ViewController.h"
 #import "DownloadViewController.h"
 
-#import "FirebaseStorage.h"
-@import Firebase.Auth;
+@import FirebaseStorage;
+@import FirebaseAuth;
 
 @interface ViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
@@ -37,15 +37,14 @@
   [super viewDidLoad];
 
   // [START configurestorage]
-  FIRFirebaseApp *app = [FIRFirebaseApp app];
-  self.storageRef = [[FIRStorage storageForApp:app] reference];
+  self.storageRef = [[FIRStorage storage] reference];
   // [END configurestorage]
 
   // [START storageauth]
   // Using Firebase Storage requires the user be authenticated. Here we are using
   // anonymous authentication.
   if (![FIRAuth auth].currentUser) {
-    [[FIRAuth auth] signInAnonymouslyWithCallback:^(FIRUser * _Nullable user, NSError * _Nullable error) {
+    [[FIRAuth auth] signInAnonymouslyWithCompletion:^(FIRUser * _Nullable user, NSError * _Nullable error) {
       if (error) {
         _urlTextView.text = error.description;
         _takePicButton.enabled = NO;
@@ -84,7 +83,7 @@
   PHAsset *asset = [assets firstObject];
   [asset requestContentEditingInputWithOptions:nil
                              completionHandler:^(PHContentEditingInput *contentEditingInput, NSDictionary *info) {
-                               NSString *imageFile = [contentEditingInput.fullSizeImageURL absoluteString];
+                               NSURL *imageFile = contentEditingInput.fullSizeImageURL;
                                NSString *filePath =
                                    [NSString stringWithFormat:@"%@/%lld/%@",
                                        [FIRAuth auth].currentUser.uid,
@@ -93,9 +92,9 @@
                                // [START uploadimage]
                                FIRStorageMetadata *metadata = [FIRStorageMetadata new];
                                metadata.contentType = @"image/jpeg";
-                               [[_storageRef childByAppendingPath:filePath]
+                               [[_storageRef child:filePath]
                                 putFile:imageFile metadata:metadata
-                                withCompletion:^(FIRStorageMetadata *metadata, NSError *error) {
+                                completion:^(FIRStorageMetadata *metadata, NSError *error) {
                                   if (error) {
                                     NSLog(@"Error uploading: %@", error);
                                     _urlTextView.text = @"Upload Failed";

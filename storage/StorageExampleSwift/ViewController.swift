@@ -16,8 +16,8 @@
 
 import UIKit
 import Photos
-import FirebaseApp
-import Firebase.Auth
+import FirebaseAuth
+import FirebaseStorage
 /* Note that "#import "FirebaseStorage.h" is included in BridgingHeader.h */
 
 @objc(ViewController)
@@ -35,15 +35,14 @@ class ViewController: UIViewController,
     super.viewDidLoad()
 
     // [START configurestorage]
-    let app = FIRFirebaseApp.app()
-    storageRef = FIRStorage.storage(app: app!).reference
+    storageRef = FIRStorage.storage().reference()
     // [END configurestorage]
 
     // [START storageauth]
     // Using Firebase Storage requires the user be authenticated. Here we are using
     // anonymous authentication.
     if (FIRAuth.auth()?.currentUser == nil) {
-      FIRAuth.auth()?.signInAnonymouslyWithCallback({ (user:FIRUser?, error:NSError?) in
+      FIRAuth.auth()?.signInAnonymouslyWithCompletion({ (user:FIRUser?, error:NSError?) in
         if (error != nil) {
           self.urlTextView.text = error?.description
           self.takePicButton.enabled = false
@@ -82,12 +81,12 @@ class ViewController: UIViewController,
       let assets = PHAsset.fetchAssetsWithALAssetURLs([referenceUrl], options: nil)
       let asset = assets.firstObject
       asset?.requestContentEditingInputWithOptions(nil, completionHandler: { (contentEditingInput, info) in
-        let imageFile = contentEditingInput?.fullSizeImageURL?.absoluteString
+        let imageFile = contentEditingInput?.fullSizeImageURL
         let filePath = "\(FIRAuth.auth()?.currentUser?.uid)/\(Int(NSDate.timeIntervalSinceReferenceDate() * 1000))/\(referenceUrl.lastPathComponent!)"
         // [START uploadimage]
         let metadata = FIRStorageMetadata()
         metadata.contentType = "image/jpeg"
-        self.storageRef.childByAppendingPath(filePath)
+        self.storageRef.child(filePath)
           .putFile(imageFile!, metadata: metadata) { (metadata, error) in
             if let error = error {
               print("Error uploading: \(error)")

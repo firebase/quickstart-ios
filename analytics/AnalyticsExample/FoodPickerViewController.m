@@ -21,7 +21,7 @@
 
 #import "FoodPickerViewController.h"
 
-@import Firebase.Core;
+@import FirebaseAnalytics;
 
 @interface FoodPickerViewController () <UIPickerViewDataSource, UIPickerViewDelegate>
 @property (nonatomic, strong) NSArray *foodStuffs;

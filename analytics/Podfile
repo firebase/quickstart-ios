@@ -2,7 +2,7 @@ source 'https://cpdc-eap.googlesource.com/spec.git'
 source 'https://github.com/CocoaPods/Specs.git'
 # AnalyticsExample
 platform :ios, '7.0'
-pod 'Firebase/Core'
+pod 'Firebase/Analytics'
 
 # If using CocoaPods 1.0.0+, use the new target syntax.
 # target 'AnalyticsExample'

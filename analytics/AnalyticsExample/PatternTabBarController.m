@@ -21,7 +21,7 @@
 
 #import "PatternTabBarController.h"
 
-@import Firebase.Core;
+@import FirebaseAnalytics;
 
 @implementation PatternTabBarController
 
@@ -36,7 +36,7 @@
   // [START custom_event_objc]
   [FIRAnalytics logEventWithName:kFIREventShare parameters:@{
                                                              kFIRParameterContentType:@"cont",
-                                                             kFIRParameterContent:@"1"
+                                                             kFIRParameterValue:@"1"
                                                              }];
   // [END custom_event_objc]
 

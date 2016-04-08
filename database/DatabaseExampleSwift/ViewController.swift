@@ -15,7 +15,6 @@
 //
 
 import UIKit
-import Firebase.Core
 import FirebaseDatabase
 
 @objc(ViewController)

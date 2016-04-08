@@ -3,8 +3,7 @@ source 'https://cpdc-eap.googlesource.com/spec.git'
 source 'https://github.com/CocoaPods/Specs.git'
 
 platform :ios, '7.0'
-pod 'Firebase/Core'
-pod 'FirebaseDatabase'
+pod 'Firebase/Database'
 
 # If using CocoaPods 1.0.0+, use the new target syntax.
 # target 'DatabaseExample'

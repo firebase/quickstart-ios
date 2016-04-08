@@ -19,7 +19,15 @@
 
 // [START firebase_banner_example]
 #import "ViewController.h"
-#import <Firebase/AdMob.h>
+@import GoogleMobileAds;
+
+/**
+ * AdMob ad unit IDs are not currently stored inside the google-services.plist file. Developers
+ * using AdMob can store them as custom values in another plist, or simply use constants. Note that
+ * these ad units are configured to return only test ads, and should not be used outside this sample.
+ */
+static NSString *const kBannerAdUnitID = @"ca-app-pub-3940256099942544/2934735716";
+static NSString *const kInterstitialAdUnitID = @"ca-app-pub-3940256099942544/4411468910";
 
 @interface ViewController ()<GADInterstitialDelegate>
 
@@ -42,7 +50,7 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
 
-  self.bannerView.adUnitID = [FIRContext sharedInstance].adUnitIDForBannerTest;
+  self.bannerView.adUnitID = kBannerAdUnitID;
   self.bannerView.rootViewController = self;
   [self.bannerView loadRequest:[GADRequest request]];
   // [END firebase_banner_example]
@@ -53,7 +61,7 @@
 
 - (GADInterstitial *)createAndLoadInterstitial {
   GADInterstitial *interstitial = [[GADInterstitial alloc]
-      initWithAdUnitID:[FIRContext sharedInstance].adUnitIDForInterstitialTest];
+      initWithAdUnitID:kInterstitialAdUnitID];
   interstitial.delegate = self;
   [interstitial loadRequest:[GADRequest request]];
   return interstitial;

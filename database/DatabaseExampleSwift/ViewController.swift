@@ -23,7 +23,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
   // Instance variables
   var ref: FIRDatabaseReference!
   var messages: [FIRDataSnapshot]! = []
-  private var _refHandle: FirebaseHandle!
+  private var _refHandle: FIRDatabaseHandle!
   private var userInt: UInt32 = arc4random()
 
   // Outlets
@@ -35,19 +35,19 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     super.viewDidLoad()
 
     // [START create_database_reference]
-    self.ref = FIRDatabase().reference
+    self.ref = FIRDatabase().reference()
     // [END create_database_reference]
   }
 
   override func viewWillAppear(animated: Bool) {
     self.messages.removeAll()
     // Listen for new messages in the Firebase database
-    _refHandle = self.ref.childByAppendingPath("messages").observeEventType(.ChildAdded, withBlock: { (snapshot) -> Void in
+    _refHandle = self.ref.child("messages").observeEventType(.ChildAdded, withBlock: { (snapshot) -> Void in
       self.messages.append(snapshot)
       self.tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: self.messages.count-1, inSection: 0)], withRowAnimation: UITableViewRowAnimation.Automatic)
     })
     // Listen for deleted messages in the Firebase database
-    self.ref.childByAppendingPath("messages").observeEventType(.ChildRemoved, withBlock: { (snapshot) -> Void in
+    self.ref.child("messages").observeEventType(.ChildRemoved, withBlock: { (snapshot) -> Void in
       let index = self.indexOfMessage(snapshot)
       self.messages.removeAtIndex(index)
       self.tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: index, inSection: 0)], withRowAnimation: UITableViewRowAnimation.Automatic)
@@ -91,7 +91,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
   // UITextViewDelegate protocol methods
   func textFieldShouldReturn(textField: UITextField) -> Bool {
     // Push data to Firebase Database
-    self.ref.childByAppendingPath("messages").childByAutoId().setValue(["name": "User\(self.userInt)", "text": textField.text as String!])
+    self.ref.child("messages").childByAutoId().setValue(["name": "User\(self.userInt)", "text": textField.text as String!])
     textField.text = ""
     return true
   }

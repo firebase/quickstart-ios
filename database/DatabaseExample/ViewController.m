@@ -17,7 +17,7 @@
 #import "ViewController.h"
 
 @implementation ViewController {
-  FirebaseHandle _refHandle;
+  FIRDatabaseHandle _refHandle;
   UInt32 _userInt;
 }
 
@@ -37,7 +37,7 @@
 - (void)viewWillAppear:(BOOL)animated {
   [self.messages removeAllObjects];
   // Listen for new messages in the Firebase database
-  _refHandle = [[self.ref childByAppendingPath:@"messages"]
+  _refHandle = [[self.ref child:@"messages"]
       observeEventType:FIRDataEventTypeChildAdded
              withBlock:^(FIRDataSnapshot *snapshot) {
                [self.messages addObject:snapshot];
@@ -46,7 +46,7 @@
                ] withRowAnimation:UITableViewRowAnimationAutomatic];
              }];
   // Listen for deleted messages in the Firebase database
-  [[self.ref childByAppendingPath:@"messages"]
+  [[self.ref child:@"messages"]
       observeEventType:FIRDataEventTypeChildRemoved
              withBlock:^(FIRDataSnapshot *snapshot) {
                int index = [self indexOfMessage:snapshot];
@@ -95,7 +95,7 @@
 #pragma mark - UITableViewDataSource protocol methods
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
   // Push data to Firebase Database
-  [[[self.ref childByAppendingPath:@"messages"] childByAutoId] setValue:@{
+  [[[self.ref child:@"messages"] childByAutoId] setValue:@{
     @"name" : [NSString stringWithFormat:@"User %d", _userInt],
     @"text" : textField.text
   }];

@@ -15,9 +15,8 @@
 //
 
 #import "DownloadViewController.h"
-#import "FirebaseStorage.h"
-@import FirebaseApp;
-@import Firebase.Core;
+@import FirebaseStorage;
+@import FirebaseAnalytics;
 
 @interface DownloadViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
@@ -29,39 +28,23 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-  FIRFirebaseApp *app = [FIRFirebaseApp app];
-  self.storageRef = [[FIRStorage storageForApp:app] reference];
+  self.storageRef = [[FIRStorage storage] reference];
 
   NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
   NSString *documentsDirectory = [paths objectAtIndex:0];
   NSString *filePath = [NSString stringWithFormat:@"file:%@/myimage.jpg", documentsDirectory];
 
   // [START downloadimage]
-  FIRStorageDownloadTask *download = [[_storageRef childByAppendingPath:@"myimage.jpg"]
-                                      fileByWritingToPath:filePath];
+  [[_storageRef child:@"myimage.jpg"]
+          writeToFile:[NSURL URLWithString:filePath] completion:^(NSURL * _Nullable URL, NSError * _Nullable error) {
+            if (error) {
+              NSLog(@"Error downloading: %@", error);
+              _statusTextView.text = @"Download Failed";
+              return;
+            }
+            _statusTextView.text = @"Download Succeeded!";
+            _imageView.image = [UIImage imageWithContentsOfFile:filePath];
+          }];
   // [END downloadimage]
-
-  // [START downloadcomplete]
-  [download observeStatus:FIRTaskStatusSuccess withCallback:^(FIRStorageDownloadTask *task) {
-      _statusTextView.text = @"Download Succeeded!";
-      [self onSuccesfulDownload:filePath];
-  }];
-  // [END downloadcomplete]
-
-  // [START downloadfailure]
-  [download observeStatus:FIRTaskStatusFailure
-      withErrorCallback:^(FIRStorageDownloadTask *task, NSError *error) {
-        if (error) {
-          NSLog(@"Error downloading: %@", error);
-        }
-        _statusTextView.text = @"Download Failed";
-      }];
-  // [END downloadfailure]
 }
-
-- (void)onSuccesfulDownload: (NSString *)filePath {
-  _imageView.image = [UIImage imageWithContentsOfFile:filePath];
-}
-
-
 @end

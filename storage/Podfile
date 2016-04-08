@@ -4,7 +4,7 @@ source 'http://github.com/CocoaPods/Specs.git'
 platform :ios, '7.0'
 
 pod 'Firebase/Auth'
-pod 'FirebaseStorage'
+pod 'Firebase/Storage'
 
 # If using CocoaPods 1.0.0+, use the new target syntax.
 # target 'StorageExample'

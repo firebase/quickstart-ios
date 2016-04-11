@@ -21,9 +21,9 @@
 
 import UIKit
 
+import FirebaseAnalytics
 import FirebaseAuth
 import FirebaseAuthUI
-import Firebase.Core
 
 @objc(SelectViewController)
 class SelectViewController: UIViewController {
@@ -45,9 +45,7 @@ class SelectViewController: UIViewController {
 
   @IBAction func didUISignIn(sender: UIButton) {
     // [START firebase_auth_ui]
-    let firebaseAuth = FIRAuth.auth()
-    let firebaseAuthUI: FIRAuthUI = FIRAuthUI.init(forApp: (firebaseAuth?.app)!)!
-    firebaseAuthUI.presentSignInWithViewController(self) { (user, error) in
+    FIRAuthUI.authUI()?.presentSignInWithViewController(self) { (user, error) in
       // [END firebase_auth_ui]
       let okAction = UIAlertAction.init(title: self.kOKButtonText, style: .Default)
         {action in print(self.kOKButtonText)}
@@ -68,7 +66,7 @@ class SelectViewController: UIViewController {
 
   @IBAction func didTapGuestSignIn(sender: AnyObject) {
     // [START firebase_auth_anonymous]
-    FIRAuth.auth()?.signInAnonymouslyWithCallback() { (user, error) in
+    FIRAuth.auth()?.signInAnonymouslyWithCompletion() { (user, error) in
     // [END firebase_auth_anonymous]
       if let error = error {
         print(error.localizedDescription)

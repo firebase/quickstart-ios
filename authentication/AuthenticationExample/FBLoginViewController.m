@@ -50,7 +50,7 @@
     [self showSpinner:^{
       // [END_EXCLUDE]
       [[FIRAuth auth] signInWithCredential:credential
-                                  callback:^(FIRUser *user, NSError *error) {
+                                completion:^(FIRUser *user, NSError *error) {
                                     // [END headless_facebook_auth]
                                     [self hideSpinner:^{
                                       if (error) {

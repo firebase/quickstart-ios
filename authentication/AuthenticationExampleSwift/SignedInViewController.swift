@@ -22,8 +22,8 @@
 import UIKit
 
 // [START usermanagement_view_import]
+import FirebaseAnalytics
 import FirebaseAuth
-import Firebase.Core
 // [END usermanagement_view_import]
 
 @objc(SignedInViewController)
@@ -140,7 +140,7 @@ class SignedInViewController: UIViewController {
         self.presentViewController(alertController, animated: true, completion: nil)
     }
     // [START token_refresh]
-    FIRAuth.auth()?.currentUser?.getTokenForcingRefresh(true, callback: action)
+    FIRAuth.auth()?.currentUser?.getTokenForcingRefresh(true, completion: action)
     // [END token_refresh]
   }
 
@@ -157,7 +157,7 @@ class SignedInViewController: UIViewController {
         // [START profile_change]
         let changeRequest = FIRAuth.auth()?.currentUser?.profileChangeRequest()
         changeRequest?.displayName = userInput!
-        changeRequest?.commitChangesWithCallback() { (error) in
+        changeRequest?.commitChangesWithCompletion() { (error) in
           // [END profile_change]
           self.hideSpinner({
             self.showTypicalUIForUserUpdateResultsWithTitle(self.kSetDisplayNameTitle, error: error)
@@ -196,7 +196,7 @@ class SignedInViewController: UIViewController {
   @IBAction func didRequestVerifyEmail(sender: AnyObject) {
     showSpinner({
       // [START send_verification_email]
-      FIRAuth.auth()!.currentUser!.sendEmailVerification({ (error) in
+      FIRAuth.auth()!.currentUser!.sendEmailVerificationWithCompletion({ (error) in
         // [END send_verification_email]
         self.hideSpinner({
           if let error = error {

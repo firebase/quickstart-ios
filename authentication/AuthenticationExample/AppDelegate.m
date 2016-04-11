@@ -23,8 +23,7 @@
 #import "AppDelegate.h"
 
 // [START usermanagement_import]
-@import Firebase.Core;
-@import FirebaseApp;
+@import FirebaseAnalytics;
 @import FirebaseAuth;
 @import FirebaseAuthUI;
 // [END usermanagement_import]
@@ -46,9 +45,6 @@ static NSString *const kFacebookAppID = @"Placeholder";
     didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   // [START firebase_configure]
   // Use Firebase library to configure APIs
-  NSError *configureError;
-  BOOL status = [[FIRContext sharedInstance] configure:&configureError];
-  NSAssert(status, @"Error configuring Firebase services: %@", configureError);
   [FIRApp configure];
   // [END firebase_configure]
 
@@ -61,16 +57,17 @@ static NSString *const kFacebookAppID = @"Placeholder";
 - (BOOL)application:(nonnull UIApplication *)application
             openURL:(nonnull NSURL *)url
             options:(nonnull NSDictionary<NSString *, id> *)options {
-  if ([FIRFirebaseApp handleOpenURL:url
-                  sourceApplication:options[UIApplicationOpenURLOptionsSourceApplicationKey]]) {
-    return YES;
+  return [self application:application
+                   openURL:url
+         sourceApplication:options[UIApplicationOpenURLOptionsSourceApplicationKey]
+                annotation:options[UIApplicationOpenURLOptionsAnnotationKey]];
   }
-
-  return NO;
-}
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url
     sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+  if ([[FIRAuthUI authUI] handleOpenURL:url sourceApplication:sourceApplication]) {
+    return YES;
+  }
   if ([[GIDSignIn sharedInstance] handleURL:url
                       sourceApplication:sourceApplication
                                  annotation:annotation]) {

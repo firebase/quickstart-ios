@@ -24,7 +24,6 @@
 
 // [START usermanagement_view_import]
 @import FirebaseAuth;
-@import Firebase.Core;
 // [END usermanagement_view_import]
 
 
@@ -55,7 +54,7 @@ static NSString *const kOKButtonText = @"OK";
   // [START headless_email_auth]
   [[FIRAuth auth] signInWithEmail:_emailField.text
                          password:_passwordField.text
-                         callback:^(FIRUser *user, NSError *error) {
+                         completion:^(FIRUser *user, NSError *error) {
                            // [END headless_email_auth]
                            if (error) {
                              [self showMessagePrompt:error.localizedDescription];
@@ -69,7 +68,7 @@ static NSString *const kOKButtonText = @"OK";
 - (IBAction)didTapCustomTokenLogin:(id)sender {
   NSString *customToken = _tokenField.text;
   // [START signinwithcustomtoken]
-  [[FIRAuth auth] signInWithCustomToken:customToken callback:^(FIRUser * _Nullable user,
+  [[FIRAuth auth] signInWithCustomToken:customToken completion:^(FIRUser * _Nullable user,
                                                      NSError * _Nullable error) {
     if (error) {
       [self showMessagePrompt:error.localizedDescription];
@@ -95,7 +94,7 @@ static NSString *const kOKButtonText = @"OK";
         [self showSpinner:^{
           // [START password_reset]
           [[FIRAuth auth] sendPasswordResetWithEmail:userInput
-              callback:^(NSError * _Nullable error) {
+              completion:^(NSError * _Nullable error) {
                 // [END password_reset]
                 [self hideSpinner:^{
                   if (error) {
@@ -123,8 +122,8 @@ static NSString *const kOKButtonText = @"OK";
 
         [self showSpinner:^{
           // [START get_providers]
-          [[FIRAuth auth] getProvidersForEmail:userInput
-              callback:^(NSArray<NSString *> *_Nullable providers, NSError *_Nullable error) {
+          [[FIRAuth auth] fetchProvidersForEmail:userInput
+              completion:^(NSArray<NSString *> *_Nullable providers, NSError *_Nullable error) {
                 // [END get_providers]
                 [self hideSpinner:^{
                   if (error) {
@@ -155,7 +154,7 @@ static NSString *const kOKButtonText = @"OK";
               [self showSpinner:^{
                 // [START create_user]
                 [[FIRAuth auth] createUserWithEmail:email password:password
-                    callback:^(FIRUser * _Nullable user, NSError * _Nullable error) {
+                    completion:^(FIRUser * _Nullable user, NSError * _Nullable error) {
                       // [END create_user]
                       [self hideSpinner:^{
                         if (error) {

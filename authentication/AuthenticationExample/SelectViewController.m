@@ -23,7 +23,7 @@
 
 @import FirebaseAuth;
 @import FirebaseAuthUI;
-@import Firebase.Core;
+@import FirebaseAnalytics;
 
 /*! @var kOKButtonText
  @brief The text of the "OK" button for the Sign In result dialogs.
@@ -48,9 +48,7 @@ static NSString *const kSignInErrorAlertTitle = @"Sign-In Error";
 
 - (IBAction)didUISignIn:(UIButton *)sender {
   // [START firebase_auth_ui]
-  FIRAuth *firebaseAuth = [FIRAuth auth];
-  FIRAuthUI *firebaseAuthUI = [FIRAuthUI authUIForApp:firebaseAuth.app];
-  [firebaseAuthUI presentSignInWithViewController:self callback:^(FIRUser *_Nullable user,
+  [[FIRAuthUI authUI] presentSignInWithViewController:self callback:^(FIRUser *_Nullable user,
                                                                   NSError *_Nullable error) {
     // [END firebase_auth_ui]
     UIAlertAction *okAction = [UIAlertAction actionWithTitle:kOKButtonText
@@ -77,7 +75,7 @@ static NSString *const kSignInErrorAlertTitle = @"Sign-In Error";
 
 - (IBAction)didTapGuestSignIn:(id)sender {
   // [START firebase_auth_anonymous]
-  [[FIRAuth auth] signInAnonymouslyWithCallback:^(FIRUser *_Nullable user,
+  [[FIRAuth auth] signInAnonymouslyWithCompletion:^(FIRUser *_Nullable user,
                                                   NSError *_Nullable error) {
     // [END firebase_auth_anonymous]
     if (error) {

@@ -28,7 +28,7 @@
 #import <GoogleSignIn/GIDAuthentication.h>
 
 @import FirebaseAuth;
-@import Firebase.Core;
+@import FirebaseAnalytics;
 
 @interface GoogleSignInViewController ()<GIDSignInDelegate, GIDSignInUIDelegate>
 @property (weak, nonatomic) IBOutlet GIDSignInButton *signInButton;
@@ -39,7 +39,7 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
 
-  [GIDSignIn sharedInstance].clientID = [FIRContext sharedInstance].serviceInfo.clientID;
+  [GIDSignIn sharedInstance].clientID = [FIRApp defaultApp].options.clientID;
   [GIDSignIn sharedInstance].uiDelegate = self;
 
   // TODO(developer): Configure the sign-in button look/feel
@@ -58,7 +58,7 @@
     [self showSpinner:^{
       // [END_EXCLUDE]
       [[FIRAuth auth] signInWithCredential:credential
-                                  callback:^(FIRUser *user, NSError *error) {
+                                completion:^(FIRUser *user, NSError *error) {
                                     // [END headless_google_auth]
                                     [self hideSpinner:^{
                                       if (error) {

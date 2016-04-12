@@ -15,27 +15,26 @@
 //
 
 #import "ViewController.h"
-#import "FCRLog.h"
+@import FirebaseCrashReporting;
 
-@import Firebase;
 
 @implementation ViewController
 
 - (void)viewDidLoad {
   [super viewDidLoad];
 
-  // Log that the view did load, FCRNSLog is used here so the log message will be
-  // shown in the console output. If FCRLog is used the message is not shown in
+  // Log that the view did load, FIRCrashNSLog is used here so the log message will be
+  // shown in the console output. If FIRCrashLog is used the message is not shown in
   // the console output.
-  FCRNSLog(@"View loaded");
+  FIRCrashNSLog(@"View loaded");
 }
 
 - (IBAction)initiateCrash:(id)sender {
-    // FCRLog is used here to indicate that the log message
-    // will not be shown in the console output. Use FCRNSLog to have the
+    // FIRCrashLog is used here to indicate that the log message
+    // will not be shown in the console output. Use FIRCrashNSLog to have the
     // log message show in the console output.
     // [START log_and_crash]
-    FCRLog(@"Cause Crash button clicked");
+    FIRCrashLog(@"Cause Crash button clicked");
     assert(NO);
     // [END log_and_crash]
 }

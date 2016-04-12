@@ -15,7 +15,7 @@
 //
 
 import UIKit
-import Firebase
+import FirebaseAnalytics
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -27,6 +27,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     FIRApp.configure()
     return true
   }
-
 }
 

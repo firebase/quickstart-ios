@@ -14,7 +14,6 @@
 //  limitations under the License.
 //
 import UIKit
-import Firebase.AppInvite
 
 // Match the ObjC symbol name inside Main.storyboard.
 @objc(ViewController)

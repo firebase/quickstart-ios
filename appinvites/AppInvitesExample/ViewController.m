@@ -15,8 +15,8 @@
 //
 
 #import "ViewController.h"
-
-@import Firebase.AppInvite;
+#import "GINInvite/GINInvite.h"
+#import "GoogleSignIn/GoogleSignIn.h"
 
 // [START viewcontroller_interfaces]
 @interface ViewController ()<GINInviteDelegate, GIDSignInDelegate, GIDSignInUIDelegate>

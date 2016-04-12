@@ -16,8 +16,6 @@
 
 @import UIKit;
 
-@import Firebase;
-
 @interface AppDelegate : UIResponder<UIApplicationDelegate>
 
 @property(nonatomic, strong) UIWindow *window;

@@ -15,7 +15,7 @@
 //
 
 import UIKit
-import Firebase
+import FirebaseCrashReporting
 
 @objc(ViewController)
 class ViewController: UIViewController {
@@ -23,19 +23,12 @@ class ViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    // Log that the view did load, true is used here so the log message will be
-    // shown in the console output. If false is used the message is not shown in
-    // the console output.
-    withVaList([]) {
-        FCRNSLogv("View loaded", $0)
-    }
+    FIRCrashMessage("View loaded")
   }
 
   @IBAction func initiateCrash(sender: AnyObject) {
     // [START log_and_crash_swift]
-    withVaList([]){
-        FCRLogv("Cause Crash button clicked", $0)
-    }
+    FIRCrashMessage("Cause Crash button clicked")
     fatalError()
     // [END log_and_crash_swift]
   }

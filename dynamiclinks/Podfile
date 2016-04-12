@@ -1,4 +1,4 @@
-# DurableLinksExample
+# DynamicLinksExample
 
 # TODO (ulukaya): Remove EAP before after internal hackathon.
 source 'https://cpdc-eap.googlesource.com/spec.git'
@@ -10,9 +10,8 @@ pod 'Firebase/DurableDeepLink'
 # [END pod_ddl]
 
 # If using CocoaPods 1.0.0+, use the new target syntax.
-# target 'DurableLinksExample'
-# target 'DurableLinksExampleSwift'
-# target 'DurableLinksExampleTests'
+# target 'DynamicLinksExample'
+# target 'DynamicLinksExampleSwift'
 
 # and delete the link_with command.
-link_with 'DurableLinksExample', 'DurableLinksExampleSwift', 'DurableLinksExampleTests'
+link_with 'DynamicLinksExample', 'DynamicLinksExampleSwift'

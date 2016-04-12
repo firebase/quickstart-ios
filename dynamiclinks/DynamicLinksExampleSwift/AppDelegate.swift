@@ -16,8 +16,7 @@
 
 import UIKit
 // [START import]
-import Firebase.DurableDeepLink
-import Firebase.Core
+import FirebaseAnalytics
 // [END import]
 
 
@@ -29,17 +28,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   // [START didfinishlaunching]
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
     // Use Firebase library to configure APIs
-    do {
-      try FIRContext.sharedInstance().configure()
-    } catch let configureError as NSError{
-      print ("Error configuring Firebase services: \(configureError)")
-    }
-
-    // Override point for customization after application launch.
-    GINDurableDeepLinkService.sharedInstance().setUpWithLaunchOptions(launchOptions,
-        apiKey: FIRContext.sharedInstance().serviceInfo.apiKey,
-        clientID: FIRContext.sharedInstance().serviceInfo.clientID,
-        urlScheme: "gindeeplinkurl", userDefaults: nil)
+    FIROptions.defaultOptions().deepLinkURLScheme = "gindeeplinkurl"
+    FIRApp.configure()
     GINDurableDeepLinkService.sharedInstance().checkForPendingDeepLink()
 
     return true
@@ -93,7 +83,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     let deepLink = GINDurableDeepLinkService.sharedInstance().deepLinkFromUniversalLinkURL(userActivity.webpageURL!)
     if (deepLink!.url != nil) {
-      self.application(application, openURL: deepLink!.url, sourceApplication: "com.apple.mobilesafari", annotation: [:])
+      self.application(application, openURL: deepLink!.url!, sourceApplication: "com.apple.mobilesafari", annotation: [:])
       return true
     }
     return false

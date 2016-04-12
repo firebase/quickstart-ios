@@ -13,28 +13,6 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 //
-
-#import <UIKit/UIKit.h>
-#import <XCTest/XCTest.h>
-
-@interface AppTests : XCTestCase
-@end
-
-@implementation AppTests
-
-- (void)setUp {
-  [super setUp];
-  // Put setup code here. This method is called before the invocation of each test method in the class.
-}
-
-- (void)tearDown {
-  // Put teardown code here. This method is called after the invocation of each test method in the class.
-  [super tearDown];
-}
-
-- (void)testExample {
-  // This is an example of a functional test case.
-  XCTAssert(YES, @"Pass");
-}
-
-@end
+//  Use this file to import your target's public headers that you would like to expose to Swift.
+//
+#import "GINDurableDeepLinkService/GoogleDurableDeepLinkService.h"

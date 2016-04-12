@@ -15,10 +15,10 @@
 //
 
 #import "AppDelegate.h"
+#import "GINDurableDeepLinkService/GoogleDurableDeepLinkService.h"
 
 // [START import]
-@import Firebase.DurableDeepLink;
-@import Firebase.Core;
+@import FirebaseAnalytics;
 // [END import]
 
 @implementation AppDelegate
@@ -27,17 +27,9 @@
 - (BOOL)application:(UIApplication *)application
     didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   // Use Firebase library to configure APIs
-  NSError *configureError;
-  BOOL status = [[FIRContext sharedInstance] configure:&configureError];
-  NSAssert(status, @"Error configuring Firebase services: %@", configureError);
+  [FIROptions defaultOptions].deepLinkURLScheme = @"gindeeplinkurl";
+  [FIRApp configure];
 
-  // Override point for customization after application launch.
-  [[GINDurableDeepLinkService sharedInstance]
-      setUpWithLaunchOptions:launchOptions
-                      apiKey:[FIRContext sharedInstance].serviceInfo.apiKey
-                    clientID:[FIRContext sharedInstance].serviceInfo.clientID
-                   urlScheme:@"gindeeplinkurl"
-                userDefaults:nil];
   [[GINDurableDeepLinkService sharedInstance] checkForPendingDeepLink];
   return YES;
 }

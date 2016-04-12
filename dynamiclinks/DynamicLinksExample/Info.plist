@@ -28,10 +28,10 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>ddlurl</string>
+			<string>gindeeplinkurl</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>ddlurl</string>
+				<string>gindeeplinkurl</string>
 			</array>
 		</dict>
 	</array>

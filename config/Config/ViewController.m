@@ -1,5 +1,5 @@
 //
-//  Copyright (c) 2015 Google Inc.
+//  Copyright (c) 2016 Google Inc.
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -14,38 +14,51 @@
 //  limitations under the License.
 //
 
-//
-// For more information on setting up and running this sample code, see
-// https://developers.google.com/firebase/docs/remote-config/ios
-//
-
 #import "ViewController.h"
-#import "FIRRemoteConfig.h"
+@import FirebaseRemoteConfig;
 
 @implementation ViewController
 
-const long PRICE = 100;
-NSString *const PRICE_PREFIX = @"Your price is $";
+NSString *const kPricePrefixConfigKey = @"price_prefix";
+NSString *const kPriceConfigKey = @"price";
+NSString *const kLoadingPhraseConfigKey = @"loading_phrase";
+NSString *const kIsPromotionConfigKey = @"is_promotion_on";
+NSString *const kDiscountConfigKey = @"discount";
 
 - (void)viewDidLoad {
-    self.remoteConfig = [FIRRemoteConfig remoteConfig];
+  [super viewDidLoad];
+  // [START get_remote_config_instance]
+  self.remoteConfig = [FIRRemoteConfig remoteConfig];
+  // [END get_remote_config_instance]
 
-    // Create Remote Config Setting to enable developer mode.
-    // Fetching configs from the server is normally limited to 5 requests per hour.
-    // Enabling developer mode allows many more requests to be made per hour, so developers
-    // can test different config values during development.
-    // [START enable_dev_mode]
-    FIRRemoteConfigSettings *remoteConfigSettings = [[FIRRemoteConfigSettings alloc] init];
-    remoteConfigSettings.developerModeEnabled = YES;
-    self.remoteConfig.configSettings = remoteConfigSettings;
-    // [END enable_dev_mode]
+  // Create Remote Config Setting to enable developer mode.
+  // Fetching configs from the server is normally limited to 5 requests per hour.
+  // Enabling developer mode allows many more requests to be made per hour, so developers
+  // can test different config values during development.
+  // [START enable_dev_mode]
+  FIRRemoteConfigSettings *remoteConfigSettings = [[FIRRemoteConfigSettings alloc] init];
+  remoteConfigSettings.developerModeEnabled = YES;
+  self.remoteConfig.configSettings = remoteConfigSettings;
+  // [END enable_dev_mode]
 
-    [self fetchConfig];
-    [super viewDidLoad];
+  // Set default Remote Config values. In general you should have in-app defaults for all
+  // values that you may configure using Remote Config later on. The idea is that you
+  // use the in-app defaults and when you need to adjust those defaults, you set an updated
+  // value in the App Manager console. The next time that your application fetches values
+  // from the server, the new values you set in the Firebase console are cached. After you
+  // activate these values, they are used in your app instead of the in-app defaults. You
+  // can set default values using a plist file, as shown here, or you can set defaults
+  // inline by using one of the other setDefaults methods.
+  // [START set_default_values]
+  [self.remoteConfig setDefaultsFromPlistFileName:@"RemoteConfigDefaults"];
+  // [END set_default_values]
+
+  [self fetchConfig];
+  [super viewDidLoad];
 }
 
 - (void)fetchConfig {
-    _priceLabel.text = @"Checking your price...";
+    _priceLabel.text = self.remoteConfig[kLoadingPhraseConfigKey].stringValue;
 
     long expirationDuration = 3600;
     // If in developer mode cacheExpiration is set to 0 so each fetch will retrieve values from
@@ -54,11 +67,11 @@ NSString *const PRICE_PREFIX = @"Your price is $";
         expirationDuration = 0;
     }
 
+    // [START fetch_config_with_callback]
     // cacheExpirationSeconds is set to cacheExpiration here, indicating that any previously
     // fetched and cached config would be considered expired because it would have been fetched
     // more than cacheExpiration seconds ago. Thus the next fetch would go to the server unless
     // throttling is in progress. The default expiration duration is 43200 (12 hours).
-    // [START fetch_config_with_callback]
     [self.remoteConfig fetchWithExpirationDuration:expirationDuration completionHandler:^(FIRRemoteConfigFetchStatus status, NSError *error) {
         if (status == FIRRemoteConfigFetchStatusSuccess) {
             NSLog(@"Config fetched!");
@@ -67,7 +80,9 @@ NSString *const PRICE_PREFIX = @"Your price is $";
         } else {
             NSLog(@"Config not fetched");
             NSLog(@"Error %@", error);
-            self.priceLabel.text = [NSString stringWithFormat:@"%@%ld", PRICE_PREFIX, PRICE];
+            self.priceLabel.text = [NSString stringWithFormat:@"%@%@",
+                                    self.remoteConfig[kPricePrefixConfigKey].stringValue,
+                                    self.remoteConfig[kPriceConfigKey].numberValue];
         }
     }];
     // [END fetch_config_with_callback]
@@ -75,13 +90,17 @@ NSString *const PRICE_PREFIX = @"Your price is $";
 
 // Display price with discount applied if promotion is on. Otherwise display original price.
 - (void)displayPrice {
-    if (self.remoteConfig[@"is_promotion_on"].boolValue) {
+    if (self.remoteConfig[kIsPromotionConfigKey].boolValue) {
         // [START get_config_value]
-        long discountedPrice = PRICE - self.remoteConfig[@"discount"].numberValue.longValue;
+        long discountedPrice = self.remoteConfig[kPriceConfigKey].numberValue.longValue -
+                                self.remoteConfig[kDiscountConfigKey].numberValue.longValue;
         // [END get_config_value]
-        self.priceLabel.text = [NSString stringWithFormat:@"%@%ld", PRICE_PREFIX, discountedPrice];
+        self.priceLabel.text = [NSString stringWithFormat:@"%@%ld",
+                                self.remoteConfig[kPricePrefixConfigKey].stringValue, discountedPrice];
     } else {
-        self.priceLabel.text = [NSString stringWithFormat:@"%@%ld", PRICE_PREFIX, PRICE];
+        self.priceLabel.text = [NSString stringWithFormat:@"%@%@",
+                                self.remoteConfig[kPricePrefixConfigKey].stringValue,
+                                self.remoteConfig[kPriceConfigKey].numberValue];
     }
 }
 

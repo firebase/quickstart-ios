@@ -13,12 +13,6 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 //
-
-#import <UIKit/UIKit.h>
+//  Use this file to import your target's public headers that you would like to expose to Swift.
+//
 @import FirebaseRemoteConfig;
-
-@interface ViewController : UIViewController
-@property (weak, nonatomic) IBOutlet UILabel *priceLabel;
-@property (weak, nonatomic) IBOutlet UIButton *fetchButton;
-@property (nonatomic, strong) FIRRemoteConfig *remoteConfig;
-@end

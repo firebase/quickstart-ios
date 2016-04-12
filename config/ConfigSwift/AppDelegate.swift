@@ -14,11 +14,20 @@
 //  limitations under the License.
 //
 
-#import <UIKit/UIKit.h>
-@import FirebaseRemoteConfig;
+import UIKit
+import FirebaseAnalytics
 
-@interface ViewController : UIViewController
-@property (weak, nonatomic) IBOutlet UILabel *priceLabel;
-@property (weak, nonatomic) IBOutlet UIButton *fetchButton;
-@property (nonatomic, strong) FIRRemoteConfig *remoteConfig;
-@end
+@UIApplicationMain
+class AppDelegate: UIResponder, UIApplicationDelegate {
+
+  var window: UIWindow?
+
+  func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    // [START configure_firebase]
+    FIRApp.configure()
+    // [END configure_firebase]
+    return true
+  }
+
+}
+

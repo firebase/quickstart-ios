@@ -4,12 +4,12 @@ source 'https://github.com/CocoaPods/Specs.git'
 
 platform :ios, '7.0'
 
-pod 'Firebase/Core'
 pod 'Firebase/RemoteConfig'
 
 # If using CocoaPods 1.0.0+, use the new target syntax.
 # target 'Config'
+# target 'ConfigSwift'
 # target 'ConfigTests'
 
 # and delete the link_with command.
-link_with 'Config', 'ConfigTests'
+link_with 'Config', 'ConfigSwift', 'ConfigTests'

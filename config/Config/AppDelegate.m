@@ -1,5 +1,5 @@
 //
-//  Copyright (c) 2015 Google Inc.
+//  Copyright (c) 2016 Google Inc.
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -15,12 +15,15 @@
 //
 
 #import "AppDelegate.h"
-@import Firebase.Core;
+@import FirebaseAnalytics;
 
 @implementation AppDelegate
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-  [FIRApp configure];
+- (BOOL)application:(UIApplication *)application
+    didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    // [START configure_firebase]
+    [FIRApp configure];
+    // [END configure_firebase]
   return YES;
 }
 

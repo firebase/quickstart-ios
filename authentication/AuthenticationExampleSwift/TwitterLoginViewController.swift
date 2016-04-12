@@ -23,7 +23,6 @@ import UIKit
 
 import TwitterKit
 import FirebaseAuth
-import Firebase.Core
 
 @objc(TwitterLoginViewController)
 class TwitterLoginViewController: UIViewController {

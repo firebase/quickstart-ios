@@ -21,7 +21,7 @@
 
 import UIKit
 
-import Firebase.Core
+import FirebaseAnalytics
 import FirebaseAuth
 
 @objc(GoogleSignInViewController)
@@ -32,7 +32,7 @@ class GoogleSignInViewController: UIViewController, GIDSignInDelegate, GIDSignIn
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    GIDSignIn.sharedInstance().clientID = FIRContext.sharedInstance().serviceInfo.clientID
+    GIDSignIn.sharedInstance().clientID = FIRApp.defaultApp()?.options.clientID
     GIDSignIn.sharedInstance().uiDelegate = self
 
     // TODO(developer): Configure the sign-in button look/feel

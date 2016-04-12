@@ -22,7 +22,7 @@
 #import "SignedInViewController.h"
 #import "UIViewController+Alerts.h"
 @import FirebaseAuth;
-@import Firebase.Core;
+@import FirebaseAnalytics;
 
 @interface SignedInViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *userInfoEmailLabel;
@@ -125,7 +125,7 @@ static NSString *const kChangePasswordText = @"Change Password";
     [self presentViewController:alertController animated:YES completion:nil];
   };
   // [START token_refresh]
-  [[FIRAuth auth].currentUser getTokenForcingRefresh:YES callback:action];
+  [[FIRAuth auth].currentUser getTokenForcingRefresh:YES completion:action];
   // [END token_refresh]
 }
 
@@ -144,7 +144,7 @@ static NSString *const kChangePasswordText = @"Change Password";
                            FIRUserProfileChangeRequest *changeRequest =
                            [[FIRAuth auth].currentUser profileChangeRequest];
                            changeRequest.displayName = userInput;
-                           [changeRequest commitChangesWithCallback:^(NSError *_Nullable error) {
+                           [changeRequest commitChangesWithCompletion:^(NSError *_Nullable error) {
                              // [END profile_change]
                              [self hideSpinner:^{
                                [self showTypicalUIForUserUpdateResultsWithTitle:kSetDisplayNameTitle error:error];
@@ -170,7 +170,7 @@ static NSString *const kChangePasswordText = @"Change Password";
 - (void)unlinkFromProvider:(NSString *)provider {
   // [START unlink_provider]
   [[FIRAuth auth].currentUser unlinkFromProvider:provider
-                                        callback:^(FIRUser *_Nullable user, NSError *_Nullable error) {
+                                      completion:^(FIRUser *_Nullable user, NSError *_Nullable error) {
                                           [self showTypicalUIForUserUpdateResultsWithTitle:kUnlinkTitle error:error];
                                           [self updateUserInfo];
                                         }];
@@ -183,7 +183,7 @@ static NSString *const kChangePasswordText = @"Change Password";
 - (IBAction)didRequestVerifyEmail:(id)sender {
   [self showSpinner:^{
     // [START send_verification_email]
-    [[FIRAuth auth].currentUser sendEmailVerification:^(NSError * _Nullable error) {
+    [[FIRAuth auth].currentUser sendEmailVerificationWithCompletion:^(NSError * _Nullable error) {
       // [END send_verification_email]
       [self hideSpinner:^{
         if (error) {
@@ -209,7 +209,7 @@ static NSString *const kChangePasswordText = @"Change Password";
 
                          [self showSpinner:^{
                            // [START change_email]
-                           [[FIRAuth auth].currentUser updateEmail:userInput callback:^(NSError *_Nullable error) {
+                           [[FIRAuth auth].currentUser updateEmail:userInput completion:^(NSError *_Nullable error) {
                              // [END change_email]
                              [self hideSpinner:^{
                                [self showTypicalUIForUserUpdateResultsWithTitle:kChangeEmailText error:error];
@@ -232,7 +232,7 @@ static NSString *const kChangePasswordText = @"Change Password";
 
                          [self showSpinner:^{
                            // [START change_password]
-                           [[FIRAuth auth].currentUser updatePassword:userInput callback:^(NSError *_Nullable error) {
+                           [[FIRAuth auth].currentUser updatePassword:userInput completion:^(NSError *_Nullable error) {
                              // [END change_password]
                              [self hideSpinner:^{
                                [self showTypicalUIForUserUpdateResultsWithTitle:kChangePasswordText error:error];

@@ -23,7 +23,6 @@ import UIKit
 
 // [START usermanagement_view_import]
 import FirebaseAuth
-import Firebase.Core
 // [END usermanagement_view_import]
 
 @objc(CustomViewController)
@@ -114,7 +113,7 @@ class CustomViewController: UIViewController {
 
       self.showSpinner({
         // [START get_providers]
-        FIRAuth.auth()!.getProvidersForEmail(userInput!) { (providers, error) in
+        FIRAuth.auth()!.fetchProvidersForEmail(userInput!) { (providers, error) in
           // [END get_providers]
           self.hideSpinner({
             if let error = error {

@@ -36,7 +36,7 @@
       [self showSpinner:^{
         // [END_EXCLUDE]
         [[FIRAuth auth] signInWithCredential:credential
-                                    callback:^(FIRUser *user, NSError *error) {
+                                  completion:^(FIRUser *user, NSError *error) {
                                       // [END headless_twitter_auth]
                                       [self hideSpinner:^{
                                         if (error) {

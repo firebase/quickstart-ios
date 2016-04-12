@@ -22,8 +22,7 @@
 import UIKit
 
 // [START usermanagement_import]
-import Firebase.Core
-import FirebaseApp
+import FirebaseAnalytics
 import FirebaseAuth
 import FirebaseAuthUI
 import FirebaseFacebookAuthUI
@@ -43,11 +42,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       launchOptions: [NSObject: AnyObject]?) -> Bool {
     // [START firebase_configure]
     // Use Firebase library to configure APIs
-    do {
-      try FIRContext.sharedInstance().configure()
-    } catch let configureError as NSError {
-      print ("Error configuring Firebase services: \(configureError)")
-    }
     FIRApp.configure()
     // [END firebase_configure]
 
@@ -57,19 +51,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     return true
   }
 
-  func application(app: UIApplication, openURL url: NSURL, options: [String : AnyObject]) -> Bool {
-    if #available(iOS 9.0, *) {
-      if (FIRFirebaseApp.handleOpenURL(url,
-          sourceApplication: options[UIApplicationOpenURLOptionsSourceApplicationKey] as! String)) {
-        return true
-      }
-    } else {
-      // Fallback on earlier versions
-    }
-    return false
+  @available(iOS 9.0, *)
+  func application(application: UIApplication, openURL url: NSURL, options: [String : AnyObject])
+    -> Bool {
+      return FIRAuthUI.authUI()!.handleOpenURL(url,
+                                               sourceApplication: options[UIApplicationOpenURLOptionsSourceApplicationKey] as! String)
   }
 
   func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
+    if FIRAuthUI.authUI()!.handleOpenURL(url, sourceApplication: sourceApplication!) {
+      return true
+    }
     if GIDSignIn.sharedInstance().handleURL(url, sourceApplication: sourceApplication, annotation: annotation) {
       return true
     }

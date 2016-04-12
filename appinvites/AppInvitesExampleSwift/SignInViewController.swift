@@ -14,7 +14,7 @@
 //  limitations under the License.
 //
 import UIKit
-import Firebase.AppInvite
+import FirebaseAnalytics
 
 // Match the ObjC symbol name inside Main.storyboard.
 @objc(SignInViewController)
@@ -28,6 +28,8 @@ class SignInViewController: UIViewController, GIDSignInDelegate, GINInviteDelega
     super.viewDidAppear(animated)
 
     bgText.text = "App Invites\niOS demo"
+
+    GIDSignIn.sharedInstance().clientID = FIRApp.defaultApp()?.options.clientID
     GIDSignIn.sharedInstance().delegate = self
     GIDSignIn.sharedInstance().uiDelegate = self
     GIDSignIn.sharedInstance().signInSilently()

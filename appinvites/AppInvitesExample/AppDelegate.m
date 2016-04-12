@@ -15,8 +15,9 @@
 //
 
 #import "AppDelegate.h"
-@import Firebase.AppInvite;
-@import Firebase.Core;
+#import "GINInvite/GINInvite.h"
+#import "GoogleSignIn/GoogleSignIn.h"
+@import FirebaseAnalytics;
 
 
 @implementation AppDelegate
@@ -24,9 +25,7 @@
 // [START didfinishlaunching]
 - (BOOL)application:(UIApplication *)application
     didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-  NSError *configureError;
-  BOOL status = [[FIRContext sharedInstance] configure:&configureError];
-  NSAssert(status, @"Error configuring Firebase services: %@", configureError);
+  [FIRApp configure];
 
   [GINInvite applicationDidFinishLaunchingWithOptions:launchOptions];
 
@@ -35,6 +34,15 @@
 // [END didfinishlaunching]
 
 // [START openurl]
+- (BOOL)application:(nonnull UIApplication *)application
+            openURL:(nonnull NSURL *)url
+            options:(nonnull NSDictionary<NSString *, id> *)options {
+  return [self application:application
+                   openURL:url
+         sourceApplication:options[UIApplicationOpenURLOptionsSourceApplicationKey]
+                annotation:options[UIApplicationOpenURLOptionsAnnotationKey]];
+}
+
 - (BOOL)application:(UIApplication *)application
             openURL:(NSURL *)url
   sourceApplication:(NSString *)sourceApplication

@@ -14,7 +14,7 @@
 //  limitations under the License.
 //
 import UIKit
-import Firebase.AppInvite
+import FirebaseAnalytics
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -24,12 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func application(application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
     // Use Firebase library to configure APIs
-    do {
-        try FIRContext.sharedInstance().configure()
-    } catch let configureError as NSError {
-        print("Error configuring Firebase services: \(configureError)")
-    }
-
+    FIRApp .configure()
     // Initialize sign-in
     GINInvite.applicationDidFinishLaunchingWithOptions(launchOptions)
 
@@ -38,6 +33,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   // [END didfinishlaunching]
 
   // [START openurl]
+  @available(iOS 9.0, *)
+  func application(application: UIApplication, openURL url: NSURL, options: [String : AnyObject])
+    -> Bool {
+      return self.application(application, openURL: url, sourceApplication: options[UIApplicationOpenURLOptionsSourceApplicationKey] as? String, annotation: "")
+  }
+
   func application(application: UIApplication,
     openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
       if let invite = GINInvite.handleURL(url, sourceApplication:sourceApplication, annotation:annotation) as? GINReceivedInvite {

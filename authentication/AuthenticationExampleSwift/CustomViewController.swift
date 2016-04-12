@@ -141,7 +141,7 @@ class CustomViewController: UIViewController {
 
         self.showSpinner({
           // [START create_user]
-          FIRAuth.auth()!.createUserWithEmail(email!, password: password!) { (user, error) in
+          FIRAuth.auth()?.createUserWithEmail(email!, password: password!) { (user, error) in
             // [END create_user]
             self.hideSpinner({
               if let error = error {

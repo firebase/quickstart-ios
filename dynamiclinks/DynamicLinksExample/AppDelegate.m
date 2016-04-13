@@ -15,19 +15,22 @@
 //
 
 #import "AppDelegate.h"
-#import "GINDurableDeepLinkService/GoogleDurableDeepLinkService.h"
-
 // [START import]
-@import FirebaseAnalytics;
+#import "GINDurableDeepLinkService/GoogleDurableDeepLinkService.h"
 // [END import]
+
+@import FirebaseAnalytics;
+
+static NSString *const CUSTOM_URL_SCHEME = @"gindeeplinkurl";
 
 @implementation AppDelegate
 
 // [START didfinishlaunching]
 - (BOOL)application:(UIApplication *)application
     didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-  // Use Firebase library to configure APIs
-  [FIROptions defaultOptions].deepLinkURLScheme = @"gindeeplinkurl";
+  // Set deepLinkURLScheme to the custom URL scheme you defined in your
+  // Xcode project.
+  [FIROptions defaultOptions].deepLinkURLScheme = CUSTOM_URL_SCHEME;
   [FIRApp configure];
 
   [[GINDurableDeepLinkService sharedInstance] checkForPendingDeepLink];
@@ -41,7 +44,7 @@
   sourceApplication:(NSString *)sourceApplication
          annotation:(id)annotation {
   GINDeepLink *deepLink =
-  [[GINDurableDeepLinkService sharedInstance] deepLinkFromCustomSchemeURL:url];
+      [[GINDurableDeepLinkService sharedInstance] deepLinkFromCustomSchemeURL:url];
   if (deepLink) {
     // Handle the deep link. For example, show the deep-linked content or apply
     // a promotional offer to the user's account.
@@ -75,22 +78,26 @@
   // [START_EXCLUDE silent]
   // Show the deep link URL from userActivity.
   NSString *message =
-  [NSString stringWithFormat:@"continueUserActivity webPageURL:\n%@", userActivity.webpageURL];
+    [NSString stringWithFormat:@"continueUserActivity webPageURL:\n%@", userActivity.webpageURL];
   [self showDeepLinkAlertViewWithMessage:message];
-  // [END_EXCLUDE]
 
   __weak AppDelegate *weakSelf = self;
+  // [END_EXCLUDE]
   return [[GINDurableDeepLinkService sharedInstance]
           handleUniversalLink:userActivity.webpageURL
           completion:^(GINDeepLink * _Nonnull deepLink, NSError * _Nonnull error) {
+            // Handle the deep link. For example, show the deep-linked content or apply
+            // a promotional offer to the user's account.
+            // [START_EXCLUDE]
             AppDelegate *strongSelf = weakSelf;
-            // the source application needs to be safari or chrome, otherwise
-            // GIDSignIn will not handle the URL.
+            // The source application needs to be safari or chrome, otherwise
+            // GINDeepLink will not handle the URL.
             NSString *sourceApplication = @"com.apple.mobilesafari";
             [strongSelf application:application
                             openURL:deepLink.url
                   sourceApplication:sourceApplication
                          annotation:@{}];
+            // [END_EXCLUDE]
           }];
 }
 // [END continueuseractivity]

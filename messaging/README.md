@@ -1,13 +1,13 @@
-Firebase Notifications Quickstart
+Firebase Messaging Quickstart
 =================================
 
-The Firebase Notifications iOS Quickstart app demonstrates how to connect
-an iOS app to GCM and how to receive messages.
+The Firebase Messaging iOS Quickstart app demonstrates how to connect
+an iOS app to FCM and how to receive messages.
 
 Introduction
 ------------
 
-- [Read more about Firebase Notifications](https://developers.google.com/firebase/)
+- [Read more about Firebase Messaging](https://developers.google.com/firebase/)
 
 Getting Started
 ---------------

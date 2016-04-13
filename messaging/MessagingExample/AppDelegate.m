@@ -15,12 +15,14 @@
 //
 
 #import "AppDelegate.h"
-@import Firebase.Core;
+@import FirebaseAnalytics;
+@import FirebaseMessaging;
+@import FirebaseInstanceID;
 
 @interface AppDelegate ()
 @property(nonatomic, strong) void (^registrationHandler)
     (NSString *registrationToken, NSError *error);
-@property(nonatomic, assign) BOOL connectedToGCM;
+@property(nonatomic, assign) BOOL connectedToFCM;
 @property(nonatomic, strong) NSString *registrationToken;
 @property(nonatomic, assign) BOOL subscribedToTopic;
 @end
@@ -33,15 +35,13 @@ NSString *const SubscriptionTopic = @"/topics/global";
 - (BOOL)application:(UIApplication *)application
     didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   // [START_EXCLUDE]
-  _registrationKey = @"onRegistrationCompleted";
-  _messageKey = @"onMessageReceived";
+  self.registrationKey = @"onRegistrationCompleted";
+  self.messageKey = @"onMessageReceived";
   // Configure the Firebase context: parses the GoogleService-Info.plist, and initializes
   // the services that have entries in the file
-  NSError *configureError;
-  BOOL status = [[FIRContext sharedInstance] configure:&configureError];
-  NSAssert(status, @"Error configuring Google services: %@", configureError);
+  [FIRApp configure];
 
-  _gcmSenderID = [FIRContext sharedInstance].gcmSenderID;
+  self.fcmSenderID = [FIRApp defaultApp].options.GCMSenderID;
   // Register for remote notifications
   if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_7_1) {
     // iOS 7.1 or earlier
@@ -60,11 +60,6 @@ NSString *const SubscriptionTopic = @"/topics/global";
     [[UIApplication sharedApplication] registerForRemoteNotifications];
   }
   // [END register_for_remote_notifications]
-  // [START start_gcm_service]
-  GCMConfig *gcmConfig = [GCMConfig defaultConfig];
-  gcmConfig.receiverDelegate = self;
-  [[GCMService sharedInstance] startWithConfig:gcmConfig];
-  // [END start_gcm_service]
   __weak typeof(self) weakSelf = self;
   // Handler for registration token request
   _registrationHandler = ^(NSString *registrationToken, NSError *error) {
@@ -88,52 +83,38 @@ NSString *const SubscriptionTopic = @"/topics/global";
 }
 
 - (void)subscribeToTopic {
+
   // If the app has a registration token and is connected to GCM, proceed to subscribe to the
   // topic
-  if (_registrationToken && _connectedToGCM) {
-    [[GCMPubSub sharedInstance] subscribeWithToken:_registrationToken
-                                             topic:SubscriptionTopic
-                                           options:nil
-                                           handler:^(NSError *error) {
-                                             if (error) {
-                                               // Treat the "already subscribed" error more gently
-                                               if (error.code == 3001) {
-                                                 NSLog(@"Already subscribed to %@",
-                                                       SubscriptionTopic);
-                                               } else {
-                                                 NSLog(@"Subscription failed: %@",
-                                                       error.localizedDescription);
-                                               }
-                                             } else {
-                                               self.subscribedToTopic = true;
-                                               NSLog(@"Subscribed to %@", SubscriptionTopic);
-                                             }
-                                           }];
+  if (_registrationToken && _connectedToFCM) {
+    [[FIRMessaging messaging] subscribeToTopic:SubscriptionTopic];
+    self.subscribedToTopic = YES;
+    NSLog(@"Subscribed to %@", SubscriptionTopic);
   }
 }
 
 // [START connect_gcm_service]
 - (void)applicationDidBecomeActive:(UIApplication *)application {
   // Connect to the GCM server to receive non-APNS notifications
-  [[GCMService sharedInstance] connectWithHandler:^(NSError *error) {
+  [[FIRMessaging messaging] connectWithCompletion:^(NSError * _Nullable error) {
     if (error) {
-      NSLog(@"Could not connect to GCM: %@", error.localizedDescription);
-    } else {
-      _connectedToGCM = true;
-      NSLog(@"Connected to GCM");
-      // [START_EXCLUDE]
-      [self subscribeToTopic];
-      // [END_EXCLUDE]
+      NSLog(@"Could not connect to FCM: %@", error.localizedDescription);
+      return;
     }
+    self.connectedToFCM = true;
+    NSLog(@"Connected to GCM");
+    // [START_EXCLUDE]
+    [self subscribeToTopic];
+    // [END_EXCLUDE]
   }];
 }
 // [END connect_gcm_service]
 
 // [START disconnect_gcm_service]
 - (void)applicationDidEnterBackground:(UIApplication *)application {
-  [[GCMService sharedInstance] disconnect];
+  [[FIRMessaging messaging] disconnect];
   // [START_EXCLUDE]
-  _connectedToGCM = NO;
+  self.connectedToFCM = NO;
   // [END_EXCLUDE]
 }
 // [END disconnect_gcm_service]
@@ -143,20 +124,14 @@ NSString *const SubscriptionTopic = @"/topics/global";
     didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
   // [END receive_apns_token]
   // [START get_gcm_reg_token]
-  // Create a config and set a delegate that implements the GGLInstaceIDDelegate protocol.
-  GGLInstanceIDConfig *instanceIDConfig = [GGLInstanceIDConfig defaultConfig];
-  instanceIDConfig.delegate = self;
   // Start the GGLInstanceID shared instance with the that config and request a registration
   // token to enable reception of notifications
-  [[GGLInstanceID sharedInstance] startWithConfig:instanceIDConfig];
-  _registrationOptions = @{
-    kGGLInstanceIDRegisterAPNSOption : deviceToken,
-    kGGLInstanceIDAPNSServerTypeSandboxOption : @YES
-  };
-  [[GGLInstanceID sharedInstance] tokenWithAuthorizedEntity:_gcmSenderID
-                                                      scope:kGGLInstanceIDScopeGCM
-                                                    options:_registrationOptions
-                                                    handler:_registrationHandler];
+
+  [[FIRInstanceID instanceID] setAPNSToken:deviceToken type:FIRInstanceIDAPNSTokenTypeSandbox];
+  [[FIRInstanceID instanceID] tokenWithAuthorizedEntity:_fcmSenderID
+                                                  scope:kFIRInstanceIDScopeFirebaseMessaging
+                                                options:nil
+                                                handler:_registrationHandler];
   // [END get_gcm_reg_token]
 }
 
@@ -176,7 +151,7 @@ NSString *const SubscriptionTopic = @"/topics/global";
     didReceiveRemoteNotification:(NSDictionary *)userInfo {
   NSLog(@"Notification received: %@", userInfo);
   // This works only if the app started the GCM service
-  [[GCMService sharedInstance] appDidReceiveMessage:userInfo];
+  [[FIRMessaging messaging] appDidReceiveMessage:userInfo];
   // Handle the received message
   // [START_EXCLUDE]
   [[NSNotificationCenter defaultCenter] postNotificationName:_messageKey
@@ -190,7 +165,7 @@ NSString *const SubscriptionTopic = @"/topics/global";
           fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))handler {
   NSLog(@"Notification received: %@", userInfo);
   // This works only if the app started the GCM service
-  [[GCMService sharedInstance] appDidReceiveMessage:userInfo];
+  [[FIRMessaging messaging] appDidReceiveMessage:userInfo];
   // Handle the received message
   // Invoke the completion handler passing the appropriate UIBackgroundFetchResult value
   // [START_EXCLUDE]
@@ -205,11 +180,11 @@ NSString *const SubscriptionTopic = @"/topics/global";
 // [START on_token_refresh]
 - (void)onTokenRefresh {
   // A rotation of the registration tokens is happening, so the app needs to request a new token.
-  NSLog(@"The GCM registration token needs to be changed.");
-  [[GGLInstanceID sharedInstance] tokenWithAuthorizedEntity:_gcmSenderID
-                                                      scope:kGGLInstanceIDScopeGCM
-                                                    options:_registrationOptions
-                                                    handler:_registrationHandler];
+  NSLog(@"The FCM registration token needs to be changed.");
+  [[FIRInstanceID instanceID] tokenWithAuthorizedEntity:_fcmSenderID
+                                                  scope:kFIRInstanceIDScopeFirebaseMessaging
+                                                options:nil
+                                                handler:_registrationHandler];
 }
 // [END on_token_refresh]
 

@@ -70,26 +70,28 @@
 // [END openurl]
 
 // [START continueuseractivity]
-- (BOOL)application:(UIApplication *)application
-    continueUserActivity:(NSUserActivity *)userActivity
-      restorationHandler:(void (^)(NSArray *))restorationHandler {
+- (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity
+    restorationHandler:(void (^)(NSArray *))restorationHandler {
   // [START_EXCLUDE silent]
   // Show the deep link URL from userActivity.
   NSString *message =
-      [NSString stringWithFormat:@"continueUserActivity webPageURL:\n%@", userActivity.webpageURL];
+  [NSString stringWithFormat:@"continueUserActivity webPageURL:\n%@", userActivity.webpageURL];
   [self showDeepLinkAlertViewWithMessage:message];
   // [END_EXCLUDE]
 
-  GINDeepLink *deepLink = [[GINDurableDeepLinkService sharedInstance]
-                           deepLinkFromUniversalLinkURL:userActivity.webpageURL];
-  if (deepLink.url) {
-    [self application:application
-              openURL:deepLink.url
-    sourceApplication:@"com.apple.mobilesafari"
-           annotation:@{}];
-    return YES;
-  }
-  return NO;
+  __weak AppDelegate *weakSelf = self;
+  return [[GINDurableDeepLinkService sharedInstance]
+          handleUniversalLink:userActivity.webpageURL
+          completion:^(GINDeepLink * _Nonnull deepLink, NSError * _Nonnull error) {
+            AppDelegate *strongSelf = weakSelf;
+            // the source application needs to be safari or chrome, otherwise
+            // GIDSignIn will not handle the URL.
+            NSString *sourceApplication = @"com.apple.mobilesafari";
+            [strongSelf application:application
+                            openURL:deepLink.url
+                  sourceApplication:sourceApplication
+                         annotation:@{}];
+          }];
 }
 // [END continueuseractivity]
 

@@ -81,12 +81,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     showDeepLinkAlertViewWithMessage(message)
     // [END_EXCLUDE]
 
-    let deepLink = GINDurableDeepLinkService.sharedInstance().deepLinkFromUniversalLinkURL(userActivity.webpageURL!)
-    if (deepLink!.url != nil) {
+    return GINDurableDeepLinkService.sharedInstance().handleUniversalLink(userActivity.webpageURL) { (deepLink, error) in
+      // the source application needs to be safari or chrome, otherwise
+      // GIDSignIn will not handle the URL.
       self.application(application, openURL: deepLink!.url!, sourceApplication: "com.apple.mobilesafari", annotation: [:])
-      return true
-    }
-    return false
+    })
   }
   // [END continueuseractivity]
 

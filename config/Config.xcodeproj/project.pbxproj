@@ -10,9 +10,6 @@
 		32C355031CBC57CF009B576C /* RemoteConfigDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 32C355021CBC57CF009B576C /* RemoteConfigDefaults.plist */; };
 		32C355041CBC57CF009B576C /* RemoteConfigDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 32C355021CBC57CF009B576C /* RemoteConfigDefaults.plist */; };
 		32C355051CBC57CF009B576C /* RemoteConfigDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 32C355021CBC57CF009B576C /* RemoteConfigDefaults.plist */; };
-		32F1538F1CB3086900F94722 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 32F1538E1CB3086900F94722 /* GoogleService-Info.plist */; };
-		32F153901CB3086900F94722 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 32F1538E1CB3086900F94722 /* GoogleService-Info.plist */; };
-		32F153911CB3086900F94722 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 32F1538E1CB3086900F94722 /* GoogleService-Info.plist */; };
 		5F5A53521ADE670C00F81DF0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5A53511ADE670C00F81DF0 /* main.m */; };
 		5F5A53551ADE670C00F81DF0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5A53541ADE670C00F81DF0 /* AppDelegate.m */; };
 		5F5A53581ADE670C00F81DF0 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5A53571ADE670C00F81DF0 /* ViewController.m */; };
@@ -44,7 +41,6 @@
 		0C2FAA8AB9221F5ADF363CCA /* Pods-Config.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Config.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Config/Pods-Config.debug.xcconfig"; sourceTree = "<group>"; };
 		310E2904D3CC50E71EFAA49E /* Pods-ConfigSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ConfigSwift.release.xcconfig"; path = "Pods/Target Support Files/Pods-ConfigSwift/Pods-ConfigSwift.release.xcconfig"; sourceTree = "<group>"; };
 		32C355021CBC57CF009B576C /* RemoteConfigDefaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = RemoteConfigDefaults.plist; sourceTree = "<group>"; };
-		32F1538E1CB3086900F94722 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3A1C426E042924050E8869C3 /* libPods-ConfigTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ConfigTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		546A4585104DB1FF482B800F /* Pods-ConfigTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ConfigTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ConfigTests/Pods-ConfigTests.debug.xcconfig"; sourceTree = "<group>"; };
 		561073C03EAC2C20614514A5 /* Pods-ConfigSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ConfigSwift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ConfigSwift/Pods-ConfigSwift.debug.xcconfig"; sourceTree = "<group>"; };
@@ -101,7 +97,6 @@
 		5F5A53431ADE670C00F81DF0 = {
 			isa = PBXGroup;
 			children = (
-				32F1538E1CB3086900F94722 /* GoogleService-Info.plist */,
 				5F5A534E1ADE670C00F81DF0 /* Config */,
 				5F5A537A1ADE67D500F81DF0 /* ConfigSwift */,
 				5FDE05591B0DAA090037B82F /* ConfigTests */,
@@ -318,7 +313,6 @@
 			files = (
 				32C355031CBC57CF009B576C /* RemoteConfigDefaults.plist in Resources */,
 				5F99610C1AE0CF4F0034F503 /* LaunchScreen.xib in Resources */,
-				32F1538F1CB3086900F94722 /* GoogleService-Info.plist in Resources */,
 				5F99610A1AE0CF4F0034F503 /* Images.xcassets in Resources */,
 				5F5A535B1ADE670C00F81DF0 /* Main.storyboard in Resources */,
 			);
@@ -330,7 +324,6 @@
 			files = (
 				32C355041CBC57CF009B576C /* RemoteConfigDefaults.plist in Resources */,
 				5F99610D1AE0CF4F0034F503 /* LaunchScreen.xib in Resources */,
-				32F153901CB3086900F94722 /* GoogleService-Info.plist in Resources */,
 				5F5A539C1ADE69AA00F81DF0 /* Main.storyboard in Resources */,
 				5F99610B1AE0CF4F0034F503 /* Images.xcassets in Resources */,
 			);
@@ -341,7 +334,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				32C355051CBC57CF009B576C /* RemoteConfigDefaults.plist in Resources */,
-				32F153911CB3086900F94722 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

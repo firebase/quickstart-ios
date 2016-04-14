@@ -86,19 +86,19 @@ static NSString *const CUSTOM_URL_SCHEME = @"gindeeplinkurl";
   return [[GINDurableDeepLinkService sharedInstance]
           handleUniversalLink:userActivity.webpageURL
           completion:^(GINDeepLink * _Nonnull deepLink, NSError * _Nonnull error) {
-            // Handle the deep link. For example, show the deep-linked content or apply
-            // a promotional offer to the user's account.
-            // [START_EXCLUDE]
-            AppDelegate *strongSelf = weakSelf;
-            // The source application needs to be safari or chrome, otherwise
-            // GINDeepLink will not handle the URL.
-            NSString *sourceApplication = @"com.apple.mobilesafari";
-            [strongSelf application:application
-                            openURL:deepLink.url
-                  sourceApplication:sourceApplication
-                         annotation:@{}];
-            // [END_EXCLUDE]
-          }];
+    // Handle the deep link. For example, show the deep-linked content or apply
+    // a promotional offer to the user's account.
+    // [START_EXCLUDE]
+    AppDelegate *strongSelf = weakSelf;
+    // The source application needs to be safari or chrome, otherwise
+    // GINDeepLink will not handle the URL.
+    NSString *sourceApplication = @"com.apple.mobilesafari";
+    [strongSelf application:application
+                    openURL:deepLink.url
+          sourceApplication:sourceApplication
+                 annotation:@{}];
+    // [END_EXCLUDE]
+  }];
 }
 // [END continueuseractivity]
 

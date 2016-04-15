@@ -1,5 +1,5 @@
 //
-//  Copyright (c) 2015 Google Inc.
+//  Copyright (c) 2016 Google Inc.
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -14,11 +14,14 @@
 //  limitations under the License.
 //
 
-#import <UIKit/UIKit.h>
-#import "AppDelegate.h"
+import UIKit
 
-int main(int argc, char* argv[]) {
-  @autoreleasepool {
-    return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
+@objc(ViewController)
+class ViewController: UIViewController {
+
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    // TODO: Add your initialization code here.
   }
+
 }

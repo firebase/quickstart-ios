@@ -1,16 +1,16 @@
-### Remove this when it goes to GA ###
+# FCM
 source 'https://cpdc-eap.googlesource.com/spec.git'
 source 'https://github.com/CocoaPods/Specs.git'
-## End remove ###
-# MessagingExample
+
 platform :ios, '7.0'
 
+pod 'Firebase/Analytics'
 pod 'Firebase/Messaging'
 
 # If using CocoaPods 1.0.0+, use the new target syntax.
-# target 'MessagingExample'
-# target 'MessagingExampleSwift'
+# target 'FCM'
+# target 'FCMSwift'
+# target 'FCMTests'
 
 # and delete the link_with command.
-link_with 'MessagingExample', 'MessagingExampleSwift'
-
+link_with 'FCM', 'FCMSwift', 'FCMTests'

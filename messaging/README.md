@@ -1,5 +1,5 @@
 Firebase Messaging Quickstart
-=================================
+=============================
 
 The Firebase Messaging iOS Quickstart app demonstrates how to connect
 an iOS app to FCM and how to receive messages.
@@ -7,13 +7,12 @@ an iOS app to FCM and how to receive messages.
 Introduction
 ------------
 
-- [Read more about Firebase Messaging](https://developers.google.com/firebase/)
+- [Read more about Firebase Messaging](https://developers.google.com/firebase)
 
 Getting Started
 ---------------
 
-- [Add Firebase to your iOS Project](https://developers.google.com/firebase/docs/ios/setup).
-- Add APNS certs to your project in Settings > Notifications in the [console](https://g.co/firebase)
+Add APNS certs to your project in Settings > Notifications in the [console](https://g.co/firebase)
 - Run `pod install`
 - Copy in the GoogleServices-Info.plist to your project
 - Run the sample on your iOS device.
@@ -22,7 +21,6 @@ Note: You will need Swift 2.0 to run the Swift version of this quickstart.
 
 Screenshots
 -----------
-![Screenshot](Screenshot/gcm-sample.png)
 
 Support
 -------
@@ -32,7 +30,7 @@ https://developers.google.com/firebase/support
 License
 -------
 
-Copyright 2015 Google, Inc.
+Copyright 2016 Google, Inc.
 
 Licensed to the Apache Software Foundation (ASF) under one or more contributor
 license agreements.  See the NOTICE file distributed with this work for

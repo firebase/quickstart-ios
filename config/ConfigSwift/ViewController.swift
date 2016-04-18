@@ -40,9 +40,8 @@ class ViewController: UIViewController {
     // Enabling developer mode allows many more requests to be made per hour, so developers
     // can test different config values during development.
     // [START enable_dev_mode]
-    let remoteConfigSettings = FIRRemoteConfigSettings()
-    remoteConfigSettings.developerModeEnabled = true
-    remoteConfig.configSettings = remoteConfigSettings
+    let remoteConfigSettings = FIRRemoteConfigSettings(developerModeEnabled: true)
+    remoteConfig.configSettings = remoteConfigSettings!
     // [END enable_dev_mode]
 
     // Set default Remote Config values. In general you should have in-app defaults for all
@@ -66,7 +65,7 @@ class ViewController: UIViewController {
     var expirationDuration = 3600
     // If in developer mode cacheExpiration is set to 0 so each fetch will retrieve values from
     // the server.
-    if (remoteConfig.configSettings.developerModeEnabled) {
+    if (remoteConfig.configSettings.isDeveloperModeEnabled) {
       expirationDuration = 0
     }
 

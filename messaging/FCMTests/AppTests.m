@@ -1,5 +1,5 @@
 //
-//  Copyright (c) 2015 Google Inc.
+//  Copyright (c) 2016 Google Inc.
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -15,12 +15,26 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <XCTest/XCTest.h>
 
-@interface AppDelegate: UIResponder<UIApplicationDelegate>
+@interface AppTests : XCTestCase
+@end
 
-@property(nonatomic, strong) UIWindow *window;
-@property(nonatomic, readonly, strong) NSString *registrationKey;
-@property(nonatomic, readonly, strong) NSString *messageKey;
-@property(nonatomic, readonly, strong) NSString *fcmSenderID;
+@implementation AppTests
+
+- (void)setUp {
+  [super setUp];
+  // Put setup code here. This method is called before the invocation of each test method in the class.
+}
+
+- (void)tearDown {
+  // Put teardown code here. This method is called after the invocation of each test method in the class.
+  [super tearDown];
+}
+
+- (void)testExample {
+  // This is an example of a functional test case.
+  XCTAssert(YES, @"Pass");
+}
 
 @end

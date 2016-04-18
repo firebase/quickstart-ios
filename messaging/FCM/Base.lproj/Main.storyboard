@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S9T-hp-Ka1">
+                                <rect key="frame" x="264" y="286" width="72" height="28"/>
+                                <state key="normal" title="Log Token"/>
+                                <connections>
+                                    <action selector="handleLogTokenTouch:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3NM-R6-4A4"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HgF-jF-1NC">
+                                <rect key="frame" x="234" y="248" width="133" height="30"/>
+                                <state key="normal" title="Subscribe To News"/>
+                                <connections>
+                                    <action selector="handleSubscribeTouch:" destination="BYZ-38-t0r" eventType="touchUpInside" id="meX-vb-HDO"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="S9T-hp-Ka1" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="eqV-Gc-7aa"/>
+                            <constraint firstItem="S9T-hp-Ka1" firstAttribute="top" secondItem="HgF-jF-1NC" secondAttribute="bottom" constant="8" id="izK-fQ-Uu7"/>
+                            <constraint firstItem="HgF-jF-1NC" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="st1-B5-WH3"/>
+                            <constraint firstItem="S9T-hp-Ka1" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="wHX-8g-0MB"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="312" y="446"/>
+        </scene>
+    </scenes>
+</document>

@@ -1,5 +1,5 @@
 //
-//  Copyright (c) 2015 Google Inc.
+//  Copyright (c) 2016 Google Inc.
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -13,8 +13,27 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 //
-//  Use this file to import your target's public headers that you would like to expose to Swift.
-//
-// [START import]
-#import "GINDurableDeepLinkService/GoogleDurableDeepLinkService.h"
-// [END import]
+
+#import "ViewController.h"
+@import FirebaseInstanceID;
+@import FirebaseMessaging;
+
+@implementation ViewController
+
+- (void)viewDidLoad {
+  [super viewDidLoad];
+}
+
+- (IBAction)handleLogTokenTouch:(id)sender {
+  NSString *token = [[FIRInstanceID instanceID] token];
+  NSLog(@"InstanceID token: %@", token);
+}
+
+- (IBAction)handleSubscribeTouch:(id)sender {
+  // [START subscribe_topic]
+  [[FIRMessaging messaging] subscribeToTopic:@"/topics/news"];
+  NSLog(@"Subscribed to news topic");
+  // [END subscribe_topic]
+}
+
+@end

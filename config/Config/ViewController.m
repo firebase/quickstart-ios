@@ -36,8 +36,7 @@ NSString *const kDiscountConfigKey = @"discount";
   // Enabling developer mode allows many more requests to be made per hour, so developers
   // can test different config values during development.
   // [START enable_dev_mode]
-  FIRRemoteConfigSettings *remoteConfigSettings = [[FIRRemoteConfigSettings alloc] init];
-  remoteConfigSettings.developerModeEnabled = YES;
+  FIRRemoteConfigSettings *remoteConfigSettings = [[FIRRemoteConfigSettings alloc] initWithDeveloperModeEnabled:YES];
   self.remoteConfig.configSettings = remoteConfigSettings;
   // [END enable_dev_mode]
 
@@ -63,7 +62,7 @@ NSString *const kDiscountConfigKey = @"discount";
     long expirationDuration = 3600;
     // If in developer mode cacheExpiration is set to 0 so each fetch will retrieve values from
     // the server.
-    if (self.remoteConfig.configSettings.developerModeEnabled) {
+    if (self.remoteConfig.configSettings.isDeveloperModeEnabled) {
         expirationDuration = 0;
     }
 

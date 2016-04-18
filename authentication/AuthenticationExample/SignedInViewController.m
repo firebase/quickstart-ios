@@ -273,19 +273,19 @@ static NSString *const kChangePasswordText = @"Change Password";
 
 - (void)updateUserInfo {
   FIRUser *user = [FIRAuth auth].currentUser;
-  self.userInfoDisplayNameLabel.text = user.displayName;
-  self.userInfoEmailLabel.text = user.email;
-  self.userInfoUserIDLabel.text = user.uid;
+  _userInfoDisplayNameLabel.text = user.displayName;
+  _userInfoEmailLabel.text = user.email;
+  _userInfoUserIDLabel.text = user.uid;
 
   NSMutableArray<NSString *> *providerIDs = [NSMutableArray array];
   for (id<FIRUserInfo> userInfo in user.providerData) {
     NSString *providerID = userInfo.providerID;
     if ([providerID isEqualToString:FIRFacebookAuthProviderID]) {
-      self.unlinkFacebookButton.enabled = YES;
+      _unlinkFacebookButton.enabled = YES;
     } else if ([providerID isEqualToString:FIRGoogleAuthProviderID]) {
-      self.unlinkGoogleButton.enabled = YES;
+      _unlinkGoogleButton.enabled = YES;
     } else if ([providerID isEqualToString:FIRTwitterAuthProviderID]) {
-      self.unlinkTwitterButton.enabled = YES;
+      _unlinkTwitterButton.enabled = YES;
     }
     [providerIDs addObject:userInfo.providerID];
   }
@@ -299,12 +299,12 @@ static NSString *const kChangePasswordText = @"Change Password";
       UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:photoURL]];
       dispatch_async(dispatch_get_main_queue(), ^() {
         if (photoURL == lastPhotoURL) {
-          self.userInfoProfileURLImageView.image = image;
+          _userInfoProfileURLImageView.image = image;
         }
       });
     });
   } else {
-    self.userInfoProfileURLImageView.image = nil;
+    _userInfoProfileURLImageView.image = nil;
   }
 }
 

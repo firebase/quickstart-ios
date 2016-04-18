@@ -15,20 +15,20 @@
 //
 
 import UIKit
-// [START import]
 import FirebaseAnalytics
-// [END import]
 
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
   var window: UIWindow?
+  let CUSTOM_URL_SCHEME = "gindeeplinkurl"
 
   // [START didfinishlaunching]
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-    // Use Firebase library to configure APIs
-    FIROptions.defaultOptions().deepLinkURLScheme = "gindeeplinkurl"
+    // Set deepLinkURLScheme to the custom URL scheme you defined in your
+    // Xcode project.
+    FIROptions.defaultOptions().deepLinkURLScheme = self.CUSTOM_URL_SCHEME
     FIRApp.configure()
     GINDurableDeepLinkService.sharedInstance().checkForPendingDeepLink()
 
@@ -80,11 +80,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let message = "continueUserActivity webPageURL:\n\(userActivity.webpageURL)"
     showDeepLinkAlertViewWithMessage(message)
     // [END_EXCLUDE]
-
     return GINDurableDeepLinkService.sharedInstance().handleUniversalLink(userActivity.webpageURL) { (deepLink, error) in
+      // Handle the deep link. For example, show the deep-linked content or apply
+      // a promotional offer to the user's account.
+      // [START_EXCLUDE]
       // the source application needs to be safari or chrome, otherwise
       // GIDSignIn will not handle the URL.
       self.application(application, openURL: deepLink!.url!, sourceApplication: "com.apple.mobilesafari", annotation: [:])
+      // [END_EXCLUDE]
     })
   }
   // [END continueuseractivity]

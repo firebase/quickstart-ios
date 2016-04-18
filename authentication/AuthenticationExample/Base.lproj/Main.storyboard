@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10115" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="nRh-q9-XjR">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="nRh-q9-XjR">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10084"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -177,11 +177,11 @@
                                     <action selector="didUnlinkGoogle:" destination="jdH-TX-Xb5" eventType="touchUpInside" id="pfl-vX-LKy"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JYV-ed-pSO">
-                                <rect key="frame" x="231" y="495" width="139" height="30"/>
-                                <state key="normal" title="Request verify email"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kp1-Rb-U8f">
+                                <rect key="frame" x="254" y="495" width="95" height="30"/>
+                                <state key="normal" title="Unlink Twitter"/>
                                 <connections>
-                                    <action selector="didRequestVerifyEmail:" destination="jdH-TX-Xb5" eventType="touchUpInside" id="dSc-CZ-RSF"/>
+                                    <action selector="didUnlinkGoogle:" destination="jdH-TX-Xb5" eventType="touchUpInside" id="Czh-Rl-jHs"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Providers" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kQ9-3s-b8S">
@@ -193,6 +193,13 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JYV-ed-pSO">
+                                <rect key="frame" x="232" y="533" width="139" height="30"/>
+                                <state key="normal" title="Request verify email"/>
+                                <connections>
+                                    <action selector="didRequestVerifyEmail:" destination="jdH-TX-Xb5" eventType="touchUpInside" id="dSc-CZ-RSF"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -200,13 +207,11 @@
                             <constraint firstItem="2yd-k2-pC8" firstAttribute="top" secondItem="rH9-x8-Daa" secondAttribute="bottom" constant="8" symbolic="YES" id="2aB-3J-Yid"/>
                             <constraint firstItem="qfg-YE-yHA" firstAttribute="centerX" secondItem="2iA-sa-3pl" secondAttribute="centerX" id="3gq-Um-Qil"/>
                             <constraint firstItem="NMz-C1-3wG" firstAttribute="centerX" secondItem="neS-VI-CZ7" secondAttribute="centerX" id="3yW-84-3m1"/>
-                            <constraint firstItem="Uhe-yv-Znl" firstAttribute="top" secondItem="49j-EN-SY9" secondAttribute="bottom" constant="8" symbolic="YES" id="5aY-Ja-vYk"/>
                             <constraint firstItem="z83-mC-89y" firstAttribute="top" secondItem="2yd-k2-pC8" secondAttribute="bottom" constant="8" symbolic="YES" id="7JA-he-bof"/>
                             <constraint firstItem="RYY-KC-IbH" firstAttribute="top" secondItem="dxZ-ma-FzH" secondAttribute="bottom" constant="8" symbolic="YES" id="9EW-Ep-MIe"/>
                             <constraint firstItem="rH9-x8-Daa" firstAttribute="leading" secondItem="UBm-RD-Ts4" secondAttribute="trailing" constant="26" id="Amn-7P-uek"/>
                             <constraint firstItem="z83-mC-89y" firstAttribute="leading" secondItem="2yd-k2-pC8" secondAttribute="leading" id="Cak-2W-23R"/>
-                            <constraint firstItem="JYV-ed-pSO" firstAttribute="centerX" secondItem="Uhe-yv-Znl" secondAttribute="centerX" id="Kb6-he-kZF"/>
-                            <constraint firstItem="Uhe-yv-Znl" firstAttribute="leading" secondItem="dxZ-ma-FzH" secondAttribute="leading" id="LBa-eI-kyl"/>
+                            <constraint firstItem="Uhe-yv-Znl" firstAttribute="leading" secondItem="dxZ-ma-FzH" secondAttribute="leading" id="SAU-HC-MmB"/>
                             <constraint firstItem="49j-EN-SY9" firstAttribute="top" secondItem="RYY-KC-IbH" secondAttribute="bottom" constant="8" symbolic="YES" id="T3X-UL-YDk"/>
                             <constraint firstItem="rH9-x8-Daa" firstAttribute="top" secondItem="UBm-RD-Ts4" secondAttribute="top" id="T5h-wx-KaD"/>
                             <constraint firstItem="qfg-YE-yHA" firstAttribute="top" secondItem="2iA-sa-3pl" secondAttribute="bottom" constant="8" symbolic="YES" id="XNI-35-SSb"/>
@@ -214,10 +219,14 @@
                             <constraint firstItem="kQ9-3s-b8S" firstAttribute="top" secondItem="z83-mC-89y" secondAttribute="bottom" constant="8" symbolic="YES" id="f0B-ka-C00"/>
                             <constraint firstItem="dxZ-ma-FzH" firstAttribute="top" secondItem="qfg-YE-yHA" secondAttribute="bottom" constant="8" symbolic="YES" id="f14-LL-NPt"/>
                             <constraint firstItem="dxZ-ma-FzH" firstAttribute="centerX" secondItem="qfg-YE-yHA" secondAttribute="centerX" id="fH9-2Q-lxN"/>
+                            <constraint firstItem="kp1-Rb-U8f" firstAttribute="centerX" secondItem="JYV-ed-pSO" secondAttribute="centerX" id="g56-m8-SDZ"/>
+                            <constraint firstItem="Uhe-yv-Znl" firstAttribute="trailing" secondItem="kp1-Rb-U8f" secondAttribute="trailing" id="iDm-sK-Car"/>
                             <constraint firstItem="UBm-RD-Ts4" firstAttribute="top" secondItem="Lc8-th-aZv" secondAttribute="bottom" constant="8" symbolic="YES" id="lQW-a5-iSi"/>
-                            <constraint firstItem="JYV-ed-pSO" firstAttribute="top" secondItem="Uhe-yv-Znl" secondAttribute="bottom" constant="8" symbolic="YES" id="lqc-ch-CTr"/>
+                            <constraint firstItem="Uhe-yv-Znl" firstAttribute="top" secondItem="49j-EN-SY9" secondAttribute="bottom" constant="8" symbolic="YES" id="lnB-sq-7SL"/>
+                            <constraint firstItem="JYV-ed-pSO" firstAttribute="top" secondItem="kp1-Rb-U8f" secondAttribute="bottom" constant="8" symbolic="YES" id="o0M-P9-CdG"/>
                             <constraint firstItem="kQ9-3s-b8S" firstAttribute="leading" secondItem="z83-mC-89y" secondAttribute="leading" id="ofR-yt-C9t"/>
                             <constraint firstItem="UBm-RD-Ts4" firstAttribute="leading" secondItem="neS-VI-CZ7" secondAttribute="leadingMargin" id="rRq-AS-qkE"/>
+                            <constraint firstItem="kp1-Rb-U8f" firstAttribute="top" secondItem="Uhe-yv-Znl" secondAttribute="bottom" constant="8" symbolic="YES" id="rX2-ga-S6n"/>
                             <constraint firstItem="NMz-C1-3wG" firstAttribute="top" secondItem="kQ9-3s-b8S" secondAttribute="bottom" constant="49" id="vL2-d0-C9X"/>
                             <constraint firstItem="49j-EN-SY9" firstAttribute="centerX" secondItem="RYY-KC-IbH" secondAttribute="centerX" id="wI4-CU-jKq"/>
                             <constraint firstItem="2iA-sa-3pl" firstAttribute="top" secondItem="NMz-C1-3wG" secondAttribute="bottom" constant="8" id="y7p-wp-ht9"/>
@@ -225,6 +234,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="nVL-b4-jBk"/>
                     <connections>
+                        <outlet property="unlinkFacebookButton" destination="49j-EN-SY9" id="xOS-qN-4MB"/>
+                        <outlet property="unlinkGoogleButton" destination="Uhe-yv-Znl" id="Q03-gr-7XT"/>
+                        <outlet property="unlinkTwitterButton" destination="kp1-Rb-U8f" id="fAS-Ks-3ea"/>
                         <outlet property="userInfoDisplayNameLabel" destination="rH9-x8-Daa" id="QyH-qk-4RF"/>
                         <outlet property="userInfoEmailLabel" destination="2yd-k2-pC8" id="s43-nV-t2w"/>
                         <outlet property="userInfoProfileURLImageView" destination="UBm-RD-Ts4" id="4JD-Hc-cmO"/>

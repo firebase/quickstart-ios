@@ -55,6 +55,10 @@ class SignedInViewController: UIViewController {
   */
   @IBOutlet weak var userInfoProviderListLabel:UILabel!
 
+  @IBOutlet weak var unlinkFacebookButton:UIButton!
+  @IBOutlet weak var unlinkGoogleButton:UIButton!
+  @IBOutlet weak var unlinkTwitterButton:UIButton!
+
   /*! @var kOKButtonText
   @brief The text of the "OK" button for the Sign In result dialogs.
   */
@@ -281,6 +285,15 @@ class SignedInViewController: UIViewController {
     userInfoUserIDLabel.text = user?.uid
 
     let providers = user?.providerData.map { userInfo in userInfo.providerID }
+    if providers?.contains(FIRFacebookAuthProviderID) {
+      unlinkFacebookButton.enabled = true
+    }
+    if providers?.contains(FIRGoogleAuthProviderID) {
+      unlinkGoogleButton.enabled = true
+    }
+    if providers?.contains(FIRTwitterAuthProviderID) {
+      unlinkTwitterButton.enabled = true
+    }
     userInfoProviderListLabel.text = providers?.joinWithSeparator(", ")
 
     let photoURL = user?.photoURL

@@ -30,6 +30,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *userInfoUserIDLabel;
 @property (weak, nonatomic) IBOutlet UILabel *userInfoProviderListLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *userInfoProfileURLImageView;
+@property (weak, nonatomic) IBOutlet UIButton *unlinkFacebookButton;
+@property (weak, nonatomic) IBOutlet UIButton *unlinkGoogleButton;
+@property (weak, nonatomic) IBOutlet UIButton *unlinkTwitterButton;
 @end
 
 /*! @var kOKButtonText
@@ -270,15 +273,23 @@ static NSString *const kChangePasswordText = @"Change Password";
 
 - (void)updateUserInfo {
   FIRUser *user = [FIRAuth auth].currentUser;
-  _userInfoDisplayNameLabel.text = user.displayName;
-  _userInfoEmailLabel.text = user.email;
-  _userInfoUserIDLabel.text = user.uid;
+  self.userInfoDisplayNameLabel.text = user.displayName;
+  self.userInfoEmailLabel.text = user.email;
+  self.userInfoUserIDLabel.text = user.uid;
 
   NSMutableArray<NSString *> *providerIDs = [NSMutableArray array];
   for (id<FIRUserInfo> userInfo in user.providerData) {
+    NSString *providerID = userInfo.providerID;
+    if ([providerID isEqualToString:FIRFacebookAuthProviderID]) {
+      self.unlinkFacebookButton.enabled = YES;
+    } else if ([providerID isEqualToString:FIRGoogleAuthProviderID]) {
+      self.unlinkGoogleButton.enabled = YES;
+    } else if ([providerID isEqualToString:FIRTwitterAuthProviderID]) {
+      self.unlinkTwitterButton.enabled = YES;
+    }
     [providerIDs addObject:userInfo.providerID];
   }
-  _userInfoProviderListLabel.text = [providerIDs componentsJoinedByString:@", "];
+  self.userInfoProviderListLabel.text = [providerIDs componentsJoinedByString:@", "];
 
   NSURL *photoURL = user.photoURL;
   static NSURL *lastPhotoURL = nil;
@@ -288,12 +299,12 @@ static NSString *const kChangePasswordText = @"Change Password";
       UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:photoURL]];
       dispatch_async(dispatch_get_main_queue(), ^() {
         if (photoURL == lastPhotoURL) {
-          _userInfoProfileURLImageView.image = image;
+          self.userInfoProfileURLImageView.image = image;
         }
       });
     });
   } else {
-    _userInfoProfileURLImageView.image = nil;
+    self.userInfoProfileURLImageView.image = nil;
   }
 }
 

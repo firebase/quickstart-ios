@@ -132,9 +132,9 @@ if [[ -n "${POD}" ]]; then
   echo "Including pod: $POD"
   echo "pod '$POD'" >> Podfile
 fi
-echo "target '${DEST}'" >> Podfile
-echo "target '${DEST}Swift'" >> Podfile
-echo "target '${DEST}Tests'" >> Podfile
+echo "target '${DEST}' do end" >> Podfile
+echo "target '${DEST}Swift' do end" >> Podfile
+echo "target '${DEST}Tests' do end" >> Podfile
 
 # Setup pods. This fetches the pods themselves, but they should be ignored by
 # version control anyway via the master .gitignore.

@@ -6,10 +6,9 @@ platform :ios, '7.0'
 pod 'Firebase/Auth'
 pod 'Firebase/Storage'
 
-# If using CocoaPods 1.0.0+, use the new target syntax.
-# target 'StorageExample'
-# target 'StorageExampleSwift'
-# target 'StorageExampleTests'
-
-# and delete the link_with command.
-link_with 'StorageExample', 'StorageExampleSwift', 'StorageExampleTests'
+target 'StorageExample' do
+end
+target 'StorageExampleSwift' do
+end
+target 'StorageExampleTests' do
+end

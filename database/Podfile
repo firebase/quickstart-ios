@@ -5,10 +5,9 @@ source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '7.0'
 pod 'Firebase/Database'
 
-# If using CocoaPods 1.0.0+, use the new target syntax.
-# target 'DatabaseExample'
-# target 'DatabaseExampleSwift'
-# target 'DatabaseExampleTests'
-
-# and delete the link_with command.
-link_with 'DatabaseExample', 'DatabaseExampleSwift', 'DatabaseExampleTests'
+target 'DatabaseExample' do
+end
+target 'DatabaseExampleSwift' do
+end
+target 'DatabaseExampleTests' do
+end

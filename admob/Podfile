@@ -4,11 +4,11 @@ source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '7.0'
 pod 'Firebase/AdMob'
 
-# If using CocoaPods 1.0.0+, use the new target syntax.
-# target 'AdMobExample'
-# target 'AdMobExampleSwift'
-# target 'AdMobExampleTests'
-# target 'AdMobExampleSwiftTests'
-
-# and delete the link_with command.
-link_with 'AdMobExample', 'AdMobExampleSwift', 'AdMobExampleTests', 'AdMobExampleSwiftTests'
+target 'AdMobExample' do
+end
+target 'AdMobExampleSwift' do
+end
+target 'AdMobExampleTests' do
+end
+target 'AdMobExampleSwiftTests' do
+end

@@ -7,10 +7,9 @@ platform :ios, '7.0'
 pod 'Firebase/Analytics'
 pod 'Firebase/Messaging'
 
-# If using CocoaPods 1.0.0+, use the new target syntax.
-# target 'FCM'
-# target 'FCMSwift'
-# target 'FCMTests'
-
-# and delete the link_with command.
-link_with 'FCM', 'FCMSwift', 'FCMTests'
+target 'FCM' do
+end
+target 'FCMSwift' do
+end
+target 'FCMTests' do
+end

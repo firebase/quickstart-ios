@@ -6,10 +6,9 @@ platform :ios, '7.0'
 
 pod 'Firebase/RemoteConfig'
 
-# If using CocoaPods 1.0.0+, use the new target syntax.
-# target 'Config'
-# target 'ConfigSwift'
-# target 'ConfigTests'
-
-# and delete the link_with command.
-link_with 'Config', 'ConfigSwift', 'ConfigTests'
+target 'Config' do
+end
+target 'ConfigSwift' do
+end
+target 'ConfigTests' do
+end

@@ -13,10 +13,9 @@ pod 'FirebaseFacebookAuthUI'
 
 pod 'TwitterKit'
 
-# If using CocoaPods 1.0.0+, use the new target syntax.
-# target 'AuthenticationExample'
-# target 'AuthenticationExampleSwift'
-# target 'AuthenticationExampleTests'
-
-# and delete the link_with command.
-link_with 'AuthenticationExample', 'AuthenticationExampleSwift', 'AuthenticationExampleTests'
+target 'AuthenticationExample' do
+end
+target 'AuthenticationExampleSwift' do
+end
+target 'AuthenticationExampleTests' do
+end

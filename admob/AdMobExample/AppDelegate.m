@@ -19,7 +19,7 @@
 
 // [START firebase_config]
 #import "AppDelegate.h"
-@import FirebaseAnalytics;
+@import Firebase;
 
 @interface AppDelegate ()
 

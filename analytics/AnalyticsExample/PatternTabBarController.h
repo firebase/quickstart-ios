@@ -14,7 +14,7 @@
 //  limitations under the License.
 //
 
-#import <UIKit/UIKit.h>
+@import UIKit;
 
 /**
  * PatternTabBarController exists as a subclass of UITabBarConttroller that

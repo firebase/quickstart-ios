@@ -151,16 +151,8 @@
 				EFB6C1B91C656D38007CCA78 /* FoodPickerViewController.swift */,
 				5FC04A801AF1DF8300F787CA /* PatternTabBarController.swift */,
 				5F5A537F1ADE67D500F81DF0 /* ViewController.swift */,
-				5F5A537B1ADE67D500F81DF0 /* Supporting Files */,
 			);
 			path = AnalyticsExampleSwift;
-			sourceTree = "<group>";
-		};
-		5F5A537B1ADE67D500F81DF0 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		5F9961041AE0CF4F0034F503 /* Shared */ = {

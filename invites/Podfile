@@ -1,13 +1,12 @@
-# CrashReporter
 source 'https://cpdc-eap.googlesource.com/spec.git'
 source 'https://github.com/CocoaPods/Specs.git'
 
 platform :ios, '7.0'
-pod 'Firebase/Crash'
+pod 'Firebase/Invites'
 
-target 'CrashReporter'  do
+target 'InvitesExample' do
 end
-target 'CrashReporterSwift' do
+target 'InvitesExampleSwift' do
 end
-target 'CrashReporterTests' do
+target 'InvitesExampleTests' do
 end

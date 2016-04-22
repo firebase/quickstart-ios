@@ -19,7 +19,7 @@
 // https://developers.google.com/firebase/docs/auth/ios/user-auth
 //
 
-#import <UIKit/UIKit.h>
+@import UIKit;
 
 @interface SelectViewController : UIViewController
 

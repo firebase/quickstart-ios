@@ -15,7 +15,7 @@
 //
 
 #import "ViewController.h"
-@import FirebaseCrashReporting;
+@import FirebaseCrash;
 
 
 @implementation ViewController

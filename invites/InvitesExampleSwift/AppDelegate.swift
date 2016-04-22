@@ -14,7 +14,9 @@
 //  limitations under the License.
 //
 import UIKit
-import FirebaseAnalytics
+import Firebase
+import FirebaseInvites
+import GoogleSignIn
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -24,9 +26,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func application(application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
     // Use Firebase library to configure APIs
-    FIRApp .configure()
+    FIRApp.configure()
     // Initialize sign-in
-    GINInvite.applicationDidFinishLaunchingWithOptions(launchOptions)
+    FIRInvites.applicationDidFinishLaunchingWithOptions(launchOptions)
 
       return true
   }
@@ -41,9 +43,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   func application(application: UIApplication,
     openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
-      if let invite = GINInvite.handleURL(url, sourceApplication:sourceApplication, annotation:annotation) as? GINReceivedInvite {
+      if let invite = FIRInvites.handleURL(url, sourceApplication:sourceApplication, annotation:annotation) as? FIRReceivedInvite {
         let matchType =
-            (invite.matchType == GINReceivedInviteMatchType.Weak) ? "Weak" : "Strong"
+            (invite.matchType == FIRReceivedInviteMatchType.Weak) ? "Weak" : "Strong"
         print("Invite received from: \(sourceApplication) Deeplink: \(invite.deepLink)," +
             "Id: \(invite.inviteId), Type: \(matchType)")
         return true

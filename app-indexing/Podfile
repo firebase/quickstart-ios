@@ -1,6 +1,9 @@
 # AppIndexingExample
+source 'https://cpdc-eap.googlesource.com/spec.git'
+source 'https://github.com/CocoaPods/Specs.git'
+
 platform :ios, '7.0'
-pod 'GoogleAppIndexing'
+pod 'Firebase/AppIndexing'
 
 target 'AppIndexingExample' do
 end

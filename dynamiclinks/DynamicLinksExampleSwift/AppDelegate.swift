@@ -15,7 +15,9 @@
 //
 
 import UIKit
-import FirebaseAnalytics
+import FirebaseDynamicLinks
+import Firebase
+import GoogleSignIn
 
 
 @UIApplicationMain
@@ -30,27 +32,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Xcode project.
     FIROptions.defaultOptions().deepLinkURLScheme = self.CUSTOM_URL_SCHEME
     FIRApp.configure()
-    GINDurableDeepLinkService.sharedInstance().checkForPendingDeepLink()
 
     return true
   }
   // [END didfinishlaunching]
 
   // [START openurl]
+  func application(app: UIApplication, openURL url: NSURL, options: [String : AnyObject]) -> Bool {
+    return application(app, openURL: url, sourceApplication: nil, annotation: [:])
+  }
+
   func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
-    let deepLink:GINDeepLink? = GINDurableDeepLinkService.sharedInstance().deepLinkFromCustomSchemeURL(url)
-    if (deepLink != nil) {
+    if GIDSignIn.sharedInstance().handleURL(url, sourceApplication: sourceApplication, annotation: annotation) {
+      return true
+    }
+
+    let dynamicLink = FIRDynamicLinks.dynamicLinks()?.dynamicLinkFromCustomSchemeURL(url)
+    if let dynamicLink = dynamicLink {
       // Handle the deep link. For example, show the deep-linked content or
       // apply a promotional offer to the user's account.
       // [START_EXCLUDE]
       // In this sample, we just open an alert.
       let matchConfidence: String
-      if (deepLink!.matchConfidence == GINDeepLinkMatchConfidence.Weak) {
+      if (dynamicLink.matchConfidence == .Weak) {
         matchConfidence = "Weak";
       } else {
         matchConfidence = "Strong";
       }
-      let message = "App URL: \(deepLink!.url)\nMatch Confidence: \(matchConfidence)\n"
+      let message = "App URL: \(dynamicLink.url)\nMatch Confidence: \(matchConfidence)\n"
       if #available(iOS 8.0, *) {
           showDeepLinkAlertViewWithMessage(message)
       } else {
@@ -75,20 +84,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   // [START continueuseractivity]
   @available(iOS 8.0, *)
   func application(application: UIApplication, continueUserActivity userActivity: NSUserActivity, restorationHandler: ([AnyObject]?) -> Void) -> Bool {
-    // [START_EXCLUDE silent]
-    // Show the deep link URL from userActivity.
-    let message = "continueUserActivity webPageURL:\n\(userActivity.webpageURL)"
-    showDeepLinkAlertViewWithMessage(message)
-    // [END_EXCLUDE]
-    return GINDurableDeepLinkService.sharedInstance().handleUniversalLink(userActivity.webpageURL) { (deepLink, error) in
-      // Handle the deep link. For example, show the deep-linked content or apply
-      // a promotional offer to the user's account.
+    let handled = FIRDynamicLinks.dynamicLinks()?.handleUniversalLink(userActivity.webpageURL!) { (dynamiclink, error) in
       // [START_EXCLUDE]
       // the source application needs to be safari or chrome, otherwise
       // GIDSignIn will not handle the URL.
-      self.application(application, openURL: deepLink!.url!, sourceApplication: "com.apple.mobilesafari", annotation: [:])
-      // [END_EXCLUDE]
-    })
+      self.application(application, openURL: dynamiclink!.url!, sourceApplication: "com.apple.mobilesafari", annotation: [:])
+    // [END_EXCLUDE]
+    }
+
+    // [START_EXCLUDE silent]
+    if (!handled!) {
+      // Show the deep link URL from userActivity.
+      let message = "continueUserActivity webPageURL:\n\(userActivity.webpageURL)"
+      showDeepLinkAlertViewWithMessage(message)
+    }
+    // [END_EXCLUDE]
+
+    return handled!
   }
   // [END continueuseractivity]
 

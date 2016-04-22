@@ -284,17 +284,18 @@ class SignedInViewController: UIViewController {
     userInfoEmailLabel.text = user?.email
     userInfoUserIDLabel.text = user?.uid
 
-    let providers = user?.providerData.map { userInfo in userInfo.providerID }
-    if providers?.contains(FIRFacebookAuthProviderID) {
-      unlinkFacebookButton.enabled = true
+    if let providers = (user?.providerData.map { userInfo in userInfo.providerID }) {
+      if providers.contains(FIRFacebookAuthProviderID) {
+        unlinkFacebookButton.enabled = true
+      }
+      if providers.contains(FIRGoogleAuthProviderID) {
+        unlinkGoogleButton.enabled = true
+      }
+      if providers.contains(FIRTwitterAuthProviderID) {
+        unlinkTwitterButton.enabled = true
+      }
+      userInfoProviderListLabel.text = providers.joinWithSeparator(", ")
     }
-    if providers?.contains(FIRGoogleAuthProviderID) {
-      unlinkGoogleButton.enabled = true
-    }
-    if providers?.contains(FIRTwitterAuthProviderID) {
-      unlinkTwitterButton.enabled = true
-    }
-    userInfoProviderListLabel.text = providers?.joinWithSeparator(", ")
 
     let photoURL = user?.photoURL
     struct last {

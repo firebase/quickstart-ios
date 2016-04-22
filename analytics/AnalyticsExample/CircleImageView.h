@@ -14,7 +14,7 @@
 //  limitations under the License.
 //
 
-#import <UIKit/UIKit.h>
+@import UIKit;
 
 /**
  * CircleImageView is a UIImageView subclass that renders an image inside a

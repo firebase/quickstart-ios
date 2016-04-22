@@ -1,12 +1,12 @@
-Firebase App Invites Quickstart
+Firebase Invites Quickstart
 =============================
 
-The Google App Invites iOS quickstart demonstrates how to enable your users to share your app with people they know.
+The Firebase Invites iOS quickstart demonstrates how to enable your users to share your app with people they know.
 
 Introduction
 ------------
 
-- [Read more about Firebase App Invites](https://developers.google.com/firebase/)
+- [Read more about Firebase Invites](https://developers.google.com/firebase/)
 
 Getting Started
 ---------------

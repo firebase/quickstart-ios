@@ -19,7 +19,7 @@
 // https://developers.google.com/firebase/docs/analytics/analytics-ios
 //
 
-#import <UIKit/UIKit.h>
+@import UIKit;
 
 @interface FoodPickerViewController : UIViewController
 

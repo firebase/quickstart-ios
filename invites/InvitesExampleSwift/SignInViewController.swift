@@ -14,12 +14,13 @@
 //  limitations under the License.
 //
 import UIKit
-import FirebaseAnalytics
+import Firebase
+import GoogleSignIn
 
 // Match the ObjC symbol name inside Main.storyboard.
 @objc(SignInViewController)
 
-class SignInViewController: UIViewController, GIDSignInDelegate, GINInviteDelegate, GIDSignInUIDelegate {
+class SignInViewController: UIViewController, GIDSignInDelegate, GIDSignInUIDelegate {
 
   @IBOutlet weak var signInButton: GIDSignInButton!
   @IBOutlet weak var bgText: UILabel!

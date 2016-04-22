@@ -13,7 +13,11 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 //
-//  Use this file to import your target's public headers that you would like to expose to Swift.
-//
-#import "GINInvite/GINInvite.h"
-#import "GoogleSignIn/GoogleSignIn.h"
+
+@import UIKit;
+
+@interface AppDelegate : UIResponder<UIApplicationDelegate>
+
+@property(strong, nonatomic) UIWindow *window;
+
+@end

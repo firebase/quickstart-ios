@@ -2,9 +2,9 @@
 source 'https://cpdc-eap.googlesource.com/spec.git'
 source 'https://github.com/CocoaPods/Specs.git'
 
-platform :ios, '8.0'
+platform :ios, '7.0'
 # [START pod_ddl]
-pod 'Firebase/DurableDeepLink'
+pod 'Firebase/DynamicLinks'
 # [END pod_ddl]
 
 target 'DynamicLinksExample' do

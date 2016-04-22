@@ -14,10 +14,8 @@
 //  limitations under the License.
 //
 
-#import <UIKit/UIKit.h>
+@import UIKit;
 
-@interface AppDelegate : UIResponder<UIApplicationDelegate>
-
-@property(strong, nonatomic) UIWindow *window;
+@interface ViewController : UIViewController
 
 @end

@@ -19,7 +19,7 @@
 
 // [START firebase_banner_example]
 import UIKit
-import GoogleMobileAds
+import Firebase
 
 /**
  * AdMob ad unit IDs are not currently stored inside the google-services.plist file. Developers

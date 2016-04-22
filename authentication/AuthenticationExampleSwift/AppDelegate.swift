@@ -22,8 +22,7 @@
 import UIKit
 
 // [START usermanagement_import]
-import FirebaseAnalytics
-import FirebaseAuth
+import Firebase
 import FirebaseAuthUI
 import FirebaseFacebookAuthUI
 import FirebaseGoogleAuthUI

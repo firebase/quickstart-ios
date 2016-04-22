@@ -15,11 +15,11 @@
 //
 
 #import "ViewController.h"
-#import "GINInvite/GINInvite.h"
-#import "GoogleSignIn/GoogleSignIn.h"
+@import GoogleSignIn;
+@import FirebaseInvites;
 
 // [START viewcontroller_interfaces]
-@interface ViewController ()<GINInviteDelegate, GIDSignInDelegate, GIDSignInUIDelegate>
+@interface ViewController ()<FIRInviteDelegate, GIDSignInDelegate, GIDSignInUIDelegate>
 // [END viewcontroller_interfaces]
 // [START viewcontroller_vars]
 @property(weak, nonatomic) IBOutlet GIDSignInButton *signInButton;
@@ -28,7 +28,7 @@
 @property(weak, nonatomic) IBOutlet UIButton *inviteButton;
 @property(weak, nonatomic) IBOutlet UILabel *statusText;
 // [END viewcontroler_vars]
-@property(strong, nonatomic) id<GINInviteBuilder> inviteDialog;
+@property(strong, nonatomic) id<FIRInviteBuilder> inviteDialog;
 @end
 
 @implementation ViewController
@@ -112,7 +112,7 @@
 
 // [START invite_tapped]
 - (IBAction)inviteTapped:(id)sender {
-  _inviteDialog = [GINInvite inviteDialog];
+  _inviteDialog = [FIRInvites inviteDialog];
   [_inviteDialog setInviteDelegate:self];
 
   // NOTE: You must have the App Store ID set in your developer console project

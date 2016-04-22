@@ -15,7 +15,7 @@
 //
 
 #import "AppDelegate.h"
-#import <GoogleAppIndexing/GoogleAppIndexing.h>
+@import Firebase;
 
 @implementation AppDelegate
 
@@ -29,7 +29,7 @@
             openURL:(NSURL *)url
   sourceApplication:(NSString *)sourceApplication
          annotation:(id)annotation {
-  NSURL *sanitizedURL = [GSDDeepLink handleDeepLink:url];
+  NSURL *sanitizedURL = [ handleDeepLink:url];
   self.currentDeepLink = sanitizedURL.absoluteString;
   return true;
 }

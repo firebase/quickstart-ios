@@ -23,8 +23,7 @@
 #import "AppDelegate.h"
 
 // [START usermanagement_import]
-@import FirebaseAnalytics;
-@import FirebaseAuth;
+@import Firebase;
 @import FirebaseAuthUI;
 // [END usermanagement_import]
 

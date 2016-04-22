@@ -16,10 +16,11 @@
 
 #import "AppDelegate.h"
 // [START import]
-#import "GINDurableDeepLinkService/GoogleDurableDeepLinkService.h"
+@import FirebaseDynamicLinks;
 // [END import]
 
-@import FirebaseAnalytics;
+@import Firebase;
+@import GoogleSignIn;
 
 static NSString *const CUSTOM_URL_SCHEME = @"gindeeplinkurl";
 
@@ -33,32 +34,44 @@ static NSString *const CUSTOM_URL_SCHEME = @"gindeeplinkurl";
   [FIROptions defaultOptions].deepLinkURLScheme = CUSTOM_URL_SCHEME;
   [FIRApp configure];
 
-  [[GINDurableDeepLinkService sharedInstance] checkForPendingDeepLink];
   return YES;
 }
 // [END didfinishlaunching]
 
 // [START openurl]
+- (BOOL)application:(UIApplication *)app
+            openURL:(NSURL *)url
+            options:(NSDictionary<NSString *, id> *)options {
+  return [self application:app openURL:url sourceApplication:nil annotation:@{}];
+}
+
 - (BOOL)application:(UIApplication *)application
             openURL:(NSURL *)url
   sourceApplication:(NSString *)sourceApplication
          annotation:(id)annotation {
-  GINDeepLink *deepLink =
-      [[GINDurableDeepLinkService sharedInstance] deepLinkFromCustomSchemeURL:url];
-  if (deepLink) {
-    // Handle the deep link. For example, show the deep-linked content or apply
-    // a promotional offer to the user's account.
+  if ([[GIDSignIn sharedInstance] handleURL:url
+                          sourceApplication:sourceApplication
+                                 annotation:annotation]) {
+    return YES;
+  }
+
+  FIRDynamicLink *dynamicLink =
+  [[FIRDynamicLinks dynamicLinks] dynamicLinkFromCustomSchemeURL:url];
+
+  if (dynamicLink) {
+    // Handle the deep link. For example, show the deep-linked content or
+    // apply a promotional offer to the user's account.
     // [START_EXCLUDE]
     // In this sample, we just open an alert.
     NSString *matchConfidence;
-    if (deepLink.matchConfidence == GINDeepLinkMatchConfidenceWeak) {
+    if (dynamicLink.matchConfidence == FIRDynamicLinkMatchConfidenceWeak) {
       matchConfidence = @"Weak";
     } else {
       matchConfidence = @"Strong";
     }
     NSString *message = [NSString stringWithFormat:@"App URL: %@\n"
                          @"Match Confidence: %@\n",
-                         deepLink.url, matchConfidence];
+                         dynamicLink.url, matchConfidence];
     [self showDeepLinkAlertViewWithMessage:message];
     // [END_EXCLUDE]
     return YES;
@@ -73,32 +86,41 @@ static NSString *const CUSTOM_URL_SCHEME = @"gindeeplinkurl";
 // [END openurl]
 
 // [START continueuseractivity]
-- (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity
-    restorationHandler:(void (^)(NSArray *))restorationHandler {
+- (BOOL)application:(UIApplication *)application
+continueUserActivity:(NSUserActivity *)userActivity
+ restorationHandler:(void (^)(NSArray *))restorationHandler {
+
   // [START_EXCLUDE silent]
-  // Show the deep link URL from userActivity.
-  NSString *message =
-    [NSString stringWithFormat:@"continueUserActivity webPageURL:\n%@", userActivity.webpageURL];
-  [self showDeepLinkAlertViewWithMessage:message];
+  BOOL handled = NO;
 
   __weak AppDelegate *weakSelf = self;
   // [END_EXCLUDE]
-  return [[GINDurableDeepLinkService sharedInstance]
-          handleUniversalLink:userActivity.webpageURL
-          completion:^(GINDeepLink * _Nonnull deepLink, NSError * _Nonnull error) {
-    // Handle the deep link. For example, show the deep-linked content or apply
-    // a promotional offer to the user's account.
-    // [START_EXCLUDE]
-    AppDelegate *strongSelf = weakSelf;
-    // The source application needs to be safari or chrome, otherwise
-    // GINDeepLink will not handle the URL.
-    NSString *sourceApplication = @"com.apple.mobilesafari";
-    [strongSelf application:application
-                    openURL:deepLink.url
-          sourceApplication:sourceApplication
-                 annotation:@{}];
-    // [END_EXCLUDE]
-  }];
+  handled = [[FIRDynamicLinks dynamicLinks]
+             handleUniversalLink:userActivity.webpageURL
+             completion:^(FIRDynamicLink * _Nullable dynamicLink,
+                          NSError * _Nullable error) {
+               // [START_EXCLUDE]
+               AppDelegate *strongSelf = weakSelf;
+               // the source application needs to be safari or chrome, otherwise
+               // GIDSignIn will not handle the URL.
+               NSString *sourceApplication = @"com.apple.mobilesafari";
+               [strongSelf application:application
+                               openURL:dynamicLink.url
+                     sourceApplication:sourceApplication
+                            annotation:@{}];
+               // [END_EXCLUDE]
+             }];
+
+  // [START_EXCLUDE silent]
+  if (!handled) {
+    // Show the deep link URL from userActivity.
+    NSString *message =
+    [NSString stringWithFormat:@"continueUserActivity webPageURL:\n%@", userActivity.webpageURL];
+    [self showDeepLinkAlertViewWithMessage:message];
+  }
+  // [END_EXCLUDE]
+
+  return handled;
 }
 // [END continueuseractivity]
 

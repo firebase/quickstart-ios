@@ -15,10 +15,9 @@
 //
 
 #import "AppDelegate.h"
-#import "GINInvite/GINInvite.h"
-#import "GoogleSignIn/GoogleSignIn.h"
-@import FirebaseAnalytics;
-
+@import Firebase;
+@import FirebaseInvites;
+@import GoogleSignIn;
 
 @implementation AppDelegate
 
@@ -27,7 +26,7 @@
     didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   [FIRApp configure];
 
-  [GINInvite applicationDidFinishLaunchingWithOptions:launchOptions];
+  [FIRInvites applicationDidFinishLaunchingWithOptions:launchOptions];
 
   return YES;
 }
@@ -48,11 +47,11 @@
   sourceApplication:(NSString *)sourceApplication
          annotation:(id)annotation {
   // Handle App Invite requests
-  GINReceivedInvite *invite =
-      [GINInvite handleURL:url sourceApplication:sourceApplication annotation:annotation];
+  FIRReceivedInvite *invite =
+      [FIRInvites handleURL:url sourceApplication:sourceApplication annotation:annotation];
   if (invite) {
     NSString *matchType =
-        (invite.matchType == kGINReceivedInviteMatchTypeWeak) ? @"Weak" : @"Strong";
+        (invite.matchType == FIRReceivedInviteMatchTypeWeak) ? @"Weak" : @"Strong";
     NSString *message =
         [NSString stringWithFormat:@"Deep link from %@ \nInvite ID: %@\nApp URL: %@\nMatch Type:%@",
                                    sourceApplication, invite.inviteId, invite.deepLink, matchType];

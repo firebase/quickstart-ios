@@ -15,7 +15,7 @@
 //
 
 import UIKit
-import FirebaseCrashReporting
+import FirebaseCrash
 
 @objc(ViewController)
 class ViewController: UIViewController {

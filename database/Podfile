@@ -2,6 +2,7 @@
 source 'https://cpdc-eap.googlesource.com/spec.git'
 source 'https://github.com/CocoaPods/Specs.git'
 
+use_frameworks!
 platform :ios, '7.0'
 pod 'Firebase/Database'
 

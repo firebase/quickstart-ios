@@ -27,16 +27,6 @@
 			<string>google</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.googleusercontent.apps.977469784833-2g2t5v0pmet0cenenthaagsnm28pish2</string>
-			</array>
-		</dict>
-		<dict>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>CFBundleURLName</key>
-			<string>google</string>
-			<key>CFBundleURLSchemes</key>
-			<array>
 				<string>YOUR_REVERSED_CLIENT_ID</string>
 			</array>
 		</dict>

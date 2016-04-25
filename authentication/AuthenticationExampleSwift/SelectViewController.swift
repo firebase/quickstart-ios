@@ -21,48 +21,10 @@
 
 import UIKit
 
-import FirebaseAnalytics
 import FirebaseAuth
-import FirebaseAuthUI
 
 @objc(SelectViewController)
 class SelectViewController: UIViewController {
-
-  /*! @var kOKButtonText
-  @brief The text of the "OK" button for the Sign In result dialogs.
-  */
-  let kOKButtonText = "OK"
-
-  /*! @var kSignedInAlertTitle
-  @brief The text of the "Sign In Succeeded" alert.
-  */
-  let kSignedInAlertTitle = "Signed In"
-
-  /*! @var kSignInErrorAlertTitle
-  @brief The text of the "Sign In Encountered an Error" alert.
-  */
-  let kSignInErrorAlertTitle = "Sign-In Error"
-
-  @IBAction func didUISignIn(sender: UIButton) {
-    // [START firebase_auth_ui]
-    FIRAuthUI.authUI()?.presentSignInWithViewController(self) { (user, error) in
-      // [END firebase_auth_ui]
-      let okAction = UIAlertAction.init(title: self.kOKButtonText, style: .Default)
-        {action in print(self.kOKButtonText)}
-      if let error = error {
-        let alertController = UIAlertController.init(title: self.kSignInErrorAlertTitle,
-          message: error.localizedDescription, preferredStyle: .Alert)
-        alertController.addAction(okAction)
-        self.presentViewController(alertController, animated: true, completion: nil)
-        return
-      }
-
-      // Log token refresh event to Firebase Analytics.
-      FIRAnalytics.logEventWithName(kFIREventLogin, parameters: nil)
-
-      self.performSegueWithIdentifier("UISignIn", sender:nil)
-    }
-  }
 
   @IBAction func didTapGuestSignIn(sender: AnyObject) {
     // [START firebase_auth_anonymous]

@@ -23,11 +23,10 @@ import UIKit
 
 // [START usermanagement_import]
 import Firebase
-import FirebaseAuthUI
-import FirebaseFacebookAuthUI
-import FirebaseGoogleAuthUI
 // [END usermanagement_import]
 
+import GoogleSignIn
+import FBSDKCoreKit
 import Fabric
 import TwitterKit
 
@@ -53,14 +52,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   @available(iOS 9.0, *)
   func application(application: UIApplication, openURL url: NSURL, options: [String : AnyObject])
     -> Bool {
-      return FIRAuthUI.authUI()!.handleOpenURL(url,
-                                               sourceApplication: options[UIApplicationOpenURLOptionsSourceApplicationKey] as! String)
+      return self.application(application, openURL: url, sourceApplication: options[UIApplicationOpenURLOptionsSourceApplicationKey] as! String?, annotation: [:])
   }
 
   func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
-    if FIRAuthUI.authUI()!.handleOpenURL(url, sourceApplication: sourceApplication!) {
-      return true
-    }
     if GIDSignIn.sharedInstance().handleURL(url, sourceApplication: sourceApplication, annotation: annotation) {
       return true
     }

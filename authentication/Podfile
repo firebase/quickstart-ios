@@ -7,10 +7,9 @@ platform :ios, '7.0'
 # [START auth_pod]
 pod 'Firebase/Auth'
 # [END auth_pod]
-pod 'FirebaseAuthUI'
-pod 'FirebaseGoogleAuthUI'
-pod 'FirebaseFacebookAuthUI'
 
+pod 'FBSDKLoginKit'
+pod 'GoogleSignIn'
 pod 'TwitterKit'
 
 target 'AuthenticationExample' do

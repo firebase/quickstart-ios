@@ -132,21 +132,21 @@
                                     <action selector="didSetDisplayName:" destination="jdH-TX-Xb5" eventType="touchUpInside" id="1ku-Ts-mel"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="49j-EN-SY9">
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="49j-EN-SY9">
                                 <rect key="frame" x="243" y="419" width="114" height="30"/>
                                 <state key="normal" title="Unlink Facebook"/>
                                 <connections>
                                     <action selector="didUnlinkFacebook:" destination="jdH-TX-Xb5" eventType="touchUpInside" id="luB-Mx-oCA"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uhe-yv-Znl">
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uhe-yv-Znl">
                                 <rect key="frame" x="253" y="457" width="96" height="30"/>
                                 <state key="normal" title="Unlink Google"/>
                                 <connections>
                                     <action selector="didUnlinkGoogle:" destination="jdH-TX-Xb5" eventType="touchUpInside" id="pfl-vX-LKy"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kp1-Rb-U8f">
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kp1-Rb-U8f">
                                 <rect key="frame" x="254" y="495" width="95" height="30"/>
                                 <state key="normal" title="Unlink Twitter"/>
                                 <connections>

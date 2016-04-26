@@ -24,11 +24,22 @@
 - (BOOL)application:(UIApplication *)application
     didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
-  // Setup remote notifications for this app.
-  UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert |
-                                          UIUserNotificationTypeBadge categories:nil];
-  [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
-  [[UIApplication sharedApplication] registerForRemoteNotifications];
+  // Register for remote notifications
+  if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_7_1) {
+    // iOS 7.1 or earlier
+    UIRemoteNotificationType allNotificationTypes =
+    (UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeBadge);
+    [application registerForRemoteNotificationTypes:allNotificationTypes];
+  } else {
+    // iOS 8 or later
+    // [END_EXCLUDE]
+    UIUserNotificationType allNotificationTypes =
+    (UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge);
+    UIUserNotificationSettings *settings =
+    [UIUserNotificationSettings settingsForTypes:allNotificationTypes categories:nil];
+    [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+    [[UIApplication sharedApplication] registerForRemoteNotifications];
+  }
 
   // [START configure_firebase]
   [FIRApp configure];
@@ -42,7 +53,7 @@
 
 // [START receive_message]
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
-fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
+    fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
   // If you are receiving a notification message while your app is in the background,
   // this callback will not be fired till the user taps on the notification launching the application.
   // TODO: Handle data of notification
@@ -63,16 +74,34 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
   NSString *refreshedToken = [[FIRInstanceID instanceID] token];
   NSLog(@"InstanceID token: %@", refreshedToken);
 
+  // Connect to FCM since connection may have failed when attempted before having a token.
+  [self connectToFcm];
+
   // TODO: If necessary send token to appliation server.
 }
 // [END refresh_token]
 
-- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
-  NSLog(@"Failed to register for remote notifications %@", error);
+// [START connect_to_fcm]
+- (void)connectToFcm {
+  [[FIRMessaging messaging] connectWithCompletion:^(NSError * _Nullable error) {
+    if (error != nil) {
+      NSLog(@"Unable to connect to FCM. %@", error);
+    } else {
+      NSLog(@"Connected to FCM.");
+    }
+  }];
+}
+// [END connect_to_fcm]
+
+- (void)applicationDidBecomeActive:(UIApplication *)application {
+  [self connectToFcm];
 }
 
-- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-  NSLog(@"Successfully registered for remote notifications");
+// [START disconnect_from_fcm]
+- (void)applicationDidEnterBackground:(UIApplication *)application {
+  [[FIRMessaging messaging] disconnect];
+  NSLog(@"Disconnected from FCM");
 }
+// [END disconnect_from_fcm]
 
 @end

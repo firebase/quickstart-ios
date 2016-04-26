@@ -29,19 +29,8 @@
 		5F99610B1AE0CF4F0034F503 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F9961061AE0CF4F0034F503 /* Images.xcassets */; };
 		5F99610C1AE0CF4F0034F503 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F9961071AE0CF4F0034F503 /* LaunchScreen.xib */; };
 		5F99610D1AE0CF4F0034F503 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F9961071AE0CF4F0034F503 /* LaunchScreen.xib */; };
-		5FDE055D1B0DAA090037B82F /* AppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FDE055C1B0DAA090037B82F /* AppTests.m */; };
 		EF4857041C752B7700649485 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10B054011C6A3C630061077D /* Main.storyboard */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		5FDE055E1B0DAA090037B82F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5F5A53441ADE670C00F81DF0 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 5F5A534B1ADE670C00F81DF0;
-			remoteInfo = UserManagementExample;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		1037979A1CA07A6F0030A602 /* TwitterLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwitterLoginViewController.h; sourceTree = "<group>"; };
@@ -75,8 +64,6 @@
 		5F5A539B1ADE695B00F81DF0 /* BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
 		5F9961061AE0CF4F0034F503 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		5F9961071AE0CF4F0034F503 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
-		5FDE05581B0DAA090037B82F /* AuthenticationExample.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AuthenticationExample.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		5FDE055C1B0DAA090037B82F /* AppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,13 +81,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		5FDE05551B0DAA090037B82F /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -109,7 +89,6 @@
 			children = (
 				5F5A534E1ADE670C00F81DF0 /* AuthenticationExample */,
 				5F5A537A1ADE67D500F81DF0 /* AuthenticationExampleSwift */,
-				5FDE05591B0DAA090037B82F /* AuthenticationExampleTests */,
 				5F5A534D1ADE670C00F81DF0 /* Products */,
 				5F9961041AE0CF4F0034F503 /* Shared */,
 			);
@@ -121,7 +100,6 @@
 			children = (
 				5F5A534C1ADE670C00F81DF0 /* AuthenticationExample.app */,
 				5F5A53791ADE67D500F81DF0 /* AuthenticationExample.app */,
-				5FDE05581B0DAA090037B82F /* AuthenticationExample.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -193,14 +171,6 @@
 			path = ../shared;
 			sourceTree = "<group>";
 		};
-		5FDE05591B0DAA090037B82F /* AuthenticationExampleTests */ = {
-			isa = PBXGroup;
-			children = (
-				5FDE055C1B0DAA090037B82F /* AppTests.m */,
-			);
-			path = AuthenticationExampleTests;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -238,24 +208,6 @@
 			productReference = 5F5A53791ADE67D500F81DF0 /* AuthenticationExample.app */;
 			productType = "com.apple.product-type.application";
 		};
-		5FDE05571B0DAA090037B82F /* AuthenticationExampleTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 5FDE05621B0DAA090037B82F /* Build configuration list for PBXNativeTarget "AuthenticationExampleTests" */;
-			buildPhases = (
-				5FDE05541B0DAA090037B82F /* Sources */,
-				5FDE05551B0DAA090037B82F /* Frameworks */,
-				5FDE05561B0DAA090037B82F /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				5FDE055F1B0DAA090037B82F /* PBXTargetDependency */,
-			);
-			name = AuthenticationExampleTests;
-			productName = UserManagementExampleTests;
-			productReference = 5FDE05581B0DAA090037B82F /* AuthenticationExample.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -271,10 +223,6 @@
 					};
 					5F5A53781ADE67D500F81DF0 = {
 						CreatedOnToolsVersion = 6.3;
-					};
-					5FDE05571B0DAA090037B82F = {
-						CreatedOnToolsVersion = 6.3.2;
-						TestTargetID = 5F5A534B1ADE670C00F81DF0;
 					};
 				};
 			};
@@ -293,7 +241,6 @@
 			targets = (
 				5F5A534B1ADE670C00F81DF0 /* AuthenticationExample */,
 				5F5A53781ADE67D500F81DF0 /* AuthenticationExampleSwift */,
-				5FDE05571B0DAA090037B82F /* AuthenticationExampleTests */,
 			);
 		};
 /* End PBXProject section */
@@ -316,13 +263,6 @@
 				EF4857041C752B7700649485 /* Main.storyboard in Resources */,
 				5F99610D1AE0CF4F0034F503 /* LaunchScreen.xib in Resources */,
 				5F99610B1AE0CF4F0034F503 /* Images.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		5FDE05561B0DAA090037B82F /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -360,23 +300,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		5FDE05541B0DAA090037B82F /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				5FDE055D1B0DAA090037B82F /* AppTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		5FDE055F1B0DAA090037B82F /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 5F5A534B1ADE670C00F81DF0 /* AuthenticationExample */;
-			targetProxy = 5FDE055E1B0DAA090037B82F /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		10B054011C6A3C630061077D /* Main.storyboard */ = {
@@ -529,57 +453,6 @@
 			};
 			name = Release;
 		};
-		5FDE05601B0DAA090037B82F /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					UserManagementExample,
-				);
-				INFOPLIST_FILE = UserManagementExample/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.UserManagementExample;
-				PRODUCT_NAME = AuthenticationExample;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AuthenticationExample.app/AuthenticationExample";
-			};
-			name = Debug;
-		};
-		5FDE05611B0DAA090037B82F /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					UserManagementExample,
-				);
-				INFOPLIST_FILE = UserManagementExample/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.UserManagementExample;
-				PRODUCT_NAME = AuthenticationExample;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AuthenticationExample.app/AuthenticationExample";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -606,15 +479,6 @@
 			buildConfigurations = (
 				5F5A53951ADE67D500F81DF0 /* Debug */,
 				5F5A53961ADE67D500F81DF0 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		5FDE05621B0DAA090037B82F /* Build configuration list for PBXNativeTarget "AuthenticationExampleTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				5FDE05601B0DAA090037B82F /* Debug */,
-				5FDE05611B0DAA090037B82F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

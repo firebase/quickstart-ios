@@ -14,11 +14,6 @@
 //  limitations under the License.
 //
 
-//
-// For more information on setting up and running this sample code, see
-// https://developers.google.com/firebase/docs/auth/ios/user-auth
-//
-
 #import "FBLoginViewController.h"
 #import "UIViewController+Alerts.h"
 
@@ -27,7 +22,7 @@
 @import FBSDKLoginKit;
 
 @interface FBLoginViewController ()<FBSDKLoginButtonDelegate>
-@property (weak, nonatomic) IBOutlet FBSDKLoginButton *facebookLoginButton;
+//@property (weak, nonatomic) IBOutlet FBSDKLoginButton *facebookLoginButton;
 @end
 
 @implementation FBLoginViewController
@@ -36,7 +31,9 @@
   [super viewDidLoad];
 
   FBSDKLoginButton *loginButton = [[FBSDKLoginButton alloc] init];
-  loginButton.delegate = self;
+  loginButton.center = self.view.center;
+  loginButton.delegate = self;  
+  [self.view addSubview:loginButton];
 }
 
 - (void)loginButton:(FBSDKLoginButton *)loginButton

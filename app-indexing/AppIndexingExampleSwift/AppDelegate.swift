@@ -15,6 +15,7 @@
 //
 
 import UIKit
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -23,19 +24,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   var currentDeepLink = String()
 
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    FIRApp.configure()
+
+    // Replace 123456 with the App Store ID of your app.
+    FIRAppIndexing.sharedInstance().registerApp(123456)
     return true
   }
-    
+
   // [START handle_link]
   func application(application: UIApplication,
                    openURL url: NSURL,
                    sourceApplication: String?,
                    annotation: AnyObject) -> Bool {
-    let sanitizedURL = GSDDeepLink.handleDeepLink(url)
-    currentDeepLink = sanitizedURL.absoluteString
+    currentDeepLink = url.absoluteString
     return true;
   }
   // [END handle_link]
 
 }
-

@@ -20,17 +20,17 @@ import UIKit
 class ViewController: UIViewController {
 
     @IBOutlet var deepLinkLabel: UILabel!
-    
+
     // [START display_link]
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         NSNotificationCenter.defaultCenter().addObserver(self,
-            selector: "applicationBecameActive:",
-            name: UIApplicationDidBecomeActiveNotification,
-            object: nil)
+                                                         selector: #selector(applicationBecameActive),
+                                                         name: UIApplicationDidBecomeActiveNotification,
+                                                         object: nil)
     }
-    
+
     func applicationBecameActive(notification: NSNotification){
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         deepLinkLabel.text = appDelegate.currentDeepLink

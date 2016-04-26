@@ -15,12 +15,18 @@
 //
 
 #import "AppDelegate.h"
+#import "FirebaseAppIndexing/FirebaseAppIndexing.h"
 @import Firebase;
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application
     didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+
+  [FIRApp configure];
+
+  // Replace 123456 with the App Store ID of your app.
+  [[FIRAppIndexing sharedInstance] registerApp:123456];
   return YES;
 }
 
@@ -29,8 +35,7 @@
             openURL:(NSURL *)url
   sourceApplication:(NSString *)sourceApplication
          annotation:(id)annotation {
-  NSURL *sanitizedURL = [ handleDeepLink:url];
-  self.currentDeepLink = sanitizedURL.absoluteString;
+  self.currentDeepLink = [url absoluteString];
   return true;
 }
 // [END handle_link]

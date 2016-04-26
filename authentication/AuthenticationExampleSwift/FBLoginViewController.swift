@@ -14,11 +14,6 @@
 //  limitations under the License.
 //
 
-//
-// For more information on setting up and running this sample code, see
-// https://developers.google.com/firebase/docs/auth/ios/user-auth
-//
-
 import UIKit
 
 import FirebaseAuth
@@ -28,13 +23,13 @@ import FBSDKLoginKit
 @objc(FBLoginViewController)
 class FBLoginViewController: UIViewController, FBSDKLoginButtonDelegate {
 
-  @IBOutlet weak var facebookLoginButton: FBSDKLoginButton!
-
   override func viewDidLoad() {
     super.viewDidLoad()
 
     let loginButton = FBSDKLoginButton()
+    loginButton.center = self.view.center
     loginButton.delegate = self
+    self.view.addSubview(loginButton)
   }
 
   func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError?) {

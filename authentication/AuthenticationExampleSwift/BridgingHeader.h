@@ -16,9 +16,4 @@
 //  Use this file to import your target's public headers that you would like to expose to Swift.
 //
 
-//
-// For more information on setting up and running this sample code, see
-// https://developers.google.com/firebase/docs/auth/ios/user-auth
-//
-
 #import "UIViewController+Alerts.h"

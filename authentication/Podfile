@@ -16,5 +16,3 @@ target 'AuthenticationExample' do
 end
 target 'AuthenticationExampleSwift' do
 end
-target 'AuthenticationExampleTests' do
-end

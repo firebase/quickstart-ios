@@ -24,11 +24,10 @@
 
 // [START usermanagement_import]
 @import Firebase;
-@import FirebaseAuthUI;
 // [END usermanagement_import]
 
-#import <GoogleSignIn/GIDSignIn.h>
-#import <FBSDKCoreKit/FBSDKCoreKit.h>
+@import GoogleSignIn;
+@import FBSDKCoreKit;
 @import Fabric;
 @import TwitterKit;
 
@@ -64,9 +63,6 @@ static NSString *const kFacebookAppID = @"Placeholder";
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url
     sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
-  if ([[FIRAuthUI authUI] handleOpenURL:url sourceApplication:sourceApplication]) {
-    return YES;
-  }
   if ([[GIDSignIn sharedInstance] handleURL:url
                       sourceApplication:sourceApplication
                                  annotation:annotation]) {

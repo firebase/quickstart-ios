@@ -22,10 +22,9 @@
 #import "FBLoginViewController.h"
 #import "UIViewController+Alerts.h"
 
-#import <FBSDKCoreKit/FBSDKCoreKit.h>
-#import <FBSDKLoginKit/FBSDKLoginKit.h>
-
 @import FirebaseAuth;
+@import FBSDKCoreKit;
+@import FBSDKLoginKit;
 
 @interface FBLoginViewController ()<FBSDKLoginButtonDelegate>
 @property (weak, nonatomic) IBOutlet FBSDKLoginButton *facebookLoginButton;

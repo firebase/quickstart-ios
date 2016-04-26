@@ -22,56 +22,8 @@
 #import "SelectViewController.h"
 
 @import FirebaseAuth;
-@import FirebaseAuthUI;
-@import FirebaseAnalytics;
-
-/*! @var kOKButtonText
- @brief The text of the "OK" button for the Sign In result dialogs.
- */
-static NSString *const kOKButtonText = @"OK";
-
-/*! @var kSignedInAlertTitle
- @brief The text of the "Sign In Succeeded" alert.
- */
-static NSString *const kSignedInAlertTitle = @"Signed In";
-
-/*! @var kSignInErrorAlertTitle
- @brief The text of the "Sign In Encountered an Error" alert.
- */
-static NSString *const kSignInErrorAlertTitle = @"Sign-In Error";
-
-
-@interface SelectViewController ()
-@end
 
 @implementation SelectViewController
-
-- (IBAction)didUISignIn:(UIButton *)sender {
-  // [START firebase_auth_ui]
-  [[FIRAuthUI authUI] presentSignInWithViewController:self callback:^(FIRUser *_Nullable user,
-                                                                  NSError *_Nullable error) {
-    // [END firebase_auth_ui]
-    UIAlertAction *okAction = [UIAlertAction actionWithTitle:kOKButtonText
-                                                       style:UIAlertActionStyleDefault
-                                                     handler:^(UIAlertAction *action) {
-                                                       NSLog(kOKButtonText);
-                                                     }];
-    if (error) {
-      UIAlertController *alertController =
-      [UIAlertController alertControllerWithTitle:kSignInErrorAlertTitle
-                                          message:error.localizedDescription
-                                   preferredStyle:UIAlertControllerStyleAlert];
-      [alertController addAction:okAction];
-      [self presentViewController:alertController animated:YES completion:nil];
-      return;
-    }
-
-    // Log sign in event to Firebase Analytics.
-    [FIRAnalytics logEventWithName:kFIREventLogin parameters:nil];
-
-    [self performSegueWithIdentifier:@"UISignIn" sender:nil];
-  }];
-}
 
 - (IBAction)didTapGuestSignIn:(id)sender {
   // [START firebase_auth_anonymous]

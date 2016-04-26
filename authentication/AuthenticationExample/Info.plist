@@ -33,30 +33,10 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>Bundle</string>
-			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>com.google.firebase.quickstart.AuthenticationExample</string>
-			</array>
-		</dict>
-		<dict>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>CFBundleURLName</key>
 			<string>Client</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>REVERSED_CLIENT_ID</string>
-			</array>
-		</dict>
-		<dict>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>CFBundleURLName</key>
-			<string>com.google.firebase.quickstart.UserManagementExample</string>
-			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>fbPlaceholder</string>
 			</array>
 		</dict>
 	</array>

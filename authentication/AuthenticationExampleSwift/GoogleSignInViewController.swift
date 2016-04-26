@@ -21,8 +21,9 @@
 
 import UIKit
 
-import FirebaseAnalytics
+import Firebase
 import FirebaseAuth
+import GoogleSignIn
 
 @objc(GoogleSignInViewController)
 class GoogleSignInViewController: UIViewController, GIDSignInDelegate, GIDSignInUIDelegate {

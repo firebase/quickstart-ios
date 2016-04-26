@@ -22,6 +22,8 @@
 import UIKit
 
 import FirebaseAuth
+import FBSDKCoreKit
+import FBSDKLoginKit
 
 @objc(FBLoginViewController)
 class FBLoginViewController: UIViewController, FBSDKLoginButtonDelegate {

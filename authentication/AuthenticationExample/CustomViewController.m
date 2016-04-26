@@ -45,6 +45,10 @@ static NSString *const kOKButtonText = @"OK";
 @end
 @implementation CustomViewController
 
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+  [self.view endEditing:YES];
+}
+
 - (IBAction)didTapEmailLogin:(id)sender {
   // [START headless_email_auth]
   [[FIRAuth auth] signInWithEmail:_emailField.text

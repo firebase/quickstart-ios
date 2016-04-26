@@ -32,7 +32,7 @@
 
   FBSDKLoginButton *loginButton = [[FBSDKLoginButton alloc] init];
   loginButton.center = self.view.center;
-  loginButton.delegate = self;  
+  loginButton.delegate = self;
   [self.view addSubview:loginButton];
 }
 

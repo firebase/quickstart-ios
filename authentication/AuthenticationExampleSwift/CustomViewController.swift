@@ -42,6 +42,10 @@ class CustomViewController: UIViewController {
   @IBOutlet weak var passwordField: UITextField!
   @IBOutlet weak var tokenField: UITextView!
 
+  override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    self.view.endEditing(true)
+  }
+
   @IBAction func didTapEmailLogin(sender: AnyObject) {
     // [START headless_email_auth]
     FIRAuth.auth()?.signInWithEmail(emailField.text!, password: passwordField.text!) { (user, error) in

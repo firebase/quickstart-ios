@@ -95,7 +95,7 @@ class SignedInViewController: UIViewController {
     userInfoProfileURLImageView.layer.cornerRadius =
       userInfoProfileURLImageView.frame.size.width / 2.0
     userInfoProfileURLImageView.layer.masksToBounds = true
-    updateUserInfo(FIRAuth.auth())
+    updateUserInfo()
   }
 
   /** @fn signOut
@@ -160,7 +160,7 @@ class SignedInViewController: UIViewController {
           // [END profile_change]
           self.hideSpinner({
             self.showTypicalUIForUserUpdateResultsWithTitle(self.kSetDisplayNameTitle, error: error)
-            //self.updateUserInfo(FIRAuth.auth())
+            self.updateUserInfo()
           })
         }
       })
@@ -184,7 +184,7 @@ class SignedInViewController: UIViewController {
     // [START unlink_provider]
     FIRAuth.auth()?.currentUser?.unlinkFromProvider(provider) { (user, error) in
       self.showTypicalUIForUserUpdateResultsWithTitle(self.kUnlinkTitle, error: error)
-      //self.updateUserInfo(FIRAuth.auth())
+      self.updateUserInfo()
     }
     // [END unlink_provider]
   }
@@ -224,7 +224,7 @@ class SignedInViewController: UIViewController {
           // [END change_email]
           self.hideSpinner({
             self.showTypicalUIForUserUpdateResultsWithTitle(self.kChangeEmailText, error:error)
-            //self.updateUserInfo(FIRAuth.auth())
+            self.updateUserInfo()
           })
         }
       })
@@ -246,7 +246,7 @@ class SignedInViewController: UIViewController {
           // [END change_password]
           self.hideSpinner({
             self.showTypicalUIForUserUpdateResultsWithTitle(self.kChangePasswordText, error:error)
-            //self.updateUserInfo(FIRAuth.auth())
+            self.updateUserInfo()
           })
         }
       })
@@ -273,12 +273,15 @@ class SignedInViewController: UIViewController {
     }
   }
 
-  func updateUserInfo(auth: FIRAuth?) {
-    let user = auth?.currentUser
+  func updateUserInfo() {
+    let user = FIRAuth.auth()?.currentUser
     userInfoDisplayNameLabel.text = user?.displayName
     userInfoEmailLabel.text = user?.email
     userInfoUserIDLabel.text = user?.uid
 
+    unlinkFacebookButton.enabled = false
+    unlinkGoogleButton.enabled = false
+    unlinkTwitterButton.enabled = false
     if let providers = (user?.providerData.map { userInfo in userInfo.providerID }) {
       if providers.contains(FIRFacebookAuthProviderID) {
         unlinkFacebookButton.enabled = true

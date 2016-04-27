@@ -273,6 +273,7 @@ static NSString *const kChangePasswordText = @"Change Password";
   _userInfoUserIDLabel.text = user.uid;
 
   NSMutableArray<NSString *> *providerIDs = [NSMutableArray array];
+  _unlinkFacebookButton.enabled = _unlinkGoogleButton.enabled = _unlinkTwitterButton.enabled = NO;
   for (id<FIRUserInfo> userInfo in user.providerData) {
     NSString *providerID = userInfo.providerID;
     if ([providerID isEqualToString:FIRFacebookAuthProviderID]) {

@@ -48,10 +48,8 @@
       if (error) {
         _urlTextView.text = error.description;
         _takePicButton.enabled = NO;
-        _downloadPicButton.enabled = NO;
       } else {
         _takePicButton.enabled = YES;
-        _downloadPicButton.enabled = YES;
         _urlTextView.text = @"";
       }
     }];
@@ -79,32 +77,61 @@
 
   _urlTextView.text = @"Beginning Upload";
   NSURL *referenceUrl = info[UIImagePickerControllerReferenceURL];
-  PHFetchResult* assets = [PHAsset fetchAssetsWithALAssetURLs:@[referenceUrl] options:nil];
-  PHAsset *asset = [assets firstObject];
-  [asset requestContentEditingInputWithOptions:nil
-                             completionHandler:^(PHContentEditingInput *contentEditingInput, NSDictionary *info) {
-                               NSURL *imageFile = contentEditingInput.fullSizeImageURL;
-                               NSString *filePath =
-                                   [NSString stringWithFormat:@"%@/%lld/%@",
-                                       [FIRAuth auth].currentUser.uid,
-                                       (long long)([[NSDate date] timeIntervalSince1970] * 1000.0),
-                                       [referenceUrl lastPathComponent]];
-                               // [START uploadimage]
-                               FIRStorageMetadata *metadata = [FIRStorageMetadata new];
-                               metadata.contentType = @"image/jpeg";
-                               [[_storageRef child:filePath]
-                                putFile:imageFile metadata:metadata
-                                completion:^(FIRStorageMetadata *metadata, NSError *error) {
-                                  if (error) {
-                                    NSLog(@"Error uploading: %@", error);
-                                    _urlTextView.text = @"Upload Failed";
-                                    return;
-                                  }
-                                  NSLog(@"Upload Succeeded!");
-                                  _urlTextView.text = [metadata.downloadURL absoluteString];
-                                }];
-                               // [END uploadimage]
-                             }];
+  // if it's a photo from the library, not an image from the camera
+  if (referenceUrl) {
+    PHFetchResult* assets = [PHAsset fetchAssetsWithALAssetURLs:@[referenceUrl] options:nil];
+    PHAsset *asset = [assets firstObject];
+    [asset requestContentEditingInputWithOptions:nil
+                               completionHandler:^(PHContentEditingInput *contentEditingInput, NSDictionary *info) {
+                                 NSURL *imageFile = contentEditingInput.fullSizeImageURL;
+                                 NSString *filePath =
+                                     [NSString stringWithFormat:@"%@/%lld/%@",
+                                         [FIRAuth auth].currentUser.uid,
+                                         (long long)([[NSDate date] timeIntervalSince1970] * 1000.0),
+                                         [imageFile lastPathComponent]];
+                                 // [START uploadimage]
+                                 FIRStorageMetadata *metadata = [FIRStorageMetadata new];
+                                 metadata.contentType = @"image/jpeg";
+                                 [[_storageRef child:filePath]
+                                  putFile:imageFile metadata:metadata
+                                  completion:^(FIRStorageMetadata *metadata, NSError *error) {
+                                    if (error) {
+                                      NSLog(@"Error uploading: %@", error);
+                                      _urlTextView.text = @"Upload Failed";
+                                      return;
+                                    }
+                                    NSLog(@"Upload Succeeded!");
+                                    _urlTextView.text = [metadata.downloadURL absoluteString];
+                                    [[NSUserDefaults standardUserDefaults] setObject:filePath forKey:@"storagePath"];
+                                    [[NSUserDefaults standardUserDefaults] synchronize];
+                                    _downloadPicButton.enabled = YES;
+                                  }];
+                                 // [END uploadimage]
+                               }];
+
+  } else {
+    UIImage *image = info[UIImagePickerControllerOriginalImage];
+    NSData *imageData = UIImageJPEGRepresentation(image, 0.8);
+    NSString *imagePath =
+    [NSString stringWithFormat:@"%@/%lld.jpg",
+     [FIRAuth auth].currentUser.uid,
+     (long long)([[NSDate date] timeIntervalSince1970] * 1000.0)];
+    FIRStorageMetadata *metadata = [FIRStorageMetadata new];
+    metadata.contentType = @"image/jpeg";
+    [[_storageRef child:imagePath] putData:imageData metadata:metadata
+        completion:^(FIRStorageMetadata * _Nullable metadata, NSError * _Nullable error) {
+          if (error) {
+            NSLog(@"Error uploading: %@", error);
+            _urlTextView.text = @"Upload Failed";
+            return;
+          }
+          NSLog(@"Upload Succeeded!");
+          _urlTextView.text = [metadata.downloadURL absoluteString];
+          [[NSUserDefaults standardUserDefaults] setObject:imagePath forKey:@"storagePath"];
+          [[NSUserDefaults standardUserDefaults] synchronize];
+          _downloadPicButton.enabled = YES;
+        }];
+  }
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {

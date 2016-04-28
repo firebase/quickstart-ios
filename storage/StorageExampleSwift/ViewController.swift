@@ -47,11 +47,9 @@ class ViewController: UIViewController,
         if (error != nil) {
           self.urlTextView.text = error?.description
           self.takePicButton.enabled = false
-          self.downloadPicButton.enabled = false
         } else {
           self.urlTextView.text = ""
           self.takePicButton.enabled = true
-          self.downloadPicButton.enabled = true
         }
       })
     }
@@ -77,13 +75,13 @@ class ViewController: UIViewController,
       picker.dismissViewControllerAnimated(true, completion:nil)
 
     urlTextView.text = "Beginning Upload";
-    let referenceUrl = info[UIImagePickerControllerReferenceURL] as! NSURL
-    if #available(iOS 8.0, *) {
-      let assets = PHAsset.fetchAssetsWithALAssetURLs([referenceUrl], options: nil)
+    // if it's a photo from the library, not an image from the camera
+    if #available(iOS 8.0, *), let referenceUrl = info[UIImagePickerControllerReferenceURL] {
+      let assets = PHAsset.fetchAssetsWithALAssetURLs([referenceUrl as! NSURL], options: nil)
       let asset = assets.firstObject
-      asset?.requestContentEditingInputWithOptions(nil, completionHandler: { (contentEditingInput, info) in
+      asset?.requestContentEditingInputWithOptions(nil, completionHandler: { (contentEditingInput,info) in
         let imageFile = contentEditingInput?.fullSizeImageURL
-        let filePath = "\(FIRAuth.auth()?.currentUser?.uid)/\(Int(NSDate.timeIntervalSinceReferenceDate() * 1000))/\(referenceUrl.lastPathComponent!)"
+        let filePath = "\(FIRAuth.auth()!.currentUser!.uid)/\(Int(NSDate.timeIntervalSinceReferenceDate() * 1000))/\(imageFile!.lastPathComponent!)"
         // [START uploadimage]
         let metadata = FIRStorageMetadata()
         metadata.contentType = "image/jpeg"
@@ -96,11 +94,32 @@ class ViewController: UIViewController,
             }
             print("Upload Succeeded!")
             self.urlTextView.text = metadata!.downloadURL()!.absoluteString
+            NSUserDefaults.standardUserDefaults().setObject(filePath, forKey: "storagePath")
+            NSUserDefaults.standardUserDefaults().synchronize()
+            self.downloadPicButton.enabled = true
+
         }
         // [END uploadimage]
       })
     } else {
-      // Fallback on earlier versions
+      let image = info[UIImagePickerControllerOriginalImage] as! UIImage
+      let imageData = UIImageJPEGRepresentation(image, 0.8)
+      let imagePath = "\(FIRAuth.auth()!.currentUser!.uid)/\(Int(NSDate.timeIntervalSinceReferenceDate() * 1000)).jpg"
+      let metadata = FIRStorageMetadata()
+      metadata.contentType = "image/jpeg"
+      self.storageRef.child(imagePath)
+        .putData(imageData!, metadata: metadata) { (metadata, error) in
+          if let error = error {
+            print("Error uploading: \(error)")
+            self.urlTextView.text = "Upload Failed"
+            return
+          }
+          print("Upload Succeeded!")
+          self.urlTextView.text = metadata!.downloadURL()!.absoluteString
+          NSUserDefaults.standardUserDefaults().setObject(imagePath, forKey: "storagePath")
+          NSUserDefaults.standardUserDefaults().synchronize()
+          self.downloadPicButton.enabled = true
+        }
     }
   }
 

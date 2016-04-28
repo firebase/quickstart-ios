@@ -32,9 +32,10 @@
   NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
   NSString *documentsDirectory = [paths objectAtIndex:0];
   NSString *filePath = [NSString stringWithFormat:@"file:%@/myimage.jpg", documentsDirectory];
+  NSString *storagePath = [[NSUserDefaults standardUserDefaults] objectForKey:@"storagePath"];
 
   // [START downloadimage]
-  [[_storageRef child:@"myimage.jpg"]
+  [[_storageRef child:storagePath]
           writeToFile:[NSURL URLWithString:filePath] completion:^(NSURL * _Nullable URL, NSError * _Nullable error) {
             if (error) {
               NSLog(@"Error downloading: %@", error);

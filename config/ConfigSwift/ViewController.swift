@@ -79,27 +79,24 @@ class ViewController: UIViewController {
       if (status == FIRRemoteConfigFetchStatus.Success) {
         print("Config fetched!")
         self.remoteConfig.activateFetched()
-        self.displayPrice()
       } else {
         print("Config not fetched")
-        self.priceLabel.text = "\(self.remoteConfig[self.pricePrefixConfigKey].stringValue)" +
-            "\(self.remoteConfig[self.priceConfigKey].numberValue!.longValue)"
+        print("Error \(error.localizedDescription)")
       }
+      self.displayPrice()
     }
     // [END fetch_config_with_callback]
   }
 
   func displayPrice() {
+    let initialPrice = remoteConfig[priceConfigKey].numberValue!.intValue
+    var finalPrice = initialPrice
     if (remoteConfig[isPromotionConfigKey].boolValue) {
       // [START get_config_value]
-      let discountedPrice = remoteConfig[priceConfigKey].numberValue!.intValue -
-          (remoteConfig[discountConfigKey].numberValue?.integerValue)!
+      finalPrice = initialPrice - (remoteConfig[discountConfigKey].numberValue?.integerValue)!
       // [END get_config_value]
-      priceLabel.text = "\(self.remoteConfig[self.pricePrefixConfigKey].stringValue!) \(discountedPrice)"
-    } else {
-      priceLabel.text = "\(self.remoteConfig[self.pricePrefixConfigKey].stringValue!)" +
-          "\(self.remoteConfig[self.priceConfigKey].numberValue)"
     }
+    priceLabel.text = "\(self.remoteConfig[self.pricePrefixConfigKey].stringValue!)\(finalPrice)"
   }
 
   @IBAction func handleFetchTouch(sender: AnyObject) {

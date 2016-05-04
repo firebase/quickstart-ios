@@ -1,0 +1,11 @@
+#
+# Uncomment below to specify your own resources.
+# See https://github.com/jondot/blade for more information.
+#
+
+blades:
+  - source: assets/logo1024.png 
+    mount: Images.xcassets/AppIcon.appiconset
+    contents: true  
+  - source: assets/logo1024.png
+    mount: Images.xcassets/Logo.imageset

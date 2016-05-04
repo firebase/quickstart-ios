@@ -25,7 +25,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 
     // [START tracker_swift]
-    // Configure app ID from GoogleService-Info.plist.
     FIRApp.configure()
     // [END tracker_swift]
 

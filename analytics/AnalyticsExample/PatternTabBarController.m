@@ -34,9 +34,9 @@
 
 - (void)didTapShare:(id)sender {
   // [START custom_event_objc]
-  [FIRAnalytics logEventWithName:kFIREventShare parameters:@{
+  [FIRAnalytics logEventWithName:kFIREventSelectContent parameters:@{
                                                              kFIRParameterContentType:@"cont",
-                                                             kFIRParameterValue:@"1"
+                                                             kFIRParameterItemID:@"1"
                                                              }];
   // [END custom_event_objc]
 

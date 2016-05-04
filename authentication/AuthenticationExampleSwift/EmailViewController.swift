@@ -16,67 +16,37 @@
 
 import UIKit
 
-// [START usermanagement_view_import]
 import FirebaseAuth
-// [END usermanagement_view_import]
 
-@objc(CustomViewController)
-class CustomViewController: UIViewController {
-
-  /*! @var kSignedInAlertTitle
-  @brief The text of the "Sign In Succeeded" alert.
-  */
-  let kSignedInAlertTitle = "Signed In"
-
-  /*! @var kSignInErrorAlertTitle
-  @brief The text of the "Sign In Encountered an Error" alert.
-  */
-  let kSignInErrorAlertTitle = "Sign-In Error"
-
-  /*! @var kOKButtonText
-  @brief The text of the "OK" button for the Sign In result dialogs.
-  */
-  let kOKButtonText = "OK"
+@objc(EmailViewController)
+class EmailViewController: UIViewController {
 
   @IBOutlet weak var emailField: UITextField!
   @IBOutlet weak var passwordField: UITextField!
-  @IBOutlet weak var tokenField: UITextView!
 
   override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
     self.view.endEditing(true)
   }
 
   @IBAction func didTapEmailLogin(sender: AnyObject) {
-    // [START headless_email_auth]
-    FIRAuth.auth()?.signInWithEmail(emailField.text!, password: passwordField.text!) { (user, error) in
-      // [END headless_email_auth]
-      if let error = error {
-        self.showMessagePrompt(error.localizedDescription)
-        return
+    showSpinner({
+      // [START headless_email_auth]
+      FIRAuth.auth()?.signInWithEmail(self.emailField.text!, password: self.passwordField.text!) { (user, error) in
+        // [END headless_email_auth]
+        self.hideSpinner({
+          if let error = error {
+            self.showMessagePrompt(error.localizedDescription)
+            return
+          }
+          self.navigationController!.popViewControllerAnimated(true)
+        })
       }
-
-      self.showMessagePrompt(user!.displayName ?? "Display name is not set for user")
-      self.performSegueWithIdentifier("EmailSignIn", sender: nil)
-    }
-  }
-
-  @IBAction func didTapCustomTokenLogin(sender: AnyObject) {
-    let customToken = tokenField.text
-    // [START signinwithcustomtoken]
-    FIRAuth.auth()?.signInWithCustomToken(customToken) { (user, error) in
-      if let error = error {
-        self.showMessagePrompt(error.localizedDescription)
-        return
-      }
-
-      self.performSegueWithIdentifier("EmailSignIn", sender: nil)
-    }
-    // [END signinwithcustomtoken]
+    })
   }
 
   /** @fn requestPasswordReset
-  @brief Requests a "password reset" email be sent.
-  */
+   @brief Requests a "password reset" email be sent.
+   */
   @IBAction func didRequestPasswordReset(sender: AnyObject) {
     showTextInputPromptWithMessage("Email:") { (userPressedOK, userInput) in
       if (userPressedOK != true) || userInput!.isEmpty {
@@ -101,9 +71,9 @@ class CustomViewController: UIViewController {
   }
 
   /** @fn getProvidersForEmail
-  @brief Prompts the user for an email address, calls @c FIRAuth.getProvidersForEmail:callback:
-  and displays the result.
-  */
+   @brief Prompts the user for an email address, calls @c FIRAuth.getProvidersForEmail:callback:
+   and displays the result.
+   */
   @IBAction func didGetProvidersForEmail(sender: AnyObject) {
     showTextInputPromptWithMessage("Email:") { (userPressedOK, userInput) in
       if (userPressedOK != true) || userInput!.isEmpty {
@@ -155,4 +125,5 @@ class CustomViewController: UIViewController {
       }
     }
   }
+
 }

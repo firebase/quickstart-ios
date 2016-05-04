@@ -17,20 +17,14 @@
 
 #import "AppDelegate.h"
 
-// [START usermanagement_import]
+// [START auth_import]
 @import Firebase;
-// [END usermanagement_import]
+// [END auth_import]
 
 @import GoogleSignIn;
 @import FBSDKCoreKit;
 @import Fabric;
 @import TwitterKit;
-
-/** @var kFacebookAppId
- @brief The App ID for the Facebook SDK.
- */
-static NSString *const kFacebookAppID = @"Placeholder";
-
 
 @implementation AppDelegate
 

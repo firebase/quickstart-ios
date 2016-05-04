@@ -14,25 +14,8 @@
 //  limitations under the License.
 //
 
-import UIKit
+#import <UIKit/UIKit.h>
 
-import FirebaseAuth
+@interface EmailViewController : UIViewController
 
-@objc(SelectViewController)
-class SelectViewController: UIViewController {
-
-  @IBAction func didTapGuestSignIn(sender: AnyObject) {
-    // [START firebase_auth_anonymous]
-    FIRAuth.auth()?.signInAnonymouslyWithCompletion() { (user, error) in
-    // [END firebase_auth_anonymous]
-      if let error = error {
-        print(error.localizedDescription)
-        return
-      }
-      self.performSegueWithIdentifier("UISignIn", sender:nil)
-    }
-  }
-
-  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-  }
-}
+@end

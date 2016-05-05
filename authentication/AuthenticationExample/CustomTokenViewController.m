@@ -36,7 +36,7 @@
     // [START signinwithcustomtoken]
     [[FIRAuth auth] signInWithCustomToken:customToken completion:^(FIRUser * _Nullable user,
                                                      NSError * _Nullable error) {
-      // [END signinwithcustomtoken]
+      // [START_EXCLUDE]
       [self hideSpinner:^{
         if (error) {
           [self showMessagePrompt:error.localizedDescription];
@@ -44,7 +44,9 @@
         }
         [self.navigationController popViewControllerAnimated:YES];
       }];
+      // [END_EXCLUDE]
     }];
+    // [END signinwithcustomtoken]
   }];
 }
 

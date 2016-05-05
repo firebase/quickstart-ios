@@ -14,9 +14,10 @@
 //  limitations under the License.
 //
 
-@import UIKit;
+#import <UIKit/UIKit.h>
 
-@interface GoogleSignInViewController : UIViewController
+@import GoogleSignIn;
 
+@interface MainViewController : UITableViewController<UIPickerViewDataSource, UIPickerViewDelegate, GIDSignInDelegate, GIDSignInUIDelegate>
 
 @end

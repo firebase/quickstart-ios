@@ -16,9 +16,9 @@
 
 import UIKit
 
-// [START usermanagement_import]
+// [START auth_import]
 import Firebase
-// [END usermanagement_import]
+// [END auth_import]
 
 import GoogleSignIn
 import FBSDKCoreKit
@@ -29,7 +29,6 @@ import TwitterKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
   var window: UIWindow?
-  let kFacebookAppID = "Placeholder"
 
   func application(application: UIApplication, didFinishLaunchingWithOptions
       launchOptions: [NSObject: AnyObject]?) -> Bool {

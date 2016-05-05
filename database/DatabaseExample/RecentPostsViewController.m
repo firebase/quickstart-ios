@@ -14,16 +14,14 @@
 //  limitations under the License.
 //
 
-@import UIKit;
-@import FirebaseDatabase;
+#import "RecentPostsViewController.h"
 
-@interface ViewController
-    : UIViewController<UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
+@implementation RecentPostsViewController
 
-@property(strong, nonatomic) FIRDatabaseReference *ref;
-@property(strong, nonatomic) NSMutableArray *messages;
-
-@property(weak, nonatomic) IBOutlet UITableView *tableView;
-@property(weak, nonatomic) IBOutlet UITextField *textField;
+- (FIRDatabaseQuery *) getQuery {
+  // Last 100 posts, these are automatically the 100 most recent
+  // due to sorting by push() keys
+  return [[self.ref child:@"posts"] queryLimitedToFirst:100];
+}
 
 @end

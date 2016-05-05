@@ -75,32 +75,26 @@ NSString *const kDiscountConfigKey = @"discount";
         if (status == FIRRemoteConfigFetchStatusSuccess) {
             NSLog(@"Config fetched!");
             [self.remoteConfig activateFetched];
-            [self displayPrice];
         } else {
             NSLog(@"Config not fetched");
-            NSLog(@"Error %@", error);
-            self.priceLabel.text = [NSString stringWithFormat:@"%@%@",
-                                    self.remoteConfig[kPricePrefixConfigKey].stringValue,
-                                    self.remoteConfig[kPriceConfigKey].numberValue];
+            NSLog(@"Error %@", error.localizedDescription);
         }
+        [self displayPrice];
     }];
     // [END fetch_config_with_callback]
 }
 
 // Display price with discount applied if promotion is on. Otherwise display original price.
 - (void)displayPrice {
+    long initialPrice = self.remoteConfig[kPriceConfigKey].numberValue.longValue;
+    long finalPrice = initialPrice;
     if (self.remoteConfig[kIsPromotionConfigKey].boolValue) {
         // [START get_config_value]
-        long discountedPrice = self.remoteConfig[kPriceConfigKey].numberValue.longValue -
-                                self.remoteConfig[kDiscountConfigKey].numberValue.longValue;
+        finalPrice = initialPrice - self.remoteConfig[kDiscountConfigKey].numberValue.longValue;
         // [END get_config_value]
-        self.priceLabel.text = [NSString stringWithFormat:@"%@%ld",
-                                self.remoteConfig[kPricePrefixConfigKey].stringValue, discountedPrice];
-    } else {
-        self.priceLabel.text = [NSString stringWithFormat:@"%@%@",
-                                self.remoteConfig[kPricePrefixConfigKey].stringValue,
-                                self.remoteConfig[kPriceConfigKey].numberValue];
     }
+    self.priceLabel.text = [NSString stringWithFormat:@"%@%ld",
+                            self.remoteConfig[kPricePrefixConfigKey].stringValue, finalPrice];
 }
 
 - (IBAction)handleFetchTouch:(id)sender {

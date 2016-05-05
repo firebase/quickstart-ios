@@ -16,5 +16,5 @@
 
 @import UIKit;
 
-@interface SignedInViewController : UIViewController
+@interface CustomTokenViewController : UIViewController
 @end

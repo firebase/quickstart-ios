@@ -7,63 +7,48 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1037979C1CA07A6F0030A602 /* TwitterLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1037979B1CA07A6F0030A602 /* TwitterLoginViewController.m */; };
-		103797A01CA082080030A602 /* TwitterLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1037979F1CA082080030A602 /* TwitterLoginViewController.swift */; };
 		10B053F91C6631CD0061077D /* UIViewController+Alerts.m in Sources */ = {isa = PBXBuildFile; fileRef = 10B053F81C6631CD0061077D /* UIViewController+Alerts.m */; };
 		10B053FB1C6945D80061077D /* UIViewController+Alerts.m in Sources */ = {isa = PBXBuildFile; fileRef = 10B053F81C6631CD0061077D /* UIViewController+Alerts.m */; };
 		10B054031C6A3C630061077D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10B054011C6A3C630061077D /* Main.storyboard */; };
-		10B054071C6A43120061077D /* SignedInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10B054061C6A43120061077D /* SignedInViewController.m */; };
-		10B0540F1C6A48840061077D /* SelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10B0540E1C6A48840061077D /* SelectViewController.m */; };
-		10B054161C6A83470061077D /* CustomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B054151C6A83470061077D /* CustomViewController.swift */; };
-		10B054181C6A83D10061077D /* SelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B054171C6A83D10061077D /* SelectViewController.swift */; };
-		10E282371C77B87100F9DB2D /* FBLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10E282361C77B87100F9DB2D /* FBLoginViewController.m */; };
-		10E2823A1C77B89B00F9DB2D /* GoogleSignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10E282391C77B89B00F9DB2D /* GoogleSignInViewController.m */; };
-		10E2823F1C77C6D300F9DB2D /* FBLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E2823E1C77C6D300F9DB2D /* FBLoginViewController.swift */; };
-		10E282411C77C72200F9DB2D /* GoogleSignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E282401C77C72200F9DB2D /* GoogleSignInViewController.swift */; };
 		5F5A53521ADE670C00F81DF0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5A53511ADE670C00F81DF0 /* main.m */; };
 		5F5A53551ADE670C00F81DF0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5A53541ADE670C00F81DF0 /* AppDelegate.m */; };
-		5F5A53581ADE670C00F81DF0 /* CustomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5A53571ADE670C00F81DF0 /* CustomViewController.m */; };
 		5F5A537E1ADE67D500F81DF0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5A537D1ADE67D500F81DF0 /* AppDelegate.swift */; };
-		5F5A53801ADE67D500F81DF0 /* SignedInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5A537F1ADE67D500F81DF0 /* SignedInViewController.swift */; };
 		5F99610A1AE0CF4F0034F503 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F9961061AE0CF4F0034F503 /* Images.xcassets */; };
 		5F99610B1AE0CF4F0034F503 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F9961061AE0CF4F0034F503 /* Images.xcassets */; };
 		5F99610C1AE0CF4F0034F503 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F9961071AE0CF4F0034F503 /* LaunchScreen.xib */; };
 		5F99610D1AE0CF4F0034F503 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F9961071AE0CF4F0034F503 /* LaunchScreen.xib */; };
 		EF4857041C752B7700649485 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10B054011C6A3C630061077D /* Main.storyboard */; };
+		EF6DB4CB1CDD60F700319C08 /* CustomTokenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF6DB4C81CDD60F700319C08 /* CustomTokenViewController.swift */; };
+		EF6DB4CC1CDD60F700319C08 /* EmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF6DB4C91CDD60F700319C08 /* EmailViewController.swift */; };
+		EF6DB4CD1CDD60F700319C08 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF6DB4CA1CDD60F700319C08 /* MainViewController.swift */; };
+		EF6DB4D41CDD610200319C08 /* CustomTokenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6DB4CE1CDD610200319C08 /* CustomTokenViewController.m */; };
+		EF6DB4D51CDD610200319C08 /* EmailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6DB4CF1CDD610200319C08 /* EmailViewController.m */; };
+		EF6DB4D61CDD610200319C08 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6DB4D01CDD610200319C08 /* MainViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1037979A1CA07A6F0030A602 /* TwitterLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwitterLoginViewController.h; sourceTree = "<group>"; };
-		1037979B1CA07A6F0030A602 /* TwitterLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwitterLoginViewController.m; sourceTree = "<group>"; };
-		1037979F1CA082080030A602 /* TwitterLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterLoginViewController.swift; sourceTree = "<group>"; };
 		10B053F71C6631CD0061077D /* UIViewController+Alerts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Alerts.h"; sourceTree = "<group>"; };
 		10B053F81C6631CD0061077D /* UIViewController+Alerts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Alerts.m"; sourceTree = "<group>"; };
 		10B054021C6A3C630061077D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		10B054051C6A43120061077D /* SignedInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignedInViewController.h; sourceTree = "<group>"; };
-		10B054061C6A43120061077D /* SignedInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignedInViewController.m; sourceTree = "<group>"; };
-		10B0540D1C6A48840061077D /* SelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectViewController.h; sourceTree = "<group>"; };
-		10B0540E1C6A48840061077D /* SelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectViewController.m; sourceTree = "<group>"; };
-		10B054151C6A83470061077D /* CustomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomViewController.swift; sourceTree = "<group>"; };
-		10B054171C6A83D10061077D /* SelectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectViewController.swift; sourceTree = "<group>"; };
-		10E282351C77B87100F9DB2D /* FBLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBLoginViewController.h; sourceTree = "<group>"; };
-		10E282361C77B87100F9DB2D /* FBLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBLoginViewController.m; sourceTree = "<group>"; };
-		10E282381C77B89B00F9DB2D /* GoogleSignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleSignInViewController.h; sourceTree = "<group>"; };
-		10E282391C77B89B00F9DB2D /* GoogleSignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleSignInViewController.m; sourceTree = "<group>"; };
-		10E2823E1C77C6D300F9DB2D /* FBLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBLoginViewController.swift; sourceTree = "<group>"; };
-		10E282401C77C72200F9DB2D /* GoogleSignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleSignInViewController.swift; sourceTree = "<group>"; };
 		5F5A534C1ADE670C00F81DF0 /* AuthenticationExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AuthenticationExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F5A53501ADE670C00F81DF0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5F5A53511ADE670C00F81DF0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5F5A53531ADE670C00F81DF0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		5F5A53541ADE670C00F81DF0 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		5F5A53561ADE670C00F81DF0 /* CustomViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomViewController.h; sourceTree = "<group>"; };
-		5F5A53571ADE670C00F81DF0 /* CustomViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomViewController.m; sourceTree = "<group>"; };
 		5F5A53791ADE67D500F81DF0 /* AuthenticationExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AuthenticationExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F5A537D1ADE67D500F81DF0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		5F5A537F1ADE67D500F81DF0 /* SignedInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignedInViewController.swift; sourceTree = "<group>"; };
 		5F5A539B1ADE695B00F81DF0 /* BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
 		5F9961061AE0CF4F0034F503 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		5F9961071AE0CF4F0034F503 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
+		EF6DB4C81CDD60F700319C08 /* CustomTokenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTokenViewController.swift; sourceTree = "<group>"; };
+		EF6DB4C91CDD60F700319C08 /* EmailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailViewController.swift; sourceTree = "<group>"; };
+		EF6DB4CA1CDD60F700319C08 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		EF6DB4CE1CDD610200319C08 /* CustomTokenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTokenViewController.m; sourceTree = "<group>"; };
+		EF6DB4CF1CDD610200319C08 /* EmailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmailViewController.m; sourceTree = "<group>"; };
+		EF6DB4D01CDD610200319C08 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		EF6DB4D11CDD610200319C08 /* CustomTokenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTokenViewController.h; sourceTree = "<group>"; };
+		EF6DB4D21CDD610200319C08 /* EmailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmailViewController.h; sourceTree = "<group>"; };
+		EF6DB4D31CDD610200319C08 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,20 +92,14 @@
 		5F5A534E1ADE670C00F81DF0 /* AuthenticationExample */ = {
 			isa = PBXGroup;
 			children = (
+				EF6DB4CE1CDD610200319C08 /* CustomTokenViewController.m */,
+				EF6DB4CF1CDD610200319C08 /* EmailViewController.m */,
+				EF6DB4D01CDD610200319C08 /* MainViewController.m */,
+				EF6DB4D11CDD610200319C08 /* CustomTokenViewController.h */,
+				EF6DB4D21CDD610200319C08 /* EmailViewController.h */,
+				EF6DB4D31CDD610200319C08 /* MainViewController.h */,
 				5F5A53531ADE670C00F81DF0 /* AppDelegate.h */,
 				5F5A53541ADE670C00F81DF0 /* AppDelegate.m */,
-				5F5A53561ADE670C00F81DF0 /* CustomViewController.h */,
-				5F5A53571ADE670C00F81DF0 /* CustomViewController.m */,
-				10E282351C77B87100F9DB2D /* FBLoginViewController.h */,
-				10E282361C77B87100F9DB2D /* FBLoginViewController.m */,
-				10E282381C77B89B00F9DB2D /* GoogleSignInViewController.h */,
-				10E282391C77B89B00F9DB2D /* GoogleSignInViewController.m */,
-				10B0540D1C6A48840061077D /* SelectViewController.h */,
-				10B0540E1C6A48840061077D /* SelectViewController.m */,
-				10B054051C6A43120061077D /* SignedInViewController.h */,
-				10B054061C6A43120061077D /* SignedInViewController.m */,
-				1037979A1CA07A6F0030A602 /* TwitterLoginViewController.h */,
-				1037979B1CA07A6F0030A602 /* TwitterLoginViewController.m */,
 				5F5A534F1ADE670C00F81DF0 /* Supporting Files */,
 			);
 			path = AuthenticationExample;
@@ -141,13 +120,10 @@
 		5F5A537A1ADE67D500F81DF0 /* AuthenticationExampleSwift */ = {
 			isa = PBXGroup;
 			children = (
+				EF6DB4C81CDD60F700319C08 /* CustomTokenViewController.swift */,
+				EF6DB4C91CDD60F700319C08 /* EmailViewController.swift */,
+				EF6DB4CA1CDD60F700319C08 /* MainViewController.swift */,
 				5F5A537D1ADE67D500F81DF0 /* AppDelegate.swift */,
-				10B054151C6A83470061077D /* CustomViewController.swift */,
-				10E2823E1C77C6D300F9DB2D /* FBLoginViewController.swift */,
-				10E282401C77C72200F9DB2D /* GoogleSignInViewController.swift */,
-				10B054171C6A83D10061077D /* SelectViewController.swift */,
-				5F5A537F1ADE67D500F81DF0 /* SignedInViewController.swift */,
-				1037979F1CA082080030A602 /* TwitterLoginViewController.swift */,
 				5F5A537B1ADE67D500F81DF0 /* Supporting Files */,
 			);
 			path = AuthenticationExampleSwift;
@@ -273,15 +249,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				10B0540F1C6A48840061077D /* SelectViewController.m in Sources */,
-				10E282371C77B87100F9DB2D /* FBLoginViewController.m in Sources */,
-				5F5A53581ADE670C00F81DF0 /* CustomViewController.m in Sources */,
-				1037979C1CA07A6F0030A602 /* TwitterLoginViewController.m in Sources */,
-				10E2823A1C77B89B00F9DB2D /* GoogleSignInViewController.m in Sources */,
+				EF6DB4D51CDD610200319C08 /* EmailViewController.m in Sources */,
+				EF6DB4D61CDD610200319C08 /* MainViewController.m in Sources */,
 				10B053F91C6631CD0061077D /* UIViewController+Alerts.m in Sources */,
+				EF6DB4D41CDD610200319C08 /* CustomTokenViewController.m in Sources */,
 				5F5A53551ADE670C00F81DF0 /* AppDelegate.m in Sources */,
 				5F5A53521ADE670C00F81DF0 /* main.m in Sources */,
-				10B054071C6A43120061077D /* SignedInViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,14 +262,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				10E282411C77C72200F9DB2D /* GoogleSignInViewController.swift in Sources */,
-				10B054181C6A83D10061077D /* SelectViewController.swift in Sources */,
-				5F5A53801ADE67D500F81DF0 /* SignedInViewController.swift in Sources */,
-				10E2823F1C77C6D300F9DB2D /* FBLoginViewController.swift in Sources */,
-				103797A01CA082080030A602 /* TwitterLoginViewController.swift in Sources */,
 				5F5A537E1ADE67D500F81DF0 /* AppDelegate.swift in Sources */,
 				10B053FB1C6945D80061077D /* UIViewController+Alerts.m in Sources */,
-				10B054161C6A83470061077D /* CustomViewController.swift in Sources */,
+				EF6DB4CB1CDD60F700319C08 /* CustomTokenViewController.swift in Sources */,
+				EF6DB4CC1CDD60F700319C08 /* EmailViewController.swift in Sources */,
+				EF6DB4CD1CDD60F700319C08 /* MainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

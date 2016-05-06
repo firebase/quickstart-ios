@@ -36,7 +36,7 @@
     [[FIRAuth auth] signInWithEmail:_emailField.text
                            password:_passwordField.text
                          completion:^(FIRUser *user, NSError *error) {
-                           // [END headless_email_auth]
+                           // [START_EXCLUDE]
                            [self hideSpinner:^{
                              if (error) {
                                [self showMessagePrompt:error.localizedDescription];
@@ -44,8 +44,10 @@
                              }
                              [self.navigationController popViewControllerAnimated:YES];
                            }];
+                           // [END_EXCLUDE]
                          }];
-    }];
+    // [END headless_email_auth]
+  }];
 }
 
 /** @fn requestPasswordReset
@@ -62,16 +64,18 @@
                            // [START password_reset]
                            [[FIRAuth auth] sendPasswordResetWithEmail:userInput
                                                            completion:^(NSError * _Nullable error) {
-                                                             // [END password_reset]
+                                                             // [START_EXCLUDE]
                                                              [self hideSpinner:^{
                                                                if (error) {
                                                                  [self showMessagePrompt:error.localizedDescription];
                                                                  return;
                                                                }
-                                                               
+
                                                                [self showMessagePrompt:@"Sent"];
                                                              }];
+                                                             // [END_EXCLUDE]
                                                            }];
+                           // [END password_reset]
                          }];
                        }];
 }
@@ -91,7 +95,7 @@
                            // [START get_providers]
                            [[FIRAuth auth] fetchProvidersForEmail:userInput
                                                        completion:^(NSArray<NSString *> *_Nullable providers, NSError *_Nullable error) {
-                                                         // [END get_providers]
+                                                         // [START_EXCLUDE]
                                                          [self hideSpinner:^{
                                                            if (error) {
                                                              [self showMessagePrompt:error.localizedDescription];
@@ -100,7 +104,9 @@
 
                                                            [self showMessagePrompt:[providers componentsJoinedByString:@", "]];
                                                          }];
+                                                         // [END_EXCLUDE]
                                                        }];
+                           // [END get_providers]
                          }];
                        }];
 }
@@ -117,21 +123,23 @@
                                                 if (!userPressedOK || !password.length) {
                                                   return;
                                                 }
-                                                
+
                                                 [self showSpinner:^{
                                                   // [START create_user]
                                                   [[FIRAuth auth] createUserWithEmail:email password:password
                                                                            completion:^(FIRUser * _Nullable user, NSError * _Nullable error) {
-                                                                             // [END create_user]
+                                                                             // [START_EXCLUDE]
                                                                              [self hideSpinner:^{
                                                                                if (error) {
                                                                                  [self showMessagePrompt:error.localizedDescription];
                                                                                  return;
                                                                                }
-                                                                               
+
                                                                                [self showMessagePrompt:user.email];
                                                                              }];
+                                                                             // [END_EXCLUDE]
                                                                            }];
+                                                  // [END create_user]
                                                 }];
                                               }];
                        }];

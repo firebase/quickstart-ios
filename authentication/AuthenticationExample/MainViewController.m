@@ -174,14 +174,16 @@ static NSString *const kChangePasswordText = @"Change Password";
       // [START firebase_auth_anonymous]
       [[FIRAuth auth] signInAnonymouslyWithCompletion:^(FIRUser *_Nullable user,
                                                         NSError *_Nullable error) {
-        // [END firebase_auth_anonymous]
+        // [START_EXCLUDE]
         [self hideSpinner:^{
           if (error) {
             [self showMessagePrompt:error.localizedDescription];
             return;
           }
         }];
+        // [END_EXCLUDE]
       }];
+      // [END firebase_auth_anonymous]
     }];
   }
 }
@@ -191,26 +193,30 @@ static NSString *const kChangePasswordText = @"Change Password";
     if ([FIRAuth auth].currentUser) {
       // [START link_credential]
       [[FIRAuth auth].currentUser linkWithCredential:credential completion:^(FIRUser * _Nullable user, NSError * _Nullable error) {
-        // [END link_credential]
+        // [START_EXCLUDE]
         [self hideSpinner:^{
           if (error) {
             [self showMessagePrompt:error.localizedDescription];
             return;
           }
         }];
+        // [END_EXCLUDE]
       }];
+      // [END link_credential]
     } else {
       // [START signin_credential]
       [[FIRAuth auth] signInWithCredential:credential
                                 completion:^(FIRUser *user, NSError *error) {
-                                  // [END signin_credential]
+                                  // [START_EXCLUDE]
                                   [self hideSpinner:^{
                                     if (error) {
                                       [self showMessagePrompt:error.localizedDescription];
                                       return;
                                     }
                                   }];
+                                  // [END_EXCLUDE]
                                 }];
+      // [END signin_credential]
     }
   }];
 }
@@ -222,11 +228,15 @@ static NSString *const kChangePasswordText = @"Change Password";
     GIDAuthentication *authentication = user.authentication;
     FIRAuthCredential *credential =
     [FIRGoogleAuthProvider credentialWithIDToken:authentication.idToken accessToken:authentication.accessToken];
-    // [END headless_google_auth]
+    // [START_EXCLUDE]
     [self firebaseLoginWithCredential:credential];
+    // [END_EXCLUDE]
   } else
+    // [START_EXCLUDE]
     [self showMessagePrompt:error.localizedDescription];
+    // [END_EXCLUDE]
 }
+// [END headless_google_auth]
 
 - (IBAction)didTapSignOut:(id)sender {
   // [START signout]
@@ -236,6 +246,7 @@ static NSString *const kChangePasswordText = @"Change Password";
     NSLog(@"Error signing out: %@", signOutError);
     return;
   }
+  // [END signout]
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -327,7 +338,7 @@ static NSString *const kChangePasswordText = @"Change Password";
     [self showSpinner:^{
       // [START unlink_provider]
       [[FIRAuth auth].currentUser unlinkFromProvider:providerID completion:^(FIRUser * _Nullable user, NSError * _Nullable error) {
-        // [END unlink_provider]
+        // [START_EXCLUDE]
         [self hideSpinner:^{
           if (error) {
             [self showMessagePrompt:error.localizedDescription];
@@ -335,7 +346,9 @@ static NSString *const kChangePasswordText = @"Change Password";
           }
           [self.tableView reloadData];
         }];
+        // [END_EXCLUDE]
       }];
+      // [END unlink_provider]
     }];
   }
 }
@@ -398,12 +411,14 @@ static NSString *const kChangePasswordText = @"Change Password";
                            [[FIRAuth auth].currentUser profileChangeRequest];
                            changeRequest.displayName = userInput;
                            [changeRequest commitChangesWithCompletion:^(NSError *_Nullable error) {
-                             // [END profile_change]
+                             // [START_EXCLUDE]
                              [self hideSpinner:^{
                                [self showTypicalUIForUserUpdateResultsWithTitle:kSetDisplayNameTitle error:error];
                                self.navigationItem.title = [FIRAuth auth].currentUser.displayName;
                              }];
+                             // [END_EXCLUDE]
                            }];
+                           // [END profile_change]
                          }];
                        }];
 }
@@ -415,7 +430,7 @@ static NSString *const kChangePasswordText = @"Change Password";
   [self showSpinner:^{
     // [START send_verification_email]
     [[FIRAuth auth].currentUser sendEmailVerificationWithCompletion:^(NSError * _Nullable error) {
-      // [END send_verification_email]
+      // [START_EXCLUDE]
       [self hideSpinner:^{
         if (error) {
           [self showMessagePrompt:error.localizedDescription];
@@ -424,7 +439,9 @@ static NSString *const kChangePasswordText = @"Change Password";
 
         [self showMessagePrompt:@"Sent"];
       }];
+      // [END_EXCLUDE]
     }];
+    // [END send_verification_email]
   }];
 }
 
@@ -441,12 +458,14 @@ static NSString *const kChangePasswordText = @"Change Password";
                          [self showSpinner:^{
                            // [START change_email]
                            [[FIRAuth auth].currentUser updateEmail:userInput completion:^(NSError *_Nullable error) {
-                             // [END change_email]
+                             // [START_EXCLUDE]
                              [self hideSpinner:^{
                                [self showTypicalUIForUserUpdateResultsWithTitle:kChangeEmailText error:error];
 
                              }];
+                             // [END_EXCLUDE]
                            }];
+                           // [END change_email]
                          }];
                        }];
 }
@@ -464,11 +483,13 @@ static NSString *const kChangePasswordText = @"Change Password";
                          [self showSpinner:^{
                            // [START change_password]
                            [[FIRAuth auth].currentUser updatePassword:userInput completion:^(NSError *_Nullable error) {
-                             // [END change_password]
+                             // [START_EXCLUDE]
                              [self hideSpinner:^{
                                [self showTypicalUIForUserUpdateResultsWithTitle:kChangePasswordText error:error];
                              }];
+                             // [END_EXCLUDE]
                            }];
+                           // [END change_password]
                          }];
                        }];
 }

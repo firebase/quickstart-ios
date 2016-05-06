@@ -34,7 +34,7 @@ class CustomTokenViewController: UIViewController {
     showSpinner({
       // [START signinwithcustomtoken]
       FIRAuth.auth()?.signInWithCustomToken(customToken) { (user, error) in
-        // [END signinwithcustomtoken]
+        // [START_EXCLUDE]
         self.hideSpinner({
           if let error = error {
             self.showMessagePrompt(error.localizedDescription)
@@ -42,7 +42,9 @@ class CustomTokenViewController: UIViewController {
           }
           self.navigationController!.popViewControllerAnimated(true)
         })
+        // [END_EXCLUDE]
       }
+      // [END signinwithcustomtoken]
     })
   }
 

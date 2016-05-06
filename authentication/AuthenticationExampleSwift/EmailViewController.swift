@@ -33,7 +33,7 @@ class EmailViewController: UIViewController {
       showSpinner({
         // [START headless_email_auth]
         FIRAuth.auth()?.signInWithEmail(email, password: password) { (user, error) in
-          // [END headless_email_auth]
+          // [START_EXCLUDE]
           self.hideSpinner({
             if let error = error {
               self.showMessagePrompt(error.localizedDescription)
@@ -41,7 +41,9 @@ class EmailViewController: UIViewController {
             }
             self.navigationController!.popViewControllerAnimated(true)
           })
+          // [END_EXCLUDE]
         }
+        // [END headless_email_auth]
       })
     } else {
       self.showMessagePrompt("email/password can't be empty")
@@ -57,7 +59,7 @@ class EmailViewController: UIViewController {
         self.showSpinner({
           // [START password_reset]
           FIRAuth.auth()?.sendPasswordResetWithEmail(userInput) { (error) in
-            // [END password_reset]
+            // [START_EXCLUDE]
             self.hideSpinner({
               if let error = error {
                 self.showMessagePrompt(error.localizedDescription)
@@ -65,7 +67,9 @@ class EmailViewController: UIViewController {
               }
               self.showMessagePrompt("Sent")
             })
+            // [END_EXCLUDE]
           }
+          // [END password_reset]
         })
       }
     }
@@ -80,8 +84,8 @@ class EmailViewController: UIViewController {
       if let email = email {
         self.showSpinner({
           // [START get_providers]
-          FIRAuth.auth()!.fetchProvidersForEmail(email) { (providers, error) in
-            // [END get_providers]
+          FIRAuth.auth()?.fetchProvidersForEmail(email) { (providers, error) in
+            // [START_EXCLUDE]
             self.hideSpinner({
               if let error = error {
                 self.showMessagePrompt(error.localizedDescription)
@@ -89,7 +93,9 @@ class EmailViewController: UIViewController {
               }
               self.showMessagePrompt(providers!.joinWithSeparator(", "))
             })
+            // [END_EXCLUDE]
           }
+          // [END get_providers]
         })
       } else {
         self.showMessagePrompt("email can't be empty")
@@ -105,7 +111,7 @@ class EmailViewController: UIViewController {
             self.showSpinner({
               // [START create_user]
               FIRAuth.auth()?.createUserWithEmail(email, password: password) { (user, error) in
-                  // [END create_user]
+                // [START_EXCLUDE]
                 self.hideSpinner({
                   if let error = error {
                     self.showMessagePrompt(error.localizedDescription)
@@ -113,7 +119,9 @@ class EmailViewController: UIViewController {
                   }
                   self.showMessagePrompt(user!.email!)
                 })
+                // [END_EXCLUDE]
               }
+              // [END create_user]
             })
           } else {
             self.showMessagePrompt("password can't be empty")

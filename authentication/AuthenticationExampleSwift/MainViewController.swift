@@ -172,14 +172,16 @@ class MainViewController: UITableViewController, UIPickerViewDataSource, UIPicke
       self.showSpinner({
         // [START firebase_auth_anonymous]
         FIRAuth.auth()?.signInAnonymouslyWithCompletion() { (user, error) in
-          // [END firebase_auth_anonymous]
+          // [START_EXCLUDE]
           self.hideSpinner({
             if let error = error {
               self.showMessagePrompt(error.localizedDescription)
               return
             }
           })
+          // [END_EXCLUDE]
         }
+        // [END firebase_auth_anonymous]
       })
     default:
       break
@@ -191,25 +193,29 @@ class MainViewController: UITableViewController, UIPickerViewDataSource, UIPicke
       if let user = FIRAuth.auth()?.currentUser {
         // [START link_credential]
         user.linkWithCredential(credential) { (user, error) in
-          // [END link_credential]
+          // [START_EXCLUDE]
           self.hideSpinner({
             if let error = error {
               self.showMessagePrompt(error.localizedDescription)
               return
             }
           })
+          // [END_EXCLUDE]
         }
+        // [END link_credential]
       } else {
         // [START signin_credential]
         FIRAuth.auth()?.signInWithCredential(credential) { (user, error) in
-          // [END signin_credential]
+          // [START_EXCLUDE]
           self.hideSpinner({
             if let error = error {
               self.showMessagePrompt(error.localizedDescription)
               return
             }
           })
+          // [END_EXCLUDE]
         }
+        // [END signin_credential]
       }
     })
   }
@@ -222,10 +228,13 @@ class MainViewController: UITableViewController, UIPickerViewDataSource, UIPicke
     }
 
     let authentication = user.authentication
-    let credential = FIRGoogleAuthProvider.credentialWithIDToken(authentication.idToken, accessToken: authentication.accessToken)
-    // [END headless_google_auth]
+    let credential = FIRGoogleAuthProvider.credentialWithIDToken(authentication.idToken,
+        accessToken: authentication.accessToken)
+    // [START_EXCLUDE]
     firebaseLogin(credential)
+    // [END_EXCLUDE]
   }
+  // [END headless_google_auth]
 
   @IBAction func didTapSignOut(sender: AnyObject) {
     // [START signout]
@@ -334,7 +343,7 @@ class MainViewController: UITableViewController, UIPickerViewDataSource, UIPicke
       showSpinner({
         // [START unlink_provider]
         FIRAuth.auth()?.currentUser?.unlinkFromProvider(providerID!) { (user, error) in
-          // [END unlink_provider]
+          // [START_EXCLUDE]
           self.hideSpinner({
             if let error = error {
               self.showMessagePrompt(error.localizedDescription)
@@ -342,7 +351,9 @@ class MainViewController: UITableViewController, UIPickerViewDataSource, UIPicke
             }
             tableView.reloadData()
           })
+          // [END_EXCLUDE]
         }
+        // [END unlink_provider]
       })
     }
   }
@@ -414,16 +425,17 @@ class MainViewController: UITableViewController, UIPickerViewDataSource, UIPicke
     showSpinner({
       // [START send_verification_email]
       FIRAuth.auth()?.currentUser?.sendEmailVerificationWithCompletion({ (error) in
-        // [END send_verification_email]
+        // [START_EXCLUDE]
         self.hideSpinner({
           if let error = error {
             self.showMessagePrompt(error.localizedDescription)
             return
           }
-
           self.showMessagePrompt("Sent")
         })
+        // [END_EXCLUDE]
       })
+      // [END send_verification_email]
     })
   }
 
@@ -436,11 +448,13 @@ class MainViewController: UITableViewController, UIPickerViewDataSource, UIPicke
         self.showSpinner({
           // [START change_email]
           FIRAuth.auth()?.currentUser?.updateEmail(userInput) { (error) in
-            // [END change_email]
+            // [START_EXCLUDE]
             self.hideSpinner({
               self.showTypicalUIForUserUpdateResultsWithTitle(self.kChangeEmailText, error:error)
             })
+            // [END_EXCLUDE]
           }
+          // [END change_email]
         })
       } else {
         self.showMessagePrompt("email can't be empty")
@@ -457,11 +471,13 @@ class MainViewController: UITableViewController, UIPickerViewDataSource, UIPicke
         self.showSpinner({
           // [START change_password]
           FIRAuth.auth()?.currentUser?.updatePassword(userInput) { (error) in
-            // [END change_password]
+            // [START_EXCLUDE]
             self.hideSpinner({
               self.showTypicalUIForUserUpdateResultsWithTitle(self.kChangePasswordText, error:error)
             })
+            // [END_EXCLUDE]
           }
+          // [END change_password]
         })
       } else {
         self.showMessagePrompt("password can't be empty")

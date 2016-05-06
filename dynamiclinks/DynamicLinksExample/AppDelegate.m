@@ -20,7 +20,6 @@
 // [END import]
 
 @import Firebase;
-@import GoogleSignIn;
 
 static NSString *const CUSTOM_URL_SCHEME = @"gindeeplinkurl";
 
@@ -49,12 +48,6 @@ static NSString *const CUSTOM_URL_SCHEME = @"gindeeplinkurl";
             openURL:(NSURL *)url
   sourceApplication:(NSString *)sourceApplication
          annotation:(id)annotation {
-  if ([[GIDSignIn sharedInstance] handleURL:url
-                          sourceApplication:sourceApplication
-                                 annotation:annotation]) {
-    return YES;
-  }
-
   FIRDynamicLink *dynamicLink =
   [[FIRDynamicLinks dynamicLinks] dynamicLinkFromCustomSchemeURL:url];
 

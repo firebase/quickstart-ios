@@ -19,4 +19,7 @@ class Comment: NSObject {
     self.text = text
   }
 
+  convenience override init() {
+    self.init(uid: "", author: "", text: "")
+  }
 }

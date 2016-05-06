@@ -15,4 +15,7 @@ class User: NSObject {
     self.username = username
   }
 
+  convenience override init() {
+    self.init(username:  "")
+  }
 }

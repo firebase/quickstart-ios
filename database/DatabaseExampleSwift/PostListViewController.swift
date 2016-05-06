@@ -50,7 +50,7 @@ class PostListViewController: UIViewController, UITableViewDelegate {
   }
 
   func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
-    tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    performSegueWithIdentifier("detail", sender: indexPath)
   }
 
   func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -63,5 +63,13 @@ class PostListViewController: UIViewController, UITableViewDelegate {
 
   func getQuery() -> FIRDatabaseQuery {
     return self.ref
+  }
+
+  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    let path: NSIndexPath = sender as! NSIndexPath
+    let detail: PostDetailTableViewController = segue.destinationViewController as! PostDetailTableViewController
+    let source = self.dataSource
+    let snapshot: FIRDataSnapshot = (source?.objectAtIndex(UInt(path.row)))! as! FIRDataSnapshot
+    detail.postKey = snapshot.key
   }
 }

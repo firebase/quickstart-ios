@@ -10,6 +10,7 @@
 		100116CE1CDD16F100C9256E /* UIViewController+Alerts.m in Sources */ = {isa = PBXBuildFile; fileRef = 100116CD1CDD16F100C9256E /* UIViewController+Alerts.m */; };
 		100116CF1CDD16F100C9256E /* UIViewController+Alerts.m in Sources */ = {isa = PBXBuildFile; fileRef = 100116CD1CDD16F100C9256E /* UIViewController+Alerts.m */; };
 		100116D21CDD1CDC00C9256E /* PostDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100116D11CDD1CDC00C9256E /* PostDetailTableViewController.m */; };
+		103685821CDD3B13004DC149 /* PostDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 103685811CDD3B13004DC149 /* PostDetailTableViewController.swift */; };
 		1056D9491CD815040061ED72 /* PostListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1056D9481CD815040061ED72 /* PostListViewController.m */; };
 		1056D94C1CD817790061ED72 /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = 1056D94B1CD817790061ED72 /* Comment.m */; };
 		1056D9521CD8179F0061ED72 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 1056D9511CD8179F0061ED72 /* User.m */; };
@@ -62,6 +63,7 @@
 		100116CD1CDD16F100C9256E /* UIViewController+Alerts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Alerts.m"; sourceTree = "<group>"; };
 		100116D01CDD1CDC00C9256E /* PostDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostDetailTableViewController.h; sourceTree = "<group>"; };
 		100116D11CDD1CDC00C9256E /* PostDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostDetailTableViewController.m; sourceTree = "<group>"; };
+		103685811CDD3B13004DC149 /* PostDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostDetailTableViewController.swift; sourceTree = "<group>"; };
 		1056D9471CD815040061ED72 /* PostListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostListViewController.h; sourceTree = "<group>"; };
 		1056D9481CD815040061ED72 /* PostListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostListViewController.m; sourceTree = "<group>"; };
 		1056D94A1CD817790061ED72 /* Comment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Comment.h; sourceTree = "<group>"; };
@@ -144,6 +146,7 @@
 				10B872B31CDBFFA800C7D214 /* PostListViewController.swift */,
 				10B872C31CDC11F200C7D214 /* RecentPostsViewController.swift */,
 				10B872C51CDC14C800C7D214 /* MyTopPostsViewController.swift */,
+				103685811CDD3B13004DC149 /* PostDetailTableViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -436,6 +439,7 @@
 				5F5A537E1ADE67D500F81DF0 /* AppDelegate.swift in Sources */,
 				10B872BB1CDC059F00C7D214 /* Comment.swift in Sources */,
 				10B872B71CDC044500C7D214 /* Post.swift in Sources */,
+				103685821CDD3B13004DC149 /* PostDetailTableViewController.swift in Sources */,
 				10B872C61CDC14C800C7D214 /* MyTopPostsViewController.swift in Sources */,
 				10B872C41CDC11F200C7D214 /* RecentPostsViewController.swift in Sources */,
 				100116CF1CDD16F100C9256E /* UIViewController+Alerts.m in Sources */,

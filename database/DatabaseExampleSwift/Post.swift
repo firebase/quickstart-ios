@@ -22,4 +22,8 @@ class Post: NSObject {
     self.title = title
     self.body = body
   }
+
+  convenience override init() {
+    self.init(uid: "", author: "", title: "", body:  "")
+  }
 }

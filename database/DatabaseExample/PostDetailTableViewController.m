@@ -25,7 +25,7 @@ static const int kSectionPost = 0;
 
 @interface PostDetailTableViewController ()
 @property (strong, nonatomic) NSMutableArray<FIRDataSnapshot *> *comments;
-@property (weak, nonatomic) IBOutlet UITextField *commentField;
+@property (strong, nonatomic) UITextField *commentField;
 @property (strong, nonatomic) Post *post;
 @property (strong, nonatomic) FIRDatabaseReference *postRef;
 @property (strong, nonatomic) FIRDatabaseReference *commentsRef;

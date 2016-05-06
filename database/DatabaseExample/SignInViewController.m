@@ -15,29 +15,88 @@
 //
 
 #import "SignInViewController.h"
+#import "UIViewController+Alerts.h"
 @import FirebaseAuth;
 
 @interface SignInViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *emailField;
+@property (weak, nonatomic) IBOutlet UITextField *passwordField;
 @end
 
 @implementation SignInViewController
 
-- (IBAction)didTapSignUp:(id)sender {
-  [[FIRAuth auth] signInAnonymouslyWithCompletion:^(FIRUser * _Nullable user, NSError * _Nullable error) {
-    if (error) {
-      NSLog(@"%@", error.localizedDescription);
-      return;
-    }
-    self.ref = [FIRDatabase database].reference;
-    [[[_ref child:@"users"] child:user.uid] setValue:@{@"username": _emailField.text}];
-    [self performSegueWithIdentifier:@"signIn" sender:nil];
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+  [self.view endEditing:YES];
+}
+
+- (IBAction)didTapEmailLogin:(id)sender {
+  [self showSpinner:^{
+    [[FIRAuth auth] signInWithEmail:_emailField.text
+                           password:_passwordField.text
+                         completion:^(FIRUser *user, NSError *error) {
+                           [self hideSpinner:^{
+                             if (error) {
+                               [self showMessagePrompt:error.localizedDescription];
+                               return;
+                             }
+                             [self performSegueWithIdentifier:@"signIn" sender:nil];
+                           }];
+                         }];
   }];
 }
 
+- (IBAction)didTapSignUp:(id)sender {
+  [self showTextInputPromptWithMessage:@"Email:"
+      completionBlock:^(BOOL userPressedOK, NSString *_Nullable email) {
+        if (!userPressedOK || !email.length) {
+          return;
+        }
+        [self showTextInputPromptWithMessage:@"Password:"
+            completionBlock:^(BOOL userPressedOK, NSString *_Nullable password) {
+              if (!userPressedOK || !password.length) {
+                return;
+              }
+              [self showTextInputPromptWithMessage:@"Username:"
+                  completionBlock:^(BOOL userPressedOK, NSString *_Nullable username) {
+                    if (!userPressedOK || !username.length) {
+                      return;
+                    }
+                    [self showSpinner:^{
+                      [[FIRAuth auth] createUserWithEmail:email password:password
+                          completion:^(FIRUser * _Nullable user, NSError * _Nullable error) {
+                            [self hideSpinner:^{
+                              if (error) {
+                                [self showMessagePrompt:error.localizedDescription];
+                                return;
+                              }
+                            }];
+                            [self showSpinner:^{
+                              FIRUserProfileChangeRequest *changeRequest =
+                                  [[FIRAuth auth].currentUser profileChangeRequest];
+                              changeRequest.displayName = username;
+                              [changeRequest commitChangesWithCompletion:^(NSError *_Nullable error) {
+                                [self hideSpinner:^{
+                                  if (error) {
+                                    [self showMessagePrompt:error.localizedDescription];
+                                    return;
+                                  }
+                                  self.navigationItem.title = [FIRAuth auth].currentUser.displayName;
+                                  [[[_ref child:@"users"] child:user.uid] setValue:@{@"username": [FIRAuth auth].currentUser.displayName}];
+                                  [self performSegueWithIdentifier:@"signIn" sender:nil];
+                                }];
+                              }];
+                            }];
+                          }];
+                        }];
+                }];
+              }];
+      }];
+}
+
+
 #pragma mark - UITextFieldDelegate protocol methods
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
-  [self didTapSignUp:nil];
+  [self didTapEmailLogin:nil];
   return YES;
 }
 

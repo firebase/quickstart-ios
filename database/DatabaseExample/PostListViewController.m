@@ -18,6 +18,7 @@
 #import "Post.h"
 #import "PostTableViewCell.h"
 #import "PostDataSource.h"
+#import "PostDetailTableViewController.h"
 @import FirebaseAuth;
 
 @implementation PostListViewController
@@ -55,7 +56,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-  [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+  [self performSegueWithIdentifier:@"detail" sender:indexPath];
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -68,5 +69,13 @@
 
 - (FIRDatabaseQuery *) getQuery {
   return self.ref;
+}
+
+-(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+  NSIndexPath *path = sender;
+  PostDetailTableViewController *detail = segue.destinationViewController;
+  FirebaseTableViewDataSource *source = self.dataSource;
+  FIRDataSnapshot *snapshot = [source objectAtIndex:path.row];
+  detail.postKey = snapshot.key;
 }
 @end

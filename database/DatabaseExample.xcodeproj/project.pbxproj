@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		100116CE1CDD16F100C9256E /* UIViewController+Alerts.m in Sources */ = {isa = PBXBuildFile; fileRef = 100116CD1CDD16F100C9256E /* UIViewController+Alerts.m */; };
+		100116CF1CDD16F100C9256E /* UIViewController+Alerts.m in Sources */ = {isa = PBXBuildFile; fileRef = 100116CD1CDD16F100C9256E /* UIViewController+Alerts.m */; };
+		100116D21CDD1CDC00C9256E /* PostDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100116D11CDD1CDC00C9256E /* PostDetailTableViewController.m */; };
 		1056D9491CD815040061ED72 /* PostListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1056D9481CD815040061ED72 /* PostListViewController.m */; };
 		1056D94C1CD817790061ED72 /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = 1056D94B1CD817790061ED72 /* Comment.m */; };
 		1056D9521CD8179F0061ED72 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 1056D9511CD8179F0061ED72 /* User.m */; };
@@ -54,6 +57,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		100116CB1CDD16F100C9256E /* DatabaseExampleSwift-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DatabaseExampleSwift-Bridging-Header.h"; sourceTree = "<group>"; };
+		100116CC1CDD16F100C9256E /* UIViewController+Alerts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Alerts.h"; sourceTree = "<group>"; };
+		100116CD1CDD16F100C9256E /* UIViewController+Alerts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Alerts.m"; sourceTree = "<group>"; };
+		100116D01CDD1CDC00C9256E /* PostDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostDetailTableViewController.h; sourceTree = "<group>"; };
+		100116D11CDD1CDC00C9256E /* PostDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostDetailTableViewController.m; sourceTree = "<group>"; };
 		1056D9471CD815040061ED72 /* PostListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostListViewController.h; sourceTree = "<group>"; };
 		1056D9481CD815040061ED72 /* PostListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostListViewController.m; sourceTree = "<group>"; };
 		1056D94A1CD817790061ED72 /* Comment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Comment.h; sourceTree = "<group>"; };
@@ -178,6 +186,8 @@
 				1056D95E1CD829FE0061ED72 /* MyTopPostsViewController.m */,
 				5F5A53561ADE670C00F81DF0 /* NewPostViewController.h */,
 				5F5A53571ADE670C00F81DF0 /* NewPostViewController.m */,
+				100116D01CDD1CDC00C9256E /* PostDetailTableViewController.h */,
+				100116D11CDD1CDC00C9256E /* PostDetailTableViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -224,9 +234,12 @@
 		5F5A534F1ADE670C00F81DF0 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				100116CC1CDD16F100C9256E /* UIViewController+Alerts.h */,
+				100116CD1CDD16F100C9256E /* UIViewController+Alerts.m */,
 				5F5A53591ADE670C00F81DF0 /* Main.storyboard */,
 				5F5A53501ADE670C00F81DF0 /* Info.plist */,
 				5F5A53511ADE670C00F81DF0 /* main.m */,
+				100116CB1CDD16F100C9256E /* DatabaseExampleSwift-Bridging-Header.h */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -322,7 +335,7 @@
 		5F5A53441ADE670C00F81DF0 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0710;
+				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = "Google Inc.";
 				TargetAttributes = {
@@ -396,12 +409,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				10F226321CDBEE95005205F2 /* Post.m in Sources */,
+				100116CE1CDD16F100C9256E /* UIViewController+Alerts.m in Sources */,
 				1056D9491CD815040061ED72 /* PostListViewController.m in Sources */,
 				1056D9521CD8179F0061ED72 /* User.m in Sources */,
 				5F5A53581ADE670C00F81DF0 /* NewPostViewController.m in Sources */,
 				10F2262F1CDBEE7C005205F2 /* SignInViewController.m in Sources */,
 				5F5A53551ADE670C00F81DF0 /* AppDelegate.m in Sources */,
 				1056D95C1CD824C60061ED72 /* PostDataSource.m in Sources */,
+				100116D21CDD1CDC00C9256E /* PostDetailTableViewController.m in Sources */,
 				1056D94C1CD817790061ED72 /* Comment.m in Sources */,
 				1056D9651CD82CC10061ED72 /* RecentPostsViewController.m in Sources */,
 				5F5A53521ADE670C00F81DF0 /* main.m in Sources */,
@@ -423,6 +438,7 @@
 				10B872B71CDC044500C7D214 /* Post.swift in Sources */,
 				10B872C61CDC14C800C7D214 /* MyTopPostsViewController.swift in Sources */,
 				10B872C41CDC11F200C7D214 /* RecentPostsViewController.swift in Sources */,
+				100116CF1CDD16F100C9256E /* UIViewController+Alerts.m in Sources */,
 				10B872BD1CDC072B00C7D214 /* PostTableViewCell.swift in Sources */,
 				10B872B41CDBFFA800C7D214 /* PostListViewController.swift in Sources */,
 				10B872AE1CDBFB1F00C7D214 /* MyPostsViewController.swift in Sources */,
@@ -594,12 +610,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/DatabaseExample/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.DatabaseExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "DatabaseExample/DatabaseExampleSwift-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -608,12 +626,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/DatabaseExample/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.DatabaseExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "DatabaseExample/DatabaseExampleSwift-Bridging-Header.h";
 			};
 			name = Release;
 		};

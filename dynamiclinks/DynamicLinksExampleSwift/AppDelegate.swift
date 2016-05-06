@@ -19,7 +19,6 @@ import UIKit
 import FirebaseDynamicLinks
 // [END import]
 import Firebase
-import GoogleSignIn
 
 
 @UIApplicationMain
@@ -45,10 +44,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   }
 
   func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
-    if GIDSignIn.sharedInstance().handleURL(url, sourceApplication: sourceApplication, annotation: annotation) {
-      return true
-    }
-
     let dynamicLink = FIRDynamicLinks.dynamicLinks()?.dynamicLinkFromCustomSchemeURL(url)
     if let dynamicLink = dynamicLink {
       // Handle the deep link. For example, show the deep-linked content or

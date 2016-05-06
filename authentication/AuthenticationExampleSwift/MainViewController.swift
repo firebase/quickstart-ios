@@ -134,6 +134,8 @@ class MainViewController: UITableViewController, UIPickerViewDataSource, UIPicke
     providerToolbar!.removeFromSuperview()
     let selectedProvider = pickerData![selectedRow!]
     switch selectedProvider {
+    case "Email":
+      performSegueWithIdentifier("email", sender:nil)
     case FIRFacebookAuthProviderID:
       let loginManager = FBSDKLoginManager()
       loginManager.logInWithReadPermissions(["email"], fromViewController: self, handler: { (result, error) in
@@ -225,7 +227,7 @@ class MainViewController: UITableViewController, UIPickerViewDataSource, UIPicke
     firebaseLogin(credential)
   }
 
-  @IBAction func didSignOut(sender: AnyObject) {
+  @IBAction func didTapSignOut(sender: AnyObject) {
     // [START signout]
     let firebaseAuth = FIRAuth.auth()
     do {
@@ -264,7 +266,10 @@ class MainViewController: UITableViewController, UIPickerViewDataSource, UIPicke
         return 0
       }
     case kSectionProviders:
-      return (FIRAuth.auth()?.currentUser?.providerData.count)!
+      if let user = FIRAuth.auth()?.currentUser {
+        return user.providerData.count
+      }
+      return 0
     default:
       return 0
     }
@@ -383,22 +388,22 @@ class MainViewController: UITableViewController, UIPickerViewDataSource, UIPicke
   */
   @IBAction func didSetDisplayName(sender: AnyObject) {
     showTextInputPromptWithMessage("Display Name:") { (userPressedOK, userInput) in
-      if (userPressedOK != true) || userInput!.isEmpty {
-        return
+      if let userInput = userInput {
+        self.showSpinner({
+          // [START profile_change]
+          let changeRequest = FIRAuth.auth()?.currentUser?.profileChangeRequest()
+          changeRequest?.displayName = userInput
+          changeRequest?.commitChangesWithCompletion() { (error) in
+            // [END profile_change]
+            self.hideSpinner({
+              self.showTypicalUIForUserUpdateResultsWithTitle(self.kSetDisplayNameTitle, error: error)
+              self.navigationItem.title = FIRAuth.auth()?.currentUser?.displayName
+            })
+          }
+        })
+      } else {
+        self.showMessagePrompt("displayname can't be empty")
       }
-
-      self.showSpinner({
-        // [START profile_change]
-        let changeRequest = FIRAuth.auth()?.currentUser?.profileChangeRequest()
-        changeRequest?.displayName = userInput!
-        changeRequest?.commitChangesWithCompletion() { (error) in
-          // [END profile_change]
-          self.hideSpinner({
-            self.showTypicalUIForUserUpdateResultsWithTitle(self.kSetDisplayNameTitle, error: error)
-            self.navigationItem.title = FIRAuth.auth()?.currentUser?.displayName
-          })
-        }
-      })
     }
   }
 
@@ -408,7 +413,7 @@ class MainViewController: UITableViewController, UIPickerViewDataSource, UIPicke
   @IBAction func didRequestVerifyEmail(sender: AnyObject) {
     showSpinner({
       // [START send_verification_email]
-      FIRAuth.auth()!.currentUser!.sendEmailVerificationWithCompletion({ (error) in
+      FIRAuth.auth()?.currentUser?.sendEmailVerificationWithCompletion({ (error) in
         // [END send_verification_email]
         self.hideSpinner({
           if let error = error {
@@ -427,19 +432,19 @@ class MainViewController: UITableViewController, UIPickerViewDataSource, UIPicke
   */
   @IBAction func didChangeEmail(sender: AnyObject) {
     showTextInputPromptWithMessage("Email Address:") { (userPressedOK, userInput) in
-      if (userPressedOK != true) || userInput!.isEmpty {
-        return
+      if let userInput = userInput {
+        self.showSpinner({
+          // [START change_email]
+          FIRAuth.auth()?.currentUser?.updateEmail(userInput) { (error) in
+            // [END change_email]
+            self.hideSpinner({
+              self.showTypicalUIForUserUpdateResultsWithTitle(self.kChangeEmailText, error:error)
+            })
+          }
+        })
+      } else {
+        self.showMessagePrompt("email can't be empty")
       }
-
-      self.showSpinner({
-        // [START change_email]
-        FIRAuth.auth()!.currentUser!.updateEmail(userInput!) { (error) in
-          // [END change_email]
-          self.hideSpinner({
-            self.showTypicalUIForUserUpdateResultsWithTitle(self.kChangeEmailText, error:error)
-          })
-        }
-      })
     }
   }
 
@@ -448,19 +453,19 @@ class MainViewController: UITableViewController, UIPickerViewDataSource, UIPicke
   */
   @IBAction func didChangePassword(sender: AnyObject) {
     showTextInputPromptWithMessage("New Password:") { (userPressedOK, userInput) in
-      if (userPressedOK != true) || userInput!.isEmpty {
-        return
+      if let userInput = userInput {
+        self.showSpinner({
+          // [START change_password]
+          FIRAuth.auth()?.currentUser?.updatePassword(userInput) { (error) in
+            // [END change_password]
+            self.hideSpinner({
+              self.showTypicalUIForUserUpdateResultsWithTitle(self.kChangePasswordText, error:error)
+            })
+          }
+        })
+      } else {
+        self.showMessagePrompt("password can't be empty")
       }
-
-      self.showSpinner({
-        // [START change_password]
-        FIRAuth.auth()!.currentUser!.updatePassword(userInput!) { (error) in
-          // [END change_password]
-          self.hideSpinner({
-            self.showTypicalUIForUserUpdateResultsWithTitle(self.kChangePasswordText, error:error)
-          })
-        }
-      })
     }
   }
 

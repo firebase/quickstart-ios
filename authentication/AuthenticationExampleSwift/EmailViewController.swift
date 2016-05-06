@@ -29,19 +29,23 @@ class EmailViewController: UIViewController {
   }
 
   @IBAction func didTapEmailLogin(sender: AnyObject) {
-    showSpinner({
-      // [START headless_email_auth]
-      FIRAuth.auth()?.signInWithEmail(self.emailField.text!, password: self.passwordField.text!) { (user, error) in
-        // [END headless_email_auth]
-        self.hideSpinner({
-          if let error = error {
-            self.showMessagePrompt(error.localizedDescription)
-            return
-          }
-          self.navigationController!.popViewControllerAnimated(true)
-        })
-      }
-    })
+    if let email = self.emailField.text, password = self.passwordField.text {
+      showSpinner({
+        // [START headless_email_auth]
+        FIRAuth.auth()?.signInWithEmail(email, password: password) { (user, error) in
+          // [END headless_email_auth]
+          self.hideSpinner({
+            if let error = error {
+              self.showMessagePrompt(error.localizedDescription)
+              return
+            }
+            self.navigationController!.popViewControllerAnimated(true)
+          })
+        }
+      })
+    } else {
+      self.showMessagePrompt("email/password can't be empty")
+    }
   }
 
   /** @fn requestPasswordReset
@@ -49,24 +53,21 @@ class EmailViewController: UIViewController {
    */
   @IBAction func didRequestPasswordReset(sender: AnyObject) {
     showTextInputPromptWithMessage("Email:") { (userPressedOK, userInput) in
-      if (userPressedOK != true) || userInput!.isEmpty {
-        return
+      if let userInput = userInput {
+        self.showSpinner({
+          // [START password_reset]
+          FIRAuth.auth()?.sendPasswordResetWithEmail(userInput) { (error) in
+            // [END password_reset]
+            self.hideSpinner({
+              if let error = error {
+                self.showMessagePrompt(error.localizedDescription)
+                return
+              }
+              self.showMessagePrompt("Sent")
+            })
+          }
+        })
       }
-
-      self.showSpinner({
-        // [START password_reset]
-        FIRAuth.auth()!.sendPasswordResetWithEmail(userInput!) { (error) in
-          // [END password_reset]
-          self.hideSpinner({
-            if let error = error {
-              self.showMessagePrompt(error.localizedDescription)
-              return
-            }
-
-            self.showMessagePrompt("Sent")
-          })
-        }
-      })
     }
   }
 
@@ -75,55 +76,52 @@ class EmailViewController: UIViewController {
    and displays the result.
    */
   @IBAction func didGetProvidersForEmail(sender: AnyObject) {
-    showTextInputPromptWithMessage("Email:") { (userPressedOK, userInput) in
-      if (userPressedOK != true) || userInput!.isEmpty {
-        return
-      }
-
-      self.showSpinner({
-        // [START get_providers]
-        FIRAuth.auth()!.fetchProvidersForEmail(userInput!) { (providers, error) in
-          // [END get_providers]
-          self.hideSpinner({
-            if let error = error {
-              self.showMessagePrompt(error.localizedDescription)
-              return
-            }
-
-            self.showMessagePrompt(providers!.joinWithSeparator(", "))
-          })
-        }
-      })
-    }
-  }
-
-  @IBAction func didCreateAccount(sender: AnyObject) {
     showTextInputPromptWithMessage("Email:") { (userPressedOK, email) in
-      if (userPressedOK != true) || email!.isEmpty {
-        return
-      }
-
-      self.showTextInputPromptWithMessage("Password:") { (userPressedOK, password) in
-        if (userPressedOK != true) || password!.isEmpty {
-          return
-        }
-
+      if let email = email {
         self.showSpinner({
-          // [START create_user]
-          FIRAuth.auth()?.createUserWithEmail(email!, password: password!) { (user, error) in
-            // [END create_user]
+          // [START get_providers]
+          FIRAuth.auth()!.fetchProvidersForEmail(email) { (providers, error) in
+            // [END get_providers]
             self.hideSpinner({
               if let error = error {
                 self.showMessagePrompt(error.localizedDescription)
                 return
               }
-
-              self.showMessagePrompt(user!.email!)
+              self.showMessagePrompt(providers!.joinWithSeparator(", "))
             })
           }
         })
+      } else {
+        self.showMessagePrompt("email can't be empty")
       }
     }
   }
 
+  @IBAction func didCreateAccount(sender: AnyObject) {
+    showTextInputPromptWithMessage("Email:") { (userPressedOK, email) in
+      if let email = email {
+        self.showTextInputPromptWithMessage("Password:") { (userPressedOK, password) in
+          if let password = password {
+            self.showSpinner({
+              // [START create_user]
+              FIRAuth.auth()?.createUserWithEmail(email, password: password) { (user, error) in
+                  // [END create_user]
+                self.hideSpinner({
+                  if let error = error {
+                    self.showMessagePrompt(error.localizedDescription)
+                    return
+                  }
+                  self.showMessagePrompt(user!.email!)
+                })
+              }
+            })
+          } else {
+            self.showMessagePrompt("password can't be empty")
+          }
+        }
+      } else {
+        self.showMessagePrompt("email can't be empty")
+      }
+    }
+  }
 }

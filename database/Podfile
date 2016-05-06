@@ -5,6 +5,8 @@ source 'https://github.com/CocoaPods/Specs.git'
 use_frameworks!
 platform :ios, '7.0'
 pod 'Firebase/Database'
+pod 'Firebase/Auth'
+pod 'FirebaseUI'
 
 target 'DatabaseExample' do
 end

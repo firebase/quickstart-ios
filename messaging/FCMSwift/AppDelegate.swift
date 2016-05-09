@@ -46,6 +46,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     return true
   }
 
+  // [START receive_message]
   func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject],
                    fetchCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
     // If you are receiving a notification message while your app is in the background,
@@ -58,6 +59,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Print full message.
     print("%@", userInfo)
   }
+  // [END receive_message]
 
   // [START refresh_token]
   func tokenRefreshNotificaiton(notification: NSNotification) {

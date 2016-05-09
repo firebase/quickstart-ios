@@ -15,7 +15,6 @@
 //
 
 #import "AppDelegate.h"
-#import "FirebaseAppIndexing/FirebaseAppIndexing.h"
 @import Firebase;
 
 @implementation AppDelegate

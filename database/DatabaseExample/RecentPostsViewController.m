@@ -19,9 +19,12 @@
 @implementation RecentPostsViewController
 
 - (FIRDatabaseQuery *) getQuery {
+  // [START recent_posts_query]
   // Last 100 posts, these are automatically the 100 most recent
   // due to sorting by push() keys
-  return [[self.ref child:@"posts"] queryLimitedToFirst:100];
+  FIRDatabaseQuery *recentPostsQuery = [[self.ref child:@"posts"] queryLimitedToFirst:100];
+  // [END recent_posts_query]
+  return recentPostsQuery;
 }
 
 @end

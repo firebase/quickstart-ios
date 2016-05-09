@@ -81,7 +81,9 @@
                                     return;
                                   }
                                   self.navigationItem.title = [FIRAuth auth].currentUser.displayName;
+                                  // [START basic_write]
                                   [[[_ref child:@"users"] child:user.uid] setValue:@{@"username": [FIRAuth auth].currentUser.displayName}];
+                                  // [END basic_write]
                                   [self performSegueWithIdentifier:@"signIn" sender:nil];
                                 }];
                               }];

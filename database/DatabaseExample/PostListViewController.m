@@ -26,7 +26,9 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
 
+  // [START create_database_reference]
   self.ref = [FIRDatabase database].reference;
+  // [END create_database_reference]
 
   self.dataSource = [[PostDataSource alloc] initWithQuery:[self getQuery]
                                                modelClass:[Post class]
@@ -40,7 +42,7 @@
      cell.authorImage.image = [UIImage imageNamed:@"ic_account_circle"];
      cell.authorLabel.text = post.author;
      NSString *imageName = [post.stars objectForKey:[self getUid]] ? @"ic_star" : @"ic_star_border";
-     cell.starImage.image = [UIImage imageNamed:imageName];
+     [cell.starButton setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
      cell.numStarsLabel.text = [NSString stringWithFormat:@"%d",post.starCount];
      cell.postTitle.text = post.title;
      cell.postBody.text = post.body;

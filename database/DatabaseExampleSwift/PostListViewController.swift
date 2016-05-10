@@ -14,7 +14,10 @@ import FirebaseDatabase
 @objc(PostListViewController)
 class PostListViewController: UIViewController, UITableViewDelegate {
 
+  // [START define_database_reference]
   var ref: FIRDatabaseReference!
+  // [END define_database_reference]
+
   var dataSource: FirebaseTableViewDataSource?
 
   @IBOutlet weak var tableView: UITableView!
@@ -22,7 +25,9 @@ class PostListViewController: UIViewController, UITableViewDelegate {
   override func viewDidLoad() {
     super.viewDidLoad()
 
+    // [START create_database_reference]
     ref = FIRDatabase().reference()
+    // [END create_database_reference]
 
     dataSource = FirebaseTableViewDataSource.init(query: getQuery(), modelClass: Post.self, nibNamed: "PostTableViewCell", cellReuseIdentifier: "postCell", view: self.tableView)
 
@@ -35,7 +40,7 @@ class PostListViewController: UIViewController, UITableViewDelegate {
       if (post.stars?[self.getUid()]) != nil {
         imageName = "ic_star"
       }
-      cell.starImage.image = UIImage.init(named: imageName)
+      cell.starButton.setImage(UIImage.init(named: imageName), forState: .Normal)
       cell.numStarsLabel.text = String(post.starCount)
       cell.postTitle.text = post.title
       cell.postBody.text = post.body

@@ -33,6 +33,7 @@ class PostDetailTableViewController: UITableViewController {
 
   override func viewWillAppear(animated: Bool) {
     self.comments.removeAll()
+    // [START child_event_listener]
     // Listen for new comments in the Firebase database
     commentsRef.observeEventType(.ChildAdded, withBlock: { (snapshot) -> Void in
       self.comments.append(snapshot)
@@ -44,14 +45,20 @@ class PostDetailTableViewController: UITableViewController {
       self.comments.removeAtIndex(index)
       self.tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: index, inSection: 1)], withRowAnimation: UITableViewRowAnimation.Automatic)
     })
+    // [END child_event_listener]
+
+    // [START post_value_event_listener]
     _refHandle = postRef.observeEventType(.Value) { (snapshot) in
       let postDict = snapshot.value
+      // [START_EXCLUDE]
       post.uid = postDict["uid"]
       post.author = postDict["author"]
       post.title = postDict["title"]
       post.body = postDict["body"]
       tableView.reloadData()
+      // [END_EXCLUDE]
     }
+    // [END post_value_event_listener]
   }
 
   func indexOfMessage(snapshot: FIRDataSnapshot) -> Int {

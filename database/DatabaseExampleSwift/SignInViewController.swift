@@ -64,7 +64,9 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
                             return
                           }
                           self.navigationItem.title = FIRAuth.auth()?.currentUser?.displayName
+                          // [START basic_write]
                           self.ref.child("users").setValue(["username": self.emailField.text as String!])
+                          // [END basic_write]
                           self.performSegueWithIdentifier("signIn", sender: nil)
                         })
                       }

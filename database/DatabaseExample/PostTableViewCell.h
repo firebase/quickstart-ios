@@ -15,12 +15,14 @@
 //
 
 #import <UIKit/UIKit.h>
+@import FirebaseDatabase;
 
 @interface PostTableViewCell : UITableViewCell
 @property(weak, nonatomic) IBOutlet UIImageView *authorImage;
 @property(weak, nonatomic) IBOutlet UILabel *authorLabel;
-@property(weak, nonatomic) IBOutlet UIImageView *starImage;
+@property (weak, nonatomic) IBOutlet UIButton *starButton;
 @property(weak, nonatomic) IBOutlet UILabel *numStarsLabel;
 @property(weak, nonatomic) IBOutlet UILabel *postTitle;
 @property(weak, nonatomic) IBOutlet UITextView *postBody;
+@property (strong, nonatomic) FIRDatabaseReference *postRef;
 @end

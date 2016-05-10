@@ -14,7 +14,6 @@
 //  limitations under the License.
 //
 
-
 #import "AppDelegate.h"
 
 // [START auth_import]
@@ -37,7 +36,7 @@
 
   [[FBSDKApplicationDelegate sharedInstance] application:application
                            didFinishLaunchingWithOptions:launchOptions];
-  [Fabric with:@[[Twitter class]]];
+  [Fabric with:@[ [Twitter class] ]];
   return YES;
 }
 
@@ -48,20 +47,21 @@
                    openURL:url
          sourceApplication:options[UIApplicationOpenURLOptionsSourceApplicationKey]
                 annotation:options[UIApplicationOpenURLOptionsAnnotationKey]];
-  }
+}
 
-- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url
-    sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation {
   if ([[GIDSignIn sharedInstance] handleURL:url
-                      sourceApplication:sourceApplication
+                          sourceApplication:sourceApplication
                                  annotation:annotation]) {
     return YES;
   }
   return [[FBSDKApplicationDelegate sharedInstance] application:application
                                                         openURL:url
                                               sourceApplication:sourceApplication
-                                                     annotation:annotation
-          ];
+                                                     annotation:annotation];
 }
 
 @end

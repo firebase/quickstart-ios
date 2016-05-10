@@ -251,9 +251,9 @@ class MainViewController: UITableViewController, UIPickerViewDataSource, UIPicke
     super.viewWillAppear(animated)
     handle = FIRAuth.auth()?.addAuthStateDidChangeListener() { (auth, user) in
       if let user = user {
-        self.navigationItem.title = user.displayName
+        self.navigationItem.title = "Welcome \(user.displayName)"
       } else {
-        self.navigationItem.title = "Sign In"
+        self.navigationItem.title = "Authentication Example"
       }
       self.tableView.reloadData()
     }

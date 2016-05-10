@@ -18,6 +18,7 @@
 
 @import GoogleSignIn;
 
-@interface MainViewController : UITableViewController<UIPickerViewDataSource, UIPickerViewDelegate, GIDSignInDelegate, GIDSignInUIDelegate>
+@interface MainViewController : UITableViewController<GIDSignInDelegate,
+                                                      GIDSignInUIDelegate>
 
 @end

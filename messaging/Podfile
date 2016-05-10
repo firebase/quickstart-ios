@@ -1,6 +1,4 @@
-# FCM
-source 'https://cpdc-eap.googlesource.com/spec.git'
-source 'https://github.com/CocoaPods/Specs.git'
+# Firebase Cloud Messaging (FCM)
 
 use_frameworks!
 platform :ios, '7.0'

@@ -421,7 +421,7 @@
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = FCM/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.FCM;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.your-bundle-id-here.sample";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -437,7 +437,7 @@
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = FCM/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.FCM;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.your-bundle-id-here.sample";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -451,7 +451,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "$(SRCROOT)/FCM/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.FCM;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.your-bundle-id-here.sample";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -464,7 +464,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "$(SRCROOT)/FCM/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.FCM;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.your-bundle-id-here.sample";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

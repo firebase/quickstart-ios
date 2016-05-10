@@ -6,21 +6,34 @@ The Firebase App Indexing iOS quickstart demonstrates how to help get your app f
 Introduction
 ------------
 
-- [Read more about Firebase App Indexing](https://developers.google.com/firebase/)
+- [Read more about Firebase App Indexing](https://firebase.google.com)
 
 Getting Started
 ---------------
 
-- [Add Firebase to your iOS Project](https://developers.google.com/firebase/docs/ios/setup).
-- Follow the [quickstart guide](https://developers.google.com/app-indexing/ios/app) to set up your project.
-- Run the sample on your iOS device or emulator.
+- [Add Firebase to your iOS Project](https://firebase.google.com/docs/ios/setup).
+- In web/public/apple-app-site-association file, replace <YOUR-APPID-OR-TEAMID> with your
+  App ID or your Team ID.
+- Get the [Firebase Command Line Interface (CLI)](https://firebase.google.com/docs/hosting/quickstart#install-the-firebase-cli) Step 1
+- Run firebase init
+  - Select your current Firebase project
+  - Hit Enter to select the default public directory as your website root.
+- Run firebase deploy
+- In the entitlement file located within the AppIndexingExample and the AppIndexingSwiftExample
+  replace <YOUR-DOMAIN> with the Firebase hosting domain. Do not include "https://".
+- Run the sample on your iOS device.
+- From Safari on your iOS device, go to your Firebase hosting URL.
+- Select one of the available links, *Go to content* or *Go to other content*
+  - If you are not automatically redirected to the app, swipe down in Safari to
+    reveal the *OPEN* option that takes you to the app.
+- Verify that the deep link data matches the link clicked.
 
 Note: You will need Swift 2.0 to run the Swift version of this quickstart.
 
 Support
 -------
 
-https://developers.google.com/firebase/support/
+https://firebase.google.com/support
 
 License
 -------

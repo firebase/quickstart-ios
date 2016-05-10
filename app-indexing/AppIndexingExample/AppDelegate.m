@@ -25,6 +25,8 @@
   [FIRApp configure];
 
   // Replace 123456 with the App Store ID of your app.
+  // Registering your application allows your app to be included in
+  // Google Search results.
   [[FIRAppIndexing sharedInstance] registerApp:123456];
   return YES;
 }
@@ -34,9 +36,16 @@
             openURL:(NSURL *)url
   sourceApplication:(NSString *)sourceApplication
          annotation:(id)annotation {
-  self.currentDeepLink = [url absoluteString];
-  return true;
+  self.currentDeepLink = url;
+  return YES;
 }
 // [END handle_link]
+
+// [START handle_universal_link]
+- (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray * _Nullable))restorationHandler {
+  self.currentDeepLink = [userActivity webpageURL];
+  return YES;
+}
+// [END handle_universal_link]
 
 @end

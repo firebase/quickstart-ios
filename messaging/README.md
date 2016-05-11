@@ -7,14 +7,15 @@ an iOS app to FCM and how to receive messages.
 Introduction
 ------------
 
-- [Read more about Firebase Messaging](https://developers.google.com/firebase)
+- [Read more about Firebase Messaging](https://firebase.google.com/cloud-messaging)
 
 Getting Started
 ---------------
 
-Add APNS certs to your project in Settings > Notifications in the [console](https://g.co/firebase)
+- Add APNS certs to your project in Project Settings > Notifications in the [console](https://console.firebase.google.com)
 - Run `pod install`
 - Copy in the GoogleServices-Info.plist to your project
+- Update the app Bundle ID in XCode to match the Bundle ID of your APNs cert.
 - Run the sample on your iOS device.
 
 Note: You will need Swift 2.0 to run the Swift version of this quickstart.
@@ -25,7 +26,7 @@ Screenshots
 Support
 -------
 
-https://developers.google.com/firebase/support
+https://firebase.google.com/support
 
 License
 -------

@@ -22,17 +22,14 @@ import GoogleSignIn
 class AppDelegate: UIResponder, UIApplicationDelegate {
   var window: UIWindow?
 
-  // [START didfinishlaunching]
+  // [START configure]
   func application(application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
     // Use Firebase library to configure APIs
     FIRApp.configure()
-    // Initialize sign-in
-    FIRInvites.applicationDidFinishLaunchingWithOptions(launchOptions)
-
-      return true
+    return true
   }
-  // [END didfinishlaunching]
+  // [END configure]
 
   // [START openurl]
   @available(iOS 9.0, *)

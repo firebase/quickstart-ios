@@ -21,16 +21,14 @@
 
 @implementation AppDelegate
 
-// [START didfinishlaunching]
+// [START configure]
 - (BOOL)application:(UIApplication *)application
     didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+  // Use Firebase library to configure APIs
   [FIRApp configure];
-
-  [FIRInvites applicationDidFinishLaunchingWithOptions:launchOptions];
-
   return YES;
 }
-// [END didfinishlaunching]
+// [END configure]
 
 // [START openurl]
 - (BOOL)application:(nonnull UIApplication *)application

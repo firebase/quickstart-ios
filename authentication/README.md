@@ -4,26 +4,79 @@ Firebase Authentication Quickstart
 Introduction
 ------------
 
-- [Read more about Firebase Authentication](https://developers.google.com/firebase)
+- [Read more about Firebase Authentication](https://firebase.google.com/docs/auth/)
 
 Getting Started
 ---------------
 
-- [Add Firebase to your iOS Project](https://developers.google.com/firebase/docs/ios/setup).
-- Follow the [quickstart guide](https://developers.google.com/firebase/docs/auth/ios/user-auth) to set up your project.
-- Run the sample on your iOS device or emulator.
+- [Add Firebase to your iOS Project](https://firebase.google.com/docs/ios/setup).
 
-Note: You will need Swift 1.2 to run the Swift version of this quickstart.
+
+### Google Sign In Setup
+- Go to the [Firebase Console](https://console.firebase.google.com) and navigate to your project:
+  - Select the **Auth** panel and then click the **Sign In Method** tab.
+  - Click **Google** and turn on the **Enable** switch, then click **Save**.
+- In XCode, add a custom URL scheme for your reversed client ID. 
+  - You can find this in the `GoogleService-Info.plist`
+- Run the app on your device or simulator.
+    - Select **Sign In** and select Google to begin.
+    
+### Facebook Login Setup
+- Go to the [Facebook Developers Site](https://developers.facebook.com) and follow all
+  instructions to set up a new Android app. When asked for a bundle ID, use
+  `com.google.firebase.quickstart.AuthenticationExample`.
+- Go to the [Firebase Console](https://console.firebase.google.com) and navigate to your project:
+  - Select the **Auth** panel and then click the **Sign In Method** tab.
+  - Click **Facebook** and turn on the **Enable** switch, then click **Save**.
+  - Enter your Facebook **App Id** and **App Secret** and click **Save**.
+- Open your regular `Info.plist` and replace the value of the `FacebookAppID` with the ID of the Facebook app you just created.
+- Run the app on your device or simulator.
+    - Select **Sign In** and select Facebook to begin.
+      
+### Email/Password Setup
+- Go to the [Firebase Console](https://console.firebase.google.com) and navigate to your project:
+  - Select the **Auth** panel and then click the **Sign In Method** tab.
+  - Click **Email/Password** and turn on the **Enable** switch, then click **Save**.
+- Run the app on your device or simulator.
+    - Select **Sign In** and select Email to begin.
+    
+### Twitter Login Setup    
+- Go to the [Twitter Developers Site](https://apps.twitter.com/) and follow all
+  instructions to set up a new iOS app. 
+- Go to the [Firebase Console](https://console.firebase.google.com) and navigate to your project:
+  - Select the **Auth** panel and then click the **Sign In Method** tab.
+  - Click **Twitter** and turn on the **Enable** switch, then click **Save**.
+  - Enter your Twitter **API Key** and **App Secret** and click **Save**.
+- Open your regular `Info.plist` and replace the value of the `consumerKey` and `consumerSecret` values with the keys from the Twitter app you just created.
+- Run the app on your device or simulator.
+    - Select **Sign In** and select Twitter to begin.
+    
+### Custom Authentication Setup
+- Go to the [Google Developers Console](https://console.developers.google.com/project) and navigate to your project:
+    - From the left "hamburger" menu navigate to the **API Manager** tab.
+    - Click on the **Credentials** item in the left column.
+    - Click **New credentials** and select **Service account key**. Select **New service account**,
+    pick any name, and select **JSON** as the key type. Then click **Create**.
+    - You should now have a new JSON file for your service account in your Downloads directory.
+- Open the file `web/auth.html` in your computer's web browser.
+    - Click **Choose File** and upload the JSON file you just downloaded.
+    - Enter any User ID and click **Generate**.
+    - Copy the token link displayed.
+- Run the app on the simulator.
+    - Select **Sign In** and select Custom to begin.
+    - Paste in the token you generated earlier.
+    - When you return to the main screen, you should see the User ID you entered when generating the 
+      token.
 
 Support
 -------
 
-https://developers.google.com/firebase/support/
+https://firebase.google.com/support/
 
 License
 -------
 
-Copyright 2015 Google, Inc.
+Copyright 2016 Google, Inc.
 
 Licensed to the Apache Software Foundation (ASF) under one or more contributor
 license agreements.  See the NOTICE file distributed with this work for

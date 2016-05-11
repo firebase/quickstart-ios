@@ -46,14 +46,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   @available(iOS 9.0, *)
   func application(application: UIApplication, openURL url: NSURL, options: [String : AnyObject])
     -> Bool {
-      return self.application(application, openURL: url, sourceApplication: options[UIApplicationOpenURLOptionsSourceApplicationKey] as! String?, annotation: [:])
+      return self.application(application,
+                              openURL: url,
+                              sourceApplication:options[UIApplicationOpenURLOptionsSourceApplicationKey] as! String?,
+                              annotation: [:])
   }
 
   func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
-    if GIDSignIn.sharedInstance().handleURL(url, sourceApplication: sourceApplication, annotation: annotation) {
+    if GIDSignIn.sharedInstance().handleURL(url,
+                                            sourceApplication: sourceApplication,
+                                            annotation: annotation) {
       return true
     }
-    return FBSDKApplicationDelegate.sharedInstance().application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)
+    return FBSDKApplicationDelegate.sharedInstance().application(application,
+                                                                 openURL: url,
+                                                                 sourceApplication: sourceApplication,
+                                                                 annotation: annotation)
   }
 }
 

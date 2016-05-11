@@ -1,6 +1,4 @@
 # AuthenticationExample
-source 'https://cpdc-eap.googlesource.com/spec.git'
-source 'https://github.com/CocoaPods/Specs.git'
 
 use_frameworks!
 platform :ios, '7.0'
@@ -8,6 +6,7 @@ platform :ios, '7.0'
 pod 'Firebase/Auth'
 # [END auth_pod]
 
+# These are pods used for the auth providers.
 pod 'FBSDKLoginKit'
 pod 'GoogleSignIn'
 pod 'TwitterKit'

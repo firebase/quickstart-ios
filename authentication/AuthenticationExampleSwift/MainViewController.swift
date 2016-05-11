@@ -25,12 +25,21 @@ import FBSDKLoginKit
 import TwitterKit
 
 @objc(MainViewController)
-class MainViewController: UITableViewController, UIPickerViewDataSource, UIPickerViewDelegate, GIDSignInDelegate, GIDSignInUIDelegate {
+class MainViewController: UITableViewController, GIDSignInDelegate, GIDSignInUIDelegate {
 
   let kSectionToken = 3
   let kSectionProviders = 2
   let kSectionUser = 1
   let kSectionSignIn = 0
+
+  enum AuthProvider {
+    case AuthEmail
+    case AuthAnonymous
+    case AuthFacebook
+    case AuthGoogle
+    case AuthTwitter
+    case AuthCustom
+  }
 
   /*! @var kOKButtonText
   @brief The text of the "OK" button for the Sign In result dialogs.
@@ -67,124 +76,132 @@ class MainViewController: UITableViewController, UIPickerViewDataSource, UIPicke
   */
   let kChangePasswordText = "Change Password"
 
+  /** @var handle
+   @brief The handler for the auth state listener, to allow cancelling later.
+   */
   var handle: FIRAuthStateDidChangeListenerHandle?
-  var maskView: UIView?
-  var providerPickerView: UIPickerView?
-  var providerToolbar: UIToolbar?
-  var selectedRow: Int?
-  var pickerData: Array<String>?
 
-  func createPickerView() {
-    selectedRow = 0
-    maskView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: view.bounds.size.width, height: view.bounds.size.height))
-    maskView!.backgroundColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0.5)
+  func showAuthPicker(providers: [AuthProvider]) {
+    let picker = UIAlertController(title: "Select Provider",
+                                   message: nil,
+                                   preferredStyle: .ActionSheet)
+    for provider in providers {
+      var action : UIAlertAction
+      switch(provider) {
+      case .AuthEmail:
+        action = UIAlertAction(title: "Email", style: .Default, handler: { (UIAlertAction) in
+          self.performSegueWithIdentifier("email", sender:nil)
+        })
+      case .AuthCustom:
+        action = UIAlertAction(title: "Custom", style: .Default, handler: { (UIAlertAction) in
+          self.performSegueWithIdentifier("customToken", sender: nil)
+        })
+      case .AuthAnonymous:
+        action = UIAlertAction(title: "Guest", style: .Default, handler: { (UIAlertAction) in
+          self.showSpinner({
+            // [START firebase_auth_anonymous]
+            FIRAuth.auth()?.signInAnonymouslyWithCompletion() { (user, error) in
+              // [START_EXCLUDE]
+              self.hideSpinner({
+                if let error = error {
+                  self.showMessagePrompt(error.localizedDescription)
+                  return
+                }
+              })
+              // [END_EXCLUDE]
+            }
+            // [END firebase_auth_anonymous]
+          })
 
-    view.addSubview(maskView!)
-    providerToolbar = UIToolbar.init(frame: CGRect.init(x: 0, y: view.bounds.size.height - 344, width: view.bounds.size.width, height: 44))
+        })
+      case .AuthFacebook:
+        action = UIAlertAction(title: "Facebook", style: .Default, handler: { (UIAlertAction) in
+          let loginManager = FBSDKLoginManager()
+          loginManager.logInWithReadPermissions(["email"], fromViewController: self, handler: { (result, error) in
+            if let error = error {
+              self.showMessagePrompt(error.localizedDescription)
+            } else if(result.isCancelled) {
+              print("FBLogin cancelled")
+            } else {
+              // [START headless_facebook_auth]
+              let credential = FIRFacebookAuthProvider.credentialWithAccessToken(FBSDKAccessToken.currentAccessToken().tokenString)
+              // [END headless_facebook_auth]
+              self.firebaseLogin(credential)
+            }
+          })
+        })
+      case .AuthGoogle:
+        action = UIAlertAction(title: "Google", style: .Default, handler: { (UIAlertAction) in
+          GIDSignIn.sharedInstance().clientID = FIRApp.defaultApp()?.options.clientID
+          GIDSignIn.sharedInstance().uiDelegate = self
+          GIDSignIn.sharedInstance().delegate = self
+          GIDSignIn.sharedInstance().signIn()
 
-    let done = UIBarButtonItem.init(barButtonSystemItem: .Done, target: self, action: #selector(MainViewController.dismissActionSheet(_:)))
-    providerToolbar!.items = [UIBarButtonItem.init(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil), done]
-    providerToolbar!.barStyle = .Black
-    view.addSubview(providerToolbar!)
+        })
+      case .AuthTwitter:
+        action = UIAlertAction(title: "Twitter", style: .Default, handler: { (UIAlertAction) in
+          Twitter.sharedInstance().logInWithCompletion() { (session, error) in
+            if let session = session {
+              // [START headless_twitter_auth]
+              let credential = FIRTwitterAuthProvider.credentialWithToken(session.authToken, secret: session.authTokenSecret)
+              // [END headless_twitter_auth]
+              self.firebaseLogin(credential)
+            } else {
+              self.showMessagePrompt((error?.localizedDescription)!)
+            }
+          }
+        })
+      }
+      picker.addAction(action)
+    }
 
-    providerPickerView = UIPickerView.init(frame: CGRect.init(x: 0, y: view.bounds.size.height - 300, width: 0, height: 0))
-    providerPickerView!.backgroundColor = UIColor.init(red: 1, green: 1, blue: 1, alpha: 0.5)
-    providerPickerView!.showsSelectionIndicator = true
-    providerPickerView!.dataSource = self
-    providerPickerView!.delegate = self
+    picker.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+    presentViewController(picker, animated: true, completion: nil)
 
-    view.addSubview(providerPickerView!)
   }
 
-  func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-    return pickerData!.count
-  }
-
-  func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
-    return 1
-  }
-
-  func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-    return pickerData![row]
-  }
-
-  func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-    selectedRow = row
-  }
 
   @IBAction func didTapSignIn(sender: AnyObject) {
-    pickerData = ["Email", FIRFacebookAuthProviderID, FIRGoogleAuthProviderID, FIRTwitterAuthProviderID, "Guest", "CustomToken"]
-    createPickerView()
+    showAuthPicker([
+      AuthProvider.AuthEmail,
+      AuthProvider.AuthAnonymous,
+      AuthProvider.AuthGoogle,
+      AuthProvider.AuthFacebook,
+      AuthProvider.AuthTwitter,
+      AuthProvider.AuthCustom
+    ])
   }
 
   @IBAction func didTapLink(sender: AnyObject) {
-    var pickerData = [FIRFacebookAuthProviderID, FIRGoogleAuthProviderID, FIRTwitterAuthProviderID]
-    for userInfo in (FIRAuth.auth()?.currentUser?.providerData)! {
-      if let index = pickerData.indexOf(userInfo.providerID) {
-        pickerData.removeAtIndex(index)
+    var providers = Set([
+      AuthProvider.AuthEmail,
+      AuthProvider.AuthGoogle,
+      AuthProvider.AuthFacebook,
+      AuthProvider.AuthTwitter
+    ])
+    // Remove any existing providers. Note that this is not a complete list of
+    // providers, so always check the documentation for a complete reference:
+    // https://firebase.google.com/docs/auth
+    let user = FIRAuth.auth()?.currentUser
+    for info in (user?.providerData)! {
+      if (info.providerID == FIREmailPasswordAuthProviderID) {
+        providers.remove(AuthProvider.AuthEmail)
+      } else if (info.providerID == FIRTwitterAuthProviderID) {
+        providers.remove(AuthProvider.AuthTwitter)
+      } else if (info.providerID == FIRFacebookAuthProviderID) {
+        providers.remove(AuthProvider.AuthFacebook)
+      } else if (info.providerID == FIRGoogleAuthProviderID) {
+        providers.remove(AuthProvider.AuthGoogle)
       }
     }
-    self.pickerData = pickerData
-    createPickerView()
+    showAuthPicker(Array(providers))
   }
 
-  func dismissActionSheet(sender: AnyObject) {
-    maskView!.removeFromSuperview()
-    providerPickerView!.removeFromSuperview()
-    providerToolbar!.removeFromSuperview()
-    let selectedProvider = pickerData![selectedRow!]
-    switch selectedProvider {
-    case "Email":
-      performSegueWithIdentifier("email", sender:nil)
-    case FIRFacebookAuthProviderID:
-      let loginManager = FBSDKLoginManager()
-      loginManager.logInWithReadPermissions(["email"], fromViewController: self, handler: { (result, error) in
-        if let error = error {
-          self.showMessagePrompt(error.localizedDescription)
-        } else if(result.isCancelled) {
-          print("FBLogin cancelled")
-        } else {
-          // [START headless_facebook_auth]
-          let credential = FIRFacebookAuthProvider.credentialWithAccessToken(FBSDKAccessToken.currentAccessToken().tokenString)
-          // [END headless_facebook_auth]
-          self.firebaseLogin(credential)
-        }
-      })
-    case FIRGoogleAuthProviderID:
-      GIDSignIn.sharedInstance().clientID = FIRApp.defaultApp()?.options.clientID
-      GIDSignIn.sharedInstance().uiDelegate = self
-      GIDSignIn.sharedInstance().delegate = self
-      GIDSignIn.sharedInstance().signIn()
-    case FIRTwitterAuthProviderID:
-      Twitter.sharedInstance().logInWithCompletion() { (session, error) in
-        if let session = session {
-          // [START headless_twitter_auth]
-          let credential = FIRTwitterAuthProvider.credentialWithToken(session.authToken, secret: session.authTokenSecret)
-          // [END headless_twitter_auth]
-          self.firebaseLogin(credential)
-        } else {
-          self.showMessagePrompt((error?.localizedDescription)!)
-        }
-      }
-    case "CustomToken":
-      performSegueWithIdentifier("customToken", sender: nil)
-    case "Guest":
-      self.showSpinner({
-        // [START firebase_auth_anonymous]
-        FIRAuth.auth()?.signInAnonymouslyWithCompletion() { (user, error) in
-          // [START_EXCLUDE]
-          self.hideSpinner({
-            if let error = error {
-              self.showMessagePrompt(error.localizedDescription)
-              return
-            }
-          })
-          // [END_EXCLUDE]
-        }
-        // [END firebase_auth_anonymous]
-      })
-    default:
-      break
+  func setTitleDisplay(user: FIRUser?) {
+    if let name = user?.displayName {
+      self.navigationItem.title = "Welcome \(name)"
+    } else {
+      self.navigationItem.title = "Authentication Example"
     }
   }
 
@@ -250,11 +267,7 @@ class MainViewController: UITableViewController, UIPickerViewDataSource, UIPicke
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
     handle = FIRAuth.auth()?.addAuthStateDidChangeListener() { (auth, user) in
-      if let user = user {
-        self.navigationItem.title = user.displayName
-      } else {
-        self.navigationItem.title = "Sign In"
-      }
+      self.setTitleDisplay(user)
       self.tableView.reloadData()
     }
   }
@@ -408,7 +421,7 @@ class MainViewController: UITableViewController, UIPickerViewDataSource, UIPicke
             // [END profile_change]
             self.hideSpinner({
               self.showTypicalUIForUserUpdateResultsWithTitle(self.kSetDisplayNameTitle, error: error)
-              self.navigationItem.title = FIRAuth.auth()?.currentUser?.displayName
+              self.setTitleDisplay(FIRAuth.auth()?.currentUser)
             })
           }
         })

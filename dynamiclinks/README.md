@@ -1,19 +1,26 @@
-Firebase Durable Deep Links Quickstart
+Firebase Dynamic Links Quickstart
 =============================
 
 Introduction
 ------------
 
-- [Read more about Firebase Durable Deep Links](https://developers.google.com/firebase)
+- [Read more about Firebase Dynamic Links](https://firebase.google.com/docs/dynamic-links)
 
 Getting Started
 ---------------
 
-- [Add Firebase to your iOS Project](https://developers.google.com/firebase/docs/ios/setup).
-- Follow the [quickstart guide](https://developers.google.com/firebase) to set up your project.
-- Run the sample on your iOS device or emulator.
+- [Add Firebase to your iOS Project](https://firebase.google.com/docs/ios/setup).
+- Follow the [quickstart guide](https://firebase.google.com) to set up your project.
+- Run the sample on your iOS device.
+- Create a Dynamic Link in the **Dynamic Links** section of the Firebase console.
+  - Custom Schemes of the form dlscheme://<data-to-pass>/<to-app> would be handled
+    by the app. You can change dlscheme to fit your needs.
+  - For Universal Links the *Link URL* has to be a valid URL where the apple-app-site-association
+    file is stored.
+  - From another application like Safari or Notes, you should be able to select
+    your Dynamic Link and be taken to the quickstart app.
 
-Note: You will need Swift 1.2 to run the Swift version of this quickstart.
+Note: You will need Swift 2.0 to run the Swift version of this quickstart.
 
 Screenshots
 -----------
@@ -21,7 +28,7 @@ Screenshots
 Support
 -------
 
-https://developers.google.com/firebase/support/
+- [Firebase Support](https://firebase.google.com/support/)
 
 License
 -------

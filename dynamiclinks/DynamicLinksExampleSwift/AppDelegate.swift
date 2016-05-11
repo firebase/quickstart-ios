@@ -25,7 +25,7 @@ import Firebase
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
   var window: UIWindow?
-  let CUSTOM_URL_SCHEME = "gindeeplinkurl"
+  let CUSTOM_URL_SCHEME = "dlscheme"
 
   // [START didfinishlaunching]
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {

@@ -21,7 +21,7 @@
 
 @import Firebase;
 
-static NSString *const CUSTOM_URL_SCHEME = @"gindeeplinkurl";
+static NSString *const CUSTOM_URL_SCHEME = @"dlscheme";
 
 @implementation AppDelegate
 

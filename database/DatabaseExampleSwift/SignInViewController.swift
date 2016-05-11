@@ -21,6 +21,12 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     self.view.endEditing(true)
   }
 
+  override func viewDidAppear(animated: Bool) {
+    if FIRAuth.auth()?.currentUser {
+      self.performSegueWithIdentifier("signIn", sender: nil)
+    }
+  }
+
   @IBAction func didTapEmailLogin(sender: AnyObject) {
     if let email = self.emailField.text, password = self.passwordField.text {
       showSpinner({
@@ -30,7 +36,30 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
               self.showMessagePrompt(error.localizedDescription)
               return
             }
-            self.performSegueWithIdentifier("signIn", sender: nil)
+          })
+          ref.child("users").child(user?.uid).observeSingleEventOfType(.Value, withBlock: { snapshot in
+            if (!snapshot.exists()) {
+              self.showTextInputPromptWithMessage("Username:") { (userPressedOK, username) in
+                if let username = username {
+                  self.showSpinner({
+                    let changeRequest = FIRAuth.auth()?.currentUser?.profileChangeRequest()
+                    changeRequest?.displayName = username
+                    changeRequest?.commitChangesWithCompletion() { (error) in
+                      self.hideSpinner({
+                        if let error = error {
+                          self.showMessagePrompt(error.localizedDescription)
+                          return
+                        }
+                        self.ref.child("users").setValue(["username": username])
+                        self.performSegueWithIdentifier("signIn", sender: nil)
+                      })
+                    }
+                  })
+                } else {
+                  self.showMessagePrompt("username can't be empty")
+                }
+              }
+            }
           })
         }
       })
@@ -63,9 +92,8 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
                             self.showMessagePrompt(error.localizedDescription)
                             return
                           }
-                          self.navigationItem.title = FIRAuth.auth()?.currentUser?.displayName
                           // [START basic_write]
-                          self.ref.child("users").setValue(["username": self.emailField.text as String!])
+                          self.ref.child("users").setValue(["username": username])
                           // [END basic_write]
                           self.performSegueWithIdentifier("signIn", sender: nil)
                         })
@@ -74,7 +102,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
                   }
                 })
               } else {
-                self.showMessagePrompt("displayname can't be empty")
+                self.showMessagePrompt("username can't be empty")
               }
             }
           } else {
@@ -92,5 +120,9 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
   func textFieldShouldReturn(textField: UITextField) -> Bool {
     didTapEmailLogin([])
     return true
+  }
+
+  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    segue.destinationViewController.childViewControllers[0].navigationItem.title = "Chat as \(FIRAuth.auth()?.currentUser?.displayName)"
   }
 }

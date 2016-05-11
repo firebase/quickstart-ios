@@ -45,7 +45,7 @@ class NewPostViewController: UIViewController {
       // Write new post
       self.writeNewPost(userID!, username: user.username, title: self.titleTextField.text!, body: self.bodyTextView.text)
       // Finish this Activity, back to the stream
-      self.tabBarController!.selectedIndex = 0
+      self.navigationController?.popViewControllerAnimated(true)
       // [END_EXCLUDE]
       }) { (error) in
         print(error.localizedDescription)

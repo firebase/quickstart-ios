@@ -51,7 +51,7 @@ class PostListViewController: UIViewController, UITableViewDelegate {
   }
 
   override func viewWillAppear(animated: Bool) {
-    navigationItem.rightBarButtonItem?.title = "Logout"
+    self.tableView.reloadData()
   }
 
   func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {

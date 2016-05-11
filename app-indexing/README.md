@@ -19,8 +19,10 @@ Getting Started
   - Select your current Firebase project
   - Hit Enter to select the default public directory as your website root.
 - Run `firebase deploy`
-- In the entitlement file located within the AppIndexingExample and the AppIndexingSwiftExample
-  replace <YOUR-DOMAIN> with the Firebase hosting domain. Do not include "https://".
+- In the **Capabilities** tab of XCode, turn on **Associated Domains**. Add
+  your Firebase hosting domain in the format applinks:<YOUR-DOMAIN>. Do not include "https://".
+  You can find your Firebase hosting domain in the Hosting section of the
+  Firebase console.
 - Run the sample on your iOS device.
 - From Safari on your iOS device, go to your Firebase hosting URL.
 - Select one of the available links, *Go to content* or *Go to other content*

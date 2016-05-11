@@ -34,6 +34,7 @@ class NewPostViewController: UIViewController {
   }
 
   @IBAction func didTapShare(sender: AnyObject) {
+    // [START single_value_read]
     let userID = FIRAuth.auth()?.currentUser?.uid
     ref.child("users").child(userID!).observeSingleEventOfType(.Value, withBlock: { (snapshot) in
       // Get user value
@@ -44,16 +45,18 @@ class NewPostViewController: UIViewController {
       // Write new post
       self.writeNewPost(userID!, username: user.username, title: self.titleTextField.text!, body: self.bodyTextView.text)
       // Finish this Activity, back to the stream
-      self.tabBarController!.selectedIndex = 0
+      self.navigationController?.popViewControllerAnimated(true)
       // [END_EXCLUDE]
       }) { (error) in
         print(error.localizedDescription)
     }
+    // [END single_value_read]
   }
 
   func writeNewPost(userID: String, username: String, title: String, body: String) {
     // Create new post at /user-posts/$userid/$postid and at
     // /posts/$postid simultaneously
+    // [START write_fan_out]
     let key = ref.child("posts").childByAutoId().key
     let post = ["uid": userID,
                 "author": username,
@@ -62,5 +65,6 @@ class NewPostViewController: UIViewController {
     let childUpdates = ["/posts/\(key)": post,
                         "/user-posts/\(key)/": post]
     ref.updateChildValues(childUpdates)
+    // [END write_fan_out]
   }
 }

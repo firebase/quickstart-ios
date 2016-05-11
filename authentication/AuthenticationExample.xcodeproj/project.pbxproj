@@ -24,7 +24,6 @@
 		EF6DB4D41CDD610200319C08 /* CustomTokenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6DB4CE1CDD610200319C08 /* CustomTokenViewController.m */; };
 		EF6DB4D51CDD610200319C08 /* EmailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6DB4CF1CDD610200319C08 /* EmailViewController.m */; };
 		EF6DB4D61CDD610200319C08 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6DB4D01CDD610200319C08 /* MainViewController.m */; };
-		EF6DB4DD1CE2ED6200319C08 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EF6DB4DC1CE2ED6200319C08 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,7 +49,6 @@
 		EF6DB4D11CDD610200319C08 /* CustomTokenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTokenViewController.h; sourceTree = "<group>"; };
 		EF6DB4D21CDD610200319C08 /* EmailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmailViewController.h; sourceTree = "<group>"; };
 		EF6DB4D31CDD610200319C08 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
-		EF6DB4DC1CE2ED6200319C08 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "AuthenticationExample/GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,7 +72,6 @@
 		5F5A53431ADE670C00F81DF0 = {
 			isa = PBXGroup;
 			children = (
-				EF6DB4DC1CE2ED6200319C08 /* GoogleService-Info.plist */,
 				5F5A534E1ADE670C00F81DF0 /* AuthenticationExample */,
 				5F5A537A1ADE67D500F81DF0 /* AuthenticationExampleSwift */,
 				5F5A534D1ADE670C00F81DF0 /* Products */,
@@ -95,12 +92,12 @@
 		5F5A534E1ADE670C00F81DF0 /* AuthenticationExample */ = {
 			isa = PBXGroup;
 			children = (
-				EF6DB4CE1CDD610200319C08 /* CustomTokenViewController.m */,
-				EF6DB4CF1CDD610200319C08 /* EmailViewController.m */,
-				EF6DB4D01CDD610200319C08 /* MainViewController.m */,
 				EF6DB4D11CDD610200319C08 /* CustomTokenViewController.h */,
+				EF6DB4CE1CDD610200319C08 /* CustomTokenViewController.m */,
 				EF6DB4D21CDD610200319C08 /* EmailViewController.h */,
+				EF6DB4CF1CDD610200319C08 /* EmailViewController.m */,
 				EF6DB4D31CDD610200319C08 /* MainViewController.h */,
+				EF6DB4D01CDD610200319C08 /* MainViewController.m */,
 				5F5A53531ADE670C00F81DF0 /* AppDelegate.h */,
 				5F5A53541ADE670C00F81DF0 /* AppDelegate.m */,
 				5F5A534F1ADE670C00F81DF0 /* Supporting Files */,
@@ -230,7 +227,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5F99610C1AE0CF4F0034F503 /* LaunchScreen.xib in Resources */,
-				EF6DB4DD1CE2ED6200319C08 /* GoogleService-Info.plist in Resources */,
 				10B054031C6A3C630061077D /* Main.storyboard in Resources */,
 				5F99610A1AE0CF4F0034F503 /* Images.xcassets in Resources */,
 			);
@@ -241,6 +237,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EF4857041C752B7700649485 /* Main.storyboard in Resources */,
+				EF6DB4D91CE145EF00319C08 /* GoogleService-Info.plist in Resources */,
 				5F99610D1AE0CF4F0034F503 /* LaunchScreen.xib in Resources */,
 				5F99610B1AE0CF4F0034F503 /* Images.xcassets in Resources */,
 			);

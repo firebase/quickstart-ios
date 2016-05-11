@@ -34,6 +34,7 @@
 }
 
 - (IBAction)didTapShare:(id)sender {
+  // [START single_value_read]
   NSString *userID = [FIRAuth auth].currentUser.uid;
   [[[_ref child:@"users"] child:userID] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
     // Get user value
@@ -43,16 +44,18 @@
     // Write new post
     [self writeNewPost:userID username:user.username title:titleTextField.text body:bodyTextView.text];
     // Finish this Activity, back to the stream
-    self.tabBarController.selectedIndex = 0;
+    [[self navigationController] popViewControllerAnimated:YES];
     // [END_EXCLUDE]
   } withCancelBlock:^(NSError * _Nonnull error) {
     NSLog(@"%@", error.localizedDescription);
   }];
+  // [END single_value_read]
 }
 
 - (void)writeNewPost:(NSString *)userID username:(NSString *)username title:(NSString *)title body:(NSString *)body {
   // Create new post at /user-posts/$userid/$postid and at
   // /posts/$postid simultaneously
+  // [START write_fan_out]
   NSString *key = [[_ref child:@"posts"] childByAutoId].key;
   NSDictionary *post = @{@"uid": userID,
                          @"author": username,
@@ -61,6 +64,7 @@
   NSDictionary *childUpdates = @{[@"/posts/" stringByAppendingString:key]: post,
                                  [NSString stringWithFormat:@"/user-posts/%@/", key]: post};
   [_ref updateChildValues:childUpdates];
+  // [END write_fan_out]
 }
 
 

@@ -20,6 +20,8 @@
 		1056D95F1CD829FE0061ED72 /* MyTopPostsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1056D95E1CD829FE0061ED72 /* MyTopPostsViewController.m */; };
 		1056D9621CD82C740061ED72 /* MyPostsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1056D9611CD82C740061ED72 /* MyPostsViewController.m */; };
 		1056D9651CD82CC10061ED72 /* RecentPostsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1056D9641CD82CC10061ED72 /* RecentPostsViewController.m */; };
+		1073FE0C1CE2742000E2F73F /* TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1073FE0B1CE2742000E2F73F /* TabBarController.m */; };
+		1073FE101CE2D27700E2F73F /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1073FE0F1CE2D27700E2F73F /* TabBarController.swift */; };
 		10B872AE1CDBFB1F00C7D214 /* MyPostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B872AD1CDBFB1F00C7D214 /* MyPostsViewController.swift */; };
 		10B872B11CDBFB7300C7D214 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B872B01CDBFB7300C7D214 /* SignInViewController.swift */; };
 		10B872B21CDBFEFE00C7D214 /* PostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1056D9571CD81E300061ED72 /* PostTableViewCell.xib */; };
@@ -81,6 +83,9 @@
 		1056D9611CD82C740061ED72 /* MyPostsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPostsViewController.m; sourceTree = "<group>"; };
 		1056D9631CD82CC10061ED72 /* RecentPostsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecentPostsViewController.h; sourceTree = "<group>"; };
 		1056D9641CD82CC10061ED72 /* RecentPostsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecentPostsViewController.m; sourceTree = "<group>"; };
+		1073FE0A1CE2742000E2F73F /* TabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarController.h; sourceTree = "<group>"; };
+		1073FE0B1CE2742000E2F73F /* TabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarController.m; sourceTree = "<group>"; };
+		1073FE0F1CE2D27700E2F73F /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		10B872AD1CDBFB1F00C7D214 /* MyPostsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPostsViewController.swift; sourceTree = "<group>"; };
 		10B872B01CDBFB7300C7D214 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		10B872B31CDBFFA800C7D214 /* PostListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostListViewController.swift; sourceTree = "<group>"; };
@@ -147,6 +152,7 @@
 				10B872C31CDC11F200C7D214 /* RecentPostsViewController.swift */,
 				10B872C51CDC14C800C7D214 /* MyTopPostsViewController.swift */,
 				103685811CDD3B13004DC149 /* PostDetailTableViewController.swift */,
+				1073FE0F1CE2D27700E2F73F /* TabBarController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -191,6 +197,8 @@
 				5F5A53571ADE670C00F81DF0 /* NewPostViewController.m */,
 				100116D01CDD1CDC00C9256E /* PostDetailTableViewController.h */,
 				100116D11CDD1CDC00C9256E /* PostDetailTableViewController.m */,
+				1073FE0A1CE2742000E2F73F /* TabBarController.h */,
+				1073FE0B1CE2742000E2F73F /* TabBarController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -424,6 +432,7 @@
 				1056D9651CD82CC10061ED72 /* RecentPostsViewController.m in Sources */,
 				5F5A53521ADE670C00F81DF0 /* main.m in Sources */,
 				1056D9621CD82C740061ED72 /* MyPostsViewController.m in Sources */,
+				1073FE0C1CE2742000E2F73F /* TabBarController.m in Sources */,
 				1056D95F1CD829FE0061ED72 /* MyTopPostsViewController.m in Sources */,
 				1056D9581CD81E300061ED72 /* PostTableViewCell.m in Sources */,
 			);
@@ -446,6 +455,7 @@
 				10B872BD1CDC072B00C7D214 /* PostTableViewCell.swift in Sources */,
 				10B872B41CDBFFA800C7D214 /* PostListViewController.swift in Sources */,
 				10B872AE1CDBFB1F00C7D214 /* MyPostsViewController.swift in Sources */,
+				1073FE101CE2D27700E2F73F /* TabBarController.swift in Sources */,
 				10B872B91CDC056B00C7D214 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

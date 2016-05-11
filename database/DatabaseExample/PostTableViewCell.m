@@ -15,11 +15,45 @@
 //
 
 #import "PostTableViewCell.h"
+@import FirebaseAuth;
 
 @implementation PostTableViewCell
 
 - (instancetype)initWithFrame:(CGRect)frame {
   return [super initWithFrame:frame];
+}
+
+- (IBAction)didTapStarButton:(id)sender {
+  self.postRef = [[FIRDatabase database].reference child:@"posts"];
+  // [START post_stars_transaction]
+  [_postRef runTransactionBlock:^FIRTransactionResult * _Nonnull(FIRMutableData * _Nonnull currentData) {
+    NSMutableDictionary *post = currentData.value;
+    if (!post) {
+      return [FIRTransactionResult successWithValue:currentData];
+    }
+
+    NSMutableDictionary *stars = [post objectForKey:@"stars"];
+    NSString *uid = [FIRAuth auth].currentUser.uid;
+    int starCount = [post[@"starCount"] intValue];
+    if ([stars objectForKey:uid]) {
+      // Unstar the post and remove self from stars
+      starCount--;
+      [stars removeObjectForKey:uid];
+    } else {
+      // Star the post and add self to stars
+      starCount++;
+      stars[uid] = @YES;
+    }
+    post[@"starCount"] = [NSNumber numberWithInt:starCount];
+
+    // Set value and report transaction success
+    [currentData setValue:post];
+    return [FIRTransactionResult successWithValue:currentData];
+  } andCompletionBlock:^(NSError * _Nullable error, BOOL committed, FIRDataSnapshot * _Nullable snapshot) {
+    // Transaction completed
+    NSLog(@"%@", error.localizedDescription);
+  }];
+  // [END post_stars_transaction]
 }
 
 @end

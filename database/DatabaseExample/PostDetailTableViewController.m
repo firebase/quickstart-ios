@@ -46,6 +46,7 @@ static const int kSectionPost = 0;
 
 - (void)viewWillAppear:(BOOL)animated {
   [self.comments removeAllObjects];
+  // [START child_event_listener]
   // Listen for new comments in the Firebase database
   [_commentsRef
                 observeEventType:FIRDataEventTypeChildAdded
@@ -65,15 +66,20 @@ static const int kSectionPost = 0;
                                               [NSIndexPath indexPathForRow:index inSection:1]
                                               ] withRowAnimation:UITableViewRowAnimationAutomatic];
    }];
+  // [END child_event_listener]
 
+  // [START post_value_event_listener]
   [_postRef observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
     NSDictionary *postDict = snapshot.value;
+    // [START_EXCLUDE]
     _post.uid = postDict[@"uid"];
     _post.author = postDict[@"author"];
     _post.title = postDict[@"title"];
     _post.body = postDict[@"body"];
     [self.tableView reloadData];
+    // [END_EXCLUDE]
   }];
+  // [END post_value_event_listener]
 }
 
 - (int) indexOfMessage:(FIRDataSnapshot *)snapshot {

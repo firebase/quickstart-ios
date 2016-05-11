@@ -16,6 +16,6 @@
 
 #import "MyPostsViewController.h"
 
-@interface MyTopPostsViewController : MyPostsViewController
+@interface MyTopPostsViewController : PostListViewController
 
 @end

@@ -17,5 +17,4 @@
 #import "PostListViewController.h"
 
 @interface MyPostsViewController : PostListViewController
-- (FIRDatabaseQuery *) getQuery;
 @end

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="M0j-XH-hVw">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Rsx-VA-XpW">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -7,23 +7,6 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Navigation Controller-->
-        <scene sceneID="5BU-1I-L8O">
-            <objects>
-                <navigationController id="M0j-XH-hVw" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="NBk-1n-hEo">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.01176470588" green="0.60784313729999995" blue="0.8980392157" alpha="1" colorSpace="calibratedRGB"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="Rsx-VA-XpW" kind="relationship" relationship="rootViewController" id="COL-LP-bUc"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="sOF-TL-Fdj" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1161" y="1257"/>
-        </scene>
         <!--Sign In View Controller-->
         <scene sceneID="5eK-3e-UlJ">
             <objects>
@@ -87,16 +70,24 @@
                             <constraint firstItem="WaL-0d-QL8" firstAttribute="top" secondItem="FvS-3V-6Lo" secondAttribute="bottom" constant="8" symbolic="YES" id="zhj-YE-rSx"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="759-Ef-7Jf"/>
+                    <navigationItem key="navigationItem" id="759-Ef-7Jf">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="D2h-HN-Yes">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="TCe-g2-LzK">
+                                <rect key="frame" x="447" y="7" width="133" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="emailField" destination="hFc-CN-iCS" id="o7q-cz-eKN"/>
                         <outlet property="passwordField" destination="FvS-3V-6Lo" id="g50-vQ-CZD"/>
-                        <segue destination="sCu-Va-Qv6" kind="show" identifier="signIn" id="RC8-B6-PT6"/>
+                        <segue destination="Gdd-A7-Kih" kind="show" identifier="signIn" id="sgF-wy-XKu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cuA-Ph-SGP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-446" y="1257"/>
+            <point key="canvasLocation" x="-1269" y="1219"/>
         </scene>
         <!--New Post-->
         <scene sceneID="rDm-CA-7nV">
@@ -149,7 +140,8 @@
                             <constraint firstItem="XdI-Gr-Dp6" firstAttribute="top" secondItem="fCb-Iw-WpY" secondAttribute="bottom" constant="32" id="vhY-GI-7S4"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="New Post" id="rLK-dd-8JI"/>
+                    <tabBarItem key="tabBarItem" title="New Post" image="ic_message" id="rLK-dd-8JI"/>
+                    <navigationItem key="navigationItem" id="SEF-ia-t1q"/>
                     <connections>
                         <outlet property="bodyTextView" destination="MGM-zm-au4" id="7xF-k5-exR"/>
                         <outlet property="titleTextField" destination="XdI-Gr-Dp6" id="Vdb-Cz-KUk"/>
@@ -198,7 +190,7 @@
                             <constraint firstItem="Pey-tc-Qes" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" id="KPJ-RL-kQ3"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Recent" id="ZU0-iM-2t0"/>
+                    <tabBarItem key="tabBarItem" title="Recent" image="ic_history" id="ZU0-iM-2t0"/>
                     <navigationItem key="navigationItem" id="2pf-Ll-vye"/>
                     <connections>
                         <outlet property="tableView" destination="Pey-tc-Qes" id="BPu-ib-I47"/>
@@ -242,7 +234,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="My Posts" id="rbV-Jx-PC9"/>
+                    <tabBarItem key="tabBarItem" title="My Posts" image="ic_person" id="rbV-Jx-PC9"/>
                     <connections>
                         <segue destination="JQY-YR-KkD" kind="show" identifier="detail" action="showDetailViewController:sender:" id="qhL-Th-XvI"/>
                     </connections>
@@ -251,7 +243,7 @@
             </objects>
             <point key="canvasLocation" x="1096" y="1576"/>
         </scene>
-        <!--Post Detail Table View Controller-->
+        <!--Title-->
         <scene sceneID="c4t-YX-ILM">
             <objects>
                 <tableViewController id="JQY-YR-KkD" customClass="PostDetailTableViewController" sceneMemberID="viewController">
@@ -372,6 +364,9 @@
                             <outlet property="delegate" destination="JQY-YR-KkD" id="94B-KF-cKM"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="Title" id="eAr-5s-7kv">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="YKo-FB-mQd"/>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NDO-Nm-tyY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -410,7 +405,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="My Top Posts" id="f53-xY-Yxg"/>
+                    <tabBarItem key="tabBarItem" title="My Top Posts" image="ic_whatshot" id="f53-xY-Yxg"/>
                     <connections>
                         <segue destination="JQY-YR-KkD" kind="show" identifier="detail" action="showDetailViewController:sender:" id="Dlp-T7-a0B"/>
                     </connections>
@@ -419,10 +414,54 @@
             </objects>
             <point key="canvasLocation" x="1080" y="2255"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Uqk-K8-NAK">
+            <objects>
+                <navigationController id="Gdd-A7-Kih" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="UrK-nm-QJl">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.01176470588" green="0.60784313729999995" blue="0.8980392157" alpha="1" colorSpace="calibratedRGB"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="sCu-Va-Qv6" kind="relationship" relationship="rootViewController" id="wcz-6Y-4HY"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Y42-A1-CCX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-512" y="1246"/>
+        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="gDK-cT-bHb">
             <objects>
-                <tabBarController id="sCu-Va-Qv6" sceneMemberID="viewController">
+                <tabBarController id="sCu-Va-Qv6" customClass="TabBarController" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="A59-QW-f9t">
+                        <barButtonItem key="backBarButtonItem" title="back" id="ZLU-m7-sqh"/>
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="KNg-v6-OXu">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="sJc-QK-zT8">
+                                <rect key="frame" x="20" y="7" width="133" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="Sign Out">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="didTapSignOut:" destination="sCu-Va-Qv6" eventType="touchUpInside" id="Heo-E2-WOt"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="ic_message" style="plain" id="clh-SB-mYL">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="hwq-B5-vW6">
+                                <rect key="frame" x="479" y="10" width="101" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="New Post" image="ic_message"/>
+                                <connections>
+                                    <segue destination="XbD-HZ-mvN" kind="show" id="9MO-6o-ROe"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="0eW-bC-DHu">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -432,7 +471,6 @@
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="jlU-8P-JXh"/>
                         <segue destination="5DM-L3-DLB" kind="relationship" relationship="viewControllers" id="GF0-kx-sPl"/>
                         <segue destination="hqJ-3B-E9g" kind="relationship" relationship="viewControllers" id="MGj-Go-Wmg"/>
-                        <segue destination="XbD-HZ-mvN" kind="relationship" relationship="viewControllers" id="F2W-90-txP"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bWt-Wa-MOK" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -448,7 +486,7 @@
                                     <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7bi-f2-Ma8" id="kQy-jA-cFL">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                     </tableViewCellContentView>
                                 </tableViewCell>
@@ -473,9 +511,13 @@
     </scenes>
     <resources>
         <image name="ic_account_circle" width="24" height="24"/>
+        <image name="ic_history" width="24" height="24"/>
+        <image name="ic_message" width="24" height="24"/>
+        <image name="ic_person" width="24" height="24"/>
         <image name="ic_star_border" width="24" height="24"/>
+        <image name="ic_whatshot" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Dlp-T7-a0B"/>
+        <segue reference="qhL-Th-XvI"/>
     </inferredMetricsTieBreakers>
 </document>

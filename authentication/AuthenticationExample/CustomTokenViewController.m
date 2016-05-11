@@ -22,7 +22,7 @@
 // [END auth_view_import]
 
 @interface CustomTokenViewController ()
-@property (weak, nonatomic) IBOutlet UITextView *tokenField;
+@property(weak, nonatomic) IBOutlet UITextView *tokenField;
 @end
 @implementation CustomTokenViewController
 
@@ -34,18 +34,18 @@
   NSString *customToken = _tokenField.text;
   [self showSpinner:^{
     // [START signinwithcustomtoken]
-    [[FIRAuth auth] signInWithCustomToken:customToken completion:^(FIRUser * _Nullable user,
-                                                     NSError * _Nullable error) {
-      // [START_EXCLUDE]
-      [self hideSpinner:^{
-        if (error) {
-          [self showMessagePrompt:error.localizedDescription];
-          return;
-        }
-        [self.navigationController popViewControllerAnimated:YES];
-      }];
-      // [END_EXCLUDE]
-    }];
+    [[FIRAuth auth] signInWithCustomToken:customToken
+                               completion:^(FIRUser *_Nullable user, NSError *_Nullable error) {
+                                 // [START_EXCLUDE]
+                                 [self hideSpinner:^{
+                                   if (error) {
+                                     [self showMessagePrompt:error.localizedDescription];
+                                     return;
+                                   }
+                                   [self.navigationController popViewControllerAnimated:YES];
+                                 }];
+                                 // [END_EXCLUDE]
+                               }];
     // [END signinwithcustomtoken]
   }];
 }

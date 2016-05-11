@@ -4,24 +4,21 @@ Firebase Remote Config Quickstart
 Introduction
 ------------
 
-- [Read more about Firebase Remote Config](https://developers.google.com/firebase)
+- [Read more about Firebase Remote Config](https://firbase.google.com/docs/remote-config/)
 
 Getting Started
 ---------------
 
-- [Add Firebase to your iOS Project](https://developers.google.com/firebase/docs/ios/setup).
-- Follow the [quickstart guide](https://developers.google.com/firebase/docs/remote-config/ios) to set up your project.
+- [Add Firebase to your iOS Project](https://firebase.google.com/docs/ios/setup).
+- Alter configuration in the Remote Config console, for example creating an override for `loading_phrase`.
 - Run the sample on your iOS device or emulator.
 
 Note: You will need Swift 2.0 to run the Swift version of this quickstart.
 
-Screenshots
------------
-
 Support
 -------
 
-https://developers.google.com/firebase/support
+- [Firebase Support](https://firebase.google.com/support/)
 
 License
 -------

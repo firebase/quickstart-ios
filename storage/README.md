@@ -6,22 +6,19 @@ The Firebase Storage iOS quickstart demonstrates how to upload data to a Firebas
 Introduction
 ------------
 
-- [Read more about Firebase Storage](https://developers.google.com/firebase)
+- [Read more about Firebase Storage](https://firebase.google.com/docs/storage)
 
 Getting Started
 ---------------
 
-- [Add Firebase to your iOS Project](https://developers.google.com/firebase/docs/ios/setup).
-- Follow the [quickstart guide](https://developers.google.com/firebase) to set up your project.
+- [Add Firebase to your iOS Project](https://firebase.google.com/docs/ios/setup).
 - Run the sample on your iOS device or simulator.
 
-Screenshots
------------
 
 Support
 -------
 
-https://developers.google.com/firebase/support/
+- [Firebase Support](https://firebase.google.com/support/
 
 License
 -------

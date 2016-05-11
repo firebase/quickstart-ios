@@ -1,6 +1,4 @@
 # StorageExample
-source 'https://cpdc-eap.googlesource.com/spec.git'
-source 'http://github.com/CocoaPods/Specs.git'
 
 use_frameworks!
 platform :ios, '7.0'

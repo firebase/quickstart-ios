@@ -126,7 +126,7 @@
   [_inviteDialog setMessage:message];
 
   // Title for the dialog, this is what the user sees before sending the invites.
-  [_inviteDialog setTitle:@"App Invites Example"];
+  [_inviteDialog setTitle:@"Invites Example"];
   [_inviteDialog setDeepLink:@"app_url"];
   [_inviteDialog setCallToActionText:@"Install!"];
   [_inviteDialog setCustomImage:@"https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png"];

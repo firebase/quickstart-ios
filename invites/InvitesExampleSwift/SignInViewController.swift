@@ -28,7 +28,7 @@ class SignInViewController: UIViewController, GIDSignInDelegate, GIDSignInUIDele
   override func viewDidAppear(animated: Bool) {
     super.viewDidAppear(animated)
 
-    bgText.text = "App Invites\niOS demo"
+    bgText.text = "Invites\niOS demo"
 
     GIDSignIn.sharedInstance().clientID = FIRApp.defaultApp()?.options.clientID
     GIDSignIn.sharedInstance().delegate = self

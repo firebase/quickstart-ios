@@ -7,24 +7,21 @@ events leading up to those crashes.
 Introduction
 ------------
 
-- [Read more about Firebase Crash](https://developers.google.com/firebase)
+- [Read more about Firebase Crash](https://firebase.google.com/docs/crash/)
 
 Getting Started
 ---------------
 
-- [Add Firebase to your iOS Project](https://developers.google.com/firebase/docs/ios/setup).
-- Follow the [quickstart guide](https://developers.google.com/firebase) to set up your project.
+- [Add Firebase to your iOS Project](https://firevase.google.com/docs/ios/setup).
 - Run the sample on your iOS device or emulator.
+- Trigger a crash, and wait a few minutes to see it in the console
 
-Note: You will need Swift 1.2 to run the Swift version of this quickstart.
-
-Screenshots
------------
+Note: Crash reporting from Swift is not currently supported. 
 
 Support
 -------
 
-https://developers.google.com/firebase/support/
+- [Firebase Support](https://firebase.google.com/support/)
 
 License
 -------

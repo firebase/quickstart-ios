@@ -15,10 +15,10 @@ Getting Started
 - In web/public/apple-app-site-association file, replace <YOUR-APPID-OR-TEAMID> with your
   App ID or your Team ID.
 - Get the [Firebase Command Line Interface (CLI)](https://firebase.google.com/docs/hosting/quickstart#install-the-firebase-cli) Step 1
-- Run firebase init
+- Run `firebase init`
   - Select your current Firebase project
   - Hit Enter to select the default public directory as your website root.
-- Run firebase deploy
+- Run `firebase deploy`
 - In the entitlement file located within the AppIndexingExample and the AppIndexingSwiftExample
   replace <YOUR-DOMAIN> with the Firebase hosting domain. Do not include "https://".
 - Run the sample on your iOS device.
@@ -33,7 +33,7 @@ Note: You will need Swift 2.0 to run the Swift version of this quickstart.
 Support
 -------
 
-https://firebase.google.com/support
+- [Firebase Support](https://firebase.google.com/support/)
 
 License
 -------

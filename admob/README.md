@@ -7,32 +7,22 @@ ad.
 Introduction
 ------------
 
-- [Read more about Google AdMob](https://developers.google.com/admob/)
+- [Read more about Google AdMob](https://firebase.google.com/docs/admob/)
 
 Getting Started
 ---------------
 
-- [Add Firebase to your iOS Project](https://developers.google.com/firebase/docs/ios/setup).
-- Follow the [quickstart guide](https://developers.google.com/admob/ios/start) to set up your project.
-- Run the sample on your iOS device or emulator.
+- [Add Firebase to your iOS Project](https://firebase.google.com/docs/ios/setup).
+- Run the sample on your iOS device or simulator.
 
 Note: You will need Swift 2.0 to run the Swift version of this quickstart.
-
-Screenshots
------------
-![Screenshot](Screenshot/admob-sample.png)
 
 Support
 -------
 
-- Stack Overflow: http://stackoverflow.com/questions/tagged/admob
-- [Developer forum](groups.google.com/group/google-admob-ads-sdk)
-
-If you've found an error in this sample, please file an issue:
-https://github.com/googlesamples/google-services/issues
-
-Patches are encouraged, and may be submitted by forking this project and
-submitting a pull request through GitHub.
+- [Stack Overflow](https://stackoverflow.com/questions/tagged/admob)
+- [Developer Forum](https://groups.google.com/group/google-admob-ads-sdk)
+- [Firebase Support](https://firebase.google.com/support/)
 
 License
 -------

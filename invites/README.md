@@ -6,25 +6,20 @@ The Firebase Invites iOS quickstart demonstrates how to enable your users to sha
 Introduction
 ------------
 
-- [Read more about Firebase Invites](https://developers.google.com/firebase/)
+- [Read more about Firebase Invites](https://firebase.google.com/docs/invites)
 
 Getting Started
 ---------------
 
-- [Add Firebase to your iOS Project](https://developers.google.com/firebase/docs/ios/setup).
-- Follow the [quickstart guide](https://developers.google.com/app-invites/ios/guides/start) to set up your project.
+- [Add Firebase to your iOS Project](https://firebase.google.com/docs/ios/setup).
 - Run the sample on your iOS device or emulator.
 
-Note: You will need Swift 1.2 to run the Swift version of this quickstart.
-
-Screenshots
------------
-![Screenshot](Screenshot/app-invites-sample.png)
+Note: You will need Swift 2.0 to run the Swift version of this quickstart.
 
 Support
 -------
 
-https://developers.google.com/firebase/support/
+- [Firebase Support](https://firebase.google.com/support/)
 
 License
 -------

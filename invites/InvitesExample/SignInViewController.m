@@ -30,7 +30,7 @@
 - (void)viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
 
-  _bgText.text = @"App Invites\niOS demo";
+  _bgText.text = @"Invites\niOS demo";
 
   [GIDSignIn sharedInstance].clientID = [FIRApp defaultApp].options.clientID;
 

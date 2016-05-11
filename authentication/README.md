@@ -16,11 +16,11 @@ Getting Started
 - Go to the [Firebase Console](https://console.firebase.google.com) and navigate to your project:
   - Select the **Auth** panel and then click the **Sign In Method** tab.
   - Click **Google** and turn on the **Enable** switch, then click **Save**.
-- In XCode, add a custom URL scheme for your reversed client ID. 
+- In XCode, add a custom URL scheme for your reversed client ID.
   - You can find this in the `GoogleService-Info.plist`
 - Run the app on your device or simulator.
     - Select **Sign In** and select Google to begin.
-    
+
 ### Facebook Login Setup
 - Go to the [Facebook Developers Site](https://developers.facebook.com) and follow all
   instructions to set up a new Android app. When asked for a bundle ID, use
@@ -32,17 +32,17 @@ Getting Started
 - Open your regular `Info.plist` and replace the value of the `FacebookAppID` with the ID of the Facebook app you just created.
 - Run the app on your device or simulator.
     - Select **Sign In** and select Facebook to begin.
-      
+
 ### Email/Password Setup
 - Go to the [Firebase Console](https://console.firebase.google.com) and navigate to your project:
   - Select the **Auth** panel and then click the **Sign In Method** tab.
   - Click **Email/Password** and turn on the **Enable** switch, then click **Save**.
 - Run the app on your device or simulator.
     - Select **Sign In** and select Email to begin.
-    
-### Twitter Login Setup    
+
+### Twitter Login Setup
 - Go to the [Twitter Developers Site](https://apps.twitter.com/) and follow all
-  instructions to set up a new iOS app. 
+  instructions to set up a new iOS app.
 - Go to the [Firebase Console](https://console.firebase.google.com) and navigate to your project:
   - Select the **Auth** panel and then click the **Sign In Method** tab.
   - Click **Twitter** and turn on the **Enable** switch, then click **Save**.
@@ -50,7 +50,7 @@ Getting Started
 - Open your regular `Info.plist` and replace the value of the `consumerKey` and `consumerSecret` values with the keys from the Twitter app you just created.
 - Run the app on your device or simulator.
     - Select **Sign In** and select Twitter to begin.
-    
+
 ### Custom Authentication Setup
 - Go to the [Google Developers Console](https://console.developers.google.com/project) and navigate to your project:
     - From the left "hamburger" menu navigate to the **API Manager** tab.
@@ -65,13 +65,13 @@ Getting Started
 - Run the app on the simulator.
     - Select **Sign In** and select Custom to begin.
     - Paste in the token you generated earlier.
-    - When you return to the main screen, you should see the User ID you entered when generating the 
+    - When you return to the main screen, you should see the User ID you entered when generating the
       token.
 
 Support
 -------
 
-https://firebase.google.com/support/
+- [Firebase Support](https://firebase.google.com/support/)
 
 License
 -------

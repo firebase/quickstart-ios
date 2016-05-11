@@ -237,7 +237,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				EF4857041C752B7700649485 /* Main.storyboard in Resources */,
-				EF6DB4D91CE145EF00319C08 /* GoogleService-Info.plist in Resources */,
 				5F99610D1AE0CF4F0034F503 /* LaunchScreen.xib in Resources */,
 				5F99610B1AE0CF4F0034F503 /* Images.xcassets in Resources */,
 			);

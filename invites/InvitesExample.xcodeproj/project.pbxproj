@@ -22,9 +22,6 @@
 		4BC032E41ACF33B70092326A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC032E31ACF33B70092326A /* main.m */; };
 		4BC032E71ACF33B70092326A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC032E61ACF33B70092326A /* AppDelegate.m */; };
 		4BC032EA1ACF33B70092326A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC032E91ACF33B70092326A /* ViewController.m */; };
-		4BC032EF1ACF33B70092326A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4BC032EE1ACF33B70092326A /* Images.xcassets */; };
-		4BCF1C3C1AFBF6310039B15C /* appbg.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BCF1C3B1AFBF6310039B15C /* appbg.png */; };
-		4BCF1C3D1AFBF65D0039B15C /* appbg.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BCF1C3B1AFBF6310039B15C /* appbg.png */; };
 		4BCF1C421AFBFA8D0039B15C /* SignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BCF1C411AFBFA8D0039B15C /* SignInViewController.m */; };
 		4BDB99D91ACF46E500C4DC2C /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BDB99D81ACF46E500C4DC2C /* AddressBook.framework */; };
 		4BDB99DB1ACF46EC00C4DC2C /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BDB99DA1ACF46EC00C4DC2C /* AssetsLibrary.framework */; };
@@ -68,9 +65,6 @@
 		4BC032E61ACF33B70092326A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		4BC032E81ACF33B70092326A /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		4BC032E91ACF33B70092326A /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		4BC032EE1ACF33B70092326A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		4BC032F11ACF33B70092326A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		4BCF1C3B1AFBF6310039B15C /* appbg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = appbg.png; path = Images.xcassets/appbg.png; sourceTree = "<group>"; };
 		4BCF1C411AFBFA8D0039B15C /* SignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignInViewController.m; sourceTree = "<group>"; };
 		4BCF1C431AFC01A40039B15C /* SignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInViewController.h; sourceTree = "<group>"; };
 		4BDB99D81ACF46E500C4DC2C /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
@@ -179,8 +173,6 @@
 				4BCF1C411AFBFA8D0039B15C /* SignInViewController.m */,
 				4BC032E81ACF33B70092326A /* ViewController.h */,
 				4BC032E91ACF33B70092326A /* ViewController.m */,
-				4BC032EE1ACF33B70092326A /* Images.xcassets */,
-				4BC032F01ACF33B70092326A /* LaunchScreen.xib */,
 				4BC032E11ACF33B70092326A /* Supporting Files */,
 			);
 			path = InvitesExample;
@@ -190,7 +182,6 @@
 			isa = PBXGroup;
 			children = (
 				EFB291FB1B0F1F430021C8AC /* shared */,
-				4BCF1C3B1AFBF6310039B15C /* appbg.png */,
 				4B5CBBFB1AE9DBF700D822CE /* Main.storyboard */,
 				4BC032E21ACF33B70092326A /* Info.plist */,
 				4BC032E31ACF33B70092326A /* main.m */,
@@ -329,7 +320,6 @@
 			files = (
 				EFB292061B0F20100021C8AC /* Main.storyboard in Resources */,
 				EFB292041B0F1F430021C8AC /* LaunchScreen.xib in Resources */,
-				4BCF1C3D1AFBF65D0039B15C /* appbg.png in Resources */,
 				EFB292021B0F1F430021C8AC /* Images.xcassets in Resources */,
 				4B3329241AE04F9500327B83 /* GoogleSignIn.bundle in Resources */,
 			);
@@ -343,8 +333,6 @@
 				EFB292011B0F1F430021C8AC /* Images.xcassets in Resources */,
 				4B0CAF401ACF72EB006FC636 /* GoogleSignIn.bundle in Resources */,
 				EFB292031B0F1F430021C8AC /* LaunchScreen.xib in Resources */,
-				4BC032EF1ACF33B70092326A /* Images.xcassets in Resources */,
-				4BCF1C3C1AFBF6310039B15C /* appbg.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -397,14 +385,6 @@
 				4B5CBBFC1AE9DBF700D822CE /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		4BC032F01ACF33B70092326A /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				4BC032F11ACF33B70092326A /* Base */,
-			);
-			name = LaunchScreen.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

@@ -32,7 +32,11 @@
 
 - (void)applicationBecameActive:(NSNotification *)notification {
   AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-  self.deepLinkLabel.text = appDelegate.currentDeepLink;
+  if (appDelegate.currentDeepLink != nil) {
+    self.deepLinkLabel.text = appDelegate.currentDeepLink.lastPathComponent;
+  } else {
+    self.deepLinkLabel.text = @"No incoming link";
+  }
 }
 // [END display_link]
 

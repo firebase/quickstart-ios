@@ -1,0 +1,11 @@
+{
+    "applinks": {
+        "apps": [],
+        "details": [
+            {
+                "appID": "<YOUR-APPID-OR-TEAMID>.com.google.firebase.quickstart.AppIndexingExample",
+                "paths": ["*"]
+            }
+        ]
+    }
+}

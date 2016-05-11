@@ -21,7 +21,7 @@ import Firebase
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
   var window: UIWindow?
-  var currentDeepLink = String()
+  var currentDeepLink = NSURL()
 
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
     FIRApp.configure()
@@ -36,9 +36,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                    openURL url: NSURL,
                    sourceApplication: String?,
                    annotation: AnyObject) -> Bool {
-    currentDeepLink = url.absoluteString
+    currentDeepLink = url
     return true;
   }
   // [END handle_link]
+  
+  // [START handle_universal_link]
+  func application(application: UIApplication, continueUserActivity userActivity: NSUserActivity,
+                   restorationHandler: ([AnyObject]?) -> Void) -> Bool {
+    currentDeepLink = userActivity.webpageURL
+  }
+  // [END handle_universal_link]
 
 }

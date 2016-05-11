@@ -33,7 +33,12 @@ class ViewController: UIViewController {
 
     func applicationBecameActive(notification: NSNotification){
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        deepLinkLabel.text = appDelegate.currentDeepLink
+        if (appDelegate.currentDeepLink != nil) {
+            // Show content based on incoming link
+            deepLinkLabel.text = appDelegate.currentDeepLink.lastPathComponent
+        } else {
+            deepLinkLabel.text = "No incoming link";
+        }
     }
     // [END display_link]
 

@@ -19,6 +19,6 @@
 @interface AppDelegate : UIResponder<UIApplicationDelegate>
 
 @property(strong, nonatomic) UIWindow *window;
-@property(nonatomic, strong) NSString *currentDeepLink;
+@property(nonatomic, strong) NSURL *currentDeepLink;
 
 @end

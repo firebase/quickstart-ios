@@ -44,7 +44,8 @@
   // Using Firebase Storage requires the user be authenticated. Here we are using
   // anonymous authentication.
   if (![FIRAuth auth].currentUser) {
-    [[FIRAuth auth] signInAnonymouslyWithCompletion:^(FIRUser * _Nullable user, NSError * _Nullable error) {
+    [[FIRAuth auth] signInAnonymouslyWithCompletion:^(FIRUser * _Nullable user,
+                                                      NSError * _Nullable error) {
       if (error) {
         _urlTextView.text = error.description;
         _takePicButton.enabled = NO;
@@ -82,7 +83,8 @@
     PHFetchResult* assets = [PHAsset fetchAssetsWithALAssetURLs:@[referenceUrl] options:nil];
     PHAsset *asset = [assets firstObject];
     [asset requestContentEditingInputWithOptions:nil
-                               completionHandler:^(PHContentEditingInput *contentEditingInput, NSDictionary *info) {
+                               completionHandler:^(PHContentEditingInput *contentEditingInput,
+                                                   NSDictionary *info) {
                                  NSURL *imageFile = contentEditingInput.fullSizeImageURL;
                                  NSString *filePath =
                                      [NSString stringWithFormat:@"%@/%lld/%@",
@@ -90,21 +92,15 @@
                                          (long long)([[NSDate date] timeIntervalSince1970] * 1000.0),
                                          [imageFile lastPathComponent]];
                                  // [START uploadimage]
-                                 FIRStorageMetadata *metadata = [FIRStorageMetadata new];
-                                 metadata.contentType = @"image/jpeg";
                                  [[_storageRef child:filePath]
-                                  putFile:imageFile metadata:metadata
+                                  putFile:imageFile metadata:nil
                                   completion:^(FIRStorageMetadata *metadata, NSError *error) {
                                     if (error) {
                                       NSLog(@"Error uploading: %@", error);
                                       _urlTextView.text = @"Upload Failed";
                                       return;
                                     }
-                                    NSLog(@"Upload Succeeded!");
-                                    _urlTextView.text = [metadata.downloadURL absoluteString];
-                                    [[NSUserDefaults standardUserDefaults] setObject:filePath forKey:@"storagePath"];
-                                    [[NSUserDefaults standardUserDefaults] synchronize];
-                                    _downloadPicButton.enabled = YES;
+                                    [self uploadSuccess:metadata storagePath:filePath];
                                   }];
                                  // [END uploadimage]
                                }];
@@ -125,13 +121,17 @@
             _urlTextView.text = @"Upload Failed";
             return;
           }
-          NSLog(@"Upload Succeeded!");
-          _urlTextView.text = [metadata.downloadURL absoluteString];
-          [[NSUserDefaults standardUserDefaults] setObject:imagePath forKey:@"storagePath"];
-          [[NSUserDefaults standardUserDefaults] synchronize];
-          _downloadPicButton.enabled = YES;
+          [self uploadSuccess:metadata storagePath:imagePath];
         }];
   }
+}
+
+- (void)uploadSuccess:(FIRStorageMetadata *) metadata storagePath: (NSString *) storagePath {
+  NSLog(@"Upload Succeeded!");
+  _urlTextView.text = [metadata.downloadURL absoluteString];
+  [[NSUserDefaults standardUserDefaults] setObject:storagePath forKey:@"storagePath"];
+  [[NSUserDefaults standardUserDefaults] synchronize];
+  _downloadPicButton.enabled = YES;
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {

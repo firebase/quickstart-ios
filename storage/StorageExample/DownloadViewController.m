@@ -36,7 +36,8 @@
 
   // [START downloadimage]
   [[_storageRef child:storagePath]
-          writeToFile:[NSURL URLWithString:filePath] completion:^(NSURL * _Nullable URL, NSError * _Nullable error) {
+          writeToFile:[NSURL URLWithString:filePath] completion:^(NSURL * _Nullable URL,
+                                                                  NSError * _Nullable error) {
             if (error) {
               NSLog(@"Error downloading: %@", error);
               _statusTextView.text = @"Download Failed";

@@ -44,7 +44,7 @@
     // Write new post
     [self writeNewPost:userID username:user.username title:titleTextField.text body:bodyTextView.text];
     // Finish this Activity, back to the stream
-    self.tabBarController.selectedIndex = 0;
+    [[self navigationController] popViewControllerAnimated:YES];
     // [END_EXCLUDE]
   } withCancelBlock:^(NSError * _Nonnull error) {
     NSLog(@"%@", error.localizedDescription);

@@ -29,6 +29,12 @@
   [self.view endEditing:YES];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+  if ([FIRAuth auth].currentUser) {
+    [self performSegueWithIdentifier:@"signIn" sender:nil];
+  }
+}
+
 - (IBAction)didTapEmailLogin:(id)sender {
   [self showSpinner:^{
     [[FIRAuth auth] signInWithEmail:_emailField.text
@@ -39,8 +45,34 @@
                                [self showMessagePrompt:error.localizedDescription];
                                return;
                              }
-                             [self performSegueWithIdentifier:@"signIn" sender:nil];
                            }];
+                             [[[_ref child:@"users"] child:user.uid] observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+                               if (![snapshot exists]) {
+                                 [self showTextInputPromptWithMessage:@"Username:"
+                                                      completionBlock:^(BOOL userPressedOK, NSString *_Nullable username) {
+                                                        if (!userPressedOK || !username.length) {
+                                                          return;
+                                                        }
+                                                        [self showSpinner:^{
+                                                          FIRUserProfileChangeRequest *changeRequest =
+                                                          [user profileChangeRequest];
+                                                          changeRequest.displayName = username;
+                                                          [changeRequest commitChangesWithCompletion:^(NSError *_Nullable error) {
+                                                            [self hideSpinner:^{
+                                                              if (error) {
+                                                                [self showMessagePrompt:error.localizedDescription];
+                                                                return;
+                                                              }
+                                                              [[[_ref child:@"users"] child:[FIRAuth auth].currentUser.uid] setValue:@{@"username": username}];
+                                                              [self performSegueWithIdentifier:@"signIn" sender:nil];
+                                                            }];
+                                                          }];
+                                                        }];
+                                                      }];
+                               } else {
+                                 [self performSegueWithIdentifier:@"signIn" sender:nil];
+                               }
+                         }];
                          }];
   }];
 }
@@ -80,9 +112,8 @@
                                     [self showMessagePrompt:error.localizedDescription];
                                     return;
                                   }
-                                  self.navigationItem.title = [FIRAuth auth].currentUser.displayName;
                                   // [START basic_write]
-                                  [[[_ref child:@"users"] child:user.uid] setValue:@{@"username": [FIRAuth auth].currentUser.displayName}];
+                                  [[[_ref child:@"users"] child:user.uid] setValue:@{@"username": username}];
                                   // [END basic_write]
                                   [self performSegueWithIdentifier:@"signIn" sender:nil];
                                 }];
@@ -100,6 +131,10 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
   [self didTapEmailLogin:nil];
   return YES;
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+  segue.destinationViewController.childViewControllers[0].navigationItem.title = [@"Chat as " stringByAppendingString:[FIRAuth auth].currentUser.displayName];
 }
 
 @end

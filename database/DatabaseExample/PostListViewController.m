@@ -52,13 +52,12 @@
   self.tableView.delegate = self;
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-  self.navigationItem.rightBarButtonItem.title = @"Logout";
-  [self.tableView reloadData];
-}
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
   [self performSegueWithIdentifier:@"detail" sender:indexPath];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+  [self.tableView reloadData];
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {

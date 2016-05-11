@@ -26,7 +26,7 @@ class PostListViewController: UIViewController, UITableViewDelegate {
     super.viewDidLoad()
 
     // [START create_database_reference]
-    ref = FIRDatabase().reference()
+    ref = FIRDatabase.database().reference()
     // [END create_database_reference]
 
     dataSource = FirebaseTableViewDataSource.init(query: getQuery(), modelClass: Post.self, nibNamed: "PostTableViewCell", cellReuseIdentifier: "postCell", view: self.tableView)

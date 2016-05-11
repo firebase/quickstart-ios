@@ -25,6 +25,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     if FIRAuth.auth()?.currentUser {
       self.performSegueWithIdentifier("signIn", sender: nil)
     }
+    ref = FIRDatabase.database().reference()
   }
 
   @IBAction func didTapEmailLogin(sender: AnyObject) {

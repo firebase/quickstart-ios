@@ -19,7 +19,7 @@ class PostTableViewCell: UITableViewCell {
   var postRef: FIRDatabaseReference!
 
   @IBAction func didTapStarButton(sender: AnyObject) {
-    postRef = FIRDatabase().reference().child("posts")
+    postRef = FIRDatabase.database().reference().child("posts")
     // [START post_stars_transaction]
     postRef.runTransactionBlock({ (currentData: FIRMutableData) -> FIRTransactionResult in
       if var post = currentData.value {

@@ -29,7 +29,7 @@
   [super viewDidLoad];
 
   // [START create_database_reference]
-  self.ref = [FIRDatabase database].reference;
+  self.ref = [[FIRDatabase database] reference];
   // [END create_database_reference]
 }
 

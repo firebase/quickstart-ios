@@ -24,7 +24,7 @@
 }
 
 - (IBAction)didTapStarButton:(id)sender {
-  self.postRef = [[FIRDatabase database].reference child:@"posts"];
+  self.postRef = [[[FIRDatabase database] reference] child:@"posts"];
   // [START post_stars_transaction]
   [_postRef runTransactionBlock:^FIRTransactionResult * _Nonnull(FIRMutableData * _Nonnull currentData) {
     NSMutableDictionary *post = currentData.value;

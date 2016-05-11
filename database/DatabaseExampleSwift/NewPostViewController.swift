@@ -29,7 +29,7 @@ class NewPostViewController: UIViewController {
     super.viewDidLoad()
 
     // [START create_database_reference]
-    self.ref = FIRDatabase().reference()
+    self.ref = FIRDatabase.database().reference()
     // [END create_database_reference]
   }
 

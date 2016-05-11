@@ -33,6 +33,7 @@
   if ([FIRAuth auth].currentUser) {
     [self performSegueWithIdentifier:@"signIn" sender:nil];
   }
+  _ref = [[FIRDatabase database] reference];
 }
 
 - (IBAction)didTapEmailLogin:(id)sender {

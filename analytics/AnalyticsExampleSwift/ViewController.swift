@@ -24,7 +24,7 @@ class ViewController: UIViewController {
     super.viewWillAppear(true)
 
     let name = "Pattern~\(title!)",
-        text = "I'd love you to hear about\(name)";
+        text = "I'd love you to hear about\(name)"
 
     // [START custom_event_swift]
     FIRAnalytics.logEventWithName("share_image", parameters: [

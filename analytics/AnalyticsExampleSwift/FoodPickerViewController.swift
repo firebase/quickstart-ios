@@ -31,7 +31,7 @@ class FoodPickerViewController: UIViewController, UIPickerViewDelegate, UIPicker
 
   func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
     let food = foodStuffs[row]
-    NSUserDefaults.standardUserDefaults().setValue(food, forKey: "favorite_food");
+    NSUserDefaults.standardUserDefaults().setValue(food, forKey: "favorite_food")
     NSUserDefaults.standardUserDefaults().synchronize()
 
     // [START user_property]

@@ -36,7 +36,7 @@ class PatternTabBarController: UITabBarController {
     FIRAnalytics.logEventWithName(kFIREventSelectContent, parameters: [
       kFIRParameterContentType:"cont",
       kFIRParameterItemID:"1"
-      ]);
+      ])
     // [END custom_event_swift]
 
     let title = "Share: \(self.selectedViewController!.title!)",

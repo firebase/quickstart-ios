@@ -6,13 +6,13 @@ The Firebase PRODUCTNAME iOS quickstart demonstrates how to ...
 Introduction
 ------------
 
-- [Read more about Firebase PRODUCTNAME](https://developers.google.com/firebase)
+- [Read more about Firebase PRODUCTNAME](https://firebase.google.com)
 
 Getting Started
 ---------------
 
-- [Add Firebase to your iOS Project](https://developers.google.com/firebase/docs/ios/setup).
-- Follow the [quickstart guide](https://developers.google.com/firebase) to set up your project.
+- [Add Firebase to your iOS Project](https://firebase.google.com/docs/ios/setup).
+- Follow the [quickstart guide](https://firebase.google.com/docs) to set up your project.
 - Run the sample on your iOS device or emulator.
 
 Note: You will need Swift 1.2 to run the Swift version of this quickstart.
@@ -23,7 +23,7 @@ Screenshots
 Support
 -------
 
-https://developers.google.com/firebase/support/
+https://firebase.google.com/support
 
 License
 -------

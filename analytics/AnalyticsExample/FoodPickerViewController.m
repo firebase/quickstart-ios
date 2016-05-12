@@ -16,7 +16,7 @@
 
 //
 // For more information on setting up and running this sample code, see
-// https://developers.google.com/firebase/docs/analytics/analytics-ios
+// https://firebase.google.com/docs/analytics/ios/start
 //
 
 #import "FoodPickerViewController.h"

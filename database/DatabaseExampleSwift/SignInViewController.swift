@@ -1,14 +1,21 @@
 //
-//  SignInViewController.swift
-//  DatabaseExample
+//  Copyright (c) 2015 Google Inc.
 //
-//  Created by Ibrahim Ulukaya on 5/5/16.
-//  Copyright © 2016 Google Inc. All rights reserved.
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//  http://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
 //
 
 import UIKit
-import FirebaseAuth
-import FirebaseDatabase
+import Firebase
 
 @objc(SignInViewController)
 class SignInViewController: UIViewController, UITextFieldDelegate {
@@ -22,7 +29,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
   }
 
   override func viewDidAppear(animated: Bool) {
-    if FIRAuth.auth()?.currentUser {
+    if FIRAuth.auth()?.currentUser != nil {
       self.performSegueWithIdentifier("signIn", sender: nil)
     }
     ref = FIRDatabase.database().reference()
@@ -36,32 +43,36 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
             if let error = error {
               self.showMessagePrompt(error.localizedDescription)
               return
-            }
-          })
-          ref.child("users").child(user?.uid).observeSingleEventOfType(.Value, withBlock: { snapshot in
-            if (!snapshot.exists()) {
-              self.showTextInputPromptWithMessage("Username:") { (userPressedOK, username) in
-                if let username = username {
-                  self.showSpinner({
-                    let changeRequest = FIRAuth.auth()?.currentUser?.profileChangeRequest()
-                    changeRequest?.displayName = username
-                    changeRequest?.commitChangesWithCompletion() { (error) in
-                      self.hideSpinner({
-                        if let error = error {
-                          self.showMessagePrompt(error.localizedDescription)
-                          return
+            } else if let user = user {
+              self.ref.child("users").child(user.uid).observeSingleEventOfType(.Value, withBlock: { snapshot in
+                if (!snapshot.exists()) {
+                  self.showTextInputPromptWithMessage("Username:") { (userPressedOK, username) in
+                    if let username = username {
+                      self.showSpinner({
+                        let changeRequest = FIRAuth.auth()?.currentUser?.profileChangeRequest()
+                        changeRequest?.displayName = username
+                        changeRequest?.commitChangesWithCompletion() { (error) in
+                          self.hideSpinner({
+                            if let error = error {
+                              self.showMessagePrompt(error.localizedDescription)
+                              return
+                            }
+                            self.ref.child("users").setValue(["username": username])
+                            self.performSegueWithIdentifier("signIn", sender: nil)
+                          })
                         }
-                        self.ref.child("users").setValue(["username": username])
-                        self.performSegueWithIdentifier("signIn", sender: nil)
                       })
+                    } else {
+                      self.showMessagePrompt("username can't be empty")
                     }
-                  })
+                  }
                 } else {
-                  self.showMessagePrompt("username can't be empty")
+                  self.performSegueWithIdentifier("signIn", sender: nil)
                 }
-              }
+              })
             }
           })
+
         }
       })
     } else {
@@ -83,22 +94,22 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
                         self.showMessagePrompt(error.localizedDescription)
                         return
                       }
-                    })
-                    self.showSpinner({
-                      let changeRequest = FIRAuth.auth()?.currentUser?.profileChangeRequest()
-                      changeRequest?.displayName = username
-                      changeRequest?.commitChangesWithCompletion() { (error) in
-                        self.hideSpinner({
-                          if let error = error {
-                            self.showMessagePrompt(error.localizedDescription)
-                            return
-                          }
-                          // [START basic_write]
-                          self.ref.child("users").setValue(["username": username])
-                          // [END basic_write]
-                          self.performSegueWithIdentifier("signIn", sender: nil)
+                      self.showSpinner({
+                        let changeRequest = FIRAuth.auth()?.currentUser?.profileChangeRequest()
+                        changeRequest?.displayName = username
+                        changeRequest?.commitChangesWithCompletion() { (error) in
+                          self.hideSpinner({
+                            if let error = error {
+                              self.showMessagePrompt(error.localizedDescription)
+                              return
+                            }
+                            // [START basic_write]
+                            self.ref.child("users").setValue(["username": username])
+                            // [END basic_write]
+                            self.performSegueWithIdentifier("signIn", sender: nil)
                         })
                       }
+                    })
                     })
                   }
                 })
@@ -121,9 +132,5 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
   func textFieldShouldReturn(textField: UITextField) -> Bool {
     didTapEmailLogin([])
     return true
-  }
-
-  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    segue.destinationViewController.childViewControllers[0].navigationItem.title = "Chat as \(FIRAuth.auth()?.currentUser?.displayName)"
   }
 }

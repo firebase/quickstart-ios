@@ -19,7 +19,9 @@
 #import "PostTableViewCell.h"
 #import "PostDataSource.h"
 #import "PostDetailTableViewController.h"
-@import FirebaseAuth;
+
+@import Firebase;
+@import FirebaseUI;
 
 @implementation PostListViewController
 
@@ -33,7 +35,7 @@
   self.dataSource = [[PostDataSource alloc] initWithQuery:[self getQuery]
                                                modelClass:[Post class]
                                                  nibNamed:@"PostTableViewCell"
-                                      cellReuseIdentifier:@"postCell"
+                                      cellReuseIdentifier:@"post"
                                                      view:self.tableView];
 
   [self.dataSource
@@ -43,7 +45,7 @@
      cell.authorLabel.text = post.author;
      NSString *imageName = [post.stars objectForKey:[self getUid]] ? @"ic_star" : @"ic_star_border";
      [cell.starButton setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
-     cell.numStarsLabel.text = [NSString stringWithFormat:@"%d",post.starCount];
+     cell.numStarsLabel.text = [NSString stringWithFormat:@"%d", post.starCount];
      cell.postTitle.text = post.title;
      cell.postBody.text = post.body;
    }];

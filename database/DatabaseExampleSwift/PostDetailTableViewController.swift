@@ -1,14 +1,23 @@
 //
-//  PostDetailTableViewController.swift
-//  DatabaseExample
+//  Copyright (c) 2015 Google Inc.
 //
-//  Created by Ibrahim Ulukaya on 5/6/16.
-//  Copyright © 2016 Google Inc. All rights reserved.
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//  http://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
 //
 
 import UIKit
 import Firebase
 
+@objc(PostDetailTableViewController)
 class PostDetailTableViewController: UITableViewController {
 
   let kSectionSend = 2
@@ -17,22 +26,24 @@ class PostDetailTableViewController: UITableViewController {
 
   var postKey = ""
   var comments: Array<FIRDataSnapshot> = []
-  let commentField: UITextField? = nil
-  var post: Post = Post()
-  let ref: FIRDatabaseReference = FIRDatabase().reference()
+  var commentField: UITextField? = nil
+  let post: Post = Post()
+  lazy var ref: FIRDatabaseReference = FIRDatabase.database().reference()
   var postRef: FIRDatabaseReference!
   var commentsRef : FIRDatabaseReference!
-  var _refHandle: FIRDatabaseHandle?
+  var refHandle: FIRDatabaseHandle?
 
 
   override func viewDidLoad() {
     super.viewDidLoad()
     postRef = ref.child("posts").child(postKey)
     commentsRef = ref.child("post-comments").child(postKey)
+    let nib = UINib(nibName: "PostTableViewCell", bundle: nil)
+    tableView.registerNib(nib, forCellReuseIdentifier: "post")
   }
 
   override func viewWillAppear(animated: Bool) {
-    self.comments.removeAll()
+    comments.removeAll()
     // [START child_event_listener]
     // Listen for new comments in the Firebase database
     commentsRef.observeEventType(.ChildAdded, withBlock: { (snapshot) -> Void in
@@ -40,7 +51,7 @@ class PostDetailTableViewController: UITableViewController {
       self.tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: self.comments.count-1, inSection: 1)], withRowAnimation: UITableViewRowAnimation.Automatic)
     })
     // Listen for deleted comments in the Firebase database
-    self.ref.child("messages").observeEventType(.ChildRemoved, withBlock: { (snapshot) -> Void in
+    commentsRef.observeEventType(.ChildRemoved, withBlock: { (snapshot) -> Void in
       let index = self.indexOfMessage(snapshot)
       self.comments.removeAtIndex(index)
       self.tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: index, inSection: 1)], withRowAnimation: UITableViewRowAnimation.Automatic)
@@ -48,16 +59,14 @@ class PostDetailTableViewController: UITableViewController {
     // [END child_event_listener]
 
     // [START post_value_event_listener]
-    _refHandle = postRef.observeEventType(.Value) { (snapshot) in
-      let postDict = snapshot.value
+    refHandle = postRef.observeEventType(FIRDataEventType.Value, withBlock: { (snapshot) in
+      let postDict = snapshot.value as! [String : AnyObject]
       // [START_EXCLUDE]
-      post.uid = postDict["uid"]
-      post.author = postDict["author"]
-      post.title = postDict["title"]
-      post.body = postDict["body"]
-      tableView.reloadData()
+      self.post.setValuesForKeysWithDictionary(postDict)
+      self.tableView.reloadData()
+      self.navigationItem.title = self.post.title
       // [END_EXCLUDE]
-    }
+    })
     // [END post_value_event_listener]
   }
 
@@ -71,8 +80,11 @@ class PostDetailTableViewController: UITableViewController {
     }
     return -1
   }
+
   override func viewWillDisappear(animated: Bool) {
-    postRef.removeObserverWithHandle(_refHandle)
+    if let refHandle = refHandle {
+      postRef.removeObserverWithHandle(refHandle)
+    }
     commentsRef.removeAllObservers()
   }
 
@@ -95,44 +107,56 @@ class PostDetailTableViewController: UITableViewController {
   @IBAction func didTapSend(sender: AnyObject) {
     let uid = FIRAuth.auth()?.currentUser?.uid
     FIRDatabase.database().reference().child("users").child(uid!).observeSingleEventOfType(.Value, withBlock: { (snapshot) in
-      let user = snapshot.value
-      let username = user!["username"]
-      let comment = ["uid": uid,
-                     "author": username,
-                     "text": self.commentField.text]
-      commentsRef.childByAutoId().setValue(comment)
-      self.commentField.text = ""
+      if let uid = uid, commentField = self.commentField, user = snapshot.value as? [String : AnyObject] {
+        let comment = [
+          "uid": uid,
+          "author": user["username"] as! String,
+          "text": commentField.text!
+        ]
+        self.commentsRef.childByAutoId().setValue(comment)
+        commentField.text = ""
+      }
     })
   }
-
-  override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+  override func tableView(tableView: UITableView,
+                          cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell: UITableViewCell
+
     switch indexPath.section {
     case kSectionPost:
       cell = tableView.dequeueReusableCellWithIdentifier("post")!
-      let authorLabel: UILabel = cell.viewWithTag(2) as! UILabel
-      let title: UILabel = cell.viewWithTag(3) as! UILabel
-      let body: UITextView = cell.viewWithTag(6) as! UITextView
-      authorLabel.text = post.author
-      title.text = post.title
-      body.text = post.body
+      if let uid = FIRAuth.auth()?.currentUser?.uid {
+        let postcell = cell as! PostTableViewCell
+        let imageName = post.stars == nil || post.stars![uid] == nil ? "ic_star_border" : "ic_star"
+        postcell.authorLabel.text = post.author
+        postcell.postTitle.text = post.title
+        postcell.postBody.text = post.body
+        postcell.starButton.setImage(UIImage(named: imageName), forState: .Normal)
+        if let starCount = post.starCount {
+          postcell.numStarsLabel.text = "\(starCount)"
+        }
+        postcell.postKey = postKey;
+      }
     case kSectionComments:
       cell = tableView.dequeueReusableCellWithIdentifier("comment")!
-      let comment = comments[indexPath.row].value
-      cell.textLabel?.text = comment!["author"]
-      cell.detailTextLabel?.text = comment["text"]
-    case kSectionSend:
-      cell = tableView.dequeueReusableCellWithIdentifier("send")
-      commentField = cell.viewWithTag(7)
-    default:
+      let commentDict = comments[indexPath.row].value as! [String : AnyObject]
+      if let text = cell.textLabel, detail = cell.detailTextLabel,
+        author = commentDict["author"], commentText = commentDict["text"] {
+        detail.text = String(author)
+        text.text = String(commentText)
+      }
+    default: // kSectionSend
+      cell = tableView.dequeueReusableCellWithIdentifier("send")!
+      commentField = cell.viewWithTag(7) as! UITextField?
       break
     }
-    return cell!
+    return cell
   }
 
   override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-    if indexPath.section = kSectionPost {
-      return 150
+    if indexPath.section == kSectionPost {
+      return 160
     }
-    return 50
-  }}
+    return 56
+  }
+}

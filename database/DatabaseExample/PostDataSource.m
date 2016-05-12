@@ -15,7 +15,8 @@
 //
 
 #import "PostDataSource.h"
-@import FirebaseDatabase;
+
+@import Firebase;
 
 @implementation PostDataSource
 
@@ -32,7 +33,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
 }
 
 - (NSInteger)tableView:(UITableView *)tableView
- numberOfRowsInSection:(NSInteger)section {
+    numberOfRowsInSection:(NSInteger)section {
   if ([self count] != 0) {
     tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     tableView.backgroundView   =  nil;

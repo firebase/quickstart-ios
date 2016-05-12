@@ -63,7 +63,7 @@ class NewPostViewController: UIViewController {
                 "title": title,
                 "body": body]
     let childUpdates = ["/posts/\(key)": post,
-                        "/user-posts/\(key)/": post]
+                        "/user-posts/\(userID)/\(key)/": post]
     ref.updateChildValues(childUpdates)
     // [END write_fan_out]
   }

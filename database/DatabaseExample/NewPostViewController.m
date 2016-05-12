@@ -62,7 +62,7 @@
                          @"title": title,
                          @"body": body};
   NSDictionary *childUpdates = @{[@"/posts/" stringByAppendingString:key]: post,
-                                 [NSString stringWithFormat:@"/user-posts/%@/", key]: post};
+                                 [NSString stringWithFormat:@"/user-posts/%@/%@/", userID, key]: post};
   [_ref updateChildValues:childUpdates];
   // [END write_fan_out]
 }

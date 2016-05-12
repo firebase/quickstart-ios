@@ -15,22 +15,21 @@
 //
 
 #import "TabBarController.h"
-@import FirebaseAuth;
+@import Firebase;
 
-@interface TabBarController ()
-
-@end
 
 @implementation TabBarController
 
-- (IBAction)didTapSignOut:(id)sender {
-  NSError *signOutError;
-  BOOL status = [[FIRAuth auth] signOut:&signOutError];
-  if (!status) {
-    NSLog(@"Error signing out: %@", signOutError);
-    return;
+
+- (void)didMoveToParentViewController:(UIViewController *)parent {
+  if (parent == nil) {
+    NSError *signOutError;
+    BOOL status = [[FIRAuth auth] signOut:&signOutError];
+    if (!status) {
+      NSLog(@"Error signing out: %@", signOutError);
+      return;
+    }
   }
-  [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

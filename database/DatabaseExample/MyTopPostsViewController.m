@@ -21,7 +21,9 @@
 - (FIRDatabaseQuery *) getQuery {
   // [START my_top_posts_query]
   // My top posts by number of stars
-  FIRDatabaseQuery *myTopPostsQuery = [[[self.ref child:@"user-posts"] child:[super getUid]] queryOrderedByChild:@"starCount"];
+  FIRDatabaseQuery *myTopPostsQuery = [[[self.ref child:@"user-posts"]
+                                        child:[super getUid]]
+                                       queryOrderedByChild:@"starCount"];
   // [END my_top_posts_query]
   return myTopPostsQuery;
 }

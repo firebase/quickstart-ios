@@ -14,10 +14,11 @@
 //  limitations under the License.
 //
 
-#import "PostDetailTableViewController.h"
 #import "Post.h"
-@import FirebaseDatabase;
-@import FirebaseAuth;
+#import "PostDetailTableViewController.h"
+#import "PostTableViewCell.h"
+
+@import Firebase;
 
 static const int kSectionSend = 2;
 static const int kSectionComments = 1;
@@ -42,6 +43,8 @@ static const int kSectionPost = 0;
   self.commentsRef = [[ref child:@"post-comments"] child:_postKey];
   self.comments = [[NSMutableArray alloc] init];
   self.post = [[Post alloc] init];
+  UINib *nib = [UINib nibWithNibName:@"PostTableViewCell" bundle:nil];
+  [self.tableView registerNib:nib forCellReuseIdentifier:@"post"];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -53,8 +56,9 @@ static const int kSectionPost = 0;
                 withBlock:^(FIRDataSnapshot *snapshot) {
                   [self.comments addObject:snapshot];
                   [self.tableView insertRowsAtIndexPaths:@[
-                                                           [NSIndexPath indexPathForRow:[self.comments count] - 1 inSection:1]
-                                                           ] withRowAnimation:UITableViewRowAnimationAutomatic];
+                    [NSIndexPath indexPathForRow:[self.comments count] - 1 inSection:1]
+                  ]
+                                        withRowAnimation:UITableViewRowAnimationAutomatic];
                 }];
   // Listen for deleted comments in the Firebase database
   [_commentsRef
@@ -62,9 +66,8 @@ static const int kSectionPost = 0;
    withBlock:^(FIRDataSnapshot *snapshot) {
      int index = [self indexOfMessage:snapshot];
      [self.comments removeObjectAtIndex:index];
-     [self.tableView deleteRowsAtIndexPaths:@[
-                                              [NSIndexPath indexPathForRow:index inSection:1]
-                                              ] withRowAnimation:UITableViewRowAnimationAutomatic];
+     [self.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:1]]
+                           withRowAnimation:UITableViewRowAnimationAutomatic];
    }];
   // [END child_event_listener]
 
@@ -72,11 +75,9 @@ static const int kSectionPost = 0;
   [_postRef observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
     NSDictionary *postDict = snapshot.value;
     // [START_EXCLUDE]
-    _post.uid = postDict[@"uid"];
-    _post.author = postDict[@"author"];
-    _post.title = postDict[@"title"];
-    _post.body = postDict[@"body"];
+    [_post setValuesForKeysWithDictionary:postDict];
     [self.tableView reloadData];
+    self.navigationItem.title = _post.title;
     // [END_EXCLUDE]
   }];
   // [END post_value_event_listener]
@@ -100,7 +101,7 @@ static const int kSectionPost = 0;
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 3;
+  return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -115,27 +116,33 @@ static const int kSectionPost = 0;
 
 - (IBAction)didTapSend:(id)sender {
   NSString *uid = [FIRAuth auth].currentUser.uid;
-  [[[[FIRDatabase database].reference child:@"users"] child:uid] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-    NSDictionary *user = snapshot.value;
-    NSString *username = user[@"username"];
-    NSDictionary *comment = @{@"uid": uid,
-                              @"author": username,
-                              @"text": _commentField.text};
-    [[_commentsRef childByAutoId] setValue:comment];
-    _commentField.text = @"";
+  [[[[FIRDatabase database].reference child:@"users"] child:uid]
+   observeSingleEventOfType:FIRDataEventTypeValue
+   withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+      NSDictionary *user = snapshot.value;
+      NSString *username = user[@"username"];
+      NSDictionary *comment = @{@"uid": uid,
+                                @"author": username,
+                                @"text": _commentField.text};
+      [[_commentsRef childByAutoId] setValue:comment];
+      _commentField.text = @"";
   }];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView
+         cellForRowAtIndexPath:(NSIndexPath *)indexPath {
   UITableViewCell *cell;
   if (indexPath.section == kSectionPost) {
     cell = [tableView dequeueReusableCellWithIdentifier:@"post"];
-    UILabel *authorLabel = [(UILabel *) cell viewWithTag:2];
-    UILabel *title = [(UILabel *) cell viewWithTag:3];
-    UITextView *body = [(UITextView *) cell viewWithTag:6];
-    authorLabel.text = _post.author;
-    title.text = _post.title;
-    body.text = _post.body;
+    PostTableViewCell *postcell = (PostTableViewCell *)cell;
+    postcell.authorLabel.text = _post.author;
+    postcell.postTitle.text = _post.title;
+    postcell.postBody.text = _post.body;
+    NSString *imageName = [_post.stars objectForKey:[self getUid]] ? @"ic_star" : @"ic_star_border";
+    [postcell.starButton setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
+    postcell.numStarsLabel.text = [NSString stringWithFormat:@"%d", _post.starCount];
+    postcell.postKey = _postKey;
+
   } else if (indexPath.section == kSectionComments) {
     cell = [tableView dequeueReusableCellWithIdentifier:@"comment"];
     NSDictionary *comment = _comments[indexPath.row].value;
@@ -150,9 +157,13 @@ static const int kSectionPost = 0;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
   if (indexPath.section == kSectionPost) {
-    return 150;
+    return 160;
   }
-  return 50;
+  return 56;
+}
+
+- (NSString *) getUid {
+  return [FIRAuth auth].currentUser.uid;
 }
 
 @end

@@ -1,15 +1,22 @@
 //
-//  PostLitViewController.swift
-//  DatabaseExample
+//  Copyright (c) 2015 Google Inc.
 //
-//  Created by Ibrahim Ulukaya on 5/5/16.
-//  Copyright © 2016 Google Inc. All rights reserved.
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//  http://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
 //
 
 import UIKit
-import FirebaseAuth
+import Firebase
 import FirebaseUI
-import FirebaseDatabase
 
 @objc(PostListViewController)
 class PostListViewController: UIViewController, UITableViewDelegate {
@@ -29,7 +36,11 @@ class PostListViewController: UIViewController, UITableViewDelegate {
     ref = FIRDatabase.database().reference()
     // [END create_database_reference]
 
-    dataSource = FirebaseTableViewDataSource.init(query: getQuery(), modelClass: Post.self, nibNamed: "PostTableViewCell", cellReuseIdentifier: "postCell", view: self.tableView)
+    dataSource = FirebaseTableViewDataSource.init(query: getQuery(),
+                                                  modelClass: Post.self,
+                                                  nibNamed: "PostTableViewCell",
+                                                  cellReuseIdentifier: "post",
+                                                  view: self.tableView)
 
     dataSource?.populateCellWithBlock(){
       let cell = $0 as! PostTableViewCell
@@ -41,7 +52,9 @@ class PostListViewController: UIViewController, UITableViewDelegate {
         imageName = "ic_star"
       }
       cell.starButton.setImage(UIImage.init(named: imageName), forState: .Normal)
-      cell.numStarsLabel.text = String(post.starCount)
+      if let starCount = post.starCount {
+        cell.numStarsLabel.text = "\(starCount)"
+      }
       cell.postTitle.text = post.title
       cell.postBody.text = post.body
     }

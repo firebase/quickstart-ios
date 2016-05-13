@@ -19,10 +19,12 @@
 #import "Post.h"
 @import Firebase;
 
-@implementation NewPostViewController {
-  __weak IBOutlet UITextView *bodyTextView;
-  __weak IBOutlet UITextField *titleTextField;
-}
+@interface NewPostViewController () <UITextFieldDelegate>
+  @property (weak) IBOutlet UITextView *bodyTextView;
+  @property (weak) IBOutlet UITextField *titleTextField;
+@end
+
+@implementation NewPostViewController
 
 #pragma mark - UIViewController lifecycle methods
 - (void)viewDidLoad {
@@ -31,6 +33,21 @@
   // [START create_database_reference]
   self.ref = [[FIRDatabase database] reference];
   // [END create_database_reference]
+
+  UIToolbar *doneBar = [[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, 320, 44)];
+  doneBar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+  UIBarButtonItem *flex = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                                                                        target:nil
+                                                                        action:nil];
+  UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithTitle:@"Post"
+                                                           style:UIBarButtonItemStylePlain
+                                                          target:self
+                                                          action:@selector(didTapShare:)];
+  done.tintColor = [UIColor colorWithRed:1.0 green:143.0/255.0 blue:0.0 alpha:1.0];
+  doneBar.items = [NSArray arrayWithObjects:flex, done, flex, nil];
+  [doneBar sizeToFit];
+  _bodyTextView.inputAccessoryView = doneBar;
+  _titleTextField.inputAccessoryView = doneBar;
 }
 
 - (IBAction)didTapShare:(id)sender {
@@ -42,7 +59,10 @@
 
     // [START_EXCLUDE]
     // Write new post
-    [self writeNewPost:userID username:user.username title:titleTextField.text body:bodyTextView.text];
+    [self writeNewPost:userID
+              username:user.username
+                 title:_titleTextField.text
+                  body:_bodyTextView.text];
     // Finish this Activity, back to the stream
     [[self navigationController] popViewControllerAnimated:YES];
     // [END_EXCLUDE]
@@ -67,6 +87,9 @@
   // [END write_fan_out]
 }
 
-
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+  [textField resignFirstResponder];
+  return NO;
+}
 
 @end

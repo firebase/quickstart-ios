@@ -18,7 +18,7 @@ import UIKit
 import Firebase
 
 @objc(NewPostViewController)
-class NewPostViewController: UIViewController {
+class NewPostViewController: UIViewController, UITextFieldDelegate {
 
   var ref: FIRDatabaseReference!
   @IBOutlet weak var bodyTextView: UITextView!
@@ -31,6 +31,16 @@ class NewPostViewController: UIViewController {
     // [START create_database_reference]
     self.ref = FIRDatabase.database().reference()
     // [END create_database_reference]
+
+    let doneBar = UIToolbar(frame: CGRect.init(x: 0, y: 0, width: 320, height: 44))
+    doneBar.autoresizingMask = .FlexibleWidth
+    let flex = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
+    let done = UIBarButtonItem(title: "Post", style: .Plain, target: self, action: #selector(didTapShare))
+    done.tintColor = UIColor(red: 1.0, green: 143.0/255.0, blue: 0.0, alpha: 1.0)
+    doneBar.items  = [flex, done, flex]
+    doneBar.sizeToFit()
+    bodyTextView.inputAccessoryView = doneBar
+    titleTextField.inputAccessoryView = doneBar
   }
 
   @IBAction func didTapShare(sender: AnyObject) {
@@ -66,5 +76,10 @@ class NewPostViewController: UIViewController {
                         "/user-posts/\(userID)/\(key)/": post]
     ref.updateChildValues(childUpdates)
     // [END write_fan_out]
+  }
+
+  func textFieldShouldReturn(textField: UITextField) -> Bool {
+    textField.resignFirstResponder()
+    return false
   }
 }

@@ -72,7 +72,7 @@ static const int kSectionPost = 0;
   // [END child_event_listener]
 
   // [START post_value_event_listener]
-  [_postRef observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+  _refHandle = [_postRef observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
     NSDictionary *postDict = snapshot.value;
     // [START_EXCLUDE]
     [_post setValuesForKeysWithDictionary:postDict];

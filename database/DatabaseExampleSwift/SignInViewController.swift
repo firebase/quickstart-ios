@@ -57,7 +57,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
                               self.showMessagePrompt(error.localizedDescription)
                               return
                             }
-                            self.ref.child("users").setValue(["username": username])
+                            self.ref.child("users").child(FIRAuth.auth()!.currentUser!.uid).setValue(["username": username])
                             self.performSegueWithIdentifier("signIn", sender: nil)
                           })
                         }
@@ -104,7 +104,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
                               return
                             }
                             // [START basic_write]
-                            self.ref.child("users").setValue(["username": username])
+                            self.ref.child("users").child(user!.uid).setValue(["username": username])
                             // [END basic_write]
                             self.performSegueWithIdentifier("signIn", sender: nil)
                         })

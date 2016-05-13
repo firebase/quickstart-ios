@@ -16,7 +16,7 @@ Getting Started
 - Run the sample on your iOS device or emulator.
 - Trigger a crash, and wait a few minutes to see it in the console
 
-Note: Crash reporting from Swift is not currently supported. 
+Note: You will need Swift 2.2 to run the Swift version of this quickstart.
 
 Support
 -------

@@ -21,7 +21,7 @@
 @property(strong, nonatomic) NSString *author;
 @property(strong, nonatomic) NSString *title;
 @property(strong, nonatomic) NSString *body;
-@property(nonatomic) int starCount;
+@property(assign, nonatomic) int starCount;
 @property(strong, nonatomic) NSDictionary <NSString *, NSNumber *> *stars;
 
 - (instancetype)initWithUid:(NSString *)uid

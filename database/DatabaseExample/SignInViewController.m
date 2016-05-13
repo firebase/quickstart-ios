@@ -16,7 +16,7 @@
 
 #import "SignInViewController.h"
 #import "UIViewController+Alerts.h"
-@import FirebaseAuth;
+@import Firebase;
 
 @interface SignInViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *emailField;
@@ -41,41 +41,49 @@
     [[FIRAuth auth] signInWithEmail:_emailField.text
                            password:_passwordField.text
                          completion:^(FIRUser *user, NSError *error) {
-                           [self hideSpinner:^{
-                             if (error) {
-                               [self showMessagePrompt:error.localizedDescription];
-                               return;
-                             }
-                           }];
-                             [[[_ref child:@"users"] child:user.uid] observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-                               if (![snapshot exists]) {
-                                 [self showTextInputPromptWithMessage:@"Username:"
-                                                      completionBlock:^(BOOL userPressedOK, NSString *_Nullable username) {
-                                                        if (!userPressedOK || !username.length) {
-                                                          return;
-                                                        }
-                                                        [self showSpinner:^{
-                                                          FIRUserProfileChangeRequest *changeRequest =
-                                                          [user profileChangeRequest];
-                                                          changeRequest.displayName = username;
-                                                          [changeRequest commitChangesWithCompletion:^(NSError *_Nullable error) {
-                                                            [self hideSpinner:^{
-                                                              if (error) {
-                                                                [self showMessagePrompt:error.localizedDescription];
-                                                                return;
-                                                              }
-                                                              [[[_ref child:@"users"] child:[FIRAuth auth].currentUser.uid] setValue:@{@"username": username}];
-                                                              [self performSegueWithIdentifier:@"signIn" sender:nil];
-                                                            }];
-                                                          }];
-                                                        }];
-                                                      }];
-                               } else {
-                                 [self performSegueWithIdentifier:@"signIn" sender:nil];
+                             [self hideSpinner:^{
+                               if (error) {
+                                 [self showMessagePrompt:error.localizedDescription];
+                                 return;
                                }
-                         }];
+                               [[[_ref child:@"users"] child:user.uid]
+                                    observeEventType:FIRDataEventTypeValue
+                                           withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+                                              if (![snapshot exists]) {
+                                                [self promptForNewUserName:user];
+                                              } else {
+                                                [self performSegueWithIdentifier:@"signIn"
+                                                                          sender:nil];
+                                              }
+                                            }];
+                             }];
                          }];
   }];
+}
+
+- (void)promptForNewUserName:(FIRUser *)user {
+  [self showTextInputPromptWithMessage:@"Username:"
+                       completionBlock:^(BOOL userPressedOK, NSString *_Nullable username) {
+                         if (!userPressedOK || !username.length) {
+                           return;
+                         }
+                         [self showSpinner:^{
+                           FIRUserProfileChangeRequest *changeRequest =[user profileChangeRequest];
+                           changeRequest.displayName = username;
+                           [changeRequest commitChangesWithCompletion:^(NSError *_Nullable error) {
+                             [self hideSpinner:^{
+                               if (error) {
+                                 [self showMessagePrompt:error.localizedDescription];
+                                 return;
+                               }
+                               [[[_ref child:@"users"] child:[FIRAuth auth].currentUser.uid]
+                                    setValue:@{@"username": username}];
+                               [self performSegueWithIdentifier:@"signIn" sender:nil];
+                             }];
+                           }];
+                         }];
+                       }];
+
 }
 
 - (IBAction)didTapSignUp:(id)sender {
@@ -114,7 +122,8 @@
                                     return;
                                   }
                                   // [START basic_write]
-                                  [[[_ref child:@"users"] child:user.uid] setValue:@{@"username": username}];
+                                  [[[_ref child:@"users"] child:user.uid]
+                                      setValue:@{@"username": username}];
                                   // [END basic_write]
                                   [self performSegueWithIdentifier:@"signIn" sender:nil];
                                 }];
@@ -132,10 +141,6 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
   [self didTapEmailLogin:nil];
   return YES;
-}
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-  segue.destinationViewController.childViewControllers[0].navigationItem.title = [@"Chat as " stringByAppendingString:[FIRAuth auth].currentUser.displayName];
 }
 
 @end

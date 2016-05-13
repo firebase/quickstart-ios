@@ -15,7 +15,11 @@
 //
 
 #import "PostTableViewCell.h"
-@import FirebaseAuth;
+@import Firebase;
+
+@interface PostTableViewCell ()
+  @property (strong, nonatomic) FIRDatabaseReference *postRef;
+@end
 
 @implementation PostTableViewCell
 
@@ -24,15 +28,33 @@
 }
 
 - (IBAction)didTapStarButton:(id)sender {
-  self.postRef = [[[FIRDatabase database] reference] child:@"posts"];
+  if (!_postKey) {
+    // We don't know the identifier of this post, so just return.
+    return;
+  }
+  self.postRef = [[[[FIRDatabase database] reference] child:@"posts"] child:_postKey];
+  [self incrementStarsForRef:_postRef];
+  [_postRef observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+    NSString *uid = snapshot.value[@"uid"];
+    FIRDatabaseReference *ref = [[[[[FIRDatabase database] reference]
+                                 child:@"user_posts"]
+                                  child:uid] child:_postKey];
+    [self incrementStarsForRef:ref];
+  }];
+}
+
+- (void)incrementStarsForRef:(FIRDatabaseReference *)ref {
   // [START post_stars_transaction]
-  [_postRef runTransactionBlock:^FIRTransactionResult * _Nonnull(FIRMutableData * _Nonnull currentData) {
+  [ref runTransactionBlock:^FIRTransactionResult * _Nonnull(FIRMutableData * _Nonnull currentData) {
     NSMutableDictionary *post = currentData.value;
     if (!post) {
       return [FIRTransactionResult successWithValue:currentData];
     }
 
     NSMutableDictionary *stars = [post objectForKey:@"stars"];
+    if (!stars) {
+      stars = [[NSMutableDictionary alloc] initWithCapacity:1];
+    }
     NSString *uid = [FIRAuth auth].currentUser.uid;
     int starCount = [post[@"starCount"] intValue];
     if ([stars objectForKey:uid]) {
@@ -44,14 +66,19 @@
       starCount++;
       stars[uid] = @YES;
     }
+    post[@"stars"] = stars;
     post[@"starCount"] = [NSNumber numberWithInt:starCount];
 
     // Set value and report transaction success
     [currentData setValue:post];
     return [FIRTransactionResult successWithValue:currentData];
-  } andCompletionBlock:^(NSError * _Nullable error, BOOL committed, FIRDataSnapshot * _Nullable snapshot) {
+  } andCompletionBlock:^(NSError * _Nullable error,
+                         BOOL committed,
+                         FIRDataSnapshot * _Nullable snapshot) {
     // Transaction completed
-    NSLog(@"%@", error.localizedDescription);
+    if (error) {
+      NSLog(@"%@", error.localizedDescription);
+    }
   }];
   // [END post_stars_transaction]
 }

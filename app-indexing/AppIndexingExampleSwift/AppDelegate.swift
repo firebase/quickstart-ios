@@ -26,8 +26,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
     FIRApp.configure()
 
+    // [START register_app]
     // Replace 123456 with the App Store ID of your app.
     FIRAppIndexing.sharedInstance().registerApp(123456)
+    // [END register_app]
     return true
   }
 

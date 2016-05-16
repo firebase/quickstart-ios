@@ -28,6 +28,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     // [START register_app]
     // Replace 123456 with the App Store ID of your app.
+    // Registering your application allows your app to be included in
+    // Google Search results.
     FIRAppIndexing.sharedInstance().registerApp(123456)
     // [END register_app]
     return true

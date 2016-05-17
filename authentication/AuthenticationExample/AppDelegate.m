@@ -36,7 +36,12 @@
 
   [[FBSDKApplicationDelegate sharedInstance] application:application
                            didFinishLaunchingWithOptions:launchOptions];
-  [Fabric with:@[ [Twitter class] ]];
+
+  NSString *key = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"consumerKey"],
+      *secret = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"consumerSecret"];
+  if ([key length] && [secret length]) {
+    [[Twitter sharedInstance] startWithConsumerKey:key consumerSecret:secret];
+  }
   return YES;
 }
 

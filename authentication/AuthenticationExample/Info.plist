@@ -2,6 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>consumerSecret</key>
+	<string></string>
+	<key>consumerKey</key>
+	<string></string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
@@ -37,25 +41,6 @@
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
-	<key>Fabric</key>
-	<dict>
-		<key>Kits</key>
-		<array>
-			<dict>
-				<key>KitName</key>
-				<string>Twitter</string>
-				<key>KitInfo</key>
-				<dict>
-					<key>consumerSecret</key>
-					<string>YOUR_KEY</string>
-					<key>consumerKey</key>
-					<string>YOUR_SECRET</string>
-				</dict>
-			</dict>
-		</array>
-		<key>APIKey</key>
-		<string>Fabric API Key</string>
-	</dict>
 	<key>FacebookAppID</key>
 	<string>Placeholder</string>
 	<key>FacebookDisplayName</key>
@@ -71,6 +56,13 @@
 	<dict>
 		<key>NSExceptionDomains</key>
 		<dict>
+			<key>twimg.com</key>
+			<dict>
+				<key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+			</dict>
 			<key>akamaihd.net</key>
 			<dict>
 				<key>NSIncludesSubdomains</key>

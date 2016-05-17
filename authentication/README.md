@@ -50,6 +50,7 @@ Getting Started
 - Open your regular `Info.plist` and replace the value of the `consumerKey` and `consumerSecret` values with the keys from the Twitter app you just created.
 - Run the app on your device or simulator.
     - Select **Sign In** and select Twitter to begin.
+- Note: you can also integrate with Twitter via Fabric using `[Fabric with:@[ [Twitter class] ]];`
 
 ### Custom Authentication Setup
 - Go to the [Google Developers Console](https://console.developers.google.com/project) and navigate to your project:

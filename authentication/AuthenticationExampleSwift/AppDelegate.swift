@@ -36,10 +36,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Use Firebase library to configure APIs
     FIRApp.configure()
     // [END firebase_configure]
-
     FBSDKApplicationDelegate.sharedInstance().application(application,
         didFinishLaunchingWithOptions:launchOptions)
-    Fabric.with([Twitter.self])
+    let key = NSBundle.mainBundle().objectForInfoDictionaryKey("consumerKey"),
+        secret = NSBundle.mainBundle().objectForInfoDictionaryKey("consumerSecret")
+    if let key = key as? String, secret = secret as? String
+        where key.characters.count > 0 && secret.characters.count > 0 {
+      Twitter.sharedInstance().startWithConsumerKey(key, consumerSecret: secret)
+    }
     return true
   }
 

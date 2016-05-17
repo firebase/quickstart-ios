@@ -320,14 +320,17 @@ class MainViewController: UITableViewController, GIDSignInDelegate, GIDSignInUID
         static var photoURL: NSURL? = nil
       }
       last.photoURL = photoURL;  // to prevent earlier image overwrites later one.
-      if (photoURL != nil) {
+      if let photoURL = photoURL {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), {
-          let image = UIImage.init(data: NSData.init(contentsOfURL: photoURL!)!)
-          dispatch_async(dispatch_get_main_queue(), {
-            if (photoURL == last.photoURL) {
-              profileImageView.image = image
-            }
-          })
+          let data = NSData.init(contentsOfURL: photoURL)
+          if let data = data {
+            let image = UIImage.init(data: data)
+            dispatch_async(dispatch_get_main_queue(), {
+              if (photoURL == last.photoURL) {
+                profileImageView.image = image
+              }
+            })
+          }
         })
       } else {
         profileImageView.image = UIImage.init(named: "ic_account_circle")

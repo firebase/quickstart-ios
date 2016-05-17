@@ -35,7 +35,8 @@
   [self showSpinner:^{
     // [START signinwithcustomtoken]
     [[FIRAuth auth] signInWithCustomToken:customToken
-                               completion:^(FIRUser *_Nullable user, NSError *_Nullable error) {
+                               completion:^(FIRUser *_Nullable user,
+                                            NSError *_Nullable error) {
                                  // [START_EXCLUDE]
                                  [self hideSpinner:^{
                                    if (error) {

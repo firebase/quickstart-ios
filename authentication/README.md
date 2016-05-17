@@ -29,7 +29,7 @@ Getting Started
   - Select the **Auth** panel and then click the **Sign In Method** tab.
   - Click **Facebook** and turn on the **Enable** switch, then click **Save**.
   - Enter your Facebook **App Id** and **App Secret** and click **Save**.
-- Open your regular `Info.plist` and replace the value of the `FacebookAppID` with the ID of the Facebook app you just created.
+- Open your regular `Info.plist` and replace the value of the `FacebookAppID` with "fb" + the ID of the Facebook app you just created, e.g fb124567.
 - Run the app on your device or simulator.
     - Select **Sign In** and select Facebook to begin.
 

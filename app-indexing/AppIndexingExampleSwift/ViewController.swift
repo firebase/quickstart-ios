@@ -26,16 +26,16 @@ class ViewController: UIViewController {
         super.viewDidLoad()
 
         NSNotificationCenter.defaultCenter().addObserver(self,
-                                                         selector:Selector("applicationBecameActive:"),
+                                                         selector:#selector(ViewController.applicationBecameActive(_:)),
                                                          name: UIApplicationDidBecomeActiveNotification,
                                                          object: nil)
     }
 
     func applicationBecameActive(notification: NSNotification){
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        if (appDelegate.currentDeepLink != nil) {
+        if let deeplink = appDelegate.currentDeepLink {
             // Show content based on incoming link
-            deepLinkLabel.text = appDelegate.currentDeepLink.lastPathComponent
+            deepLinkLabel.text = deeplink.lastPathComponent
         } else {
             deepLinkLabel.text = "No incoming link";
         }

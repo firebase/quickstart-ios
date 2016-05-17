@@ -56,15 +56,7 @@ static NSString *const CUSTOM_URL_SCHEME = @"dlscheme";
     // apply a promotional offer to the user's account.
     // [START_EXCLUDE]
     // In this sample, we just open an alert.
-    NSString *matchConfidence;
-    if (dynamicLink.matchConfidence == FIRDynamicLinkMatchConfidenceWeak) {
-      matchConfidence = @"Weak";
-    } else {
-      matchConfidence = @"Strong";
-    }
-    NSString *message = [NSString stringWithFormat:@"App URL: %@\n"
-                         @"Match Confidence: %@\n",
-                         dynamicLink.url, matchConfidence];
+    NSString *message = [self generateDynamicLinkMessage:dynamicLink];
     [self showDeepLinkAlertViewWithMessage:message];
     // [END_EXCLUDE]
     return YES;
@@ -86,7 +78,10 @@ continueUserActivity:(NSUserActivity *)userActivity
   // [START_EXCLUDE silent]
   BOOL handled = NO;
 
+  NSLog(@"%@", userActivity.webpageURL);
+
   __weak AppDelegate *weakSelf = self;
+
   // [END_EXCLUDE]
   handled = [[FIRDynamicLinks dynamicLinks]
              handleUniversalLink:userActivity.webpageURL
@@ -94,13 +89,8 @@ continueUserActivity:(NSUserActivity *)userActivity
                           NSError * _Nullable error) {
                // [START_EXCLUDE]
                AppDelegate *strongSelf = weakSelf;
-               // the source application needs to be safari or chrome, otherwise
-               // GIDSignIn will not handle the URL.
-               NSString *sourceApplication = @"com.apple.mobilesafari";
-               [strongSelf application:application
-                               openURL:dynamicLink.url
-                     sourceApplication:sourceApplication
-                            annotation:@{}];
+               NSString *message = [strongSelf generateDynamicLinkMessage:dynamicLink];
+               [strongSelf showDeepLinkAlertViewWithMessage:message];
                // [END_EXCLUDE]
              }];
 
@@ -116,6 +106,20 @@ continueUserActivity:(NSUserActivity *)userActivity
   return handled;
 }
 // [END continueuseractivity]
+
+- (NSString *)generateDynamicLinkMessage:(FIRDynamicLink *)dynamicLink {
+  NSString *matchConfidence;
+  if (dynamicLink.matchConfidence == FIRDynamicLinkMatchConfidenceStrong) {
+    matchConfidence = @"strong";
+  } else {
+    matchConfidence = @"weak";
+  }
+
+  NSString *msg = [NSString stringWithFormat:@"App URL: %@\n"
+                       @"Match Confidence: %@\n",
+                       dynamicLink.url, matchConfidence];
+  return msg;
+}
 
 - (void)showDeepLinkAlertViewWithMessage:(NSString *)message {
   UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"

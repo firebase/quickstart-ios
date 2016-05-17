@@ -50,13 +50,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       // apply a promotional offer to the user's account.
       // [START_EXCLUDE]
       // In this sample, we just open an alert.
-      let matchConfidence: String
-      if (dynamicLink.matchConfidence == .Weak) {
-        matchConfidence = "Weak";
-      } else {
-        matchConfidence = "Strong";
-      }
-      let message = "App URL: \(dynamicLink.url)\nMatch Confidence: \(matchConfidence)\n"
+      let message = generateDynamicLinkMessage(dynamicLink)
       if #available(iOS 8.0, *) {
           showDeepLinkAlertViewWithMessage(message)
       } else {
@@ -83,9 +77,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func application(application: UIApplication, continueUserActivity userActivity: NSUserActivity, restorationHandler: ([AnyObject]?) -> Void) -> Bool {
     let handled = FIRDynamicLinks.dynamicLinks()?.handleUniversalLink(userActivity.webpageURL!) { (dynamiclink, error) in
       // [START_EXCLUDE]
-      // the source application needs to be safari or chrome, otherwise
-      // GIDSignIn will not handle the URL.
-      self.application(application, openURL: dynamiclink!.url!, sourceApplication: "com.apple.mobilesafari", annotation: [:])
+      let message = self.generateDynamicLinkMessage(dynamiclink!)
+      self.showDeepLinkAlertViewWithMessage(message)
     // [END_EXCLUDE]
     }
 
@@ -100,6 +93,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     return handled!
   }
   // [END continueuseractivity]
+
+  func generateDynamicLinkMessage(dynamicLink: FIRDynamicLink) -> String {
+    let matchConfidence: String
+    if (dynamicLink.matchConfidence == .Weak) {
+      matchConfidence = "Weak";
+    } else {
+      matchConfidence = "Strong";
+    }
+    let message = "App URL: \(dynamicLink.url)\nMatch Confidence: \(matchConfidence)\n"
+    return message;
+  }
 
   @available(iOS 8.0, *)
   func showDeepLinkAlertViewWithMessage(message: String) {

@@ -67,7 +67,7 @@ class PostListViewController: UIViewController, UITableViewDelegate {
     self.tableView.reloadData()
   }
 
-  func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+  func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     performSegueWithIdentifier("detail", sender: indexPath)
   }
 

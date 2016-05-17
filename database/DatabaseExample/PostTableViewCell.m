@@ -37,7 +37,7 @@
   [_postRef observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
     NSString *uid = snapshot.value[@"uid"];
     FIRDatabaseReference *ref = [[[[[FIRDatabase database] reference]
-                                 child:@"user_posts"]
+                                 child:@"user-posts"]
                                   child:uid] child:_postKey];
     [self incrementStarsForRef:ref];
   }];
@@ -47,7 +47,7 @@
   // [START post_stars_transaction]
   [ref runTransactionBlock:^FIRTransactionResult * _Nonnull(FIRMutableData * _Nonnull currentData) {
     NSMutableDictionary *post = currentData.value;
-    if (!post) {
+    if (!post || [post isEqual:[NSNull null]]) {
       return [FIRTransactionResult successWithValue:currentData];
     }
 

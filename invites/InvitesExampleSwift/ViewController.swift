@@ -113,8 +113,8 @@ class ViewController: UIViewController, GIDSignInDelegate, GIDSignInUIDelegate, 
 
   // [START invite_finished]
   func inviteFinishedWithInvitations(invitationIds: [AnyObject], error: NSError?) {
-    if (error != nil) {
-      print("Failed: " + error!.localizedDescription)
+    if let error = error {
+      print("Failed: " + error.localizedDescription)
     } else {
       print("Invitations sent")
     }

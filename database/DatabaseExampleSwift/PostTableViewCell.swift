@@ -35,7 +35,7 @@ class PostTableViewCell: UITableViewCell {
       postRef.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
         if let uid = snapshot.value?["uid"] as? String {
           let userPostRef = FIRDatabase.database().reference()
-            .child("user_posts")
+            .child("user-posts")
             .child(uid)
             .child(postKey)
           self.incrementStarsForRef(userPostRef)

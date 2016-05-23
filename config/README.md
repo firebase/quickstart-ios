@@ -4,7 +4,7 @@ Firebase Remote Config Quickstart
 Introduction
 ------------
 
-- [Read more about Firebase Remote Config](https://firbase.google.com/docs/remote-config/)
+- [Read more about Firebase Remote Config](https://firebase.google.com/docs/remote-config/)
 
 Getting Started
 ---------------

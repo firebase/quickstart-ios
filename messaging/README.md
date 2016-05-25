@@ -7,7 +7,7 @@ an iOS app to FCM and how to receive messages.
 Introduction
 ------------
 
-- [Read more about Firebase Messaging](https://firebase.google.com/cloud-messaging)
+- [Read more about Firebase Messaging](https://firebase.google.com/docs/cloud-messaging)
 
 Getting Started
 ---------------

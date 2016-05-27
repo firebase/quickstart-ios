@@ -21,7 +21,6 @@
 #import "PostDetailTableViewController.h"
 
 @import Firebase;
-@import FirebaseUI;
 
 @implementation PostListViewController
 

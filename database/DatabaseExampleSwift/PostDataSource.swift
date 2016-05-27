@@ -15,7 +15,7 @@
 //
 
 import UIKit
-import FirebaseUI
+import FirebaseDatabaseUI
 
 class PostDataSource: FirebaseTableViewDataSource {
 

@@ -117,7 +117,8 @@ class EmailViewController: UIViewController {
                     self.showMessagePrompt(error.localizedDescription)
                     return
                   }
-                  self.showMessagePrompt(user!.email!)
+                  print("\(user!.email!) created")
+                  self.navigationController!.popViewControllerAnimated(true)
                 })
                 // [END_EXCLUDE]
               }

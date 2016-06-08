@@ -151,9 +151,8 @@
                                                                              .localizedDescription];
                                                                  return;
                                                                }
-                                                               NSString *msg = [NSString stringWithFormat:@"%@ created",
-                                                                                user.email];
-                                                               [self showMessagePrompt:msg];
+                                                               NSLog(@"%@ created", user.email);
+                                                               [self.navigationController popViewControllerAnimated:YES];
                                                              }];
                                                              // [END_EXCLUDE]
                                                            }];

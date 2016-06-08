@@ -353,6 +353,8 @@ didSignInForUser:(GIDGoogleUser *)user
     cell.detailTextLabel.text = [userInfo uid];
   } else if (indexPath.section == kSectionToken) {
     cell = [tableView dequeueReusableCellWithIdentifier:@"Token"];
+    UIButton *requestEmailButton = [(UIButton *)cell viewWithTag:4];
+    requestEmailButton.enabled = [FIRAuth auth].currentUser.email ? YES : NO;
   }
   return cell;
 }

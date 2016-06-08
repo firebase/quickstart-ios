@@ -97,7 +97,7 @@ class MainViewController: UITableViewController, GIDSignInDelegate, GIDSignInUID
           self.performSegueWithIdentifier("customToken", sender: nil)
         })
       case .AuthAnonymous:
-        action = UIAlertAction(title: "Guest", style: .Default, handler: { (UIAlertAction) in
+        action = UIAlertAction(title: "Anonymous", style: .Default, handler: { (UIAlertAction) in
           self.showSpinner({
             // [START firebase_auth_anonymous]
             FIRAuth.auth()?.signInAnonymouslyWithCompletion() { (user, error) in
@@ -339,6 +339,9 @@ class MainViewController: UITableViewController, GIDSignInDelegate, GIDSignInUID
       cell?.detailTextLabel?.text = userInfo?.uid
     case kSectionToken:
       cell = tableView.dequeueReusableCellWithIdentifier("Token")
+      let requestEmailButton = cell?.viewWithTag(4) as! UIButton
+      requestEmailButton.enabled = (FIRAuth.auth()?.currentUser?.email != nil) ? true : false
+
     default:
       cell = nil
     }

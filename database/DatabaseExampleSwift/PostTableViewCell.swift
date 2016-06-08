@@ -47,10 +47,9 @@ class PostTableViewCell: UITableViewCell {
   func incrementStarsForRef(ref: FIRDatabaseReference) {
     // [START post_stars_transaction]
     postRef.runTransactionBlock({ (currentData: FIRMutableData) -> FIRTransactionResult in
-      if currentData.value != nil, let uid = FIRAuth.auth()?.currentUser?.uid {
-        var post = currentData.value as! [String : AnyObject]
+      if var post = currentData.value as? [String : AnyObject], let uid = FIRAuth.auth()?.currentUser?.uid {
         var stars : Dictionary<String, Bool>
-        stars = post["stars"] as? Dictionary<String, Bool> ?? [:]
+        stars = post["stars"] as? [String : Bool] ?? [:]
         var starCount = post["starCount"] as? Int ?? 0
         if let _ = stars[uid] {
           // Unstar the post and remove self from stars
@@ -71,8 +70,8 @@ class PostTableViewCell: UITableViewCell {
       }
       return FIRTransactionResult.successWithValue(currentData)
     }) { (error, committed, snapshot) in
-      if (error != nil) {
-        print(error?.localizedDescription)
+      if let error = error {
+        print(error.localizedDescription)
       }
     }
     // [END post_stars_transaction]

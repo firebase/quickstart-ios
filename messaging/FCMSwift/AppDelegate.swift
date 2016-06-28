@@ -27,10 +27,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
     // Register for remote notifications
     if #available(iOS 8.0, *) {
+      // [START register_for_notifications]
       let settings: UIUserNotificationSettings =
       UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
       application.registerUserNotificationSettings(settings)
       application.registerForRemoteNotifications()
+      // [END register_for_notifications]
     } else {
       // Fallback
       let types: UIRemoteNotificationType = [.Alert, .Badge, .Sound]

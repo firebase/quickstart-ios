@@ -89,6 +89,7 @@ static NSString *const kChangePasswordText = @"Change Password";
              [self showMessagePrompt:error.localizedDescription];
              return;
            }
+           [self.tableView reloadData];
          }];
          // [END_EXCLUDE]
        }];

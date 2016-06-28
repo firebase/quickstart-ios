@@ -333,6 +333,9 @@
                                             <rect key="frame" x="8" y="17" width="496" height="32"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits"/>
+                                            <connections>
+                                                <outlet property="delegate" destination="JQY-YR-KkD" id="a73-0k-RX3"/>
+                                            </connections>
                                         </textField>
                                     </subviews>
                                     <constraints>

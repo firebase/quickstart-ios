@@ -20,8 +20,8 @@
 
 @import Firebase;
 
-static const int kSectionSend = 2;
-static const int kSectionComments = 1;
+static const int kSectionComments = 2;
+static const int kSectionSend = 1;
 static const int kSectionPost = 0;
 
 @interface PostDetailTableViewController ()
@@ -35,6 +35,13 @@ static const int kSectionPost = 0;
 @implementation PostDetailTableViewController
 
   FIRDatabaseHandle _refHandle;
+
+// UITextViewDelegate protocol method
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+  [textField resignFirstResponder];
+  return YES;
+}
 
 - (void)viewDidLoad {
   [super viewDidLoad];
@@ -56,7 +63,7 @@ static const int kSectionPost = 0;
                 withBlock:^(FIRDataSnapshot *snapshot) {
                   [self.comments addObject:snapshot];
                   [self.tableView insertRowsAtIndexPaths:@[
-                    [NSIndexPath indexPathForRow:[self.comments count] - 1 inSection:1]
+                    [NSIndexPath indexPathForRow:[self.comments count] - 1 inSection:kSectionComments]
                   ]
                                         withRowAnimation:UITableViewRowAnimationAutomatic];
                 }];
@@ -66,7 +73,7 @@ static const int kSectionPost = 0;
    withBlock:^(FIRDataSnapshot *snapshot) {
      int index = [self indexOfMessage:snapshot];
      [self.comments removeObjectAtIndex:index];
-     [self.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:1]]
+     [self.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:kSectionComments]]
                            withRowAnimation:UITableViewRowAnimationAutomatic];
    }];
   // [END child_event_listener]
@@ -115,6 +122,7 @@ static const int kSectionPost = 0;
 }
 
 - (IBAction)didTapSend:(id)sender {
+  [self textFieldShouldReturn:_commentField];
   NSString *uid = [FIRAuth auth].currentUser.uid;
   [[[[FIRDatabase database].reference child:@"users"] child:uid]
    observeSingleEventOfType:FIRDataEventTypeValue

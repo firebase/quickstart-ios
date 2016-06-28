@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Gdd-A7-Kih">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Gdd-A7-Kih">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -305,17 +305,16 @@
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="send" rowHeight="55" id="gdZ-JV-hEZ">
                                 <rect key="frame" x="0.0" y="86" width="600" height="55"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="gdZ-JV-hEZ" id="lt5-1G-bqs">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gdZ-JV-hEZ" id="lt5-1G-bqs">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="55"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bdU-Yi-j9R">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bdU-Yi-j9R">
                                             <rect key="frame" x="520" y="17" width="72" height="32"/>
                                             <color key="backgroundColor" red="0.01176470588" green="0.60784313729999995" blue="0.8980392157" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
+                                                <constraint firstAttribute="width" constant="72" id="0TF-Jx-PPZ"/>
                                                 <constraint firstAttribute="height" constant="32" id="2tn-YX-9a6"/>
-                                                <constraint firstAttribute="width" constant="72" id="X4Z-bU-ygk"/>
-                                                <constraint firstAttribute="height" constant="32" id="rjy-nF-wvE"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <state key="normal" title="Send">
@@ -330,26 +329,23 @@
                                                 <action selector="didTapSend:" destination="JQY-YR-KkD" eventType="touchUpInside" id="G1W-jw-kYr"/>
                                             </connections>
                                         </button>
-                                        <textField opaque="NO" clipsSubviews="YES" tag="7" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Comment" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lzt-HY-ohA">
+                                        <textField opaque="NO" clipsSubviews="YES" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Comment" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lzt-HY-ohA">
                                             <rect key="frame" x="8" y="17" width="496" height="32"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="32" id="seA-fH-1Wu"/>
-                                            </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits"/>
                                         </textField>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstItem="bdU-Yi-j9R" firstAttribute="trailing" secondItem="lt5-1G-bqs" secondAttribute="trailingMargin" id="5Qg-vc-K0V"/>
                                         <constraint firstItem="lzt-HY-ohA" firstAttribute="top" secondItem="lt5-1G-bqs" secondAttribute="topMargin" constant="8" id="8zA-EJ-bba"/>
+                                        <constraint firstItem="bdU-Yi-j9R" firstAttribute="top" secondItem="lzt-HY-ohA" secondAttribute="top" id="E2z-K0-KIG"/>
+                                        <constraint firstItem="lzt-HY-ohA" firstAttribute="leading" secondItem="lt5-1G-bqs" secondAttribute="leadingMargin" id="Gbk-YR-ypE"/>
                                         <constraint firstItem="lzt-HY-ohA" firstAttribute="centerY" secondItem="lt5-1G-bqs" secondAttribute="centerY" id="IaT-hb-ChP"/>
-                                        <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="bdU-Yi-j9R" secondAttribute="bottom" constant="8" id="LSO-ah-zZc"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="bdU-Yi-j9R" secondAttribute="trailing" id="LgQ-fj-Sgw"/>
-                                        <constraint firstItem="bdU-Yi-j9R" firstAttribute="top" relation="greaterThanOrEqual" secondItem="lt5-1G-bqs" secondAttribute="topMargin" constant="8" id="XLa-Mm-voB"/>
-                                        <constraint firstItem="lzt-HY-ohA" firstAttribute="leading" secondItem="lt5-1G-bqs" secondAttribute="leadingMargin" id="dN2-Te-RRj"/>
-                                        <constraint firstItem="bdU-Yi-j9R" firstAttribute="leading" secondItem="lzt-HY-ohA" secondAttribute="trailing" constant="16" id="dgx-mq-wkK"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="lzt-HY-ohA" secondAttribute="bottom" constant="-2.5" id="KOx-y9-wcr"/>
+                                        <constraint firstItem="bdU-Yi-j9R" firstAttribute="leading" secondItem="lzt-HY-ohA" secondAttribute="trailing" constant="16" id="RZk-yy-ppx"/>
+                                        <constraint firstItem="lzt-HY-ohA" firstAttribute="top" secondItem="lt5-1G-bqs" secondAttribute="topMargin" constant="9" id="STj-8I-A9D"/>
                                         <constraint firstItem="bdU-Yi-j9R" firstAttribute="top" secondItem="lt5-1G-bqs" secondAttribute="top" constant="8" id="e3g-qB-phy"/>
-                                        <constraint firstItem="lzt-HY-ohA" firstAttribute="centerY" secondItem="bdU-Yi-j9R" secondAttribute="centerY" id="r9K-GT-25t"/>
-                                        <constraint firstItem="bdU-Yi-j9R" firstAttribute="centerY" secondItem="lt5-1G-bqs" secondAttribute="centerY" id="ssd-4K-IEg"/>
+                                        <constraint firstItem="bdU-Yi-j9R" firstAttribute="bottom" secondItem="lzt-HY-ohA" secondAttribute="bottom" id="nYc-Eu-jIl"/>
                                     </constraints>
                                     <variation key="default">
                                         <mask key="constraints">

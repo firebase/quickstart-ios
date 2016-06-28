@@ -32,13 +32,14 @@
     [application registerForRemoteNotificationTypes:allNotificationTypes];
   } else {
     // iOS 8 or later
-    // [END_EXCLUDE]
+    // [START register_for_notifications]
     UIUserNotificationType allNotificationTypes =
     (UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge);
     UIUserNotificationSettings *settings =
     [UIUserNotificationSettings settingsForTypes:allNotificationTypes categories:nil];
     [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
     [[UIApplication sharedApplication] registerForRemoteNotifications];
+    // [END register_for_notifications]
   }
 
   // [START configure_firebase]

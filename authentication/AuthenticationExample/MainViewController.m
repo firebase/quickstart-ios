@@ -285,7 +285,7 @@ didSignInForUser:(GIDGoogleUser *)user
 }
 
 - (void)setTitleDisplay: (FIRUser *)user {
-  if (user) {
+  if (user.displayName) {
     self.navigationItem.title = [NSString stringWithFormat:@"Welcome %@", user.displayName];
   } else {
     self.navigationItem.title = @"Authentication Example";

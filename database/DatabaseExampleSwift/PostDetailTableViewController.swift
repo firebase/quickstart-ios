@@ -54,13 +54,13 @@ class PostDetailTableViewController: UITableViewController, UITextFieldDelegate 
     // Listen for new comments in the Firebase database
     commentsRef.observeEventType(.ChildAdded, withBlock: { (snapshot) -> Void in
       self.comments.append(snapshot)
-      self.tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: self.comments.count-1, inSection: kSectionComments)], withRowAnimation: UITableViewRowAnimation.Automatic)
+      self.tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: self.comments.count-1, inSection: self.kSectionComments)], withRowAnimation: UITableViewRowAnimation.Automatic)
     })
     // Listen for deleted comments in the Firebase database
     commentsRef.observeEventType(.ChildRemoved, withBlock: { (snapshot) -> Void in
       let index = self.indexOfMessage(snapshot)
       self.comments.removeAtIndex(index)
-      self.tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: index, inSection: kSectionComments)], withRowAnimation: UITableViewRowAnimation.Automatic)
+      self.tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: index, inSection: self.kSectionComments)], withRowAnimation: UITableViewRowAnimation.Automatic)
     })
     // [END child_event_listener]
 
@@ -111,7 +111,7 @@ class PostDetailTableViewController: UITableViewController, UITextFieldDelegate 
   }
 
   @IBAction func didTapSend(sender: AnyObject) {
-    textFieldShouldReturn(commentField)
+    textFieldShouldReturn(commentField!)
     let uid = FIRAuth.auth()?.currentUser?.uid
     FIRDatabase.database().reference().child("users").child(uid!).observeSingleEventOfType(.Value, withBlock: { (snapshot) in
       if let uid = uid, commentField = self.commentField, user = snapshot.value as? [String : AnyObject] {

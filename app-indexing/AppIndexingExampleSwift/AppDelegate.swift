@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   var window: UIWindow?
   var currentDeepLink: NSURL?
 
-  func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+  func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
     FIRApp.configure()
 
     // [START register_app]
@@ -36,8 +36,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   }
 
   // [START handle_link]
-  func application(application: UIApplication,
-                   openURL url: NSURL,
+  func application(_ application: UIApplication,
+                   open url: URL,
                    sourceApplication: String?,
                    annotation: AnyObject) -> Bool {
     currentDeepLink = url
@@ -47,8 +47,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   // [START handle_universal_link]
   @available(iOS 8.0, *)
-  func application(application: UIApplication,
-                   continueUserActivity userActivity: NSUserActivity,
+  func application(_ application: UIApplication,
+                   continue userActivity: NSUserActivity,
                    restorationHandler: ([AnyObject]?) -> Void) -> Bool {
     currentDeepLink = userActivity.webpageURL
     return true

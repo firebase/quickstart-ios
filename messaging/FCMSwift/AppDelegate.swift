@@ -24,32 +24,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   var window: UIWindow?
 
-  func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+  func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
     // Register for remote notifications
     if #available(iOS 8.0, *) {
       // [START register_for_notifications]
       let settings: UIUserNotificationSettings =
-      UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+      UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
       application.registerUserNotificationSettings(settings)
       application.registerForRemoteNotifications()
       // [END register_for_notifications]
     } else {
       // Fallback
-      let types: UIRemoteNotificationType = [.alert, .badge, .sound]
-      application.registerForRemoteNotifications(matching: types)
+      let types: UIRemoteNotificationType = [.Alert, .Badge, .Sound]
+      application.registerForRemoteNotificationTypes(types)
     }
 
     FIRApp.configure()
 
     // Add observer for InstanceID token refresh callback.
-    NotificationCenter.default().addObserver(self, selector: #selector(self.tokenRefreshNotification),
-        name: NSNotification.Name.firInstanceIDTokenRefresh, object: nil)
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.tokenRefreshNotification),
+        name: kFIRInstanceIDTokenRefreshNotification, object: nil)
 
     return true
   }
 
   // [START receive_message]
-  func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject],
+  func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject],
                    fetchCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
     // If you are receiving a notification message while your app is in the background,
     // this callback will not be fired till the user taps on the notification launching the application.
@@ -75,7 +75,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   // [START connect_to_fcm]
   func connectToFcm() {
-    FIRMessaging.messaging().connect { (error) in
+    FIRMessaging.messaging().connectWithCompletion { (error) in
       if (error != nil) {
         print("Unable to connect with FCM. \(error)")
       } else {
@@ -85,12 +85,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   }
   // [END connect_to_fcm]
 
-  func applicationDidBecomeActive(_ application: UIApplication) {
+  func applicationDidBecomeActive(application: UIApplication) {
     connectToFcm()
   }
 
   // [START disconnect_from_fcm]
-  func applicationDidEnterBackground(_ application: UIApplication) {
+  func applicationDidEnterBackground(application: UIApplication) {
     FIRMessaging.messaging().disconnect()
     print("Disconnected from FCM.")
   }

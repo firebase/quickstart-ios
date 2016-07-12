@@ -213,7 +213,7 @@ class MainViewController: UITableViewController, GIDSignInDelegate, GIDSignInUID
               self.showMessagePrompt(error.localizedDescription)
               return
             }
-            tableView.reloadData()
+            self.tableView.reloadData()
           })
           // [END_EXCLUDE]
         }

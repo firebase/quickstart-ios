@@ -35,7 +35,7 @@ class ViewController: UIViewController {
 
   @IBAction func handleSubscribeTouch(sender: UIButton) {
     // [START subscribe_topic]
-    FIRMessaging.messaging().subscribe(toTopic: "/topics/news")
+    FIRMessaging.messaging().subscribeToTopic("/topics/news")
     print("Subscribed to news topic")
     // [END subscribe_topic]
   }

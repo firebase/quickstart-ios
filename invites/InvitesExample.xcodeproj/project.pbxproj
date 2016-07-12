@@ -295,6 +295,7 @@
 					};
 					4BC032DD1ACF33B70092326A = {
 						CreatedOnToolsVersion = 6.2;
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -717,6 +718,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.InvitesExample;
 				PRODUCT_NAME = InvitesExample;
+				SWIFT_VERSION = 2.3;
 			};
 			name = Debug;
 		};
@@ -729,6 +731,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.InvitesExample;
 				PRODUCT_NAME = InvitesExample;
+				SWIFT_VERSION = 2.3;
 			};
 			name = Release;
 		};

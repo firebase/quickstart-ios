@@ -365,6 +365,13 @@ didSignInForUser:(GIDGoogleUser *)user
   return @"Unlink";
 }
 
+- (UITableViewCellEditingStyle)tableView:(UITableView *)aTableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
+  if (indexPath.section == kSectionProviders) {
+    return UITableViewCellEditingStyleDelete;
+  }
+  return UITableViewCellEditingStyleNone;
+}
+
 // Swipe to delete.
 - (void)tableView:(UITableView *)tableView
     commitEditingStyle:(UITableViewCellEditingStyle)editingStyle

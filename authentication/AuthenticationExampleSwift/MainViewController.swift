@@ -353,6 +353,13 @@ class MainViewController: UITableViewController, GIDSignInDelegate, GIDSignInUID
     return "Unlink"
   }
 
+  override func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
+    if indexPath.section == kSectionProviders {
+      return .Delete
+    }
+    return .None
+  }
+
   // Swipe to delete
   override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
     if editingStyle == .Delete {

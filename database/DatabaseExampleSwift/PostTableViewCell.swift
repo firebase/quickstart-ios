@@ -46,7 +46,7 @@ class PostTableViewCell: UITableViewCell {
 
   func incrementStarsForRef(ref: FIRDatabaseReference) {
     // [START post_stars_transaction]
-    postRef.runTransactionBlock({ (currentData: FIRMutableData) -> FIRTransactionResult in
+    ref.runTransactionBlock({ (currentData: FIRMutableData) -> FIRTransactionResult in
       if var post = currentData.value as? [String : AnyObject], let uid = FIRAuth.auth()?.currentUser?.uid {
         var stars : Dictionary<String, Bool>
         stars = post["stars"] as? [String : Bool] ?? [:]

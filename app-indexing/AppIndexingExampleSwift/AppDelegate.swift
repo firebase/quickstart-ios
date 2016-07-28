@@ -48,7 +48,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   // [START handle_universal_link]
   @available(iOS 8.0, *)
   func application(application: UIApplication,
-                   continue userActivity: NSUserActivity,
+                   continueUserActivity userActivity: NSUserActivity,
                    restorationHandler: ([AnyObject]?) -> Void) -> Bool {
     currentDeepLink = userActivity.webpageURL
     return true

@@ -78,7 +78,7 @@
   // Connect to FCM since connection may have failed when attempted before having a token.
   [self connectToFcm];
 
-  // TODO: If necessary send token to appliation server.
+  // TODO: If necessary send token to application server.
 }
 // [END refresh_token]
 

@@ -89,6 +89,7 @@ static NSString *const kChangePasswordText = @"Change Password";
              [self showMessagePrompt:error.localizedDescription];
              return;
            }
+           [self.tableView reloadData];
          }];
          // [END_EXCLUDE]
        }];
@@ -285,7 +286,7 @@ didSignInForUser:(GIDGoogleUser *)user
 }
 
 - (void)setTitleDisplay: (FIRUser *)user {
-  if (user) {
+  if (user.displayName) {
     self.navigationItem.title = [NSString stringWithFormat:@"Welcome %@", user.displayName];
   } else {
     self.navigationItem.title = @"Authentication Example";
@@ -362,6 +363,13 @@ didSignInForUser:(GIDGoogleUser *)user
 - (NSString *)tableView:(UITableView *)tableView
     titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath {
   return @"Unlink";
+}
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)aTableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
+  if (indexPath.section == kSectionProviders) {
+    return UITableViewCellEditingStyleDelete;
+  }
+  return UITableViewCellEditingStyleNone;
 }
 
 // Swipe to delete.

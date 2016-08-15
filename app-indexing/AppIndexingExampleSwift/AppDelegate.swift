@@ -37,7 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   // [START handle_link]
   func application(application: UIApplication,
-                   openURL url: NSURL,
+                   open url: NSURL,
                    sourceApplication: String?,
                    annotation: AnyObject) -> Bool {
     currentDeepLink = url

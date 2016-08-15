@@ -213,6 +213,7 @@ class MainViewController: UITableViewController, GIDSignInDelegate, GIDSignInUID
               self.showMessagePrompt(error.localizedDescription)
               return
             }
+            self.tableView.reloadData()
           })
           // [END_EXCLUDE]
         }
@@ -350,6 +351,13 @@ class MainViewController: UITableViewController, GIDSignInDelegate, GIDSignInUID
 
   override func tableView(tableView: UITableView, titleForDeleteConfirmationButtonForRowAtIndexPath indexPath: NSIndexPath) -> String? {
     return "Unlink"
+  }
+
+  override func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
+    if indexPath.section == kSectionProviders {
+      return .Delete
+    }
+    return .None
   }
 
   // Swipe to delete

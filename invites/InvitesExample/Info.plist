@@ -30,16 +30,6 @@
 				<string>YOUR_REVERSED_CLIENT_ID</string>
 			</array>
 		</dict>
-		<dict>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>CFBundleURLName</key>
-			<string>bundle</string>
-			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>com.google.firebase.quickstart.InvitesExample</string>
-			</array>
-		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>

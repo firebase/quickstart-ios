@@ -7,10 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4B0CAF401ACF72EB006FC636 /* GoogleSignIn.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CAF3F1ACF72EB006FC636 /* GoogleSignIn.bundle */; };
 		4B1A6C781B0A752100E1EDA2 /* AppInvitesExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B1A6C771B0A752100E1EDA2 /* AppInvitesExampleTests.m */; };
 		4B1F2A361B01375C00F69A92 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1F2A351B01375C00F69A92 /* SignInViewController.swift */; };
-		4B3329241AE04F9500327B83 /* GoogleSignIn.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CAF3F1ACF72EB006FC636 /* GoogleSignIn.bundle */; };
 		4B97B2591AD7145E0036DD6C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B97B2581AD7145E0036DD6C /* AppDelegate.swift */; };
 		4B97B25B1AD7145E0036DD6C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B97B25A1AD7145E0036DD6C /* ViewController.swift */; };
 		4BA30A161AE81F5A00E5CDE9 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BDB99E21ACF472000C4DC2C /* SystemConfiguration.framework */; };
@@ -49,7 +47,6 @@
 
 /* Begin PBXFileReference section */
 		108F89D31D47B0090009615B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4B0CAF3F1ACF72EB006FC636 /* GoogleSignIn.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleSignIn.bundle; path = Pods/GoogleSignIn/Resources/GoogleSignIn.bundle; sourceTree = "<group>"; };
 		4B1A6C731B0A752100E1EDA2 /* InvitesExample.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InvitesExample.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B1A6C761B0A752100E1EDA2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4B1A6C771B0A752100E1EDA2 /* AppInvitesExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppInvitesExampleTests.m; sourceTree = "<group>"; };
@@ -145,7 +142,6 @@
 		4BC032D51ACF33B70092326A = {
 			isa = PBXGroup;
 			children = (
-				4B0CAF3F1ACF72EB006FC636 /* GoogleSignIn.bundle */,
 				4BC032E01ACF33B70092326A /* InvitesExample */,
 				4B97B2551AD7145E0036DD6C /* InvitesExampleSwift */,
 				4B1A6C741B0A752100E1EDA2 /* InvitesExampleTests */,
@@ -325,7 +321,6 @@
 				EFB292061B0F20100021C8AC /* Main.storyboard in Resources */,
 				EFB292041B0F1F430021C8AC /* LaunchScreen.xib in Resources */,
 				EFB292021B0F1F430021C8AC /* Images.xcassets in Resources */,
-				4B3329241AE04F9500327B83 /* GoogleSignIn.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -335,7 +330,6 @@
 			files = (
 				EF4BB4D81B05B454003A1AC6 /* Main.storyboard in Resources */,
 				EFB292011B0F1F430021C8AC /* Images.xcassets in Resources */,
-				4B0CAF401ACF72EB006FC636 /* GoogleSignIn.bundle in Resources */,
 				EFB292031B0F1F430021C8AC /* LaunchScreen.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

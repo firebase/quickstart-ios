@@ -110,8 +110,10 @@ class PostDetailTableViewController: UITableViewController, UITextFieldDelegate 
     }
   }
 
-  @IBAction func didTapSend(sender: AnyObject) {
+  @IBAction func didTapSend(sender: UIButton) {
     textFieldShouldReturn(commentField!)
+    commentField?.enabled = false
+    sender.enabled = false
     let uid = FIRAuth.auth()?.currentUser?.uid
     FIRDatabase.database().reference().child("users").child(uid!).observeSingleEventOfType(.Value, withBlock: { (snapshot) in
       if let uid = uid, commentField = self.commentField, user = snapshot.value as? [String : AnyObject] {
@@ -122,9 +124,12 @@ class PostDetailTableViewController: UITableViewController, UITextFieldDelegate 
         ]
         self.commentsRef.childByAutoId().setValue(comment)
         commentField.text = ""
+        commentField.enabled = true
+        sender.enabled = true
       }
     })
   }
+
   override func tableView(tableView: UITableView,
                           cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell: UITableViewCell

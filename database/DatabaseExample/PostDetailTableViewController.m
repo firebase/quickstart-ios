@@ -37,8 +37,7 @@ static const int kSectionPost = 0;
   FIRDatabaseHandle _refHandle;
 
 // UITextViewDelegate protocol method
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
   [textField resignFirstResponder];
   return YES;
 }
@@ -120,9 +119,10 @@ static const int kSectionPost = 0;
   NSAssert(NO, @"Unexpected section");
   return 0;
 }
-
-- (IBAction)didTapSend:(id)sender {
+- (IBAction)didTapSend:(UIButton *)sender {
   [self textFieldShouldReturn:_commentField];
+  _commentField.enabled = NO;
+  sender.enabled = NO;
   NSString *uid = [FIRAuth auth].currentUser.uid;
   [[[[FIRDatabase database].reference child:@"users"] child:uid]
    observeSingleEventOfType:FIRDataEventTypeValue
@@ -134,6 +134,8 @@ static const int kSectionPost = 0;
                                 @"text": _commentField.text};
       [[_commentsRef childByAutoId] setValue:comment];
       _commentField.text = @"";
+      _commentField.enabled = YES;
+      sender.enabled = YES;
   }];
 }
 

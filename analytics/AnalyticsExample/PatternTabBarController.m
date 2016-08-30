@@ -35,9 +35,9 @@
 - (void)didTapShare:(id)sender {
   // [START custom_event_objc]
   [FIRAnalytics logEventWithName:kFIREventSelectContent parameters:@{
-                                                             kFIRParameterContentType:@"cont",
-                                                             kFIRParameterItemID:@"1"
-                                                             }];
+      kFIRParameterContentType:@"cont",
+      kFIRParameterItemID:@"1"
+  }];
   // [END custom_event_objc]
 
   NSString *title = [NSString stringWithFormat:@"Share: %@",

@@ -15,6 +15,8 @@
 //
 
 import UIKit
+import UserNotifications
+
 import Firebase
 import FirebaseInstanceID
 import FirebaseMessaging
@@ -24,26 +26,38 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   var window: UIWindow?
 
-  func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-    // Register for remote notifications
-    if #available(iOS 8.0, *) {
-      // [START register_for_notifications]
+  func application(application: UIApplication,
+                   didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+
+    // [START register_for_notifications]
+    if #available(iOS 10.0, *) {
+      let authOptions : UNAuthorizationOptions = [.Alert, .Badge, .Sound]
+      UNUserNotificationCenter.currentNotificationCenter().requestAuthorizationWithOptions(
+        authOptions,
+        completionHandler: {_,_ in })
+
+      // For iOS 10 display notification (sent via APNS)
+      UNUserNotificationCenter.currentNotificationCenter().delegate = self
+      // For iOS 10 data message (sent via FCM)
+      FIRMessaging.messaging().remoteMessageDelegate = self
+
+    } else {
       let settings: UIUserNotificationSettings =
       UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
       application.registerUserNotificationSettings(settings)
       application.registerForRemoteNotifications()
-      // [END register_for_notifications]
-    } else {
-      // Fallback
-      let types: UIRemoteNotificationType = [.Alert, .Badge, .Sound]
-      application.registerForRemoteNotificationTypes(types)
     }
+
+
+    // [END register_for_notifications]
 
     FIRApp.configure()
 
     // Add observer for InstanceID token refresh callback.
-    NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.tokenRefreshNotification),
-        name: kFIRInstanceIDTokenRefreshNotification, object: nil)
+    NSNotificationCenter.defaultCenter().addObserver(self,
+        selector: #selector(self.tokenRefreshNotification),
+        name: kFIRInstanceIDTokenRefreshNotification,
+        object: nil)
 
     return true
   }
@@ -97,3 +111,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   }
   // [END disconnect_from_fcm]
 }
+
+// [START ios_10_message_handling]
+@available(iOS 10, *)
+extension AppDelegate : UNUserNotificationCenterDelegate {
+
+  // Receive displayed notifications for iOS 10 devices.
+  func userNotificationCenter(center: UNUserNotificationCenter,
+                              willPresentNotification notification: UNNotification,
+    withCompletionHandler completionHandler: (UNNotificationPresentationOptions) -> Void) {
+    let userInfo = notification.request.content.userInfo
+    // Print message ID.
+    print("Message ID: \(userInfo["gcm.message_id"]!)")
+
+    // Print full message.
+    print("%@", userInfo)
+  }
+}
+
+extension AppDelegate : FIRMessagingDelegate {
+  // Receive data message on iOS 10 devices.
+  func applicationReceivedRemoteMessage(remoteMessage: FIRMessagingRemoteMessage) {
+    print("%@", remoteMessage.appData)
+  }
+}
+
+// [END ios_10_message_handling]

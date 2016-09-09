@@ -32,6 +32,11 @@
 @end
 #endif
 
+// Copied from Apple's header in case it is missing in some cases (e.g. pre-Xcode 8 builds).
+#ifndef NSFoundationVersionNumber_iOS_9_x_Max
+#define NSFoundationVersionNumber_iOS_9_x_Max 1299
+#endif
+
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application

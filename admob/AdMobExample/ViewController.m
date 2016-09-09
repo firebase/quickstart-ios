@@ -77,5 +77,13 @@ static NSString *const kInterstitialAdUnitID = @"ca-app-pub-3940256099942544/441
   }
 }
 
+#pragma mark - Interstitial delegate
+
+- (void)interstitial:(GADInterstitial *)ad didFailToReceiveAdWithError:(GADRequestError *)error {
+  // Retrying failed interstitial loads is a rudimentary way of handling these errors.
+  // For more fine-grained error handling, take a look at the values in GADErrorCode.
+  self.interstitial = [self createAndLoadInterstitial];
+}
+
 @end
 // [END firebase_interstitial_example]

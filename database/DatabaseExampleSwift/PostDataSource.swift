@@ -29,11 +29,11 @@ class PostDataSource: FirebaseTableViewDataSource {
   }
 
   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    if self.count() != 0 {
+    if self.count != 0 {
       tableView.separatorStyle = .SingleLine
       tableView.backgroundView = nil
     }
-    return Int(self.count())
+    return Int(self.count)
   }
 
   override func numberOfSectionsInTableView(tableView: UITableView) -> Int {

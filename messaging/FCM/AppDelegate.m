@@ -106,7 +106,7 @@
   // Print message ID.
   NSLog(@"Message ID: %@", userInfo[@"gcm.message_id"]);
 
-  // Pring full message.
+  // Print full message.
   NSLog(@"%@", userInfo);
 }
 // [END receive_message]

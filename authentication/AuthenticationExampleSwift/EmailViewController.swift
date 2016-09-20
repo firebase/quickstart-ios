@@ -24,22 +24,22 @@ class EmailViewController: UIViewController {
   @IBOutlet weak var emailField: UITextField!
   @IBOutlet weak var passwordField: UITextField!
 
-  override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+  override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
     self.view.endEditing(true)
   }
 
-  @IBAction func didTapEmailLogin(sender: AnyObject) {
-    if let email = self.emailField.text, password = self.passwordField.text {
+  @IBAction func didTapEmailLogin(_ sender: AnyObject) {
+    if let email = self.emailField.text, let password = self.passwordField.text {
       showSpinner({
         // [START headless_email_auth]
-        FIRAuth.auth()?.signInWithEmail(email, password: password) { (user, error) in
+        FIRAuth.auth()?.signIn(withEmail: email, password: password) { (user, error) in
           // [START_EXCLUDE]
           self.hideSpinner({
             if let error = error {
               self.showMessagePrompt(error.localizedDescription)
               return
             }
-            self.navigationController!.popViewControllerAnimated(true)
+            self.navigationController!.popViewController(animated: true)
           })
           // [END_EXCLUDE]
         }
@@ -53,12 +53,12 @@ class EmailViewController: UIViewController {
   /** @fn requestPasswordReset
    @brief Requests a "password reset" email be sent.
    */
-  @IBAction func didRequestPasswordReset(sender: AnyObject) {
-    showTextInputPromptWithMessage("Email:") { (userPressedOK, userInput) in
+  @IBAction func didRequestPasswordReset(_ sender: AnyObject) {
+    showTextInputPrompt(withMessage: "Email:") { (userPressedOK, userInput) in
       if let userInput = userInput {
         self.showSpinner({
           // [START password_reset]
-          FIRAuth.auth()?.sendPasswordResetWithEmail(userInput) { (error) in
+          FIRAuth.auth()?.sendPasswordReset(withEmail: userInput) { (error) in
             // [START_EXCLUDE]
             self.hideSpinner({
               if let error = error {
@@ -79,19 +79,19 @@ class EmailViewController: UIViewController {
    @brief Prompts the user for an email address, calls @c FIRAuth.getProvidersForEmail:callback:
    and displays the result.
    */
-  @IBAction func didGetProvidersForEmail(sender: AnyObject) {
-    showTextInputPromptWithMessage("Email:") { (userPressedOK, email) in
+  @IBAction func didGetProvidersForEmail(_ sender: AnyObject) {
+    showTextInputPrompt(withMessage: "Email:") { (userPressedOK, email) in
       if let email = email {
         self.showSpinner({
           // [START get_providers]
-          FIRAuth.auth()?.fetchProvidersForEmail(email) { (providers, error) in
+          FIRAuth.auth()?.fetchProviders(forEmail: email) { (providers, error) in
             // [START_EXCLUDE]
             self.hideSpinner({
               if let error = error {
                 self.showMessagePrompt(error.localizedDescription)
                 return
               }
-              self.showMessagePrompt(providers!.joinWithSeparator(", "))
+              self.showMessagePrompt(providers!.joined(separator: ", "))
             })
             // [END_EXCLUDE]
           }
@@ -103,14 +103,14 @@ class EmailViewController: UIViewController {
     }
   }
 
-  @IBAction func didCreateAccount(sender: AnyObject) {
-    showTextInputPromptWithMessage("Email:") { (userPressedOK, email) in
+  @IBAction func didCreateAccount(_ sender: AnyObject) {
+    showTextInputPrompt(withMessage: "Email:") { (userPressedOK, email) in
       if let email = email {
-        self.showTextInputPromptWithMessage("Password:") { (userPressedOK, password) in
+        self.showTextInputPrompt(withMessage: "Password:") { (userPressedOK, password) in
           if let password = password {
             self.showSpinner({
               // [START create_user]
-              FIRAuth.auth()?.createUserWithEmail(email, password: password) { (user, error) in
+              FIRAuth.auth()?.createUser(withEmail: email, password: password) { (user, error) in
                 // [START_EXCLUDE]
                 self.hideSpinner({
                   if let error = error {
@@ -118,7 +118,7 @@ class EmailViewController: UIViewController {
                     return
                   }
                   print("\(user!.email!) created")
-                  self.navigationController!.popViewControllerAnimated(true)
+                  self.navigationController!.popViewController(animated: true)
                 })
                 // [END_EXCLUDE]
               }

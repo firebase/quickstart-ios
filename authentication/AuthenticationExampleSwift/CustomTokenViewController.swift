@@ -25,22 +25,22 @@ class CustomTokenViewController: UIViewController {
 
   @IBOutlet weak var tokenField: UITextView!
 
-  override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+  override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
     self.view.endEditing(true)
   }
 
-  @IBAction func didTapCustomTokenLogin(sender: AnyObject) {
+  @IBAction func didTapCustomTokenLogin(_ sender: AnyObject) {
     let customToken = tokenField.text
     showSpinner({
       // [START signinwithcustomtoken]
-      FIRAuth.auth()?.signInWithCustomToken(customToken) { (user, error) in
+      FIRAuth.auth()?.signIn(withCustomToken: customToken ?? "") { (user, error) in
         // [START_EXCLUDE]
         self.hideSpinner({
           if let error = error {
             self.showMessagePrompt(error.localizedDescription)
             return
           }
-          self.navigationController!.popViewControllerAnimated(true)
+          self.navigationController!.popViewController(animated: true)
         })
         // [END_EXCLUDE]
       }

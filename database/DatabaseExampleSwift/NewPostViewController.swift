@@ -33,9 +33,9 @@ class NewPostViewController: UIViewController, UITextFieldDelegate {
     // [END create_database_reference]
 
     let doneBar = UIToolbar(frame: CGRect.init(x: 0, y: 0, width: 320, height: 44))
-    doneBar.autoresizingMask = .FlexibleWidth
-    let flex = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
-    let done = UIBarButtonItem(title: "Post", style: .Plain, target: self, action: #selector(didTapShare))
+    doneBar.autoresizingMask = .flexibleWidth
+    let flex = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+    let done = UIBarButtonItem(title: "Post", style: .plain, target: self, action: #selector(didTapShare))
     done.tintColor = UIColor(red: 1.0, green: 143.0/255.0, blue: 0.0, alpha: 1.0)
     doneBar.items  = [flex, done, flex]
     doneBar.sizeToFit()
@@ -43,19 +43,20 @@ class NewPostViewController: UIViewController, UITextFieldDelegate {
     titleTextField.inputAccessoryView = doneBar
   }
 
-  @IBAction func didTapShare(sender: AnyObject) {
+  @IBAction func didTapShare(_ sender: AnyObject) {
     // [START single_value_read]
     let userID = FIRAuth.auth()?.currentUser?.uid
-    ref.child("users").child(userID!).observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+    ref.child("users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
       // Get user value
-      let username = snapshot.value!["username"] as! String
+      let value = snapshot.value as? NSDictionary
+      let username = value?["username"] as! String
       let user = User.init(username: username)
 
       // [START_EXCLUDE]
       // Write new post
-      self.writeNewPost(userID!, username: user.username, title: self.titleTextField.text!, body: self.bodyTextView.text)
+      self.writeNewPost(withUserID: userID!, username: user.username, title: self.titleTextField.text!, body: self.bodyTextView.text)
       // Finish this Activity, back to the stream
-      self.navigationController?.popViewControllerAnimated(true)
+      self.navigationController?.popViewController(animated: true)
       // [END_EXCLUDE]
       }) { (error) in
         print(error.localizedDescription)
@@ -63,7 +64,7 @@ class NewPostViewController: UIViewController, UITextFieldDelegate {
     // [END single_value_read]
   }
 
-  func writeNewPost(userID: String, username: String, title: String, body: String) {
+  func writeNewPost(withUserID userID: String, username: String, title: String, body: String) {
     // Create new post at /user-posts/$userid/$postid and at
     // /posts/$postid simultaneously
     // [START write_fan_out]
@@ -78,7 +79,7 @@ class NewPostViewController: UIViewController, UITextFieldDelegate {
     // [END write_fan_out]
   }
 
-  func textFieldShouldReturn(textField: UITextField) -> Bool {
+  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
     textField.resignFirstResponder()
     return false
   }

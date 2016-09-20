@@ -411,7 +411,7 @@
 				PRODUCT_NAME = AuthenticationExample;
 				SWIFT_OBJC_BRIDGING_HEADER = AuthenticationExampleSwift/BridgingHeader.h;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -427,7 +427,7 @@
 				PRODUCT_NAME = AuthenticationExample;
 				SWIFT_OBJC_BRIDGING_HEADER = AuthenticationExampleSwift/BridgingHeader.h;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

@@ -68,4 +68,67 @@
                                     annotation:annotation];
 }
 // [END openurl]
+
+// [START continueuseractivity]
+- (BOOL)application:(UIApplication *)application
+    continueUserActivity:(NSUserActivity *)userActivity
+      restorationHandler:(void (^)(NSArray *))restorationHandler {
+  // [START_EXCLUDE silent]
+  NSLog(@"%@", userActivity.webpageURL);
+  __weak AppDelegate *weakSelf = self;
+  // [END_EXCLUDE]
+
+  BOOL handled = [[FIRDynamicLinks dynamicLinks]
+                     handleUniversalLink:userActivity.webpageURL
+                              completion:^(FIRDynamicLink * _Nullable dynamicLink,
+                                           NSError * _Nullable error) {
+    // [START_EXCLUDE]
+    AppDelegate *strongSelf = weakSelf;
+    NSString *message = [strongSelf generateDynamicLinkMessage:dynamicLink];
+    [strongSelf showDeepLinkAlertViewWithMessage:message];
+    // [END_EXCLUDE]
+  }];
+
+  // [START_EXCLUDE silent]
+  if (!handled) {
+    // Show the deep link URL from userActivity.
+    NSString *message =
+    [NSString stringWithFormat:@"continueUserActivity webPageURL:\n%@",
+        userActivity.webpageURL.absoluteString];
+    [self showDeepLinkAlertViewWithMessage:message];
+  }
+  // [END_EXCLUDE]
+
+  return handled;
+}
+// [END continueuseractivity]
+
+- (NSString *)generateDynamicLinkMessage:(FIRDynamicLink *)dynamicLink {
+  NSString *matchConfidence;
+  if (dynamicLink.matchConfidence == FIRDynamicLinkMatchConfidenceStrong) {
+    matchConfidence = @"strong";
+  } else {
+    matchConfidence = @"weak";
+  }
+
+  NSString *msg = [NSString stringWithFormat:@"App URL: %@\n"
+                       @"Match Confidence: %@\n",
+                       dynamicLink.url.absoluteString, matchConfidence];
+  return msg;
+}
+
+- (void)showDeepLinkAlertViewWithMessage:(NSString *)message {
+  UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"
+                                                     style:UIAlertActionStyleDefault
+                                                   handler:nil];
+
+  UIAlertController *alertController =
+      [UIAlertController alertControllerWithTitle:@"Deep-link Data"
+                                          message:message
+                                   preferredStyle:UIAlertControllerStyleAlert];
+  [alertController addAction:okAction];
+  [self.window.rootViewController presentViewController:alertController
+                                               animated:YES
+                                             completion:nil];
+}
 @end

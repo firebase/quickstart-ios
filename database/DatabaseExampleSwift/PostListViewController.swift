@@ -42,7 +42,7 @@ class PostListViewController: UIViewController, UITableViewDelegate {
                                                   cellReuseIdentifier: "post",
                                                   view: self.tableView)
 
-    dataSource?.populateCellWithBlock(){
+    dataSource?.populateCell(){
       let cell = $0 as! PostTableViewCell
       let post = $1 as! Post
       cell.authorImage.image = UIImage.init(named: "ic_account_circle")
@@ -51,7 +51,7 @@ class PostListViewController: UIViewController, UITableViewDelegate {
       if (post.stars?[self.getUid()]) != nil {
         imageName = "ic_star"
       }
-      cell.starButton.setImage(UIImage.init(named: imageName), forState: .Normal)
+      cell.starButton.setImage(UIImage.init(named: imageName), for: .normal)
       if let starCount = post.starCount {
         cell.numStarsLabel.text = "\(starCount)"
       }
@@ -63,15 +63,15 @@ class PostListViewController: UIViewController, UITableViewDelegate {
     tableView.delegate = self
   }
 
-  override func viewWillAppear(animated: Bool) {
+  override func viewWillAppear(_ animated: Bool) {
     self.tableView.reloadData()
   }
 
-  func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    performSegueWithIdentifier("detail", sender: indexPath)
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    performSegue(withIdentifier: "detail", sender: indexPath)
   }
 
-  func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     return 150
   }
 
@@ -83,11 +83,11 @@ class PostListViewController: UIViewController, UITableViewDelegate {
     return self.ref
   }
 
-  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    let path: NSIndexPath = sender as! NSIndexPath
-    let detail: PostDetailTableViewController = segue.destinationViewController as! PostDetailTableViewController
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    let path: IndexPath = sender as! IndexPath
+    let detail: PostDetailTableViewController = segue.destination as! PostDetailTableViewController
     let source = self.dataSource
-    let snapshot: FIRDataSnapshot = (source?.objectAtIndex(UInt(path.row)))! as! FIRDataSnapshot
+    let snapshot: FIRDataSnapshot = (source?.object(at: UInt((path as NSIndexPath).row)))! as! FIRDataSnapshot
     detail.postKey = snapshot.key
   }
 }

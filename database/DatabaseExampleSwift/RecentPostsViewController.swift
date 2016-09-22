@@ -23,7 +23,7 @@ class RecentPostsViewController: PostListViewController {
     // [START recent_posts_query]
     // Last 100 posts, these are automatically the 100 most recent
     // due to sorting by push() keys
-    let recentPostsQuery = (ref?.child("posts").queryLimitedToFirst(100))!
+    let recentPostsQuery = (ref?.child("posts").queryLimited(toFirst: 100))!
     // [END recent_posts_query]
     return recentPostsQuery
   }

@@ -19,30 +19,30 @@ import FirebaseDatabaseUI
 
 class PostDataSource: FirebaseTableViewDataSource {
 
-  override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+  override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
     return true
   }
-  override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-    if editingStyle == .Delete {
-      refForIndex(UInt(indexPath.row)).removeValue()
+  override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    if editingStyle == .delete {
+      ref(for: UInt((indexPath as NSIndexPath).row)).removeValue()
     }
   }
 
-  override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+  override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     if self.count != 0 {
-      tableView.separatorStyle = .SingleLine
+      tableView.separatorStyle = .singleLine
       tableView.backgroundView = nil
     }
     return Int(self.count)
   }
 
-  override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+  override func numberOfSections(in tableView: UITableView) -> Int {
     let noDataLabel = UILabel.init(frame: CGRect.init(x: 0, y: 0, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
     noDataLabel.text = "No posts yet - why not add one?"
-    noDataLabel.textColor = UIColor.blackColor()
-    noDataLabel.textAlignment = .Center
+    noDataLabel.textColor = UIColor.black
+    noDataLabel.textAlignment = .center
     tableView.backgroundView = noDataLabel
-    tableView.separatorStyle = .None
+    tableView.separatorStyle = .none
     return 1
   }
 }

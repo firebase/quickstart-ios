@@ -28,12 +28,13 @@ class PostTableViewCell: UITableViewCell {
   var postKey: String?
   var postRef: FIRDatabaseReference!
 
-  @IBAction func didTapStarButton(sender: AnyObject) {
+  @IBAction func didTapStarButton(_ sender: AnyObject) {
     if let postKey = postKey {
       postRef = FIRDatabase.database().reference().child("posts").child(postKey)
       incrementStarsForRef(postRef)
-      postRef.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
-        if let uid = snapshot.value?["uid"] as? String {
+      postRef.observeSingleEvent(of: .value, with: { (snapshot) in
+        let value = snapshot.value as? NSDictionary
+        if let uid = value?["uid"] as? String {
           let userPostRef = FIRDatabase.database().reference()
             .child("user-posts")
             .child(uid)
@@ -44,7 +45,7 @@ class PostTableViewCell: UITableViewCell {
     }
   }
 
-  func incrementStarsForRef(ref: FIRDatabaseReference) {
+  func incrementStars(forRef ref: FIRDatabaseReference) {
     // [START post_stars_transaction]
     ref.runTransactionBlock({ (currentData: FIRMutableData) -> FIRTransactionResult in
       if var post = currentData.value as? [String : AnyObject], let uid = FIRAuth.auth()?.currentUser?.uid {
@@ -54,21 +55,21 @@ class PostTableViewCell: UITableViewCell {
         if let _ = stars[uid] {
           // Unstar the post and remove self from stars
           starCount -= 1
-          stars.removeValueForKey(uid)
+          stars.removeValue(forKey: uid)
         } else {
           // Star the post and add self to stars
           starCount += 1
           stars[uid] = true
         }
-        post["starCount"] = starCount
-        post["stars"] = stars
+        post["starCount"] = starCount as AnyObject?
+        post["stars"] = stars as AnyObject?
 
         // Set value and report transaction success
         currentData.value = post
 
-        return FIRTransactionResult.successWithValue(currentData)
+        return FIRTransactionResult.success(withValue: currentData)
       }
-      return FIRTransactionResult.successWithValue(currentData)
+      return FIRTransactionResult.success(withValue: currentData)
     }) { (error, committed, snapshot) in
       if let error = error {
         print(error.localizedDescription)

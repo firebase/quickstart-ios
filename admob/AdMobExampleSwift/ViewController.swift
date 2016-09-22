@@ -40,7 +40,7 @@ class ViewController: UIViewController, GADInterstitialDelegate {
 
     self.bannerView.adUnitID = kBannerAdUnitID
     self.bannerView.rootViewController = self
-    self.bannerView.loadRequest(GADRequest())
+    self.bannerView.load(GADRequest())
     // [END firebase_banner_example]
 
     // [START firebase_interstitial_example]
@@ -51,18 +51,18 @@ class ViewController: UIViewController, GADInterstitialDelegate {
     let interstitial =
         GADInterstitial(adUnitID: kInterstitialAdUnitID)
     interstitial.delegate = self
-    interstitial.loadRequest(GADRequest())
+    interstitial.load(GADRequest())
     return interstitial
   }
 
-  func interstitialDidDismissScreen(interstitial: GADInterstitial!) {
+  func interstitialDidDismissScreen(_ interstitial: GADInterstitial!) {
     self.interstitial = createAndLoadInterstitial()
   }
 
 
-  @IBAction func didTapInterstitialButton(sender: AnyObject) {
+  @IBAction func didTapInterstitialButton(_ sender: AnyObject) {
     if (self.interstitial.isReady) {
-      self.interstitial.presentFromRootViewController(self)
+      self.interstitial.present(fromRootViewController: self)
     }
   }
 }

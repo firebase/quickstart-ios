@@ -33,12 +33,12 @@ class MainViewController: UITableViewController, GIDSignInDelegate, GIDSignInUID
   let kSectionSignIn = 0
 
   enum AuthProvider {
-    case AuthEmail
-    case AuthAnonymous
-    case AuthFacebook
-    case AuthGoogle
-    case AuthTwitter
-    case AuthCustom
+    case authEmail
+    case authAnonymous
+    case authFacebook
+    case authGoogle
+    case authTwitter
+    case authCustom
   }
 
   /*! @var kOKButtonText
@@ -81,26 +81,26 @@ class MainViewController: UITableViewController, GIDSignInDelegate, GIDSignInUID
    */
   var handle: FIRAuthStateDidChangeListenerHandle?
 
-  func showAuthPicker(providers: [AuthProvider]) {
+  func showAuthPicker(_ providers: [AuthProvider]) {
     let picker = UIAlertController(title: "Select Provider",
                                    message: nil,
-                                   preferredStyle: .ActionSheet)
+                                   preferredStyle: .actionSheet)
     for provider in providers {
       var action : UIAlertAction
       switch(provider) {
-      case .AuthEmail:
-        action = UIAlertAction(title: "Email", style: .Default, handler: { (UIAlertAction) in
-          self.performSegueWithIdentifier("email", sender:nil)
+      case .authEmail:
+        action = UIAlertAction(title: "Email", style: .default, handler: { (UIAlertAction) in
+          self.performSegue(withIdentifier: "email", sender:nil)
         })
-      case .AuthCustom:
-        action = UIAlertAction(title: "Custom", style: .Default, handler: { (UIAlertAction) in
-          self.performSegueWithIdentifier("customToken", sender: nil)
+      case .authCustom:
+        action = UIAlertAction(title: "Custom", style: .default, handler: { (UIAlertAction) in
+          self.performSegue(withIdentifier: "customToken", sender: nil)
         })
-      case .AuthAnonymous:
-        action = UIAlertAction(title: "Anonymous", style: .Default, handler: { (UIAlertAction) in
+      case .authAnonymous:
+        action = UIAlertAction(title: "Anonymous", style: .default, handler: { (UIAlertAction) in
           self.showSpinner({
             // [START firebase_auth_anonymous]
-            FIRAuth.auth()?.signInAnonymouslyWithCompletion() { (user, error) in
+            FIRAuth.auth()?.signInAnonymously() { (user, error) in
               // [START_EXCLUDE]
               self.hideSpinner({
                 if let error = error {
@@ -114,36 +114,36 @@ class MainViewController: UITableViewController, GIDSignInDelegate, GIDSignInUID
           })
 
         })
-      case .AuthFacebook:
-        action = UIAlertAction(title: "Facebook", style: .Default, handler: { (UIAlertAction) in
+      case .authFacebook:
+        action = UIAlertAction(title: "Facebook", style: .default, handler: { (UIAlertAction) in
           let loginManager = FBSDKLoginManager()
-          loginManager.logInWithReadPermissions(["email"], fromViewController: self, handler: { (result, error) in
+          loginManager.logIn(withReadPermissions: ["email"], from: self, handler: { (result, error) in
             if let error = error {
               self.showMessagePrompt(error.localizedDescription)
-            } else if(result.isCancelled) {
+            } else if result!.isCancelled {
               print("FBLogin cancelled")
             } else {
               // [START headless_facebook_auth]
-              let credential = FIRFacebookAuthProvider.credentialWithAccessToken(FBSDKAccessToken.currentAccessToken().tokenString)
+              let credential = FIRFacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
               // [END headless_facebook_auth]
               self.firebaseLogin(credential)
             }
           })
         })
-      case .AuthGoogle:
-        action = UIAlertAction(title: "Google", style: .Default, handler: { (UIAlertAction) in
+      case .authGoogle:
+        action = UIAlertAction(title: "Google", style: .default, handler: { (UIAlertAction) in
           GIDSignIn.sharedInstance().clientID = FIRApp.defaultApp()?.options.clientID
           GIDSignIn.sharedInstance().uiDelegate = self
           GIDSignIn.sharedInstance().delegate = self
           GIDSignIn.sharedInstance().signIn()
 
         })
-      case .AuthTwitter:
-        action = UIAlertAction(title: "Twitter", style: .Default, handler: { (UIAlertAction) in
-          Twitter.sharedInstance().logInWithCompletion() { (session, error) in
+      case .authTwitter:
+        action = UIAlertAction(title: "Twitter", style: .default, handler: { (UIAlertAction) in
+          Twitter.sharedInstance().logIn() { (session, error) in
             if let session = session {
               // [START headless_twitter_auth]
-              let credential = FIRTwitterAuthProvider.credentialWithToken(session.authToken, secret: session.authTokenSecret)
+              let credential = FIRTwitterAuthProvider.credential(withToken: session.authToken, secret: session.authTokenSecret)
               // [END headless_twitter_auth]
               self.firebaseLogin(credential)
             } else {
@@ -155,28 +155,28 @@ class MainViewController: UITableViewController, GIDSignInDelegate, GIDSignInUID
       picker.addAction(action)
     }
 
-    picker.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
-    presentViewController(picker, animated: true, completion: nil)
+    picker.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+    present(picker, animated: true, completion: nil)
 
   }
 
 
-  @IBAction func didTapSignIn(sender: AnyObject) {
+  @IBAction func didTapSignIn(_ sender: AnyObject) {
     showAuthPicker([
-      AuthProvider.AuthEmail,
-      AuthProvider.AuthAnonymous,
-      AuthProvider.AuthGoogle,
-      AuthProvider.AuthFacebook,
-      AuthProvider.AuthTwitter,
-      AuthProvider.AuthCustom
+      AuthProvider.authEmail,
+      AuthProvider.authAnonymous,
+      AuthProvider.authGoogle,
+      AuthProvider.authFacebook,
+      AuthProvider.authTwitter,
+      AuthProvider.authCustom
     ])
   }
 
-  @IBAction func didTapLink(sender: AnyObject) {
+  @IBAction func didTapLink(_ sender: AnyObject) {
     var providers = Set([
-      AuthProvider.AuthGoogle,
-      AuthProvider.AuthFacebook,
-      AuthProvider.AuthTwitter
+      AuthProvider.authGoogle,
+      AuthProvider.authFacebook,
+      AuthProvider.authTwitter
     ])
     // Remove any existing providers. Note that this is not a complete list of
     // providers, so always check the documentation for a complete reference:
@@ -184,17 +184,17 @@ class MainViewController: UITableViewController, GIDSignInDelegate, GIDSignInUID
     let user = FIRAuth.auth()?.currentUser
     for info in (user?.providerData)! {
       if (info.providerID == FIRTwitterAuthProviderID) {
-        providers.remove(AuthProvider.AuthTwitter)
+        providers.remove(AuthProvider.authTwitter)
       } else if (info.providerID == FIRFacebookAuthProviderID) {
-        providers.remove(AuthProvider.AuthFacebook)
+        providers.remove(AuthProvider.authFacebook)
       } else if (info.providerID == FIRGoogleAuthProviderID) {
-        providers.remove(AuthProvider.AuthGoogle)
+        providers.remove(AuthProvider.authGoogle)
       }
     }
     showAuthPicker(Array(providers))
   }
 
-  func setTitleDisplay(user: FIRUser?) {
+  func setTitleDisplay(_ user: FIRUser?) {
     if let name = user?.displayName {
       self.navigationItem.title = "Welcome \(name)"
     } else {
@@ -202,11 +202,11 @@ class MainViewController: UITableViewController, GIDSignInDelegate, GIDSignInUID
     }
   }
 
-  func firebaseLogin(credential: FIRAuthCredential) {
+  func firebaseLogin(_ credential: FIRAuthCredential) {
     showSpinner({
       if let user = FIRAuth.auth()?.currentUser {
         // [START link_credential]
-        user.linkWithCredential(credential) { (user, error) in
+        user.link(with: credential) { (user, error) in
           // [START_EXCLUDE]
           self.hideSpinner({
             if let error = error {
@@ -220,7 +220,7 @@ class MainViewController: UITableViewController, GIDSignInDelegate, GIDSignInUID
         // [END link_credential]
       } else {
         // [START signin_credential]
-        FIRAuth.auth()?.signInWithCredential(credential) { (user, error) in
+        FIRAuth.auth()?.signIn(with: credential) { (user, error) in
           // [START_EXCLUDE]
           self.hideSpinner({
             if let error = error {
@@ -236,22 +236,22 @@ class MainViewController: UITableViewController, GIDSignInDelegate, GIDSignInUID
   }
 
   // [START headless_google_auth]
-  func signIn(signIn: GIDSignIn!, didSignInForUser user: GIDGoogleUser!, withError error: NSError?) {
+  func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error?) {
     if let error = error {
       self.showMessagePrompt(error.localizedDescription)
       return
     }
 
     let authentication = user.authentication
-    let credential = FIRGoogleAuthProvider.credentialWithIDToken(authentication.idToken,
-        accessToken: authentication.accessToken)
+    let credential = FIRGoogleAuthProvider.credential(withIDToken: (authentication?.idToken)!,
+        accessToken: (authentication?.accessToken)!)
     // [START_EXCLUDE]
     firebaseLogin(credential)
     // [END_EXCLUDE]
   }
   // [END headless_google_auth]
 
-  @IBAction func didTapSignOut(sender: AnyObject) {
+  @IBAction func didTapSignOut(_ sender: AnyObject) {
     // [START signout]
     let firebaseAuth = FIRAuth.auth()
     do {
@@ -262,20 +262,20 @@ class MainViewController: UITableViewController, GIDSignInDelegate, GIDSignInUID
     // [END signout]
   }
 
-  override func viewWillAppear(animated: Bool) {
+  override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    handle = FIRAuth.auth()?.addAuthStateDidChangeListener() { (auth, user) in
+    handle = FIRAuth.auth()?.addStateDidChangeListener() { (auth, user) in
       self.setTitleDisplay(user)
       self.tableView.reloadData()
     }
   }
 
-  override func viewWillDisappear(animated: Bool) {
+  override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
-    FIRAuth.auth()?.removeAuthStateDidChangeListener(handle!)
+    FIRAuth.auth()?.removeStateDidChangeListener(handle!)
   }
 
-  override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+  override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     switch section {
     case kSectionSignIn:
       return 1
@@ -295,17 +295,17 @@ class MainViewController: UITableViewController, GIDSignInDelegate, GIDSignInUID
     }
   }
 
-  override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+  override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell: UITableViewCell?
-    switch indexPath.section {
+    switch (indexPath as NSIndexPath).section {
     case kSectionSignIn:
       if FIRAuth.auth()?.currentUser != nil {
-        cell = tableView.dequeueReusableCellWithIdentifier("SignOut")
+        cell = tableView.dequeueReusableCell(withIdentifier: "SignOut")
       } else {
-        cell = tableView.dequeueReusableCellWithIdentifier("SignIn")
+        cell = tableView.dequeueReusableCell(withIdentifier: "SignIn")
       }
     case kSectionUser:
-      cell = tableView.dequeueReusableCellWithIdentifier("Profile")
+      cell = tableView.dequeueReusableCell(withIdentifier: "Profile")
       let user = FIRAuth.auth()?.currentUser
       let emailLabel = cell?.viewWithTag(1) as! UILabel
       let userIDLabel = cell?.viewWithTag(2) as! UILabel
@@ -315,15 +315,15 @@ class MainViewController: UITableViewController, GIDSignInDelegate, GIDSignInUID
 
       let photoURL = user?.photoURL
       struct last {
-        static var photoURL: NSURL? = nil
+        static var photoURL: URL? = nil
       }
       last.photoURL = photoURL;  // to prevent earlier image overwrites later one.
       if let photoURL = photoURL {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), {
-          let data = NSData.init(contentsOfURL: photoURL)
+        DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.background).async(execute: {
+          let data = try? Data.init(contentsOf: photoURL)
           if let data = data {
             let image = UIImage.init(data: data)
-            dispatch_async(dispatch_get_main_queue(), {
+            DispatchQueue.main.async(execute: {
               if (photoURL == last.photoURL) {
                 profileImageView.image = image
               }
@@ -334,39 +334,39 @@ class MainViewController: UITableViewController, GIDSignInDelegate, GIDSignInUID
         profileImageView.image = UIImage.init(named: "ic_account_circle")
       }
     case kSectionProviders:
-      cell = tableView.dequeueReusableCellWithIdentifier("Provider")
-      let userInfo = FIRAuth.auth()?.currentUser?.providerData[indexPath.row]
+      cell = tableView.dequeueReusableCell(withIdentifier: "Provider")
+      let userInfo = FIRAuth.auth()?.currentUser?.providerData[(indexPath as NSIndexPath).row]
       cell?.textLabel?.text = userInfo?.providerID
       cell?.detailTextLabel?.text = userInfo?.uid
     case kSectionToken:
-      cell = tableView.dequeueReusableCellWithIdentifier("Token")
+      cell = tableView.dequeueReusableCell(withIdentifier: "Token")
       let requestEmailButton = cell?.viewWithTag(4) as! UIButton
-      requestEmailButton.enabled = (FIRAuth.auth()?.currentUser?.email != nil) ? true : false
+      requestEmailButton.isEnabled = (FIRAuth.auth()?.currentUser?.email != nil) ? true : false
 
     default:
-      cell = nil
+      fatalError("Unknown section in UITableView")
     }
     return cell!
   }
 
-  override func tableView(tableView: UITableView, titleForDeleteConfirmationButtonForRowAtIndexPath indexPath: NSIndexPath) -> String? {
+  override func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
     return "Unlink"
   }
 
-  override func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
-    if indexPath.section == kSectionProviders {
-      return .Delete
+  override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+    if (indexPath as NSIndexPath).section == kSectionProviders {
+      return .delete
     }
-    return .None
+    return .none
   }
 
   // Swipe to delete
-  override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-    if editingStyle == .Delete {
-      let providerID = FIRAuth.auth()?.currentUser?.providerData[indexPath.row].providerID
+  override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    if editingStyle == .delete {
+      let providerID = FIRAuth.auth()?.currentUser?.providerData[(indexPath as NSIndexPath).row].providerID
       showSpinner({
         // [START unlink_provider]
-        FIRAuth.auth()?.currentUser?.unlinkFromProvider(providerID!) { (user, error) in
+        FIRAuth.auth()?.currentUser?.unlink(fromProvider: providerID!) { (user, error) in
           // [START_EXCLUDE]
           self.hideSpinner({
             if let error = error {
@@ -382,36 +382,36 @@ class MainViewController: UITableViewController, GIDSignInDelegate, GIDSignInUID
     }
   }
 
-  override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-    if indexPath.section == kSectionUser {
+  override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    if (indexPath as NSIndexPath).section == kSectionUser {
       return 200
     }
     return 44
   }
 
-  override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+  override func numberOfSections(in tableView: UITableView) -> Int {
     return 4
   }
 
-  @IBAction func didTokenRefresh(sender: AnyObject) {
+  @IBAction func didTokenRefresh(_ sender: AnyObject) {
     let action: FIRAuthTokenCallback = {(token, error) in
-      let okAction = UIAlertAction.init(title: self.kOKButtonText, style: .Default)
+      let okAction = UIAlertAction.init(title: self.kOKButtonText, style: .default)
         {action in print(self.kOKButtonText)}
       if let error = error {
         let alertController  = UIAlertController.init(title: self.kTokenRefreshErrorAlertTitle,
-          message: error.localizedDescription, preferredStyle: .Alert)
+          message: error.localizedDescription, preferredStyle: .alert)
         alertController.addAction(okAction)
-        self.presentViewController(alertController, animated: true, completion: nil)
+        self.present(alertController, animated: true, completion: nil)
         return
       }
 
       // Log token refresh event to Scion.
-      FIRAnalytics.logEventWithName("tokenrefresh", parameters: nil)
+      FIRAnalytics.logEvent(withName: "tokenrefresh", parameters: nil)
 
       let alertController = UIAlertController.init(title: self.kTokenRefreshedAlertTitle,
-          message: token, preferredStyle: .Alert)
+          message: token, preferredStyle: .alert)
         alertController.addAction(okAction)
-        self.presentViewController(alertController, animated: true, completion: nil)
+        self.present(alertController, animated: true, completion: nil)
     }
     // [START token_refresh]
     FIRAuth.auth()?.currentUser?.getTokenForcingRefresh(true, completion: action)
@@ -421,17 +421,17 @@ class MainViewController: UITableViewController, GIDSignInDelegate, GIDSignInUID
   /** @fn setDisplayName
   @brief Changes the display name of the current user.
   */
-  @IBAction func didSetDisplayName(sender: AnyObject) {
-    showTextInputPromptWithMessage("Display Name:") { (userPressedOK, userInput) in
+  @IBAction func didSetDisplayName(_ sender: AnyObject) {
+    showTextInputPrompt(withMessage: "Display Name:") { (userPressedOK, userInput) in
       if let userInput = userInput {
         self.showSpinner({
           // [START profile_change]
           let changeRequest = FIRAuth.auth()?.currentUser?.profileChangeRequest()
           changeRequest?.displayName = userInput
-          changeRequest?.commitChangesWithCompletion() { (error) in
+          changeRequest?.commitChanges() { (error) in
             // [END profile_change]
             self.hideSpinner({
-              self.showTypicalUIForUserUpdateResultsWithTitle(self.kSetDisplayNameTitle, error: error)
+              self.showTypicalUIForUserUpdateResults(withTitle: self.kSetDisplayNameTitle, error: error as NSError?)
               self.setTitleDisplay(FIRAuth.auth()?.currentUser)
             })
           }
@@ -445,10 +445,10 @@ class MainViewController: UITableViewController, GIDSignInDelegate, GIDSignInUID
   /** @fn requestVerifyEmail
   @brief Requests a "verify email" email be sent.
   */
-  @IBAction func didRequestVerifyEmail(sender: AnyObject) {
+  @IBAction func didRequestVerifyEmail(_ sender: AnyObject) {
     showSpinner({
       // [START send_verification_email]
-      FIRAuth.auth()?.currentUser?.sendEmailVerificationWithCompletion({ (error) in
+      FIRAuth.auth()?.currentUser?.sendEmailVerification(completion: { (error) in
         // [START_EXCLUDE]
         self.hideSpinner({
           if let error = error {
@@ -466,15 +466,15 @@ class MainViewController: UITableViewController, GIDSignInDelegate, GIDSignInUID
   /** @fn changeEmail
   @brief Changes the email address of the current user.
   */
-  @IBAction func didChangeEmail(sender: AnyObject) {
-    showTextInputPromptWithMessage("Email Address:") { (userPressedOK, userInput) in
+  @IBAction func didChangeEmail(_ sender: AnyObject) {
+    showTextInputPrompt(withMessage: "Email Address:") { (userPressedOK, userInput) in
       if let userInput = userInput {
         self.showSpinner({
           // [START change_email]
           FIRAuth.auth()?.currentUser?.updateEmail(userInput) { (error) in
             // [START_EXCLUDE]
             self.hideSpinner({
-              self.showTypicalUIForUserUpdateResultsWithTitle(self.kChangeEmailText, error:error)
+              self.showTypicalUIForUserUpdateResults(withTitle: self.kChangeEmailText, error: error)
             })
             // [END_EXCLUDE]
           }
@@ -489,15 +489,15 @@ class MainViewController: UITableViewController, GIDSignInDelegate, GIDSignInUID
   /** @fn changePassword
   @brief Changes the password of the current user.
   */
-  @IBAction func didChangePassword(sender: AnyObject) {
-    showTextInputPromptWithMessage("New Password:") { (userPressedOK, userInput) in
+  @IBAction func didChangePassword(_ sender: AnyObject) {
+    showTextInputPrompt(withMessage: "New Password:") { (userPressedOK, userInput) in
       if let userInput = userInput {
         self.showSpinner({
           // [START change_password]
           FIRAuth.auth()?.currentUser?.updatePassword(userInput) { (error) in
             // [START_EXCLUDE]
             self.hideSpinner({
-              self.showTypicalUIForUserUpdateResultsWithTitle(self.kChangePasswordText, error:error)
+              self.showTypicalUIForUserUpdateResults(withTitle: self.kChangePasswordText, error: error)
             })
             // [END_EXCLUDE]
           }
@@ -516,15 +516,15 @@ class MainViewController: UITableViewController, GIDSignInDelegate, GIDSignInUID
   @param resultsTitle The title of the @c UIAlertView
   @param error The error details to display if non-nil.
   */
-  func showTypicalUIForUserUpdateResultsWithTitle(resultsTitle: String, error: NSError?) {
+  func showTypicalUIForUserUpdateResults(withTitle resultsTitle: String, error: Error?) {
     if let error = error {
-      let message = "\(error.domain) (\(error.code))\n\(error.localizedDescription)"
-      let okAction = UIAlertAction.init(title: self.kOKButtonText, style: .Default)
+      let message = "\(error.localizedDescription)"
+      let okAction = UIAlertAction.init(title: self.kOKButtonText, style: .default)
         {action in print(self.kOKButtonText)}
       let alertController  = UIAlertController.init(title: resultsTitle,
-        message: message, preferredStyle: .Alert)
+        message: message, preferredStyle: .alert)
       alertController.addAction(okAction)
-      self.presentViewController(alertController, animated: true, completion: nil)
+      self.present(alertController, animated: true, completion: nil)
       return
     }
     tableView.reloadData()

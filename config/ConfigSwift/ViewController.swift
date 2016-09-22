@@ -75,8 +75,8 @@ class ViewController: UIViewController {
     // fetched and cached config would be considered expired because it would have been fetched
     // more than cacheExpiration seconds ago. Thus the next fetch would go to the server unless
     // throttling is in progress. The default expiration duration is 43200 (12 hours).
-    remoteConfig.fetchWithExpirationDuration(NSTimeInterval(expirationDuration)) { (status, error) -> Void in
-      if (status == FIRRemoteConfigFetchStatus.Success) {
+    remoteConfig.fetch(withExpirationDuration: TimeInterval(expirationDuration)) { (status, error) -> Void in
+      if (status == FIRRemoteConfigFetchStatus.success) {
         print("Config fetched!")
         self.remoteConfig.activateFetched()
       } else {
@@ -89,17 +89,17 @@ class ViewController: UIViewController {
   }
 
   func displayPrice() {
-    let initialPrice = remoteConfig[priceConfigKey].numberValue!.intValue
+    let initialPrice = remoteConfig[priceConfigKey].numberValue!.int32Value
     var finalPrice = initialPrice
     if (remoteConfig[isPromotionConfigKey].boolValue) {
       // [START get_config_value]
-      finalPrice = initialPrice - (remoteConfig[discountConfigKey].numberValue?.integerValue)!
+      finalPrice = initialPrice - (remoteConfig[discountConfigKey].numberValue?.intValue)!
       // [END get_config_value]
     }
     priceLabel.text = "\(self.remoteConfig[self.pricePrefixConfigKey].stringValue!)\(finalPrice)"
   }
 
-  @IBAction func handleFetchTouch(sender: AnyObject) {
+  @IBAction func handleFetchTouch(_ sender: AnyObject) {
     fetchConfig()
   }
 }

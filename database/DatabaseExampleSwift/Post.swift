@@ -29,7 +29,7 @@ class Post: NSObject {
     self.author = author
     self.title = title
     self.body = body
-    self.starCount = 0
+    self.starCount = 0 as AnyObject?
   }
 
   convenience override init() {

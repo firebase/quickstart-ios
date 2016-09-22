@@ -51,5 +51,50 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       return GIDSignIn.sharedInstance().handleURL(url, sourceApplication: sourceApplication, annotation: annotation)
   }
   // [END openurl]
+
+  // [START continueuseractivity]
+  @available(iOS 8.0, *)
+  func application(application: UIApplication, continueUserActivity userActivity: NSUserActivity, restorationHandler: ([AnyObject]?) -> Void) -> Bool {
+    let handled = FIRDynamicLinks.dynamicLinks()?.handleUniversalLink(userActivity.webpageURL!) { (dynamiclink, error) in
+      // [START_EXCLUDE]
+      let message = self.generateDynamicLinkMessage(dynamiclink!)
+      self.showDeepLinkAlertViewWithMessage(message)
+      // [END_EXCLUDE]
+    }
+
+    // [START_EXCLUDE silent]
+    if (!handled!) {
+      // Show the deep link URL from userActivity.
+      let message = "continueUserActivity webPageURL:\n\(userActivity.webpageURL?.absoluteString)"
+      showDeepLinkAlertViewWithMessage(message)
+    }
+    // [END_EXCLUDE]
+
+    return handled!
+  }
+  // [END continueuseractivity]
+
+  func generateDynamicLinkMessage(dynamicLink: FIRDynamicLink) -> String {
+    let matchConfidence: String
+    if (dynamicLink.matchConfidence == .Weak) {
+      matchConfidence = "Weak";
+    } else {
+      matchConfidence = "Strong";
+    }
+    let message = "App URL: \(dynamicLink.url?.absoluteString)\nMatch Confidence: \(matchConfidence)\n"
+    return message;
+  }
+
+  @available(iOS 8.0, *)
+  func showDeepLinkAlertViewWithMessage(message: String) {
+    let okAction = UIAlertAction.init(title: "OK", style: .Default) { (action) -> Void in
+      print("OK")
+    }
+
+    let alertController = UIAlertController.init(title: "Deep-link Data", message: message, preferredStyle: .Alert)
+    alertController.addAction(okAction)
+    self.window?.rootViewController?.presentViewController(alertController, animated: true, completion: nil)
+  }
+
 }
 

@@ -12,7 +12,7 @@ Introduction
 Getting Started
 ---------------
 
-- [Add Firebase to your iOS Project](https://firevase.google.com/docs/ios/setup).
+- [Add Firebase to your iOS Project](https://firebase.google.com/docs/ios/setup).
 - Run the sample on your iOS device or emulator.
 - Trigger a crash, and wait a few minutes to see it in the console
 

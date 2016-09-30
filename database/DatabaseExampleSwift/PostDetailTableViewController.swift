@@ -111,7 +111,7 @@ class PostDetailTableViewController: UITableViewController, UITextFieldDelegate 
   }
 
   @IBAction func didTapSend(_ sender: UIButton) {
-    textFieldShouldReturn(commentField!)
+    _ = textFieldShouldReturn(commentField!)
     commentField?.isEnabled = false
     sender.isEnabled = false
     let uid = FIRAuth.auth()?.currentUser?.uid

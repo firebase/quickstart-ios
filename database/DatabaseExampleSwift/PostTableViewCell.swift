@@ -31,7 +31,7 @@ class PostTableViewCell: UITableViewCell {
   @IBAction func didTapStarButton(_ sender: AnyObject) {
     if let postKey = postKey {
       postRef = FIRDatabase.database().reference().child("posts").child(postKey)
-      incrementStarsForRef(postRef)
+      incrementStars(forRef: postRef)
       postRef.observeSingleEvent(of: .value, with: { (snapshot) in
         let value = snapshot.value as? NSDictionary
         if let uid = value?["uid"] as? String {
@@ -39,7 +39,7 @@ class PostTableViewCell: UITableViewCell {
             .child("user-posts")
             .child(uid)
             .child(postKey)
-          self.incrementStarsForRef(userPostRef)
+          self.incrementStars(forRef: userPostRef)
         }
       })
     }

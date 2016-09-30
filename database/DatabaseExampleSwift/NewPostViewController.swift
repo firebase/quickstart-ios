@@ -56,7 +56,7 @@ class NewPostViewController: UIViewController, UITextFieldDelegate {
       // Write new post
       self.writeNewPost(withUserID: userID!, username: user.username, title: self.titleTextField.text!, body: self.bodyTextView.text)
       // Finish this Activity, back to the stream
-      self.navigationController?.popViewController(animated: true)
+      _ = self.navigationController?.popViewController(animated: true)
       // [END_EXCLUDE]
       }) { (error) in
         print(error.localizedDescription)

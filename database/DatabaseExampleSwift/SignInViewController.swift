@@ -36,50 +36,67 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
   }
 
   @IBAction func didTapEmailLogin(_ sender: AnyObject) {
-    if let email = self.emailField.text, let password = self.passwordField.text {
-      showSpinner({
-        FIRAuth.auth()?.signIn(withEmail: email, password: password) { (user, error) in
-          self.hideSpinner({
-            if let error = error {
-              self.showMessagePrompt(error.localizedDescription)
-              return
-            } else if let user = user {
-              self.ref.child("users").child(user.uid).observeSingleEvent(of: .value, with: { snapshot in
-                if (!snapshot.exists()) {
-                  self.showTextInputPrompt(withMessage: "Username:") { (userPressedOK, username) in
-                    if let username = username {
-                      self.showSpinner({
-                        let changeRequest = FIRAuth.auth()?.currentUser?.profileChangeRequest()
-                        changeRequest?.displayName = username
-                        changeRequest?.commitChanges() { (error) in
-                          self.hideSpinner({
-                            if let error = error {
-                              self.showMessagePrompt(error.localizedDescription)
-                              return
-                            }
-                            self.ref.child("users").child(FIRAuth.auth()!.currentUser!.uid).setValue(["username": username])
-                            self.performSegue(withIdentifier: "signIn", sender: nil)
-                          })
-                        }
-                      })
-                    } else {
-                      self.showMessagePrompt("username can't be empty")
-                    }
-                  }
-                } else {
-                  self.performSegue(withIdentifier: "signIn", sender: nil)
-                }
-              })
-            }
-          })
-
-        }
-      })
-    } else {
-      self.showMessagePrompt("email/password can't be empty")
+  
+    guard let email = self.emailField.text, let password = self.passwordField.text else {
+          self.showMessagePrompt("email/password can't be empty")
+      return
     }
+    
+    showSpinner{}
+    
+    // Sign user in
+    FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { (user, error) in
+      
+      self.hideSpinner{}
+      
+      guard let user = user, (error == nil) else {
+        self.showMessagePrompt(error!.localizedDescription)
+        return
+      }
+      
+      self.ref.child("users").child(user.uid).observeSingleEvent(of: .value, with: { (snapshot) in
+        
+        // Check if user already exists
+        guard !snapshot.exists() else {
+          self.performSegue(withIdentifier: "signIn", sender: nil)
+          return
+        }
+        
+        // Otherwise, create a user in the database
+        self.showTextInputPrompt(withMessage: "Username:") { (userPressedOK, username) in
+          
+          guard let username = username else {
+            self.showMessagePrompt("Username can't be empty")
+            return
+          }
+          
+          self.showSpinner{}
+          
+          let changeRequest = FIRAuth.auth()?.currentUser?.profileChangeRequest()
+          changeRequest?.displayName = username
+          
+          changeRequest?.commitChanges() { (error) in
+            
+            self.hideSpinner{}
+            guard error == nil else {
+              self.showMessagePrompt(error!.localizedDescription)
+              return
+            }
+            
+            self.ref.child("users").child(FIRAuth.auth()!.currentUser!.uid).setValue(["username": username])
+            self.performSegue(withIdentifier: "signIn", sender: nil)
+            
+          }
+          
+        }
+        
+      }) // End of observeSingleEvent
+      
+    }) // End of signIn
+    
   }
-
+  
+  
   @IBAction func didTapSignUp(_ sender: AnyObject) {
     showTextInputPrompt(withMessage: "Email:") { (userPressedOK, email) in
       if let email = email {
@@ -130,7 +147,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
 
   // MARK: - UITextFieldDelegate protocol methods
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-    didTapEmailLogin(textField)
+//    didTapEmailLogin(textField)
     return true
   }
 }

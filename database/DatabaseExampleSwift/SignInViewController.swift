@@ -96,58 +96,94 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     
   }
   
-  
   @IBAction func didTapSignUp(_ sender: AnyObject) {
-    showTextInputPrompt(withMessage: "Email:") { (userPressedOK, email) in
-      if let email = email {
-        self.showTextInputPrompt(withMessage: "Password:") { (userPressedOK, password) in
-          if let password = password {
-            self.showTextInputPrompt(withMessage: "Username:") { (userPressedOK, username) in
-              if let username = username {
-                self.showSpinner({
-                  FIRAuth.auth()?.createUser(withEmail: email, password: password) { (user, error) in
-                    self.hideSpinner({
-                      if let error = error {
-                        self.showMessagePrompt(error.localizedDescription)
-                        return
-                      }
-                      self.showSpinner({
-                        let changeRequest = FIRAuth.auth()?.currentUser?.profileChangeRequest()
-                        changeRequest?.displayName = username
-                        changeRequest?.commitChanges() { (error) in
-                          self.hideSpinner({
-                            if let error = error {
-                              self.showMessagePrompt(error.localizedDescription)
-                              return
-                            }
-                            // [START basic_write]
-                            self.ref.child("users").child(user!.uid).setValue(["username": username])
-                            // [END basic_write]
-                            self.performSegue(withIdentifier: "signIn", sender: nil)
-                        })
-                      }
-                    })
-                    })
-                  }
-                })
-              } else {
-                self.showMessagePrompt("username can't be empty")
-              }
-            }
-          } else {
-            self.showMessagePrompt("password can't be empty")
-          }
+   
+    func getEmail(completion: @escaping (String) -> ()) {
+      
+      self.showTextInputPrompt(withMessage: "Email:") { (userPressedOK, email) in
+        guard let email = email else {
+          self.showMessagePrompt("Email can't be empty.")
+          return
         }
-      } else {
-        self.showMessagePrompt("email can't be empty")
+        completion(email)
       }
     }
-  }
+    
+    func getUsername(completion: @escaping (String) -> ()) {
+      
+      self.showTextInputPrompt(withMessage: "Username:") { (userPressedOK, username) in
+        guard let username = username else {
+          self.showMessagePrompt("Username can't be empty.")
+          return
+        }
+        completion(username)
+      }
+    }
+    
+    func getPassword(completion: @escaping (String) -> ()) {
+      
+      self.showTextInputPrompt(withMessage: "Password:") { (userPressedOK, password) in
+        guard let password = password else {
+          self.showMessagePrompt("Password can't be empty.")
+          return
+        }
+        completion(password)
+      }
+    }
+    
+    
+    func saveUser(_ user: FIRUser, withUsername username: String) {
+      
+      // Create a change request
+      showSpinner{}
+        let changeRequest = FIRAuth.auth()?.currentUser?.profileChangeRequest()
+        changeRequest?.displayName = username
+      
+      // Commit profile changes to server
+      changeRequest?.commitChanges() { (error) in
+          
+        self.hideSpinner{}
+          
+        guard error == nil else {
+          self.showMessagePrompt(error!.localizedDescription)
+          return
+        }
+        
+        // [START basic_write]
+        self.ref.child("users").child(user.uid).setValue(["username": username])
+        // [END basic_write]
+        self.performSegue(withIdentifier: "signIn", sender: nil)
+      }
+      
+    }
+    
+    
+    // Get the credentials of hte user
+    getEmail { email in
+      getUsername { username in
+        getPassword { password in
+        
+          // Create the user with the provided credentials
+          FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (user, error) in
+            
+            guard let user = user, error == nil else {
+              self.showMessagePrompt(error!.localizedDescription)
+              return
+            }
+            
+            // Finally, save their profile
+            saveUser(user, withUsername: username)
+            
+          })
+        }
+      }
+    }
 
+  }
 
   // MARK: - UITextFieldDelegate protocol methods
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-//    didTapEmailLogin(textField)
+    didTapEmailLogin(textField)
     return true
   }
 }

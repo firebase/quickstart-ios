@@ -38,18 +38,18 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
   @IBAction func didTapEmailLogin(_ sender: AnyObject) {
   
     guard let email = self.emailField.text, let password = self.passwordField.text else {
-          self.showMessagePrompt("email/password can't be empty")
+      self.showMessagePrompt("email/password can't be empty")
       return
     }
     
-    showSpinner{}
+    self.showSpinner {}
     
     // Sign user in
     FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { (user, error) in
       
-      self.hideSpinner{}
+      self.hideSpinner {}
       
-      guard let user = user, (error == nil) else {
+      guard let user = user, error == nil else {
         self.showMessagePrompt(error!.localizedDescription)
         return
       }
@@ -62,7 +62,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
           return
         }
         
-        // Otherwise, create a user in the database
+        // Otherwise, create the new user account
         self.showTextInputPrompt(withMessage: "Username:") { (userPressedOK, username) in
           
           guard let username = username else {
@@ -70,16 +70,17 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
             return
           }
           
-          self.showSpinner{}
+          self.showSpinner {}
           
           let changeRequest = FIRAuth.auth()?.currentUser?.profileChangeRequest()
           changeRequest?.displayName = username
           
           changeRequest?.commitChanges() { (error) in
             
-            self.hideSpinner{}
-            guard error == nil else {
-              self.showMessagePrompt(error!.localizedDescription)
+            self.hideSpinner {}
+            
+            if let error = error {
+              self.showMessagePrompt(error.localizedDescription)
               return
             }
             
@@ -135,17 +136,17 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     func saveUser(_ user: FIRUser, withUsername username: String) {
       
       // Create a change request
-      showSpinner{}
-        let changeRequest = FIRAuth.auth()?.currentUser?.profileChangeRequest()
-        changeRequest?.displayName = username
+      self.showSpinner {}
+      let changeRequest = FIRAuth.auth()?.currentUser?.profileChangeRequest()
+      changeRequest?.displayName = username
       
       // Commit profile changes to server
       changeRequest?.commitChanges() { (error) in
           
-        self.hideSpinner{}
+        self.hideSpinner {}
           
-        guard error == nil else {
-          self.showMessagePrompt(error!.localizedDescription)
+        if let error = error {
+          self.showMessagePrompt(error.localizedDescription)
           return
         }
         

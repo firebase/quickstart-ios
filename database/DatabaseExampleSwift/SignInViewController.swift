@@ -35,6 +35,32 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     ref = FIRDatabase.database().reference()
   }
 
+  // Saves user profile information to user database
+  func saveUserInfo(_ user: FIRUser, withUsername username: String) {
+    
+    // Create a change request
+    self.showSpinner {}
+    let changeRequest = FIRAuth.auth()?.currentUser?.profileChangeRequest()
+    changeRequest?.displayName = username
+    
+    // Commit profile changes to server
+    changeRequest?.commitChanges() { (error) in
+      
+      self.hideSpinner {}
+      
+      if let error = error {
+        self.showMessagePrompt(error.localizedDescription)
+        return
+      }
+      
+      // [START basic_write]
+      self.ref.child("users").child(user.uid).setValue(["username": username])
+      // [END basic_write]
+      self.performSegue(withIdentifier: "signIn", sender: nil)
+    }
+    
+  }
+  
   @IBAction func didTapEmailLogin(_ sender: AnyObject) {
   
     guard let email = self.emailField.text, let password = self.passwordField.text else {
@@ -70,24 +96,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
             return
           }
           
-          self.showSpinner {}
-          
-          let changeRequest = FIRAuth.auth()?.currentUser?.profileChangeRequest()
-          changeRequest?.displayName = username
-          
-          changeRequest?.commitChanges() { (error) in
-            
-            self.hideSpinner {}
-            
-            if let error = error {
-              self.showMessagePrompt(error.localizedDescription)
-              return
-            }
-            
-            self.ref.child("users").child(FIRAuth.auth()!.currentUser!.uid).setValue(["username": username])
-            self.performSegue(withIdentifier: "signIn", sender: nil)
-            
-          }
+          self.saveUserInfo(user, withUsername: username)
           
         }
         
@@ -133,32 +142,6 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     }
     
     
-    func saveUser(_ user: FIRUser, withUsername username: String) {
-      
-      // Create a change request
-      self.showSpinner {}
-      let changeRequest = FIRAuth.auth()?.currentUser?.profileChangeRequest()
-      changeRequest?.displayName = username
-      
-      // Commit profile changes to server
-      changeRequest?.commitChanges() { (error) in
-          
-        self.hideSpinner {}
-          
-        if let error = error {
-          self.showMessagePrompt(error.localizedDescription)
-          return
-        }
-        
-        // [START basic_write]
-        self.ref.child("users").child(user.uid).setValue(["username": username])
-        // [END basic_write]
-        self.performSegue(withIdentifier: "signIn", sender: nil)
-      }
-      
-    }
-    
-    
     // Get the credentials of hte user
     getEmail { email in
       getUsername { username in
@@ -173,7 +156,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
             }
             
             // Finally, save their profile
-            saveUser(user, withUsername: username)
+            self.saveUserInfo(user, withUsername: username)
             
           })
         }

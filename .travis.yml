@@ -1,0 +1,19 @@
+osx_image: xcode8
+language: objective-c
+xcode_workspace: admob/AdMobExample.xcworkspace
+xcode_scheme: AdMobExample
+
+rvm: 2.3.1
+before_install:
+  - gem uninstall cocoapods -a
+  - gem install cocoapods -v '1.0.1'
+  - pod install --repo-update
+
+script: xcodebuild -workspace admob/AdMobExample.xcworkspace
+  -scheme AdMobExample
+  -sdk iphonesimulator
+  -destination 'platform=iOS Simulator,name=iPhone 7'
+  build
+  test
+  ONLY_ACTIVE_ARCH=YES
+  CODE_SIGNING_REQUIRED=NO

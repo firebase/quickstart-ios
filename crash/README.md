@@ -16,7 +16,7 @@ Getting Started
 - Run the sample on your iOS device or emulator.
 - Trigger a crash, and wait a few minutes to see it in the console
 
-Note: You will need Swift 2.2 to run the Swift version of this quickstart.
+Note: You will need Swift 3.0 to run the Swift version of this quickstart.
 
 Support
 -------

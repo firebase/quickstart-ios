@@ -13,7 +13,7 @@ Getting Started
 - Alter configuration in the Remote Config console, for example creating an override for `loading_phrase`.
 - Run the sample on your iOS device or emulator.
 
-Note: You will need Swift 2.0 to run the Swift version of this quickstart.
+Note: You will need Swift 3.0 to run the Swift version of this quickstart.
 
 Support
 -------

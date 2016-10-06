@@ -4,7 +4,7 @@
 set -e
 
 # List of all samples
-samples=( admob analytics app-indexing auth config crash database dynamiclinks invites messaging storage )
+samples=( admob )
 
 # Work off travis
 #if [[ -v TRAVIS_PULL_REQUEST ]]; then

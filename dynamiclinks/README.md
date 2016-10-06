@@ -22,7 +22,7 @@ Getting Started
     your Dynamic Link and be taken to the quickstart app.
   - On as of iOS 9, only Universal Links are considered strong links.
 
-Note: You will need Swift 2.0 to run the Swift version of this quickstart.
+Note: You will need Swift 3.0 to run the Swift version of this quickstart.
 
 Screenshots
 -----------

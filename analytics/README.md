@@ -15,7 +15,7 @@ Getting Started
 - [Add Firebase to your iOS Project](https://firebase.google.com/docs/ios/setup).
 - Run the sample on your iOS device or emulator.
 
-Note: You will need Swift 2.0 to run the Swift version of this quickstart.
+Note: You will need Swift 3.0 to run the Swift version of this quickstart.
 
 Support
 -------

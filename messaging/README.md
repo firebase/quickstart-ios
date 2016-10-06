@@ -18,7 +18,7 @@ Getting Started
 - Update the app Bundle ID in XCode to match the Bundle ID of your APNs cert.
 - Run the sample on your iOS device.
 
-Note: You will need Swift 2.0 to run the Swift version of this quickstart.
+Note: You will need Swift 3.0 to run the Swift version of this quickstart.
 
 Screenshots
 -----------

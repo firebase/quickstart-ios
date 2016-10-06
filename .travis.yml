@@ -7,9 +7,7 @@ rvm: 2.3.1
 before_install:
   - gem uninstall cocoapods -a
   - gem install cocoapods -v '1.0.1'
-  - cd AdMobExample
-  - pod install --repo-update
-  - cd ..
+  - ./travis_script.sh
 
 script: xcodebuild -workspace admob/AdMobExample.xcworkspace
   -scheme AdMobExample

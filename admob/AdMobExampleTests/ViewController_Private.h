@@ -18,7 +18,7 @@
 //
 
 #import "ViewController.h"
-#import <Firebase/AdMob.h>
+@import GoogleMobileAds;
 
 @interface ViewController ()
 @property(nonatomic, weak) IBOutlet GADBannerView *bannerView;

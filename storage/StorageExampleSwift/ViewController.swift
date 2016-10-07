@@ -43,7 +43,7 @@ class ViewController: UIViewController,
     // Using Firebase Storage requires the user be authenticated. Here we are using
     // anonymous authentication.
     if (FIRAuth.auth()?.currentUser == nil) {
-      FIRAuth.auth()?.signInAnonymously(completion: { (user:FIRUser?, error:Error?) in
+      FIRAuth.auth()?.signInAnonymously(completion: { (user: FIRUser?, error: Error?) in
         if let error = error {
           self.urlTextView.text = error.localizedDescription
           self.takePicButton.isEnabled = false

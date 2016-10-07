@@ -34,8 +34,8 @@ class PatternTabBarController: UITabBarController {
   @IBAction func didTapShare(_ sender: AnyObject) {
     // [START custom_event_swift]
     FIRAnalytics.logEvent(withName: kFIREventSelectContent, parameters: [
-      kFIRParameterContentType:"cont" as NSObject,
-      kFIRParameterItemID:"1" as NSObject
+      kFIRParameterContentType: "cont" as NSObject,
+      kFIRParameterItemID: "1" as NSObject
       ])
     // [END custom_event_swift]
 

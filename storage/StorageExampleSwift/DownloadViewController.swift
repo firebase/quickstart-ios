@@ -21,8 +21,8 @@ import Firebase
 @objc(DownloadViewController)
 class DownloadViewController: UIViewController {
 
-  @IBOutlet weak var imageView:UIImageView!
-  @IBOutlet weak var statusTextView:UITextView!
+  @IBOutlet weak var imageView: UIImageView!
+  @IBOutlet weak var statusTextView: UITextView!
   var storageRef:FIRStorageReference!
 
   override func viewDidLoad() {

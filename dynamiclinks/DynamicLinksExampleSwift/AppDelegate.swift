@@ -25,13 +25,13 @@ import Firebase
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
   var window: UIWindow?
-  let CUSTOM_URL_SCHEME = "dlscheme"
+  let customURLScheme = "dlscheme"
 
   // [START didfinishlaunching]
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     // Set deepLinkURLScheme to the custom URL scheme you defined in your
     // Xcode project.
-    FIROptions.default().deepLinkURLScheme = self.CUSTOM_URL_SCHEME
+    FIROptions.default().deepLinkURLScheme = self.customURLScheme
     FIRApp.configure()
 
     return true

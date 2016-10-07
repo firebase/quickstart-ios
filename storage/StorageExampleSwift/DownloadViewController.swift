@@ -29,13 +29,13 @@ class DownloadViewController: UIViewController {
     super.viewDidLoad()
     storageRef = FIRStorage.storage().reference()
 
-    let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
+    let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
     let documentsDirectory = paths[0]
     let filePath = "file:\(documentsDirectory)/myimage.jpg"
-    let storagePath = NSUserDefaults.standardUserDefaults().objectForKey("storagePath") as! String
+    let storagePath = UserDefaults.standard.object(forKey: "storagePath") as! String
 
     // [START downloadimage]
-    storageRef.child(storagePath).writeToFile(NSURL.init(string: filePath)!,
+    storageRef.child(storagePath).write(toFile: URL.init(string: filePath)!,
                                               completion: { (url, error) in
       if let error = error {
         print("Error downloading:\(error)")

@@ -29,27 +29,27 @@ class FoodPickerViewController: UIViewController, UIPickerViewDelegate, UIPicker
 
   let foodStuffs = ["Hot Dogs", "Hamburger", "Pizza"]
 
-  func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+  func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
     let food = foodStuffs[row]
-    NSUserDefaults.standardUserDefaults().setValue(food, forKey: "favorite_food")
-    NSUserDefaults.standardUserDefaults().synchronize()
+    UserDefaults.standard.setValue(food, forKey: "favorite_food")
+    UserDefaults.standard.synchronize()
 
     // [START user_property]
     FIRAnalytics.setUserPropertyString(food, forName: "favorite_food")
     // [END user_property]
 
-    performSegueWithIdentifier("unwindToHome", sender: self)
+    performSegue(withIdentifier: "unwindToHome", sender: self)
   }
 
-  func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+  func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
     return foodStuffs.count
   }
 
-  func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+  func numberOfComponents(in pickerView: UIPickerView) -> Int {
     return 1
   }
 
-  func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+  func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
     return foodStuffs[row];
   }
 

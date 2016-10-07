@@ -25,7 +25,7 @@ class SignInViewController: UIViewController, GIDSignInDelegate, GIDSignInUIDele
   @IBOutlet weak var signInButton: GIDSignInButton!
   @IBOutlet weak var bgText: UILabel!
 
-  override func viewDidAppear(animated: Bool) {
+  override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
 
     bgText.text = "Invites\niOS demo"
@@ -36,21 +36,21 @@ class SignInViewController: UIViewController, GIDSignInDelegate, GIDSignInUIDele
     GIDSignIn.sharedInstance().signInSilently()
   }
 
-  func signIn(signIn: GIDSignIn!, didSignInForUser user: GIDGoogleUser!, withError error: NSError!) {
+  func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
     if (error == nil) {
       // User Successfully signed in.
-      self.performSegueWithIdentifier("SignedInScreen", sender: self)
+      self.performSegue(withIdentifier: "SignedInScreen", sender: self)
     } else {
       // Something went wrong; for example, the user could haved clicked cancel.
     }
   }
 
-  @IBAction func unwindToSignIn(sender: UIStoryboardSegue) {
+  @IBAction func unwindToSignIn(_ sender: UIStoryboardSegue) {
     GIDSignIn.sharedInstance().delegate = self
   }
 
   // Sets the status bar to white.
-  override func preferredStatusBarStyle() -> UIStatusBarStyle {
-    return UIStatusBarStyle.LightContent
+  override var preferredStatusBarStyle : UIStatusBarStyle {
+    return .lightContent
   }
 }

@@ -28,10 +28,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   let CUSTOM_URL_SCHEME = "dlscheme"
 
   // [START didfinishlaunching]
-  func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+  func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     // Set deepLinkURLScheme to the custom URL scheme you defined in your
     // Xcode project.
-    FIROptions.defaultOptions().deepLinkURLScheme = self.CUSTOM_URL_SCHEME
+    FIROptions.default().deepLinkURLScheme = self.CUSTOM_URL_SCHEME
     FIRApp.configure()
 
     return true
@@ -39,12 +39,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   // [END didfinishlaunching]
 
   // [START openurl]
-  func application(app: UIApplication, openURL url: NSURL, options: [String : AnyObject]) -> Bool {
-    return application(app, openURL: url, sourceApplication: nil, annotation: [:])
+  func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any]) -> Bool {
+    return application(app, open: url, sourceApplication: nil, annotation: [:])
   }
 
-  func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
-    let dynamicLink = FIRDynamicLinks.dynamicLinks()?.dynamicLinkFromCustomSchemeURL(url)
+  func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+    let dynamicLink = FIRDynamicLinks.dynamicLinks()?.dynamicLink(fromCustomSchemeURL: url)
     if let dynamicLink = dynamicLink {
       // Handle the deep link. For example, show the deep-linked content or
       // apply a promotional offer to the user's account.
@@ -52,7 +52,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       // In this sample, we just open an alert.
       let message = generateDynamicLinkMessage(dynamicLink)
       if #available(iOS 8.0, *) {
-          showDeepLinkAlertViewWithMessage(message)
+          showDeepLinkAlertView(withMessage: message)
       } else {
           // Fallback on earlier versions
       }
@@ -63,7 +63,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // [START_EXCLUDE silent]
     // Show the deep link that the app was called with.
     if #available(iOS 8.0, *) {
-        showDeepLinkAlertViewWithMessage("openURL:\n\(url)")
+        showDeepLinkAlertView(withMessage: "openURL:\n\(url)")
     } else {
         // Fallback on earlier versions
     }
@@ -74,11 +74,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   // [START continueuseractivity]
   @available(iOS 8.0, *)
-  func application(application: UIApplication, continueUserActivity userActivity: NSUserActivity, restorationHandler: ([AnyObject]?) -> Void) -> Bool {
+  func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
     let handled = FIRDynamicLinks.dynamicLinks()?.handleUniversalLink(userActivity.webpageURL!) { (dynamiclink, error) in
       // [START_EXCLUDE]
       let message = self.generateDynamicLinkMessage(dynamiclink!)
-      self.showDeepLinkAlertViewWithMessage(message)
+      self.showDeepLinkAlertView(withMessage: message)
     // [END_EXCLUDE]
     }
 
@@ -86,7 +86,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     if (!handled!) {
       // Show the deep link URL from userActivity.
       let message = "continueUserActivity webPageURL:\n\(userActivity.webpageURL)"
-      showDeepLinkAlertViewWithMessage(message)
+      showDeepLinkAlertView(withMessage: message)
     }
     // [END_EXCLUDE]
 
@@ -94,9 +94,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   }
   // [END continueuseractivity]
 
-  func generateDynamicLinkMessage(dynamicLink: FIRDynamicLink) -> String {
+  func generateDynamicLinkMessage(_ dynamicLink: FIRDynamicLink) -> String {
     let matchConfidence: String
-    if (dynamicLink.matchConfidence == .Weak) {
+    if (dynamicLink.matchConfidence == .weak) {
       matchConfidence = "Weak";
     } else {
       matchConfidence = "Strong";
@@ -106,14 +106,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   }
 
   @available(iOS 8.0, *)
-  func showDeepLinkAlertViewWithMessage(message: String) {
-    let okAction = UIAlertAction.init(title: "OK", style: .Default) { (action) -> Void in
+  func showDeepLinkAlertView(withMessage message: String) {
+    let okAction = UIAlertAction.init(title: "OK", style: .default) { (action) -> Void in
       print("OK")
     }
 
-    let alertController = UIAlertController.init(title: "Deep-link Data", message: message, preferredStyle: .Alert)
+    let alertController = UIAlertController.init(title: "Deep-link Data", message: message, preferredStyle: .alert)
     alertController.addAction(okAction)
-    self.window?.rootViewController?.presentViewController(alertController, animated: true, completion: nil)
+    self.window?.rootViewController?.present(alertController, animated: true, completion: nil)
   }
 
 

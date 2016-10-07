@@ -26,7 +26,7 @@ class ViewController: UIViewController {
     FIRCrashMessage("View loaded")
   }
 
-  @IBAction func initiateCrash(sender: AnyObject) {
+  @IBAction func initiateCrash(_ sender: AnyObject) {
     // [START log_and_crash_swift]
     FIRCrashMessage("Cause Crash button clicked")
     fatalError()

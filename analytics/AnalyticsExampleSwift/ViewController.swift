@@ -20,16 +20,16 @@ import FirebaseAnalytics
 @objc(ViewController)  // match the ObjC symbol name inside Storyboard
 class ViewController: UIViewController {
 
-  override func viewWillAppear(animated: Bool) {
+  override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(true)
 
     let name = "Pattern~\(title!)",
         text = "I'd love you to hear about\(name)"
 
     // [START custom_event_swift]
-    FIRAnalytics.logEventWithName("share_image", parameters: [
-      "name": name,
-      "full_text": text
+    FIRAnalytics.logEvent(withName: "share_image", parameters: [
+      "name": name as NSObject,
+      "full_text": text as NSObject
       ])
     // [END custom_event_swift]
   }

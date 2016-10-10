@@ -43,13 +43,13 @@ class ViewController: UIViewController,
     // Using Firebase Storage requires the user be authenticated. Here we are using
     // anonymous authentication.
     if (FIRAuth.auth()?.currentUser == nil) {
-      FIRAuth.auth()?.signInAnonymouslyWithCompletion({ (user:FIRUser?, error:NSError?) in
-        if (error != nil) {
-          self.urlTextView.text = error?.description
-          self.takePicButton.enabled = false
+      FIRAuth.auth()?.signInAnonymously(completion: { (user: FIRUser?, error: Error?) in
+        if let error = error {
+          self.urlTextView.text = error.localizedDescription
+          self.takePicButton.isEnabled = false
         } else {
           self.urlTextView.text = ""
-          self.takePicButton.enabled = true
+          self.takePicButton.isEnabled = true
         }
       })
     }
@@ -61,28 +61,28 @@ class ViewController: UIViewController,
   @IBAction func didTapTakePicture(_: AnyObject) {
     let picker = UIImagePickerController()
     picker.delegate = self
-    if (UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)) {
-      picker.sourceType = UIImagePickerControllerSourceType.Camera
+    if (UIImagePickerController.isSourceTypeAvailable(.camera)) {
+      picker.sourceType = .camera
     } else {
-      picker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+      picker.sourceType = .photoLibrary
     }
 
-    presentViewController(picker, animated: true, completion:nil)
+    present(picker, animated: true, completion:nil)
   }
 
-  func imagePickerController(picker: UIImagePickerController,
-    didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-      picker.dismissViewControllerAnimated(true, completion:nil)
+  func imagePickerController(_ picker: UIImagePickerController,
+    didFinishPickingMediaWithInfo info: [String : Any]) {
+      picker.dismiss(animated: true, completion:nil)
 
     urlTextView.text = "Beginning Upload";
     // if it's a photo from the library, not an image from the camera
     if #available(iOS 8.0, *), let referenceUrl = info[UIImagePickerControllerReferenceURL] {
-      let assets = PHAsset.fetchAssetsWithALAssetURLs([referenceUrl as! NSURL], options: nil)
+      let assets = PHAsset.fetchAssets(withALAssetURLs: [referenceUrl as! URL], options: nil)
       let asset = assets.firstObject
-      asset?.requestContentEditingInputWithOptions(nil, completionHandler: { (contentEditingInput,info) in
+      asset?.requestContentEditingInput(with: nil, completionHandler: { (contentEditingInput,info) in
         let imageFile = contentEditingInput?.fullSizeImageURL
         let filePath = FIRAuth.auth()!.currentUser!.uid +
-          "/\(Int(NSDate.timeIntervalSinceReferenceDate() * 1000))/\(imageFile!.lastPathComponent!)"
+          "/\(Int(Date.timeIntervalSinceReferenceDate * 1000))/\(imageFile!.lastPathComponent)"
         // [START uploadimage]
         self.storageRef.child(filePath)
           .putFile(imageFile!, metadata: nil) { (metadata, error) in
@@ -99,11 +99,11 @@ class ViewController: UIViewController,
       let image = info[UIImagePickerControllerOriginalImage] as! UIImage
       let imageData = UIImageJPEGRepresentation(image, 0.8)
       let imagePath = FIRAuth.auth()!.currentUser!.uid +
-        "/\(Int(NSDate.timeIntervalSinceReferenceDate() * 1000)).jpg"
+        "/\(Int(Date.timeIntervalSinceReferenceDate * 1000)).jpg"
       let metadata = FIRStorageMetadata()
       metadata.contentType = "image/jpeg"
       self.storageRef.child(imagePath)
-        .putData(imageData!, metadata: metadata) { (metadata, error) in
+        .put(imageData!, metadata: metadata) { (metadata, error) in
           if let error = error {
             print("Error uploading: \(error)")
             self.urlTextView.text = "Upload Failed"
@@ -114,15 +114,15 @@ class ViewController: UIViewController,
     }
   }
 
-  func uploadSuccess(metadata: FIRStorageMetadata, storagePath: String) {
+  func uploadSuccess(_ metadata: FIRStorageMetadata, storagePath: String) {
     print("Upload Succeeded!")
     self.urlTextView.text = metadata.downloadURL()!.absoluteString
-    NSUserDefaults.standardUserDefaults().setObject(storagePath, forKey: "storagePath")
-    NSUserDefaults.standardUserDefaults().synchronize()
-    self.downloadPicButton.enabled = true
+    UserDefaults.standard.set(storagePath, forKey: "storagePath")
+    UserDefaults.standard.synchronize()
+    self.downloadPicButton.isEnabled = true
   }
 
-  func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-    picker.dismissViewControllerAnimated(true, completion:nil)
+  func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+    picker.dismiss(animated: true, completion:nil)
   }
 }

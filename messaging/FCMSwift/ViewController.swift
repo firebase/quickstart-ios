@@ -26,16 +26,16 @@ class ViewController: UIViewController {
     super.viewDidLoad()
   }
 
-  @IBAction func handleLogTokenTouch(sender: UIButton) {
+  @IBAction func handleLogTokenTouch(_ sender: UIButton) {
     // [START get_iid_token]
     let token = FIRInstanceID.instanceID().token()
     print("InstanceID token: \(token!)")
     // [END get_iid_token]
   }
 
-  @IBAction func handleSubscribeTouch(sender: UIButton) {
+  @IBAction func handleSubscribeTouch(_ sender: UIButton) {
     // [START subscribe_topic]
-    FIRMessaging.messaging().subscribeToTopic("/topics/news")
+    FIRMessaging.messaging().subscribe(toTopic: "/topics/news")
     print("Subscribed to news topic")
     // [END subscribe_topic]
   }

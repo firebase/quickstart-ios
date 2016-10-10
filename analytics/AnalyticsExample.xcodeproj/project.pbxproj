@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		10CB980A1D9975E0008BB445 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 10CB98091D9975E0008BB445 /* GoogleService-Info.plist */; };
+		10CB980B1D9975E0008BB445 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 10CB98091D9975E0008BB445 /* GoogleService-Info.plist */; };
 		5F3B16801AFC453200860007 /* CircleImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F3B167F1AFC453200860007 /* CircleImageView.m */; };
 		5F3B16811AFC453200860007 /* CircleImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F3B167F1AFC453200860007 /* CircleImageView.m */; };
 		5F5A53521ADE670C00F81DF0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5A53511ADE670C00F81DF0 /* main.m */; };
@@ -41,6 +43,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		10CB98091D9975E0008BB445 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5F3B167E1AFC453200860007 /* CircleImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleImageView.h; sourceTree = "<group>"; };
 		5F3B167F1AFC453200860007 /* CircleImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleImageView.m; sourceTree = "<group>"; };
 		5F5A534C1ADE670C00F81DF0 /* AnalyticsExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AnalyticsExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -135,6 +138,7 @@
 		5F5A534F1ADE670C00F81DF0 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				10CB98091D9975E0008BB445 /* GoogleService-Info.plist */,
 				5F3B167E1AFC453200860007 /* CircleImageView.h */,
 				5F3B167F1AFC453200860007 /* CircleImageView.m */,
 				5F5A53511ADE670C00F81DF0 /* main.m */,
@@ -290,6 +294,7 @@
 			files = (
 				5F99610C1AE0CF4F0034F503 /* LaunchScreen.xib in Resources */,
 				5F99610A1AE0CF4F0034F503 /* Images.xcassets in Resources */,
+				10CB980A1D9975E0008BB445 /* GoogleService-Info.plist in Resources */,
 				EF01600C1BD07C1F00F8DA01 /* AnalyticsImages.xcassets in Resources */,
 				5F5A535B1ADE670C00F81DF0 /* Main.storyboard in Resources */,
 			);
@@ -301,6 +306,7 @@
 			files = (
 				5F99610D1AE0CF4F0034F503 /* LaunchScreen.xib in Resources */,
 				EF01600D1BD07C1F00F8DA01 /* AnalyticsImages.xcassets in Resources */,
+				10CB980B1D9975E0008BB445 /* GoogleService-Info.plist in Resources */,
 				5F5A539C1ADE69AA00F81DF0 /* Main.storyboard in Resources */,
 				5F99610B1AE0CF4F0034F503 /* Images.xcassets in Resources */,
 			);
@@ -372,6 +378,17 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		1073F3B81DA830C500C3EDCB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				PRODUCT_NAME = AnalyticsExampleSwift;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
 		5F5A536D1ADE670C00F81DF0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -464,7 +481,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.analytics;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -479,24 +495,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.analytics;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
-		};
-		5F5A53951ADE67D500F81DF0 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				ENABLE_BITCODE = NO;
-				INFOPLIST_FILE = "$(SRCROOT)/AnalyticsExample/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.analytics;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_VERSION = 2.3;
-			};
-			name = Debug;
 		};
 		5F5A53961ADE67D500F81DF0 /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -510,7 +510,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -601,8 +601,8 @@
 		5F5A53991ADE67D500F81DF0 /* Build configuration list for PBXNativeTarget "AnalyticsExampleSwift" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				5F5A53951ADE67D500F81DF0 /* Debug */,
 				5F5A53961ADE67D500F81DF0 /* Release */,
+				1073F3B81DA830C500C3EDCB /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

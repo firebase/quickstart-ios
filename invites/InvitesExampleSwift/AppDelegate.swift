@@ -23,8 +23,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   var window: UIWindow?
 
   // [START configure]
-  func application(application: UIApplication,
-    didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+  func application(_ application: UIApplication,
+    didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     // Use Firebase library to configure APIs
     FIRApp.configure()
     return true
@@ -33,32 +33,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   // [START openurl]
   @available(iOS 9.0, *)
-  func application(application: UIApplication, openURL url: NSURL, options: [String : AnyObject])
+  func application(_ application: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any])
     -> Bool {
-      return self.application(application, openURL: url, sourceApplication: options[UIApplicationOpenURLOptionsSourceApplicationKey] as? String, annotation: "")
+      return self.application(application, open: url, sourceApplication: options[UIApplicationOpenURLOptionsKey.sourceApplication] as? String, annotation: "")
   }
 
-  func application(application: UIApplication,
-    openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
-      if let invite = FIRInvites.handleURL(url, sourceApplication:sourceApplication, annotation:annotation) as? FIRReceivedInvite {
+  func application(_ application: UIApplication,
+    open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+      if let invite = FIRInvites.handle(url, sourceApplication:sourceApplication, annotation:annotation) as? FIRReceivedInvite {
         let matchType =
-            (invite.matchType == FIRReceivedInviteMatchType.Weak) ? "Weak" : "Strong"
+            (invite.matchType == .weak) ? "Weak" : "Strong"
         print("Invite received from: \(sourceApplication) Deeplink: \(invite.deepLink)," +
             "Id: \(invite.inviteId), Type: \(matchType)")
         return true
       }
 
-      return GIDSignIn.sharedInstance().handleURL(url, sourceApplication: sourceApplication, annotation: annotation)
+      return GIDSignIn.sharedInstance().handle(url, sourceApplication: sourceApplication, annotation: annotation)
   }
   // [END openurl]
 
   // [START continueuseractivity]
   @available(iOS 8.0, *)
-  func application(application: UIApplication, continueUserActivity userActivity: NSUserActivity, restorationHandler: ([AnyObject]?) -> Void) -> Bool {
+  func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
     let handled = FIRDynamicLinks.dynamicLinks()?.handleUniversalLink(userActivity.webpageURL!) { (dynamiclink, error) in
       // [START_EXCLUDE]
       let message = self.generateDynamicLinkMessage(dynamiclink!)
-      self.showDeepLinkAlertViewWithMessage(message)
+      self.showDeepLinkAlertView(withMessage: message)
       // [END_EXCLUDE]
     }
 
@@ -66,7 +66,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     if (!handled!) {
       // Show the deep link URL from userActivity.
       let message = "continueUserActivity webPageURL:\n\(userActivity.webpageURL?.absoluteString)"
-      showDeepLinkAlertViewWithMessage(message)
+      showDeepLinkAlertView(withMessage: message)
     }
     // [END_EXCLUDE]
 
@@ -74,9 +74,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   }
   // [END continueuseractivity]
 
-  func generateDynamicLinkMessage(dynamicLink: FIRDynamicLink) -> String {
+  func generateDynamicLinkMessage(_ dynamicLink: FIRDynamicLink) -> String {
     let matchConfidence: String
-    if (dynamicLink.matchConfidence == .Weak) {
+    if (dynamicLink.matchConfidence == .weak) {
       matchConfidence = "Weak";
     } else {
       matchConfidence = "Strong";
@@ -86,14 +86,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   }
 
   @available(iOS 8.0, *)
-  func showDeepLinkAlertViewWithMessage(message: String) {
-    let okAction = UIAlertAction.init(title: "OK", style: .Default) { (action) -> Void in
+  func showDeepLinkAlertView(withMessage message: String) {
+    let okAction = UIAlertAction.init(title: "OK", style: .default) { (action) -> Void in
       print("OK")
     }
 
-    let alertController = UIAlertController.init(title: "Deep-link Data", message: message, preferredStyle: .Alert)
+    let alertController = UIAlertController.init(title: "Deep-link Data", message: message, preferredStyle: .alert)
     alertController.addAction(okAction)
-    self.window?.rootViewController?.presentViewController(alertController, animated: true, completion: nil)
+    self.window?.rootViewController?.present(alertController, animated: true, completion: nil)
   }
 
 }

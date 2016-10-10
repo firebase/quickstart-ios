@@ -277,13 +277,16 @@
 				TargetAttributes = {
 					4B1A6C721B0A752100E1EDA2 = {
 						CreatedOnToolsVersion = 6.3.1;
+						LastSwiftMigration = 0800;
 						TestTargetID = 4BC032DD1ACF33B70092326A;
 					};
 					4B97B2521AD7145E0036DD6C = {
+						DevelopmentTeam = EQHXZ8M8AV;
 						LastSwiftMigration = 0800;
 					};
 					4BC032DD1ACF33B70092326A = {
 						CreatedOnToolsVersion = 6.2;
+						DevelopmentTeam = EQHXZ8M8AV;
 						LastSwiftMigration = 0800;
 					};
 				};
@@ -409,6 +412,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.google.samples.quickstart.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = InvitesExample;
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/InvitesExample.app/InvitesExample";
 			};
 			name = Debug;
@@ -428,6 +432,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.google.samples.quickstart.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = InvitesExample;
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/InvitesExample.app/InvitesExample";
 			};
 			name = Release;
@@ -451,7 +456,7 @@
 				PRODUCT_NAME = InvitesExample;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 				VALID_ARCHS = "armv7 armv7s arm64";
 			};
 			name = Debug;
@@ -474,7 +479,7 @@
 				PRODUCT_NAME = InvitesExample;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 				VALID_ARCHS = "armv7 armv7s arm64";
 			};
 			name = Release;

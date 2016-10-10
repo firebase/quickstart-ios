@@ -22,14 +22,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   var window: UIWindow?
 
-  func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+  func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
     // [START tracker_swift]
     FIRApp.configure()
     // [END tracker_swift]
 
     // Set a white background so that patterns are showcased.
-    window?.backgroundColor = UIColor.whiteColor()
+    window?.backgroundColor = .white
 
     return true
   }

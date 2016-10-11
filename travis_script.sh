@@ -21,6 +21,6 @@ do
   # Go to sample directory
   cd $sample
   pod install --repo-update
-  cp ../mock-${sample}-GoogleService-Info.plist ./${sample}example/GoogleService-Info.plist
+  cp ../mock-${sample}-GoogleService-Info.plist ./GoogleService-Info.plist
   cd -
 done

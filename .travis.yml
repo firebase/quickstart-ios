@@ -14,7 +14,7 @@ before_install:
   - gem install xcodeproj
   - ruby info_script.rb $SAMPLE
 
-script: xcodebuild -workspace $SAMPLE/$SAMPLEexample.xcworkspace
+script: xcodebuild -workspace ${SAMPLE}/${SAMPLE}example.xcworkspace
   -scheme $SAMPLEexample
   -sdk iphonesimulator
   -destination 'platform=iOS Simulator,name=iPhone 7'

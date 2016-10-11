@@ -18,7 +18,10 @@ Getting Started
 - Update the app Bundle ID in XCode to match the Bundle ID of your APNs cert.
 - Run the sample on your iOS device.
 
-Note: You will need Swift 3.0 to run the Swift version of this quickstart.
+Note:
+- You will need Swift 3.0 to run the Swift version of this quickstart.
+- APS Environment Entitlements are required for remote notifications as of XCode 8.
+  Ensure that Push Notifications are on without error in App > Capabilities.
 
 Screenshots
 -----------

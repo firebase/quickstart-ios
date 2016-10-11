@@ -2,7 +2,7 @@ osx_image: xcode8
 language: objective-c
 
 env:
-  - SAMPLE=admob  
+  - SAMPLE=AdMob
 
 rvm: 2.3.1
 before_install:
@@ -10,12 +10,12 @@ before_install:
   - gem install cocoapods -v '1.0.1'
   - cd $SAMPLE
   - pod install --repo-update
-  - cp ../mock-$SAMPLE-GoogleService-Info.plist ./GoogleService-Info.plist
+  - cp ../mock-admob-GoogleService-Info.plist ./GoogleService-Info.plist
   - cd -
   - gem install xcodeproj
   - ruby info_script.rb $SAMPLE
 
-script: xcodebuild -workspace ${SAMPLE}/${SAMPLE}example.xcworkspace
+script: xcodebuild -workspace ${SAMPLE}/${SAMPLE}Example.xcworkspace
   -scheme ${SAMPLE}example
   -sdk iphonesimulator
   -destination 'platform=iOS Simulator,name=iPhone 7'

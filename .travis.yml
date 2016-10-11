@@ -16,7 +16,7 @@ before_install:
   - ruby info_script.rb $SAMPLE
 
 script: xcodebuild -workspace ${SAMPLE}/${SAMPLE}Example.xcworkspace
-  -scheme ${SAMPLE}example
+  -scheme ${SAMPLE}Example
   -sdk iphonesimulator
   -destination 'platform=iOS Simulator,name=iPhone 7'
   build

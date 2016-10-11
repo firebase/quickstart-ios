@@ -8,7 +8,9 @@ rvm: 2.3.1
 before_install:
   - gem uninstall cocoapods -a
   - gem install cocoapods -v '1.0.1'
-  - ./travis_script.sh
+  - cd $SAMPLE
+  - pod install --repo-update
+  - cp ../mock-$SAMPLE-GoogleService-Info.plist ./GoogleService-Info.plist
   - gem install xcodeproj
   - ruby info_script.rb $SAMPLE
 

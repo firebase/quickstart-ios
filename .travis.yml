@@ -11,11 +11,12 @@ before_install:
   - cd $SAMPLE
   - pod install --repo-update
   - cp ../mock-$SAMPLE-GoogleService-Info.plist ./GoogleService-Info.plist
+  - cd -
   - gem install xcodeproj
   - ruby info_script.rb $SAMPLE
 
 script: xcodebuild -workspace ${SAMPLE}/${SAMPLE}example.xcworkspace
-  -scheme $SAMPLEexample
+  -scheme ${SAMPLE}example
   -sdk iphonesimulator
   -destination 'platform=iOS Simulator,name=iPhone 7'
   build

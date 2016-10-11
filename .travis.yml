@@ -8,6 +8,8 @@ before_install:
   - gem uninstall cocoapods -a
   - gem install cocoapods -v '1.0.1'
   - ./travis_script.sh
+  - gem install xcodeproj
+  - ruby info_script.rb admob
 
 script: xcodebuild -workspace admob/AdMobExample.xcworkspace
   -scheme AdMobExample

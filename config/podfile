@@ -1,12 +1,12 @@
-# Config
+# ConfigExample
 use_frameworks!
 platform :ios, '7.0'
 
 pod 'Firebase/RemoteConfig'
 
-target 'Config' do
+target 'ConfigExample’ do
 end
-target 'ConfigSwift' do
+target 'ConfigExampleSwift' do
 end
-target 'ConfigTests' do
+target 'ConfigExampleTests' do
 end

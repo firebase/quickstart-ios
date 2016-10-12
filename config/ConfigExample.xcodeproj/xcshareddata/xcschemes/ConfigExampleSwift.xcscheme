@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "5F5A53781ADE67D500F81DF0"
-               BuildableName = "CrashReporterSwift.app"
-               BlueprintName = "CrashReporterSwift"
-               ReferencedContainer = "container:CrashReporter.xcodeproj">
+               BuildableName = "ConfigExampleSwift.app"
+               BlueprintName = "ConfigExampleSwift"
+               ReferencedContainer = "container:ConfigExample.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5F5A53781ADE67D500F81DF0"
-            BuildableName = "CrashReporterSwift.app"
-            BlueprintName = "CrashReporterSwift"
-            ReferencedContainer = "container:CrashReporter.xcodeproj">
+            BuildableName = "ConfigExampleSwift.app"
+            BlueprintName = "ConfigExampleSwift"
+            ReferencedContainer = "container:ConfigExample.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -56,9 +56,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5F5A53781ADE67D500F81DF0"
-            BuildableName = "CrashReporterSwift.app"
-            BlueprintName = "CrashReporterSwift"
-            ReferencedContainer = "container:CrashReporter.xcodeproj">
+            BuildableName = "ConfigExampleSwift.app"
+            BlueprintName = "ConfigExampleSwift"
+            ReferencedContainer = "container:ConfigExample.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -75,9 +75,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5F5A53781ADE67D500F81DF0"
-            BuildableName = "CrashReporterSwift.app"
-            BlueprintName = "CrashReporterSwift"
-            ReferencedContainer = "container:CrashReporter.xcodeproj">
+            BuildableName = "ConfigExampleSwift.app"
+            BlueprintName = "ConfigExampleSwift"
+            ReferencedContainer = "container:ConfigExample.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

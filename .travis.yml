@@ -1,5 +1,9 @@
 osx_image: xcode8
 language: objective-c
+cache:
+  - bundler
+  - cocoapods
+podfile: $SAMPLE/Podfile
 
 env:
   - SAMPLE=AdMob

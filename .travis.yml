@@ -4,6 +4,14 @@ language: objective-c
 env:
   - SAMPLE=AdMob
   - SAMPLE=Analytics
+  - SAMPLE=Authentication
+  - SAMPLE=Config
+  - SAMPLE=Crash
+  - SAMPLE=Database
+  - SAMPLE=DynamicLinks
+  - SAMPLE=Invites
+  - SAMPLE=Messaging
+  - SAMPLE=Storage
 
 rvm: 2.3.1
 before_install:
@@ -11,7 +19,8 @@ before_install:
   - gem install cocoapods -v '1.0.1'
   - cd $SAMPLE
   - pod install --repo-update
-  - cp ../mock-$SAMPLE-GoogleService-Info.plist ./GoogleService-Info.plist
+  - cp ../mock-GoogleService-Info.plist ./GoogleService-Info.plist
+  - sed -i '' '/<key>BUNDLE_ID</{n;s/id/com.google.firebase.quickstart.'$SAMPLE'Example/;}' GoogleService-Info.plist
   - cd -
   - gem install xcodeproj
   - ruby info_script.rb $SAMPLE

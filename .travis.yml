@@ -10,7 +10,7 @@ env:
   - SAMPLE=Analytics
   - SAMPLE=Authentication
   - SAMPLE=Config
-  - SAMPLE=Crash
+  - SAMPLE=CrashReporting
   - SAMPLE=Database
   - SAMPLE=DynamicLinks
   - SAMPLE=Invites

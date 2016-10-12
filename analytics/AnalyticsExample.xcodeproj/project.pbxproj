@@ -384,6 +384,8 @@
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				INFOPLIST_FILE = "$(SRCROOT)/AnalyticsExample/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.AnalyticsExample;
 				PRODUCT_NAME = AnalyticsExampleSwift;
 				SWIFT_VERSION = 3.0;
 			};
@@ -479,7 +481,7 @@
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = AnalyticsExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.analytics;
+				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.AnalyticsExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -493,7 +495,7 @@
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = AnalyticsExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.analytics;
+				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.AnalyticsExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -506,7 +508,7 @@
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/AnalyticsExample/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.analytics;
+				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.AnalyticsExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";

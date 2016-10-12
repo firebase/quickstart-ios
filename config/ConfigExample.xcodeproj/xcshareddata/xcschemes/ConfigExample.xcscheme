@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "5F5A53781ADE67D500F81DF0"
-               BuildableName = "ConfigSwift.app"
-               BlueprintName = "ConfigSwift"
-               ReferencedContainer = "container:Config.xcodeproj">
+               BlueprintIdentifier = "5F5A534B1ADE670C00F81DF0"
+               BuildableName = "ConfigExample.app"
+               BlueprintName = "ConfigExample"
+               ReferencedContainer = "container:ConfigExample.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -28,14 +28,24 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "5FDE05571B0DAA090037B82F"
+               BuildableName = "ConfigExampleTests.xctest"
+               BlueprintName = "ConfigExampleTests"
+               ReferencedContainer = "container:ConfigExample.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "5F5A53781ADE67D500F81DF0"
-            BuildableName = "ConfigSwift.app"
-            BlueprintName = "ConfigSwift"
-            ReferencedContainer = "container:Config.xcodeproj">
+            BlueprintIdentifier = "5F5A534B1ADE670C00F81DF0"
+            BuildableName = "ConfigExample.app"
+            BlueprintName = "ConfigExample"
+            ReferencedContainer = "container:ConfigExample.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -55,10 +65,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "5F5A53781ADE67D500F81DF0"
-            BuildableName = "ConfigSwift.app"
-            BlueprintName = "ConfigSwift"
-            ReferencedContainer = "container:Config.xcodeproj">
+            BlueprintIdentifier = "5F5A534B1ADE670C00F81DF0"
+            BuildableName = "ConfigExample.app"
+            BlueprintName = "ConfigExample"
+            ReferencedContainer = "container:ConfigExample.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -74,10 +84,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "5F5A53781ADE67D500F81DF0"
-            BuildableName = "ConfigSwift.app"
-            BlueprintName = "ConfigSwift"
-            ReferencedContainer = "container:Config.xcodeproj">
+            BlueprintIdentifier = "5F5A534B1ADE670C00F81DF0"
+            BuildableName = "ConfigExample.app"
+            BlueprintName = "ConfigExample"
+            ReferencedContainer = "container:ConfigExample.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

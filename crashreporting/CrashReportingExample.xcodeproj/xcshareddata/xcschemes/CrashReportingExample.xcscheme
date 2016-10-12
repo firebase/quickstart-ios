@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "5F5A534B1ADE670C00F81DF0"
-               BuildableName = "CrashReporter.app"
-               BlueprintName = "CrashReporter"
-               ReferencedContainer = "container:CrashReporter.xcodeproj">
+               BuildableName = "CrashReportingExample.app"
+               BlueprintName = "CrashReportingExample"
+               ReferencedContainer = "container:CrashReportingExample.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "5FDE05571B0DAA090037B82F"
-               BuildableName = "CrashReporterTests.xctest"
-               BlueprintName = "CrashReporterTests"
-               ReferencedContainer = "container:CrashReporter.xcodeproj">
+               BuildableName = "CrashReportingExampleTests.xctest"
+               BlueprintName = "CrashReportingExampleTests"
+               ReferencedContainer = "container:CrashReportingExample.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -43,9 +43,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5F5A534B1ADE670C00F81DF0"
-            BuildableName = "CrashReporter.app"
-            BlueprintName = "CrashReporter"
-            ReferencedContainer = "container:CrashReporter.xcodeproj">
+            BuildableName = "CrashReportingExample.app"
+            BlueprintName = "CrashReportingExample"
+            ReferencedContainer = "container:CrashReportingExample.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -66,9 +66,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5F5A534B1ADE670C00F81DF0"
-            BuildableName = "CrashReporter.app"
-            BlueprintName = "CrashReporter"
-            ReferencedContainer = "container:CrashReporter.xcodeproj">
+            BuildableName = "CrashReportingExample.app"
+            BlueprintName = "CrashReportingExample"
+            ReferencedContainer = "container:CrashReportingExample.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -85,9 +85,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5F5A534B1ADE670C00F81DF0"
-            BuildableName = "CrashReporter.app"
-            BlueprintName = "CrashReporter"
-            ReferencedContainer = "container:CrashReporter.xcodeproj">
+            BuildableName = "CrashReportingExample.app"
+            BlueprintName = "CrashReportingExample"
+            ReferencedContainer = "container:CrashReportingExample.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

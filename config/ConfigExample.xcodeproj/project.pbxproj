@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		32C355031CBC57CF009B576C /* RemoteConfigDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 32C355021CBC57CF009B576C /* RemoteConfigDefaults.plist */; };
 		32C355041CBC57CF009B576C /* RemoteConfigDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 32C355021CBC57CF009B576C /* RemoteConfigDefaults.plist */; };
-		32C355051CBC57CF009B576C /* RemoteConfigDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 32C355021CBC57CF009B576C /* RemoteConfigDefaults.plist */; };
 		5F5A53521ADE670C00F81DF0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5A53511ADE670C00F81DF0 /* main.m */; };
 		5F5A53551ADE670C00F81DF0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5A53541ADE670C00F81DF0 /* AppDelegate.m */; };
 		5F5A53581ADE670C00F81DF0 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5A53571ADE670C00F81DF0 /* ViewController.m */; };
@@ -36,7 +35,7 @@
 
 /* Begin PBXFileReference section */
 		32C355021CBC57CF009B576C /* RemoteConfigDefaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = RemoteConfigDefaults.plist; sourceTree = "<group>"; };
-		5F5A534C1ADE670C00F81DF0 /* Config.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Config.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5F5A534C1ADE670C00F81DF0 /* ConfigExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ConfigExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F5A53501ADE670C00F81DF0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5F5A53511ADE670C00F81DF0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5F5A53531ADE670C00F81DF0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -44,12 +43,12 @@
 		5F5A53561ADE670C00F81DF0 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		5F5A53571ADE670C00F81DF0 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		5F5A535A1ADE670C00F81DF0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		5F5A53791ADE67D500F81DF0 /* ConfigSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ConfigSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5F5A53791ADE67D500F81DF0 /* ConfigExampleSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ConfigExampleSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F5A537D1ADE67D500F81DF0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5F5A537F1ADE67D500F81DF0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		5F9961061AE0CF4F0034F503 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		5F9961071AE0CF4F0034F503 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
-		5FDE05581B0DAA090037B82F /* ConfigTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ConfigTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FDE05581B0DAA090037B82F /* ConfigExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ConfigExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FDE055C1B0DAA090037B82F /* AppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -81,9 +80,9 @@
 		5F5A53431ADE670C00F81DF0 = {
 			isa = PBXGroup;
 			children = (
-				5F5A534E1ADE670C00F81DF0 /* Config */,
-				5F5A537A1ADE67D500F81DF0 /* ConfigSwift */,
-				5FDE05591B0DAA090037B82F /* ConfigTests */,
+				5F5A534E1ADE670C00F81DF0 /* ConfigExample */,
+				5F5A537A1ADE67D500F81DF0 /* ConfigExampleSwift */,
+				5FDE05591B0DAA090037B82F /* ConfigExamleTests */,
 				5F5A534D1ADE670C00F81DF0 /* Products */,
 				5F9961041AE0CF4F0034F503 /* Shared */,
 			);
@@ -93,14 +92,14 @@
 		5F5A534D1ADE670C00F81DF0 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				5F5A534C1ADE670C00F81DF0 /* Config.app */,
-				5F5A53791ADE67D500F81DF0 /* ConfigSwift.app */,
-				5FDE05581B0DAA090037B82F /* ConfigTests.xctest */,
+				5F5A534C1ADE670C00F81DF0 /* ConfigExample.app */,
+				5F5A53791ADE67D500F81DF0 /* ConfigExampleSwift.app */,
+				5FDE05581B0DAA090037B82F /* ConfigExampleTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		5F5A534E1ADE670C00F81DF0 /* Config */ = {
+		5F5A534E1ADE670C00F81DF0 /* ConfigExample */ = {
 			isa = PBXGroup;
 			children = (
 				5F5A53531ADE670C00F81DF0 /* AppDelegate.h */,
@@ -109,7 +108,7 @@
 				5F5A53571ADE670C00F81DF0 /* ViewController.m */,
 				5F5A534F1ADE670C00F81DF0 /* Supporting Files */,
 			);
-			path = Config;
+			path = ConfigExample;
 			sourceTree = "<group>";
 		};
 		5F5A534F1ADE670C00F81DF0 /* Supporting Files */ = {
@@ -123,13 +122,13 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		5F5A537A1ADE67D500F81DF0 /* ConfigSwift */ = {
+		5F5A537A1ADE67D500F81DF0 /* ConfigExampleSwift */ = {
 			isa = PBXGroup;
 			children = (
 				5F5A537D1ADE67D500F81DF0 /* AppDelegate.swift */,
 				5F5A537F1ADE67D500F81DF0 /* ViewController.swift */,
 			);
-			path = ConfigSwift;
+			path = ConfigExampleSwift;
 			sourceTree = "<group>";
 		};
 		5F9961041AE0CF4F0034F503 /* Shared */ = {
@@ -142,20 +141,21 @@
 			path = ../shared;
 			sourceTree = "<group>";
 		};
-		5FDE05591B0DAA090037B82F /* ConfigTests */ = {
+		5FDE05591B0DAA090037B82F /* ConfigExamleTests */ = {
 			isa = PBXGroup;
 			children = (
 				5FDE055C1B0DAA090037B82F /* AppTests.m */,
 			);
-			path = ConfigTests;
+			name = ConfigExamleTests;
+			path = ConfigExampleTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		5F5A534B1ADE670C00F81DF0 /* Config */ = {
+		5F5A534B1ADE670C00F81DF0 /* ConfigExample */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5F5A536F1ADE670C00F81DF0 /* Build configuration list for PBXNativeTarget "Config" */;
+			buildConfigurationList = 5F5A536F1ADE670C00F81DF0 /* Build configuration list for PBXNativeTarget "ConfigExample" */;
 			buildPhases = (
 				5F5A53481ADE670C00F81DF0 /* Sources */,
 				5F5A53491ADE670C00F81DF0 /* Frameworks */,
@@ -165,14 +165,14 @@
 			);
 			dependencies = (
 			);
-			name = Config;
+			name = ConfigExample;
 			productName = Config;
-			productReference = 5F5A534C1ADE670C00F81DF0 /* Config.app */;
+			productReference = 5F5A534C1ADE670C00F81DF0 /* ConfigExample.app */;
 			productType = "com.apple.product-type.application";
 		};
-		5F5A53781ADE67D500F81DF0 /* ConfigSwift */ = {
+		5F5A53781ADE67D500F81DF0 /* ConfigExampleSwift */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5F5A53991ADE67D500F81DF0 /* Build configuration list for PBXNativeTarget "ConfigSwift" */;
+			buildConfigurationList = 5F5A53991ADE67D500F81DF0 /* Build configuration list for PBXNativeTarget "ConfigExampleSwift" */;
 			buildPhases = (
 				5F5A53751ADE67D500F81DF0 /* Sources */,
 				5F5A53761ADE67D500F81DF0 /* Frameworks */,
@@ -182,27 +182,27 @@
 			);
 			dependencies = (
 			);
-			name = ConfigSwift;
+			name = ConfigExampleSwift;
 			productName = ConfigSwift;
-			productReference = 5F5A53791ADE67D500F81DF0 /* ConfigSwift.app */;
+			productReference = 5F5A53791ADE67D500F81DF0 /* ConfigExampleSwift.app */;
 			productType = "com.apple.product-type.application";
 		};
-		5FDE05571B0DAA090037B82F /* ConfigTests */ = {
+		5FDE05571B0DAA090037B82F /* ConfigExampleTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5FDE05621B0DAA090037B82F /* Build configuration list for PBXNativeTarget "ConfigTests" */;
+			buildConfigurationList = 5FDE05621B0DAA090037B82F /* Build configuration list for PBXNativeTarget "ConfigExampleTests" */;
 			buildPhases = (
 				5FDE05541B0DAA090037B82F /* Sources */,
 				5FDE05551B0DAA090037B82F /* Frameworks */,
-				5FDE05561B0DAA090037B82F /* Resources */,
+				9F0782A4B0ECF03A1099437E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				5FDE055F1B0DAA090037B82F /* PBXTargetDependency */,
 			);
-			name = ConfigTests;
+			name = ConfigExampleTests;
 			productName = ConfigTests;
-			productReference = 5FDE05581B0DAA090037B82F /* ConfigTests.xctest */;
+			productReference = 5FDE05581B0DAA090037B82F /* ConfigExampleTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -217,6 +217,7 @@
 				TargetAttributes = {
 					5F5A534B1ADE670C00F81DF0 = {
 						CreatedOnToolsVersion = 6.3;
+						ProvisioningStyle = Automatic;
 					};
 					5F5A53781ADE67D500F81DF0 = {
 						CreatedOnToolsVersion = 6.3;
@@ -228,7 +229,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 5F5A53471ADE670C00F81DF0 /* Build configuration list for PBXProject "Config" */;
+			buildConfigurationList = 5F5A53471ADE670C00F81DF0 /* Build configuration list for PBXProject "ConfigExample" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -241,9 +242,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				5F5A534B1ADE670C00F81DF0 /* Config */,
-				5F5A53781ADE67D500F81DF0 /* ConfigSwift */,
-				5FDE05571B0DAA090037B82F /* ConfigTests */,
+				5F5A534B1ADE670C00F81DF0 /* ConfigExample */,
+				5F5A53781ADE67D500F81DF0 /* ConfigExampleSwift */,
+				5FDE05571B0DAA090037B82F /* ConfigExampleTests */,
 			);
 		};
 /* End PBXProject section */
@@ -271,15 +272,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		5FDE05561B0DAA090037B82F /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		9F0782A4B0ECF03A1099437E /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				32C355051CBC57CF009B576C /* RemoteConfigDefaults.plist in Resources */,
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ConfigExampleTests/Pods-ConfigExampleTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
-/* End PBXResourcesBuildPhase section */
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		5F5A53481ADE670C00F81DF0 /* Sources */ = {
@@ -314,7 +325,7 @@
 /* Begin PBXTargetDependency section */
 		5FDE055F1B0DAA090037B82F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 5F5A534B1ADE670C00F81DF0 /* Config */;
+			target = 5F5A534B1ADE670C00F81DF0 /* ConfigExample */;
 			targetProxy = 5FDE055E1B0DAA090037B82F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -419,10 +430,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
-				INFOPLIST_FILE = Config/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/ConfigExample/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.config;
+				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.ConfigExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -432,10 +445,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
-				INFOPLIST_FILE = Config/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/ConfigExample/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.config;
+				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.ConfigExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -445,9 +460,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				INFOPLIST_FILE = "$(SRCROOT)/Config/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/ConfigExample/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.config;
+				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.ConfigExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -459,9 +474,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				INFOPLIST_FILE = "$(SRCROOT)/Config/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/ConfigExample/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.config;
+				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.ConfigExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 3.0;
@@ -520,7 +535,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		5F5A53471ADE670C00F81DF0 /* Build configuration list for PBXProject "Config" */ = {
+		5F5A53471ADE670C00F81DF0 /* Build configuration list for PBXProject "ConfigExample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5F5A536D1ADE670C00F81DF0 /* Debug */,
@@ -529,7 +544,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5F5A536F1ADE670C00F81DF0 /* Build configuration list for PBXNativeTarget "Config" */ = {
+		5F5A536F1ADE670C00F81DF0 /* Build configuration list for PBXNativeTarget "ConfigExample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5F5A53701ADE670C00F81DF0 /* Debug */,
@@ -538,7 +553,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5F5A53991ADE67D500F81DF0 /* Build configuration list for PBXNativeTarget "ConfigSwift" */ = {
+		5F5A53991ADE67D500F81DF0 /* Build configuration list for PBXNativeTarget "ConfigExampleSwift" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5F5A53951ADE67D500F81DF0 /* Debug */,
@@ -547,7 +562,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5FDE05621B0DAA090037B82F /* Build configuration list for PBXNativeTarget "ConfigTests" */ = {
+		5FDE05621B0DAA090037B82F /* Build configuration list for PBXNativeTarget "ConfigExampleTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5FDE05601B0DAA090037B82F /* Debug */,

@@ -1,0 +1,11 @@
+# CrashReportingExample
+use_frameworks!
+platform :ios, '7.0'
+pod 'Firebase/Crash'
+
+target 'CrashReportingExample'  do
+end
+target 'CrashReportingExampleSwift' do
+end
+target 'CrashReportingExampleTests' do
+end

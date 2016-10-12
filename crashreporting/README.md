@@ -1,13 +1,13 @@
-Firebase Crash Quickstart
+Firebase Crash Reporting Quickstart
 =============================
 
-The Firebase Crash iOS quickstart demonstrates how to report crashes and log
+The Firebase Crash Reporting iOS quickstart demonstrates how to report crashes and log
 events leading up to those crashes.
 
 Introduction
 ------------
 
-- [Read more about Firebase Crash](https://firebase.google.com/docs/crash/)
+- [Read more about Firebase Crash Reporting](https://firebase.google.com/docs/crash/)
 
 Getting Started
 ---------------

@@ -3,19 +3,19 @@ language: objective-c
 cache:
   - bundler
   - cocoapods
-podfile: $SAMPLE/Podfile
+podfile: admob/Podfile
 
 env:
   - SAMPLE=AdMob
-  - SAMPLE=Analytics
-  - SAMPLE=Authentication
-  - SAMPLE=Config
-  - SAMPLE=CrashReporting
-  - SAMPLE=Database
-  - SAMPLE=DynamicLinks
-  - SAMPLE=Invites
-  - SAMPLE=Messaging
-  - SAMPLE=Storage
+#  - SAMPLE=Analytics
+#  - SAMPLE=Authentication
+#  - SAMPLE=Config
+#  - SAMPLE=CrashReporting
+#  - SAMPLE=Database
+#  - SAMPLE=DynamicLinks
+#  - SAMPLE=Invites
+#  - SAMPLE=Messaging
+#  - SAMPLE=Storage
 
 rvm: 2.3.1
 before_install:

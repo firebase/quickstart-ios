@@ -3,7 +3,17 @@ language: objective-c
 cache:
   - bundler
   - cocoapods
-podfile: $SAMPLE/Podfile
+podfile:
+  - admob/Podfile
+  - analytics/Podfile
+  - authentication/Podfile
+  - config/Podfile
+  - crashreporting/Podfile
+  - database/Podfile
+  - dynamiclinks/Podfile
+  - invites/Podfile
+  - messaging/Podfile
+  - storage/Podfile
 
 env:
   - SAMPLE=AdMob

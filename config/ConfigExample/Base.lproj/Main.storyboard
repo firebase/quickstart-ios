@@ -72,7 +72,7 @@
                     <navigationItem key="navigationItem" title="Remote Config Example" id="TvF-qg-tGD"/>
                     <connections>
                         <outlet property="fetchButton" destination="wsi-eF-j5V" id="1GJ-ec-Mdg"/>
-                        <outlet property="priceLabel" destination="Flp-ra-KY5" id="l1O-aF-btp"/>
+                        <outlet property="welcomeLabel" destination="Flp-ra-KY5" id="kP7-Qq-tO7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

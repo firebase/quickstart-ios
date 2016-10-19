@@ -19,11 +19,9 @@
 
 @implementation ViewController
 
-NSString *const kPricePrefixConfigKey = @"price_prefix";
-NSString *const kPriceConfigKey = @"price";
+NSString *const kWelcomeMessageConfigKey = @"welcome_message";
+NSString *const kWelcomeMessageCapsConfigKey = @"welcome_message_caps";
 NSString *const kLoadingPhraseConfigKey = @"loading_phrase";
-NSString *const kIsPromotionConfigKey = @"is_promotion_on";
-NSString *const kDiscountConfigKey = @"discount";
 
 - (void)viewDidLoad {
   [super viewDidLoad];
@@ -57,7 +55,7 @@ NSString *const kDiscountConfigKey = @"discount";
 }
 
 - (void)fetchConfig {
-    _priceLabel.text = self.remoteConfig[kLoadingPhraseConfigKey].stringValue;
+    self.welcomeLabel.text = self.remoteConfig[kLoadingPhraseConfigKey].stringValue;
 
     long expirationDuration = 3600;
     // If in developer mode cacheExpiration is set to 0 so each fetch will retrieve values from
@@ -79,22 +77,21 @@ NSString *const kDiscountConfigKey = @"discount";
             NSLog(@"Config not fetched");
             NSLog(@"Error %@", error.localizedDescription);
         }
-        [self displayPrice];
+        [self displayWelcome];
     }];
     // [END fetch_config_with_callback]
 }
 
-// Display price with discount applied if promotion is on. Otherwise display original price.
-- (void)displayPrice {
-    long initialPrice = self.remoteConfig[kPriceConfigKey].numberValue.longValue;
-    long finalPrice = initialPrice;
-    if (self.remoteConfig[kIsPromotionConfigKey].boolValue) {
-        // [START get_config_value]
-        finalPrice = initialPrice - self.remoteConfig[kDiscountConfigKey].numberValue.longValue;
-        // [END get_config_value]
+// Display welcome message in all caps if welcome_message_caps is set to true. Otherwise
+// display welcome message as fetched from welcome_message.
+- (void)displayWelcome {
+    // [START get_config_value]
+    NSString *welcomeMessage = self.remoteConfig[kWelcomeMessageConfigKey].stringValue;
+    // [END get_config_value]
+    if (self.remoteConfig[kWelcomeMessageCapsConfigKey].boolValue) {
+        welcomeMessage = [welcomeMessage uppercaseString];
     }
-    self.priceLabel.text = [NSString stringWithFormat:@"%@%ld",
-                            self.remoteConfig[kPricePrefixConfigKey].stringValue, finalPrice];
+    self.welcomeLabel.text = welcomeMessage;
 }
 
 - (IBAction)handleFetchTouch:(id)sender {

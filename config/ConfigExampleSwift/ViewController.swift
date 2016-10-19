@@ -20,14 +20,12 @@ import Firebase
 @objc(ViewController)
 class ViewController: UIViewController {
 
-  let pricePrefixConfigKey = "price_prefix"
-  let priceConfigKey = "price"
+  let welcomeMessageConfigKey = "welcome_message"
+  let welcomeMessageCapsConfigKey = "welcome_message_caps"
   let loadingPhraseConfigKey = "loading_phrase"
-  let isPromotionConfigKey = "is_promotion_on"
-  let discountConfigKey = "discount"
 
   var remoteConfig:FIRRemoteConfig!
-  @IBOutlet weak var priceLabel: UILabel!
+  @IBOutlet weak var welcomeLabel: UILabel!
   @IBOutlet weak var fetchButton: UIButton!
 
   override func viewDidLoad() {
@@ -61,7 +59,7 @@ class ViewController: UIViewController {
   }
 
   func fetchConfig() {
-    priceLabel.text = remoteConfig[loadingPhraseConfigKey].stringValue
+    welcomeLabel.text = remoteConfig[loadingPhraseConfigKey].stringValue
 
     var expirationDuration = 3600
     // If in developer mode cacheExpiration is set to 0 so each fetch will retrieve values from
@@ -83,22 +81,24 @@ class ViewController: UIViewController {
         print("Config not fetched")
         print("Error \(error!.localizedDescription)")
       }
-      self.displayPrice()
+      self.displayWelcome()
     }
     // [END fetch_config_with_callback]
   }
 
-  func displayPrice() {
-    let initialPrice = remoteConfig[priceConfigKey].numberValue!.int32Value
-    var finalPrice = initialPrice
-    if (remoteConfig[isPromotionConfigKey].boolValue) {
-      // [START get_config_value]
-      finalPrice = initialPrice - (remoteConfig[discountConfigKey].numberValue?.intValue)!
-      // [END get_config_value]
+  func displayWelcome() {
+    // [START get_config_value]
+    var welcomeMessage = remoteConfig[welcomeMessageConfigKey].stringValue
+    // [END get_config_value]
+
+    if (remoteConfig[welcomeMessageCapsConfigKey].boolValue) {
+      welcomeMessage = welcomeMessage?.uppercased()
     }
-    priceLabel.text = "\(self.remoteConfig[self.pricePrefixConfigKey].stringValue!)\(finalPrice)"
+    welcomeLabel.text = welcomeMessage
   }
 
+  // Display welcome message in all caps if welcome_message_caps is set to true. Otherwise
+  // display welcome message as fetched from welcome_message.
   @IBAction func handleFetchTouch(_ sender: AnyObject) {
     fetchConfig()
   }

@@ -18,7 +18,7 @@
 @import FirebaseRemoteConfig;
 
 @interface ViewController : UIViewController
-@property (weak, nonatomic) IBOutlet UILabel *priceLabel;
+@property (weak, nonatomic) IBOutlet UILabel *welcomeLabel;
 @property (weak, nonatomic) IBOutlet UIButton *fetchButton;
 @property (nonatomic, strong) FIRRemoteConfig *remoteConfig;
 @end

@@ -23,7 +23,7 @@ class DownloadViewController: UIViewController {
 
   @IBOutlet weak var imageView: UIImageView!
   @IBOutlet weak var statusTextView: UITextView!
-  var storageRef:FIRStorageReference!
+  var storageRef: FIRStorageReference!
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -32,7 +32,9 @@ class DownloadViewController: UIViewController {
     let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
     let documentsDirectory = paths[0]
     let filePath = "file:\(documentsDirectory)/myimage.jpg"
-    let storagePath = UserDefaults.standard.object(forKey: "storagePath") as! String
+    guard let storagePath = UserDefaults.standard.object(forKey: "storagePath") as? String else {
+      return
+    }
 
     // [START downloadimage]
     storageRef.child(storagePath).write(toFile: URL.init(string: filePath)!,

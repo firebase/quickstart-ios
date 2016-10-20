@@ -19,10 +19,8 @@
 // https://firebase.google.com/docs/analytics/ios/start
 //
 
-
 import Foundation
 import FirebaseAnalytics
-
 
 @objc(FoodPickerViewController)  // match the ObjC symbol name inside Storyboard
 class FoodPickerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
@@ -50,7 +48,7 @@ class FoodPickerViewController: UIViewController, UIPickerViewDelegate, UIPicker
   }
 
   func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-    return foodStuffs[row];
+    return foodStuffs[row]
   }
 
 }

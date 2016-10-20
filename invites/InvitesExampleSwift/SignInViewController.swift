@@ -37,11 +37,12 @@ class SignInViewController: UIViewController, GIDSignInDelegate, GIDSignInUIDele
   }
 
   func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
-    if (error == nil) {
+    if let error = error {
+      // Something went wrong; for example, the user could haved clicked cancel.
+      print("\(error.localizedDescription)")
+    } else {
       // User Successfully signed in.
       self.performSegue(withIdentifier: "SignedInScreen", sender: self)
-    } else {
-      // Something went wrong; for example, the user could haved clicked cancel.
     }
   }
 
@@ -50,7 +51,7 @@ class SignInViewController: UIViewController, GIDSignInDelegate, GIDSignInUIDele
   }
 
   // Sets the status bar to white.
-  override var preferredStatusBarStyle : UIStatusBarStyle {
+  override var preferredStatusBarStyle: UIStatusBarStyle {
     return .lightContent
   }
 }

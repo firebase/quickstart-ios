@@ -26,7 +26,7 @@ import FirebaseAnalytics
 class PatternTabBarController: UITabBarController {
 
   override func viewDidAppear(_ animated: Bool) {
-    if (getUserFavoriteFood() == nil) {
+    if getUserFavoriteFood() == nil {
       askForFavoriteFood()
     }
   }
@@ -50,7 +50,7 @@ class PatternTabBarController: UITabBarController {
   }
 
   func getUserFavoriteFood() -> String? {
-    return UserDefaults.standard.value(forKey: "favorite_food") as! String?
+    return UserDefaults.standard.value(forKey: "favorite_food") as? String
   }
 
   func askForFavoriteFood() {

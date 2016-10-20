@@ -49,7 +49,7 @@ class PostTableViewCell: UITableViewCell {
     // [START post_stars_transaction]
     ref.runTransactionBlock({ (currentData: FIRMutableData) -> FIRTransactionResult in
       if var post = currentData.value as? [String : AnyObject], let uid = FIRAuth.auth()?.currentUser?.uid {
-        var stars : Dictionary<String, Bool>
+        var stars: Dictionary<String, Bool>
         stars = post["stars"] as? [String : Bool] ?? [:]
         var starCount = post["starCount"] as? Int ?? 0
         if let _ = stars[uid] {

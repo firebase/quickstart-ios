@@ -26,7 +26,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   var window: UIWindow?
 
-
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     // Use Firebase library to configure APIs
     FIRApp.configure()
@@ -34,4 +33,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   }
 // [END firebase_config]
 }
-

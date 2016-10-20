@@ -59,9 +59,8 @@ class ViewController: UIViewController, GADInterstitialDelegate {
     self.interstitial = createAndLoadInterstitial()
   }
 
-
   @IBAction func didTapInterstitialButton(_ sender: AnyObject) {
-    if (self.interstitial.isReady) {
+    if self.interstitial.isReady {
       self.interstitial.present(fromRootViewController: self)
     }
   }

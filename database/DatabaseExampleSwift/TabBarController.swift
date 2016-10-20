@@ -21,7 +21,7 @@ import Firebase
 class TabBarController: UITabBarController {
 
   override func didMove(toParentViewController parent: UIViewController?) {
-    if (parent == nil) {
+    if parent == nil {
       let firebaseAuth = FIRAuth.auth()
       do {
         try firebaseAuth?.signOut()

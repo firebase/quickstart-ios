@@ -86,8 +86,8 @@ class MainViewController: UITableViewController, GIDSignInDelegate, GIDSignInUID
                                    message: nil,
                                    preferredStyle: .actionSheet)
     for provider in providers {
-      var action : UIAlertAction
-      switch(provider) {
+      var action: UIAlertAction
+      switch provider {
       case .authEmail:
         action = UIAlertAction(title: "Email", style: .default, handler: { (UIAlertAction) in
           self.performSegue(withIdentifier: "email", sender:nil)
@@ -160,7 +160,6 @@ class MainViewController: UITableViewController, GIDSignInDelegate, GIDSignInUID
 
   }
 
-
   @IBAction func didTapSignIn(_ sender: AnyObject) {
     showAuthPicker([
       AuthProvider.authEmail,
@@ -183,11 +182,11 @@ class MainViewController: UITableViewController, GIDSignInDelegate, GIDSignInUID
     // https://firebase.google.com/docs/auth
     let user = FIRAuth.auth()?.currentUser
     for info in (user?.providerData)! {
-      if (info.providerID == FIRTwitterAuthProviderID) {
+      if info.providerID == FIRTwitterAuthProviderID {
         providers.remove(AuthProvider.authTwitter)
-      } else if (info.providerID == FIRFacebookAuthProviderID) {
+      } else if info.providerID == FIRFacebookAuthProviderID {
         providers.remove(AuthProvider.authFacebook)
-      } else if (info.providerID == FIRGoogleAuthProviderID) {
+      } else if info.providerID == FIRGoogleAuthProviderID {
         providers.remove(AuthProvider.authGoogle)
       }
     }
@@ -307,11 +306,11 @@ class MainViewController: UITableViewController, GIDSignInDelegate, GIDSignInUID
     case kSectionUser:
       cell = tableView.dequeueReusableCell(withIdentifier: "Profile")
       let user = FIRAuth.auth()?.currentUser
-      let emailLabel = cell?.viewWithTag(1) as! UILabel
-      let userIDLabel = cell?.viewWithTag(2) as! UILabel
-      let profileImageView = cell?.viewWithTag(3) as! UIImageView
-      emailLabel.text = user?.email
-      userIDLabel.text = user?.uid
+      let emailLabel = cell?.viewWithTag(1) as? UILabel
+      let userIDLabel = cell?.viewWithTag(2) as? UILabel
+      let profileImageView = cell?.viewWithTag(3) as? UIImageView
+      emailLabel?.text = user?.email
+      userIDLabel?.text = user?.uid
 
       let photoURL = user?.photoURL
       struct last {
@@ -324,14 +323,14 @@ class MainViewController: UITableViewController, GIDSignInDelegate, GIDSignInUID
           if let data = data {
             let image = UIImage.init(data: data)
             DispatchQueue.main.async(execute: {
-              if (photoURL == last.photoURL) {
-                profileImageView.image = image
+              if photoURL == last.photoURL {
+                profileImageView?.image = image
               }
             })
           }
         })
       } else {
-        profileImageView.image = UIImage.init(named: "ic_account_circle")
+        profileImageView?.image = UIImage.init(named: "ic_account_circle")
       }
     case kSectionProviders:
       cell = tableView.dequeueReusableCell(withIdentifier: "Provider")
@@ -340,8 +339,8 @@ class MainViewController: UITableViewController, GIDSignInDelegate, GIDSignInUID
       cell?.detailTextLabel?.text = userInfo?.uid
     case kSectionToken:
       cell = tableView.dequeueReusableCell(withIdentifier: "Token")
-      let requestEmailButton = cell?.viewWithTag(4) as! UIButton
-      requestEmailButton.isEnabled = (FIRAuth.auth()?.currentUser?.email != nil) ? true : false
+      let requestEmailButton = cell?.viewWithTag(4) as? UIButton
+      requestEmailButton?.isEnabled = (FIRAuth.auth()?.currentUser?.email != nil) ? true : false
 
     default:
       fatalError("Unknown section in UITableView")
@@ -395,8 +394,9 @@ class MainViewController: UITableViewController, GIDSignInDelegate, GIDSignInUID
 
   @IBAction func didTokenRefresh(_ sender: AnyObject) {
     let action: FIRAuthTokenCallback = {(token, error) in
-      let okAction = UIAlertAction.init(title: self.kOKButtonText, style: .default)
-        {action in print(self.kOKButtonText)}
+      let okAction = UIAlertAction.init(title: self.kOKButtonText, style: .default) {
+        action in print(self.kOKButtonText)
+      }
       if let error = error {
         let alertController  = UIAlertController.init(title: self.kTokenRefreshErrorAlertTitle,
           message: error.localizedDescription, preferredStyle: .alert)
@@ -519,8 +519,9 @@ class MainViewController: UITableViewController, GIDSignInDelegate, GIDSignInUID
   func showTypicalUIForUserUpdateResults(withTitle resultsTitle: String, error: Error?) {
     if let error = error {
       let message = "\(error.localizedDescription)"
-      let okAction = UIAlertAction.init(title: self.kOKButtonText, style: .default)
-        {action in print(self.kOKButtonText)}
+      let okAction = UIAlertAction.init(title: self.kOKButtonText, style: .default) {
+        action in print(self.kOKButtonText)
+      }
       let alertController  = UIAlertController.init(title: resultsTitle,
         message: message, preferredStyle: .alert)
       alertController.addAction(okAction)
@@ -529,5 +530,4 @@ class MainViewController: UITableViewController, GIDSignInDelegate, GIDSignInUID
     }
     tableView.reloadData()
   }
-
 }

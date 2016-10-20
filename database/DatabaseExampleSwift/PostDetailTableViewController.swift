@@ -30,9 +30,8 @@ class PostDetailTableViewController: UITableViewController, UITextFieldDelegate 
   let post: Post = Post()
   lazy var ref: FIRDatabaseReference = FIRDatabase.database().reference()
   var postRef: FIRDatabaseReference!
-  var commentsRef : FIRDatabaseReference!
+  var commentsRef: FIRDatabaseReference!
   var refHandle: FIRDatabaseHandle?
-
 
   // UITextViewDelegate protocol method
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -66,7 +65,7 @@ class PostDetailTableViewController: UITableViewController, UITextFieldDelegate 
 
     // [START post_value_event_listener]
     refHandle = postRef.observe(FIRDataEventType.value, with: { (snapshot) in
-      let postDict = snapshot.value as! [String : AnyObject]
+      let postDict = snapshot.value as? [String : AnyObject] ?? [:]
       // [START_EXCLUDE]
       self.post.setValuesForKeys(postDict)
       self.tableView.reloadData()
@@ -79,7 +78,7 @@ class PostDetailTableViewController: UITableViewController, UITextFieldDelegate 
   func indexOfMessage(_ snapshot: FIRDataSnapshot) -> Int {
     var index = 0
     for  comment in self.comments {
-      if (snapshot.key == comment.key) {
+      if snapshot.key == comment.key {
         return index
       }
       index += 1
@@ -119,7 +118,7 @@ class PostDetailTableViewController: UITableViewController, UITextFieldDelegate 
       if let uid = uid, let commentField = self.commentField, let user = snapshot.value as? [String : AnyObject] {
         let comment = [
           "uid": uid,
-          "author": user["username"] as! String,
+          "author": user["username"] as? String ?? "",
           "text": commentField.text!
         ]
         self.commentsRef.childByAutoId().setValue(comment)
@@ -138,7 +137,9 @@ class PostDetailTableViewController: UITableViewController, UITextFieldDelegate 
     case kSectionPost:
       cell = tableView.dequeueReusableCell(withIdentifier: "post")!
       if let uid = FIRAuth.auth()?.currentUser?.uid {
-        let postcell = cell as! PostTableViewCell
+        guard let postcell = cell as? PostTableViewCell else {
+          break
+        }
         let imageName = post.stars == nil || post.stars![uid] == nil ? "ic_star_border" : "ic_star"
         postcell.authorLabel.text = post.author
         postcell.postTitle.text = post.title
@@ -147,19 +148,19 @@ class PostDetailTableViewController: UITableViewController, UITextFieldDelegate 
         if let starCount = post.starCount {
           postcell.numStarsLabel.text = "\(starCount)"
         }
-        postcell.postKey = postKey;
+        postcell.postKey = postKey
       }
     case kSectionComments:
       cell = tableView.dequeueReusableCell(withIdentifier: "comment")!
-      let commentDict = comments[(indexPath as NSIndexPath).row].value as! [String : AnyObject]
+      let commentDict = comments[(indexPath as NSIndexPath).row].value as? [String : AnyObject]
       if let text = cell.textLabel, let detail = cell.detailTextLabel,
-        let author = commentDict["author"], let commentText = commentDict["text"] {
+        let author = commentDict?["author"], let commentText = commentDict?["text"] {
         detail.text = String(describing: author)
         text.text = String(describing: commentText)
       }
     default: // kSectionSend
       cell = tableView.dequeueReusableCell(withIdentifier: "send")!
-      commentField = cell.viewWithTag(7) as! UITextField?
+      commentField = cell.viewWithTag(7) as? UITextField
       break
     }
     return cell

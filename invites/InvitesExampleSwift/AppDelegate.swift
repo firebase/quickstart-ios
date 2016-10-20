@@ -55,7 +55,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   // [START continueuseractivity]
   @available(iOS 8.0, *)
   func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
-    let handled = FIRDynamicLinks.dynamicLinks()?.handleUniversalLink(userActivity.webpageURL!) { (dynamiclink, error) in
+    guard let dynamiclinks = FIRDynamicLinks.dynamicLinks() else {
+      return false
+    }
+    let handled = dynamiclinks.handleUniversalLink(userActivity.webpageURL!) { (dynamiclink, error) in
       // [START_EXCLUDE]
       let message = self.generateDynamicLinkMessage(dynamiclink!)
       self.showDeepLinkAlertView(withMessage: message)
@@ -63,26 +66,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     // [START_EXCLUDE silent]
-    if (!handled!) {
+    if !handled {
       // Show the deep link URL from userActivity.
       let message = "continueUserActivity webPageURL:\n\(userActivity.webpageURL?.absoluteString)"
       showDeepLinkAlertView(withMessage: message)
     }
     // [END_EXCLUDE]
 
-    return handled!
+    return handled
   }
   // [END continueuseractivity]
 
   func generateDynamicLinkMessage(_ dynamicLink: FIRDynamicLink) -> String {
     let matchConfidence: String
-    if (dynamicLink.matchConfidence == .weak) {
-      matchConfidence = "Weak";
+    if dynamicLink.matchConfidence == .weak {
+      matchConfidence = "Weak"
     } else {
-      matchConfidence = "Strong";
+      matchConfidence = "Strong"
     }
     let message = "App URL: \(dynamicLink.url?.absoluteString)\nMatch Confidence: \(matchConfidence)\n"
-    return message;
+    return message
   }
 
   @available(iOS 8.0, *)

@@ -38,6 +38,18 @@
                                         @"full_text": text
                                         }];
   // [END custom_event_objc]
+  [self recordScreenView];
+}
+
+// Manually record "screen views" as user selects tabs.
+- (void)recordScreenView {
+  // These strings must be <= 36 characters long in order for setScreenName:screenClass: to succeed.
+  NSString *screenName = self.title;
+  NSString *screenClass = [self.classForCoder description];
+
+  // [START set_current_screen]
+  [FIRAnalytics setScreenName:screenName screenClass:screenClass];
+  // [END set_current_screen]
 }
 
 @end

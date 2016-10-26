@@ -26,6 +26,7 @@ import FirebaseAnalytics
 class PatternTabBarController: UITabBarController {
 
   override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
     if getUserFavoriteFood() == nil {
       askForFavoriteFood()
     }
@@ -45,7 +46,7 @@ class PatternTabBarController: UITabBarController {
     alert.show()
   }
 
-  @IBAction func unwindToHome (_ segue: UIStoryboardSegue?) {
+  @IBAction func unwindToHome(_ segue: UIStoryboardSegue?) {
 
   }
 

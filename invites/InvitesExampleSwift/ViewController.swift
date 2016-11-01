@@ -46,7 +46,11 @@ class ViewController: UIViewController, GIDSignInDelegate, GIDSignInUIDelegate, 
       print("\(error.localizedDescription)")
     } else {
       // User Successfully signed in.
-      statusText.text = "Signed in as \(user.profile.name)"
+      if let name = user.profile.name {
+        statusText.text = "Signed in as \(name)"
+      } else {
+        statusText.text = "Signed in, profile name is not set"
+      }
     }
     toggleAuthUI()
   }

@@ -42,6 +42,11 @@ class SignInViewController: UIViewController, GIDSignInDelegate, GIDSignInUIDele
       print("\(error.localizedDescription)")
     } else {
       // User Successfully signed in.
+    }
+  }
+
+  func sign(_ signIn: GIDSignIn!, dismiss viewController: UIViewController!) {
+    if GIDSignIn.sharedInstance().currentUser != nil {
       self.performSegue(withIdentifier: "SignedInScreen", sender: self)
     }
   }

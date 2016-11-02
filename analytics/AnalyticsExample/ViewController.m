@@ -25,11 +25,13 @@
 
 @implementation ViewController
 
-- (void)viewWillAppear:(BOOL)animated {
-  [super viewWillAppear:animated];
+- (void)viewDidAppear:(BOOL)animated {
+  [super viewDidAppear:animated];
 
   NSString *name = [NSString stringWithFormat:@"Pattern~%@", self.title];
   NSString *text = [NSString stringWithFormat:@"I'd love you to hear about %@", name];
+
+  [self recordScreenView];
 
   // [START custom_event_objc]
   [FIRAnalytics logEventWithName:@"share_image"
@@ -38,7 +40,6 @@
                                         @"full_text": text
                                         }];
   // [END custom_event_objc]
-  [self recordScreenView];
 }
 
 // Manually record "screen views" as user selects tabs.

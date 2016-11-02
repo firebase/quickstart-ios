@@ -40,8 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         didFinishLaunchingWithOptions:launchOptions)
     let key = Bundle.main.object(forInfoDictionaryKey: "consumerKey"),
         secret = Bundle.main.object(forInfoDictionaryKey: "consumerSecret")
-    if let key = key as? String, let secret = secret as? String
-        , !key.isEmpty && !secret.isEmpty {
+    if let key = key as? String, let secret = secret as? String, !key.isEmpty && !secret.isEmpty {
       Twitter.sharedInstance().start(withConsumerKey: key, consumerSecret: secret)
     }
     return true
@@ -52,7 +51,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     -> Bool {
       return self.application(application,
                               open: url,
-                              sourceApplication:options[UIApplicationOpenURLOptionsKey.sourceApplication] as! String?,
+                              sourceApplication:options[UIApplicationOpenURLOptionsKey.sourceApplication] as? String,
                               annotation: [:])
   }
 
@@ -68,4 +67,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                                                  annotation: annotation)
   }
 }
-

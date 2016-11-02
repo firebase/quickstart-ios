@@ -24,7 +24,7 @@ class ViewController: UIViewController {
   let welcomeMessageCapsConfigKey = "welcome_message_caps"
   let loadingPhraseConfigKey = "loading_phrase"
 
-  var remoteConfig:FIRRemoteConfig!
+  var remoteConfig: FIRRemoteConfig!
   @IBOutlet weak var welcomeLabel: UILabel!
   @IBOutlet weak var fetchButton: UIButton!
 
@@ -64,7 +64,7 @@ class ViewController: UIViewController {
     var expirationDuration = 3600
     // If in developer mode cacheExpiration is set to 0 so each fetch will retrieve values from
     // the server.
-    if (remoteConfig.configSettings.isDeveloperModeEnabled) {
+    if remoteConfig.configSettings.isDeveloperModeEnabled {
       expirationDuration = 0
     }
 
@@ -74,7 +74,7 @@ class ViewController: UIViewController {
     // more than cacheExpiration seconds ago. Thus the next fetch would go to the server unless
     // throttling is in progress. The default expiration duration is 43200 (12 hours).
     remoteConfig.fetch(withExpirationDuration: TimeInterval(expirationDuration)) { (status, error) -> Void in
-      if (status == FIRRemoteConfigFetchStatus.success) {
+      if status == .success {
         print("Config fetched!")
         self.remoteConfig.activateFetched()
       } else {
@@ -91,7 +91,7 @@ class ViewController: UIViewController {
     var welcomeMessage = remoteConfig[welcomeMessageConfigKey].stringValue
     // [END get_config_value]
 
-    if (remoteConfig[welcomeMessageCapsConfigKey].boolValue) {
+    if remoteConfig[welcomeMessageCapsConfigKey].boolValue {
       welcomeMessage = welcomeMessage?.uppercased()
     }
     welcomeLabel.text = welcomeMessage

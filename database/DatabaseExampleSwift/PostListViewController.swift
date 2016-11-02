@@ -42,9 +42,13 @@ class PostListViewController: UIViewController, UITableViewDelegate {
                                                   cellReuseIdentifier: "post",
                                                   view: self.tableView)
 
-    dataSource?.populateCell(){
-      let cell = $0 as! PostTableViewCell
-      let post = $1 as! Post
+    dataSource?.populateCell() {
+      guard let cell = $0 as? PostTableViewCell else {
+        return
+      }
+      guard let post = $1 as? Post else {
+        return
+      }
       cell.authorImage.image = UIImage.init(named: "ic_account_circle")
       cell.authorLabel.text = post.author
       var imageName = "ic_star_border"
@@ -84,10 +88,14 @@ class PostListViewController: UIViewController, UITableViewDelegate {
   }
 
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    let path: IndexPath = sender as! IndexPath
-    let detail: PostDetailTableViewController = segue.destination as! PostDetailTableViewController
+    guard let path: IndexPath = sender as? IndexPath else { return }
+    guard let detail: PostDetailTableViewController = segue.destination as? PostDetailTableViewController else {
+      return
+    }
     let source = self.dataSource
-    let snapshot: FIRDataSnapshot = (source?.object(at: UInt((path as NSIndexPath).row)))! as! FIRDataSnapshot
+    guard let snapshot: FIRDataSnapshot = (source?.object(at: UInt((path as NSIndexPath).row)))! as? FIRDataSnapshot else {
+      return
+    }
     detail.postKey = snapshot.key
   }
 }

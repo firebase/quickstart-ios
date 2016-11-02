@@ -4,7 +4,7 @@ platform :ios, '7.0'
 
 pod 'Firebase/RemoteConfig'
 
-target 'ConfigExample’ do
+target 'ConfigExample' do
 end
 target 'ConfigExampleSwift' do
 end

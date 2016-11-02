@@ -31,10 +31,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     // [START register_for_notifications]
     if #available(iOS 10.0, *) {
-      let authOptions : UNAuthorizationOptions = [.alert, .badge, .sound]
+      let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
       UNUserNotificationCenter.current().requestAuthorization(
         options: authOptions,
-        completionHandler: {_,_ in })
+        completionHandler: {_, _ in })
 
       // For iOS 10 display notification (sent via APNS)
       UNUserNotificationCenter.current().delegate = self
@@ -91,7 +91,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   // [START connect_to_fcm]
   func connectToFcm() {
     FIRMessaging.messaging().connect { (error) in
-      if (error != nil) {
+      if error != nil {
         print("Unable to connect with FCM. \(error)")
       } else {
         print("Connected to FCM.")

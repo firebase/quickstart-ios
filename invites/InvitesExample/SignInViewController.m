@@ -46,9 +46,16 @@
     didSignInForUser:(GIDGoogleUser *)user
            withError:(NSError *)error {
   if (error == nil) {
-    [self performSegueWithIdentifier:@"SignedInScreen" sender:self];
+    // User Successfully signed in.
   } else {
     // Something went wrong; for example, the user could haved clicked cancel.
+    NSLog(@"%@", error.localizedDescription);
+  }
+}
+
+- (void)signIn:(GIDSignIn *)signIn dismissViewController:(UIViewController *)viewController {
+  if ([GIDSignIn sharedInstance].currentUser) {
+    [self performSegueWithIdentifier:@"SignedInScreen" sender:self];
   }
 }
 

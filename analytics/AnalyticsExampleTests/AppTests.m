@@ -17,7 +17,7 @@
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
 
-#import <Google/Analytics.h>
+@import FirebaseAnalytics;
 
 #import "LogWrapper.h"
 
@@ -29,21 +29,10 @@ static NSString * const kSearchTerm = @": Sending hit(s) ";
 @implementation AppTests {
   LogWrapper *_logWrapper;
   UITabBarController *_patternsController;
-  GAI *_gai;
-  GAILogLevel _previousLogLevel;
-}
-
-- (instancetype)init {
-  if ((self = [super init])) {
-    _gai = [GAI sharedInstance];
-  }
-  return self;
 }
 
 - (void)setUp {
   _logWrapper = [[LogWrapper alloc] init];
-  _previousLogLevel = _gai.logger.logLevel;
-  _gai.logger.logLevel = kGAILogLevelVerbose;  // force verbose logging for test
 
   UIWindow *window = [UIApplication sharedApplication].keyWindow;
   UIViewController *rootViewController = window.rootViewController;
@@ -57,7 +46,6 @@ static NSString * const kSearchTerm = @": Sending hit(s) ";
 
 - (void)tearDown {
   _logWrapper = nil;
-  _gai.logger.logLevel = _previousLogLevel;
 }
 
 - (void)testLogs {

@@ -47,15 +47,13 @@
            withError:(NSError *)error {
   if (error == nil) {
     // User Successfully signed in.
+    // TODO: Remove async after, when GIDSignIn is started getting called after dissmissVC
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.35 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+      [self performSegueWithIdentifier:@"SignedInScreen" sender:self];
+    });
   } else {
     // Something went wrong; for example, the user could haved clicked cancel.
     NSLog(@"%@", error.localizedDescription);
-  }
-}
-
-- (void)signIn:(GIDSignIn *)signIn dismissViewController:(UIViewController *)viewController {
-  if ([GIDSignIn sharedInstance].currentUser) {
-    [self performSegueWithIdentifier:@"SignedInScreen" sender:self];
   }
 }
 

@@ -42,12 +42,10 @@ class SignInViewController: UIViewController, GIDSignInDelegate, GIDSignInUIDele
       print("\(error.localizedDescription)")
     } else {
       // User Successfully signed in.
-    }
-  }
-
-  func sign(_ signIn: GIDSignIn!, dismiss viewController: UIViewController!) {
-    if GIDSignIn.sharedInstance().currentUser != nil {
-      self.performSegue(withIdentifier: "SignedInScreen", sender: self)
+      // TODO: Remove async after, when GIDSignIn is started getting called after dissmissVC
+      DispatchQueue.main.asyncAfter(deadline: .now() + 0.35) {
+        self.performSegue(withIdentifier: "SignedInScreen", sender: self)
+      }
     }
   }
 

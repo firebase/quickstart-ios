@@ -318,7 +318,7 @@ class MainViewController: UITableViewController, GIDSignInDelegate, GIDSignInUID
       }
       last.photoURL = photoURL;  // to prevent earlier image overwrites later one.
       if let photoURL = photoURL {
-        DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.background).async(execute: {
+        DispatchQueue.global(qos: .default).async {
           let data = try? Data.init(contentsOf: photoURL)
           if let data = data {
             let image = UIImage.init(data: data)
@@ -328,7 +328,7 @@ class MainViewController: UITableViewController, GIDSignInDelegate, GIDSignInUID
               }
             })
           }
-        })
+        }
       } else {
         profileImageView?.image = UIImage.init(named: "ic_account_circle")
       }

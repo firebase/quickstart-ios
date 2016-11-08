@@ -8,7 +8,7 @@ for both Objective-C and Swift. For more information, see https://firebase.googl
 - [App Indexing](app-indexing)
 - [Authentication](authentication)
 - [Config](config)
-- [Crash](crash)
+- [Crash Reporting](crashreporting)
 - [Database](database)
 - [Dynamic Links](dynamiclinks)
 - [Invites](invites)

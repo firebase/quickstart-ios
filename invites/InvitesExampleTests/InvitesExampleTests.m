@@ -15,26 +15,24 @@
 //
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
-#import <Firebase/AppInvite.h>
+@import Firebase;
 
-@interface AppInvitesExampleTests : XCTestCase
+@interface InvitesExampleTests : XCTestCase
 
 @end
 
-@implementation AppInvitesExampleTests
+@implementation InvitesExampleTests
 
 - (void)testAppWasConfigured {
-  // Check that the FIR context matches what we read from the file.
-  FIRContext* context = [FIRContext sharedInstance];
+  // Check that the FIROptions matches what we read from the file.
+  [FIRApp configure];
   NSDictionary *configPlist =
       [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle]
                                  pathForResource:@"GoogleService-Info"
                                           ofType:@"plist"]];
-  NSError* configureError = nil;
-  [context configure: &configureError];
 
   // Check the client ID is configured for iOS target app.
-  NSString* actual = context.serviceInfo.clientID;
+  NSString* actual = [FIRApp defaultApp].options.clientID;
   NSString* expected = [configPlist objectForKey:@"CLIENT_ID"];
 
   XCTAssertEqualObjects(actual, expected);

@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4B1A6C781B0A752100E1EDA2 /* AppInvitesExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B1A6C771B0A752100E1EDA2 /* AppInvitesExampleTests.m */; };
+		4B1A6C781B0A752100E1EDA2 /* InvitesExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B1A6C771B0A752100E1EDA2 /* InvitesExampleTests.m */; };
 		4B1F2A361B01375C00F69A92 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1F2A351B01375C00F69A92 /* SignInViewController.swift */; };
 		4B97B2591AD7145E0036DD6C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B97B2581AD7145E0036DD6C /* AppDelegate.swift */; };
 		4B97B25B1AD7145E0036DD6C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B97B25A1AD7145E0036DD6C /* ViewController.swift */; };
@@ -49,8 +49,7 @@
 		105A4F501D91C5A500B5DE54 /* InvitesExample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = InvitesExample.entitlements; sourceTree = "<group>"; };
 		108F89D31D47B0090009615B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4B1A6C731B0A752100E1EDA2 /* InvitesExample.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InvitesExample.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		4B1A6C761B0A752100E1EDA2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4B1A6C771B0A752100E1EDA2 /* AppInvitesExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppInvitesExampleTests.m; sourceTree = "<group>"; };
+		4B1A6C771B0A752100E1EDA2 /* InvitesExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InvitesExampleTests.m; sourceTree = "<group>"; };
 		4B1F2A351B01375C00F69A92 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		4B5CBBFC1AE9DBF700D822CE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4B97B2531AD7145E0036DD6C /* InvitesExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InvitesExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -115,18 +114,9 @@
 		4B1A6C741B0A752100E1EDA2 /* InvitesExampleTests */ = {
 			isa = PBXGroup;
 			children = (
-				4B1A6C771B0A752100E1EDA2 /* AppInvitesExampleTests.m */,
-				4B1A6C751B0A752100E1EDA2 /* Supporting Files */,
+				4B1A6C771B0A752100E1EDA2 /* InvitesExampleTests.m */,
 			);
 			path = InvitesExampleTests;
-			sourceTree = "<group>";
-		};
-		4B1A6C751B0A752100E1EDA2 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				4B1A6C761B0A752100E1EDA2 /* Info.plist */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		4B97B2551AD7145E0036DD6C /* InvitesExampleSwift */ = {
@@ -278,16 +268,17 @@
 					4B1A6C721B0A752100E1EDA2 = {
 						CreatedOnToolsVersion = 6.3.1;
 						LastSwiftMigration = 0800;
+						ProvisioningStyle = Manual;
 						TestTargetID = 4BC032DD1ACF33B70092326A;
 					};
 					4B97B2521AD7145E0036DD6C = {
-						DevelopmentTeam = EQHXZ8M8AV;
 						LastSwiftMigration = 0800;
+						ProvisioningStyle = Manual;
 					};
 					4BC032DD1ACF33B70092326A = {
 						CreatedOnToolsVersion = 6.2;
-						DevelopmentTeam = EQHXZ8M8AV;
 						LastSwiftMigration = 0800;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -346,7 +337,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4B1A6C781B0A752100E1EDA2 /* AppInvitesExampleTests.m in Sources */,
+				4B1A6C781B0A752100E1EDA2 /* InvitesExampleTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -398,6 +389,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -407,7 +399,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = AppInvitesExampleTests/Info.plist;
+				INFOPLIST_FILE = InvitesExample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.google.samples.quickstart.$(PRODUCT_NAME:rfc1034identifier)";
@@ -422,12 +414,13 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 				);
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = AppInvitesExampleTests/Info.plist;
+				INFOPLIST_FILE = InvitesExample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.google.samples.quickstart.$(PRODUCT_NAME:rfc1034identifier)";
@@ -443,8 +436,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = InvitesExample/InvitesExample.entitlements;
-				DEVELOPMENT_TEAM = EQHXZ8M8AV;
-				INFOPLIST_FILE = "$(SRCROOT)/InvitesExample/Info.plist";
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = InvitesExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				ONLY_ACTIVE_ARCH = YES;
@@ -464,8 +457,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = InvitesExample/InvitesExample.entitlements;
-				DEVELOPMENT_TEAM = EQHXZ8M8AV;
-				INFOPLIST_FILE = "$(SRCROOT)/InvitesExample/Info.plist";
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = InvitesExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
@@ -571,12 +564,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = InvitesExample/InvitesExample.entitlements;
-				DEVELOPMENT_TEAM = EQHXZ8M8AV;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
-				INFOPLIST_FILE = "$(SRCROOT)/InvitesExample/Info.plist";
+				INFOPLIST_FILE = InvitesExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.InvitesExample;
 				PRODUCT_NAME = InvitesExample;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -586,9 +582,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = InvitesExample/InvitesExample.entitlements;
-				DEVELOPMENT_TEAM = EQHXZ8M8AV;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
-				INFOPLIST_FILE = "$(SRCROOT)/InvitesExample/Info.plist";
+				INFOPLIST_FILE = InvitesExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.InvitesExample;
 				PRODUCT_NAME = InvitesExample;

@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		10AF4D231DD3996E0096D192 /* DynamicLinksExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 10AF4D221DD3996E0096D192 /* DynamicLinksExampleTests.m */; };
+		10AF4D351DD3B9CE0096D192 /* DynamicLinksExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 10AF4D341DD3B9CE0096D192 /* DynamicLinksExampleTests.m */; };
 		5F5A53521ADE670C00F81DF0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5A53511ADE670C00F81DF0 /* main.m */; };
 		5F5A53551ADE670C00F81DF0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5A53541ADE670C00F81DF0 /* AppDelegate.m */; };
 		5F5A53581ADE670C00F81DF0 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5A53571ADE670C00F81DF0 /* ViewController.m */; };
@@ -22,7 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		10AF4D251DD3996E0096D192 /* PBXContainerItemProxy */ = {
+		10AF4D371DD3B9CE0096D192 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5F5A53441ADE670C00F81DF0 /* Project object */;
 			proxyType = 1;
@@ -33,8 +33,8 @@
 
 /* Begin PBXFileReference section */
 		105A4F511D91CD1500B5DE54 /* DynamicLinksExample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DynamicLinksExample.entitlements; sourceTree = "<group>"; };
-		10AF4D201DD3996E0096D192 /* DynamicLinksExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DynamicLinksExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		10AF4D221DD3996E0096D192 /* DynamicLinksExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DynamicLinksExampleTests.m; sourceTree = "<group>"; };
+		10AF4D321DD3B9CE0096D192 /* DynamicLinksExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DynamicLinksExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		10AF4D341DD3B9CE0096D192 /* DynamicLinksExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DynamicLinksExampleTests.m; sourceTree = "<group>"; };
 		5F5A534C1ADE670C00F81DF0 /* DynamicLinksExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DynamicLinksExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F5A53501ADE670C00F81DF0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5F5A53511ADE670C00F81DF0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -51,7 +51,7 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		10AF4D1D1DD3996E0096D192 /* Frameworks */ = {
+		10AF4D2F1DD3B9CE0096D192 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -75,10 +75,10 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		10AF4D211DD3996E0096D192 /* DynamicLinksExampleTests */ = {
+		10AF4D331DD3B9CE0096D192 /* DynamicLinksExampleTests */ = {
 			isa = PBXGroup;
 			children = (
-				10AF4D221DD3996E0096D192 /* DynamicLinksExampleTests.m */,
+				10AF4D341DD3B9CE0096D192 /* DynamicLinksExampleTests.m */,
 			);
 			path = DynamicLinksExampleTests;
 			sourceTree = "<group>";
@@ -88,7 +88,7 @@
 			children = (
 				5F5A534E1ADE670C00F81DF0 /* DynamicLinksExample */,
 				5F5A537A1ADE67D500F81DF0 /* DynamicLinksExampleSwift */,
-				10AF4D211DD3996E0096D192 /* DynamicLinksExampleTests */,
+				10AF4D331DD3B9CE0096D192 /* DynamicLinksExampleTests */,
 				5F5A534D1ADE670C00F81DF0 /* Products */,
 				5F9961041AE0CF4F0034F503 /* Shared */,
 			);
@@ -100,7 +100,7 @@
 			children = (
 				5F5A534C1ADE670C00F81DF0 /* DynamicLinksExample.app */,
 				5F5A53791ADE67D500F81DF0 /* DynamicLinksExample.app */,
-				10AF4D201DD3996E0096D192 /* DynamicLinksExampleTests.xctest */,
+				10AF4D321DD3B9CE0096D192 /* DynamicLinksExampleTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -150,22 +150,22 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		10AF4D1F1DD3996E0096D192 /* DynamicLinksExampleTests */ = {
+		10AF4D311DD3B9CE0096D192 /* DynamicLinksExampleTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 10AF4D271DD3996E0096D192 /* Build configuration list for PBXNativeTarget "DynamicLinksExampleTests" */;
+			buildConfigurationList = 10AF4D391DD3B9CE0096D192 /* Build configuration list for PBXNativeTarget "DynamicLinksExampleTests" */;
 			buildPhases = (
-				10AF4D1C1DD3996E0096D192 /* Sources */,
-				10AF4D1D1DD3996E0096D192 /* Frameworks */,
-				10AF4D1E1DD3996E0096D192 /* Resources */,
+				10AF4D2E1DD3B9CE0096D192 /* Sources */,
+				10AF4D2F1DD3B9CE0096D192 /* Frameworks */,
+				10AF4D301DD3B9CE0096D192 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				10AF4D261DD3996E0096D192 /* PBXTargetDependency */,
+				10AF4D381DD3B9CE0096D192 /* PBXTargetDependency */,
 			);
 			name = DynamicLinksExampleTests;
 			productName = DynamicLinksExampleTests;
-			productReference = 10AF4D201DD3996E0096D192 /* DynamicLinksExampleTests.xctest */;
+			productReference = 10AF4D321DD3B9CE0096D192 /* DynamicLinksExampleTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		5F5A534B1ADE670C00F81DF0 /* DynamicLinksExample */ = {
@@ -212,19 +212,19 @@
 				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "Google Inc.";
 				TargetAttributes = {
-					10AF4D1F1DD3996E0096D192 = {
+					10AF4D311DD3B9CE0096D192 = {
 						CreatedOnToolsVersion = 8.1;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						TestTargetID = 5F5A534B1ADE670C00F81DF0;
 					};
 					5F5A534B1ADE670C00F81DF0 = {
 						CreatedOnToolsVersion = 6.3;
-						DevelopmentTeam = EQHXZ8M8AV;
+						ProvisioningStyle = Manual;
 					};
 					5F5A53781ADE67D500F81DF0 = {
 						CreatedOnToolsVersion = 6.3;
-						DevelopmentTeam = EQHXZ8M8AV;
 						LastSwiftMigration = 0800;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -243,13 +243,13 @@
 			targets = (
 				5F5A534B1ADE670C00F81DF0 /* DynamicLinksExample */,
 				5F5A53781ADE67D500F81DF0 /* DynamicLinksExampleSwift */,
-				10AF4D1F1DD3996E0096D192 /* DynamicLinksExampleTests */,
+				10AF4D311DD3B9CE0096D192 /* DynamicLinksExampleTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		10AF4D1E1DD3996E0096D192 /* Resources */ = {
+		10AF4D301DD3B9CE0096D192 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -279,11 +279,11 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		10AF4D1C1DD3996E0096D192 /* Sources */ = {
+		10AF4D2E1DD3B9CE0096D192 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				10AF4D231DD3996E0096D192 /* DynamicLinksExampleTests.m in Sources */,
+				10AF4D351DD3B9CE0096D192 /* DynamicLinksExampleTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -309,10 +309,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		10AF4D261DD3996E0096D192 /* PBXTargetDependency */ = {
+		10AF4D381DD3B9CE0096D192 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 5F5A534B1ADE670C00F81DF0 /* DynamicLinksExample */;
-			targetProxy = 10AF4D251DD3996E0096D192 /* PBXContainerItemProxy */;
+			targetProxy = 10AF4D371DD3B9CE0096D192 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -328,7 +328,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		10AF4D281DD3996E0096D192 /* Debug */ = {
+		10AF4D3A1DD3B9CE0096D192 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -336,6 +336,7 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = DynamicLinksExample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -345,7 +346,7 @@
 			};
 			name = Debug;
 		};
-		10AF4D291DD3996E0096D192 /* Release */ = {
+		10AF4D3B1DD3B9CE0096D192 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -354,6 +355,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = DynamicLinksExample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -458,7 +460,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = DynamicLinksExample/DynamicLinksExample.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = EQHXZ8M8AV;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/DynamicLinksExample/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -475,7 +477,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = DynamicLinksExample/DynamicLinksExample.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = EQHXZ8M8AV;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/DynamicLinksExample/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -492,7 +494,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = DynamicLinksExample/DynamicLinksExample.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = EQHXZ8M8AV;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "$(SRCROOT)/DynamicLinksExample/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.sample.firebase.dynamiclinks;
@@ -508,7 +510,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = DynamicLinksExample/DynamicLinksExample.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = EQHXZ8M8AV;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "$(SRCROOT)/DynamicLinksExample/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.sample.firebase.dynamiclinks;
@@ -520,14 +522,13 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		10AF4D271DD3996E0096D192 /* Build configuration list for PBXNativeTarget "DynamicLinksExampleTests" */ = {
+		10AF4D391DD3B9CE0096D192 /* Build configuration list for PBXNativeTarget "DynamicLinksExampleTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				10AF4D281DD3996E0096D192 /* Debug */,
-				10AF4D291DD3996E0096D192 /* Release */,
+				10AF4D3A1DD3B9CE0096D192 /* Debug */,
+				10AF4D3B1DD3B9CE0096D192 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
 		};
 		5F5A53471ADE670C00F81DF0 /* Build configuration list for PBXProject "DynamicLinksExample" */ = {
 			isa = XCConfigurationList;

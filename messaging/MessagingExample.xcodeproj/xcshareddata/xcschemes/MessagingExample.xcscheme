@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0800"
+   LastUpgradeVersion = "0810"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "5F5A534B1ADE670C00F81DF0"
-               BuildableName = "FCM.app"
-               BlueprintName = "FCM"
-               ReferencedContainer = "container:FCM.xcodeproj">
+               BuildableName = "MessagingExample.app"
+               BlueprintName = "MessagingExample"
+               ReferencedContainer = "container:MessagingExample.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "5FDE05571B0DAA090037B82F"
-               BuildableName = "FCMTests.xctest"
-               BlueprintName = "FCMTests"
-               ReferencedContainer = "container:FCM.xcodeproj">
+               BuildableName = "MessagingExampleTests.xctest"
+               BlueprintName = "MessagingExampleTests"
+               ReferencedContainer = "container:MessagingExample.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -43,9 +43,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5F5A534B1ADE670C00F81DF0"
-            BuildableName = "FCM.app"
-            BlueprintName = "FCM"
-            ReferencedContainer = "container:FCM.xcodeproj">
+            BuildableName = "MessagingExample.app"
+            BlueprintName = "MessagingExample"
+            ReferencedContainer = "container:MessagingExample.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -66,9 +66,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5F5A534B1ADE670C00F81DF0"
-            BuildableName = "FCM.app"
-            BlueprintName = "FCM"
-            ReferencedContainer = "container:FCM.xcodeproj">
+            BuildableName = "MessagingExample.app"
+            BlueprintName = "MessagingExample"
+            ReferencedContainer = "container:MessagingExample.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -85,9 +85,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5F5A534B1ADE670C00F81DF0"
-            BuildableName = "FCM.app"
-            BlueprintName = "FCM"
-            ReferencedContainer = "container:FCM.xcodeproj">
+            BuildableName = "MessagingExample.app"
+            BlueprintName = "MessagingExample"
+            ReferencedContainer = "container:MessagingExample.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

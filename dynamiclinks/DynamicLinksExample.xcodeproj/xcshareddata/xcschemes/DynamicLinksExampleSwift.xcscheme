@@ -32,8 +32,8 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "5FDE05571B0DAA090037B82F"
-               BuildableName = "DynamicLinksExample.xctest"
+               BlueprintIdentifier = "10AF4D1F1DD3996E0096D192"
+               BuildableName = "DynamicLinksExampleTests.xctest"
                BlueprintName = "DynamicLinksExampleTests"
                ReferencedContainer = "container:DynamicLinksExample.xcodeproj">
             </BuildableReference>

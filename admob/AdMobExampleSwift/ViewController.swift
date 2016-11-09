@@ -55,7 +55,7 @@ class ViewController: UIViewController, GADInterstitialDelegate {
     return interstitial
   }
 
-  func interstitialDidDismissScreen(_ interstitial: GADInterstitial!) {
+  func interstitialDidDismissScreen(_ interstitial: GADInterstitial) {
     self.interstitial = createAndLoadInterstitial()
   }
 

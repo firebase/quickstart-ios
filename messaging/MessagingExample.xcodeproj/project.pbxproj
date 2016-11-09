@@ -32,7 +32,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		5F5A534C1ADE670C00F81DF0 /* FCM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FCM.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5F5A534C1ADE670C00F81DF0 /* MessagingExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MessagingExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F5A53501ADE670C00F81DF0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5F5A53511ADE670C00F81DF0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5F5A53531ADE670C00F81DF0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -40,12 +40,12 @@
 		5F5A53561ADE670C00F81DF0 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		5F5A53571ADE670C00F81DF0 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		5F5A535A1ADE670C00F81DF0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		5F5A53791ADE67D500F81DF0 /* FCMSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FCMSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5F5A53791ADE67D500F81DF0 /* MessagingExampleSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MessagingExampleSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F5A537D1ADE67D500F81DF0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5F5A537F1ADE67D500F81DF0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		5F9961061AE0CF4F0034F503 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		5F9961071AE0CF4F0034F503 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
-		5FDE05581B0DAA090037B82F /* FCMTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FCMTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FDE05581B0DAA090037B82F /* MessagingExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MessagingExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FDE055C1B0DAA090037B82F /* AppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -77,9 +77,9 @@
 		5F5A53431ADE670C00F81DF0 = {
 			isa = PBXGroup;
 			children = (
-				5F5A534E1ADE670C00F81DF0 /* FCM */,
-				5F5A537A1ADE67D500F81DF0 /* FCMSwift */,
-				5FDE05591B0DAA090037B82F /* FCMTests */,
+				5F5A534E1ADE670C00F81DF0 /* MessagingExample */,
+				5F5A537A1ADE67D500F81DF0 /* MessagingExampleSwift */,
+				5FDE05591B0DAA090037B82F /* MessagingExampleTests */,
 				5F5A534D1ADE670C00F81DF0 /* Products */,
 				5F9961041AE0CF4F0034F503 /* Shared */,
 			);
@@ -89,14 +89,14 @@
 		5F5A534D1ADE670C00F81DF0 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				5F5A534C1ADE670C00F81DF0 /* FCM.app */,
-				5F5A53791ADE67D500F81DF0 /* FCMSwift.app */,
-				5FDE05581B0DAA090037B82F /* FCMTests.xctest */,
+				5F5A534C1ADE670C00F81DF0 /* MessagingExample.app */,
+				5F5A53791ADE67D500F81DF0 /* MessagingExampleSwift.app */,
+				5FDE05581B0DAA090037B82F /* MessagingExampleTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		5F5A534E1ADE670C00F81DF0 /* FCM */ = {
+		5F5A534E1ADE670C00F81DF0 /* MessagingExample */ = {
 			isa = PBXGroup;
 			children = (
 				5F5A53531ADE670C00F81DF0 /* AppDelegate.h */,
@@ -105,7 +105,7 @@
 				5F5A53571ADE670C00F81DF0 /* ViewController.m */,
 				5F5A534F1ADE670C00F81DF0 /* Supporting Files */,
 			);
-			path = FCM;
+			path = MessagingExample;
 			sourceTree = "<group>";
 		};
 		5F5A534F1ADE670C00F81DF0 /* Supporting Files */ = {
@@ -118,13 +118,13 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		5F5A537A1ADE67D500F81DF0 /* FCMSwift */ = {
+		5F5A537A1ADE67D500F81DF0 /* MessagingExampleSwift */ = {
 			isa = PBXGroup;
 			children = (
 				5F5A537D1ADE67D500F81DF0 /* AppDelegate.swift */,
 				5F5A537F1ADE67D500F81DF0 /* ViewController.swift */,
 			);
-			path = FCMSwift;
+			path = MessagingExampleSwift;
 			sourceTree = "<group>";
 		};
 		5F9961041AE0CF4F0034F503 /* Shared */ = {
@@ -137,20 +137,20 @@
 			path = ../shared;
 			sourceTree = "<group>";
 		};
-		5FDE05591B0DAA090037B82F /* FCMTests */ = {
+		5FDE05591B0DAA090037B82F /* MessagingExampleTests */ = {
 			isa = PBXGroup;
 			children = (
 				5FDE055C1B0DAA090037B82F /* AppTests.m */,
 			);
-			path = FCMTests;
+			path = MessagingExampleTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		5F5A534B1ADE670C00F81DF0 /* FCM */ = {
+		5F5A534B1ADE670C00F81DF0 /* MessagingExample */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5F5A536F1ADE670C00F81DF0 /* Build configuration list for PBXNativeTarget "FCM" */;
+			buildConfigurationList = 5F5A536F1ADE670C00F81DF0 /* Build configuration list for PBXNativeTarget "MessagingExample" */;
 			buildPhases = (
 				5F5A53481ADE670C00F81DF0 /* Sources */,
 				5F5A53491ADE670C00F81DF0 /* Frameworks */,
@@ -160,14 +160,14 @@
 			);
 			dependencies = (
 			);
-			name = FCM;
+			name = MessagingExample;
 			productName = FCM;
-			productReference = 5F5A534C1ADE670C00F81DF0 /* FCM.app */;
+			productReference = 5F5A534C1ADE670C00F81DF0 /* MessagingExample.app */;
 			productType = "com.apple.product-type.application";
 		};
-		5F5A53781ADE67D500F81DF0 /* FCMSwift */ = {
+		5F5A53781ADE67D500F81DF0 /* MessagingExampleSwift */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5F5A53991ADE67D500F81DF0 /* Build configuration list for PBXNativeTarget "FCMSwift" */;
+			buildConfigurationList = 5F5A53991ADE67D500F81DF0 /* Build configuration list for PBXNativeTarget "MessagingExampleSwift" */;
 			buildPhases = (
 				5F5A53751ADE67D500F81DF0 /* Sources */,
 				5F5A53761ADE67D500F81DF0 /* Frameworks */,
@@ -177,14 +177,14 @@
 			);
 			dependencies = (
 			);
-			name = FCMSwift;
+			name = MessagingExampleSwift;
 			productName = FCMSwift;
-			productReference = 5F5A53791ADE67D500F81DF0 /* FCMSwift.app */;
+			productReference = 5F5A53791ADE67D500F81DF0 /* MessagingExampleSwift.app */;
 			productType = "com.apple.product-type.application";
 		};
-		5FDE05571B0DAA090037B82F /* FCMTests */ = {
+		5FDE05571B0DAA090037B82F /* MessagingExampleTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5FDE05621B0DAA090037B82F /* Build configuration list for PBXNativeTarget "FCMTests" */;
+			buildConfigurationList = 5FDE05621B0DAA090037B82F /* Build configuration list for PBXNativeTarget "MessagingExampleTests" */;
 			buildPhases = (
 				5FDE05541B0DAA090037B82F /* Sources */,
 				5FDE05551B0DAA090037B82F /* Frameworks */,
@@ -195,9 +195,9 @@
 			dependencies = (
 				5FDE055F1B0DAA090037B82F /* PBXTargetDependency */,
 			);
-			name = FCMTests;
+			name = MessagingExampleTests;
 			productName = FCMTests;
-			productReference = 5FDE05581B0DAA090037B82F /* FCMTests.xctest */;
+			productReference = 5FDE05581B0DAA090037B82F /* MessagingExampleTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -207,12 +207,13 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0710;
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = "Google Inc.";
 				TargetAttributes = {
 					5F5A534B1ADE670C00F81DF0 = {
 						CreatedOnToolsVersion = 6.3;
 						LastSwiftMigration = 0800;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.Push = {
 								enabled = 1;
@@ -222,6 +223,7 @@
 					5F5A53781ADE67D500F81DF0 = {
 						CreatedOnToolsVersion = 6.3;
 						LastSwiftMigration = 0800;
+						ProvisioningStyle = Manual;
 					};
 					5FDE05571B0DAA090037B82F = {
 						CreatedOnToolsVersion = 6.3.2;
@@ -230,7 +232,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 5F5A53471ADE670C00F81DF0 /* Build configuration list for PBXProject "FCM" */;
+			buildConfigurationList = 5F5A53471ADE670C00F81DF0 /* Build configuration list for PBXProject "MessagingExample" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -243,9 +245,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				5F5A534B1ADE670C00F81DF0 /* FCM */,
-				5F5A53781ADE67D500F81DF0 /* FCMSwift */,
-				5FDE05571B0DAA090037B82F /* FCMTests */,
+				5F5A534B1ADE670C00F81DF0 /* MessagingExample */,
+				5F5A53781ADE67D500F81DF0 /* MessagingExampleSwift */,
+				5FDE05571B0DAA090037B82F /* MessagingExampleTests */,
 			);
 		};
 /* End PBXProject section */
@@ -313,7 +315,7 @@
 /* Begin PBXTargetDependency section */
 		5FDE055F1B0DAA090037B82F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 5F5A534B1ADE670C00F81DF0 /* FCM */;
+			target = 5F5A534B1ADE670C00F81DF0 /* MessagingExample */;
 			targetProxy = 5FDE055E1B0DAA090037B82F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -343,8 +345,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -388,8 +392,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -408,6 +414,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -420,10 +427,11 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
-				INFOPLIST_FILE = FCM/Info.plist;
+				INFOPLIST_FILE = MessagingExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.your-bundle-id-here.sample";
+				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.MessagingExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_VERSION = 3.0;
@@ -437,10 +445,11 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
-				INFOPLIST_FILE = FCM/Info.plist;
+				INFOPLIST_FILE = MessagingExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.your-bundle-id-here.sample";
+				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.MessagingExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_VERSION = 3.0;
@@ -453,9 +462,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				INFOPLIST_FILE = "$(SRCROOT)/FCM/Info.plist";
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = MessagingExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.your-bundle-id-here.sample";
+				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.MessagingExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -467,9 +477,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				INFOPLIST_FILE = "$(SRCROOT)/FCM/Info.plist";
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = MessagingExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.your-bundle-id-here.sample";
+				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.MessagingExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 3.0;
@@ -481,25 +492,17 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					FCM,
-				);
-				INFOPLIST_FILE = FCM/Info.plist;
+				INFOPLIST_FILE = MessagingExample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.MessagingExampleTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FCM.app/FCM";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MessagingExample.app/MessagingExample";
 			};
 			name = Debug;
 		};
@@ -509,28 +512,20 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					FCM,
-				);
-				INFOPLIST_FILE = FCM/Info.plist;
+				INFOPLIST_FILE = MessagingExample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.MessagingExampleTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FCM.app/FCM";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MessagingExample.app/MessagingExample";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		5F5A53471ADE670C00F81DF0 /* Build configuration list for PBXProject "FCM" */ = {
+		5F5A53471ADE670C00F81DF0 /* Build configuration list for PBXProject "MessagingExample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5F5A536D1ADE670C00F81DF0 /* Debug */,
@@ -539,7 +534,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5F5A536F1ADE670C00F81DF0 /* Build configuration list for PBXNativeTarget "FCM" */ = {
+		5F5A536F1ADE670C00F81DF0 /* Build configuration list for PBXNativeTarget "MessagingExample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5F5A53701ADE670C00F81DF0 /* Debug */,
@@ -548,7 +543,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5F5A53991ADE67D500F81DF0 /* Build configuration list for PBXNativeTarget "FCMSwift" */ = {
+		5F5A53991ADE67D500F81DF0 /* Build configuration list for PBXNativeTarget "MessagingExampleSwift" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5F5A53951ADE67D500F81DF0 /* Debug */,
@@ -557,7 +552,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5FDE05621B0DAA090037B82F /* Build configuration list for PBXNativeTarget "FCMTests" */ = {
+		5FDE05621B0DAA090037B82F /* Build configuration list for PBXNativeTarget "MessagingExampleTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5FDE05601B0DAA090037B82F /* Debug */,

@@ -484,11 +484,11 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					Config,
 				);
-				INFOPLIST_FILE = Config/Info.plist;
+				INFOPLIST_FILE = ConfigExample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Config.app/Config";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ConfigExample.app/ConfigExample";
 			};
 			name = Debug;
 		};
@@ -507,11 +507,11 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					Config,
 				);
-				INFOPLIST_FILE = Config/Info.plist;
+				INFOPLIST_FILE = ConfigExample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Config.app/Config";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ConfigExample.app/ConfigExample";
 			};
 			name = Release;
 		};

@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		10AF4D351DD3B9CE0096D192 /* DynamicLinksExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 10AF4D341DD3B9CE0096D192 /* DynamicLinksExampleTests.m */; };
+		10AF4D491DD3E7660096D192 /* DynamicLinksExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 10AF4D481DD3E7660096D192 /* DynamicLinksExampleTests.m */; };
 		5F5A53521ADE670C00F81DF0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5A53511ADE670C00F81DF0 /* main.m */; };
 		5F5A53551ADE670C00F81DF0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5A53541ADE670C00F81DF0 /* AppDelegate.m */; };
 		5F5A53581ADE670C00F81DF0 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5A53571ADE670C00F81DF0 /* ViewController.m */; };
@@ -22,7 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		10AF4D371DD3B9CE0096D192 /* PBXContainerItemProxy */ = {
+		10AF4D4B1DD3E7660096D192 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5F5A53441ADE670C00F81DF0 /* Project object */;
 			proxyType = 1;
@@ -33,8 +33,8 @@
 
 /* Begin PBXFileReference section */
 		105A4F511D91CD1500B5DE54 /* DynamicLinksExample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DynamicLinksExample.entitlements; sourceTree = "<group>"; };
-		10AF4D321DD3B9CE0096D192 /* DynamicLinksExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DynamicLinksExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		10AF4D341DD3B9CE0096D192 /* DynamicLinksExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DynamicLinksExampleTests.m; sourceTree = "<group>"; };
+		10AF4D461DD3E7660096D192 /* DynamicLinksExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DynamicLinksExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		10AF4D481DD3E7660096D192 /* DynamicLinksExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DynamicLinksExampleTests.m; sourceTree = "<group>"; };
 		5F5A534C1ADE670C00F81DF0 /* DynamicLinksExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DynamicLinksExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F5A53501ADE670C00F81DF0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5F5A53511ADE670C00F81DF0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -51,7 +51,7 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		10AF4D2F1DD3B9CE0096D192 /* Frameworks */ = {
+		10AF4D431DD3E7660096D192 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -75,10 +75,10 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		10AF4D331DD3B9CE0096D192 /* DynamicLinksExampleTests */ = {
+		10AF4D471DD3E7660096D192 /* DynamicLinksExampleTests */ = {
 			isa = PBXGroup;
 			children = (
-				10AF4D341DD3B9CE0096D192 /* DynamicLinksExampleTests.m */,
+				10AF4D481DD3E7660096D192 /* DynamicLinksExampleTests.m */,
 			);
 			path = DynamicLinksExampleTests;
 			sourceTree = "<group>";
@@ -88,7 +88,7 @@
 			children = (
 				5F5A534E1ADE670C00F81DF0 /* DynamicLinksExample */,
 				5F5A537A1ADE67D500F81DF0 /* DynamicLinksExampleSwift */,
-				10AF4D331DD3B9CE0096D192 /* DynamicLinksExampleTests */,
+				10AF4D471DD3E7660096D192 /* DynamicLinksExampleTests */,
 				5F5A534D1ADE670C00F81DF0 /* Products */,
 				5F9961041AE0CF4F0034F503 /* Shared */,
 			);
@@ -100,7 +100,7 @@
 			children = (
 				5F5A534C1ADE670C00F81DF0 /* DynamicLinksExample.app */,
 				5F5A53791ADE67D500F81DF0 /* DynamicLinksExample.app */,
-				10AF4D321DD3B9CE0096D192 /* DynamicLinksExampleTests.xctest */,
+				10AF4D461DD3E7660096D192 /* DynamicLinksExampleTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -150,22 +150,22 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		10AF4D311DD3B9CE0096D192 /* DynamicLinksExampleTests */ = {
+		10AF4D451DD3E7660096D192 /* DynamicLinksExampleTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 10AF4D391DD3B9CE0096D192 /* Build configuration list for PBXNativeTarget "DynamicLinksExampleTests" */;
+			buildConfigurationList = 10AF4D4D1DD3E7660096D192 /* Build configuration list for PBXNativeTarget "DynamicLinksExampleTests" */;
 			buildPhases = (
-				10AF4D2E1DD3B9CE0096D192 /* Sources */,
-				10AF4D2F1DD3B9CE0096D192 /* Frameworks */,
-				10AF4D301DD3B9CE0096D192 /* Resources */,
+				10AF4D421DD3E7660096D192 /* Sources */,
+				10AF4D431DD3E7660096D192 /* Frameworks */,
+				10AF4D441DD3E7660096D192 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				10AF4D381DD3B9CE0096D192 /* PBXTargetDependency */,
+				10AF4D4C1DD3E7660096D192 /* PBXTargetDependency */,
 			);
 			name = DynamicLinksExampleTests;
 			productName = DynamicLinksExampleTests;
-			productReference = 10AF4D321DD3B9CE0096D192 /* DynamicLinksExampleTests.xctest */;
+			productReference = 10AF4D461DD3E7660096D192 /* DynamicLinksExampleTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		5F5A534B1ADE670C00F81DF0 /* DynamicLinksExample */ = {
@@ -212,7 +212,7 @@
 				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "Google Inc.";
 				TargetAttributes = {
-					10AF4D311DD3B9CE0096D192 = {
+					10AF4D451DD3E7660096D192 = {
 						CreatedOnToolsVersion = 8.1;
 						ProvisioningStyle = Manual;
 						TestTargetID = 5F5A534B1ADE670C00F81DF0;
@@ -243,13 +243,13 @@
 			targets = (
 				5F5A534B1ADE670C00F81DF0 /* DynamicLinksExample */,
 				5F5A53781ADE67D500F81DF0 /* DynamicLinksExampleSwift */,
-				10AF4D311DD3B9CE0096D192 /* DynamicLinksExampleTests */,
+				10AF4D451DD3E7660096D192 /* DynamicLinksExampleTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		10AF4D301DD3B9CE0096D192 /* Resources */ = {
+		10AF4D441DD3E7660096D192 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -279,11 +279,11 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		10AF4D2E1DD3B9CE0096D192 /* Sources */ = {
+		10AF4D421DD3E7660096D192 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				10AF4D351DD3B9CE0096D192 /* DynamicLinksExampleTests.m in Sources */,
+				10AF4D491DD3E7660096D192 /* DynamicLinksExampleTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -309,10 +309,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		10AF4D381DD3B9CE0096D192 /* PBXTargetDependency */ = {
+		10AF4D4C1DD3E7660096D192 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 5F5A534B1ADE670C00F81DF0 /* DynamicLinksExample */;
-			targetProxy = 10AF4D371DD3B9CE0096D192 /* PBXContainerItemProxy */;
+			targetProxy = 10AF4D4B1DD3E7660096D192 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -328,7 +328,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		10AF4D3A1DD3B9CE0096D192 /* Debug */ = {
+		10AF4D4E1DD3E7660096D192 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -346,7 +346,7 @@
 			};
 			name = Debug;
 		};
-		10AF4D3B1DD3B9CE0096D192 /* Release */ = {
+		10AF4D4F1DD3E7660096D192 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -522,13 +522,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		10AF4D391DD3B9CE0096D192 /* Build configuration list for PBXNativeTarget "DynamicLinksExampleTests" */ = {
+		10AF4D4D1DD3E7660096D192 /* Build configuration list for PBXNativeTarget "DynamicLinksExampleTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				10AF4D3A1DD3B9CE0096D192 /* Debug */,
-				10AF4D3B1DD3B9CE0096D192 /* Release */,
+				10AF4D4E1DD3E7660096D192 /* Debug */,
+				10AF4D4F1DD3E7660096D192 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5F5A53471ADE670C00F81DF0 /* Build configuration list for PBXProject "DynamicLinksExample" */ = {
 			isa = XCConfigurationList;

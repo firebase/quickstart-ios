@@ -63,6 +63,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   }
 
   // [START receive_message]
+  func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
+    // If you are receiving a notification message while your app is in the background,
+    // this callback will not be fired till the user taps on the notification launching the application.
+    // TODO: Handle data of notification
+
+    // Print message ID.
+    print("Message ID: \(userInfo["gcm.message_id"]!)")
+
+    // Print full message.
+    print("%@", userInfo)
+  }
+
   func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
                    fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
     // If you are receiving a notification message while your app is in the background,
@@ -135,6 +147,17 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
                               willPresent notification: UNNotification,
     withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
     let userInfo = notification.request.content.userInfo
+    // Print message ID.
+    print("Message ID: \(userInfo["gcm.message_id"]!)")
+
+    // Print full message.
+    print("%@", userInfo)
+  }
+
+  func userNotificationCenter(_ center: UNUserNotificationCenter,
+                              didReceive response: UNNotificationResponse,
+                              withCompletionHandler completionHandler: @escaping () -> Void) {
+    let userInfo = response.notification.request.content.userInfo
     // Print message ID.
     print("Message ID: \(userInfo["gcm.message_id"]!)")
 

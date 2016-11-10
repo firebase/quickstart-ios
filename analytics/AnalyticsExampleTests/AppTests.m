@@ -21,7 +21,7 @@
 
 #import "LogWrapper.h"
 
-static NSString * const kSearchTerm = @": Sending hit(s) ";
+static NSString * const kSearchTerm = @" Measurement data sent to network. ";
 
 @interface AppTests : XCTestCase
 @end

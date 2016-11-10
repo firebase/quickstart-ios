@@ -100,6 +100,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   }
   // [END connect_to_fcm]
 
+  func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+    print("Unable to register for remote notifications " + error)
+  }
+
+  // This function is added here only for debugging purposes, and can be removed if swizzling is enabled.
+  // If swizzling is disabled then this function must be implemented so that the APNs token can be paired to
+  // the InstanceID token.
+  func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+    print("ANPs token retrieved: " + deviceToken)
+
+    // With swizzling disabled you must set the APNs token here.
+    // FIRInstanceID.instanceID().setAPNSToken(deviceToken, type: FIRInstanceIDAPNSTokenType.sandbox)
+  }
+
   func applicationDidBecomeActive(_ application: UIApplication) {
     connectToFcm()
   }

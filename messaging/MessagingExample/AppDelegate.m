@@ -160,6 +160,20 @@
 }
 // [END connect_to_fcm]
 
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+  NSLog(@"Unable to register for remote notifications: %@", error);
+}
+
+// This function is added here only for debugging purposes, and can be removed if swizzling is enabled.
+// If swizzling is disabled then this function must be implemented so that the APNs token can be paired to
+// the InstanceID token.
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+  NSLog(@"APNs token retrieved: %@", deviceToken);
+
+  // With swizzling disabled you must set the APNs token here.
+  // [[FIRInstanceID instanceID] setAPNSToken:deviceToken type:FIRInstanceIDAPNSTokenTypeSandbox];
+}
+
 - (void)applicationDidBecomeActive:(UIApplication *)application {
   [self connectToFcm];
 }

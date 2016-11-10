@@ -26,6 +26,7 @@
 @implementation PatternTabBarController
 
 - (void)viewDidAppear:(BOOL)animated {
+  [super viewDidAppear:animated];
   // For first run, ask for the user's favorite food.
   if (![self getUserFavoriteFood]) {
     [self askForFavoriteFood];

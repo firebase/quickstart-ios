@@ -16,7 +16,7 @@
 
 #import "ViewController.h"
 @import GoogleSignIn;
-@import FirebaseInvites;
+@import Firebase;
 
 // [START viewcontroller_interfaces]
 @interface ViewController ()<FIRInviteDelegate, GIDSignInDelegate, GIDSignInUIDelegate>
@@ -81,7 +81,11 @@
     didSignInForUser:(GIDGoogleUser *)user
            withError:(NSError *)error {
   // Perform any operations on signed in user here.
-  _statusText.text = [NSString stringWithFormat:@"Signed in as %@", user.profile.name];
+  if (user.profile.name) {
+    _statusText.text = [NSString stringWithFormat:@"Signed in as %@", user.profile.name];
+  } else {
+    _statusText.text = @"Signed in, profile name is not set";
+  }
   [self toggleAuthUI];
 }
 // [END signin_handler]

@@ -26,12 +26,14 @@ import XCTest
 class AdMobExampleSwiftTests: XCTestCase {
 
   // Important: create a variable for the view controller outside of setup(). Otherwise the variable is not available to the test functions
-  var vcToTest:ViewController = ViewController()
+  var vcToTest: ViewController = ViewController()
 
   override func setUp() {
     super.setUp()
-    let storyboard:UIStoryboard = UIStoryboard(name: "Main", bundle: Bundle(for: type(of: self)))
-    vcToTest = storyboard.instantiateViewController(withIdentifier: "ViewController") as! ViewController
+    let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: Bundle(for: type(of: self)))
+    guard let vcToTest = storyboard.instantiateViewController(withIdentifier: "ViewController") as? ViewController else {
+      return
+    }
     let _ = vcToTest.view
   }
 

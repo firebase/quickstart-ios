@@ -16,7 +16,6 @@
 
 #import "AppDelegate.h"
 @import Firebase;
-@import FirebaseInvites;
 @import GoogleSignIn;
 
 @implementation AppDelegate

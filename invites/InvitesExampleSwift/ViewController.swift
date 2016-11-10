@@ -15,7 +15,6 @@
 //
 import UIKit
 
-import FirebaseInvites
 import GoogleSignIn
 import Firebase
 
@@ -42,14 +41,17 @@ class ViewController: UIViewController, GIDSignInDelegate, GIDSignInUIDelegate, 
 
   // [START signin_handler]
   func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
-    if (error == nil) {
-      // User Successfully signed in.
-      statusText.text = "Signed in as \(user.profile.name)"
-      toggleAuthUI()
-    } else {
+    if let error = error {
       print("\(error.localizedDescription)")
-      toggleAuthUI()
+    } else {
+      // User Successfully signed in.
+      if let name = user.profile.name {
+        statusText.text = "Signed in as \(name)"
+      } else {
+        statusText.text = "Signed in, profile name is not set"
+      }
     }
+    toggleAuthUI()
   }
   // [END signin_handler]
 
@@ -72,7 +74,6 @@ class ViewController: UIViewController, GIDSignInDelegate, GIDSignInUIDelegate, 
     toggleAuthUI()
   }
   // [END disconnect_tapped]
-
 
   // [START invite_tapped]
   @IBAction func inviteTapped(_ sender: AnyObject) {
@@ -97,7 +98,7 @@ class ViewController: UIViewController, GIDSignInDelegate, GIDSignInUIDelegate, 
 
   // [START toggle_auth]
   func toggleAuthUI() {
-    if (GIDSignIn.sharedInstance().hasAuthInKeychain()) {
+    if GIDSignIn.sharedInstance().hasAuthInKeychain() {
       // Signed in
       signOutButton.isEnabled = true
       disconnectButton.isEnabled = true
@@ -122,7 +123,7 @@ class ViewController: UIViewController, GIDSignInDelegate, GIDSignInUIDelegate, 
   // [END invite_finished]
 
   // Sets the status bar to white.
-  override var preferredStatusBarStyle : UIStatusBarStyle {
+  override var preferredStatusBarStyle: UIStatusBarStyle {
     return UIStatusBarStyle.lightContent
   }
 }

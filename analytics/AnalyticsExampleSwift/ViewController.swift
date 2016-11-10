@@ -20,11 +20,13 @@ import FirebaseAnalytics
 @objc(ViewController)  // match the ObjC symbol name inside Storyboard
 class ViewController: UIViewController {
 
-  override func viewWillAppear(_ animated: Bool) {
-    super.viewWillAppear(true)
+  override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
 
     let name = "Pattern~\(title!)",
         text = "I'd love you to hear about\(name)"
+
+    recordScreenView()
 
     // [START custom_event_swift]
     FIRAnalytics.logEvent(withName: "share_image", parameters: [
@@ -34,4 +36,15 @@ class ViewController: UIViewController {
     // [END custom_event_swift]
   }
 
+  func recordScreenView() {
+    // These strings must be <= 36 characters long in order for setScreenName:screenClass: to succeed.
+    guard let screenName = title else {
+      return
+    }
+    let screenClass = classForCoder.description()
+
+    // [START set_current_screen]
+    FIRAnalytics.setScreenName(screenName, screenClass: screenClass)
+    // [END set_current_screen]
+  }
 }

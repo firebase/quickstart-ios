@@ -46,9 +46,14 @@
     didSignInForUser:(GIDGoogleUser *)user
            withError:(NSError *)error {
   if (error == nil) {
-    [self performSegueWithIdentifier:@"SignedInScreen" sender:self];
+    // User Successfully signed in.
+    // TODO: Remove async after, when GIDSignIn is started getting called after dissmissVC
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.35 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+      [self performSegueWithIdentifier:@"SignedInScreen" sender:self];
+    });
   } else {
     // Something went wrong; for example, the user could haved clicked cancel.
+    NSLog(@"%@", error.localizedDescription);
   }
 }
 

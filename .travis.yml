@@ -1,18 +1,48 @@
 osx_image: xcode8
 language: objective-c
-xcode_workspace: admob/AdMobExample.xcworkspace
-xcode_scheme: AdMobExample
+cache:
+  - bundler
+  - cocoapods
+
+podfile: admob/Podfile
+env: SAMPLE=AdMob
+
+matrix:
+  include:
+  - podfile: analytics/Podfile
+    env: SAMPLE=Analytics
+  - podfile: authentication/Podfile
+    env: SAMPLE=Authentication
+  - podfile: config/Podfile
+    env: SAMPLE=Config
+  - podfile: crashreporting/Podfile
+    env: SAMPLE=CrashReporting
+  - podfile: database/Podfile
+    env: SAMPLE=Database
+  - podfile: dynamiclinks/Podfile
+    env: SAMPLE=DynamicLinks
+  - podfile: invites/Podfile
+    env: SAMPLE=Invites
+  - podfile: messaging/Podfile
+    env: SAMPLE=Messaging
+  - podfile: storage/Podfile
+    env: SAMPLE=Storage
 
 rvm: 2.3.1
 before_install:
   - gem uninstall cocoapods -a
   - gem install cocoapods -v '1.0.1'
-  - ./travis_script.sh
+  - cd $SAMPLE
+  - pod install --repo-update
+  - cp ../mock-GoogleService-Info.plist ./GoogleService-Info.plist
+  - sed -i '' '/<key>BUNDLE_ID</{n;s/id/com.google.firebase.quickstart.'$SAMPLE'Example/;}' GoogleService-Info.plist
+  - sed -i '' 's/YOUR_REVERSED_CLIENT_ID/com.googleusercontent.apps.123456789000-hjugbg6ud799v4c49dim8ce2usclthar/' "$SAMPLE"Example/Info.plist
+  - cd -
   - gem install xcodeproj
-  - ruby info_script.rb admob
+  - ruby info_script.rb $SAMPLE
 
-script: xcodebuild -workspace admob/AdMobExample.xcworkspace
-  -scheme AdMobExample
+script: xcodebuild -workspace ${SAMPLE}/${SAMPLE}Example.xcworkspace
+  -scheme ${SAMPLE}Example
   -sdk iphonesimulator
   -destination 'platform=iOS Simulator,name=iPhone 7'
   build

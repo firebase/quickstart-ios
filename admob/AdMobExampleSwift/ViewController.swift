@@ -55,13 +55,12 @@ class ViewController: UIViewController, GADInterstitialDelegate {
     return interstitial
   }
 
-  func interstitialDidDismissScreen(_ interstitial: GADInterstitial!) {
+  func interstitialDidDismissScreen(_ interstitial: GADInterstitial) {
     self.interstitial = createAndLoadInterstitial()
   }
 
-
   @IBAction func didTapInterstitialButton(_ sender: AnyObject) {
-    if (self.interstitial.isReady) {
+    if self.interstitial.isReady {
       self.interstitial.present(fromRootViewController: self)
     }
   }

@@ -5,9 +5,9 @@ platform :ios, '7.0'
 
 pod 'Firebase/Messaging'
 
-target 'FCM' do
+target 'MessagingExample' do
 end
-target 'FCMSwift' do
+target 'MessagingExampleSwift' do
 end
-target 'FCMTests' do
+target 'MessagingExampleTests' do
 end

@@ -96,7 +96,18 @@
 }
 
 // [START receive_message]
-// To receive notifications for iOS 9 and below.
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+  // If you are receiving a notification message while your app is in the background,
+  // this callback will not be fired till the user taps on the notification launching the application.
+  // TODO: Handle data of notification
+
+  // Print message ID.
+  NSLog(@"Message ID: %@", userInfo[@"gcm.message_id"]);
+
+  // Print full message.
+  NSLog(@"%@", userInfo);
+}
+
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
     fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
   // If you are receiving a notification message while your app is in the background,
@@ -114,6 +125,7 @@
 // [START ios_10_message_handling]
 // Receive displayed notifications for iOS 10 devices.
 #if defined(__IPHONE_10_0) && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
+// Handle incoming notification messages while app is in the foreground.
 - (void)userNotificationCenter:(UNUserNotificationCenter *)center
        willPresentNotification:(UNNotification *)notification
          withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler {
@@ -122,6 +134,14 @@
   NSLog(@"Message ID: %@", userInfo[@"gcm.message_id"]);
 
   // Print full message.
+  NSLog(@"%@", userInfo);
+}
+
+// Handle notification messages after display notification is tapped by the user.
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center
+didReceiveNotificationResponse:(UNNotificationResponse *)response
+         withCompletionHandler:(void (^)())completionHandler {
+  NSDictionary *userInfo = response.notification.request.content.userInfo;
   NSLog(@"%@", userInfo);
 }
 
@@ -159,6 +179,20 @@
   }];
 }
 // [END connect_to_fcm]
+
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+  NSLog(@"Unable to register for remote notifications: %@", error);
+}
+
+// This function is added here only for debugging purposes, and can be removed if swizzling is enabled.
+// If swizzling is disabled then this function must be implemented so that the APNs token can be paired to
+// the InstanceID token.
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+  NSLog(@"APNs token retrieved: %@", deviceToken);
+
+  // With swizzling disabled you must set the APNs token here.
+  // [[FIRInstanceID instanceID] setAPNSToken:deviceToken type:FIRInstanceIDAPNSTokenTypeSandbox];
+}
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
   [self connectToFcm];

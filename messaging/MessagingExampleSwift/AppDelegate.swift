@@ -165,12 +165,14 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
     print("%@", userInfo)
   }
 }
+// [END ios_10_message_handling]
 
+// [START ios_10_data_message_handling]
 extension AppDelegate : FIRMessagingDelegate {
-  // Receive data message on iOS 10 devices.
+  // Receive data message on iOS 10 devices while app is in the foreground.
   func applicationReceivedRemoteMessage(_ remoteMessage: FIRMessagingRemoteMessage) {
     print("%@", remoteMessage.appData)
   }
 }
+// [END ios_10_data_message_handling]
 
-// [END ios_10_message_handling]

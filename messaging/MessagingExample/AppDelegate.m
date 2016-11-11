@@ -144,14 +144,18 @@ didReceiveNotificationResponse:(UNNotificationResponse *)response
   NSDictionary *userInfo = response.notification.request.content.userInfo;
   NSLog(@"%@", userInfo);
 }
+#endif
+// [END ios_10_message_handling]
 
-// Receive data message on iOS 10 devices.
+// [START ios_10_data_message_handling]
+#if defined(__IPHONE_10_0) && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
+// Receive data message on iOS 10 devices while app is in the foreground.
 - (void)applicationReceivedRemoteMessage:(FIRMessagingRemoteMessage *)remoteMessage {
   // Print full message
   NSLog(@"%@", [remoteMessage appData]);
 }
 #endif
-// [END ios_10_message_handling]
+// [END ios_10_data_message_handling]
 
 // [START refresh_token]
 - (void)tokenRefreshNotification:(NSNotification *)notification {

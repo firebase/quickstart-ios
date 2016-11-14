@@ -43,6 +43,7 @@ static NSString *const kInterstitialAdUnitID = @"ca-app-pub-3940256099942544/441
  */
 @property(nonatomic, strong) GADInterstitial *interstitial;
 
+@property (weak, nonatomic) IBOutlet UIButton *interstitialButton;
 @end
 
 @implementation ViewController
@@ -57,6 +58,7 @@ static NSString *const kInterstitialAdUnitID = @"ca-app-pub-3940256099942544/441
 
   // [START firebase_interstitial_example]
   self.interstitial = [self createAndLoadInterstitial];
+  self.interstitialButton.enabled = self.interstitial.isReady;
 }
 
 - (GADInterstitial *)createAndLoadInterstitial {
@@ -67,7 +69,12 @@ static NSString *const kInterstitialAdUnitID = @"ca-app-pub-3940256099942544/441
   return interstitial;
 }
 
+- (void)interstitialDidReceiveAd:(GADInterstitial *)ad {
+  self.interstitialButton.enabled = YES;
+}
+
 - (void)interstitialDidDismissScreen:(GADInterstitial *)interstitial {
+  self.interstitialButton.enabled = NO;
   self.interstitial = [self createAndLoadInterstitial];
 }
 

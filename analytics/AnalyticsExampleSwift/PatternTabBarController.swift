@@ -33,10 +33,13 @@ class PatternTabBarController: UITabBarController {
   }
 
   @IBAction func didTapShare(_ sender: AnyObject) {
+    let name = "Pattern~\(self.selectedViewController!.title!)",
+        text = "I'd love you to hear about\(name)"
+
     // [START custom_event_swift]
-    FIRAnalytics.logEvent(withName: kFIREventSelectContent, parameters: [
-      kFIRParameterContentType: "cont" as NSObject,
-      kFIRParameterItemID: "1" as NSObject
+    FIRAnalytics.logEvent(withName: "share_image", parameters: [
+      "name": name as NSObject,
+      "full_text": text as NSObject
       ])
     // [END custom_event_swift]
 

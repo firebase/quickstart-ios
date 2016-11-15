@@ -34,11 +34,15 @@
 }
 
 - (void)didTapShare:(id)sender {
+  NSString *name = [NSString stringWithFormat:@"Pattern~%@", self.selectedViewController.title];
+  NSString *text = [NSString stringWithFormat:@"I'd love you to hear about %@", name];
+
   // [START custom_event_objc]
-  [FIRAnalytics logEventWithName:kFIREventSelectContent parameters:@{
-      kFIRParameterContentType:@"cont",
-      kFIRParameterItemID:@"1"
-  }];
+  [FIRAnalytics logEventWithName:@"share_image"
+                      parameters:@{
+                                   @"name": name,
+                                   @"full_text": text
+                                   }];
   // [END custom_event_objc]
 
   NSString *title = [NSString stringWithFormat:@"Share: %@",

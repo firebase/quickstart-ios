@@ -34,6 +34,7 @@ let kInterstitialAdUnitID = "ca-app-pub-3940256099942544/4411468910"
 class ViewController: UIViewController, GADInterstitialDelegate {
   @IBOutlet weak var bannerView: GADBannerView!
   var interstitial: GADInterstitial!
+  @IBOutlet weak var interstitialButton: UIButton!
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -45,6 +46,7 @@ class ViewController: UIViewController, GADInterstitialDelegate {
 
     // [START firebase_interstitial_example]
     self.interstitial = createAndLoadInterstitial()
+    self.interstitialButton.isEnabled = self.interstitial.isReady
   }
 
   func createAndLoadInterstitial() -> GADInterstitial {
@@ -55,7 +57,12 @@ class ViewController: UIViewController, GADInterstitialDelegate {
     return interstitial
   }
 
+  func interstitialDidReceiveAd(_ ad: GADInterstitial) {
+    self.interstitialButton.isEnabled = true
+  }
+
   func interstitialDidDismissScreen(_ interstitial: GADInterstitial) {
+    self.interstitialButton.isEnabled = false
     self.interstitial = createAndLoadInterstitial()
   }
 
@@ -63,6 +70,12 @@ class ViewController: UIViewController, GADInterstitialDelegate {
     if self.interstitial.isReady {
       self.interstitial.present(fromRootViewController: self)
     }
+  }
+
+  func interstitial(_ ad: GADInterstitial, didFailToReceiveAdWithError error: GADRequestError) {
+    // Retrying failed interstitial loads is a rudimentary way of handling these errors.
+    // For more fine-grained error handling, take a look at the values in GADErrorCode.
+    self.interstitial = createAndLoadInterstitial()
   }
 }
 // [END firebase_interstitial_example]

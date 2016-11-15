@@ -23,15 +23,13 @@ class ViewController: UIViewController {
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
 
-    let name = "Pattern~\(title!)",
-        text = "I'd love you to hear about\(name)"
-
     recordScreenView()
 
     // [START custom_event_swift]
-    FIRAnalytics.logEvent(withName: "share_image", parameters: [
-      "name": name as NSObject,
-      "full_text": text as NSObject
+    FIRAnalytics.logEvent(withName: kFIREventSelectContent, parameters: [
+      kFIRParameterItemID: "id-\(title!)" as NSObject,
+      kFIRParameterItemName: title! as NSObject,
+      kFIRParameterContentType: "cont" as NSObject
       ])
     // [END custom_event_swift]
   }

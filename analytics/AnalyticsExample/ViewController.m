@@ -28,17 +28,15 @@
 - (void)viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
 
-  NSString *name = [NSString stringWithFormat:@"Pattern~%@", self.title];
-  NSString *text = [NSString stringWithFormat:@"I'd love you to hear about %@", name];
-
   [self recordScreenView];
 
   // [START custom_event_objc]
-  [FIRAnalytics logEventWithName:@"share_image"
-                           parameters:@{
-                                        @"name": name,
-                                        @"full_text": text
-                                        }];
+  [FIRAnalytics logEventWithName:kFIREventSelectContent
+                      parameters:@{
+                                   kFIRParameterItemID:[NSString stringWithFormat:@"id-%@", self.title],
+                                   kFIRParameterItemName:self.title,
+                                   kFIRParameterContentType:@"image"
+                                   }];
   // [END custom_event_objc]
 }
 

@@ -5,7 +5,6 @@ for both Objective-C and Swift. For more information, see https://firebase.googl
 
 - [Admob](admob)
 - [Analytics](analytics)
-- [App Indexing](app-indexing)
 - [Authentication](authentication)
 - [Config](config)
 - [Crash Reporting](crashreporting)

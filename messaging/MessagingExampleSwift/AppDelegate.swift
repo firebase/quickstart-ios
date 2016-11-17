@@ -113,7 +113,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   // [END connect_to_fcm]
 
   func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
-    print("Unable to register for remote notifications: \(error)")
+    print("Unable to register for remote notifications: \(error.localizedDescription)")
   }
 
   // This function is added here only for debugging purposes, and can be removed if swizzling is enabled.

@@ -72,7 +72,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     print("Message ID: \(userInfo["gcm.message_id"]!)")
 
     // Print full message.
-    print("%@", userInfo)
+    print(userInfo)
   }
 
   func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],

@@ -120,7 +120,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   // If swizzling is disabled then this function must be implemented so that the APNs token can be paired to
   // the InstanceID token.
   func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-    print("ANPs token retrieved: \(deviceToken)")
+    print("APNs token retrieved: \(deviceToken)")
 
     // With swizzling disabled you must set the APNs token here.
     // FIRInstanceID.instanceID().setAPNSToken(deviceToken, type: FIRInstanceIDAPNSTokenType.sandbox)

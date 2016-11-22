@@ -18,7 +18,9 @@
 
 @import GoogleSignIn;
 
+// [START signin_delegate]
 @interface MainViewController : UITableViewController<GIDSignInDelegate,
                                                       GIDSignInUIDelegate>
+// [END signin_delegate]
 
 @end

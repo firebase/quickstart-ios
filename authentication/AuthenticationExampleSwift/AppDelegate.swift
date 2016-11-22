@@ -20,7 +20,9 @@ import UIKit
 import Firebase
 // [END auth_import]
 
+// [START google_import]
 import GoogleSignIn
+// [END google_import]
 import FBSDKCoreKit
 import Fabric
 import TwitterKit
@@ -46,16 +48,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     return true
   }
 
+  // [START new_delegate]
   @available(iOS 9.0, *)
   func application(_ application: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any])
     -> Bool {
+      // [END new delegate]
       return self.application(application,
                               open: url,
+                              // [START new_options]
                               sourceApplication:options[UIApplicationOpenURLOptionsKey.sourceApplication] as? String,
                               annotation: [:])
   }
+  // [END new_options]
 
+  // [START old_delegate]
   func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+    // [END old_delegate]
     if GIDSignIn.sharedInstance().handle(url,
                                             sourceApplication: sourceApplication,
                                             annotation: annotation) {
@@ -63,7 +71,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     return FBSDKApplicationDelegate.sharedInstance().application(application,
                                                                  open: url,
+                                                                 // [START old_options]
                                                                  sourceApplication: sourceApplication,
                                                                  annotation: annotation)
   }
+  // [END old_options]
 }

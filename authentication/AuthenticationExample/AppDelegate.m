@@ -20,7 +20,9 @@
 @import Firebase;
 // [END auth_import]
 
+// [START google_import]
 @import GoogleSignIn;
+// [END google_import]
 @import FBSDKCoreKit;
 @import Fabric;
 @import TwitterKit;
@@ -45,19 +47,25 @@
   return YES;
 }
 
+// [START new_delegate]
 - (BOOL)application:(nonnull UIApplication *)application
             openURL:(nonnull NSURL *)url
             options:(nonnull NSDictionary<NSString *, id> *)options {
+  // [END new delegate]
   return [self application:application
                    openURL:url
+         // [START new_options]
          sourceApplication:options[UIApplicationOpenURLOptionsSourceApplicationKey]
                 annotation:options[UIApplicationOpenURLOptionsAnnotationKey]];
 }
+  // [END new_options]
 
+// [START old_delegate]
 - (BOOL)application:(UIApplication *)application
             openURL:(NSURL *)url
   sourceApplication:(NSString *)sourceApplication
          annotation:(id)annotation {
+  // [END old_delegate]
   if ([[GIDSignIn sharedInstance] handleURL:url
                           sourceApplication:sourceApplication
                                  annotation:annotation]) {
@@ -65,8 +73,10 @@
   }
   return [[FBSDKApplicationDelegate sharedInstance] application:application
                                                         openURL:url
+  // [START old_options]
                                               sourceApplication:sourceApplication
                                                      annotation:annotation];
 }
+// [END old_options]
 
 @end

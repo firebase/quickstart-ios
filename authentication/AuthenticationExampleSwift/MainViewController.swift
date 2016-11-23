@@ -134,14 +134,14 @@ class MainViewController: UITableViewController, GIDSignInDelegate, GIDSignInUID
         })
       case .authGoogle:
         action = UIAlertAction(title: "Google", style: .default, handler: { (UIAlertAction) in
-          // [START instance_delegate]
+          // [START setup_gidsignin]
           GIDSignIn.sharedInstance().clientID = FIRApp.defaultApp()?.options.clientID
           GIDSignIn.sharedInstance().delegate = self
-          // [END instance_delegate]
-          // [START ui_delegate]
+          // [END setup_gidsignin]
+          // [START setup_gid_uidelegate]
           GIDSignIn.sharedInstance().uiDelegate = self
           GIDSignIn.sharedInstance().signIn()
-          // [END ui_delegate]
+          // [END setup_gid_uidelegate]
         })
       case .authTwitter:
         action = UIAlertAction(title: "Twitter", style: .default, handler: { (UIAlertAction) in
@@ -330,18 +330,19 @@ class MainViewController: UITableViewController, GIDSignInDelegate, GIDSignInUID
       cell = tableView.dequeueReusableCell(withIdentifier: "Profile")
       // [START user_profile]
       let user = FIRAuth.auth()?.currentUser
-      // [START_EXCLUDE]
-      let emailLabel = cell?.viewWithTag(1) as? UILabel
-      let userIDLabel = cell?.viewWithTag(2) as? UILabel
-      let profileImageView = cell?.viewWithTag(3) as? UIImageView
-      // [END_EXCLUDE]
-      emailLabel?.text = user?.email
       // The user's ID, unique to the Firebase project.
       // Do NOT use this value to authenticate with your backend server,
       // if you have one. Use getTokenWithCompletion:completion: instead.
-      userIDLabel?.text = user?.uid
+      let email = user?.email
+      let uid = user?.uid
       let photoURL = user?.photoURL
       // [END user_profile]
+
+      let emailLabel = cell?.viewWithTag(1) as? UILabel
+      let userIDLabel = cell?.viewWithTag(2) as? UILabel
+      let profileImageView = cell?.viewWithTag(3) as? UIImageView
+      emailLabel?.text = email
+      userIDLabel?.text = uid
 
       struct last {
         static var photoURL: URL? = nil

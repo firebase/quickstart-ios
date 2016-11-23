@@ -180,14 +180,14 @@ static NSString *const kChangePasswordText = @"Change Password";
         break;
       case AuthGoogle: {
         action = [UIAlertAction actionWithTitle:@"Google" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-          // [START instance_delegate]
+          // [START setup_gidsignin]
           [GIDSignIn sharedInstance].clientID = [FIRApp defaultApp].options.clientID;
           [GIDSignIn sharedInstance].delegate = self;
-          // [END instance_delegate]
-          // [START ui_delegate]
+          // [END setup_gidsignin]
+          // [START setup_gid_uidelegate]
           [GIDSignIn sharedInstance].uiDelegate = self;
           [[GIDSignIn sharedInstance] signIn];
-          // [END ui_delegate]
+          // [END setup_gid_uidelegate]
         }];
       }
         break;
@@ -344,18 +344,19 @@ didSignInForUser:(GIDGoogleUser *)user
     cell = [tableView dequeueReusableCellWithIdentifier:@"Profile"];
     // [START user_profile]
     FIRUser *user = [FIRAuth auth].currentUser;
-    // [START_EXCLUDE]
-    UILabel *emailLabel = [(UILabel *)cell viewWithTag:1];
-    UILabel *userIDLabel = [(UILabel *)cell viewWithTag:2];
-    UIImageView *profileImageView = [(UIImageView *)cell viewWithTag:3];
-    // [END_EXCLUDE]
-    emailLabel.text = user.email;
+    NSString *email = user.email;
     // The user's ID, unique to the Firebase project.
     // Do NOT use this value to authenticate with your backend server,
     // if you have one. Use getTokenWithCompletion:completion: instead.
-    userIDLabel.text = user.uid;
+    NSString *uid = user.uid;
     NSURL *photoURL = user.photoURL;
     // [END user_profile]
+
+    UILabel *emailLabel = [(UILabel *)cell viewWithTag:1];
+    UILabel *userIDLabel = [(UILabel *)cell viewWithTag:2];
+    UIImageView *profileImageView = [(UIImageView *)cell viewWithTag:3];
+    emailLabel.text = email;
+    userIDLabel.text = uid;
 
     static NSURL *lastPhotoURL = nil;
     lastPhotoURL = photoURL;  // to prevent earlier image overwrites later one.

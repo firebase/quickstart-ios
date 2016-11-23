@@ -100,14 +100,16 @@ static NSString *const kChangePasswordText = @"Change Password";
                                 completion:^(FIRUser *user, NSError *error) {
                                   // [START_EXCLUDE]
                                   [self hideSpinner:^{
+                                    // [END_EXCLUDE]
                                     if (error) {
+                                      // [START_EXCLUDE]
                                       [self showMessagePrompt:error.localizedDescription];
+                                      // [END_EXCLUDE]
                                       return;
                                     }
+                                    // [END signin_credential]
                                   }];
-                                  // [END_EXCLUDE]
                                 }];
-      // [END signin_credential]
     }
   }];
 }
@@ -178,11 +180,14 @@ static NSString *const kChangePasswordText = @"Change Password";
         break;
       case AuthGoogle: {
         action = [UIAlertAction actionWithTitle:@"Google" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+          // [START instance_delegate]
           [GIDSignIn sharedInstance].clientID = [FIRApp defaultApp].options.clientID;
-          [GIDSignIn sharedInstance].uiDelegate = self;
           [GIDSignIn sharedInstance].delegate = self;
+          // [END instance_delegate]
+          // [START ui_delegate]
+          [GIDSignIn sharedInstance].uiDelegate = self;
           [[GIDSignIn sharedInstance] signIn];
-
+          // [END ui_delegate]
         }];
       }
         break;
@@ -278,11 +283,15 @@ didSignInForUser:(GIDGoogleUser *)user
 
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
+  // [START auth_listener]
   self.handle = [[FIRAuth auth]
       addAuthStateDidChangeListener:^(FIRAuth *_Nonnull auth, FIRUser *_Nullable user) {
+        // [START_EXCLUDE]
         [self setTitleDisplay:user];
         [self.tableView reloadData];
+        // [END_EXCLUDE]
       }];
+  // [END auth_listener]
 }
 
 - (void)setTitleDisplay: (FIRUser *)user {
@@ -318,21 +327,36 @@ didSignInForUser:(GIDGoogleUser *)user
          cellForRowAtIndexPath:(NSIndexPath *)indexPath {
   UITableViewCell *cell;
   if (indexPath.section == kSectionSignIn) {
+    // [START current_user]
     if ([FIRAuth auth].currentUser) {
+      // User is signed in.
+      // [START_EXCLUDE]
       cell = [tableView dequeueReusableCellWithIdentifier:@"SignOut"];
+      // [END_EXCLUDE]
     } else {
+      // No user is signed in.
+      // [START_EXCLUDE]
       cell = [tableView dequeueReusableCellWithIdentifier:@"SignIn"];
+      // [END_EXCLUDE]
     }
+    // [END current_user]
   } else if (indexPath.section == kSectionUser) {
     cell = [tableView dequeueReusableCellWithIdentifier:@"Profile"];
+    // [START user_profile]
     FIRUser *user = [FIRAuth auth].currentUser;
+    // [START_EXCLUDE]
     UILabel *emailLabel = [(UILabel *)cell viewWithTag:1];
     UILabel *userIDLabel = [(UILabel *)cell viewWithTag:2];
     UIImageView *profileImageView = [(UIImageView *)cell viewWithTag:3];
+    // [END_EXCLUDE]
     emailLabel.text = user.email;
+    // The user's ID, unique to the Firebase project.
+    // Do NOT use this value to authenticate with your backend server,
+    // if you have one. Use getTokenWithCompletion:completion: instead.
     userIDLabel.text = user.uid;
-
     NSURL *photoURL = user.photoURL;
+    // [END user_profile]
+
     static NSURL *lastPhotoURL = nil;
     lastPhotoURL = photoURL;  // to prevent earlier image overwrites later one.
     if (photoURL) {
@@ -349,9 +373,12 @@ didSignInForUser:(GIDGoogleUser *)user
     }
   } else if (indexPath.section == kSectionProviders) {
     cell = [tableView dequeueReusableCellWithIdentifier:@"Provider"];
+    // [START provider_data]
     id<FIRUserInfo> userInfo = [FIRAuth auth].currentUser.providerData[indexPath.row];
     cell.textLabel.text = [userInfo providerID];
+    // Provider-specific UID
     cell.detailTextLabel.text = [userInfo uid];
+    // [END provider_data]
   } else if (indexPath.section == kSectionToken) {
     cell = [tableView dequeueReusableCellWithIdentifier:@"Token"];
     UIButton *requestEmailButton = [(UIButton *)cell viewWithTag:4];

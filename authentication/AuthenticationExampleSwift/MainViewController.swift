@@ -25,7 +25,9 @@ import FBSDKLoginKit
 import TwitterKit
 
 @objc(MainViewController)
+// [START signin_delegate]
 class MainViewController: UITableViewController, GIDSignInDelegate, GIDSignInUIDelegate {
+// [END signin_delegate]
 
   let kSectionToken = 3
   let kSectionProviders = 2
@@ -132,11 +134,14 @@ class MainViewController: UITableViewController, GIDSignInDelegate, GIDSignInUID
         })
       case .authGoogle:
         action = UIAlertAction(title: "Google", style: .default, handler: { (UIAlertAction) in
+          // [START instance_delegate]
           GIDSignIn.sharedInstance().clientID = FIRApp.defaultApp()?.options.clientID
-          GIDSignIn.sharedInstance().uiDelegate = self
           GIDSignIn.sharedInstance().delegate = self
+          // [END instance_delegate]
+          // [START ui_delegate]
+          GIDSignIn.sharedInstance().uiDelegate = self
           GIDSignIn.sharedInstance().signIn()
-
+          // [END ui_delegate]
         })
       case .authTwitter:
         action = UIAlertAction(title: "Twitter", style: .default, handler: { (UIAlertAction) in
@@ -222,14 +227,18 @@ class MainViewController: UITableViewController, GIDSignInDelegate, GIDSignInUID
         FIRAuth.auth()?.signIn(with: credential) { (user, error) in
           // [START_EXCLUDE]
           self.hideSpinner({
+            // [END_EXCLUDE]
             if let error = error {
+              // [START_EXCLUDE]
               self.showMessagePrompt(error.localizedDescription)
+              // [END_EXCLUDE]
               return
             }
+            // [END signin_credential]
+            // Merge prevUser and currentUser accounts and data
+            // ...
           })
-          // [END_EXCLUDE]
         }
-        // [END signin_credential]
       }
     })
   }
@@ -237,7 +246,9 @@ class MainViewController: UITableViewController, GIDSignInDelegate, GIDSignInUID
   // [START headless_google_auth]
   func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error?) {
     if let error = error {
+      // [START_EXCLUDE]
       self.showMessagePrompt(error.localizedDescription)
+      // [END_EXCLUDE]
       return
     }
 
@@ -263,10 +274,14 @@ class MainViewController: UITableViewController, GIDSignInDelegate, GIDSignInUID
 
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
+    // [START auth_listener]
     handle = FIRAuth.auth()?.addStateDidChangeListener() { (auth, user) in
+      // [START_EXCLUDE]
       self.setTitleDisplay(user)
       self.tableView.reloadData()
+      // [END_EXCLUDE]s
     }
+    // [END auth_listener]
   }
 
   override func viewWillDisappear(_ animated: Bool) {
@@ -298,21 +313,36 @@ class MainViewController: UITableViewController, GIDSignInDelegate, GIDSignInUID
     let cell: UITableViewCell?
     switch (indexPath as NSIndexPath).section {
     case kSectionSignIn:
+      // [START current_user]
       if FIRAuth.auth()?.currentUser != nil {
+        // User is signed in.
+        // [START_EXCLUDE]
         cell = tableView.dequeueReusableCell(withIdentifier: "SignOut")
+        // [END_EXCLUDE]
       } else {
+        // No user is signed in.
+        // [START_EXCLUDE]
         cell = tableView.dequeueReusableCell(withIdentifier: "SignIn")
+        // [END_EXCLUDE]
       }
+      // [END current_user]
     case kSectionUser:
       cell = tableView.dequeueReusableCell(withIdentifier: "Profile")
+      // [START user_profile]
       let user = FIRAuth.auth()?.currentUser
+      // [START_EXCLUDE]
       let emailLabel = cell?.viewWithTag(1) as? UILabel
       let userIDLabel = cell?.viewWithTag(2) as? UILabel
       let profileImageView = cell?.viewWithTag(3) as? UIImageView
+      // [END_EXCLUDE]
       emailLabel?.text = user?.email
+      // The user's ID, unique to the Firebase project.
+      // Do NOT use this value to authenticate with your backend server,
+      // if you have one. Use getTokenWithCompletion:completion: instead.
       userIDLabel?.text = user?.uid
-
       let photoURL = user?.photoURL
+      // [END user_profile]
+
       struct last {
         static var photoURL: URL? = nil
       }
@@ -334,9 +364,12 @@ class MainViewController: UITableViewController, GIDSignInDelegate, GIDSignInUID
       }
     case kSectionProviders:
       cell = tableView.dequeueReusableCell(withIdentifier: "Provider")
+      // [START provider_data]
       let userInfo = FIRAuth.auth()?.currentUser?.providerData[(indexPath as NSIndexPath).row]
       cell?.textLabel?.text = userInfo?.providerID
+      // Provider-specific UID
       cell?.detailTextLabel?.text = userInfo?.uid
+      // [END provider_data]
     case kSectionToken:
       cell = tableView.dequeueReusableCell(withIdentifier: "Token")
       let requestEmailButton = cell?.viewWithTag(4) as? UIButton
@@ -429,12 +462,14 @@ class MainViewController: UITableViewController, GIDSignInDelegate, GIDSignInUID
           let changeRequest = FIRAuth.auth()?.currentUser?.profileChangeRequest()
           changeRequest?.displayName = userInput
           changeRequest?.commitChanges() { (error) in
-            // [END profile_change]
+            // [START_EXCLUDE]
             self.hideSpinner({
               self.showTypicalUIForUserUpdateResults(withTitle: self.kSetDisplayNameTitle, error: error as NSError?)
               self.setTitleDisplay(FIRAuth.auth()?.currentUser)
             })
+            // [END_EXCLUDE]
           }
+          // [END profile_change]
         })
       } else {
         self.showMessagePrompt("displayname can't be empty")

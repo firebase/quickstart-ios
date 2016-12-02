@@ -70,8 +70,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // TODO: Handle data of notification
 
     // Print message ID.
-    if userInfo[gcmMessageIDKey] != nil {
-      print("Message ID: \(userInfo[gcmMessageIDKey]!)")
+    if let messageID = userInfo[gcmMessageIDKey] {
+      print("Message ID: \(messageID)")
     }
 
     // Print full message.
@@ -85,8 +85,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // TODO: Handle data of notification
 
     // Print message ID.
-    if userInfo[gcmMessageIDKey] != nil {
-      print("Message ID: \(userInfo[gcmMessageIDKey]!)")
+    if let messageID = userInfo[gcmMessageIDKey] {
+      print("Message ID: \(messageID)")
     }
 
     // Print full message.
@@ -153,8 +153,8 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
     withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
     let userInfo = notification.request.content.userInfo
     // Print message ID.
-    if userInfo[gcmMessageIDKey] != nil {
-      print("Message ID: \(userInfo[gcmMessageIDKey]!)")
+    if let messageID = userInfo[gcmMessageIDKey] {
+      print("Message ID: \(messageID)")
     }
 
     // Print full message.
@@ -166,8 +166,8 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
                               withCompletionHandler completionHandler: @escaping () -> Void) {
     let userInfo = response.notification.request.content.userInfo
     // Print message ID.
-    if userInfo[gcmMessageIDKey] != nil {
-      print("Message ID: \(userInfo[gcmMessageIDKey]!)")
+    if let messageID = userInfo[gcmMessageIDKey] {
+      print("Message ID: \(messageID)")
     }
 
     // Print full message.

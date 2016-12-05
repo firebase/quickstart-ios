@@ -25,6 +25,7 @@ import FirebaseMessaging
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
   var window: UIWindow?
+  let gcmMessageIDKey = "gcm.message_id"
 
   func application(_ application: UIApplication,
                    didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -69,7 +70,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // TODO: Handle data of notification
 
     // Print message ID.
-    print("Message ID: \(userInfo["gcm.message_id"]!)")
+    if let messageID = userInfo[gcmMessageIDKey] {
+      print("Message ID: \(messageID)")
+    }
 
     // Print full message.
     print(userInfo)
@@ -82,7 +85,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // TODO: Handle data of notification
 
     // Print message ID.
-    print("Message ID: \(userInfo["gcm.message_id"]!)")
+    if let messageID = userInfo[gcmMessageIDKey] {
+      print("Message ID: \(messageID)")
+    }
 
     // Print full message.
     print(userInfo)
@@ -148,7 +153,9 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
     withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
     let userInfo = notification.request.content.userInfo
     // Print message ID.
-    print("Message ID: \(userInfo["gcm.message_id"]!)")
+    if let messageID = userInfo[gcmMessageIDKey] {
+      print("Message ID: \(messageID)")
+    }
 
     // Print full message.
     print(userInfo)
@@ -159,7 +166,9 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
                               withCompletionHandler completionHandler: @escaping () -> Void) {
     let userInfo = response.notification.request.content.userInfo
     // Print message ID.
-    print("Message ID: \(userInfo["gcm.message_id"]!)")
+    if let messageID = userInfo[gcmMessageIDKey] {
+      print("Message ID: \(messageID)")
+    }
 
     // Print full message.
     print(userInfo)

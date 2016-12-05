@@ -39,6 +39,8 @@
 
 @implementation AppDelegate
 
+NSString *const kGCMMessageIDKey = @"gcm.message_id";
+
 - (BOOL)application:(UIApplication *)application
     didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
@@ -102,7 +104,9 @@
   // TODO: Handle data of notification
 
   // Print message ID.
-  NSLog(@"Message ID: %@", userInfo[@"gcm.message_id"]);
+  if ([userInfo objectForKey:kGCMMessageIDKey]) {
+    NSLog(@"Message ID: %@", userInfo[kGCMMessageIDKey]);
+  }
 
   // Print full message.
   NSLog(@"%@", userInfo);
@@ -115,7 +119,9 @@
   // TODO: Handle data of notification
 
   // Print message ID.
-  NSLog(@"Message ID: %@", userInfo[@"gcm.message_id"]);
+  if ([userInfo objectForKey:kGCMMessageIDKey]) {
+    NSLog(@"Message ID: %@", userInfo[kGCMMessageIDKey]);
+  }
 
   // Print full message.
   NSLog(@"%@", userInfo);
@@ -131,7 +137,9 @@
          withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler {
   // Print message ID.
   NSDictionary *userInfo = notification.request.content.userInfo;
-  NSLog(@"Message ID: %@", userInfo[@"gcm.message_id"]);
+  if ([userInfo objectForKey:kGCMMessageIDKey]) {
+    NSLog(@"Message ID: %@", userInfo[kGCMMessageIDKey]);
+  }
 
   // Print full message.
   NSLog(@"%@", userInfo);
@@ -142,6 +150,11 @@
 didReceiveNotificationResponse:(UNNotificationResponse *)response
          withCompletionHandler:(void (^)())completionHandler {
   NSDictionary *userInfo = response.notification.request.content.userInfo;
+  if ([userInfo objectForKey:kGCMMessageIDKey]) {
+    NSLog(@"Message ID: %@", userInfo[kGCMMessageIDKey]);
+  }
+
+  // Print full message.
   NSLog(@"%@", userInfo);
 }
 #endif

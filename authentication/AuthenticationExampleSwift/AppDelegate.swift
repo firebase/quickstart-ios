@@ -52,7 +52,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   @available(iOS 9.0, *)
   func application(_ application: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any])
     -> Bool {
-      // [END new delegate]
+      // [END new_delegate]
       return self.application(application,
                               open: url,
                               // [START new_options]

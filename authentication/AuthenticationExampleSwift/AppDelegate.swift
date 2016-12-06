@@ -71,9 +71,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     return FBSDKApplicationDelegate.sharedInstance().application(application,
                                                                  open: url,
-                                             // [START old_options]
+                                                                 // [START old_options]
                                                                  sourceApplication: sourceApplication,
                                                                  annotation: annotation)
   }
-  // [END old_options]
+             // [END old_options]
 }

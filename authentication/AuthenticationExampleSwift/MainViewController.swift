@@ -252,9 +252,11 @@ class MainViewController: UITableViewController, GIDSignInDelegate, GIDSignInUID
       return
     }
 
-    let authentication = user.authentication
-    let credential = FIRGoogleAuthProvider.credential(withIDToken: (authentication?.idToken)!,
-        accessToken: (authentication?.accessToken)!)
+    // [START google_credential]
+    guard let authentication = user.authentication else { return }
+    let credential = FIRGoogleAuthProvider.credential(withIDToken: authentication.idToken,
+        accessToken: authentication.accessToken)
+    // [END google_credential]
     // [START_EXCLUDE]
     firebaseLogin(credential)
     // [END_EXCLUDE]

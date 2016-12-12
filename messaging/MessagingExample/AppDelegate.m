@@ -78,9 +78,9 @@ NSString *const kGCMMessageIDKey = @"gcm.message_id";
        ];
 
       // For iOS 10 display notification (sent via APNS)
-      [[UNUserNotificationCenter currentNotificationCenter] setDelegate:self];
+      [UNUserNotificationCenter currentNotificationCenter].delegate = self;
       // For iOS 10 data message (sent via FCM)
-      [[FIRMessaging messaging] setRemoteMessageDelegate:self];
+      [FIRMessaging messaging].remoteMessageDelegate = self;
       #endif
     }
 
@@ -104,7 +104,7 @@ NSString *const kGCMMessageIDKey = @"gcm.message_id";
   // TODO: Handle data of notification
 
   // Print message ID.
-  if ([userInfo objectForKey:kGCMMessageIDKey]) {
+  if (userInfo[kGCMMessageIDKey]) {
     NSLog(@"Message ID: %@", userInfo[kGCMMessageIDKey]);
   }
 
@@ -119,7 +119,7 @@ NSString *const kGCMMessageIDKey = @"gcm.message_id";
   // TODO: Handle data of notification
 
   // Print message ID.
-  if ([userInfo objectForKey:kGCMMessageIDKey]) {
+  if (userInfo[kGCMMessageIDKey]) {
     NSLog(@"Message ID: %@", userInfo[kGCMMessageIDKey]);
   }
 
@@ -137,7 +137,7 @@ NSString *const kGCMMessageIDKey = @"gcm.message_id";
          withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler {
   // Print message ID.
   NSDictionary *userInfo = notification.request.content.userInfo;
-  if ([userInfo objectForKey:kGCMMessageIDKey]) {
+  if (userInfo[kGCMMessageIDKey]) {
     NSLog(@"Message ID: %@", userInfo[kGCMMessageIDKey]);
   }
 
@@ -150,7 +150,7 @@ NSString *const kGCMMessageIDKey = @"gcm.message_id";
 didReceiveNotificationResponse:(UNNotificationResponse *)response
          withCompletionHandler:(void (^)())completionHandler {
   NSDictionary *userInfo = response.notification.request.content.userInfo;
-  if ([userInfo objectForKey:kGCMMessageIDKey]) {
+  if (userInfo[kGCMMessageIDKey]) {
     NSLog(@"Message ID: %@", userInfo[kGCMMessageIDKey]);
   }
 

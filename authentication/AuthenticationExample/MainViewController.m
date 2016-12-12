@@ -267,10 +267,12 @@ static NSString *const kChangePasswordText = @"Change Password";
 didSignInForUser:(GIDGoogleUser *)user
      withError:(NSError *)error {
   if (error == nil) {
+    // [START google_credential]
     GIDAuthentication *authentication = user.authentication;
     FIRAuthCredential *credential =
     [FIRGoogleAuthProvider credentialWithIDToken:authentication.idToken
                                      accessToken:authentication.accessToken];
+    // [END google_credential]
     // [START_EXCLUDE]
     [self firebaseLoginWithCredential:credential];
     // [END_EXCLUDE]

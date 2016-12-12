@@ -78,9 +78,9 @@ NSString *const kGCMMessageIDKey = @"gcm.message_id";
        ];
 
       // For iOS 10 display notification (sent via APNS)
-      [[UNUserNotificationCenter currentNotificationCenter] setDelegate:self];
+      [UNUserNotificationCenter currentNotificationCenter].delegate = self;
       // For iOS 10 data message (sent via FCM)
-      [[FIRMessaging messaging] setRemoteMessageDelegate:self];
+      [FIRMessaging messaging].remoteMessageDelegate = self;
       #endif
     }
 

@@ -91,6 +91,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     // Print full message.
     print(userInfo)
+
+    if completionHandler {
+      completionHandler(UIBackgroundFetchResult.newData)
+    }
   }
   // [END receive_message]
 
@@ -131,9 +135,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // FIRInstanceID.instanceID().setAPNSToken(deviceToken, type: FIRInstanceIDAPNSTokenType.sandbox)
   }
 
+  // [START connect_on_active]
   func applicationDidBecomeActive(_ application: UIApplication) {
     connectToFcm()
   }
+  // [END connect_on_active]
 
   // [START disconnect_from_fcm]
   func applicationDidEnterBackground(_ application: UIApplication) {

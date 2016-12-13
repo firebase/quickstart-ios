@@ -125,6 +125,10 @@ NSString *const kGCMMessageIDKey = @"gcm.message_id";
 
   // Print full message.
   NSLog(@"%@", userInfo);
+
+  if (completionHandler) {
+    completionHandler(UIBackgroundFetchResultNewData);
+  }
 }
 // [END receive_message]
 
@@ -211,9 +215,11 @@ didReceiveNotificationResponse:(UNNotificationResponse *)response
   // [[FIRInstanceID instanceID] setAPNSToken:deviceToken type:FIRInstanceIDAPNSTokenTypeSandbox];
 }
 
+// [START connect_on_active]
 - (void)applicationDidBecomeActive:(UIApplication *)application {
   [self connectToFcm];
 }
+// [END connect_on_active]
 
 // [START disconnect_from_fcm]
 - (void)applicationDidEnterBackground:(UIApplication *)application {

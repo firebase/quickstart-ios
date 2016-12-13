@@ -44,7 +44,8 @@ NSString *const kGCMMessageIDKey = @"gcm.message_id";
 - (BOOL)application:(UIApplication *)application
     didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
-  // Register for remote notifications
+  // Register for remote notifications. This shows a permission dialog on first run, to
+  // show the dialog at a more appropriate time move this registration accordingly.
   if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_7_1) {
     // iOS 7.1 or earlier. Disable the deprecation warnings.
     #pragma clang diagnostic push
@@ -73,8 +74,7 @@ NSString *const kGCMMessageIDKey = @"gcm.message_id";
           | UNAuthorizationOptionBadge;
       [[UNUserNotificationCenter currentNotificationCenter]
           requestAuthorizationWithOptions:authOptions
-          completionHandler:^(BOOL granted, NSError * _Nullable error) {
-          }
+            
        ];
 
       // For iOS 10 display notification (sent via APNS)

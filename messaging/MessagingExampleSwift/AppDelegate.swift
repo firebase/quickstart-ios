@@ -25,10 +25,13 @@ import FirebaseMessaging
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
   var window: UIWindow?
+  let gcmMessageIDKey = "gcm.message_id"
 
   func application(_ application: UIApplication,
                    didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
+    // Register for remote notifications. This shows a permission dialog on first run, to
+    // show the dialog at a more appropriate time move this registration accordingly.
     // [START register_for_notifications]
     if #available(iOS 10.0, *) {
       let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
@@ -69,7 +72,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // TODO: Handle data of notification
 
     // Print message ID.
-    print("Message ID: \(userInfo["gcm.message_id"]!)")
+    if let messageID = userInfo[gcmMessageIDKey] {
+      print("Message ID: \(messageID)")
+    }
 
     // Print full message.
     print(userInfo)
@@ -82,7 +87,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // TODO: Handle data of notification
 
     // Print message ID.
-    print("Message ID: \(userInfo["gcm.message_id"]!)")
+    if let messageID = userInfo[gcmMessageIDKey] {
+      print("Message ID: \(messageID)")
+    }
 
     // Print full message.
     print(userInfo)
@@ -148,7 +155,9 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
     withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
     let userInfo = notification.request.content.userInfo
     // Print message ID.
-    print("Message ID: \(userInfo["gcm.message_id"]!)")
+    if let messageID = userInfo[gcmMessageIDKey] {
+      print("Message ID: \(messageID)")
+    }
 
     // Print full message.
     print(userInfo)
@@ -159,7 +168,9 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
                               withCompletionHandler completionHandler: @escaping () -> Void) {
     let userInfo = response.notification.request.content.userInfo
     // Print message ID.
-    print("Message ID: \(userInfo["gcm.message_id"]!)")
+    if let messageID = userInfo[gcmMessageIDKey] {
+      print("Message ID: \(messageID)")
+    }
 
     // Print full message.
     print(userInfo)

@@ -51,7 +51,7 @@
 - (BOOL)application:(nonnull UIApplication *)application
             openURL:(nonnull NSURL *)url
             options:(nonnull NSDictionary<NSString *, id> *)options {
-  // [END new delegate]
+  // [END new_delegate]
   return [self application:application
                    openURL:url
          // [START new_options]

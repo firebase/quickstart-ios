@@ -52,7 +52,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   @available(iOS 9.0, *)
   func application(_ application: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any])
     -> Bool {
-      // [END new delegate]
+      // [END new_delegate]
       return self.application(application,
                               open: url,
                               // [START new_options]
@@ -65,8 +65,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
     // [END old_delegate]
     if GIDSignIn.sharedInstance().handle(url,
-                                            sourceApplication: sourceApplication,
-                                            annotation: annotation) {
+                                         sourceApplication: sourceApplication,
+                                         annotation: annotation) {
       return true
     }
     return FBSDKApplicationDelegate.sharedInstance().application(application,

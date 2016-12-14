@@ -9,6 +9,15 @@ Introduction
 
 - [Read more about Firebase Messaging](https://firebase.google.com/docs/cloud-messaging)
 
+Best Practices
+--------------
+
+- In this sample the request for permission to receive remote notifications
+  is made on first run, this results in a permission dialog on first run.
+  Most apps would want that dialog to be shown at a more appropriate time. So
+  move the registration for remote notifications to a more appropriate place in
+  your app.
+
 Getting Started
 ---------------
 

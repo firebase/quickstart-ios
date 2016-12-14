@@ -39,10 +39,13 @@
 
 @implementation AppDelegate
 
+NSString *const kGCMMessageIDKey = @"gcm.message_id";
+
 - (BOOL)application:(UIApplication *)application
     didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
-  // Register for remote notifications
+  // Register for remote notifications. This shows a permission dialog on first run, to
+  // show the dialog at a more appropriate time move this registration accordingly.
   if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_7_1) {
     // iOS 7.1 or earlier. Disable the deprecation warnings.
     #pragma clang diagnostic push
@@ -71,14 +74,13 @@
           | UNAuthorizationOptionBadge;
       [[UNUserNotificationCenter currentNotificationCenter]
           requestAuthorizationWithOptions:authOptions
-          completionHandler:^(BOOL granted, NSError * _Nullable error) {
-          }
+            
        ];
 
       // For iOS 10 display notification (sent via APNS)
-      [[UNUserNotificationCenter currentNotificationCenter] setDelegate:self];
+      [UNUserNotificationCenter currentNotificationCenter].delegate = self;
       // For iOS 10 data message (sent via FCM)
-      [[FIRMessaging messaging] setRemoteMessageDelegate:self];
+      [FIRMessaging messaging].remoteMessageDelegate = self;
       #endif
     }
 
@@ -102,7 +104,9 @@
   // TODO: Handle data of notification
 
   // Print message ID.
-  NSLog(@"Message ID: %@", userInfo[@"gcm.message_id"]);
+  if (userInfo[kGCMMessageIDKey]) {
+    NSLog(@"Message ID: %@", userInfo[kGCMMessageIDKey]);
+  }
 
   // Print full message.
   NSLog(@"%@", userInfo);
@@ -115,7 +119,9 @@
   // TODO: Handle data of notification
 
   // Print message ID.
-  NSLog(@"Message ID: %@", userInfo[@"gcm.message_id"]);
+  if (userInfo[kGCMMessageIDKey]) {
+    NSLog(@"Message ID: %@", userInfo[kGCMMessageIDKey]);
+  }
 
   // Print full message.
   NSLog(@"%@", userInfo);
@@ -131,7 +137,9 @@
          withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler {
   // Print message ID.
   NSDictionary *userInfo = notification.request.content.userInfo;
-  NSLog(@"Message ID: %@", userInfo[@"gcm.message_id"]);
+  if (userInfo[kGCMMessageIDKey]) {
+    NSLog(@"Message ID: %@", userInfo[kGCMMessageIDKey]);
+  }
 
   // Print full message.
   NSLog(@"%@", userInfo);
@@ -142,6 +150,11 @@
 didReceiveNotificationResponse:(UNNotificationResponse *)response
          withCompletionHandler:(void (^)())completionHandler {
   NSDictionary *userInfo = response.notification.request.content.userInfo;
+  if (userInfo[kGCMMessageIDKey]) {
+    NSLog(@"Message ID: %@", userInfo[kGCMMessageIDKey]);
+  }
+
+  // Print full message.
   NSLog(@"%@", userInfo);
 }
 #endif

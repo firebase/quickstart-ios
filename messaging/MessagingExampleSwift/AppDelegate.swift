@@ -92,9 +92,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Print full message.
     print(userInfo)
 
-    if completionHandler {
-      completionHandler(UIBackgroundFetchResult.newData)
-    }
+    completionHandler(UIBackgroundFetchResult.newData)
   }
   // [END receive_message]
 

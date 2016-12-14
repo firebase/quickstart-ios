@@ -126,9 +126,7 @@ NSString *const kGCMMessageIDKey = @"gcm.message_id";
   // Print full message.
   NSLog(@"%@", userInfo);
 
-  if (completionHandler) {
-    completionHandler(UIBackgroundFetchResultNewData);
-  }
+  completionHandler(UIBackgroundFetchResultNewData);
 }
 // [END receive_message]
 

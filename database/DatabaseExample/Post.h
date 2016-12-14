@@ -27,6 +27,6 @@
 - (instancetype)initWithUid:(NSString *)uid
                   andAuthor:(NSString *)author
                    andTitle:(NSString *)title
-                   andBody:(NSString *)body;
+                   andBody:(NSString *)body NS_DESIGNATED_INITIALIZER;
 
 @end

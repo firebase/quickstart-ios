@@ -34,11 +34,11 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
 
 - (NSInteger)tableView:(UITableView *)tableView
     numberOfRowsInSection:(NSInteger)section {
-  if ([self count] != 0) {
+  if (self.count != 0) {
     tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     tableView.backgroundView   =  nil;
   }
-  return [self count];
+  return self.count;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

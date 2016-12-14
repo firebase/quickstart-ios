@@ -25,5 +25,5 @@
 @property (strong, nonatomic) FirebaseTableViewDataSource *dataSource;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-- (NSString *) getUid;
+@property (NS_NONATOMIC_IOSONLY, getter=getUid, readonly, copy) NSString *uid;
 @end

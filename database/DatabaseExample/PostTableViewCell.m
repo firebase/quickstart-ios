@@ -51,13 +51,13 @@
       return [FIRTransactionResult successWithValue:currentData];
     }
 
-    NSMutableDictionary *stars = [post objectForKey:@"stars"];
+    NSMutableDictionary *stars = post[@"stars"];
     if (!stars) {
       stars = [[NSMutableDictionary alloc] initWithCapacity:1];
     }
     NSString *uid = [FIRAuth auth].currentUser.uid;
     int starCount = [post[@"starCount"] intValue];
-    if ([stars objectForKey:uid]) {
+    if (stars[uid]) {
       // Unstar the post and remove self from stars
       starCount--;
       [stars removeObjectForKey:uid];
@@ -67,10 +67,10 @@
       stars[uid] = @YES;
     }
     post[@"stars"] = stars;
-    post[@"starCount"] = [NSNumber numberWithInt:starCount];
+    post[@"starCount"] = @(starCount);
 
     // Set value and report transaction success
-    [currentData setValue:post];
+    currentData.value = post;
     return [FIRTransactionResult successWithValue:currentData];
   } andCompletionBlock:^(NSError * _Nullable error,
                          BOOL committed,

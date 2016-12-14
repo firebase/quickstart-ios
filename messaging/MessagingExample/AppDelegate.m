@@ -165,7 +165,7 @@ didReceiveNotificationResponse:(UNNotificationResponse *)response
 // Receive data message on iOS 10 devices while app is in the foreground.
 - (void)applicationReceivedRemoteMessage:(FIRMessagingRemoteMessage *)remoteMessage {
   // Print full message
-  NSLog(@"%@", [remoteMessage appData]);
+  NSLog(@"%@", remoteMessage.appData);
 }
 #endif
 // [END ios_10_data_message_handling]

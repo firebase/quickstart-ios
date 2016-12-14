@@ -44,7 +44,7 @@
                                                           target:self
                                                           action:@selector(didTapShare:)];
   done.tintColor = [UIColor colorWithRed:1.0 green:143.0/255.0 blue:0.0 alpha:1.0];
-  doneBar.items = [NSArray arrayWithObjects:flex, done, flex, nil];
+  doneBar.items = @[flex, done, flex];
   [doneBar sizeToFit];
   _bodyTextView.inputAccessoryView = doneBar;
   _titleTextField.inputAccessoryView = doneBar;
@@ -64,7 +64,7 @@
                  title:_titleTextField.text
                   body:_bodyTextView.text];
     // Finish this Activity, back to the stream
-    [[self navigationController] popViewControllerAnimated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
     // [END_EXCLUDE]
   } withCancelBlock:^(NSError * _Nonnull error) {
     NSLog(@"%@", error.localizedDescription);

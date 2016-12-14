@@ -62,7 +62,7 @@ static const int kSectionPost = 0;
                 withBlock:^(FIRDataSnapshot *snapshot) {
                   [self.comments addObject:snapshot];
                   [self.tableView insertRowsAtIndexPaths:@[
-                    [NSIndexPath indexPathForRow:[self.comments count] - 1 inSection:kSectionComments]
+                    [NSIndexPath indexPathForRow:(self.comments).count - 1 inSection:kSectionComments]
                   ]
                                         withRowAnimation:UITableViewRowAnimationAutomatic];
                 }];
@@ -114,7 +114,7 @@ static const int kSectionPost = 0;
   if (section == kSectionPost || section == kSectionSend ) {
     return 1;
   } else if (section == kSectionComments) {
-    return [_comments count];
+    return _comments.count;
   }
   NSAssert(NO, @"Unexpected section");
   return 0;
@@ -148,7 +148,7 @@ static const int kSectionPost = 0;
     postcell.authorLabel.text = _post.author;
     postcell.postTitle.text = _post.title;
     postcell.postBody.text = _post.body;
-    NSString *imageName = [_post.stars objectForKey:[self getUid]] ? @"ic_star" : @"ic_star_border";
+    NSString *imageName = (_post.stars)[[self getUid]] ? @"ic_star" : @"ic_star_border";
     [postcell.starButton setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
     postcell.numStarsLabel.text = [NSString stringWithFormat:@"%d", _post.starCount];
     postcell.postKey = _postKey;

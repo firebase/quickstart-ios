@@ -81,7 +81,7 @@
   // if it's a photo from the library, not an image from the camera
   if (referenceUrl) {
     PHFetchResult* assets = [PHAsset fetchAssetsWithALAssetURLs:@[referenceUrl] options:nil];
-    PHAsset *asset = [assets firstObject];
+    PHAsset *asset = assets.firstObject;
     [asset requestContentEditingInputWithOptions:nil
                                completionHandler:^(PHContentEditingInput *contentEditingInput,
                                                    NSDictionary *info) {
@@ -89,8 +89,8 @@
                                  NSString *filePath =
                                      [NSString stringWithFormat:@"%@/%lld/%@",
                                          [FIRAuth auth].currentUser.uid,
-                                         (long long)([[NSDate date] timeIntervalSince1970] * 1000.0),
-                                         [imageFile lastPathComponent]];
+                                         (long long)([NSDate date].timeIntervalSince1970 * 1000.0),
+                                         imageFile.lastPathComponent];
                                  // [START uploadimage]
                                  [[_storageRef child:filePath]
                                   putFile:imageFile metadata:nil
@@ -111,7 +111,7 @@
     NSString *imagePath =
     [NSString stringWithFormat:@"%@/%lld.jpg",
      [FIRAuth auth].currentUser.uid,
-     (long long)([[NSDate date] timeIntervalSince1970] * 1000.0)];
+     (long long)([NSDate date].timeIntervalSince1970 * 1000.0)];
     FIRStorageMetadata *metadata = [FIRStorageMetadata new];
     metadata.contentType = @"image/jpeg";
     [[_storageRef child:imagePath] putData:imageData metadata:metadata
@@ -128,7 +128,7 @@
 
 - (void)uploadSuccess:(FIRStorageMetadata *) metadata storagePath: (NSString *) storagePath {
   NSLog(@"Upload Succeeded!");
-  _urlTextView.text = [metadata.downloadURL absoluteString];
+  _urlTextView.text = (metadata.downloadURL).absoluteString;
   [[NSUserDefaults standardUserDefaults] setObject:storagePath forKey:@"storagePath"];
   [[NSUserDefaults standardUserDefaults] synchronize];
   _downloadPicButton.enabled = YES;

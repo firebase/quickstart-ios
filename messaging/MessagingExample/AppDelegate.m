@@ -72,10 +72,8 @@ NSString *const kGCMMessageIDKey = @"gcm.message_id";
           UNAuthorizationOptionAlert
           | UNAuthorizationOptionSound
           | UNAuthorizationOptionBadge;
-      [[UNUserNotificationCenter currentNotificationCenter]
-          requestAuthorizationWithOptions:authOptions
-            
-       ];
+      [[UNUserNotificationCenter currentNotificationCenter] requestAuthorizationWithOptions:authOptions completionHandler:^(BOOL granted, NSError * _Nullable error) {
+          }];
 
       // For iOS 10 display notification (sent via APNS)
       [UNUserNotificationCenter currentNotificationCenter].delegate = self;

@@ -165,6 +165,9 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
 
     // Print full message.
     print(userInfo)
+
+    // Change this to your preferred presentation option
+    completionHandler([])
   }
 
   func userNotificationCenter(_ center: UNUserNotificationCenter,
@@ -178,6 +181,8 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
 
     // Print full message.
     print(userInfo)
+
+    completionHandler()
   }
 }
 // [END ios_10_message_handling]

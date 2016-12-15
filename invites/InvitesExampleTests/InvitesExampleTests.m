@@ -33,7 +33,7 @@
 
   // Check the client ID is configured for iOS target app.
   NSString* actual = [FIRApp defaultApp].options.clientID;
-  NSString* expected = [configPlist objectForKey:@"CLIENT_ID"];
+  NSString* expected = configPlist[@"CLIENT_ID"];
 
   XCTAssertEqualObjects(actual, expected);
 }

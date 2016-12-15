@@ -30,7 +30,7 @@
   self.storageRef = [[FIRStorage storage] reference];
 
   NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-  NSString *documentsDirectory = [paths objectAtIndex:0];
+  NSString *documentsDirectory = paths[0];
   NSString *filePath = [NSString stringWithFormat:@"file:%@/myimage.jpg", documentsDirectory];
   NSString *storagePath = [[NSUserDefaults standardUserDefaults] objectForKey:@"storagePath"];
 

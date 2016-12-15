@@ -32,7 +32,7 @@
   [super setUp];
   UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
   self.vcToTest = [storyboard instantiateViewControllerWithIdentifier:@"ViewController"];
-  [self.vcToTest view];
+  (self.vcToTest).view;
 }
 
 - (void)testBannerView {

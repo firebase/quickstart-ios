@@ -123,7 +123,7 @@
   // in order for invitations to successfully be sent.
   NSString *message =
       [NSString stringWithFormat:@"Try this out!\n -%@",
-                                 [[GIDSignIn sharedInstance] currentUser].profile.name];
+                                 [GIDSignIn sharedInstance].currentUser.profile.name];
 
   // A message hint for the dialog. Note this manifests differently depending on the
   // received invation type. For example, in an email invite this appears as the subject.

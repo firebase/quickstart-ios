@@ -19,6 +19,6 @@
 @interface User : NSObject
 @property(strong, nonatomic) NSString *username;
 
-- (instancetype)initWithUsername:(NSString *)username;
+- (instancetype)initWithUsername:(NSString *)username NS_DESIGNATED_INITIALIZER;
 
 @end

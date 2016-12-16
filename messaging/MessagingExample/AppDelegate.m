@@ -143,6 +143,9 @@ NSString *const kGCMMessageIDKey = @"gcm.message_id";
 
   // Print full message.
   NSLog(@"%@", userInfo);
+
+  // Change this to your preferred presentation option
+  completionHandler(UNNotificationPresentationOptionNone);
 }
 
 // Handle notification messages after display notification is tapped by the user.
@@ -156,6 +159,8 @@ didReceiveNotificationResponse:(UNNotificationResponse *)response
 
   // Print full message.
   NSLog(@"%@", userInfo);
+
+  completionHandler();
 }
 #endif
 // [END ios_10_message_handling]

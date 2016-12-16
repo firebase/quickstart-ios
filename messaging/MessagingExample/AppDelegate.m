@@ -192,6 +192,14 @@ didReceiveNotificationResponse:(UNNotificationResponse *)response
 
 // [START connect_to_fcm]
 - (void)connectToFcm {
+  // Won't connect since there is no token
+  if (![[FIRInstanceID instanceID] token]) {
+    return;
+  }
+
+  // Disconnect previous FCM connection if it exists.
+  [[FIRMessaging messaging] disconnect];
+
   [[FIRMessaging messaging] connectWithCompletion:^(NSError * _Nullable error) {
     if (error != nil) {
       NSLog(@"Unable to connect to FCM. %@", error);

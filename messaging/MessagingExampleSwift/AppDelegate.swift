@@ -107,6 +107,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   // [START connect_to_fcm]
   func connectToFcm() {
+    // Won't connect since there is no token
     guard FIRInstanceID.instanceID().token() != nil else {
       return;
     }

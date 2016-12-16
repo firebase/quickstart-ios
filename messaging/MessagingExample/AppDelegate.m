@@ -187,6 +187,7 @@ didReceiveNotificationResponse:(UNNotificationResponse *)response
 
 // [START connect_to_fcm]
 - (void)connectToFcm {
+  // Won't connect since there is no token
   if (![[FIRInstanceID instanceID] token]) {
     return;
   }

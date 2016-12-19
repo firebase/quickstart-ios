@@ -128,7 +128,7 @@
 
 - (void)uploadSuccess:(FIRStorageMetadata *) metadata storagePath: (NSString *) storagePath {
   NSLog(@"Upload Succeeded!");
-  _urlTextView.text = (metadata.downloadURL).absoluteString;
+  _urlTextView.text = metadata.downloadURL.absoluteString;
   [[NSUserDefaults standardUserDefaults] setObject:storagePath forKey:@"storagePath"];
   [[NSUserDefaults standardUserDefaults] synchronize];
   _downloadPicButton.enabled = YES;

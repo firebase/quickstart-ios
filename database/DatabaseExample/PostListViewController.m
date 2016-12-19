@@ -42,7 +42,7 @@
                                Post *__nonnull post) {
      cell.authorImage.image = [UIImage imageNamed:@"ic_account_circle"];
      cell.authorLabel.text = post.author;
-     NSString *imageName = (post.stars)[[self getUid]] ? @"ic_star" : @"ic_star_border";
+     NSString *imageName = post.stars[[self getUid]] ? @"ic_star" : @"ic_star_border";
      [cell.starButton setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
      cell.numStarsLabel.text = [NSString stringWithFormat:@"%d", post.starCount];
      cell.postTitle.text = post.title;

@@ -79,7 +79,7 @@ static NSString *const kInterstitialAdUnitID = @"ca-app-pub-3940256099942544/441
 }
 
 - (IBAction)didTapInterstitialButton:(id)sender {
-  if ((self.interstitial).isReady) {
+  if (self.interstitial.isReady) {
     [self.interstitial presentFromRootViewController:self];
   }
 }

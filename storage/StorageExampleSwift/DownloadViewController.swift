@@ -32,20 +32,21 @@ class DownloadViewController: UIViewController {
     let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
     let documentsDirectory = paths[0]
     let filePath = "file:\(documentsDirectory)/myimage.jpg"
+    guard let fileURL = URL.init(string: filePath) else { return }
     guard let storagePath = UserDefaults.standard.object(forKey: "storagePath") as? String else {
       return
     }
 
     // [START downloadimage]
-    storageRef.child(storagePath).write(toFile: URL.init(string: filePath)!,
-                                              completion: { (url, error) in
+    storageRef.child(storagePath).write(toFile: fileURL, completion: { (url, error) in
       if let error = error {
         print("Error downloading:\(error)")
         self.statusTextView.text = "Download Failed"
         return
+      } else if let imagePath = url?.path {
+        self.statusTextView.text = "Download Succeeded!"
+        self.imageView.image = UIImage.init(contentsOfFile: imagePath)
       }
-      self.statusTextView.text = "Download Succeeded!"
-      self.imageView.image = UIImage.init(contentsOfFile: filePath)
     })
     // [END downloadimage]
   }

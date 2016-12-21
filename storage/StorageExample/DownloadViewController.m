@@ -32,19 +32,21 @@
   NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
   NSString *documentsDirectory = paths[0];
   NSString *filePath = [NSString stringWithFormat:@"file:%@/myimage.jpg", documentsDirectory];
+  NSURL *fileURL = [NSURL URLWithString:filePath];
   NSString *storagePath = [[NSUserDefaults standardUserDefaults] objectForKey:@"storagePath"];
 
   // [START downloadimage]
   [[_storageRef child:storagePath]
-          writeToFile:[NSURL URLWithString:filePath] completion:^(NSURL * _Nullable URL,
-                                                                  NSError * _Nullable error) {
+          writeToFile:fileURL
+           completion:^(NSURL * _Nullable URL, NSError * _Nullable error) {
             if (error) {
               NSLog(@"Error downloading: %@", error);
               _statusTextView.text = @"Download Failed";
               return;
+            } else if (URL) {
+              _statusTextView.text = @"Download Succeeded!";
+              _imageView.image = [UIImage imageWithContentsOfFile:URL.path];
             }
-            _statusTextView.text = @"Download Succeeded!";
-            _imageView.image = [UIImage imageWithContentsOfFile:filePath];
           }];
   // [END downloadimage]
 }

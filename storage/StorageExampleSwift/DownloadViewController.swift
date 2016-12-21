@@ -27,7 +27,7 @@ class DownloadViewController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    storageRef = FIRStorage.storage().reference
+    storageRef = FIRStorage.storage().reference()
 
     let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
     let documentsDirectory = paths[0]

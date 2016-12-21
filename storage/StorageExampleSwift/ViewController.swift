@@ -35,7 +35,7 @@ class ViewController: UIViewController,
     super.viewDidLoad()
 
     // [START configurestorage]
-    storageRef = FIRStorage.storage().reference()
+    storageRef = FIRStorage.storage().reference
     // [END configurestorage]
 
     // [START storageauth]
@@ -115,7 +115,7 @@ class ViewController: UIViewController,
 
   func uploadSuccess(_ metadata: FIRStorageMetadata, storagePath: String) {
     print("Upload Succeeded!")
-    self.urlTextView.text = metadata.downloadURL()!.absoluteString
+    self.urlTextView.text = metadata.downloadURL!.absoluteString
     UserDefaults.standard.set(storagePath, forKey: "storagePath")
     UserDefaults.standard.synchronize()
     self.downloadPicButton.isEnabled = true

@@ -38,8 +38,7 @@ class DownloadViewController: UIViewController {
     }
 
     // [START downloadimage]
-    storageRef.child(storagePath).write(toFile: fileURL,
-                                              completion: { (url, error) in
+    storageRef.child(storagePath).write(toFile: fileURL, completion: { (url, error) in
       if let error = error {
         print("Error downloading:\(error)")
         self.statusTextView.text = "Download Failed"

@@ -43,9 +43,10 @@
               NSLog(@"Error downloading: %@", error);
               _statusTextView.text = @"Download Failed";
               return;
+            } else if (URL) {
+              _statusTextView.text = @"Download Succeeded!";
+              _imageView.image = [UIImage imageWithContentsOfFile:URL.path];
             }
-            _statusTextView.text = @"Download Succeeded!";
-            _imageView.image = [UIImage imageWithContentsOfFile:URL.path];
           }];
   // [END downloadimage]
 }

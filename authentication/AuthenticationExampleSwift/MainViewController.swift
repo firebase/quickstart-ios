@@ -25,9 +25,9 @@ import FBSDKLoginKit
 import TwitterKit
 
 @objc(MainViewController)
-// [START signin_delegate]
-class MainViewController: UITableViewController, GIDSignInDelegate, GIDSignInUIDelegate {
-// [END signin_delegate]
+// [START signin_controller]
+class MainViewController: UITableViewController, GIDSignInUIDelegate {
+// [END signin_controller]
 
   let kSectionToken = 3
   let kSectionProviders = 2
@@ -134,10 +134,6 @@ class MainViewController: UITableViewController, GIDSignInDelegate, GIDSignInUID
         })
       case .authGoogle:
         action = UIAlertAction(title: "Google", style: .default, handler: { (UIAlertAction) in
-          // [START setup_gidsignin]
-          GIDSignIn.sharedInstance().clientID = FIRApp.defaultApp()?.options.clientID
-          GIDSignIn.sharedInstance().delegate = self
-          // [END setup_gidsignin]
           // [START setup_gid_uidelegate]
           GIDSignIn.sharedInstance().uiDelegate = self
           GIDSignIn.sharedInstance().signIn()
@@ -242,26 +238,6 @@ class MainViewController: UITableViewController, GIDSignInDelegate, GIDSignInUID
       }
     })
   }
-
-  // [START headless_google_auth]
-  func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error?) {
-    if let error = error {
-      // [START_EXCLUDE]
-      self.showMessagePrompt(error.localizedDescription)
-      // [END_EXCLUDE]
-      return
-    }
-
-    // [START google_credential]
-    guard let authentication = user.authentication else { return }
-    let credential = FIRGoogleAuthProvider.credential(withIDToken: authentication.idToken,
-        accessToken: authentication.accessToken)
-    // [END google_credential]
-    // [START_EXCLUDE]
-    firebaseLogin(credential)
-    // [END_EXCLUDE]
-  }
-  // [END headless_google_auth]
 
   @IBAction func didTapSignOut(_ sender: AnyObject) {
     // [START signout]

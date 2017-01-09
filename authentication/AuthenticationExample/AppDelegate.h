@@ -16,7 +16,11 @@
 
 @import UIKit;
 
-@interface AppDelegate : UIResponder<UIApplicationDelegate>
+@import GoogleSignIn;
+
+// [START signin_delegate]
+@interface AppDelegate : UIResponder<UIApplicationDelegate, GIDSignInDelegate>
+// [END signin_delegate]
 
 @property(nonatomic, strong) UIWindow *window;
 

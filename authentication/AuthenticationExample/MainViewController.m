@@ -16,7 +16,6 @@
 
 #import "MainViewController.h"
 #import "UIViewController+Alerts.h"
-@import Firebase;
 @import FBSDKCoreKit;
 @import FBSDKLoginKit;
 @import TwitterKit;
@@ -180,10 +179,6 @@ static NSString *const kChangePasswordText = @"Change Password";
         break;
       case AuthGoogle: {
         action = [UIAlertAction actionWithTitle:@"Google" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-          // [START setup_gidsignin]
-          [GIDSignIn sharedInstance].clientID = [FIRApp defaultApp].options.clientID;
-          [GIDSignIn sharedInstance].delegate = self;
-          // [END setup_gidsignin]
           // [START setup_gid_uidelegate]
           [GIDSignIn sharedInstance].uiDelegate = self;
           [[GIDSignIn sharedInstance] signIn];
@@ -261,27 +256,6 @@ static NSString *const kChangePasswordText = @"Change Password";
   }
   // [END signout]
 }
-
-// [START headless_google_auth]
-- (void)signIn:(GIDSignIn *)signIn
-didSignInForUser:(GIDGoogleUser *)user
-     withError:(NSError *)error {
-  if (error == nil) {
-    // [START google_credential]
-    GIDAuthentication *authentication = user.authentication;
-    FIRAuthCredential *credential =
-    [FIRGoogleAuthProvider credentialWithIDToken:authentication.idToken
-                                     accessToken:authentication.accessToken];
-    // [END google_credential]
-    // [START_EXCLUDE]
-    [self firebaseLoginWithCredential:credential];
-    // [END_EXCLUDE]
-  } else
-    // [START_EXCLUDE]
-    [self showMessagePrompt:error.localizedDescription];
-  // [END_EXCLUDE]
-}
-// [END headless_google_auth]
 
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];

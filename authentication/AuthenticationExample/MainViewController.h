@@ -17,10 +17,10 @@
 #import <UIKit/UIKit.h>
 
 @import GoogleSignIn;
+@import Firebase;
 
-// [START signin_delegate]
-@interface MainViewController : UITableViewController<GIDSignInDelegate,
-                                                      GIDSignInUIDelegate>
-// [END signin_delegate]
-
+// [START signin_controller]
+@interface MainViewController : UITableViewController<GIDSignInUIDelegate>
+// [END signin_controller]
+- (void)firebaseLoginWithCredential:(FIRAuthCredential *)credential;
 @end

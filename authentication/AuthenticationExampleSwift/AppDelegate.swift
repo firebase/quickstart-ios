@@ -28,7 +28,9 @@ import Fabric
 import TwitterKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+// [START signin_delegate]
+class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
+// [END signin_delegate]
 
   var window: UIWindow?
 
@@ -38,8 +40,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Use Firebase library to configure APIs
     FIRApp.configure()
     // [END firebase_configure]
+
+    // [START setup_gidsignin]
+    GIDSignIn.sharedInstance().clientID = FIRApp.defaultApp()?.options.clientID
+    GIDSignIn.sharedInstance().delegate = self
+    // [END setup_gidsignin]
+
     FBSDKApplicationDelegate.sharedInstance().application(application,
         didFinishLaunchingWithOptions:launchOptions)
+
     let key = Bundle.main.object(forInfoDictionaryKey: "consumerKey"),
         secret = Bundle.main.object(forInfoDictionaryKey: "consumerSecret")
     if let key = key as? String, let secret = secret as? String, !key.isEmpty && !secret.isEmpty {
@@ -76,4 +85,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                                                  annotation: annotation)
   }
   // [END old_options]
+
+  // [START headless_google_auth]
+  func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error?) {
+    // [START_EXCLUDE]
+    guard let controller = GIDSignIn.sharedInstance().uiDelegate as? MainViewController else { return }
+    // [END_EXCLUDE]
+    if let error = error {
+      // [START_EXCLUDE]
+      controller.showMessagePrompt(error.localizedDescription)
+      // [END_EXCLUDE]
+      return
+    }
+
+    // [START google_credential]
+    guard let authentication = user.authentication else { return }
+    let credential = FIRGoogleAuthProvider.credential(withIDToken: authentication.idToken,
+                                                      accessToken: authentication.accessToken)
+    // [END google_credential]
+    // [START_EXCLUDE]
+    controller.firebaseLogin(credential)
+    // [END_EXCLUDE]
+  }
+  // [END headless_google_auth]
 }

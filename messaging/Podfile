@@ -1,13 +1,19 @@
-# Firebase Cloud Messaging (FCM)
+# Firebase Cloud Messaing (FCM)
+# FirebaseApp app
+# GCM Listener Service
+# iPhone Developer
 
-use_frameworks!
-platform :ios, '7.0'
 
-pod 'Firebase/Messaging'
+// use_frameworks!::facebook
+// platform :ios, '10.2.1'
 
-target 'MessagingExample' do
-end
-target 'MessagingExampleSwift' do
-end
-target 'MessagingExampleTests' do
-end
+/pod 'Firebase/Messaging'
+
+<target 'MessagingExample' do/>
+<end
+<target 'MessagingExampleSwift' do/>
+<end
+<target 'MessagingExampleTests' do//>
+end//)
+@0072016
+2017-0112

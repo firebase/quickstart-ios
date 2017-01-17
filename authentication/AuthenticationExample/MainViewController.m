@@ -116,7 +116,7 @@ static NSString *const kChangePasswordText = @"Change Password";
 - (void)showAuthPicker: (NSArray<NSNumber *>*) providers {
   UIAlertController *picker = [UIAlertController alertControllerWithTitle:@"Select Provider"
                                                                   message:nil
-                                                           preferredStyle:UIAlertControllerStyleActionSheet];
+                                                           preferredStyle:UIAlertControllerStyleAlert];
 
   for (NSNumber *provider in providers) {
     UIAlertAction *action;
@@ -207,6 +207,7 @@ static NSString *const kChangePasswordText = @"Change Password";
         }
         break;
     }
+      
     [picker addAction:action];
   }
 

@@ -86,7 +86,7 @@ class MainViewController: UITableViewController, GIDSignInUIDelegate {
   func showAuthPicker(_ providers: [AuthProvider]) {
     let picker = UIAlertController(title: "Select Provider",
                                    message: nil,
-                                   preferredStyle: .actionSheet)
+                                   preferredStyle: .alert)
     for provider in providers {
       var action: UIAlertAction
       switch provider {

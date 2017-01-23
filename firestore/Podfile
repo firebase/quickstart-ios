@@ -1,0 +1,12 @@
+target 'FirestoreExample' do
+  use_frameworks!
+
+  pod 'Firebase/Core'
+  pod 'Firebase/Auth'
+  pod 'FirebaseUI/Auth'
+  pod 'Firestore', :podspec => 'https://storage.googleapis.com/firebase-preview-drop/ios/firestore/0.2.0/Firestore.podspec.json'
+
+  target 'FirestoreExampleTests' do
+    inherit! :search_paths
+  end
+end

@@ -84,7 +84,7 @@ class ViewController: UIViewController, GIDSignInDelegate, GIDSignInUIDelegate, 
       // in order for invitations to successfully be sent.
 
       // A message hint for the dialog. Note this manifests differently depending on the
-      // received invation type. For example, in an email invite this appears as the subject.
+      // received invitation type. For example, in an email invite this appears as the subject.
       invite.setMessage("Try this out!\n -\(GIDSignIn.sharedInstance().currentUser.profile.name)")
       // Title for the dialog, this is what the user sees before sending the invites.
       invite.setTitle("Invites Example")

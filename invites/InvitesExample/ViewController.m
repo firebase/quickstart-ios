@@ -28,7 +28,6 @@
 @property(weak, nonatomic) IBOutlet UIButton *inviteButton;
 @property(weak, nonatomic) IBOutlet UILabel *statusText;
 // [END viewcontroler_vars]
-@property(strong, nonatomic) id<FIRInviteBuilder> inviteDialog;
 @end
 
 @implementation ViewController
@@ -116,8 +115,8 @@
 
 // [START invite_tapped]
 - (IBAction)inviteTapped:(id)sender {
-  _inviteDialog = [FIRInvites inviteDialog];
-  [_inviteDialog setInviteDelegate:self];
+  id<FIRInviteBuilder> inviteDialog = [FIRInvites inviteDialog];
+  [inviteDialog setInviteDelegate:self];
 
   // NOTE: You must have the App Store ID set in your developer console project
   // in order for invitations to successfully be sent.
@@ -126,15 +125,15 @@
                                  [GIDSignIn sharedInstance].currentUser.profile.name];
 
   // A message hint for the dialog. Note this manifests differently depending on the
-  // received invation type. For example, in an email invite this appears as the subject.
-  [_inviteDialog setMessage:message];
+  // received invitation type. For example, in an email invite this appears as the subject.
+  [inviteDialog setMessage:message];
 
   // Title for the dialog, this is what the user sees before sending the invites.
-  [_inviteDialog setTitle:@"Invites Example"];
-  [_inviteDialog setDeepLink:@"app_url"];
-  [_inviteDialog setCallToActionText:@"Install!"];
-  [_inviteDialog setCustomImage:@"https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png"];
-  [_inviteDialog open];
+  [inviteDialog setTitle:@"Invites Example"];
+  [inviteDialog setDeepLink:@"app_url"];
+  [inviteDialog setCallToActionText:@"Install!"];
+  [inviteDialog setCustomImage:@"https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png"];
+  [inviteDialog open];
 }
 // [END invite_tapped]
 

@@ -34,13 +34,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // show the dialog at a more appropriate time move this registration accordingly.
     // [START register_for_notifications]
     if #available(iOS 10.0, *) {
+      // For iOS 10 display notification (sent via APNS)
+      UNUserNotificationCenter.current().delegate = self
+
       let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
       UNUserNotificationCenter.current().requestAuthorization(
         options: authOptions,
         completionHandler: {_, _ in })
 
-      // For iOS 10 display notification (sent via APNS)
-      UNUserNotificationCenter.current().delegate = self
       // For iOS 10 data message (sent via FCM)
       FIRMessaging.messaging().remoteMessageDelegate = self
 

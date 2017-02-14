@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="1Zu-BB-Q65">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="1Zu-BB-Q65">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -37,9 +37,6 @@
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="waiting to be opened with link" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gWe-jX-t4S">
                                 <rect key="frame" x="20" y="278" width="560" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="x8Q-TH-Z27"/>
-                                </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <color key="textColor" red="0.396078431372549" green="0.49019607843137253" blue="0.54509803921568623" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -47,10 +44,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="gWe-jX-t4S" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="5Up-pt-OnE"/>
-                            <constraint firstItem="gWe-jX-t4S" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="KS6-Xt-04f"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="gWe-jX-t4S" secondAttribute="trailing" id="fHX-iz-b9Z"/>
-                            <constraint firstItem="gWe-jX-t4S" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="wBd-2N-nkF"/>
+                            <constraint firstItem="gWe-jX-t4S" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="PFt-T8-3i9"/>
+                            <constraint firstItem="gWe-jX-t4S" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="QuT-Kb-tdW"/>
+                            <constraint firstItem="gWe-jX-t4S" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="msb-gp-8BS"/>
+                            <constraint firstItem="gWe-jX-t4S" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="214" id="yJ0-dL-lRd"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Dynamic Links Example" id="mpn-mx-GHh"/>

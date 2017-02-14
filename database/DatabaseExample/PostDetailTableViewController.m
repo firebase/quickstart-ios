@@ -99,9 +99,10 @@ static const int kSectionPost = 0;
   }
   return -1;
 }
-- (void)viewDidDisappear:(BOOL)animated {
+- (void)viewWillDisappear:(BOOL)animated {
   [self.postRef removeObserverWithHandle:_refHandle];
   [self.commentsRef removeAllObservers];
+  [[[[FIRDatabase database].reference child:@"users"] child:[FIRAuth auth].currentUser.uid] removeAllObservers];
 }
 
 #pragma mark - Table view data source

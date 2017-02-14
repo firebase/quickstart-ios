@@ -80,4 +80,8 @@
   FIRDataSnapshot *snapshot = [source objectAtIndex:path.row];
   detail.postKey = snapshot.key;
 }
+
+- (void)viewWillDisappear:(BOOL)animated {
+  [[self getQuery] removeAllObservers];
+}
 @end

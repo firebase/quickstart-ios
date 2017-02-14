@@ -91,6 +91,9 @@ class PostDetailTableViewController: UITableViewController, UITextFieldDelegate 
       postRef.removeObserver(withHandle: refHandle)
     }
     commentsRef.removeAllObservers()
+    if let uid = FIRAuth.auth()?.currentUser?.uid {
+      FIRDatabase.database().reference().child("users").child(uid).removeAllObservers()
+    }
   }
 
   // UITableViewDataSource protocol methods
@@ -113,20 +116,21 @@ class PostDetailTableViewController: UITableViewController, UITextFieldDelegate 
     _ = textFieldShouldReturn(commentField!)
     commentField?.isEnabled = false
     sender.isEnabled = false
-    let uid = FIRAuth.auth()?.currentUser?.uid
-    FIRDatabase.database().reference().child("users").child(uid!).observeSingleEvent(of: .value, with: { (snapshot) in
-      if let uid = uid, let commentField = self.commentField, let user = snapshot.value as? [String : AnyObject] {
-        let comment = [
-          "uid": uid,
-          "author": user["username"] as? String ?? "",
-          "text": commentField.text!
-        ]
-        self.commentsRef.childByAutoId().setValue(comment)
-        commentField.text = ""
-        commentField.isEnabled = true
-        sender.isEnabled = true
-      }
-    })
+    if let uid = FIRAuth.auth()?.currentUser?.uid {
+      FIRDatabase.database().reference().child("users").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
+        if let commentField = self.commentField, let user = snapshot.value as? [String : AnyObject] {
+          let comment = [
+            "uid": uid,
+            "author": user["username"] as? String ?? "",
+            "text": commentField.text!
+          ]
+          self.commentsRef.childByAutoId().setValue(comment)
+          commentField.text = ""
+          commentField.isEnabled = true
+          sender.isEnabled = true
+        }
+      })
+    }
   }
 
   override func tableView(_ tableView: UITableView,

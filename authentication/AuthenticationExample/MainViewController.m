@@ -565,14 +565,30 @@ static NSString *const kChangePasswordText = @"Change Password";
 - (void)showTypicalUIForUserUpdateResultsWithTitle:(NSString *)resultsTitle error:(NSError *)error {
   if (error) {
     NSString *message = [NSString stringWithFormat:@"%@ (%ld)\n%@", error.domain, (long)error.code,
-                                                   error.localizedDescription];
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:resultsTitle
-                                                    message:message
-                                                   delegate:nil
-                                          cancelButtonTitle:nil
-                                          otherButtonTitles:kOKButtonText, nil];
-    [alert show];
-    return;
+                         error.localizedDescription];
+    if ([UIAlertController class]) {
+      UIAlertAction *okAction = [UIAlertAction actionWithTitle:kOKButtonText
+                                                         style:UIAlertActionStyleDefault
+                                                       handler:^(UIAlertAction *action) {
+                                                         NSLog(@"OK");
+                                                       }];
+
+      UIAlertController *alertController = [UIAlertController alertControllerWithTitle:resultsTitle
+                                                                               message:message
+                                                                        preferredStyle:UIAlertControllerStyleAlert];
+      [alertController addAction:okAction];
+      [self presentViewController:alertController
+                                                   animated:YES
+                                                 completion:nil];
+    } else {
+      UIAlertView *alert = [[UIAlertView alloc] initWithTitle:resultsTitle
+                                                      message:message
+                                                     delegate:nil
+                                            cancelButtonTitle:nil
+                                            otherButtonTitles:kOKButtonText, nil];
+      [alert show];
+      return;
+    }
   }
   [self.tableView reloadData];
 }

@@ -142,11 +142,28 @@
   NSString *message =
       error ? error.localizedDescription
             : [NSString stringWithFormat:@"%lu invites sent", (unsigned long)invitationIds.count];
-  [[[UIAlertView alloc] initWithTitle:@"Done"
-                              message:message
-                             delegate:nil
-                    cancelButtonTitle:@"OK"
-                    otherButtonTitles:nil] show];
+
+  if ([UIAlertController class]) {
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"
+                                                       style:UIAlertActionStyleDefault
+                                                     handler:^(UIAlertAction *action) {
+                                                       NSLog(@"OK");
+                                                     }];
+
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Done"
+                                                                             message:message
+                                                                      preferredStyle:UIAlertControllerStyleAlert];
+    [alertController addAction:okAction];
+    [self presentViewController:alertController
+                       animated:YES
+                     completion:nil];
+  } else {
+    [[[UIAlertView alloc] initWithTitle:@"Done"
+                                message:message
+                               delegate:nil
+                      cancelButtonTitle:@"OK"
+                      otherButtonTitles:nil] show];
+  }
 }
 // [END invite_finished]
 

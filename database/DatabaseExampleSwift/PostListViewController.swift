@@ -98,4 +98,8 @@ class PostListViewController: UIViewController, UITableViewDelegate {
     }
     detail.postKey = snapshot.key
   }
+
+  override func viewWillDisappear(_ animated: Bool) {
+    getQuery().removeAllObservers()
+  }
 }

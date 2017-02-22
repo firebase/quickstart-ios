@@ -72,7 +72,7 @@ class ViewController: UIViewController, GADInterstitialDelegate {
     }
   }
 
-  func interstitial(_ ad: GADInterstitial, didFailToReceiveAdWithError error: Error) {
+  func interstitial(_ ad: GADInterstitial, didFailToReceiveAdWithError error: GADRequestError) {
     // Retrying failed interstitial loads is a rudimentary way of handling these errors.
     // For more fine-grained error handling, take a look at the values in GADErrorCode.
     self.interstitial = createAndLoadInterstitial()

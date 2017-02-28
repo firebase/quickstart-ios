@@ -68,6 +68,8 @@ NSString *const kGCMMessageIDKey = @"gcm.message_id";
     } else {
       // iOS 10 or later
       #if defined(__IPHONE_10_0) && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
+      // For iOS 10 display notification (sent via APNS)
+      [UNUserNotificationCenter currentNotificationCenter].delegate = self;
       UNAuthorizationOptions authOptions =
           UNAuthorizationOptionAlert
           | UNAuthorizationOptionSound
@@ -75,8 +77,6 @@ NSString *const kGCMMessageIDKey = @"gcm.message_id";
       [[UNUserNotificationCenter currentNotificationCenter] requestAuthorizationWithOptions:authOptions completionHandler:^(BOOL granted, NSError * _Nullable error) {
           }];
 
-      // For iOS 10 display notification (sent via APNS)
-      [UNUserNotificationCenter currentNotificationCenter].delegate = self;
       // For iOS 10 data message (sent via FCM)
       [FIRMessaging messaging].remoteMessageDelegate = self;
       #endif

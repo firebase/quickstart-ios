@@ -12,6 +12,8 @@ Getting Started
 ---------------
 
 - [Add Firebase to your iOS Project](https://firebase.google.com/docs/ios/setup).
+- Enable Anonymous auth in the **Auth > SIGN IN METHOD** tab.
+![Alt text](https://github.com/firebase/quickstart-js/blob/master/storage/pics/enable.png?raw=true "Enable auth")
 - Run the sample on your iOS device or simulator.
 
 

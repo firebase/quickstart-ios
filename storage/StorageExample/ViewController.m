@@ -41,7 +41,7 @@
   // [END configurestorage]
 
   // [START storageauth]
-  // Using Firebase Storage requires the user be authenticated. Here we are using
+  // Using Cloud Storage for Firebase requires the user be authenticated. Here we are using
   // anonymous authentication.
   if (![FIRAuth auth].currentUser) {
     [[FIRAuth auth] signInAnonymouslyWithCompletion:^(FIRUser * _Nullable user,

@@ -19,7 +19,6 @@ import Photos
 import Firebase
 import FirebaseAuth
 import FirebaseStorage
-/* Note that "#import "FirebaseStorage.h" is included in BridgingHeader.h */
 
 @objc(ViewController)
 class ViewController: UIViewController,
@@ -39,7 +38,7 @@ class ViewController: UIViewController,
     // [END configurestorage]
 
     // [START storageauth]
-    // Using Firebase Storage requires the user be authenticated. Here we are using
+    // Using Cloud Storage for Firebase requires the user be authenticated. Here we are using
     // anonymous authentication.
     if FIRAuth.auth()?.currentUser == nil {
       FIRAuth.auth()?.signInAnonymously(completion: { (user: FIRUser?, error: Error?) in

@@ -116,7 +116,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func connectToFcm() {
     // Won't connect since there is no token
     guard FIRInstanceID.instanceID().token() != nil else {
-      return;
+      return
     }
 
     // Disconnect previous FCM connection if it exists.

@@ -117,7 +117,7 @@ class ViewController: UIViewController, GIDSignInDelegate, GIDSignInUIDelegate, 
     if let error = error {
       print("Failed: " + error.localizedDescription)
     } else {
-      print("Invitations sent")
+      print("\(invitationIds.count) invites sent")
     }
   }
   // [END invite_finished]

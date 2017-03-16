@@ -139,30 +139,10 @@
 
 // [START invite_finished]
 - (void)inviteFinishedWithInvitations:(NSArray *)invitationIds error:(NSError *)error {
-  NSString *message =
-      error ? error.localizedDescription
-            : [NSString stringWithFormat:@"%lu invites sent", (unsigned long)invitationIds.count];
-
-  if ([UIAlertController class]) {
-    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"
-                                                       style:UIAlertActionStyleDefault
-                                                     handler:^(UIAlertAction *action) {
-                                                       NSLog(@"OK");
-                                                     }];
-
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Done"
-                                                                             message:message
-                                                                      preferredStyle:UIAlertControllerStyleAlert];
-    [alertController addAction:okAction];
-    [self presentViewController:alertController
-                       animated:YES
-                     completion:nil];
+  if (error) {
+    NSLog(@"%@", error.localizedDescription);
   } else {
-    [[[UIAlertView alloc] initWithTitle:@"Done"
-                                message:message
-                               delegate:nil
-                      cancelButtonTitle:@"OK"
-                      otherButtonTitles:nil] show];
+    NSLog(@"%lu invites sent", (unsigned long)invitationIds.count);
   }
 }
 // [END invite_finished]

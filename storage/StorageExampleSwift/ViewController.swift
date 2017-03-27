@@ -17,8 +17,6 @@
 import UIKit
 import Photos
 import Firebase
-import FirebaseAuth
-import FirebaseStorage
 
 @objc(ViewController)
 class ViewController: UIViewController,

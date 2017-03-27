@@ -16,8 +16,6 @@
 
 import UIKit
 import Firebase
-import FirebaseInstanceID
-import FirebaseMessaging
 
 @objc(ViewController)
 class ViewController: UIViewController {

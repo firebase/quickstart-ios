@@ -18,8 +18,7 @@
 #import "ViewController.h"
 #import "DownloadViewController.h"
 
-@import FirebaseStorage;
-@import FirebaseAuth;
+@import Firebase;
 
 @interface ViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 

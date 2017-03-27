@@ -1,7 +1,7 @@
 # AuthenticationExample
 
 use_frameworks!
-platform :ios, '7.0'
+platform :ios, '8.0'
 # [START auth_pod]
 pod 'Firebase/Auth'
 # [END auth_pod]

@@ -21,8 +21,6 @@
 #endif
 
 @import Firebase;
-@import FirebaseInstanceID;
-@import FirebaseMessaging;
 
 // Implement UNUserNotificationCenterDelegate to receive display notification via APNS for devices
 // running iOS 10 and above. Implement FIRMessagingDelegate to receive data message via FCM for

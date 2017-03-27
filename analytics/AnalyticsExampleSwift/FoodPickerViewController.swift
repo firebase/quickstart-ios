@@ -20,7 +20,7 @@
 //
 
 import Foundation
-import FirebaseAnalytics
+import Firebase
 
 @objc(FoodPickerViewController)  // match the ObjC symbol name inside Storyboard
 class FoodPickerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {

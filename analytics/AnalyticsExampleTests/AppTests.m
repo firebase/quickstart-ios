@@ -17,7 +17,7 @@
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
 
-@import FirebaseAnalytics;
+@import Firebase;
 
 #import "LogWrapper.h"
 

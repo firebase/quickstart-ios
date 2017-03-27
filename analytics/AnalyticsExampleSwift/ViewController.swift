@@ -15,7 +15,7 @@
 //
 
 import UIKit
-import FirebaseAnalytics
+import Firebase
 
 @objc(ViewController)  // match the ObjC symbol name inside Storyboard
 class ViewController: UIViewController {

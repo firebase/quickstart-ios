@@ -17,7 +17,7 @@
 #import "EmailViewController.h"
 #import "UIViewController+Alerts.h"
 
-@import FirebaseAuth;
+@import Firebase;
 
 @interface EmailViewController ()
 @property(weak, nonatomic) IBOutlet UITextField *emailField;

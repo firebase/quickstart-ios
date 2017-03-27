@@ -15,8 +15,7 @@
 //
 
 #import "ViewController.h"
-@import FirebaseInstanceID;
-@import FirebaseMessaging;
+@import Firebase;
 
 @implementation ViewController
 

@@ -17,7 +17,7 @@
 import UIKit
 
 // [START auth_view_import]
-import FirebaseAuth
+import Firebase
 // [END auth_view_import]
 
 @objc(CustomTokenViewController)

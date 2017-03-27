@@ -15,7 +15,7 @@
 //
 
 #import "ViewController.h"
-@import FirebaseRemoteConfig;
+@import Firebase;
 
 @implementation ViewController
 

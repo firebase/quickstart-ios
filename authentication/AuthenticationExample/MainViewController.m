@@ -321,36 +321,41 @@ static NSString *const kChangePasswordText = @"Change Password";
     // [END current_user]
   } else if (indexPath.section == kSectionUser) {
     cell = [tableView dequeueReusableCellWithIdentifier:@"Profile"];
-    // [START user_profile]
+    // [START get_user_profile]
     FIRUser *user = [FIRAuth auth].currentUser;
-    NSString *email = user.email;
-    // The user's ID, unique to the Firebase project.
-    // Do NOT use this value to authenticate with your backend server,
-    // if you have one. Use getTokenWithCompletion:completion: instead.
-    NSString *uid = user.uid;
-    NSURL *photoURL = user.photoURL;
-    // [END user_profile]
+    // [END get_user_profile]
+    // [START user_profile]
+    if (user) {
+      // The user's ID, unique to the Firebase project.
+      // Do NOT use this value to authenticate with your backend server,
+      // if you have one. Use getTokenWithCompletion:completion: instead.
+      NSString *uid = user.uid;
+      NSString *email = user.email;
+      NSURL *photoURL = user.photoURL;
+      // [START_EXCLUDE]
+      UILabel *emailLabel = [(UILabel *)cell viewWithTag:1];
+      UILabel *userIDLabel = [(UILabel *)cell viewWithTag:2];
+      UIImageView *profileImageView = [(UIImageView *)cell viewWithTag:3];
+      emailLabel.text = email;
+      userIDLabel.text = uid;
 
-    UILabel *emailLabel = [(UILabel *)cell viewWithTag:1];
-    UILabel *userIDLabel = [(UILabel *)cell viewWithTag:2];
-    UIImageView *profileImageView = [(UIImageView *)cell viewWithTag:3];
-    emailLabel.text = email;
-    userIDLabel.text = uid;
-
-    static NSURL *lastPhotoURL = nil;
-    lastPhotoURL = photoURL;  // to prevent earlier image overwrites later one.
-    if (photoURL) {
-      dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^() {
-        UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:photoURL]];
-        dispatch_async(dispatch_get_main_queue(), ^() {
-          if (photoURL == lastPhotoURL) {
-            profileImageView.image = image;
-          }
+      static NSURL *lastPhotoURL = nil;
+      lastPhotoURL = photoURL;  // to prevent earlier image overwrites later one.
+      if (photoURL) {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^() {
+          UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:photoURL]];
+          dispatch_async(dispatch_get_main_queue(), ^() {
+            if (photoURL == lastPhotoURL) {
+              profileImageView.image = image;
+            }
+          });
         });
-      });
-    } else {
-      profileImageView.image = [UIImage imageNamed:@"ic_account_circle"];
+      } else {
+        profileImageView.image = [UIImage imageNamed:@"ic_account_circle"];
+      }
+      // [END_EXCLUDE]
     }
+    // [END user_profile]
   } else if (indexPath.section == kSectionProviders) {
     cell = [tableView dequeueReusableCellWithIdentifier:@"Provider"];
     // [START provider_data]

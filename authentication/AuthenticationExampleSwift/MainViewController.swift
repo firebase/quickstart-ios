@@ -257,14 +257,16 @@ class MainViewController: UITableViewController, GIDSignInUIDelegate {
       // [START_EXCLUDE]
       self.setTitleDisplay(user)
       self.tableView.reloadData()
-      // [END_EXCLUDE]s
+      // [END_EXCLUDE]
     }
     // [END auth_listener]
   }
 
   override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
+    // [START remove_auth_listener]
     FIRAuth.auth()?.removeStateDidChangeListener(handle!)
+    // [END remove_auth_listener]
   }
 
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

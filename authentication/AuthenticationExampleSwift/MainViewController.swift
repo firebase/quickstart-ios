@@ -308,41 +308,46 @@ class MainViewController: UITableViewController, GIDSignInUIDelegate {
       // [END current_user]
     case kSectionUser:
       cell = tableView.dequeueReusableCell(withIdentifier: "Profile")
-      // [START user_profile]
+      // [START get_user_profile]
       let user = FIRAuth.auth()?.currentUser
-      // The user's ID, unique to the Firebase project.
-      // Do NOT use this value to authenticate with your backend server,
-      // if you have one. Use getTokenWithCompletion:completion: instead.
-      let email = user?.email
-      let uid = user?.uid
-      let photoURL = user?.photoURL
-      // [END user_profile]
+      // [END get_user_profile]
+      // [START user_profile]
+      if let user = user {
+        // The user's ID, unique to the Firebase project.
+        // Do NOT use this value to authenticate with your backend server,
+        // if you have one. Use getTokenWithCompletion:completion: instead.
+        let uid = user.uid
+        let email = user.email
+        let photoURL = user.photoURL
+        // [START_EXCLUDE]
+        let emailLabel = cell?.viewWithTag(1) as? UILabel
+        let userIDLabel = cell?.viewWithTag(2) as? UILabel
+        let profileImageView = cell?.viewWithTag(3) as? UIImageView
+        emailLabel?.text = email
+        userIDLabel?.text = uid
 
-      let emailLabel = cell?.viewWithTag(1) as? UILabel
-      let userIDLabel = cell?.viewWithTag(2) as? UILabel
-      let profileImageView = cell?.viewWithTag(3) as? UIImageView
-      emailLabel?.text = email
-      userIDLabel?.text = uid
-
-      struct last {
-        static var photoURL: URL? = nil
-      }
-      last.photoURL = photoURL;  // to prevent earlier image overwrites later one.
-      if let photoURL = photoURL {
-        DispatchQueue.global(qos: .default).async {
-          let data = try? Data.init(contentsOf: photoURL)
-          if let data = data {
-            let image = UIImage.init(data: data)
-            DispatchQueue.main.async(execute: {
-              if photoURL == last.photoURL {
-                profileImageView?.image = image
-              }
-            })
-          }
+        struct last {
+            static var photoURL: URL? = nil
         }
-      } else {
-        profileImageView?.image = UIImage.init(named: "ic_account_circle")
+        last.photoURL = photoURL;  // to prevent earlier image overwrites later one.
+        if let photoURL = photoURL {
+          DispatchQueue.global(qos: .default).async {
+            let data = try? Data.init(contentsOf: photoURL)
+            if let data = data {
+              let image = UIImage.init(data: data)
+              DispatchQueue.main.async(execute: {
+                if photoURL == last.photoURL {
+                  profileImageView?.image = image
+                }
+              })
+            }
+          }
+        } else {
+          profileImageView?.image = UIImage.init(named: "ic_account_circle")
+        }
+        // [END_EXCLUDE]
       }
+      // [END user_profile]
     case kSectionProviders:
       cell = tableView.dequeueReusableCell(withIdentifier: "Provider")
       // [START provider_data]

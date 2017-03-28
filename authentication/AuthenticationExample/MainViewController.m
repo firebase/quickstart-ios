@@ -281,7 +281,9 @@ static NSString *const kChangePasswordText = @"Change Password";
 
 - (void)viewWillDisappear:(BOOL)animated {
   [super viewWillDisappear:animated];
+  // [START remove_auth_listener]
   [[FIRAuth auth] removeAuthStateDidChangeListener:_handle];
+  // [END remove_auth_listener]
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

@@ -15,6 +15,7 @@
 //
 
 import UIKit
+import Firebase
 
 class Post: NSObject {
   var uid: String
@@ -25,6 +26,20 @@ class Post: NSObject {
   var stars: Dictionary<String, Bool>?
 
   init(uid: String, author: String, title: String, body: String) {
+    self.uid = uid
+    self.author = author
+    self.title = title
+    self.body = body
+    self.starCount = 0 as AnyObject?
+  }
+
+  init?(snapshot: FIRDataSnapshot) {
+    guard let dict = snapshot.value as? [String: String] else { return nil }
+    guard let uid  = dict["uid"]  else { return nil }
+    guard let author = dict["author"] else { return nil }
+    guard let title = dict["title"] else { return nil }
+    guard let body = dict["body"] else { return nil }
+
     self.uid = uid
     self.author = author
     self.title = title

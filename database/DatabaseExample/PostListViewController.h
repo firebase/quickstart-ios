@@ -22,7 +22,7 @@
 // [START define_database_reference]
 @property (strong, nonatomic) FIRDatabaseReference *ref;
 // [END define_database_reference]
-@property (strong, nonatomic) FirebaseTableViewDataSource *dataSource;
+@property (strong, nonatomic) FUITableViewDataSource *dataSource;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (NS_NONATOMIC_IOSONLY, getter=getUid, readonly, copy) NSString *uid;

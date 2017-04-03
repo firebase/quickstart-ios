@@ -31,25 +31,30 @@
   self.ref = [[FIRDatabase database] reference];
   // [END create_database_reference]
 
+  NSString *identifier = @"post";
+  UINib *nib = [UINib nibWithNibName:@"PostTableViewCell" bundle:nil];
+  [self.tableView registerNib:nib forCellReuseIdentifier:identifier];
+
   self.dataSource = [[PostDataSource alloc] initWithQuery:[self getQuery]
-                                               modelClass:[Post class]
-                                                 nibNamed:@"PostTableViewCell"
-                                      cellReuseIdentifier:@"post"
-                                                     view:self.tableView];
+                                             populateCell:^UITableViewCell * _Nonnull(UITableView * _Nonnull tableView,
+                                                                                      NSIndexPath * _Nonnull indexPath,
+                                                                                      FIRDataSnapshot * _Nonnull snap) {
+    Post *post = [[Post alloc] initWithUid:snap.value[@"uid"]
+                                andAuthor:snap.value[@"author"]
+                                 andTitle:snap.value[@"title"]
+                                  andBody:snap.value[@"body"]];
+    PostTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    cell.authorImage.image = [UIImage imageNamed:@"ic_account_circle"];
+    cell.authorLabel.text = post.author;
+    NSString *imageName = post.stars[[self getUid]] ? @"ic_star" : @"ic_star_border";
+    [cell.starButton setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
+    cell.numStarsLabel.text = [NSString stringWithFormat:@"%d", post.starCount];
+    cell.postTitle.text = post.title;
+    cell.postBody.text = post.body;
+    return cell;
+  }];
 
-  [self.dataSource
-   populateCellWithBlock:^void(PostTableViewCell *__nonnull cell,
-                               Post *__nonnull post) {
-     cell.authorImage.image = [UIImage imageNamed:@"ic_account_circle"];
-     cell.authorLabel.text = post.author;
-     NSString *imageName = post.stars[[self getUid]] ? @"ic_star" : @"ic_star_border";
-     [cell.starButton setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
-     cell.numStarsLabel.text = [NSString stringWithFormat:@"%d", post.starCount];
-     cell.postTitle.text = post.title;
-     cell.postBody.text = post.body;
-   }];
-
-  self.tableView.dataSource = self.dataSource;
+  [self.dataSource bindToView:self.tableView];
   self.tableView.delegate = self;
 }
 
@@ -74,11 +79,9 @@
 }
 
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-  NSIndexPath *path = sender;
+  NSIndexPath *indexPath = sender;
   PostDetailTableViewController *detail = segue.destinationViewController;
-  FirebaseTableViewDataSource *source = self.dataSource;
-  FIRDataSnapshot *snapshot = [source objectAtIndex:path.row];
-  detail.postKey = snapshot.key;
+  detail.postKey = [self.dataSource snapshotAtIndex:indexPath.row].key;
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

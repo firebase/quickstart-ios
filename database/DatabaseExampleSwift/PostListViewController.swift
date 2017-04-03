@@ -25,7 +25,7 @@ class PostListViewController: UIViewController, UITableViewDelegate {
   var ref: FIRDatabaseReference!
   // [END define_database_reference]
 
-  var dataSource: FirebaseTableViewDataSource?
+  var dataSource: FUITableViewDataSource?
 
   @IBOutlet weak var tableView: UITableView!
 
@@ -36,19 +36,14 @@ class PostListViewController: UIViewController, UITableViewDelegate {
     ref = FIRDatabase.database().reference()
     // [END create_database_reference]
 
-    dataSource = FirebaseTableViewDataSource.init(query: getQuery(),
-                                                  modelClass: Post.self,
-                                                  nibNamed: "PostTableViewCell",
-                                                  cellReuseIdentifier: "post",
-                                                  view: self.tableView)
+    let identifier = "post"
+    let nib = UINib.init(nibName: "PostTableViewCell", bundle: nil)
+    tableView.register(nib, forCellReuseIdentifier: identifier)
 
-    dataSource?.populateCell() {
-      guard let cell = $0 as? PostTableViewCell else {
-        return
-      }
-      guard let post = $1 as? Post else {
-        return
-      }
+    dataSource = FUITableViewDataSource.init(query: getQuery()) { (tableView, indexPath, snap) -> UITableViewCell in
+      let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! PostTableViewCell
+
+      guard let post = Post.init(snapshot: snap) else { return cell }
       cell.authorImage.image = UIImage.init(named: "ic_account_circle")
       cell.authorLabel.text = post.author
       var imageName = "ic_star_border"
@@ -61,9 +56,10 @@ class PostListViewController: UIViewController, UITableViewDelegate {
       }
       cell.postTitle.text = post.title
       cell.postBody.text = post.body
+      return cell
     }
 
-    tableView.dataSource = dataSource
+    dataSource?.bind(to: tableView)
     tableView.delegate = self
   }
 
@@ -88,15 +84,13 @@ class PostListViewController: UIViewController, UITableViewDelegate {
   }
 
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    guard let path: IndexPath = sender as? IndexPath else { return }
+    guard let indexPath: IndexPath = sender as? IndexPath else { return }
     guard let detail: PostDetailTableViewController = segue.destination as? PostDetailTableViewController else {
       return
     }
-    let source = self.dataSource
-    guard let snapshot: FIRDataSnapshot = (source?.object(at: UInt((path as NSIndexPath).row)))! as? FIRDataSnapshot else {
-      return
+    if let dataSource = dataSource {
+      detail.postKey = dataSource.snapshot(at: indexPath.row).key
     }
-    detail.postKey = snapshot.key
   }
 
   override func viewWillDisappear(_ animated: Bool) {

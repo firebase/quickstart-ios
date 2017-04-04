@@ -86,7 +86,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // [START_EXCLUDE silent]
     if !handled {
       // Show the deep link URL from userActivity.
-      let message = "continueUserActivity webPageURL:\n\(userActivity.webpageURL)"
+      let message = "continueUserActivity webPageURL:\n\(userActivity.webpageURL?.absoluteString ?? "")"
       showDeepLinkAlertView(withMessage: message)
     }
     // [END_EXCLUDE]
@@ -102,7 +102,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     } else {
       matchConfidence = "Strong"
     }
-    let message = "App URL: \(dynamicLink.url)\nMatch Confidence: \(matchConfidence)\n"
+    let message = "App URL: \(dynamicLink.url?.absoluteString ?? "")\nMatch Confidence: \(matchConfidence)\n"
     return message
   }
 

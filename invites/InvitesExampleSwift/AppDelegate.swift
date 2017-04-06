@@ -42,7 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       if let invite = FIRInvites.handle(url, sourceApplication:sourceApplication, annotation:annotation) as? FIRReceivedInvite {
         let matchType =
             (invite.matchType == .weak) ? "Weak" : "Strong"
-        print("Invite received from: \(sourceApplication) Deeplink: \(invite.deepLink)," +
+        print("Invite received from: \(sourceApplication ?? "") Deeplink: \(invite.deepLink)," +
             "Id: \(invite.inviteId), Type: \(matchType)")
         return true
       }
@@ -67,7 +67,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // [START_EXCLUDE silent]
     if !handled {
       // Show the deep link URL from userActivity.
-      let message = "continueUserActivity webPageURL:\n\(userActivity.webpageURL?.absoluteString)"
+      let message = "continueUserActivity webPageURL:\n\(userActivity.webpageURL?.absoluteString ?? "")"
       showDeepLinkAlertView(withMessage: message)
     }
     // [END_EXCLUDE]
@@ -83,7 +83,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     } else {
       matchConfidence = "Strong"
     }
-    let message = "App URL: \(dynamicLink.url?.absoluteString)\nMatch Confidence: \(matchConfidence)\n"
+    let message = "App URL: \(dynamicLink.url?.absoluteString ?? "")\nMatch Confidence: \(matchConfidence)\n"
     return message
   }
 

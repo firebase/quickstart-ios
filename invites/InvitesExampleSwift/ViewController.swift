@@ -113,7 +113,7 @@ class ViewController: UIViewController, GIDSignInDelegate, GIDSignInUIDelegate, 
   // [END toggle_auth]
 
   // [START invite_finished]
-  func inviteFinished(withInvitations invitationIds: [Any], error: Error?) {
+  func inviteFinished(withInvitations invitationIds: [String], error: Error?) {
     if let error = error {
       print("Failed: " + error.localizedDescription)
     } else {

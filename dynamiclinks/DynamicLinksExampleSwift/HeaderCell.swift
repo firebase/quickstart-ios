@@ -14,9 +14,11 @@
 //  limitations under the License.
 //
 
-#import <UIKit/UIKit.h>
+import UIKit
 
-@interface ViewController : UITableViewController
+class HeaderCell: UITableViewCell {
 
-@property(nonatomic, strong) UIWindow *window;
-@end
+  @IBOutlet weak var toggleButton: UIButton!
+  @IBOutlet weak var titleLabel: UILabel!
+
+}

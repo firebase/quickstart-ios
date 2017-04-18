@@ -14,9 +14,8 @@
 //  limitations under the License.
 //
 
-#import <UIKit/UIKit.h>
+#import "ParamTableViewCell.h"
 
-@interface ViewController : UITableViewController
+@implementation ParamTableViewCell
 
-@property(nonatomic, strong) UIWindow *window;
 @end

@@ -16,7 +16,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UITableViewController
-
-@property(nonatomic, strong) UIWindow *window;
+@interface ParamTableViewCell : UITableViewCell
+@property(weak, nonatomic) IBOutlet UILabel *paramLabel;
+@property(weak, nonatomic) IBOutlet UITextField *paramTextField;
 @end

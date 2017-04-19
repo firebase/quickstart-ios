@@ -109,7 +109,7 @@ static NSString *const Social = @"Social Meta Tag";
   if (_dictionary[BundleID].text) {
     iOSParams = [FIRDynamicLinkIOSParameters parametersWithBundleID:_dictionary[BundleID].text];
     iOSParams.fallbackURL = [NSURL URLWithString:_dictionary[FallbackURL].text];
-    iOSParams.minimumAppVersion = dictionary[MinimumAppVersion].text;
+    iOSParams.minimumAppVersion = _dictionary[MinimumAppVersion].text;
     iOSParams.customScheme = _dictionary[CustomScheme].text;
     iOSParams.iPadBundleID = _dictionary[IPadBundleID].text;
     iOSParams.iPadFallbackURL = [NSURL URLWithString:_dictionary[IPadFallbackURL].text];

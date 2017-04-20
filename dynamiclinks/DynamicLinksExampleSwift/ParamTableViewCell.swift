@@ -14,9 +14,12 @@
 //  limitations under the License.
 //
 
-#import <UIKit/UIKit.h>
+import UIKit
 
-@interface ViewController : UITableViewController
+@objc(ParamTableViewCell)
+class ParamTableViewCell: UITableViewCell {
 
-@property(nonatomic, strong) UIWindow *window;
-@end
+  @IBOutlet weak var paramLabel: UILabel!
+  @IBOutlet weak var paramTextField: UITextField!
+
+}

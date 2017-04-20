@@ -16,7 +16,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UITableViewController
-
-@property(nonatomic, strong) UIWindow *window;
+@interface HeaderCell : UITableViewCell
+@property(weak, nonatomic) IBOutlet UIButton *toggleButton;
+@property(weak, nonatomic) IBOutlet UILabel *titleLabel;
 @end

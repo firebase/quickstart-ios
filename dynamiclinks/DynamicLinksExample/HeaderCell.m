@@ -14,9 +14,8 @@
 //  limitations under the License.
 //
 
-#import <UIKit/UIKit.h>
+#import "HeaderCell.h"
 
-@interface ViewController : UITableViewController
+@implementation HeaderCell
 
-@property(nonatomic, strong) UIWindow *window;
 @end

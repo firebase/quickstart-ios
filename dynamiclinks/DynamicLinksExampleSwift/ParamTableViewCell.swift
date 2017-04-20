@@ -16,6 +16,7 @@
 
 import UIKit
 
+@objc(ParamTableViewCell)
 class ParamTableViewCell: UITableViewCell {
 
   @IBOutlet weak var paramLabel: UILabel!

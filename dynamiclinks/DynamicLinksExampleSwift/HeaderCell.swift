@@ -16,6 +16,7 @@
 
 import UIKit
 
+@objc(HeaderCell)
 class HeaderCell: UITableViewCell {
 
   @IBOutlet weak var toggleButton: UIButton!

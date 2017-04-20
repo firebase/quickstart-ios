@@ -93,6 +93,7 @@ static NSString *const Social = @"Social Meta Tag";
 }
 
 - (void)buildFDLLink {
+  // [START buildFDLLink]
   NSURL *link = [NSURL URLWithString:_dictionary[Link].text];
   FIRDynamicLinkComponents *components =
   [FIRDynamicLinkComponents componentsWithLink:link
@@ -136,24 +137,29 @@ static NSString *const Social = @"Social Meta Tag";
   socialParams.descriptionText = _dictionary[DescriptionText].text;
   socialParams.imageURL = [NSURL URLWithString:_dictionary[ImageURL].text];
 
-  FIRDynamicLinkComponentsOptions *options = [FIRDynamicLinkComponentsOptions options];
-  options.pathLength = FIRShortDynamicLinkPathLengthUnguessable;
-
   components.analyticsParameters = analyticsParams;
   components.iOSParameters = iOSParams;
   components.iTunesConnectParameters = appStoreParams;
   components.androidParameters = androidParams;
   components.socialMetaTagParameters = socialParams;
-  components.options = options;
 
   _longLink = components.url;
+  NSLog(@"Long URL: %@", _longLink.absoluteString);
+  // [END buildFDLLink]
+
   // Handle longURL.
-  NSLog(@"Long URL: %@", _longLink);
   [self.tableView reloadRowsAtIndexPaths:@[
                                            [NSIndexPath indexPathForRow:0 inSection:2]
                                            ]
                         withRowAnimation:UITableViewRowAnimationNone];
 
+  // [START shortLinkOptions]
+  FIRDynamicLinkComponentsOptions *options = [FIRDynamicLinkComponentsOptions options];
+  options.pathLength = FIRShortDynamicLinkPathLengthUnguessable;
+  components.options = options;
+  // [END shortLinkOptions]
+
+  // [START shortenLink]
   [components shortenWithCompletion:^(NSURL *_Nullable shortURL,
                                       NSArray *_Nullable warnings,
                                       NSError *_Nullable error) {
@@ -163,11 +169,15 @@ static NSString *const Social = @"Social Meta Tag";
       return;
     }
     _shortLink = shortURL;
+    NSLog(@"Short URL: %@", _shortLink.absoluteString);
+    // [START_EXCLUDE]
     [self.tableView reloadRowsAtIndexPaths:@[
                                              [NSIndexPath indexPathForRow:1 inSection:2]
                                              ]
                           withRowAnimation:UITableViewRowAnimationNone];
+    // [END_EXCLUDE]
   }];
+  // [END shortenLink]
 }
 
 #pragma mark - View Controller DataSource and Delegate

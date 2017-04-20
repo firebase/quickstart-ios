@@ -92,6 +92,7 @@ class ViewController: UITableViewController {
   }
 
   func buildFDLLink() {
+    // [START buildFDLLink]
     guard let linkString = dictionary[.link]?.text else { return }
     guard let link = URL(string: linkString) else { return }
     guard let domain = dictionary[.domain]?.text else { return }
@@ -149,16 +150,20 @@ class ViewController: UITableViewController {
 
     components.socialMetaTagParameters = socialParams
 
-    let options = FIRDynamicLinkComponentsOptions()
-    options.pathLength = .unguessable
-
-    components.options = options
-
     longLink = components.url
     print(longLink?.absoluteString ?? "")
+    // [END buildFDLLink]
+
     // Handle longURL.
     tableView.reloadRows(at: [IndexPath(row: 0, section: 2)], with: .none)
 
+    // [START shortLinkOptions]
+    let options = FIRDynamicLinkComponentsOptions()
+    options.pathLength = .unguessable
+    components.options = options
+    // [END shortLinkOptions]
+
+    // [START shortenLink]
     components.shorten { (shortURL, warnings, error) in
       // Handle shortURL.
       if let error = error {
@@ -167,8 +172,11 @@ class ViewController: UITableViewController {
       }
       self.shortLink = shortURL
       print(self.shortLink?.absoluteString ?? "")
+      // [START_EXCLUDE]
       self.tableView.reloadRows(at: [IndexPath(row: 1, section: 2)], with: .none)
+      // [END_EXCLUDE]
     }
+    // [END shortenLink]
   }
 }
 

@@ -40,6 +40,7 @@ class MainViewController: UITableViewController, GIDSignInUIDelegate {
     case authFacebook
     case authGoogle
     case authTwitter
+    case authPhone
     case authCustom
   }
 
@@ -78,6 +79,11 @@ class MainViewController: UITableViewController, GIDSignInUIDelegate {
   */
   let kChangePasswordText = "Change Password"
 
+  /** @var kUpdatePhoneNumberText
+   @brief The title of the "Update Phone Number" button.
+   */
+  let kUpdatePhoneNumberText = "Update Phone Number"
+
   /** @var handle
    @brief The handler for the auth state listener, to allow cancelling later.
    */
@@ -91,33 +97,32 @@ class MainViewController: UITableViewController, GIDSignInUIDelegate {
       var action: UIAlertAction
       switch provider {
       case .authEmail:
-        action = UIAlertAction(title: "Email", style: .default, handler: { (UIAlertAction) in
+        action = UIAlertAction(title: "Email", style: .default) { (UIAlertAction) in
           self.performSegue(withIdentifier: "email", sender:nil)
-        })
+        }
       case .authCustom:
-        action = UIAlertAction(title: "Custom", style: .default, handler: { (UIAlertAction) in
+        action = UIAlertAction(title: "Custom", style: .default) { (UIAlertAction) in
           self.performSegue(withIdentifier: "customToken", sender: nil)
-        })
+        }
       case .authAnonymous:
-        action = UIAlertAction(title: "Anonymous", style: .default, handler: { (UIAlertAction) in
-          self.showSpinner({
+        action = UIAlertAction(title: "Anonymous", style: .default) { (UIAlertAction) in
+          self.showSpinner {
             // [START firebase_auth_anonymous]
             Auth.auth().signInAnonymously() { (user, error) in
               // [START_EXCLUDE]
-              self.hideSpinner({
+              self.hideSpinner {
                 if let error = error {
                   self.showMessagePrompt(error.localizedDescription)
                   return
                 }
-              })
+              }
               // [END_EXCLUDE]
             }
             // [END firebase_auth_anonymous]
-          })
-
-        })
+          }
+        }
       case .authFacebook:
-        action = UIAlertAction(title: "Facebook", style: .default, handler: { (UIAlertAction) in
+        action = UIAlertAction(title: "Facebook", style: .default) { (UIAlertAction) in
           let loginManager = FBSDKLoginManager()
           loginManager.logIn(withReadPermissions: ["email"], from: self, handler: { (result, error) in
             if let error = error {
@@ -131,16 +136,16 @@ class MainViewController: UITableViewController, GIDSignInUIDelegate {
               self.firebaseLogin(credential)
             }
           })
-        })
+        }
       case .authGoogle:
-        action = UIAlertAction(title: "Google", style: .default, handler: { (UIAlertAction) in
+        action = UIAlertAction(title: "Google", style: .default) { (UIAlertAction) in
           // [START setup_gid_uidelegate]
           GIDSignIn.sharedInstance().uiDelegate = self
           GIDSignIn.sharedInstance().signIn()
           // [END setup_gid_uidelegate]
-        })
+        }
       case .authTwitter:
-        action = UIAlertAction(title: "Twitter", style: .default, handler: { (UIAlertAction) in
+        action = UIAlertAction(title: "Twitter", style: .default) { (UIAlertAction) in
           Twitter.sharedInstance().logIn() { (session, error) in
             if let session = session {
               // [START headless_twitter_auth]
@@ -151,7 +156,41 @@ class MainViewController: UITableViewController, GIDSignInUIDelegate {
               self.showMessagePrompt((error?.localizedDescription)!)
             }
           }
-        })
+        }
+      case .authPhone:
+        action = UIAlertAction(title: "Phone", style: .default) { (UIAlertAction) in
+          self.showTextInputPrompt(withMessage: "Phone Number:") { (userPressedOK, userInput) in
+            if let phoneNumber = userInput {
+              self.showSpinner {
+                // [START phone_auth]
+                PhoneAuthProvider.provider().verifyPhoneNumber(phoneNumber) { (verificationID, error) in
+                  // [START_EXCLUDE]
+                  self.hideSpinner {
+                    // [END_EXCLUDE]
+                    if let error = error {
+                      self.showMessagePrompt(error.localizedDescription)
+                      return
+                    }
+                    guard let verificationID = verificationID else { return }
+                    // [START_EXCLUDE]
+                    self.showTextInputPrompt(withMessage: "Verification Code:") { (userPressedOK, verificationCode) in
+                      // [END_EXCLUDE]
+                      if let verificationCode = verificationCode {
+                        let credential = PhoneAuthProvider.provider().credential(withVerificationID: verificationID, verificationCode: verificationCode)
+                        // [END phone_auth]
+                        self.firebaseLogin(credential)
+                      } else {
+                        self.showMessagePrompt("verification code can't be empty")
+                      }
+                    }
+                  }
+                }
+              }
+            } else {
+              self.showMessagePrompt("phone number can't be empty")
+            }
+          }
+        }
       }
       picker.addAction(action)
     }
@@ -167,6 +206,7 @@ class MainViewController: UITableViewController, GIDSignInUIDelegate {
       AuthProvider.authGoogle,
       AuthProvider.authFacebook,
       AuthProvider.authTwitter,
+      AuthProvider.authPhone,
       AuthProvider.authCustom
     ])
   }
@@ -175,7 +215,8 @@ class MainViewController: UITableViewController, GIDSignInUIDelegate {
     var providers = Set([
       AuthProvider.authGoogle,
       AuthProvider.authFacebook,
-      AuthProvider.authTwitter
+      AuthProvider.authTwitter,
+      AuthProvider.authPhone
     ])
     // Remove any existing providers. Note that this is not a complete list of
     // providers, so always check the documentation for a complete reference:
@@ -185,10 +226,12 @@ class MainViewController: UITableViewController, GIDSignInUIDelegate {
       switch info.providerID {
       case TwitterAuthProviderID:
         providers.remove(AuthProvider.authTwitter)
-      case FIRFacebookAuthProviderID:
+      case FacebookAuthProviderID:
         providers.remove(AuthProvider.authFacebook)
       case GoogleAuthProviderID:
         providers.remove(AuthProvider.authGoogle)
+      case PhoneAuthProviderID:
+        providers.remove(AuthProvider.authPhone)
       default:
         break
       }
@@ -205,18 +248,18 @@ class MainViewController: UITableViewController, GIDSignInUIDelegate {
   }
 
   func firebaseLogin(_ credential: AuthCredential) {
-    showSpinner({
+    showSpinner {
       if let user = Auth.auth().currentUser {
         // [START link_credential]
         user.link(with: credential) { (user, error) in
           // [START_EXCLUDE]
-          self.hideSpinner({
+          self.hideSpinner {
             if let error = error {
               self.showMessagePrompt(error.localizedDescription)
               return
             }
             self.tableView.reloadData()
-          })
+          }
           // [END_EXCLUDE]
         }
         // [END link_credential]
@@ -224,7 +267,7 @@ class MainViewController: UITableViewController, GIDSignInUIDelegate {
         // [START signin_credential]
         Auth.auth().signIn(with: credential) { (user, error) in
           // [START_EXCLUDE]
-          self.hideSpinner({
+          self.hideSpinner {
             // [END_EXCLUDE]
             if let error = error {
               // [START_EXCLUDE]
@@ -235,10 +278,10 @@ class MainViewController: UITableViewController, GIDSignInUIDelegate {
             // [END signin_credential]
             // Merge prevUser and currentUser accounts and data
             // ...
-          })
+          }
         }
       }
-    })
+    }
   }
 
   @IBAction func didTapSignOut(_ sender: AnyObject) {
@@ -255,7 +298,7 @@ class MainViewController: UITableViewController, GIDSignInUIDelegate {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     // [START auth_listener]
-    handle = Auth.auth().addStateDidChangeListener() { (auth, user) in
+    handle = Auth.auth().addStateDidChangeListener { (auth, user) in
       // [START_EXCLUDE]
       self.setTitleDisplay(user)
       self.tableView.reloadData()
@@ -444,21 +487,21 @@ class MainViewController: UITableViewController, GIDSignInUIDelegate {
   */
   @IBAction func didSetDisplayName(_ sender: AnyObject) {
     showTextInputPrompt(withMessage: "Display Name:") { (userPressedOK, userInput) in
-      if let userInput = userInput {
-        self.showSpinner({
+      if let displayName = userInput {
+        self.showSpinner {
           // [START profile_change]
           let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
-          changeRequest?.displayName = userInput
-          changeRequest?.commitChanges() { (error) in
+          changeRequest?.displayName = displayName
+          changeRequest?.commitChanges { (error) in
             // [START_EXCLUDE]
-            self.hideSpinner({
+            self.hideSpinner {
               self.showTypicalUIForUserUpdateResults(withTitle: self.kSetDisplayNameTitle, error: error as NSError?)
               self.setTitleDisplay(Auth.auth().currentUser)
-            })
+            }
             // [END_EXCLUDE]
           }
           // [END profile_change]
-        })
+        }
       } else {
         self.showMessagePrompt("displayname can't be empty")
       }
@@ -469,21 +512,21 @@ class MainViewController: UITableViewController, GIDSignInUIDelegate {
   @brief Requests a "verify email" email be sent.
   */
   @IBAction func didRequestVerifyEmail(_ sender: AnyObject) {
-    showSpinner({
+    showSpinner {
       // [START send_verification_email]
-      Auth.auth().currentUser?.sendEmailVerification(completion: { (error) in
+      Auth.auth().currentUser?.sendEmailVerification { (error) in
         // [START_EXCLUDE]
-        self.hideSpinner({
+        self.hideSpinner {
           if let error = error {
             self.showMessagePrompt(error.localizedDescription)
             return
           }
           self.showMessagePrompt("Sent")
-        })
+        }
         // [END_EXCLUDE]
-      })
+      }
       // [END send_verification_email]
-    })
+    }
   }
 
   /** @fn changeEmail
@@ -491,18 +534,18 @@ class MainViewController: UITableViewController, GIDSignInUIDelegate {
   */
   @IBAction func didChangeEmail(_ sender: AnyObject) {
     showTextInputPrompt(withMessage: "Email Address:") { (userPressedOK, userInput) in
-      if let userInput = userInput {
-        self.showSpinner({
+      if let email = userInput {
+        self.showSpinner {
           // [START change_email]
-          Auth.auth().currentUser?.updateEmail(to: userInput) { (error) in
+          Auth.auth().currentUser?.updateEmail(to: email) { (error) in
             // [START_EXCLUDE]
-            self.hideSpinner({
+            self.hideSpinner {
               self.showTypicalUIForUserUpdateResults(withTitle: self.kChangeEmailText, error: error)
-            })
+            }
             // [END_EXCLUDE]
           }
           // [END change_email]
-        })
+        }
       } else {
         self.showMessagePrompt("email can't be empty")
       }
@@ -514,20 +557,61 @@ class MainViewController: UITableViewController, GIDSignInUIDelegate {
   */
   @IBAction func didChangePassword(_ sender: AnyObject) {
     showTextInputPrompt(withMessage: "New Password:") { (userPressedOK, userInput) in
-      if let userInput = userInput {
-        self.showSpinner({
+      if let password = userInput {
+        self.showSpinner {
           // [START change_password]
-          Auth.auth().currentUser?.updatePassword(to: userInput) { (error) in
+          Auth.auth().currentUser?.updatePassword(to: password) { (error) in
             // [START_EXCLUDE]
-            self.hideSpinner({
+            self.hideSpinner {
               self.showTypicalUIForUserUpdateResults(withTitle: self.kChangePasswordText, error: error)
-            })
+            }
             // [END_EXCLUDE]
           }
           // [END change_password]
-        })
+        }
       } else {
         self.showMessagePrompt("password can't be empty")
+      }
+    }
+  }
+
+  /** @fn updatePhoneNumber
+   @brief Updates the phone number of the current user.
+   */
+  @IBAction func didUpdatePhoneNumber(_ sender: AnyObject) {
+    showTextInputPrompt(withMessage: "New Phone Number:") { (userPressedOK, userInput) in
+      if let phoneNumber = userInput {
+        self.showSpinner {
+          // [START update_phone]
+          PhoneAuthProvider.provider().verifyPhoneNumber(phoneNumber) { (verificationID, error) in
+            // [START_EXCLUDE]
+            self.hideSpinner {
+              if let error = error {
+                self.showMessagePrompt(error.localizedDescription)
+                return
+              }
+              guard let verificationID = verificationID else { return }
+              self.showTextInputPrompt(withMessage: "Verification Code:") { (userPressedOK, userInput) in
+                if let verificationCode = userInput {
+                  self.showSpinner {
+                    // [END_EXCLUDE]
+                    let credential = PhoneAuthProvider.provider().credential(withVerificationID: verificationID, verificationCode: verificationCode)
+                    Auth.auth().currentUser?.updatePhoneNumber(credential) { (error) in
+                      // [END update_phone]
+                      self.hideSpinner {
+                        self.showTypicalUIForUserUpdateResults(withTitle: self.kUpdatePhoneNumberText, error: error)
+                      }
+                    }
+                  }
+                } else {
+                  self.showMessagePrompt("verification code can't be empty")
+                }
+              }
+            }
+          }
+        }
+      } else {
+        self.showMessagePrompt("phone number can't be empty")
       }
     }
   }

@@ -31,21 +31,21 @@ class CustomTokenViewController: UIViewController {
 
   @IBAction func didTapCustomTokenLogin(_ sender: AnyObject) {
     let customToken = tokenField.text
-    showSpinner({
+    showSpinner {
       // [START signinwithcustomtoken]
       Auth.auth().signIn(withCustomToken: customToken ?? "") { (user, error) in
         // [START_EXCLUDE]
-        self.hideSpinner({
+        self.hideSpinner {
           if let error = error {
             self.showMessagePrompt(error.localizedDescription)
             return
           }
           self.navigationController!.popViewController(animated: true)
-        })
+        }
         // [END_EXCLUDE]
       }
       // [END signinwithcustomtoken]
-    })
+    }
   }
 
 }

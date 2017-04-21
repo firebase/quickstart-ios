@@ -33,7 +33,7 @@ class CustomTokenViewController: UIViewController {
     let customToken = tokenField.text
     showSpinner({
       // [START signinwithcustomtoken]
-      FIRAuth.auth()?.signIn(withCustomToken: customToken ?? "") { (user, error) in
+      Auth.auth().signIn(withCustomToken: customToken ?? "") { (user, error) in
         // [START_EXCLUDE]
         self.hideSpinner({
           if let error = error {

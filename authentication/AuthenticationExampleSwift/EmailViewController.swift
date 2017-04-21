@@ -32,7 +32,7 @@ class EmailViewController: UIViewController {
     if let email = self.emailField.text, let password = self.passwordField.text {
       showSpinner({
         // [START headless_email_auth]
-        FIRAuth.auth()?.signIn(withEmail: email, password: password) { (user, error) in
+        Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
           // [START_EXCLUDE]
           self.hideSpinner({
             if let error = error {
@@ -58,7 +58,7 @@ class EmailViewController: UIViewController {
       if let userInput = userInput {
         self.showSpinner({
           // [START password_reset]
-          FIRAuth.auth()?.sendPasswordReset(withEmail: userInput) { (error) in
+          Auth.auth().sendPasswordReset(withEmail: userInput) { (error) in
             // [START_EXCLUDE]
             self.hideSpinner({
               if let error = error {
@@ -84,7 +84,7 @@ class EmailViewController: UIViewController {
       if let email = email {
         self.showSpinner({
           // [START get_providers]
-          FIRAuth.auth()?.fetchProviders(forEmail: email) { (providers, error) in
+          Auth.auth().fetchProviders(forEmail: email) { (providers, error) in
             // [START_EXCLUDE]
             self.hideSpinner({
               if let error = error {
@@ -110,7 +110,7 @@ class EmailViewController: UIViewController {
           if let password = password {
             self.showSpinner({
               // [START create_user]
-              FIRAuth.auth()?.createUser(withEmail: email, password: password) { (user, error) in
+              Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
                 // [START_EXCLUDE]
                 self.hideSpinner({
                   if let error = error {

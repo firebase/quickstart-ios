@@ -108,7 +108,7 @@ static NSString *const Social = @"Social Meta Tag";
   components.analyticsParameters = analyticsParams;
 
   if (_dictionary[BundleID].text) {
-    FIRDynamicLinkIOSParameters iOSParams = [FIRDynamicLinkIOSParameters parametersWithBundleID:_dictionary[BundleID].text];
+    FIRDynamicLinkIOSParameters *iOSParams = [FIRDynamicLinkIOSParameters parametersWithBundleID:_dictionary[BundleID].text];
     iOSParams.fallbackURL = [NSURL URLWithString:_dictionary[FallbackURL].text];
     iOSParams.minimumAppVersion = _dictionary[MinimumAppVersion].text;
     iOSParams.customScheme = _dictionary[CustomScheme].text;
@@ -117,7 +117,7 @@ static NSString *const Social = @"Social Meta Tag";
     iOSParams.appStoreID = _dictionary[AppStoreID].text;
     components.iOSParameters = iOSParams;
 
-    FIRDynamicLinkItunesConnectAnalyticsParameters appStoreParams = [FIRDynamicLinkItunesConnectAnalyticsParameters parameters];
+    FIRDynamicLinkItunesConnectAnalyticsParameters *appStoreParams = [FIRDynamicLinkItunesConnectAnalyticsParameters parameters];
     appStoreParams.affiliateToken = _dictionary[AffiliateToken].text;
     appStoreParams.campaignToken = _dictionary[CampaignToken].text;
     appStoreParams.providerToken = _dictionary[ProviderToken].text;
@@ -126,7 +126,7 @@ static NSString *const Social = @"Social Meta Tag";
 
 
   if (_dictionary[PackageName].text) {
-    FIRDynamicLinkAndroidParameters androidParams = [FIRDynamicLinkAndroidParameters parametersWithPackageName: _dictionary[PackageName].text];
+    FIRDynamicLinkAndroidParameters *androidParams = [FIRDynamicLinkAndroidParameters parametersWithPackageName: _dictionary[PackageName].text];
     androidParams.fallbackURL = [NSURL URLWithString:_dictionary[FallbackURL].text];
     androidParams.minimumVersion = (_dictionary[MinimumVersion].text).integerValue;
     components.androidParameters = androidParams;

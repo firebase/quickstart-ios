@@ -33,7 +33,7 @@ class FoodPickerViewController: UIViewController, UIPickerViewDelegate, UIPicker
     UserDefaults.standard.synchronize()
 
     // [START user_property]
-    FIRAnalytics.setUserPropertyString(food, forName: "favorite_food")
+    Analytics.setUserProperty(food, forName: "favorite_food")
     // [END user_property]
 
     performSegue(withIdentifier: "unwindToHome", sender: self)

@@ -38,11 +38,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
       launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     // [START firebase_configure]
     // Use Firebase library to configure APIs
-    FIRApp.configure()
+    FirebaseApp.configure()
     // [END firebase_configure]
 
     // [START setup_gidsignin]
-    GIDSignIn.sharedInstance().clientID = FIRApp.defaultApp()?.options.clientID
+    GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
     GIDSignIn.sharedInstance().delegate = self
     // [END setup_gidsignin]
 

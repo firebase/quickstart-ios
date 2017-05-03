@@ -96,9 +96,9 @@ class ViewController: UITableViewController {
     guard let linkString = dictionary[.link]?.text else { return }
     guard let link = URL(string: linkString) else { return }
     guard let domain = dictionary[.domain]?.text else { return }
-    let components = FIRDynamicLinkComponents(link: link, domain: domain)
+    let components = DynamicLinkComponents(link: link, domain: domain)
 
-    let analyticsParams = FIRDynamicLinkGoogleAnalyticsParameters(
+    let analyticsParams = DynamicLinkGoogleAnalyticsParameters(
         source: dictionary[.source]?.text ?? "", medium: dictionary[.medium]?.text ?? "",
         campaign: dictionary[.campaign]?.text ?? "")
     analyticsParams.term = dictionary[.term]?.text
@@ -107,7 +107,7 @@ class ViewController: UITableViewController {
     components.analyticsParameters = analyticsParams
 
     if let bundleID = dictionary[.bundleID]?.text {
-      let iOSParams = FIRDynamicLinkIOSParameters(bundleID: bundleID)
+      let iOSParams = DynamicLinkIOSParameters(bundleID: bundleID)
       if let fallbackURL = dictionary[.fallbackURL]?.text {
         iOSParams.fallbackURL = URL(string: fallbackURL)
       }
@@ -122,7 +122,7 @@ class ViewController: UITableViewController {
       components.iOSParameters = iOSParams
     }
 
-    let appStoreParams = FIRDynamicLinkItunesConnectAnalyticsParameters()
+    let appStoreParams = DynamicLinkItunesConnectAnalyticsParameters()
     appStoreParams.affiliateToken = dictionary[.affiliateToken]?.text
     appStoreParams.campaignToken = dictionary[.campaignToken]?.text
     appStoreParams.providerToken = dictionary[.providerToken]?.text
@@ -130,7 +130,7 @@ class ViewController: UITableViewController {
     components.iTunesConnectParameters = appStoreParams
 
     if let packageName = dictionary[.packageName]?.text {
-      let androidParams = FIRDynamicLinkAndroidParameters(packageName: packageName)
+      let androidParams = DynamicLinkAndroidParameters(packageName: packageName)
       if let androidFallbackURL = dictionary[.androidFallbackURL]?.text {
         androidParams.fallbackURL = URL(string: androidFallbackURL)
       }
@@ -141,7 +141,7 @@ class ViewController: UITableViewController {
       components.androidParameters = androidParams
     }
 
-    let socialParams = FIRDynamicLinkSocialMetaTagParameters()
+    let socialParams = DynamicLinkSocialMetaTagParameters()
     socialParams.title = dictionary[.title]?.text
     socialParams.descriptionText = dictionary[.descriptionText]?.text
     if let imageURL = dictionary[.imageURL]?.text {
@@ -158,7 +158,7 @@ class ViewController: UITableViewController {
     tableView.reloadRows(at: [IndexPath(row: 0, section: 2)], with: .none)
 
     // [START shortLinkOptions]
-    let options = FIRDynamicLinkComponentsOptions()
+    let options = DynamicLinkComponentsOptions()
     options.pathLength = .unguessable
     components.options = options
     // [END shortLinkOptions]

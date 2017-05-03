@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     // [START firebase_configure]
     // Use Firebase library to configure APIs
-    FIRApp.configure()
+    FirebaseApp.configure()
     // [END firebase_configure]
     return true
   }

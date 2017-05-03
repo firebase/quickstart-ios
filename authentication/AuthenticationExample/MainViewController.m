@@ -510,7 +510,7 @@ static NSString *const kUpdatePhoneNumberText = @"Update Phone Number";
     [self presentViewController:alertController animated:YES completion:nil];
   };
   // [START token_refresh]
-  [[FIRAuth auth].currentUser getTokenForcingRefresh:YES completion:action];
+  [[FIRAuth auth].currentUser getIDTokenForcingRefresh:YES completion:action];
   // [END token_refresh]
 }
 

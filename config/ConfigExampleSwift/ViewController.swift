@@ -24,21 +24,21 @@ class ViewController: UIViewController {
   let welcomeMessageCapsConfigKey = "welcome_message_caps"
   let loadingPhraseConfigKey = "loading_phrase"
 
-  var remoteConfig: FIRRemoteConfig!
+  var remoteConfig: RemoteConfig!
   @IBOutlet weak var welcomeLabel: UILabel!
   @IBOutlet weak var fetchButton: UIButton!
 
   override func viewDidLoad() {
     super.viewDidLoad()
     // [START get_remote_config_instance]
-    remoteConfig = FIRRemoteConfig.remoteConfig()
+    remoteConfig = RemoteConfig.remoteConfig()
     // [END get_remote_config_instance]
 
     // Create a Remote Config Setting to enable developer mode, which you can use to increase
     // the number of fetches available per hour during development. See Best Practices in the
     // README for more information.
     // [START enable_dev_mode]
-    let remoteConfigSettings = FIRRemoteConfigSettings(developerModeEnabled: true)
+    let remoteConfigSettings = RemoteConfigSettings(developerModeEnabled: true)
     remoteConfig.configSettings = remoteConfigSettings!
     // [END enable_dev_mode]
 
@@ -47,7 +47,7 @@ class ViewController: UIViewController {
     // want to change in the Firebase console. See Best Practices in the README for more
     // information.
     // [START set_default_values]
-    remoteConfig.setDefaultsFromPlistFileName("RemoteConfigDefaults")
+    remoteConfig.setDefaults(fromPlist: "RemoteConfigDefaults")
     // [END set_default_values]
 
     fetchConfig()

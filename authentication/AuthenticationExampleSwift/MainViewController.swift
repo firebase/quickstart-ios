@@ -470,7 +470,7 @@ class MainViewController: UITableViewController, GIDSignInUIDelegate {
       }
 
       // Log token refresh event to Scion.
-      FIRAnalytics.logEvent(withName: "tokenrefresh", parameters: nil)
+      Analytics.logEvent("tokenrefresh", parameters: nil)
 
       let alertController = UIAlertController.init(title: self.kTokenRefreshedAlertTitle,
           message: token, preferredStyle: .alert)
@@ -478,7 +478,7 @@ class MainViewController: UITableViewController, GIDSignInUIDelegate {
         self.present(alertController, animated: true, completion: nil)
     }
     // [START token_refresh]
-    Auth.auth().currentUser?.getTokenForcingRefresh(true, completion: action)
+    Auth.auth().currentUser?.getIDTokenForcingRefresh(true, completion: action)
     // [END token_refresh]
   }
 

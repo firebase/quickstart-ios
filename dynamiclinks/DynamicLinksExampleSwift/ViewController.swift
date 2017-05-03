@@ -103,7 +103,6 @@ class ViewController: UITableViewController {
         campaign: dictionary[.campaign]?.text ?? "")
     analyticsParams.term = dictionary[.term]?.text
     analyticsParams.content = dictionary[.content]?.text
-
     components.analyticsParameters = analyticsParams
 
     if let bundleID = dictionary[.bundleID]?.text {
@@ -118,26 +117,23 @@ class ViewController: UITableViewController {
         iOSParams.iPadFallbackURL = URL(string: iPadFallbackURL)
       }
       iOSParams.appStoreID = dictionary[.appStoreID]?.text
-
       components.iOSParameters = iOSParams
+
+      let appStoreParams = DynamicLinkItunesConnectAnalyticsParameters()
+      appStoreParams.affiliateToken = dictionary[.affiliateToken]?.text
+      appStoreParams.campaignToken = dictionary[.campaignToken]?.text
+      appStoreParams.providerToken = dictionary[.providerToken]?.text
+      components.iTunesConnectParameters = appStoreParams
     }
-
-    let appStoreParams = DynamicLinkItunesConnectAnalyticsParameters()
-    appStoreParams.affiliateToken = dictionary[.affiliateToken]?.text
-    appStoreParams.campaignToken = dictionary[.campaignToken]?.text
-    appStoreParams.providerToken = dictionary[.providerToken]?.text
-
-    components.iTunesConnectParameters = appStoreParams
 
     if let packageName = dictionary[.packageName]?.text {
       let androidParams = DynamicLinkAndroidParameters(packageName: packageName)
       if let androidFallbackURL = dictionary[.androidFallbackURL]?.text {
         androidParams.fallbackURL = URL(string: androidFallbackURL)
       }
-      if let minimumVersion = dictionary[.minimumVersion]?.text, let intVersion = Int(minimumVersion), intVersion > 0 {
+      if let minimumVersion = dictionary[.minimumVersion]?.text, let intVersion = Int(minimumVersion) {
         androidParams.minimumVersion = intVersion
       }
-
       components.androidParameters = androidParams
     }
 
@@ -147,7 +143,6 @@ class ViewController: UITableViewController {
     if let imageURL = dictionary[.imageURL]?.text {
       socialParams.imageURL = URL(string: imageURL)
     }
-
     components.socialMetaTagParameters = socialParams
 
     longLink = components.url

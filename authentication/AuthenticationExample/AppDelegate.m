@@ -65,7 +65,7 @@
          sourceApplication:options[UIApplicationOpenURLOptionsSourceApplicationKey]
                 annotation:options[UIApplicationOpenURLOptionsAnnotationKey]];
 }
-  // [END new_options]
+// [END new_options]
 
 // [START old_delegate]
 - (BOOL)application:(UIApplication *)application
@@ -106,7 +106,7 @@ didSignInForUser:(GIDGoogleUser *)user
   } else {
     // [START_EXCLUDE]
     [controller showMessagePrompt:error.localizedDescription];
-  // [END_EXCLUDE]
+    // [END_EXCLUDE]
   }
 }
 // [END headless_google_auth]

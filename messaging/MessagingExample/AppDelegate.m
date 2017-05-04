@@ -82,13 +82,9 @@ NSString *const kGCMMessageIDKey = @"gcm.message_id";
   [FIRApp configure];
   // [END configure_firebase]
 
+  // [START set_messaging_delegate]
   [FIRMessaging messaging].delegate = self;
-
-  // [START establish_direct_channel]
-  [FIRMessaging messaging].shouldEstablishDirectChannel = YES;
-  // [END establish_direct_channel]
-
-
+  // [END set_messaging_delegate]
   return YES;
 }
 
@@ -162,24 +158,12 @@ didReceiveNotificationResponse:(UNNotificationResponse *)response
 #endif
 // [END ios_10_message_handling]
 
-// [START ios_10_data_message_handling]
-#if defined(__IPHONE_10_0) && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
-// Receive data message on iOS 10 devices while app is in the foreground.
-- (void)applicationReceivedRemoteMessage:(FIRMessagingRemoteMessage *)remoteMessage {
-  // Print full message
-  NSLog(@"%@", remoteMessage.appData);
-}
-#endif
-// [END ios_10_data_message_handling]
-
 // [START refresh_token]
-- (void)messaging:(nonnull FIRMessaging *)messaging
-    didRefreshRegistrationToken:(nonnull NSString *)fcmToken {
-
+- (void)messaging:(nonnull FIRMessaging *)messaging didRefreshRegistrationToken:(nonnull NSString *)fcmToken {
   // Note that this callback will be fired everytime a new token is generated, including the first
   // time. So if you need to retrieve the token as soon as it is available this is where that
   // should be done.
-  NSLog(@"FCM token: %@", fcmToken);
+  NSLog(@"FCM registration token: %@", fcmToken);
 
   // TODO: If necessary send token to application server.
 }
@@ -190,13 +174,12 @@ didReceiveNotificationResponse:(UNNotificationResponse *)response
 }
 
 // This function is added here only for debugging purposes, and can be removed if swizzling is enabled.
-// If swizzling is disabled then this function must be implemented so that the APNs token can be paired to
-// the InstanceID token.
+// If swizzling is disabled then this function must be implemented so that the APNs device token can be paired to
+// the FCM registration token.
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-  NSLog(@"APNs token retrieved: %@", deviceToken);
+  NSLog(@"APNs device token retrieved: %@", deviceToken);
 
-  // With swizzling disabled you must set the APNs token here.
+  // With swizzling disabled you must set the APNs device token here.
   // [[FIRInstanceID instanceID] setAPNSToken:deviceToken type:FIRInstanceIDAPNSTokenTypeSandbox];
 }
-
 @end

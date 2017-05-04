@@ -33,7 +33,7 @@ class ViewController: UIViewController {
 
   @IBAction func handleSubscribeTouch(_ sender: UIButton) {
     // [START subscribe_topic]
-    Messaging.messaging().subscribe(toTopic: "/topics/news")
+    Messaging.messaging().subscribe(toTopic: "news")
     print("Subscribed to news topic")
     // [END subscribe_topic]
   }

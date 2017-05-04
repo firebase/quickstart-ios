@@ -39,7 +39,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       UNUserNotificationCenter.current().requestAuthorization(
         options: authOptions,
         completionHandler: {_, _ in })
-
     } else {
       let settings: UIUserNotificationSettings =
       UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
@@ -52,11 +51,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     FirebaseApp.configure()
 
+    // [START set_messaging_delegate]
     Messaging.messaging().delegate = self
-
-    // [START establish_direct_channel]
-    Messaging.messaging().shouldEstablishDirectChannel = true;
-    // [END establish_direct_channel]
+    // [END set_messaging_delegate]
 
     return true
   }
@@ -147,17 +144,11 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
 }
 // [END ios_10_message_handling]
 
-extension AppDelegate : MessagingDelegate {
-  // [START ios_10_data_message_handling]
-  // Receive data message on iOS 10 devices while app is in the foreground.
-  func application(received remoteMessage: MessagingRemoteMessage) {
-    print(remoteMessage.appData)
-  }
-  // [END ios_10_data_message_handling]
 
+extension AppDelegate : MessagingDelegate {
   // [START refresh_token]
   func messaging(_ messaging: Messaging, didRefreshRegistrationToken fcmToken: String) {
-    print("FCM token: \(fcmToken)")
+    print("Firebase registration token: \(fcmToken)")
   }
   // [END refresh_token]
 }

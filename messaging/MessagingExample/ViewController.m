@@ -24,15 +24,15 @@
 }
 
 - (IBAction)handleLogTokenTouch:(id)sender {
-  // [START get_fcm_token]
-  NSString *token = [FIRMessaging messaging].FCMToken;
-  NSLog(@"FCM token: %@", token);
-  // [END get_fcm_token]
+  // [START log_fcm_reg_token]
+  NSString *fcmToken = [FIRMessaging messaging].FCMToken;
+  NSLog(@"FCM registration token: %@", fcmToken);
+  // [END log_fcm_reg_token]
 }
 
 - (IBAction)handleSubscribeTouch:(id)sender {
   // [START subscribe_topic]
-  [[FIRMessaging messaging] subscribeToTopic:@"/topics/news"];
+  [[FIRMessaging messaging] subscribeToTopic:@"news"];
   NSLog(@"Subscribed to news topic");
   // [END subscribe_topic]
 }

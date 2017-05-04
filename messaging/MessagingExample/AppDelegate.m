@@ -20,13 +20,10 @@
 @import UserNotifications;
 #endif
 
-@import Firebase;
-
 // Implement UNUserNotificationCenterDelegate to receive display notification via APNS for devices
-// running iOS 10 and above. Implement FIRMessagingDelegate to receive data message via FCM for
-// devices running iOS 10 and above.
+// running iOS 10 and above.
 #if defined(__IPHONE_10_0) && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
-@interface AppDelegate () <UNUserNotificationCenterDelegate, FIRMessagingDelegate>
+@interface AppDelegate () <UNUserNotificationCenterDelegate>
 @end
 #endif
 
@@ -74,9 +71,6 @@ NSString *const kGCMMessageIDKey = @"gcm.message_id";
           | UNAuthorizationOptionBadge;
       [[UNUserNotificationCenter currentNotificationCenter] requestAuthorizationWithOptions:authOptions completionHandler:^(BOOL granted, NSError * _Nullable error) {
           }];
-
-      // For iOS 10 data message (sent via FCM)
-      [FIRMessaging messaging].remoteMessageDelegate = self;
       #endif
     }
 
@@ -87,11 +81,14 @@ NSString *const kGCMMessageIDKey = @"gcm.message_id";
   // [START configure_firebase]
   [FIRApp configure];
   // [END configure_firebase]
-  // [START add_token_refresh_observer]
-  // Add observer for InstanceID token refresh callback.
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tokenRefreshNotification:)
-                                               name:kFIRInstanceIDTokenRefreshNotification object:nil];
-  // [END add_token_refresh_observer]
+
+  [FIRMessaging messaging].delegate = self;
+
+  // [START establish_direct_channel]
+  [FIRMessaging messaging].shouldEstablishDirectChannel = YES;
+  // [END establish_direct_channel]
+
+
   return YES;
 }
 
@@ -176,39 +173,17 @@ didReceiveNotificationResponse:(UNNotificationResponse *)response
 // [END ios_10_data_message_handling]
 
 // [START refresh_token]
-- (void)tokenRefreshNotification:(NSNotification *)notification {
+- (void)messaging:(nonnull FIRMessaging *)messaging
+    didRefreshRegistrationToken:(nonnull NSString *)fcmToken {
+
   // Note that this callback will be fired everytime a new token is generated, including the first
   // time. So if you need to retrieve the token as soon as it is available this is where that
   // should be done.
-  NSString *refreshedToken = [[FIRInstanceID instanceID] token];
-  NSLog(@"InstanceID token: %@", refreshedToken);
-
-  // Connect to FCM since connection may have failed when attempted before having a token.
-  [self connectToFcm];
+  NSLog(@"FCM token: %@", fcmToken);
 
   // TODO: If necessary send token to application server.
 }
 // [END refresh_token]
-
-// [START connect_to_fcm]
-- (void)connectToFcm {
-  // Won't connect since there is no token
-  if (![[FIRInstanceID instanceID] token]) {
-    return;
-  }
-
-  // Disconnect previous FCM connection if it exists.
-  [[FIRMessaging messaging] disconnect];
-
-  [[FIRMessaging messaging] connectWithCompletion:^(NSError * _Nullable error) {
-    if (error != nil) {
-      NSLog(@"Unable to connect to FCM. %@", error);
-    } else {
-      NSLog(@"Connected to FCM.");
-    }
-  }];
-}
-// [END connect_to_fcm]
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
   NSLog(@"Unable to register for remote notifications: %@", error);
@@ -223,18 +198,5 @@ didReceiveNotificationResponse:(UNNotificationResponse *)response
   // With swizzling disabled you must set the APNs token here.
   // [[FIRInstanceID instanceID] setAPNSToken:deviceToken type:FIRInstanceIDAPNSTokenTypeSandbox];
 }
-
-// [START connect_on_active]
-- (void)applicationDidBecomeActive:(UIApplication *)application {
-  [self connectToFcm];
-}
-// [END connect_on_active]
-
-// [START disconnect_from_fcm]
-- (void)applicationDidEnterBackground:(UIApplication *)application {
-  [[FIRMessaging messaging] disconnect];
-  NSLog(@"Disconnected from FCM");
-}
-// [END disconnect_from_fcm]
 
 @end

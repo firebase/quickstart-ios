@@ -25,15 +25,15 @@ class ViewController: UIViewController {
   }
 
   @IBAction func handleLogTokenTouch(_ sender: UIButton) {
-    // [START get_iid_token]
-    let token = FIRInstanceID.instanceID().token()
-    print("InstanceID token: \(token!)")
-    // [END get_iid_token]
+    // [START get_fcm_token]
+    let token = Messaging.messaging().fcmToken
+    print("FCM token: \(token ?? "")")
+    // [END get_fcm_token]
   }
 
   @IBAction func handleSubscribeTouch(_ sender: UIButton) {
     // [START subscribe_topic]
-    FIRMessaging.messaging().subscribe(toTopic: "/topics/news")
+    Messaging.messaging().subscribe(toTopic: "/topics/news")
     print("Subscribed to news topic")
     // [END subscribe_topic]
   }

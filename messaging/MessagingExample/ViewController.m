@@ -24,10 +24,10 @@
 }
 
 - (IBAction)handleLogTokenTouch:(id)sender {
-  // [START get_iid_token]
-  NSString *token = [[FIRInstanceID instanceID] token];
-  NSLog(@"InstanceID token: %@", token);
-  // [END get_iid_token]
+  // [START get_fcm_token]
+  NSString *token = [FIRMessaging messaging].FCMToken;
+  NSLog(@"FCM token: %@", token);
+  // [END get_fcm_token]
 }
 
 - (IBAction)handleSubscribeTouch:(id)sender {

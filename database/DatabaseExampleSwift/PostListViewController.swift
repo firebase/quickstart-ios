@@ -22,7 +22,7 @@ import FirebaseDatabaseUI
 class PostListViewController: UIViewController, UITableViewDelegate {
 
   // [START define_database_reference]
-  var ref: FIRDatabaseReference!
+  var ref: DatabaseReference!
   // [END define_database_reference]
 
   var dataSource: FUITableViewDataSource?
@@ -33,7 +33,7 @@ class PostListViewController: UIViewController, UITableViewDelegate {
     super.viewDidLoad()
 
     // [START create_database_reference]
-    ref = FIRDatabase.database().reference()
+    ref = Database.database().reference()
     // [END create_database_reference]
 
     let identifier = "post"
@@ -76,10 +76,10 @@ class PostListViewController: UIViewController, UITableViewDelegate {
   }
 
   func getUid() -> String {
-    return (FIRAuth.auth()?.currentUser?.uid)!
+    return (Auth.auth().currentUser?.uid)!
   }
 
-  func getQuery() -> FIRDatabaseQuery {
+  func getQuery() -> DatabaseQuery {
     return self.ref
   }
 

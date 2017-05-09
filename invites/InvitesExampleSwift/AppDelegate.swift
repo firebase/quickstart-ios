@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func application(_ application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     // Use Firebase library to configure APIs
-    FIRApp.configure()
+    FirebaseApp.configure()
     return true
   }
   // [END configure]
@@ -39,7 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   func application(_ application: UIApplication,
     open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
-      if let invite = FIRInvites.handle(url, sourceApplication:sourceApplication, annotation:annotation) as? FIRReceivedInvite {
+      if let invite = Invites.handle(url, sourceApplication:sourceApplication, annotation:annotation) as? ReceivedInvite {
         let matchType =
             (invite.matchType == .weak) ? "Weak" : "Strong"
         print("Invite received from: \(sourceApplication ?? "") Deeplink: \(invite.deepLink)," +
@@ -54,7 +54,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   // [START continueuseractivity]
   @available(iOS 8.0, *)
   func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
-    guard let dynamiclinks = FIRDynamicLinks.dynamicLinks() else {
+    guard let dynamiclinks = DynamicLinks.dynamicLinks() else {
       return false
     }
     let handled = dynamiclinks.handleUniversalLink(userActivity.webpageURL!) { (dynamiclink, error) in
@@ -76,7 +76,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   }
   // [END continueuseractivity]
 
-  func generateDynamicLinkMessage(_ dynamicLink: FIRDynamicLink) -> String {
+  func generateDynamicLinkMessage(_ dynamicLink: DynamicLink) -> String {
     let matchConfidence: String
     if dynamicLink.matchConfidence == .weak {
       matchConfidence = "Weak"

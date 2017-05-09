@@ -33,7 +33,7 @@ class Post: NSObject {
     self.starCount = 0 as AnyObject?
   }
 
-  init?(snapshot: FIRDataSnapshot) {
+  init?(snapshot: DataSnapshot) {
     guard let dict = snapshot.value as? [String: String] else { return nil }
     guard let uid  = dict["uid"]  else { return nil }
     guard let author = dict["author"] else { return nil }

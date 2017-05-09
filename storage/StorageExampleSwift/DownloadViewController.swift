@@ -22,11 +22,11 @@ class DownloadViewController: UIViewController {
 
   @IBOutlet weak var imageView: UIImageView!
   @IBOutlet weak var statusTextView: UITextView!
-  var storageRef: FIRStorageReference!
+  var storageRef: StorageReference!
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    storageRef = FIRStorage.storage().reference()
+    storageRef = Storage.storage().reference()
 
     let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
     let documentsDirectory = paths[0]

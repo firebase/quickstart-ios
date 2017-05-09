@@ -30,7 +30,7 @@ class SignInViewController: UIViewController, GIDSignInDelegate, GIDSignInUIDele
 
     bgText.text = "Invites\niOS demo"
 
-    GIDSignIn.sharedInstance().clientID = FIRApp.defaultApp()?.options.clientID
+    GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
     GIDSignIn.sharedInstance().delegate = self
     GIDSignIn.sharedInstance().uiDelegate = self
     GIDSignIn.sharedInstance().signInSilently()

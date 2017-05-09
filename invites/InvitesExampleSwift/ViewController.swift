@@ -21,7 +21,7 @@ import Firebase
 // Match the ObjC symbol name inside Main.storyboard.
 @objc(ViewController)
 // [START viewcontroller_interfaces]
-class ViewController: UIViewController, GIDSignInDelegate, GIDSignInUIDelegate, FIRInviteDelegate {
+class ViewController: UIViewController, GIDSignInDelegate, GIDSignInUIDelegate, InviteDelegate {
 // [END viewcontroller_interfaces]
   // [START viewcontroller_vars]
   @IBOutlet weak var signOutButton: UIButton!
@@ -77,7 +77,7 @@ class ViewController: UIViewController, GIDSignInDelegate, GIDSignInUIDelegate, 
 
   // [START invite_tapped]
   @IBAction func inviteTapped(_ sender: AnyObject) {
-    if let invite = FIRInvites.inviteDialog() {
+    if let invite = Invites.inviteDialog() {
       invite.setInviteDelegate(self)
 
       // NOTE: You must have the App Store ID set in your developer console project

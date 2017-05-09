@@ -26,16 +26,16 @@ class PostTableViewCell: UITableViewCell {
   @IBOutlet weak var postTitle: UILabel!
   @IBOutlet weak var postBody: UITextView!
   var postKey: String?
-  var postRef: FIRDatabaseReference!
+  var postRef: DatabaseReference!
 
   @IBAction func didTapStarButton(_ sender: AnyObject) {
     if let postKey = postKey {
-      postRef = FIRDatabase.database().reference().child("posts").child(postKey)
+      postRef = Database.database().reference().child("posts").child(postKey)
       incrementStars(forRef: postRef)
       postRef.observeSingleEvent(of: .value, with: { (snapshot) in
         let value = snapshot.value as? NSDictionary
         if let uid = value?["uid"] as? String {
-          let userPostRef = FIRDatabase.database().reference()
+          let userPostRef = Database.database().reference()
             .child("user-posts")
             .child(uid)
             .child(postKey)
@@ -45,10 +45,10 @@ class PostTableViewCell: UITableViewCell {
     }
   }
 
-  func incrementStars(forRef ref: FIRDatabaseReference) {
+  func incrementStars(forRef ref: DatabaseReference) {
     // [START post_stars_transaction]
-    ref.runTransactionBlock({ (currentData: FIRMutableData) -> FIRTransactionResult in
-      if var post = currentData.value as? [String : AnyObject], let uid = FIRAuth.auth()?.currentUser?.uid {
+    ref.runTransactionBlock({ (currentData: MutableData) -> TransactionResult in
+      if var post = currentData.value as? [String : AnyObject], let uid = Auth.auth().currentUser?.uid {
         var stars: Dictionary<String, Bool>
         stars = post["stars"] as? [String : Bool] ?? [:]
         var starCount = post["starCount"] as? Int ?? 0
@@ -67,9 +67,9 @@ class PostTableViewCell: UITableViewCell {
         // Set value and report transaction success
         currentData.value = post
 
-        return FIRTransactionResult.success(withValue: currentData)
+        return TransactionResult.success(withValue: currentData)
       }
-      return FIRTransactionResult.success(withValue: currentData)
+      return TransactionResult.success(withValue: currentData)
     }) { (error, committed, snapshot) in
       if let error = error {
         print(error.localizedDescription)

@@ -142,7 +142,7 @@
   if (error) {
     NSLog(@"%@", error.localizedDescription);
   } else {
-    NSLog(@"%lu invites sent", (unsigned long)invitationIds.count);
+    NSLog(@"%li invites sent", invitationIds.count);
   }
 }
 // [END invite_finished]

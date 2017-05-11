@@ -457,7 +457,7 @@ class MainViewController: UITableViewController, GIDSignInUIDelegate {
   }
 
   @IBAction func didTokenRefresh(_ sender: AnyObject) {
-    let action: FIRAuthTokenCallback = {(token, error) in
+    let action: AuthTokenCallback = {(token, error) in
       let okAction = UIAlertAction.init(title: self.kOKButtonText, style: .default) {
         action in print(self.kOKButtonText)
       }

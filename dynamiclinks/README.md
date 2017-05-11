@@ -15,8 +15,7 @@ Getting Started
   console.
 - Run the sample on your iOS device.
 - Create a Dynamic Link 
-  - in the App.
-  or
+  - in the App or
   - in the **Dynamic Links** section of the Firebase console.
     - Custom Schemes of the form dlscheme://<data-to-pass>/<to-app> would be handled
       by the app. You can change dlscheme to fit your needs.

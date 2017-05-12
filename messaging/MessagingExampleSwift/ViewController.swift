@@ -25,10 +25,10 @@ class ViewController: UIViewController {
   }
 
   @IBAction func handleLogTokenTouch(_ sender: UIButton) {
-    // [START get_fcm_token]
+    // [START log_fcm_reg_token]
     let token = Messaging.messaging().fcmToken
     print("FCM token: \(token ?? "")")
-    // [END get_fcm_token]
+    // [END log_fcm_reg_token]
   }
 
   @IBAction func handleSubscribeTouch(_ sender: UIButton) {

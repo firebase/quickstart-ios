@@ -11,8 +11,9 @@ Getting Started
 
 - [Add Firebase to your iOS Project](https://firebase.google.com/docs/ios/setup).
 - Follow the [quickstart guide](https://firebase.google.com) to set up your project.
-- Update DynamicLinksExample.entitlements/DynamicLinksExample.entitlements file from Firebase
-  console.
+- Paste your Dynamic Link Domain from Firebase Console to
+  - **DynamicLinksExample.entitlements** file
+  - **DYNAMIC_LINK_DOMAIN** constant in ViewController.m and ViewController.swift files
 - Run the sample on your iOS device.
 - Create a Dynamic Link 
   - in the App or

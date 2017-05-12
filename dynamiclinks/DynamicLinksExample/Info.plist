@@ -28,7 +28,7 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>com.google.sample.firebase.dynamiclinks</string>
+			<string>com.google.firebase.quickstart.DynamicLinksExample</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>dlscheme</string>

@@ -34,7 +34,6 @@ struct Section {
 
 enum Params: String {
   case link = "Link Value"
-  case domain = "App Domain"
   case source = "Source"
   case medium = "Medium"
   case campaign = "Campaign"
@@ -72,6 +71,8 @@ enum ParamTypes: String {
 @objc(ViewController)
 class ViewController: UITableViewController {
 
+  static let DYNAMIC_LINK_DOMAIN = "YOUR_DYNAMIC_LINK_DOMAIN"
+
   var sections = [Section]()
   var dictionary = [Params: UITextField]()
   var longLink: URL?
@@ -93,10 +94,15 @@ class ViewController: UITableViewController {
 
   func buildFDLLink() {
     // [START buildFDLLink]
-    guard let linkString = dictionary[.link]?.text else { return }
+    if ViewController.DYNAMIC_LINK_DOMAIN == "YOUR_DYNAMIC_LINK_DOMAIN" {
+      fatalError("Please update DYNAMIC_LINK_DOMAIN constant in your code from Firebase Console!")
+    }
+    guard let linkString = dictionary[.link]?.text else {
+      print("Link can not be empty!")
+      return
+    }
     guard let link = URL(string: linkString) else { return }
-    guard let domain = dictionary[.domain]?.text else { return }
-    let components = DynamicLinkComponents(link: link, domain: domain)
+    let components = DynamicLinkComponents(link: link, domain: ViewController.DYNAMIC_LINK_DOMAIN)
 
     let analyticsParams = DynamicLinkGoogleAnalyticsParameters(
         source: dictionary[.source]?.text ?? "", medium: dictionary[.medium]?.text ?? "",
@@ -188,7 +194,7 @@ extension ViewController : UIGestureRecognizerDelegate {
     switch section {
     case 0: return "Components"
     case 1: return "Optional Parameters"
-    case 2: return "Click to Generate Links"
+    case 2: return "Click HERE to Generate Links"
     default: return ""
     }
   }
@@ -205,15 +211,20 @@ extension ViewController : UIGestureRecognizerDelegate {
   }
 
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    if section == 1 {
-      // For section 1, the total count is items count plus the number of headers
-      var count = sections.count
-      for section in sections {
-        count += section.items.count
+    switch section {
+    case 0: return 1
+    case 2: return 2
+    default:
+      if section == 1 {
+        // For section 1, the total count is items count plus the number of headers
+        var count = sections.count
+        for section in sections {
+          count += section.items.count
+        }
+        return count
       }
-      return count
+      return 2
     }
-    return 2
   }
 
   // Cell
@@ -221,14 +232,8 @@ extension ViewController : UIGestureRecognizerDelegate {
     switch indexPath.section {
     case 0:
       let cell = tableView.dequeueReusableCell(withIdentifier: "param", for: indexPath) as! ParamTableViewCell
-      if indexPath.row == 0 {
-        cell.paramLabel.text = Params.link.rawValue
-        cell.paramTextField.text = "https://www.google.com?q=jump"
-      } else {
-        cell.paramLabel.text = Params.domain.rawValue
-        cell.paramTextField.text = "test3p.app.goo.gl"
-      }
-      dictionary[Params(rawValue: cell.paramLabel.text!)!] = cell.paramTextField
+      cell.paramLabel.text = Params.link.rawValue
+      dictionary[.link] = cell.paramTextField
       return cell
     case 2:
       let cell = tableView.dequeueReusableCell(withIdentifier: "generate", for: indexPath)

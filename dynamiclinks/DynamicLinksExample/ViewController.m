@@ -51,6 +51,8 @@ static NSString *const ITunes = @"iTunes Connect Analytics";
 static NSString *const Android = @"Android";
 static NSString *const Social = @"Social Meta Tag";
 
+static NSString *const DYNAMIC_LINK_DOMAIN = @"YOUR_DYNAMIC_LINK_DOMAIN";
+
 @interface Section:NSObject
 @property(nonatomic, strong) NSString *name;
 @property(nonatomic, strong) NSArray<NSString *> *items;
@@ -93,11 +95,20 @@ static NSString *const Social = @"Social Meta Tag";
 }
 
 - (void)buildFDLLink {
+  if ([DYNAMIC_LINK_DOMAIN  isEqual: @"YOUR_DYNAMIC_LINK_DOMAIN"]) {
+    [NSException raise:@"YOUR_DYNAMIC_LINK_DOMAIN"
+                format:@"%@",
+     @"Please update DYNAMIC_LINK_DOMAIN constant in your code from Firebase Console!"];
+  }
+  if (_dictionary[Link].text == nil) {
+    NSLog(@"%@", @"Link can not be empty!");
+    return;
+  }
   // [START buildFDLLink]
   NSURL *link = [NSURL URLWithString:_dictionary[Link].text];
   FIRDynamicLinkComponents *components =
   [FIRDynamicLinkComponents componentsWithLink:link
-                                        domain:_dictionary[Domain].text];
+                                        domain:DYNAMIC_LINK_DOMAIN];
 
   FIRDynamicLinkGoogleAnalyticsParameters *analyticsParams =
   [FIRDynamicLinkGoogleAnalyticsParameters parametersWithSource:_dictionary[Source].text
@@ -185,7 +196,7 @@ static NSString *const Social = @"Social Meta Tag";
   switch (section) {
     case 0: return @"Components";
     case 1: return @"Optional Parameters";
-    case 2: return @"Click to Generate Links";
+    case 2: return @"Click HERE to Generate Links";
     default: return @"";
   }
 }
@@ -201,15 +212,18 @@ static NSString *const Social = @"Social Meta Tag";
   }
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-  if (section == 1) {
-    // For section 1, the total count is items count plus the number of headers
-    long count = _sections.count;
-    for (Section *section in _sections) {
-      count += section.items.count;
+  switch (section) {
+    case 0: return 1;
+    case 2: return 2;
+    default: {
+      // For section 1, the total count is items count plus the number of headers
+      long count = _sections.count;
+      for (Section *section in _sections) {
+        count += section.items.count;
+      }
+      return count;
     }
-    return count;
   }
-  return 2;
 }
 
 // Cell
@@ -217,14 +231,8 @@ static NSString *const Social = @"Social Meta Tag";
   switch (indexPath.section) {
     case 0: {
       ParamTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"param" forIndexPath:indexPath];
-      if (indexPath.row == 0) {
-        cell.paramLabel.text = Link;
-        cell.paramTextField.text = @"https://www.google.com?q=jump";
-      } else {
-        cell.paramLabel.text = Domain;
-        cell.paramTextField.text = @"test3p.app.goo.gl";
-      }
-      _dictionary[cell.paramLabel.text] = cell.paramTextField;
+      cell.paramLabel.text = Link;
+      _dictionary[Link] = cell.paramTextField;
       return cell;
     }
     case 2: {

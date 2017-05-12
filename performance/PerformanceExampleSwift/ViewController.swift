@@ -43,8 +43,7 @@ class ViewController: UIViewController {
         return
       }
 
-      let responseString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
-      print("Data received: \(responseString ?? "")")
+      print("URL received: \(response?.url?.absoluteString ?? "")")
     }
 
     task.resume()

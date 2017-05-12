@@ -43,8 +43,7 @@
       NSURLResponse * _Nullable response,
       NSError * _Nullable error) {
 
-      NSString *responseString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-      NSLog(@"Data received: %@", responseString);
+      NSLog(@"URL received: %@", response.URL.absoluteString);
     }] resume];
 
   [_trace incrementCounterNamed:@"request_sent"];

@@ -20,20 +20,35 @@
 @import FirebasePerformance;
 
 @interface ViewController()
-@property (strong, nonatomic) FIRTrace *trace;
+@property (strong, nonatomic) IBOutlet UIImageView *imageView;
 @end
 
 @implementation ViewController
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-    
-  // Start tracing
-  self.trace = [FIRPerformance startTraceWithName:@"request_trace"];
-}
 
-- (IBAction)makeARequest:(id)sender {
-  NSString *target = @"https://www.google.com";
+  NSArray *paths = NSSearchPathForDirectoriesInDomains
+  (NSDocumentDirectory, NSUserDomainMask, YES);
+  NSString *documentsDirectory = paths[0];
+
+  //make a file name to write the data to using the documents directory
+  NSString *fileName = [NSString stringWithFormat:@"%@/perfsamplelog.txt",
+                        documentsDirectory];
+
+  // Start tracing
+  FIRTrace *trace = [FIRPerformance startTraceWithName:@"request_trace"];
+
+  NSString *contents = [NSString stringWithContentsOfFile:fileName];
+
+  NSUInteger fileLength = 0;
+  if (contents) {
+    fileLength = contents.length;
+  }
+
+  [trace incrementCounterNamed:@"log_file_size" by:fileLength];
+
+  NSString *target = @"https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png";
   NSURL *targetUrl = [NSURL URLWithString:target];
   NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:targetUrl];
   request.HTTPMethod = @"GET";
@@ -43,15 +58,22 @@
       NSURLResponse * _Nullable response,
       NSError * _Nullable error) {
 
-      NSLog(@"URL received: %@", response.URL.absoluteString);
+      if (error) {
+        NSLog(@"%@", error.localizedDescription);
+      }
+
+      _imageView.image = [UIImage imageWithData:data];
+
+      [trace stop];
+
+      NSString *contentToWrite = [contents stringByAppendingString:response.URL.absoluteString];
+      [contentToWrite writeToFile:fileName
+                       atomically:NO
+                         encoding:NSStringEncodingConversionAllowLossy
+                            error:nil];
     }] resume];
 
-  [_trace incrementCounterNamed:@"request_sent"];
-}
-
-
-- (void)dealloc {
-    [_trace stop];
+  [trace incrementCounterNamed:@"request_sent"];
 }
 
 @end

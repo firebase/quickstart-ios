@@ -20,17 +20,32 @@ import FirebasePerformance
 @objc(ViewController)
 class ViewController: UIViewController {
     
-  var trace: Trace!
+  @IBOutlet var imageView: UIImageView!
 
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    // Start tracing
-    self.trace = Performance.startTrace(name: "request_trace")
-  }
+    let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+    let documentsDirectory = paths[0]
 
-  @IBAction func makeARequest(_ sender: AnyObject) {
-    let target = "https://www.google.com"
+    //make a file name to write the data to using the documents directory
+    let fileName = "\(documentsDirectory)/perfsamplelog.txt"
+
+    // Start tracing
+    let trace = Performance.startTrace(name: "request_trace")
+
+    var fileLength = 0
+    var contents = ""
+    do {
+      contents = try String.init(contentsOfFile: fileName, encoding: .utf8)
+      fileLength = contents.lengthOfBytes(using: .utf8)
+    } catch {
+      print("Log file doesn't exist yet")
+    }
+
+    trace?.incrementCounter(named: "log_file_size", by: fileLength)
+
+    let target = "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png"
     guard let targetUrl = URL(string: target) else { return }
     var request = URLRequest(url:targetUrl)
     request.httpMethod = "GET"
@@ -43,14 +58,18 @@ class ViewController: UIViewController {
         return
       }
 
-      print("URL received: \(response?.url?.absoluteString ?? "")")
+      self.imageView.image = UIImage.init(data: data!)
+      trace?.stop()
+
+      let contentToWrite = contents + (response?.url?.absoluteString ?? "") as NSString
+      do {
+        try contentToWrite.write(toFile: fileName, atomically: false, encoding: String.Encoding.utf8.rawValue)
+      } catch {
+        print("Can't write to log file")
+      }
     }
 
     task.resume()
-    trace.incrementCounter(named: "request_sent")
-  }
-
-  deinit {
-    trace.stop()
+    trace?.incrementCounter(named: "request_sent")
   }
 }

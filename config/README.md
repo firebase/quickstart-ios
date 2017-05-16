@@ -46,11 +46,14 @@ values in the Firebase console.
 
 ### Fetch values from the Remote Config service ###
 
-When an app calls `fetchWithExpirationDuration:completionHandler`, cached
-parameter values are used unless the last successful fetch occurred more than 12
-hours ago, or unless a value less than 43200 (the number of seconds in 12 hours)
-is specified for `TimeInterval`. If a cached value is not used, updated
-parameter values are fetched from the Remote Config service.
+When an app calls `fetchWithExpirationDuration:completionHandler`, updated
+parameter values are fetched from the Remote Config service if either
+
+* the last successful fetch occurred more than 12 hours ago, or
+* a value less than 43200 (the number of seconds in 12 hours) is specified for
+  `TimeInterval`.
+
+Otherwise, cached parameter values are used.
 
 Fetched values are cached locally, but not immediately activated. To activate
 fetched values so that they take effect, call the `activateFetched` method. In

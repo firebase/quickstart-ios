@@ -180,6 +180,6 @@ didReceiveNotificationResponse:(UNNotificationResponse *)response
   NSLog(@"APNs device token retrieved: %@", deviceToken);
 
   // With swizzling disabled you must set the APNs device token here.
-  // [[FIRInstanceID instanceID] setAPNSToken:deviceToken type:FIRInstanceIDAPNSTokenTypeSandbox];
+  // [FIRMessaging messaging].APNSToken = deviceToken;
 }
 @end

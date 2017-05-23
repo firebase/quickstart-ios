@@ -102,7 +102,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     print("APNs token retrieved: \(deviceToken)")
 
     // With swizzling disabled you must set the APNs token here.
-    // FIRInstanceID.instanceID().setAPNSToken(deviceToken, type: FIRInstanceIDAPNSTokenType.sandbox)
+    // Messaging.messaging().apnsToken = deviceToken
   }
 }
 

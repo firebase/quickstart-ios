@@ -64,6 +64,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // this callback will not be fired till the user taps on the notification launching the application.
     // TODO: Handle data of notification
 
+    // With swizzling disabled you must let Messaging know about the message, for Analytics
+    // Messaging.messaging().appDidReceiveMessage(userInfo)
+
     // Print message ID.
     if let messageID = userInfo[gcmMessageIDKey] {
       print("Message ID: \(messageID)")
@@ -78,6 +81,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // If you are receiving a notification message while your app is in the background,
     // this callback will not be fired till the user taps on the notification launching the application.
     // TODO: Handle data of notification
+
+    // With swizzling disabled you must let Messaging know about the message, for Analytics
+    // Messaging.messaging().appDidReceiveMessage(userInfo)
 
     // Print message ID.
     if let messageID = userInfo[gcmMessageIDKey] {
@@ -97,12 +103,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   // This function is added here only for debugging purposes, and can be removed if swizzling is enabled.
   // If swizzling is disabled then this function must be implemented so that the APNs token can be paired to
-  // the InstanceID token.
+  // the FCM registration token.
   func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
     print("APNs token retrieved: \(deviceToken)")
 
     // With swizzling disabled you must set the APNs token here.
-    // FIRInstanceID.instanceID().setAPNSToken(deviceToken, type: FIRInstanceIDAPNSTokenType.sandbox)
+    // Messaging.messaging().apnsToken = deviceToken
   }
 }
 
@@ -115,6 +121,10 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
                               willPresent notification: UNNotification,
     withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
     let userInfo = notification.request.content.userInfo
+
+    // With swizzling disabled you must let Messaging know about the message, for Analytics
+    // Messaging.messaging().appDidReceiveMessage(userInfo)
+
     // Print message ID.
     if let messageID = userInfo[gcmMessageIDKey] {
       print("Message ID: \(messageID)")
@@ -151,5 +161,13 @@ extension AppDelegate : MessagingDelegate {
     print("Firebase registration token: \(fcmToken)")
   }
   // [END refresh_token]
+
+  // [START ios_10_data_message]
+  // Receive data messages on iOS 10+ directly from FCM (bypassing APNs) when the app is in the foreground.
+  // To enable direct data messages, you can set Messaging.messaging().shouldEstablishDirectChannel to true.
+  func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
+    print("Received data message: \(remoteMessage.appData)")
+  }
+  // [END ios_10_data_message]
 }
 

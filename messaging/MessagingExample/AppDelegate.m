@@ -94,6 +94,9 @@ NSString *const kGCMMessageIDKey = @"gcm.message_id";
   // this callback will not be fired till the user taps on the notification launching the application.
   // TODO: Handle data of notification
 
+  // With swizzling disabled you must let Messaging know about the message, for Analytics
+  // [[Messaging messaging] appDidReceiveMessage:userInfo];
+
   // Print message ID.
   if (userInfo[kGCMMessageIDKey]) {
     NSLog(@"Message ID: %@", userInfo[kGCMMessageIDKey]);
@@ -108,6 +111,9 @@ NSString *const kGCMMessageIDKey = @"gcm.message_id";
   // If you are receiving a notification message while your app is in the background,
   // this callback will not be fired till the user taps on the notification launching the application.
   // TODO: Handle data of notification
+
+  // With swizzling disabled you must let Messaging know about the message, for Analytics
+  // [[Messaging messaging] appDidReceiveMessage:userInfo];
 
   // Print message ID.
   if (userInfo[kGCMMessageIDKey]) {
@@ -128,8 +134,12 @@ NSString *const kGCMMessageIDKey = @"gcm.message_id";
 - (void)userNotificationCenter:(UNUserNotificationCenter *)center
        willPresentNotification:(UNNotification *)notification
          withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler {
-  // Print message ID.
   NSDictionary *userInfo = notification.request.content.userInfo;
+
+  // With swizzling disabled you must let Messaging know about the message, for Analytics
+  // [[Messaging messaging] appDidReceiveMessage:userInfo];
+
+  // Print message ID.
   if (userInfo[kGCMMessageIDKey]) {
     NSLog(@"Message ID: %@", userInfo[kGCMMessageIDKey]);
   }
@@ -169,6 +179,14 @@ didReceiveNotificationResponse:(UNNotificationResponse *)response
 }
 // [END refresh_token]
 
+// [START ios_10_data_message]
+// Receive data messages on iOS 10+ directly from FCM (bypassing APNs) when the app is in the foreground.
+// To enable direct data messages, you can set [Messaging messaging].shouldEstablishDirectChannel to YES.
+- (void)messaging:(FIRMessaging *)messaging didReceiveMessage:(FIRMessagingRemoteMessage *)remoteMessage {
+  NSLog(@"Received data message: %@", remoteMessage.appData);
+}
+// [END ios_10_data_message]
+
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
   NSLog(@"Unable to register for remote notifications: %@", error);
 }
@@ -180,6 +198,6 @@ didReceiveNotificationResponse:(UNNotificationResponse *)response
   NSLog(@"APNs device token retrieved: %@", deviceToken);
 
   // With swizzling disabled you must set the APNs device token here.
-  // [[FIRInstanceID instanceID] setAPNSToken:deviceToken type:FIRInstanceIDAPNSTokenTypeSandbox];
+  // [Messaging messaging].APNSToken = deviceToken;
 }
 @end

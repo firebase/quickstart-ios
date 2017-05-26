@@ -164,27 +164,32 @@ class MainViewController: UITableViewController, GIDSignInUIDelegate {
               self.showSpinner {
                 // [START phone_auth]
                 PhoneAuthProvider.provider().verifyPhoneNumber(phoneNumber) { (verificationID, error) in
-                  // [START_EXCLUDE]
+                  // [START_EXCLUDE silent]
                   self.hideSpinner {
-                    // [END_EXCLUDE]
-                    if let error = error {
-                      self.showMessagePrompt(error.localizedDescription)
-                      return
-                    }
-                    guard let verificationID = verificationID else { return }
-                    // [START_EXCLUDE]
-                    self.showTextInputPrompt(withMessage: "Verification Code:") { (userPressedOK, verificationCode) in
-                      // [END_EXCLUDE]
-                      if let verificationCode = verificationCode {
-                        let credential = PhoneAuthProvider.provider().credential(withVerificationID: verificationID, verificationCode: verificationCode)
-                        // [END phone_auth]
-                        self.firebaseLogin(credential)
-                      } else {
-                        self.showMessagePrompt("verification code can't be empty")
-                      }
+                  // [END_EXCLUDE]
+                  if let error = error {
+                    self.showMessagePrompt(error.localizedDescription)
+                    return
+                  }
+                  // Sign in using the verificationID and the code sent to the user
+                  // [START_EXCLUDE]
+                  guard let verificationID = verificationID else { return }
+                  self.showTextInputPrompt(withMessage: "Verification Code:") { (userPressedOK, verificationCode) in
+                    if let verificationCode = verificationCode {
+                      // [START get_phone_cred]
+                      let credential = PhoneAuthProvider.provider().credential(
+                          withVerificationID: verificationID,
+                          verificationCode: verificationCode)
+                      // [END get_phone_cred]
+                      self.firebaseLogin(credential)
+                    } else {
+                      self.showMessagePrompt("verification code can't be empty")
                     }
                   }
+                  // [END_EXCLUDE]
+                  }
                 }
+                // [END phone_auth]
               }
             } else {
               self.showMessagePrompt("phone number can't be empty")

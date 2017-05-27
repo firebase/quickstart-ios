@@ -217,9 +217,9 @@ static NSString *const kUpdatePhoneNumberText = @"Update Phone Number";
                // [START phone_auth]
                [[FIRPhoneAuthProvider provider] verifyPhoneNumber:userInput
                                                        completion:^(NSString * _Nullable verificationID, NSError * _Nullable error) {
-                 // [START_EXCLUDE silent]
-                 [self hideSpinner:^{
-                 // [END_EXCLUDE]
+                // [START_EXCLUDE silent]
+                [self hideSpinner:^{
+                // [END_EXCLUDE]
                  if (error) {
                    [self showMessagePrompt:error.localizedDescription];
                    return;
@@ -228,19 +228,19 @@ static NSString *const kUpdatePhoneNumberText = @"Update Phone Number";
                  // [START_EXCLUDE]
                  [self showTextInputPromptWithMessage:@"Verification Code:"
                                       completionBlock:^(BOOL userPressedOK, NSString *_Nullable userInput) {
-                    if (!userPressedOK || !userInput.length) {
-                      return;
-                    }
+                   if (!userPressedOK || !userInput.length) {
+                     return;
+                   }
 
-                    // [START get_phone_cred]
-                    FIRAuthCredential *credential = [[FIRPhoneAuthProvider provider]
-                        credentialWithVerificationID:verificationID
-                                    verificationCode:userInput];
-                    // [END get_phone_cred]
-                    [self firebaseLoginWithCredential:credential];
-                  }];
-                  // [END_EXCLUDE]
+                   // [START get_phone_cred]
+                   FIRAuthCredential *credential = [[FIRPhoneAuthProvider provider]
+                       credentialWithVerificationID:verificationID
+                                   verificationCode:userInput];
+                   // [END get_phone_cred]
+                   [self firebaseLoginWithCredential:credential];
                  }];
+                }];
+                // [END_EXCLUDE]
                }];
                // [END phone_auth]
              }];

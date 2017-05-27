@@ -271,20 +271,23 @@ class MainViewController: UITableViewController, GIDSignInUIDelegate {
       } else {
         // [START signin_credential]
         Auth.auth().signIn(with: credential) { (user, error) in
-          // [START_EXCLUDE]
+          // [START_EXCLUDE silent]
           self.hideSpinner {
+          // [END_EXCLUDE]
+          if let error = error {
+            // [START_EXCLUDE]
+            self.showMessagePrompt(error.localizedDescription)
             // [END_EXCLUDE]
-            if let error = error {
-              // [START_EXCLUDE]
-              self.showMessagePrompt(error.localizedDescription)
-              // [END_EXCLUDE]
-              return
-            }
-            // [END signin_credential]
-            // Merge prevUser and currentUser accounts and data
-            // ...
+            return
           }
+          // User is signed in
+          // [START_EXCLUDE]
+          // Merge prevUser and currentUser accounts and data
+          // ...
+          // [END_EXCLUDE]
         }
+        }
+        // [END signin_credential]
       }
     }
   }

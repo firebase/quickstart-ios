@@ -103,18 +103,21 @@ static NSString *const kUpdatePhoneNumberText = @"Update Phone Number";
        // [START signin_credential]
        [[FIRAuth auth] signInWithCredential:credential
                                  completion:^(FIRUser *user, NSError *error) {
-        // [START_EXCLUDE]
-        [self hideSpinner:^{
-          // [END_EXCLUDE]
-          if (error) {
-            // [START_EXCLUDE]
-            [self showMessagePrompt:error.localizedDescription];
-            // [END_EXCLUDE]
-            return;
-          }
-          // [END signin_credential]
-        }];
-      }];
+         // [START_EXCLUDE silent]
+         [self hideSpinner:^{
+         // [END_EXCLUDE]
+         if (error) {
+           // [START_EXCLUDE]
+           [self showMessagePrompt:error.localizedDescription];
+           // [END_EXCLUDE]
+           return;
+         }
+         // User successfully signed in. Get user data from the FIRUser object
+         // [START_EXCLUDE]
+         }];
+         // [END_EXCLUDE]
+       }];
+       // [END signin_credential]
     }
   }];
 }
@@ -214,27 +217,32 @@ static NSString *const kUpdatePhoneNumberText = @"Update Phone Number";
                // [START phone_auth]
                [[FIRPhoneAuthProvider provider] verifyPhoneNumber:userInput
                                                        completion:^(NSString * _Nullable verificationID, NSError * _Nullable error) {
-                 // [START_EXCLUDE]
+                 // [START_EXCLUDE silent]
                  [self hideSpinner:^{
-                   if (error) {
-                     [self showMessagePrompt:error.localizedDescription];
-                     return;
-                   }
-                   [self showTextInputPromptWithMessage:@"Verification Code:"
-                                        completionBlock:^(BOOL userPressedOK, NSString *_Nullable userInput) {
-                      if (!userPressedOK || !userInput.length) {
-                        return;
-                      }
-                      // [END_EXCLUDE]
+                 // [END_EXCLUDE]
+                 if (error) {
+                   [self showMessagePrompt:error.localizedDescription];
+                   return;
+                 }
+                 // Sign in using the verificationID and the code sent to the user
+                 // [START_EXCLUDE]
+                 [self showTextInputPromptWithMessage:@"Verification Code:"
+                                      completionBlock:^(BOOL userPressedOK, NSString *_Nullable userInput) {
+                    if (!userPressedOK || !userInput.length) {
+                      return;
+                    }
 
-                      FIRAuthCredential *credential = [[FIRPhoneAuthProvider provider]
-                          credentialWithVerificationID:verificationID
-                                      verificationCode:userInput];
-                      // [END phone_auth]
-                      [self firebaseLoginWithCredential:credential];
-                    }];
+                    // [START get_phone_cred]
+                    FIRAuthCredential *credential = [[FIRPhoneAuthProvider provider]
+                        credentialWithVerificationID:verificationID
+                                    verificationCode:userInput];
+                    // [END get_phone_cred]
+                    [self firebaseLoginWithCredential:credential];
+                  }];
+                  // [END_EXCLUDE]
                  }];
                }];
+               // [END phone_auth]
              }];
            }];
         }];
@@ -263,7 +271,7 @@ static NSString *const kUpdatePhoneNumberText = @"Update Phone Number";
         }
         break;
     }
-      
+
     [picker addAction:action];
   }
 

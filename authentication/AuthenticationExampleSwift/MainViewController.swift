@@ -164,8 +164,8 @@ class MainViewController: UITableViewController, GIDSignInUIDelegate {
               self.showSpinner {
                 // [START phone_auth]
                 PhoneAuthProvider.provider().verifyPhoneNumber(phoneNumber) { (verificationID, error) in
-                  // [START_EXCLUDE silent]
-                  self.hideSpinner {
+                 // [START_EXCLUDE silent]
+                 self.hideSpinner {
                   // [END_EXCLUDE]
                   if let error = error {
                     self.showMessagePrompt(error.localizedDescription)
@@ -186,8 +186,8 @@ class MainViewController: UITableViewController, GIDSignInUIDelegate {
                       self.showMessagePrompt("verification code can't be empty")
                     }
                   }
+                 }
                   // [END_EXCLUDE]
-                  }
                 }
                 // [END phone_auth]
               }

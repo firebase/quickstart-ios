@@ -28,6 +28,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func application(_ application: UIApplication,
                    didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
+    FirebaseApp.configure()
+
+    // [START set_messaging_delegate]
+    Messaging.messaging().delegate = self
+    // [END set_messaging_delegate]
+
     // Register for remote notifications. This shows a permission dialog on first run, to
     // show the dialog at a more appropriate time move this registration accordingly.
     // [START register_for_notifications]
@@ -48,12 +54,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     application.registerForRemoteNotifications()
 
     // [END register_for_notifications]
-
-    FirebaseApp.configure()
-
-    // [START set_messaging_delegate]
-    Messaging.messaging().delegate = self
-    // [END set_messaging_delegate]
 
     return true
   }

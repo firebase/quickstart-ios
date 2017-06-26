@@ -58,7 +58,10 @@ class ViewController: UIViewController {
         return
       }
 
-      self.imageView.image = UIImage.init(data: data!)
+      DispatchQueue.main.async {
+        self.imageView.image = UIImage.init(data: data!)
+      }
+
       trace?.stop()
 
       let contentToWrite = contents + (response?.url?.absoluteString ?? "") as NSString

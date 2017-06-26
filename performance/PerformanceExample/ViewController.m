@@ -62,7 +62,9 @@
         NSLog(@"%@", error.localizedDescription);
       }
 
-      _imageView.image = [UIImage imageWithData:data];
+      dispatch_async(dispatch_get_main_queue(), ^{
+        _imageView.image = [UIImage imageWithData:data];
+      });
 
       [trace stop];
 

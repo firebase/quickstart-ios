@@ -94,7 +94,7 @@ NSString *const kGCMMessageIDKey = @"gcm.message_id";
   // TODO: Handle data of notification
 
   // With swizzling disabled you must let Messaging know about the message, for Analytics
-  // [[Messaging messaging] appDidReceiveMessage:userInfo];
+  // [[FIRMessaging messaging] appDidReceiveMessage:userInfo];
 
   // Print message ID.
   if (userInfo[kGCMMessageIDKey]) {
@@ -112,7 +112,7 @@ NSString *const kGCMMessageIDKey = @"gcm.message_id";
   // TODO: Handle data of notification
 
   // With swizzling disabled you must let Messaging know about the message, for Analytics
-  // [[Messaging messaging] appDidReceiveMessage:userInfo];
+  // [[FIRMessaging messaging] appDidReceiveMessage:userInfo];
 
   // Print message ID.
   if (userInfo[kGCMMessageIDKey]) {
@@ -136,7 +136,7 @@ NSString *const kGCMMessageIDKey = @"gcm.message_id";
   NSDictionary *userInfo = notification.request.content.userInfo;
 
   // With swizzling disabled you must let Messaging know about the message, for Analytics
-  // [[Messaging messaging] appDidReceiveMessage:userInfo];
+  // [[FIRMessaging messaging] appDidReceiveMessage:userInfo];
 
   // Print message ID.
   if (userInfo[kGCMMessageIDKey]) {
@@ -197,6 +197,6 @@ didReceiveNotificationResponse:(UNNotificationResponse *)response
   NSLog(@"APNs device token retrieved: %@", deviceToken);
 
   // With swizzling disabled you must set the APNs device token here.
-  // [Messaging messaging].APNSToken = deviceToken;
+  // [FIRMessaging messaging].APNSToken = deviceToken;
 }
 @end

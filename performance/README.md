@@ -1,16 +1,16 @@
-Firebase Performance Quickstart
+Firebase Performance Monitoring Quickstart
 =============================
 
-# Firebase Performance
+# Firebase Performance Monitoring
 
-Firebase Performance is a free mobile app performance analytics service. It
+Firebase Performance Monitoring is a free mobile app performance analytics service. It
 provides detailed information about the performance of your apps automatically,
 but works at its best with Timers set by you.
 
 Introduction
 ------------
 
-- [Read more about Firebase Performance](https://firebase.google.com/docs/performance)
+- [Read more about Firebase Performance Monitoring](https://firebase.google.com/docs/perf-mon/)
 
 Getting Started
 ---------------

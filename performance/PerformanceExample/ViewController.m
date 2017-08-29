@@ -39,7 +39,15 @@
   // Start tracing
   FIRTrace *trace = [FIRPerformance startTraceWithName:@"request_trace"];
 
-  NSString *contents = [NSString stringWithContentsOfFile:fileName];
+  NSError *fileReadError;
+  NSString *contents = [NSString stringWithContentsOfFile:fileName
+                                                 encoding:NSUTF8StringEncoding
+                                                    error:&fileReadError];
+
+  if (fileReadError != nil) {
+    NSLog(@"Error reading trace file at path %@: %@", fileName, fileReadError);
+    return;
+  }
 
   NSUInteger fileLength = 0;
   if (contents) {

@@ -45,8 +45,7 @@
                                                     error:&fileReadError];
 
   if (fileReadError != nil) {
-    NSLog(@"Error reading trace file at path %@: %@", fileName, fileReadError);
-    return;
+    NSLog(@"Log file doesn't exist yet %@: %@", fileName, fileReadError);
   }
 
   NSUInteger fileLength = 0;

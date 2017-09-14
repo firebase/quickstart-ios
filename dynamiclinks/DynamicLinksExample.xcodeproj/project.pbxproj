@@ -701,7 +701,7 @@
 				PRODUCT_NAME = DynamicLinksExample;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = "";
 			};
 			name = Debug;
 		};
@@ -721,7 +721,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.DynamicLinksExample;
 				PRODUCT_NAME = DynamicLinksExample;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = "";
 			};
 			name = Release;
 		};

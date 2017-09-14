@@ -92,7 +92,7 @@ class ViewController: UITableViewController {
     ]
   }
 
-  func buildFDLLink() {
+  @objc func buildFDLLink() {
     // [START buildFDLLink]
     if ViewController.DYNAMIC_LINK_DOMAIN == "YOUR_DYNAMIC_LINK_DOMAIN" {
       fatalError("Please update DYNAMIC_LINK_DOMAIN constant in your code from Firebase Console!")
@@ -313,7 +313,7 @@ extension ViewController : UIGestureRecognizerDelegate {
   //
   // MARK: - Event Handlers
   //
-  func toggleCollapse(sender: UIButton) {
+  @objc func toggleCollapse(sender: UIButton) {
     let section = sender.tag
     let collapsed = sections[section].collapsed
 

@@ -444,7 +444,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.CrashReportingExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -463,7 +462,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.CrashReportingExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -523,7 +521,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CrashReportingExample.app/CrashReportingExample";
 			};
 			name = Debug;
@@ -548,7 +545,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CrashReportingExample.app/CrashReportingExample";
 			};
 			name = Release;

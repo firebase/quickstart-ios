@@ -404,7 +404,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.google.samples.quickstart.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = InvitesExample;
-				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/InvitesExample.app/InvitesExample";
 			};
 			name = Debug;
@@ -425,7 +424,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.google.samples.quickstart.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = InvitesExample;
-				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/InvitesExample.app/InvitesExample";
 			};
 			name = Release;
@@ -588,7 +586,6 @@
 				PRODUCT_NAME = InvitesExample;
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -604,7 +601,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.InvitesExample;
 				PRODUCT_NAME = InvitesExample;
-				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

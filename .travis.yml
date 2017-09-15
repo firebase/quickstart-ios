@@ -4,11 +4,10 @@ cache:
   - bundler
   - cocoapods
 
-podfile: admob/Podfile
-env: SAMPLE=AdMob
-
 matrix:
   include:
+  - podfile: admob/Podfile
+    env: SAMPLE=AdMob
   - podfile: analytics/Podfile
     env: SAMPLE=Analytics
   - podfile: authentication/Podfile

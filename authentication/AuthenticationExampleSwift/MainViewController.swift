@@ -163,7 +163,7 @@ class MainViewController: UITableViewController, GIDSignInUIDelegate {
             if let phoneNumber = userInput {
               self.showSpinner {
                 // [START phone_auth]
-                PhoneAuthProvider.provider().verifyPhoneNumber(phoneNumber) { (verificationID, error) in
+                PhoneAuthProvider.provider().verifyPhoneNumber(phoneNumber, uiDelegate: nil) { (verificationID, error) in
                  // [START_EXCLUDE silent]
                  self.hideSpinner {
                   // [END_EXCLUDE]
@@ -591,7 +591,7 @@ class MainViewController: UITableViewController, GIDSignInUIDelegate {
       if let phoneNumber = userInput {
         self.showSpinner {
           // [START update_phone]
-          PhoneAuthProvider.provider().verifyPhoneNumber(phoneNumber) { (verificationID, error) in
+          PhoneAuthProvider.provider().verifyPhoneNumber(phoneNumber, uiDelegate: nil) { (verificationID, error) in
             // [START_EXCLUDE]
             self.hideSpinner {
               if let error = error {

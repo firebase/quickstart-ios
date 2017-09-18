@@ -216,6 +216,7 @@ static NSString *const kUpdatePhoneNumberText = @"Update Phone Number";
              [self showSpinner:^{
                // [START phone_auth]
                [[FIRPhoneAuthProvider provider] verifyPhoneNumber:userInput
+                                                       UIDelegate:nil
                                                        completion:^(NSString * _Nullable verificationID, NSError * _Nullable error) {
                 // [START_EXCLUDE silent]
                 [self hideSpinner:^{
@@ -633,6 +634,7 @@ static NSString *const kUpdatePhoneNumberText = @"Update Phone Number";
     [self showSpinner:^{
       // [START update_phone]
       [[FIRPhoneAuthProvider provider] verifyPhoneNumber:userInput
+                                              UIDelegate:nil
                                               completion:^(NSString * _Nullable verificationID,
                                                            NSError * _Nullable error) {
         // [START_EXCLUDE]

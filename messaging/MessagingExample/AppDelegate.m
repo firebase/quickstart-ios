@@ -152,7 +152,11 @@ NSString *const kGCMMessageIDKey = @"gcm.message_id";
 // Handle notification messages after display notification is tapped by the user.
 - (void)userNotificationCenter:(UNUserNotificationCenter *)center
 didReceiveNotificationResponse:(UNNotificationResponse *)response
+#if defined(__IPHONE_11_0)
          withCompletionHandler:(void(^)(void))completionHandler {
+#else
+         withCompletionHandler:(void(^)())completionHandler {
+#endif
   NSDictionary *userInfo = response.notification.request.content.userInfo;
   if (userInfo[kGCMMessageIDKey]) {
     NSLog(@"Message ID: %@", userInfo[kGCMMessageIDKey]);

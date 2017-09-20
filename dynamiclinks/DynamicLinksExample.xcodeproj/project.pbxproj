@@ -12,9 +12,6 @@
 		106C9A3E1EA66CCD009FD392 /* HeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 106C9A3D1EA66CCD009FD392 /* HeaderCell.m */; };
 		106C9A411EA66CE6009FD392 /* ParamTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 106C9A401EA66CE5009FD392 /* ParamTableViewCell.m */; };
 		10AF4D491DD3E7660096D192 /* DynamicLinksExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 10AF4D481DD3E7660096D192 /* DynamicLinksExampleTests.m */; };
-		10D945491F61D2C2005198B3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 10D945481F61D2C2005198B3 /* GoogleService-Info.plist */; };
-		10D9454A1F61D2C2005198B3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 10D945481F61D2C2005198B3 /* GoogleService-Info.plist */; };
-		10D9454B1F61D2C2005198B3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 10D945481F61D2C2005198B3 /* GoogleService-Info.plist */; };
 		5F5A53521ADE670C00F81DF0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5A53511ADE670C00F81DF0 /* main.m */; };
 		5F5A53551ADE670C00F81DF0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5A53541ADE670C00F81DF0 /* AppDelegate.m */; };
 		5F5A53581ADE670C00F81DF0 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5A53571ADE670C00F81DF0 /* ViewController.m */; };
@@ -48,7 +45,6 @@
 		106C9A401EA66CE5009FD392 /* ParamTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParamTableViewCell.m; sourceTree = "<group>"; };
 		10AF4D461DD3E7660096D192 /* DynamicLinksExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DynamicLinksExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		10AF4D481DD3E7660096D192 /* DynamicLinksExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DynamicLinksExampleTests.m; sourceTree = "<group>"; };
-		10D945481F61D2C2005198B3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5F5A534C1ADE670C00F81DF0 /* DynamicLinksExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DynamicLinksExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F5A53501ADE670C00F81DF0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5F5A53511ADE670C00F81DF0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -139,7 +135,6 @@
 		5F5A534F1ADE670C00F81DF0 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				10D945481F61D2C2005198B3 /* GoogleService-Info.plist */,
 				5F5A53591ADE670C00F81DF0 /* Main.storyboard */,
 				5F5A53501ADE670C00F81DF0 /* Info.plist */,
 				5F5A53511ADE670C00F81DF0 /* main.m */,
@@ -275,7 +270,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				10D9454B1F61D2C2005198B3 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -284,7 +278,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5F99610C1AE0CF4F0034F503 /* LaunchScreen.xib in Resources */,
-				10D945491F61D2C2005198B3 /* GoogleService-Info.plist in Resources */,
 				5F99610A1AE0CF4F0034F503 /* Images.xcassets in Resources */,
 				5F5A535B1ADE670C00F81DF0 /* Main.storyboard in Resources */,
 			);
@@ -295,7 +288,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5F99610D1AE0CF4F0034F503 /* LaunchScreen.xib in Resources */,
-				10D9454A1F61D2C2005198B3 /* GoogleService-Info.plist in Resources */,
 				5F5A539C1ADE69AA00F81DF0 /* Main.storyboard in Resources */,
 				5F99610B1AE0CF4F0034F503 /* Images.xcassets in Resources */,
 			);

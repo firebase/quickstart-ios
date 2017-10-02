@@ -90,6 +90,13 @@ class RestaurantsTableViewController: UIViewController, UITableViewDataSource, U
       }
       self.restaurants = models
       self.documents = snapshot.documents
+
+      if self.documents.count > 0 {
+        self.tableView.backgroundView = nil
+      } else {
+        self.tableView.backgroundView = self.backgroundView
+      }
+
       self.tableView.reloadData()
     }
   }

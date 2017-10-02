@@ -1,12 +1,17 @@
-target 'FirestoreExample' do
+platform :ios, '9.0'
+
+target 'FriendlyEats' do
+
   use_frameworks!
 
-  pod 'Firebase/Core'
-  pod 'Firebase/Auth'
+  pod 'SDWebImage'
   pod 'FirebaseUI/Auth'
-  pod 'Firestore', :podspec => 'https://storage.googleapis.com/firebase-preview-drop/ios/firestore/0.2.0/Firestore.podspec.json'
+  pod 'FirebaseUI/Google'
+  pod 'Firestore', :podspec => 'https://storage.googleapis.com/firebase-preview-drop/ios/firestore/0.7.0/Firestore.podspec.json'
 
-  target 'FirestoreExampleTests' do
+  target 'FriendlyEatsTests' do
     inherit! :search_paths
+    # Pods for testing
   end
+
 end

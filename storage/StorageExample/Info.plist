@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>NSCameraUsageDescription</key>
-	<string>Take and upload photos to Firebase Storage</string>
+	<string>Take and upload photos to Cloud Storage</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Upload photo to Firebase Storage</string>
+	<string>Upload photo to Cloud Storage</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>

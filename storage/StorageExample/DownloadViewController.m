@@ -15,7 +15,7 @@
 //
 
 #import "DownloadViewController.h"
-@import FirebaseStorage;
+@import Firebase;
 
 @interface DownloadViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;

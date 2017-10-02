@@ -16,9 +16,8 @@
 
 import UIKit
 // [START import]
-import FirebaseDynamicLinks
-// [END import]
 import Firebase
+// [END import]
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -30,8 +29,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     // Set deepLinkURLScheme to the custom URL scheme you defined in your
     // Xcode project.
-    FIROptions.default().deepLinkURLScheme = self.customURLScheme
-    FIRApp.configure()
+    FirebaseOptions.defaultOptions()?.deepLinkURLScheme = self.customURLScheme
+    FirebaseApp.configure()
 
     return true
   }
@@ -43,7 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   }
 
   func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
-    let dynamicLink = FIRDynamicLinks.dynamicLinks()?.dynamicLink(fromCustomSchemeURL: url)
+    let dynamicLink = DynamicLinks.dynamicLinks()?.dynamicLink(fromCustomSchemeURL: url)
     if let dynamicLink = dynamicLink {
       // Handle the deep link. For example, show the deep-linked content or
       // apply a promotional offer to the user's account.
@@ -74,7 +73,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   // [START continueuseractivity]
   @available(iOS 8.0, *)
   func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
-    guard let dynamicLinks = FIRDynamicLinks.dynamicLinks() else {
+    guard let dynamicLinks = DynamicLinks.dynamicLinks() else {
       return false
     }
     let handled = dynamicLinks.handleUniversalLink(userActivity.webpageURL!) { (dynamiclink, error) in
@@ -87,7 +86,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // [START_EXCLUDE silent]
     if !handled {
       // Show the deep link URL from userActivity.
-      let message = "continueUserActivity webPageURL:\n\(userActivity.webpageURL)"
+      let message = "continueUserActivity webPageURL:\n\(userActivity.webpageURL?.absoluteString ?? "")"
       showDeepLinkAlertView(withMessage: message)
     }
     // [END_EXCLUDE]
@@ -96,14 +95,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   }
   // [END continueuseractivity]
 
-  func generateDynamicLinkMessage(_ dynamicLink: FIRDynamicLink) -> String {
+  func generateDynamicLinkMessage(_ dynamicLink: DynamicLink) -> String {
     let matchConfidence: String
     if dynamicLink.matchConfidence == .weak {
       matchConfidence = "Weak"
     } else {
       matchConfidence = "Strong"
     }
-    let message = "App URL: \(dynamicLink.url)\nMatch Confidence: \(matchConfidence)\n"
+    let message = "App URL: \(dynamicLink.url?.absoluteString ?? "")\nMatch Confidence: \(matchConfidence)\n"
     return message
   }
 

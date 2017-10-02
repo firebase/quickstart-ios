@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="NO" initialViewController="byF-jG-Fga">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="byF-jG-Fga">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <development version="7000" identifier="xcode"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -14,7 +17,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="X7b-cS-vli">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.0" green="0.52156862745098043" blue="0.88627450980392153" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.0" green="0.52156862745098043" blue="0.88627450980392153" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="ewu-8n-6qh"/>
@@ -33,55 +36,50 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kNe-hA-Ajt">
-                                <rect key="frame" x="127" y="157" width="121" height="20"/>
+                                <rect key="frame" x="240" y="157" width="121" height="30"/>
                                 <state key="normal" title="Download Picture"/>
                                 <connections>
                                     <segue destination="dTy-Zw-dam" kind="show" id="7Pz-m3-3O8"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g4V-CR-dck">
-                                <rect key="frame" x="107" y="95" width="160" height="44"/>
-                                <color key="backgroundColor" red="1" green="0.5607843137254902" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="jTo-N3-7pn"/>
-                                </constraints>
+                                <rect key="frame" x="111" y="95" width="378" height="44"/>
+                                <color key="backgroundColor" red="1" green="0.5607843137254902" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <state key="normal" title="Take Picture">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="didTapTakePicture:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ydh-qg-AYm"/>
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" editable="NO" text=" " textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="H8c-gN-cFS">
-                                <rect key="frame" x="20" y="199" width="334" height="200"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="6cU-hw-HiJ"/>
-                                </constraints>
+                                <rect key="frame" x="24" y="209" width="552" height="200"/>
+                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <dataDetectorType key="dataDetectorTypes" link="YES"/>
                             </textView>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="g4V-CR-dck" firstAttribute="centerX" secondItem="kNe-hA-Ajt" secondAttribute="centerX" id="AFq-vs-Bjg"/>
-                            <constraint firstItem="H8c-gN-cFS" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="4" id="E45-8L-k6O"/>
-                            <constraint firstItem="g4V-CR-dck" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="91" id="HUW-2J-YPe"/>
-                            <constraint firstItem="H8c-gN-cFS" firstAttribute="top" secondItem="kNe-hA-Ajt" secondAttribute="bottom" constant="22" id="MLL-hM-Gur"/>
-                            <constraint firstItem="H8c-gN-cFS" firstAttribute="centerX" secondItem="kNe-hA-Ajt" secondAttribute="centerX" id="OTV-n8-Vkn"/>
-                            <constraint firstItem="g4V-CR-dck" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Yeb-q0-GwC"/>
-                            <constraint firstAttribute="bottom" secondItem="H8c-gN-cFS" secondAttribute="bottom" constant="268" id="n9L-cn-DCr"/>
-                            <constraint firstItem="kNe-hA-Ajt" firstAttribute="top" secondItem="g4V-CR-dck" secondAttribute="bottom" constant="18" id="oPS-i9-yAb"/>
-                            <constraint firstItem="g4V-CR-dck" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="31" id="w3w-tT-dVv"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="H8c-gN-cFS" secondAttribute="bottom" constant="191" id="5Cr-MM-HS0"/>
+                            <constraint firstItem="H8c-gN-cFS" firstAttribute="top" secondItem="kNe-hA-Ajt" secondAttribute="bottom" constant="22" id="76q-3a-oNi"/>
+                            <constraint firstItem="g4V-CR-dck" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="91" id="K40-c3-OD9"/>
+                            <constraint firstItem="g4V-CR-dck" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="31" id="LPh-gJ-WG5"/>
+                            <constraint firstItem="H8c-gN-cFS" firstAttribute="centerX" secondItem="kNe-hA-Ajt" secondAttribute="centerX" id="UUY-dX-PoC"/>
+                            <constraint firstItem="kNe-hA-Ajt" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="c2T-4e-hHN"/>
+                            <constraint firstItem="H8c-gN-cFS" firstAttribute="centerX" secondItem="g4V-CR-dck" secondAttribute="centerX" id="c6q-jM-VbM"/>
+                            <constraint firstItem="H8c-gN-cFS" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="4" id="ozp-TW-qjG"/>
+                            <constraint firstItem="kNe-hA-Ajt" firstAttribute="top" secondItem="g4V-CR-dck" secondAttribute="bottom" constant="18" id="qyw-y9-N56"/>
+                            <constraint firstItem="kNe-hA-Ajt" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="157" id="sfl-pR-oEs"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Firebase Storage Example" id="lX3-oi-C1r"/>
+                    <navigationItem key="navigationItem" title="Cloud Storage for Firebase Example" id="lX3-oi-C1r"/>
                     <connections>
                         <outlet property="downloadPicButton" destination="kNe-hA-Ajt" id="PEn-5w-PhG"/>
                         <outlet property="takePicButton" destination="g4V-CR-dck" id="p2o-E3-Yit"/>
@@ -101,39 +99,43 @@
                         <viewControllerLayoutGuide type="bottom" id="8dZ-Gi-AVY"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="27f-X7-nNm">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YWo-Xi-oCi">
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YWo-Xi-oCi">
                                 <rect key="frame" x="0.0" y="0.0" width="0.0" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" id="XH4-qK-JPp"/>
+                                </constraints>
                                 <items>
                                     <navigationItem title="Title" id="Rfx-OL-UUJ"/>
                                 </items>
                             </navigationBar>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0ot-gz-oeU">
-                                <rect key="frame" x="83" y="113" width="209" height="240"/>
+                                <rect key="frame" x="87" y="113" width="426" height="240"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="240" id="TO1-LA-Ogb"/>
+                                    <constraint firstAttribute="height" constant="240" id="E7b-0Z-Dbc"/>
                                 </constraints>
                             </imageView>
                             <textView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" editable="NO" text=" " textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Ujz-6e-2KW">
-                                <rect key="frame" x="36" y="452" width="303" height="80"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <rect key="frame" x="40" y="452" width="520" height="13"/>
+                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <dataDetectorType key="dataDetectorTypes" link="YES"/>
                             </textView>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="Ujz-6e-2KW" firstAttribute="centerX" secondItem="0ot-gz-oeU" secondAttribute="centerX" id="0HX-nK-d8B"/>
-                            <constraint firstItem="Ujz-6e-2KW" firstAttribute="leading" secondItem="27f-X7-nNm" secondAttribute="leadingMargin" constant="20" id="GjW-ku-nUF"/>
-                            <constraint firstItem="0ot-gz-oeU" firstAttribute="leading" secondItem="27f-X7-nNm" secondAttribute="leadingMargin" constant="67" id="f02-Om-Uzf"/>
-                            <constraint firstItem="8dZ-Gi-AVY" firstAttribute="top" secondItem="Ujz-6e-2KW" secondAttribute="bottom" constant="135" id="kHe-e5-h2e"/>
-                            <constraint firstItem="Ujz-6e-2KW" firstAttribute="top" secondItem="0ot-gz-oeU" secondAttribute="bottom" constant="99" id="shR-Ea-mG7"/>
-                            <constraint firstItem="0ot-gz-oeU" firstAttribute="top" secondItem="zic-HH-UQ7" secondAttribute="bottom" constant="49" id="uYG-PI-e3N"/>
-                            <constraint firstItem="0ot-gz-oeU" firstAttribute="centerX" secondItem="27f-X7-nNm" secondAttribute="centerX" id="ySj-LX-lYw"/>
+                            <constraint firstItem="0ot-gz-oeU" firstAttribute="centerX" secondItem="27f-X7-nNm" secondAttribute="centerX" id="1CB-kJ-mAN"/>
+                            <constraint firstItem="8dZ-Gi-AVY" firstAttribute="top" secondItem="Ujz-6e-2KW" secondAttribute="bottom" constant="135" id="Ogn-V7-KmS"/>
+                            <constraint firstItem="YWo-Xi-oCi" firstAttribute="leading" secondItem="27f-X7-nNm" secondAttribute="leading" id="SWQ-pM-gNV"/>
+                            <constraint firstItem="Ujz-6e-2KW" firstAttribute="centerX" secondItem="0ot-gz-oeU" secondAttribute="centerX" id="Tep-nB-TTL"/>
+                            <constraint firstItem="0ot-gz-oeU" firstAttribute="top" secondItem="zic-HH-UQ7" secondAttribute="bottom" constant="49" id="ajS-1F-3xL"/>
+                            <constraint firstItem="YWo-Xi-oCi" firstAttribute="top" secondItem="27f-X7-nNm" secondAttribute="top" id="fXH-ja-hPT"/>
+                            <constraint firstItem="0ot-gz-oeU" firstAttribute="leading" secondItem="27f-X7-nNm" secondAttribute="leadingMargin" constant="67" id="sTV-yN-nMb"/>
+                            <constraint firstItem="Ujz-6e-2KW" firstAttribute="top" secondItem="0ot-gz-oeU" secondAttribute="bottom" constant="99" id="t9B-Ev-REG"/>
+                            <constraint firstItem="Ujz-6e-2KW" firstAttribute="leading" secondItem="27f-X7-nNm" secondAttribute="leadingMargin" constant="20" id="un2-ew-JOr"/>
                         </constraints>
                     </view>
                     <connections>

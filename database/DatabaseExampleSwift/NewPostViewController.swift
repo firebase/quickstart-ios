@@ -20,7 +20,7 @@ import Firebase
 @objc(NewPostViewController)
 class NewPostViewController: UIViewController, UITextFieldDelegate {
 
-  var ref: FIRDatabaseReference!
+  var ref: DatabaseReference!
   @IBOutlet weak var bodyTextView: UITextView!
   @IBOutlet weak var titleTextField: UITextField!
 
@@ -29,7 +29,7 @@ class NewPostViewController: UIViewController, UITextFieldDelegate {
     super.viewDidLoad()
 
     // [START create_database_reference]
-    self.ref = FIRDatabase.database().reference()
+    self.ref = Database.database().reference()
     // [END create_database_reference]
 
     let doneBar = UIToolbar(frame: CGRect.init(x: 0, y: 0, width: 320, height: 44))
@@ -45,7 +45,7 @@ class NewPostViewController: UIViewController, UITextFieldDelegate {
 
   @IBAction func didTapShare(_ sender: AnyObject) {
     // [START single_value_read]
-    let userID = FIRAuth.auth()?.currentUser?.uid
+    let userID = Auth.auth().currentUser?.uid
     ref.child("users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
       // Get user value
       let value = snapshot.value as? NSDictionary

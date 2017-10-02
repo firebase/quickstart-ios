@@ -1,22 +1,23 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Rbt-Hj-hbd">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Rbt-Hj-hbd">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <mutableArray key="Roboto-Bold.ttf">
+        <array key="Roboto-Bold.ttf">
             <string>Roboto-Bold</string>
-        </mutableArray>
-        <mutableArray key="Roboto-Regular.ttf">
+        </array>
+        <array key="Roboto-Regular.ttf">
             <string>Roboto-Regular</string>
-            <string>Roboto-Regular</string>
-            <string>Roboto-Regular</string>
-            <string>Roboto-Regular</string>
-        </mutableArray>
+        </array>
     </customFonts>
     <scenes>
         <!--Navigation Controller-->
@@ -26,7 +27,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="hkY-jG-eXF">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.0" green="0.52156862745098043" blue="0.88627450980392153" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.0" green="0.52156862745098043" blue="0.88627450980392153" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="fUX-Ub-LJM"/>
@@ -34,7 +35,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RuJ-CA-LdT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1221" y="716"/>
+            <point key="canvasLocation" x="1222" y="709"/>
         </scene>
         <!--Invites Example-->
         <scene sceneID="tne-QT-ifu">
@@ -45,36 +46,36 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8OM-kI-dga">
-                                <rect key="frame" x="257" y="674" width="121" height="30"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="222" y="605" width="121" height="30"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="BgP-2k-nF1"/>
                                     <constraint firstAttribute="width" constant="121" id="O6g-SO-ENc"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="13"/>
                                 <state key="normal" title="DISCONNECT">
-                                    <color key="titleColor" red="0.38039219379425049" green="0.4901961088180542" blue="0.54117649793624878" alpha="1" colorSpace="deviceRGB"/>
-                                    <color key="titleShadowColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="0.31017133593559265" green="0.414725661277771" blue="0.46687942743301392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleShadowColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="disconnectTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="M5C-9P-nor"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eWa-ii-5oh">
-                                <rect key="frame" x="36" y="674" width="121" height="30"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="32" y="605" width="121" height="30"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="7BO-5U-BTS"/>
                                     <constraint firstAttribute="width" constant="80" id="SYJ-OU-kZc"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="13"/>
                                 <state key="normal" title="SIGN OUT">
-                                    <color key="titleColor" red="0.38039219379425049" green="0.49411767721176147" blue="0.54509806632995605" alpha="1" colorSpace="deviceRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleColor" red="0.31029674410820007" green="0.41876858472824097" blue="0.47097587585449219" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <variation key="default">
                                     <mask key="constraints">
@@ -87,29 +88,29 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iIa-Wp-vTk">
-                                <rect key="frame" x="127" y="600" width="160" height="40"/>
-                                <color key="backgroundColor" red="1" green="0.5607843137254902" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="107.5" y="531" width="160" height="40"/>
+                                <color key="backgroundColor" red="1" green="0.5607843137254902" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="UvQ-22-A1m"/>
                                     <constraint firstAttribute="width" constant="160" id="Z80-hh-xpq"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="15"/>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="INVITE FRIENDS">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="inviteTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hvJ-u6-0Fu"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status text should go here" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BJZ-79-K2W">
-                                <rect key="frame" x="101" y="88" width="213" height="24"/>
+                                <rect key="frame" x="81.5" y="88" width="212" height="21"/>
                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="18"/>
-                                <color key="textColor" red="0.396078431372549" green="0.49019607843137253" blue="0.54509803921568623" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.396078431372549" green="0.49019607843137253" blue="0.54509803921568623" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="iIa-Wp-vTk" secondAttribute="bottom" constant="96" id="0qP-9l-TG9"/>
                             <constraint firstItem="8OM-kI-dga" firstAttribute="height" secondItem="eWa-ii-5oh" secondAttribute="height" id="4lm-0R-R4V"/>
@@ -131,7 +132,6 @@
                     </view>
                     <navigationItem key="navigationItem" title="Invites Example" id="MsU-9u-fBv"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
                         <outlet property="disconnectButton" destination="8OM-kI-dga" id="ypn-v6-CMD"/>
                         <outlet property="inviteButton" destination="iIa-Wp-vTk" id="ZTg-fy-Sc2"/>
@@ -144,7 +144,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <exit id="IYg-aY-dVD" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1765" y="726"/>
+            <point key="canvasLocation" x="1903" y="709"/>
         </scene>
         <!--Sign In View Controller-->
         <scene sceneID="JeK-wH-Y8R">
@@ -154,36 +154,30 @@
                         <viewControllerLayoutGuide type="top" id="1vJ-LG-LIa"/>
                         <viewControllerLayoutGuide type="bottom" id="2e1-c4-ykl"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="P23-48-bEt" customClass="UIVisualEffectView">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                    <view key="view" contentMode="scaleToFill" id="P23-48-bEt">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.40000000000000002" contentMode="scaleToFill" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="KRj-rT-qAd">
-                                <rect key="frame" x="157" y="203" width="100" height="108"/>
+                                <rect key="frame" x="138" y="173" width="100" height="108"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="O0p-7h-Mu3"/>
-                                    <constraint firstAttribute="width" secondItem="KRj-rT-qAd" secondAttribute="height" multiplier="122:131" id="cYR-Hg-hu1"/>
+                                    <constraint firstAttribute="width" constant="100" id="M7O-qq-l5R"/>
+                                    <constraint firstAttribute="height" constant="108" id="t39-wi-KVn"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Invites" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ymW-I7-0N5">
-                                <rect key="frame" x="20" y="316" width="374" height="95"/>
-                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="37"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fgQ-Ee-6nd">
-                                <rect key="frame" x="0.0" y="633" width="414" height="103"/>
+                                <rect key="frame" x="0.0" y="573.5" width="375" height="93.5"/>
                                 <subviews>
                                     <view contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="XGN-Qm-TJZ" customClass="GIDSignInButton">
-                                        <rect key="frame" x="129" y="28" width="156" height="49"/>
-                                        <color key="backgroundColor" red="1" green="0.5607843137254902" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <rect key="frame" x="110" y="22" width="156" height="49"/>
+                                        <color key="backgroundColor" red="1" green="0.5607843137254902" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="XGN-Qm-TJZ" secondAttribute="height" multiplier="16:5" id="4Ub-Vn-8zM"/>
                                             <constraint firstAttribute="width" constant="156" id="J3X-f8-xna"/>
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" red="0.0" green="0.44313725490196076" blue="0.792156862745098" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.0" green="0.44313725490196076" blue="0.792156862745098" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="centerY" secondItem="XGN-Qm-TJZ" secondAttribute="centerY" id="7R1-Ic-XhD"/>
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" secondItem="fgQ-Ee-6nd" secondAttribute="height" multiplier="400:150" id="DOb-Zn-Vi5"/>
@@ -203,26 +197,30 @@
                                     </mask>
                                 </variation>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Invites" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ymW-I7-0N5">
+                                <rect key="frame" x="16" y="286" width="343" height="95"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="95" id="ohW-u3-5DW"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="37"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.0" green="0.52156862745098043" blue="0.88627450980392153" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.0" green="0.52156862745098043" blue="0.88627450980392153" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="centerY" secondItem="ymW-I7-0N5" secondAttribute="centerY" constant="5" id="2aY-gP-jlh"/>
-                            <constraint firstItem="ymW-I7-0N5" firstAttribute="leading" secondItem="P23-48-bEt" secondAttribute="leadingMargin" id="7Dx-kp-fHk"/>
                             <constraint firstItem="2e1-c4-ykl" firstAttribute="top" secondItem="fgQ-Ee-6nd" secondAttribute="bottom" id="8cd-Bc-3gO"/>
+                            <constraint firstItem="ymW-I7-0N5" firstAttribute="leading" secondItem="P23-48-bEt" secondAttribute="leadingMargin" id="F8m-Q8-xPE"/>
+                            <constraint firstItem="KRj-rT-qAd" firstAttribute="centerX" secondItem="fgQ-Ee-6nd" secondAttribute="centerX" id="Fji-YH-djX"/>
                             <constraint firstAttribute="trailing" secondItem="fgQ-Ee-6nd" secondAttribute="trailing" id="HkG-Iv-krZ"/>
-                            <constraint firstItem="ymW-I7-0N5" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="KRj-rT-qAd" secondAttribute="bottom" constant="100" id="P9R-p4-l9e"/>
                             <constraint firstItem="fgQ-Ee-6nd" firstAttribute="width" secondItem="P23-48-bEt" secondAttribute="width" id="QAg-e0-ehu"/>
-                            <constraint firstItem="fgQ-Ee-6nd" firstAttribute="top" relation="greaterThanOrEqual" secondItem="ymW-I7-0N5" secondAttribute="bottom" constant="10" id="SAF-AY-Qzw"/>
-                            <constraint firstAttribute="centerX" secondItem="ymW-I7-0N5" secondAttribute="centerX" id="Tdh-Yd-lCv"/>
+                            <constraint firstItem="ymW-I7-0N5" firstAttribute="top" secondItem="KRj-rT-qAd" secondAttribute="bottom" constant="5" id="edJ-rN-9AH"/>
+                            <constraint firstItem="ymW-I7-0N5" firstAttribute="centerY" secondItem="P23-48-bEt" secondAttribute="centerY" id="g8b-IV-To3"/>
                             <constraint firstAttribute="centerX" secondItem="fgQ-Ee-6nd" secondAttribute="centerX" id="hmy-mz-Il5"/>
-                            <constraint firstAttribute="centerX" secondItem="KRj-rT-qAd" secondAttribute="centerX" id="i7h-uf-WoR"/>
                             <constraint firstItem="fgQ-Ee-6nd" firstAttribute="leading" secondItem="P23-48-bEt" secondAttribute="leading" id="jDe-jf-Jej"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="ymW-I7-0N5" secondAttribute="trailing" id="jFI-V4-8uZ"/>
-                            <constraint firstItem="KRj-rT-qAd" firstAttribute="top" relation="greaterThanOrEqual" secondItem="1vJ-LG-LIa" secondAttribute="bottom" constant="2" id="lMm-Sa-9Eu"/>
-                            <constraint firstItem="ymW-I7-0N5" firstAttribute="top" relation="lessThanOrEqual" secondItem="KRj-rT-qAd" secondAttribute="bottom" constant="5" id="mE9-rU-YqQ"/>
+                            <constraint firstItem="ymW-I7-0N5" firstAttribute="centerX" secondItem="KRj-rT-qAd" secondAttribute="centerX" id="zQ8-D9-FMU"/>
                         </constraints>
                     </view>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
                         <outlet property="bgText" destination="ymW-I7-0N5" id="V9Y-qW-BJf"/>
                         <outlet property="signInButton" destination="XGN-Qm-TJZ" id="VTB-Y7-gBa"/>
@@ -231,7 +229,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4qk-UY-t65" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="705" y="711"/>
+            <point key="canvasLocation" x="540" y="710"/>
         </scene>
     </scenes>
     <resources>

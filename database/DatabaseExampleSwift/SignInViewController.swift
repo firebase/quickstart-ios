@@ -22,25 +22,25 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
 
   @IBOutlet weak var emailField: UITextField!
   @IBOutlet weak var passwordField: UITextField!
-  var ref: FIRDatabaseReference!
+  var ref: DatabaseReference!
 
   override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
     self.view.endEditing(true)
   }
 
   override func viewDidAppear(_ animated: Bool) {
-    if FIRAuth.auth()?.currentUser != nil {
+    if Auth.auth().currentUser != nil {
       self.performSegue(withIdentifier: "signIn", sender: nil)
     }
-    ref = FIRDatabase.database().reference()
+    ref = Database.database().reference()
   }
 
   // Saves user profile information to user database
-  func saveUserInfo(_ user: FIRUser, withUsername username: String) {
+  func saveUserInfo(_ user: Firebase.User, withUsername username: String) {
 
     // Create a change request
     self.showSpinner {}
-    let changeRequest = FIRAuth.auth()?.currentUser?.profileChangeRequest()
+    let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
     changeRequest?.displayName = username
 
     // Commit profile changes to server
@@ -71,7 +71,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     self.showSpinner {}
 
     // Sign user in
-    FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { (user, error) in
+    Auth.auth().signIn(withEmail: email, password: password, completion: { (user, error) in
 
       self.hideSpinner {}
 
@@ -141,7 +141,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         getPassword { password in
 
           // Create the user with the provided credentials
-          FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (user, error) in
+          Auth.auth().createUser(withEmail: email, password: password, completion: { (user, error) in
 
             guard let user = user, error == nil else {
               self.showMessagePrompt(error!.localizedDescription)

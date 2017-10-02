@@ -15,8 +15,7 @@
 //
 
 #import "ViewController.h"
-@import FirebaseInstanceID;
-@import FirebaseMessaging;
+@import Firebase;
 
 @implementation ViewController
 
@@ -25,15 +24,15 @@
 }
 
 - (IBAction)handleLogTokenTouch:(id)sender {
-  // [START get_iid_token]
-  NSString *token = [[FIRInstanceID instanceID] token];
-  NSLog(@"InstanceID token: %@", token);
-  // [END get_iid_token]
+  // [START log_fcm_reg_token]
+  NSString *fcmToken = [FIRMessaging messaging].FCMToken;
+  NSLog(@"FCM registration token: %@", fcmToken);
+  // [END log_fcm_reg_token]
 }
 
 - (IBAction)handleSubscribeTouch:(id)sender {
   // [START subscribe_topic]
-  [[FIRMessaging messaging] subscribeToTopic:@"/topics/news"];
+  [[FIRMessaging messaging] subscribeToTopic:@"news"];
   NSLog(@"Subscribed to news topic");
   // [END subscribe_topic]
 }

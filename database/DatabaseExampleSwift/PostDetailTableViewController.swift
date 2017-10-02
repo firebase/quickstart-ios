@@ -25,13 +25,13 @@ class PostDetailTableViewController: UITableViewController, UITextFieldDelegate 
   let kSectionPost = 0
 
   var postKey = ""
-  var comments: Array<FIRDataSnapshot> = []
+  var comments: Array<DataSnapshot> = []
   var commentField: UITextField? = nil
   let post: Post = Post()
-  lazy var ref: FIRDatabaseReference = FIRDatabase.database().reference()
-  var postRef: FIRDatabaseReference!
-  var commentsRef: FIRDatabaseReference!
-  var refHandle: FIRDatabaseHandle?
+  lazy var ref: DatabaseReference = Database.database().reference()
+  var postRef: DatabaseReference!
+  var commentsRef: DatabaseReference!
+  var refHandle: DatabaseHandle?
 
   // UITextViewDelegate protocol method
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -64,7 +64,7 @@ class PostDetailTableViewController: UITableViewController, UITextFieldDelegate 
     // [END child_event_listener]
 
     // [START post_value_event_listener]
-    refHandle = postRef.observe(FIRDataEventType.value, with: { (snapshot) in
+    refHandle = postRef.observe(DataEventType.value, with: { (snapshot) in
       let postDict = snapshot.value as? [String : AnyObject] ?? [:]
       // [START_EXCLUDE]
       self.post.setValuesForKeys(postDict)
@@ -75,7 +75,7 @@ class PostDetailTableViewController: UITableViewController, UITextFieldDelegate 
     // [END post_value_event_listener]
   }
 
-  func indexOfMessage(_ snapshot: FIRDataSnapshot) -> Int {
+  func indexOfMessage(_ snapshot: DataSnapshot) -> Int {
     var index = 0
     for  comment in self.comments {
       if snapshot.key == comment.key {
@@ -91,6 +91,9 @@ class PostDetailTableViewController: UITableViewController, UITextFieldDelegate 
       postRef.removeObserver(withHandle: refHandle)
     }
     commentsRef.removeAllObservers()
+    if let uid = Auth.auth().currentUser?.uid {
+      Database.database().reference().child("users").child(uid).removeAllObservers()
+    }
   }
 
   // UITableViewDataSource protocol methods
@@ -113,20 +116,21 @@ class PostDetailTableViewController: UITableViewController, UITextFieldDelegate 
     _ = textFieldShouldReturn(commentField!)
     commentField?.isEnabled = false
     sender.isEnabled = false
-    let uid = FIRAuth.auth()?.currentUser?.uid
-    FIRDatabase.database().reference().child("users").child(uid!).observeSingleEvent(of: .value, with: { (snapshot) in
-      if let uid = uid, let commentField = self.commentField, let user = snapshot.value as? [String : AnyObject] {
-        let comment = [
-          "uid": uid,
-          "author": user["username"] as? String ?? "",
-          "text": commentField.text!
-        ]
-        self.commentsRef.childByAutoId().setValue(comment)
-        commentField.text = ""
-        commentField.isEnabled = true
-        sender.isEnabled = true
-      }
-    })
+    if let uid = Auth.auth().currentUser?.uid {
+      Database.database().reference().child("users").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
+        if let commentField = self.commentField, let user = snapshot.value as? [String : AnyObject] {
+          let comment = [
+            "uid": uid,
+            "author": user["username"] as? String ?? "",
+            "text": commentField.text!
+          ]
+          self.commentsRef.childByAutoId().setValue(comment)
+          commentField.text = ""
+          commentField.isEnabled = true
+          sender.isEnabled = true
+        }
+      })
+    }
   }
 
   override func tableView(_ tableView: UITableView,
@@ -136,7 +140,7 @@ class PostDetailTableViewController: UITableViewController, UITextFieldDelegate 
     switch (indexPath as NSIndexPath).section {
     case kSectionPost:
       cell = tableView.dequeueReusableCell(withIdentifier: "post")!
-      if let uid = FIRAuth.auth()?.currentUser?.uid {
+      if let uid = Auth.auth().currentUser?.uid {
         guard let postcell = cell as? PostTableViewCell else {
           break
         }

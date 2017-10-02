@@ -15,7 +15,7 @@
 //
 
 import Foundation
-import FirebaseAnalytics
+import Firebase
 
 /**
 * PatternTabBarController exists as a subclass of UITabBarConttroller that
@@ -37,7 +37,7 @@ class PatternTabBarController: UITabBarController {
         text = "I'd love you to hear about\(name)"
 
     // [START custom_event_swift]
-    FIRAnalytics.logEvent(withName: "share_image", parameters: [
+    Analytics.logEvent("share_image", parameters: [
       "name": name as NSObject,
       "full_text": text as NSObject
       ])

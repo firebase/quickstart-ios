@@ -21,7 +21,7 @@
 
 #import "PatternTabBarController.h"
 
-@import FirebaseAnalytics;
+@import Firebase;
 
 @implementation PatternTabBarController
 

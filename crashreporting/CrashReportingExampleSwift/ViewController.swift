@@ -15,7 +15,7 @@
 //
 
 import UIKit
-import FirebaseCrash
+import Firebase
 
 @objc(ViewController)
 class ViewController: UIViewController {
@@ -23,12 +23,12 @@ class ViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    FIRCrashMessage("View loaded")
+    FirebaseCrashMessage("View loaded")
   }
 
   @IBAction func initiateCrash(_ sender: AnyObject) {
     // [START log_and_crash_swift]
-    FIRCrashMessage("Cause Crash button clicked")
+    FirebaseCrashMessage("Cause Crash button clicked")
     fatalError()
     // [END log_and_crash_swift]
   }

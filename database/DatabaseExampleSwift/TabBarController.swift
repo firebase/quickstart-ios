@@ -22,9 +22,9 @@ class TabBarController: UITabBarController {
 
   override func didMove(toParentViewController parent: UIViewController?) {
     if parent == nil {
-      let firebaseAuth = FIRAuth.auth()
+      let firebaseAuth = Auth.auth()
       do {
-        try firebaseAuth?.signOut()
+        try firebaseAuth.signOut()
       } catch let signOutError as NSError {
         print ("Error signing out: %@", signOutError)
       }

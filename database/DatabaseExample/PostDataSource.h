@@ -18,6 +18,6 @@
 
 @import FirebaseDatabaseUI;
 
-@interface PostDataSource : FirebaseTableViewDataSource
+@interface PostDataSource : FUITableViewDataSource
 
 @end

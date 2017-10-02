@@ -19,7 +19,7 @@ import Firebase
 
 @objc(MyPostsViewController)
 class MyPostsViewController: PostListViewController {
-  override func getQuery() -> FIRDatabaseQuery {
+  override func getQuery() -> DatabaseQuery {
     return (ref?.child("user-posts").child(getUid()))!
   }
 }

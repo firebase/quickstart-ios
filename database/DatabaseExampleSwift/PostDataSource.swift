@@ -17,14 +17,14 @@
 import UIKit
 import FirebaseDatabaseUI
 
-class PostDataSource: FirebaseTableViewDataSource {
+class PostDataSource: FUITableViewDataSource {
 
   override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
     return true
   }
   override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
     if editingStyle == .delete {
-      ref(for: UInt((indexPath as NSIndexPath).row)).removeValue()
+      snapshot(at: indexPath.row).ref.removeValue()
     }
   }
 

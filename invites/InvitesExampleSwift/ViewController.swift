@@ -21,7 +21,7 @@ import Firebase
 // Match the ObjC symbol name inside Main.storyboard.
 @objc(ViewController)
 // [START viewcontroller_interfaces]
-class ViewController: UIViewController, GIDSignInDelegate, GIDSignInUIDelegate, FIRInviteDelegate {
+class ViewController: UIViewController, GIDSignInDelegate, GIDSignInUIDelegate, InviteDelegate {
 // [END viewcontroller_interfaces]
   // [START viewcontroller_vars]
   @IBOutlet weak var signOutButton: UIButton!
@@ -77,14 +77,14 @@ class ViewController: UIViewController, GIDSignInDelegate, GIDSignInUIDelegate, 
 
   // [START invite_tapped]
   @IBAction func inviteTapped(_ sender: AnyObject) {
-    if let invite = FIRInvites.inviteDialog() {
+    if let invite = Invites.inviteDialog() {
       invite.setInviteDelegate(self)
 
       // NOTE: You must have the App Store ID set in your developer console project
       // in order for invitations to successfully be sent.
 
       // A message hint for the dialog. Note this manifests differently depending on the
-      // received invation type. For example, in an email invite this appears as the subject.
+      // received invitation type. For example, in an email invite this appears as the subject.
       invite.setMessage("Try this out!\n -\(GIDSignIn.sharedInstance().currentUser.profile.name)")
       // Title for the dialog, this is what the user sees before sending the invites.
       invite.setTitle("Invites Example")
@@ -113,11 +113,11 @@ class ViewController: UIViewController, GIDSignInDelegate, GIDSignInUIDelegate, 
   // [END toggle_auth]
 
   // [START invite_finished]
-  func inviteFinished(withInvitations invitationIds: [Any], error: Error?) {
+  func inviteFinished(withInvitations invitationIds: [String], error: Error?) {
     if let error = error {
       print("Failed: " + error.localizedDescription)
     } else {
-      print("Invitations sent")
+      print("\(invitationIds.count) invites sent")
     }
   }
   // [END invite_finished]

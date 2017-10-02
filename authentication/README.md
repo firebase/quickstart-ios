@@ -16,7 +16,7 @@ Getting Started
 - Go to the [Firebase Console](https://console.firebase.google.com) and navigate to your project:
   - Select the **Auth** panel and then click the **Sign In Method** tab.
   - Click **Google** and turn on the **Enable** switch, then click **Save**.
-- In XCode, add a custom URL scheme for your reversed client ID.
+- In Xcode, add a custom URL scheme for your reversed client ID.
   - You can find this in the `GoogleService-Info.plist`
 - Run the app on your device or simulator.
     - Select **Sign In** and select Google to begin.

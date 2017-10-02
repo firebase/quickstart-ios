@@ -15,7 +15,7 @@
 //
 
 @import UIKit;
-@import FirebaseRemoteConfig;
+@import Firebase;
 
 @interface ViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UILabel *welcomeLabel;

@@ -15,7 +15,7 @@
 //
 
 import UIKit
-import FirebaseAnalytics
+import Firebase
 
 @objc(ViewController)  // match the ObjC symbol name inside Storyboard
 class ViewController: UIViewController {
@@ -26,10 +26,10 @@ class ViewController: UIViewController {
     recordScreenView()
 
     // [START custom_event_swift]
-    FIRAnalytics.logEvent(withName: kFIREventSelectContent, parameters: [
-      kFIRParameterItemID: "id-\(title!)" as NSObject,
-      kFIRParameterItemName: title! as NSObject,
-      kFIRParameterContentType: "cont" as NSObject
+    Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
+      AnalyticsParameterItemID: "id-\(title!)" as NSObject,
+      AnalyticsParameterItemName: title! as NSObject,
+      AnalyticsParameterContentType: "cont" as NSObject
       ])
     // [END custom_event_swift]
   }
@@ -42,7 +42,7 @@ class ViewController: UIViewController {
     let screenClass = classForCoder.description()
 
     // [START set_current_screen]
-    FIRAnalytics.setScreenName(screenName, screenClass: screenClass)
+    Analytics.setScreenName(screenName, screenClass: screenClass)
     // [END set_current_screen]
   }
 }

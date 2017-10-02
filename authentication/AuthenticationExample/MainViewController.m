@@ -31,7 +31,8 @@ typedef enum : NSUInteger {
   AuthFacebook,
   AuthGoogle,
   AuthTwitter,
-  AuthCustom
+  AuthCustom,
+  AuthPhone
 } AuthProvider;
 
 /*! @var kOKButtonText
@@ -69,6 +70,11 @@ static NSString *const kChangeEmailText = @"Change Email";
  */
 static NSString *const kChangePasswordText = @"Change Password";
 
+/** @var kUpdatePhoneNumberText
+ @brief The title of the "Update Phone Number" button.
+ */
+static NSString *const kUpdatePhoneNumberText = @"Update Phone Number";
+
 @interface MainViewController ()
 @property(strong, nonatomic) FIRAuthStateDidChangeListenerHandle handle;
 @end
@@ -92,58 +98,68 @@ static NSString *const kChangePasswordText = @"Change Password";
          }];
          // [END_EXCLUDE]
        }];
-      // [END link_credential]
-    } else {
-      // [START signin_credential]
-      [[FIRAuth auth] signInWithCredential:credential
-                                completion:^(FIRUser *user, NSError *error) {
-                                  // [START_EXCLUDE]
-                                  [self hideSpinner:^{
-                                    // [END_EXCLUDE]
-                                    if (error) {
-                                      // [START_EXCLUDE]
-                                      [self showMessagePrompt:error.localizedDescription];
-                                      // [END_EXCLUDE]
-                                      return;
-                                    }
-                                    // [END signin_credential]
-                                  }];
-                                }];
+       // [END link_credential]
+     } else {
+       // [START signin_credential]
+       [[FIRAuth auth] signInWithCredential:credential
+                                 completion:^(FIRUser *user, NSError *error) {
+         // [START_EXCLUDE silent]
+         [self hideSpinner:^{
+         // [END_EXCLUDE]
+         if (error) {
+           // [START_EXCLUDE]
+           [self showMessagePrompt:error.localizedDescription];
+           // [END_EXCLUDE]
+           return;
+         }
+         // User successfully signed in. Get user data from the FIRUser object
+         // [START_EXCLUDE]
+         }];
+         // [END_EXCLUDE]
+       }];
+       // [END signin_credential]
     }
   }];
 }
 
 - (void)showAuthPicker: (NSArray<NSNumber *>*) providers {
-  UIAlertController *picker = [UIAlertController alertControllerWithTitle:@"Select Provider"
-                                                                  message:nil
-                                                           preferredStyle:UIAlertControllerStyleAlert];
+  UIAlertController *picker =
+      [UIAlertController alertControllerWithTitle:@"Select Provider"
+                                          message:nil
+                                   preferredStyle:UIAlertControllerStyleAlert];
 
   for (NSNumber *provider in providers) {
     UIAlertAction *action;
     switch (provider.unsignedIntegerValue) {
       case AuthEmail:
       {
-        action = [UIAlertAction actionWithTitle:@"Email" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        action = [UIAlertAction actionWithTitle:@"Email"
+                                          style:UIAlertActionStyleDefault
+                                        handler:^(UIAlertAction * _Nonnull action) {
           [self performSegueWithIdentifier:@"email" sender:nil];
         }];
       }
         break;
       case AuthCustom:
       {
-        action = [UIAlertAction actionWithTitle:@"Custom" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        action = [UIAlertAction actionWithTitle:@"Custom"
+                                          style:UIAlertActionStyleDefault
+                                        handler:^(UIAlertAction * _Nonnull action) {
           [self performSegueWithIdentifier:@"customToken" sender:nil];
         }];
       }
         break;
       case AuthTwitter:
       {
-        action = [UIAlertAction actionWithTitle:@"Twitter" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        action = [UIAlertAction actionWithTitle:@"Twitter"
+                                          style:UIAlertActionStyleDefault
+                                        handler:^(UIAlertAction * _Nonnull action) {
           [[Twitter sharedInstance] logInWithCompletion:^(TWTRSession *session, NSError *error) {
             if (session) {
               // [START headless_twitter_auth]
               FIRAuthCredential *credential =
-              [FIRTwitterAuthProvider credentialWithToken:session.authToken
-                                                   secret:session.authTokenSecret];
+                  [FIRTwitterAuthProvider credentialWithToken:session.authToken
+                                                       secret:session.authTokenSecret];
               // [END headless_twitter_auth]
               [self firebaseLoginWithCredential:credential];
             } else {
@@ -154,31 +170,32 @@ static NSString *const kChangePasswordText = @"Change Password";
       }
         break;
       case AuthFacebook: {
-        action = [UIAlertAction actionWithTitle:@"Facebook" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        action = [UIAlertAction actionWithTitle:@"Facebook"
+                                          style:UIAlertActionStyleDefault
+                                        handler:^(UIAlertAction * _Nonnull action) {
           FBSDKLoginManager *loginManager = [[FBSDKLoginManager alloc] init];
-          [loginManager
-           logInWithReadPermissions:@[ @"public_profile", @"email" ]
-           fromViewController:self
-           handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
-             if (error) {
-               [self showMessagePrompt:error.localizedDescription];
-             } else if (result.isCancelled) {
-               NSLog(@"FBLogin cancelled");
-             } else {
-               // [START headless_facebook_auth]
-               FIRAuthCredential *credential = [FIRFacebookAuthProvider
-                                                credentialWithAccessToken:[FBSDKAccessToken currentAccessToken]
-                                                .tokenString];
+          [loginManager logInWithReadPermissions:@[ @"public_profile", @"email" ]
+                              fromViewController:self
+                                         handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
+            if (error) {
+              [self showMessagePrompt:error.localizedDescription];
+            } else if (result.isCancelled) {
+              NSLog(@"FBLogin cancelled");
+            } else {
+              // [START headless_facebook_auth]
+              FIRAuthCredential *credential = [FIRFacebookAuthProvider
+                  credentialWithAccessToken:[FBSDKAccessToken currentAccessToken].tokenString];
                // [END headless_facebook_auth]
                [self firebaseLoginWithCredential:credential];
              }
            }];
-
         }];
       }
         break;
       case AuthGoogle: {
-        action = [UIAlertAction actionWithTitle:@"Google" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        action = [UIAlertAction actionWithTitle:@"Google"
+                                          style:UIAlertActionStyleDefault
+                                        handler:^(UIAlertAction * _Nonnull action) {
           // [START setup_gid_uidelegate]
           [GIDSignIn sharedInstance].uiDelegate = self;
           [[GIDSignIn sharedInstance] signIn];
@@ -186,8 +203,56 @@ static NSString *const kChangePasswordText = @"Change Password";
         }];
       }
         break;
+      case AuthPhone: {
+        action = [UIAlertAction actionWithTitle:@"Phone"
+                                          style:UIAlertActionStyleDefault
+                                        handler:^(UIAlertAction * _Nonnull action) {
+          [self showTextInputPromptWithMessage:@"Phone Number:"
+                               completionBlock:^(BOOL userPressedOK, NSString *_Nullable userInput) {
+             if (!userPressedOK || !userInput.length) {
+               return;
+             }
+
+             [self showSpinner:^{
+               // [START phone_auth]
+               [[FIRPhoneAuthProvider provider] verifyPhoneNumber:userInput
+                                                       UIDelegate:nil
+                                                       completion:^(NSString * _Nullable verificationID, NSError * _Nullable error) {
+                // [START_EXCLUDE silent]
+                [self hideSpinner:^{
+                // [END_EXCLUDE]
+                 if (error) {
+                   [self showMessagePrompt:error.localizedDescription];
+                   return;
+                 }
+                 // Sign in using the verificationID and the code sent to the user
+                 // [START_EXCLUDE]
+                 [self showTextInputPromptWithMessage:@"Verification Code:"
+                                      completionBlock:^(BOOL userPressedOK, NSString *_Nullable userInput) {
+                   if (!userPressedOK || !userInput.length) {
+                     return;
+                   }
+
+                   // [START get_phone_cred]
+                   FIRAuthCredential *credential = [[FIRPhoneAuthProvider provider]
+                       credentialWithVerificationID:verificationID
+                                   verificationCode:userInput];
+                   // [END get_phone_cred]
+                   [self firebaseLoginWithCredential:credential];
+                 }];
+                }];
+                // [END_EXCLUDE]
+               }];
+               // [END phone_auth]
+             }];
+           }];
+        }];
+      }
+        break;
       case AuthAnonymous: {
-        action = [UIAlertAction actionWithTitle:@"Anonymous" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        action = [UIAlertAction actionWithTitle:@"Anonymous"
+                                          style:UIAlertActionStyleDefault
+                                        handler:^(UIAlertAction * _Nonnull action) {
           [self showSpinner:^{
             // [START firebase_auth_anonymous]
             [[FIRAuth auth]
@@ -207,12 +272,14 @@ static NSString *const kChangePasswordText = @"Change Password";
         }
         break;
     }
-      
+
     [picker addAction:action];
   }
 
 
-  UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+  UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel"
+                                                   style:UIAlertActionStyleCancel
+                                                 handler:nil];
   [picker addAction:cancel];
 
   [self presentViewController:picker animated:YES completion:nil];
@@ -224,13 +291,15 @@ static NSString *const kChangePasswordText = @"Change Password";
                          @(AuthGoogle),
                          @(AuthFacebook),
                          @(AuthTwitter),
+                         @(AuthPhone),
                          @(AuthCustom)]];
 }
 
 - (IBAction)didTapLink:(id)sender {
   NSMutableArray *providers = [@[@(AuthGoogle),
-                                @(AuthFacebook),
-                                @(AuthTwitter)] mutableCopy];
+                                 @(AuthFacebook),
+                                 @(AuthTwitter),
+                                 @(AuthPhone)] mutableCopy];
 
   // Remove any existing providers. Note that this is not a complete list of
   // providers, so always check the documentation for a complete reference:
@@ -242,6 +311,8 @@ static NSString *const kChangePasswordText = @"Change Password";
       [providers removeObject:@(AuthGoogle)];
     } else if ([userInfo.providerID isEqualToString:FIRTwitterAuthProviderID]) {
       [providers removeObject:@(AuthTwitter)];
+    } else if ([userInfo.providerID isEqualToString:FIRPhoneAuthProviderID]) {
+      [providers removeObject:@(AuthPhone)];
     }
   }
   [self showAuthPicker:providers];
@@ -281,7 +352,9 @@ static NSString *const kChangePasswordText = @"Change Password";
 
 - (void)viewWillDisappear:(BOOL)animated {
   [super viewWillDisappear:animated];
+  // [START remove_auth_listener]
   [[FIRAuth auth] removeAuthStateDidChangeListener:_handle];
+  // [END remove_auth_listener]
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -319,36 +392,41 @@ static NSString *const kChangePasswordText = @"Change Password";
     // [END current_user]
   } else if (indexPath.section == kSectionUser) {
     cell = [tableView dequeueReusableCellWithIdentifier:@"Profile"];
-    // [START user_profile]
+    // [START get_user_profile]
     FIRUser *user = [FIRAuth auth].currentUser;
-    NSString *email = user.email;
-    // The user's ID, unique to the Firebase project.
-    // Do NOT use this value to authenticate with your backend server,
-    // if you have one. Use getTokenWithCompletion:completion: instead.
-    NSString *uid = user.uid;
-    NSURL *photoURL = user.photoURL;
-    // [END user_profile]
+    // [END get_user_profile]
+    // [START user_profile]
+    if (user) {
+      // The user's ID, unique to the Firebase project.
+      // Do NOT use this value to authenticate with your backend server,
+      // if you have one. Use getTokenWithCompletion:completion: instead.
+      NSString *uid = user.uid;
+      NSString *email = user.email;
+      NSURL *photoURL = user.photoURL;
+      // [START_EXCLUDE]
+      UILabel *emailLabel = [(UILabel *)cell viewWithTag:1];
+      UILabel *userIDLabel = [(UILabel *)cell viewWithTag:2];
+      UIImageView *profileImageView = [(UIImageView *)cell viewWithTag:3];
+      emailLabel.text = email;
+      userIDLabel.text = uid;
 
-    UILabel *emailLabel = [(UILabel *)cell viewWithTag:1];
-    UILabel *userIDLabel = [(UILabel *)cell viewWithTag:2];
-    UIImageView *profileImageView = [(UIImageView *)cell viewWithTag:3];
-    emailLabel.text = email;
-    userIDLabel.text = uid;
-
-    static NSURL *lastPhotoURL = nil;
-    lastPhotoURL = photoURL;  // to prevent earlier image overwrites later one.
-    if (photoURL) {
-      dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^() {
-        UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:photoURL]];
-        dispatch_async(dispatch_get_main_queue(), ^() {
-          if (photoURL == lastPhotoURL) {
-            profileImageView.image = image;
-          }
+      static NSURL *lastPhotoURL = nil;
+      lastPhotoURL = photoURL;  // to prevent earlier image overwrites later one.
+      if (photoURL) {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^() {
+          UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:photoURL]];
+          dispatch_async(dispatch_get_main_queue(), ^() {
+            if (photoURL == lastPhotoURL) {
+              profileImageView.image = image;
+            }
+          });
         });
-      });
-    } else {
-      profileImageView.image = [UIImage imageNamed:@"ic_account_circle"];
+      } else {
+        profileImageView.image = [UIImage imageNamed:@"ic_account_circle"];
+      }
+      // [END_EXCLUDE]
     }
+    // [END user_profile]
   } else if (indexPath.section == kSectionProviders) {
     cell = [tableView dequeueReusableCellWithIdentifier:@"Provider"];
     // [START provider_data]
@@ -370,7 +448,8 @@ static NSString *const kChangePasswordText = @"Change Password";
   return @"Unlink";
 }
 
-- (UITableViewCellEditingStyle)tableView:(UITableView *)aTableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCellEditingStyle)tableView:(UITableView *)aTableView
+    editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
   if (indexPath.section == kSectionProviders) {
     return UITableViewCellEditingStyleDelete;
   }
@@ -385,19 +464,18 @@ static NSString *const kChangePasswordText = @"Change Password";
     NSString *providerID = [[FIRAuth auth].currentUser.providerData[indexPath.row] providerID];
     [self showSpinner:^{
       // [START unlink_provider]
-      [[FIRAuth auth]
-              .currentUser unlinkFromProvider:providerID
-                                   completion:^(FIRUser *_Nullable user, NSError *_Nullable error) {
-                                     // [START_EXCLUDE]
-                                     [self hideSpinner:^{
-                                       if (error) {
-                                         [self showMessagePrompt:error.localizedDescription];
-                                         return;
-                                       }
-                                       [self.tableView reloadData];
-                                     }];
-                                     // [END_EXCLUDE]
-                                   }];
+      [[FIRAuth auth].currentUser unlinkFromProvider:providerID
+                                          completion:^(FIRUser *_Nullable user, NSError *_Nullable error) {
+        // [START_EXCLUDE]
+        [self hideSpinner:^{
+          if (error) {
+            [self showMessagePrompt:error.localizedDescription];
+            return;
+          }
+          [self.tableView reloadData];
+        }];
+        // [END_EXCLUDE]
+      }];
       // [END unlink_provider]
     }];
   }
@@ -441,7 +519,7 @@ static NSString *const kChangePasswordText = @"Change Password";
     [self presentViewController:alertController animated:YES completion:nil];
   };
   // [START token_refresh]
-  [[FIRAuth auth].currentUser getTokenForcingRefresh:YES completion:action];
+  [[FIRAuth auth].currentUser getIDTokenForcingRefresh:YES completion:action];
   // [END token_refresh]
 }
 
@@ -452,27 +530,25 @@ static NSString *const kChangePasswordText = @"Change Password";
 - (IBAction)didSetDisplayName:(id)sender {
   [self showTextInputPromptWithMessage:@"Display Name:"
                        completionBlock:^(BOOL userPressedOK, NSString *_Nullable userInput) {
-                         if (!userPressedOK || !userInput.length) {
-                           return;
-                         }
+    if (!userPressedOK || !userInput.length) {
+      return;
+    }
 
-                         [self showSpinner:^{
-                           // [START profile_change]
-                           FIRUserProfileChangeRequest *changeRequest =
-                               [[FIRAuth auth].currentUser profileChangeRequest];
-                           changeRequest.displayName = userInput;
-                           [changeRequest commitChangesWithCompletion:^(NSError *_Nullable error) {
-                             // [START_EXCLUDE]
-                             [self hideSpinner:^{
-                               [self showTypicalUIForUserUpdateResultsWithTitle:kSetDisplayNameTitle
-                                                                          error:error];
-                               [self setTitleDisplay:[FIRAuth auth].currentUser];
-                             }];
-                             // [END_EXCLUDE]
-                           }];
-                           // [END profile_change]
-                         }];
-                       }];
+    [self showSpinner:^{
+      // [START profile_change]
+      FIRUserProfileChangeRequest *changeRequest = [[FIRAuth auth].currentUser profileChangeRequest];
+      changeRequest.displayName = userInput;
+      [changeRequest commitChangesWithCompletion:^(NSError *_Nullable error) {
+        // [START_EXCLUDE]
+        [self hideSpinner:^{
+          [self showTypicalUIForUserUpdateResultsWithTitle:kSetDisplayNameTitle error:error];
+          [self setTitleDisplay:[FIRAuth auth].currentUser];
+        }];
+        // [END_EXCLUDE]
+      }];
+      // [END profile_change]
+    }];
+  }];
 }
 
 /** @fn requestVerifyEmail
@@ -481,8 +557,7 @@ static NSString *const kChangePasswordText = @"Change Password";
 - (IBAction)didRequestVerifyEmail:(id)sender {
   [self showSpinner:^{
     // [START send_verification_email]
-    [[FIRAuth auth]
-            .currentUser sendEmailVerificationWithCompletion:^(NSError *_Nullable error) {
+    [[FIRAuth auth].currentUser sendEmailVerificationWithCompletion:^(NSError *_Nullable error) {
       // [START_EXCLUDE]
       [self hideSpinner:^{
         if (error) {
@@ -504,28 +579,22 @@ static NSString *const kChangePasswordText = @"Change Password";
 - (IBAction)didChangeEmail:(id)sender {
   [self showTextInputPromptWithMessage:@"Email Address:"
                        completionBlock:^(BOOL userPressedOK, NSString *_Nullable userInput) {
-                         if (!userPressedOK || !userInput.length) {
-                           return;
-                         }
+    if (!userPressedOK || !userInput.length) {
+      return;
+    }
 
-                         [self showSpinner:^{
-                           // [START change_email]
-                           [[FIRAuth auth]
-                                   .currentUser
-                               updateEmail:userInput
-                                completion:^(NSError *_Nullable error) {
-                                  // [START_EXCLUDE]
-                                  [self hideSpinner:^{
-                                    [self
-                                        showTypicalUIForUserUpdateResultsWithTitle:kChangeEmailText
-                                                                             error:error];
-
-                                  }];
-                                  // [END_EXCLUDE]
-                                }];
-                           // [END change_email]
-                         }];
-                       }];
+    [self showSpinner:^{
+      // [START change_email]
+      [[FIRAuth auth].currentUser updateEmail:userInput completion:^(NSError *_Nullable error) {
+        // [START_EXCLUDE]
+        [self hideSpinner:^{
+          [self showTypicalUIForUserUpdateResultsWithTitle:kChangeEmailText error:error];
+        }];
+        // [END_EXCLUDE]
+      }];
+      // [END change_email]
+    }];
+  }];
 }
 
 /** @fn changePassword
@@ -534,27 +603,71 @@ static NSString *const kChangePasswordText = @"Change Password";
 - (IBAction)didChangePassword:(id)sender {
   [self showTextInputPromptWithMessage:@"New Password:"
                        completionBlock:^(BOOL userPressedOK, NSString *_Nullable userInput) {
-                         if (!userPressedOK || !userInput.length) {
-                           return;
-                         }
+    if (!userPressedOK || !userInput.length) {
+      return;
+    }
 
-                         [self showSpinner:^{
-                           // [START change_password]
-                           [[FIRAuth auth]
-                                   .currentUser
-                               updatePassword:userInput
-                                   completion:^(NSError *_Nullable error) {
-                                     // [START_EXCLUDE]
-                                     [self hideSpinner:^{
-                                       [self showTypicalUIForUserUpdateResultsWithTitle:
-                                                 kChangePasswordText
-                                                                                  error:error];
-                                     }];
-                                     // [END_EXCLUDE]
-                                   }];
-                           // [END change_password]
-                         }];
-                       }];
+    [self showSpinner:^{
+      // [START change_password]
+      [[FIRAuth auth].currentUser updatePassword:userInput completion:^(NSError *_Nullable error) {
+        // [START_EXCLUDE]
+        [self hideSpinner:^{
+          [self showTypicalUIForUserUpdateResultsWithTitle:kChangePasswordText error:error];
+        }];
+      // [END_EXCLUDE]
+      }];
+    // [END change_password]
+    }];
+  }];
+}
+
+/** @fn updatePhoneNumber
+ @brief Updates the phone number of the current user.
+ */
+- (IBAction)didUpdatePhoneNumber:(id)sender {
+  [self showTextInputPromptWithMessage:@"New Phone Number:"
+                       completionBlock:^(BOOL userPressedOK, NSString *_Nullable userInput) {
+    if (!userPressedOK || !userInput.length) {
+      return;
+    }
+
+    [self showSpinner:^{
+      // [START update_phone]
+      [[FIRPhoneAuthProvider provider] verifyPhoneNumber:userInput
+                                              UIDelegate:nil
+                                              completion:^(NSString * _Nullable verificationID,
+                                                           NSError * _Nullable error) {
+        // [START_EXCLUDE]
+        [self hideSpinner:^{
+          if (error) {
+            [self showMessagePrompt:error.localizedDescription];
+            return;
+          }
+          [self showTextInputPromptWithMessage:@"Verification Code:"
+                               completionBlock:^(BOOL userPressedOK, NSString *_Nullable userInput) {
+            if (!userPressedOK || !userInput.length) {
+              return;
+            }
+
+            [self showSpinner:^{
+              // [END_EXCLUDE]
+              FIRPhoneAuthCredential *credential = [[FIRPhoneAuthProvider provider]
+                  credentialWithVerificationID:verificationID
+                              verificationCode:userInput];
+              [[FIRAuth auth].currentUser updatePhoneNumberCredential:credential
+                                                           completion:^(NSError * _Nullable error) {
+                // [END update_phone]
+                [self hideSpinner:^{
+                  [self showTypicalUIForUserUpdateResultsWithTitle:kUpdatePhoneNumberText
+                                                             error:error];
+                }];
+              }];
+            }];
+          }];
+        }];
+      }];
+    }];
+  }];
 }
 
 /** @fn showTypicalUIForUserUpdateResultsWithTitle:error:
@@ -565,14 +678,30 @@ static NSString *const kChangePasswordText = @"Change Password";
 - (void)showTypicalUIForUserUpdateResultsWithTitle:(NSString *)resultsTitle error:(NSError *)error {
   if (error) {
     NSString *message = [NSString stringWithFormat:@"%@ (%ld)\n%@", error.domain, (long)error.code,
-                                                   error.localizedDescription];
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:resultsTitle
-                                                    message:message
-                                                   delegate:nil
-                                          cancelButtonTitle:nil
-                                          otherButtonTitles:kOKButtonText, nil];
-    [alert show];
-    return;
+                         error.localizedDescription];
+    if ([UIAlertController class]) {
+      UIAlertAction *okAction = [UIAlertAction actionWithTitle:kOKButtonText
+                                                         style:UIAlertActionStyleDefault
+                                                       handler:^(UIAlertAction *action) {
+                                                         NSLog(@"OK");
+                                                       }];
+
+      UIAlertController *alertController = [UIAlertController alertControllerWithTitle:resultsTitle
+                                                                               message:message
+                                                                        preferredStyle:UIAlertControllerStyleAlert];
+      [alertController addAction:okAction];
+      [self presentViewController:alertController
+                                                   animated:YES
+                                                 completion:nil];
+    } else {
+      UIAlertView *alert = [[UIAlertView alloc] initWithTitle:resultsTitle
+                                                      message:message
+                                                     delegate:nil
+                                            cancelButtonTitle:nil
+                                            otherButtonTitles:kOKButtonText, nil];
+      [alert show];
+      return;
+    }
   }
   [self.tableView reloadData];
 }

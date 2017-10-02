@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
     // [START tracker_swift]
-    FIRApp.configure()
+    FirebaseApp.configure()
     // [END tracker_swift]
 
     // Set a white background so that patterns are showcased.

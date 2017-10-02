@@ -38,11 +38,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
       launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     // [START firebase_configure]
     // Use Firebase library to configure APIs
-    FIRApp.configure()
+    FirebaseApp.configure()
     // [END firebase_configure]
 
     // [START setup_gidsignin]
-    GIDSignIn.sharedInstance().clientID = FIRApp.defaultApp()?.options.clientID
+    GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
     GIDSignIn.sharedInstance().delegate = self
     // [END setup_gidsignin]
 
@@ -100,7 +100,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
 
     // [START google_credential]
     guard let authentication = user.authentication else { return }
-    let credential = FIRGoogleAuthProvider.credential(withIDToken: authentication.idToken,
+    let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken,
                                                       accessToken: authentication.accessToken)
     // [END google_credential]
     // [START_EXCLUDE]

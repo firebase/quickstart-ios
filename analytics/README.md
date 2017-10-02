@@ -1,13 +1,13 @@
-Firebase Analytics Quickstart
+Google Analytics for Firebase Quickstart
 ===========================
 
-Firebase Analytics iOS Quickstart app demonstrates collecting app usage analytics via the
+Google Analytics for Firebase iOS Quickstart app demonstrates collecting app usage analytics via the
 Analytics API.
 
 Introduction
 ------------
 
-- [Read more about Firebase Analytics](https://firebase.google.com/docs/analytics)
+- [Read more about Google Analytics for Firebase](https://firebase.google.com/docs/analytics)
 
 Getting Started
 ---------------

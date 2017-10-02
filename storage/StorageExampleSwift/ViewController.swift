@@ -17,9 +17,6 @@
 import UIKit
 import Photos
 import Firebase
-import FirebaseAuth
-import FirebaseStorage
-/* Note that "#import "FirebaseStorage.h" is included in BridgingHeader.h */
 
 @objc(ViewController)
 class ViewController: UIViewController,
@@ -29,20 +26,20 @@ class ViewController: UIViewController,
   @IBOutlet weak var downloadPicButton: UIButton!
   @IBOutlet weak var urlTextView: UITextField!
 
-  var storageRef: FIRStorageReference!
+  var storageRef: StorageReference!
 
   override func viewDidLoad() {
     super.viewDidLoad()
 
     // [START configurestorage]
-    storageRef = FIRStorage.storage().reference()
+    storageRef = Storage.storage().reference()
     // [END configurestorage]
 
     // [START storageauth]
-    // Using Firebase Storage requires the user be authenticated. Here we are using
+    // Using Cloud Storage for Firebase requires the user be authenticated. Here we are using
     // anonymous authentication.
-    if FIRAuth.auth()?.currentUser == nil {
-      FIRAuth.auth()?.signInAnonymously(completion: { (user: FIRUser?, error: Error?) in
+    if Auth.auth().currentUser == nil {
+      Auth.auth().signInAnonymously(completion: { (user: User?, error: Error?) in
         if let error = error {
           self.urlTextView.text = error.localizedDescription
           self.takePicButton.isEnabled = false
@@ -80,11 +77,11 @@ class ViewController: UIViewController,
       let asset = assets.firstObject
       asset?.requestContentEditingInput(with: nil, completionHandler: { (contentEditingInput, info) in
         let imageFile = contentEditingInput?.fullSizeImageURL
-        let filePath = FIRAuth.auth()!.currentUser!.uid +
+        let filePath = Auth.auth().currentUser!.uid +
           "/\(Int(Date.timeIntervalSinceReferenceDate * 1000))/\(imageFile!.lastPathComponent)"
         // [START uploadimage]
         self.storageRef.child(filePath)
-          .putFile(imageFile!, metadata: nil) { (metadata, error) in
+          .putFile(from: imageFile!, metadata: nil) { (metadata, error) in
             if let error = error {
               print("Error uploading: \(error)")
               self.urlTextView.text = "Upload Failed"
@@ -97,23 +94,22 @@ class ViewController: UIViewController,
     } else {
       guard let image = info[UIImagePickerControllerOriginalImage] as? UIImage else { return }
       guard let imageData = UIImageJPEGRepresentation(image, 0.8) else { return }
-      let imagePath = FIRAuth.auth()!.currentUser!.uid +
+      let imagePath = Auth.auth().currentUser!.uid +
         "/\(Int(Date.timeIntervalSinceReferenceDate * 1000)).jpg"
-      let metadata = FIRStorageMetadata()
+      let metadata = StorageMetadata()
       metadata.contentType = "image/jpeg"
-      self.storageRef.child(imagePath)
-        .put(imageData, metadata: metadata) { (metadata, error) in
-          if let error = error {
-            print("Error uploading: \(error)")
-            self.urlTextView.text = "Upload Failed"
-            return
-          }
-          self.uploadSuccess(metadata!, storagePath: imagePath)
+      self.storageRef.child(imagePath).putData(imageData, metadata: metadata) { (metadata, error) in
+        if let error = error {
+          print("Error uploading: \(error)")
+          self.urlTextView.text = "Upload Failed"
+          return
         }
+        self.uploadSuccess(metadata!, storagePath: imagePath)
+      }
     }
   }
 
-  func uploadSuccess(_ metadata: FIRStorageMetadata, storagePath: String) {
+  func uploadSuccess(_ metadata: StorageMetadata, storagePath: String) {
     print("Upload Succeeded!")
     self.urlTextView.text = metadata.downloadURL()?.absoluteString
     UserDefaults.standard.set(storagePath, forKey: "storagePath")

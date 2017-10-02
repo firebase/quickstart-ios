@@ -16,10 +16,8 @@
 
 #import "AppDelegate.h"
 // [START import]
-@import FirebaseDynamicLinks;
-// [END import]
-
 @import Firebase;
+// [END import]
 
 static NSString *const CUSTOM_URL_SCHEME = @"dlscheme";
 
@@ -118,20 +116,29 @@ continueUserActivity:(NSUserActivity *)userActivity
 }
 
 - (void)showDeepLinkAlertViewWithMessage:(NSString *)message {
-  UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"
-                                                     style:UIAlertActionStyleDefault
-                                                   handler:^(UIAlertAction *action) {
-                                                     NSLog(@"OK");
-                                                   }];
+  if ([UIAlertController class]) {
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"
+                                                       style:UIAlertActionStyleDefault
+                                                     handler:^(UIAlertAction *action) {
+                                                       NSLog(@"OK");
+                                                     }];
 
-  UIAlertController *alertController =
-      [UIAlertController alertControllerWithTitle:@"Deep-link Data"
-                                          message:message
-                                   preferredStyle:UIAlertControllerStyleAlert];
-  [alertController addAction:okAction];
-  [self.window.rootViewController presentViewController:alertController
-                                               animated:YES
-                                             completion:nil];
+    UIAlertController *alertController =
+        [UIAlertController alertControllerWithTitle:@"Deep-link Data"
+                                            message:message
+                                     preferredStyle:UIAlertControllerStyleAlert];
+    [alertController addAction:okAction];
+    [self.window.rootViewController presentViewController:alertController
+                                                 animated:YES
+                                               completion:nil];
+  } else {
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Deep-link Data"
+                                                    message:message
+                                                   delegate:self
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [alert show];
+  }
 }
 
 @end

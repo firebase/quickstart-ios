@@ -27,6 +27,7 @@ directory of the sample you wish to run.
 - [Config](config)
 - [Crash Reporting](crashreporting)
 - [Database](database)
+- [Firestore](firestore)
 - [Dynamic Links](dynamiclinks)
 - [Invites](invites)
 - [Cloud Messaging](messaging)

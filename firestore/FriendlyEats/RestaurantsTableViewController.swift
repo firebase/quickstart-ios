@@ -17,7 +17,7 @@
 import UIKit
 import FirebaseAuthUI
 import FirebaseGoogleAuthUI
-import Firestore
+import FirebaseFirestore
 import SDWebImage
 
 func priceString(from price: Int) -> String {

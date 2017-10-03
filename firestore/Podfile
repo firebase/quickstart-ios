@@ -1,5 +1,3 @@
-source 'sso://cpdc-internal/spec'
-source 'https://github.com/CocoaPods/Specs.git'
 target 'FriendlyEats' do
   use_frameworks!
 

@@ -74,7 +74,7 @@ class ViewController: UIViewController {
         self.remoteConfig.activateFetched()
       } else {
         print("Config not fetched")
-        print("Error \(error!.localizedDescription)")
+        print("Error: \(error?.localizedDescription ?? "No error available.")")
       }
       self.displayWelcome()
     }

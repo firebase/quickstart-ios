@@ -29,7 +29,7 @@ final class LocalCollection<T: DocumentSerializable> {
 
   private let updateHandler: ([DocumentChange]) -> ()
 
-  private var listener: FIRListenerRegistration? {
+  private var listener: ListenerRegistration? {
     didSet {
       oldValue?.remove()
     }

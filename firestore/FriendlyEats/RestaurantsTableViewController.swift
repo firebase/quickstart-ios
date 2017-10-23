@@ -67,7 +67,7 @@ class RestaurantsTableViewController: UIViewController, UITableViewDataSource, U
     }
   }
 
-  private var listener: FIRListenerRegistration?
+  private var listener: ListenerRegistration?
 
   fileprivate func observeQuery() {
     guard let query = query else { return }

@@ -42,7 +42,7 @@ NSString *const kGCMMessageIDKey = @"gcm.message_id";
   // [END configure_firebase]
 
   // [START set_messaging_delegate]
-  [FIRMessaging messaging].delegate = self;
+  [FIRMessaging messaging].remoteMessageDelegate = self;
   // [END set_messaging_delegate]
 
   // Register for remote notifications. This shows a permission dialog on first run, to

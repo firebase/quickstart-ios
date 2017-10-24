@@ -7,7 +7,6 @@ source 'https://github.com/CocoaPods/Specs.git'
 target 'ABTestingExample' do
   use_frameworks!
 
-  pod 'FirebaseABTesting'
   pod 'Firebase/RemoteConfig'
 
   target 'ABTestingExampleTests' do

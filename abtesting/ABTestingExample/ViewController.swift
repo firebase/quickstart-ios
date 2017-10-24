@@ -44,11 +44,16 @@ class ViewController: UIViewController, UITableViewDataSource {
     super.viewDidLoad()
     self.tableView.dataSource = self
     self.tableView.tableFooterView = UIView()
+
+    NotificationCenter.default.addObserver(self,
+                                           selector: #selector(printInstanceIDToken),
+                                           name: .InstanceIDTokenRefresh,
+                                           object: nil)
   }
 
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    RemoteConfig.remoteConfig().fetch { (status, error) in
+    RemoteConfig.remoteConfig().fetch(withExpirationDuration: 0) { (status, error) in
       if let error = error {
         print("Error fetching config: \(error)")
       }
@@ -60,20 +65,26 @@ class ViewController: UIViewController, UITableViewDataSource {
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
     setAppearance()
-
-    let instanceID = InstanceID.instanceID().token() ?? "null"
-    print("InstanceID token: \(instanceID)")
   }
 
   func setAppearance() {
     RemoteConfig.remoteConfig().activateFetched()
     let configValue = RemoteConfig.remoteConfig()["color_scheme"]
-    print(configValue.stringValue as Any)
+    print("Config value: \(configValue.stringValue ?? "null")")
     if configValue.stringValue == "dark" {
       colorScheme = .dark
     } else {
       colorScheme = .light
     }
+  }
+
+  func printInstanceIDToken() {
+    let instanceID = InstanceID.instanceID().token() ?? "null"
+    print("InstanceID token: \(instanceID)")
+  }
+
+  deinit {
+    NotificationCenter.default.removeObserver(self)
   }
 
   // MARK: - UI Colors

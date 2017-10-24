@@ -171,13 +171,11 @@ didReceiveNotificationResponse:(UNNotificationResponse *)response
 // [END ios_10_message_handling]
 
 // [START refresh_token]
-- (void)messaging:(nonnull FIRMessaging *)messaging didRefreshRegistrationToken:(nonnull NSString *)fcmToken {
-  // Note that this callback will be fired everytime a new token is generated, including the first
-  // time. So if you need to retrieve the token as soon as it is available this is where that
-  // should be done.
-  NSLog(@"FCM registration token: %@", fcmToken);
+- (void)messaging:(FIRMessaging *)messaging didReceiveRegistrationToken:(NSString *)fcmToken {
+    NSLog(@"FCM registration token: %@", fcmToken);
 
-  // TODO: If necessary send token to application server.
+    // TODO: If necessary send token to application server.
+    // Note: This callback is fired at each app startup and whenever a new token is generated.
 }
 // [END refresh_token]
 

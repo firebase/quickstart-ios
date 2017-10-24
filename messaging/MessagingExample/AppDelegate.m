@@ -65,7 +65,7 @@ NSString *const kGCMMessageIDKey = @"gcm.message_id";
       (UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge);
       UIUserNotificationSettings *settings =
       [UIUserNotificationSettings settingsForTypes:allNotificationTypes categories:nil];
-      [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+      [application registerUserNotificationSettings:settings];
     } else {
       // iOS 10 or later
       #if defined(__IPHONE_10_0) && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
@@ -80,7 +80,7 @@ NSString *const kGCMMessageIDKey = @"gcm.message_id";
       #endif
     }
 
-    [[UIApplication sharedApplication] registerForRemoteNotifications];
+    [application registerForRemoteNotifications];
     // [END register_for_notifications]
   }
   return YES;

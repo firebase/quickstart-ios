@@ -31,7 +31,7 @@
   // [END configure]
 
   // Set a white background so that patterns are showcased.
-  _window.backgroundColor = [UIColor whiteColor];
+  self.window.backgroundColor = [UIColor whiteColor];
 
   return YES;
 }

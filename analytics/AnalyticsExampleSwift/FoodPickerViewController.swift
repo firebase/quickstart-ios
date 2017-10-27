@@ -29,8 +29,7 @@ class FoodPickerViewController: UIViewController, UIPickerViewDelegate, UIPicker
 
   func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
     let food = foodStuffs[row]
-    UserDefaults.standard.setValue(food, forKey: "favorite_food")
-    UserDefaults.standard.synchronize()
+    UserDefaults.standard.set(food, forKey: "favorite_food")
 
     // [START user_property]
     Analytics.setUserProperty(food, forName: "favorite_food")

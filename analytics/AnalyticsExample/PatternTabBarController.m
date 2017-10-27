@@ -58,7 +58,7 @@
 }
 
 - (NSString *)getUserFavoriteFood {
-  return [[NSUserDefaults standardUserDefaults] valueForKey:@"favorite_food"];
+  return [[NSUserDefaults standardUserDefaults] stringForKey:@"favorite_food"];
 }
 
 - (void)askForFavoriteFood {

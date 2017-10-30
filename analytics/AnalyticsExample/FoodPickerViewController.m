@@ -41,7 +41,7 @@
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row
        inComponent:(NSInteger)component {
-  NSString *food = _foodStuffs[row];
+  NSString *food = self.foodStuffs[row];
 
   [[NSUserDefaults standardUserDefaults] setObject:food forKey:@"favorite_food"];
 
@@ -57,13 +57,13 @@
 }
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
-  return _foodStuffs.count;
+  return self.foodStuffs.count;
 }
 
 - (NSString *)pickerView:(UIPickerView *)pickerView
              titleForRow:(NSInteger)row
             forComponent:(NSInteger)component {
-  return _foodStuffs[row];
+  return self.foodStuffs[row];
 }
 
 @end

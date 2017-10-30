@@ -6,7 +6,7 @@ behaviors and exports the experiment results into Firebase Analytics. This
 sample demonstrates using an A/B test to test mutiple color schemes within
 an app.
 
-##Quickstart Setup
+## Quickstart Setup
 
 In Firebase Console, create a new A/B test with any name. In step two under
 'Variants', click the 'Add Parameter' button and create a parameter named

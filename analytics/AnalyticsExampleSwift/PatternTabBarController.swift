@@ -45,8 +45,9 @@ class PatternTabBarController: UITabBarController {
 
     let title = "Share: \(self.selectedViewController!.title!)",
         message = "Share event sent to Analytics; actual share not implemented in this quickstart",
-        alert = UIAlertView(title: title, message: message, delegate: nil, cancelButtonTitle: "Ok")
-    alert.show()
+		alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+	alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+	present(alert, animated: true, completion: nil)
   }
 
   @IBAction func unwindToHome(_ segue: UIStoryboardSegue?) {

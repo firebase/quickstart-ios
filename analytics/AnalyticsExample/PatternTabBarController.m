@@ -49,12 +49,10 @@
                      self.selectedViewController.title];
   NSString *message =
       @"Share event sent to Analytics; actual share not implemented in this quickstart";
-  UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title
-                                                  message:message
-                                                 delegate:nil
-                                        cancelButtonTitle:@"Ok"
-                                        otherButtonTitles:nil];
-  [alert show];
+
+  UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
+  [alert addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil]];
+  [self presentViewController:alert animated:true completion:nil];
 }
 
 - (NSString *)getUserFavoriteFood {

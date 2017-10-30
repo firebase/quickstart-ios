@@ -55,7 +55,7 @@ class PatternTabBarController: UITabBarController {
   }
 
   func getUserFavoriteFood() -> String? {
-    return UserDefaults.standard.value(forKey: "favorite_food") as? String
+    return UserDefaults.standard.string(forKey: "favorite_food")
   }
 
   func askForFavoriteFood() {

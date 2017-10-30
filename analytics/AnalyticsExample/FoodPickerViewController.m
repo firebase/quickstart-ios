@@ -43,8 +43,7 @@
        inComponent:(NSInteger)component {
   NSString *food = _foodStuffs[row];
 
-  [[NSUserDefaults standardUserDefaults] setValue:food forKey:@"favorite_food"];
-  [[NSUserDefaults standardUserDefaults] synchronize];
+  [[NSUserDefaults standardUserDefaults] setObject:food forKey:@"favorite_food"];
 
   // [START user_property]
   [FIRAnalytics setUserPropertyString:food forName:@"favorite_food"];

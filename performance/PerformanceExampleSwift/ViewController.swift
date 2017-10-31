@@ -39,7 +39,7 @@ class ViewController: UIViewController {
       contents = try String.init(contentsOfFile: fileName, encoding: .utf8)
     } catch {
       print("Log file doesn't exist yet")
-	  contents = ""
+      contents = ""
     }
 
     let fileLength = contents.lengthOfBytes(using: .utf8)

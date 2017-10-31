@@ -34,7 +34,7 @@ class ViewController: UIViewController {
     // Start tracing
     let trace = Performance.startTrace(name: "request_trace")
 
-	let contents: String
+    let contents: String
     do {
       contents = try String.init(contentsOfFile: fileName, encoding: .utf8)
     } catch {
@@ -42,7 +42,7 @@ class ViewController: UIViewController {
 	  contents = ""
     }
 
-	let fileLength = contents.lengthOfBytes(using: .utf8)
+    let fileLength = contents.lengthOfBytes(using: .utf8)
 
     trace?.incrementCounter(named: "log_file_size", by: fileLength)
 
@@ -60,15 +60,15 @@ class ViewController: UIViewController {
       }
 
       DispatchQueue.main.async {
-        self.imageView.image = UIImage.init(data: data!)
+        self.imageView.image = UIImage(data: data!)
       }
 
       trace?.stop()
 
-      let contentToWrite = contents + (response?.url?.absoluteString ?? "") as NSString
+	  let contentToWrite = contents + (response?.url?.absoluteString ?? "")
       do {
-        try contentToWrite.write(toFile: fileName, atomically: false, encoding: String.Encoding.utf8.rawValue)
-      } catch {
+		try contentToWrite.write(toFile: fileName, atomically: false, encoding: .utf8)
+	  } catch {
         print("Can't write to log file")
       }
     }

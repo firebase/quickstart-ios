@@ -385,9 +385,9 @@ class MainViewController: UITableViewController, GIDSignInUIDelegate {
         last.photoURL = photoURL;  // to prevent earlier image overwrites later one.
         if let photoURL = photoURL {
           DispatchQueue.global(qos: .default).async {
-            let data = try? Data.init(contentsOf: photoURL)
+            let data = try? Data(contentsOf: photoURL)
             if let data = data {
-              let image = UIImage.init(data: data)
+              let image = UIImage(data: data)
               DispatchQueue.main.async(execute: {
                 if photoURL == last.photoURL {
                   profileImageView?.image = image
@@ -396,7 +396,7 @@ class MainViewController: UITableViewController, GIDSignInUIDelegate {
             }
           }
         } else {
-          profileImageView?.image = UIImage.init(named: "ic_account_circle")
+          profileImageView?.image = UIImage(named: "ic_account_circle")
         }
         // [END_EXCLUDE]
       }
@@ -466,11 +466,11 @@ class MainViewController: UITableViewController, GIDSignInUIDelegate {
 
   @IBAction func didTokenRefresh(_ sender: AnyObject) {
     let action: AuthTokenCallback = {(token, error) in
-      let okAction = UIAlertAction.init(title: self.kOKButtonText, style: .default) {
+      let okAction = UIAlertAction(title: self.kOKButtonText, style: .default) {
         action in print(self.kOKButtonText)
       }
       if let error = error {
-        let alertController  = UIAlertController.init(title: self.kTokenRefreshErrorAlertTitle,
+        let alertController  = UIAlertController(title: self.kTokenRefreshErrorAlertTitle,
           message: error.localizedDescription, preferredStyle: .alert)
         alertController.addAction(okAction)
         self.present(alertController, animated: true, completion: nil)
@@ -480,7 +480,7 @@ class MainViewController: UITableViewController, GIDSignInUIDelegate {
       // Log token refresh event to Scion.
       Analytics.logEvent("tokenrefresh", parameters: nil)
 
-      let alertController = UIAlertController.init(title: self.kTokenRefreshedAlertTitle,
+      let alertController = UIAlertController(title: self.kTokenRefreshedAlertTitle,
           message: token, preferredStyle: .alert)
         alertController.addAction(okAction)
         self.present(alertController, animated: true, completion: nil)
@@ -634,10 +634,10 @@ class MainViewController: UITableViewController, GIDSignInUIDelegate {
   func showTypicalUIForUserUpdateResults(withTitle resultsTitle: String, error: Error?) {
     if let error = error {
       let message = "\(error.localizedDescription)"
-      let okAction = UIAlertAction.init(title: self.kOKButtonText, style: .default) {
+      let okAction = UIAlertAction(title: self.kOKButtonText, style: .default) {
         action in print(self.kOKButtonText)
       }
-      let alertController  = UIAlertController.init(title: resultsTitle,
+      let alertController  = UIAlertController(title: resultsTitle,
         message: message, preferredStyle: .alert)
       alertController.addAction(okAction)
       self.present(alertController, animated: true, completion: nil)

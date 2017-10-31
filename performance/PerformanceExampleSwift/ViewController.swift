@@ -60,15 +60,15 @@ class ViewController: UIViewController {
       }
 
       DispatchQueue.main.async {
-        self.imageView.image = UIImage(data: data!)
+        self.imageView.image = UIImage.init(data: data!)
       }
 
       trace?.stop()
 
-	  let contentToWrite = contents + (response?.url?.absoluteString ?? "")
+      let contentToWrite = contents + (response?.url?.absoluteString ?? "") as NSString
       do {
-		try contentToWrite.write(toFile: fileName, atomically: false, encoding: .utf8)
-	  } catch {
+        try contentToWrite.write(toFile: fileName, atomically: false, encoding: String.Encoding.utf8.rawValue)
+      } catch {
         print("Can't write to log file")
       }
     }

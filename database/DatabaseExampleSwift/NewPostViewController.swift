@@ -32,7 +32,7 @@ class NewPostViewController: UIViewController, UITextFieldDelegate {
     self.ref = Database.database().reference()
     // [END create_database_reference]
 
-    let doneBar = UIToolbar(frame: CGRect.init(x: 0, y: 0, width: 320, height: 44))
+    let doneBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 44))
     doneBar.autoresizingMask = .flexibleWidth
     let flex = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
     let done = UIBarButtonItem(title: "Post", style: .plain, target: self, action: #selector(didTapShare))
@@ -50,7 +50,7 @@ class NewPostViewController: UIViewController, UITextFieldDelegate {
       // Get user value
       let value = snapshot.value as? NSDictionary
       let username = value?["username"] as? String ?? ""
-      let user = User.init(username: username)
+      let user = User(username: username)
 
       // [START_EXCLUDE]
       // Write new post

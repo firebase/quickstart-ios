@@ -34,14 +34,15 @@ class ViewController: UIViewController {
     // Start tracing
     let trace = Performance.startTrace(name: "request_trace")
 
-    var fileLength = 0
-    var contents = ""
+	let contents: String
     do {
       contents = try String.init(contentsOfFile: fileName, encoding: .utf8)
-      fileLength = contents.lengthOfBytes(using: .utf8)
     } catch {
       print("Log file doesn't exist yet")
+	  contents = ""
     }
+
+	let fileLength = contents.lengthOfBytes(using: .utf8)
 
     trace?.incrementCounter(named: "log_file_size", by: fileLength)
 

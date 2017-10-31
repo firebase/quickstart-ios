@@ -37,20 +37,20 @@ class PostListViewController: UIViewController, UITableViewDelegate {
     // [END create_database_reference]
 
     let identifier = "post"
-    let nib = UINib.init(nibName: "PostTableViewCell", bundle: nil)
+    let nib = UINib(nibName: "PostTableViewCell", bundle: nil)
     tableView.register(nib, forCellReuseIdentifier: identifier)
 
-    dataSource = FUITableViewDataSource.init(query: getQuery()) { (tableView, indexPath, snap) -> UITableViewCell in
+    dataSource = FUITableViewDataSource(query: getQuery()) { (tableView, indexPath, snap) -> UITableViewCell in
       let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! PostTableViewCell
 
-      guard let post = Post.init(snapshot: snap) else { return cell }
-      cell.authorImage.image = UIImage.init(named: "ic_account_circle")
+      guard let post = Post(snapshot: snap) else { return cell }
+      cell.authorImage.image = UIImage(named: "ic_account_circle")
       cell.authorLabel.text = post.author
       var imageName = "ic_star_border"
       if (post.stars?[self.getUid()]) != nil {
         imageName = "ic_star"
       }
-      cell.starButton.setImage(UIImage.init(named: imageName), for: .normal)
+      cell.starButton.setImage(UIImage(named: imageName), for: .normal)
       if let starCount = post.starCount {
         cell.numStarsLabel.text = "\(starCount)"
       }

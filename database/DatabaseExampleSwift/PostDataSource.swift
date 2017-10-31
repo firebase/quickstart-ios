@@ -37,7 +37,7 @@ class PostDataSource: FUITableViewDataSource {
   }
 
   override func numberOfSections(in tableView: UITableView) -> Int {
-    let noDataLabel = UILabel.init(frame: CGRect.init(x: 0, y: 0, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
+    let noDataLabel = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
     noDataLabel.text = "No posts yet - why not add one?"
     noDataLabel.textColor = UIColor.black
     noDataLabel.textAlignment = .center

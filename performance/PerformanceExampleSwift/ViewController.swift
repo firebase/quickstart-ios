@@ -36,7 +36,7 @@ class ViewController: UIViewController {
 
     let contents: String
     do {
-      contents = try String.init(contentsOfFile: fileName, encoding: .utf8)
+      contents = try String(contentsOfFile: fileName, encoding: .utf8)
     } catch {
       print("Log file doesn't exist yet")
       contents = ""
@@ -60,7 +60,7 @@ class ViewController: UIViewController {
       }
 
       DispatchQueue.main.async {
-        self.imageView.image = UIImage.init(data: data!)
+        self.imageView.image = UIImage(data: data!)
       }
 
       trace?.stop()

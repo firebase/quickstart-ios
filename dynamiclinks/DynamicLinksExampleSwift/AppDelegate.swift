@@ -108,11 +108,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   @available(iOS 8.0, *)
   func showDeepLinkAlertView(withMessage message: String) {
-    let okAction = UIAlertAction.init(title: "OK", style: .default) { (action) -> Void in
+    let okAction = UIAlertAction(title: "OK", style: .default) { (action) -> Void in
       print("OK")
     }
 
-    let alertController = UIAlertController.init(title: "Deep-link Data", message: message, preferredStyle: .alert)
+    let alertController = UIAlertController(title: "Deep-link Data", message: message, preferredStyle: .alert)
     alertController.addAction(okAction)
     self.window?.rootViewController?.present(alertController, animated: true, completion: nil)
   }

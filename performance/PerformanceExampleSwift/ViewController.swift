@@ -65,9 +65,9 @@ class ViewController: UIViewController {
 
       trace?.stop()
 
-      let contentToWrite = contents + (response?.url?.absoluteString ?? "") as NSString
+      let contentToWrite = contents + (response?.url?.absoluteString ?? "")
       do {
-        try contentToWrite.write(toFile: fileName, atomically: false, encoding: String.Encoding.utf8.rawValue)
+        try contentToWrite.write(toFile: fileName, atomically: false, encoding: .utf8)
       } catch {
         print("Can't write to log file")
       }

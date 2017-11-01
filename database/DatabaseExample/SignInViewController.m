@@ -30,6 +30,7 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
+  [super viewDidAppear:animated];
   if ([FIRAuth auth].currentUser) {
     [self performSegueWithIdentifier:@"signIn" sender:nil];
   }

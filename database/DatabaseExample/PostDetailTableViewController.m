@@ -54,6 +54,7 @@ static const int kSectionPost = 0;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+  [super viewWillAppear:animated];
   [self.comments removeAllObjects];
   // [START child_event_listener]
   // Listen for new comments in the Firebase database
@@ -100,6 +101,7 @@ static const int kSectionPost = 0;
   return -1;
 }
 - (void)viewWillDisappear:(BOOL)animated {
+  [super viewWillDisappear:animated];
   [self.postRef removeObserverWithHandle:_refHandle];
   [self.commentsRef removeAllObservers];
   [[[[FIRDatabase database].reference child:@"users"] child:[FIRAuth auth].currentUser.uid] removeAllObservers];

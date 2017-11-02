@@ -23,10 +23,6 @@
 
 @implementation PostTableViewCell
 
-- (instancetype)initWithFrame:(CGRect)frame {
-  return [super initWithFrame:frame];
-}
-
 - (IBAction)didTapStarButton:(id)sender {
   if (!self.postKey) {
     // We don't know the identifier of this post, so just return.

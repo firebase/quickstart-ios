@@ -18,11 +18,11 @@
 @import Firebase;
 
 @interface PostTableViewCell : UITableViewCell
-@property(weak, nonatomic) IBOutlet UIImageView *authorImage;
-@property(weak, nonatomic) IBOutlet UILabel *authorLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *authorImage;
+@property (weak, nonatomic) IBOutlet UILabel *authorLabel;
 @property (weak, nonatomic) IBOutlet UIButton *starButton;
-@property(weak, nonatomic) IBOutlet UILabel *numStarsLabel;
-@property(weak, nonatomic) IBOutlet UILabel *postTitle;
-@property(weak, nonatomic) IBOutlet UITextView *postBody;
-@property(weak, nonatomic) NSString *postKey;
+@property (weak, nonatomic) IBOutlet UILabel *numStarsLabel;
+@property (weak, nonatomic) IBOutlet UILabel *postTitle;
+@property (weak, nonatomic) IBOutlet UITextView *postBody;
+@property (weak, nonatomic) NSString *postKey;
 @end

@@ -23,22 +23,18 @@
 
 @implementation PostTableViewCell
 
-- (instancetype)initWithFrame:(CGRect)frame {
-  return [super initWithFrame:frame];
-}
-
 - (IBAction)didTapStarButton:(id)sender {
-  if (!_postKey) {
+  if (!self.postKey) {
     // We don't know the identifier of this post, so just return.
     return;
   }
-  self.postRef = [[[[FIRDatabase database] reference] child:@"posts"] child:_postKey];
-  [self incrementStarsForRef:_postRef];
-  [_postRef observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+  self.postRef = [[[[FIRDatabase database] reference] child:@"posts"] child:self.postKey];
+  [self incrementStarsForRef:self.postRef];
+  [self.postRef observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
     NSString *uid = snapshot.value[@"uid"];
     FIRDatabaseReference *ref = [[[[[FIRDatabase database] reference]
                                  child:@"user-posts"]
-                                  child:uid] child:_postKey];
+                                  child:uid] child:self.postKey];
     [self incrementStarsForRef:ref];
   }];
 }

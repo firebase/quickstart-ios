@@ -164,6 +164,8 @@ static const int kSectionPost = 0;
   } else if (indexPath.section == kSectionSend) {
     cell = [tableView dequeueReusableCellWithIdentifier:@"send"];
     _commentField = [(UITextField *) cell viewWithTag:7];
+  } else {
+      [NSException raise:NSInternalInconsistencyException format:@"Wrong section %ld", (long)indexPath.section];
   }
   return cell;
 }

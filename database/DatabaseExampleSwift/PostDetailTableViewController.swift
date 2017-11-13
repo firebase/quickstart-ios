@@ -137,7 +137,7 @@ class PostDetailTableViewController: UITableViewController, UITextFieldDelegate 
                           cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell: UITableViewCell
 
-    switch (indexPath as NSIndexPath).section {
+    switch indexPath.section {
     case kSectionPost:
       cell = tableView.dequeueReusableCell(withIdentifier: "post")!
       if let uid = Auth.auth().currentUser?.uid {
@@ -156,7 +156,7 @@ class PostDetailTableViewController: UITableViewController, UITextFieldDelegate 
       }
     case kSectionComments:
       cell = tableView.dequeueReusableCell(withIdentifier: "comment")!
-      let commentDict = comments[(indexPath as NSIndexPath).row].value as? [String : AnyObject]
+      let commentDict = comments[indexPath.row].value as? [String : AnyObject]
       if let text = cell.textLabel, let detail = cell.detailTextLabel,
         let author = commentDict?["author"], let commentText = commentDict?["text"] {
         detail.text = String(describing: author)
@@ -171,7 +171,7 @@ class PostDetailTableViewController: UITableViewController, UITextFieldDelegate 
   }
 
   override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-    if (indexPath as NSIndexPath).section == kSectionPost {
+    if indexPath.section == kSectionPost {
       return 160
     }
     return 56

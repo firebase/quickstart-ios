@@ -42,7 +42,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-  UILabel *noDataLabel         = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, tableView.bounds.size.height)];
+  UILabel *noDataLabel         = [[UILabel alloc] initWithFrame:(CGRect){.size = tableView.bounds.size}];
   noDataLabel.text             = @"No posts yet - why not add one?";
   noDataLabel.textColor        = [UIColor blackColor];
   noDataLabel.textAlignment    = NSTextAlignmentCenter;

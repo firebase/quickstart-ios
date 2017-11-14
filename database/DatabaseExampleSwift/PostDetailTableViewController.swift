@@ -48,6 +48,7 @@ class PostDetailTableViewController: UITableViewController, UITextFieldDelegate 
   }
 
   override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
     comments.removeAll()
     // [START child_event_listener]
     // Listen for new comments in the Firebase database
@@ -87,6 +88,7 @@ class PostDetailTableViewController: UITableViewController, UITextFieldDelegate 
   }
 
   override func viewWillDisappear(_ animated: Bool) {
+    super.viewWillDisappear(animated)
     if let refHandle = refHandle {
       postRef.removeObserver(withHandle: refHandle)
     }

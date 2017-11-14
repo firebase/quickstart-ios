@@ -146,7 +146,7 @@ static const int kSectionPost = 0;
          cellForRowAtIndexPath:(NSIndexPath *)indexPath {
   UITableViewCell *cell;
   if (indexPath.section == kSectionPost) {
-    cell = [tableView dequeueReusableCellWithIdentifier:@"post"];
+    cell = [tableView dequeueReusableCellWithIdentifier:@"post" forIndexPath: indexPath];
     PostTableViewCell *postcell = (PostTableViewCell *)cell;
     postcell.authorLabel.text = _post.author;
     postcell.postTitle.text = _post.title;
@@ -157,12 +157,12 @@ static const int kSectionPost = 0;
     postcell.postKey = _postKey;
 
   } else if (indexPath.section == kSectionComments) {
-    cell = [tableView dequeueReusableCellWithIdentifier:@"comment"];
+    cell = [tableView dequeueReusableCellWithIdentifier:@"comment" forIndexPath: indexPath];
     NSDictionary *comment = _comments[indexPath.row].value;
     cell.textLabel.text = comment[@"author"];
     cell.detailTextLabel.text = comment[@"text"];
   } else if (indexPath.section == kSectionSend) {
-    cell = [tableView dequeueReusableCellWithIdentifier:@"send"];
+    cell = [tableView dequeueReusableCellWithIdentifier:@"send" forIndexPath: indexPath];
     _commentField = [(UITextField *) cell viewWithTag:7];
   } else {
       [NSException raise:NSInternalInconsistencyException format:@"Wrong section %ld", (long)indexPath.section];

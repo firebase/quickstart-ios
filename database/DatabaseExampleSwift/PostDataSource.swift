@@ -22,6 +22,7 @@ class PostDataSource: FUITableViewDataSource {
   override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
     return true
   }
+
   override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
     if editingStyle == .delete {
       snapshot(at: indexPath.row).ref.removeValue()

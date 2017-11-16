@@ -55,6 +55,7 @@ enum Params: String {
   case title = "Title"
   case descriptionText = "Description Text"
   case imageURL = "Image URL"
+  case otherFallbackURL = "Other Platform Fallback URL"
 }
 
 enum ParamTypes: String {
@@ -63,6 +64,7 @@ enum ParamTypes: String {
   case iTunes = "iTunes Connect Analytics"
   case android = "Android"
   case social = "Social Meta Tag"
+  case other = "Other Platform"
 }
 
 //
@@ -88,22 +90,26 @@ class ViewController: UITableViewController {
                                   .iPadBundleID, .iPadFallbackURL, .appStoreID]),
       Section(name: .iTunes, items: [.affiliateToken, .campaignToken, .providerToken]),
       Section(name: .android, items: [.packageName, .androidFallbackURL, .minimumVersion]),
-      Section(name: .social, items: [.title, .descriptionText, .imageURL])
+      Section(name: .social, items: [.title, .descriptionText, .imageURL]),
+      Section(name: .other, items: [.otherFallbackURL])
     ]
   }
 
   @objc func buildFDLLink() {
-    // [START buildFDLLink]
     if ViewController.DYNAMIC_LINK_DOMAIN == "YOUR_DYNAMIC_LINK_DOMAIN" {
       fatalError("Please update DYNAMIC_LINK_DOMAIN constant in your code from Firebase Console!")
     }
+    // [START buildFDLLink]
+    // general link params
     guard let linkString = dictionary[.link]?.text else {
       print("Link can not be empty!")
       return
     }
+
     guard let link = URL(string: linkString) else { return }
     let components = DynamicLinkComponents(link: link, domain: ViewController.DYNAMIC_LINK_DOMAIN)
 
+    // analytics params
     let analyticsParams = DynamicLinkGoogleAnalyticsParameters(
         source: dictionary[.source]?.text ?? "", medium: dictionary[.medium]?.text ?? "",
         campaign: dictionary[.campaign]?.text ?? "")
@@ -112,19 +118,17 @@ class ViewController: UITableViewController {
     components.analyticsParameters = analyticsParams
 
     if let bundleID = dictionary[.bundleID]?.text {
+      // iOS params
       let iOSParams = DynamicLinkIOSParameters(bundleID: bundleID)
-      if let fallbackURL = dictionary[.fallbackURL]?.text {
-        iOSParams.fallbackURL = URL(string: fallbackURL)
-      }
+      iOSParams.fallbackURL = dictionary[.fallbackURL]?.text.flatMap(URL.init)
       iOSParams.minimumAppVersion = dictionary[.minimumAppVersion]?.text
       iOSParams.customScheme = dictionary[.customScheme]?.text
       iOSParams.iPadBundleID = dictionary[.iPadBundleID]?.text
-      if let iPadFallbackURL = dictionary[.iPadFallbackURL]?.text {
-        iOSParams.iPadFallbackURL = URL(string: iPadFallbackURL)
-      }
+      iOSParams.iPadFallbackURL = dictionary[.iPadFallbackURL]?.text.flatMap(URL.init)
       iOSParams.appStoreID = dictionary[.appStoreID]?.text
       components.iOSParameters = iOSParams
 
+      // iTunesConnect params
       let appStoreParams = DynamicLinkItunesConnectAnalyticsParameters()
       appStoreParams.affiliateToken = dictionary[.affiliateToken]?.text
       appStoreParams.campaignToken = dictionary[.campaignToken]?.text
@@ -133,23 +137,24 @@ class ViewController: UITableViewController {
     }
 
     if let packageName = dictionary[.packageName]?.text {
+      // Android params
       let androidParams = DynamicLinkAndroidParameters(packageName: packageName)
-      if let androidFallbackURL = dictionary[.androidFallbackURL]?.text {
-        androidParams.fallbackURL = URL(string: androidFallbackURL)
-      }
-      if let minimumVersion = dictionary[.minimumVersion]?.text, let intVersion = Int(minimumVersion) {
-        androidParams.minimumVersion = intVersion
-      }
+      androidParams.fallbackURL = dictionary[.androidFallbackURL]?.text.flatMap(URL.init)
+      androidParams.minimumVersion = dictionary[.minimumVersion]?.text.flatMap(Int.init)
       components.androidParameters = androidParams
     }
 
+    // social tag params
     let socialParams = DynamicLinkSocialMetaTagParameters()
     socialParams.title = dictionary[.title]?.text
     socialParams.descriptionText = dictionary[.descriptionText]?.text
-    if let imageURL = dictionary[.imageURL]?.text {
-      socialParams.imageURL = URL(string: imageURL)
-    }
+    socialParams.imageURL = dictionary[.imageURL]?.text.flatMap(URL.init)
     components.socialMetaTagParameters = socialParams
+
+    // OtherPlatform params
+    let otherPlatformParams = DynamicLinkOtherPlatformParameters()
+    otherPlatformParams.fallbackUrl = dictionary[.otherFallbackURL]?.text.flatMap(URL.init)
+    components.otherPlatformParameters = otherPlatformParams
 
     longLink = components.url
     print(longLink?.absoluteString ?? "")

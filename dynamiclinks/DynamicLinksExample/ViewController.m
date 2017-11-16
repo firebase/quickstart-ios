@@ -42,14 +42,16 @@ static NSString *const MinimumVersion = @"Minimum Version";
 static NSString *const Title = @"Title";
 static NSString *const DescriptionText = @"Description Text";
 static NSString *const ImageURL = @"Image URL";
+static NSString *const OtherFallbackURL = @"Other Platform Fallback URL";
 
-static NSInteger const NumberParams = 23;
+static NSInteger const NumberParams = 24;
 
 static NSString *const GoogleAnalytics = @"Google Analytics";
 static NSString *const IOS = @"iOS";
 static NSString *const ITunes = @"iTunes Connect Analytics";
 static NSString *const Android = @"Android";
 static NSString *const Social = @"Social Meta Tag";
+static NSString *const Other = @"Other Platform";
 
 static NSString *const DYNAMIC_LINK_DOMAIN = @"YOUR_DYNAMIC_LINK_DOMAIN";
 
@@ -90,7 +92,8 @@ static NSString *const DYNAMIC_LINK_DOMAIN = @"YOUR_DYNAMIC_LINK_DOMAIN";
                     [[Section alloc]initWithName:IOS withItems:@[BundleID, FallbackURL, MinimumAppVersion, CustomScheme, IPadBundleID, IPadFallbackURL, AppStoreID]],
                     [[Section alloc]initWithName:ITunes withItems:@[AffiliateToken, CampaignToken, ProviderToken]],
                     [[Section alloc]initWithName:Android withItems:@[PackageName, AndroidFallbackURL, MinimumVersion]],
-                    [[Section alloc]initWithName:Social withItems:@[Title, DescriptionText, ImageURL]]
+                    [[Section alloc]initWithName:Social withItems:@[Title, DescriptionText, ImageURL]],
+                    [[Section alloc]initWithName:Other withItems:@[OtherFallbackURL]]
                   ];
 }
 
@@ -100,16 +103,19 @@ static NSString *const DYNAMIC_LINK_DOMAIN = @"YOUR_DYNAMIC_LINK_DOMAIN";
                 format:@"%@",
      @"Please update DYNAMIC_LINK_DOMAIN constant in your code from Firebase Console!"];
   }
+  // [START buildFDLLink]
+  // general link params
   if (_dictionary[Link].text == nil) {
     NSLog(@"%@", @"Link can not be empty!");
     return;
   }
-  // [START buildFDLLink]
+
   NSURL *link = [NSURL URLWithString:_dictionary[Link].text];
   FIRDynamicLinkComponents *components =
   [FIRDynamicLinkComponents componentsWithLink:link
                                         domain:DYNAMIC_LINK_DOMAIN];
 
+  // analytics params
   FIRDynamicLinkGoogleAnalyticsParameters *analyticsParams =
   [FIRDynamicLinkGoogleAnalyticsParameters parametersWithSource:_dictionary[Source].text
                                                          medium:_dictionary[Medium].text
@@ -119,6 +125,7 @@ static NSString *const DYNAMIC_LINK_DOMAIN = @"YOUR_DYNAMIC_LINK_DOMAIN";
   components.analyticsParameters = analyticsParams;
 
   if (_dictionary[BundleID].text) {
+    // iOS params
     FIRDynamicLinkIOSParameters *iOSParams = [FIRDynamicLinkIOSParameters parametersWithBundleID:_dictionary[BundleID].text];
     iOSParams.fallbackURL = [NSURL URLWithString:_dictionary[FallbackURL].text];
     iOSParams.minimumAppVersion = _dictionary[MinimumAppVersion].text;
@@ -128,6 +135,7 @@ static NSString *const DYNAMIC_LINK_DOMAIN = @"YOUR_DYNAMIC_LINK_DOMAIN";
     iOSParams.appStoreID = _dictionary[AppStoreID].text;
     components.iOSParameters = iOSParams;
 
+    // iTunesConnect params
     FIRDynamicLinkItunesConnectAnalyticsParameters *appStoreParams = [FIRDynamicLinkItunesConnectAnalyticsParameters parameters];
     appStoreParams.affiliateToken = _dictionary[AffiliateToken].text;
     appStoreParams.campaignToken = _dictionary[CampaignToken].text;
@@ -135,19 +143,26 @@ static NSString *const DYNAMIC_LINK_DOMAIN = @"YOUR_DYNAMIC_LINK_DOMAIN";
     components.iTunesConnectParameters = appStoreParams;
   }
 
-
   if (_dictionary[PackageName].text) {
+    // Android params
     FIRDynamicLinkAndroidParameters *androidParams = [FIRDynamicLinkAndroidParameters parametersWithPackageName: _dictionary[PackageName].text];
     androidParams.fallbackURL = [NSURL URLWithString:_dictionary[FallbackURL].text];
     androidParams.minimumVersion = (_dictionary[MinimumVersion].text).integerValue;
     components.androidParameters = androidParams;
   }
 
+  // social tag params
   FIRDynamicLinkSocialMetaTagParameters *socialParams = [FIRDynamicLinkSocialMetaTagParameters parameters];
   socialParams.title = _dictionary[Title].text;
   socialParams.descriptionText = _dictionary[DescriptionText].text;
   socialParams.imageURL = [NSURL URLWithString:_dictionary[ImageURL].text];
   components.socialMetaTagParameters = socialParams;
+
+  // OtherPlatform params
+  FIRDynamicLinkOtherPlatformParameters *otherPlatformParams =
+  [FIRDynamicLinkOtherPlatformParameters parameters];
+  otherPlatformParams.fallbackUrl = [NSURL URLWithString:_dictionary[OtherFallbackURL].text];
+  components.otherPlatformParameters = otherPlatformParams;
 
   _longLink = components.url;
   NSLog(@"Long URL: %@", _longLink.absoluteString);

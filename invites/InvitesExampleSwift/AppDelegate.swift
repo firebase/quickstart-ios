@@ -58,7 +58,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   // [END openurl]
 
   // [START continueuseractivity]
-  @available(iOS 8.0, *)
   func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
     return Invites.handleUniversalLink(userActivity.webpageURL!) { invite, error in
       // [START_EXCLUDE]
@@ -74,7 +73,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   }
   // [END continueuseractivity]
 
-  @available(iOS 8.0, *)
   func showAlertView(withInvite invite: ReceivedInvite) {
     let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
     let matchType = invite.matchType == .weak ? "weak" : "strong"

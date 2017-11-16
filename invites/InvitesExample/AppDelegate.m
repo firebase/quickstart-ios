@@ -30,10 +30,9 @@
 // [END configure]
 
 // [START openurl]
-- (BOOL)application:(nonnull UIApplication *)application
-            openURL:(nonnull NSURL *)url
-            options:(nonnull NSDictionary<NSString *, id> *)options {
-  return [self application:application
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url
+            options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
+  return [self application:app
                    openURL:url
          sourceApplication:options[UIApplicationOpenURLOptionsSourceApplicationKey]
                 annotation:options[UIApplicationOpenURLOptionsAnnotationKey]];

@@ -39,64 +39,49 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   func application(_ application: UIApplication,
     open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
-      if let invite = Invites.handle(url, sourceApplication:sourceApplication, annotation:annotation) as? ReceivedInvite {
-        let matchType =
-            (invite.matchType == .weak) ? "Weak" : "Strong"
-        print("Invite received from: \(sourceApplication ?? "") Deeplink: \(invite.deepLink)," +
-            "Id: \(invite.inviteId), Type: \(matchType)")
-        return true
-      }
+    if GIDSignIn.sharedInstance().handle(url, sourceApplication: sourceApplication, annotation: annotation) {
+      return true
+    }
 
-      return GIDSignIn.sharedInstance().handle(url, sourceApplication: sourceApplication, annotation: annotation)
+    return Invites.handleUniversalLink(url) { invite, error in
+      // [START_EXCLUDE]
+      if let error = error {
+        print(error.localizedDescription)
+        return
+      }
+      if let invite = invite {
+        self.showAlertView(withInvite: invite)
+      }
+      // [END_EXCLUDE]
+    }
   }
   // [END openurl]
 
   // [START continueuseractivity]
   @available(iOS 8.0, *)
   func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
-    guard let dynamiclinks = DynamicLinks.dynamicLinks() else {
-      return false
-    }
-    let handled = dynamiclinks.handleUniversalLink(userActivity.webpageURL!) { (dynamiclink, error) in
+    return Invites.handleUniversalLink(userActivity.webpageURL!) { invite, error in
       // [START_EXCLUDE]
-      let message = self.generateDynamicLinkMessage(dynamiclink!)
-      self.showDeepLinkAlertView(withMessage: message)
+      if let error = error {
+        print(error.localizedDescription)
+        return
+      }
+      if let invite = invite {
+        self.showAlertView(withInvite: invite)
+      }
       // [END_EXCLUDE]
     }
-
-    // [START_EXCLUDE silent]
-    if !handled {
-      // Show the deep link URL from userActivity.
-      let message = "continueUserActivity webPageURL:\n\(userActivity.webpageURL?.absoluteString ?? "")"
-      showDeepLinkAlertView(withMessage: message)
-    }
-    // [END_EXCLUDE]
-
-    return handled
   }
   // [END continueuseractivity]
 
-  func generateDynamicLinkMessage(_ dynamicLink: DynamicLink) -> String {
-    let matchConfidence: String
-    if dynamicLink.matchConfidence == .weak {
-      matchConfidence = "Weak"
-    } else {
-      matchConfidence = "Strong"
-    }
-    let message = "App URL: \(dynamicLink.url?.absoluteString ?? "")\nMatch Confidence: \(matchConfidence)\n"
-    return message
-  }
-
   @available(iOS 8.0, *)
-  func showDeepLinkAlertView(withMessage message: String) {
-    let okAction = UIAlertAction(title: "OK", style: .default) { (action) -> Void in
-      print("OK")
-    }
-
-    let alertController = UIAlertController(title: "Deep-link Data", message: message, preferredStyle: .alert)
+  func showAlertView(withInvite invite: ReceivedInvite) {
+    let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+    let matchType = invite.matchType == .weak ? "weak" : "strong"
+    let message = "Invite ID: \(invite.inviteId)\nDeep-link: \(invite.deepLink)\nMatch Type: \(matchType)"
+    let alertController = UIAlertController(title: "Invite", message: message, preferredStyle: .alert)
     alertController.addAction(okAction)
     self.window?.rootViewController?.present(alertController, animated: true, completion: nil)
   }
-
 }
 

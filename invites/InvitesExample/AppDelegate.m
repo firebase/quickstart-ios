@@ -50,8 +50,8 @@
   }
   // Handle App Invite requests
   return [FIRInvites handleUniversalLink:url
-                                      completion:^(FIRReceivedInvite * _Nullable receivedInvite,
-                                                   NSError * _Nullable error) {
+                              completion:^(FIRReceivedInvite * _Nullable receivedInvite,
+                                           NSError * _Nullable error) {
     // [START_EXCLUDE]
     if (receivedInvite) {
       [self showAlertViewWithInvite:receivedInvite];
@@ -67,8 +67,8 @@
       restorationHandler:(void (^)(NSArray *))restorationHandler {
   // Handle App Invite requests
   return [FIRInvites handleUniversalLink:userActivity.webpageURL
-                                      completion:^(FIRReceivedInvite * _Nullable receivedInvite,
-                                                   NSError * _Nullable error) {
+                              completion:^(FIRReceivedInvite * _Nullable receivedInvite,
+                                           NSError * _Nullable error) {
     // [START_EXCLUDE]
     if (receivedInvite) {
       [self showAlertViewWithInvite:receivedInvite];

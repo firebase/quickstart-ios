@@ -43,14 +43,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       return true
     }
 
-    return Invites.handleUniversalLink(url) { [weak self] invite, error in
+    return Invites.handleUniversalLink(url) { invite, error in
       // [START_EXCLUDE]
       if let error = error {
         print(error.localizedDescription)
         return
       }
       if let invite = invite {
-        self?.showAlertView(withInvite: invite)
+        self.showAlertView(withInvite: invite)
       }
       // [END_EXCLUDE]
     }
@@ -60,14 +60,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   // [START continueuseractivity]
   @available(iOS 8.0, *)
   func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
-    return Invites.handleUniversalLink(userActivity.webpageURL!) { [weak self] invite, error in
+    return Invites.handleUniversalLink(userActivity.webpageURL!) { invite, error in
       // [START_EXCLUDE]
       if let error = error {
         print(error.localizedDescription)
         return
       }
       if let invite = invite {
-        self?.showAlertView(withInvite: invite)
+        self.showAlertView(withInvite: invite)
       }
       // [END_EXCLUDE]
     }

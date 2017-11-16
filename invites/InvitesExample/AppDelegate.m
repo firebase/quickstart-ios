@@ -48,17 +48,13 @@
                                  annotation:annotation]) {
     return YES;
   }
-  // [START_EXCLUDE silent]
-  __weak AppDelegate *weakSelf = self;
-  // [END_EXCLUDE]
   // Handle App Invite requests
   return [FIRInvites handleUniversalLink:url
                                       completion:^(FIRReceivedInvite * _Nullable receivedInvite,
                                                    NSError * _Nullable error) {
     // [START_EXCLUDE]
     if (receivedInvite) {
-      AppDelegate *strongSelf = weakSelf;
-      [strongSelf showAlertViewWithInvite:receivedInvite];
+      [self showAlertViewWithInvite:receivedInvite];
     }
     // [END_EXCLUDE]
   }];
@@ -69,17 +65,13 @@
 - (BOOL)application:(UIApplication *)application
     continueUserActivity:(NSUserActivity *)userActivity
       restorationHandler:(void (^)(NSArray *))restorationHandler {
-  // [START_EXCLUDE silent]
-  __weak AppDelegate *weakSelf = self;
-  // [END_EXCLUDE]
   // Handle App Invite requests
   return [FIRInvites handleUniversalLink:userActivity.webpageURL
                                       completion:^(FIRReceivedInvite * _Nullable receivedInvite,
                                                    NSError * _Nullable error) {
     // [START_EXCLUDE]
     if (receivedInvite) {
-      AppDelegate *strongSelf = weakSelf;
-      [strongSelf showAlertViewWithInvite:receivedInvite];
+      [self showAlertViewWithInvite:receivedInvite];
     }
     // [END_EXCLUDE]
   }];

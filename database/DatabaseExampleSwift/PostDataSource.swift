@@ -22,6 +22,7 @@ class PostDataSource: FUITableViewDataSource {
   override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
     return true
   }
+
   override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
     if editingStyle == .delete {
       snapshot(at: indexPath.row).ref.removeValue()
@@ -37,7 +38,7 @@ class PostDataSource: FUITableViewDataSource {
   }
 
   override func numberOfSections(in tableView: UITableView) -> Int {
-    let noDataLabel = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
+    let noDataLabel = UILabel(frame: CGRect(origin: .zero, size: tableView.bounds.size))
     noDataLabel.text = "No posts yet - why not add one?"
     noDataLabel.textColor = UIColor.black
     noDataLabel.textAlignment = .center

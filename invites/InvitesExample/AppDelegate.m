@@ -30,10 +30,9 @@
 // [END configure]
 
 // [START openurl]
-- (BOOL)application:(nonnull UIApplication *)application
-            openURL:(nonnull NSURL *)url
-            options:(nonnull NSDictionary<NSString *, id> *)options {
-  return [self application:application
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url
+            options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
+  return [self application:app
                    openURL:url
          sourceApplication:options[UIApplicationOpenURLOptionsSourceApplicationKey]
                 annotation:options[UIApplicationOpenURLOptionsAnnotationKey]];
@@ -43,28 +42,21 @@
             openURL:(NSURL *)url
   sourceApplication:(NSString *)sourceApplication
          annotation:(id)annotation {
-  // Handle App Invite requests
-  FIRReceivedInvite *invite =
-      [FIRInvites handleURL:url sourceApplication:sourceApplication annotation:annotation];
-  if (invite) {
-    NSString *matchType =
-        (invite.matchType == FIRReceivedInviteMatchTypeWeak) ? @"Weak" : @"Strong";
-    NSString *message =
-        [NSString stringWithFormat:@"Deep link from %@ \nInvite ID: %@\nApp URL: %@\nMatch Type:%@",
-                                   sourceApplication, invite.inviteId, invite.deepLink, matchType];
-
-    [[[UIAlertView alloc] initWithTitle:@"Deep-link Data"
-                                message:message
-                               delegate:nil
-                      cancelButtonTitle:@"OK"
-                      otherButtonTitles:nil] show];
-
+  if ([[GIDSignIn sharedInstance] handleURL:url
+                      sourceApplication:sourceApplication
+                                 annotation:annotation]) {
     return YES;
   }
-
-  return [[GIDSignIn sharedInstance] handleURL:url
-                             sourceApplication:sourceApplication
-                                    annotation:annotation];
+  // Handle App Invite requests
+  return [FIRInvites handleUniversalLink:url
+                              completion:^(FIRReceivedInvite * _Nullable receivedInvite,
+                                           NSError * _Nullable error) {
+    // [START_EXCLUDE]
+    if (receivedInvite) {
+      [self showAlertViewWithInvite:receivedInvite];
+    }
+    // [END_EXCLUDE]
+  }];
 }
 // [END openurl]
 
@@ -72,57 +64,30 @@
 - (BOOL)application:(UIApplication *)application
     continueUserActivity:(NSUserActivity *)userActivity
       restorationHandler:(void (^)(NSArray *))restorationHandler {
-  // [START_EXCLUDE silent]
-  NSLog(@"%@", userActivity.webpageURL);
-  __weak AppDelegate *weakSelf = self;
-  // [END_EXCLUDE]
-
-  BOOL handled = [[FIRDynamicLinks dynamicLinks]
-                     handleUniversalLink:userActivity.webpageURL
-                              completion:^(FIRDynamicLink * _Nullable dynamicLink,
+  // Handle App Invite requests
+  return [FIRInvites handleUniversalLink:userActivity.webpageURL
+                              completion:^(FIRReceivedInvite * _Nullable receivedInvite,
                                            NSError * _Nullable error) {
     // [START_EXCLUDE]
-    AppDelegate *strongSelf = weakSelf;
-    NSString *message = [strongSelf generateDynamicLinkMessage:dynamicLink];
-    [strongSelf showDeepLinkAlertViewWithMessage:message];
+    if (receivedInvite) {
+      [self showAlertViewWithInvite:receivedInvite];
+    }
     // [END_EXCLUDE]
   }];
-
-  // [START_EXCLUDE silent]
-  if (!handled) {
-    // Show the deep link URL from userActivity.
-    NSString *message =
-    [NSString stringWithFormat:@"continueUserActivity webPageURL:\n%@",
-        userActivity.webpageURL.absoluteString];
-    [self showDeepLinkAlertViewWithMessage:message];
-  }
-  // [END_EXCLUDE]
-
-  return handled;
 }
 // [END continueuseractivity]
 
-- (NSString *)generateDynamicLinkMessage:(FIRDynamicLink *)dynamicLink {
-  NSString *matchConfidence;
-  if (dynamicLink.matchConfidence == FIRDynamicLinkMatchConfidenceStrong) {
-    matchConfidence = @"strong";
-  } else {
-    matchConfidence = @"weak";
-  }
-
-  NSString *msg = [NSString stringWithFormat:@"App URL: %@\n"
-                       @"Match Confidence: %@\n",
-                       dynamicLink.url.absoluteString, matchConfidence];
-  return msg;
-}
-
-- (void)showDeepLinkAlertViewWithMessage:(NSString *)message {
+- (void)showAlertViewWithInvite:(FIRReceivedInvite *)invite {
   UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"
                                                      style:UIAlertActionStyleDefault
                                                    handler:nil];
+  NSString *matchType = invite.matchType == FIRReceivedInviteMatchTypeWeak ? @"weak" : @"strong";
+  NSString *message = 
+  [NSString stringWithFormat:@"Invite ID: %@\nDeep-link: %@\nMatch Type: %@",
+   invite.inviteId, invite.deepLink, matchType];
 
   UIAlertController *alertController =
-      [UIAlertController alertControllerWithTitle:@"Deep-link Data"
+      [UIAlertController alertControllerWithTitle:@"Invite"
                                           message:message
                                    preferredStyle:UIAlertControllerStyleAlert];
   [alertController addAction:okAction];

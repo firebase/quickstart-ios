@@ -48,6 +48,7 @@ class PostDetailTableViewController: UITableViewController, UITextFieldDelegate 
   }
 
   override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
     comments.removeAll()
     // [START child_event_listener]
     // Listen for new comments in the Firebase database
@@ -87,6 +88,7 @@ class PostDetailTableViewController: UITableViewController, UITextFieldDelegate 
   }
 
   override func viewWillDisappear(_ animated: Bool) {
+    super.viewWillDisappear(animated)
     if let refHandle = refHandle {
       postRef.removeObserver(withHandle: refHandle)
     }
@@ -139,7 +141,7 @@ class PostDetailTableViewController: UITableViewController, UITextFieldDelegate 
 
     switch indexPath.section {
     case kSectionPost:
-      cell = tableView.dequeueReusableCell(withIdentifier: "post")!
+      cell = tableView.dequeueReusableCell(withIdentifier: "post", for: indexPath)
       if let uid = Auth.auth().currentUser?.uid {
         guard let postcell = cell as? PostTableViewCell else {
           break
@@ -155,7 +157,7 @@ class PostDetailTableViewController: UITableViewController, UITextFieldDelegate 
         postcell.postKey = postKey
       }
     case kSectionComments:
-      cell = tableView.dequeueReusableCell(withIdentifier: "comment")!
+      cell = tableView.dequeueReusableCell(withIdentifier: "comment", for: indexPath)
       let commentDict = comments[indexPath.row].value as? [String : AnyObject]
       if let text = cell.textLabel, let detail = cell.detailTextLabel,
         let author = commentDict?["author"], let commentText = commentDict?["text"] {
@@ -163,7 +165,7 @@ class PostDetailTableViewController: UITableViewController, UITextFieldDelegate 
         text.text = String(describing: commentText)
       }
     default: // kSectionSend
-      cell = tableView.dequeueReusableCell(withIdentifier: "send")!
+      cell = tableView.dequeueReusableCell(withIdentifier: "send", for: indexPath)
       commentField = cell.viewWithTag(7) as? UITextField
       break
     }

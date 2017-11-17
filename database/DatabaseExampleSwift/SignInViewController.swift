@@ -29,6 +29,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
   }
 
   override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
     if Auth.auth().currentUser != nil {
       self.performSegue(withIdentifier: "signIn", sender: nil)
     }
@@ -135,7 +136,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
       }
     }
 
-    // Get the credentials of hte user
+    // Get the credentials of the user
     getEmail { email in
       getUsername { username in
         getPassword { password in

@@ -37,15 +37,16 @@ class SignInViewController: UIViewController, GIDSignInDelegate, GIDSignInUIDele
   }
 
   func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
-    if let error = error {
+    guard error == nil else {
       // Something went wrong; for example, the user could haved clicked cancel.
       print("\(error.localizedDescription)")
-    } else {
-      // User Successfully signed in.
-      // TODO: Remove async after, when GIDSignIn is started getting called after dissmissVC
-      DispatchQueue.main.asyncAfter(deadline: .now() + 0.35) {
-        self.performSegue(withIdentifier: "SignedInScreen", sender: self)
-      }
+      return
+    }
+    // User Successfully signed in.
+    // TODO: Remove async after, when GIDSignIn is started getting called after dissmissVC
+    DispatchQueue.main.asyncAfter(deadline: .now() + 0.35) { [weak self] in
+      guard let s = self else { return }
+      s.performSegue(withIdentifier: "SignedInScreen", sender: s)
     }
   }
 

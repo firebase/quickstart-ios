@@ -44,9 +44,8 @@ class SignInViewController: UIViewController, GIDSignInDelegate, GIDSignInUIDele
     }
     // User Successfully signed in.
     // TODO: Remove async after, when GIDSignIn is started getting called after dissmissVC
-    DispatchQueue.main.asyncAfter(deadline: .now() + 0.35) { [weak self] in
-      guard let s = self else { return }
-      s.performSegue(withIdentifier: "SignedInScreen", sender: s)
+    DispatchQueue.main.asyncAfter(deadline: .now() + 0.35) {
+      self.performSegue(withIdentifier: "SignedInScreen", sender: self)
     }
   }
 

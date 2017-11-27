@@ -344,7 +344,7 @@ class MainViewController: UITableViewController, GIDSignInUIDelegate {
 
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell: UITableViewCell?
-    switch (indexPath as NSIndexPath).section {
+    switch indexPath.section {
     case kSectionSignIn:
       // [START current_user]
       if Auth.auth().currentUser != nil {
@@ -404,7 +404,7 @@ class MainViewController: UITableViewController, GIDSignInUIDelegate {
     case kSectionProviders:
       cell = tableView.dequeueReusableCell(withIdentifier: "Provider")
       // [START provider_data]
-      let userInfo = Auth.auth().currentUser?.providerData[(indexPath as NSIndexPath).row]
+      let userInfo = Auth.auth().currentUser?.providerData[indexPath.row]
       cell?.textLabel?.text = userInfo?.providerID
       // Provider-specific UID
       cell?.detailTextLabel?.text = userInfo?.uid
@@ -425,7 +425,7 @@ class MainViewController: UITableViewController, GIDSignInUIDelegate {
   }
 
   override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
-    if (indexPath as NSIndexPath).section == kSectionProviders {
+    if indexPath.section == kSectionProviders {
       return .delete
     }
     return .none
@@ -434,7 +434,7 @@ class MainViewController: UITableViewController, GIDSignInUIDelegate {
   // Swipe to delete
   override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
     if editingStyle == .delete {
-      let providerID = Auth.auth().currentUser?.providerData[(indexPath as NSIndexPath).row].providerID
+      let providerID = Auth.auth().currentUser?.providerData[indexPath.row].providerID
       showSpinner({
         // [START unlink_provider]
         Auth.auth().currentUser?.unlink(fromProvider: providerID!) { (user, error) in
@@ -454,7 +454,7 @@ class MainViewController: UITableViewController, GIDSignInUIDelegate {
   }
 
   override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-    if (indexPath as NSIndexPath).section == kSectionUser {
+    if indexPath.section == kSectionUser {
       return 200
     }
     return 44

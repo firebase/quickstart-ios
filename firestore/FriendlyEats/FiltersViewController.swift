@@ -71,7 +71,7 @@ class FiltersViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     case "$$$":
       return 3
 
-    case _:
+    default:
       return nil
     }
   }
@@ -144,7 +144,7 @@ class FiltersViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     case categoryPickerView:
       return categoryOptions.count
 
-    case _:
+    default:
       fatalError("Unhandled picker view: \(pickerView)")
     }
   }
@@ -162,7 +162,7 @@ class FiltersViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     case categoryPickerView:
       return categoryOptions[row]
 
-    case _:
+    default:
       fatalError("Unhandled picker view: \(pickerView)")
     }
   }
@@ -178,7 +178,7 @@ class FiltersViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     case categoryPickerView:
       categoryTextField.text = categoryOptions[row]
 
-    case _:
+    default:
       fatalError("Unhandled picker view: \(pickerView)")
     }
   }

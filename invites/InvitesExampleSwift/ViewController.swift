@@ -32,6 +32,7 @@ class ViewController: UIViewController, GIDSignInDelegate, GIDSignInUIDelegate, 
 
   // [START viewdidload]
   override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
     GIDSignIn.sharedInstance().delegate = self
     GIDSignIn.sharedInstance().uiDelegate = self
     GIDSignIn.sharedInstance().signInSilently()

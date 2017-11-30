@@ -140,7 +140,7 @@ class ViewController: UITableViewController {
       // Android params
       let androidParams = DynamicLinkAndroidParameters(packageName: packageName)
       androidParams.fallbackURL = dictionary[.androidFallbackURL]?.text.flatMap(URL.init)
-      androidParams.minimumVersion = dictionary[.minimumVersion]?.text.flatMap {Int($0) ?? 0
+      androidParams.minimumVersion = dictionary[.minimumVersion]?.text.flatMap {Int($0)} ?? 0
       components.androidParameters = androidParams
     }
 

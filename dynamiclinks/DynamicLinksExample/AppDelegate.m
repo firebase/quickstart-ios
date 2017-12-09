@@ -52,13 +52,20 @@ static NSString *const CUSTOM_URL_SCHEME = @"dlscheme";
   FIRDynamicLink *dynamicLink = [[FIRDynamicLinks dynamicLinks] dynamicLinkFromCustomSchemeURL:url];
 
   if (dynamicLink) {
-    // Handle the deep link. For example, show the deep-linked content or
-    // apply a promotional offer to the user's account.
-    // [START_EXCLUDE]
-    // In this sample, we just open an alert.
-    [self handleDynamicLink:dynamicLink];
-    // [END_EXCLUDE]
-    return YES;
+    if (dynamicLink.url) {
+      // Handle the deep link. For example, show the deep-linked content,
+      // apply a promotional offer to the user's account or show customized onboarding view.
+      // [START_EXCLUDE]
+      // In this sample, we just open an alert.
+      [self handleDynamicLink:dynamicLink];
+      // [END_EXCLUDE]
+      return YES;
+    } else {
+      // Dynamic link has empty deep link. This situation will happens if
+      // Firebase Dynamic Links iOS SDK tried to retrieve pending dynamic link,
+      // but pending link is not available for this device/App combination.
+      // At this point you may display default onboarding view.
+    }
   }
   // [START_EXCLUDE silent]
   // Show the deep link that the app was called with.

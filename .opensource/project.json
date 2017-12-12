@@ -1,0 +1,34 @@
+{
+    "name": "Firebase Quickstarts for iOS",
+    "parent": "quickstarts",
+    "type": "sample",
+
+    "platforms": [
+      "iOS"
+    ],
+
+    "content": "README.md",
+
+    "subprojects": [],
+
+    // Other markdown pages that should be rendered nicely
+    "pages" : [
+      "abtesting/README.md",
+      "admob/README.md",
+      "analytics/README.md",
+      "authentication/README.md",
+      "config/README.md",
+      "crashreporting/README.md",
+      "database/README.md",
+      "dynamiclinks/README.md",
+      "firestore/README.md",
+      "invites/README.md",
+      "messaging/README.md",
+      "performance/README.md",
+      "storage/README.md"
+    ],
+
+    "related": [],
+
+    "tags": []
+  }

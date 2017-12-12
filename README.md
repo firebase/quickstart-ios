@@ -21,17 +21,19 @@ To add a sample app to a Firebase project, use the bundleID from the Xcode proje
 Download the generated `GoogleService-Info.plist` file, and copy it to the root
 directory of the sample you wish to run.
 
-- [Admob](admob)
-- [Analytics](analytics)
-- [Authentication](authentication)
-- [Config](config)
-- [Crash Reporting](crashreporting)
-- [Database](database)
-- [Firestore](firestore)
-- [Dynamic Links](dynamiclinks)
-- [Invites](invites)
-- [Cloud Messaging](messaging)
-- [Storage](storage)
+- [A/B Testing](abtesting/README.md)
+- [Admob](admob/README.md)
+- [Analytics](analytics/README.md)
+- [Authentication](authentication/README.md)
+- [Config](config/README.md)
+- [Crash Reporting](crashreporting/README.md)
+- [Database](database/README.md)
+- [Firestore](firestore/README.md)
+- [Dynamic Links](dynamiclinks/README.md)
+- [Invites](invites/README.md)
+- [Cloud Messaging](messaging/README.md)
+- [Performance](performance/README.md)
+- [Storage](storage/README.md)
 
 ## How to make contributions?
 Please read and follow the steps in the [CONTRIBUTING.md](CONTRIBUTING.md)
@@ -39,5 +41,4 @@ Please read and follow the steps in the [CONTRIBUTING.md](CONTRIBUTING.md)
 ## License
 See [LICENSE](LICENSE)
 
-## Build Status
 [![Build Status](https://travis-ci.org/firebase/quickstart-ios.svg?branch=master)](https://travis-ci.org/firebase/quickstart-ios)

@@ -100,7 +100,7 @@ continueUserActivity:(NSUserActivity *)userActivity
 
 - (void)handleDynamicLink:(FIRDynamicLink *)dynamicLink {
   NSString *matchConfidence;
-  if (dynamicLink.matchConfidence == FIRDynamicLinkMatchConfidenceWeak) {
+  if (dynamicLink.matchType == FIRDLMatchTypeWeak) {
     matchConfidence = @"Weak";
   } else {
     matchConfidence = @"Strong";

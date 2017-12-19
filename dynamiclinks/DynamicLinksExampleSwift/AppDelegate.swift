@@ -88,7 +88,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   func handleDynamicLink(_ dynamicLink: DynamicLink) {
     let matchConfidence: String
-    if dynamicLink.matchConfidence == .weak {
+    if dynamicLink.matchType == .weak {
       matchConfidence = "Weak"
     } else {
       matchConfidence = "Strong"

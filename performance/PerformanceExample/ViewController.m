@@ -55,8 +55,12 @@
 
   [trace incrementCounterNamed:@"log_file_size" by:fileLength];
 
+
   NSString *target = @"https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png";
   NSURL *targetUrl = [NSURL URLWithString:target];
+  FIRHTTPMetric *metric = [[FIRHTTPMetric alloc] initWithURL:targetUrl HTTPMethod:FIRHTTPMethodGET];
+  [metric start];
+
   NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:targetUrl];
   request.HTTPMethod = @"GET";
 
@@ -64,6 +68,11 @@
     ^(NSData * _Nullable data,
       NSURLResponse * _Nullable response,
       NSError * _Nullable error) {
+      if (response) {
+        NSHTTPURLResponse* httpResponse = (NSHTTPURLResponse*)response;
+        [metric setResponseCode:httpResponse.statusCode];
+      }
+      [metric stop];
 
       if (error) {
         NSLog(@"%@", error.localizedDescription);

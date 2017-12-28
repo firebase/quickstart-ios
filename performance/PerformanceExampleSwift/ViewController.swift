@@ -48,16 +48,25 @@ class ViewController: UIViewController {
 
     let target = "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png"
     guard let targetUrl = URL(string: target) else { return }
+    guard let metric = HTTPMetric(url: targetUrl, httpMethod: .get) else { return }
+    metric.start()
+
     var request = URLRequest(url:targetUrl)
     request.httpMethod = "GET"
 
     let task = URLSession.shared.dataTask(with: request) {
       data, response, error in
 
+      if let httpResponse = response as? HTTPURLResponse {
+        metric.responseCode = httpResponse.statusCode
+      }
+      metric.stop()
+
       if let error = error {
         print("error=\(error)")
         return
       }
+
 
       DispatchQueue.main.async {
         self.imageView.image = UIImage(data: data!)

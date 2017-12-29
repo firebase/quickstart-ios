@@ -70,7 +70,7 @@
       NSError * _Nullable error) {
       if (response) {
         NSHTTPURLResponse* httpResponse = (NSHTTPURLResponse*)response;
-        [metric setResponseCode:httpResponse.statusCode];
+        metric.responseCode = httpResponse.statusCode;
       }
       [metric stop];
 

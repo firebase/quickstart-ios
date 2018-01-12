@@ -280,6 +280,8 @@ static NSString *const DYNAMIC_LINK_DOMAIN = @"YOUR_DYNAMIC_LINK_DOMAIN";
           cell.paramTextField.text = [NSBundle mainBundle].bundleIdentifier;
         } else if ([cell.paramLabel.text isEqualToString:MinimumAppVersion]) {
           cell.paramTextField.text = @"1.0";
+        } else {
+          cell.paramTextField.text = nil;    
         }
 
         _dictionary[cell.paramLabel.text] = cell.paramTextField;

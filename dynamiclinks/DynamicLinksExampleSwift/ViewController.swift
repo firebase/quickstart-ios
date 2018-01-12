@@ -269,6 +269,8 @@ extension ViewController : UIGestureRecognizerDelegate {
           cell.paramTextField.text = Bundle.main.bundleIdentifier
         } else if cell.paramLabel.text! == Params.minimumAppVersion.rawValue {
           cell.paramTextField.text = "1.0"
+        } else {
+          cell.paramTextField.text = nil
         }
 
         dictionary[Params(rawValue: cell.paramLabel.text!)!] = cell.paramTextField

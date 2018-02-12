@@ -39,6 +39,16 @@
                ReferencedContainer = "container:AdMobExample.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "10B92CA9202E4199008DBD68"
+               BuildableName = "AdMobExampleUITests.xctest"
+               BlueprintName = "AdMobExampleUITests"
+               ReferencedContainer = "container:AdMobExample.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

@@ -39,6 +39,26 @@
                ReferencedContainer = "container:InvitesExample.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "1073477D20315A02004A66D1"
+               BuildableName = "InvitesExampleUITests.xctest"
+               BlueprintName = "InvitesExampleUITests"
+               ReferencedContainer = "container:InvitesExample.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "1073478B20315A0F004A66D1"
+               BuildableName = "InvitesExampleSwiftUITests.xctest"
+               BlueprintName = "InvitesExampleSwiftUITests"
+               ReferencedContainer = "container:InvitesExample.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

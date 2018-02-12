@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		107346CB20315868004A66D1 /* AnalyticsExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107346CA20315868004A66D1 /* AnalyticsExampleUITests.swift */; };
+		107346D920315877004A66D1 /* AnalyticsExampleSwiftUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107346D820315877004A66D1 /* AnalyticsExampleSwiftUITests.swift */; };
 		5F3B16801AFC453200860007 /* CircleImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F3B167F1AFC453200860007 /* CircleImageView.m */; };
 		5F3B16811AFC453200860007 /* CircleImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F3B167F1AFC453200860007 /* CircleImageView.m */; };
 		5F5A53521ADE670C00F81DF0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5A53511ADE670C00F81DF0 /* main.m */; };
@@ -31,6 +33,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		107346CD20315868004A66D1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5F5A53441ADE670C00F81DF0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5F5A534B1ADE670C00F81DF0;
+			remoteInfo = AnalyticsExample;
+		};
+		107346DB20315877004A66D1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5F5A53441ADE670C00F81DF0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5F5A53781ADE67D500F81DF0;
+			remoteInfo = AnalyticsExampleSwift;
+		};
 		5FC7AD881B0D4106004E3100 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5F5A53441ADE670C00F81DF0 /* Project object */;
@@ -41,6 +57,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		107346C820315868004A66D1 /* AnalyticsExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AnalyticsExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		107346CA20315868004A66D1 /* AnalyticsExampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsExampleUITests.swift; sourceTree = "<group>"; };
+		107346CC20315868004A66D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		107346D620315877004A66D1 /* AnalyticsExampleSwiftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AnalyticsExampleSwiftUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		107346D820315877004A66D1 /* AnalyticsExampleSwiftUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsExampleSwiftUITests.swift; sourceTree = "<group>"; };
+		107346DA20315877004A66D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5F3B167E1AFC453200860007 /* CircleImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleImageView.h; sourceTree = "<group>"; };
 		5F3B167F1AFC453200860007 /* CircleImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleImageView.m; sourceTree = "<group>"; };
 		5F5A534C1ADE670C00F81DF0 /* AnalyticsExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AnalyticsExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -70,6 +92,20 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		107346C520315868004A66D1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		107346D320315877004A66D1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5F5A53491ADE670C00F81DF0 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -94,12 +130,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		107346C920315868004A66D1 /* AnalyticsExampleUITests */ = {
+			isa = PBXGroup;
+			children = (
+				107346CA20315868004A66D1 /* AnalyticsExampleUITests.swift */,
+				107346CC20315868004A66D1 /* Info.plist */,
+			);
+			path = AnalyticsExampleUITests;
+			sourceTree = "<group>";
+		};
+		107346D720315877004A66D1 /* AnalyticsExampleSwiftUITests */ = {
+			isa = PBXGroup;
+			children = (
+				107346D820315877004A66D1 /* AnalyticsExampleSwiftUITests.swift */,
+				107346DA20315877004A66D1 /* Info.plist */,
+			);
+			path = AnalyticsExampleSwiftUITests;
+			sourceTree = "<group>";
+		};
 		5F5A53431ADE670C00F81DF0 = {
 			isa = PBXGroup;
 			children = (
 				5F5A534E1ADE670C00F81DF0 /* AnalyticsExample */,
 				5F5A537A1ADE67D500F81DF0 /* AnalyticsExampleSwift */,
 				5FC7AD831B0D4106004E3100 /* AnalyticsExampleTests */,
+				107346C920315868004A66D1 /* AnalyticsExampleUITests */,
+				107346D720315877004A66D1 /* AnalyticsExampleSwiftUITests */,
 				5F5A534D1ADE670C00F81DF0 /* Products */,
 				5F9961041AE0CF4F0034F503 /* Shared */,
 				5FC29E541AE9255700668C8D /* Images */,
@@ -112,6 +168,8 @@
 				5F5A534C1ADE670C00F81DF0 /* AnalyticsExample.app */,
 				5F5A53791ADE67D500F81DF0 /* AnalyticsExampleSwift.app */,
 				5FC7AD821B0D4106004E3100 /* AnalyticsExampleTests.xctest */,
+				107346C820315868004A66D1 /* AnalyticsExampleUITests.xctest */,
+				107346D620315877004A66D1 /* AnalyticsExampleSwiftUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -186,6 +244,42 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		107346C720315868004A66D1 /* AnalyticsExampleUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 107346D120315868004A66D1 /* Build configuration list for PBXNativeTarget "AnalyticsExampleUITests" */;
+			buildPhases = (
+				107346C420315868004A66D1 /* Sources */,
+				107346C520315868004A66D1 /* Frameworks */,
+				107346C620315868004A66D1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				107346CE20315868004A66D1 /* PBXTargetDependency */,
+			);
+			name = AnalyticsExampleUITests;
+			productName = AnalyticsExampleUITests;
+			productReference = 107346C820315868004A66D1 /* AnalyticsExampleUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		107346D520315877004A66D1 /* AnalyticsExampleSwiftUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 107346DD20315877004A66D1 /* Build configuration list for PBXNativeTarget "AnalyticsExampleSwiftUITests" */;
+			buildPhases = (
+				107346D220315877004A66D1 /* Sources */,
+				107346D320315877004A66D1 /* Frameworks */,
+				107346D420315877004A66D1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				107346DC20315877004A66D1 /* PBXTargetDependency */,
+			);
+			name = AnalyticsExampleSwiftUITests;
+			productName = AnalyticsExampleSwiftUITests;
+			productReference = 107346D620315877004A66D1 /* AnalyticsExampleSwiftUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		5F5A534B1ADE670C00F81DF0 /* AnalyticsExample */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5F5A536F1ADE670C00F81DF0 /* Build configuration list for PBXNativeTarget "AnalyticsExample" */;
@@ -244,10 +338,20 @@
 		5F5A53441ADE670C00F81DF0 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0710;
+				LastSwiftUpdateCheck = 0920;
 				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = "Google Inc.";
 				TargetAttributes = {
+					107346C720315868004A66D1 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 5F5A534B1ADE670C00F81DF0;
+					};
+					107346D520315877004A66D1 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 5F5A53781ADE67D500F81DF0;
+					};
 					5F5A534B1ADE670C00F81DF0 = {
 						CreatedOnToolsVersion = 6.3;
 						LastSwiftMigration = 0800;
@@ -282,11 +386,27 @@
 				5F5A534B1ADE670C00F81DF0 /* AnalyticsExample */,
 				5F5A53781ADE67D500F81DF0 /* AnalyticsExampleSwift */,
 				5FC7AD811B0D4106004E3100 /* AnalyticsExampleTests */,
+				107346C720315868004A66D1 /* AnalyticsExampleUITests */,
+				107346D520315877004A66D1 /* AnalyticsExampleSwiftUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		107346C620315868004A66D1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		107346D420315877004A66D1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5F5A534A1ADE670C00F81DF0 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -319,6 +439,22 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		107346C420315868004A66D1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				107346CB20315868004A66D1 /* AnalyticsExampleUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		107346D220315877004A66D1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				107346D920315877004A66D1 /* AnalyticsExampleSwiftUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5F5A53481ADE670C00F81DF0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -356,6 +492,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		107346CE20315868004A66D1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5F5A534B1ADE670C00F81DF0 /* AnalyticsExample */;
+			targetProxy = 107346CD20315868004A66D1 /* PBXContainerItemProxy */;
+		};
+		107346DC20315877004A66D1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5F5A53781ADE67D500F81DF0 /* AnalyticsExampleSwift */;
+			targetProxy = 107346DB20315877004A66D1 /* PBXContainerItemProxy */;
+		};
 		5FC7AD891B0D4106004E3100 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 5F5A534B1ADE670C00F81DF0 /* AnalyticsExample */;
@@ -375,6 +521,102 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		107346CF20315868004A66D1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = AnalyticsExampleUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.AnalyticsExampleUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = AnalyticsExample;
+			};
+			name = Debug;
+		};
+		107346D020315868004A66D1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = AnalyticsExampleUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.AnalyticsExampleUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = AnalyticsExample;
+			};
+			name = Release;
+		};
+		107346DE20315877004A66D1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = AnalyticsExampleSwiftUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.AnalyticsExampleSwiftUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = AnalyticsExampleSwift;
+			};
+			name = Debug;
+		};
+		107346DF20315877004A66D1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = AnalyticsExampleSwiftUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.AnalyticsExampleSwiftUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = AnalyticsExampleSwift;
+			};
+			name = Release;
+		};
 		1073F3B81DA830C500C3EDCB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -617,6 +859,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		107346D120315868004A66D1 /* Build configuration list for PBXNativeTarget "AnalyticsExampleUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				107346CF20315868004A66D1 /* Debug */,
+				107346D020315868004A66D1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		107346DD20315877004A66D1 /* Build configuration list for PBXNativeTarget "AnalyticsExampleSwiftUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				107346DE20315877004A66D1 /* Debug */,
+				107346DF20315877004A66D1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		5F5A53471ADE670C00F81DF0 /* Build configuration list for PBXProject "AnalyticsExample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

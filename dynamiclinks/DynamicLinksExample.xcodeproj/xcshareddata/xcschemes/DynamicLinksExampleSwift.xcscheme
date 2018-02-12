@@ -29,6 +29,16 @@
       language = ""
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "10734761203159BF004A66D1"
+               BuildableName = "DynamicLinksExampleSwiftUITests.xctest"
+               BlueprintName = "DynamicLinksExampleSwiftUITests"
+               ReferencedContainer = "container:DynamicLinksExample.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

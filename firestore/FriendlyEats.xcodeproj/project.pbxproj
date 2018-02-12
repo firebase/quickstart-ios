@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		10734773203159E4004A66D1 /* FriendlyEatsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10734772203159E4004A66D1 /* FriendlyEatsUITests.swift */; };
 		8D004D2D1EE879B5004DEF35 /* FiltersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D004D2C1EE879B5004DEF35 /* FiltersViewController.swift */; };
 		8D5DF7021F7EF3BA00B0D24F /* NewReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5DF7011F7EF3BA00B0D24F /* NewReviewViewController.swift */; };
 		8D9BBC311EE2200900194E9A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9BBC301EE2200900194E9A /* AppDelegate.swift */; };
@@ -24,6 +25,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		10734775203159E4004A66D1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8D9BBC251EE2200800194E9A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8D9BBC2C1EE2200900194E9A;
+			remoteInfo = FriendlyEats;
+		};
 		8D9BBC421EE2200900194E9A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 8D9BBC251EE2200800194E9A /* Project object */;
@@ -34,6 +42,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		10734770203159E3004A66D1 /* FriendlyEatsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FriendlyEatsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		10734772203159E4004A66D1 /* FriendlyEatsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendlyEatsUITests.swift; sourceTree = "<group>"; };
+		10734774203159E4004A66D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D004D2C1EE879B5004DEF35 /* FiltersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FiltersViewController.swift; sourceTree = "<group>"; };
 		8D5DF7011F7EF3BA00B0D24F /* NewReviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewReviewViewController.swift; sourceTree = "<group>"; };
 		8D9BBC2D1EE2200900194E9A /* FriendlyEats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FriendlyEats.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -55,6 +66,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		1073476D203159E3004A66D1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8D9BBC2A1EE2200900194E9A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -72,11 +90,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		10734771203159E4004A66D1 /* FriendlyEatsUITests */ = {
+			isa = PBXGroup;
+			children = (
+				10734772203159E4004A66D1 /* FriendlyEatsUITests.swift */,
+				10734774203159E4004A66D1 /* Info.plist */,
+			);
+			path = FriendlyEatsUITests;
+			sourceTree = "<group>";
+		};
 		8D9BBC241EE2200800194E9A = {
 			isa = PBXGroup;
 			children = (
 				8D9BBC2F1EE2200900194E9A /* FriendlyEats */,
 				8D9BBC441EE2200900194E9A /* FriendlyEatsTests */,
+				10734771203159E4004A66D1 /* FriendlyEatsUITests */,
 				8D9BBC2E1EE2200900194E9A /* Products */,
 			);
 			sourceTree = "<group>";
@@ -86,6 +114,7 @@
 			children = (
 				8D9BBC2D1EE2200900194E9A /* FriendlyEats.app */,
 				8D9BBC411EE2200900194E9A /* FriendlyEatsTests.xctest */,
+				10734770203159E3004A66D1 /* FriendlyEatsUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -123,6 +152,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		1073476F203159E3004A66D1 /* FriendlyEatsUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 10734779203159E4004A66D1 /* Build configuration list for PBXNativeTarget "FriendlyEatsUITests" */;
+			buildPhases = (
+				1073476C203159E3004A66D1 /* Sources */,
+				1073476D203159E3004A66D1 /* Frameworks */,
+				1073476E203159E3004A66D1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				10734776203159E4004A66D1 /* PBXTargetDependency */,
+			);
+			name = FriendlyEatsUITests;
+			productName = FriendlyEatsUITests;
+			productReference = 10734770203159E3004A66D1 /* FriendlyEatsUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		8D9BBC2C1EE2200900194E9A /* FriendlyEats */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8D9BBC4A1EE2200900194E9A /* Build configuration list for PBXNativeTarget "FriendlyEats" */;
@@ -164,10 +211,15 @@
 		8D9BBC251EE2200800194E9A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0830;
+				LastSwiftUpdateCheck = 0920;
 				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = Firebase;
 				TargetAttributes = {
+					1073476F203159E3004A66D1 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 8D9BBC2C1EE2200900194E9A;
+					};
 					8D9BBC2C1EE2200900194E9A = {
 						CreatedOnToolsVersion = 8.3.2;
 						ProvisioningStyle = Automatic;
@@ -194,11 +246,19 @@
 			targets = (
 				8D9BBC2C1EE2200900194E9A /* FriendlyEats */,
 				8D9BBC401EE2200900194E9A /* FriendlyEatsTests */,
+				1073476F203159E3004A66D1 /* FriendlyEatsUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		1073476E203159E3004A66D1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8D9BBC2B1EE2200900194E9A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -221,6 +281,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		1073476C203159E3004A66D1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				10734773203159E4004A66D1 /* FriendlyEatsUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8D9BBC291EE2200900194E9A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -247,6 +315,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		10734776203159E4004A66D1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8D9BBC2C1EE2200900194E9A /* FriendlyEats */;
+			targetProxy = 10734775203159E4004A66D1 /* PBXContainerItemProxy */;
+		};
 		8D9BBC431EE2200900194E9A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 8D9BBC2C1EE2200900194E9A /* FriendlyEats */;
@@ -274,6 +347,56 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		10734777203159E4004A66D1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = FriendlyEatsUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.FriendlyEatsUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = FriendlyEats;
+			};
+			name = Debug;
+		};
+		10734778203159E4004A66D1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = FriendlyEatsUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.FriendlyEatsUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = FriendlyEats;
+			};
+			name = Release;
+		};
 		8D9BBC481EE2200900194E9A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -592,6 +715,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		10734779203159E4004A66D1 /* Build configuration list for PBXNativeTarget "FriendlyEatsUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				10734777203159E4004A66D1 /* Debug */,
+				10734778203159E4004A66D1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		8D9BBC281EE2200800194E9A /* Build configuration list for PBXProject "FriendlyEats" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

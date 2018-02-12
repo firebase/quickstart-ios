@@ -39,6 +39,16 @@
                ReferencedContainer = "container:DynamicLinksExample.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "10734753203159AE004A66D1"
+               BuildableName = "DynamicLinksExampleUITests.xctest"
+               BlueprintName = "DynamicLinksExampleUITests"
+               ReferencedContainer = "container:DynamicLinksExample.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

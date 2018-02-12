@@ -39,6 +39,16 @@
                ReferencedContainer = "container:StorageExample.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "107347D120315A79004A66D1"
+               BuildableName = "StorageExampleUITests.xctest"
+               BlueprintName = "StorageExampleUITests"
+               ReferencedContainer = "container:StorageExample.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

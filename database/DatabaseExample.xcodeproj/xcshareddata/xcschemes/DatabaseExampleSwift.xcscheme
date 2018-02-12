@@ -29,6 +29,16 @@
       language = ""
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "107347452031598A004A66D1"
+               BuildableName = "DatabaseExampleSwiftUITests.xctest"
+               BlueprintName = "DatabaseExampleSwiftUITests"
+               ReferencedContainer = "container:DatabaseExample.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

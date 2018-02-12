@@ -39,6 +39,16 @@
                ReferencedContainer = "container:DatabaseExample.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "1073473720315982004A66D1"
+               BuildableName = "DatabaseExampleUITests.xctest"
+               BlueprintName = "DatabaseExampleUITests"
+               ReferencedContainer = "container:DatabaseExample.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

@@ -21,8 +21,8 @@
 		1056D95F1CD829FE0061ED72 /* MyTopPostsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1056D95E1CD829FE0061ED72 /* MyTopPostsViewController.m */; };
 		1056D9621CD82C740061ED72 /* MyPostsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1056D9611CD82C740061ED72 /* MyPostsViewController.m */; };
 		1056D9651CD82CC10061ED72 /* RecentPostsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1056D9641CD82CC10061ED72 /* RecentPostsViewController.m */; };
-		1073473B20315982004A66D1 /* DatabaseExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1073473A20315982004A66D1 /* DatabaseExampleUITests.swift */; };
 		107347492031598A004A66D1 /* DatabaseExampleSwiftUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107347482031598A004A66D1 /* DatabaseExampleSwiftUITests.swift */; };
+		1073483720333B8C004A66D1 /* DatabaseExampleUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1073483620333B8C004A66D1 /* DatabaseExampleUITests.m */; };
 		1073FE0C1CE2742000E2F73F /* TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1073FE0B1CE2742000E2F73F /* TabBarController.m */; };
 		1073FE101CE2D27700E2F73F /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1073FE0F1CE2D27700E2F73F /* TabBarController.swift */; };
 		10B872AE1CDBFB1F00C7D214 /* MyPostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B872AD1CDBFB1F00C7D214 /* MyPostsViewController.swift */; };
@@ -54,19 +54,19 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		1073473D20315982004A66D1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5F5A53441ADE670C00F81DF0 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 5F5A534B1ADE670C00F81DF0;
-			remoteInfo = DatabaseExample;
-		};
 		1073474B2031598A004A66D1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5F5A53441ADE670C00F81DF0 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 5F5A53781ADE67D500F81DF0;
 			remoteInfo = DatabaseExampleSwift;
+		};
+		1073483920333B8C004A66D1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5F5A53441ADE670C00F81DF0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5F5A534B1ADE670C00F81DF0;
+			remoteInfo = DatabaseExample;
 		};
 		5FDE055E1B0DAA090037B82F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -101,12 +101,12 @@
 		1056D9611CD82C740061ED72 /* MyPostsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPostsViewController.m; sourceTree = "<group>"; };
 		1056D9631CD82CC10061ED72 /* RecentPostsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecentPostsViewController.h; sourceTree = "<group>"; };
 		1056D9641CD82CC10061ED72 /* RecentPostsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecentPostsViewController.m; sourceTree = "<group>"; };
-		1073473820315982004A66D1 /* DatabaseExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DatabaseExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		1073473A20315982004A66D1 /* DatabaseExampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseExampleUITests.swift; sourceTree = "<group>"; };
-		1073473C20315982004A66D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		107347462031598A004A66D1 /* DatabaseExampleSwiftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DatabaseExampleSwiftUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		107347482031598A004A66D1 /* DatabaseExampleSwiftUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseExampleSwiftUITests.swift; sourceTree = "<group>"; };
 		1073474A2031598A004A66D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1073483420333B8C004A66D1 /* DatabaseExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DatabaseExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1073483620333B8C004A66D1 /* DatabaseExampleUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DatabaseExampleUITests.m; sourceTree = "<group>"; };
+		1073483820333B8C004A66D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1073FE0A1CE2742000E2F73F /* TabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarController.h; sourceTree = "<group>"; };
 		1073FE0B1CE2742000E2F73F /* TabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarController.m; sourceTree = "<group>"; };
 		1073FE0F1CE2D27700E2F73F /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
@@ -143,14 +143,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		1073473520315982004A66D1 /* Frameworks */ = {
+		107347432031598A004A66D1 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		107347432031598A004A66D1 /* Frameworks */ = {
+		1073483120333B8C004A66D1 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -181,15 +181,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1073473920315982004A66D1 /* DatabaseExampleUITests */ = {
-			isa = PBXGroup;
-			children = (
-				1073473A20315982004A66D1 /* DatabaseExampleUITests.swift */,
-				1073473C20315982004A66D1 /* Info.plist */,
-			);
-			path = DatabaseExampleUITests;
-			sourceTree = "<group>";
-		};
 		107347472031598A004A66D1 /* DatabaseExampleSwiftUITests */ = {
 			isa = PBXGroup;
 			children = (
@@ -197,6 +188,15 @@
 				1073474A2031598A004A66D1 /* Info.plist */,
 			);
 			path = DatabaseExampleSwiftUITests;
+			sourceTree = "<group>";
+		};
+		1073483520333B8C004A66D1 /* DatabaseExampleUITests */ = {
+			isa = PBXGroup;
+			children = (
+				1073483620333B8C004A66D1 /* DatabaseExampleUITests.m */,
+				1073483820333B8C004A66D1 /* Info.plist */,
+			);
+			path = DatabaseExampleUITests;
 			sourceTree = "<group>";
 		};
 		10B872AF1CDBFB2700C7D214 /* ViewControllers */ = {
@@ -266,8 +266,8 @@
 				5F5A534E1ADE670C00F81DF0 /* DatabaseExample */,
 				5F5A537A1ADE67D500F81DF0 /* DatabaseExampleSwift */,
 				5FDE05591B0DAA090037B82F /* DatabaseExampleTests */,
-				1073473920315982004A66D1 /* DatabaseExampleUITests */,
 				107347472031598A004A66D1 /* DatabaseExampleSwiftUITests */,
+				1073483520333B8C004A66D1 /* DatabaseExampleUITests */,
 				5F5A534D1ADE670C00F81DF0 /* Products */,
 				5F9961041AE0CF4F0034F503 /* Shared */,
 			);
@@ -280,8 +280,8 @@
 				5F5A534C1ADE670C00F81DF0 /* DatabaseExample.app */,
 				5F5A53791ADE67D500F81DF0 /* DatabaseExampleSwift.app */,
 				5FDE05581B0DAA090037B82F /* DatabaseExampleTests.xctest */,
-				1073473820315982004A66D1 /* DatabaseExampleUITests.xctest */,
 				107347462031598A004A66D1 /* DatabaseExampleSwiftUITests.xctest */,
+				1073483420333B8C004A66D1 /* DatabaseExampleUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -350,24 +350,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		1073473720315982004A66D1 /* DatabaseExampleUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 1073474120315982004A66D1 /* Build configuration list for PBXNativeTarget "DatabaseExampleUITests" */;
-			buildPhases = (
-				1073473420315982004A66D1 /* Sources */,
-				1073473520315982004A66D1 /* Frameworks */,
-				1073473620315982004A66D1 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				1073473E20315982004A66D1 /* PBXTargetDependency */,
-			);
-			name = DatabaseExampleUITests;
-			productName = DatabaseExampleUITests;
-			productReference = 1073473820315982004A66D1 /* DatabaseExampleUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 		107347452031598A004A66D1 /* DatabaseExampleSwiftUITests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1073474D2031598A004A66D1 /* Build configuration list for PBXNativeTarget "DatabaseExampleSwiftUITests" */;
@@ -384,6 +366,24 @@
 			name = DatabaseExampleSwiftUITests;
 			productName = DatabaseExampleSwiftUITests;
 			productReference = 107347462031598A004A66D1 /* DatabaseExampleSwiftUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		1073483320333B8C004A66D1 /* DatabaseExampleUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1073483B20333B8C004A66D1 /* Build configuration list for PBXNativeTarget "DatabaseExampleUITests" */;
+			buildPhases = (
+				1073483020333B8C004A66D1 /* Sources */,
+				1073483120333B8C004A66D1 /* Frameworks */,
+				1073483220333B8C004A66D1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1073483A20333B8C004A66D1 /* PBXTargetDependency */,
+			);
+			name = DatabaseExampleUITests;
+			productName = DatabaseExampleUITests;
+			productReference = 1073483420333B8C004A66D1 /* DatabaseExampleUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 		5F5A534B1ADE670C00F81DF0 /* DatabaseExample */ = {
@@ -448,15 +448,15 @@
 				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = "Google Inc.";
 				TargetAttributes = {
-					1073473720315982004A66D1 = {
-						CreatedOnToolsVersion = 9.2;
-						ProvisioningStyle = Automatic;
-						TestTargetID = 5F5A534B1ADE670C00F81DF0;
-					};
 					107347452031598A004A66D1 = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 5F5A53781ADE67D500F81DF0;
+					};
+					1073483320333B8C004A66D1 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 5F5A534B1ADE670C00F81DF0;
 					};
 					5F5A534B1ADE670C00F81DF0 = {
 						CreatedOnToolsVersion = 6.3;
@@ -490,21 +490,21 @@
 				5F5A534B1ADE670C00F81DF0 /* DatabaseExample */,
 				5F5A53781ADE67D500F81DF0 /* DatabaseExampleSwift */,
 				5FDE05571B0DAA090037B82F /* DatabaseExampleTests */,
-				1073473720315982004A66D1 /* DatabaseExampleUITests */,
 				107347452031598A004A66D1 /* DatabaseExampleSwiftUITests */,
+				1073483320333B8C004A66D1 /* DatabaseExampleUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		1073473620315982004A66D1 /* Resources */ = {
+		107347442031598A004A66D1 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		107347442031598A004A66D1 /* Resources */ = {
+		1073483220333B8C004A66D1 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -545,19 +545,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		1073473420315982004A66D1 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				1073473B20315982004A66D1 /* DatabaseExampleUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		107347422031598A004A66D1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				107347492031598A004A66D1 /* DatabaseExampleSwiftUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1073483020333B8C004A66D1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1073483720333B8C004A66D1 /* DatabaseExampleUITests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -617,15 +617,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		1073473E20315982004A66D1 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 5F5A534B1ADE670C00F81DF0 /* DatabaseExample */;
-			targetProxy = 1073473D20315982004A66D1 /* PBXContainerItemProxy */;
-		};
 		1073474C2031598A004A66D1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 5F5A53781ADE67D500F81DF0 /* DatabaseExampleSwift */;
 			targetProxy = 1073474B2031598A004A66D1 /* PBXContainerItemProxy */;
+		};
+		1073483A20333B8C004A66D1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5F5A534B1ADE670C00F81DF0 /* DatabaseExample */;
+			targetProxy = 1073483920333B8C004A66D1 /* PBXContainerItemProxy */;
 		};
 		5FDE055F1B0DAA090037B82F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -646,54 +646,6 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		1073473F20315982004A66D1 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = DatabaseExampleUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.DatabaseExampleUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = DatabaseExample;
-			};
-			name = Debug;
-		};
-		1073474020315982004A66D1 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = DatabaseExampleUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.DatabaseExampleUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = DatabaseExample;
-			};
-			name = Release;
-		};
 		1073474E2031598A004A66D1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -739,6 +691,51 @@
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = DatabaseExampleSwift;
+			};
+			name = Release;
+		};
+		1073483C20333B8C004A66D1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = DatabaseExampleUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.DatabaseExampleUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = DatabaseExample;
+			};
+			name = Debug;
+		};
+		1073483D20333B8C004A66D1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = DatabaseExampleUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.DatabaseExampleUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = DatabaseExample;
 			};
 			name = Release;
 		};
@@ -979,20 +976,20 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1073474120315982004A66D1 /* Build configuration list for PBXNativeTarget "DatabaseExampleUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				1073473F20315982004A66D1 /* Debug */,
-				1073474020315982004A66D1 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		1073474D2031598A004A66D1 /* Build configuration list for PBXNativeTarget "DatabaseExampleSwiftUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1073474E2031598A004A66D1 /* Debug */,
 				1073474F2031598A004A66D1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1073483B20333B8C004A66D1 /* Build configuration list for PBXNativeTarget "DatabaseExampleUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1073483C20333B8C004A66D1 /* Debug */,
+				1073483D20333B8C004A66D1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

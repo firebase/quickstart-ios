@@ -19,7 +19,7 @@
 		105919B91ADDAA5900344065 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105919B31ADDA93F00344065 /* AppDelegate.swift */; };
 		105919BA1ADDAA5D00344065 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105919B41ADDA93F00344065 /* ViewController.swift */; };
 		107346BD203157F4004A66D1 /* AdMobExampleSwiftUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107346BC203157F4004A66D1 /* AdMobExampleSwiftUITests.swift */; };
-		10B92CAD202E4199008DBD68 /* AdMobExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B92CAC202E4199008DBD68 /* AdMobExampleUITests.swift */; };
+		107347F120333A9F004A66D1 /* AdMobExampleUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 107347F020333A9F004A66D1 /* AdMobExampleUITests.m */; };
 		CF86EE1D19787E6B00411520 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CF86EE1C19787E6B00411520 /* main.m */; };
 		CF86EE2019787E6B00411520 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CF86EE1F19787E6B00411520 /* AppDelegate.m */; };
 		CF86EE2319787E6B00411520 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF86EE2219787E6B00411520 /* ViewController.m */; };
@@ -48,7 +48,7 @@
 			remoteGlobalIDString = 105919891ADDA8F700344065;
 			remoteInfo = AdMobExampleSwift;
 		};
-		10B92CAF202E4199008DBD68 /* PBXContainerItemProxy */ = {
+		107347F320333A9F004A66D1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = CF86EE0F19787E6B00411520 /* Project object */;
 			proxyType = 1;
@@ -72,9 +72,9 @@
 		107346BA203157F4004A66D1 /* AdMobExampleSwiftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AdMobExampleSwiftUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		107346BC203157F4004A66D1 /* AdMobExampleSwiftUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdMobExampleSwiftUITests.swift; sourceTree = "<group>"; };
 		107346BE203157F4004A66D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		10B92CAA202E4199008DBD68 /* AdMobExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AdMobExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		10B92CAC202E4199008DBD68 /* AdMobExampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdMobExampleUITests.swift; sourceTree = "<group>"; };
-		10B92CAE202E4199008DBD68 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		107347EE20333A9F004A66D1 /* AdMobExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AdMobExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		107347F020333A9F004A66D1 /* AdMobExampleUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AdMobExampleUITests.m; sourceTree = "<group>"; };
+		107347F220333A9F004A66D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		10BCC1C31B06474800B5A8B2 /* ViewController_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController_Private.h; sourceTree = "<group>"; };
 		CF86EE1719787E6B00411520 /* AdMobExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AdMobExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF86EE1B19787E6B00411520 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -115,7 +115,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		10B92CA7202E4199008DBD68 /* Frameworks */ = {
+		107347EB20333A9F004A66D1 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -185,11 +185,11 @@
 			path = AdMobExampleSwiftUITests;
 			sourceTree = "<group>";
 		};
-		10B92CAB202E4199008DBD68 /* AdMobExampleUITests */ = {
+		107347EF20333A9F004A66D1 /* AdMobExampleUITests */ = {
 			isa = PBXGroup;
 			children = (
-				10B92CAC202E4199008DBD68 /* AdMobExampleUITests.swift */,
-				10B92CAE202E4199008DBD68 /* Info.plist */,
+				107347F020333A9F004A66D1 /* AdMobExampleUITests.m */,
+				107347F220333A9F004A66D1 /* Info.plist */,
 			);
 			path = AdMobExampleUITests;
 			sourceTree = "<group>";
@@ -201,8 +201,8 @@
 				1059198B1ADDA8F700344065 /* AdMobExampleSwift */,
 				1021DD231B05187A0018763B /* AdMobExampleTests */,
 				1021DD321B0518E40018763B /* AdMobExampleSwiftTests */,
-				10B92CAB202E4199008DBD68 /* AdMobExampleUITests */,
 				107346BB203157F4004A66D1 /* AdMobExampleSwiftUITests */,
+				107347EF20333A9F004A66D1 /* AdMobExampleUITests */,
 				CF86EE1819787E6B00411520 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -214,8 +214,8 @@
 				1059198A1ADDA8F700344065 /* AdMobExampleSwift.app */,
 				1021DD221B05187A0018763B /* AdMobExampleTests.xctest */,
 				1021DD311B0518E40018763B /* AdMobExampleSwiftTests.xctest */,
-				10B92CAA202E4199008DBD68 /* AdMobExampleUITests.xctest */,
 				107346BA203157F4004A66D1 /* AdMobExampleSwiftUITests.xctest */,
+				107347EE20333A9F004A66D1 /* AdMobExampleUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -326,22 +326,22 @@
 			productReference = 107346BA203157F4004A66D1 /* AdMobExampleSwiftUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
-		10B92CA9202E4199008DBD68 /* AdMobExampleUITests */ = {
+		107347ED20333A9F004A66D1 /* AdMobExampleUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 10B92CB3202E4199008DBD68 /* Build configuration list for PBXNativeTarget "AdMobExampleUITests" */;
+			buildConfigurationList = 107347F520333A9F004A66D1 /* Build configuration list for PBXNativeTarget "AdMobExampleUITests" */;
 			buildPhases = (
-				10B92CA6202E4199008DBD68 /* Sources */,
-				10B92CA7202E4199008DBD68 /* Frameworks */,
-				10B92CA8202E4199008DBD68 /* Resources */,
+				107347EA20333A9F004A66D1 /* Sources */,
+				107347EB20333A9F004A66D1 /* Frameworks */,
+				107347EC20333A9F004A66D1 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				10B92CB0202E4199008DBD68 /* PBXTargetDependency */,
+				107347F420333A9F004A66D1 /* PBXTargetDependency */,
 			);
 			name = AdMobExampleUITests;
 			productName = AdMobExampleUITests;
-			productReference = 10B92CAA202E4199008DBD68 /* AdMobExampleUITests.xctest */;
+			productReference = 107347EE20333A9F004A66D1 /* AdMobExampleUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 		CF86EE1619787E6B00411520 /* AdMobExample */ = {
@@ -392,7 +392,7 @@
 						ProvisioningStyle = Automatic;
 						TestTargetID = 105919891ADDA8F700344065;
 					};
-					10B92CA9202E4199008DBD68 = {
+					107347ED20333A9F004A66D1 = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
 						TestTargetID = CF86EE1619787E6B00411520;
@@ -420,8 +420,8 @@
 				105919891ADDA8F700344065 /* AdMobExampleSwift */,
 				1021DD211B05187A0018763B /* AdMobExampleTests */,
 				1021DD301B0518E40018763B /* AdMobExampleSwiftTests */,
-				10B92CA9202E4199008DBD68 /* AdMobExampleUITests */,
 				107346B9203157F4004A66D1 /* AdMobExampleSwiftUITests */,
+				107347ED20333A9F004A66D1 /* AdMobExampleUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -459,7 +459,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		10B92CA8202E4199008DBD68 /* Resources */ = {
+		107347EC20333A9F004A66D1 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -513,11 +513,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		10B92CA6202E4199008DBD68 /* Sources */ = {
+		107347EA20333A9F004A66D1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				10B92CAD202E4199008DBD68 /* AdMobExampleUITests.swift in Sources */,
+				107347F120333A9F004A66D1 /* AdMobExampleUITests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -549,10 +549,10 @@
 			target = 105919891ADDA8F700344065 /* AdMobExampleSwift */;
 			targetProxy = 107346BF203157F4004A66D1 /* PBXContainerItemProxy */;
 		};
-		10B92CB0202E4199008DBD68 /* PBXTargetDependency */ = {
+		107347F420333A9F004A66D1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = CF86EE1619787E6B00411520 /* AdMobExample */;
-			targetProxy = 10B92CAF202E4199008DBD68 /* PBXContainerItemProxy */;
+			targetProxy = 107347F320333A9F004A66D1 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -759,7 +759,7 @@
 			};
 			name = Release;
 		};
-		10B92CB1202E4199008DBD68 /* Debug */ = {
+		107347F620333A9F004A66D1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
@@ -776,14 +776,12 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.AdMobExampleUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = AdMobExample;
 			};
 			name = Debug;
 		};
-		10B92CB2202E4199008DBD68 /* Release */ = {
+		107347F720333A9F004A66D1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
@@ -801,7 +799,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.AdMobExampleUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = AdMobExample;
 			};
@@ -979,11 +976,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		10B92CB3202E4199008DBD68 /* Build configuration list for PBXNativeTarget "AdMobExampleUITests" */ = {
+		107347F520333A9F004A66D1 /* Build configuration list for PBXNativeTarget "AdMobExampleUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				10B92CB1202E4199008DBD68 /* Debug */,
-				10B92CB2202E4199008DBD68 /* Release */,
+				107347F620333A9F004A66D1 /* Debug */,
+				107347F720333A9F004A66D1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

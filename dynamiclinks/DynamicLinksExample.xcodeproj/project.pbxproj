@@ -11,8 +11,8 @@
 		106C9A3B1EA56900009FD392 /* ParamTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106C9A391EA56900009FD392 /* ParamTableViewCell.swift */; };
 		106C9A3E1EA66CCD009FD392 /* HeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 106C9A3D1EA66CCD009FD392 /* HeaderCell.m */; };
 		106C9A411EA66CE6009FD392 /* ParamTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 106C9A401EA66CE5009FD392 /* ParamTableViewCell.m */; };
-		10734757203159AE004A66D1 /* DynamicLinksExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10734756203159AE004A66D1 /* DynamicLinksExampleUITests.swift */; };
 		10734765203159BF004A66D1 /* DynamicLinksExampleSwiftUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10734764203159BF004A66D1 /* DynamicLinksExampleSwiftUITests.swift */; };
+		1073484520333BB3004A66D1 /* DynamicLinksExampleUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1073484420333BB3004A66D1 /* DynamicLinksExampleUITests.m */; };
 		10AF4D491DD3E7660096D192 /* DynamicLinksExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 10AF4D481DD3E7660096D192 /* DynamicLinksExampleTests.m */; };
 		5F5A53521ADE670C00F81DF0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5A53511ADE670C00F81DF0 /* main.m */; };
 		5F5A53551ADE670C00F81DF0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5A53541ADE670C00F81DF0 /* AppDelegate.m */; };
@@ -28,19 +28,19 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		10734759203159AE004A66D1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5F5A53441ADE670C00F81DF0 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 5F5A534B1ADE670C00F81DF0;
-			remoteInfo = DynamicLinksExample;
-		};
 		10734767203159BF004A66D1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5F5A53441ADE670C00F81DF0 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 5F5A53781ADE67D500F81DF0;
 			remoteInfo = DynamicLinksExampleSwift;
+		};
+		1073484720333BB3004A66D1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5F5A53441ADE670C00F81DF0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5F5A534B1ADE670C00F81DF0;
+			remoteInfo = DynamicLinksExample;
 		};
 		10AF4D4B1DD3E7660096D192 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -59,12 +59,12 @@
 		106C9A3D1EA66CCD009FD392 /* HeaderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeaderCell.m; sourceTree = "<group>"; };
 		106C9A3F1EA66CE5009FD392 /* ParamTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParamTableViewCell.h; sourceTree = "<group>"; };
 		106C9A401EA66CE5009FD392 /* ParamTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParamTableViewCell.m; sourceTree = "<group>"; };
-		10734754203159AE004A66D1 /* DynamicLinksExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DynamicLinksExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		10734756203159AE004A66D1 /* DynamicLinksExampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicLinksExampleUITests.swift; sourceTree = "<group>"; };
-		10734758203159AE004A66D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		10734762203159BF004A66D1 /* DynamicLinksExampleSwiftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DynamicLinksExampleSwiftUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		10734764203159BF004A66D1 /* DynamicLinksExampleSwiftUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicLinksExampleSwiftUITests.swift; sourceTree = "<group>"; };
 		10734766203159BF004A66D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1073484220333BB3004A66D1 /* DynamicLinksExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DynamicLinksExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1073484420333BB3004A66D1 /* DynamicLinksExampleUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DynamicLinksExampleUITests.m; sourceTree = "<group>"; };
+		1073484620333BB3004A66D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		10AF4D461DD3E7660096D192 /* DynamicLinksExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DynamicLinksExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		10AF4D481DD3E7660096D192 /* DynamicLinksExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DynamicLinksExampleTests.m; sourceTree = "<group>"; };
 		5F5A534C1ADE670C00F81DF0 /* DynamicLinksExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DynamicLinksExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -83,14 +83,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		10734751203159AE004A66D1 /* Frameworks */ = {
+		1073475F203159BF004A66D1 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1073475F203159BF004A66D1 /* Frameworks */ = {
+		1073483F20333BB3004A66D1 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -121,15 +121,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		10734755203159AE004A66D1 /* DynamicLinksExampleUITests */ = {
-			isa = PBXGroup;
-			children = (
-				10734756203159AE004A66D1 /* DynamicLinksExampleUITests.swift */,
-				10734758203159AE004A66D1 /* Info.plist */,
-			);
-			path = DynamicLinksExampleUITests;
-			sourceTree = "<group>";
-		};
 		10734763203159BF004A66D1 /* DynamicLinksExampleSwiftUITests */ = {
 			isa = PBXGroup;
 			children = (
@@ -137,6 +128,15 @@
 				10734766203159BF004A66D1 /* Info.plist */,
 			);
 			path = DynamicLinksExampleSwiftUITests;
+			sourceTree = "<group>";
+		};
+		1073484320333BB3004A66D1 /* DynamicLinksExampleUITests */ = {
+			isa = PBXGroup;
+			children = (
+				1073484420333BB3004A66D1 /* DynamicLinksExampleUITests.m */,
+				1073484620333BB3004A66D1 /* Info.plist */,
+			);
+			path = DynamicLinksExampleUITests;
 			sourceTree = "<group>";
 		};
 		10AF4D471DD3E7660096D192 /* DynamicLinksExampleTests */ = {
@@ -153,8 +153,8 @@
 				5F5A534E1ADE670C00F81DF0 /* DynamicLinksExample */,
 				5F5A537A1ADE67D500F81DF0 /* DynamicLinksExampleSwift */,
 				10AF4D471DD3E7660096D192 /* DynamicLinksExampleTests */,
-				10734755203159AE004A66D1 /* DynamicLinksExampleUITests */,
 				10734763203159BF004A66D1 /* DynamicLinksExampleSwiftUITests */,
+				1073484320333BB3004A66D1 /* DynamicLinksExampleUITests */,
 				5F5A534D1ADE670C00F81DF0 /* Products */,
 				5F9961041AE0CF4F0034F503 /* Shared */,
 			);
@@ -167,8 +167,8 @@
 				5F5A534C1ADE670C00F81DF0 /* DynamicLinksExample.app */,
 				5F5A53791ADE67D500F81DF0 /* DynamicLinksExample.app */,
 				10AF4D461DD3E7660096D192 /* DynamicLinksExampleTests.xctest */,
-				10734754203159AE004A66D1 /* DynamicLinksExampleUITests.xctest */,
 				10734762203159BF004A66D1 /* DynamicLinksExampleSwiftUITests.xctest */,
+				1073484220333BB3004A66D1 /* DynamicLinksExampleUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -224,24 +224,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		10734753203159AE004A66D1 /* DynamicLinksExampleUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 1073475D203159AE004A66D1 /* Build configuration list for PBXNativeTarget "DynamicLinksExampleUITests" */;
-			buildPhases = (
-				10734750203159AE004A66D1 /* Sources */,
-				10734751203159AE004A66D1 /* Frameworks */,
-				10734752203159AE004A66D1 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				1073475A203159AE004A66D1 /* PBXTargetDependency */,
-			);
-			name = DynamicLinksExampleUITests;
-			productName = DynamicLinksExampleUITests;
-			productReference = 10734754203159AE004A66D1 /* DynamicLinksExampleUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 		10734761203159BF004A66D1 /* DynamicLinksExampleSwiftUITests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 10734769203159BF004A66D1 /* Build configuration list for PBXNativeTarget "DynamicLinksExampleSwiftUITests" */;
@@ -258,6 +240,24 @@
 			name = DynamicLinksExampleSwiftUITests;
 			productName = DynamicLinksExampleSwiftUITests;
 			productReference = 10734762203159BF004A66D1 /* DynamicLinksExampleSwiftUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		1073484120333BB3004A66D1 /* DynamicLinksExampleUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1073484920333BB3004A66D1 /* Build configuration list for PBXNativeTarget "DynamicLinksExampleUITests" */;
+			buildPhases = (
+				1073483E20333BB3004A66D1 /* Sources */,
+				1073483F20333BB3004A66D1 /* Frameworks */,
+				1073484020333BB3004A66D1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1073484820333BB3004A66D1 /* PBXTargetDependency */,
+			);
+			name = DynamicLinksExampleUITests;
+			productName = DynamicLinksExampleUITests;
+			productReference = 1073484220333BB3004A66D1 /* DynamicLinksExampleUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 		10AF4D451DD3E7660096D192 /* DynamicLinksExampleTests */ = {
@@ -322,15 +322,15 @@
 				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = "Google Inc.";
 				TargetAttributes = {
-					10734753203159AE004A66D1 = {
-						CreatedOnToolsVersion = 9.2;
-						ProvisioningStyle = Automatic;
-						TestTargetID = 5F5A534B1ADE670C00F81DF0;
-					};
 					10734761203159BF004A66D1 = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 5F5A53781ADE67D500F81DF0;
+					};
+					1073484120333BB3004A66D1 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 5F5A534B1ADE670C00F81DF0;
 					};
 					10AF4D451DD3E7660096D192 = {
 						CreatedOnToolsVersion = 8.1;
@@ -365,21 +365,21 @@
 				5F5A534B1ADE670C00F81DF0 /* DynamicLinksExample */,
 				5F5A53781ADE67D500F81DF0 /* DynamicLinksExampleSwift */,
 				10AF4D451DD3E7660096D192 /* DynamicLinksExampleTests */,
-				10734753203159AE004A66D1 /* DynamicLinksExampleUITests */,
 				10734761203159BF004A66D1 /* DynamicLinksExampleSwiftUITests */,
+				1073484120333BB3004A66D1 /* DynamicLinksExampleUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		10734752203159AE004A66D1 /* Resources */ = {
+		10734760203159BF004A66D1 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		10734760203159BF004A66D1 /* Resources */ = {
+		1073484020333BB3004A66D1 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -416,19 +416,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		10734750203159AE004A66D1 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				10734757203159AE004A66D1 /* DynamicLinksExampleUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		1073475E203159BF004A66D1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				10734765203159BF004A66D1 /* DynamicLinksExampleSwiftUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1073483E20333BB3004A66D1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1073484520333BB3004A66D1 /* DynamicLinksExampleUITests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -466,15 +466,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		1073475A203159AE004A66D1 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 5F5A534B1ADE670C00F81DF0 /* DynamicLinksExample */;
-			targetProxy = 10734759203159AE004A66D1 /* PBXContainerItemProxy */;
-		};
 		10734768203159BF004A66D1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 5F5A53781ADE67D500F81DF0 /* DynamicLinksExampleSwift */;
 			targetProxy = 10734767203159BF004A66D1 /* PBXContainerItemProxy */;
+		};
+		1073484820333BB3004A66D1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5F5A534B1ADE670C00F81DF0 /* DynamicLinksExample */;
+			targetProxy = 1073484720333BB3004A66D1 /* PBXContainerItemProxy */;
 		};
 		10AF4D4C1DD3E7660096D192 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -495,54 +495,6 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		1073475B203159AE004A66D1 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = DynamicLinksExampleUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.DynamicLinksExampleUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = DynamicLinksExample;
-			};
-			name = Debug;
-		};
-		1073475C203159AE004A66D1 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = DynamicLinksExampleUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.DynamicLinksExampleUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = DynamicLinksExample;
-			};
-			name = Release;
-		};
 		1073476A203159BF004A66D1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -588,6 +540,51 @@
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = DynamicLinksExampleSwift;
+			};
+			name = Release;
+		};
+		1073484A20333BB3004A66D1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = DynamicLinksExampleUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.DynamicLinksExampleUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = DynamicLinksExample;
+			};
+			name = Debug;
+		};
+		1073484B20333BB3004A66D1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = DynamicLinksExampleUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.DynamicLinksExampleUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = DynamicLinksExample;
 			};
 			name = Release;
 		};
@@ -813,20 +810,20 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1073475D203159AE004A66D1 /* Build configuration list for PBXNativeTarget "DynamicLinksExampleUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				1073475B203159AE004A66D1 /* Debug */,
-				1073475C203159AE004A66D1 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		10734769203159BF004A66D1 /* Build configuration list for PBXNativeTarget "DynamicLinksExampleSwiftUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1073476A203159BF004A66D1 /* Debug */,
 				1073476B203159BF004A66D1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1073484920333BB3004A66D1 /* Build configuration list for PBXNativeTarget "DynamicLinksExampleUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1073484A20333BB3004A66D1 /* Debug */,
+				1073484B20333BB3004A66D1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

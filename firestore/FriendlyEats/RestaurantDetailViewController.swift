@@ -143,7 +143,7 @@ class RestaurantDetailViewController: UIViewController, UITableViewDataSource, U
       }
 
       // Error if the restaurant data in Firestore has somehow changed or is malformed.
-      guard let restaurant = Restaurant(dictionary: restaurantSnapshot.data()) else {
+      guard let restaurant = restaurantSnapshot.data().flatMap(Restaurant.init(dictionary:)) else {
         let error = NSError(domain: "FriendlyEatsErrorDomain", code: 0, userInfo: [
           NSLocalizedDescriptionKey: "Unable to write to restaurant at Firestore path: \(reference.path)"
           ])

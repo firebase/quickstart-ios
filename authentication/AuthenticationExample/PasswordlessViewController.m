@@ -64,12 +64,12 @@
   [NSUserDefaults.standardUserDefaults setObject:_emailField.text forKey:@"Email"];
   [self showSpinner:^{
     // [START send_signin_link]
-    NSString *urlString =
-    [NSString stringWithFormat:@"https://www.example.com/?email=%@", _emailField.text];
     FIRActionCodeSettings *actionCodeSettings = [[FIRActionCodeSettings alloc] init];
     // The sign-in operation has to always be completed in the app.
     actionCodeSettings.handleCodeInApp = YES;
-    [actionCodeSettings setURL:[NSURL URLWithString:urlString]];
+    // Passing the email in the URL and using it on the sign-in step is discouraged
+    // as this flow should complete on the same device it started
+    [actionCodeSettings setURL:[NSURL URLWithString:@"https://www.example.com"]];
     [actionCodeSettings setIOSBundleID:[[NSBundle mainBundle] bundleIdentifier]];
     [actionCodeSettings setAndroidPackageName:@"com.example.android"
                         installIfNotAvailable:NO

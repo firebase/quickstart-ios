@@ -66,7 +66,9 @@ class PasswordlessViewController: UIViewController {
         let actionCodeSettings = ActionCodeSettings()
         // The sign-in operation has to always be completed in the app.
         actionCodeSettings.canHandleInApp = true
-        actionCodeSettings.url = URL(string: "https://www.example.com/?email=\(email)")
+        // Passing the email in the URL and using it on the sign-in step is discouraged
+        // as this flow should complete on the same device it started
+        actionCodeSettings.url = URL(string: "https://www.example.com")
         actionCodeSettings.setIOSBundleID(Bundle.main.bundleIdentifier!)
         actionCodeSettings.setAndroidPackageName("com.example.android",
                                                  installIfNotAvailable: false, minimumVersion: "12")

@@ -36,13 +36,6 @@ func priceString(from price: Int) -> String {
   return priceText
 }
 
-private func imageURL(from string: String) -> URL {
-  let number = (abs(string.hashValue) % 22) + 1
-  let URLString =
-      "https://storage.googleapis.com/firestorequickstarts.appspot.com/food_\(number).png"
-  return URL(string: URLString)!
-}
-
 class RestaurantsTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
   @IBOutlet var tableView: UITableView!
@@ -171,6 +164,7 @@ class RestaurantsTableViewController: UIViewController, UITableViewDataSource, U
       let category = categories[Int(arc4random_uniform(UInt32(categories.count)))]
       let city = cities[Int(arc4random_uniform(UInt32(cities.count)))]
       let price = Int(arc4random_uniform(3)) + 1
+      let photo = Restaurant.imageURL(forName: name)
 
       // Basic writes
 
@@ -182,7 +176,8 @@ class RestaurantsTableViewController: UIViewController, UITableViewDataSource, U
         city: city,
         price: price,
         ratingCount: 10,
-        averageRating: 0
+        averageRating: 0,
+        photo: photo
       )
 
       let restaurantRef = collection.addDocument(data: restaurant.dictionary)
@@ -249,7 +244,7 @@ class RestaurantsTableViewController: UIViewController, UITableViewDataSource, U
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     tableView.deselectRow(at: indexPath, animated: true)
     let controller = RestaurantDetailViewController.fromStoryboard()
-    controller.titleImageURL = imageURL(from: restaurants[indexPath.row].name)
+    controller.titleImageURL = restaurants[indexPath.row].photo
     controller.restaurant = restaurants[indexPath.row]
     controller.restaurantReference = documents[indexPath.row].reference
     self.navigationController?.pushViewController(controller, animated: true)
@@ -349,7 +344,7 @@ class RestaurantTableViewCell: UITableViewCell {
     starsView.rating = Int(restaurant.averageRating.rounded())
     priceLabel.text = priceString(from: restaurant.price)
 
-    let image = imageURL(from: restaurant.name)
+    let image = restaurant.photo
     thumbnailView.sd_setImage(with: image)
   }
 

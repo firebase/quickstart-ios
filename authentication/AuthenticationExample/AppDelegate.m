@@ -73,6 +73,9 @@
   sourceApplication:(NSString *)sourceApplication
          annotation:(id)annotation {
   // [END old_delegate]
+  if ([self handlePasswordlessSignInWithLink:url]) {
+    return YES;
+  }
   if ([[GIDSignIn sharedInstance] handleURL:url
                           sourceApplication:sourceApplication
                                  annotation:annotation]) {
@@ -85,6 +88,21 @@
                                                      annotation:annotation];
 }
 // [END old_options]
+
+- (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray * _Nullable))restorationHandler {
+  return [self handlePasswordlessSignInWithLink:userActivity.webpageURL];
+}
+
+- (BOOL)handlePasswordlessSignInWithLink:(nonnull NSURL*)url {
+  NSString *link = url.absoluteString;
+  if ([[FIRAuth auth] isSignInWithEmailLink:link]) {
+    [NSUserDefaults.standardUserDefaults setObject:link forKey:@"Link"];
+    [(UINavigationController*)_window.rootViewController popToRootViewControllerAnimated:NO];
+    [_window.rootViewController.childViewControllers[0] performSegueWithIdentifier:@"passwordless" sender:nil];
+    return YES;
+  }
+  return NO;
+}
 
 // [START headless_google_auth]
 - (void)signIn:(GIDSignIn *)signIn

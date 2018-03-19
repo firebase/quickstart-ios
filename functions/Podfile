@@ -1,0 +1,20 @@
+# FunctionsExample
+
+use_frameworks!
+platform :ios, '8.0'
+
+pod 'Firebase/Auth'
+pod 'FirebaseUI/Auth'
+pod 'FirebaseUI/Google'
+# [START functions_pod]
+pod 'Firebase/Functions'
+# [END functions_pod]
+
+pod 'MaterialComponents/Buttons'
+pod 'MaterialComponents/Collections'
+pod 'MaterialComponents/TextFields'
+
+target 'FunctionsExample' do
+end
+target 'FunctionsExampleSwift' do
+end

@@ -74,11 +74,13 @@ class ViewController: UIViewController {
 
       trace?.stop()
 
-      let contentToWrite = contents + (response?.url?.absoluteString ?? "")
-      do {
-        try contentToWrite.write(toFile: fileName, atomically: false, encoding: .utf8)
-      } catch {
-        print("Can't write to log file")
+      if let absoluteString = response?.url?.absoluteString {
+        let contentToWrite = contents + "\n" + absoluteString
+        do {
+          try contentToWrite.write(toFile: fileName, atomically: false, encoding: .utf8)
+        } catch {
+          print("Can't write to log file")
+        }
       }
     }
 

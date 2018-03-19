@@ -84,7 +84,7 @@
 
       [trace stop];
 
-      NSString *contentToWrite = [contents stringByAppendingString:response.URL.absoluteString];
+      NSString *contentToWrite = [contents stringByAppendingFormat: @"\n%@", response.URL.absoluteString];
       [contentToWrite writeToFile:fileName
                        atomically:NO
                          encoding:NSStringEncodingConversionAllowLossy

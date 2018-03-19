@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina5_9" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FAuthPickerViewController">
+            <connections>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="HTTPS Callable functions Quickstart" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kpQ-WR-tar">
+                    <rect key="frame" x="59.666666666666657" y="397.66666666666669" width="255.99999999999997" height="18"/>
+                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="0.79834653249999998" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="Y7s-Jb-aBs">
+                    <rect key="frame" x="123" y="237.66666666666663" width="128" height="128"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="Y7s-Jb-aBs" secondAttribute="height" multiplier="1:1" id="OpP-Kp-cSy"/>
+                        <constraint firstAttribute="width" constant="128" id="h5G-1s-UOe"/>
+                    </constraints>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" red="0.0078431372550000003" green="0.53333333329999999" blue="0.81960784310000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="kpQ-WR-tar" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="4Tq-aU-yLy"/>
+                <constraint firstItem="kpQ-WR-tar" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="UVD-Tw-GVu"/>
+                <constraint firstItem="Y7s-Jb-aBs" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="nZQ-yZ-Rix"/>
+                <constraint firstItem="kpQ-WR-tar" firstAttribute="top" secondItem="Y7s-Jb-aBs" secondAttribute="bottom" constant="32" id="tuy-3o-hm8"/>
+            </constraints>
+            <point key="canvasLocation" x="34.5" y="53"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="Logo" width="341" height="341"/>
+    </resources>
+</document>

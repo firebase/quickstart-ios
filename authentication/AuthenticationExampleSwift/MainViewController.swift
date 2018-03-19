@@ -42,6 +42,7 @@ class MainViewController: UITableViewController, GIDSignInUIDelegate {
     case authTwitter
     case authPhone
     case authCustom
+    case authPasswordless
   }
 
   /*! @var kOKButtonText
@@ -99,6 +100,10 @@ class MainViewController: UITableViewController, GIDSignInUIDelegate {
       case .authEmail:
         action = UIAlertAction(title: "Email", style: .default) { (UIAlertAction) in
           self.performSegue(withIdentifier: "email", sender:nil)
+        }
+      case .authPasswordless:
+        action = UIAlertAction(title: "Passwordless", style: .default) { (UIAlertAction) in
+          self.performSegue(withIdentifier: "passwordless", sender:nil)
         }
       case .authCustom:
         action = UIAlertAction(title: "Custom", style: .default) { (UIAlertAction) in
@@ -212,7 +217,8 @@ class MainViewController: UITableViewController, GIDSignInUIDelegate {
       AuthProvider.authFacebook,
       AuthProvider.authTwitter,
       AuthProvider.authPhone,
-      AuthProvider.authCustom
+      AuthProvider.authCustom,
+      AuthProvider.authPasswordless
     ])
   }
 

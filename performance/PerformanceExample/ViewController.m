@@ -87,7 +87,7 @@
       NSString *contentToWrite = [contents stringByAppendingFormat: @"\n%@", response.URL.absoluteString];
       [contentToWrite writeToFile:fileName
                        atomically:NO
-                         encoding:NSStringEncodingConversionAllowLossy
+                         encoding:NSUTF8StringEncoding
                             error:nil];
     }] resume];
 

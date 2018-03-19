@@ -19,10 +19,6 @@
 
 @implementation ViewController
 
-- (void)viewDidLoad {
-  [super viewDidLoad];
-}
-
 - (IBAction)handleLogTokenTouch:(id)sender {
   // [START log_fcm_reg_token]
   NSString *fcmToken = [FIRMessaging messaging].FCMToken;

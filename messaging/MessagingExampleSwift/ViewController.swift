@@ -20,10 +20,6 @@ import Firebase
 @objc(ViewController)
 class ViewController: UIViewController {
 
-  override func viewDidLoad() {
-    super.viewDidLoad()
-  }
-
   @IBAction func handleLogTokenTouch(_ sender: UIButton) {
     // [START log_fcm_reg_token]
     let token = Messaging.messaging().fcmToken

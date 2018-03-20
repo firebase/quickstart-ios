@@ -20,22 +20,46 @@
 
 @interface CloudAddCell ()
 @property (weak, nonatomic) IBOutlet UITextField *resultField;
+// [START define_functions_instance]
+@property(strong, nonatomic) FIRFunctions *functions;
+// [END define_functions_instance]
 @end
 
 @implementation CloudAddCell
+
+- (instancetype)initWithCoder:(NSCoder *)coder
+{
+  self = [super initWithCoder:coder];
+  if (self) {
+    // [START initialize_functions_instance]
+    self.functions = [FIRFunctions functions];
+    // [END initialize_functions_instance]
+  }
+  return self;
+}
 
 - (IBAction)didTapAdd:(id)sender {
   // [START function_add_numbers]
   NSDictionary *data = @{@"firstNumber": [NSNumber numberWithInt:_number1Field.text.intValue],
                          @"secondNumber": [NSNumber numberWithInt:_number2Field.text.intValue]};
-  [[[FIRFunctions functions] HTTPSCallableWithName:@"addNumbers"] callWithObject:data
-                                                                      completion:^(FIRHTTPSCallableResult * _Nullable result, NSError * _Nullable error) {
-    // [START_EXCLUDE]
+  [[_functions HTTPSCallableWithName:@"addNumbers"] callWithObject:data
+                                                        completion:^(FIRHTTPSCallableResult * _Nullable result, NSError * _Nullable error) {
+
+    // [START function_error]
     if (error) {
+      if (error.domain == FIRFunctionsErrorDomain) {
+        FIRFunctionsErrorCode *code = error.code;
+        NSString *message = error.localizedDescription;
+        NSObject *details = error.userInfo[FIRFunctionsErrorDetailsKey];
+      }
+      // [START_EXCLUDE]
       NSLog(@"%@", error.localizedDescription);
       return;
+      // [END_EXCLUDE]
     }
-    // [END_EXCLUDE]
+    // [END function_error]
+
+
     NSNumber *operationResult = result.data[@"operationResult"];
     _resultField.text = operationResult.stringValue;
   }];

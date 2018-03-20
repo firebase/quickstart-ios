@@ -23,18 +23,30 @@ class CloudAddCell: MDCCollectionViewCell {
   @IBOutlet weak var number2Field: MDCTextField!
   @IBOutlet weak var button: MDCButton!
   @IBOutlet weak private var resultField: UITextField!
+  // [START functions_instance]
+  lazy var functions = Functions.functions()
+  // [END functions_instance]
+
+
 
   @IBAction func didTapAdd(_ sender: Any) {
     // [START function_add_numbers]
     let data = ["firstNumber": Int(number1Field.text!),
                 "secondNumber": Int(number2Field.text!)]
-    Functions.functions().httpsCallable("addNumbers").call(data) { (result, error) in
-      // [START_EXCLUDE]
-      if let error = error {
+    functions.httpsCallable("addNumbers").call(data) { (result, error) in
+      // [START function_error]
+      if let error = error as NSError? {
+        if error.domain == FunctionsErrorDomain {
+          let code = FIRFunctionsErrorCode(rawValue: error.code)
+          let message = error.localizedDescription
+          let details = error.userInfo[FunctionsErrorDetailsKey]
+        }
+        // [START_EXCLUDE]
         print(error.localizedDescription)
         return
+        // [END_EXCLUDE]
       }
-      // [END_EXCLUDE]
+      // [END function_error]
       if let operationResult = (result?.data as? [String: Any])?["operationResult"] as? Int {
         self.resultField.text = "\(operationResult)"
       }

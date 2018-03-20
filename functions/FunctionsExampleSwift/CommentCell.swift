@@ -22,16 +22,26 @@ class CommentCell: MDCCollectionViewCell {
   @IBOutlet weak var inputField: MDCTextField!
   @IBOutlet weak var resultField: UITextField!
   @IBOutlet weak var button: MDCButton!
+  // [START functions_instance]
+  lazy var functions = Functions.functions()
+  // [END functions_instance]
 
   @IBAction func didTapAddMessage(_ sender: Any) {
     // [START function_add_message]
-    Functions.functions().httpsCallable("addMessage").call(["text": inputField.text]) { (result, error) in
-      // [START_EXCLUDE]
-      if let error = error {
+    functions.httpsCallable("addMessage").call(["text": inputField.text]) { (result, error) in
+      // [START function_error]
+      if let error = error as NSError? {
+        if error.domain == FunctionsErrorDomain {
+          let code = FIRFunctionsErrorCode(rawValue: error.code)
+          let message = error.localizedDescription
+          let details = error.userInfo[FunctionsErrorDetailsKey]
+        }
+        // [START_EXCLUDE]
         print(error.localizedDescription)
         return
+        // [END_EXCLUDE]
       }
-      // [END_EXCLUDE]
+      // [END function_error]
       if let text = (result?.data as? [String: Any])?["text"] as? String {
         self.resultField.text = text
       }

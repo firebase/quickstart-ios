@@ -16,7 +16,6 @@
 
 #import "AppDelegate.h"
 #import "SignInViewController.h"
-#import "UIViewController+Alerts.h"
 
 @import Firebase;
 @import FirebaseAuthUI;

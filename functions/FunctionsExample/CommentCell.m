@@ -18,22 +18,43 @@
 
 @import Firebase;
 
-
 @interface CommentCell ()
 @property(weak, nonatomic) IBOutlet MDCTextField *resultField;
+// [START define_functions_instance]
+@property(strong, nonatomic) FIRFunctions *functions;
+// [END define_functions_instance]
 @end
 
 @implementation CommentCell
 
+- (instancetype)initWithCoder:(NSCoder *)coder
+{
+  self = [super initWithCoder:coder];
+  if (self) {
+    // [START initialize_functions_instance]
+    self.functions = [FIRFunctions functions];
+    // [END initialize_functions_instance]
+  }
+  return self;
+}
+
 - (IBAction)didTapAddMessage:(id)sender {
   // [START function_add_message]
-  [[[FIRFunctions functions] HTTPSCallableWithName:@"addMessage"] callWithObject:@{@"text": _inputField.text} completion:^(FIRHTTPSCallableResult * _Nullable result, NSError * _Nullable error) {
-    // [START_EXCLUDE]
+  [[_functions HTTPSCallableWithName:@"addMessage"] callWithObject:@{@"text": _inputField.text}
+                                                        completion:^(FIRHTTPSCallableResult * _Nullable result, NSError * _Nullable error) {
+    // [START function_error]
     if (error) {
+      if (error.domain == FIRFunctionsErrorDomain) {
+        FIRFunctionsErrorCode *code = error.code;
+        NSString *message = error.localizedDescription;
+        NSObject *details = error.userInfo[FIRFunctionsErrorDetailsKey];
+      }
+      // [START_EXCLUDE]
       NSLog(@"%@", error.localizedDescription);
       return;
+      // [END_EXCLUDE]
     }
-    // [END_EXCLUDE]
+    // [END function_error]
     _resultField.text = result.data[@"text"];
   }];
   // [END function_add_message]

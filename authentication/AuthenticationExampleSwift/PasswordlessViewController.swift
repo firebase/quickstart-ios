@@ -62,16 +62,16 @@ class PasswordlessViewController: UIViewController {
     if let email = self.emailField.text {
       UserDefaults.standard.set(email, forKey: "Email")
       showSpinner {
-        // [START send_signin_link]
+        // [START action_code_settings]
         let actionCodeSettings = ActionCodeSettings()
+        actionCodeSettings.url = URL(string: "https://www.example.com")
         // The sign-in operation has to always be completed in the app.
         actionCodeSettings.handleCodeInApp = true
-        actionCodeSettings.url = URL(string: "https://www.example.com")
         actionCodeSettings.setIOSBundleID(Bundle.main.bundleIdentifier!)
         actionCodeSettings.setAndroidPackageName("com.example.android",
                                                  installIfNotAvailable: false, minimumVersion: "12")
-        actionCodeSettings.handleCodeInApp = true
-
+        // [END action_code_settings]
+        // [START send_signin_link]
         Auth.auth().sendSignInLink(toEmail:email,
                                    actionCodeSettings: actionCodeSettings) { error in
           // [START_EXCLUDE]

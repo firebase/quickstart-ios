@@ -63,15 +63,17 @@
 - (IBAction)didTapSendSignInLink:(id)sender {
   [NSUserDefaults.standardUserDefaults setObject:_emailField.text forKey:@"Email"];
   [self showSpinner:^{
-    // [START send_signin_link]
+    // [START action_code_settings]
     FIRActionCodeSettings *actionCodeSettings = [[FIRActionCodeSettings alloc] init];
+    [actionCodeSettings setURL:[NSURL URLWithString:@"https://www.example.com"]];
     // The sign-in operation has to always be completed in the app.
     actionCodeSettings.handleCodeInApp = YES;
-    [actionCodeSettings setURL:[NSURL URLWithString:@"https://www.example.com"]];
     [actionCodeSettings setIOSBundleID:[[NSBundle mainBundle] bundleIdentifier]];
     [actionCodeSettings setAndroidPackageName:@"com.example.android"
                         installIfNotAvailable:NO
                                minimumVersion:@"12"];
+    // [END action_code_settings]
+    // [START send_signin_link]
     [[FIRAuth auth] sendSignInLinkToEmail:_emailField.text
                        actionCodeSettings:actionCodeSettings
                                completion:^(NSError *_Nullable error) {

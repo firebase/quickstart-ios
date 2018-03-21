@@ -60,7 +60,6 @@ class PasswordlessViewController: UIViewController {
 
   @IBAction func didTapSendSignInLink(_ sender: AnyObject) {
     if let email = self.emailField.text {
-      UserDefaults.standard.set(email, forKey: "Email")
       showSpinner {
         // [START action_code_settings]
         let actionCodeSettings = ActionCodeSettings()
@@ -76,11 +75,17 @@ class PasswordlessViewController: UIViewController {
                                    actionCodeSettings: actionCodeSettings) { error in
           // [START_EXCLUDE]
           self.hideSpinner {
+            // [END_EXCLUDE]
             if let error = error {
               self.showMessagePrompt(error.localizedDescription)
               return
             }
+            // The link was successfully sent. Inform the user.
+            // Save the email locally so you don't need to ask the user for it again
+            // if they open the link on the same device.
+            UserDefaults.standard.set(email, forKey: "Email")
             self.showMessagePrompt("Check your email for link")
+            // [START_EXCLUDE]
           }
           // [END_EXCLUDE]
         }

@@ -61,7 +61,6 @@
 }
 
 - (IBAction)didTapSendSignInLink:(id)sender {
-  [NSUserDefaults.standardUserDefaults setObject:_emailField.text forKey:@"Email"];
   [self showSpinner:^{
     // [START action_code_settings]
     FIRActionCodeSettings *actionCodeSettings = [[FIRActionCodeSettings alloc] init];
@@ -79,11 +78,17 @@
                                completion:^(NSError *_Nullable error) {
       // [START_EXCLUDE]
       [self hideSpinner:^{
+        // [END_EXCLUDE]
         if (error) {
           [self showMessagePrompt:error.localizedDescription];
            return;
         }
+        // The link was successfully sent. Inform the user.
+        // Save the email locally so you don't need to ask the user for it again
+        // if they open the link on the same device.
+        [NSUserDefaults.standardUserDefaults setObject:_emailField.text forKey:@"Email"];
         [self showMessagePrompt:@"Check your email for link"];
+        // [START_EXCLUDE]
       }];
       // [END_EXCLUDE]
     }];

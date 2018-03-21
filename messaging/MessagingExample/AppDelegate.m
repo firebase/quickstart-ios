@@ -15,13 +15,13 @@
 
 #import "AppDelegate.h"
 
-#if defined(__IPHONE_10_0) && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
+#if __IOS_AVAILABLE
 @import UserNotifications;
 #endif
 
 // Implement UNUserNotificationCenterDelegate to receive display notification via APNS for devices
 // running iOS 10 and above.
-#if defined(__IPHONE_10_0) && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
+#if __IOS_AVAILABLE
 @interface AppDelegate () <UNUserNotificationCenterDelegate>
 @end
 #endif
@@ -68,7 +68,7 @@ NSString *const kGCMMessageIDKey = @"gcm.message_id";
       [application registerUserNotificationSettings:settings];
     } else {
       // iOS 10 or later
-      #if defined(__IPHONE_10_0) && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
+    #if __IOS_AVAILABLE
       // For iOS 10 display notification (sent via APNS)
       [UNUserNotificationCenter currentNotificationCenter].delegate = self;
       UNAuthorizationOptions authOptions =
@@ -127,7 +127,7 @@ NSString *const kGCMMessageIDKey = @"gcm.message_id";
 
 // [START ios_10_message_handling]
 // Receive displayed notifications for iOS 10 devices.
-#if defined(__IPHONE_10_0) && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
+#if __IOS_AVAILABLE
 // Handle incoming notification messages while app is in the foreground.
 - (void)userNotificationCenter:(UNUserNotificationCenter *)center
        willPresentNotification:(UNNotification *)notification

@@ -95,7 +95,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
 
   func handlePasswordlessSignIn(withURL url: URL) -> Bool {
     let link = url.absoluteString
+    // [START is_signin_link]
     if Auth.auth().isSignIn(withEmailLink: link) {
+      // [END is_signin_link]
       UserDefaults.standard.set(link, forKey: "Link")
       (window?.rootViewController as? UINavigationController)?.popToRootViewController(animated: false)
       window?.rootViewController?.childViewControllers[0].performSegue(withIdentifier: "passwordless", sender: nil)

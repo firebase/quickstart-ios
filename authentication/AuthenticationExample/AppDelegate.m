@@ -95,7 +95,9 @@
 
 - (BOOL)handlePasswordlessSignInWithLink:(nonnull NSURL*)url {
   NSString *link = url.absoluteString;
+  // [START is_signin_link]
   if ([[FIRAuth auth] isSignInWithEmailLink:link]) {
+    // [END is_signin_link]
     [NSUserDefaults.standardUserDefaults setObject:link forKey:@"Link"];
     [(UINavigationController*)_window.rootViewController popToRootViewControllerAnimated:NO];
     [_window.rootViewController.childViewControllers[0] performSegueWithIdentifier:@"passwordless" sender:nil];

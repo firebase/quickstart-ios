@@ -11,7 +11,6 @@
 		1073480D20333B18004A66D1 /* AuthenticationExampleUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1073480C20333B18004A66D1 /* AuthenticationExampleUITests.m */; };
 		10757BD22059CC9E007623FD /* PasswordlessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10757BD02059CC9E007623FD /* PasswordlessViewController.swift */; };
 		10757BD52059CFC7007623FD /* PasswordlessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10757BD42059CFC7007623FD /* PasswordlessViewController.m */; };
-		109941B1205B00F6007598E8 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 109941B0205B00F6007598E8 /* ViewController.m */; };
 		10AF4D111DD3966C0096D192 /* AuthenticationExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 10AF4D101DD3966C0096D192 /* AuthenticationExampleTests.m */; };
 		10B053F91C6631CD0061077D /* UIViewController+Alerts.m in Sources */ = {isa = PBXBuildFile; fileRef = 10B053F81C6631CD0061077D /* UIViewController+Alerts.m */; };
 		10B053FB1C6945D80061077D /* UIViewController+Alerts.m in Sources */ = {isa = PBXBuildFile; fileRef = 10B053F81C6631CD0061077D /* UIViewController+Alerts.m */; };
@@ -67,8 +66,6 @@
 		10757BD32059CFC7007623FD /* PasswordlessViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PasswordlessViewController.h; sourceTree = "<group>"; };
 		10757BD42059CFC7007623FD /* PasswordlessViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PasswordlessViewController.m; sourceTree = "<group>"; };
 		10757BDD205AD4FC007623FD /* AuthenticationExample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AuthenticationExample.entitlements; sourceTree = "<group>"; };
-		109941AF205B00F6007598E8 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		109941B0205B00F6007598E8 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		10AF4D0E1DD3966C0096D192 /* AuthenticationExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AuthenticationExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		10AF4D101DD3966C0096D192 /* AuthenticationExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AuthenticationExampleTests.m; sourceTree = "<group>"; };
 		10B053F71C6631CD0061077D /* UIViewController+Alerts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Alerts.h"; sourceTree = "<group>"; };
@@ -226,8 +223,6 @@
 				EF6DB4CA1CDD60F700319C08 /* MainViewController.swift */,
 				5F5A537D1ADE67D500F81DF0 /* AppDelegate.swift */,
 				5F5A537B1ADE67D500F81DF0 /* Supporting Files */,
-				109941AF205B00F6007598E8 /* ViewController.h */,
-				109941B0205B00F6007598E8 /* ViewController.m */,
 			);
 			path = AuthenticationExampleSwift;
 			sourceTree = "<group>";
@@ -491,7 +486,6 @@
 			files = (
 				10757BD52059CFC7007623FD /* PasswordlessViewController.m in Sources */,
 				EF6DB4D51CDD610200319C08 /* EmailViewController.m in Sources */,
-				109941B1205B00F6007598E8 /* ViewController.m in Sources */,
 				EF6DB4D61CDD610200319C08 /* MainViewController.m in Sources */,
 				10B053F91C6631CD0061077D /* UIViewController+Alerts.m in Sources */,
 				EF6DB4D41CDD610200319C08 /* CustomTokenViewController.m in Sources */,

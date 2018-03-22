@@ -15,14 +15,13 @@
 
 #import "AppDelegate.h"
 
-#if __IOS_AVAILABLE
 @import UserNotifications;
-#endif
 
 // Implement UNUserNotificationCenterDelegate to receive display notification via APNS for devices
 // running iOS 10 and above.
 #if __IOS_AVAILABLE
 @interface AppDelegate () <UNUserNotificationCenterDelegate>
+@end
 @end
 #endif
 
@@ -60,7 +59,7 @@ NSString *const kGCMMessageIDKey = @"gcm.message_id";
   } else {
     // iOS 8 or later
     // [START register_for_notifications]
-    if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_9_x_Max) {
+    if ([UNUserNotificationCenter class] == nil) {
       UIUserNotificationType allNotificationTypes =
       (UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge);
       UIUserNotificationSettings *settings =
@@ -68,16 +67,14 @@ NSString *const kGCMMessageIDKey = @"gcm.message_id";
       [application registerUserNotificationSettings:settings];
     } else {
       // iOS 10 or later
-    #if __IOS_AVAILABLE
-      // For iOS 10 display notification (sent via APNS)
-      [UNUserNotificationCenter currentNotificationCenter].delegate = self;
-      UNAuthorizationOptions authOptions =
-          UNAuthorizationOptionAlert
-          | UNAuthorizationOptionSound
-          | UNAuthorizationOptionBadge;
-      [[UNUserNotificationCenter currentNotificationCenter] requestAuthorizationWithOptions:authOptions completionHandler:^(BOOL granted, NSError * _Nullable error) {
-          }];
-      #endif
+        // For iOS 10 display notification (sent via APNS)
+        [UNUserNotificationCenter currentNotificationCenter].delegate = self;
+        UNAuthorizationOptions authOptions =
+        UNAuthorizationOptionAlert
+        | UNAuthorizationOptionSound
+        | UNAuthorizationOptionBadge;
+        [[UNUserNotificationCenter currentNotificationCenter] requestAuthorizationWithOptions:authOptions completionHandler:^(BOOL granted, NSError * _Nullable error) {
+        }];
     }
 
     [application registerForRemoteNotifications];

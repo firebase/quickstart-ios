@@ -19,11 +19,8 @@
 
 // Implement UNUserNotificationCenterDelegate to receive display notification via APNS for devices
 // running iOS 10 and above.
-#if __IOS_AVAILABLE
 @interface AppDelegate () <UNUserNotificationCenterDelegate>
 @end
-@end
-#endif
 
 // Copied from Apple's header in case it is missing in some cases (e.g. pre-Xcode 8 builds).
 #ifndef NSFoundationVersionNumber_iOS_9_x_Max
@@ -68,13 +65,14 @@ NSString *const kGCMMessageIDKey = @"gcm.message_id";
     } else {
       // iOS 10 or later
         // For iOS 10 display notification (sent via APNS)
-        [UNUserNotificationCenter currentNotificationCenter].delegate = self;
-        UNAuthorizationOptions authOptions =
-        UNAuthorizationOptionAlert
-        | UNAuthorizationOptionSound
-        | UNAuthorizationOptionBadge;
-        [[UNUserNotificationCenter currentNotificationCenter] requestAuthorizationWithOptions:authOptions completionHandler:^(BOOL granted, NSError * _Nullable error) {
-        }];
+      [UNUserNotificationCenter currentNotificationCenter].delegate = self;
+      UNAuthorizationOptions authOptions =
+        UNAuthorizationOptionAlert |
+        UNAuthorizationOptionSound |
+        UNAuthorizationOptionBadge;
+      [[UNUserNotificationCenter currentNotificationCenter] requestAuthorizationWithOptions:authOptions
+                                                                          completionHandler:^(BOOL granted, NSError * _Nullable error) {
+                                                                          }];
     }
 
     [application registerForRemoteNotifications];

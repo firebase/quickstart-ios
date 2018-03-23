@@ -15,16 +15,12 @@
 
 #import "AppDelegate.h"
 
-#if defined(__IPHONE_10_0) && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
 @import UserNotifications;
-#endif
 
 // Implement UNUserNotificationCenterDelegate to receive display notification via APNS for devices
 // running iOS 10 and above.
-#if defined(__IPHONE_10_0) && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
 @interface AppDelegate () <UNUserNotificationCenterDelegate>
 @end
-#endif
 
 // Copied from Apple's header in case it is missing in some cases (e.g. pre-Xcode 8 builds).
 #ifndef NSFoundationVersionNumber_iOS_9_x_Max
@@ -60,7 +56,7 @@ NSString *const kGCMMessageIDKey = @"gcm.message_id";
   } else {
     // iOS 8 or later
     // [START register_for_notifications]
-    if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_9_x_Max) {
+    if ([UNUserNotificationCenter class] == nil) {
       UIUserNotificationType allNotificationTypes =
       (UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge);
       UIUserNotificationSettings *settings =
@@ -68,16 +64,15 @@ NSString *const kGCMMessageIDKey = @"gcm.message_id";
       [application registerUserNotificationSettings:settings];
     } else {
       // iOS 10 or later
-      #if defined(__IPHONE_10_0) && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
-      // For iOS 10 display notification (sent via APNS)
+        // For iOS 10 display notification (sent via APNS)
       [UNUserNotificationCenter currentNotificationCenter].delegate = self;
       UNAuthorizationOptions authOptions =
-          UNAuthorizationOptionAlert
-          | UNAuthorizationOptionSound
-          | UNAuthorizationOptionBadge;
-      [[UNUserNotificationCenter currentNotificationCenter] requestAuthorizationWithOptions:authOptions completionHandler:^(BOOL granted, NSError * _Nullable error) {
-          }];
-      #endif
+        UNAuthorizationOptionAlert |
+        UNAuthorizationOptionSound |
+        UNAuthorizationOptionBadge;
+      [[UNUserNotificationCenter currentNotificationCenter] requestAuthorizationWithOptions:authOptions
+                                                                          completionHandler:^(BOOL granted, NSError * _Nullable error) {
+                                                                          }];
     }
 
     [application registerForRemoteNotifications];
@@ -127,7 +122,7 @@ NSString *const kGCMMessageIDKey = @"gcm.message_id";
 
 // [START ios_10_message_handling]
 // Receive displayed notifications for iOS 10 devices.
-#if defined(__IPHONE_10_0) && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
+#if __IOS_AVAILABLE
 // Handle incoming notification messages while app is in the foreground.
 - (void)userNotificationCenter:(UNUserNotificationCenter *)center
        willPresentNotification:(UNNotification *)notification

@@ -86,7 +86,7 @@ class ViewController: UIViewController, UITableViewDataSource {
     }
   }
 
-  func printInstanceIDToken() {
+  @objc func printInstanceIDToken() {
     let instanceID = InstanceID.instanceID().token() ?? "null"
     print("InstanceID token: \(instanceID)")
   }
@@ -104,7 +104,7 @@ class ViewController: UIViewController, UITableViewDataSource {
       navigationController?.navigationBar.barTintColor = ViewController.lightColors.primary
       navigationController?.navigationBar.barStyle = .`default`
       navigationController?.navigationBar.titleTextAttributes = [
-        NSForegroundColorAttributeName: UIColor.black
+        NSAttributedStringKey.foregroundColor: UIColor.black
       ]
       tableView.separatorColor = .gray
       tableView.backgroundColor = UIColor(red: 0.94, green: 0.94, blue: 0.94, alpha: 1)
@@ -113,7 +113,7 @@ class ViewController: UIViewController, UITableViewDataSource {
       navigationController?.navigationBar.barTintColor = ViewController.darkColors.primary
       navigationController?.navigationBar.barStyle = .black
       navigationController?.navigationBar.titleTextAttributes = [
-        NSForegroundColorAttributeName: UIColor.white
+        NSAttributedStringKey.foregroundColor: UIColor.white
       ]
       tableView.separatorColor = .lightGray
       tableView.backgroundColor = ViewController.darkColors.secondary

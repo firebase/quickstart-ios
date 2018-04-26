@@ -2,6 +2,8 @@
 
 use_frameworks!
 platform :ios, '8.0'
+
+pod 'Firebase'
 pod 'Firebase/Analytics'
 
 target 'AnalyticsExample' do

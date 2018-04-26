@@ -4,6 +4,7 @@
 target 'ABTestingExample' do
   use_frameworks!
 
+  pod 'Firebase'
   pod 'Firebase/RemoteConfig'
 
   target 'ABTestingExampleTests' do

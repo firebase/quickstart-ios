@@ -1,7 +1,7 @@
 target 'FriendlyEats' do
   use_frameworks!
 
-  pod 'Firebase/Core'
+  pod 'Firebase'
   pod 'Firebase/Auth'
   pod 'FirebaseUI/Auth'
   pod 'FirebaseUI/Google'

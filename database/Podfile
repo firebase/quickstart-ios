@@ -2,8 +2,9 @@
 
 use_frameworks!
 platform :ios, '8.0'
-pod 'Firebase/Database'
+pod 'Firebase'
 pod 'Firebase/Auth'
+pod 'Firebase/Database'
 pod 'FirebaseUI/Database'
 
 target 'DatabaseExample' do

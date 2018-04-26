@@ -26,7 +26,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *downloadPicButton;
 @property (weak, nonatomic) IBOutlet UITextView *urlTextView;
 
-@property (strong, nonatomic) FIRStorageReference *storageRef;
+@property (strong, nonatomic) FIRStorage *storage;
 
 @end
 
@@ -36,7 +36,7 @@
   [super viewDidLoad];
 
   // [START configurestorage]
-  self.storageRef = [[FIRStorage storage] reference];
+  self.storage = [FIRStorage storage];
   // [END configurestorage]
 
   // [START storageauth]
@@ -91,15 +91,16 @@
                                          (long long)([NSDate date].timeIntervalSince1970 * 1000.0),
                                          imageFile.lastPathComponent];
                                  // [START uploadimage]
-                                 [[_storageRef child:filePath]
-                                  putFile:imageFile metadata:nil
-                                  completion:^(FIRStorageMetadata *metadata, NSError *error) {
+                                 FIRStorageReference *storageRef = [_storage referenceWithPath:filePath];
+                                 [storageRef putFile:imageFile
+                                             metadata:nil
+                                           completion:^(FIRStorageMetadata *metadata, NSError *error) {
                                     if (error) {
                                       NSLog(@"Error uploading: %@", error);
                                       _urlTextView.text = @"Upload Failed";
                                       return;
                                     }
-                                    [self uploadSuccess:metadata storagePath:filePath];
+                                    [self uploadSuccess:storageRef storagePath:filePath];
                                   }];
                                  // [END uploadimage]
                                }];
@@ -113,24 +114,33 @@
      (long long)([NSDate date].timeIntervalSince1970 * 1000.0)];
     FIRStorageMetadata *metadata = [FIRStorageMetadata new];
     metadata.contentType = @"image/jpeg";
-    [[_storageRef child:imagePath] putData:imageData metadata:metadata
-        completion:^(FIRStorageMetadata * _Nullable metadata, NSError * _Nullable error) {
+    FIRStorageReference *storageRef = [_storage referenceWithPath:imagePath];
+    [storageRef putData:imageData
+               metadata:metadata
+             completion:^(FIRStorageMetadata * _Nullable metadata, NSError * _Nullable error) {
           if (error) {
             NSLog(@"Error uploading: %@", error);
             _urlTextView.text = @"Upload Failed";
             return;
           }
-          [self uploadSuccess:metadata storagePath:imagePath];
+          [self uploadSuccess:storageRef storagePath:imagePath];
         }];
   }
 }
 
-- (void)uploadSuccess:(FIRStorageMetadata *) metadata storagePath: (NSString *) storagePath {
+- (void)uploadSuccess:(FIRStorageReference *) storageRef storagePath: (NSString *) storagePath {
   NSLog(@"Upload Succeeded!");
-  _urlTextView.text = metadata.downloadURL.absoluteString;
-  [[NSUserDefaults standardUserDefaults] setObject:storagePath forKey:@"storagePath"];
-  [[NSUserDefaults standardUserDefaults] synchronize];
-  _downloadPicButton.enabled = YES;
+  [storageRef downloadURLWithCompletion:^(NSURL * _Nullable URL, NSError * _Nullable error) {
+    if (error) {
+      NSLog(@"Error getting download URL: %@", error);
+      _urlTextView.text = @"Can't get download URL";
+      return;
+    }
+    _urlTextView.text = URL.absoluteString;
+    [[NSUserDefaults standardUserDefaults] setObject:storagePath forKey:@"storagePath"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    _downloadPicButton.enabled = YES;
+  }];
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {

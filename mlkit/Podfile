@@ -8,20 +8,20 @@ target 'MLKitExample' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
 
-  pod 'Firebase/MLVision'
-  pod 'Firebase/MLVisionBarcodeModel'
-  pod 'Firebase/MLVisionFaceModel'
-  pod 'Firebase/MLVisionLabelModel'
-  pod 'Firebase/MLVisionTextModel'
-  pod 'Firebase/MLModelInterpreter'
+#  pod 'Firebase/MLVision'
+#  pod 'Firebase/MLVisionBarcodeModel'
+#  pod 'Firebase/MLVisionFaceModel'
+#  pod 'Firebase/MLVisionLabelModel'
+#  pod 'Firebase/MLVisionTextModel'
+#  pod 'Firebase/MLModelInterpreter'
 
-#pod 'Firebase/Core'
-#pod 'FirebaseMLCommon', '0.1.17-beta4'
-#pod 'FirebaseMLModelInterpreter', '0.1.17-beta4'
-#pod 'FirebaseMLVision', '0.1.17-beta4'
-#pod 'FirebaseMLVisionFaceModel', '0.1.17-beta4'
-#pod 'FirebaseMLVisionTextModel', '0.1.17-beta4'
-#pod 'FirebaseMLVisionBarcodeModel', '0.1.17-beta4'
-#pod 'FirebaseMLVisionLabelModel', '0.1.17-beta4'
+pod 'Firebase/Core'
+pod 'FirebaseMLCommon', '0.1.17'
+pod 'FirebaseMLModelInterpreter', '0.1.17'
+pod 'FirebaseMLVision', '0.1.17'
+pod 'FirebaseMLVisionFaceModel', '0.1.17'
+pod 'FirebaseMLVisionTextModel', '0.1.17'
+pod 'FirebaseMLVisionBarcodeModel', '0.1.17'
+pod 'FirebaseMLVisionLabelModel', '0.1.17'
 
 end

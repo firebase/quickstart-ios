@@ -173,7 +173,7 @@ class ViewController:
     faceDetector.detect(in: visionImage) { (features, error) in
       guard error == nil, let features = features, !features.isEmpty else {
         let errorString = error?.localizedDescription ?? Constants.detectionNoResultsMessage
-        print("Barcode detection failed with error: \(errorString)")
+        print("Face detection failed with error: \(errorString)")
         self.resultsTextView.text = "Face Detection: \(errorString)"
         return
       }
@@ -183,8 +183,31 @@ class ViewController:
           imageSize: image.size,
           viewFrame: self.imageView.frame
         )
+        self.logExtrasforTesting(face: feature)
       }
     }
+  }
+
+  private func logExtrasforTesting(face: VisionFace) {
+    print(face.frame)
+    print(face.headEulerAngleY)
+    print(face.headEulerAngleZ)
+
+    let landMarkTypes: [FaceLandmarkType] = [.mouthBottom, .mouthRight, .mouthLeft, .rightEye, .leftEye, .rightEar, .leftEar, .rightCheek, .leftCheek, .noseBase]
+
+    for type in landMarkTypes {
+      if let landmark = face.landmark(ofType: type) {
+        let position = landmark.position
+        print("Position for face landmark: \(type.rawValue) is: x: \(position.x) y: \(position.y), z: \(position.z ?? 0)")
+      } else {
+        print("No landmark of type: \(type.rawValue) has been detected")
+      }
+    }
+
+    print("face left eye open probability: \(face.leftEyeOpenProbability)")
+    print("face right eye open probability: \(face.rightEyeOpenProbability)")
+    print("face smiling probability: \(face.smilingProbability)")
+    print("face tracking id: \(face.trackingID)")
   }
 
   /// Detects labels on the specified image and prints the results.
@@ -206,6 +229,7 @@ class ViewController:
         self.resultsTextView.text = "Label detection: \(errorString)"
         return
       }
+      self.logExtrasForTesting(labels: features)
 
 //        self.resultsTextView.text = features.map { feature in
 //          feature/
@@ -220,6 +244,12 @@ class ViewController:
         // Got labels. Access label info via VisionLabel.
         // TODO(b/78151345): Draw a frame for image labeling detection in the sample app.
       print(features.description)
+    }
+  }
+
+  private func logExtrasForTesting(labels: [VisionLabel]) {
+    for label in labels {
+      print("Label \(label.label), entity id: \(label.entityID), confidence: \(label.confidence)")
     }
   }
 
@@ -281,8 +311,16 @@ class ViewController:
           imageSize: image.size,
           viewFrame: self.imageView.frame
         )
+        self.logExtrasForTesting(text: feature)
         return feature.recognizedText
         }.joined(separator: "\n")
+    }
+  }
+
+  private func logExtrasForTesting(text: VisionText) {
+    print("Detected text has: \(text.cornerPoints.count) corner points.")
+    for cornerPoint in text.cornerPoints {
+      print("Cornerpoint: \(cornerPoint)")
     }
   }
 
@@ -349,8 +387,36 @@ class ViewController:
           imageSize: image.size,
           viewFrame: self.imageView.frame
         )
+        self.logExtrasForTesting(barcode: feature)
       }
     }
+  }
+
+  private func logExtrasForTesting(barcode: VisionBarcode) {
+    print("Detected barcode's bounding box: \(barcode.frame)")
+    if let cornerPoints = barcode.cornerPoints {
+      print("Expected corner point size is 4, get \(cornerPoints.count)")
+      for point in cornerPoints {
+        print("Corner point is located at: \(point)")
+      }
+    }
+    print("barcode display value: \(barcode.displayValue ?? "")")
+    print("barcode raw value: \(barcode.rawValue ?? "")")
+    if let dl = barcode.driverLicense {
+      print("driver license city: \(dl.addressCity ?? "")")
+      print("driver license state: \(dl.addressState ?? "")")
+      print("driver license street: \(dl.addressStreet ?? "")")
+      print("driver license zip code: \(dl.addressZip ?? "")")
+      print("driver license birthday: \(dl.birthDate ?? "")")
+      print("driver license document type: \(dl.documentType ?? "")")
+      print("driver license expiry date: \(dl.expiryDate ?? "")")
+      print("driver license first name: \(dl.firstName ?? "")")
+      print("driver license middle name: \(dl.middleName ?? "")")
+      print("driver license last name: \(dl.lastName ?? "")")
+      print("driver license gender: \(dl.gender ?? "")")
+      print("driver license issue date: \(dl.issuingDate ?? "")")
+      print("driver license issue country: \(dl.issuingCountry ?? "")")
+      print("driver license number: \(dl.licenseNumber ?? "")")
   }
 
   // MARK: - Custom models interpretation methods
@@ -447,30 +513,37 @@ class ViewController:
       self.detectTexts()
     }
     alertController.addAction(deviceTextRecognition)
-    let cloudTextRecognition = UIAlertAction(title: "Cloud Text Recognition", style: .default) { (UIAlertAction) in
-      self.detectTextsCloud()
-    }
-    alertController.addAction(cloudTextRecognition)
-    let deviceFaceDetection = UIAlertAction(title: "On-Device Face Detection", style: .default) { (UIAlertAction) in
-      self.detectFaces()
-    }
-    alertController.addAction(deviceFaceDetection)
+
     let deviceBarcodeScanning = UIAlertAction(title: "Barcode Scanning", style: .default) { (UIAlertAction) in
       self.detectBarcodes()
     }
     alertController.addAction(deviceBarcodeScanning)
+
     let deviceLabelDetection = UIAlertAction(title: "On-Device Label Detection", style: .default) { (UIAlertAction) in
       self.detectLabels()
     }
     alertController.addAction(deviceLabelDetection)
+
+    let deviceFaceDetection = UIAlertAction(title: "On-Device Face Detection", style: .default) { (UIAlertAction) in
+      self.detectFaces()
+    }
+    alertController.addAction(deviceFaceDetection)
+
+    let cloudTextRecognition = UIAlertAction(title: "Cloud Text Recognition", style: .default) { (UIAlertAction) in
+      self.detectTextsCloud()
+    }
+    alertController.addAction(cloudTextRecognition)
+
     let cloudLabelDetection = UIAlertAction(title: "Cloud Label Detection", style: .default) { (UIAlertAction) in
       self.detectLabelsCloud()
     }
     alertController.addAction(cloudLabelDetection)
+
     let cloudLandmarkDetection = UIAlertAction(title: "Cloud Landmark Detection", style: .default) { (UIAlertAction) in
       self.detectLandmarksCloud()
     }
     alertController.addAction(cloudLandmarkDetection)
+
     let customModel = UIAlertAction(title: "Custom Model Object Detection", style: .default) { (UIAlertAction) in
       self.detectTexts()
     }

@@ -23,7 +23,6 @@
 		105DCFBE20854E2000D85291 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 105DCFBD20854E2000D85291 /* GoogleService-Info.plist */; };
 		BB287B3920729CE90069707A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB287B3820729CE90069707A /* AppDelegate.swift */; };
 		BB287B3E20729CE90069707A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB287B3C20729CE90069707A /* Main.storyboard */; };
-		BB287B512072B3870069707A /* ResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB287B502072B3870069707A /* ResultCell.swift */; };
 		BB287B582074310E0069707A /* DetectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB287B572074310E0069707A /* DetectionViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -67,7 +66,6 @@
 		BB287B3820729CE90069707A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BB287B3D20729CE90069707A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BB287B4420729CE90069707A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BB287B502072B3870069707A /* ResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultCell.swift; sourceTree = "<group>"; };
 		BB287B572074310E0069707A /* DetectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetectionViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -155,7 +153,6 @@
 			children = (
 				BB287B3820729CE90069707A /* AppDelegate.swift */,
 				BB287B522072F5030069707A /* Controllers */,
-				BB287B4F2072B3720069707A /* Views */,
 				BB287B4A2072A0200069707A /* Supporting FIles */,
 				BB287B4420729CE90069707A /* Info.plist */,
 			);
@@ -168,14 +165,6 @@
 				BB287B3C20729CE90069707A /* Main.storyboard */,
 			);
 			path = "Supporting FIles";
-			sourceTree = "<group>";
-		};
-		BB287B4F2072B3720069707A /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				BB287B502072B3870069707A /* ResultCell.swift */,
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 		BB287B522072F5030069707A /* Controllers */ = {
@@ -348,7 +337,6 @@
 			files = (
 				10224B582087E43100A77316 /* ViewController.swift in Sources */,
 				BB287B3920729CE90069707A /* AppDelegate.swift in Sources */,
-				BB287B512072B3870069707A /* ResultCell.swift in Sources */,
 				BB287B582074310E0069707A /* DetectionViewController.swift in Sources */,
 				10224B5D2087E49F00A77316 /* LiteModel.swift in Sources */,
 				10224B5E2087E49F00A77316 /* UIImage+TFLite.swift in Sources */,

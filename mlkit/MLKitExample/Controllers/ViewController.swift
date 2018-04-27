@@ -193,12 +193,15 @@ class ViewController:
     print(face.headEulerAngleY)
     print(face.headEulerAngleZ)
 
-    let landMarkTypes: [FaceLandmarkType] = [.mouthBottom, .mouthRight, .mouthLeft, .rightEye, .leftEye, .rightEar, .leftEar, .rightCheek, .leftCheek, .noseBase]
+    let landMarkTypes: [FaceLandmarkType] = [.mouthBottom, .mouthRight, .mouthLeft, .rightEye,
+                                             .leftEye, .rightEar, .leftEar, .rightCheek,
+                                             .leftCheek, .noseBase]
 
     for type in landMarkTypes {
       if let landmark = face.landmark(ofType: type) {
         let position = landmark.position
-        print("Position for face landmark: \(type.rawValue) is: x: \(position.x) y: \(position.y), z: \(position.z ?? 0)")
+        print("Position for face landmark: \(type.rawValue) is: " +
+          "x: \(position.x) y: \(position.y), z: \(position.z ?? 0)")
       } else {
         print("No landmark of type: \(type.rawValue) has been detected")
       }
@@ -249,7 +252,8 @@ class ViewController:
 
   private func logExtrasForTesting(labels: [VisionLabel]) {
     for label in labels {
-      print("Label \(label.label), entity id: \(label.entityID), confidence: \(label.confidence)")
+      print("Label \(label.label), frame: \(label.frame), " +
+        "entity id: \(label.entityID), confidence: \(label.confidence)")
     }
   }
 
@@ -304,6 +308,7 @@ class ViewController:
         self.resultsTextView.text = "Text detection: \(errorString)"
         return
       }
+      print("Detected text has: \(features.count) blocks")
 
       self.resultsTextView.text = features.map { feature in
         self.addFrameView(
@@ -318,9 +323,27 @@ class ViewController:
   }
 
   private func logExtrasForTesting(text: VisionText) {
+    print("Detected text: \(text.recognizedText), frame: \(text.frame)")
     print("Detected text has: \(text.cornerPoints.count) corner points.")
     for cornerPoint in text.cornerPoints {
       print("Cornerpoint: \(cornerPoint)")
+    }
+    if let block = text as? VisionTextBlock {
+      let lines = block.lines
+      print("Detected text block has \(lines.count) lines.")
+      for line in lines {
+        let elements = line.elements
+        print("Detected text line has \(elements.count) elements.")
+        for element in elements {
+          print("Detected text element says: \(element.recognizedText)")
+          print("Detected text element has a bounding box: \(element.frame)")
+          let cornerPoints = element.cornerPoints
+          print("Expected corner point size is 4, got \(cornerPoints.count)")
+          for cornerPoint in cornerPoints {
+            print("Cornerpoint: \(cornerPoint)")
+          }
+        }
+      }
     }
   }
 
@@ -417,6 +440,7 @@ class ViewController:
       print("driver license issue date: \(dl.issuingDate ?? "")")
       print("driver license issue country: \(dl.issuingCountry ?? "")")
       print("driver license number: \(dl.licenseNumber ?? "")")
+    }
   }
 
   // MARK: - Custom models interpretation methods

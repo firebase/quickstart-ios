@@ -317,13 +317,13 @@ class ViewController:
           viewFrame: self.imageView.frame
         )
         self.logExtrasForTesting(text: feature)
-        return feature.recognizedText
+        return feature.text
         }.joined(separator: "\n")
     }
   }
 
   private func logExtrasForTesting(text: VisionText) {
-    print("Detected text: \(text.recognizedText), frame: \(text.frame)")
+    print("Detected text: \(text.text), frame: \(text.frame)")
     print("Detected text has: \(text.cornerPoints.count) corner points.")
     for cornerPoint in text.cornerPoints {
       print("Cornerpoint: \(cornerPoint)")
@@ -335,7 +335,7 @@ class ViewController:
         let elements = line.elements
         print("Detected text line has \(elements.count) elements.")
         for element in elements {
-          print("Detected text element says: \(element.recognizedText)")
+          print("Detected text element says: \(element.text)")
           print("Detected text element has a bounding box: \(element.frame)")
           let cornerPoints = element.cornerPoints
           print("Expected corner point size is 4, got \(cornerPoints.count)")
@@ -424,7 +424,91 @@ class ViewController:
       }
     }
     print("barcode display value: \(barcode.displayValue ?? "")")
+    print("barcode format: \(barcode.format)")
     print("barcode raw value: \(barcode.rawValue ?? "")")
+    print("barcode value type: \(barcode.valueType)")
+
+    if let email = barcode.email {
+      print("barcode email address: \(email.address ?? "")")
+      print("barcode email body: \(email.body ?? "")")
+      print("barcode email subject: \(email.subject ?? "")")
+      print("barcode email type: \(email.type)")
+    }
+
+    if let phone = barcode.phone {
+      print("barcode phone number: \(phone.number ?? "")")
+      print("barcode phone type: \(phone.type)")
+    }
+
+    if let calendarEvent = barcode.calendarEvent {
+      print("barcode calendar event start: \(calendarEvent.start?.description ?? "")")
+      print("barcode calendar event end: \(calendarEvent.end?.description ?? "")")
+      print("barcode calendar event description: \(calendarEvent.eventDescription ?? "")")
+      print("barcode calendar event location: \(calendarEvent.location ?? "")")
+      print("barcode calendar event organizer: \(calendarEvent.organizer ?? "")")
+      print("barcode calendar event status: \(calendarEvent.status ?? "")")
+      print("barcode calendar event summary: \(calendarEvent.summary ?? "")")
+    }
+
+    if let contactInfo = barcode.contactInfo {
+      if let addresses = contactInfo.addresses {
+        for address in addresses {
+          print("barcode contact info address: \(address)")
+        }
+      }
+      if let emails = contactInfo.emails {
+        for email in emails {
+          print("barcode contact info email address: \(email.address ?? "")")
+          print("barcode contact info email body: \(email.body ?? "")")
+          print("barcode contact info email subject: \(email.subject ?? "")")
+          print("barcode contact info email type: \(email.type)")
+        }
+      }
+      if let phones = contactInfo.phones {
+        for phone in phones {
+          print("barcode contact info phone number: \(phone.number ?? "")")
+          print("barcode contact info phone type: \(phone.type)")
+        }
+      }
+      if let urls = contactInfo.urls {
+        for url in urls {
+          print("barcode contact info url: \(url)")
+        }
+      }
+      print("barcode contact info job title: \(contactInfo.jobTitle ?? "")")
+      if let name = contactInfo.name {
+        print("barcode contact info first name: \(name.first ?? "")")
+        print("barcode contact info formatted name: \(name.formattedName ?? "")")
+        print("barcode contact info last name: \(name.last ?? "")")
+        print("barcode contact info middle name: \(name.middle ?? "")")
+        print("barcode contact info name prefix: \(name.prefix ?? "")")
+        print("barcode contact info name suffix: \(name.suffix ?? "")")
+        print("barcode contact info name pronounciation: \(name.pronounciation ?? "")")
+      }
+      print("barcode contact info organization: \(contactInfo.organization ?? "")")
+    }
+
+    if let geoPoint = barcode.geoPoint {
+      print("barcode geoPoint latitude: \(geoPoint.latitude)")
+      print("barcode geoPoint longitude: \(geoPoint.longitude)")
+    }
+
+    if let sms = barcode.sms {
+      print("barcode sms message: \(sms.message ?? "")")
+      print("barcode sms phone number: \(sms.phoneNumber ?? "")")
+    }
+
+    if let url = barcode.url {
+      print("barcode url title: \(url.title ?? "")")
+      print("barcode url: \(url.url ?? "")")
+    }
+
+    if let wifi = barcode.wifi {
+      print("barcode wifi ssid: \(wifi.ssid ?? "")")
+      print("barcode wifi password: \(wifi.password ?? "")")
+      print("barcode wifi type \(wifi.type)")
+    }
+
     if let dl = barcode.driverLicense {
       print("driver license city: \(dl.addressCity ?? "")")
       print("driver license state: \(dl.addressState ?? "")")

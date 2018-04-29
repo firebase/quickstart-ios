@@ -43,7 +43,7 @@
   // Using Cloud Storage for Firebase requires the user be authenticated. Here we are using
   // anonymous authentication.
   if (![FIRAuth auth].currentUser) {
-    [[FIRAuth auth] signInAnonymouslyWithCompletion:^(FIRUser * _Nullable user,
+    [[FIRAuth auth] signInAnonymouslyWithCompletion:^(FIRAuthDataResult * _Nullable authResult,
                                                       NSError * _Nullable error) {
       if (error) {
         _urlTextView.text = error.description;

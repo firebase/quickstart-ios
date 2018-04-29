@@ -39,7 +39,7 @@ class ViewController: UIViewController,
     // Using Cloud Storage for Firebase requires the user be authenticated. Here we are using
     // anonymous authentication.
     if Auth.auth().currentUser == nil {
-      Auth.auth().signInAnonymously(completion: { (user: User?, error: Error?) in
+      Auth.auth().signInAnonymously(completion: { (authResult, error) in
         if let error = error {
           self.urlTextView.text = error.localizedDescription
           self.takePicButton.isEnabled = false

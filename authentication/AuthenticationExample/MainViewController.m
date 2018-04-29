@@ -101,8 +101,9 @@ static NSString *const kUpdatePhoneNumberText = @"Update Phone Number";
        // [END link_credential]
      } else {
        // [START signin_credential]
-       [[FIRAuth auth] signInWithCredential:credential
-                                 completion:^(FIRUser *user, NSError *error) {
+       [[FIRAuth auth] signInAndRetrieveDataWithCredential:credential
+                                                completion:^(FIRAuthDataResult * _Nullable authResult,
+                                                                                   NSError * _Nullable error) {
          // [START_EXCLUDE silent]
          [self hideSpinner:^{
          // [END_EXCLUDE]
@@ -255,8 +256,8 @@ static NSString *const kUpdatePhoneNumberText = @"Update Phone Number";
                                         handler:^(UIAlertAction * _Nonnull action) {
           [self showSpinner:^{
             // [START firebase_auth_anonymous]
-            [[FIRAuth auth]
-             signInAnonymouslyWithCompletion:^(FIRUser *_Nullable user, NSError *_Nullable error) {
+            [[FIRAuth auth] signInAnonymouslyWithCompletion:^(FIRAuthDataResult * _Nullable authResult,
+                                                              NSError * _Nullable error) {
                // [START_EXCLUDE]
                [self hideSpinner:^{
                  if (error) {

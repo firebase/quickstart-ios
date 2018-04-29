@@ -35,7 +35,8 @@
     // [START headless_email_auth]
     [[FIRAuth auth] signInWithEmail:_emailField.text
                            password:_passwordField.text
-                         completion:^(FIRUser *user, NSError *error) {
+                         completion:^(FIRAuthDataResult * _Nullable authResult,
+                                      NSError * _Nullable error) {
       // [START_EXCLUDE]
       [self hideSpinner:^{
         if (error) {
@@ -127,14 +128,15 @@
         // [START create_user]
         [[FIRAuth auth] createUserWithEmail:email
                                    password:password
-                                 completion:^(FIRUser *_Nullable user, NSError *_Nullable error) {
+                                 completion:^(FIRAuthDataResult * _Nullable authResult,
+                                              NSError * _Nullable error) {
           // [START_EXCLUDE]
           [self hideSpinner:^{
             if (error) {
               [self showMessagePrompt: error.localizedDescription];
               return;
             }
-            NSLog(@"%@ created", user.email);
+            NSLog(@"%@ created", authResult.user.email);
             [self.navigationController popViewControllerAnimated:YES];
           }];
           // [END_EXCLUDE]

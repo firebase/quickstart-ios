@@ -270,7 +270,7 @@ class MainViewController: UITableViewController, GIDSignInUIDelegate {
         // [END link_credential]
       } else {
         // [START signin_credential]
-        Auth.auth().signIn(with: credential) { (user, error) in
+        Auth.auth().signInAndRetrieveData(with: credential) { (authResult, error) in
           // [START_EXCLUDE silent]
           self.hideSpinner {
           // [END_EXCLUDE]

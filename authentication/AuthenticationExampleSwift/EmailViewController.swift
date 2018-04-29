@@ -110,14 +110,14 @@ class EmailViewController: UIViewController {
           if let password = password {
             self.showSpinner {
               // [START create_user]
-              Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
+              Auth.auth().createUser(withEmail: email, password: password) { (authResult, error) in
                 // [START_EXCLUDE]
                 self.hideSpinner {
-                  if let error = error {
-                    self.showMessagePrompt(error.localizedDescription)
+                  guard let email = authResult?.user.email, error == nil else {
+                    self.showMessagePrompt(error!.localizedDescription)
                     return
                   }
-                  print("\(user!.email!) created")
+                  print("\(email) created")
                   self.navigationController!.popViewController(animated: true)
                 }
                 // [END_EXCLUDE]

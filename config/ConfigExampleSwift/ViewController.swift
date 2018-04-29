@@ -38,8 +38,7 @@ class ViewController: UIViewController {
     // the number of fetches available per hour during development. See Best Practices in the
     // README for more information.
     // [START enable_dev_mode]
-    let remoteConfigSettings = RemoteConfigSettings(developerModeEnabled: true)
-    remoteConfig.configSettings = remoteConfigSettings!
+    remoteConfig.configSettings = RemoteConfigSettings(developerModeEnabled: true)
     // [END enable_dev_mode]
 
     // Set default Remote Config parameter values. An app uses the in-app default values, and

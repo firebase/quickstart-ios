@@ -16,7 +16,7 @@
 
 #import <UIKit/UIKit.h>
 
-@import FirebaseDatabaseUI;
+@import FirebaseUI;
 
 @interface PostDataSource : FUITableViewDataSource
 

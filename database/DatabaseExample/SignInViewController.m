@@ -41,17 +41,17 @@
   [self showSpinner:^{
     [[FIRAuth auth] signInWithEmail:_emailField.text
                            password:_passwordField.text
-                         completion:^(FIRUser *user, NSError *error) {
+                         completion:^(FIRAuthDataResult * _Nullable authResult, NSError *error) {
                              [self hideSpinner:^{
                                if (error) {
                                  [self showMessagePrompt:error.localizedDescription];
                                  return;
                                }
-                               [[[_ref child:@"users"] child:user.uid]
+                               [[[_ref child:@"users"] child:authResult.user.uid]
                                     observeEventType:FIRDataEventTypeValue
                                            withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
                                               if (![snapshot exists]) {
-                                                [self promptForNewUserName:user];
+                                                [self promptForNewUserName:authResult.user];
                                               } else {
                                                 [self performSegueWithIdentifier:@"signIn"
                                                                           sender:nil];
@@ -105,7 +105,8 @@
                     }
                     [self showSpinner:^{
                       [[FIRAuth auth] createUserWithEmail:email password:password
-                          completion:^(FIRUser * _Nullable user, NSError * _Nullable error) {
+                                               completion:^(FIRAuthDataResult * _Nullable authResult,
+                                                            NSError * _Nullable error) {
                             [self hideSpinner:^{
                               if (error) {
                                 [self showMessagePrompt:error.localizedDescription];
@@ -123,7 +124,7 @@
                                     return;
                                   }
                                   // [START basic_write]
-                                  [[[_ref child:@"users"] child:user.uid]
+                                  [[[_ref child:@"users"] child:authResult.user.uid]
                                       setValue:@{@"username": username}];
                                   // [END basic_write]
                                   [self performSegueWithIdentifier:@"signIn" sender:nil];

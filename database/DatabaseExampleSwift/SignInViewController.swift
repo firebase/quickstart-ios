@@ -72,11 +72,11 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     self.showSpinner {}
 
     // Sign user in
-    Auth.auth().signIn(withEmail: email, password: password, completion: { (user, error) in
+    Auth.auth().signIn(withEmail: email, password: password, completion: { (authResult, error) in
 
       self.hideSpinner {}
 
-      guard let user = user, error == nil else {
+      guard let user = authResult?.user, error == nil else {
         self.showMessagePrompt(error!.localizedDescription)
         return
       }
@@ -142,9 +142,9 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         getPassword { password in
 
           // Create the user with the provided credentials
-          Auth.auth().createUser(withEmail: email, password: password, completion: { (user, error) in
+          Auth.auth().createUser(withEmail: email, password: password, completion: { (authResult, error) in
 
-            guard let user = user, error == nil else {
+            guard let user = authResult?.user, error == nil else {
               self.showMessagePrompt(error!.localizedDescription)
               return
             }

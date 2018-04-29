@@ -15,7 +15,7 @@
 //
 
 import UIKit
-import FirebaseDatabaseUI
+import FirebaseUI
 
 class PostDataSource: FUITableViewDataSource {
 

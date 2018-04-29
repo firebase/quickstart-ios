@@ -14,7 +14,7 @@
 //  limitations under the License.
 //
 
-@import FirebaseAuthUI;
+@import FirebaseUI;
 
 @interface FAuthPickerViewController : FUIAuthPickerViewController
 @end

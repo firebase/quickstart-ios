@@ -32,7 +32,7 @@ class CommentCell: MDCCollectionViewCell {
       // [START function_error]
       if let error = error as NSError? {
         if error.domain == FunctionsErrorDomain {
-          let code = FIRFunctionsErrorCode(rawValue: error.code)
+          let code = FunctionsErrorCode(rawValue: error.code)
           let message = error.localizedDescription
           let details = error.userInfo[FunctionsErrorDetailsKey]
         }

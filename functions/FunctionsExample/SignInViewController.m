@@ -19,8 +19,7 @@
 #import "FAuthPickerViewController.h"
 
 @import Firebase;
-@import FirebaseAuthUI;
-@import FirebaseGoogleAuthUI;
+@import FirebaseUI;
 
 @interface SignInViewController ()
 

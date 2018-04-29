@@ -14,7 +14,7 @@
 //  limitations under the License.
 //
 
-import FirebaseAuthUI
+import FirebaseUI
 
 @objc(FAuthPickerViewController)
 class FAuthPickerViewController: FUIAuthPickerViewController {

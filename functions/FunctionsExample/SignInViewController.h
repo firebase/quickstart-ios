@@ -14,7 +14,7 @@
 //  limitations under the License.
 //
 
-@import FirebaseAuthUI;
+@import FirebaseUI;
 
 @interface SignInViewController : UIViewController<FUIAuthDelegate>
 @end

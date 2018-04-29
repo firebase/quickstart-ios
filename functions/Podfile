@@ -1,8 +1,11 @@
 # FunctionsExample
+source 'sso://cpdc-internal/spec'
+source 'https://github.com/CocoaPods/Specs.git'
 
 use_frameworks!
 platform :ios, '8.0'
 
+pod 'Firebase/Core'
 pod 'Firebase/Auth'
 pod 'FirebaseUI/Auth'
 pod 'FirebaseUI/Google'

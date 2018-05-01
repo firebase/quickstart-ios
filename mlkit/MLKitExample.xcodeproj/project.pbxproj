@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		10224B582087E43100A77316 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10224B572087E43100A77316 /* ViewController.swift */; };
 		10224B5C2087E49F00A77316 /* DetectorService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10224B592087E49F00A77316 /* DetectorService.swift */; };
-		10224B5D2087E49F00A77316 /* LiteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10224B5A2087E49F00A77316 /* LiteModel.swift */; };
 		10224B5E2087E49F00A77316 /* UIImage+TFLite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10224B5B2087E49F00A77316 /* UIImage+TFLite.swift */; };
 		10224B722087E5A900A77316 /* labels_quant.txt in Resources */ = {isa = PBXBuildFile; fileRef = 10224B6C2087E5A900A77316 /* labels_quant.txt */; };
 		10224B732087E5A900A77316 /* labels.txt in Resources */ = {isa = PBXBuildFile; fileRef = 10224B6D2087E5A900A77316 /* labels.txt */; };
@@ -45,7 +44,6 @@
 /* Begin PBXFileReference section */
 		10224B572087E43100A77316 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		10224B592087E49F00A77316 /* DetectorService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetectorService.swift; sourceTree = "<group>"; };
-		10224B5A2087E49F00A77316 /* LiteModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiteModel.swift; sourceTree = "<group>"; };
 		10224B5B2087E49F00A77316 /* UIImage+TFLite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+TFLite.swift"; sourceTree = "<group>"; };
 		10224B6C2087E5A900A77316 /* labels_quant.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = labels_quant.txt; path = Resources/labels_quant.txt; sourceTree = "<group>"; };
 		10224B6D2087E5A900A77316 /* labels.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = labels.txt; path = Resources/labels.txt; sourceTree = "<group>"; };
@@ -151,7 +149,6 @@
 				BB287B3820729CE90069707A /* AppDelegate.swift */,
 				10224B572087E43100A77316 /* ViewController.swift */,
 				10224B592087E49F00A77316 /* DetectorService.swift */,
-				10224B5A2087E49F00A77316 /* LiteModel.swift */,
 				10224B5B2087E49F00A77316 /* UIImage+TFLite.swift */,
 				BB287B572074310E0069707A /* DetectionViewController.swift */,
 				BB287B4A2072A0200069707A /* Supporting FIles */,
@@ -326,7 +323,6 @@
 				10224B582087E43100A77316 /* ViewController.swift in Sources */,
 				BB287B3920729CE90069707A /* AppDelegate.swift in Sources */,
 				BB287B582074310E0069707A /* DetectionViewController.swift in Sources */,
-				10224B5D2087E49F00A77316 /* LiteModel.swift in Sources */,
 				10224B5E2087E49F00A77316 /* UIImage+TFLite.swift in Sources */,
 				10224B5C2087E49F00A77316 /* DetectorService.swift in Sources */,
 			);

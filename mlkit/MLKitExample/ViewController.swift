@@ -15,7 +15,9 @@
 //
 
 import UIKit
+// [START import_vision]
 import FirebaseMLVision
+// [END import_vision]
 import FirebaseMLModelInterpreter
 
 // swiftlint:disable colon opening_brace
@@ -60,7 +62,9 @@ class ViewController:
   override func viewDidLoad() {
     super.viewDidLoad()
 
+    // [START init_vision]
     vision = Vision.vision()
+    // [END init_vision]
     textDetector = vision?.textDetector()
 
     imageView.image = UIImage(named: Constants.graceHopperImage)
@@ -82,37 +86,55 @@ class ViewController:
     guard let image = imageView.image else { return }
 
     // Create a landmark detector.
-    let landmarkDetectorOptions = VisionCloudDetectorOptions()
-    landmarkDetectorOptions.modelType = .latest
-    landmarkDetectorOptions.maxResults = 20
+    // [START config_landmark_cloud]
+    let options = VisionCloudDetectorOptions()
+    options.modelType = .latest
+    options.maxResults = 20
+    // [END config_landmark_cloud]
 
-    let landmarkDetector = vision?.cloudLandmarkDetector(options: landmarkDetectorOptions)
+    // [START init_landmark_cloud]
+    let landmarkDetector = vision?.cloudLandmarkDetector(options: options)
+    // [END init_landmark_cloud]
+
+    // Initialize a VisionImage object with a UIImage.
+    // [START init_image]
+    let visionImage = VisionImage(image: image)
+    // [END init_image]
 
     // Define the metadata for the image.
+    // [START set_image_metadata]
     let imageMetadata = VisionImageMetadata()
     imageMetadata.orientation = .topLeft
 
-    // Initialize a VisionImage object with a UIImage.
-    let visionImage = VisionImage(image: image)
     visionImage.metadata = imageMetadata
+    // [END set_image_metadata]
 
-    landmarkDetector?.detect(in: visionImage) { (features, error) in
-      guard error == nil, let features = features, !features.isEmpty else {
+    // [START detect_landmarks_cloud]
+    landmarkDetector?.detect(in: visionImage) { (landmarks, error) in
+      guard error == nil, let landmarks = landmarks, !landmarks.isEmpty else {
+        // [START_EXCLUDE]
         let errorString = error?.localizedDescription ?? Constants.detectionNoResultsMessage
         print("Landmark detection failed with error: \(errorString)")
         self.resultsTextView.text = "Landmark Detection: \(errorString)"
+        // [END_EXCLUDE]
+
         return
       }
-      self.resultsTextView.text = features.map { feature -> String in
+
+      // Recognized landmarks
+      // [START_EXCLUDE]
+      self.resultsTextView.text = landmarks.map { landmark -> String in
         self.addFrameView(
-          featureFrame: feature.frame,
+          featureFrame: landmark.frame,
           imageSize: image.size,
           viewFrame: self.imageView.frame
         )
-        self.logExtrasforTesting(landmark: feature)
-        return "Frame: \(feature.frame)"
+        self.logExtrasforTesting(landmark: landmark)
+        return "Frame: \(landmark.frame)"
       }.joined(separator: "\n")
+      // [END_EXCLUDE]
     }
+    // [END detect_landmarks_cloud]
   }
 
   private func logExtrasforTesting(landmark: VisionCloudLandmark) {
@@ -132,9 +154,18 @@ class ViewController:
     guard let image = imageView.image else { return }
 
     // Create a face detector.
-    let faceDetectorOptions = VisionFaceDetectorOptions()
-    faceDetectorOptions.landmarkType = .all
-    let faceDetector = vision?.faceDetector(options: faceDetectorOptions)
+    // [START config_face]
+    let options = VisionFaceDetectorOptions()
+    options.modeType = .accurate
+    options.landmarkType = .all
+    options.classificationType = .all
+    options.minFaceSize = CGFloat(0.1)
+    options.isTrackingEnabled = true
+    // [END config_face]
+
+    // [START init_face]
+    let faceDetector = vision?.faceDetector(options: options)
+    // [END init_face]
 
     // Define the metadata for the image.
     let imageMetadata = VisionImageMetadata()
@@ -144,23 +175,32 @@ class ViewController:
     let visionImage = VisionImage(image: image)
     visionImage.metadata = imageMetadata
 
-    faceDetector?.detect(in: visionImage) { (features, error) in
-      guard error == nil, let features = features, !features.isEmpty else {
+    // [START detect_faces]
+    faceDetector?.detect(in: visionImage) { (faces, error) in
+      guard error == nil, let faces = faces, !faces.isEmpty else {
+        // [START_EXCLUDE]
         let errorString = error?.localizedDescription ?? Constants.detectionNoResultsMessage
         print("Face detection failed with error: \(errorString)")
         self.resultsTextView.text = "Face Detection: \(errorString)"
+        // [END_EXCLUDE]
+
         return
       }
-      self.resultsTextView.text = features.map { feature -> String in
+
+      // Faces detected
+      // [START_EXCLUDE]
+      self.resultsTextView.text = faces.map { face -> String in
         self.addFrameView(
-          featureFrame: feature.frame,
+          featureFrame: face.frame,
           imageSize: image.size,
           viewFrame: self.imageView.frame
         )
-        self.logExtrasforTesting(face: feature)
-        return "Frame: \(feature.frame)"
+        self.logExtrasforTesting(face: face)
+        return "Frame: \(face.frame)"
       }.joined(separator: "\n")
+      // [END_EXCLUDE]
     }
+    // [END detect_faces]
   }
 
   private func logExtrasforTesting(face: VisionFace) {
@@ -192,10 +232,15 @@ class ViewController:
   func detectLabels() {
     guard let image = imageView.image else { return }
 
+    // [START config_label]
     let options = VisionLabelDetectorOptions(
       confidenceThreshold: Constants.labelConfidenceThreshold
     )
+    // [END config_label]
+
+    // [START init_label]
     let labelDetector = vision?.labelDetector(options: options)
+    // [END init_label]
 
     // Define the metadata for the image.
     let imageMetadata = VisionImageMetadata()
@@ -205,21 +250,29 @@ class ViewController:
     let visionImage = VisionImage(image: image)
     visionImage.metadata = imageMetadata
 
-    labelDetector?.detect(in: visionImage) { (features, error) in
-      guard error == nil, let features = features, !features.isEmpty else {
+    // [START detect_label]
+    labelDetector?.detect(in: visionImage) { (labels, error) in
+      guard error == nil, let labels = labels, !labels.isEmpty else {
+        // [START_EXCLUDE]
         let errorString = error?.localizedDescription ?? Constants.detectionNoResultsMessage
         print("Label detection failed with error: \(errorString)")
         self.resultsTextView.text = "Label detection: \(errorString)"
+        // [END_EXCLUDE]
+
         return
       }
-      self.logExtrasForTesting(labels: features)
 
-      self.resultsTextView.text = features.map { feature -> String in
+      // Labeled image
+      // [START_EXCLUDE]
+      self.logExtrasForTesting(labels: labels)
+      self.resultsTextView.text = labels.map { label -> String in
         // TODO(b/78151345): Draw a frame for image labeling detection in the sample app.
-        "Label: \(feature.label), Confidence: \(feature.confidence), EntityID: " +
-        "\(feature.entityID), Frame: \(feature.frame)"
+        "Label: \(label.label), Confidence: \(label.confidence), EntityID: " +
+        "\(label.entityID), Frame: \(label.frame)"
       }.joined(separator: "\n")
+      // [END_EXCLUDE]
     }
+    // [END detect_label]
   }
 
   private func logExtrasForTesting(labels: [VisionLabel]) {
@@ -233,26 +286,36 @@ class ViewController:
   func detectLabelsCloud() {
     guard let image = imageView.image else { return }
 
+    // [START init_label_cloud]
     let labelDetector = Vision.vision().cloudLabelDetector()
+    // [END init_label_cloud]
 
     // Initialize a VisionImage object with a UIImage.
     let visionImage = VisionImage(image: image)
 
-    labelDetector.detect(in: visionImage) { (features: [VisionCloudLabel]?, error: Error?) in
-      guard error == nil, let features = features, !features.isEmpty else {
+    // [START detect_label_cloud]
+    labelDetector.detect(in: visionImage) { (labels: [VisionCloudLabel]?, error: Error?) in
+      guard error == nil, let labels = labels, !labels.isEmpty else {
+        // [START_EXCLUDE]
         let errorString = error?.localizedDescription ?? Constants.detectionNoResultsMessage
         print("Label detection failed with error: \(errorString)")
         self.resultsTextView.text = "Label detection: \(errorString)"
+        // [END_EXCLUDE]
+
         return
       }
-      self.logExtrasForTesting(cloudlabels: features)
 
-      self.resultsTextView.text = features.map { feature -> String in
+      // Labeled image
+      // [START_EXCLUDE]
+      self.logExtrasForTesting(cloudlabels: labels)
+      self.resultsTextView.text = labels.map { label -> String in
         // TODO(b/78151345): Draw a frame for image labeling detection in the sample app.
-        "Label: \(feature.label ?? ""), Confidence: \(feature.confidence ?? 0), EntityID: " +
-        "\(feature.entityId ?? "")"
+        "Label: \(label.label ?? ""), Confidence: \(label.confidence ?? 0), EntityID: " +
+        "\(label.entityId ?? "")"
         }.joined(separator: "\n")
+      // [END_EXCLUDE]
     }
+    // [END detect_label_cloud]
   }
 
   private func logExtrasForTesting(cloudlabels: [VisionCloudLabel]) {
@@ -267,20 +330,28 @@ class ViewController:
     guard let image = imageView.image else { return }
 
     // Create a text detector.
+    // [START init_text]
     let textDetector = vision?.textDetector()
+    // [END init_text]
 
     // Initialize a VisionImage with a UIImage.
     let visionImage = VisionImage(image: image)
 
+    // [START detect_text]
     textDetector?.detect(in: visionImage) { (features, error) in
       guard error == nil, let features = features, !features.isEmpty else {
+        // [START_EXCLUDE]
         let errorString = error?.localizedDescription ?? Constants.detectionNoResultsMessage
         print("Text detection failed with error: \(errorString)")
         self.resultsTextView.text = "Text detection: \(errorString)"
+        // [END_EXCLUDE]
+
         return
       }
-      print("Detected text has: \(features.count) blocks")
 
+      // Recognized and extracted text
+      print("Detected text has: \(features.count) blocks")
+      // [START_EXCLUDE]
       self.resultsTextView.text = features.map { feature in
         self.addFrameView(
           featureFrame: feature.frame,
@@ -290,7 +361,9 @@ class ViewController:
         self.logExtrasForTesting(text: feature)
         return "Text: \(feature.text)"
       }.joined(separator: "\n")
+      // [END_EXCLUDE]
     }
+    // [END detect_text]
   }
 
   private func logExtrasForTesting(text: VisionText) {
@@ -322,20 +395,34 @@ class ViewController:
   func detectTextsCloud() {
     guard let image = imageView.image else { return }
 
+    // [START config_text_cloud]
+    let options = VisionCloudDetectorOptions()
+    options.modelType = .latest
+    // options.maxResults has no effect with this API
+    // [END config_text_cloud]
+
     // Create a text detector.
+    // [START init_text_cloud]
     let textDetector = vision?.cloudTextDetector()
+    // [END init_text_cloud]
 
     // Initialize a VisionImage with a UIImage.
     let visionImage = VisionImage(image: image)
 
+    // [START detect_text_cloud]
     textDetector?.detect(in: visionImage) { (cloudText, error) in
       guard error == nil, let cloudText = cloudText else {
+        // [START_EXCLUDE]
         let errorString = error?.localizedDescription ?? Constants.detectionNoResultsMessage
         print("Text detection failed with error: \(errorString)")
         self.resultsTextView.text = "Text detection: \(errorString)"
+        // [END_EXCLUDE]
+
         return
       }
 
+      // Recognized and extracted text
+      // [START_EXCLUDE]
       self.logExtrasForTesting(cloudText: cloudText)
       if let pages = cloudText.pages {
         self.resultsTextView.text = pages.map { page in
@@ -351,7 +438,9 @@ class ViewController:
           return "" //fix later
         }.joined(separator: "\n")
       }
+      // [END_EXCLUDE]
     }
+    // [START detect_text_cloud]
   }
 
   private func logExtrasForTesting(cloudText: VisionCloudText) {
@@ -387,11 +476,16 @@ class ViewController:
     guard let image = imageView.image else { return }
 
     // Define the options for a barcode detector.
+    // [START config_barcode]
     let format = VisionBarcodeFormat.all
-    let barcodeOptions = VisionBarcodeDetectorOptions(formats: format)
+    // Or, e.g.: VisionBarcodeFormat.qrCode | VisionBarcodeFormat.aztec
+    let options = VisionBarcodeDetectorOptions(formats: format)
+    // [END config_barcode]
 
     // Create a barcode detector.
-    let barcodeDetector = vision?.barcodeDetector(options: barcodeOptions)
+    // [START init_barcode]
+    let barcodeDetector = vision?.barcodeDetector(options: options)
+    // [END init_barcode]
 
     // Define the metadata for the image.
     let imageMetadata = VisionImageMetadata()
@@ -401,24 +495,33 @@ class ViewController:
     let visionImage = VisionImage(image: image)
     visionImage.metadata = imageMetadata
 
-    barcodeDetector?.detect(in: visionImage) { (features, error) in
-      guard error == nil, let features = features, !features.isEmpty else {
+    // [START detect_barcodes]
+    barcodeDetector?.detect(in: visionImage) { (barcodes, error) in
+      guard error == nil, let barcodes = barcodes, !barcodes.isEmpty else {
+        // [START_EXCLUDE]
         let errorString = error?.localizedDescription ?? Constants.detectionNoResultsMessage
         print("Barcode detection failed with error: \(errorString)")
         self.resultsTextView.text = "Barcode detection: \(errorString)"
+        // [END_EXCLUDE]
+
         return
       }
-      self.resultsTextView.text = features.map { feature in
+
+      // Detected and read barcodes
+      // [START_EXCLUDE]
+      self.resultsTextView.text = barcodes.map { barcode in
         self.addFrameView(
-          featureFrame: feature.frame,
+          featureFrame: barcode.frame,
           imageSize: image.size,
           viewFrame: self.imageView.frame
         )
-        self.logExtrasForTesting(barcode: feature)
-        return "DisplayValue: \(feature.displayValue ?? ""), RawValue: " +
-        "\(feature.rawValue ?? ""), Frame: \(feature.frame)"
+        self.logExtrasForTesting(barcode: barcode)
+        return "DisplayValue: \(barcode.displayValue ?? ""), RawValue: " +
+        "\(barcode.rawValue ?? ""), Frame: \(barcode.frame)"
       }.joined(separator: "\n")
+      // [END_EXCLUDE]
     }
+    // [END detect_barcodes]
   }
 
   private func logExtrasForTesting(barcode: VisionBarcode) {

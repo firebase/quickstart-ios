@@ -63,12 +63,18 @@ public class DetectorService: NSObject {
 
   public typealias DetectObjectsCompletion = ([(label: String, confidence: Float)]?, Error?) -> Void
 
-  private var model = LiteModel()
+  let modelInputOutputOptions = ModelInputOutputOptions()
+  var modelInterpreter: ModelInterpreter?
+  var modelElementType: ModelElementType = .uInt8
+  var isModelQuantized = true
+  var modelInputDimensions = DetectorConstants.inputDimensions
+  var modelOutputDimensions = [NSNumber]()
+  var labels = [String]()
 
-  /// Loads a custom model and labels from the given paths.
+  /// Loads a model with the given options and labels path.
   ///
   /// - Parameters:
-  ///   - options: The custom model options containing the source(s) to load.
+  ///   - options: The model options containing the source(s) to load.
   ///   - labelsPath: The labels file path.
   ///   - isQuantized: Indicates whether the model uses quantization (i.e. 8-bit fixed point
   ///     weights and activations). See https://www.tensorflow.org/performance/quantization for more
@@ -77,7 +83,7 @@ public class DetectorService: NSObject {
   ///     if `inputDimensions` are specified.
   ///   - outputDimensions: An array of the output tensor dimensions. Must include `inputDimensions`
   ///     if `outputDimensions` are specified.
-  public func loadCustomModel(
+  public func loadModel(
     options: ModelOptions,
     labelsPath: String,
     isQuantized: Bool = true,
@@ -91,39 +97,37 @@ public class DetectorService: NSObject {
         return
     }
 
-    model.isQuantized = isQuantized
+    isModelQuantized = isQuantized
     if let inputDimensions = inputDimensions {
-      model.inputDimensions = inputDimensions
-    } else {
-      model.inputDimensions = DetectorConstants.inputDimensions
+      modelInputDimensions = inputDimensions
     }
 
     do {
       let encoding = String.Encoding.utf8.rawValue
       let contents = try NSString(contentsOfFile: labelsPath, encoding: encoding)
-      model.labels = contents.components(separatedBy: DetectorConstants.labelsSeparator)
+      labels = contents.components(separatedBy: DetectorConstants.labelsSeparator)
       if let outputDimensions = outputDimensions {
-        model.outputDimensions = outputDimensions
+        modelOutputDimensions = outputDimensions
       } else {
-        model.outputDimensions = [
+        modelOutputDimensions = [
           DetectorConstants.dimensionBatchSize,
-          NSNumber(value: model.labels.count),
+          NSNumber(value: labels.count),
         ]
       }
-      model.interpreter = ModelInterpreter(options: options)
-      model.elementType = model.isQuantized ? .uInt8 : .float32
-      try model.inputOutputOptions.setInputFormat(
+      modelInterpreter = ModelInterpreter(options: options)
+      modelElementType = isModelQuantized ? .uInt8 : .float32
+      try modelInputOutputOptions.setInputFormat(
         index: DetectorConstants.modelInputIndex,
-        type: model.elementType,
-        dimensions: model.inputDimensions
+        type: modelElementType,
+        dimensions: modelInputDimensions
       )
-      try model.inputOutputOptions.setOutputFormat(
+      try modelInputOutputOptions.setOutputFormat(
         index: DetectorConstants.modelInputIndex,
-        type: model.elementType,
-        dimensions: model.outputDimensions
+        type: modelElementType,
+        dimensions: modelOutputDimensions
       )
     } catch let error as NSError {
-      fatalError("Failed to load custom model with error: \(error.localizedDescription)")
+      fatalError("Failed to load model with error: \(error.localizedDescription)")
     }
   }
 
@@ -146,7 +150,7 @@ public class DetectorService: NSObject {
     }
     let inputs = ModelInputs()
     do {
-      // Add the image data as the custom model input.
+      // Add the image data as the model input.
       try inputs.addInput(imageData)
     } catch let error as NSError {
       print("Failed to detect objects with error: \(error.localizedDescription)")
@@ -157,7 +161,7 @@ public class DetectorService: NSObject {
     }
 
     // Run the interpreter for the model with the given input.
-    model.interpreter.run(inputs: inputs, options: model.inputOutputOptions) { (outputs, error) in
+    modelInterpreter?.run(inputs: inputs, options: modelInputOutputOptions) { (outputs, error) in
       guard error == nil, let outputs = outputs else {
         completion(nil, error)
         return
@@ -179,7 +183,7 @@ public class DetectorService: NSObject {
       with: scaledImageSize,
       componentsCount: DetectorConstants.dimensionComponents.intValue,
       batchSize: DetectorConstants.dimensionBatchSize.intValue,
-      isQuantized: model.isQuantized
+      isQuantized: isModelQuantized
       ) else {
         print("Failed to scale image to size \(scaledImageSize).")
         return nil
@@ -215,14 +219,14 @@ public class DetectorService: NSObject {
     }
 
     // Convert the output from quantized 8-bit fixed point format to 32-bit floating point format.
-    if model.isQuantized {
+    if isModelQuantized {
       outputArray = outputArray.map {
         NSNumber(value: Float32($0.int32Value & 0xff) / DetectorConstants.maxRGBValue)
       }
     }
 
     // Create a an array of indices that map to each label in the labels text file.
-    let labelsCount = model.outputDimensions[1].intValue
+    let labelsCount = modelOutputDimensions[1].intValue
     var indexesArray = [Int](repeating: 0, count: labelsCount)
     for index in 0..<labelsCount {
       indexesArray[index] = index
@@ -242,7 +246,7 @@ public class DetectorService: NSObject {
     // Create an array of results [("label" as String, "confidence" as Float)].
     let results = sortedResults.map { result -> (String, Float) in
       let (confidence, labelIndex) = result
-      return (model.labels[labelIndex], confidence.floatValue)
+      return (labels[labelIndex], confidence.floatValue)
     }
     completion(results, nil)
   }

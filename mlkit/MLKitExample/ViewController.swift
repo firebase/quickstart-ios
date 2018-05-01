@@ -27,22 +27,23 @@ class ViewController:
 {
   // swiftlint:enable colon opening_brace
 
-  var detectorService = DetectorService()
+  /// Firebase vision instance. Instantiated in `viewDidLoad`.
+  var vision: Vision?
 
-  // A layer on the view for the face frames drawing
-  var faceSublayer = CALayer()
+  /// Firebase vision text detector. Instantiated in `viewDidLoad`.
+  var textDetector: VisionTextDetector?
 
-  // An image picker to open the photo library or camera
+  /// Detector service that manages loading models and detecting objects.
+  let detectorService = DetectorService()
+
+  /// Indicates whether the download cloud model button was selected.
+  var downloadCloudModelButtonSelected = false
+
+  /// A layer on the view for the drawing frame results.
+  var frameSublayer = CALayer()
+
+  /// An image picker for accessing the photo library or camera.
   var imagePicker = UIImagePickerController()
-
-  // Vision instance
-  var vision = Vision()
-
-  // Registered local model names
-  var registeredLocalModelNames: Set<String> = Set<String>()
-
-  // Registered cloud model names
-  var registeredCloudModelNames: Set<String> = Set<String>()
 
   // MARK: - IBOutlets
 
@@ -51,71 +52,30 @@ class ViewController:
 
   @IBOutlet private weak var imageView: UIImageView!
   @IBOutlet private weak var resultsTextView: UITextView!
-  @IBOutlet private weak var openCameraButton: UIBarButtonItem!
-  @IBOutlet private weak var takePictureButton: UIBarButtonItem!
+  @IBOutlet private weak var cameraButton: UIBarButtonItem!
+  @IBOutlet private weak var downloadModelButton: UIBarButtonItem!
 
-  // MARK: - View controller lifecycle methods
+  // MARK: - UIViewController
 
   override func viewDidLoad() {
+    super.viewDidLoad()
+
     vision = Vision.vision()
-    imageView.image = getImage()
-    imageView.layer.addSublayer(faceSublayer)
+    textDetector = vision?.textDetector()
+
+    imageView.image = UIImage(named: Constants.graceHopperImage)
+    imageView.layer.addSublayer(frameSublayer)
 
     imagePicker.delegate = self
     imagePicker.sourceType = .photoLibrary
 
-    super.viewDidLoad()
-  }
-
-  // MARK: - Face detection methods
-
-  /// Convertes a feature frame from the image scale
-  /// to the scale of aspect fit image on the view and
-  /// adds a frame view for it in scale of the view.
-  ///
-  /// - Parameters:
-  ///   - featureFrame: The rect of the feature in scale of original image.
-  ///   - imageSize: The size of original image.
-  ///   - viewRect: The view frame rect on the screen.
-  func addFrameView(featureFrame: CGRect, imageSize: CGSize, viewFrame: CGRect) {
-    print("Found a face: \(featureFrame).")
-
-    let viewSize = viewFrame.size
-
-    // Find resolution for the view and image
-    let rView = viewSize.width / viewSize.height
-    let rImage = imageSize.width / imageSize.height
-
-    // Define scale based on comparing resolutions
-    var scale: CGFloat
-    if rView > rImage {
-      scale = viewSize.height / imageSize.height
-    } else {
-      scale = viewSize.width / imageSize.width
+    if !UIImagePickerController.isCameraDeviceAvailable(.front) ||
+      !UIImagePickerController.isCameraDeviceAvailable(.rear) {
+      cameraButton.isEnabled = false
     }
-
-    // Calculate scaled feature frame size
-    let featureWidthScaled = featureFrame.size.width * scale
-    let featureHeightScaled = featureFrame.size.height * scale
-
-    // Calculate scaled feature frame top-left point
-    let imageWidthScaled = imageSize.width * scale
-    let imageHeightScaled = imageSize.height * scale
-
-    let imagePointXScaled = (viewSize.width - imageWidthScaled) / 2
-    let imagePointYScaled = (viewSize.height - imageHeightScaled) / 2
-
-    let featurePointXScaled = imagePointXScaled + featureFrame.origin.x * scale
-    let featurePointYScaled = imagePointYScaled + featureFrame.origin.y * scale
-
-    // Define a rect for scaled feature frame
-    let featureRectScaled = CGRect(x: featurePointXScaled,
-                                   y: featurePointYScaled,
-                                   width: featureWidthScaled,
-                                   height: featureHeightScaled)
-
-    drawFrame(featureRectScaled)
   }
+
+  // MARK: - Vision Detection
 
   /// Detects landmarks on the specified image and draws a frame for them.
   func detectLandmarksCloud() {
@@ -126,7 +86,7 @@ class ViewController:
     landmarkDetectorOptions.modelType = .latest
     landmarkDetectorOptions.maxResults = 20
 
-    let landmarkDetector = vision.cloudLandmarkDetector(options: landmarkDetectorOptions)
+    let landmarkDetector = vision?.cloudLandmarkDetector(options: landmarkDetectorOptions)
 
     // Define the metadata for the image.
     let imageMetadata = VisionImageMetadata()
@@ -136,21 +96,22 @@ class ViewController:
     let visionImage = VisionImage(image: image)
     visionImage.metadata = imageMetadata
 
-    landmarkDetector.detect(in: visionImage) { (features, error) in
+    landmarkDetector?.detect(in: visionImage) { (features, error) in
       guard error == nil, let features = features, !features.isEmpty else {
         let errorString = error?.localizedDescription ?? Constants.detectionNoResultsMessage
         print("Landmark detection failed with error: \(errorString)")
         self.resultsTextView.text = "Landmark Detection: \(errorString)"
         return
       }
-      features.forEach { feature in
+      self.resultsTextView.text = features.map { feature -> String in
         self.addFrameView(
           featureFrame: feature.frame,
           imageSize: image.size,
           viewFrame: self.imageView.frame
         )
         self.logExtrasforTesting(landmark: feature)
-      }
+        return "Frame: \(feature.frame)"
+      }.joined(separator: "\n")
     }
   }
 
@@ -173,31 +134,32 @@ class ViewController:
     // Create a face detector.
     let faceDetectorOptions = VisionFaceDetectorOptions()
     faceDetectorOptions.landmarkType = .all
-    let faceDetector = vision.faceDetector(options: faceDetectorOptions)
+    let faceDetector = vision?.faceDetector(options: faceDetectorOptions)
 
     // Define the metadata for the image.
     let imageMetadata = VisionImageMetadata()
-    imageMetadata.orientation = .topLeft
+    imageMetadata.orientation = detectorOrientationFrom(image.imageOrientation)
 
-    // Initialize a VisionImage object with a UIImage.
+    // Initialize a VisionImage object with the given UIImage.
     let visionImage = VisionImage(image: image)
     visionImage.metadata = imageMetadata
 
-    faceDetector.detect(in: visionImage) { (features, error) in
+    faceDetector?.detect(in: visionImage) { (features, error) in
       guard error == nil, let features = features, !features.isEmpty else {
         let errorString = error?.localizedDescription ?? Constants.detectionNoResultsMessage
         print("Face detection failed with error: \(errorString)")
         self.resultsTextView.text = "Face Detection: \(errorString)"
         return
       }
-      features.forEach { feature in
+      self.resultsTextView.text = features.map { feature -> String in
         self.addFrameView(
           featureFrame: feature.frame,
           imageSize: image.size,
           viewFrame: self.imageView.frame
         )
         self.logExtrasforTesting(face: feature)
-      }
+        return "Frame: \(feature.frame)"
+      }.joined(separator: "\n")
     }
   }
 
@@ -233,12 +195,17 @@ class ViewController:
     let options = VisionLabelDetectorOptions(
       confidenceThreshold: Constants.labelConfidenceThreshold
     )
-    let labelDetector = Vision.vision().labelDetector(options: options)
+    let labelDetector = vision?.labelDetector(options: options)
 
-    // Initialize a VisionImage object with a UIImage.
+    // Define the metadata for the image.
+    let imageMetadata = VisionImageMetadata()
+    imageMetadata.orientation = detectorOrientationFrom(image.imageOrientation)
+
+    // Initialize a VisionImage object with the given UIImage.
     let visionImage = VisionImage(image: image)
+    visionImage.metadata = imageMetadata
 
-    labelDetector.detect(in: visionImage) { (features: [VisionLabel]?, error: Error?) in
+    labelDetector?.detect(in: visionImage) { (features, error) in
       guard error == nil, let features = features, !features.isEmpty else {
         let errorString = error?.localizedDescription ?? Constants.detectionNoResultsMessage
         print("Label detection failed with error: \(errorString)")
@@ -247,19 +214,11 @@ class ViewController:
       }
       self.logExtrasForTesting(labels: features)
 
-//        self.resultsTextView.text = features.map { feature in
-//          feature/
-//          self.addFrameView(
-//            featureFrame: feature.frame,
-//            imageSize: image.size,
-//            viewFrame: self.imageView.frame
-//          )
-//          return "\(feature.label) - \(feature.score)"
-//          }.joined(separator: "\n")
-
-        // Got labels. Access label info via VisionLabel.
+      self.resultsTextView.text = features.map { feature -> String in
         // TODO(b/78151345): Draw a frame for image labeling detection in the sample app.
-      print(features.description)
+        "Label: \(feature.label), Confidence: \(feature.confidence), EntityID: " +
+        "\(feature.entityID), Frame: \(feature.frame)"
+      }.joined(separator: "\n")
     }
   }
 
@@ -288,26 +247,18 @@ class ViewController:
       }
       self.logExtrasForTesting(cloudlabels: features)
 
-//      self.resultsTextView.text = features.map { feature in
-//        feature/
-//        self.addFrameView(
-//          featureFrame: feature.frame,
-//          imageSize: image.size,
-//          viewFrame: self.imageView.frame
-//        )
-//        return "\(feature.label) - \(feature.score)"
-//        }.joined(separator: "\n")
-
-      // Got labels. Access label info via VisionLabel.
-      // TODO(b/78151345): Draw a frame for image labeling detection in the sample app.
-      print(features.description)
+      self.resultsTextView.text = features.map { feature -> String in
+        // TODO(b/78151345): Draw a frame for image labeling detection in the sample app.
+        "Label: \(feature.label ?? ""), Confidence: \(feature.confidence ?? 0), EntityID: " +
+        "\(feature.entityId ?? "")"
+        }.joined(separator: "\n")
     }
   }
 
   private func logExtrasForTesting(cloudlabels: [VisionCloudLabel]) {
     for label in cloudlabels {
-      print("Label \(label.label), " +
-        "entity id: \(label.entityId), confidence: \(label.confidence)")
+      print("Label \(label.label ?? ""), " +
+        "entity id: \(label.entityId ?? ""), confidence: \(label.confidence ?? 0)")
     }
   }
 
@@ -316,12 +267,12 @@ class ViewController:
     guard let image = imageView.image else { return }
 
     // Create a text detector.
-    let textDetector = vision.textDetector()
+    let textDetector = vision?.textDetector()
 
     // Initialize a VisionImage with a UIImage.
     let visionImage = VisionImage(image: image)
 
-    textDetector.detect(in: visionImage) { (features, error) in
+    textDetector?.detect(in: visionImage) { (features, error) in
       guard error == nil, let features = features, !features.isEmpty else {
         let errorString = error?.localizedDescription ?? Constants.detectionNoResultsMessage
         print("Text detection failed with error: \(errorString)")
@@ -337,8 +288,8 @@ class ViewController:
           viewFrame: self.imageView.frame
         )
         self.logExtrasForTesting(text: feature)
-        return feature.text
-        }.joined(separator: "\n")
+        return "Text: \(feature.text)"
+      }.joined(separator: "\n")
     }
   }
 
@@ -372,12 +323,12 @@ class ViewController:
     guard let image = imageView.image else { return }
 
     // Create a text detector.
-    let textDetector = vision.cloudTextDetector()
+    let textDetector = vision?.cloudTextDetector()
 
     // Initialize a VisionImage with a UIImage.
     let visionImage = VisionImage(image: image)
 
-    textDetector.detect(in: visionImage) { (cloudText, error) in
+    textDetector?.detect(in: visionImage) { (cloudText, error) in
       guard error == nil, let cloudText = cloudText else {
         let errorString = error?.localizedDescription ?? Constants.detectionNoResultsMessage
         print("Text detection failed with error: \(errorString)")
@@ -436,35 +387,37 @@ class ViewController:
     guard let image = imageView.image else { return }
 
     // Define the options for a barcode detector.
-    let format = VisionBarcodeFormat.qrCode
+    let format = VisionBarcodeFormat.all
     let barcodeOptions = VisionBarcodeDetectorOptions(formats: format)
 
     // Create a barcode detector.
-    let barcodeDetector = vision.barcodeDetector(options: barcodeOptions)
+    let barcodeDetector = vision?.barcodeDetector(options: barcodeOptions)
 
     // Define the metadata for the image.
-    let imageMetadata: VisionImageMetadata = VisionImageMetadata()
-    imageMetadata.orientation = VisionDetectorImageOrientation.topLeft
+    let imageMetadata = VisionImageMetadata()
+    imageMetadata.orientation = detectorOrientationFrom(image.imageOrientation)
 
-    // Initialize a VisionImage with a UIImage.
+    // Initialize a VisionImage object with the given UIImage.
     let visionImage = VisionImage(image: image)
     visionImage.metadata = imageMetadata
 
-    barcodeDetector.detect(in: visionImage) { (features, error) in
+    barcodeDetector?.detect(in: visionImage) { (features, error) in
       guard error == nil, let features = features, !features.isEmpty else {
         let errorString = error?.localizedDescription ?? Constants.detectionNoResultsMessage
         print("Barcode detection failed with error: \(errorString)")
         self.resultsTextView.text = "Barcode detection: \(errorString)"
         return
       }
-      features.forEach { feature in
+      self.resultsTextView.text = features.map { feature in
         self.addFrameView(
           featureFrame: feature.frame,
           imageSize: image.size,
           viewFrame: self.imageView.frame
         )
         self.logExtrasForTesting(barcode: feature)
-      }
+        return "DisplayValue: \(feature.displayValue ?? ""), RawValue: " +
+        "\(feature.rawValue ?? ""), Frame: \(feature.frame)"
+      }.joined(separator: "\n")
     }
   }
 
@@ -580,10 +533,37 @@ class ViewController:
     }
   }
 
-  // MARK: - Custom models interpretation methods
+  // MARK: - Model Interpreter
 
-  /// Loads selected model and sets up input / output tensors using default values.
-  func loadCustomModel() {
+  /// Loads the cloud model.
+  func loadCloudModel() {
+    guard let labelsFilePath = Bundle.main.path(
+      forResource: Constants.quantizedLabelsFilename,
+      ofType: DetectorConstants.labelsExtension
+      ) else {
+        resultsTextView.text = "Failed to load the labels file. "
+        return
+    }
+    let cloudModelName = (modelPicker.selectedSegmentIndex == 0) ?
+      Constants.cloudModelName1 :
+      Constants.cloudModelName2
+    let conditions = ModelDownloadConditions(wiFiRequired: false, idleRequired: false)
+    let cloudModelSource = CloudModelSource(
+      modelName: cloudModelName,
+      enableModelUpdates: true,
+      initialConditions: conditions,
+      updateConditions: conditions
+    )
+    let modelManager = ModelManager.modelManager()
+    if !modelManager.register(cloudModelSource) {
+      print("Failed to register the cloud model source.")
+    }
+    let options = ModelOptions(cloudModelName: cloudModelName, localModelName: nil)
+    detectorService.loadModel(options: options, labelsPath: labelsFilePath)
+  }
+
+  /// Loads the local model.
+  func loadLocalModel() {
     guard let localModelFilePath = Bundle.main.path(
       forResource: Constants.quantizedModelFilename,
       ofType: DetectorConstants.modelExtension
@@ -593,177 +573,94 @@ class ViewController:
         ofType: DetectorConstants.labelsExtension
       )
       else {
-        resultsTextView.text = "Failed to load custom model."
+        resultsTextView.text = "Failed to get the paths to the local model and labels files."
         return
     }
-    let cloudModelName = (modelPicker.selectedSegmentIndex == 0) ?
-      Constants.cloudModelName1 :
-      Constants.cloudModelName2
-    let conditions = ModelDownloadConditions(
-      wiFiRequired: false,
-      idleRequired: false
-    )
-    let cloudModelSource = CloudModelSource(
-      modelName: cloudModelName,
-      enableModelUpdates: true,
-      initialConditions: conditions,
-      updateConditions: conditions
-    )
     let localModelSource = LocalModelSource(
       modelName: Constants.localModelName,
       path: localModelFilePath
     )
     let modelManager = ModelManager.modelManager()
-    if !registeredCloudModelNames.contains(cloudModelName) {
-      modelManager.register(cloudModelSource)
-      registeredCloudModelNames.insert(cloudModelName)
+    if !modelManager.register(localModelSource) {
+      print ("Failed to register the local model source.")
     }
-    if !registeredLocalModelNames.contains(Constants.localModelName) {
-      modelManager.register(localModelSource)
-      registeredLocalModelNames.insert(Constants.localModelName)
-    }
-
-    let options = ModelOptions(
-      cloudModelName: cloudModelName,
-      localModelName: Constants.localModelName
-    )
-    detectorService.loadCustomModel(
-      options: options,
-      labelsPath: labelsFilePath
-    )
+    let options = ModelOptions(cloudModelName: nil, localModelName: Constants.localModelName)
+    detectorService.loadModel(options: options, labelsPath: labelsFilePath)
   }
 
-  // MARK: - Drawing and convenience methods
-
-  /// Gets a default image for detection.
-  ///
-  /// - Returns: Image object
-  func getImage() -> UIImage? {
-    return UIImage(named: Constants.graceHopperImage)
-  }
-
-  /// Creates and draws a frame for the calculated rect as a sublayer.
-  ///
-  /// - Parameter rect: The rect to draw.
-  func drawFrame(_ rect: CGRect) {
-    let bpath: UIBezierPath = UIBezierPath(rect: rect)
-
-    let rectLayer: CAShapeLayer = CAShapeLayer()
-    rectLayer.path = bpath.cgPath
-    rectLayer.strokeColor = Constants.lineColor
-    rectLayer.fillColor = Constants.fillColor
-    rectLayer.lineWidth = Constants.lineWidth
-
-    faceSublayer.addSublayer(rectLayer)
-  }
-
-  /// Cleans face detector visual results.
-  func cleanFaceFrames() {
-    guard let sublayers = faceSublayer.sublayers else { return }
-    for sublayer in sublayers {
-      guard let faceLayer = sublayer as CALayer? else { fatalError("Error in layers.") }
-      faceLayer.removeFromSuperlayer()
+  func detectObjects() {
+    if !downloadCloudModelButtonSelected {
+      resultsTextView.text = "Loading the local model...\n"
+      loadLocalModel()
     }
-  }
 
-  lazy var picker: UIAlertController  = { 
-    let alertController = UIAlertController(title: "Select Detection",
-                      message: nil,
-                      preferredStyle: .alert)
-    let deviceTextRecognition = UIAlertAction(title: "On-Device Text Recognition", style: .default) { (UIAlertAction) in
-      self.detectTexts()
-    }
-    alertController.addAction(deviceTextRecognition)
-
-    let deviceBarcodeScanning = UIAlertAction(title: "Barcode Scanning", style: .default) { (UIAlertAction) in
-      self.detectBarcodes()
-    }
-    alertController.addAction(deviceBarcodeScanning)
-
-    let deviceLabelDetection = UIAlertAction(title: "On-Device Label Detection", style: .default) { (UIAlertAction) in
-      self.detectLabels()
-    }
-    alertController.addAction(deviceLabelDetection)
-
-    let deviceFaceDetection = UIAlertAction(title: "On-Device Face Detection", style: .default) { (UIAlertAction) in
-      self.detectFaces()
-    }
-    alertController.addAction(deviceFaceDetection)
-
-    let cloudTextRecognition = UIAlertAction(title: "Cloud Text Recognition", style: .default) { (UIAlertAction) in
-      self.detectTextsCloud()
-    }
-    alertController.addAction(cloudTextRecognition)
-
-    let cloudLabelDetection = UIAlertAction(title: "Cloud Label Detection", style: .default) { (UIAlertAction) in
-      self.detectLabelsCloud()
-    }
-    alertController.addAction(cloudLabelDetection)
-
-    let cloudLandmarkDetection = UIAlertAction(title: "Cloud Landmark Detection", style: .default) { (UIAlertAction) in
-      self.detectLandmarksCloud()
-    }
-    alertController.addAction(cloudLandmarkDetection)
-
-    let customModel = UIAlertAction(title: "Custom Model Object Detection", style: .default) { (UIAlertAction) in
-      self.detectTexts()
-    }
-    alertController.addAction(customModel)
-    return alertController
-  }()
-
-  /// Cleans custom detector visual results.
-  func cleanObjectList() {
-    resultsTextView.text = nil
-  }
-
-  @IBAction func detect(_ sender: Any) {
-    resultsTextView.text = nil
-    present(picker, animated: true, completion: nil)
-  }
-
-  @IBAction func detectObjects(_ sender: Any) {
-    resultsTextView.text = nil
-    loadCustomModel()
     let image = imageView.image
+    var newResultsTextString = "Starting inference...\n"
+    if let currentText = resultsTextView.text {
+      newResultsTextString = currentText + newResultsTextString
+    }
+    resultsTextView.text = newResultsTextString
     DispatchQueue.global(qos: .userInitiated).async {
       let imageData = self.detectorService.scaledImageData(for: image)
       self.detectorService.detectObjects(imageData: imageData) { (results, error) in
         guard error == nil, let results = results, !results.isEmpty else {
-          let errorString = error?.localizedDescription ?? Constants.failedToDetectObjectsMessage
-          print("Failed to detect objects with error: \(errorString)")
-          self.resultsTextView.text = "Object Detection: \(errorString)"
+          var errorString = error?.localizedDescription ?? Constants.failedToDetectObjectsMessage
+          errorString = "Inference error: \(errorString)"
+          print(errorString)
+          self.resultsTextView.text = errorString
           return
         }
-        self.resultsTextView.text = "\(self.detectionResultsString(fromResults: results))"
+
+        var inferenceMessageString: String
+        if self.downloadCloudModelButtonSelected {
+          let keyString = (self.modelPicker.selectedSegmentIndex == 0) ?
+            Constants.cloudModel1DownloadCompletedKey :
+            Constants.cloudModel2DownloadCompletedKey
+          UserDefaults.standard.set(true, forKey: keyString)
+          inferenceMessageString = "Inference results using the cloud model:\n"
+        } else {
+          inferenceMessageString = "Inference results using the local model:\n"
+        }
+        self.resultsTextView.text =
+          inferenceMessageString + "\(self.detectionResultsString(fromResults: results))"
       }
     }
   }
 
-
-  @IBAction func openLibrary(_ sender: Any) {
+  @IBAction func openPhotoLibrary(_ sender: Any) {
     imagePicker.sourceType = .photoLibrary
-    self.present(imagePicker, animated: true)
+    present(imagePicker, animated: true)
   }
 
-  @IBAction func takePicture(_ sender: Any) {
-    // Only show camera if there's a camera available
-    if UIImagePickerController.isCameraDeviceAvailable(.front) ||
-      UIImagePickerController.isCameraDeviceAvailable(.rear) {
-      imagePicker.sourceType = .camera
-      self.present(imagePicker, animated: true)
+  @IBAction func openCamera(_ sender: Any) {
+    guard UIImagePickerController.isCameraDeviceAvailable(.front) ||
+      UIImagePickerController.isCameraDeviceAvailable(.rear)
+      else {
+        return
     }
+    imagePicker.sourceType = .camera
+    present(imagePicker, animated: true)
+  }
+
+  @IBAction func downloadCloudModel(_ sender: Any) {
+    clearResults()
+    downloadCloudModelButtonSelected = true
+    let keyString = (self.modelPicker.selectedSegmentIndex == 0) ?
+      Constants.cloudModel1DownloadCompletedKey :
+      Constants.cloudModel2DownloadCompletedKey
+    let isCloudModelDownloaded = UserDefaults.standard.bool(forKey: keyString)
+    resultsTextView.text = isCloudModelDownloaded ?
+      "Cloud model loaded. Select the `Objects` button to start the inference." :
+      "Downloading cloud model. Once the download has completed, select the `Objects` button to " +
+    "start the inference."
+    loadCloudModel()
   }
 
   @IBAction func modelSwitched(_ sender: Any) {
-    // Cleaning for the face and custom detectors visual results
-    cleanFaceFrames()
-    cleanObjectList()
-
-    loadCustomModel()
+    clearResults()
   }
 
-  // MARK: - UIImagePickerControllerDelegate Methods
+  // MARK: - UIImagePickerControllerDelegate
 
   public func imagePickerController(
     _ picker: UIImagePickerController,
@@ -771,11 +668,10 @@ class ViewController:
     ) {
 
     // Cleaning for the face and custom detectors visual results
-    cleanFaceFrames()
-    cleanObjectList()
+    clearResults()
 
     if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-      imageView.image = pickedImage
+      updateImageView(with: pickedImage)
     }
 
     dismiss(animated: true)
@@ -793,21 +689,196 @@ class ViewController:
       return resultString + "\(label): \(String(describing: confidence))\n"
     }
   }
+
+  lazy var picker: UIAlertController  = {
+    let alertController = UIAlertController(title: "Select Detection",
+                                            message: nil,
+                                            preferredStyle: .alert)
+    let deviceTextRecognition = UIAlertAction(title: "Text recognition (OCR)", style: .default) { (UIAlertAction) in
+      self.detectTexts()
+    }
+    alertController.addAction(deviceTextRecognition)
+
+    let deviceFaceDetection = UIAlertAction(title: "Face detection", style: .default) { (UIAlertAction) in
+      self.detectFaces()
+    }
+    alertController.addAction(deviceFaceDetection)
+
+    let deviceBarcodeScanning = UIAlertAction(title: "Barcode scanner", style: .default) { (UIAlertAction) in
+      self.detectBarcodes()
+    }
+    alertController.addAction(deviceBarcodeScanning)
+
+    let deviceLabelDetection = UIAlertAction(title: "Label Detection", style: .default) { (UIAlertAction) in
+      self.detectLabels()
+    }
+    alertController.addAction(deviceLabelDetection)
+
+    let cloudLandmarkDetection = UIAlertAction(title: "Cloud Landmark Detection", style: .default) { (UIAlertAction) in
+      self.detectLandmarksCloud()
+    }
+    alertController.addAction(cloudLandmarkDetection)
+
+
+    let cloudTextRecognition = UIAlertAction(title: "Cloud Text Recognition", style: .default) { (UIAlertAction) in
+      self.detectTextsCloud()
+    }
+    alertController.addAction(cloudTextRecognition)
+
+    let cloudLabelDetection = UIAlertAction(title: "Cloud Label Detection", style: .default) { (UIAlertAction) in
+      self.detectLabelsCloud()
+    }
+    alertController.addAction(cloudLabelDetection)
+
+
+    let customModel = UIAlertAction(title: "Custom Model Object Detection", style: .default) { (UIAlertAction) in
+      self.detectObjects()
+    }
+    alertController.addAction(customModel)
+    return alertController
+  }()
+
+  @IBAction func detect(_ sender: Any) {
+    clearResults()
+    present(picker, animated: true, completion: nil)
+  }
+
+  /// Converts a feature frame to a frame UIView that is displayed over the image.
+  ///
+  /// - Parameters:
+  ///   - featureFrame: The rect of the feature with the same scale as the original image.
+  ///   - imageSize: The size of original image.
+  ///   - viewRect: The view frame rect on the screen.
+  private func addFrameView(featureFrame: CGRect, imageSize: CGSize, viewFrame: CGRect) {
+    print("Frame: \(featureFrame).")
+
+    let viewSize = viewFrame.size
+
+    // Find resolution for the view and image
+    let rView = viewSize.width / viewSize.height
+    let rImage = imageSize.width / imageSize.height
+
+    // Define scale based on comparing resolutions
+    var scale: CGFloat
+    if rView > rImage {
+      scale = viewSize.height / imageSize.height
+    } else {
+      scale = viewSize.width / imageSize.width
+    }
+
+    // Calculate scaled feature frame size
+    let featureWidthScaled = featureFrame.size.width * scale
+    let featureHeightScaled = featureFrame.size.height * scale
+
+    // Calculate scaled feature frame top-left point
+    let imageWidthScaled = imageSize.width * scale
+    let imageHeightScaled = imageSize.height * scale
+
+    let imagePointXScaled = (viewSize.width - imageWidthScaled) / 2
+    let imagePointYScaled = (viewSize.height - imageHeightScaled) / 2
+
+    let featurePointXScaled = imagePointXScaled + featureFrame.origin.x * scale
+    let featurePointYScaled = imagePointYScaled + featureFrame.origin.y * scale
+
+    // Define a rect for scaled feature frame
+    let featureRectScaled = CGRect(x: featurePointXScaled,
+                                   y: featurePointYScaled,
+                                   width: featureWidthScaled,
+                                   height: featureHeightScaled)
+
+    drawFrame(featureRectScaled)
+  }
+
+  /// Creates and draws a frame for the calculated rect as a sublayer.
+  ///
+  /// - Parameter rect: The rect to draw.
+  private func drawFrame(_ rect: CGRect) {
+    let bpath: UIBezierPath = UIBezierPath(rect: rect)
+    let rectLayer: CAShapeLayer = CAShapeLayer()
+    rectLayer.path = bpath.cgPath
+    rectLayer.strokeColor = Constants.lineColor
+    rectLayer.fillColor = Constants.fillColor
+    rectLayer.lineWidth = Constants.lineWidth
+    frameSublayer.addSublayer(rectLayer)
+  }
+
+  /// Removes the frame results from the image.
+  private func removeFrames() {
+    guard let sublayers = frameSublayer.sublayers else { return }
+    for sublayer in sublayers {
+      guard let frameLayer = sublayer as CALayer? else {
+        print("Failed to remove frame layer.")
+        continue
+      }
+      frameLayer.removeFromSuperlayer()
+    }
+  }
+
+  /// Clears the results text view and removes any frames that are visible.
+  private func clearResults() {
+    resultsTextView.text = nil
+    removeFrames()
+  }
+
+  /// Returns the `VisionDetectorImageOrientation` from the given `UIImageOrientation`.
+  private func detectorOrientationFrom(
+    _ imageOrientation: UIImageOrientation
+    ) -> VisionDetectorImageOrientation {
+    switch imageOrientation {
+    case .up:
+      return .topLeft
+    case .down:
+      return .bottomRight
+    case .left:
+      return .leftBottom
+    case .right:
+      return .rightTop
+    case .upMirrored:
+      return .topRight
+    case .downMirrored:
+      return .bottomLeft
+    case .leftMirrored:
+      return .leftTop
+    case .rightMirrored:
+      return .rightBottom
+    }
+  }
+
+  /// Updates the image view with a scaled version of the given image.
+  private func updateImageView(with image: UIImage) {
+    let orientation = UIApplication.shared.statusBarOrientation
+    var scaledImageWidth: CGFloat = 0.0
+    var scaledImageHeight: CGFloat = 0.0
+    switch orientation {
+    case .portrait, .portraitUpsideDown, .unknown:
+      scaledImageWidth = imageView.bounds.size.width
+      scaledImageHeight = image.size.height * scaledImageWidth / image.size.width
+    case .landscapeLeft, .landscapeRight:
+      scaledImageWidth = image.size.width * scaledImageHeight / image.size.height
+      scaledImageHeight = imageView.bounds.size.height
+    }
+    DispatchQueue.global(qos: .userInitiated).async {
+      // Scale image while maintaining aspect ratio so it displays better in the UIImageView.
+      var scaledImage = image.scaledImage(
+        with: CGSize(width: scaledImageWidth, height: scaledImageHeight)
+      )
+      scaledImage = scaledImage ?? image
+      guard let finalImage = scaledImage else { return }
+      DispatchQueue.main.async {
+        self.imageView.image = finalImage
+      }
+    }
+  }
 }
 
 // MARK: - Fileprivate
 
 fileprivate enum Constants {
-  static let labelConfidenceThreshold: Float = 0.75
-  static let lineWidth: CGFloat = 3.0
-  static let lineColor = UIColor.yellow.cgColor
-  static let fillColor = UIColor.clear.cgColor
-
   // TODO: REPLACE THESE CLOUD MODEL NAMES WITH ONES THAT ARE UPLOADED TO YOUR FIREBASE CONSOLE.
-  static let localModelName = "mobilenet"
+  static let cloudModelName1 = "image_classification"
+  static let cloudModelName2 = "invalid_model"
 
-  static let cloudModelName1 = "invalid_model"
-  static let cloudModelName2 = "image_classification"
+  static let localModelName = "mobilenet"
 
   static let multiFaceImage = "multi-face.png"
   static let graceHopperImage = "grace_hopper.jpg"
@@ -817,6 +888,14 @@ fileprivate enum Constants {
   static let quantizedLabelsFilename = "labels_quant"
   static let quantizedModelFilename = "mobilenet_quant_v1_224"
 
+  static let cloudModel1DownloadCompletedKey = "FIRCloudModel1DownloadCompleted"
+  static let cloudModel2DownloadCompletedKey = "FIRCloudModel2DownloadCompleted"
+
   static let detectionNoResultsMessage = "No results returned."
   static let failedToDetectObjectsMessage = "Failed to detect objects in image."
+
+  static let labelConfidenceThreshold: Float = 0.75
+  static let lineWidth: CGFloat = 3.0
+  static let lineColor = UIColor.yellow.cgColor
+  static let fillColor = UIColor.clear.cgColor
 }

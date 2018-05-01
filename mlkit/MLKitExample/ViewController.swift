@@ -139,17 +139,30 @@ class ViewController:
     landmarkDetector.detect(in: visionImage) { (features, error) in
       guard error == nil, let features = features, !features.isEmpty else {
         let errorString = error?.localizedDescription ?? Constants.detectionNoResultsMessage
-        print("Barcode detection failed with error: \(errorString)")
-        self.resultsTextView.text = "Face Detection: \(errorString)"
+        print("Landmark detection failed with error: \(errorString)")
+        self.resultsTextView.text = "Landmark Detection: \(errorString)"
         return
       }
-//      features.forEach { feature in
-//        self.addFrameView(
-//          featureFrame: feature.,
-//          imageSize: image.size,
-//          viewFrame: self.imageView.frame
-//        )
-//      }
+      features.forEach { feature in
+        self.addFrameView(
+          featureFrame: feature.frame,
+          imageSize: image.size,
+          viewFrame: self.imageView.frame
+        )
+        self.logExtrasforTesting(landmark: feature)
+      }
+    }
+  }
+
+  private func logExtrasforTesting(landmark: VisionCloudLandmark) {
+    print("Landmark text: \(landmark.landmark ?? "")")
+    print("Landmark frame: \(landmark.frame)")
+    print("Landmark entityID: \(landmark.entityId ?? "")")
+    print("Landmark confidence: \(landmark.confidence ?? 0)")
+    if let locations = landmark.locations {
+      for location in locations {
+        print("Landmark location latitude: \(location.latitude ?? 0), longitude: \(location.longitude ?? 0)")
+      }
     }
   }
 
@@ -189,9 +202,9 @@ class ViewController:
   }
 
   private func logExtrasforTesting(face: VisionFace) {
-    print(face.frame)
-    print(face.headEulerAngleY)
-    print(face.headEulerAngleZ)
+    print("Face frame: \(face.frame)")
+    print("Face euler angle Y: \(face.headEulerAngleY)")
+    print("Face euler angle Z: \(face.headEulerAngleZ)")
 
     let landMarkTypes: [FaceLandmarkType] = [.mouthBottom, .mouthRight, .mouthLeft, .rightEye,
                                              .leftEye, .rightEar, .leftEar, .rightCheek,
@@ -207,10 +220,10 @@ class ViewController:
       }
     }
 
-    print("face left eye open probability: \(face.leftEyeOpenProbability)")
-    print("face right eye open probability: \(face.rightEyeOpenProbability)")
-    print("face smiling probability: \(face.smilingProbability)")
-    print("face tracking id: \(face.trackingID)")
+    print("Face left eye open probability: \(face.leftEyeOpenProbability)")
+    print("Face right eye open probability: \(face.rightEyeOpenProbability)")
+    print("Face smiling probability: \(face.smilingProbability)")
+    print("Face tracking id: \(face.trackingID)")
   }
 
   /// Detects labels on the specified image and prints the results.
@@ -257,7 +270,6 @@ class ViewController:
     }
   }
 
-
   /// Detects labels on the specified image and prints the results.
   func detectLabelsCloud() {
     guard let image = imageView.image else { return }
@@ -274,6 +286,7 @@ class ViewController:
         self.resultsTextView.text = "Label detection: \(errorString)"
         return
       }
+      self.logExtrasForTesting(cloudlabels: features)
 
 //      self.resultsTextView.text = features.map { feature in
 //        feature/
@@ -288,6 +301,13 @@ class ViewController:
       // Got labels. Access label info via VisionLabel.
       // TODO(b/78151345): Draw a frame for image labeling detection in the sample app.
       print(features.description)
+    }
+  }
+
+  private func logExtrasForTesting(cloudlabels: [VisionCloudLabel]) {
+    for label in cloudlabels {
+      print("Label \(label.label), " +
+        "entity id: \(label.entityId), confidence: \(label.confidence)")
     }
   }
 
@@ -365,16 +385,49 @@ class ViewController:
         return
       }
 
-//      if let pages = cloudText.pages {
-//      self.resultsTextView.text = pages.map { feature in
-//        self.addFrameView(
-//          featureFrame: feature.frame,
-//          imageSize: image.size,
-//          viewFrame: self.imageView.frame
-//        )
-//        return feature.recognizedText
-//        }.joined(separator: "\n")
-//
+      self.logExtrasForTesting(cloudText: cloudText)
+      if let pages = cloudText.pages {
+        self.resultsTextView.text = pages.map { page in
+          if let blocks = page.blocks {
+            let text = blocks.map { block in
+              self.addFrameView(
+                featureFrame: block.frame,
+                imageSize: image.size,
+                viewFrame: self.imageView.frame
+              )
+            }
+          }
+          return "" //fix later
+        }.joined(separator: "\n")
+      }
+    }
+  }
+
+  private func logExtrasForTesting(cloudText: VisionCloudText) {
+    print("Detected text: \(cloudText.text ?? "")")
+    if let pages = cloudText.pages {
+      for page in pages {
+        if let blocks = page.blocks {
+          for block in blocks {
+            if let paragraphs = block.paragraphs {
+              for paragraph in paragraphs {
+                if let words = paragraph.words {
+                  for word in words {
+                    if let symbols = word.symbols {
+                      for symbol in symbols {
+                        print("Detected text symbol: \(symbol.text ?? "")")
+//                        print("Detected text symbol text property: \(symbol.textProperty. ?? "")")
+                        print("Detected text symbol confidence: \(symbol.confidence ?? 0)")
+                        print("Detected text symbol frame: \(symbol.frame)")
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
 
@@ -423,107 +476,107 @@ class ViewController:
         print("Corner point is located at: \(point)")
       }
     }
-    print("barcode display value: \(barcode.displayValue ?? "")")
-    print("barcode format: \(barcode.format)")
-    print("barcode raw value: \(barcode.rawValue ?? "")")
-    print("barcode value type: \(barcode.valueType)")
+    print("Barcode display value: \(barcode.displayValue ?? "")")
+    print("Barcode format: \(barcode.format)")
+    print("Barcode raw value: \(barcode.rawValue ?? "")")
+    print("Barcode value type: \(barcode.valueType)")
 
     if let email = barcode.email {
-      print("barcode email address: \(email.address ?? "")")
-      print("barcode email body: \(email.body ?? "")")
-      print("barcode email subject: \(email.subject ?? "")")
-      print("barcode email type: \(email.type)")
+      print("Barcode email address: \(email.address ?? "")")
+      print("Barcode email body: \(email.body ?? "")")
+      print("Barcode email subject: \(email.subject ?? "")")
+      print("Barcode email type: \(email.type)")
     }
 
     if let phone = barcode.phone {
-      print("barcode phone number: \(phone.number ?? "")")
-      print("barcode phone type: \(phone.type)")
+      print("Barcode phone number: \(phone.number ?? "")")
+      print("Barcode phone type: \(phone.type)")
     }
 
     if let calendarEvent = barcode.calendarEvent {
-      print("barcode calendar event start: \(calendarEvent.start?.description ?? "")")
-      print("barcode calendar event end: \(calendarEvent.end?.description ?? "")")
-      print("barcode calendar event description: \(calendarEvent.eventDescription ?? "")")
-      print("barcode calendar event location: \(calendarEvent.location ?? "")")
-      print("barcode calendar event organizer: \(calendarEvent.organizer ?? "")")
-      print("barcode calendar event status: \(calendarEvent.status ?? "")")
-      print("barcode calendar event summary: \(calendarEvent.summary ?? "")")
+      print("Barcode calendar event start: \(calendarEvent.start?.description ?? "")")
+      print("Barcode calendar event end: \(calendarEvent.end?.description ?? "")")
+      print("Barcode calendar event description: \(calendarEvent.eventDescription ?? "")")
+      print("Barcode calendar event location: \(calendarEvent.location ?? "")")
+      print("Barcode calendar event organizer: \(calendarEvent.organizer ?? "")")
+      print("Barcode calendar event status: \(calendarEvent.status ?? "")")
+      print("Barcode calendar event summary: \(calendarEvent.summary ?? "")")
     }
 
     if let contactInfo = barcode.contactInfo {
       if let addresses = contactInfo.addresses {
         for address in addresses {
-          print("barcode contact info address: \(address)")
+          print("Barcode contact info address: \(address)")
         }
       }
       if let emails = contactInfo.emails {
         for email in emails {
-          print("barcode contact info email address: \(email.address ?? "")")
-          print("barcode contact info email body: \(email.body ?? "")")
-          print("barcode contact info email subject: \(email.subject ?? "")")
-          print("barcode contact info email type: \(email.type)")
+          print("Barcode contact info email address: \(email.address ?? "")")
+          print("Barcode contact info email body: \(email.body ?? "")")
+          print("Barcode contact info email subject: \(email.subject ?? "")")
+          print("Barcode contact info email type: \(email.type)")
         }
       }
       if let phones = contactInfo.phones {
         for phone in phones {
-          print("barcode contact info phone number: \(phone.number ?? "")")
-          print("barcode contact info phone type: \(phone.type)")
+          print("Barcode contact info phone number: \(phone.number ?? "")")
+          print("Barcode contact info phone type: \(phone.type)")
         }
       }
       if let urls = contactInfo.urls {
         for url in urls {
-          print("barcode contact info url: \(url)")
+          print("Barcode contact info url: \(url)")
         }
       }
-      print("barcode contact info job title: \(contactInfo.jobTitle ?? "")")
+      print("Barcode contact info job title: \(contactInfo.jobTitle ?? "")")
       if let name = contactInfo.name {
-        print("barcode contact info first name: \(name.first ?? "")")
-        print("barcode contact info formatted name: \(name.formattedName ?? "")")
-        print("barcode contact info last name: \(name.last ?? "")")
-        print("barcode contact info middle name: \(name.middle ?? "")")
-        print("barcode contact info name prefix: \(name.prefix ?? "")")
-        print("barcode contact info name suffix: \(name.suffix ?? "")")
-        print("barcode contact info name pronounciation: \(name.pronounciation ?? "")")
+        print("Barcode contact info first name: \(name.first ?? "")")
+        print("Barcode contact info formatted name: \(name.formattedName ?? "")")
+        print("Barcode contact info last name: \(name.last ?? "")")
+        print("Barcode contact info middle name: \(name.middle ?? "")")
+        print("Barcode contact info name prefix: \(name.prefix ?? "")")
+        print("Barcode contact info name suffix: \(name.suffix ?? "")")
+        print("Barcode contact info name pronounciation: \(name.pronounciation ?? "")")
       }
-      print("barcode contact info organization: \(contactInfo.organization ?? "")")
+      print("Barcode contact info organization: \(contactInfo.organization ?? "")")
     }
 
     if let geoPoint = barcode.geoPoint {
-      print("barcode geoPoint latitude: \(geoPoint.latitude)")
-      print("barcode geoPoint longitude: \(geoPoint.longitude)")
+      print("Barcode geoPoint latitude: \(geoPoint.latitude)")
+      print("Barcode geoPoint longitude: \(geoPoint.longitude)")
     }
 
     if let sms = barcode.sms {
-      print("barcode sms message: \(sms.message ?? "")")
-      print("barcode sms phone number: \(sms.phoneNumber ?? "")")
+      print("Barcode sms message: \(sms.message ?? "")")
+      print("Barcode sms phone number: \(sms.phoneNumber ?? "")")
     }
 
     if let url = barcode.url {
-      print("barcode url title: \(url.title ?? "")")
-      print("barcode url: \(url.url ?? "")")
+      print("Barcode url title: \(url.title ?? "")")
+      print("Barcode url: \(url.url ?? "")")
     }
 
     if let wifi = barcode.wifi {
-      print("barcode wifi ssid: \(wifi.ssid ?? "")")
-      print("barcode wifi password: \(wifi.password ?? "")")
-      print("barcode wifi type \(wifi.type)")
+      print("Barcode wifi ssid: \(wifi.ssid ?? "")")
+      print("Barcode wifi password: \(wifi.password ?? "")")
+      print("Barcode wifi type \(wifi.type)")
     }
 
     if let dl = barcode.driverLicense {
-      print("driver license city: \(dl.addressCity ?? "")")
-      print("driver license state: \(dl.addressState ?? "")")
-      print("driver license street: \(dl.addressStreet ?? "")")
-      print("driver license zip code: \(dl.addressZip ?? "")")
-      print("driver license birthday: \(dl.birthDate ?? "")")
-      print("driver license document type: \(dl.documentType ?? "")")
-      print("driver license expiry date: \(dl.expiryDate ?? "")")
-      print("driver license first name: \(dl.firstName ?? "")")
-      print("driver license middle name: \(dl.middleName ?? "")")
-      print("driver license last name: \(dl.lastName ?? "")")
-      print("driver license gender: \(dl.gender ?? "")")
-      print("driver license issue date: \(dl.issuingDate ?? "")")
-      print("driver license issue country: \(dl.issuingCountry ?? "")")
-      print("driver license number: \(dl.licenseNumber ?? "")")
+      print("Driver license city: \(dl.addressCity ?? "")")
+      print("Driver license state: \(dl.addressState ?? "")")
+      print("Driver license street: \(dl.addressStreet ?? "")")
+      print("Driver license zip code: \(dl.addressZip ?? "")")
+      print("Driver license birthday: \(dl.birthDate ?? "")")
+      print("Driver license document type: \(dl.documentType ?? "")")
+      print("Driver license expiry date: \(dl.expiryDate ?? "")")
+      print("Driver license first name: \(dl.firstName ?? "")")
+      print("Driver license middle name: \(dl.middleName ?? "")")
+      print("Driver license last name: \(dl.lastName ?? "")")
+      print("Driver license gender: \(dl.gender ?? "")")
+      print("Driver license issue date: \(dl.issuingDate ?? "")")
+      print("Driver license issue country: \(dl.issuingCountry ?? "")")
+      print("Driver license number: \(dl.licenseNumber ?? "")")
     }
   }
 

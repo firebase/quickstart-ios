@@ -24,6 +24,7 @@ struct Restaurant {
   var price: Int // from 1-3; could also be an enum
   var ratingCount: Int // numRatings
   var averageRating: Float
+  var photo: URL
 
   var dictionary: [String: Any] {
     return [
@@ -33,6 +34,7 @@ struct Restaurant {
       "price": price,
       "numRatings": ratingCount,
       "avgRating": averageRating,
+      "photo": photo.absoluteString
     ]
   }
 
@@ -95,20 +97,33 @@ extension Restaurant: DocumentSerializable {
     "Mediterranean", "Mexican", "Pizza", "Ramen", "Sushi"
   ]
 
+  static func imageURL(forName name: String) -> URL {
+    let number = (abs(name.hashValue) % 22) + 1
+    let URLString =
+        "https://storage.googleapis.com/firestorequickstarts.appspot.com/food_\(number).png"
+    return URL(string: URLString)!
+  }
+
+  var imageURL: URL {
+    return Restaurant.imageURL(forName: name)
+  }
+
   init?(dictionary: [String : Any]) {
     guard let name = dictionary["name"] as? String,
         let category = dictionary["category"] as? String,
         let city = dictionary["city"] as? String,
         let price = dictionary["price"] as? Int,
         let ratingCount = dictionary["numRatings"] as? Int,
-        let averageRating = dictionary["avgRating"] as? Float else { return nil }
+        let averageRating = dictionary["avgRating"] as? Float,
+      let photo = (dictionary["photo"] as? String).flatMap(URL.init(string:)) else { return nil }
 
     self.init(name: name,
               category: category,
               city: city,
               price: price,
               ratingCount: ratingCount,
-              averageRating: averageRating)
+              averageRating: averageRating,
+              photo: photo)
   }
 
 }
@@ -127,7 +142,7 @@ struct Review {
       "userId": userID,
       "userName": username,
       "text": text,
-      "timestamp": date
+      "date": date
     ]
   }
 
@@ -140,7 +155,7 @@ extension Review: DocumentSerializable {
         let userID = dictionary["userId"] as? String,
         let username = dictionary["userName"] as? String,
         let text = dictionary["text"] as? String,
-        let date = dictionary["timestamp"] as? Date else { return nil }
+        let date = dictionary["date"] as? Date else { return nil }
     
     self.init(rating: rating, userID: userID, username: username, text: text, date: date)
   }

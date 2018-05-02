@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		107346F52031590C004A66D1 /* AuthenticationExampleSwiftUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107346F42031590C004A66D1 /* AuthenticationExampleSwiftUITests.swift */; };
 		1073480D20333B18004A66D1 /* AuthenticationExampleUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1073480C20333B18004A66D1 /* AuthenticationExampleUITests.m */; };
+		10757BD22059CC9E007623FD /* PasswordlessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10757BD02059CC9E007623FD /* PasswordlessViewController.swift */; };
+		10757BD52059CFC7007623FD /* PasswordlessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10757BD42059CFC7007623FD /* PasswordlessViewController.m */; };
 		10AF4D111DD3966C0096D192 /* AuthenticationExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 10AF4D101DD3966C0096D192 /* AuthenticationExampleTests.m */; };
 		10B053F91C6631CD0061077D /* UIViewController+Alerts.m in Sources */ = {isa = PBXBuildFile; fileRef = 10B053F81C6631CD0061077D /* UIViewController+Alerts.m */; };
 		10B053FB1C6945D80061077D /* UIViewController+Alerts.m in Sources */ = {isa = PBXBuildFile; fileRef = 10B053F81C6631CD0061077D /* UIViewController+Alerts.m */; };
@@ -60,6 +62,10 @@
 		1073480A20333B18004A66D1 /* AuthenticationExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AuthenticationExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1073480C20333B18004A66D1 /* AuthenticationExampleUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AuthenticationExampleUITests.m; sourceTree = "<group>"; };
 		1073480E20333B18004A66D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		10757BD02059CC9E007623FD /* PasswordlessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordlessViewController.swift; sourceTree = "<group>"; };
+		10757BD32059CFC7007623FD /* PasswordlessViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PasswordlessViewController.h; sourceTree = "<group>"; };
+		10757BD42059CFC7007623FD /* PasswordlessViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PasswordlessViewController.m; sourceTree = "<group>"; };
+		10757BDD205AD4FC007623FD /* AuthenticationExample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AuthenticationExample.entitlements; sourceTree = "<group>"; };
 		10AF4D0E1DD3966C0096D192 /* AuthenticationExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AuthenticationExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		10AF4D101DD3966C0096D192 /* AuthenticationExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AuthenticationExampleTests.m; sourceTree = "<group>"; };
 		10B053F71C6631CD0061077D /* UIViewController+Alerts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Alerts.h"; sourceTree = "<group>"; };
@@ -180,6 +186,9 @@
 		5F5A534E1ADE670C00F81DF0 /* AuthenticationExample */ = {
 			isa = PBXGroup;
 			children = (
+				10757BDD205AD4FC007623FD /* AuthenticationExample.entitlements */,
+				10757BD32059CFC7007623FD /* PasswordlessViewController.h */,
+				10757BD42059CFC7007623FD /* PasswordlessViewController.m */,
 				EF6DB4D11CDD610200319C08 /* CustomTokenViewController.h */,
 				EF6DB4CE1CDD610200319C08 /* CustomTokenViewController.m */,
 				EF6DB4D21CDD610200319C08 /* EmailViewController.h */,
@@ -208,6 +217,7 @@
 		5F5A537A1ADE67D500F81DF0 /* AuthenticationExampleSwift */ = {
 			isa = PBXGroup;
 			children = (
+				10757BD02059CC9E007623FD /* PasswordlessViewController.swift */,
 				EF6DB4C81CDD60F700319C08 /* CustomTokenViewController.swift */,
 				EF6DB4C91CDD60F700319C08 /* EmailViewController.swift */,
 				EF6DB4CA1CDD60F700319C08 /* MainViewController.swift */,
@@ -353,10 +363,13 @@
 					};
 					5F5A534B1ADE670C00F81DF0 = {
 						CreatedOnToolsVersion = 6.3;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Keychain = {
+								enabled = 1;
+							};
+							com.apple.SafariKeychain = {
 								enabled = 1;
 							};
 						};
@@ -367,6 +380,9 @@
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Keychain = {
+								enabled = 1;
+							};
+							com.apple.SafariKeychain = {
 								enabled = 1;
 							};
 						};
@@ -468,6 +484,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				10757BD52059CFC7007623FD /* PasswordlessViewController.m in Sources */,
 				EF6DB4D51CDD610200319C08 /* EmailViewController.m in Sources */,
 				EF6DB4D61CDD610200319C08 /* MainViewController.m in Sources */,
 				10B053F91C6631CD0061077D /* UIViewController+Alerts.m in Sources */,
@@ -481,6 +498,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				10757BD22059CC9E007623FD /* PasswordlessViewController.swift in Sources */,
 				5F5A537E1ADE67D500F81DF0 /* AppDelegate.swift in Sources */,
 				10B053FB1C6945D80061077D /* UIViewController+Alerts.m in Sources */,
 				EF6DB4CB1CDD60F700319C08 /* CustomTokenViewController.swift in Sources */,
@@ -761,15 +779,20 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_ENTITLEMENTS = "";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = AuthenticationExample/AuthenticationExample.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/AuthenticationExample/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.AuthenticationExample;
 				PRODUCT_NAME = AuthenticationExample;
+				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -778,15 +801,19 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_ENTITLEMENTS = "";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = AuthenticationExample/AuthenticationExample.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/AuthenticationExample/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.AuthenticationExample;
 				PRODUCT_NAME = AuthenticationExample;
+				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -795,13 +822,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_ENTITLEMENTS = "";
+				CODE_SIGN_ENTITLEMENTS = AuthenticationExample/AuthenticationExample.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "$(SRCROOT)/AuthenticationExample/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.AuthenticationExample;
 				PRODUCT_NAME = AuthenticationExample;
+				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = AuthenticationExampleSwift/BridgingHeader.h;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -815,13 +844,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_ENTITLEMENTS = "";
+				CODE_SIGN_ENTITLEMENTS = AuthenticationExample/AuthenticationExample.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "$(SRCROOT)/AuthenticationExample/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.AuthenticationExample;
 				PRODUCT_NAME = AuthenticationExample;
+				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = AuthenticationExampleSwift/BridgingHeader.h;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";

@@ -32,7 +32,8 @@ typedef enum : NSUInteger {
   AuthGoogle,
   AuthTwitter,
   AuthCustom,
-  AuthPhone
+  AuthPhone,
+  AuthPasswordless
 } AuthProvider;
 
 /*! @var kOKButtonText
@@ -141,6 +142,15 @@ static NSString *const kUpdatePhoneNumberText = @"Update Phone Number";
         }];
       }
         break;
+      case AuthPasswordless:
+      {
+        action = [UIAlertAction actionWithTitle:@"Passwordless"
+                                          style:UIAlertActionStyleDefault
+                                        handler:^(UIAlertAction * _Nonnull action) {
+                                          [self performSegueWithIdentifier:@"passwordless" sender:nil];
+                                        }];
+      }
+      break;
       case AuthCustom:
       {
         action = [UIAlertAction actionWithTitle:@"Custom"
@@ -293,7 +303,8 @@ static NSString *const kUpdatePhoneNumberText = @"Update Phone Number";
                          @(AuthFacebook),
                          @(AuthTwitter),
                          @(AuthPhone),
-                         @(AuthCustom)]];
+                         @(AuthCustom),
+                         @(AuthPasswordless)]];
 }
 
 - (IBAction)didTapLink:(id)sender {

@@ -26,7 +26,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *downloadPicButton;
 @property (weak, nonatomic) IBOutlet UITextView *urlTextView;
 
-@property (strong, nonatomic) FIRStorageReference *storage;
+@property (strong, nonatomic) FIRStorage *storage;
 
 @end
 

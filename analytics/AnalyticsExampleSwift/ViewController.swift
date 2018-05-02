@@ -27,9 +27,9 @@ class ViewController: UIViewController {
 
     // [START custom_event_swift]
     Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
-      AnalyticsParameterItemID: "id-\(title!)" as NSObject,
-      AnalyticsParameterItemName: title! as NSObject,
-      AnalyticsParameterContentType: "cont" as NSObject
+      AnalyticsParameterItemID: "id-\(title!)",
+      AnalyticsParameterItemName: title!,
+      AnalyticsParameterContentType: "cont"
       ])
     // [END custom_event_swift]
   }

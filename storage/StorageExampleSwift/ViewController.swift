@@ -120,7 +120,7 @@ class ViewController: UIViewController,
       UserDefaults.standard.set(storagePath, forKey: "storagePath")
       UserDefaults.standard.synchronize()
       self.downloadPicButton.isEnabled = true
-    git s}
+    }
   }
 
   func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {

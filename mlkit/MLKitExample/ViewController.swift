@@ -94,6 +94,8 @@ class ViewController:
 
     // [START init_landmark_cloud]
     let landmarkDetector = vision?.cloudLandmarkDetector(options: options)
+    // Or, to use the default settings:
+    // let landmarkDetector = vision?.cloudLandmarkDetector()
     // [END init_landmark_cloud]
 
     // Initialize a VisionImage object with a UIImage.
@@ -165,6 +167,8 @@ class ViewController:
 
     // [START init_face]
     let faceDetector = vision?.faceDetector(options: options)
+    // Or, to use the default settings:
+    // let faceDetector = vision?.faceDetector()
     // [END init_face]
 
     // Define the metadata for the image.
@@ -240,6 +244,8 @@ class ViewController:
 
     // [START init_label]
     let labelDetector = vision?.labelDetector(options: options)
+    // Or, to use the default settings:
+    // let labelDetector = vision?.labelDetector()
     // [END init_label]
 
     // Define the metadata for the image.
@@ -288,6 +294,8 @@ class ViewController:
 
     // [START init_label_cloud]
     let labelDetector = Vision.vision().cloudLabelDetector()
+    // Or, to change the default settings:
+    // let labelDetector = Vision.vision().cloudLabelDetector(options: options)
     // [END init_label_cloud]
 
     // Initialize a VisionImage object with a UIImage.
@@ -403,7 +411,9 @@ class ViewController:
 
     // Create a text detector.
     // [START init_text_cloud]
-    let textDetector = vision?.cloudTextDetector()
+    let textDetector = vision?.cloudTextDetector(options: options)
+    // Or, to use the default settings:
+    // let textDetector = vision?.cloudTextDetector()
     // [END init_text_cloud]
 
     // Initialize a VisionImage with a UIImage.
@@ -440,7 +450,7 @@ class ViewController:
       }
       // [END_EXCLUDE]
     }
-    // [START detect_text_cloud]
+    // [END detect_text_cloud]
   }
 
   private func logExtrasForTesting(cloudText: VisionCloudText) {
@@ -485,6 +495,8 @@ class ViewController:
     // Create a barcode detector.
     // [START init_barcode]
     let barcodeDetector = vision?.barcodeDetector(options: options)
+    // Or, to use the default settings:
+    // let barcodeDetector = vision?.barcodeDetector()
     // [END init_barcode]
 
     // Define the metadata for the image.

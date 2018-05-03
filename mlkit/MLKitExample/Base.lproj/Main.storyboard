@@ -12,7 +12,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="viewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="ViewController" customModule="googlemac_iPhone_FirebaseML_SampleApps_SampleAppSwiftInternalLib" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="viewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="ViewController" customModule="MLKitExample" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -95,7 +95,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="cameraButton" destination="jD4-E9-bbj" id="A9d-iO-e8d"/>
+                        <outlet property="cameraButton" destination="jD4-E9-bbj" id="5fl-bq-9bm"/>
                         <outlet property="downloadModelButton" destination="wFf-Ba-Ydb" id="aJi-kv-sIl"/>
                         <outlet property="imageView" destination="cCp-tA-gDT" id="RCb-zU-37O"/>
                         <outlet property="modelPicker" destination="6RV-o1-t0Z" id="cTZ-VC-ntn"/>

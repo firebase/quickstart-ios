@@ -19,7 +19,7 @@
 // https://firebase.google.com/docs/analytics/ios/start
 //
 
-import Foundation
+import UIKit
 import Firebase
 
 @objc(FoodPickerViewController)  // match the ObjC symbol name inside Storyboard

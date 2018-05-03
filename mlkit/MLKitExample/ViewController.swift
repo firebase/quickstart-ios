@@ -94,6 +94,8 @@ class ViewController:
 
     // [START init_landmark_cloud]
     let landmarkDetector = vision?.cloudLandmarkDetector(options: options)
+    // Or, to use the default settings:
+    // let landmarkDetector = vision?.cloudLandmarkDetector()
     // [END init_landmark_cloud]
 
     // Initialize a VisionImage object with a UIImage.
@@ -117,7 +119,6 @@ class ViewController:
         print("Landmark detection failed with error: \(errorString)")
         self.resultsTextView.text = "Landmark Detection: \(errorString)"
         // [END_EXCLUDE]
-
         return
       }
 
@@ -164,7 +165,9 @@ class ViewController:
     // [END config_face]
 
     // [START init_face]
-    let faceDetector = vision?.faceDetector(options: options)
+    let faceDetector = vision?.faceDetector(options: options)  // Check console for errors.
+    // Or, to use the default settings:
+    // let faceDetector = vision?.faceDetector()
     // [END init_face]
 
     // Define the metadata for the image.
@@ -178,12 +181,12 @@ class ViewController:
     // [START detect_faces]
     faceDetector?.detect(in: visionImage) { (faces, error) in
       guard error == nil, let faces = faces, !faces.isEmpty else {
+        // Error. You should also check the console for error messages.
         // [START_EXCLUDE]
         let errorString = error?.localizedDescription ?? Constants.detectionNoResultsMessage
         print("Face detection failed with error: \(errorString)")
         self.resultsTextView.text = "Face Detection: \(errorString)"
         // [END_EXCLUDE]
-
         return
       }
 
@@ -239,7 +242,9 @@ class ViewController:
     // [END config_label]
 
     // [START init_label]
-    let labelDetector = vision?.labelDetector(options: options)
+    let labelDetector = vision?.labelDetector(options: options)  // Check console for errors.
+    // Or, to use the default settings:
+    // let labelDetector = vision?.labelDetector()
     // [END init_label]
 
     // Define the metadata for the image.
@@ -253,12 +258,12 @@ class ViewController:
     // [START detect_label]
     labelDetector?.detect(in: visionImage) { (labels, error) in
       guard error == nil, let labels = labels, !labels.isEmpty else {
+        // Error. You should also check the console for error messages.
         // [START_EXCLUDE]
         let errorString = error?.localizedDescription ?? Constants.detectionNoResultsMessage
         print("Label detection failed with error: \(errorString)")
         self.resultsTextView.text = "Label detection: \(errorString)"
         // [END_EXCLUDE]
-
         return
       }
 
@@ -288,6 +293,8 @@ class ViewController:
 
     // [START init_label_cloud]
     let labelDetector = Vision.vision().cloudLabelDetector()
+    // Or, to change the default settings:
+    // let labelDetector = Vision.vision().cloudLabelDetector(options: options)
     // [END init_label_cloud]
 
     // Initialize a VisionImage object with a UIImage.
@@ -331,7 +338,7 @@ class ViewController:
 
     // Create a text detector.
     // [START init_text]
-    let textDetector = vision?.textDetector()
+    let textDetector = vision?.textDetector()  // Check console for errors.
     // [END init_text]
 
     // Initialize a VisionImage with a UIImage.
@@ -340,12 +347,12 @@ class ViewController:
     // [START detect_text]
     textDetector?.detect(in: visionImage) { (features, error) in
       guard error == nil, let features = features, !features.isEmpty else {
+        // Error. You should also check the console for error messages.
         // [START_EXCLUDE]
         let errorString = error?.localizedDescription ?? Constants.detectionNoResultsMessage
         print("Text detection failed with error: \(errorString)")
         self.resultsTextView.text = "Text detection: \(errorString)"
         // [END_EXCLUDE]
-
         return
       }
 
@@ -403,7 +410,9 @@ class ViewController:
 
     // Create a text detector.
     // [START init_text_cloud]
-    let textDetector = vision?.cloudTextDetector()
+    let textDetector = vision?.cloudTextDetector(options: options)
+    // Or, to use the default settings:
+    // let textDetector = vision?.cloudTextDetector()
     // [END init_text_cloud]
 
     // Initialize a VisionImage with a UIImage.
@@ -417,7 +426,6 @@ class ViewController:
         print("Text detection failed with error: \(errorString)")
         self.resultsTextView.text = "Text detection: \(errorString)"
         // [END_EXCLUDE]
-
         return
       }
 
@@ -440,7 +448,7 @@ class ViewController:
       }
       // [END_EXCLUDE]
     }
-    // [START detect_text_cloud]
+    // [END detect_text_cloud]
   }
 
   private func logExtrasForTesting(cloudText: VisionCloudText) {
@@ -484,7 +492,9 @@ class ViewController:
 
     // Create a barcode detector.
     // [START init_barcode]
-    let barcodeDetector = vision?.barcodeDetector(options: options)
+    let barcodeDetector = vision?.barcodeDetector(options: options)  // Check console for errors.
+    // Or, to use the default settings:
+    // let barcodeDetector = vision?.barcodeDetector()
     // [END init_barcode]
 
     // Define the metadata for the image.
@@ -498,12 +508,12 @@ class ViewController:
     // [START detect_barcodes]
     barcodeDetector?.detect(in: visionImage) { (barcodes, error) in
       guard error == nil, let barcodes = barcodes, !barcodes.isEmpty else {
+        // Error. You should also check the console for error messages.
         // [START_EXCLUDE]
         let errorString = error?.localizedDescription ?? Constants.detectionNoResultsMessage
         print("Barcode detection failed with error: \(errorString)")
         self.resultsTextView.text = "Barcode detection: \(errorString)"
         // [END_EXCLUDE]
-
         return
       }
 

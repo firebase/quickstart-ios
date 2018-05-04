@@ -16,6 +16,7 @@
 
 import CoreGraphics
 import UIKit
+import FirebaseMLVision
 
 /// A `UIImage` category for scaling images.
 extension UIImage {
@@ -39,6 +40,41 @@ extension UIImage {
         return nil
     }
     return finalImage
+  }
+  
+  // Determines the orientation needed by ML Kit detectors
+  //
+  // Return: The VisionDetectorImageOrientation based on the UIImage's orientation
+  func detectorOrientation() -> VisionDetectorImageOrientation {
+    switch self.imageOrientation {
+    case .up:
+      return .topLeft
+    case .down:
+      return .bottomRight
+    case .left:
+      return .leftBottom
+    case .right:
+      return .rightTop
+    case .upMirrored:
+      return .topRight
+    case .downMirrored:
+      return .bottomLeft
+    case .leftMirrored:
+      return .leftTop
+    case .rightMirrored:
+      return .rightBottom
+    }
+  }
+  
+  // Creates a VisionImage based on the UIImage orientation
+  //
+  // Return: The VisionImage
+  func toVisionImage() -> VisionImage {
+    let imageOrientation = self.detectorOrientation()
+    let viImage = VisionImage(image: self)
+    viImage.metadata = VisionImageMetadata()
+    viImage.metadata?.orientation = imageOrientation
+    return viImage
   }
 
   /// Returns scaled image data from the given values.

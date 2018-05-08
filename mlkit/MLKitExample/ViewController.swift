@@ -19,14 +19,9 @@ import UIKit
 import Firebase
 // [END import_vision]
 
-// swiftlint:disable colon opening_brace
 /// Main view controller class.
-class ViewController:
-  UIViewController,
-  UIImagePickerControllerDelegate,
-  UINavigationControllerDelegate
-{
-  // swiftlint:enable colon opening_brace
+class ViewController:  UIViewController,  UIImagePickerControllerDelegate,  UINavigationControllerDelegate {
+
 
   /// Firebase vision instance. Instantiated in `viewDidLoad`.
   var vision: Vision?
@@ -431,10 +426,11 @@ class ViewController:
       // Recognized and extracted text
       // [START_EXCLUDE]
       self.logExtrasForTesting(cloudText: cloudText)
+      self.resultsTextView.text = cloudText.text
       if let pages = cloudText.pages {
-        self.resultsTextView.text = pages.map { page in
+        for page in pages {
           if let blocks = page.blocks {
-            let text = blocks.map { block in
+            for block in blocks {
               self.addFrameView(
                 featureFrame: block.frame,
                 imageSize: image.size,
@@ -442,8 +438,7 @@ class ViewController:
               )
             }
           }
-          return "" //fix later
-        }.joined(separator: "\n")
+        }
       }
       // [END_EXCLUDE]
     }
@@ -463,7 +458,6 @@ class ViewController:
                     if let symbols = word.symbols {
                       for symbol in symbols {
                         print("Detected text symbol: \(symbol.text ?? "")")
-//                        print("Detected text symbol text property: \(symbol.textProperty. ?? "")")
                         print("Detected text symbol confidence: \(symbol.confidence ?? 0)")
                         print("Detected text symbol frame: \(symbol.frame)")
                       }
@@ -653,7 +647,7 @@ class ViewController:
       forResource: Constants.quantizedLabelsFilename,
       ofType: DetectorConstants.labelsExtension
       ) else {
-        resultsTextView.text = "Failed to load the labels file. "
+        resultsTextView.text = "Failed to load the labels file."
         return
     }
     let cloudModelName = (modelPicker.selectedSegmentIndex == 0) ?
@@ -668,7 +662,7 @@ class ViewController:
     )
     let modelManager = ModelManager.modelManager()
     if !modelManager.register(cloudModelSource) {
-      print("Failed to register the cloud model source.")
+      print("Model source was already registered with name: \(cloudModelSource.modelName).")
     }
     let options = ModelOptions(cloudModelName: cloudModelName, localModelName: nil)
     detectorService.loadModel(options: options, labelsPath: labelsFilePath)
@@ -694,7 +688,7 @@ class ViewController:
     )
     let modelManager = ModelManager.modelManager()
     if !modelManager.register(localModelSource) {
-      print ("Failed to register the local model source.")
+      print("Model source was already registered with name: \(localModelSource.modelName).")
     }
     let options = ModelOptions(cloudModelName: nil, localModelName: Constants.localModelName)
     detectorService.loadModel(options: options, labelsPath: labelsFilePath)
@@ -716,10 +710,8 @@ class ViewController:
       let imageData = self.detectorService.scaledImageData(for: image)
       self.detectorService.detectObjects(imageData: imageData) { (results, error) in
         guard error == nil, let results = results, !results.isEmpty else {
-          var errorString = error?.localizedDescription ?? Constants.failedToDetectObjectsMessage
-          errorString = "Inference error: \(errorString)"
-          print(errorString)
-          self.resultsTextView.text = errorString
+          let errorString = error?.localizedDescription ?? Constants.failedToDetectObjectsMessage
+          self.resultsTextView.text = "Inference error: \(errorString)"
           return
         }
 

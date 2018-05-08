@@ -161,7 +161,7 @@ extension UIImage {
       bitsPerComponent: cgImage.bitsPerComponent,
       bytesPerRow: oldComponentsCount * newWidth,
       space: CGColorSpaceCreateDeviceRGB(),
-      bitmapInfo: cgImage.bitmapInfo.rawValue
+      bitmapInfo: CGBitmapInfo.byteOrder32Big.rawValue | CGImageAlphaInfo.premultipliedLast.rawValue
       ) else {
         return nil
     }

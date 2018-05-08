@@ -19,11 +19,9 @@
 		1036D9F82086868F003253C9 /* shared in Resources */ = {isa = PBXBuildFile; fileRef = 1036D9F72086868F003253C9 /* shared */; };
 		1036DA2A2087CC16003253C9 /* MLKitExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1036DA292087CC16003253C9 /* MLKitExampleTests.swift */; };
 		1036DA382087CC26003253C9 /* MLKitExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1036DA372087CC26003253C9 /* MLKitExampleUITests.swift */; };
-		41FAA3BD38EC9A617B0499AA /* Pods_MLKitExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 233CD81D2E78E592F573FE9E /* Pods_MLKitExample.framework */; };
 		BB287B3920729CE90069707A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB287B3820729CE90069707A /* AppDelegate.swift */; };
 		BB287B3E20729CE90069707A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB287B3C20729CE90069707A /* Main.storyboard */; };
 		BB287B582074310E0069707A /* DetectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB287B572074310E0069707A /* DetectionViewController.swift */; };
-		BB70D48C209CB0F500743DA7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB70D48B209CB0F400743DA7 /* GoogleService-Info.plist */; };
 		BB70D48E209CB22000743DA7 /* FrameProcessingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB70D48D209CB22000743DA7 /* FrameProcessingViewController.swift */; };
 		BB70D490209CB7B700743DA7 /* CMSampleBuffer+UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB70D48F209CB7B700743DA7 /* CMSampleBuffer+UIImage.swift */; };
 		BB70D494209CC1A300743DA7 /* PhotoCaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB70D493209CC1A300743DA7 /* PhotoCaptureViewController.swift */; };
@@ -63,18 +61,14 @@
 		1036DA352087CC25003253C9 /* MLKitExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MLKitExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1036DA372087CC26003253C9 /* MLKitExampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLKitExampleUITests.swift; sourceTree = "<group>"; };
 		1036DA392087CC26003253C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		233CD81D2E78E592F573FE9E /* Pods_MLKitExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MLKitExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		99DD04610764AFC8DFBF7604 /* Pods-MLKitExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MLKitExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-MLKitExample/Pods-MLKitExample.release.xcconfig"; sourceTree = "<group>"; };
 		BB287B3520729CE90069707A /* MLKitExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MLKitExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB287B3820729CE90069707A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BB287B3D20729CE90069707A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BB287B4420729CE90069707A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BB287B572074310E0069707A /* DetectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetectionViewController.swift; sourceTree = "<group>"; };
-		BB70D48B209CB0F400743DA7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BB70D48D209CB22000743DA7 /* FrameProcessingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameProcessingViewController.swift; sourceTree = "<group>"; };
 		BB70D48F209CB7B700743DA7 /* CMSampleBuffer+UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CMSampleBuffer+UIImage.swift"; sourceTree = "<group>"; };
 		BB70D493209CC1A300743DA7 /* PhotoCaptureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCaptureViewController.swift; sourceTree = "<group>"; };
-		EAAAA08A09E21C7040F683D8 /* Pods-MLKitExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MLKitExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MLKitExample/Pods-MLKitExample.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,7 +90,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				41FAA3BD38EC9A617B0499AA /* Pods_MLKitExample.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -134,23 +127,6 @@
 			path = MLKitExampleUITests;
 			sourceTree = "<group>";
 		};
-		4F74A8D421E95A67BDF0EF74 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				233CD81D2E78E592F573FE9E /* Pods_MLKitExample.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		70134AB6BF8E5E780E51AF66 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				EAAAA08A09E21C7040F683D8 /* Pods-MLKitExample.debug.xcconfig */,
-				99DD04610764AFC8DFBF7604 /* Pods-MLKitExample.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		BB287B2C20729CE90069707A = {
 			isa = PBXGroup;
 			children = (
@@ -160,8 +136,6 @@
 				1036DA362087CC26003253C9 /* MLKitExampleUITests */,
 				BB287B3620729CE90069707A /* Products */,
 				1036D9F72086868F003253C9 /* shared */,
-				70134AB6BF8E5E780E51AF66 /* Pods */,
-				4F74A8D421E95A67BDF0EF74 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -188,7 +162,6 @@
 				BB70D493209CC1A300743DA7 /* PhotoCaptureViewController.swift */,
 				BB287B4A2072A0200069707A /* Supporting FIles */,
 				BB287B4420729CE90069707A /* Info.plist */,
-				BB70D48B209CB0F400743DA7 /* GoogleService-Info.plist */,
 			);
 			path = MLKitExample;
 			sourceTree = "<group>";
@@ -244,12 +217,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BB287B4720729CE90069707A /* Build configuration list for PBXNativeTarget "MLKitExample" */;
 			buildPhases = (
-				D6CC4F5FD37DB4AAB5DE4519 /* [CP] Check Pods Manifest.lock */,
 				BB287B3120729CE90069707A /* Sources */,
 				BB287B3220729CE90069707A /* Frameworks */,
 				BB287B3320729CE90069707A /* Resources */,
-				EFF857E12A1B119D5A71D6BC /* [CP] Embed Pods Frameworks */,
-				334E15484DD40219284F184B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -327,7 +297,6 @@
 			files = (
 				10224B762087E5A900A77316 /* grace_hopper.jpg in Resources */,
 				10224B722087E5A900A77316 /* labels_quant.txt in Resources */,
-				BB70D48C209CB0F500743DA7 /* GoogleService-Info.plist in Resources */,
 				BB287B3E20729CE90069707A /* Main.storyboard in Resources */,
 				10224B752087E5A900A77316 /* mobilenet_v1_1.0_224.tflite in Resources */,
 				1036D9F82086868F003253C9 /* shared in Resources */,
@@ -338,73 +307,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		334E15484DD40219284F184B /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-MLKitExample/Pods-MLKitExample-resources.sh",
-				"${PODS_CONFIGURATION_BUILD_DIR}/GoogleMobileVision/GoogleMVFaceDetectorResources.bundle",
-				"${PODS_CONFIGURATION_BUILD_DIR}/GoogleMobileVision/GoogleMVTextDetectorResources.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMVFaceDetectorResources.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMVTextDetectorResources.bundle",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MLKitExample/Pods-MLKitExample-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		D6CC4F5FD37DB4AAB5DE4519 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-MLKitExample-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		EFF857E12A1B119D5A71D6BC /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-MLKitExample/Pods-MLKitExample-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleAPIClientForREST/GoogleAPIClientForREST.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
-				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
-				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleAPIClientForREST.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MLKitExample/Pods-MLKitExample-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1036DA232087CC16003253C9 /* Sources */ = {
@@ -650,7 +552,6 @@
 		};
 		BB287B4820729CE90069707A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EAAAA08A09E21C7040F683D8 /* Pods-MLKitExample.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = EQHXZ8M8AV;
@@ -668,7 +569,6 @@
 		};
 		BB287B4920729CE90069707A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 99DD04610764AFC8DFBF7604 /* Pods-MLKitExample.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = EQHXZ8M8AV;

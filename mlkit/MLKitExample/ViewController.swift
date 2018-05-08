@@ -21,13 +21,10 @@ import Firebase
 
 /// Main view controller class.
 class ViewController:  UIViewController,  UIImagePickerControllerDelegate,  UINavigationControllerDelegate {
-
-
-  /// Firebase vision instance. Instantiated in `viewDidLoad`.
-  var vision: Vision?
-
-  /// Firebase vision text detector. Instantiated in `viewDidLoad`.
-  var textDetector: VisionTextDetector?
+  /// Firebase vision instance.
+  // [START init_vision]
+  lazy var vision = Vision.vision()
+  // [END init_vision]
 
   /// Detector service that manages loading models and detecting objects.
   let detectorService = DetectorService()
@@ -56,11 +53,6 @@ class ViewController:  UIViewController,  UIImagePickerControllerDelegate,  UINa
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    // [START init_vision]
-    vision = Vision.vision()
-    // [END init_vision]
-    textDetector = vision?.textDetector()
-
     imageView.image = UIImage(named: Constants.graceHopperImage)
     imageView.layer.addSublayer(frameSublayer)
 
@@ -87,7 +79,7 @@ class ViewController:  UIViewController,  UIImagePickerControllerDelegate,  UINa
     // [END config_landmark_cloud]
 
     // [START init_landmark_cloud]
-    let landmarkDetector = vision?.cloudLandmarkDetector(options: options)
+    let landmarkDetector = vision.cloudLandmarkDetector(options: options)
     // Or, to use the default settings:
     // let landmarkDetector = vision?.cloudLandmarkDetector()
     // [END init_landmark_cloud]
@@ -106,7 +98,7 @@ class ViewController:  UIViewController,  UIImagePickerControllerDelegate,  UINa
     // [END set_image_metadata]
 
     // [START detect_landmarks_cloud]
-    landmarkDetector?.detect(in: visionImage) { (landmarks, error) in
+    landmarkDetector.detect(in: visionImage) { (landmarks, error) in
       guard error == nil, let landmarks = landmarks, !landmarks.isEmpty else {
         // [START_EXCLUDE]
         let errorString = error?.localizedDescription ?? Constants.detectionNoResultsMessage
@@ -159,7 +151,7 @@ class ViewController:  UIViewController,  UIImagePickerControllerDelegate,  UINa
     // [END config_face]
 
     // [START init_face]
-    let faceDetector = vision?.faceDetector(options: options)  // Check console for errors.
+    let faceDetector = vision.faceDetector(options: options)  // Check console for errors.
     // Or, to use the default settings:
     // let faceDetector = vision?.faceDetector()
     // [END init_face]
@@ -173,7 +165,7 @@ class ViewController:  UIViewController,  UIImagePickerControllerDelegate,  UINa
     visionImage.metadata = imageMetadata
 
     // [START detect_faces]
-    faceDetector?.detect(in: visionImage) { (faces, error) in
+    faceDetector.detect(in: visionImage) { (faces, error) in
       guard error == nil, let faces = faces, !faces.isEmpty else {
         // Error. You should also check the console for error messages.
         // [START_EXCLUDE]
@@ -236,7 +228,7 @@ class ViewController:  UIViewController,  UIImagePickerControllerDelegate,  UINa
     // [END config_label]
 
     // [START init_label]
-    let labelDetector = vision?.labelDetector(options: options)  // Check console for errors.
+    let labelDetector = vision.labelDetector(options: options)  // Check console for errors.
     // Or, to use the default settings:
     // let labelDetector = vision?.labelDetector()
     // [END init_label]
@@ -250,7 +242,7 @@ class ViewController:  UIViewController,  UIImagePickerControllerDelegate,  UINa
     visionImage.metadata = imageMetadata
 
     // [START detect_label]
-    labelDetector?.detect(in: visionImage) { (labels, error) in
+    labelDetector.detect(in: visionImage) { (labels, error) in
       guard error == nil, let labels = labels, !labels.isEmpty else {
         // Error. You should also check the console for error messages.
         // [START_EXCLUDE]
@@ -332,14 +324,14 @@ class ViewController:  UIViewController,  UIImagePickerControllerDelegate,  UINa
 
     // Create a text detector.
     // [START init_text]
-    let textDetector = vision?.textDetector()  // Check console for errors.
+    let textDetector = vision.textDetector()  // Check console for errors.
     // [END init_text]
 
     // Initialize a VisionImage with a UIImage.
     let visionImage = VisionImage(image: image)
 
     // [START detect_text]
-    textDetector?.detect(in: visionImage) { (features, error) in
+    textDetector.detect(in: visionImage) { (features, error) in
       guard error == nil, let features = features, !features.isEmpty else {
         // Error. You should also check the console for error messages.
         // [START_EXCLUDE]
@@ -404,7 +396,7 @@ class ViewController:  UIViewController,  UIImagePickerControllerDelegate,  UINa
 
     // Create a text detector.
     // [START init_text_cloud]
-    let textDetector = vision?.cloudTextDetector(options: options)
+    let textDetector = vision.cloudTextDetector(options: options)
     // Or, to use the default settings:
     // let textDetector = vision?.cloudTextDetector()
     // [END init_text_cloud]
@@ -413,7 +405,7 @@ class ViewController:  UIViewController,  UIImagePickerControllerDelegate,  UINa
     let visionImage = VisionImage(image: image)
 
     // [START detect_text_cloud]
-    textDetector?.detect(in: visionImage) { (cloudText, error) in
+    textDetector.detect(in: visionImage) { (cloudText, error) in
       guard error == nil, let cloudText = cloudText else {
         // [START_EXCLUDE]
         let errorString = error?.localizedDescription ?? Constants.detectionNoResultsMessage
@@ -485,7 +477,7 @@ class ViewController:  UIViewController,  UIImagePickerControllerDelegate,  UINa
 
     // Create a barcode detector.
     // [START init_barcode]
-    let barcodeDetector = vision?.barcodeDetector(options: options)  // Check console for errors.
+    let barcodeDetector = vision.barcodeDetector(options: options)  // Check console for errors.
     // Or, to use the default settings:
     // let barcodeDetector = vision?.barcodeDetector()
     // [END init_barcode]
@@ -499,7 +491,7 @@ class ViewController:  UIViewController,  UIImagePickerControllerDelegate,  UINa
     visionImage.metadata = imageMetadata
 
     // [START detect_barcodes]
-    barcodeDetector?.detect(in: visionImage) { (barcodes, error) in
+    barcodeDetector.detect(in: visionImage) { (barcodes, error) in
       guard error == nil, let barcodes = barcodes, !barcodes.isEmpty else {
         // Error. You should also check the console for error messages.
         // [START_EXCLUDE]

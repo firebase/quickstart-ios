@@ -18,7 +18,7 @@ import Foundation
 import AVFoundation
 import UIKit
 import CoreImage
-import FirebaseMLVision
+import Firebase
 
 extension CMSampleBuffer {
   

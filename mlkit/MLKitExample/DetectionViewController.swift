@@ -15,7 +15,7 @@
 //
 
 import UIKit
-import FirebaseMLVision
+import Firebase
 import MobileCoreServices
 
 protocol DetectorDelegate {

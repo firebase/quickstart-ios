@@ -16,9 +16,8 @@
 
 import UIKit
 // [START import_vision]
-import FirebaseMLVision
+import Firebase
 // [END import_vision]
-import FirebaseMLModelInterpreter
 
 // swiftlint:disable colon opening_brace
 /// Main view controller class.

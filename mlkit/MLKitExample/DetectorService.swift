@@ -15,7 +15,7 @@
 //
 
 import UIKit
-import FirebaseMLModelInterpreter
+import Firebase
 
 public enum DetectorError: Int, CustomNSError {
   case failedToDetectObjectsInvalidImage = 1

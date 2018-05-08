@@ -16,7 +16,7 @@
 
 import UIKit
 import AVFoundation
-import FirebaseMLVision
+import Firebase
 
 let SEGUE_IDENTIFIER = "FRAME_TO_PHOTO"
 typealias TextPhoto = (String, UIImage)

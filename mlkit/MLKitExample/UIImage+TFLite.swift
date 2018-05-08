@@ -16,7 +16,7 @@
 
 import CoreGraphics
 import UIKit
-import FirebaseMLVision
+import Firebase
 
 /// A `UIImage` category for scaling images.
 extension UIImage {

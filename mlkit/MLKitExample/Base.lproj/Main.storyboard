@@ -66,7 +66,11 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pHZ-Mg-Wur">
                                 <rect key="frame" x="0.0" y="515" width="375" height="44"/>
                                 <items>
-                                    <barButtonItem title="Detect" id="gGb-MI-pQP"/>
+                                    <barButtonItem title="Detect" id="gGb-MI-pQP">
+                                        <connections>
+                                            <action selector="detect:" destination="BYZ-38-t0r" id="h1z-dj-zU9"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="XG3-2A-4JO"/>
                                     <barButtonItem title="Download Model" id="wFf-Ba-Ydb" userLabel="Download Model Button">
                                         <connections>

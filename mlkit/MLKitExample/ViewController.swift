@@ -947,11 +947,11 @@ class ViewController:  UIViewController,  UIImagePickerControllerDelegate,  UINa
     var scaledImageHeight: CGFloat = 0.0
     switch orientation {
     case .portrait, .portraitUpsideDown, .unknown:
-      scaledImageWidth = imageView.bounds.size.width
+      scaledImageWidth = imageView.bounds.size.width * UIScreen.main.scale
       scaledImageHeight = image.size.height * scaledImageWidth / image.size.width
     case .landscapeLeft, .landscapeRight:
       scaledImageWidth = image.size.width * scaledImageHeight / image.size.height
-      scaledImageHeight = imageView.bounds.size.height
+      scaledImageHeight = imageView.bounds.size.height * UIScreen.main.scale
     }
     DispatchQueue.global(qos: .userInitiated).async {
       // Scale image while maintaining aspect ratio so it displays better in the UIImageView.

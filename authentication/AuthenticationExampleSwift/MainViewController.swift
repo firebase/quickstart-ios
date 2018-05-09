@@ -291,7 +291,9 @@ class MainViewController: UITableViewController, GIDSignInUIDelegate {
           // Merge prevUser and currentUser accounts and data
           // ...
           // [END_EXCLUDE]
-        }
+          // [START_EXCLUDE silent]
+          }
+          // [END_EXCLUDE]
         }
         // [END signin_credential]
       }

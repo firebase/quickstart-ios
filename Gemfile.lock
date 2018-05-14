@@ -1,11 +1,11 @@
 GIT
   remote: https://github.com/CocoaPods/CocoaPods.git
-  revision: 7352385b9e6f9d6de23d75f9864ea2376bfa325f
+  revision: 96c4921225a75b3e0b582b325bc1e0dfd1f8bfc9
   specs:
-    cocoapods (1.5.1)
+    cocoapods (1.5.2)
       activesupport (>= 4.0.2, < 5)
       claide (>= 1.0.2, < 2.0)
-      cocoapods-core (= 1.5.1)
+      cocoapods-core (= 1.5.2)
       cocoapods-deintegrate (>= 1.0.2, < 2.0)
       cocoapods-downloader (>= 1.2.0, < 2.0)
       cocoapods-plugins (>= 1.0.0, < 2.0)
@@ -20,22 +20,22 @@ GIT
       molinillo (~> 0.6.5)
       nap (~> 1.0)
       ruby-macho (~> 1.1)
-      xcodeproj (>= 1.5.7, < 2.0)
+      xcodeproj (>= 1.5.8, < 2.0)
 
 GIT
   remote: https://github.com/CocoaPods/Core.git
-  revision: 09ffce7501d6d443373423041f5aac1fa6aa5cb4
+  revision: 0840691058b9fe96f759dacc26642207beb050cd
   specs:
-    cocoapods-core (1.5.1)
+    cocoapods-core (1.5.2)
       activesupport (>= 4.0.2, < 6)
       fuzzy_match (~> 2.0.4)
       nap (~> 1.0)
 
 GIT
   remote: https://github.com/CocoaPods/Xcodeproj.git
-  revision: b792bafe384981530c58b50345d0aed9a4130b2c
+  revision: 3333a879ecd24c42ebb6fc99ce4897ee099d4ce3
   specs:
-    xcodeproj (1.5.7)
+    xcodeproj (1.5.8)
       CFPropertyList (>= 2.3.3, < 4.0)
       atomos (~> 0.1.2)
       claide (>= 1.0.2, < 2.0)

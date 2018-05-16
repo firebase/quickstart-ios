@@ -55,7 +55,7 @@
       // [END_EXCLUDE]
     }
     // [END function_error]
-    _resultField.text = result.data[@"text"];
+    self->_resultField.text = result.data[@"text"];
   }];
   // [END function_add_message]
 }

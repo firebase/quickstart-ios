@@ -61,7 +61,7 @@
 
 
     NSNumber *operationResult = result.data[@"operationResult"];
-    _resultField.text = operationResult.stringValue;
+    self->_resultField.text = operationResult.stringValue;
   }];
   // [END function_add_numbers]
 }

@@ -45,7 +45,7 @@
     // [START function_error]
     if (error) {
       if (error.domain == FIRFunctionsErrorDomain) {
-        FIRFunctionsErrorCode *code = error.code;
+        FIRFunctionsErrorCode code = error.code;
         NSString *message = error.localizedDescription;
         NSObject *details = error.userInfo[FIRFunctionsErrorDetailsKey];
       }

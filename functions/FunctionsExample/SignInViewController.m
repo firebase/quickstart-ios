@@ -30,7 +30,7 @@
 - (void)viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
   if ([FIRAuth auth].currentUser) {
-    AppDelegate *appDelegateTemp = UIApplication.sharedApplication.delegate;
+    id<UIApplicationDelegate> appDelegateTemp = UIApplication.sharedApplication.delegate;
     appDelegateTemp.window.rootViewController = [[UIStoryboard storyboardWithName:@"Main"
                                                                            bundle:[NSBundle mainBundle]] instantiateInitialViewController];
     [self dismissViewControllerAnimated:YES completion:nil];

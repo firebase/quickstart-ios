@@ -16,8 +16,5 @@
 
 #import "FAuthPickerViewController.h"
 
-@interface FAuthPickerViewController ()
-@end
-
 @implementation FAuthPickerViewController
 @end

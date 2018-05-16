@@ -16,7 +16,6 @@
 		10B1CCB7205C4CA70067EDB4 /* FAuthPickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10B1CCB6205C4CA70067EDB4 /* FAuthPickerViewController.xib */; };
 		10B1CCB8205C4CA70067EDB4 /* FAuthPickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10B1CCB6205C4CA70067EDB4 /* FAuthPickerViewController.xib */; };
 		10B1CCBB205C4D520067EDB4 /* FAuthPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B1CCB9205C4D520067EDB4 /* FAuthPickerViewController.swift */; };
-		10B1CCBD205C4D9B0067EDB4 /* FAuthPickerViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = 10B1CCBC205C4D9B0067EDB4 /* FAuthPickerViewController.h */; };
 		10B1CCBF205C51F90067EDB4 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B1CCBE205C51F90067EDB4 /* SignInViewController.swift */; };
 		10B1CCC1205C60890067EDB4 /* CloudAddCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B1CCC0205C60890067EDB4 /* CloudAddCell.swift */; };
 		10B1CCC3205C63370067EDB4 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B1CCC2205C63370067EDB4 /* CommentCell.swift */; };
@@ -340,7 +339,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0930;
-				LastUpgradeCheck = 0900;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Google Inc.";
 				TargetAttributes = {
 					1036D9FC2087CA10003253C9 = {
@@ -492,7 +491,6 @@
 				EF6DB4D41CDD610200319C08 /* CommentCell.m in Sources */,
 				5F5A53551ADE670C00F81DF0 /* AppDelegate.m in Sources */,
 				5F5A53521ADE670C00F81DF0 /* main.m in Sources */,
-				10B1CCBD205C4D9B0067EDB4 /* FAuthPickerViewController.h in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -711,12 +709,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -765,12 +765,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;

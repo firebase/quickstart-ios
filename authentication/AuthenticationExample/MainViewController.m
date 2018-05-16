@@ -86,40 +86,39 @@ static NSString *const kUpdatePhoneNumberText = @"Update Phone Number";
   [self showSpinner:^{
     if ([FIRAuth auth].currentUser) {
       // [START link_credential]
-      [[FIRAuth auth]
-       .currentUser linkWithCredential:credential
-       completion:^(FIRUser *_Nullable user, NSError *_Nullable error) {
-         // [START_EXCLUDE]
-         [self hideSpinner:^{
-           if (error) {
-             [self showMessagePrompt:error.localizedDescription];
-             return;
-           }
-           [self.tableView reloadData];
-         }];
-         // [END_EXCLUDE]
-       }];
-       // [END link_credential]
-     } else {
-       // [START signin_credential]
-       [[FIRAuth auth] signInAndRetrieveDataWithCredential:credential
-                                                completion:^(FIRAuthDataResult * _Nullable authResult,
-                                                                                   NSError * _Nullable error) {
-         // [START_EXCLUDE silent]
-         [self hideSpinner:^{
-         // [END_EXCLUDE]
-         if (error) {
-           // [START_EXCLUDE]
-           [self showMessagePrompt:error.localizedDescription];
-           // [END_EXCLUDE]
-           return;
-         }
-         // User successfully signed in. Get user data from the FIRUser object
-         // [START_EXCLUDE]
-         }];
-         // [END_EXCLUDE]
-       }];
-       // [END signin_credential]
+      [[FIRAuth auth].currentUser linkAndRetrieveDataWithCredential:credential
+          completion:^(FIRAuthDataResult *result, NSError *_Nullable error) {
+        // [START_EXCLUDE]
+        [self hideSpinner:^{
+          if (error) {
+            [self showMessagePrompt:error.localizedDescription];
+            return;
+          }
+          [self.tableView reloadData];
+        }];
+        // [END_EXCLUDE]
+      }];
+      // [END link_credential]
+    } else {
+      // [START signin_credential]
+      [[FIRAuth auth] signInAndRetrieveDataWithCredential:credential
+                                               completion:^(FIRAuthDataResult * _Nullable authResult,
+                                                            NSError * _Nullable error) {
+        // [START_EXCLUDE silent]
+        [self hideSpinner:^{
+        // [END_EXCLUDE]
+        if (error) {
+          // [START_EXCLUDE]
+          [self showMessagePrompt:error.localizedDescription];
+          // [END_EXCLUDE]
+          return;
+        }
+        // User successfully signed in. Get user data from the FIRUser object
+        // [START_EXCLUDE]
+        }];
+        // [END_EXCLUDE]
+      }];
+      // [END signin_credential]
     }
   }];
 }

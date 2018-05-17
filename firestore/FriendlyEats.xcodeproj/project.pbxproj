@@ -17,7 +17,6 @@
 		8D9BBC3B1EE2200900194E9A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D9BBC391EE2200900194E9A /* LaunchScreen.storyboard */; };
 		8D9BBC461EE2200900194E9A /* FriendlyEatsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9BBC451EE2200900194E9A /* FriendlyEatsTests.swift */; };
 		8DD9ACDA1F7B166900C2DD24 /* pizza-monster.png in Resources */ = {isa = PBXBuildFile; fileRef = 8DD9ACD91F7B166900C2DD24 /* pizza-monster.png */; };
-		8DF1E3111EE5CFBC00192CDE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8DF1E3101EE5CFBC00192CDE /* GoogleService-Info.plist */; };
 		8DF1E3131EE5CFF900192CDE /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF1E3121EE5CFF900192CDE /* Restaurant.swift */; };
 		8DF1E3151EE72C4600192CDE /* LocalCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF1E3141EE72C4600192CDE /* LocalCollection.swift */; };
 		8DF77E1A1EEB45E500CB2330 /* RestaurantDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF77E191EEB45E500CB2330 /* RestaurantDetailViewController.swift */; };
@@ -58,7 +57,6 @@
 		8D9BBC451EE2200900194E9A /* FriendlyEatsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendlyEatsTests.swift; sourceTree = "<group>"; };
 		8D9BBC471EE2200900194E9A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8DD9ACD91F7B166900C2DD24 /* pizza-monster.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pizza-monster.png"; sourceTree = "<group>"; };
-		8DF1E3101EE5CFBC00192CDE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8DF1E3121EE5CFF900192CDE /* Restaurant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
 		8DF1E3141EE72C4600192CDE /* LocalCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalCollection.swift; sourceTree = "<group>"; };
 		8DF77E191EEB45E500CB2330 /* RestaurantDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantDetailViewController.swift; sourceTree = "<group>"; };
@@ -122,7 +120,6 @@
 		8D9BBC2F1EE2200900194E9A /* FriendlyEats */ = {
 			isa = PBXGroup;
 			children = (
-				8DF1E3101EE5CFBC00192CDE /* GoogleService-Info.plist */,
 				8D9BBC301EE2200900194E9A /* AppDelegate.swift */,
 				8D9BBC321EE2200900194E9A /* RestaurantsTableViewController.swift */,
 				8DF77E191EEB45E500CB2330 /* RestaurantDetailViewController.swift */,
@@ -212,7 +209,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0920;
-				LastUpgradeCheck = 0830;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = Firebase;
 				TargetAttributes = {
 					1073476F203159E3004A66D1 = {
@@ -222,10 +219,13 @@
 					};
 					8D9BBC2C1EE2200900194E9A = {
 						CreatedOnToolsVersion = 8.3.2;
-						ProvisioningStyle = Automatic;
+						DevelopmentTeam = EQHXZ8M8AV;
+						LastSwiftMigration = 0930;
+						ProvisioningStyle = Manual;
 					};
 					8D9BBC401EE2200900194E9A = {
 						CreatedOnToolsVersion = 8.3.2;
+						LastSwiftMigration = 0930;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 8D9BBC2C1EE2200900194E9A;
 					};
@@ -264,7 +264,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D9BBC3B1EE2200900194E9A /* LaunchScreen.storyboard in Resources */,
-				8DF1E3111EE5CFBC00192CDE /* GoogleService-Info.plist in Resources */,
 				8D9BBC381EE2200900194E9A /* Assets.xcassets in Resources */,
 				8D9BBC361EE2200900194E9A /* Main.storyboard in Resources */,
 				8DD9ACDA1F7B166900C2DD24 /* pizza-monster.png in Resources */,
@@ -407,15 +406,23 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -438,7 +445,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -458,15 +465,23 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -483,7 +498,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -496,6 +511,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = EQHXZ8M8AV;
 				INFOPLIST_FILE = FriendlyEats/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -580,7 +597,10 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.firebase.FriendlyEats;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				PROVISIONING_PROFILE = "f4769b7c-5d8c-4f18-a297-224cdb7d23ec";
+				PROVISIONING_PROFILE_SPECIFIER = "Google Development";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -588,6 +608,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = FriendlyEats/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -672,7 +694,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.firebase.FriendlyEats;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
@@ -685,7 +709,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.firebase.FriendlyEatsTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FriendlyEats.app/FriendlyEats";
 			};
 			name = Debug;
@@ -699,7 +724,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.firebase.FriendlyEatsTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FriendlyEats.app/FriendlyEats";
 			};
 			name = Release;

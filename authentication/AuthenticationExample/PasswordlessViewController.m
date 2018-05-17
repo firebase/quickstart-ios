@@ -41,10 +41,12 @@
 }
 
 - (IBAction)didTapSignInWithEmailLink:(id)sender {
+  NSString *email = _emailField.text;
+  NSString *link = _link;
   [self showSpinner:^{
     // [START signin_emaillink]
-    [[FIRAuth auth] signInWithEmail:_emailField.text
-                               link:_link
+    [[FIRAuth auth] signInWithEmail:email
+                               link:link
                          completion:^(FIRAuthDataResult * _Nullable authResult, NSError * _Nullable error) {
       // [START_EXCLUDE]
       [self hideSpinner:^{
@@ -61,6 +63,7 @@
 }
 
 - (IBAction)didTapSendSignInLink:(id)sender {
+  NSString *email = _emailField.text;
   [self showSpinner:^{
     // [START action_code_settings]
     FIRActionCodeSettings *actionCodeSettings = [[FIRActionCodeSettings alloc] init];
@@ -73,7 +76,7 @@
                                minimumVersion:@"12"];
     // [END action_code_settings]
     // [START send_signin_link]
-    [[FIRAuth auth] sendSignInLinkToEmail:_emailField.text
+    [[FIRAuth auth] sendSignInLinkToEmail:email
                        actionCodeSettings:actionCodeSettings
                                completion:^(NSError *_Nullable error) {
       // [START_EXCLUDE]
@@ -86,7 +89,7 @@
         // The link was successfully sent. Inform the user.
         // Save the email locally so you don't need to ask the user for it again
         // if they open the link on the same device.
-        [NSUserDefaults.standardUserDefaults setObject:_emailField.text forKey:@"Email"];
+        [NSUserDefaults.standardUserDefaults setObject:email forKey:@"Email"];
         [self showMessagePrompt:@"Check your email for link"];
         // [START_EXCLUDE]
       }];

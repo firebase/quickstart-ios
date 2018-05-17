@@ -53,7 +53,7 @@
     fileLength = contents.length;
   }
 
-  [trace incrementCounterNamed:@"log_file_size" by:fileLength];
+  [trace incrementMetric:@"log_file_size" byInt:fileLength];
 
 
   NSString *target = @"https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png";
@@ -79,7 +79,7 @@
       }
 
       dispatch_async(dispatch_get_main_queue(), ^{
-        _imageView.image = [UIImage imageWithData:data];
+        self->_imageView.image = [UIImage imageWithData:data];
       });
 
       [trace stop];
@@ -91,7 +91,7 @@
                             error:nil];
     }] resume];
 
-  [trace incrementCounterNamed:@"request_sent"];
+  [trace incrementMetric:@"request_sent" byInt:1];
 }
 
 @end

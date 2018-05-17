@@ -14,7 +14,7 @@
 //  limitations under the License.
 //
 
-import FirebaseFirestore
+import Firebase
 
 // A type that can be initialized from a Firestore document.
 protocol DocumentSerializable {

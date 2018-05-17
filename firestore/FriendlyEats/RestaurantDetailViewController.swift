@@ -16,7 +16,6 @@
 
 import UIKit
 import SDWebImage
-import FirebaseFirestore
 import Firebase
 import FirebaseUI
 

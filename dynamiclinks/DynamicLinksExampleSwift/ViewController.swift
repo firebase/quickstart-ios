@@ -176,9 +176,9 @@ class ViewController: UITableViewController {
         print(error.localizedDescription)
         return
       }
-      self.shortLink = shortURL
-      print(self.shortLink?.absoluteString ?? "")
+      print(shortURL?.absoluteString ?? "")
       // [START_EXCLUDE]
+      self.shortLink = shortURL
       self.tableView.reloadRows(at: [IndexPath(row: 1, section: 2)], with: .none)
       // [END_EXCLUDE]
     }

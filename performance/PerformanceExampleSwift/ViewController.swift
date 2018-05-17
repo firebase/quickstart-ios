@@ -44,7 +44,7 @@ class ViewController: UIViewController {
 
     let fileLength = contents.lengthOfBytes(using: .utf8)
 
-    trace?.incrementCounter(named: "log_file_size", by: fileLength)
+    trace?.incrementMetric("log_file_size", by: Int64(fileLength))
 
     let target = "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png"
     guard let targetUrl = URL(string: target) else { return }
@@ -85,6 +85,6 @@ class ViewController: UIViewController {
     }
 
     task.resume()
-    trace?.incrementCounter(named: "request_sent")
+    trace?.incrementMetric("request_sent", by: 1)
   }
 }

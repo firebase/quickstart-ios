@@ -189,9 +189,9 @@ static NSString *const DYNAMIC_LINK_DOMAIN = @"YOUR_DYNAMIC_LINK_DOMAIN";
       NSLog(@"Error generating short link: %@", error.description);
       return;
     }
-    _shortLink = shortURL;
-    NSLog(@"Short URL: %@", _shortLink.absoluteString);
+    NSLog(@"Short URL: %@", shortURL.absoluteString);
     // [START_EXCLUDE]
+    self->_shortLink = shortURL;
     [self.tableView reloadRowsAtIndexPaths:@[
                                              [NSIndexPath indexPathForRow:1 inSection:2]
                                              ]

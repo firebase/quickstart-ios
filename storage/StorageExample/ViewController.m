@@ -46,11 +46,11 @@
     [[FIRAuth auth] signInAnonymouslyWithCompletion:^(FIRAuthDataResult * _Nullable authResult,
                                                       NSError * _Nullable error) {
       if (error) {
-        _urlTextView.text = error.description;
-        _takePicButton.enabled = NO;
+        self->_urlTextView.text = error.description;
+        self->_takePicButton.enabled = NO;
       } else {
-        _takePicButton.enabled = YES;
-        _urlTextView.text = @"";
+        self->_takePicButton.enabled = YES;
+        self->_urlTextView.text = @"";
       }
     }];
   }
@@ -90,14 +90,14 @@
                                          [FIRAuth auth].currentUser.uid,
                                          (long long)([NSDate date].timeIntervalSince1970 * 1000.0),
                                          imageFile.lastPathComponent];
+                                 FIRStorageReference *storageRef = [self->_storage referenceWithPath:filePath];
                                  // [START uploadimage]
-                                 FIRStorageReference *storageRef = [_storage referenceWithPath:filePath];
                                  [storageRef putFile:imageFile
                                             metadata:nil
                                           completion:^(FIRStorageMetadata *metadata, NSError *error) {
                                     if (error) {
                                       NSLog(@"Error uploading: %@", error);
-                                      _urlTextView.text = @"Upload Failed";
+                                      self->_urlTextView.text = @"Upload Failed";
                                       return;
                                     }
                                     [self uploadSuccess:storageRef storagePath:filePath];
@@ -120,7 +120,7 @@
              completion:^(FIRStorageMetadata * _Nullable metadata, NSError * _Nullable error) {
           if (error) {
             NSLog(@"Error uploading: %@", error);
-            _urlTextView.text = @"Upload Failed";
+            self->_urlTextView.text = @"Upload Failed";
             return;
           }
           [self uploadSuccess:storageRef storagePath:imagePath];
@@ -133,13 +133,13 @@
   [storageRef downloadURLWithCompletion:^(NSURL * _Nullable URL, NSError * _Nullable error) {
     if (error) {
       NSLog(@"Error getting download URL: %@", error);
-      _urlTextView.text = @"Can't get download URL";
+      self->_urlTextView.text = @"Can't get download URL";
       return;
     }
-    _urlTextView.text = URL.absoluteString;
+    self->_urlTextView.text = URL.absoluteString;
     [[NSUserDefaults standardUserDefaults] setObject:storagePath forKey:@"storagePath"];
     [[NSUserDefaults standardUserDefaults] synchronize];
-    _downloadPicButton.enabled = YES;
+    self->_downloadPicButton.enabled = YES;
   }];
 }
 

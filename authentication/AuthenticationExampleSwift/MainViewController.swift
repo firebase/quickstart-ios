@@ -262,7 +262,7 @@ class MainViewController: UITableViewController, GIDSignInUIDelegate {
     showSpinner {
       if let user = Auth.auth().currentUser {
         // [START link_credential]
-        user.link(with: credential) { (user, error) in
+        user.linkAndRetrieveData(with: credential) { (authResult, error) in
           // [START_EXCLUDE]
           self.hideSpinner {
             if let error = error {

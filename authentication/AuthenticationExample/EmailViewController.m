@@ -33,8 +33,8 @@
 - (IBAction)didTapEmailLogin:(id)sender {
   [self showSpinner:^{
     // [START headless_email_auth]
-    [[FIRAuth auth] signInWithEmail:_emailField.text
-                           password:_passwordField.text
+    [[FIRAuth auth] signInWithEmail:self->_emailField.text
+                           password:self->_passwordField.text
                          completion:^(FIRAuthDataResult * _Nullable authResult,
                                       NSError * _Nullable error) {
       // [START_EXCLUDE]

@@ -41,11 +41,11 @@
            completion:^(NSURL * _Nullable URL, NSError * _Nullable error) {
             if (error) {
               NSLog(@"Error downloading: %@", error);
-              _statusTextView.text = @"Download Failed";
+              self->_statusTextView.text = @"Download Failed";
               return;
             } else if (URL) {
-              _statusTextView.text = @"Download Succeeded!";
-              _imageView.image = [UIImage imageWithContentsOfFile:URL.path];
+              self->_statusTextView.text = @"Download Succeeded!";
+              self->_imageView.image = [UIImage imageWithContentsOfFile:URL.path];
             }
           }];
   // [END downloadimage]

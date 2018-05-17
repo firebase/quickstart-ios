@@ -8,7 +8,7 @@ EXIT_STATUS=0
   -workspace ${SAMPLE}/${SAMPLE}Example.xcworkspace \
   -scheme ${SAMPLE}Example \
   -sdk iphonesimulator \
-  -destination 'platform=iOS Simulator,OS=11.2,name=iPhone X' \
+  -destination 'platform=iOS Simulator,name=iPhone 8 Plus' \
   build \
   test \
   ONLY_ACTIVE_ARCH=YES \

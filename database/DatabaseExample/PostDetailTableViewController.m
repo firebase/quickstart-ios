@@ -82,9 +82,9 @@ static const int kSectionPost = 0;
   _refHandle = [_postRef observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
     NSDictionary *postDict = snapshot.value;
     // [START_EXCLUDE]
-    [_post setValuesForKeysWithDictionary:postDict];
+    [self.post setValuesForKeysWithDictionary:postDict];
     [self.tableView reloadData];
-    self.navigationItem.title = _post.title;
+    self.navigationItem.title = self.post.title;
     // [END_EXCLUDE]
   }];
   // [END post_value_event_listener]
@@ -134,10 +134,10 @@ static const int kSectionPost = 0;
       NSString *username = user[@"username"];
       NSDictionary *comment = @{@"uid": uid,
                                 @"author": username,
-                                @"text": _commentField.text};
-      [[_commentsRef childByAutoId] setValue:comment];
-      _commentField.text = @"";
-      _commentField.enabled = YES;
+                                @"text": self.commentField.text};
+      [[self.commentsRef childByAutoId] setValue:comment];
+      self.commentField.text = @"";
+      self.commentField.enabled = YES;
       sender.enabled = YES;
   }];
 }

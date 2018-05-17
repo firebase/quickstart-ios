@@ -61,8 +61,8 @@
     // Write new post
     [self writeNewPost:userID
               username:user.username
-                 title:_titleTextField.text
-                  body:_bodyTextView.text];
+                 title:self.titleTextField.text
+                  body:self.bodyTextView.text];
     // Finish this Activity, back to the stream
     [self.navigationController popViewControllerAnimated:YES];
     // [END_EXCLUDE]

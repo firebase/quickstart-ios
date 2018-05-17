@@ -39,15 +39,15 @@
 
 - (IBAction)didTapEmailLogin:(id)sender {
   [self showSpinner:^{
-    [[FIRAuth auth] signInWithEmail:_emailField.text
-                           password:_passwordField.text
+    [[FIRAuth auth] signInWithEmail:self.emailField.text
+                           password:self.passwordField.text
                          completion:^(FIRAuthDataResult * _Nullable authResult, NSError *error) {
                              [self hideSpinner:^{
                                if (error) {
                                  [self showMessagePrompt:error.localizedDescription];
                                  return;
                                }
-                               [[[_ref child:@"users"] child:authResult.user.uid]
+                               [[[self.ref child:@"users"] child:authResult.user.uid]
                                     observeEventType:FIRDataEventTypeValue
                                            withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
                                               if (![snapshot exists]) {
@@ -77,7 +77,7 @@
                                  [self showMessagePrompt:error.localizedDescription];
                                  return;
                                }
-                               [[[_ref child:@"users"] child:[FIRAuth auth].currentUser.uid]
+                               [[[self.ref child:@"users"] child:[FIRAuth auth].currentUser.uid]
                                     setValue:@{@"username": username}];
                                [self performSegueWithIdentifier:@"signIn" sender:nil];
                              }];
@@ -124,7 +124,7 @@
                                     return;
                                   }
                                   // [START basic_write]
-                                  [[[_ref child:@"users"] child:authResult.user.uid]
+                                  [[[self.ref child:@"users"] child:authResult.user.uid]
                                       setValue:@{@"username": username}];
                                   // [END basic_write]
                                   [self performSegueWithIdentifier:@"signIn" sender:nil];

@@ -64,7 +64,7 @@ static NSString * const kSearchTerm = @" Measurement data sent to network. ";
                                                   selector:@selector(checkTimer:)
                                                   userInfo:expectation
                                                    repeats:YES];
-  [self waitForExpectationsWithTimeout:15.0 handler:nil];
+  [self waitForExpectationsWithTimeout:10.0 handler:nil];
   [timer invalidate];
 }
 

@@ -26,6 +26,11 @@ class ViewController:  UIViewController,  UIImagePickerControllerDelegate,  UINa
   lazy var vision = Vision.vision()
   // [END init_vision]
 
+  // Create a text detector.
+  // [START init_text]
+  lazy var textDetector = vision.textDetector()
+  // [END init_text]
+
   /// Detector service that manages loading models and detecting objects.
   let detectorService = DetectorService()
 
@@ -321,11 +326,6 @@ class ViewController:  UIViewController,  UIImagePickerControllerDelegate,  UINa
   /// Detects texts on the specified image and draws a frame for them.
   func detectTexts() {
     guard let image = imageView.image else { return }
-
-    // Create a text detector.
-    // [START init_text]
-    let textDetector = vision.textDetector()  // Check console for errors.
-    // [END init_text]
 
     // Initialize a VisionImage with a UIImage.
     let visionImage = VisionImage(image: image)

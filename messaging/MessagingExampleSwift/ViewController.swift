@@ -29,7 +29,9 @@ class ViewController: UIViewController {
 
   @IBAction func handleSubscribeTouch(_ sender: UIButton) {
     // [START subscribe_topic]
-    Messaging.messaging().subscribe(toTopic: "news")
+    Messaging.messaging().subscribe(toTopic: "news") { error in
+      // ...
+    }
     print("Subscribed to news topic")
     // [END subscribe_topic]
   }

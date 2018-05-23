@@ -30,9 +30,8 @@
   // [START subscribe_topic]
   [[FIRMessaging messaging] subscribeToTopic:@"news"
                                   completion:^(NSError * _Nullable error) {
-    // ...
+    NSLog(@"Subscribed to news topic");
   }];
-  NSLog(@"Subscribed to news topic");
   // [END subscribe_topic]
 }
 

@@ -18,22 +18,14 @@
 
 @interface ViewController ()
 @property(weak, nonatomic) IBOutlet UITextField *urlText;
-
 @end
 
 @implementation ViewController
+
 - (IBAction)triggerEvent:(id)sender {
-  [FIRAnalytics logEventWithName:self.urlText.text parameters:@{}];
-}
-
-- (void)viewDidLoad {
-  [super viewDidLoad];
-  // Do any additional setup after loading the view, typically from a nib.
-}
-
-- (void)didReceiveMemoryWarning {
-  [super didReceiveMemoryWarning];
-  // Dispose of any resources that can be recreated.
+  if (self.urlText.text != nil) {
+    [FIRAnalytics logEventWithName:self.urlText.text parameters:@{}];
+  }
 }
 
 @end

@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7D31D8493943DCD77743922A /* Pods_fiam_external_ios_testing_app.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12F51E141FEC71BA1CE57DC4 /* Pods_fiam_external_ios_testing_app.framework */; };
 		AD7649C71FE1B0A800378AE0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7649C61FE1B0A800378AE0 /* AppDelegate.m */; };
 		AD7649CA1FE1B0A800378AE0 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7649C91FE1B0A800378AE0 /* ViewController.m */; };
 		AD7649CD1FE1B0A800378AE0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD7649CB1FE1B0A800378AE0 /* Main.storyboard */; };
@@ -18,9 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		12F51E141FEC71BA1CE57DC4 /* Pods_fiam_external_ios_testing_app.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_fiam_external_ios_testing_app.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		61D649CA05E938083C88FC6D /* Pods-fiam-external-ios-testing-app.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-fiam-external-ios-testing-app.debug.xcconfig"; path = "Pods/Target Support Files/Pods-fiam-external-ios-testing-app/Pods-fiam-external-ios-testing-app.debug.xcconfig"; sourceTree = "<group>"; };
-		AD7649C21FE1B0A800378AE0 /* fiam-external-ios-testing-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "fiam-external-ios-testing-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AD7649C21FE1B0A800378AE0 /* InAppMessagingExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InAppMessagingExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD7649C51FE1B0A800378AE0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		AD7649C61FE1B0A800378AE0 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		AD7649C81FE1B0A800378AE0 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
@@ -31,7 +28,6 @@
 		AD7649D31FE1B0A800378AE0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AD7649D41FE1B0A800378AE0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		AD7649DB1FE1B57A00378AE0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
-		EE0B5FD5B23F372E4894C799 /* Pods-fiam-external-ios-testing-app.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-fiam-external-ios-testing-app.release.xcconfig"; path = "Pods/Target Support Files/Pods-fiam-external-ios-testing-app/Pods-fiam-external-ios-testing-app.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,49 +35,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7D31D8493943DCD77743922A /* Pods_fiam_external_ios_testing_app.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2F924E232047E700385C2AFA /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				12F51E141FEC71BA1CE57DC4 /* Pods_fiam_external_ios_testing_app.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		4DC924B9E0562D822E3E68F3 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				61D649CA05E938083C88FC6D /* Pods-fiam-external-ios-testing-app.debug.xcconfig */,
-				EE0B5FD5B23F372E4894C799 /* Pods-fiam-external-ios-testing-app.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		AD7649B91FE1B0A800378AE0 = {
 			isa = PBXGroup;
 			children = (
-				AD7649C41FE1B0A800378AE0 /* fiam-external-ios-testing-app */,
+				AD7649C41FE1B0A800378AE0 /* InAppMessagingExample */,
 				AD7649C31FE1B0A800378AE0 /* Products */,
-				4DC924B9E0562D822E3E68F3 /* Pods */,
-				2F924E232047E700385C2AFA /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
 		AD7649C31FE1B0A800378AE0 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				AD7649C21FE1B0A800378AE0 /* fiam-external-ios-testing-app.app */,
+				AD7649C21FE1B0A800378AE0 /* InAppMessagingExample.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		AD7649C41FE1B0A800378AE0 /* fiam-external-ios-testing-app */ = {
+		AD7649C41FE1B0A800378AE0 /* InAppMessagingExample */ = {
 			isa = PBXGroup;
 			children = (
 				AD7649DB1FE1B57A00378AE0 /* GoogleService-Info.plist */,
@@ -95,30 +71,27 @@
 				AD7649D31FE1B0A800378AE0 /* Info.plist */,
 				AD7649D41FE1B0A800378AE0 /* main.m */,
 			);
-			path = "fiam-external-ios-testing-app";
+			path = InAppMessagingExample;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		AD7649C11FE1B0A800378AE0 /* fiam-external-ios-testing-app */ = {
+		AD7649C11FE1B0A800378AE0 /* InAppMessagingExample */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = AD7649D81FE1B0A800378AE0 /* Build configuration list for PBXNativeTarget "fiam-external-ios-testing-app" */;
+			buildConfigurationList = AD7649D81FE1B0A800378AE0 /* Build configuration list for PBXNativeTarget "InAppMessagingExample" */;
 			buildPhases = (
-				89F39EB5CA1632B8B86E938F /* [CP] Check Pods Manifest.lock */,
 				AD7649BE1FE1B0A800378AE0 /* Sources */,
 				AD7649BF1FE1B0A800378AE0 /* Frameworks */,
 				AD7649C01FE1B0A800378AE0 /* Resources */,
-				AF2C898A9A08823BD10E1650 /* [CP] Embed Pods Frameworks */,
-				4404D2767B123E1C8C51D02D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = "fiam-external-ios-testing-app";
-			productName = "fiam-external-ios-testing-app";
-			productReference = AD7649C21FE1B0A800378AE0 /* fiam-external-ios-testing-app.app */;
+			name = InAppMessagingExample;
+			productName = InAppMessagingExample;
+			productReference = AD7649C21FE1B0A800378AE0 /* InAppMessagingExample.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -136,7 +109,7 @@
 					};
 				};
 			};
-			buildConfigurationList = AD7649BD1FE1B0A800378AE0 /* Build configuration list for PBXProject "fiam-external-ios-testing-app" */;
+			buildConfigurationList = AD7649BD1FE1B0A800378AE0 /* Build configuration list for PBXProject "InAppMessagingExample" */;
 			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -149,7 +122,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				AD7649C11FE1B0A800378AE0 /* fiam-external-ios-testing-app */,
+				AD7649C11FE1B0A800378AE0 /* InAppMessagingExample */,
 			);
 		};
 /* End PBXProject section */
@@ -167,65 +140,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		4404D2767B123E1C8C51D02D /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-fiam-external-ios-testing-app/Pods-fiam-external-ios-testing-app-resources.sh",
-				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseInAppMessaging/InAppMessagingResources.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/InAppMessagingResources.bundle",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-fiam-external-ios-testing-app/Pods-fiam-external-ios-testing-app-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		89F39EB5CA1632B8B86E938F /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-fiam-external-ios-testing-app-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		AF2C898A9A08823BD10E1650 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-fiam-external-ios-testing-app/Pods-fiam-external-ios-testing-app-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
-				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-fiam-external-ios-testing-app/Pods-fiam-external-ios-testing-app-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		AD7649BE1FE1B0A800378AE0 /* Sources */ = {
@@ -370,12 +284,11 @@
 		};
 		AD7649D91FE1B0A800378AE0 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 61D649CA05E938083C88FC6D /* Pods-fiam-external-ios-testing-app.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = EQHXZ8M8AV;
-				INFOPLIST_FILE = "fiam-external-ios-testing-app/Info.plist";
+				INFOPLIST_FILE = InAppMessagingExample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.google.fiam-external-ios-testing";
@@ -386,12 +299,11 @@
 		};
 		AD7649DA1FE1B0A800378AE0 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EE0B5FD5B23F372E4894C799 /* Pods-fiam-external-ios-testing-app.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = EQHXZ8M8AV;
-				INFOPLIST_FILE = "fiam-external-ios-testing-app/Info.plist";
+				INFOPLIST_FILE = InAppMessagingExample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.google.fiam-external-ios-testing";
@@ -403,7 +315,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		AD7649BD1FE1B0A800378AE0 /* Build configuration list for PBXProject "fiam-external-ios-testing-app" */ = {
+		AD7649BD1FE1B0A800378AE0 /* Build configuration list for PBXProject "InAppMessagingExample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AD7649D61FE1B0A800378AE0 /* Debug */,
@@ -412,7 +324,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		AD7649D81FE1B0A800378AE0 /* Build configuration list for PBXNativeTarget "fiam-external-ios-testing-app" */ = {
+		AD7649D81FE1B0A800378AE0 /* Build configuration list for PBXNativeTarget "InAppMessagingExample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AD7649D91FE1B0A800378AE0 /* Debug */,

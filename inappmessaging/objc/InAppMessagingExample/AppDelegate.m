@@ -18,8 +18,6 @@
 #import <FirebaseDynamicLinks/FirebaseDynamicLinks.h>
 #import <FirebaseInAppMessaging/FirebaseInAppMessaging.h>
 
-
-
 @interface AppDelegate ()
 
 @end
@@ -28,12 +26,9 @@
 
 - (BOOL)application:(UIApplication *)application
     didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-  // Override point for customization after application launch.
-
-  // uncomment the following line for disabling the auto startup
-  // of the sdk
+  // Uncomment the following line to disable In-App Messaging auto-startup.
   // [[FIRInAppMessaging inAppMessaging] disable];
-  
+
   [FIROptions defaultOptions].deepLinkURLScheme = @"com.google.InAppMessagingExampleiOS";
   [FIRApp configure];
   return YES;
@@ -42,7 +37,6 @@
 - (BOOL)application:(UIApplication *)app
             openURL:(NSURL *)url
             options:(NSDictionary<NSString *, id> *)options {
-  NSLog(@"called here 1");
   return [self application:app
                    openURL:url
          sourceApplication:options[UIApplicationOpenURLOptionsSourceApplicationKey]
@@ -72,4 +66,5 @@
   }
   return NO;
 }
+
 @end

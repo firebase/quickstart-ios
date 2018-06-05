@@ -113,7 +113,7 @@ class MainViewController: UITableViewController, GIDSignInUIDelegate {
         action = UIAlertAction(title: "Anonymous", style: .default) { (UIAlertAction) in
           self.showSpinner {
             // [START firebase_auth_anonymous]
-            Auth.auth().signInAnonymously() { (user, error) in
+            Auth.auth().signInAnonymously() { (authResult, error) in
               // [START_EXCLUDE]
               self.hideSpinner {
                 if let error = error {

@@ -114,6 +114,8 @@ static NSString *const kUpdatePhoneNumberText = @"Update Phone Number";
           return;
         }
         // User successfully signed in. Get user data from the FIRUser object
+        if (authResult == nil) { return; }
+        FIRUser *user = authResult.user;
         // [START_EXCLUDE]
         }];
         // [END_EXCLUDE]

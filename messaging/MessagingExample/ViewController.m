@@ -22,8 +22,19 @@
 - (IBAction)handleLogTokenTouch:(id)sender {
   // [START log_fcm_reg_token]
   NSString *fcmToken = [FIRMessaging messaging].FCMToken;
-  NSLog(@"FCM registration token: %@", fcmToken);
+  NSLog(@"Local FCM registration token: %@", fcmToken);
   // [END log_fcm_reg_token]
+
+  // [START log_iid_reg_token]
+  [[FIRInstanceID instanceID] instanceIDWithHandler:^(FIRInstanceIDResult * _Nullable result,
+                                                      NSError * _Nullable error) {
+    if (error != nil) {
+      NSLog(@"Error fetching remote instance ID: %@", error);
+    } else {
+      NSLog(@"Remote instance ID token: %@", result.token);
+    }
+  }];
+  // [END log_iid_reg_token]
 }
 
 - (IBAction)handleSubscribeTouch:(id)sender {

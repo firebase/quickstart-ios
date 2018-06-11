@@ -25,6 +25,16 @@ class ViewController: UIViewController {
     let token = Messaging.messaging().fcmToken
     print("FCM token: \(token ?? "")")
     // [END log_fcm_reg_token]
+
+    // [START log_iid_reg_token]
+    InstanceID.instanceID().instanceID { (result, error) in
+      if let error = error {
+        print("Error fetching remote instange ID: \(error)")
+      } else if let result = result {
+        print("Remote instance ID token: \(result.token)")
+      }
+    }
+    // [END log_iid_reg_token]
   }
 
   @IBAction func handleSubscribeTouch(_ sender: UIButton) {

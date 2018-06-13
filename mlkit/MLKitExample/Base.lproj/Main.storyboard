@@ -87,6 +87,11 @@
                                             <action selector="detect:" destination="BYZ-38-t0r" id="gdp-TT-BpD"/>
                                         </connections>
                                     </barButtonItem>
+                                    <barButtonItem title="Next image" id="Glk-GE-iCa">
+                                        <connections>
+                                            <action selector="changeImage:" destination="BYZ-38-t0r" id="xFQ-zS-t7B"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="cR0-7i-Xm8"/>
                                 </items>
                             </toolbar>

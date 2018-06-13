@@ -15,6 +15,11 @@
 		10224B5E2087E49F00A77316 /* UIImage+VisionDetection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10224B5B2087E49F00A77316 /* UIImage+VisionDetection.swift */; };
 		10224B742087E5A900A77316 /* mobilenet_quant_v1_224.tflite in Resources */ = {isa = PBXBuildFile; fileRef = 10224B6E2087E5A900A77316 /* mobilenet_quant_v1_224.tflite */; };
 		10224B762087E5A900A77316 /* grace_hopper.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 10224B702087E5A900A77316 /* grace_hopper.jpg */; };
+    7202DC6920D0C1A300034C35 /* qr_code.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7202DC6420D0C1A300034C35 /* qr_code.jpg */; };
+    7202DC6A20D0C1A300034C35 /* image_has_text.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7202DC6520D0C1A300034C35 /* image_has_text.jpg */; };
+    7202DC6B20D0C1A300034C35 /* barcode_128.png in Resources */ = {isa = PBXBuildFile; fileRef = 7202DC6620D0C1A300034C35 /* barcode_128.png */; };
+    7202DC6C20D0C1A300034C35 /* beach.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7202DC6720D0C1A300034C35 /* beach.jpg */; };
+    7202DC6D20D0C1A300034C35 /* multi-face.png in Resources */ = {isa = PBXBuildFile; fileRef = 7202DC6820D0C1A300034C35 /* multi-face.png */; };
 		1036DA2A2087CC16003253C9 /* MLKitExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1036DA292087CC16003253C9 /* MLKitExampleTests.swift */; };
 		1036DA382087CC26003253C9 /* MLKitExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1036DA372087CC26003253C9 /* MLKitExampleUITests.swift */; };
 		BB287B3920729CE90069707A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB287B3820729CE90069707A /* AppDelegate.swift */; };
@@ -47,6 +52,11 @@
 		10224B5B2087E49F00A77316 /* UIImage+VisionDetection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+VisionDetection.swift"; sourceTree = "<group>"; };
 		10224B6E2087E5A900A77316 /* mobilenet_quant_v1_224.tflite */ = {isa = PBXFileReference; lastKnownFileType = file; name = mobilenet_quant_v1_224.tflite; path = Resources/mobilenet_quant_v1_224.tflite; sourceTree = "<group>"; };
 		10224B702087E5A900A77316 /* grace_hopper.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = grace_hopper.jpg; path = Resources/grace_hopper.jpg; sourceTree = "<group>"; };
+    7202DC6420D0C1A300034C35 /* qr_code.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = qr_code.jpg; path = Resources/qr_code.jpg; sourceTree = "<group>"; };
+    7202DC6520D0C1A300034C35 /* image_has_text.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = image_has_text.jpg; path = Resources/image_has_text.jpg; sourceTree = "<group>"; };
+    7202DC6620D0C1A300034C35 /* barcode_128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = barcode_128.png; path = Resources/barcode_128.png; sourceTree = "<group>"; };
+    7202DC6720D0C1A300034C35 /* beach.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = beach.jpg; path = Resources/beach.jpg; sourceTree = "<group>"; };
+    7202DC6820D0C1A300034C35 /* multi-face.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "multi-face.png"; path = "Resources/multi-face.png"; sourceTree = "<group>"; };
 		1036DA272087CC16003253C9 /* MLKitExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MLKitExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1036DA292087CC16003253C9 /* MLKitExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLKitExampleTests.swift; sourceTree = "<group>"; };
 		1036DA2B2087CC16003253C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -88,6 +98,11 @@
 			isa = PBXGroup;
 			children = (
 				10224B702087E5A900A77316 /* grace_hopper.jpg */,
+        7202DC6620D0C1A300034C35 /* barcode_128.png */,
+        7202DC6720D0C1A300034C35 /* beach.jpg */,
+        7202DC6520D0C1A300034C35 /* image_has_text.jpg */,
+        7202DC6820D0C1A300034C35 /* multi-face.png */,
+        7202DC6420D0C1A300034C35 /* qr_code.jpg */,
 				10224B6E2087E5A900A77316 /* mobilenet_quant_v1_224.tflite */,
 			);
 			name = Resources;
@@ -279,6 +294,11 @@
 			files = (
 				1001E70120CF132C00445CB3 /* shared in Resources */,
 				10224B762087E5A900A77316 /* grace_hopper.jpg in Resources */,
+        7202DC6C20D0C1A300034C35 /* beach.jpg in Resources */,
+        7202DC6920D0C1A300034C35 /* qr_code.jpg in Resources */,
+        7202DC6B20D0C1A300034C35 /* barcode_128.png in Resources */,
+        7202DC6D20D0C1A300034C35 /* multi-face.png in Resources */,
+        7202DC6A20D0C1A300034C35 /* image_has_text.jpg in Resources */,
 				BB287B3E20729CE90069707A /* Main.storyboard in Resources */,
 				10224B742087E5A900A77316 /* mobilenet_quant_v1_224.tflite in Resources */,
 				1001E6FD20CF0C8F00445CB3 /* Assets.xcassets in Resources */,

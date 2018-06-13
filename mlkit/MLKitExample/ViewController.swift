@@ -47,6 +47,9 @@ class ViewController:  UIViewController, UINavigationControllerDelegate {
 
   /// An image picker for accessing the photo library or camera.
   var imagePicker = UIImagePickerController()
+    
+  // Image counter.
+  var currentImage = 0
 
   // MARK: - IBOutlets
 
@@ -60,7 +63,7 @@ class ViewController:  UIViewController, UINavigationControllerDelegate {
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    imageView.image = UIImage(named: Constants.graceHopperImage)
+    imageView.image = UIImage(named: Constants.images[currentImage])
     imageView.addSubview(annotationOverlayView)
     NSLayoutConstraint.activate([
       annotationOverlayView.topAnchor.constraint(equalTo: imageView.topAnchor),
@@ -143,6 +146,12 @@ class ViewController:  UIViewController, UINavigationControllerDelegate {
     }
     imagePicker.sourceType = .camera
     present(imagePicker, animated: true)
+  }
+    
+  @IBAction func changeImage(_ sender: Any) {
+    clearResults()
+    currentImage = (currentImage + 1) % Constants.images.count
+    imageView.image = UIImage(named: Constants.images[currentImage])
   }
 
   // MARK: - Private
@@ -862,7 +871,8 @@ private enum DetectorPickerRow: Int {
 }
 
 private enum Constants {
-  static let graceHopperImage = "grace_hopper.jpg"
+  static let images = ["grace_hopper.jpg", "barcode_128.png", "qr_code.jpg", "beach.jpg",
+                         "multi-face.png", "image_has_text.jpg"]
   static let modelExtension = "tflite"
   static let localModelName = "mobilenet"
   static let quantizedModelFilename = "mobilenet_quant_v1_224"

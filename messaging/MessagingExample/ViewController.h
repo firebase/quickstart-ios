@@ -17,4 +17,6 @@
 @import UIKit;
 
 @interface ViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UILabel *fcmTokenMessage;
+@property (weak, nonatomic) IBOutlet UILabel *instanceIDTokenMessage;
 @end

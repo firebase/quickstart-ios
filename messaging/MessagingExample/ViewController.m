@@ -19,12 +19,22 @@
 
 @implementation ViewController
 
+-(void)viewDidLoad {
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                        selector:@selector(displayFCMToken:)
+                                        name:@"FCMToken"
+                                        object:nil];
+}
+
 - (IBAction)handleLogTokenTouch:(id)sender {
   // [START log_fcm_reg_token]
   NSString *fcmToken = [FIRMessaging messaging].FCMToken;
   NSLog(@"Local FCM registration token: %@", fcmToken);
   // [END log_fcm_reg_token]
-
+    
+  NSString* displayToken = [NSString stringWithFormat:@"Logged FCM token: %@", fcmToken];
+  self.fcmTokenMessage.text = displayToken;
+    
   // [START log_iid_reg_token]
   [[FIRInstanceID instanceID] instanceIDWithHandler:^(FIRInstanceIDResult * _Nullable result,
                                                       NSError * _Nullable error) {
@@ -32,6 +42,9 @@
       NSLog(@"Error fetching remote instance ID: %@", error);
     } else {
       NSLog(@"Remote instance ID token: %@", result.token);
+      NSString* message =
+        [NSString stringWithFormat:@"Remote InstanceID token: %@", result.token];
+      self.instanceIDTokenMessage.text = message;
     }
   }];
   // [END log_iid_reg_token]
@@ -44,6 +57,12 @@
     NSLog(@"Subscribed to news topic");
   }];
   // [END subscribe_topic]
+}
+
+- (void) displayFCMToken:(NSNotification *) notification {
+  NSString* message =
+    [NSString stringWithFormat:@"Received FCM token: %@", notification.userInfo[@"token"]];
+  self.fcmTokenMessage.text = message;
 }
 
 @end

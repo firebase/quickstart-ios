@@ -26,11 +26,6 @@ class ViewController:  UIViewController, UINavigationControllerDelegate {
   lazy var vision = Vision.vision()
   // [END init_vision]
 
-  // Create a text detector.
-  // [START init_text]
-  lazy var textDetector = vision.textDetector()
-  // [END init_text]
-
   /// A string holding current results from detection.
   var resultsText = ""
 
@@ -575,6 +570,10 @@ extension ViewController {
   /// - Parameter image: The image.
   func detectTexts(image: UIImage?) {
     guard let image = image else { return }
+
+    // [START init_text]
+    let textDetector = vision.textDetector()
+    // [END init_text]
 
     // Define the metadata for the image.
     let imageMetadata = VisionImageMetadata()

@@ -1,0 +1,13 @@
+# CrashlyticsExample
+use_frameworks!
+platform :ios, '8.0'
+pod 'Firebase/Core'
+pod 'Fabric'
+pod 'Crashlytics'
+
+target 'CrashlyticsExample'  do
+end
+target 'CrashlyticsExampleSwift' do
+end
+target 'CrashlyticsExampleTests' do
+end

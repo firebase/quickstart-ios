@@ -101,7 +101,7 @@ public class ModelInterpreterManager {
   ///   - name: The name for the cloud model.
   /// - Returns: A `Bool` indicating whether the cloud model was successfully set up and registered.
   public func setUpCloudModel(withName name: String) -> Bool {
-    let conditions = ModelDownloadConditions(wiFiRequired: false, idleRequired: true)
+    let conditions = ModelDownloadConditions(isWiFiRequired: false, canDownloadInBackground: true)
     let cloudModelSource = CloudModelSource(
       modelName: name,
       enableModelUpdates: true,
@@ -335,7 +335,7 @@ public class ModelInterpreterManager {
           NSNumber(value: labelsCount),
         ]
       }
-      modelInterpreter = ModelInterpreter(options: options)
+      modelInterpreter = ModelInterpreter.modelInterpreter(options: options)
       modelElementType = isModelQuantized ? .uInt8 : .float32
       let modelInputDimensions = inputDimensions ?? ModelInterpreterConstants.inputDimensions
       try modelInputOutputOptions.setInputFormat(

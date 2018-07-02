@@ -16,6 +16,8 @@
 
 import UIKit
 import FirebasePerformance
+import AVKit
+import AVFoundation
 
 @objc(ViewController)
 class ViewController: UIViewController {
@@ -86,5 +88,21 @@ class ViewController: UIViewController {
 
     task.resume()
     trace?.incrementMetric("request_sent", by: 1)
+    
+    if #available(iOS 10, *){
+      let asset =
+        AVURLAsset(url: URL(string: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Two_red_dice_01.svg/220px-Two_red_dice_01.svg.png")!)
+      let downloadSession =
+        AVAssetDownloadURLSession(configuration: URLSessionConfiguration.background(withIdentifier: "avasset"),
+                                  assetDownloadDelegate: nil,
+                                  delegateQueue: OperationQueue.main)
+        
+      let task = downloadSession.makeAssetDownloadTask(asset: asset,
+                                                       assetTitle:"something",
+                                                       assetArtworkData:nil,
+                                                       options:nil)!
+      task.resume()
+      trace?.incrementMetric("av_request_sent", by: 1)
+    }
   }
 }

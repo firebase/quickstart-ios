@@ -29,6 +29,7 @@
 		10E1152820F3E0990013E4A4 /* beach.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7202DC6720D0C1A300034C35 /* beach.jpg */; };
 		10E1152920F3E09C0013E4A4 /* image_has_text.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7202DC6520D0C1A300034C35 /* image_has_text.jpg */; };
 		10E1152A20F3E09F0013E4A4 /* qr_code.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7202DC6420D0C1A300034C35 /* qr_code.jpg */; };
+		10E1156520F4681E0013E4A4 /* shared in Resources */ = {isa = PBXBuildFile; fileRef = 1001E70020CF132C00445CB3 /* shared */; };
 		7202DC6920D0C1A300034C35 /* qr_code.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7202DC6420D0C1A300034C35 /* qr_code.jpg */; };
 		7202DC6A20D0C1A300034C35 /* image_has_text.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7202DC6520D0C1A300034C35 /* image_has_text.jpg */; };
 		7202DC6B20D0C1A300034C35 /* barcode_128.png in Resources */ = {isa = PBXBuildFile; fileRef = 7202DC6620D0C1A300034C35 /* barcode_128.png */; };
@@ -365,6 +366,7 @@
 				10E1152720F3E0960013E4A4 /* barcode_128.png in Resources */,
 				10E1152820F3E0990013E4A4 /* beach.jpg in Resources */,
 				10E1152620F3E0930013E4A4 /* grace_hopper.jpg in Resources */,
+				10E1156520F4681E0013E4A4 /* shared in Resources */,
 				10E1152920F3E09C0013E4A4 /* image_has_text.jpg in Resources */,
 				10E1152A20F3E09F0013E4A4 /* qr_code.jpg in Resources */,
 			);

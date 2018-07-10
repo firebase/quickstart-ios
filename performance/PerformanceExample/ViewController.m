@@ -18,6 +18,8 @@
 #import "ViewController.h"
 
 @import FirebasePerformance;
+@import AVFoundation;
+@import AVKit;
 
 @interface ViewController()
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
@@ -91,7 +93,23 @@
                             error:nil];
     }] resume];
 
-  [trace incrementMetric:@"request_sent" byInt:1];
+    [trace incrementMetric:@"request_sent" byInt:1];
+    
+    if (@available(iOS 10, *)) {
+      AVURLAsset *asset = [AVURLAsset assetWithURL:
+        [NSURL URLWithString:@"https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Two_red_dice_01.svg/220px-Two_red_dice_01.svg.png"]];
+    
+      AVAssetDownloadURLSession *downloadSession =
+        [AVAssetDownloadURLSession sessionWithConfiguration:
+      [NSURLSessionConfiguration backgroundSessionConfigurationWithIdentifier:@"avasset"]
+                                  assetDownloadDelegate:nil delegateQueue:[NSOperationQueue mainQueue]];
+    
+      AVAssetDownloadTask *task = [downloadSession assetDownloadTaskWithURLAsset:asset assetTitle:
+                                @"something" assetArtworkData:nil options:nil];
+    
+      [task resume];
+      [trace incrementMetric:@"av_request_sent" byInt:1];
+  }
 }
 
 @end

@@ -4,6 +4,7 @@ import UIKit
 
 import FirebaseMLVision
 
+@objc(CameraViewController)
 class CameraViewController: UIViewController {
 
   private let detectors: [Detector] = [.onDeviceFace, .onDeviceText]
@@ -234,7 +235,7 @@ class CameraViewController: UIViewController {
     )
     detectors.forEach { detectorType in
       let action = UIAlertAction(title: detectorType.rawValue, style: .default) {
-        [unowned self] action in
+        [unowned self] (action) in
         guard let value = action.title else { return }
         guard let detector = Detector(rawValue: value) else { return }
         self.currentDetector = detector
@@ -324,6 +325,5 @@ private enum Constants {
   static let cancelActionTitleText = "Cancel"
   static let videoDataOutputQueueLabel = "com.google.firebaseml.visiondetector.VideoDataOutputQueue"
   static let sessionQueueLabel = "com.google.firebaseml.visiondetector.SessionQueue"
-  static let smallDotRadius: CGFloat = 4.0
 }
 

@@ -14,18 +14,11 @@
 //  limitations under the License.
 //
 
-import UIKit
-import Firebase
+#import <UIKit/UIKit.h>
+#import "AppDelegate.h"
 
-@UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
-
-    var window: UIWindow?
-
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-
-        FirebaseApp.configure()
-        return true
-    }
+int main(int argc, char * argv[]) {
+  @autoreleasepool {
+      return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
+  }
 }
-

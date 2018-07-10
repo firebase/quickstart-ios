@@ -20,6 +20,7 @@ import Firebase
 // [END import_vision]
 
 /// Main view controller class.
+@objc(ViewController)
 class ViewController:  UIViewController, UINavigationControllerDelegate {
   /// Firebase vision instance.
   // [START init_vision]
@@ -143,17 +144,6 @@ class ViewController:  UIViewController, UINavigationControllerDelegate {
   }
 
   // MARK: - Private
-
-  /// Returns a string representation of the detection results.
-  private func detectionResultsString(
-    fromResults results: [(label: String, confidence: Float)]?
-    ) -> String {
-    guard let results = results else { return Constants.failedToDetectObjectsMessage }
-    return results.reduce("") { (resultString, result) -> String in
-      let (label, confidence) = result
-      return resultString + "\(label): \(String(describing: confidence))\n"
-    }
-  }
 
   /// Removes the detection annotations from the annotation overlay view.
   private func removeDetectionAnnotations() {
@@ -640,8 +630,8 @@ extension ViewController {
     // [END init_text_cloud]
 
     // [START detect_text_cloud]
-    cloudDetector.detect(in: visionImage) { texts, error in
-      guard error == nil, let texts = texts else {
+    cloudDetector.detect(in: visionImage) { text, error in
+      guard error == nil, let text = text else {
         // [START_EXCLUDE]
         let errorString = error?.localizedDescription ?? Constants.detectionNoResultsMessage
         self.resultsText = "Cloud text detection failed with error: \(errorString)"
@@ -652,7 +642,7 @@ extension ViewController {
 
       // Recognized and extracted text
       // [START_EXCLUDE]
-      self.resultsText = texts.text ?? ""
+      self.resultsText = text.text ?? ""
       self.showResults()
       // [END_EXCLUDE]
     }
@@ -679,8 +669,8 @@ extension ViewController {
     // [END init_document_text_cloud]
 
     // [START detect_document_text_cloud]
-    cloudDetector.detect(in: visionImage) { texts, error in
-      guard error == nil, let texts = texts else {
+    cloudDetector.detect(in: visionImage) { text, error in
+      guard error == nil, let text = text else {
         // [START_EXCLUDE]
         let errorString = error?.localizedDescription ?? Constants.detectionNoResultsMessage
         self.resultsText = "Cloud document text detection failed with error: \(errorString)"
@@ -691,7 +681,7 @@ extension ViewController {
 
       // Recognized and extracted document text
       // [START_EXCLUDE]
-      self.resultsText = texts.text ?? ""
+      self.resultsText = text.text ?? ""
       self.showResults()
       // [END_EXCLUDE]
     }
@@ -850,7 +840,6 @@ private enum Constants {
   static let failedToDetectObjectsMessage = "Failed to detect objects in image."
 
   static let labelConfidenceThreshold: Float = 0.75
-  static let lineWidth: CGFloat = 3.0
   static let smallDotRadius: CGFloat = 5.0
   static let largeDotRadius: CGFloat = 10.0
   static let lineColor = UIColor.yellow.cgColor

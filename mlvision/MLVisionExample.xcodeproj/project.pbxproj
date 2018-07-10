@@ -16,6 +16,19 @@
 		10224B762087E5A900A77316 /* grace_hopper.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 10224B702087E5A900A77316 /* grace_hopper.jpg */; };
 		1036DA2A2087CC16003253C9 /* MLVisionExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1036DA292087CC16003253C9 /* MLVisionExampleTests.swift */; };
 		1036DA382087CC26003253C9 /* MLVisionExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1036DA372087CC26003253C9 /* MLVisionExampleUITests.swift */; };
+		10E114E420E5CBAA0013E4A4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 10E114E320E5CBAA0013E4A4 /* AppDelegate.m */; };
+		10E114E720E5CBAA0013E4A4 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10E114E620E5CBAA0013E4A4 /* ViewController.m */; };
+		10E114F220E5CBAE0013E4A4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 10E114F120E5CBAE0013E4A4 /* main.m */; };
+		10E1151420EBF5EB0013E4A4 /* UIUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 10E1151320EBF5EB0013E4A4 /* UIUtilities.m */; };
+		10E1151720EBF6220013E4A4 /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10E1151620EBF6220013E4A4 /* CameraViewController.m */; };
+		10E1151A20EBF7E10013E4A4 /* UIImage+VisionDetection.m in Sources */ = {isa = PBXBuildFile; fileRef = 10E1151920EBF7E10013E4A4 /* UIImage+VisionDetection.m */; };
+		10E1152120F3D5F60013E4A4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB287B3C20729CE90069707A /* Main.storyboard */; };
+		10E1152520F3DFE20013E4A4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1001E6FC20CF0C8F00445CB3 /* Assets.xcassets */; };
+		10E1152620F3E0930013E4A4 /* grace_hopper.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 10224B702087E5A900A77316 /* grace_hopper.jpg */; };
+		10E1152720F3E0960013E4A4 /* barcode_128.png in Resources */ = {isa = PBXBuildFile; fileRef = 7202DC6620D0C1A300034C35 /* barcode_128.png */; };
+		10E1152820F3E0990013E4A4 /* beach.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7202DC6720D0C1A300034C35 /* beach.jpg */; };
+		10E1152920F3E09C0013E4A4 /* image_has_text.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7202DC6520D0C1A300034C35 /* image_has_text.jpg */; };
+		10E1152A20F3E09F0013E4A4 /* qr_code.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7202DC6420D0C1A300034C35 /* qr_code.jpg */; };
 		7202DC6920D0C1A300034C35 /* qr_code.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7202DC6420D0C1A300034C35 /* qr_code.jpg */; };
 		7202DC6A20D0C1A300034C35 /* image_has_text.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7202DC6520D0C1A300034C35 /* image_has_text.jpg */; };
 		7202DC6B20D0C1A300034C35 /* barcode_128.png in Resources */ = {isa = PBXBuildFile; fileRef = 7202DC6620D0C1A300034C35 /* barcode_128.png */; };
@@ -55,6 +68,18 @@
 		1036DA352087CC25003253C9 /* MLVisionExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MLVisionExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1036DA372087CC26003253C9 /* MLVisionExampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLVisionExampleUITests.swift; sourceTree = "<group>"; };
 		1036DA392087CC26003253C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		10E114E020E5CBAA0013E4A4 /* MLVisionExampleObjc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MLVisionExampleObjc.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		10E114E220E5CBAA0013E4A4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		10E114E320E5CBAA0013E4A4 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		10E114E520E5CBAA0013E4A4 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		10E114E620E5CBAA0013E4A4 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		10E114F120E5CBAE0013E4A4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		10E1151220EBF5EB0013E4A4 /* UIUtilities.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIUtilities.h; sourceTree = "<group>"; };
+		10E1151320EBF5EB0013E4A4 /* UIUtilities.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIUtilities.m; sourceTree = "<group>"; };
+		10E1151520EBF6220013E4A4 /* CameraViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CameraViewController.h; sourceTree = "<group>"; };
+		10E1151620EBF6220013E4A4 /* CameraViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CameraViewController.m; sourceTree = "<group>"; };
+		10E1151820EBF7E10013E4A4 /* UIImage+VisionDetection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+VisionDetection.h"; sourceTree = "<group>"; };
+		10E1151920EBF7E10013E4A4 /* UIImage+VisionDetection.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+VisionDetection.m"; sourceTree = "<group>"; };
 		7202DC6420D0C1A300034C35 /* qr_code.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = qr_code.jpg; path = Resources/qr_code.jpg; sourceTree = "<group>"; };
 		7202DC6520D0C1A300034C35 /* image_has_text.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = image_has_text.jpg; path = Resources/image_has_text.jpg; sourceTree = "<group>"; };
 		7202DC6620D0C1A300034C35 /* barcode_128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = barcode_128.png; path = Resources/barcode_128.png; sourceTree = "<group>"; };
@@ -74,6 +99,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		1036DA322087CC25003253C9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		10E114DD20E5CBAA0013E4A4 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -120,6 +152,24 @@
 			path = MLVisionExampleUITests;
 			sourceTree = "<group>";
 		};
+		10E114E120E5CBAA0013E4A4 /* MLVisionExampleObjc */ = {
+			isa = PBXGroup;
+			children = (
+				10E114E220E5CBAA0013E4A4 /* AppDelegate.h */,
+				10E114E320E5CBAA0013E4A4 /* AppDelegate.m */,
+				10E114E520E5CBAA0013E4A4 /* ViewController.h */,
+				10E114E620E5CBAA0013E4A4 /* ViewController.m */,
+				10E114F120E5CBAE0013E4A4 /* main.m */,
+				10E1151220EBF5EB0013E4A4 /* UIUtilities.h */,
+				10E1151320EBF5EB0013E4A4 /* UIUtilities.m */,
+				10E1151520EBF6220013E4A4 /* CameraViewController.h */,
+				10E1151620EBF6220013E4A4 /* CameraViewController.m */,
+				10E1151820EBF7E10013E4A4 /* UIImage+VisionDetection.h */,
+				10E1151920EBF7E10013E4A4 /* UIImage+VisionDetection.m */,
+			);
+			path = MLVisionExampleObjc;
+			sourceTree = "<group>";
+		};
 		BB287B2C20729CE90069707A = {
 			isa = PBXGroup;
 			children = (
@@ -129,6 +179,7 @@
 				BB287B3720729CE90069707A /* MLVisionExample */,
 				1036DA282087CC16003253C9 /* MLVisionExampleTests */,
 				1036DA362087CC26003253C9 /* MLVisionExampleUITests */,
+				10E114E120E5CBAA0013E4A4 /* MLVisionExampleObjc */,
 				BB287B3620729CE90069707A /* Products */,
 			);
 			sourceTree = "<group>";
@@ -139,6 +190,7 @@
 				BB287B3520729CE90069707A /* MLVisionExample.app */,
 				1036DA272087CC16003253C9 /* MLVisionExampleTests.xctest */,
 				1036DA352087CC25003253C9 /* MLVisionExampleUITests.xctest */,
+				10E114E020E5CBAA0013E4A4 /* MLVisionExampleObjc.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -204,6 +256,23 @@
 			productReference = 1036DA352087CC25003253C9 /* MLVisionExampleUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		10E114DF20E5CBAA0013E4A4 /* MLVisionExampleObjc */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 10E1150F20E5CBAE0013E4A4 /* Build configuration list for PBXNativeTarget "MLVisionExampleObjc" */;
+			buildPhases = (
+				10E114DC20E5CBAA0013E4A4 /* Sources */,
+				10E114DD20E5CBAA0013E4A4 /* Frameworks */,
+				10E114DE20E5CBAA0013E4A4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MLVisionExampleObjc;
+			productName = MLVisionExampleObjc;
+			productReference = 10E114E020E5CBAA0013E4A4 /* MLVisionExampleObjc.app */;
+			productType = "com.apple.product-type.application";
+		};
 		BB287B3420729CE90069707A /* MLVisionExample */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = BB287B4720729CE90069707A /* Build configuration list for PBXNativeTarget "MLVisionExample" */;
@@ -241,6 +310,10 @@
 						ProvisioningStyle = Automatic;
 						TestTargetID = BB287B3420729CE90069707A;
 					};
+					10E114DF20E5CBAA0013E4A4 = {
+						CreatedOnToolsVersion = 9.4;
+						ProvisioningStyle = Automatic;
+					};
 					BB287B3420729CE90069707A = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
@@ -263,6 +336,7 @@
 				BB287B3420729CE90069707A /* MLVisionExample */,
 				1036DA262087CC16003253C9 /* MLVisionExampleTests */,
 				1036DA342087CC25003253C9 /* MLVisionExampleUITests */,
+				10E114DF20E5CBAA0013E4A4 /* MLVisionExampleObjc */,
 			);
 		};
 /* End PBXProject section */
@@ -279,6 +353,20 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		10E114DE20E5CBAA0013E4A4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				10E1152120F3D5F60013E4A4 /* Main.storyboard in Resources */,
+				10E1152520F3DFE20013E4A4 /* Assets.xcassets in Resources */,
+				10E1152720F3E0960013E4A4 /* barcode_128.png in Resources */,
+				10E1152820F3E0990013E4A4 /* beach.jpg in Resources */,
+				10E1152620F3E0930013E4A4 /* grace_hopper.jpg in Resources */,
+				10E1152920F3E09C0013E4A4 /* image_has_text.jpg in Resources */,
+				10E1152A20F3E09F0013E4A4 /* qr_code.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -313,6 +401,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				1036DA382087CC26003253C9 /* MLVisionExampleUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		10E114DC20E5CBAA0013E4A4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				10E1151720EBF6220013E4A4 /* CameraViewController.m in Sources */,
+				10E1151A20EBF7E10013E4A4 /* UIImage+VisionDetection.m in Sources */,
+				10E114E720E5CBAA0013E4A4 /* ViewController.m in Sources */,
+				10E114F220E5CBAE0013E4A4 /* main.m in Sources */,
+				10E1151420EBF5EB0013E4A4 /* UIUtilities.m in Sources */,
+				10E114E420E5CBAA0013E4A4 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -428,6 +529,34 @@
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = MLVisionExample;
+			};
+			name = Release;
+		};
+		10E1150920E5CBAE0013E4A4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = "$(SRCROOT)/MLVisionExample/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.MLVisionExample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		10E1150A20E5CBAE0013E4A4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = "$(SRCROOT)/MLVisionExample/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.MLVisionExample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -595,6 +724,15 @@
 			buildConfigurations = (
 				1036DA3D2087CC26003253C9 /* Debug */,
 				1036DA3E2087CC26003253C9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		10E1150F20E5CBAE0013E4A4 /* Build configuration list for PBXNativeTarget "MLVisionExampleObjc" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				10E1150920E5CBAE0013E4A4 /* Debug */,
+				10E1150A20E5CBAE0013E4A4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

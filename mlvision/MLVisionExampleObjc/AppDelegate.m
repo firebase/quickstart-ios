@@ -14,18 +14,15 @@
 //  limitations under the License.
 //
 
-import UIKit
-import Firebase
+#import "AppDelegate.h"
+@import Firebase;
 
-@UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+@interface AppDelegate ()
+@end
 
-    var window: UIWindow?
-
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-
-        FirebaseApp.configure()
-        return true
-    }
+@implementation AppDelegate
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+  [FIRApp configure];
+  return YES;
 }
-
+@end

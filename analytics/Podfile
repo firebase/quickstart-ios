@@ -3,12 +3,16 @@
 use_frameworks!
 platform :ios, '8.0'
 
-pod 'Firebase/Core'
-pod 'Firebase/Analytics'
-
 target 'AnalyticsExample' do
+  pod 'Firebase/Core'
+  pod 'Firebase/Analytics'
+
+  target 'AnalyticsExampleTests' do
+    inherit! :search_paths
+  end
 end
+
 target 'AnalyticsExampleSwift' do
-end
-target 'AnalyticsExampleTests' do
+  pod 'Firebase/Core'
+  pod 'Firebase/Analytics'
 end

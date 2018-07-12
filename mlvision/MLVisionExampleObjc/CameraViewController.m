@@ -213,7 +213,7 @@ typedef NS_ENUM(NSInteger, Detector) {
 
 - (void)setUpAnnotationOverlayView {
   _annotationOverlayView = [[UIView alloc] initWithFrame:CGRectZero];
-  [_annotationOverlayView setTranslatesAutoresizingMaskIntoConstraints:NO];
+  _annotationOverlayView.translatesAutoresizingMaskIntoConstraints = NO;
   [_cameraView addSubview:_annotationOverlayView];
   [NSLayoutConstraint activateConstraints:@[
                                             [_annotationOverlayView.topAnchor constraintEqualToAnchor:_cameraView.topAnchor],
@@ -289,9 +289,8 @@ typedef NS_ENUM(NSInteger, Detector) {
   if (imageBuffer) {
     FIRVisionImage *visionImage = [[FIRVisionImage alloc] initWithBuffer:sampleBuffer];
     FIRVisionImageMetadata *metadata = [[FIRVisionImageMetadata alloc] init];
-    UIImageOrientation orientation = [UIUtilities imageOrientationFromDevicePosition:AVCaptureDevicePositionBack];
+    UIImageOrientation orientation = [UIUtilities imageOrientationFromDevicePosition:_isUsingFrontCamera ? AVCaptureDevicePositionFront : AVCaptureDevicePositionBack];
     FIRVisionDetectorImageOrientation visionOrientation = [UIUtilities visionImageOrientationFromImageOrientation:orientation];
-    
     metadata.orientation = visionOrientation;
     visionImage.metadata = metadata;
     CGFloat imageWidth = CVPixelBufferGetWidth(imageBuffer);

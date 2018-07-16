@@ -26,7 +26,6 @@
 		5FC04A811AF1DF8300F787CA /* PatternTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC04A801AF1DF8300F787CA /* PatternTabBarController.swift */; };
 		5FC7AD8E1B0D446A004E3100 /* LogWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5FC7AD8D1B0D446A004E3100 /* LogWrapper.mm */; };
 		5FDE05641B0DAD5C0037B82F /* AppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FDE05631B0DAD5C0037B82F /* AppTests.m */; };
-		8D33DAB320F6B20800AFEE4F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8D33DAB220F6B20800AFEE4F /* GoogleService-Info.plist */; };
 		EF01600C1BD07C1F00F8DA01 /* AnalyticsImages.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF01600B1BD07C1F00F8DA01 /* AnalyticsImages.xcassets */; };
 		EF01600D1BD07C1F00F8DA01 /* AnalyticsImages.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF01600B1BD07C1F00F8DA01 /* AnalyticsImages.xcassets */; };
 		EFB6C1B61C6524F4007CCA78 /* FoodPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB6C1B51C6524F4007CCA78 /* FoodPickerViewController.m */; };
@@ -86,7 +85,6 @@
 		5FC7AD8D1B0D446A004E3100 /* LogWrapper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LogWrapper.mm; sourceTree = "<group>"; };
 		5FC7AD8F1B0D44B9004E3100 /* LogWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogWrapper.h; sourceTree = "<group>"; };
 		5FDE05631B0DAD5C0037B82F /* AppTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppTests.m; sourceTree = "<group>"; };
-		8D33DAB220F6B20800AFEE4F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EF01600B1BD07C1F00F8DA01 /* AnalyticsImages.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = AnalyticsImages.xcassets; sourceTree = "<group>"; };
 		EFB6C1B41C6524F4007CCA78 /* FoodPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FoodPickerViewController.h; sourceTree = "<group>"; };
 		EFB6C1B51C6524F4007CCA78 /* FoodPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FoodPickerViewController.m; sourceTree = "<group>"; };
@@ -153,7 +151,6 @@
 		5F5A53431ADE670C00F81DF0 = {
 			isa = PBXGroup;
 			children = (
-				8D33DAB220F6B20800AFEE4F /* GoogleService-Info.plist */,
 				5F5A534E1ADE670C00F81DF0 /* AnalyticsExample */,
 				5F5A537A1ADE67D500F81DF0 /* AnalyticsExampleSwift */,
 				5FC7AD831B0D4106004E3100 /* AnalyticsExampleTests */,
@@ -416,7 +413,6 @@
 			files = (
 				5F99610C1AE0CF4F0034F503 /* LaunchScreen.xib in Resources */,
 				5F99610A1AE0CF4F0034F503 /* Images.xcassets in Resources */,
-				8D33DAB320F6B20800AFEE4F /* GoogleService-Info.plist in Resources */,
 				EF01600C1BD07C1F00F8DA01 /* AnalyticsImages.xcassets in Resources */,
 				5F5A535B1ADE670C00F81DF0 /* Main.storyboard in Resources */,
 			);

@@ -69,8 +69,8 @@ static CGFloat const rectangleViewCornerRadius = 10.0;
   [view addSubview:shapeView];
 }
 
-+ (void)imageOrientation {
-  [self imageOrientationFromDevicePosition:AVCaptureDevicePositionBack];
++ (UIImageOrientation)imageOrientation {
+  return [self imageOrientationFromDevicePosition:AVCaptureDevicePositionBack];
 }
 
 + (UIImageOrientation) imageOrientationFromDevicePosition:(AVCaptureDevicePosition)devicePosition {

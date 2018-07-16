@@ -397,7 +397,7 @@ typedef NS_ENUM(NSInteger, DetectorPickerRow) {
 /// On-Device face API.
 ///
 /// - Parameter image: The image.
-- (void) detectFacesInImage:(UIImage *)image {
+- (void)detectFacesInImage:(UIImage *)image {
   if (!image) {
     return;
   }
@@ -453,7 +453,7 @@ typedef NS_ENUM(NSInteger, DetectorPickerRow) {
 /// On-Device barcode API.
 ///
 /// - Parameter image: The image.
-- (void) detectBarcodesInImage:(UIImage *)image {
+- (void)detectBarcodesInImage:(UIImage *)image {
   if (!image) {
     return;
   }
@@ -505,7 +505,7 @@ typedef NS_ENUM(NSInteger, DetectorPickerRow) {
 /// Detects labels on the specified image using On-Device label API.
 ///
 /// - Parameter image: The image.
-- (void) detectLabelsInImage:(UIImage *)image {
+- (void)detectLabelsInImage:(UIImage *)image {
   if (!image) {
     return;
   }
@@ -555,7 +555,7 @@ typedef NS_ENUM(NSInteger, DetectorPickerRow) {
 /// text API.
 ///
 /// - Parameter image: The image.
-- (void) detectTextInImage:(UIImage *)image {
+- (void)detectTextInImage:(UIImage *)image {
   if (!image) {
     return;
   }
@@ -603,7 +603,7 @@ typedef NS_ENUM(NSInteger, DetectorPickerRow) {
 /// text API.
 ///
 /// - Parameter image: The image.
-- (void) detectCloudTextsInImage:(UIImage *)image {
+- (void)detectCloudTextsInImage:(UIImage *)image {
   if (!image) {
     return;
   }
@@ -652,7 +652,7 @@ typedef NS_ENUM(NSInteger, DetectorPickerRow) {
 /// using cloud document text API.
 ///
 /// - Parameter image: The image.
-- (void) detectCloudDocumentTextsInImage:(UIImage *)image {
+- (void)detectCloudDocumentTextsInImage:(UIImage *)image {
   if (!image) {
     return;
   }
@@ -693,7 +693,7 @@ typedef NS_ENUM(NSInteger, DetectorPickerRow) {
 /// cloud landmark API.
 ///
 /// - Parameter image: The image.
-- (void) detectCloudLandmarksInImage:(UIImage *)image {
+- (void)detectCloudLandmarksInImage:(UIImage *)image {
   if (!image) {
     return;
   }
@@ -748,7 +748,7 @@ typedef NS_ENUM(NSInteger, DetectorPickerRow) {
 /// Detects labels on the specified image using cloud label API.
 ///
 /// - Parameter image: The image.
-- (void) detectCloudLabelsInImage:(UIImage *)image {
+- (void)detectCloudLabelsInImage:(UIImage *)image {
   if (!image) {
     return;
   }

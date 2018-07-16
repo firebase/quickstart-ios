@@ -28,7 +28,7 @@
 
 + (void)addRectangle:(CGRect)rectangle toView:(UIView *)view color:(UIColor *)color;
 + (void)addShapeWithPoints:(NSArray<NSValue *> *)points toView:(UIView *)view color:(UIColor *)color;
-+ (void)imageOrientation;
++ (UIImageOrientation)imageOrientation;
 + (UIImageOrientation)imageOrientationFromDevicePosition:(AVCaptureDevicePosition)devicePosition;
 + (FIRVisionDetectorImageOrientation)visionImageOrientationFromImageOrientation:(UIImageOrientation)imageOrientation;
 + (UIDeviceOrientation)currentUIOrientation;

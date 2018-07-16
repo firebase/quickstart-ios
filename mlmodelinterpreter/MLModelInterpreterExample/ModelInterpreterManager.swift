@@ -326,15 +326,10 @@ public class ModelInterpreterManager {
       let contents = try NSString(contentsOfFile: labelsFilePath, encoding: encoding)
       labels = contents.components(separatedBy: ModelInterpreterConstants.labelsSeparator)
       labelsCount = labels.count
-      var modelOutputDimensions: [NSNumber]
-      if let outputDimensions = outputDimensions {
-        modelOutputDimensions = outputDimensions
-      } else {
-        modelOutputDimensions = [
+      let modelOutputDimensions = outputDimensions ?? [
           ModelInterpreterConstants.dimensionBatchSize,
           NSNumber(value: labelsCount),
         ]
-      }
       modelInterpreter = ModelInterpreter.modelInterpreter(options: options)
       modelElementType = isModelQuantized ? .uInt8 : .float32
       let modelInputDimensions = inputDimensions ?? ModelInterpreterConstants.inputDimensions

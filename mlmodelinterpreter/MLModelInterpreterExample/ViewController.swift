@@ -16,6 +16,7 @@
 
 import UIKit
 
+@objc(ViewController)
 class ViewController: UIViewController, UINavigationControllerDelegate {
 
   // MARK: - Properties

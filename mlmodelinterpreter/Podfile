@@ -1,7 +1,11 @@
 platform :ios, '8.0'
+use_frameworks!
+
+pod 'Firebase/Core'
+pod 'Firebase/MLModelInterpreter'
 
 target 'MLModelInterpreterExample' do
-  use_frameworks!
-  pod 'Firebase/Core'
-  pod 'Firebase/MLModelInterpreter'
+end
+
+target 'MLModelInterpreterExampleObjC' do
 end

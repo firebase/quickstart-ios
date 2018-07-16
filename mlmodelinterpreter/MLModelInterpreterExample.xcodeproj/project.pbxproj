@@ -10,6 +10,21 @@
 		10E114BB20D5E4CD0013E4A4 /* shared in Resources */ = {isa = PBXBuildFile; fileRef = 10E114BA20D5E4CD0013E4A4 /* shared */; };
 		10E114C320D5E5B40013E4A4 /* MLModelInterpreterExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E114C220D5E5B40013E4A4 /* MLModelInterpreterExampleUITests.swift */; };
 		10E114D120D5E5C40013E4A4 /* MLModelInterpreterExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E114D020D5E5C40013E4A4 /* MLModelInterpreterExampleTests.swift */; };
+		10E115AC20F469DB0013E4A4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 10E115AB20F469DB0013E4A4 /* AppDelegate.m */; };
+		10E115AF20F469DB0013E4A4 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10E115AE20F469DB0013E4A4 /* ViewController.m */; };
+		10E115BA20F469DC0013E4A4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 10E115B920F469DC0013E4A4 /* main.m */; };
+		10E115C420F469DC0013E4A4 /* MLModelInterpreterExampleObjCTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 10E115C320F469DC0013E4A4 /* MLModelInterpreterExampleObjCTests.m */; };
+		10E115CF20F469DC0013E4A4 /* MLModelInterpreterExampleObjCUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 10E115CE20F469DC0013E4A4 /* MLModelInterpreterExampleObjCUITests.m */; };
+		10E115DA20F469F60013E4A4 /* mobilenet_v1_1.0_224.tflite in Resources */ = {isa = PBXBuildFile; fileRef = 4A56D22620A154E100357F77 /* mobilenet_v1_1.0_224.tflite */; };
+		10E115DB20F469F90013E4A4 /* shared in Resources */ = {isa = PBXBuildFile; fileRef = 10E114BA20D5E4CD0013E4A4 /* shared */; };
+		10E115DC20F469FB0013E4A4 /* mobilenet_quant_v1_224.tflite in Resources */ = {isa = PBXBuildFile; fileRef = 4A56D22720A154E100357F77 /* mobilenet_quant_v1_224.tflite */; };
+		10E115DD20F469FD0013E4A4 /* labels_quant.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4A56D22920A154E100357F77 /* labels_quant.txt */; };
+		10E115DE20F46A000013E4A4 /* labels.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4A56D22A20A154E100357F77 /* labels.txt */; };
+		10E115DF20F46A020013E4A4 /* grace_hopper.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4A56D22B20A154E100357F77 /* grace_hopper.jpg */; };
+		10E115E020F46A0B0013E4A4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A56D21120A138E500357F77 /* Main.storyboard */; };
+		10E115E120F46A0D0013E4A4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A56D21420A138E500357F77 /* Assets.xcassets */; };
+		10E115E420F46A200013E4A4 /* ModelInterpreterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 10E115E320F46A200013E4A4 /* ModelInterpreterManager.m */; };
+		10E115E720F46A340013E4A4 /* UIImage+TFLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 10E115E620F46A340013E4A4 /* UIImage+TFLite.m */; };
 		4A56D21320A138E500357F77 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A56D21120A138E500357F77 /* Main.storyboard */; };
 		4A56D21520A138E500357F77 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A56D21420A138E500357F77 /* Assets.xcassets */; };
 		4A56D22C20A154E100357F77 /* ModelInterpreterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A56D22020A154E100357F77 /* ModelInterpreterManager.swift */; };
@@ -38,6 +53,20 @@
 			remoteGlobalIDString = 4A56D20920A138E500357F77;
 			remoteInfo = MLModelInterpreterExample;
 		};
+		10E115C020F469DC0013E4A4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4A56D20220A138E500357F77 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 10E115A720F469DB0013E4A4;
+			remoteInfo = MLModelInterpreterExampleObjC;
+		};
+		10E115CB20F469DC0013E4A4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4A56D20220A138E500357F77 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 10E115A720F469DB0013E4A4;
+			remoteInfo = MLModelInterpreterExampleObjC;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +77,22 @@
 		10E114CE20D5E5C40013E4A4 /* MLModelInterpreterExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MLModelInterpreterExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		10E114D020D5E5C40013E4A4 /* MLModelInterpreterExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLModelInterpreterExampleTests.swift; sourceTree = "<group>"; };
 		10E114D220D5E5C40013E4A4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		10E115A820F469DB0013E4A4 /* MLModelInterpreterExampleObjC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MLModelInterpreterExampleObjC.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		10E115AA20F469DB0013E4A4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		10E115AB20F469DB0013E4A4 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		10E115AD20F469DB0013E4A4 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		10E115AE20F469DB0013E4A4 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		10E115B920F469DC0013E4A4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		10E115BF20F469DC0013E4A4 /* MLModelInterpreterExampleObjCTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MLModelInterpreterExampleObjCTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		10E115C320F469DC0013E4A4 /* MLModelInterpreterExampleObjCTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MLModelInterpreterExampleObjCTests.m; sourceTree = "<group>"; };
+		10E115C520F469DC0013E4A4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		10E115CA20F469DC0013E4A4 /* MLModelInterpreterExampleObjCUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MLModelInterpreterExampleObjCUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		10E115CE20F469DC0013E4A4 /* MLModelInterpreterExampleObjCUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MLModelInterpreterExampleObjCUITests.m; sourceTree = "<group>"; };
+		10E115D020F469DC0013E4A4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		10E115E220F46A200013E4A4 /* ModelInterpreterManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ModelInterpreterManager.h; sourceTree = "<group>"; };
+		10E115E320F46A200013E4A4 /* ModelInterpreterManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ModelInterpreterManager.m; sourceTree = "<group>"; };
+		10E115E520F46A340013E4A4 /* UIImage+TFLite.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+TFLite.h"; sourceTree = "<group>"; };
+		10E115E620F46A340013E4A4 /* UIImage+TFLite.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+TFLite.m"; sourceTree = "<group>"; };
 		4A56D20A20A138E500357F77 /* MLModelInterpreterExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MLModelInterpreterExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A56D21220A138E500357F77 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4A56D21420A138E500357F77 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -72,6 +117,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		10E114CB20D5E5C40013E4A4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		10E115A520F469DB0013E4A4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		10E115BC20F469DC0013E4A4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		10E115C720F469DC0013E4A4 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -106,6 +172,40 @@
 			path = MLModelInterpreterExampleTests;
 			sourceTree = "<group>";
 		};
+		10E115A920F469DB0013E4A4 /* MLModelInterpreterExampleObjC */ = {
+			isa = PBXGroup;
+			children = (
+				10E115AA20F469DB0013E4A4 /* AppDelegate.h */,
+				10E115AB20F469DB0013E4A4 /* AppDelegate.m */,
+				10E115AD20F469DB0013E4A4 /* ViewController.h */,
+				10E115AE20F469DB0013E4A4 /* ViewController.m */,
+				10E115B920F469DC0013E4A4 /* main.m */,
+				10E115E220F46A200013E4A4 /* ModelInterpreterManager.h */,
+				10E115E320F46A200013E4A4 /* ModelInterpreterManager.m */,
+				10E115E520F46A340013E4A4 /* UIImage+TFLite.h */,
+				10E115E620F46A340013E4A4 /* UIImage+TFLite.m */,
+			);
+			path = MLModelInterpreterExampleObjC;
+			sourceTree = "<group>";
+		};
+		10E115C220F469DC0013E4A4 /* MLModelInterpreterExampleObjCTests */ = {
+			isa = PBXGroup;
+			children = (
+				10E115C320F469DC0013E4A4 /* MLModelInterpreterExampleObjCTests.m */,
+				10E115C520F469DC0013E4A4 /* Info.plist */,
+			);
+			path = MLModelInterpreterExampleObjCTests;
+			sourceTree = "<group>";
+		};
+		10E115CD20F469DC0013E4A4 /* MLModelInterpreterExampleObjCUITests */ = {
+			isa = PBXGroup;
+			children = (
+				10E115CE20F469DC0013E4A4 /* MLModelInterpreterExampleObjCUITests.m */,
+				10E115D020F469DC0013E4A4 /* Info.plist */,
+			);
+			path = MLModelInterpreterExampleObjCUITests;
+			sourceTree = "<group>";
+		};
 		4A56D20120A138E500357F77 = {
 			isa = PBXGroup;
 			children = (
@@ -113,6 +213,9 @@
 				4A56D20C20A138E500357F77 /* MLModelInterpreterExample */,
 				10E114C120D5E5B40013E4A4 /* MLModelInterpreterExampleUITests */,
 				10E114CF20D5E5C40013E4A4 /* MLModelInterpreterExampleTests */,
+				10E115A920F469DB0013E4A4 /* MLModelInterpreterExampleObjC */,
+				10E115C220F469DC0013E4A4 /* MLModelInterpreterExampleObjCTests */,
+				10E115CD20F469DC0013E4A4 /* MLModelInterpreterExampleObjCUITests */,
 				4A56D20B20A138E500357F77 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -123,6 +226,9 @@
 				4A56D20A20A138E500357F77 /* MLModelInterpreterExample.app */,
 				10E114C020D5E5B40013E4A4 /* MLModelInterpreterExampleUITests.xctest */,
 				10E114CE20D5E5C40013E4A4 /* MLModelInterpreterExampleTests.xctest */,
+				10E115A820F469DB0013E4A4 /* MLModelInterpreterExampleObjC.app */,
+				10E115BF20F469DC0013E4A4 /* MLModelInterpreterExampleObjCTests.xctest */,
+				10E115CA20F469DC0013E4A4 /* MLModelInterpreterExampleObjCUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -193,6 +299,59 @@
 			productReference = 10E114CE20D5E5C40013E4A4 /* MLModelInterpreterExampleTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		10E115A720F469DB0013E4A4 /* MLModelInterpreterExampleObjC */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 10E115D120F469DC0013E4A4 /* Build configuration list for PBXNativeTarget "MLModelInterpreterExampleObjC" */;
+			buildPhases = (
+				10E115A420F469DB0013E4A4 /* Sources */,
+				10E115A520F469DB0013E4A4 /* Frameworks */,
+				10E115A620F469DB0013E4A4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MLModelInterpreterExampleObjC;
+			productName = MLModelInterpreterExampleObjC;
+			productReference = 10E115A820F469DB0013E4A4 /* MLModelInterpreterExampleObjC.app */;
+			productType = "com.apple.product-type.application";
+		};
+		10E115BE20F469DC0013E4A4 /* MLModelInterpreterExampleObjCTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 10E115D420F469DC0013E4A4 /* Build configuration list for PBXNativeTarget "MLModelInterpreterExampleObjCTests" */;
+			buildPhases = (
+				10E115BB20F469DC0013E4A4 /* Sources */,
+				10E115BC20F469DC0013E4A4 /* Frameworks */,
+				10E115BD20F469DC0013E4A4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				10E115C120F469DC0013E4A4 /* PBXTargetDependency */,
+			);
+			name = MLModelInterpreterExampleObjCTests;
+			productName = MLModelInterpreterExampleObjCTests;
+			productReference = 10E115BF20F469DC0013E4A4 /* MLModelInterpreterExampleObjCTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		10E115C920F469DC0013E4A4 /* MLModelInterpreterExampleObjCUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 10E115D720F469DC0013E4A4 /* Build configuration list for PBXNativeTarget "MLModelInterpreterExampleObjCUITests" */;
+			buildPhases = (
+				10E115C620F469DC0013E4A4 /* Sources */,
+				10E115C720F469DC0013E4A4 /* Frameworks */,
+				10E115C820F469DC0013E4A4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				10E115CC20F469DC0013E4A4 /* PBXTargetDependency */,
+			);
+			name = MLModelInterpreterExampleObjCUITests;
+			productName = MLModelInterpreterExampleObjCUITests;
+			productReference = 10E115CA20F469DC0013E4A4 /* MLModelInterpreterExampleObjCUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		4A56D20920A138E500357F77 /* MLModelInterpreterExample */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4A56D21C20A138E500357F77 /* Build configuration list for PBXNativeTarget "MLModelInterpreterExample" */;
@@ -228,6 +387,17 @@
 						CreatedOnToolsVersion = 9.4;
 						TestTargetID = 4A56D20920A138E500357F77;
 					};
+					10E115A720F469DB0013E4A4 = {
+						CreatedOnToolsVersion = 9.4;
+					};
+					10E115BE20F469DC0013E4A4 = {
+						CreatedOnToolsVersion = 9.4;
+						TestTargetID = 10E115A720F469DB0013E4A4;
+					};
+					10E115C920F469DC0013E4A4 = {
+						CreatedOnToolsVersion = 9.4;
+						TestTargetID = 10E115A720F469DB0013E4A4;
+					};
 					4A56D20920A138E500357F77 = {
 						CreatedOnToolsVersion = 9.3;
 					};
@@ -249,6 +419,9 @@
 				4A56D20920A138E500357F77 /* MLModelInterpreterExample */,
 				10E114BF20D5E5B40013E4A4 /* MLModelInterpreterExampleUITests */,
 				10E114CD20D5E5C40013E4A4 /* MLModelInterpreterExampleTests */,
+				10E115A720F469DB0013E4A4 /* MLModelInterpreterExampleObjC */,
+				10E115BE20F469DC0013E4A4 /* MLModelInterpreterExampleObjCTests */,
+				10E115C920F469DC0013E4A4 /* MLModelInterpreterExampleObjCUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -262,6 +435,35 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		10E114CC20D5E5C40013E4A4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		10E115A620F469DB0013E4A4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				10E115E020F46A0B0013E4A4 /* Main.storyboard in Resources */,
+				10E115DF20F46A020013E4A4 /* grace_hopper.jpg in Resources */,
+				10E115DA20F469F60013E4A4 /* mobilenet_v1_1.0_224.tflite in Resources */,
+				10E115DD20F469FD0013E4A4 /* labels_quant.txt in Resources */,
+				10E115DE20F46A000013E4A4 /* labels.txt in Resources */,
+				10E115DC20F469FB0013E4A4 /* mobilenet_quant_v1_224.tflite in Resources */,
+				10E115E120F46A0D0013E4A4 /* Assets.xcassets in Resources */,
+				10E115DB20F469F90013E4A4 /* shared in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		10E115BD20F469DC0013E4A4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		10E115C820F469DC0013E4A4 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -302,6 +504,34 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		10E115A420F469DB0013E4A4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				10E115E720F46A340013E4A4 /* UIImage+TFLite.m in Sources */,
+				10E115E420F46A200013E4A4 /* ModelInterpreterManager.m in Sources */,
+				10E115AF20F469DB0013E4A4 /* ViewController.m in Sources */,
+				10E115BA20F469DC0013E4A4 /* main.m in Sources */,
+				10E115AC20F469DB0013E4A4 /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		10E115BB20F469DC0013E4A4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				10E115C420F469DC0013E4A4 /* MLModelInterpreterExampleObjCTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		10E115C620F469DC0013E4A4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				10E115CF20F469DC0013E4A4 /* MLModelInterpreterExampleObjCUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4A56D20620A138E500357F77 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -325,6 +555,16 @@
 			isa = PBXTargetDependency;
 			target = 4A56D20920A138E500357F77 /* MLModelInterpreterExample */;
 			targetProxy = 10E114D320D5E5C40013E4A4 /* PBXContainerItemProxy */;
+		};
+		10E115C120F469DC0013E4A4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 10E115A720F469DB0013E4A4 /* MLModelInterpreterExampleObjC */;
+			targetProxy = 10E115C020F469DC0013E4A4 /* PBXContainerItemProxy */;
+		};
+		10E115CC20F469DC0013E4A4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 10E115A720F469DB0013E4A4 /* MLModelInterpreterExampleObjC */;
+			targetProxy = 10E115CB20F469DC0013E4A4 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -415,6 +655,112 @@
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MLModelInterpreterExample.app/MLModelInterpreterExample";
+			};
+			name = Release;
+		};
+		10E115D220F469DC0013E4A4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "$(SRCROOT)/MLModelInterpreterExample/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.MLModelInterpreterExample.MLModelInterpreterExample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		10E115D320F469DC0013E4A4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "$(SRCROOT)/MLModelInterpreterExample/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.MLModelInterpreterExample.MLModelInterpreterExample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		10E115D520F469DC0013E4A4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = MLModelInterpreterExampleObjCTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.MLModelInterpreterExample.MLModelInterpreterExampleObjCTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MLModelInterpreterExampleObjC.app/MLModelInterpreterExampleObjC";
+			};
+			name = Debug;
+		};
+		10E115D620F469DC0013E4A4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = MLModelInterpreterExampleObjCTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.MLModelInterpreterExample.MLModelInterpreterExampleObjCTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MLModelInterpreterExampleObjC.app/MLModelInterpreterExampleObjC";
+			};
+			name = Release;
+		};
+		10E115D820F469DC0013E4A4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = MLModelInterpreterExampleObjCUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.MLModelInterpreterExample.MLModelInterpreterExampleObjCUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = MLModelInterpreterExampleObjC;
+			};
+			name = Debug;
+		};
+		10E115D920F469DC0013E4A4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = MLModelInterpreterExampleObjCUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.MLModelInterpreterExample.MLModelInterpreterExampleObjCUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = MLModelInterpreterExampleObjC;
 			};
 			name = Release;
 		};
@@ -583,6 +929,33 @@
 			buildConfigurations = (
 				10E114D620D5E5C40013E4A4 /* Debug */,
 				10E114D720D5E5C40013E4A4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		10E115D120F469DC0013E4A4 /* Build configuration list for PBXNativeTarget "MLModelInterpreterExampleObjC" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				10E115D220F469DC0013E4A4 /* Debug */,
+				10E115D320F469DC0013E4A4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		10E115D420F469DC0013E4A4 /* Build configuration list for PBXNativeTarget "MLModelInterpreterExampleObjCTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				10E115D520F469DC0013E4A4 /* Debug */,
+				10E115D620F469DC0013E4A4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		10E115D720F469DC0013E4A4 /* Build configuration list for PBXNativeTarget "MLModelInterpreterExampleObjCUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				10E115D820F469DC0013E4A4 /* Debug */,
+				10E115D920F469DC0013E4A4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

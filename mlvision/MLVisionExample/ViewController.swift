@@ -495,7 +495,7 @@ extension ViewController {
         "\(feature.rawValue ?? ""), Frame: \(feature.frame)"
         }.joined(separator: "\n")
       self.showResults()
-      // [END_EXCLUDE
+      // [END_EXCLUDE]
     }
     // [END detect_barcodes]
   }

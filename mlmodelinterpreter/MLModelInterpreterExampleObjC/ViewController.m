@@ -155,7 +155,7 @@ static NSString *const failedToDetectObjectsMessage = @"Failed to detect objects
   return (_modelControl.selectedSegmentIndex == 0) ?
     cloudModelName1 :
   cloudModelName2;
-  }
+}
 
   /// Returns the key for the currently selected cloud model.
 - (NSString *)currentCloudModelKey {
@@ -177,19 +177,19 @@ static NSString *const failedToDetectObjectsMessage = @"Failed to detect objects
 
   /// Sets up the local model.
 - (void)setUpLocalModel {
-    if (![_modelManager setUpLocalModelWithName:localModelName bundle:nil]) {
-      if (_resultsTextView.text) {
-        _resultsTextView.text = @"";
-      }
-      _resultsTextView.text = [_resultsTextView.text stringByAppendingString:@"\nFailed to set up the local model."];
+  if (![_modelManager setUpLocalModelWithName:localModelName bundle:nil]) {
+    if (_resultsTextView.text) {
+      _resultsTextView.text = @"";
     }
+    _resultsTextView.text = [_resultsTextView.text stringByAppendingString:@"\nFailed to set up the local model."];
   }
+}
 
   /// Returns a string representation of the detection results.
 - (NSString *)detectionResultsStringRromResults:(NSArray *)results {
-    if (!results) {
-      return failedToDetectObjectsMessage;
-    }
+  if (!results) {
+    return failedToDetectObjectsMessage;
+  }
 
   NSMutableString *resultString = [NSMutableString new];
   for (NSArray *result in results) {
@@ -208,11 +208,11 @@ static NSString *const failedToDetectObjectsMessage = @"Failed to detect objects
   UIInterfaceOrientation orientation =  UIApplication.sharedApplication.statusBarOrientation;
   CGFloat imageWidth = image.size.width;
   CGFloat imageHeight = image.size.height;
-    if (imageWidth <= FLT_EPSILON || imageHeight <= FLT_EPSILON) {
-      _imageView.image = image;
-      NSLog(@"Failed to update image view because image has invalid size: %@", NSStringFromCGSize(image.size));
-      return;
-    }
+  if (imageWidth <= FLT_EPSILON || imageHeight <= FLT_EPSILON) {
+    _imageView.image = image;
+    NSLog(@"Failed to update image view because image has invalid size: %@", NSStringFromCGSize(image.size));
+    return;
+  }
 
   CGFloat scaledImageWidth = 0.0;
   CGFloat scaledImageHeight = 0.0;
@@ -220,13 +220,13 @@ static NSString *const failedToDetectObjectsMessage = @"Failed to detect objects
     case UIInterfaceOrientationPortrait:
     case UIInterfaceOrientationPortraitUpsideDown:
     case UIInterfaceOrientationUnknown:
-    scaledImageWidth = _imageView.bounds.size.width;
-    scaledImageHeight = imageHeight * scaledImageWidth / imageWidth;
-    break;
+      scaledImageWidth = _imageView.bounds.size.width;
+      scaledImageHeight = imageHeight * scaledImageWidth / imageWidth;
+      break;
     case UIInterfaceOrientationLandscapeLeft:
     case UIInterfaceOrientationLandscapeRight:
-    scaledImageWidth = imageWidth * scaledImageHeight / imageHeight;
-    scaledImageHeight = _imageView.bounds.size.height;
+      scaledImageWidth = imageWidth * scaledImageHeight / imageHeight;
+      scaledImageHeight = _imageView.bounds.size.height;
   }
   dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), ^{
     // Scale image while maintaining aspect ratio so it displays better in the UIImageView.

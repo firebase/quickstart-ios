@@ -60,7 +60,7 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="eph-cT-Zvt"/>
                                     <barButtonItem image="photo_camera" id="jD4-E9-bbj" userLabel="Photo Camera Button">
                                         <connections>
-                                            <action selector="openPhotoCamera:" destination="BYZ-38-t0r" id="3cs-Py-gWB"/>
+                                            <action selector="openCamera:" destination="BYZ-38-t0r" id="3cs-Py-gWB"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="v2M-Hr-v21"/>

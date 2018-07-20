@@ -188,7 +188,7 @@ typedef NS_ENUM(NSInteger, DetectorPickerRow) {
   [self presentViewController:_imagePicker animated:YES completion:nil];
 }
 
-- (IBAction)openPhotoCamera:(id)sender {
+- (IBAction)openCamera:(id)sender {
   if (![UIImagePickerController isCameraDeviceAvailable:UIImagePickerControllerCameraDeviceFront] && ![UIImagePickerController isCameraDeviceAvailable:UIImagePickerControllerCameraDeviceRear]) {
     return;
   }

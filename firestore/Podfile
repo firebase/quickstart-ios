@@ -1,6 +1,6 @@
 platform :ios, '8.0'
 
-target 'FriendlyEats' do
+target 'FirestoreExample' do
   use_frameworks!
 
   pod 'Firebase/Core'
@@ -10,7 +10,7 @@ target 'FriendlyEats' do
   pod 'Firebase/Firestore'
   pod 'SDWebImage'
 
-  target 'FriendlyEatsTests' do
+  target 'FirestoreExampleTests' do
     inherit! :search_paths
   end
 end

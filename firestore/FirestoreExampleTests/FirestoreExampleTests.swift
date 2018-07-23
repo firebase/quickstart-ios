@@ -15,7 +15,7 @@
 //
 
 import XCTest
-@testable import FriendlyEats
+@testable import FirestoreExample
 
-class FriendlyEatsTests: XCTestCase {
+class FirestoreExampleTests: XCTestCase {
 }

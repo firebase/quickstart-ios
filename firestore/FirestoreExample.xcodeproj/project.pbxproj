@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		10734773203159E4004A66D1 /* FriendlyEatsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10734772203159E4004A66D1 /* FriendlyEatsUITests.swift */; };
+		10734773203159E4004A66D1 /* FirestoreExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10734772203159E4004A66D1 /* FirestoreExampleUITests.swift */; };
+		18A2812F3CDD637B4ECE1EDA /* Pods_FirestoreExampleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E9A734507C3D25617F49076 /* Pods_FirestoreExampleTests.framework */; };
+		4B4B2EDB6212AA875F97BB12 /* Pods_FirestoreExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D78FF3335F075DFCDFC1B94 /* Pods_FirestoreExample.framework */; };
 		8D004D2D1EE879B5004DEF35 /* FiltersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D004D2C1EE879B5004DEF35 /* FiltersViewController.swift */; };
 		8D5DF7021F7EF3BA00B0D24F /* NewReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5DF7011F7EF3BA00B0D24F /* NewReviewViewController.swift */; };
 		8D9BBC311EE2200900194E9A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9BBC301EE2200900194E9A /* AppDelegate.swift */; };
@@ -15,7 +17,7 @@
 		8D9BBC361EE2200900194E9A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D9BBC341EE2200900194E9A /* Main.storyboard */; };
 		8D9BBC381EE2200900194E9A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D9BBC371EE2200900194E9A /* Assets.xcassets */; };
 		8D9BBC3B1EE2200900194E9A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D9BBC391EE2200900194E9A /* LaunchScreen.storyboard */; };
-		8D9BBC461EE2200900194E9A /* FriendlyEatsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9BBC451EE2200900194E9A /* FriendlyEatsTests.swift */; };
+		8D9BBC461EE2200900194E9A /* FirestoreExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9BBC451EE2200900194E9A /* FirestoreExampleTests.swift */; };
 		8DD9ACDA1F7B166900C2DD24 /* pizza-monster.png in Resources */ = {isa = PBXBuildFile; fileRef = 8DD9ACD91F7B166900C2DD24 /* pizza-monster.png */; };
 		8DF1E3131EE5CFF900192CDE /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF1E3121EE5CFF900192CDE /* Restaurant.swift */; };
 		8DF1E3151EE72C4600192CDE /* LocalCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF1E3141EE72C4600192CDE /* LocalCollection.swift */; };
@@ -29,38 +31,44 @@
 			containerPortal = 8D9BBC251EE2200800194E9A /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 8D9BBC2C1EE2200900194E9A;
-			remoteInfo = FriendlyEats;
+			remoteInfo = FirestoreExample;
 		};
 		8D9BBC421EE2200900194E9A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 8D9BBC251EE2200800194E9A /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 8D9BBC2C1EE2200900194E9A;
-			remoteInfo = FriendlyEats;
+			remoteInfo = FirestoreExample;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		10734770203159E3004A66D1 /* FriendlyEatsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FriendlyEatsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		10734772203159E4004A66D1 /* FriendlyEatsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendlyEatsUITests.swift; sourceTree = "<group>"; };
+		0E1793F2FF82716841D99A9B /* Pods-FirestoreExampleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FirestoreExampleTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FirestoreExampleTests/Pods-FirestoreExampleTests.debug.xcconfig"; sourceTree = "<group>"; };
+		10734770203159E3004A66D1 /* FirestoreExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FirestoreExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		10734772203159E4004A66D1 /* FirestoreExampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreExampleUITests.swift; sourceTree = "<group>"; };
 		10734774203159E4004A66D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2D78FF3335F075DFCDFC1B94 /* Pods_FirestoreExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FirestoreExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D004D2C1EE879B5004DEF35 /* FiltersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FiltersViewController.swift; sourceTree = "<group>"; };
 		8D5DF7011F7EF3BA00B0D24F /* NewReviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewReviewViewController.swift; sourceTree = "<group>"; };
-		8D9BBC2D1EE2200900194E9A /* FriendlyEats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FriendlyEats.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D9BBC2D1EE2200900194E9A /* FirestoreExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FirestoreExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D9BBC301EE2200900194E9A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8D9BBC321EE2200900194E9A /* RestaurantsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantsTableViewController.swift; sourceTree = "<group>"; };
 		8D9BBC351EE2200900194E9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8D9BBC371EE2200900194E9A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8D9BBC3A1EE2200900194E9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8D9BBC3C1EE2200900194E9A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8D9BBC411EE2200900194E9A /* FriendlyEatsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FriendlyEatsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		8D9BBC451EE2200900194E9A /* FriendlyEatsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendlyEatsTests.swift; sourceTree = "<group>"; };
+		8D9BBC411EE2200900194E9A /* FirestoreExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FirestoreExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D9BBC451EE2200900194E9A /* FirestoreExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreExampleTests.swift; sourceTree = "<group>"; };
 		8D9BBC471EE2200900194E9A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8DD9ACD91F7B166900C2DD24 /* pizza-monster.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pizza-monster.png"; sourceTree = "<group>"; };
 		8DF1E3121EE5CFF900192CDE /* Restaurant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
 		8DF1E3141EE72C4600192CDE /* LocalCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalCollection.swift; sourceTree = "<group>"; };
 		8DF77E191EEB45E500CB2330 /* RestaurantDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantDetailViewController.swift; sourceTree = "<group>"; };
 		8DF77E1B1EEB645100CB2330 /* StarsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StarsView.swift; sourceTree = "<group>"; };
+		8E9A734507C3D25617F49076 /* Pods_FirestoreExampleTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FirestoreExampleTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9C498457529FE2BD5CC91B91 /* Pods-FirestoreExampleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FirestoreExampleTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FirestoreExampleTests/Pods-FirestoreExampleTests.release.xcconfig"; sourceTree = "<group>"; };
+		B0FFA2E6A83C6FB18F956D65 /* Pods-FirestoreExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FirestoreExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-FirestoreExample/Pods-FirestoreExample.release.xcconfig"; sourceTree = "<group>"; };
+		E34A2642529E5C0DA4E8F24F /* Pods-FirestoreExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FirestoreExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FirestoreExample/Pods-FirestoreExample.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +83,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B4B2EDB6212AA875F97BB12 /* Pods_FirestoreExample.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,42 +91,56 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18A2812F3CDD637B4ECE1EDA /* Pods_FirestoreExampleTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		10734771203159E4004A66D1 /* FriendlyEatsUITests */ = {
+		10734771203159E4004A66D1 /* FirestoreExampleUITests */ = {
 			isa = PBXGroup;
 			children = (
-				10734772203159E4004A66D1 /* FriendlyEatsUITests.swift */,
+				10734772203159E4004A66D1 /* FirestoreExampleUITests.swift */,
 				10734774203159E4004A66D1 /* Info.plist */,
 			);
-			path = FriendlyEatsUITests;
+			path = FirestoreExampleUITests;
+			sourceTree = "<group>";
+		};
+		88F5469B02CACD45C4C56510 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E34A2642529E5C0DA4E8F24F /* Pods-FirestoreExample.debug.xcconfig */,
+				B0FFA2E6A83C6FB18F956D65 /* Pods-FirestoreExample.release.xcconfig */,
+				0E1793F2FF82716841D99A9B /* Pods-FirestoreExampleTests.debug.xcconfig */,
+				9C498457529FE2BD5CC91B91 /* Pods-FirestoreExampleTests.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 		8D9BBC241EE2200800194E9A = {
 			isa = PBXGroup;
 			children = (
-				8D9BBC2F1EE2200900194E9A /* FriendlyEats */,
-				8D9BBC441EE2200900194E9A /* FriendlyEatsTests */,
-				10734771203159E4004A66D1 /* FriendlyEatsUITests */,
+				8D9BBC2F1EE2200900194E9A /* FirestoreExample */,
+				8D9BBC441EE2200900194E9A /* FirestoreExampleTests */,
+				10734771203159E4004A66D1 /* FirestoreExampleUITests */,
 				8D9BBC2E1EE2200900194E9A /* Products */,
+				88F5469B02CACD45C4C56510 /* Pods */,
+				CD5430B91656813912339FC0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
 		8D9BBC2E1EE2200900194E9A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8D9BBC2D1EE2200900194E9A /* FriendlyEats.app */,
-				8D9BBC411EE2200900194E9A /* FriendlyEatsTests.xctest */,
-				10734770203159E3004A66D1 /* FriendlyEatsUITests.xctest */,
+				8D9BBC2D1EE2200900194E9A /* FirestoreExample.app */,
+				8D9BBC411EE2200900194E9A /* FirestoreExampleTests.xctest */,
+				10734770203159E3004A66D1 /* FirestoreExampleUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		8D9BBC2F1EE2200900194E9A /* FriendlyEats */ = {
+		8D9BBC2F1EE2200900194E9A /* FirestoreExample */ = {
 			isa = PBXGroup;
 			children = (
 				8D9BBC301EE2200900194E9A /* AppDelegate.swift */,
@@ -134,24 +157,33 @@
 				8D9BBC391EE2200900194E9A /* LaunchScreen.storyboard */,
 				8D9BBC3C1EE2200900194E9A /* Info.plist */,
 			);
-			path = FriendlyEats;
+			path = FirestoreExample;
 			sourceTree = "<group>";
 		};
-		8D9BBC441EE2200900194E9A /* FriendlyEatsTests */ = {
+		8D9BBC441EE2200900194E9A /* FirestoreExampleTests */ = {
 			isa = PBXGroup;
 			children = (
-				8D9BBC451EE2200900194E9A /* FriendlyEatsTests.swift */,
+				8D9BBC451EE2200900194E9A /* FirestoreExampleTests.swift */,
 				8D9BBC471EE2200900194E9A /* Info.plist */,
 			);
-			path = FriendlyEatsTests;
+			path = FirestoreExampleTests;
+			sourceTree = "<group>";
+		};
+		CD5430B91656813912339FC0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2D78FF3335F075DFCDFC1B94 /* Pods_FirestoreExample.framework */,
+				8E9A734507C3D25617F49076 /* Pods_FirestoreExampleTests.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		1073476F203159E3004A66D1 /* FriendlyEatsUITests */ = {
+		1073476F203159E3004A66D1 /* FirestoreExampleUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 10734779203159E4004A66D1 /* Build configuration list for PBXNativeTarget "FriendlyEatsUITests" */;
+			buildConfigurationList = 10734779203159E4004A66D1 /* Build configuration list for PBXNativeTarget "FirestoreExampleUITests" */;
 			buildPhases = (
 				1073476C203159E3004A66D1 /* Sources */,
 				1073476D203159E3004A66D1 /* Frameworks */,
@@ -162,32 +194,36 @@
 			dependencies = (
 				10734776203159E4004A66D1 /* PBXTargetDependency */,
 			);
-			name = FriendlyEatsUITests;
-			productName = FriendlyEatsUITests;
-			productReference = 10734770203159E3004A66D1 /* FriendlyEatsUITests.xctest */;
+			name = FirestoreExampleUITests;
+			productName = FirestoreExampleUITests;
+			productReference = 10734770203159E3004A66D1 /* FirestoreExampleUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
-		8D9BBC2C1EE2200900194E9A /* FriendlyEats */ = {
+		8D9BBC2C1EE2200900194E9A /* FirestoreExample */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8D9BBC4A1EE2200900194E9A /* Build configuration list for PBXNativeTarget "FriendlyEats" */;
+			buildConfigurationList = 8D9BBC4A1EE2200900194E9A /* Build configuration list for PBXNativeTarget "FirestoreExample" */;
 			buildPhases = (
+				2F2FB7E8A82A8E427E25AD03 /* [CP] Check Pods Manifest.lock */,
 				8D9BBC291EE2200900194E9A /* Sources */,
 				8D9BBC2A1EE2200900194E9A /* Frameworks */,
 				8D9BBC2B1EE2200900194E9A /* Resources */,
+				83DF64BA6EF6722FE4A643C8 /* [CP] Embed Pods Frameworks */,
+				2BE34BF2712178317C5F4739 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = FriendlyEats;
-			productName = FriendlyEats;
-			productReference = 8D9BBC2D1EE2200900194E9A /* FriendlyEats.app */;
+			name = FirestoreExample;
+			productName = FirestoreExample;
+			productReference = 8D9BBC2D1EE2200900194E9A /* FirestoreExample.app */;
 			productType = "com.apple.product-type.application";
 		};
-		8D9BBC401EE2200900194E9A /* FriendlyEatsTests */ = {
+		8D9BBC401EE2200900194E9A /* FirestoreExampleTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8D9BBC4D1EE2200900194E9A /* Build configuration list for PBXNativeTarget "FriendlyEatsTests" */;
+			buildConfigurationList = 8D9BBC4D1EE2200900194E9A /* Build configuration list for PBXNativeTarget "FirestoreExampleTests" */;
 			buildPhases = (
+				B3276C5899BEF02F92E8F2D3 /* [CP] Check Pods Manifest.lock */,
 				8D9BBC3D1EE2200900194E9A /* Sources */,
 				8D9BBC3E1EE2200900194E9A /* Frameworks */,
 				8D9BBC3F1EE2200900194E9A /* Resources */,
@@ -197,9 +233,9 @@
 			dependencies = (
 				8D9BBC431EE2200900194E9A /* PBXTargetDependency */,
 			);
-			name = FriendlyEatsTests;
-			productName = FriendlyEatsTests;
-			productReference = 8D9BBC411EE2200900194E9A /* FriendlyEatsTests.xctest */;
+			name = FirestoreExampleTests;
+			productName = FirestoreExampleTests;
+			productReference = 8D9BBC411EE2200900194E9A /* FirestoreExampleTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -230,7 +266,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 8D9BBC281EE2200800194E9A /* Build configuration list for PBXProject "FriendlyEats" */;
+			buildConfigurationList = 8D9BBC281EE2200800194E9A /* Build configuration list for PBXProject "FirestoreExample" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -243,9 +279,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				8D9BBC2C1EE2200900194E9A /* FriendlyEats */,
-				8D9BBC401EE2200900194E9A /* FriendlyEatsTests */,
-				1073476F203159E3004A66D1 /* FriendlyEatsUITests */,
+				8D9BBC2C1EE2200900194E9A /* FirestoreExample */,
+				8D9BBC401EE2200900194E9A /* FirestoreExampleTests */,
+				1073476F203159E3004A66D1 /* FirestoreExampleUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -278,12 +314,113 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		2BE34BF2712178317C5F4739 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-FirestoreExample/Pods-FirestoreExample-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebaseAuthUI.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebaseGoogleAuthUI.bundle",
+				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebaseAuthUI.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebaseGoogleAuthUI.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FirestoreExample/Pods-FirestoreExample-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2F2FB7E8A82A8E427E25AD03 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FirestoreExample-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		83DF64BA6EF6722FE4A643C8 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-FirestoreExample/Pods-FirestoreExample-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/BoringSSL/openssl.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMOAuth2/GTMOAuth2.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC/GRPCClient.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-ProtoRPC/ProtoRPC.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-RxLibrary/RxLibrary.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMOAuth2.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GRPCClient.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ProtoRPC.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxLibrary.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FirestoreExample/Pods-FirestoreExample-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B3276C5899BEF02F92E8F2D3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FirestoreExampleTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		1073476C203159E3004A66D1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				10734773203159E4004A66D1 /* FriendlyEatsUITests.swift in Sources */,
+				10734773203159E4004A66D1 /* FirestoreExampleUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -306,7 +443,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8D9BBC461EE2200900194E9A /* FriendlyEatsTests.swift in Sources */,
+				8D9BBC461EE2200900194E9A /* FirestoreExampleTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -315,12 +452,12 @@
 /* Begin PBXTargetDependency section */
 		10734776203159E4004A66D1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 8D9BBC2C1EE2200900194E9A /* FriendlyEats */;
+			target = 8D9BBC2C1EE2200900194E9A /* FirestoreExample */;
 			targetProxy = 10734775203159E4004A66D1 /* PBXContainerItemProxy */;
 		};
 		8D9BBC431EE2200900194E9A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 8D9BBC2C1EE2200900194E9A /* FriendlyEats */;
+			target = 8D9BBC2C1EE2200900194E9A /* FirestoreExample */;
 			targetProxy = 8D9BBC421EE2200900194E9A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -359,14 +496,14 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = FriendlyEatsUITests/Info.plist;
+				INFOPLIST_FILE = FirestoreExampleUITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.FriendlyEatsUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.FirestoreExampleUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = FriendlyEats;
+				TEST_TARGET_NAME = FirestoreExample;
 			};
 			name = Debug;
 		};
@@ -384,14 +521,14 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = FriendlyEatsUITests/Info.plist;
+				INFOPLIST_FILE = FirestoreExampleUITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.FriendlyEatsUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.FirestoreExampleUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = FriendlyEats;
+				TEST_TARGET_NAME = FirestoreExample;
 			};
 			name = Release;
 		};
@@ -508,12 +645,13 @@
 		};
 		8D9BBC4B1EE2200900194E9A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E34A2642529E5C0DA4E8F24F /* Pods-FirestoreExample.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = FriendlyEats/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/FirestoreExample/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -595,7 +733,7 @@
 					"-framework",
 					"\"openssl\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.firebase.FriendlyEats;
+				PRODUCT_BUNDLE_IDENTIFIER = com.firebase.FirestoreExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -606,12 +744,13 @@
 		};
 		8D9BBC4C1EE2200900194E9A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B0FFA2E6A83C6FB18F956D65 /* Pods-FirestoreExample.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = FriendlyEats/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/FirestoreExample/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -693,7 +832,7 @@
 					"-framework",
 					"\"openssl\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.firebase.FriendlyEats;
+				PRODUCT_BUNDLE_IDENTIFIER = com.firebase.FirestoreExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
@@ -703,38 +842,40 @@
 		};
 		8D9BBC4E1EE2200900194E9A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0E1793F2FF82716841D99A9B /* Pods-FirestoreExampleTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = FriendlyEatsTests/Info.plist;
+				INFOPLIST_FILE = FirestoreExampleTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.firebase.FriendlyEatsTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.firebase.FirestoreExampleTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FriendlyEats.app/FriendlyEats";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FirestoreExample.app/FirestoreExample";
 			};
 			name = Debug;
 		};
 		8D9BBC4F1EE2200900194E9A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9C498457529FE2BD5CC91B91 /* Pods-FirestoreExampleTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = FriendlyEatsTests/Info.plist;
+				INFOPLIST_FILE = FirestoreExampleTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.firebase.FriendlyEatsTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.firebase.FirestoreExampleTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FriendlyEats.app/FriendlyEats";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FirestoreExample.app/FirestoreExample";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		10734779203159E4004A66D1 /* Build configuration list for PBXNativeTarget "FriendlyEatsUITests" */ = {
+		10734779203159E4004A66D1 /* Build configuration list for PBXNativeTarget "FirestoreExampleUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				10734777203159E4004A66D1 /* Debug */,
@@ -743,7 +884,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8D9BBC281EE2200800194E9A /* Build configuration list for PBXProject "FriendlyEats" */ = {
+		8D9BBC281EE2200800194E9A /* Build configuration list for PBXProject "FirestoreExample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8D9BBC481EE2200900194E9A /* Debug */,
@@ -752,7 +893,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8D9BBC4A1EE2200900194E9A /* Build configuration list for PBXNativeTarget "FriendlyEats" */ = {
+		8D9BBC4A1EE2200900194E9A /* Build configuration list for PBXNativeTarget "FirestoreExample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8D9BBC4B1EE2200900194E9A /* Debug */,
@@ -761,7 +902,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8D9BBC4D1EE2200900194E9A /* Build configuration list for PBXNativeTarget "FriendlyEatsTests" */ = {
+		8D9BBC4D1EE2200900194E9A /* Build configuration list for PBXNativeTarget "FirestoreExampleTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8D9BBC4E1EE2200900194E9A /* Debug */,

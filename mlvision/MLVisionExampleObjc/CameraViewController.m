@@ -25,6 +25,7 @@ static NSString *const alertControllerMessage = @"Select a detector";
 static NSString *const cancelActionTitleText = @"Cancel";
 static NSString *const videoDataOutputQueueLabel = @"com.google.firebaseml.visiondetector.VideoDataOutputQueue";
 static NSString *const sessionQueueLabel = @"com.google.firebaseml.visiondetector.SessionQueue";
+static NSString *const noResultsMessage = @"No Results";
 
 @interface CameraViewController () <AVCaptureVideoDataOutputSampleBufferDelegate>
 
@@ -119,25 +120,25 @@ typedef NS_ENUM(NSInteger, Detector) {
   }];
 }
 
-- (void)detectTextOnDeviceInImage:(FIRVisionImage *)image width:(CGFloat) width height:(CGFloat)height {
-  FIRVisionTextDetector *onDeviceTextDetector = [_vision textDetector];
-  [onDeviceTextDetector detectInImage:image completion:^(NSArray<id<FIRVisionText>> * _Nullable texts, NSError * _Nullable error) {
-    if (!texts || texts.count == 0) {
-      [self removeDetectionAnnotations];
-      NSLog(@"%@", @"On-Device text detector returned no results.");
+- (void)recognizeTextOnDeviceInImage:(FIRVisionImage *)image width:(CGFloat) width height:(CGFloat)height {
+  FIRVisionTextRecognizer *textRecognizer = [_vision onDeviceTextRecognizer];
+  [textRecognizer processImage:image completion:^(FIRVisionText * _Nullable text, NSError * _Nullable error) {
+    [self removeDetectionAnnotations];
+    if (text == nil) {
+      NSLog(@"On-Device text recognizer error: %@", error ? error.localizedDescription : noResultsMessage);
       return;
     }
-    [self removeDetectionAnnotations];
-    for (id<FIRVisionText> text in texts) {
-      if (![text isKindOfClass:[FIRVisionTextBlock class]]) {
-        continue;
-      }
-      FIRVisionTextBlock *block = text;
+    // Blocks.
+    for (FIRVisionTextBlock *block in text.blocks) {
       NSArray<NSValue *> *points = [self convertedPointsFromPoints:block.cornerPoints width:width height:height];
       [UIUtilities addShapeWithPoints:points toView:self->_annotationOverlayView color:UIColor.purpleColor];
+
+      // Lines.
       for (FIRVisionTextLine *line in block.lines) {
         NSArray<NSValue *> *points = [self  convertedPointsFromPoints:line.cornerPoints width:width height:height];
         [UIUtilities addShapeWithPoints:points toView:self->_annotationOverlayView color:UIColor.purpleColor];
+
+        // Elements.
         for (FIRVisionTextElement *element in line.elements) {
           CGRect normalizedRect = CGRectMake(element.frame.origin.x / width, element.frame.origin.y / height, element.frame.size.width / width, element.frame.size.height / height);
           CGRect convertedRect = [self->_previewLayer rectForMetadataOutputRectOfInterest:normalizedRect];
@@ -300,7 +301,7 @@ typedef NS_ENUM(NSInteger, Detector) {
         [self detectFacesOnDeviceInImage:visionImage width:imageWidth height:imageHeight];
         break;
       case DetectorOnDeviceText:
-        [self detectTextOnDeviceInImage:visionImage width:imageWidth height:imageHeight];
+        [self recognizeTextOnDeviceInImage:visionImage width:imageWidth height:imageHeight];
         break;
     }
   } else {

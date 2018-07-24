@@ -160,7 +160,7 @@ typedef NS_ENUM(NSInteger, DetectorPickerRow) {
     [self detectFacesInImage:_imageView.image];
     break;
     case DetectorPickerRowDetectTextOnDevice:
-    [self detectTextInImage:_imageView.image];
+    [self detectTextOnDeviceInImage:_imageView.image];
     break;
     case DetectorPickerRowDetectBarcodeOnDevice:
     [self detectBarcodesInImage:_imageView.image];
@@ -169,10 +169,10 @@ typedef NS_ENUM(NSInteger, DetectorPickerRow) {
     [self detectLabelsInImage:_imageView.image];
     break;
     case DetectorPickerRowDetectTextInCloud:
-    [self detectCloudTextsInImage:_imageView.image];
+    [self detectTextInCloudInImage:_imageView.image];
     break;
     case DetectorPickerRowDetectDocumentTextInCloud:
-    [self detectCloudDocumentTextsInImage:_imageView.image];
+    [self detectDocumentTextInCloudInImage:_imageView.image];
     break;
     case DetectorPickerRowDetectImageLabelsInCloud:
     [self detectCloudLabelsInImage:_imageView.image];
@@ -203,15 +203,16 @@ typedef NS_ENUM(NSInteger, DetectorPickerRow) {
 
 /// Removes the detection annotations from the annotation overlay view.
 - (void)removeDetectionAnnotations {
-    for (UIView *annotationView in _annotationOverlayView.subviews) {
-      [annotationView removeFromSuperview];
-    }
+  for (UIView *annotationView in _annotationOverlayView.subviews) {
+    [annotationView removeFromSuperview];
   }
+}
 
 /// Clears the results text view and removes any frames that are visible.
 - (void)clearResults {
-    [self removeDetectionAnnotations];
-  }
+  [self removeDetectionAnnotations];
+  self.resultsText = [NSMutableString new];
+}
 
 - (void)showResults {
   UIAlertController *resultsAlertController = [UIAlertController alertControllerWithTitle:@"Detection Results" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
@@ -358,6 +359,91 @@ typedef NS_ENUM(NSInteger, DetectorPickerRow) {
       [UIUtilities addCircleAtPoint:transformedPoint toView:_annotationOverlayView color:UIColor.orangeColor radius:largeDotRadius];
     }
   }
+
+- (void)process:(FIRVisionImage *)visionImage withTextRecognizer:(FIRVisionTextRecognizer *)textRecognizer {
+  // [START recognize_text]
+  [textRecognizer processImage:visionImage completion:^(FIRVisionText * _Nullable text, NSError * _Nullable error) {
+    if (text == nil) {
+      // [START_EXCLUDE]
+      self.resultsText = [NSMutableString stringWithFormat:@"Text recognizer failed with error: %@", error ? error.localizedDescription : detectionNoResultsMessage];
+      [self showResults];
+      // [END_EXCLUDE]
+      return;
+    }
+
+    // [START_EXCLUDE]
+    // Blocks.
+    for (FIRVisionTextBlock *block in text.blocks) {
+      CGRect transformedRect = CGRectApplyAffineTransform(block.frame, [self transformMatrix]);
+      [UIUtilities addRectangle:transformedRect toView:self.annotationOverlayView color:UIColor.purpleColor];
+
+      // Lines.
+      for (FIRVisionTextLine *line in block.lines) {
+        CGRect transformedRect = CGRectApplyAffineTransform(line.frame, [self transformMatrix]);
+        [UIUtilities addRectangle:transformedRect toView:self.annotationOverlayView color:UIColor.orangeColor];
+
+        // Elements.
+        for (FIRVisionTextElement *element in line.elements) {
+          CGRect transformedRect = CGRectApplyAffineTransform(element.frame, [self transformMatrix]);
+          [UIUtilities addRectangle:transformedRect toView:self.annotationOverlayView color:UIColor.greenColor];
+          UILabel *label = [[UILabel alloc] initWithFrame:transformedRect];
+          label.text = element.text;
+          label.adjustsFontSizeToFitWidth = YES;
+          [self.annotationOverlayView addSubview:label];
+        }
+      }
+    }
+    [self.resultsText appendFormat:@"%@\n", text.text];
+    [self showResults];
+    // [END_EXCLUDE]
+  }];
+  // [END recognize_text]
+}
+
+- (void)process:(FIRVisionImage *)visionImage withDocumentTextRecognizer:(FIRVisionDocumentTextRecognizer *)documentTextRecognizer {
+  // [START recognize_document_text]
+  [documentTextRecognizer processImage:visionImage completion:^(FIRVisionDocumentText * _Nullable text, NSError * _Nullable error) {
+    if (text == nil) {
+      // [START_EXCLUDE]
+      self.resultsText = [NSMutableString stringWithFormat:@"Document text recognizer failed with error: %@", error ? error.localizedDescription : detectionNoResultsMessage];
+      [self showResults];
+      // [END_EXCLUDE]
+      return;
+    }
+    // [START_EXCLUDE]
+    // Blocks.
+    for (FIRVisionDocumentTextBlock *block in text.blocks) {
+      CGRect transformedRect = CGRectApplyAffineTransform(block.frame, [self transformMatrix]);
+      [UIUtilities addRectangle:transformedRect toView:self.annotationOverlayView color:UIColor.purpleColor];
+
+      // Paragraphs.
+      for (FIRVisionDocumentTextParagraph *paragraph in block.paragraphs) {
+        CGRect transformedRect = CGRectApplyAffineTransform(paragraph.frame, [self transformMatrix]);
+              [UIUtilities addRectangle:transformedRect toView:self.annotationOverlayView color:UIColor.orangeColor];
+
+        // Words.
+        for (FIRVisionDocumentTextWord *word in paragraph.words) {
+          CGRect transformedRect = CGRectApplyAffineTransform(word.frame, [self transformMatrix]);
+          [UIUtilities addRectangle:transformedRect toView:self.annotationOverlayView color:UIColor.greenColor];
+
+          // Symbols.
+          for (FIRVisionDocumentTextSymbol *symbol in word.symbols) {
+            CGRect transformedRect = CGRectApplyAffineTransform(symbol.frame, [self transformMatrix]);
+            [UIUtilities addRectangle:transformedRect toView:self.annotationOverlayView color:UIColor.cyanColor];
+            UILabel *label = [[UILabel alloc] initWithFrame:transformedRect];
+            label.text = symbol.text;
+            label.adjustsFontSizeToFitWidth = YES;
+            [self.annotationOverlayView addSubview:label];
+          }
+        }
+      }
+    }
+    [self.resultsText appendFormat:@"%@\n", text.text];
+    [self showResults];
+    // [END_EXCLUDE]
+  }];
+  // [END recognize_document_text]
+}
 
 #pragma mark - UIPickerViewDataSource
 
@@ -551,17 +637,17 @@ typedef NS_ENUM(NSInteger, DetectorPickerRow) {
   // [END detect_label]
 }
 
-/// Detects texts on the specified image and draws a frame around the detect texts using On-Device
-/// text API.
+/// Detects text on the specified image and draws a frame around the recognized text using the
+/// On-Device text recognizer.
 ///
 /// - Parameter image: The image.
-- (void)detectTextInImage:(UIImage *)image {
+- (void)detectTextOnDeviceInImage:(UIImage *)image {
   if (!image) {
     return;
   }
 
   // [START init_text]
-  FIRVisionTextDetector *textDetector = [_vision textDetector];
+  FIRVisionTextRecognizer *onDeviceTextRecognizer = [_vision onDeviceTextRecognizer];
   // [END init_text]
 
   // Define the metadata for the image.
@@ -572,52 +658,31 @@ typedef NS_ENUM(NSInteger, DetectorPickerRow) {
   FIRVisionImage *visionImage = [[FIRVisionImage alloc] initWithImage:image];
   visionImage.metadata = imageMetadata;
 
-  // [START detect_text]
-  [textDetector detectInImage:visionImage completion:^(NSArray<FIRVisionText *> * _Nullable texts, NSError * _Nullable error) {
-    if (!texts || texts.count == 0) {
-      // [START_EXCLUDE]
-      NSString *errorString = error ? error.localizedDescription : detectionNoResultsMessage;
-      self.resultsText = [NSMutableString stringWithFormat:@"On-Device text detection failed with error: %@", errorString];
-      [self showResults];
-      // [END_EXCLUDE]
-      return;
-    }
-
-    // [START_EXCLUDE]
-    [self.resultsText setString:@""];
-    for (FIRVisionTextBlock *text in texts) {
-      CGAffineTransform transform = [self transformMatrix];
-      CGRect transformedRect = CGRectApplyAffineTransform(text.frame, transform);
-      [UIUtilities addRectangle:transformedRect toView:self.annotationOverlayView color:UIColor.greenColor];
-      [self.resultsText appendFormat:@"Text: %@\n", text.text];
-    }
-    [self showResults];
-    // [END_EXCLUDE]
-  }];
-  // [END detect_text]
+  [self.resultsText appendString:@"Running On-Device Text Recognition...\n"];
+  [self process:visionImage withTextRecognizer:onDeviceTextRecognizer];
 }
 
 #pragma mark - Vision Cloud Detection
 
-/// Detects texts on the specified image and draws a frame around the detected texts using cloud
-/// text API.
+/// Detects text on the specified image and draws a frame around the recognized text using the
+/// Cloud text recognizer.
 ///
 /// - Parameter image: The image.
-- (void)detectCloudTextsInImage:(UIImage *)image {
+- (void)detectTextInCloudInImage:(UIImage *)image {
   if (!image) {
     return;
   }
 
   // [START config_text_cloud]
-  FIRVisionCloudDetectorOptions *options = [FIRVisionCloudDetectorOptions new];
-  options.modelType = FIRVisionCloudModelTypeLatest;
+  FIRVisionCloudTextRecognizerOptions *options = [FIRVisionCloudTextRecognizerOptions new];
+  options.type = FIRVisionCloudTextModelTypeDense;
   // options.maxResults has no effect with this API
   // [END config_text_cloud]
 
   // [START init_text_cloud]
-  FIRVisionCloudTextDetector *cloudDetector = [_vision cloudTextDetectorWithOptions: options];
+  FIRVisionTextRecognizer *cloudTextRecognizer = [_vision cloudTextRecognizerWithOptions:options];
   // Or, to use the default settings:
-  // FIRVisionCloudTextDetector *cloudDetector = [_vision cloudTextDetector];
+  // FIRVisionCloudTextRecognizer *cloudTextRecognizer = [_vision cloudTextRecognizer];
   // [END init_text_cloud]
 
   // Define the metadata for the image.
@@ -628,37 +693,21 @@ typedef NS_ENUM(NSInteger, DetectorPickerRow) {
   FIRVisionImage *visionImage = [[FIRVisionImage alloc] initWithImage:image];
   visionImage.metadata = imageMetadata;
 
-  // [START detect_text_cloud]
-  [cloudDetector detectInImage:visionImage completion:^(FIRVisionCloudText * _Nullable text, NSError * _Nullable error) {
-    if (!text) {
-      // [START_EXCLUDE]
-      NSString *errorString = error ? error.localizedDescription : detectionNoResultsMessage;
-      self.resultsText = [NSMutableString stringWithFormat:@"Cloud text detection failed with error: %@", errorString];
-      [self showResults];
-      // [END_EXCLUDE]
-      return;
-    }
-
-    // Recognized and extracted text
-    // [START_EXCLUDE]
-    [self.resultsText setString:text.text ? text.text : @""];
-    [self showResults];
-    // [END_EXCLUDE]
-  }];
-  // [END detect_text_cloud]
+  [_resultsText appendString:@"Running Cloud Text Recognition...\n"];
+  [self process:visionImage withTextRecognizer:cloudTextRecognizer];
 }
 
-/// Detects document texts on the specified image and draws a frame around the detected texts
-/// using cloud document text API.
+/// Detects document text on the specified image and draws a frame around the recognized text
+/// using the Cloud document text recognizer.
 ///
 /// - Parameter image: The image.
-- (void)detectCloudDocumentTextsInImage:(UIImage *)image {
+- (void)detectDocumentTextInCloudInImage:(UIImage *)image {
   if (!image) {
     return;
   }
 
   // [START init_document_text_cloud]
-  FIRVisionCloudDocumentTextDetector *cloudDetector = [_vision cloudDocumentTextDetector];
+  FIRVisionDocumentTextRecognizer *cloudDocumentTextRecognizer = [_vision cloudDocumentTextRecognizer];
   // [END init_document_text_cloud]
 
   // Define the metadata for the image.
@@ -669,24 +718,8 @@ typedef NS_ENUM(NSInteger, DetectorPickerRow) {
   FIRVisionImage *visionImage = [[FIRVisionImage alloc] initWithImage:image];
   visionImage.metadata = imageMetadata;
 
-  // [START detect_document_text_cloud]
-  [cloudDetector detectInImage:visionImage completion:^(FIRVisionCloudText * _Nullable text, NSError * _Nullable error) {
-    if (!text) {
-      // [START_EXCLUDE]
-      NSString *errorString = error ? error.localizedDescription : detectionNoResultsMessage;
-      self.resultsText = [NSMutableString stringWithFormat:@"Cloud document text detection failed with error: %@", errorString];
-      [self showResults];
-      // [END_EXCLUDE]
-      return;
-    }
-
-    // Recognized and extracted document text
-    // [START_EXCLUDE]
-    [self.resultsText setString:text.text ? text.text : @""];
-    [self showResults];
-    // [END_EXCLUDE]
-  }];
-  // [END detect_document_text_cloud]
+  [_resultsText appendString:@"Running Cloud Document Text Recognition...\n"];
+  [self process:visionImage withDocumentTextRecognizer:cloudDocumentTextRecognizer];
 }
 
 /// Detects landmarks on the specified image and draws a frame around the detected landmarks using

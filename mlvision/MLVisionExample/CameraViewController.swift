@@ -11,10 +11,9 @@ class CameraViewController: UIViewController {
   private var currentDetector: Detector = .onDeviceFace
   private var isUsingFrontCamera = true
   private lazy var captureSession = AVCaptureSession()
-  private lazy var sessionQueue = DispatchQueue(label: Constants.sessionQueueLabel)
+  private lazy var sessionQueue = DispatchQueue(label: Constant.sessionQueueLabel)
   private var previewLayer: AVCaptureVideoPreviewLayer!
   private lazy var vision = Vision.vision()
-  private lazy var onDeviceTextDetector = vision.textDetector()
 
   private lazy var annotationOverlayView: UIView = {
     precondition(isViewLoaded)
@@ -101,16 +100,17 @@ class CameraViewController: UIViewController {
     }
   }
 
-  private func detectTextOnDevice(in image: VisionImage, width: CGFloat, height: CGFloat) {
-    onDeviceTextDetector.detect(in: image) { features, error in
-      guard error == nil, let features = features, !features.isEmpty else {
-        self.removeDetectionAnnotations()
-        print("On-Device text detector returned no results.")
+  private func recognizeTextOnDevice(in image: VisionImage, width: CGFloat, height: CGFloat) {
+    let textRecognizer = vision.onDeviceTextRecognizer()
+    textRecognizer.process(image) { text, error in
+      self.removeDetectionAnnotations()
+      guard error == nil, let text = text else {
+        print("On-Device text recognizer error: " +
+          "\(error?.localizedDescription ?? Constant.noResultsMessage)")
         return
       }
-      self.removeDetectionAnnotations()
-      for feature in features {
-        guard feature is VisionTextBlock, let block = feature as? VisionTextBlock else { continue }
+      // Blocks.
+      for block in text.blocks {
         let points = self.convertedPoints(from: block.cornerPoints, width: width, height: height)
         UIUtilities.addShape(
           withPoints: points,
@@ -118,6 +118,7 @@ class CameraViewController: UIViewController {
           color: UIColor.purple
         )
 
+        // Lines.
         for line in block.lines {
           let points = self.convertedPoints(from: line.cornerPoints, width: width, height: height)
           UIUtilities.addShape(
@@ -126,6 +127,7 @@ class CameraViewController: UIViewController {
             color: UIColor.orange
           )
 
+          // Elements.
           for element in line.elements {
             let normalizedRect = CGRect(
               x: element.frame.origin.x / width,
@@ -161,7 +163,7 @@ class CameraViewController: UIViewController {
       let output = AVCaptureVideoDataOutput()
       output.videoSettings =
         [(kCVPixelBufferPixelFormatTypeKey as String): kCVPixelFormatType_32BGRA]
-      let outputQueue = DispatchQueue(label: Constants.videoDataOutputQueueLabel)
+      let outputQueue = DispatchQueue(label: Constant.videoDataOutputQueueLabel)
       output.setSampleBufferDelegate(self, queue: outputQueue)
       guard self.captureSession.canAddOutput(output) else {
         print("Failed to add capture session output.")
@@ -229,8 +231,8 @@ class CameraViewController: UIViewController {
 
   private func presentDetectorsAlertController() {
     let alertController = UIAlertController(
-      title: Constants.alertControllerTitle,
-      message: Constants.alertControllerMessage,
+      title: Constant.alertControllerTitle,
+      message: Constant.alertControllerMessage,
       preferredStyle: .alert
     )
     detectors.forEach { detectorType in
@@ -244,7 +246,7 @@ class CameraViewController: UIViewController {
       if detectorType.rawValue == currentDetector.rawValue { action.isEnabled = false }
       alertController.addAction(action)
     }
-    alertController.addAction(UIAlertAction(title: Constants.cancelActionTitleText, style: .cancel))
+    alertController.addAction(UIAlertAction(title: Constant.cancelActionTitleText, style: .cancel))
     present(alertController, animated: true)
   }
 
@@ -307,7 +309,7 @@ extension CameraViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
     case .onDeviceFace:
       detectFacesOnDevice(in: visionImage, width: imageWidth, height: imageHeight)
     case .onDeviceText:
-      detectTextOnDevice(in: visionImage, width: imageWidth, height: imageHeight)
+      recognizeTextOnDevice(in: visionImage, width: imageWidth, height: imageHeight)
     }
   }
 }
@@ -319,11 +321,12 @@ public enum Detector: String {
   case onDeviceText = "On-Device Text"
 }
 
-private enum Constants {
+private enum Constant {
   static let alertControllerTitle = "Vision Detectors"
   static let alertControllerMessage = "Select a detector"
   static let cancelActionTitleText = "Cancel"
   static let videoDataOutputQueueLabel = "com.google.firebaseml.visiondetector.VideoDataOutputQueue"
   static let sessionQueueLabel = "com.google.firebaseml.visiondetector.SessionQueue"
+  static let noResultsMessage = "No Results"
 }
 

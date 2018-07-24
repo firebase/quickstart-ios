@@ -103,15 +103,15 @@ class ViewController:  UIViewController, UINavigationControllerDelegate {
       case .detectFaceOnDevice:
         detectFaces(image: imageView.image)
       case .detectTextOnDevice:
-        detectTexts(image: imageView.image)
+        detectTextOnDevice(image: imageView.image)
       case .detectBarcodeOnDevice:
         detectBarcodes(image: imageView.image)
       case .detectvImageLabelsOnDevice:
         detectLabels(image: imageView.image)
       case .detectTextInCloud:
-        detectCloudTexts(image: imageView.image)
+        detectTextInCloud(image: imageView.image)
       case .detectDocumentTextInCloud:
-        detectCloudDocumentTexts(image: imageView.image)
+        detectDocumentTextInCloud(image: imageView.image)
       case .detectImageLabelsInCloud:
         detectCloudLabels(image: imageView.image)
       case .detectLandmarkInCloud:
@@ -155,6 +155,7 @@ class ViewController:  UIViewController, UINavigationControllerDelegate {
   /// Clears the results text view and removes any frames that are visible.
   private func clearResults() {
     removeDetectionAnnotations()
+    self.resultsText = ""
   }
 
   private func showResults() {
@@ -337,6 +338,111 @@ class ViewController:  UIViewController, UINavigationControllerDelegate {
         color: UIColor.orange,
         radius: Constants.largeDotRadius
       )
+    }
+  }
+
+  private func process(_ visionImage: VisionImage, with textRecognizer: VisionTextRecognizer?) {
+    textRecognizer?.process(visionImage) { text, error in
+      guard error == nil, let text = text else {
+        let errorString = error?.localizedDescription ?? Constants.detectionNoResultsMessage
+        self.resultsText = "Text recognizer failed with error: \(errorString)"
+        self.showResults()
+        return
+      }
+      // Blocks.
+      for block in text.blocks {
+        let transformedRect = block.frame.applying(self.transformMatrix())
+        UIUtilities.addRectangle(
+          transformedRect,
+          to: self.annotationOverlayView,
+          color: UIColor.purple
+        )
+
+        // Lines.
+        for line in block.lines {
+          let transformedRect = line.frame.applying(self.transformMatrix())
+          UIUtilities.addRectangle(
+            transformedRect,
+            to: self.annotationOverlayView,
+            color: UIColor.orange
+          )
+
+          // Elements.
+          for element in line.elements {
+            let transformedRect = element.frame.applying(self.transformMatrix())
+            UIUtilities.addRectangle(
+              transformedRect,
+              to: self.annotationOverlayView,
+              color: UIColor.green
+            )
+            let label = UILabel(frame: transformedRect)
+            label.text = element.text
+            label.adjustsFontSizeToFitWidth = true
+            self.annotationOverlayView.addSubview(label)
+          }
+        }
+      }
+      self.resultsText += "\(text.text)\n"
+      self.showResults()
+    }
+  }
+
+  private func process(
+    _ visionImage: VisionImage,
+    with documentTextRecognizer: VisionDocumentTextRecognizer?
+    ) {
+    documentTextRecognizer?.process(visionImage) { text, error in
+      guard error == nil, let text = text else {
+        let errorString = error?.localizedDescription ?? Constants.detectionNoResultsMessage
+        self.resultsText = "Document text recognizer failed with error: \(errorString)"
+        self.showResults()
+        return
+      }
+      // Blocks.
+      for block in text.blocks {
+        let transformedRect = block.frame.applying(self.transformMatrix())
+        UIUtilities.addRectangle(
+          transformedRect,
+          to: self.annotationOverlayView,
+          color: UIColor.purple
+        )
+
+        // Paragraphs.
+        for paragraph in block.paragraphs {
+          let transformedRect = paragraph.frame.applying(self.transformMatrix())
+          UIUtilities.addRectangle(
+            transformedRect,
+            to: self.annotationOverlayView,
+            color: UIColor.orange
+          )
+
+          // Words.
+          for word in paragraph.words {
+            let transformedRect = word.frame.applying(self.transformMatrix())
+            UIUtilities.addRectangle(
+              transformedRect,
+              to: self.annotationOverlayView,
+              color: UIColor.green
+            )
+
+            // Symbols.
+            for symbol in word.symbols {
+              let transformedRect = symbol.frame.applying(self.transformMatrix())
+              UIUtilities.addRectangle(
+                transformedRect,
+                to: self.annotationOverlayView,
+                color: UIColor.cyan
+              )
+              let label = UILabel(frame: transformedRect)
+              label.text = symbol.text
+              label.adjustsFontSizeToFitWidth = true
+              self.annotationOverlayView.addSubview(label)
+            }
+          }
+        }
+      }
+      self.resultsText += "\(text.text)\n"
+      self.showResults()
     }
   }
 }
@@ -554,15 +660,15 @@ extension ViewController {
     // [END detect_label]
   }
 
-  /// Detects texts on the specified image and draws a frame around the detect texts using On-Device
-  /// text API.
+  /// Detects text on the specified image and draws a frame around the recognized text using the
+  /// On-Device text recognizer.
   ///
   /// - Parameter image: The image.
-  func detectTexts(image: UIImage?) {
+  func detectTextOnDevice(image: UIImage?) {
     guard let image = image else { return }
 
     // [START init_text]
-    let textDetector = vision.textDetector()
+    let onDeviceTextRecognizer = vision.onDeviceTextRecognizer()
     // [END init_text]
 
     // Define the metadata for the image.
@@ -573,45 +679,22 @@ extension ViewController {
     let visionImage = VisionImage(image: image)
     visionImage.metadata = imageMetadata
 
-    // [START detect_text]
-    textDetector.detect(in: visionImage) { features, error in
-      guard error == nil, let features = features, !features.isEmpty else {
-        // [START_EXCLUDE]
-        let errorString = error?.localizedDescription ?? Constants.detectionNoResultsMessage
-        self.resultsText = "On-Device text detection failed with error: \(errorString)"
-        self.showResults()
-        // [END_EXCLUDE]
-        return
-      }
-
-      // [START_EXCLUDE]
-      self.resultsText = features.map { feature in
-        let transformedRect = feature.frame.applying(self.transformMatrix())
-        UIUtilities.addRectangle(
-          transformedRect,
-          to: self.annotationOverlayView,
-          color: UIColor.green
-        )
-        return "Text: \(feature.text)"
-        }.joined(separator: "\n")
-      self.showResults()
-      // [END_EXCLUDE]
-    }
-    // [END detect_text]
+    self.resultsText += "Running On-Device Text Recognition...\n"
+    process(visionImage, with: onDeviceTextRecognizer)
   }
 
   // MARK: - Vision Cloud Detection
 
-  /// Detects texts on the specified image and draws a frame around the detected texts using cloud
-  /// text API.
+  /// Detects text on the specified image and draws a frame around the recognized text using the
+  /// Cloud text recognizer.
   ///
   /// - Parameter image: The image.
-  func detectCloudTexts(image: UIImage?) {
+  func detectTextInCloud(image: UIImage?) {
     guard let image = image else { return }
 
     // [START config_text_cloud]
-    let options = VisionCloudDetectorOptions()
-    options.modelType = .latest
+    let options = VisionCloudTextRecognizerOptions()
+    options.type = .dense
     // options.maxResults has no effect with this API
     // [END config_text_cloud]
 
@@ -624,36 +707,19 @@ extension ViewController {
     visionImage.metadata = imageMetadata
 
     // [START init_text_cloud]
-    let cloudDetector = vision.cloudTextDetector(options: options)
+    let cloudTextRecognizer = vision.cloudTextRecognizer(options: options)
     // Or, to use the default settings:
-    // let textDetector = vision?.cloudTextDetector()
+    // let cloudTextRecognizer = vision.cloudTextRecognizer()
     // [END init_text_cloud]
-
-    // [START detect_text_cloud]
-    cloudDetector.detect(in: visionImage) { text, error in
-      guard error == nil, let text = text else {
-        // [START_EXCLUDE]
-        let errorString = error?.localizedDescription ?? Constants.detectionNoResultsMessage
-        self.resultsText = "Cloud text detection failed with error: \(errorString)"
-        self.showResults()
-        // [END_EXCLUDE]
-        return
-      }
-
-      // Recognized and extracted text
-      // [START_EXCLUDE]
-      self.resultsText = text.text ?? ""
-      self.showResults()
-      // [END_EXCLUDE]
-    }
-    // [END detect_text_cloud]
+    self.resultsText += "Running Cloud Text Recognition...\n"
+    process(visionImage, with: cloudTextRecognizer)
   }
 
-  /// Detects document texts on the specified image and draws a frame around the detected texts
-  /// using cloud document text API.
+  /// Detects document text on the specified image and draws a frame around the recognized text
+  /// using the Cloud document text recognizer.
   ///
   /// - Parameter image: The image.
-  func detectCloudDocumentTexts(image: UIImage?) {
+  func detectDocumentTextInCloud(image: UIImage?) {
     guard let image = image else { return }
 
     // Define the metadata for the image.
@@ -665,27 +731,11 @@ extension ViewController {
     visionImage.metadata = imageMetadata
 
     // [START init_document_text_cloud]
-    let cloudDetector = vision.cloudDocumentTextDetector()
+    let cloudDocumentTextRecognizer = vision.cloudDocumentTextRecognizer()
     // [END init_document_text_cloud]
 
-    // [START detect_document_text_cloud]
-    cloudDetector.detect(in: visionImage) { text, error in
-      guard error == nil, let text = text else {
-        // [START_EXCLUDE]
-        let errorString = error?.localizedDescription ?? Constants.detectionNoResultsMessage
-        self.resultsText = "Cloud document text detection failed with error: \(errorString)"
-        self.showResults()
-        // [END_EXCLUDE]
-        return
-      }
-
-      // Recognized and extracted document text
-      // [START_EXCLUDE]
-      self.resultsText = text.text ?? ""
-      self.showResults()
-      // [END_EXCLUDE]
-    }
-    // [END detect_document_text_cloud]
+    self.resultsText += "Running Cloud Document Text Recognition...\n"
+    process(visionImage, with: cloudDocumentTextRecognizer)
   }
 
   /// Detects landmarks on the specified image and draws a frame around the detected landmarks using

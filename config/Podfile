@@ -1,0 +1,13 @@
+# ConfigExample
+use_frameworks!
+platform :ios, '8.0'
+
+pod 'Firebase/Core'
+pod 'Firebase/RemoteConfig'
+
+target 'ConfigExample' do
+end
+target 'ConfigExampleSwift' do
+end
+target 'ConfigExampleTests' do
+end

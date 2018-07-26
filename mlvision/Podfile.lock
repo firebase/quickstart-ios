@@ -1,22 +1,22 @@
 PODS:
-  - Firebase/Core (5.3.0):
+  - Firebase/Core (5.4.1):
     - Firebase/CoreOnly
     - FirebaseAnalytics (= 5.0.1)
-  - Firebase/CoreOnly (5.3.0):
-    - FirebaseCore (= 5.0.4)
-  - Firebase/MLVision (5.3.0):
+  - Firebase/CoreOnly (5.4.1):
+    - FirebaseCore (= 5.0.6)
+  - Firebase/MLVision (5.4.1):
     - Firebase/CoreOnly
     - FirebaseMLVision (= 0.10.0)
-  - Firebase/MLVisionBarcodeModel (5.3.0):
+  - Firebase/MLVisionBarcodeModel (5.4.1):
     - Firebase/CoreOnly
     - FirebaseMLVisionBarcodeModel (= 0.10.0)
-  - Firebase/MLVisionFaceModel (5.3.0):
+  - Firebase/MLVisionFaceModel (5.4.1):
     - Firebase/CoreOnly
     - FirebaseMLVisionFaceModel (= 0.10.0)
-  - Firebase/MLVisionLabelModel (5.3.0):
+  - Firebase/MLVisionLabelModel (5.4.1):
     - Firebase/CoreOnly
     - FirebaseMLVisionLabelModel (= 0.10.0)
-  - Firebase/MLVisionTextModel (5.3.0):
+  - Firebase/MLVisionTextModel (5.4.1):
     - Firebase/CoreOnly
     - FirebaseMLVisionTextModel (= 0.10.0)
   - FirebaseAnalytics (5.0.1):
@@ -24,7 +24,7 @@ PODS:
     - FirebaseInstanceID (~> 3.0)
     - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
     - nanopb (~> 0.3)
-  - FirebaseCore (5.0.4):
+  - FirebaseCore (5.0.6):
     - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
   - FirebaseInstanceID (3.1.1):
     - FirebaseCore (~> 5.0)
@@ -44,9 +44,9 @@ PODS:
     - GoogleMobileVision/LabelDetector (~> 1.3)
   - FirebaseMLVisionTextModel (0.10.0):
     - GoogleMobileVision/TextDetector (~> 1.3)
-  - GoogleAPIClientForREST/Core (1.3.4):
+  - GoogleAPIClientForREST/Core (1.3.5):
     - GTMSessionFetcher (>= 1.1.7)
-  - GoogleAPIClientForREST/Vision (1.3.4):
+  - GoogleAPIClientForREST/Vision (1.3.5):
     - GoogleAPIClientForREST/Core
     - GTMSessionFetcher (>= 1.1.7)
   - GoogleMobileVision/BarcodeDetector (1.3.2):
@@ -107,9 +107,9 @@ SPEC REPOS:
     - Protobuf
 
 SPEC CHECKSUMS:
-  Firebase: 68afeeb05461db02d7c9e3215cda28068670f4aa
+  Firebase: 355bd535bfdacaa82a7fe8d9784115edefd6fc03
   FirebaseAnalytics: b3628aea54c50464c32c393fb2ea032566e7ecc2
-  FirebaseCore: 62f1b792a49bb9e8b4073f24606d2c93ffc352f0
+  FirebaseCore: 4c28e3b9708ba48a765e76515f913a71596eb5dd
   FirebaseInstanceID: f3f0657372592ecdfdfe2cac604a5a75758376a6
   FirebaseMLCommon: 88ffed2dbb54ecb7dbcf8080a7654b6ea938e15b
   FirebaseMLVision: 144a482992b5b3d60afc17abfeb28a42bf468522
@@ -117,7 +117,7 @@ SPEC CHECKSUMS:
   FirebaseMLVisionFaceModel: 3f3462e16fd7a569c4e89eb0369aa76507917ac8
   FirebaseMLVisionLabelModel: 7b5b4f2e24547741831a64dac45a619d8d06d51f
   FirebaseMLVisionTextModel: 4155450cea9f7fdca1d294c6b86e6ea67e665643
-  GoogleAPIClientForREST: f7951c455df271bc6259b3ddb4073d0026475ccf
+  GoogleAPIClientForREST: b4c23f6ec9b8c29419d0377168007963d0e25551
   GoogleMobileVision: 6b0a3a2dae1974ec35d80fdeeacc3a03193642e0
   GoogleToolboxForMac: 91c824d21e85b31c2aae9bb011c5027c9b4e738f
   GTMSessionFetcher: 5fa5b80fd20e439ef5f545fb2cb3ca6c6714caa2

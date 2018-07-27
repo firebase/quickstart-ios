@@ -84,11 +84,11 @@ PODS:
     - gRPC-RxLibrary (= 1.13.0)
   - GTMOAuth2 (1.1.6):
     - GTMSessionFetcher (~> 1.1)
-  - GTMSessionFetcher (1.1.15):
-    - GTMSessionFetcher/Full (= 1.1.15)
-  - GTMSessionFetcher/Core (1.1.15)
-  - GTMSessionFetcher/Full (1.1.15):
-    - GTMSessionFetcher/Core (= 1.1.15)
+  - GTMSessionFetcher (1.2.0):
+    - GTMSessionFetcher/Full (= 1.2.0)
+  - GTMSessionFetcher/Core (1.2.0)
+  - GTMSessionFetcher/Full (1.2.0):
+    - GTMSessionFetcher/Core (= 1.2.0)
   - leveldb-library (1.20)
   - nanopb (0.3.8):
     - nanopb/decode (= 0.3.8)
@@ -147,7 +147,7 @@ SPEC CHECKSUMS:
   gRPC-ProtoRPC: 842797fbe05dfcf891afb4a5048e5ccf5f06ef86
   gRPC-RxLibrary: fa6852f98d6ec0b73c0ec2f6406c26943099d501
   GTMOAuth2: c77fe325e4acd453837e72d91e3b5f13116857b2
-  GTMSessionFetcher: 5fa5b80fd20e439ef5f545fb2cb3ca6c6714caa2
+  GTMSessionFetcher: 0c4baf0a73acd0041bf9f71ea018deedab5ea84e
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   Protobuf: 0fc0ad8bec688b2a3017a139953e01374fedbd5f

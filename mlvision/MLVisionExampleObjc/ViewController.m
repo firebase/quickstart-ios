@@ -675,8 +675,7 @@ typedef NS_ENUM(NSInteger, DetectorPickerRow) {
 
   // [START config_text_cloud]
   FIRVisionCloudTextRecognizerOptions *options = [FIRVisionCloudTextRecognizerOptions new];
-  options.type = FIRVisionCloudTextModelTypeDense;
-  // options.maxResults has no effect with this API
+  options.modelType = FIRVisionCloudTextModelTypeDense;
   // [END config_text_cloud]
 
   // [START init_text_cloud]

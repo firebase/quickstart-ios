@@ -694,8 +694,7 @@ extension ViewController {
 
     // [START config_text_cloud]
     let options = VisionCloudTextRecognizerOptions()
-    options.type = .dense
-    // options.maxResults has no effect with this API
+    options.modelType = .dense
     // [END config_text_cloud]
 
     // Define the metadata for the image.

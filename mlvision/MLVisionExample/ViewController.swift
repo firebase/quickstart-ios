@@ -880,7 +880,7 @@ private enum DetectorPickerRow: Int {
 
 private enum Constants {
   static let images = ["grace_hopper.jpg", "barcode_128.png", "qr_code.jpg", "beach.jpg",
-                         "multi-face.png", "image_has_text.jpg"]
+                       "image_has_text.jpg", "liberty.jpg"]
   static let modelExtension = "tflite"
   static let localModelName = "mobilenet"
   static let quantizedModelFilename = "mobilenet_quant_v1_224"

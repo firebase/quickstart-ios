@@ -111,6 +111,7 @@ class EmailViewController: UIViewController {
             self.showSpinner {
               // [START create_user]
               Auth.auth().createUser(withEmail: email, password: password) { (authResult, error) in
+                guard let user = authResult?.user else { return }
                 // [START_EXCLUDE]
                 self.hideSpinner {
                   guard let email = authResult?.user.email, error == nil else {

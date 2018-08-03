@@ -1,32 +1,58 @@
 PODS:
-  - Firebase/Core (5.4.1):
+  - Firebase/Core (5.5.0):
     - Firebase/CoreOnly
-    - FirebaseAnalytics (= 5.0.1)
-  - Firebase/CoreOnly (5.4.1):
-    - FirebaseCore (= 5.0.6)
-  - Firebase/Crash (5.4.1):
+    - FirebaseAnalytics (= 5.1.0)
+  - Firebase/CoreOnly (5.5.0):
+    - FirebaseCore (= 5.1.0)
+  - Firebase/Crash (5.5.0):
     - Firebase/Core
-    - FirebaseCrash (= 3.0.0)
-  - FirebaseAnalytics (5.0.1):
-    - FirebaseCore (~> 5.0)
-    - FirebaseInstanceID (~> 3.0)
-    - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
+    - FirebaseCrash (= 3.1.0)
+  - FirebaseAnalytics (5.1.0):
+    - FirebaseCore (~> 5.1)
+    - FirebaseInstanceID (~> 3.2)
+    - GoogleAppMeasurement (~> 5.1)
+    - GoogleUtilities/AppDelegateSwizzler (~> 5.2.0)
+    - GoogleUtilities/MethodSwizzler (~> 5.2.0)
+    - GoogleUtilities/Network (~> 5.2)
+    - "GoogleUtilities/NSData+zlib (~> 5.2)"
     - nanopb (~> 0.3)
-  - FirebaseCore (5.0.6):
-    - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
-  - FirebaseCrash (3.0.0):
-    - FirebaseAnalytics (~> 5.0)
-    - FirebaseInstanceID (~> 3.0)
+  - FirebaseCore (5.1.0):
+    - GoogleUtilities/Logger (~> 5.2)
+  - FirebaseCrash (3.1.0):
+    - FirebaseAnalytics (~> 5.1)
+    - FirebaseInstanceID (~> 3.2)
     - GoogleToolboxForMac/Logger (~> 2.1)
     - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
     - Protobuf (~> 3.5)
-  - FirebaseInstanceID (3.1.1):
-    - FirebaseCore (~> 5.0)
+  - FirebaseInstanceID (3.2.0):
+    - FirebaseCore (~> 5.1)
+    - GoogleUtilities/Environment (~> 5.2)
+  - GoogleAppMeasurement (5.1.0):
+    - GoogleUtilities/AppDelegateSwizzler (~> 5.2.0)
+    - GoogleUtilities/MethodSwizzler (~> 5.2.0)
+    - GoogleUtilities/Network (~> 5.2)
+    - "GoogleUtilities/NSData+zlib (~> 5.2)"
+    - nanopb (~> 0.3)
   - GoogleToolboxForMac/Defines (2.1.4)
   - GoogleToolboxForMac/Logger (2.1.4):
     - GoogleToolboxForMac/Defines (= 2.1.4)
   - "GoogleToolboxForMac/NSData+zlib (2.1.4)":
     - GoogleToolboxForMac/Defines (= 2.1.4)
+  - GoogleUtilities/AppDelegateSwizzler (5.2.1):
+    - GoogleUtilities/Logger
+    - GoogleUtilities/Network
+  - GoogleUtilities/Environment (5.2.1)
+  - GoogleUtilities/Logger (5.2.1):
+    - GoogleUtilities/Environment
+  - GoogleUtilities/MethodSwizzler (5.2.1):
+    - GoogleUtilities/Logger
+  - GoogleUtilities/Network (5.2.1):
+    - GoogleUtilities/Logger
+    - "GoogleUtilities/NSData+zlib"
+    - GoogleUtilities/Reachability
+  - "GoogleUtilities/NSData+zlib (5.2.1)"
+  - GoogleUtilities/Reachability (5.2.1):
+    - GoogleUtilities/Logger
   - nanopb (0.3.8):
     - nanopb/decode (= 0.3.8)
     - nanopb/encode (= 0.3.8)
@@ -45,17 +71,21 @@ SPEC REPOS:
     - FirebaseCore
     - FirebaseCrash
     - FirebaseInstanceID
+    - GoogleAppMeasurement
     - GoogleToolboxForMac
+    - GoogleUtilities
     - nanopb
     - Protobuf
 
 SPEC CHECKSUMS:
-  Firebase: 355bd535bfdacaa82a7fe8d9784115edefd6fc03
-  FirebaseAnalytics: b3628aea54c50464c32c393fb2ea032566e7ecc2
-  FirebaseCore: 4c28e3b9708ba48a765e76515f913a71596eb5dd
-  FirebaseCrash: 8900571fd763fd5bdda04522ec53da979456e3ce
-  FirebaseInstanceID: f3f0657372592ecdfdfe2cac604a5a75758376a6
+  Firebase: 8c957f9cb3852b519180fb378801b7eeeba4d288
+  FirebaseAnalytics: d4a260c114aec0d765ab5b9c404ac63de1d29381
+  FirebaseCore: ee4b35cf8c8e781da296cc7c15125e4608bb954d
+  FirebaseCrash: 5e4a61afd8d32cef37875c757602c00f6d1b8bc2
+  FirebaseInstanceID: 8cd2c6cfe7b9ab65ce7e248f6da7f26f6775b9be
+  GoogleAppMeasurement: e785bdb86d3d280abc778156cec323a975f11d1d
   GoogleToolboxForMac: 91c824d21e85b31c2aae9bb011c5027c9b4e738f
+  GoogleUtilities: 8d9fa00248c475b606fd20b562242060a20117a2
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   Protobuf: 0fc0ad8bec688b2a3017a139953e01374fedbd5f
 

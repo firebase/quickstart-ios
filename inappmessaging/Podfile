@@ -12,6 +12,6 @@ target 'InAppMessagingExample' do
 
   # Pods for InAppMessagingExample
   pod 'Firebase'
-  pod 'FirebaseInAppMessaging'
+  pod 'Firebase/InAppMessagingDisplay'
   pod 'Firebase/DynamicLinks'
 end

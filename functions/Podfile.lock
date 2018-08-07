@@ -144,7 +144,7 @@ PODS:
   - MaterialComponents/Typography (59.1.1):
     - MaterialComponents/private/Application
     - MaterialComponents/private/Math
-  - MDFInternationalization (1.0.4)
+  - MDFInternationalization (1.1.0)
   - MDFTextAccessibility (1.2.0)
   - nanopb (0.3.8):
     - nanopb/decode (= 0.3.8)
@@ -199,7 +199,7 @@ SPEC CHECKSUMS:
   GTMOAuth2: c77fe325e4acd453837e72d91e3b5f13116857b2
   GTMSessionFetcher: 0c4baf0a73acd0041bf9f71ea018deedab5ea84e
   MaterialComponents: 9ba063439c19dd92b3489bc2c4e428f2abaced65
-  MDFInternationalization: e355b0cebecf53d60233bd267084e49366c82513
+  MDFInternationalization: b5b8626628abf026e630e5ebaeee563037712cbb
   MDFTextAccessibility: 94098925e0853551c5a311ce7c1ecefbe297cdb6
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
 

@@ -1,0 +1,95 @@
+PODS:
+  - Firebase (5.6.0):
+    - Firebase/Core (= 5.6.0)
+  - Firebase/Core (5.6.0):
+    - Firebase/CoreOnly
+    - FirebaseAnalytics (= 5.1.1)
+  - Firebase/CoreOnly (5.6.0):
+    - FirebaseCore (= 5.1.1)
+  - Firebase/DynamicLinks (5.6.0):
+    - Firebase/Core
+    - FirebaseDynamicLinks (= 3.0.2)
+  - Firebase/InAppMessagingDisplay (5.6.0):
+    - Firebase/Core
+    - FirebaseInAppMessaging (= 0.11.0)
+  - FirebaseAnalytics (5.1.1):
+    - FirebaseCore (~> 5.1)
+    - FirebaseInstanceID (~> 3.2)
+    - GoogleAppMeasurement (~> 5.1)
+    - GoogleUtilities/AppDelegateSwizzler (~> 5.2.0)
+    - GoogleUtilities/MethodSwizzler (~> 5.2.0)
+    - GoogleUtilities/Network (~> 5.2)
+    - "GoogleUtilities/NSData+zlib (~> 5.2)"
+    - nanopb (~> 0.3)
+  - FirebaseCore (5.1.1):
+    - GoogleUtilities/Logger (~> 5.2)
+  - FirebaseDynamicLinks (3.0.2):
+    - FirebaseAnalytics (~> 5.1)
+  - FirebaseInAppMessaging (0.11.0):
+    - FirebaseAnalytics (~> 5.1)
+    - FirebaseCore (~> 5.1)
+    - FirebaseInstanceID (~> 3.2)
+    - GoogleUtilities/Environment (~> 5.0)
+  - FirebaseInstanceID (3.2.1):
+    - FirebaseCore (~> 5.1)
+    - GoogleUtilities/Environment (~> 5.2)
+  - GoogleAppMeasurement (5.1.0):
+    - GoogleUtilities/AppDelegateSwizzler (~> 5.2.0)
+    - GoogleUtilities/MethodSwizzler (~> 5.2.0)
+    - GoogleUtilities/Network (~> 5.2)
+    - "GoogleUtilities/NSData+zlib (~> 5.2)"
+    - nanopb (~> 0.3)
+  - GoogleUtilities/AppDelegateSwizzler (5.2.2):
+    - GoogleUtilities/Environment
+    - GoogleUtilities/Logger
+    - GoogleUtilities/Network
+  - GoogleUtilities/Environment (5.2.2)
+  - GoogleUtilities/Logger (5.2.2):
+    - GoogleUtilities/Environment
+  - GoogleUtilities/MethodSwizzler (5.2.2):
+    - GoogleUtilities/Logger
+  - GoogleUtilities/Network (5.2.2):
+    - GoogleUtilities/Logger
+    - "GoogleUtilities/NSData+zlib"
+    - GoogleUtilities/Reachability
+  - "GoogleUtilities/NSData+zlib (5.2.2)"
+  - GoogleUtilities/Reachability (5.2.2):
+    - GoogleUtilities/Logger
+  - nanopb (0.3.8):
+    - nanopb/decode (= 0.3.8)
+    - nanopb/encode (= 0.3.8)
+  - nanopb/decode (0.3.8)
+  - nanopb/encode (0.3.8)
+
+DEPENDENCIES:
+  - Firebase
+  - Firebase/DynamicLinks
+  - Firebase/InAppMessagingDisplay
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - GoogleUtilities
+    - nanopb
+  sso://cpdc-internal/spec:
+    - Firebase
+    - FirebaseAnalytics
+    - FirebaseCore
+    - FirebaseDynamicLinks
+    - FirebaseInAppMessaging
+    - FirebaseInstanceID
+    - GoogleAppMeasurement
+
+SPEC CHECKSUMS:
+  Firebase: 13ed8f45441aaa3b01d783a6d74d2f5fd54dfa99
+  FirebaseAnalytics: 834983579778d4e0fa1a23e5910a96970f0b3ecc
+  FirebaseCore: cb9ee75e0894def766167c95a4d5a14b1c138269
+  FirebaseDynamicLinks: 4b436ec87f680ade5b742b995459487af4bc9807
+  FirebaseInAppMessaging: 41f98ebb3059092bc5c8ac8cf32b3a14a1eb3d6b
+  FirebaseInstanceID: 846f42fa32f7ccf07959f5e301ce97355c325cde
+  GoogleAppMeasurement: 9fc497ee028c1d50e80065e1eabeb72389a28a01
+  GoogleUtilities: 06b66f9567769a7958db20a92f0128b2843e49d5
+  nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
+
+PODFILE CHECKSUM: 2008c1f2831596b274418233411536474f544b98
+
+COCOAPODS: 1.5.3

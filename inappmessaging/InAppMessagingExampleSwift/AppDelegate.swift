@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Uncomment the following line to disable In-App Messaging auto-startup.
     // InAppMessaging.inAppMessaging().disable()
 
-    FirebaseOptions.defaultOptions()?.deepLinkURLScheme = "com.google.InAppMessagingExampleiOS"
+    FirebaseOptions.defaultOptions()?.deepLinkURLScheme = "com.google.InAppMessagingExampleSwiftiOS"
     FirebaseApp.configure()
     return true
   }

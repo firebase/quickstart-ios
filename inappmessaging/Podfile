@@ -7,11 +7,29 @@ source 'https://github.com/CocoaPods/Specs.git'
 use_frameworks!
 
 target 'InAppMessagingExample' do
-  # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
-  # use_frameworks!
-
-  # Pods for InAppMessagingExample
   pod 'Firebase'
   pod 'Firebase/InAppMessagingDisplay'
   pod 'Firebase/DynamicLinks'
+
+  target 'InAppMessagingExampleTests' do
+    inherit! :search_paths
+  end
+
+  target 'InAppMessagingExampleUITests' do
+    inherit! :search_paths
+  end
+end
+
+target 'InAppMessagingExampleSwift' do
+  pod 'Firebase'
+  pod 'Firebase/InAppMessagingDisplay'
+  pod 'Firebase/DynamicLinks'
+
+  target 'InAppMessagingExampleSwiftTests' do
+    inherit! :search_paths
+  end
+
+  target 'InAppMessagingExampleSwiftUITests' do
+    inherit! :search_paths
+  end
 end

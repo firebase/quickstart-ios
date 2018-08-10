@@ -33,7 +33,7 @@ PODS:
   - FirebaseInstanceID (3.2.0):
     - FirebaseCore (~> 5.1)
     - GoogleUtilities/Environment (~> 5.2)
-  - FirebaseUI/Database (5.1.3):
+  - FirebaseUI/Database (5.2.0):
     - Firebase/Database (~> 5.0)
   - GoogleAppMeasurement (5.1.0):
     - GoogleUtilities/AppDelegateSwizzler (~> 5.2.0)
@@ -95,7 +95,7 @@ SPEC CHECKSUMS:
   FirebaseCore: ee4b35cf8c8e781da296cc7c15125e4608bb954d
   FirebaseDatabase: 27be5ac5bc75e0b17537b2bbfada8258addcc8cd
   FirebaseInstanceID: 8cd2c6cfe7b9ab65ce7e248f6da7f26f6775b9be
-  FirebaseUI: 6d3f86249a4de8288424e154c9ff1a976aae3910
+  FirebaseUI: 9dfa423b6f1b73737ae8ab62692c1c0a8886186d
   GoogleAppMeasurement: e785bdb86d3d280abc778156cec323a975f11d1d
   GoogleUtilities: 06b66f9567769a7958db20a92f0128b2843e49d5
   GTMSessionFetcher: 0c4baf0a73acd0041bf9f71ea018deedab5ea84e

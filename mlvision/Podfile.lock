@@ -49,9 +49,9 @@ PODS:
     - GoogleMobileVision/LabelDetector (~> 1.3)
   - FirebaseMLVisionTextModel (0.11.0):
     - GoogleMobileVision/TextDetector (~> 1.3)
-  - GoogleAPIClientForREST/Core (1.3.5):
+  - GoogleAPIClientForREST/Core (1.3.6):
     - GTMSessionFetcher (>= 1.1.7)
-  - GoogleAPIClientForREST/Vision (1.3.5):
+  - GoogleAPIClientForREST/Vision (1.3.6):
     - GoogleAPIClientForREST/Core
     - GTMSessionFetcher (>= 1.1.7)
   - GoogleAppMeasurement (5.1.0):
@@ -146,7 +146,7 @@ SPEC CHECKSUMS:
   FirebaseMLVisionFaceModel: e20abe2b6be9f493c6a4e6b5a83f49ab87c4ba90
   FirebaseMLVisionLabelModel: e172ed744536db700508f6df125e05e72044826c
   FirebaseMLVisionTextModel: 52a42f7d723e3d2d7d68ca8269722c9b36cd4892
-  GoogleAPIClientForREST: b4c23f6ec9b8c29419d0377168007963d0e25551
+  GoogleAPIClientForREST: 5b95b38a0fa912e8ac7bdcf9e124578ef1a61bf2
   GoogleAppMeasurement: e785bdb86d3d280abc778156cec323a975f11d1d
   GoogleMobileVision: 6b0a3a2dae1974ec35d80fdeeacc3a03193642e0
   GoogleToolboxForMac: 91c824d21e85b31c2aae9bb011c5027c9b4e738f

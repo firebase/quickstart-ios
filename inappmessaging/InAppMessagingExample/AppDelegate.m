@@ -27,7 +27,7 @@
 - (BOOL)application:(UIApplication *)application
     didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   // Uncomment the following line to disable In-App Messaging auto-startup.
-  // [[FIRInAppMessaging inAppMessaging] disable];
+  // [FIRInAppMessaging inAppMessaging].automaticDataCollectionEnabled = NO;
 
   [FIROptions defaultOptions].deepLinkURLScheme = @"com.google.InAppMessagingExampleiOS";
   [FIRApp configure];

@@ -1,16 +1,16 @@
 PODS:
-  - Firebase/Auth (5.5.0):
+  - Firebase/Auth (5.6.0):
     - Firebase/CoreOnly
     - FirebaseAuth (= 5.0.3)
-  - Firebase/Core (5.5.0):
+  - Firebase/Core (5.6.0):
     - Firebase/CoreOnly
-    - FirebaseAnalytics (= 5.1.0)
-  - Firebase/CoreOnly (5.5.0):
-    - FirebaseCore (= 5.1.0)
-  - Firebase/Functions (5.5.0):
+    - FirebaseAnalytics (= 5.1.1)
+  - Firebase/CoreOnly (5.6.0):
+    - FirebaseCore (= 5.1.1)
+  - Firebase/Functions (5.6.0):
     - Firebase/CoreOnly
     - FirebaseFunctions (= 2.1.0)
-  - FirebaseAnalytics (5.1.0):
+  - FirebaseAnalytics (5.1.1):
     - FirebaseCore (~> 5.1)
     - FirebaseInstanceID (~> 3.2)
     - GoogleAppMeasurement (~> 5.1)
@@ -25,12 +25,12 @@ PODS:
     - GoogleUtilities/Environment (~> 5.2)
     - GTMSessionFetcher/Core (~> 1.1)
   - FirebaseAuthInterop (1.0.0)
-  - FirebaseCore (5.1.0):
+  - FirebaseCore (5.1.1):
     - GoogleUtilities/Logger (~> 5.2)
   - FirebaseFunctions (2.1.0):
     - FirebaseCore (~> 5.0)
     - GTMSessionFetcher/Core (~> 1.1)
-  - FirebaseInstanceID (3.2.0):
+  - FirebaseInstanceID (3.2.1):
     - FirebaseCore (~> 5.1)
     - GoogleUtilities/Environment (~> 5.2)
   - FirebaseUI/Auth (5.2.0):
@@ -38,13 +38,13 @@ PODS:
   - FirebaseUI/Google (5.2.0):
     - FirebaseUI/Auth
     - GoogleSignIn (~> 4.0)
-  - GoogleAppMeasurement (5.1.0):
+  - GoogleAppMeasurement (5.1.1):
     - GoogleUtilities/AppDelegateSwizzler (~> 5.2.0)
     - GoogleUtilities/MethodSwizzler (~> 5.2.0)
     - GoogleUtilities/Network (~> 5.2)
     - "GoogleUtilities/NSData+zlib (~> 5.2)"
     - nanopb (~> 0.3)
-  - GoogleSignIn (4.1.2):
+  - GoogleSignIn (4.2.0):
     - "GoogleToolboxForMac/NSDictionary+URLArguments (~> 2.1)"
     - "GoogleToolboxForMac/NSString+URLArguments (~> 2.1)"
     - GTMOAuth2 (~> 1.0)
@@ -185,16 +185,16 @@ SPEC REPOS:
     - nanopb
 
 SPEC CHECKSUMS:
-  Firebase: 8c957f9cb3852b519180fb378801b7eeeba4d288
-  FirebaseAnalytics: d4a260c114aec0d765ab5b9c404ac63de1d29381
+  Firebase: 75ea9e232eefa158c1049028030b8f661a2ccb62
+  FirebaseAnalytics: 993577e91157feb40945abedd6ab346d8a4b6ac8
   FirebaseAuth: 657a25e4be044d2d333663ebf515a861c5a59cd7
   FirebaseAuthInterop: 0ffa57668be100582bb7643d4fcb7615496c41fc
-  FirebaseCore: ee4b35cf8c8e781da296cc7c15125e4608bb954d
+  FirebaseCore: cb9ee75e0894def766167c95a4d5a14b1c138269
   FirebaseFunctions: 0cb3bc0bbeac1daf6fea378a1064ff7f484e4c4e
-  FirebaseInstanceID: 8cd2c6cfe7b9ab65ce7e248f6da7f26f6775b9be
+  FirebaseInstanceID: ea5af6920d0a4a29b40459d055bebe4a6c1333c4
   FirebaseUI: 9dfa423b6f1b73737ae8ab62692c1c0a8886186d
-  GoogleAppMeasurement: e785bdb86d3d280abc778156cec323a975f11d1d
-  GoogleSignIn: d9ef55b10f0aa401a5de2747f59b725e4b9732ac
+  GoogleAppMeasurement: f7507b39b70ad0bd80b3d81518b2f43868974307
+  GoogleSignIn: 591e46382014e591269f862ba6e7bc0fbd793532
   GoogleToolboxForMac: 91c824d21e85b31c2aae9bb011c5027c9b4e738f
   GoogleUtilities: 06b66f9567769a7958db20a92f0128b2843e49d5
   GTMOAuth2: c77fe325e4acd453837e72d91e3b5f13116857b2

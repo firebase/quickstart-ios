@@ -68,9 +68,6 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
-    - GoogleUtilities
-    - nanopb
-  sso://cpdc-internal/spec:
     - Firebase
     - FirebaseAnalytics
     - FirebaseCore
@@ -78,18 +75,20 @@ SPEC REPOS:
     - FirebaseInAppMessaging
     - FirebaseInstanceID
     - GoogleAppMeasurement
+    - GoogleUtilities
+    - nanopb
 
 SPEC CHECKSUMS:
-  Firebase: 13ed8f45441aaa3b01d783a6d74d2f5fd54dfa99
-  FirebaseAnalytics: 834983579778d4e0fa1a23e5910a96970f0b3ecc
+  Firebase: 75ea9e232eefa158c1049028030b8f661a2ccb62
+  FirebaseAnalytics: 993577e91157feb40945abedd6ab346d8a4b6ac8
   FirebaseCore: cb9ee75e0894def766167c95a4d5a14b1c138269
-  FirebaseDynamicLinks: 4b436ec87f680ade5b742b995459487af4bc9807
-  FirebaseInAppMessaging: 41f98ebb3059092bc5c8ac8cf32b3a14a1eb3d6b
-  FirebaseInstanceID: 846f42fa32f7ccf07959f5e301ce97355c325cde
-  GoogleAppMeasurement: 9fc497ee028c1d50e80065e1eabeb72389a28a01
+  FirebaseDynamicLinks: eb41fb20677b0a6e944b47f45cbe59f388e9e5cc
+  FirebaseInAppMessaging: bed0d5b1b8807477400693431fdce65b27fe315f
+  FirebaseInstanceID: ea5af6920d0a4a29b40459d055bebe4a6c1333c4
+  GoogleAppMeasurement: e785bdb86d3d280abc778156cec323a975f11d1d
   GoogleUtilities: 06b66f9567769a7958db20a92f0128b2843e49d5
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
 
-PODFILE CHECKSUM: 2008c1f2831596b274418233411536474f544b98
+PODFILE CHECKSUM: c429d7cf84837e484f16f00ba9040334254bf3c0
 
 COCOAPODS: 1.5.3

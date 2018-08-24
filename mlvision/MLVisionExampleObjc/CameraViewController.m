@@ -26,6 +26,8 @@ static NSString *const cancelActionTitleText = @"Cancel";
 static NSString *const videoDataOutputQueueLabel = @"com.google.firebaseml.visiondetector.VideoDataOutputQueue";
 static NSString *const sessionQueueLabel = @"com.google.firebaseml.visiondetector.SessionQueue";
 static NSString *const noResultsMessage = @"No Results";
+static const CGFloat FIRSmallDotRadius = 4.0;
+static const CGFloat FIRBigDotRadius = 10.0;
 
 @interface CameraViewController () <AVCaptureVideoDataOutputSampleBufferDelegate>
 
@@ -50,9 +52,9 @@ typedef NS_ENUM(NSInteger, Detector) {
 - (NSString *)stringForDetector:(Detector)detector {
   switch (detector) {
     case DetectorOnDeviceFace:
-    return @"On-Device Face";
+      return @"On-Device Face";
     case DetectorOnDeviceText:
-    return @"On-Device Text";
+      return @"On-Device Text";
   }
 }
 
@@ -101,8 +103,14 @@ typedef NS_ENUM(NSInteger, Detector) {
 
 - (void)detectFacesOnDeviceInImage:(FIRVisionImage *)image width:(CGFloat) width height:(CGFloat)height {
   FIRVisionFaceDetectorOptions *options = [[FIRVisionFaceDetectorOptions alloc] init];
-  options.landmarkType = FIRVisionFaceDetectorLandmarkAll;
-  options.isTrackingEnabled = YES;
+  // When performing latency tests to determine ideal detection settings,
+  // run the app in 'release' mode to get accurate performance metrics
+  options.performanceMode = FIRVisionFaceDetectorPerformanceModeFast;
+  options.contourMode = FIRVisionFaceDetectorContourModeAll;
+  options.landmarkMode = FIRVisionFaceDetectorLandmarkModeNone;
+  options.classificationMode = FIRVisionFaceDetectorClassificationModeNone;
+  options.minFaceSize = 0.1;
+  options.trackingEnabled = YES;
 
   FIRVisionFaceDetector *faceDetector = [_vision faceDetectorWithOptions:options];
   [faceDetector detectInImage:image completion:^(NSArray<FIRVisionFace *> * _Nullable faces, NSError * _Nullable error) {
@@ -116,8 +124,146 @@ typedef NS_ENUM(NSInteger, Detector) {
       CGRect normalizedRect = CGRectMake(face.frame.origin.x / width, face.frame.origin.y / height, face.frame.size.width / width, face.frame.size.height / height);
       CGRect standardizedRect = CGRectStandardize([self->_previewLayer rectForMetadataOutputRectOfInterest:normalizedRect]);
       [UIUtilities addRectangle:standardizedRect toView:self->_annotationOverlayView color:UIColor.greenColor];
+      [self addContoursFromVisionFace:face width:width height:height];
     }
   }];
+}
+
+- (void)addContoursFromVisionFace:(FIRVisionFace *)face
+                            width:(size_t)imageWidth
+                           height:(size_t)imageHeight {
+  // Face
+  FIRVisionFaceContour *faceContour = [face contourOfType:FIRFaceContourTypeFace];
+  for (FIRVisionPoint *point in faceContour.points) {
+    CGPoint cgPoint =
+        [self normalizedPointFromVisionPoint:point width:imageWidth height:imageHeight];
+    [UIUtilities addCircleAtPoint:cgPoint
+                           toView:self->_annotationOverlayView
+                            color:UIColor.greenColor
+                           radius:FIRSmallDotRadius];
+  }
+
+  // Eyebrows
+  FIRVisionFaceContour *leftEyebrowTopContour =
+  [face contourOfType:FIRFaceContourTypeLeftEyebrowTop];
+  for (FIRVisionPoint *point in leftEyebrowTopContour.points) {
+    CGPoint cgPoint =
+        [self normalizedPointFromVisionPoint:point width:imageWidth height:imageHeight];
+    [UIUtilities addCircleAtPoint:cgPoint
+                           toView:self->_annotationOverlayView
+                            color:UIColor.greenColor
+                           radius:FIRSmallDotRadius];
+  }
+  FIRVisionFaceContour *leftEyebrowBottomContour =
+  [face contourOfType:FIRFaceContourTypeLeftEyebrowBottom];
+  for (FIRVisionPoint *point in leftEyebrowBottomContour.points) {
+    CGPoint cgPoint =
+        [self normalizedPointFromVisionPoint:point width:imageWidth height:imageHeight];
+    [UIUtilities addCircleAtPoint:cgPoint
+                           toView:self->_annotationOverlayView
+                            color:UIColor.greenColor
+                           radius:FIRSmallDotRadius];
+  }
+  FIRVisionFaceContour *rightEyebrowTopContour =
+  [face contourOfType:FIRFaceContourTypeRightEyebrowTop];
+  for (FIRVisionPoint *point in rightEyebrowTopContour.points) {
+    CGPoint cgPoint =
+        [self normalizedPointFromVisionPoint:point width:imageWidth height:imageHeight];
+    [UIUtilities addCircleAtPoint:cgPoint
+                           toView:self->_annotationOverlayView
+                            color:UIColor.greenColor
+                           radius:FIRSmallDotRadius];
+  }
+  FIRVisionFaceContour *rightEyebrowBottomContour =
+  [face contourOfType:FIRFaceContourTypeRightEyebrowBottom];
+  for (FIRVisionPoint *point in rightEyebrowBottomContour.points) {
+    CGPoint cgPoint =
+        [self normalizedPointFromVisionPoint:point width:imageWidth height:imageHeight];
+    [UIUtilities addCircleAtPoint:cgPoint
+                           toView:self->_annotationOverlayView
+                            color:UIColor.greenColor
+                           radius:FIRSmallDotRadius];
+  }
+
+  // Eyes
+  FIRVisionFaceContour *leftEyeContour = [face contourOfType:FIRFaceContourTypeLeftEye];
+  for (FIRVisionPoint *point in leftEyeContour.points) {
+    CGPoint cgPoint =
+        [self normalizedPointFromVisionPoint:point width:imageWidth height:imageHeight];
+    [UIUtilities addCircleAtPoint:cgPoint
+                           toView:self->_annotationOverlayView
+                            color:UIColor.greenColor
+                           radius:FIRSmallDotRadius];
+  }
+  FIRVisionFaceContour *rightEyeContour = [face contourOfType:FIRFaceContourTypeRightEye];
+  for (FIRVisionPoint *point in rightEyeContour.points) {
+    CGPoint cgPoint =
+        [self normalizedPointFromVisionPoint:point width:imageWidth height:imageHeight];
+    [UIUtilities addCircleAtPoint:cgPoint
+                           toView:self->_annotationOverlayView
+                            color:UIColor.greenColor
+                           radius:FIRSmallDotRadius];
+  }
+
+  // Lips
+  FIRVisionFaceContour *upperLipTopContour = [face contourOfType:FIRFaceContourTypeUpperLipTop];
+  for (FIRVisionPoint *point in upperLipTopContour.points) {
+    CGPoint cgPoint =
+        [self normalizedPointFromVisionPoint:point width:imageWidth height:imageHeight];
+    [UIUtilities addCircleAtPoint:cgPoint
+                           toView:self->_annotationOverlayView
+                            color:UIColor.greenColor
+                           radius:FIRSmallDotRadius];
+  }
+  FIRVisionFaceContour *upperLipBottomContour =
+  [face contourOfType:FIRFaceContourTypeUpperLipBottom];
+  for (FIRVisionPoint *point in upperLipBottomContour.points) {
+    CGPoint cgPoint =
+        [self normalizedPointFromVisionPoint:point width:imageWidth height:imageHeight];
+    [UIUtilities addCircleAtPoint:cgPoint
+                           toView:self->_annotationOverlayView
+                            color:UIColor.greenColor
+                           radius:FIRSmallDotRadius];
+  }
+  FIRVisionFaceContour *lowerLipTopContour = [face contourOfType:FIRFaceContourTypeLowerLipTop];
+  for (FIRVisionPoint *point in lowerLipTopContour.points) {
+    CGPoint cgPoint =
+        [self normalizedPointFromVisionPoint:point width:imageWidth height:imageHeight];
+    [UIUtilities addCircleAtPoint:cgPoint
+                           toView:self->_annotationOverlayView
+                            color:UIColor.greenColor
+                           radius:FIRSmallDotRadius];
+  }
+  FIRVisionFaceContour *lowerLipBottomContour =
+  [face contourOfType:FIRFaceContourTypeLowerLipBottom];
+  for (FIRVisionPoint *point in lowerLipBottomContour.points) {
+    CGPoint cgPoint =
+        [self normalizedPointFromVisionPoint:point width:imageWidth height:imageHeight];
+    [UIUtilities addCircleAtPoint:cgPoint
+                           toView:self->_annotationOverlayView
+                            color:UIColor.greenColor
+                           radius:FIRSmallDotRadius];
+  }
+
+  // Nose
+  FIRVisionFaceContour *noseBridgeContour = [face contourOfType:FIRFaceContourTypeNoseBridge];
+  for (FIRVisionPoint *point in noseBridgeContour.points) {
+    CGPoint cgPoint =
+        [self normalizedPointFromVisionPoint:point width:imageWidth height:imageHeight];
+    [UIUtilities addCircleAtPoint:cgPoint
+                           toView:self->_annotationOverlayView
+                            color:UIColor.greenColor
+                           radius:FIRSmallDotRadius];
+  }
+  FIRVisionFaceContour *noseBottomContour = [face contourOfType:FIRFaceContourTypeNoseBottom];
+  for (FIRVisionPoint *point in noseBottomContour.points) {
+    CGPoint cgPoint =
+        [self normalizedPointFromVisionPoint:point width:imageWidth height:imageHeight];
+    [UIUtilities addCircleAtPoint:cgPoint
+                           toView:self->_annotationOverlayView
+                            color:UIColor.greenColor
+                           radius:FIRSmallDotRadius];
+  }
 }
 
 - (void)recognizeTextOnDeviceInImage:(FIRVisionImage *)image width:(CGFloat) width height:(CGFloat)height {
@@ -158,6 +304,8 @@ typedef NS_ENUM(NSInteger, Detector) {
 - (void)setUpCaptureSessionOutput {
   dispatch_async(_sessionQueue, ^{
     [self->_captureSession beginConfiguration];
+    // When performing latency tests to determine ideal capture settings,
+    // run the app in 'release' mode to get accurate performance metrics
     self->_captureSession.sessionPreset = AVCaptureSessionPresetMedium;
 
     AVCaptureVideoDataOutput *output = [[AVCaptureVideoDataOutput alloc] init];
@@ -226,8 +374,8 @@ typedef NS_ENUM(NSInteger, Detector) {
 
 - (AVCaptureDevice *)captureDeviceForPosition:(AVCaptureDevicePosition)position  {
   AVCaptureDeviceDiscoverySession *discoverySession = [AVCaptureDeviceDiscoverySession discoverySessionWithDeviceTypes:@[AVCaptureDeviceTypeBuiltInWideAngleCamera]
-                            mediaType:AVMediaTypeVideo
-                             position:AVCaptureDevicePositionUnspecified];
+                                                                                                             mediaType:AVMediaTypeVideo
+                                                                                                              position:AVCaptureDevicePositionUnspecified];
   for (AVCaptureDevice *device in discoverySession.devices) {
     if (device.position == position) {
       return device;
@@ -242,9 +390,9 @@ typedef NS_ENUM(NSInteger, Detector) {
     NSInteger detector = detectorType.integerValue;
     UIAlertAction *action = [UIAlertAction actionWithTitle:[self stringForDetector:detector]
                                                      style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-      self.currentDetector = detector;
-      [self removeDetectionAnnotations];
-    }];
+                                                       self.currentDetector = detector;
+                                                       [self removeDetectionAnnotations];
+                                                     }];
     if (detector == _currentDetector) {
       [action setEnabled:NO];
     }

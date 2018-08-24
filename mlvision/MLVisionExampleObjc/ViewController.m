@@ -85,21 +85,21 @@ typedef NS_ENUM(NSInteger, DetectorPickerRow) {
 - (NSString *)stringForDetectorPickerRow:(DetectorPickerRow)detectorPickerRow {
   switch (detectorPickerRow) {
     case DetectorPickerRowDetectFaceOnDevice:
-    return @"Face On-Device";
+      return @"Face On-Device";
     case DetectorPickerRowDetectTextOnDevice:
-    return @"Text On-Device";
+      return @"Text On-Device";
     case DetectorPickerRowDetectBarcodeOnDevice:
-    return @"Barcode On-Device";
+      return @"Barcode On-Device";
     case DetectorPickerRowDetectImageLabelsOnDevice:
-    return @"Image Labeling On-Device";
+      return @"Image Labeling On-Device";
     case DetectorPickerRowDetectTextInCloud:
-    return @"Text in Cloud";
+      return @"Text in Cloud";
     case DetectorPickerRowDetectDocumentTextInCloud:
-    return @"Document Text in Cloud";
+      return @"Document Text in Cloud";
     case DetectorPickerRowDetectImageLabelsInCloud:
-    return @"Image Labeling in Cloud";
+      return @"Image Labeling in Cloud";
     case DetectorPickerRowDetectLandmarkInCloud:
-    return @"Landmarks in Cloud";
+      return @"Landmarks in Cloud";
   }
 }
 
@@ -157,29 +157,29 @@ typedef NS_ENUM(NSInteger, DetectorPickerRow) {
   NSInteger rowIndex = [_detectorPicker selectedRowInComponent:0];
   switch (rowIndex) {
     case DetectorPickerRowDetectFaceOnDevice:
-    [self detectFacesInImage:_imageView.image];
-    break;
+      [self detectFacesInImage:_imageView.image];
+      break;
     case DetectorPickerRowDetectTextOnDevice:
-    [self detectTextOnDeviceInImage:_imageView.image];
-    break;
+      [self detectTextOnDeviceInImage:_imageView.image];
+      break;
     case DetectorPickerRowDetectBarcodeOnDevice:
-    [self detectBarcodesInImage:_imageView.image];
-    break;
+      [self detectBarcodesInImage:_imageView.image];
+      break;
     case DetectorPickerRowDetectImageLabelsOnDevice:
-    [self detectLabelsInImage:_imageView.image];
-    break;
+      [self detectLabelsInImage:_imageView.image];
+      break;
     case DetectorPickerRowDetectTextInCloud:
-    [self detectTextInCloudInImage:_imageView.image];
-    break;
+      [self detectTextInCloudInImage:_imageView.image];
+      break;
     case DetectorPickerRowDetectDocumentTextInCloud:
-    [self detectDocumentTextInCloudInImage:_imageView.image];
-    break;
+      [self detectDocumentTextInCloudInImage:_imageView.image];
+      break;
     case DetectorPickerRowDetectImageLabelsInCloud:
-    [self detectCloudLabelsInImage:_imageView.image];
-    break;
+      [self detectCloudLabelsInImage:_imageView.image];
+      break;
     case DetectorPickerRowDetectLandmarkInCloud:
-    [self detectCloudLandmarksInImage:_imageView.image];
-    break;
+      [self detectCloudLandmarksInImage:_imageView.image];
+      break;
   }
 }
 
@@ -258,107 +258,242 @@ typedef NS_ENUM(NSInteger, DetectorPickerRow) {
 }
 
 - (CGAffineTransform)transformMatrix {
-    UIImage *image = _imageView.image;
-    if (!image) {
-      return CGAffineTransformMake(0, 0, 0, 0, 0, 0);
-    }
-    CGFloat imageViewWidth = _imageView.frame.size.width;
-    CGFloat imageViewHeight = _imageView.frame.size.height;
-    CGFloat imageWidth = image.size.width;
-    CGFloat imageHeight = image.size.height;
+  UIImage *image = _imageView.image;
+  if (!image) {
+    return CGAffineTransformMake(0, 0, 0, 0, 0, 0);
+  }
+  CGFloat imageViewWidth = _imageView.frame.size.width;
+  CGFloat imageViewHeight = _imageView.frame.size.height;
+  CGFloat imageWidth = image.size.width;
+  CGFloat imageHeight = image.size.height;
 
-    CGFloat imageViewAspectRatio = imageViewWidth / imageViewHeight;
-    CGFloat imageAspectRatio = imageWidth / imageHeight;
-    CGFloat scale = (imageViewAspectRatio > imageAspectRatio) ?
-    imageViewHeight / imageHeight :
-    imageViewWidth / imageWidth;
+  CGFloat imageViewAspectRatio = imageViewWidth / imageViewHeight;
+  CGFloat imageAspectRatio = imageWidth / imageHeight;
+  CGFloat scale = (imageViewAspectRatio > imageAspectRatio) ?
+      imageViewHeight / imageHeight :
+      imageViewWidth / imageWidth;
 
-    // Image view's `contentMode` is `scaleAspectFit`, which scales the image to fit the size of the
-    // image view by maintaining the aspect ratio. Multiple by `scale` to get image's original size.
-    CGFloat scaledImageWidth = imageWidth * scale;
-    CGFloat scaledImageHeight = imageHeight * scale;
-    CGFloat xValue = (imageViewWidth - scaledImageWidth) / 2.0;
-    CGFloat yValue = (imageViewHeight - scaledImageHeight) / 2.0;
+  // Image view's `contentMode` is `scaleAspectFit`, which scales the image to fit the size of the
+  // image view by maintaining the aspect ratio. Multiple by `scale` to get image's original size.
+  CGFloat scaledImageWidth = imageWidth * scale;
+  CGFloat scaledImageHeight = imageHeight * scale;
+  CGFloat xValue = (imageViewWidth - scaledImageWidth) / 2.0;
+  CGFloat yValue = (imageViewHeight - scaledImageHeight) / 2.0;
 
-    CGAffineTransform transform = CGAffineTransformTranslate(CGAffineTransformIdentity, xValue, yValue);
-    return CGAffineTransformScale(transform, scale, scale);
+  CGAffineTransform transform = CGAffineTransformTranslate(CGAffineTransformIdentity, xValue, yValue);
+  return CGAffineTransformScale(transform, scale, scale);
+}
+
+- (CGPoint)pointFromVisionPoint:(FIRVisionPoint *)visionPoint {
+  return CGPointMake(visionPoint.x.floatValue, visionPoint.y.floatValue);
+}
+
+- (void)addContoursForFace:(FIRVisionFace *)face transform: (CGAffineTransform)transform {
+  // Face
+  FIRVisionFaceContour *faceContour = [face contourOfType:FIRFaceContourTypeFace];
+  for (FIRVisionPoint *visionPoint in faceContour.points) {
+    CGPoint point = [self pointFromVisionPoint:visionPoint];
+    CGPoint transformedPoint = CGPointApplyAffineTransform(point, transform);
+    [UIUtilities addCircleAtPoint:transformedPoint
+                           toView:self->_annotationOverlayView
+                            color:UIColor.greenColor
+                           radius:smallDotRadius];
   }
 
-- (CGPoint)landmarkPointFromVisionPoint:(FIRVisionPoint *)visionPoint {
-    return CGPointMake(visionPoint.x.floatValue, visionPoint.y.floatValue);
+  // Eyebrows
+  FIRVisionFaceContour *leftEyebrowTopContour =
+  [face contourOfType:FIRFaceContourTypeLeftEyebrowTop];
+  for (FIRVisionPoint *visionPoint in leftEyebrowTopContour.points) {
+    CGPoint point = [self pointFromVisionPoint:visionPoint];
+    CGPoint transformedPoint = CGPointApplyAffineTransform(point, transform);
+    [UIUtilities addCircleAtPoint:transformedPoint
+                           toView:self->_annotationOverlayView
+                            color:UIColor.greenColor
+                           radius:smallDotRadius];
   }
+  FIRVisionFaceContour *leftEyebrowBottomContour =
+  [face contourOfType:FIRFaceContourTypeLeftEyebrowBottom];
+  for (FIRVisionPoint *visionPoint in leftEyebrowBottomContour.points) {
+    CGPoint point = [self pointFromVisionPoint:visionPoint];
+    CGPoint transformedPoint = CGPointApplyAffineTransform(point, transform);
+    [UIUtilities addCircleAtPoint:transformedPoint
+                           toView:self->_annotationOverlayView
+                            color:UIColor.greenColor
+                           radius:smallDotRadius];
+  }
+  FIRVisionFaceContour *rightEyebrowTopContour =
+  [face contourOfType:FIRFaceContourTypeRightEyebrowTop];
+  for (FIRVisionPoint *visionPoint in rightEyebrowTopContour.points) {
+    CGPoint point = [self pointFromVisionPoint:visionPoint];
+    CGPoint transformedPoint = CGPointApplyAffineTransform(point, transform);
+    [UIUtilities addCircleAtPoint:transformedPoint
+                           toView:self->_annotationOverlayView
+                            color:UIColor.greenColor
+                           radius:smallDotRadius];
+  }
+  FIRVisionFaceContour *rightEyebrowBottomContour =
+  [face contourOfType:FIRFaceContourTypeRightEyebrowBottom];
+  for (FIRVisionPoint *visionPoint in rightEyebrowBottomContour.points) {
+    CGPoint point = [self pointFromVisionPoint:visionPoint];
+    CGPoint transformedPoint = CGPointApplyAffineTransform(point, transform);
+    [UIUtilities addCircleAtPoint:transformedPoint
+                           toView:self->_annotationOverlayView
+                            color:UIColor.greenColor
+                           radius:smallDotRadius];
+  }
+
+  // Eyes
+  FIRVisionFaceContour *leftEyeContour = [face contourOfType:FIRFaceContourTypeLeftEye];
+  for (FIRVisionPoint *visionPoint in leftEyeContour.points) {
+    CGPoint point = [self pointFromVisionPoint:visionPoint];
+    CGPoint transformedPoint = CGPointApplyAffineTransform(point, transform);
+    [UIUtilities addCircleAtPoint:transformedPoint
+                           toView:self->_annotationOverlayView
+                            color:UIColor.greenColor
+                           radius:smallDotRadius];
+  }
+  FIRVisionFaceContour *rightEyeContour = [face contourOfType:FIRFaceContourTypeRightEye];
+  for (FIRVisionPoint *visionPoint in rightEyeContour.points) {
+    CGPoint point = [self pointFromVisionPoint:visionPoint];
+    CGPoint transformedPoint = CGPointApplyAffineTransform(point, transform);
+    [UIUtilities addCircleAtPoint:transformedPoint
+                           toView:self->_annotationOverlayView
+                            color:UIColor.greenColor
+                           radius:smallDotRadius];
+  }
+
+  // Lips
+  FIRVisionFaceContour *upperLipTopContour = [face contourOfType:FIRFaceContourTypeUpperLipTop];
+  for (FIRVisionPoint *visionPoint in upperLipTopContour.points) {
+    CGPoint point = [self pointFromVisionPoint:visionPoint];
+    CGPoint transformedPoint = CGPointApplyAffineTransform(point, transform);
+    [UIUtilities addCircleAtPoint:transformedPoint
+                           toView:self->_annotationOverlayView
+                            color:UIColor.greenColor
+                           radius:smallDotRadius];
+  }
+  FIRVisionFaceContour *upperLipBottomContour =
+  [face contourOfType:FIRFaceContourTypeUpperLipBottom];
+  for (FIRVisionPoint *visionPoint in upperLipBottomContour.points) {
+    CGPoint point = [self pointFromVisionPoint:visionPoint];
+    CGPoint transformedPoint = CGPointApplyAffineTransform(point, transform);
+    [UIUtilities addCircleAtPoint:transformedPoint
+                           toView:self->_annotationOverlayView
+                            color:UIColor.greenColor
+                           radius:smallDotRadius];
+  }
+  FIRVisionFaceContour *lowerLipTopContour = [face contourOfType:FIRFaceContourTypeLowerLipTop];
+  for (FIRVisionPoint *visionPoint in lowerLipTopContour.points) {
+    CGPoint point = [self pointFromVisionPoint:visionPoint];
+    CGPoint transformedPoint = CGPointApplyAffineTransform(point, transform);
+    [UIUtilities addCircleAtPoint:transformedPoint
+                           toView:self->_annotationOverlayView
+                            color:UIColor.greenColor
+                           radius:smallDotRadius];
+  }
+  FIRVisionFaceContour *lowerLipBottomContour =
+  [face contourOfType:FIRFaceContourTypeLowerLipBottom];
+  for (FIRVisionPoint *visionPoint in lowerLipBottomContour.points) {
+    CGPoint point = [self pointFromVisionPoint:visionPoint];
+    CGPoint transformedPoint = CGPointApplyAffineTransform(point, transform);
+    [UIUtilities addCircleAtPoint:transformedPoint
+                           toView:self->_annotationOverlayView
+                            color:UIColor.greenColor
+                           radius:smallDotRadius];
+  }
+
+  // Nose
+  FIRVisionFaceContour *noseBridgeContour = [face contourOfType:FIRFaceContourTypeNoseBridge];
+  for (FIRVisionPoint *visionPoint in noseBridgeContour.points) {
+    CGPoint point = [self pointFromVisionPoint:visionPoint];
+    CGPoint transformedPoint = CGPointApplyAffineTransform(point, transform);
+    [UIUtilities addCircleAtPoint:transformedPoint
+                           toView:self->_annotationOverlayView
+                            color:UIColor.greenColor
+                           radius:smallDotRadius];
+  }
+  FIRVisionFaceContour *noseBottomContour = [face contourOfType:FIRFaceContourTypeNoseBottom];
+  for (FIRVisionPoint *visionPoint in noseBottomContour.points) {
+    CGPoint point = [self pointFromVisionPoint:visionPoint];
+    CGPoint transformedPoint = CGPointApplyAffineTransform(point, transform);
+    [UIUtilities addCircleAtPoint:transformedPoint
+                           toView:self->_annotationOverlayView
+                            color:UIColor.greenColor
+                           radius:smallDotRadius];
+  }
+}
 
 - (void)addLandmarksForFace:(FIRVisionFace *)face transform: (CGAffineTransform)transform {
-    // Mouth
-    FIRVisionFaceLandmark *bottomMouthLandmark = [face landmarkOfType:FIRFaceLandmarkTypeMouthBottom];
-    if (bottomMouthLandmark) {
-      CGPoint landmarkPoint = [self landmarkPointFromVisionPoint:bottomMouthLandmark.position];
-      CGPoint transformedPoint = CGPointApplyAffineTransform(landmarkPoint, transform);
-      [UIUtilities addCircleAtPoint:transformedPoint toView:_annotationOverlayView color:UIColor.redColor radius:smallDotRadius];
-    }
-    FIRVisionFaceLandmark *leftMouthLandmark = [face landmarkOfType:FIRFaceLandmarkTypeMouthLeft];
-    if (leftMouthLandmark) {
-      CGPoint landmarkPoint = [self landmarkPointFromVisionPoint:leftMouthLandmark.position];
-      CGPoint transformedPoint = CGPointApplyAffineTransform(landmarkPoint, transform);
-      [UIUtilities addCircleAtPoint:transformedPoint toView:_annotationOverlayView color:UIColor.redColor radius:smallDotRadius];
-    }
-    FIRVisionFaceLandmark *rightMouthLandmark = [face landmarkOfType:FIRFaceLandmarkTypeMouthLeft];
-    if (rightMouthLandmark) {
-      CGPoint landmarkPoint = [self landmarkPointFromVisionPoint:rightMouthLandmark.position];
-      CGPoint transformedPoint = CGPointApplyAffineTransform(landmarkPoint, transform);
-      [UIUtilities addCircleAtPoint:transformedPoint toView:_annotationOverlayView color:UIColor.redColor radius:smallDotRadius];
-    }
-
-    // Nose
-    FIRVisionFaceLandmark *noseBaseLandmark = [face landmarkOfType:FIRFaceLandmarkTypeNoseBase];
-    if (noseBaseLandmark) {
-      CGPoint landmarkPoint = [self landmarkPointFromVisionPoint:noseBaseLandmark.position];
-      CGPoint transformedPoint = CGPointApplyAffineTransform(landmarkPoint, transform);
-      [UIUtilities addCircleAtPoint:transformedPoint toView:_annotationOverlayView color:UIColor.yellowColor radius:smallDotRadius];
-    }
-
-    // Eyes
-    FIRVisionFaceLandmark *leftEyeLandmark = [face landmarkOfType:FIRFaceLandmarkTypeLeftEye];
-    if (leftEyeLandmark) {
-      CGPoint landmarkPoint = [self landmarkPointFromVisionPoint:leftEyeLandmark.position];
-      CGPoint transformedPoint = CGPointApplyAffineTransform(landmarkPoint, transform);
-      [UIUtilities addCircleAtPoint:transformedPoint toView:_annotationOverlayView color:UIColor.cyanColor radius:largeDotRadius];
-    }
-    FIRVisionFaceLandmark *rightEyeLandmark = [face landmarkOfType:FIRFaceLandmarkTypeRightEye];
-    if (rightEyeLandmark) {
-      CGPoint landmarkPoint = [self landmarkPointFromVisionPoint:rightEyeLandmark.position];
-      CGPoint transformedPoint = CGPointApplyAffineTransform(landmarkPoint, transform);
-      [UIUtilities addCircleAtPoint:transformedPoint toView:_annotationOverlayView color:UIColor.cyanColor radius:largeDotRadius];
-    }
-
-    // Ears
-    FIRVisionFaceLandmark *leftEarLandmark = [face landmarkOfType:FIRFaceLandmarkTypeLeftEye];
-    if (leftEarLandmark) {
-      CGPoint landmarkPoint = [self landmarkPointFromVisionPoint:leftEarLandmark.position];
-      CGPoint transformedPoint = CGPointApplyAffineTransform(landmarkPoint, transform);
-      [UIUtilities addCircleAtPoint:transformedPoint toView:_annotationOverlayView color:UIColor.purpleColor radius:largeDotRadius];
-    }
-    FIRVisionFaceLandmark *rightEarLandmark = [face landmarkOfType:FIRFaceLandmarkTypeRightEye];
-    if (rightEarLandmark) {
-      CGPoint landmarkPoint = [self landmarkPointFromVisionPoint:rightEarLandmark.position];
-      CGPoint transformedPoint = CGPointApplyAffineTransform(landmarkPoint, transform);
-      [UIUtilities addCircleAtPoint:transformedPoint toView:_annotationOverlayView color:UIColor.purpleColor radius:largeDotRadius];
-    }
-
-    // Cheeks
-    FIRVisionFaceLandmark *leftCheekLandmark = [face landmarkOfType:FIRFaceLandmarkTypeLeftEye];
-    if (leftCheekLandmark) {
-      CGPoint landmarkPoint = [self landmarkPointFromVisionPoint:leftCheekLandmark.position];
-      CGPoint transformedPoint = CGPointApplyAffineTransform(landmarkPoint, transform);
-      [UIUtilities addCircleAtPoint:transformedPoint toView:_annotationOverlayView color:UIColor.orangeColor radius:largeDotRadius];
-    }
-    FIRVisionFaceLandmark *rightCheekLandmark = [face landmarkOfType:FIRFaceLandmarkTypeRightEye];
-    if (rightCheekLandmark) {
-      CGPoint landmarkPoint = [self landmarkPointFromVisionPoint:rightCheekLandmark.position];
-      CGPoint transformedPoint = CGPointApplyAffineTransform(landmarkPoint, transform);
-      [UIUtilities addCircleAtPoint:transformedPoint toView:_annotationOverlayView color:UIColor.orangeColor radius:largeDotRadius];
-    }
+  // Mouth
+  FIRVisionFaceLandmark *bottomMouthLandmark = [face landmarkOfType:FIRFaceLandmarkTypeMouthBottom];
+  if (bottomMouthLandmark) {
+    CGPoint point = [self pointFromVisionPoint:bottomMouthLandmark.position];
+    CGPoint transformedPoint = CGPointApplyAffineTransform(point, transform);
+    [UIUtilities addCircleAtPoint:transformedPoint toView:_annotationOverlayView color:UIColor.redColor radius:largeDotRadius];
   }
+  FIRVisionFaceLandmark *leftMouthLandmark = [face landmarkOfType:FIRFaceLandmarkTypeMouthLeft];
+  if (leftMouthLandmark) {
+    CGPoint point = [self pointFromVisionPoint:leftMouthLandmark.position];
+    CGPoint transformedPoint = CGPointApplyAffineTransform(point, transform);
+    [UIUtilities addCircleAtPoint:transformedPoint toView:_annotationOverlayView color:UIColor.redColor radius:largeDotRadius];
+  }
+  FIRVisionFaceLandmark *rightMouthLandmark = [face landmarkOfType:FIRFaceLandmarkTypeMouthLeft];
+  if (rightMouthLandmark) {
+    CGPoint point = [self pointFromVisionPoint:rightMouthLandmark.position];
+    CGPoint transformedPoint = CGPointApplyAffineTransform(point, transform);
+    [UIUtilities addCircleAtPoint:transformedPoint toView:_annotationOverlayView color:UIColor.redColor radius:largeDotRadius];
+  }
+
+  // Nose
+  FIRVisionFaceLandmark *noseBaseLandmark = [face landmarkOfType:FIRFaceLandmarkTypeNoseBase];
+  if (noseBaseLandmark) {
+    CGPoint point = [self pointFromVisionPoint:noseBaseLandmark.position];
+    CGPoint transformedPoint = CGPointApplyAffineTransform(point, transform);
+    [UIUtilities addCircleAtPoint:transformedPoint toView:_annotationOverlayView color:UIColor.yellowColor radius:largeDotRadius];
+  }
+
+  // Eyes
+  FIRVisionFaceLandmark *leftEyeLandmark = [face landmarkOfType:FIRFaceLandmarkTypeLeftEye];
+  if (leftEyeLandmark) {
+    CGPoint point = [self pointFromVisionPoint:leftEyeLandmark.position];
+    CGPoint transformedPoint = CGPointApplyAffineTransform(point, transform);
+    [UIUtilities addCircleAtPoint:transformedPoint toView:_annotationOverlayView color:UIColor.cyanColor radius:largeDotRadius];
+  }
+  FIRVisionFaceLandmark *rightEyeLandmark = [face landmarkOfType:FIRFaceLandmarkTypeRightEye];
+  if (rightEyeLandmark) {
+    CGPoint point = [self pointFromVisionPoint:rightEyeLandmark.position];
+    CGPoint transformedPoint = CGPointApplyAffineTransform(point, transform);
+    [UIUtilities addCircleAtPoint:transformedPoint toView:_annotationOverlayView color:UIColor.cyanColor radius:largeDotRadius];
+  }
+
+  // Ears
+  FIRVisionFaceLandmark *leftEarLandmark = [face landmarkOfType:FIRFaceLandmarkTypeLeftEye];
+  if (leftEarLandmark) {
+    CGPoint point = [self pointFromVisionPoint:leftEarLandmark.position];
+    CGPoint transformedPoint = CGPointApplyAffineTransform(point, transform);
+    [UIUtilities addCircleAtPoint:transformedPoint toView:_annotationOverlayView color:UIColor.purpleColor radius:largeDotRadius];
+  }
+  FIRVisionFaceLandmark *rightEarLandmark = [face landmarkOfType:FIRFaceLandmarkTypeRightEye];
+  if (rightEarLandmark) {
+    CGPoint point = [self pointFromVisionPoint:rightEarLandmark.position];
+    CGPoint transformedPoint = CGPointApplyAffineTransform(point, transform);
+    [UIUtilities addCircleAtPoint:transformedPoint toView:_annotationOverlayView color:UIColor.purpleColor radius:largeDotRadius];
+  }
+
+  // Cheeks
+  FIRVisionFaceLandmark *leftCheekLandmark = [face landmarkOfType:FIRFaceLandmarkTypeLeftEye];
+  if (leftCheekLandmark) {
+    CGPoint point = [self pointFromVisionPoint:leftCheekLandmark.position];
+    CGPoint transformedPoint = CGPointApplyAffineTransform(point, transform);
+    [UIUtilities addCircleAtPoint:transformedPoint toView:_annotationOverlayView color:UIColor.orangeColor radius:largeDotRadius];
+  }
+  FIRVisionFaceLandmark *rightCheekLandmark = [face landmarkOfType:FIRFaceLandmarkTypeRightEye];
+  if (rightCheekLandmark) {
+    CGPoint point = [self pointFromVisionPoint:rightCheekLandmark.position];
+    CGPoint transformedPoint = CGPointApplyAffineTransform(point, transform);
+    [UIUtilities addCircleAtPoint:transformedPoint toView:_annotationOverlayView color:UIColor.orangeColor radius:largeDotRadius];
+  }
+}
 
 - (void)process:(FIRVisionImage *)visionImage withTextRecognizer:(FIRVisionTextRecognizer *)textRecognizer {
   // [START recognize_text]
@@ -419,7 +554,7 @@ typedef NS_ENUM(NSInteger, DetectorPickerRow) {
       // Paragraphs.
       for (FIRVisionDocumentTextParagraph *paragraph in block.paragraphs) {
         CGRect transformedRect = CGRectApplyAffineTransform(paragraph.frame, [self transformMatrix]);
-              [UIUtilities addRectangle:transformedRect toView:self.annotationOverlayView color:UIColor.orangeColor];
+        [UIUtilities addRectangle:transformedRect toView:self.annotationOverlayView color:UIColor.orangeColor];
 
         // Words.
         for (FIRVisionDocumentTextWord *word in paragraph.words) {
@@ -448,8 +583,8 @@ typedef NS_ENUM(NSInteger, DetectorPickerRow) {
 #pragma mark - UIPickerViewDataSource
 
 - (NSInteger)numberOfComponentsInPickerView:(nonnull UIPickerView *)pickerView {
-    return componentsCount;
-  }
+  return componentsCount;
+}
 
 - (NSInteger)pickerView:(nonnull UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
   return rowsCount;
@@ -491,9 +626,11 @@ typedef NS_ENUM(NSInteger, DetectorPickerRow) {
   // Create a face detector with options.
   // [START config_face]
   FIRVisionFaceDetectorOptions *options = [FIRVisionFaceDetectorOptions new];
-  options.landmarkType = FIRVisionFaceDetectorLandmarkAll;
-  options.classificationType = FIRVisionFaceDetectorClassificationAll;
-  options.modeType = FIRVisionFaceDetectorModeAccurate;
+  options.landmarkMode = FIRVisionFaceDetectorLandmarkModeAll;
+  options.contourMode = FIRVisionFaceDetectorContourModeAll;
+  options.classificationMode = FIRVisionFaceDetectorClassificationModeAll;
+  options.performanceMode = FIRVisionFaceDetectorPerformanceModeAccurate;
+
   // [END config_face]
 
   // [START init_face]
@@ -527,7 +664,18 @@ typedef NS_ENUM(NSInteger, DetectorPickerRow) {
       CGRect transformedRect = CGRectApplyAffineTransform(face.frame, transform);
       [UIUtilities addRectangle:transformedRect toView:self.annotationOverlayView color:UIColor.greenColor];
       [self addLandmarksForFace:face transform:transform];
+      [self addContoursForFace:face transform:transform];
       [self.resultsText appendFormat:@"Frame: %@\n", NSStringFromCGRect(face.frame)];
+      NSString *headEulerAngleY = face.hasHeadEulerAngleY ? [NSString stringWithFormat: @"%.2f", face.headEulerAngleY] : @"NA";
+      NSString *headEulerAngleZ = face.hasHeadEulerAngleZ ? [NSString stringWithFormat: @"%.2f", face.headEulerAngleZ] : @"NA";
+      NSString *leftEyeOpenProbability = face.hasLeftEyeOpenProbability ? [NSString stringWithFormat: @"%.2f", face.leftEyeOpenProbability] : @"NA";
+      NSString *rightEyeOpenProbability = face.hasRightEyeOpenProbability ? [NSString stringWithFormat: @"%.2f", face.rightEyeOpenProbability] : @"NA";
+      NSString *smilingProbability = face.hasSmilingProbability ? [NSString stringWithFormat: @"%.2f", face.smilingProbability] : @"NA";
+      [self.resultsText appendFormat:@"Head Euler Angle Y: %@\n", headEulerAngleY];
+      [self.resultsText appendFormat:@"Head Euler Angle Z: %@\n", headEulerAngleZ];
+      [self.resultsText appendFormat:@"Left Eye Open Probability: %@\n", leftEyeOpenProbability];
+      [self.resultsText appendFormat:@"Right Eye Open Probability: %@\n", rightEyeOpenProbability];
+      [self.resultsText appendFormat:@"Smiling Probability: %@\n", smilingProbability];
     }
     [self showResults];
     // [END_EXCLUDE]

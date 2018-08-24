@@ -50,7 +50,8 @@ public class UIUtilities {
     view.addSubview(rectangleView)
   }
 
-  public static func addShape(withPoints points: [NSValue], to view: UIView, color: UIColor) {
+  public static func addShape(withPoints points: [NSValue]?, to view: UIView, color: UIColor) {
+    guard let points = points else { return }
     let path = UIBezierPath()
     for (index, value) in points.enumerated() {
       let point = value.cgPointValue

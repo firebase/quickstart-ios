@@ -55,7 +55,7 @@ class ViewController: UIViewController {
     // [END subscribe_topic]
   }
 
-  func displayFCMToken(notification: NSNotification){
+  @objc func displayFCMToken(notification: NSNotification){
     guard let userInfo = notification.userInfo else {return}
     if let fcmToken = userInfo["token"] as? String {
       self.fcmTokenMessage.text = "Received FCM token: \(fcmToken)"

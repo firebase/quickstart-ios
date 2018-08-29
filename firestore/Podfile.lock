@@ -5,17 +5,17 @@ PODS:
   - BoringSSL/Implementation (10.0.6):
     - BoringSSL/Interface (= 10.0.6)
   - BoringSSL/Interface (10.0.6)
-  - Firebase/Auth (5.6.0):
+  - Firebase/Auth (5.7.0):
     - Firebase/CoreOnly
     - FirebaseAuth (= 5.0.3)
-  - Firebase/Core (5.6.0):
+  - Firebase/Core (5.7.0):
     - Firebase/CoreOnly
     - FirebaseAnalytics (= 5.1.1)
-  - Firebase/CoreOnly (5.6.0):
-    - FirebaseCore (= 5.1.1)
-  - Firebase/Firestore (5.6.0):
+  - Firebase/CoreOnly (5.7.0):
+    - FirebaseCore (= 5.1.2)
+  - Firebase/Firestore (5.7.0):
     - Firebase/CoreOnly
-    - FirebaseFirestore (= 0.13.1)
+    - FirebaseFirestore (= 0.13.2)
   - FirebaseAnalytics (5.1.1):
     - FirebaseCore (~> 5.1)
     - FirebaseInstanceID (~> 3.2)
@@ -31,17 +31,17 @@ PODS:
     - GoogleUtilities/Environment (~> 5.2)
     - GTMSessionFetcher/Core (~> 1.1)
   - FirebaseAuthInterop (1.0.0)
-  - FirebaseCore (5.1.1):
+  - FirebaseCore (5.1.2):
     - GoogleUtilities/Logger (~> 5.2)
-  - FirebaseFirestore (0.13.1):
+  - FirebaseFirestore (0.13.2):
     - FirebaseAuthInterop (~> 1.0)
     - FirebaseCore (~> 5.0)
-    - FirebaseFirestore/abseil-cpp (= 0.13.1)
+    - FirebaseFirestore/abseil-cpp (= 0.13.2)
     - gRPC-ProtoRPC (~> 1.0)
     - leveldb-library (~> 1.18)
     - nanopb (~> 0.3.8)
     - Protobuf (~> 3.1)
-  - FirebaseFirestore/abseil-cpp (0.13.1):
+  - FirebaseFirestore/abseil-cpp (0.13.2):
     - FirebaseAuthInterop (~> 1.0)
     - FirebaseCore (~> 5.0)
     - gRPC-ProtoRPC (~> 1.0)
@@ -166,12 +166,12 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   BoringSSL: e10f92a27043805c01071fe815a5cd98ae8212e7
-  Firebase: 75ea9e232eefa158c1049028030b8f661a2ccb62
+  Firebase: 734a4f92957aa6c40e7ae3fda3d9359e1890aa87
   FirebaseAnalytics: 993577e91157feb40945abedd6ab346d8a4b6ac8
   FirebaseAuth: 657a25e4be044d2d333663ebf515a861c5a59cd7
   FirebaseAuthInterop: 0ffa57668be100582bb7643d4fcb7615496c41fc
-  FirebaseCore: cb9ee75e0894def766167c95a4d5a14b1c138269
-  FirebaseFirestore: e953e8e02544cc60372f3787d4c30cb47a691aa7
+  FirebaseCore: 3a97432acb324b439fbed338e642f9cbb516a63d
+  FirebaseFirestore: 7eec93809ad61e7ebe303089c5cc5efa63424b72
   FirebaseInstanceID: ea5af6920d0a4a29b40459d055bebe4a6c1333c4
   FirebaseUI: 9dfa423b6f1b73737ae8ab62692c1c0a8886186d
   GoogleAppMeasurement: f7507b39b70ad0bd80b3d81518b2f43868974307

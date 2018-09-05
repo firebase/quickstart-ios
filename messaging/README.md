@@ -22,7 +22,7 @@ Getting Started
 ---------------
 
 - Add APNS certs to your project in **Project Settings** > **Notifications** in the [console](https://console.firebase.google.com)
-- Run `pod install`
+- Run `pod install --repo-update`
 - Copy in the GoogleServices-Info.plist to your project
 - Update the app Bundle ID in Xcode to match the Bundle ID of your APNs cert.
 - Run the sample on your iOS device.

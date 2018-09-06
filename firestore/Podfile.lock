@@ -75,21 +75,21 @@ PODS:
     - GoogleToolboxForMac/Defines (= 2.1.4)
     - "GoogleToolboxForMac/NSString+URLArguments (= 2.1.4)"
   - "GoogleToolboxForMac/NSString+URLArguments (2.1.4)"
-  - GoogleUtilities/AppDelegateSwizzler (5.2.2):
+  - GoogleUtilities/AppDelegateSwizzler (5.2.3):
     - GoogleUtilities/Environment
     - GoogleUtilities/Logger
     - GoogleUtilities/Network
-  - GoogleUtilities/Environment (5.2.2)
-  - GoogleUtilities/Logger (5.2.2):
+  - GoogleUtilities/Environment (5.2.3)
+  - GoogleUtilities/Logger (5.2.3):
     - GoogleUtilities/Environment
-  - GoogleUtilities/MethodSwizzler (5.2.2):
+  - GoogleUtilities/MethodSwizzler (5.2.3):
     - GoogleUtilities/Logger
-  - GoogleUtilities/Network (5.2.2):
+  - GoogleUtilities/Network (5.2.3):
     - GoogleUtilities/Logger
     - "GoogleUtilities/NSData+zlib"
     - GoogleUtilities/Reachability
-  - "GoogleUtilities/NSData+zlib (5.2.2)"
-  - GoogleUtilities/Reachability (5.2.2):
+  - "GoogleUtilities/NSData+zlib (5.2.3)"
+  - GoogleUtilities/Reachability (5.2.3):
     - GoogleUtilities/Logger
   - gRPC (1.14.1):
     - gRPC-RxLibrary (= 1.14.1)
@@ -177,7 +177,7 @@ SPEC CHECKSUMS:
   GoogleAppMeasurement: f7507b39b70ad0bd80b3d81518b2f43868974307
   GoogleSignIn: 591e46382014e591269f862ba6e7bc0fbd793532
   GoogleToolboxForMac: 91c824d21e85b31c2aae9bb011c5027c9b4e738f
-  GoogleUtilities: 06b66f9567769a7958db20a92f0128b2843e49d5
+  GoogleUtilities: 6f681e27050c5e130325e89fa0316dfca826f954
   gRPC: 65fa2a50c4fd61940b76f4962d75c239c92c6a8d
   gRPC-Core: e3ace1e1161e75903135de8d8231bb69c9d35721
   gRPC-ProtoRPC: 78f976fc6a1eafc0e1f4965c255c313aa0859b1e

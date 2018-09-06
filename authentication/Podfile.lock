@@ -57,21 +57,21 @@ PODS:
     - GoogleToolboxForMac/Defines (= 2.1.4)
     - "GoogleToolboxForMac/NSString+URLArguments (= 2.1.4)"
   - "GoogleToolboxForMac/NSString+URLArguments (2.1.4)"
-  - GoogleUtilities/AppDelegateSwizzler (5.2.2):
+  - GoogleUtilities/AppDelegateSwizzler (5.2.3):
     - GoogleUtilities/Environment
     - GoogleUtilities/Logger
     - GoogleUtilities/Network
-  - GoogleUtilities/Environment (5.2.2)
-  - GoogleUtilities/Logger (5.2.2):
+  - GoogleUtilities/Environment (5.2.3)
+  - GoogleUtilities/Logger (5.2.3):
     - GoogleUtilities/Environment
-  - GoogleUtilities/MethodSwizzler (5.2.2):
+  - GoogleUtilities/MethodSwizzler (5.2.3):
     - GoogleUtilities/Logger
-  - GoogleUtilities/Network (5.2.2):
+  - GoogleUtilities/Network (5.2.3):
     - GoogleUtilities/Logger
     - "GoogleUtilities/NSData+zlib"
     - GoogleUtilities/Reachability
-  - "GoogleUtilities/NSData+zlib (5.2.2)"
-  - GoogleUtilities/Reachability (5.2.2):
+  - "GoogleUtilities/NSData+zlib (5.2.3)"
+  - GoogleUtilities/Reachability (5.2.3):
     - GoogleUtilities/Logger
   - GTMOAuth2 (1.1.6):
     - GTMSessionFetcher (~> 1.1)
@@ -133,7 +133,7 @@ SPEC CHECKSUMS:
   GoogleAppMeasurement: f7507b39b70ad0bd80b3d81518b2f43868974307
   GoogleSignIn: 591e46382014e591269f862ba6e7bc0fbd793532
   GoogleToolboxForMac: 91c824d21e85b31c2aae9bb011c5027c9b4e738f
-  GoogleUtilities: 06b66f9567769a7958db20a92f0128b2843e49d5
+  GoogleUtilities: 6f681e27050c5e130325e89fa0316dfca826f954
   GTMOAuth2: c77fe325e4acd453837e72d91e3b5f13116857b2
   GTMSessionFetcher: 0c4baf0a73acd0041bf9f71ea018deedab5ea84e
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3

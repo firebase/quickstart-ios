@@ -241,6 +241,10 @@ static NSString *const failedToDetectObjectsMessage = @"Failed to detect objects
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
   [self clearResults];
+
+  UIImage *pickedImage = info[UIImagePickerControllerOriginalImage];
+  if (pickedImage) [self updateImageViewWithImage:pickedImage];
+  [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 

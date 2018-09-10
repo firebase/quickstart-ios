@@ -35,7 +35,7 @@ class FoodPickerViewController: UIViewController, UIPickerViewDelegate, UIPicker
     Analytics.setUserProperty(food, forName: "favorite_food")
     // [END user_property]
 
-    performSegue(withIdentifier: "unwindToHome", sender: self)
+    performSegue(withIdentifier: "goToShareScreen", sender: self)
   }
 
   func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {

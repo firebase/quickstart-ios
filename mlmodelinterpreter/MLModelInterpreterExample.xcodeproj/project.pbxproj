@@ -668,7 +668,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.MLModelInterpreterExample.MLModelInterpreterExample;
+				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.MLModelInterpreterExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -684,7 +684,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.MLModelInterpreterExample.MLModelInterpreterExample;
+				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.MLModelInterpreterExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

@@ -312,7 +312,7 @@ typedef NS_ENUM(NSInteger, ModelInterpreterErrorCode) {
     return NO;
   }
   NSError *stringError;
-  NSString *contents = [NSString stringWithContentsOfFile:labelsFilePath encoding:kCFStringEncodingUTF8 error:&stringError];
+  NSString *contents = [NSString stringWithContentsOfFile:labelsFilePath encoding:NSUTF8StringEncoding error:&stringError];
   if (stringError || !contents) {
     NSLog(@"Failed to load the model with error: %@", stringError.localizedDescription);
     return NO;

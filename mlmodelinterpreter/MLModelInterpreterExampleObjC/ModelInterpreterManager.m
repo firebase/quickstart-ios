@@ -60,7 +60,7 @@ typedef NS_ENUM(NSInteger, ModelInterpreterErrorCode) {
   @property(nonatomic) FIRModelOptions *cloudModelOptions;
   @property(nonatomic) FIRModelOptions *localModelOptions;
   @property(nonatomic) FIRModelInterpreter *modelInterpreter;
-  @property(nonatomic) UInt8 modelElementType;
+  @property(nonatomic) FIRModelElementType modelElementType;
   @property(nonatomic) BOOL isModelQuantized;
   @property(nonatomic) NSArray<NSString *> *labels;
   @property(nonatomic) int labelsCount;
@@ -88,6 +88,7 @@ typedef NS_ENUM(NSInteger, ModelInterpreterErrorCode) {
   self.labelsCount = 0;
   self.registeredCloudModelNames = [NSMutableSet new];
   self.registeredLocalModelNames = [NSMutableSet new];
+  self.modelElementType = FIRModelElementTypeUInt8;
   return self;
 }
 
@@ -382,11 +383,11 @@ topResultsCount:(int)topResultsCount
   }
 
   // Sort the zipped array of tuples ("confidence" as NSNumber, "labelIndex" as Int) by confidence
-  // value in ascending order.
+  // value in descending order.
   [zippedArray sortUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
     float confidenceValue1 = ((NSNumber *)((NSArray *)obj1).firstObject).floatValue;
     float confidenceValue2 = ((NSNumber *)((NSArray *)obj2).firstObject).floatValue;
-    return confidenceValue1 > confidenceValue2;
+    return confidenceValue1 < confidenceValue2;
   }];
 
   // Resize the sorted results array to match the `topResultsCount`.

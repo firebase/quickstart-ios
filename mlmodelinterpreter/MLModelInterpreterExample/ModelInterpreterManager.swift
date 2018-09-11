@@ -392,7 +392,7 @@ public class ModelInterpreterManager {
     let zippedArray = zip(outputArray, indexesArray)
 
     // Sort the zipped array of tuples ("confidence" as NSNumber, "labelIndex" as Int) by confidence
-    // value in ascending order.
+    // value in descending order.
     var sortedResults = zippedArray.sorted {
       let confidenceValue1 = ($0 as (NSNumber, Int)).0
       let confidenceValue2 = ($1 as (NSNumber, Int)).0

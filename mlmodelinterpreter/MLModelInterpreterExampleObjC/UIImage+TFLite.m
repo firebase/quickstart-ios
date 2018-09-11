@@ -51,26 +51,27 @@ static int const alphaComponentModuloRemainder = 3;
     if (newComponentsCount > oldComponentsCount) {
       return nil;
     }
-    CFDataRef imageData = [self imageDataFromImage:cgImage size:size componentsCount:(int)oldComponentsCount];
+    NSData *imageData = [self imageDataFromImage:cgImage size:size componentsCount:(int)oldComponentsCount];
     if (!imageData) {
       return nil;
     }
-    const UInt8 *bytes = CFDataGetBytePtr(imageData);
+    const UInt8 *bytes = imageData.bytes;
 
     int bytesCount = size.width * size.height * newComponentsCount * batchSize;
 
-    UInt8 *scaledBytes = malloc(sizeof(*scaledBytes) * bytesCount);
+    NSMutableData *scaledBytes = [NSMutableData dataWithLength:bytesCount];
+    UInt8 *mutableBytes = scaledBytes.mutableBytes;
 
     // Extract the RGB(A) components from the scaled image data while ignoring the alpha component.
     int pixelIndex = 0;
-    for (int offset = 0; offset < CFDataGetLength(imageData); offset++) {
+    for (int offset = 0; offset < imageData.length; offset++) {
       if ((offset % alphaComponentBaseOffset) ==
           alphaComponentModuloRemainder) {
         continue;
       }
-      scaledBytes[pixelIndex++] = bytes[offset];
+      mutableBytes[pixelIndex++] = bytes[offset];
     }
-    return [NSData dataWithBytes:scaledBytes length:bytesCount];
+    return scaledBytes;
   } else {
     return nil;
   }
@@ -86,11 +87,11 @@ static int const alphaComponentModuloRemainder = 3;
     if (newComponentsCount > oldComponentsCount) {
       return nil;
     }
-    CFDataRef imageData = [self imageDataFromImage:cgImage size:size componentsCount:(int)oldComponentsCount];
+    NSData *imageData = [self imageDataFromImage:cgImage size:size componentsCount:(int)oldComponentsCount];
     if (!imageData) {
       return nil;
     }
-    const UInt8 *bytes = CFDataGetBytePtr(imageData);
+    const UInt8 *bytes = imageData.bytes;
 
     NSMutableArray *columnArray = [[NSMutableArray alloc] initWithCapacity:size.width];
     for (int yCoordinate = 0; yCoordinate < size.width; yCoordinate++) {
@@ -123,7 +124,7 @@ static int const alphaComponentModuloRemainder = 3;
 #pragma mark - Private
 
 /// Returns the image data from the given CGImage resized to the given width and height.
-- (CFDataRef)imageDataFromImage:(CGImageRef)image
+- (NSData *)imageDataFromImage:(CGImageRef)image
                           size:(CGSize)size
                componentsCount:(int)componentsCount {
   uint32_t bitmapInfo = kCGBitmapByteOrder32Big | kCGImageAlphaPremultipliedLast;
@@ -133,7 +134,7 @@ static int const alphaComponentModuloRemainder = 3;
   }
   CGContextDrawImage(context, CGRectMake(0, 0, size.width, size.height), image);
   CFDataRef cfData = CGDataProviderCopyData(CGImageGetDataProvider(CGBitmapContextCreateImage(context)));
-  return cfData;
+  return (__bridge_transfer NSData*)cfData;
 }
 
 @end

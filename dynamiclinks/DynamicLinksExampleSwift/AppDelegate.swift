@@ -46,7 +46,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   }
 
   func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
-    if let dynamicLink = DynamicLinks.dynamicLinks()?.dynamicLink(fromCustomSchemeURL: url) {
+    if let dynamicLink = DynamicLinks.dynamicLinks().dynamicLink(fromCustomSchemeURL: url) {
       // Handle the deep link. For example, show the deep-linked content or
       // apply a promotional offer to the user's account.
       // [START_EXCLUDE]
@@ -66,9 +66,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   // [START continueuseractivity]
   func application(_ application: UIApplication, continue userActivity: NSUserActivity,
                    restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
-    guard let dynamicLinks = DynamicLinks.dynamicLinks() else {
-      return false
-    }
+    let dynamicLinks = DynamicLinks.dynamicLinks()
     let handled = dynamicLinks.handleUniversalLink(userActivity.webpageURL!) { (dynamiclink, error) in
       // [START_EXCLUDE]
 

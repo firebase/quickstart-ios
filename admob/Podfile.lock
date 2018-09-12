@@ -21,7 +21,7 @@ PODS:
   - FirebaseInstanceID (3.2.1):
     - FirebaseCore (~> 5.1)
     - GoogleUtilities/Environment (~> 5.2)
-  - Google-Mobile-Ads-SDK (7.32.0)
+  - Google-Mobile-Ads-SDK (7.33.0)
   - GoogleAppMeasurement (5.1.1):
     - GoogleUtilities/AppDelegateSwizzler (~> 5.2.0)
     - GoogleUtilities/MethodSwizzler (~> 5.2.0)
@@ -70,7 +70,7 @@ SPEC CHECKSUMS:
   FirebaseAnalytics: 993577e91157feb40945abedd6ab346d8a4b6ac8
   FirebaseCore: 3a97432acb324b439fbed338e642f9cbb516a63d
   FirebaseInstanceID: ea5af6920d0a4a29b40459d055bebe4a6c1333c4
-  Google-Mobile-Ads-SDK: 2aca87e46e860f1e1fc0fdc1201dd9caa4be9ba6
+  Google-Mobile-Ads-SDK: b10daacc05c820433e5c0c0d57a4f0191f7d2ef5
   GoogleAppMeasurement: f7507b39b70ad0bd80b3d81518b2f43868974307
   GoogleUtilities: 6f681e27050c5e130325e89fa0316dfca826f954
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3

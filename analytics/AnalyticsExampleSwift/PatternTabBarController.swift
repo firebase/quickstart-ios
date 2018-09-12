@@ -51,9 +51,11 @@ class PatternTabBarController: UITabBarController {
   }
 
   @IBAction func unwindToHome(_ segue: UIStoryboardSegue?) {
-
+    if let nc = self.navigationController {
+      nc.dismiss(animated: true, completion: nil)
+    }
   }
-
+  
   func getUserFavoriteFood() -> String? {
     return UserDefaults.standard.string(forKey: "favorite_food")
   }

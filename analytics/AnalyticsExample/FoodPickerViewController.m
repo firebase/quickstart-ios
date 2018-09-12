@@ -49,7 +49,7 @@
   [FIRAnalytics setUserPropertyString:food forName:@"favorite_food"];
   // [END user_property]
 
-  [self performSegueWithIdentifier:@"unwindToHome" sender:self];
+  [self performSegueWithIdentifier:@"goToShareScreen" sender:self];
 }
 
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {

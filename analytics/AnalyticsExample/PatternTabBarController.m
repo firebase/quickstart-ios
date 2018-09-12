@@ -64,7 +64,8 @@
 }
 
 -(IBAction)unwindToHome:(UIStoryboardSegue *)segue {
-
+    UINavigationController *nc = self.navigationController;
+    [nc dismissViewControllerAnimated:YES completion: nil];
 }
 
 @end

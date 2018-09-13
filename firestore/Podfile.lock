@@ -5,18 +5,18 @@ PODS:
   - BoringSSL/Implementation (10.0.6):
     - BoringSSL/Interface (= 10.0.6)
   - BoringSSL/Interface (10.0.6)
-  - Firebase/Auth (5.7.0):
+  - Firebase/Auth (5.8.0):
     - Firebase/CoreOnly
-    - FirebaseAuth (= 5.0.3)
-  - Firebase/Core (5.7.0):
+    - FirebaseAuth (= 5.0.4)
+  - Firebase/Core (5.8.0):
     - Firebase/CoreOnly
-    - FirebaseAnalytics (= 5.1.1)
-  - Firebase/CoreOnly (5.7.0):
-    - FirebaseCore (= 5.1.2)
-  - Firebase/Firestore (5.7.0):
+    - FirebaseAnalytics (= 5.1.2)
+  - Firebase/CoreOnly (5.8.0):
+    - FirebaseCore (= 5.1.3)
+  - Firebase/Firestore (5.8.0):
     - Firebase/CoreOnly
-    - FirebaseFirestore (= 0.13.2)
-  - FirebaseAnalytics (5.1.1):
+    - FirebaseFirestore (= 0.13.3)
+  - FirebaseAnalytics (5.1.2):
     - FirebaseCore (~> 5.1)
     - FirebaseInstanceID (~> 3.2)
     - GoogleAppMeasurement (~> 5.1)
@@ -25,38 +25,40 @@ PODS:
     - GoogleUtilities/Network (~> 5.2)
     - "GoogleUtilities/NSData+zlib (~> 5.2)"
     - nanopb (~> 0.3)
-  - FirebaseAuth (5.0.3):
+  - FirebaseAuth (5.0.4):
     - FirebaseAuthInterop (~> 1.0)
     - FirebaseCore (~> 5.0)
     - GoogleUtilities/Environment (~> 5.2)
     - GTMSessionFetcher/Core (~> 1.1)
   - FirebaseAuthInterop (1.0.0)
-  - FirebaseCore (5.1.2):
+  - FirebaseCore (5.1.3):
     - GoogleUtilities/Logger (~> 5.2)
-  - FirebaseFirestore (0.13.2):
+  - FirebaseFirestore (0.13.3):
     - FirebaseAuthInterop (~> 1.0)
     - FirebaseCore (~> 5.0)
-    - FirebaseFirestore/abseil-cpp (= 0.13.2)
+    - FirebaseFirestore/abseil-cpp (= 0.13.3)
+    - "gRPC-C++ (~> 0.0.3)"
     - gRPC-ProtoRPC (~> 1.0)
-    - leveldb-library (~> 1.18)
+    - leveldb-library (~> 1.20)
     - nanopb (~> 0.3.8)
     - Protobuf (~> 3.1)
-  - FirebaseFirestore/abseil-cpp (0.13.2):
+  - FirebaseFirestore/abseil-cpp (0.13.3):
     - FirebaseAuthInterop (~> 1.0)
     - FirebaseCore (~> 5.0)
+    - "gRPC-C++ (~> 0.0.3)"
     - gRPC-ProtoRPC (~> 1.0)
-    - leveldb-library (~> 1.18)
+    - leveldb-library (~> 1.20)
     - nanopb (~> 0.3.8)
     - Protobuf (~> 3.1)
   - FirebaseInstanceID (3.2.1):
     - FirebaseCore (~> 5.1)
     - GoogleUtilities/Environment (~> 5.2)
-  - FirebaseUI/Auth (5.2.1):
+  - FirebaseUI/Auth (5.2.2):
     - Firebase/Auth (~> 5.0)
-  - FirebaseUI/Google (5.2.1):
+  - FirebaseUI/Google (5.2.2):
     - FirebaseUI/Auth
     - GoogleSignIn (~> 4.0)
-  - GoogleAppMeasurement (5.1.1):
+  - GoogleAppMeasurement (5.1.2):
     - GoogleUtilities/AppDelegateSwizzler (~> 5.2.0)
     - GoogleUtilities/MethodSwizzler (~> 5.2.0)
     - GoogleUtilities/Network (~> 5.2)
@@ -91,27 +93,35 @@ PODS:
   - "GoogleUtilities/NSData+zlib (5.2.3)"
   - GoogleUtilities/Reachability (5.2.3):
     - GoogleUtilities/Logger
-  - gRPC (1.14.1):
-    - gRPC-RxLibrary (= 1.14.1)
-    - gRPC/Main (= 1.14.1)
-  - gRPC-Core (1.14.1):
-    - gRPC-Core/Implementation (= 1.14.1)
-    - gRPC-Core/Interface (= 1.14.1)
-  - gRPC-Core/Implementation (1.14.1):
-    - BoringSSL (~> 10.0)
-    - gRPC-Core/Interface (= 1.14.1)
+  - gRPC (1.14.0):
+    - gRPC-RxLibrary (= 1.14.0)
+    - gRPC/Main (= 1.14.0)
+  - "gRPC-C++ (0.0.3)":
+    - "gRPC-C++/Implementation (= 0.0.3)"
+    - "gRPC-C++/Interface (= 0.0.3)"
+  - "gRPC-C++/Implementation (0.0.3)":
+    - "gRPC-C++/Interface (= 0.0.3)"
+    - gRPC-Core (= 1.14.0)
     - nanopb (~> 0.3)
-  - gRPC-Core/Interface (1.14.1)
-  - gRPC-ProtoRPC (1.14.1):
-    - gRPC-ProtoRPC/Main (= 1.14.1)
-  - gRPC-ProtoRPC/Main (1.14.1):
-    - gRPC (= 1.14.1)
-    - gRPC-RxLibrary (= 1.14.1)
+  - "gRPC-C++/Interface (0.0.3)"
+  - gRPC-Core (1.14.0):
+    - gRPC-Core/Implementation (= 1.14.0)
+    - gRPC-Core/Interface (= 1.14.0)
+  - gRPC-Core/Implementation (1.14.0):
+    - BoringSSL (~> 10.0)
+    - gRPC-Core/Interface (= 1.14.0)
+    - nanopb (~> 0.3)
+  - gRPC-Core/Interface (1.14.0)
+  - gRPC-ProtoRPC (1.14.0):
+    - gRPC-ProtoRPC/Main (= 1.14.0)
+  - gRPC-ProtoRPC/Main (1.14.0):
+    - gRPC (= 1.14.0)
+    - gRPC-RxLibrary (= 1.14.0)
     - Protobuf (~> 3.0)
-  - gRPC-RxLibrary (1.14.1)
-  - gRPC/Main (1.14.1):
-    - gRPC-Core (= 1.14.1)
-    - gRPC-RxLibrary (= 1.14.1)
+  - gRPC-RxLibrary (1.14.0)
+  - gRPC/Main (1.14.0):
+    - gRPC-Core (= 1.14.0)
+    - gRPC-RxLibrary (= 1.14.0)
   - GTMOAuth2 (1.1.6):
     - GTMSessionFetcher (~> 1.1)
   - GTMSessionFetcher (1.2.0):
@@ -154,6 +164,7 @@ SPEC REPOS:
     - GoogleToolboxForMac
     - GoogleUtilities
     - gRPC
+    - "gRPC-C++"
     - gRPC-Core
     - gRPC-ProtoRPC
     - gRPC-RxLibrary
@@ -166,22 +177,23 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   BoringSSL: e10f92a27043805c01071fe815a5cd98ae8212e7
-  Firebase: 734a4f92957aa6c40e7ae3fda3d9359e1890aa87
-  FirebaseAnalytics: 993577e91157feb40945abedd6ab346d8a4b6ac8
-  FirebaseAuth: 657a25e4be044d2d333663ebf515a861c5a59cd7
+  Firebase: 25812f43e7a53b11ae2f0a5f4c6d12faeb1f7cd7
+  FirebaseAnalytics: df15839e9c6ca6bd14d2e8ab6b0c672e6c49097e
+  FirebaseAuth: 504b198ceb3472dca5c65bb95544ea44cfc9439e
   FirebaseAuthInterop: 0ffa57668be100582bb7643d4fcb7615496c41fc
-  FirebaseCore: 3a97432acb324b439fbed338e642f9cbb516a63d
-  FirebaseFirestore: 7eec93809ad61e7ebe303089c5cc5efa63424b72
+  FirebaseCore: 27bd80e5bfaaf9552a1f5cacb4c7e8bb925bab22
+  FirebaseFirestore: c9ec5660228f97ed10782d72b0498449af07256d
   FirebaseInstanceID: ea5af6920d0a4a29b40459d055bebe4a6c1333c4
-  FirebaseUI: 0f6035898947af3e6ee9e9ab78ab57f8441bae56
-  GoogleAppMeasurement: f7507b39b70ad0bd80b3d81518b2f43868974307
+  FirebaseUI: 09519bf436a055cd696bf68687d624423150e4c0
+  GoogleAppMeasurement: fc4a4c3fe0144db9313cbf443ffe62e6b1d6268c
   GoogleSignIn: 591e46382014e591269f862ba6e7bc0fbd793532
   GoogleToolboxForMac: 91c824d21e85b31c2aae9bb011c5027c9b4e738f
   GoogleUtilities: 6f681e27050c5e130325e89fa0316dfca826f954
-  gRPC: 65fa2a50c4fd61940b76f4962d75c239c92c6a8d
-  gRPC-Core: e3ace1e1161e75903135de8d8231bb69c9d35721
-  gRPC-ProtoRPC: 78f976fc6a1eafc0e1f4965c255c313aa0859b1e
-  gRPC-RxLibrary: c4c826507ad3c8c8fab6887f153938eb04b86d59
+  gRPC: 9d4c549f37c7cef22478634bac7a0405b6e3dbfb
+  "gRPC-C++": ee0b01db3122f0b6c2be28b5b11039f62fa15fe6
+  gRPC-Core: f4836515817c0eb479aeeb9cc27c91c4ba62a9f6
+  gRPC-ProtoRPC: 76f6053639a842e1fb45fa82aa598bf3f4d9f66f
+  gRPC-RxLibrary: 3c305f32155024b116b780f389323c73a28197e6
   GTMOAuth2: c77fe325e4acd453837e72d91e3b5f13116857b2
   GTMSessionFetcher: 0c4baf0a73acd0041bf9f71ea018deedab5ea84e
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5

@@ -1,16 +1,16 @@
 PODS:
-  - Firebase/Core (5.7.0):
+  - Firebase/Core (5.8.0):
     - Firebase/CoreOnly
-    - FirebaseAnalytics (= 5.1.1)
-  - Firebase/CoreOnly (5.7.0):
-    - FirebaseCore (= 5.1.2)
-  - Firebase/RemoteConfig (5.7.0):
+    - FirebaseAnalytics (= 5.1.2)
+  - Firebase/CoreOnly (5.8.0):
+    - FirebaseCore (= 5.1.3)
+  - Firebase/RemoteConfig (5.8.0):
     - Firebase/Core
     - FirebaseRemoteConfig (= 3.0.1)
   - FirebaseABTesting (2.0.0):
     - FirebaseCore (~> 5.0)
     - Protobuf (~> 3.5)
-  - FirebaseAnalytics (5.1.1):
+  - FirebaseAnalytics (5.1.2):
     - FirebaseCore (~> 5.1)
     - FirebaseInstanceID (~> 3.2)
     - GoogleAppMeasurement (~> 5.1)
@@ -19,7 +19,7 @@ PODS:
     - GoogleUtilities/Network (~> 5.2)
     - "GoogleUtilities/NSData+zlib (~> 5.2)"
     - nanopb (~> 0.3)
-  - FirebaseCore (5.1.2):
+  - FirebaseCore (5.1.3):
     - GoogleUtilities/Logger (~> 5.2)
   - FirebaseInstanceID (3.2.1):
     - FirebaseCore (~> 5.1)
@@ -32,7 +32,7 @@ PODS:
     - GoogleUtilities/Environment (~> 5.2)
     - "GoogleUtilities/NSData+zlib (~> 5.2)"
     - Protobuf (~> 3.5)
-  - GoogleAppMeasurement (5.1.1):
+  - GoogleAppMeasurement (5.1.2):
     - GoogleUtilities/AppDelegateSwizzler (~> 5.2.0)
     - GoogleUtilities/MethodSwizzler (~> 5.2.0)
     - GoogleUtilities/Network (~> 5.2)
@@ -79,13 +79,13 @@ SPEC REPOS:
     - Protobuf
 
 SPEC CHECKSUMS:
-  Firebase: 734a4f92957aa6c40e7ae3fda3d9359e1890aa87
+  Firebase: 25812f43e7a53b11ae2f0a5f4c6d12faeb1f7cd7
   FirebaseABTesting: 1f50b8d50f5e3469eea54e7463a7b7fe221d1f5e
-  FirebaseAnalytics: 993577e91157feb40945abedd6ab346d8a4b6ac8
-  FirebaseCore: 3a97432acb324b439fbed338e642f9cbb516a63d
+  FirebaseAnalytics: df15839e9c6ca6bd14d2e8ab6b0c672e6c49097e
+  FirebaseCore: 27bd80e5bfaaf9552a1f5cacb4c7e8bb925bab22
   FirebaseInstanceID: ea5af6920d0a4a29b40459d055bebe4a6c1333c4
   FirebaseRemoteConfig: 7b6d675dfb11f0e0e638caee00908b06af150d56
-  GoogleAppMeasurement: f7507b39b70ad0bd80b3d81518b2f43868974307
+  GoogleAppMeasurement: fc4a4c3fe0144db9313cbf443ffe62e6b1d6268c
   GoogleUtilities: 6f681e27050c5e130325e89fa0316dfca826f954
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   Protobuf: 1eb9700044745f00181c136ef21b8ff3ad5a0fd5

@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   // [START configure]
   func application(_ application: UIApplication,
-    didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
     // Use Firebase library to configure APIs
     FirebaseApp.configure()
     return true
@@ -32,9 +32,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   // [START openurl]
   @available(iOS 9.0, *)
-  func application(_ application: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any])
+  func application(_ application: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any])
     -> Bool {
-      return self.application(application, open: url, sourceApplication: options[UIApplicationOpenURLOptionsKey.sourceApplication] as? String, annotation: "")
+      return self.application(application, open: url, sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String, annotation: "")
   }
 
   func application(_ application: UIApplication,
@@ -58,7 +58,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   // [END openurl]
 
   // [START continueuseractivity]
-  func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
+  func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
     return Invites.handleUniversalLink(userActivity.webpageURL!) { invite, error in
       // [START_EXCLUDE]
       if let error = error {

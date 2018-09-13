@@ -62,8 +62,7 @@
 
 // [START continueuseractivity]
 - (BOOL)application:(UIApplication *)application
-    continueUserActivity:(NSUserActivity *)userActivity
-      restorationHandler:(void (^)(NSArray *))restorationHandler {
+    continueUserActivity:(nonnull NSUserActivity *)userActivity restorationHandler:(nonnull void (^)(NSArray<id<UIUserActivityRestoring>> * _Nullable))restorationHandler {
   // Handle App Invite requests
   return [FIRInvites handleUniversalLink:userActivity.webpageURL
                               completion:^(FIRReceivedInvite * _Nullable receivedInvite,

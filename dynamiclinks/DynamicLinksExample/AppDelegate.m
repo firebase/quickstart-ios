@@ -77,8 +77,7 @@ static NSString *const CUSTOM_URL_SCHEME = @"dlscheme";
 
 // [START continueuseractivity]
 - (BOOL)application:(UIApplication *)application
-continueUserActivity:(NSUserActivity *)userActivity
- restorationHandler:(void (^)(NSArray *))restorationHandler {
+continueUserActivity:(nonnull NSUserActivity *)userActivity restorationHandler:(nonnull void (^)(NSArray<id<UIUserActivityRestoring>> * _Nullable))restorationHandler {
   BOOL handled = [[FIRDynamicLinks dynamicLinks] handleUniversalLink:userActivity.webpageURL
                                                           completion:^(FIRDynamicLink * _Nullable dynamicLink,
                                                                        NSError * _Nullable error) {

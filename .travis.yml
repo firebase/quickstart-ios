@@ -1,4 +1,4 @@
-osx_image: xcode9.3
+osx_image: xcode10
 
 language: objective-c
 cache:
@@ -42,10 +42,7 @@ matrix:
   - podfile: storage/Podfile
     env: SAMPLE=Storage
 
-rvm: 2.3.1
 before_install:
-  - npm install ios-sim -g
-  - ios-sim start --devicetypeid "com.apple.CoreSimulator.SimDeviceType.iPhone-8-Plus, 11.3"
   - cd $SAMPLE
   - bundle install
   - gem install xcpretty

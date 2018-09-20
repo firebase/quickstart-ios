@@ -62,7 +62,12 @@
 
 // [START continueuseractivity]
 - (BOOL)application:(UIApplication *)application
-    continueUserActivity:(nonnull NSUserActivity *)userActivity restorationHandler:(nonnull void (^)(NSArray<id<UIUserActivityRestoring>> * _Nullable))restorationHandler {
+continueUserActivity:(nonnull NSUserActivity *)userActivity restorationHandler:
+#if defined(__IPHONE_12_0) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_12_0)
+(nonnull void (^)(NSArray<id<UIUserActivityRestoring>> *_Nullable))restorationHandler {
+#else
+    (nonnull void (^)(NSArray *_Nullable))restorationHandler {
+#endif  // __IPHONE_12_0
   // Handle App Invite requests
   return [FIRInvites handleUniversalLink:userActivity.webpageURL
                               completion:^(FIRReceivedInvite * _Nullable receivedInvite,
@@ -81,7 +86,7 @@
                                                      style:UIAlertActionStyleDefault
                                                    handler:nil];
   NSString *matchType = invite.matchType == FIRReceivedInviteMatchTypeWeak ? @"weak" : @"strong";
-  NSString *message = 
+  NSString *message =
   [NSString stringWithFormat:@"Invite ID: %@\nDeep-link: %@\nMatch Type: %@",
    invite.inviteId, invite.deepLink, matchType];
 

@@ -77,7 +77,13 @@ static NSString *const CUSTOM_URL_SCHEME = @"dlscheme";
 
 // [START continueuseractivity]
 - (BOOL)application:(UIApplication *)application
-continueUserActivity:(nonnull NSUserActivity *)userActivity restorationHandler:(nonnull void (^)(NSArray<id<UIUserActivityRestoring>> * _Nullable))restorationHandler {
+continueUserActivity:(nonnull NSUserActivity *)userActivity
+ restorationHandler:
+#if defined(__IPHONE_12_0) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_12_0)
+(nonnull void (^)(NSArray<id<UIUserActivityRestoring>> *_Nullable))restorationHandler {
+#else
+    (nonnull void (^)(NSArray *_Nullable))restorationHandler {
+#endif  // __IPHONE_12_0
   BOOL handled = [[FIRDynamicLinks dynamicLinks] handleUniversalLink:userActivity.webpageURL
                                                           completion:^(FIRDynamicLink * _Nullable dynamicLink,
                                                                        NSError * _Nullable error) {

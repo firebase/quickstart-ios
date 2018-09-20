@@ -26,8 +26,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   let customURLScheme = "dlscheme"
 
   // [START didfinishlaunching]
-  func application(_ application: UIApplication,
-                   didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+  private func application(_ application: UIApplication,
+                   didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     // Set deepLinkURLScheme to the custom URL scheme you defined in your
     // Xcode project.
     FirebaseOptions.defaultOptions()?.deepLinkURLScheme = self.customURLScheme
@@ -39,9 +39,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   // [START openurl]
   @available(iOS 9.0, *)
-  func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any]) -> Bool {
+  func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any]) -> Bool {
     return application(app, open: url,
-                       sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String,
+                       sourceApplication: options[UIApplicationOpenURLOptionsKey.sourceApplication] as? String,
                        annotation: "")
   }
 
@@ -64,8 +64,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   // [END openurl]
 
   // [START continueuseractivity]
-  func application(_ application: UIApplication, continue userActivity: NSUserActivity,
-                   restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
+  private func application(_ application: UIApplication, continue userActivity: NSUserActivity,
+                   restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
     let handled = DynamicLinks.dynamicLinks().handleUniversalLink(userActivity.webpageURL!) { (dynamiclink, error) in
       // [START_EXCLUDE]
 

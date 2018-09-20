@@ -14,6 +14,14 @@ class CameraViewController: UIViewController {
   private lazy var sessionQueue = DispatchQueue(label: Constant.sessionQueueLabel)
   private var previewLayer: AVCaptureVideoPreviewLayer!
   private lazy var vision = Vision.vision()
+  private var lastFrame: CMSampleBuffer? = nil
+
+  private lazy var previewOverlayView: UIImageView = {
+    precondition(isViewLoaded)
+    let previewOverlayView = UIImageView(frame: .zero)
+    previewOverlayView.translatesAutoresizingMaskIntoConstraints = false
+    return previewOverlayView
+  }()
 
   private lazy var annotationOverlayView: UIView = {
     precondition(isViewLoaded)
@@ -32,7 +40,7 @@ class CameraViewController: UIViewController {
     super.viewDidLoad()
 
     previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
-    cameraView.layer.addSublayer(previewLayer)
+    setUpPreviewOverlayView()
     setUpAnnotationOverlayView()
     setUpCaptureSessionOutput()
     setUpCaptureSessionInput()
@@ -80,13 +88,16 @@ class CameraViewController: UIViewController {
     options.isTrackingEnabled = true
     options.performanceMode = .fast
     let faceDetector = vision.faceDetector(options: options)
+    let group = DispatchGroup()
+    group.enter()
     faceDetector.detect(in: image) { features, error in
+      defer { group.leave() }
+      self.removeDetectionAnnotations()
+      self.updatePreviewOverlayView()
       guard error == nil, let features = features, !features.isEmpty else {
-        self.removeDetectionAnnotations()
         print("On-Device face detector returned no results.")
         return
       }
-      self.removeDetectionAnnotations()
       for face in features {
         let normalizedRect = CGRect(
           x: face.frame.origin.x / width,
@@ -104,12 +115,18 @@ class CameraViewController: UIViewController {
         self.addContours(for: face, width: width, height: height)
       }
     }
+
+    group.wait()
   }
 
   private func recognizeTextOnDevice(in image: VisionImage, width: CGFloat, height: CGFloat) {
     let textRecognizer = vision.onDeviceTextRecognizer()
+    let group = DispatchGroup()
+    group.enter()
     textRecognizer.process(image) { text, error in
+      defer { group.leave() }
       self.removeDetectionAnnotations()
+      self.updatePreviewOverlayView()
       guard error == nil, let text = text else {
         print("On-Device text recognizer error: " +
           "\(error?.localizedDescription ?? Constant.noResultsMessage)")
@@ -157,6 +174,8 @@ class CameraViewController: UIViewController {
         }
       }
     }
+
+    group.wait()
   }
 
   // MARK: - Private
@@ -166,7 +185,7 @@ class CameraViewController: UIViewController {
       self.captureSession.beginConfiguration()
       // When performing latency tests to determine ideal capture settings,
       // run the app in 'release' mode to get accurate performance metrics
-      self.captureSession.sessionPreset = AVCaptureSession.Preset.medium
+      self.captureSession.sessionPreset = AVCaptureSession.Preset.hd1280x720
 
       let output = AVCaptureVideoDataOutput()
       output.videoSettings =
@@ -218,6 +237,16 @@ class CameraViewController: UIViewController {
     }
   }
 
+  private func setUpPreviewOverlayView() {
+    cameraView.addSubview(previewOverlayView)
+    NSLayoutConstraint.activate([
+      previewOverlayView.topAnchor.constraint(equalTo: cameraView.topAnchor),
+      previewOverlayView.leadingAnchor.constraint(equalTo: cameraView.leadingAnchor),
+      previewOverlayView.trailingAnchor.constraint(equalTo: cameraView.trailingAnchor),
+      previewOverlayView.bottomAnchor.constraint(equalTo: cameraView.bottomAnchor),
+      ])
+  }
+
   private func setUpAnnotationOverlayView() {
     cameraView.addSubview(annotationOverlayView)
     NSLayoutConstraint.activate([
@@ -261,6 +290,28 @@ class CameraViewController: UIViewController {
   private func removeDetectionAnnotations() {
     for annotationView in annotationOverlayView.subviews {
       annotationView.removeFromSuperview()
+    }
+  }
+
+  private func updatePreviewOverlayView() {
+    guard let lastFrame = lastFrame, let imageBuffer = CMSampleBufferGetImageBuffer(lastFrame)
+      else { return }
+    let ciImage = CIImage(cvPixelBuffer: imageBuffer)
+    let context = CIContext.init(options: nil)
+    guard let cgImage = context.createCGImage(ciImage, from: ciImage.extent) else {
+      return
+    }
+    let rotatedImage =
+      UIImage.init(cgImage: cgImage, scale: Constant.constantScale, orientation: .right)
+    if isUsingFrontCamera {
+      guard let rotatedCGImage = rotatedImage.cgImage else {
+        return
+      }
+      let mirroredImage = UIImage.init(
+        cgImage: rotatedCGImage, scale: Constant.constantScale, orientation: .leftMirrored)
+      previewOverlayView.image = mirroredImage
+    } else {
+      previewOverlayView.image = rotatedImage
     }
   }
 
@@ -458,6 +509,7 @@ extension CameraViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
       print("Failed to get image buffer from sample buffer.")
       return
     }
+    lastFrame = sampleBuffer
     let visionImage = VisionImage(buffer: sampleBuffer)
     let metadata = VisionImageMetadata()
     let orientation = UIUtilities.imageOrientation(
@@ -492,5 +544,5 @@ private enum Constant {
   static let sessionQueueLabel = "com.google.firebaseml.visiondetector.SessionQueue"
   static let noResultsMessage = "No Results"
   static let smallDotRadius: CGFloat = 4.0
-  static let bigDotRadius: CGFloat = 10.0;
+  static let constantScale: CGFloat = 1.0
 }

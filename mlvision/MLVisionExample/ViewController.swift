@@ -50,6 +50,7 @@ class ViewController:  UIViewController, UINavigationControllerDelegate {
   @IBOutlet fileprivate weak var imageView: UIImageView!
   @IBOutlet fileprivate weak var photoCameraButton: UIBarButtonItem!
   @IBOutlet fileprivate weak var videoCameraButton: UIBarButtonItem!
+  @IBOutlet weak var detectButton: UIBarButtonItem!
 
   // MARK: - UIViewController
 
@@ -170,6 +171,8 @@ class ViewController:  UIViewController, UINavigationControllerDelegate {
       }
     )
     resultsAlertController.message = resultsText
+    resultsAlertController.popoverPresentationController?.barButtonItem = detectButton
+    resultsAlertController.popoverPresentationController?.sourceView = self.view
     present(resultsAlertController, animated: true, completion: nil)
     print(resultsText)
   }

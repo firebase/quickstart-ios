@@ -70,6 +70,7 @@ typedef NS_ENUM(NSInteger, DetectorPickerRow) {
 
 /** An image picker for accessing the photo library or camera. */
 @property(nonatomic) UIImagePickerController *imagePicker;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *detectButton;
 
 // Image counter.
 @property(nonatomic) NSUInteger currentImage;
@@ -220,6 +221,8 @@ typedef NS_ENUM(NSInteger, DetectorPickerRow) {
     [resultsAlertController dismissViewControllerAnimated:YES completion:nil];
   }]];
   resultsAlertController.message = _resultsText;
+  resultsAlertController.popoverPresentationController.barButtonItem = _detectButton;
+  resultsAlertController.popoverPresentationController.sourceView = self.view;
   [self presentViewController:resultsAlertController animated:YES completion:nil];
   NSLog(@"%@", _resultsText);
 }

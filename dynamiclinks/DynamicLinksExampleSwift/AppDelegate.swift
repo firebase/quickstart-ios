@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   let customURLScheme = "dlscheme"
 
   // [START didfinishlaunching]
-  private func application(_ application: UIApplication,
+  func application(_ application: UIApplication,
                    didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     // Set deepLinkURLScheme to the custom URL scheme you defined in your
     // Xcode project.
@@ -64,7 +64,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   // [END openurl]
 
   // [START continueuseractivity]
-  private func application(_ application: UIApplication, continue userActivity: NSUserActivity,
+  func application(_ application: UIApplication, continue userActivity: NSUserActivity,
                    restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
     let handled = DynamicLinks.dynamicLinks().handleUniversalLink(userActivity.webpageURL!) { (dynamiclink, error) in
       // [START_EXCLUDE]

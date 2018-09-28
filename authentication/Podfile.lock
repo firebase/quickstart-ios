@@ -5,7 +5,7 @@ PODS:
   - Bolts/AppLinks (1.9.0):
     - Bolts/Tasks
   - Bolts/Tasks (1.9.0)
-  - Fabric (1.7.11)
+  - Fabric (1.7.12)
   - FBSDKCoreKit (4.36.0):
     - Bolts (~> 1.7)
   - FBSDKLoginKit (4.36.0):
@@ -124,7 +124,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
-  Fabric: f233c9492b3bbc1f04e3882986740f7988a58edb
+  Fabric: d7387db9a31aadff63b147a4b91d982c53afaa4f
   FBSDKCoreKit: 3b8e6570eedb443f9fc4af196a7bf39f18e3a3d8
   FBSDKLoginKit: 8bccb6064708ab2f4251a7fc4e3b6d8d00ad91ba
   Firebase: 383fa29aca93e371cab776b48a5c66544d3c2003

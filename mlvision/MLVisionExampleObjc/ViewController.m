@@ -491,9 +491,9 @@ typedef NS_ENUM(NSInteger, DetectorPickerRow) {
   // Create a face detector with options.
   // [START config_face]
   FIRVisionFaceDetectorOptions *options = [FIRVisionFaceDetectorOptions new];
-  options.landmarkType = FIRVisionFaceDetectorLandmarkAll;
-  options.classificationType = FIRVisionFaceDetectorClassificationAll;
-  options.modeType = FIRVisionFaceDetectorModeAccurate;
+  options.landmarkMode = FIRVisionFaceDetectorLandmarkModeAll;
+  options.classificationMode = FIRVisionFaceDetectorClassificationModeAll;
+  options.performanceMode = FIRVisionFaceDetectorPerformanceModeAccurate;
   // [END config_face]
 
   // [START init_face]
@@ -509,7 +509,7 @@ typedef NS_ENUM(NSInteger, DetectorPickerRow) {
   visionImage.metadata = imageMetadata;
 
   // [START detect_faces]
-  [faceDetector detectInImage:visionImage completion:^(NSArray<FIRVisionFace *> * _Nullable faces, NSError * _Nullable error) {
+  [faceDetector processImage:visionImage completion:^(NSArray<FIRVisionFace *> * _Nullable faces, NSError * _Nullable error) {
     if (!faces || faces.count == 0) {
       // [START_EXCLUDE]
       NSString *errorString = error ? error.localizedDescription : detectionNoResultsMessage;
@@ -626,10 +626,7 @@ typedef NS_ENUM(NSInteger, DetectorPickerRow) {
     // [START_EXCLUDE]
     [self.resultsText setString:@""];
     for (FIRVisionLabel *label in labels) {
-      CGAffineTransform transform = [self transformMatrix];
-      CGRect transformedRect = CGRectApplyAffineTransform(label.frame, transform);
-      [UIUtilities addRectangle:transformedRect toView:self.annotationOverlayView color:UIColor.greenColor];
-      [self.resultsText appendFormat:@"Label: %@, Confidence: %f, EntityID: %@, Frame: %@\n", label.label, label.confidence, label.entityID, NSStringFromCGRect(label.frame)];
+      [self.resultsText appendFormat:@"Label: %@, Confidence: %f, EntityID: %@\n", label.label, label.confidence, label.entityID];
     }
     [self showResults];
     // [END_EXCLUDE]

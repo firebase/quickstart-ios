@@ -10,9 +10,9 @@ class CameraViewController: UIViewController {
   private let detectors: [Detector] = [.onDeviceFace, .onDeviceText]
   private var currentDetector: Detector = .onDeviceFace
   private var isUsingFrontCamera = true
+  private var previewLayer: AVCaptureVideoPreviewLayer!
   private lazy var captureSession = AVCaptureSession()
   private lazy var sessionQueue = DispatchQueue(label: Constant.sessionQueueLabel)
-  private var previewLayer: AVCaptureVideoPreviewLayer!
   private lazy var vision = Vision.vision()
 
   private lazy var annotationOverlayView: UIView = {
@@ -72,17 +72,25 @@ class CameraViewController: UIViewController {
 
   private func detectFacesOnDevice(in image: VisionImage, width: CGFloat, height: CGFloat) {
     let options = VisionFaceDetectorOptions()
-    options.landmarkType = .all
+    options.contourMode = .all
     options.isTrackingEnabled = true
     let faceDetector = vision.faceDetector(options: options)
-    faceDetector.detect(in: image) { features, error in
-      guard error == nil, let features = features, !features.isEmpty else {
-        self.removeDetectionAnnotations()
-        print("On-Device face detector returned no results.")
-        return
-      }
+
+    var detectedFaces: [VisionFace]? = nil
+    do {
+      detectedFaces = try faceDetector.results(in: image)
+    } catch let error {
+      print("Failed to detect faces with error: \(error.localizedDescription).")
+    }
+    guard let faces = detectedFaces, !faces.isEmpty else {
+      print("On-Device face detector returned no results.")
+      DispatchQueue.main.sync { self.removeDetectionAnnotations() }
+      return
+    }
+
+    DispatchQueue.main.sync {
       self.removeDetectionAnnotations()
-      for face in features {
+      for face in faces {
         let normalizedRect = CGRect(
           x: face.frame.origin.x / width,
           y: face.frame.origin.y / height,
@@ -257,11 +265,11 @@ class CameraViewController: UIViewController {
   }
 
   private func convertedPoints(
-    from points: [NSValue],
+    from points: [NSValue]?,
     width: CGFloat,
     height: CGFloat
-    ) -> [NSValue] {
-    return points.map {
+    ) -> [NSValue]? {
+    return points?.map {
       let cgPointValue = $0.cgPointValue
       let normalizedPoint = CGPoint(x: cgPointValue.x / width, y: cgPointValue.y / height)
       let cgPoint = previewLayer.layerPointConverted(fromCaptureDevicePoint: normalizedPoint)
@@ -317,8 +325,8 @@ extension CameraViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
 // MARK: - Constants
 
 public enum Detector: String {
-  case onDeviceFace = "On-Device Face"
-  case onDeviceText = "On-Device Text"
+  case onDeviceFace = "On-Device Face Detection"
+  case onDeviceText = "On-Device Text Recognition"
 }
 
 private enum Constant {

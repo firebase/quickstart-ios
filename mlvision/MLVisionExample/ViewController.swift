@@ -508,9 +508,9 @@ extension ViewController {
     // Create a face detector with options.
     // [START config_face]
     let options = VisionFaceDetectorOptions()
-    options.landmarkType = .all
-    options.classificationType = .all
-    options.modeType = .accurate
+    options.landmarkMode = .all
+    options.classificationMode = .all
+    options.performanceMode = .accurate
     // [END config_face]
 
     // [START init_face]
@@ -526,7 +526,7 @@ extension ViewController {
     visionImage.metadata = imageMetadata
 
     // [START detect_faces]
-    faceDetector.detect(in: visionImage) { features, error in
+    faceDetector.process(visionImage) { features, error in
       guard error == nil, let features = features, !features.isEmpty else {
         // [START_EXCLUDE]
         let errorString = error?.localizedDescription ?? Constants.detectionNoResultsMessage
@@ -646,16 +646,9 @@ extension ViewController {
 
       // [START_EXCLUDE]
       self.resultsText = features.map { feature -> String in
-        let transformedRect = feature.frame.applying(self.transformMatrix())
-        UIUtilities.addRectangle(
-          transformedRect,
-          to: self.annotationOverlayView,
-          color: UIColor.green
-        )
         return "Label: \(String(describing: feature.label)), " +
           "Confidence: \(feature.confidence), " +
-          "EntityID: \(String(describing: feature.entityID)), " +
-          "Frame: \(feature.frame)"
+          "EntityID: \(String(describing: feature.entityID))"
         }.joined(separator: "\n")
       self.showResults()
       // [END_EXCLUDE]

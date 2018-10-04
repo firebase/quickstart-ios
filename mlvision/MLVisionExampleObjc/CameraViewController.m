@@ -37,9 +37,9 @@ typedef NS_ENUM(NSInteger, Detector) {
 @property (nonatomic) NSArray *detectors;
 @property (nonatomic) Detector currentDetector;
 @property (nonatomic) bool isUsingFrontCamera;
+@property (nonatomic, nonnull) AVCaptureVideoPreviewLayer *previewLayer;
 @property (nonatomic) AVCaptureSession *captureSession;
 @property (nonatomic) dispatch_queue_t sessionQueue;
-@property (nonatomic, nonnull) AVCaptureVideoPreviewLayer *previewLayer;
 @property (nonatomic) FIRVision *vision;
 @property (nonatomic) UIView *annotationOverlayView;
 @property (weak, nonatomic) IBOutlet UIView *cameraView;
@@ -50,9 +50,9 @@ typedef NS_ENUM(NSInteger, Detector) {
 - (NSString *)stringForDetector:(Detector)detector {
   switch (detector) {
     case DetectorOnDeviceFace:
-    return @"On-Device Face";
+    return @"On-Device Face Detection";
     case DetectorOnDeviceText:
-    return @"On-Device Text";
+    return @"On-Device Text Recognition";
   }
 }
 
@@ -101,23 +101,32 @@ typedef NS_ENUM(NSInteger, Detector) {
 
 - (void)detectFacesOnDeviceInImage:(FIRVisionImage *)image width:(CGFloat) width height:(CGFloat)height {
   FIRVisionFaceDetectorOptions *options = [[FIRVisionFaceDetectorOptions alloc] init];
-  options.landmarkType = FIRVisionFaceDetectorLandmarkAll;
-  options.isTrackingEnabled = YES;
+  options.contourMode = FIRVisionFaceDetectorContourModeAll;
+  options.trackingEnabled = YES;
 
   FIRVisionFaceDetector *faceDetector = [_vision faceDetectorWithOptions:options];
-  [faceDetector detectInImage:image completion:^(NSArray<FIRVisionFace *> * _Nullable faces, NSError * _Nullable error) {
-    if (!faces || faces.count == 0) {
+  NSError *error;
+  NSArray<FIRVisionFace *> *faces = [faceDetector resultsInImage:image error:&error];
+  if (error != nil) {
+    NSLog(@"Failed to detect faces with error: %@", error.localizedDescription);
+    return;
+  }
+  if (faces.count == 0) {
+    NSLog(@"%@", @"On-Device face detector returned no results.");
+    dispatch_sync(dispatch_get_main_queue(), ^{
       [self removeDetectionAnnotations];
-      NSLog(@"%@", @"On-Device face detector returned no results.");
-      return;
-    }
+    });
+    return;
+  }
+
+  dispatch_sync(dispatch_get_main_queue(), ^{
     [self removeDetectionAnnotations];
     for (FIRVisionFace *face in faces) {
       CGRect normalizedRect = CGRectMake(face.frame.origin.x / width, face.frame.origin.y / height, face.frame.size.width / width, face.frame.size.height / height);
       CGRect standardizedRect = CGRectStandardize([self->_previewLayer rectForMetadataOutputRectOfInterest:normalizedRect]);
       [UIUtilities addRectangle:standardizedRect toView:self->_annotationOverlayView color:UIColor.greenColor];
     }
-  }];
+  });
 }
 
 - (void)recognizeTextOnDeviceInImage:(FIRVisionImage *)image width:(CGFloat) width height:(CGFloat)height {

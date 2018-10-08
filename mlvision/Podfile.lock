@@ -61,19 +61,19 @@ PODS:
     - GoogleUtilities/Network (~> 5.2)
     - "GoogleUtilities/NSData+zlib (~> 5.2)"
     - nanopb (~> 0.3)
-  - GoogleMobileVision/BarcodeDetector (1.3.3):
-    - GoogleMobileVision/Detector (~> 1.3)
-  - GoogleMobileVision/Detector (1.3.3):
+  - GoogleMobileVision/BarcodeDetector (1.4.1):
+    - GoogleMobileVision/Detector (~> 1.4)
+  - GoogleMobileVision/Detector (1.4.1):
     - GoogleToolboxForMac/Logger (~> 2.1)
     - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
     - GTMSessionFetcher/Core (~> 1.1)
     - Protobuf (~> 3.1)
-  - GoogleMobileVision/FaceDetector (1.3.3):
-    - GoogleMobileVision/Detector (~> 1.3)
-  - GoogleMobileVision/LabelDetector (1.3.3):
-    - GoogleMobileVision/Detector (~> 1.3)
-  - GoogleMobileVision/TextDetector (1.3.3):
-    - GoogleMobileVision/Detector (~> 1.3)
+  - GoogleMobileVision/FaceDetector (1.4.1):
+    - GoogleMobileVision/Detector (~> 1.4)
+  - GoogleMobileVision/LabelDetector (1.4.1):
+    - GoogleMobileVision/Detector (~> 1.4)
+  - GoogleMobileVision/TextDetector (1.4.1):
+    - GoogleMobileVision/Detector (~> 1.4)
   - GoogleToolboxForMac/Defines (2.1.4)
   - GoogleToolboxForMac/Logger (2.1.4):
     - GoogleToolboxForMac/Defines (= 2.1.4)
@@ -151,7 +151,7 @@ SPEC CHECKSUMS:
   FirebaseMLVisionTextModel: 52a42f7d723e3d2d7d68ca8269722c9b36cd4892
   GoogleAPIClientForREST: 5b95b38a0fa912e8ac7bdcf9e124578ef1a61bf2
   GoogleAppMeasurement: 2b3a023a61239c8d002e6e4fcf4abce8eddce0e0
-  GoogleMobileVision: 7e0eeac8d897ac1f9a4f9d55d3d2df81325f92ec
+  GoogleMobileVision: bedef12c0924e948fc09b8f1b38c5fe1a3594b6f
   GoogleToolboxForMac: 91c824d21e85b31c2aae9bb011c5027c9b4e738f
   GoogleUtilities: 760ccb53b7c7f40f9c02d8c241f76f841a7a6162
   GTMSessionFetcher: 0c4baf0a73acd0041bf9f71ea018deedab5ea84e

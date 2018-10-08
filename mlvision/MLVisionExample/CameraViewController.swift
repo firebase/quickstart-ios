@@ -14,6 +14,14 @@ class CameraViewController: UIViewController {
   private lazy var captureSession = AVCaptureSession()
   private lazy var sessionQueue = DispatchQueue(label: Constant.sessionQueueLabel)
   private lazy var vision = Vision.vision()
+  private var lastFrame: CMSampleBuffer? = nil
+
+  private lazy var previewOverlayView: UIImageView = {
+    precondition(isViewLoaded)
+    let previewOverlayView = UIImageView(frame: .zero)
+    previewOverlayView.translatesAutoresizingMaskIntoConstraints = false
+    return previewOverlayView
+  }()
 
   private lazy var annotationOverlayView: UIView = {
     precondition(isViewLoaded)
@@ -32,7 +40,7 @@ class CameraViewController: UIViewController {
     super.viewDidLoad()
 
     previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
-    cameraView.layer.addSublayer(previewLayer)
+    setUpPreviewOverlayView()
     setUpAnnotationOverlayView()
     setUpCaptureSessionOutput()
     setUpCaptureSessionInput()
@@ -72,8 +80,15 @@ class CameraViewController: UIViewController {
 
   private func detectFacesOnDevice(in image: VisionImage, width: CGFloat, height: CGFloat) {
     let options = VisionFaceDetectorOptions()
+
+    // When performing latency tests to determine ideal detection settings,
+    // run the app in 'release' mode to get accurate performance metrics
+    options.landmarkMode = .none
     options.contourMode = .all
+    options.classificationMode = .none
+
     options.isTrackingEnabled = true
+    options.performanceMode = .fast
     let faceDetector = vision.faceDetector(options: options)
 
     var detectedFaces: [VisionFace]? = nil
@@ -104,14 +119,19 @@ class CameraViewController: UIViewController {
           to: self.annotationOverlayView,
           color: UIColor.green
         )
+        self.addContours(for: face, width: width, height: height)
       }
     }
   }
 
   private func recognizeTextOnDevice(in image: VisionImage, width: CGFloat, height: CGFloat) {
     let textRecognizer = vision.onDeviceTextRecognizer()
+    let group = DispatchGroup()
+    group.enter()
     textRecognizer.process(image) { text, error in
+      defer { group.leave() }
       self.removeDetectionAnnotations()
+      self.updatePreviewOverlayView()
       guard error == nil, let text = text else {
         print("On-Device text recognizer error: " +
           "\(error?.localizedDescription ?? Constant.noResultsMessage)")
@@ -159,6 +179,8 @@ class CameraViewController: UIViewController {
         }
       }
     }
+
+    group.wait()
   }
 
   // MARK: - Private
@@ -166,7 +188,9 @@ class CameraViewController: UIViewController {
   private func setUpCaptureSessionOutput() {
     sessionQueue.async {
       self.captureSession.beginConfiguration()
-      self.captureSession.sessionPreset = AVCaptureSession.Preset.medium
+      // When performing latency tests to determine ideal capture settings,
+      // run the app in 'release' mode to get accurate performance metrics
+      self.captureSession.sessionPreset = AVCaptureSession.Preset.hd1280x720
 
       let output = AVCaptureVideoDataOutput()
       output.videoSettings =
@@ -218,6 +242,16 @@ class CameraViewController: UIViewController {
     }
   }
 
+  private func setUpPreviewOverlayView() {
+    cameraView.addSubview(previewOverlayView)
+    NSLayoutConstraint.activate([
+      previewOverlayView.topAnchor.constraint(equalTo: cameraView.topAnchor),
+      previewOverlayView.leadingAnchor.constraint(equalTo: cameraView.leadingAnchor),
+      previewOverlayView.trailingAnchor.constraint(equalTo: cameraView.trailingAnchor),
+      previewOverlayView.bottomAnchor.constraint(equalTo: cameraView.bottomAnchor),
+      ])
+  }
+
   private func setUpAnnotationOverlayView() {
     cameraView.addSubview(annotationOverlayView)
     NSLayoutConstraint.activate([
@@ -264,11 +298,33 @@ class CameraViewController: UIViewController {
     }
   }
 
+  private func updatePreviewOverlayView() {
+    guard let lastFrame = lastFrame, let imageBuffer = CMSampleBufferGetImageBuffer(lastFrame)
+      else { return }
+    let ciImage = CIImage(cvPixelBuffer: imageBuffer)
+    let context = CIContext.init(options: nil)
+    guard let cgImage = context.createCGImage(ciImage, from: ciImage.extent) else {
+      return
+    }
+    let rotatedImage =
+      UIImage.init(cgImage: cgImage, scale: Constant.constantScale, orientation: .right)
+    if isUsingFrontCamera {
+      guard let rotatedCGImage = rotatedImage.cgImage else {
+        return
+      }
+      let mirroredImage = UIImage.init(
+        cgImage: rotatedCGImage, scale: Constant.constantScale, orientation: .leftMirrored)
+      previewOverlayView.image = mirroredImage
+    } else {
+      previewOverlayView.image = rotatedImage
+    }
+  }
+
   private func convertedPoints(
     from points: [NSValue]?,
     width: CGFloat,
     height: CGFloat
-    ) -> [NSValue]? {
+  ) -> [NSValue]? {
     return points?.map {
       let cgPointValue = $0.cgPointValue
       let normalizedPoint = CGPoint(x: cgPointValue.x / width, y: cgPointValue.y / height)
@@ -282,11 +338,166 @@ class CameraViewController: UIViewController {
     fromVisionPoint point: VisionPoint,
     width: CGFloat,
     height: CGFloat
-    ) -> CGPoint {
+  ) -> CGPoint {
     let cgPoint = CGPoint(x: CGFloat(point.x.floatValue), y: CGFloat(point.y.floatValue))
     var normalizedPoint = CGPoint(x: cgPoint.x / width, y: cgPoint.y / height)
     normalizedPoint = previewLayer.layerPointConverted(fromCaptureDevicePoint: normalizedPoint)
     return normalizedPoint
+  }
+
+  private func addContours(for face: VisionFace, width: CGFloat, height: CGFloat) {
+    // Face
+    if let faceContour = face.contour(ofType: .face) {
+      for point in faceContour.points {
+        let cgPoint = normalizedPoint(fromVisionPoint: point, width: width, height: height)
+        UIUtilities.addCircle(
+          atPoint: cgPoint,
+          to: annotationOverlayView,
+          color: UIColor.blue,
+          radius: Constant.smallDotRadius
+        )
+      }
+    }
+
+    // Eyebrows
+    if let topLeftEyebrowContour = face.contour(ofType: .leftEyebrowTop) {
+      for point in topLeftEyebrowContour.points {
+        let cgPoint = normalizedPoint(fromVisionPoint: point, width: width, height: height)
+        UIUtilities.addCircle(
+          atPoint: cgPoint,
+          to: annotationOverlayView,
+          color: UIColor.orange,
+          radius: Constant.smallDotRadius
+        )
+      }
+    }
+    if let bottomLeftEyebrowContour = face.contour(ofType: .leftEyebrowBottom) {
+      for point in bottomLeftEyebrowContour.points {
+        let cgPoint = normalizedPoint(fromVisionPoint: point, width: width, height: height)
+        UIUtilities.addCircle(
+          atPoint: cgPoint,
+          to: annotationOverlayView,
+          color: UIColor.orange,
+          radius: Constant.smallDotRadius
+        )
+      }
+    }
+    if let topRightEyebrowContour = face.contour(ofType: .rightEyebrowTop) {
+      for point in topRightEyebrowContour.points {
+        let cgPoint = normalizedPoint(fromVisionPoint: point, width: width, height: height)
+        UIUtilities.addCircle(
+          atPoint: cgPoint,
+          to: annotationOverlayView,
+          color: UIColor.orange,
+          radius: Constant.smallDotRadius
+        )
+      }
+    }
+    if let bottomRightEyebrowContour = face.contour(ofType: .rightEyebrowBottom) {
+      for point in bottomRightEyebrowContour.points {
+        let cgPoint = normalizedPoint(fromVisionPoint: point, width: width, height: height)
+        UIUtilities.addCircle(
+          atPoint: cgPoint,
+          to: annotationOverlayView,
+          color: UIColor.orange,
+          radius: Constant.smallDotRadius
+        )
+      }
+    }
+
+    // Eyes
+    if let leftEyeContour = face.contour(ofType: .leftEye) {
+      for point in leftEyeContour.points {
+        let cgPoint = normalizedPoint(fromVisionPoint: point, width: width, height: height)
+        UIUtilities.addCircle(
+          atPoint: cgPoint,
+          to: annotationOverlayView,
+          color: UIColor.cyan,
+          radius: Constant.smallDotRadius
+        )
+      }
+    }
+    if let rightEyeContour = face.contour(ofType: .rightEye) {
+      for point in rightEyeContour.points {
+        let cgPoint = normalizedPoint(fromVisionPoint: point, width: width, height: height)
+        UIUtilities.addCircle(
+          atPoint: cgPoint,
+          to: annotationOverlayView,
+          color: UIColor.cyan,
+          radius: Constant.smallDotRadius
+        )
+      }
+    }
+
+    // Lips
+    if let topUpperLipContour = face.contour(ofType: .upperLipTop) {
+      for point in topUpperLipContour.points {
+        let cgPoint = normalizedPoint(fromVisionPoint: point, width: width, height: height)
+        UIUtilities.addCircle(
+          atPoint: cgPoint,
+          to: annotationOverlayView,
+          color: UIColor.red,
+          radius: Constant.smallDotRadius
+        )
+      }
+    }
+    if let bottomUpperLipContour = face.contour(ofType: .upperLipBottom) {
+      for point in bottomUpperLipContour.points {
+        let cgPoint = normalizedPoint(fromVisionPoint: point, width: width, height: height)
+        UIUtilities.addCircle(
+          atPoint: cgPoint,
+          to: annotationOverlayView,
+          color: UIColor.red,
+          radius: Constant.smallDotRadius
+        )
+      }
+    }
+    if let topLowerLipContour = face.contour(ofType: .lowerLipTop) {
+      for point in topLowerLipContour.points {
+        let cgPoint = normalizedPoint(fromVisionPoint: point, width: width, height: height)
+        UIUtilities.addCircle(
+          atPoint: cgPoint,
+          to: annotationOverlayView,
+          color: UIColor.red,
+          radius: Constant.smallDotRadius
+        )
+      }
+    }
+    if let bottomLowerLipContour = face.contour(ofType: .lowerLipBottom) {
+      for point in bottomLowerLipContour.points {
+        let cgPoint = normalizedPoint(fromVisionPoint: point, width: width, height: height)
+        UIUtilities.addCircle(
+          atPoint: cgPoint,
+          to: annotationOverlayView,
+          color: UIColor.red,
+          radius: Constant.smallDotRadius
+        )
+      }
+    }
+
+    // Nose
+    if let noseBridgeContour = face.contour(ofType: .noseBridge) {
+      for point in noseBridgeContour.points {
+        let cgPoint = normalizedPoint(fromVisionPoint: point, width: width, height: height)
+        UIUtilities.addCircle(
+          atPoint: cgPoint,
+          to: annotationOverlayView,
+          color: UIColor.yellow,
+          radius: Constant.smallDotRadius
+        )
+      }
+    }
+    if let noseBottomContour = face.contour(ofType: .noseBottom) {
+      for point in noseBottomContour.points {
+        let cgPoint = normalizedPoint(fromVisionPoint: point, width: width, height: height)
+        UIUtilities.addCircle(
+          atPoint: cgPoint,
+          to: annotationOverlayView,
+          color: UIColor.yellow,
+          radius: Constant.smallDotRadius
+        )
+      }
+    }
   }
 }
 
@@ -303,6 +514,7 @@ extension CameraViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
       print("Failed to get image buffer from sample buffer.")
       return
     }
+    lastFrame = sampleBuffer
     let visionImage = VisionImage(buffer: sampleBuffer)
     let metadata = VisionImageMetadata()
     let orientation = UIUtilities.imageOrientation(
@@ -336,5 +548,6 @@ private enum Constant {
   static let videoDataOutputQueueLabel = "com.google.firebaseml.visiondetector.VideoDataOutputQueue"
   static let sessionQueueLabel = "com.google.firebaseml.visiondetector.SessionQueue"
   static let noResultsMessage = "No Results"
+  static let smallDotRadius: CGFloat = 4.0
+  static let constantScale: CGFloat = 1.0
 }
-

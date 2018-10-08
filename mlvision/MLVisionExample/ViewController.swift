@@ -228,59 +228,213 @@ class ViewController:  UIViewController, UINavigationControllerDelegate {
     return transform
   }
 
-  private func landmarkPointFrom(_ visionPoint: VisionPoint) -> CGPoint {
+  private func pointFrom(_ visionPoint: VisionPoint) -> CGPoint {
     return CGPoint(x: CGFloat(visionPoint.x.floatValue), y: CGFloat(visionPoint.y.floatValue))
   }
+
+    private func addContours(forFace face: VisionFace, transform: CGAffineTransform) {
+        // Face
+        if let faceContour = face.contour(ofType: .face) {
+            for point in faceContour.points {
+                let transformedPoint = pointFrom(point).applying(transform);
+                UIUtilities.addCircle(
+                    atPoint: transformedPoint,
+                    to: annotationOverlayView,
+                    color: UIColor.yellow,
+                    radius: Constants.smallDotRadius
+                )
+            }
+        }
+
+        // Eyebrows
+        if let topLeftEyebrowContour = face.contour(ofType: .leftEyebrowTop) {
+            for point in topLeftEyebrowContour.points {
+                let transformedPoint = pointFrom(point).applying(transform);
+                UIUtilities.addCircle(
+                    atPoint: transformedPoint,
+                    to: annotationOverlayView,
+                    color: UIColor.yellow,
+                    radius: Constants.smallDotRadius
+                )
+            }
+        }
+        if let bottomLeftEyebrowContour = face.contour(ofType: .leftEyebrowBottom) {
+            for point in bottomLeftEyebrowContour.points {
+                let transformedPoint = pointFrom(point).applying(transform);
+                UIUtilities.addCircle(
+                    atPoint: transformedPoint,
+                    to: annotationOverlayView,
+                    color: UIColor.yellow,
+                    radius: Constants.smallDotRadius
+                )
+            }
+        }
+        if let topRightEyebrowContour = face.contour(ofType: .rightEyebrowTop) {
+            for point in topRightEyebrowContour.points {
+                let transformedPoint = pointFrom(point).applying(transform);
+                UIUtilities.addCircle(
+                    atPoint: transformedPoint,
+                    to: annotationOverlayView,
+                    color: UIColor.yellow,
+                    radius: Constants.smallDotRadius
+                )
+            }
+        }
+        if let bottomRightEyebrowContour = face.contour(ofType: .rightEyebrowBottom) {
+            for point in bottomRightEyebrowContour.points {
+                let transformedPoint = pointFrom(point).applying(transform);
+                UIUtilities.addCircle(
+                    atPoint: transformedPoint,
+                    to: annotationOverlayView,
+                    color: UIColor.yellow,
+                    radius: Constants.smallDotRadius
+                )
+            }
+        }
+
+        // Eyes
+        if let leftEyeContour = face.contour(ofType: .leftEye) {
+            for point in leftEyeContour.points {
+                let transformedPoint = pointFrom(point).applying(transform);
+                UIUtilities.addCircle(
+                    atPoint: transformedPoint,
+                    to: annotationOverlayView,
+                    color: UIColor.yellow,
+                    radius: Constants.smallDotRadius                )
+            }
+        }
+        if let rightEyeContour = face.contour(ofType: .rightEye) {
+            for point in rightEyeContour.points {
+                let transformedPoint = pointFrom(point).applying(transform);
+                UIUtilities.addCircle(
+                    atPoint: transformedPoint,
+                    to: annotationOverlayView,
+                    color: UIColor.yellow,
+                    radius: Constants.smallDotRadius
+                )
+            }
+        }
+
+        // Lips
+        if let topUpperLipContour = face.contour(ofType: .upperLipTop) {
+            for point in topUpperLipContour.points {
+                let transformedPoint = pointFrom(point).applying(transform);
+                UIUtilities.addCircle(
+                    atPoint: transformedPoint,
+                    to: annotationOverlayView,
+                    color: UIColor.yellow,
+                    radius: Constants.smallDotRadius
+                )
+            }
+        }
+        if let bottomUpperLipContour = face.contour(ofType: .upperLipBottom) {
+            for point in bottomUpperLipContour.points {
+                let transformedPoint = pointFrom(point).applying(transform);
+                UIUtilities.addCircle(
+                    atPoint: transformedPoint,
+                    to: annotationOverlayView,
+                    color: UIColor.yellow,
+                    radius: Constants.smallDotRadius
+                )
+            }
+        }
+        if let topLowerLipContour = face.contour(ofType: .lowerLipTop) {
+            for point in topLowerLipContour.points {
+                let transformedPoint = pointFrom(point).applying(transform);
+                UIUtilities.addCircle(
+                    atPoint: transformedPoint,
+                    to: annotationOverlayView,
+                    color: UIColor.yellow,
+                    radius: Constants.smallDotRadius
+                )
+            }
+        }
+        if let bottomLowerLipContour = face.contour(ofType: .lowerLipBottom) {
+            for point in bottomLowerLipContour.points {
+                let transformedPoint = pointFrom(point).applying(transform);
+                UIUtilities.addCircle(
+                    atPoint: transformedPoint,
+                    to: annotationOverlayView,
+                    color: UIColor.yellow,
+                    radius: Constants.smallDotRadius
+                )
+            }
+        }
+
+        // Nose
+        if let noseBridgeContour = face.contour(ofType: .noseBridge) {
+            for point in noseBridgeContour.points {
+                let transformedPoint = pointFrom(point).applying(transform);
+                UIUtilities.addCircle(
+                    atPoint: transformedPoint,
+                    to: annotationOverlayView,
+                    color: UIColor.yellow,
+                    radius: Constants.smallDotRadius
+                )
+            }
+        }
+        if let noseBottomContour = face.contour(ofType: .noseBottom) {
+            for point in noseBottomContour.points {
+                let transformedPoint = pointFrom(point).applying(transform);
+                UIUtilities.addCircle(
+                    atPoint: transformedPoint,
+                    to: annotationOverlayView,
+                    color: UIColor.yellow,
+                    radius: Constants.smallDotRadius
+                )
+            }
+        }
+    }
 
   private func addLandmarks(forFace face: VisionFace, transform: CGAffineTransform) {
     // Mouth
     if let bottomMouthLandmark = face.landmark(ofType: .mouthBottom) {
-      let landmarkPoint = landmarkPointFrom(bottomMouthLandmark.position)
-      let transformedPoint = landmarkPoint.applying(transform)
+      let point = pointFrom(bottomMouthLandmark.position)
+      let transformedPoint = point.applying(transform)
       UIUtilities.addCircle(
         atPoint: transformedPoint,
         to: annotationOverlayView,
         color: UIColor.red,
-        radius: Constants.smallDotRadius
+        radius: Constants.largeDotRadius
       )
     }
     if let leftMouthLandmark = face.landmark(ofType: .mouthLeft) {
-      let landmarkPoint = landmarkPointFrom(leftMouthLandmark.position)
-      let transformedPoint = landmarkPoint.applying(transform)
+      let point = pointFrom(leftMouthLandmark.position)
+      let transformedPoint = point.applying(transform)
       UIUtilities.addCircle(
         atPoint: transformedPoint,
         to: annotationOverlayView,
         color: UIColor.red,
-        radius: Constants.smallDotRadius
+        radius: Constants.largeDotRadius
       )
     }
     if let rightMouthLandmark = face.landmark(ofType: .mouthRight) {
-      let landmarkPoint = landmarkPointFrom(rightMouthLandmark.position)
-      let transformedPoint = landmarkPoint.applying(transform)
+      let point = pointFrom(rightMouthLandmark.position)
+      let transformedPoint = point.applying(transform)
       UIUtilities.addCircle(
         atPoint: transformedPoint,
         to: annotationOverlayView,
         color: UIColor.red,
-        radius: Constants.smallDotRadius
+        radius: Constants.largeDotRadius
       )
     }
 
     // Nose
     if let noseBaseLandmark = face.landmark(ofType: .noseBase) {
-      let landmarkPoint = landmarkPointFrom(noseBaseLandmark.position)
-      let transformedPoint = landmarkPoint.applying(transform)
+      let point = pointFrom(noseBaseLandmark.position)
+      let transformedPoint = point.applying(transform)
       UIUtilities.addCircle(
         atPoint: transformedPoint,
         to: annotationOverlayView,
         color: UIColor.yellow,
-        radius: Constants.smallDotRadius
+        radius: Constants.largeDotRadius
       )
     }
 
     // Eyes
     if let leftEyeLandmark = face.landmark(ofType: .leftEye) {
-      let landmarkPoint = landmarkPointFrom(leftEyeLandmark.position)
-      let transformedPoint = landmarkPoint.applying(transform)
+      let point = pointFrom(leftEyeLandmark.position)
+      let transformedPoint = point.applying(transform)
       UIUtilities.addCircle(
         atPoint: transformedPoint,
         to: annotationOverlayView,
@@ -289,8 +443,8 @@ class ViewController:  UIViewController, UINavigationControllerDelegate {
       )
     }
     if let rightEyeLandmark = face.landmark(ofType: .rightEye) {
-      let landmarkPoint = landmarkPointFrom(rightEyeLandmark.position)
-      let transformedPoint = landmarkPoint.applying(transform)
+      let point = pointFrom(rightEyeLandmark.position)
+      let transformedPoint = point.applying(transform)
       UIUtilities.addCircle(
         atPoint: transformedPoint,
         to: annotationOverlayView,
@@ -301,8 +455,8 @@ class ViewController:  UIViewController, UINavigationControllerDelegate {
 
     // Ears
     if let leftEarLandmark = face.landmark(ofType: .leftEar) {
-      let landmarkPoint = landmarkPointFrom(leftEarLandmark.position)
-      let transformedPoint = landmarkPoint.applying(transform)
+      let point = pointFrom(leftEarLandmark.position)
+      let transformedPoint = point.applying(transform)
       UIUtilities.addCircle(
         atPoint: transformedPoint,
         to: annotationOverlayView,
@@ -311,8 +465,8 @@ class ViewController:  UIViewController, UINavigationControllerDelegate {
       )
     }
     if let rightEarLandmark = face.landmark(ofType: .rightEar) {
-      let landmarkPoint = landmarkPointFrom(rightEarLandmark.position)
-      let transformedPoint = landmarkPoint.applying(transform)
+      let point = pointFrom(rightEarLandmark.position)
+      let transformedPoint = point.applying(transform)
       UIUtilities.addCircle(
         atPoint: transformedPoint,
         to: annotationOverlayView,
@@ -323,8 +477,8 @@ class ViewController:  UIViewController, UINavigationControllerDelegate {
 
     // Cheeks
     if let leftCheekLandmark = face.landmark(ofType: .leftCheek) {
-      let landmarkPoint = landmarkPointFrom(leftCheekLandmark.position)
-      let transformedPoint = landmarkPoint.applying(transform)
+      let point = pointFrom(leftCheekLandmark.position)
+      let transformedPoint = point.applying(transform)
       UIUtilities.addCircle(
         atPoint: transformedPoint,
         to: annotationOverlayView,
@@ -333,8 +487,8 @@ class ViewController:  UIViewController, UINavigationControllerDelegate {
       )
     }
     if let rightCheekLandmark = face.landmark(ofType: .rightCheek) {
-      let landmarkPoint = landmarkPointFrom(rightCheekLandmark.position)
-      let transformedPoint = landmarkPoint.applying(transform)
+      let point = pointFrom(rightCheekLandmark.position)
+      let transformedPoint = point.applying(transform)
       UIUtilities.addCircle(
         atPoint: transformedPoint,
         to: annotationOverlayView,
@@ -511,6 +665,7 @@ extension ViewController {
     options.landmarkMode = .all
     options.classificationMode = .all
     options.performanceMode = .accurate
+    options.contourMode = .all
     // [END config_face]
 
     // [START init_face]
@@ -547,7 +702,22 @@ extension ViewController {
           color: UIColor.green
         )
         self.addLandmarks(forFace: feature, transform: transform)
-        return "Frame: \(feature.frame)"
+        self.addContours(forFace: feature, transform: transform)
+
+        let headEulerAngleY = feature.hasHeadEulerAngleY ? feature.headEulerAngleY.description : "NA"
+        let headEulerAngleZ = feature.hasHeadEulerAngleZ ? feature.headEulerAngleZ.description : "NA"
+        let leftEyeOpenProbability = feature.hasLeftEyeOpenProbability ? feature.leftEyeOpenProbability.description : "NA"
+        let rightEyeOpenProbability = feature.hasRightEyeOpenProbability ? feature.rightEyeOpenProbability.description : "NA"
+        let smilingProbability = feature.hasSmilingProbability ? feature.smilingProbability.description : "NA"
+        let output = """
+                     Frame: \(feature.frame)
+                     Head Euler Angle Y: \(headEulerAngleY)
+                     Head Euler Angle Z: \(headEulerAngleZ)
+                     Left Eye Open Probability: \(leftEyeOpenProbability)
+                     Right Eye Open Probability: \(rightEyeOpenProbability)
+                     Smiling Probability: \(smilingProbability)
+                     """
+        return "\(output)"
         }.joined(separator: "\n")
       self.showResults()
       // [END_EXCLUDE]

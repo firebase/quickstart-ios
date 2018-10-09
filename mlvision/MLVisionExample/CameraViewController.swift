@@ -14,14 +14,6 @@ class CameraViewController: UIViewController {
   private lazy var captureSession = AVCaptureSession()
   private lazy var sessionQueue = DispatchQueue(label: Constant.sessionQueueLabel)
   private lazy var vision = Vision.vision()
-  private var lastFrame: CMSampleBuffer? = nil
-
-  private lazy var previewOverlayView: UIImageView = {
-    precondition(isViewLoaded)
-    let previewOverlayView = UIImageView(frame: .zero)
-    previewOverlayView.translatesAutoresizingMaskIntoConstraints = false
-    return previewOverlayView
-  }()
 
   private lazy var annotationOverlayView: UIView = {
     precondition(isViewLoaded)
@@ -40,7 +32,7 @@ class CameraViewController: UIViewController {
     super.viewDidLoad()
 
     previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
-    setUpPreviewOverlayView()
+    cameraView.layer.addSublayer(previewLayer)
     setUpAnnotationOverlayView()
     setUpCaptureSessionOutput()
     setUpCaptureSessionInput()
@@ -131,7 +123,6 @@ class CameraViewController: UIViewController {
     textRecognizer.process(image) { text, error in
       defer { group.leave() }
       self.removeDetectionAnnotations()
-      self.updatePreviewOverlayView()
       guard error == nil, let text = text else {
         print("On-Device text recognizer error: " +
           "\(error?.localizedDescription ?? Constant.noResultsMessage)")
@@ -190,7 +181,7 @@ class CameraViewController: UIViewController {
       self.captureSession.beginConfiguration()
       // When performing latency tests to determine ideal capture settings,
       // run the app in 'release' mode to get accurate performance metrics
-      self.captureSession.sessionPreset = AVCaptureSession.Preset.hd1280x720
+      self.captureSession.sessionPreset = AVCaptureSession.Preset.medium
 
       let output = AVCaptureVideoDataOutput()
       output.videoSettings =
@@ -242,16 +233,6 @@ class CameraViewController: UIViewController {
     }
   }
 
-  private func setUpPreviewOverlayView() {
-    cameraView.addSubview(previewOverlayView)
-    NSLayoutConstraint.activate([
-      previewOverlayView.topAnchor.constraint(equalTo: cameraView.topAnchor),
-      previewOverlayView.leadingAnchor.constraint(equalTo: cameraView.leadingAnchor),
-      previewOverlayView.trailingAnchor.constraint(equalTo: cameraView.trailingAnchor),
-      previewOverlayView.bottomAnchor.constraint(equalTo: cameraView.bottomAnchor),
-      ])
-  }
-
   private func setUpAnnotationOverlayView() {
     cameraView.addSubview(annotationOverlayView)
     NSLayoutConstraint.activate([
@@ -295,28 +276,6 @@ class CameraViewController: UIViewController {
   private func removeDetectionAnnotations() {
     for annotationView in annotationOverlayView.subviews {
       annotationView.removeFromSuperview()
-    }
-  }
-
-  private func updatePreviewOverlayView() {
-    guard let lastFrame = lastFrame, let imageBuffer = CMSampleBufferGetImageBuffer(lastFrame)
-      else { return }
-    let ciImage = CIImage(cvPixelBuffer: imageBuffer)
-    let context = CIContext.init(options: nil)
-    guard let cgImage = context.createCGImage(ciImage, from: ciImage.extent) else {
-      return
-    }
-    let rotatedImage =
-      UIImage.init(cgImage: cgImage, scale: Constant.constantScale, orientation: .right)
-    if isUsingFrontCamera {
-      guard let rotatedCGImage = rotatedImage.cgImage else {
-        return
-      }
-      let mirroredImage = UIImage.init(
-        cgImage: rotatedCGImage, scale: Constant.constantScale, orientation: .leftMirrored)
-      previewOverlayView.image = mirroredImage
-    } else {
-      previewOverlayView.image = rotatedImage
     }
   }
 
@@ -514,7 +473,6 @@ extension CameraViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
       print("Failed to get image buffer from sample buffer.")
       return
     }
-    lastFrame = sampleBuffer
     let visionImage = VisionImage(buffer: sampleBuffer)
     let metadata = VisionImageMetadata()
     let orientation = UIUtilities.imageOrientation(
@@ -549,5 +507,4 @@ private enum Constant {
   static let sessionQueueLabel = "com.google.firebaseml.visiondetector.SessionQueue"
   static let noResultsMessage = "No Results"
   static let smallDotRadius: CGFloat = 4.0
-  static let constantScale: CGFloat = 1.0
 }

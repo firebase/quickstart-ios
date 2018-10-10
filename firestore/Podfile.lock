@@ -5,17 +5,17 @@ PODS:
   - BoringSSL/Implementation (10.0.6):
     - BoringSSL/Interface (= 10.0.6)
   - BoringSSL/Interface (10.0.6)
-  - Firebase/Auth (5.9.0):
+  - Firebase/Auth (5.10.0):
     - Firebase/CoreOnly
     - FirebaseAuth (= 5.0.4)
-  - Firebase/Core (5.9.0):
+  - Firebase/Core (5.10.0):
     - Firebase/CoreOnly
     - FirebaseAnalytics (= 5.2.0)
-  - Firebase/CoreOnly (5.9.0):
-    - FirebaseCore (= 5.1.4)
-  - Firebase/Firestore (5.9.0):
+  - Firebase/CoreOnly (5.10.0):
+    - FirebaseCore (= 5.1.5)
+  - Firebase/Firestore (5.10.0):
     - Firebase/CoreOnly
-    - FirebaseFirestore (= 0.13.4)
+    - FirebaseFirestore (= 0.13.5)
   - FirebaseAnalytics (5.2.0):
     - FirebaseCore (~> 5.1)
     - FirebaseInstanceID (~> 3.2)
@@ -31,20 +31,20 @@ PODS:
     - GoogleUtilities/Environment (~> 5.2)
     - GTMSessionFetcher/Core (~> 1.1)
   - FirebaseAuthInterop (1.0.0)
-  - FirebaseCore (5.1.4):
+  - FirebaseCore (5.1.5):
     - GoogleUtilities/Logger (~> 5.2)
-  - FirebaseFirestore (0.13.4):
+  - FirebaseFirestore (0.13.5):
     - FirebaseAuthInterop (~> 1.0)
-    - FirebaseCore (~> 5.0)
-    - FirebaseFirestore/abseil-cpp (= 0.13.4)
+    - FirebaseCore (~> 5.1)
+    - FirebaseFirestore/abseil-cpp (= 0.13.5)
     - "gRPC-C++ (~> 0.0.3)"
     - gRPC-ProtoRPC (~> 1.0)
     - leveldb-library (~> 1.20)
     - nanopb (~> 0.3.8)
     - Protobuf (~> 3.1)
-  - FirebaseFirestore/abseil-cpp (0.13.4):
+  - FirebaseFirestore/abseil-cpp (0.13.5):
     - FirebaseAuthInterop (~> 1.0)
-    - FirebaseCore (~> 5.0)
+    - FirebaseCore (~> 5.1)
     - "gRPC-C++ (~> 0.0.3)"
     - gRPC-ProtoRPC (~> 1.0)
     - leveldb-library (~> 1.20)
@@ -65,7 +65,7 @@ PODS:
     - GoogleUtilities/Network (~> 5.2)
     - "GoogleUtilities/NSData+zlib (~> 5.2)"
     - nanopb (~> 0.3)
-  - GoogleSignIn (4.2.0):
+  - GoogleSignIn (4.3.0):
     - "GoogleToolboxForMac/NSDictionary+URLArguments (~> 2.1)"
     - "GoogleToolboxForMac/NSString+URLArguments (~> 2.1)"
     - GTMOAuth2 (~> 1.0)
@@ -180,16 +180,16 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   BoringSSL: e10f92a27043805c01071fe815a5cd98ae8212e7
-  Firebase: 383fa29aca93e371cab776b48a5c66544d3c2003
+  Firebase: 6691d47562a780c26281ce8464518faafc90c610
   FirebaseAnalytics: 831f1f127f4a75698e9875a87bf7e2668730d953
   FirebaseAuth: 504b198ceb3472dca5c65bb95544ea44cfc9439e
   FirebaseAuthInterop: 0ffa57668be100582bb7643d4fcb7615496c41fc
-  FirebaseCore: 2a84b6b325792a4319ef71ee18819dcba08d2fd7
-  FirebaseFirestore: eaf0b6244e9463e2429fe216666b641e4dec606b
+  FirebaseCore: c6079de64c1a87000e52e9b408dddcadc901177f
+  FirebaseFirestore: 45a9a3045a2dc27f23c13bf832556fe287fbe1b5
   FirebaseInstanceID: 78ba376fcd5b94c001f9999b2cbd3d1f1e56e78d
   FirebaseUI: 09519bf436a055cd696bf68687d624423150e4c0
   GoogleAppMeasurement: 2b3a023a61239c8d002e6e4fcf4abce8eddce0e0
-  GoogleSignIn: 591e46382014e591269f862ba6e7bc0fbd793532
+  GoogleSignIn: 11183592dc63e105475c7305a325045ff95e02b7
   GoogleToolboxForMac: 91c824d21e85b31c2aae9bb011c5027c9b4e738f
   GoogleUtilities: 760ccb53b7c7f40f9c02d8c241f76f841a7a6162
   gRPC: 9d4c549f37c7cef22478634bac7a0405b6e3dbfb

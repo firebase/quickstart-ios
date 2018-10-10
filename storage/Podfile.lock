@@ -1,13 +1,13 @@
 PODS:
-  - Firebase/Auth (5.9.0):
+  - Firebase/Auth (5.10.0):
     - Firebase/CoreOnly
     - FirebaseAuth (= 5.0.4)
-  - Firebase/Core (5.9.0):
+  - Firebase/Core (5.10.0):
     - Firebase/CoreOnly
     - FirebaseAnalytics (= 5.2.0)
-  - Firebase/CoreOnly (5.9.0):
-    - FirebaseCore (= 5.1.4)
-  - Firebase/Storage (5.9.0):
+  - Firebase/CoreOnly (5.10.0):
+    - FirebaseCore (= 5.1.5)
+  - Firebase/Storage (5.10.0):
     - Firebase/CoreOnly
     - FirebaseStorage (= 3.0.2)
   - FirebaseAnalytics (5.2.0):
@@ -25,7 +25,7 @@ PODS:
     - GoogleUtilities/Environment (~> 5.2)
     - GTMSessionFetcher/Core (~> 1.1)
   - FirebaseAuthInterop (1.0.0)
-  - FirebaseCore (5.1.4):
+  - FirebaseCore (5.1.5):
     - GoogleUtilities/Logger (~> 5.2)
   - FirebaseInstanceID (3.2.2):
     - FirebaseCore (~> 5.1)
@@ -86,11 +86,11 @@ SPEC REPOS:
     - nanopb
 
 SPEC CHECKSUMS:
-  Firebase: 383fa29aca93e371cab776b48a5c66544d3c2003
+  Firebase: 6691d47562a780c26281ce8464518faafc90c610
   FirebaseAnalytics: 831f1f127f4a75698e9875a87bf7e2668730d953
   FirebaseAuth: 504b198ceb3472dca5c65bb95544ea44cfc9439e
   FirebaseAuthInterop: 0ffa57668be100582bb7643d4fcb7615496c41fc
-  FirebaseCore: 2a84b6b325792a4319ef71ee18819dcba08d2fd7
+  FirebaseCore: c6079de64c1a87000e52e9b408dddcadc901177f
   FirebaseInstanceID: 78ba376fcd5b94c001f9999b2cbd3d1f1e56e78d
   FirebaseStorage: fd82e5e5c474897e19972b34b22ac0f589dce04e
   GoogleAppMeasurement: 2b3a023a61239c8d002e6e4fcf4abce8eddce0e0

@@ -32,9 +32,17 @@ extension UIImage {
 
     // Attempt to convert the scaled image to PNG or JPEG data to preserve the bitmap info.
     guard let image = scaledImage else { return nil }
-    let imageData = UIImagePNGRepresentation(image) ??
-      UIImageJPEGRepresentation(image, Constants.jpegCompressionQuality)
-    return imageData.map { UIImage(data: $0) } ?? nil
+    return image.data.map { UIImage(data: $0) } ?? nil
+  }
+
+  /// The PNG or JPEG data representation of the image or `nil` if the conversion failed.
+  private var data: Data? {
+    #if swift(>=4.2)
+    return self.pngData() ?? self.jpegData(compressionQuality: Constants.jpegCompressionQuality)
+    #else
+    return UIImagePNGRepresentation(self) ??
+      UIImageJPEGRepresentation(self, Constants.jpegCompressionQuality)
+    #endif  // swift(>=4.2)
   }
 
   /// Returns scaled image data representation of the image from the given values.
@@ -88,8 +96,8 @@ extension UIImage {
   ///   - componentsCount: Number of color components for the image.
   ///   - batchSize: Batch size for the image.
   ///   - isQuantized: Indicates whether the model uses quantization. If `true`, apply
-  ///     `(value - mean) / std` to each pixel to convert the data from Int(0, 255) scale to
-  ///     Float(-1, 1).
+  ///     `(value) / 255` to each pixel to convert the data from Int(0, 255) scale to
+  ///     Float([0, 1]).
   /// - Returns: The scaled pixel array or `nil` if the image could not be scaled.
   public func scaledPixelArray(
     with size: CGSize,
@@ -120,14 +128,14 @@ extension UIImage {
           let inputIndex =
             (yCoordinate * newHeight * oldComponentsCount) +
             (xCoordinate * oldComponentsCount + component)
-          let pixel = imageData[inputIndex]
-          if isQuantized {
-            pixelArray.append(pixel)
-          } else {
-            // Convert pixel values from [0, 255] to [-1, 1] scale.
-            let pixel = (Float32(pixel) - Constants.meanRGBValue) / Constants.stdRGBValue
-            pixelArray.append(pixel)
+          var pixel = Float32(imageData[inputIndex])
+          // Quantized model expects [0, 255] scale, but float expects [0, 1] scale.
+          if !isQuantized {
+            // Normalization:
+            // Convert pixel values from [0, 255] to [0, 1] scale for the float model.
+            pixel /= Constants.maxRGBValue
           }
+          pixelArray.append(pixel)
         }
         rowArray.append(pixelArray)
       }
@@ -169,8 +177,6 @@ extension UIImage {
 
 private enum Constants {
   static let maxRGBValue: Float32 = 255.0
-  static let meanRGBValue: Float32 = maxRGBValue / 2.0
-  static let stdRGBValue: Float32 = maxRGBValue / 2.0
   static let jpegCompressionQuality: CGFloat = 0.8
   static let alphaComponentBaseOffset = 4
   static let alphaComponentModuloRemainder = 3

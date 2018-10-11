@@ -26,10 +26,18 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
 
   func application(
     _ application: UIApplication,
-    didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?
+    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
   ) -> Bool {
     // Configure Firebase.
     FirebaseApp.configure()
     return true
   }
 }
+
+// MARK: - Extensions
+
+#if !swift(>=4.2)
+extension UIApplication {
+typealias LaunchOptionsKey = UIApplicationLaunchOptionsKey
+}
+#endif  // !swift(>=4.2)

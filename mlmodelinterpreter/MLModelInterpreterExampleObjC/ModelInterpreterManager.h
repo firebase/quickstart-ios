@@ -35,6 +35,9 @@ static NSString *const modelExtension = @"tflite";
 static NSString *const labelsExtension = @"txt";
 static int const topResultsCountInt = 5;
 static int const dimensionComponents = 3;
+static NSString *const invalidModelFilename = @"mobilenet_v1_1.0_224";
+static NSString *const quantizedModelFilename = @"mobilenet_quant_v2_1.0_299";
+static NSString *const floatModelFilename = @"mobilenet_float_v2_1.0_299";
 
 @interface ModelInterpreterManager : NSObject
 
@@ -43,17 +46,24 @@ typedef void (^DetectObjectsCompletion)(NSArray *_Nullable objects, NSError *_Nu
 - (id)init;
 - (id)initWithModelManager:(id<ModelManaging>)modelManager;
 - (BOOL)setUpCloudModelWithName:(NSString *)name;
-- (BOOL)setUpLocalModelWithName:(NSString *)name bundle:(nullable NSBundle *)bundle;
-- (BOOL)loadCloudModel:(nullable NSBundle *)bundle;
-- (BOOL)loadLocalModel:(nullable NSBundle *)bundle;
+- (BOOL)setUpLocalModelWithName:(NSString *)name filename:(NSString *)filename;
+- (BOOL)setUpLocalModelWithName:(NSString *)name filename:(NSString *)filename bundle:(NSBundle *)bundle;
+- (BOOL)loadCloudModelWithIsQuantized:(BOOL)isQuantized;
+- (BOOL)loadCloudModelWithBundle:(NSBundle *)bundle isQuantized:(BOOL)isQuantized;
+- (BOOL)loadLocalModelWithIsQuantized:(BOOL)isQuantized;
+- (BOOL)loadLocalModelWithBundle:(NSBundle *)bundle isQuantized:(BOOL)isQuantized;
 - (void)detectObjectsInImageData:(NSObject *)imageData
                  topResultsCount:(nullable NSNumber *)topResultsCount
                       completion:(DetectObjectsCompletion)completion;
+- (nullable NSData *)scaledImageDataFromImage:(UIImage *)image;
 - (nullable NSData *)scaledImageDataFromImage:(UIImage *)image
-                              componentsCount:(nullable NSNumber *)componentsCount;
-- (NSArray *) scaledPixelArrayFromImage:(UIImage *)image
-                        componentsCount:(nullable NSNumber *)componentsCount
-                            isQuantized:(nullable NSNumber *)isQuantized;
+                              componentsCount:(int)componentsCount;
+- (NSArray *)scaledPixelArrayFromImage:(UIImage *)image;
+- (NSArray *)scaledPixelArrayFromImage:(UIImage *)image componentsCount:(int)componentsCount;
+- (NSArray *)scaledPixelArrayFromImage:(UIImage *)image isQuantized:(BOOL)isQuantized;
+- (NSArray *)scaledPixelArrayFromImage:(UIImage *)image
+                        componentsCount:(int)componentsCount
+                            isQuantized:(BOOL)isQuantized;
 
 
   

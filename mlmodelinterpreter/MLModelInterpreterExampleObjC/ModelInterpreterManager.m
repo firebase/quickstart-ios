@@ -20,14 +20,11 @@
 
 static NSString *const labelsSeparator = @"\n";
 static NSString *const labelsFilename = @"labels";
-static NSString *const modelFilename = @"mobilenet_v1_1.0_224";
-static NSString *const quantizedLabelsFilename = @"labels_quant";
-static NSString *const quantizedModelFilename = @"mobilenet_quant_v1_224";
 
 static uint const modelInputIndex = 0;
 static int const dimensionBatchSize = 1;
-static float const dimensionImageWidth = 224;
-static float const dimensionImageHeight = 224;
+static float const dimensionImageWidth = 299;
+static float const dimensionImageHeight = 299;
 static Float32 const maxRGBValue = 255.0;
 
 typedef NS_ENUM(NSInteger, ModelInterpreterErrorCode) {
@@ -109,19 +106,17 @@ typedef NS_ENUM(NSInteger, ModelInterpreterErrorCode) {
     return NO;
   }
 }
-
+- (BOOL)setUpLocalModelWithName:(NSString *)name filename:(NSString *)filename {
+  return [self setUpLocalModelWithName:name filename:filename bundle:NSBundle.mainBundle];
+}
 /// Sets up a local model by creating a `LocalModelSource` and registering it with the given name.
 ///
 /// - Parameters:
 ///   - name: The name for the local model.
 ///   - bundle: The bundle to load model resources from. The default is the main bundle.
 /// - Returns: A `Bool` indicating whether the local model was successfully set up and registered.
-- (BOOL)setUpLocalModelWithName:(NSString *)name bundle:(nullable NSBundle *)bundle {
-  if (!bundle) {
-    bundle = NSBundle.mainBundle;
-  }
-
-  NSString *localModelFilePath = [bundle pathForResource:quantizedModelFilename ofType:modelExtension];
+- (BOOL)setUpLocalModelWithName:(NSString *)name filename:(NSString *)filename bundle:(nullable NSBundle *)bundle {
+  NSString *localModelFilePath = [bundle pathForResource:filename ofType:modelExtension];
   if(!localModelFilePath) {
     NSLog(@"%@",@"Failed to get the local model file path.");
     return NO;
@@ -139,22 +134,26 @@ typedef NS_ENUM(NSInteger, ModelInterpreterErrorCode) {
   }
 }
 
+- (BOOL)loadCloudModelWithIsQuantized:(BOOL)isQuantized {
+  return [self loadCloudModelWithBundle:NSBundle.mainBundle isQuantized:isQuantized];
+}
+
 /// Loads the registered cloud model with the `ModelOptions` created during setup.
 ///
 /// - Parameters:
 ///   - bundle: The bundle to load model resources from. The default is the main bundle.
 /// - Returns: A `Bool` indicating whether the cloud model was successfully loaded.
-- (BOOL)loadCloudModel:(nullable NSBundle *)bundle {
-  if (!bundle) {
-    bundle = NSBundle.mainBundle;
-  }
-
+- (BOOL)loadCloudModelWithBundle:(NSBundle *)bundle isQuantized:(BOOL)isQuantized {
   if (_cloudModelOptions) {
-    return [self loadModelWithOptions:_cloudModelOptions isQuantized:nil inputDimensions:nil outputDimensions:nil bundle:bundle];
+    return [self loadModelWithOptions:_cloudModelOptions isQuantized:isQuantized inputDimensions:nil outputDimensions:nil bundle:bundle];
   } else {
     NSLog(@"%@", @"Failed to load the cloud model because the options are nil.");
     return NO;
   }
+}
+
+- (BOOL)loadLocalModelWithIsQuantized:(BOOL)isQuantized {
+  return [self loadLocalModelWithBundle:NSBundle.mainBundle isQuantized:isQuantized];
 }
 
 /// Loads the registered local model with the `ModelOptions` created during setup.
@@ -162,13 +161,10 @@ typedef NS_ENUM(NSInteger, ModelInterpreterErrorCode) {
 /// - Parameters:
 ///   - bundle: The bundle to load model resources from. The default is the main bundle.
 /// - Returns: A `Bool` indicating whether the local model was successfully loaded.
-- (BOOL)loadLocalModel:(nullable NSBundle *)bundle {
-  if (!bundle) {
-    bundle = NSBundle.mainBundle;
-  }
+- (BOOL)loadLocalModelWithBundle:(NSBundle *)bundle isQuantized:(BOOL)isQuantized {
 
   if (_localModelOptions) {
-    return [self loadModelWithOptions:_localModelOptions isQuantized:nil inputDimensions:nil outputDimensions:nil bundle:bundle];
+    return [self loadModelWithOptions:_localModelOptions isQuantized:isQuantized inputDimensions:nil outputDimensions:nil bundle:bundle];
   } else {
     NSLog(@"%@", @"Failed to load the local model because the options are nil.");
     return NO;
@@ -213,6 +209,10 @@ typedef NS_ENUM(NSInteger, ModelInterpreterErrorCode) {
   }];
 }
 
+- (nullable NSData *)scaledImageDataFromImage:(UIImage *)image {
+  return [self scaledImageDataFromImage:image componentsCount:dimensionComponents];
+}
+
 /// Scales the given image to the default size that the model was trained on.
 ///
 /// - Parameters:
@@ -225,18 +225,30 @@ typedef NS_ENUM(NSInteger, ModelInterpreterErrorCode) {
 ///     fail for the following reasons: 1) components count is not less than or equal to the
 ///     components count of the given image 2) the given image's size or CGImage is invalid.
 - (nullable NSData *)scaledImageDataFromImage:(UIImage *)image
-                              componentsCount:(nullable NSNumber *)componentsCount {
-  int componentsCountInt = componentsCount ? componentsCount.intValue : dimensionComponents;
+                              componentsCount:(int)componentsCount {
 
   CGSize imageSize = CGSizeMake(dimensionImageWidth, dimensionImageHeight);
 
-  NSData *scaledImageData = [image scaledImageDataWithSize:imageSize componentsCount:componentsCountInt batchSize:dimensionBatchSize];
+  NSData *scaledImageData = [image scaledImageDataWithSize:imageSize componentsCount:componentsCount batchSize:dimensionBatchSize];
   if(!scaledImageData) {
     NSLog(@"Failed to scale image to size: %@.", NSStringFromCGSize(imageSize));
     return nil;
   }
   return scaledImageData;
 }
+
+- (NSArray *)scaledPixelArrayFromImage:(UIImage *)image {
+  return [self scaledPixelArrayFromImage:image componentsCount:dimensionComponents isQuantized:YES];
+}
+
+- (NSArray *)scaledPixelArrayFromImage:(UIImage *)image componentsCount:(int)componentsCount {
+  return [self scaledPixelArrayFromImage:image componentsCount:componentsCount isQuantized:YES];
+}
+
+- (NSArray *)scaledPixelArrayFromImage:(UIImage *)image isQuantized:(BOOL)isQuantized {
+  return [self scaledPixelArrayFromImage:image componentsCount:dimensionComponents isQuantized:isQuantized];
+}
+
 
 /// Scales the given image to the default size that the model was trained on.
 ///
@@ -258,15 +270,12 @@ typedef NS_ENUM(NSInteger, ModelInterpreterErrorCode) {
 ///     `componentsCount`. Scaling can fail for the following reasons: 1) components count is not
 ///     less than or equal to the components count of the given image 2) the given image's size or
 ///     CGImage is invalid.
-- (NSArray *) scaledPixelArrayFromImage:(UIImage *)image
-                        componentsCount:(nullable NSNumber *)componentsCount
-                            isQuantized:(nullable NSNumber *)isQuantized {
-  int componentsCountInt = (componentsCount) ? componentsCount.intValue : dimensionComponents;
-  BOOL isQuantizedBool = (isQuantized) ? isQuantized.boolValue : YES;
-
+- (NSArray *)scaledPixelArrayFromImage:(UIImage *)image
+                        componentsCount:(int)componentsCount
+                            isQuantized:(BOOL)isQuantized {
   CGSize imageSize = CGSizeMake(dimensionImageWidth, dimensionImageHeight);
 
-  NSArray *scaledPixelArray = [image scaledPixelArrayWithSize:imageSize componentsCount:componentsCountInt batchSize:dimensionBatchSize isQuantized:isQuantizedBool];
+  NSArray *scaledPixelArray = [image scaledPixelArrayWithSize:imageSize componentsCount:componentsCount batchSize:dimensionBatchSize isQuantized:isQuantized];
   if(!scaledPixelArray) {
     NSLog(@"Failed to scale image to size: %@.", NSStringFromCGSize(imageSize));
     return nil;
@@ -275,6 +284,13 @@ typedef NS_ENUM(NSInteger, ModelInterpreterErrorCode) {
 }
 
 #pragma mark - Private
+
+- (BOOL)loadModelWithOptions:(FIRModelOptions *)options
+             inputDimensions:(nullable NSArray<NSNumber *> *)inputDimensions
+            outputDimensions:(nullable NSArray<NSNumber *> *)outputDimensions
+                      bundle:(nullable NSBundle *)bundle {
+  return [self loadModelWithOptions:options isQuantized:YES inputDimensions:inputDimensions outputDimensions:outputDimensions bundle:bundle];
+}
 
 /// Loads a model with the given options and input and output dimensions.
 ///
@@ -293,21 +309,20 @@ typedef NS_ENUM(NSInteger, ModelInterpreterErrorCode) {
 ///     and is loaded. If the cloud model has not been downloaded yet from the Firebase console,
 ///     the model download request is created and the local model is loaded as a fallback.
 - (BOOL)loadModelWithOptions:(FIRModelOptions *)options
-                 isQuantized:(nullable NSNumber *)isQuantized
+                 isQuantized:(BOOL)isQuantized
              inputDimensions:(nullable NSArray<NSNumber *> *)inputDimensions
             outputDimensions:(nullable NSArray<NSNumber *> *)outputDimensions
                       bundle:(nullable NSBundle *)bundle {
   if (!bundle) {
     bundle = NSBundle.mainBundle;
   }
-  BOOL isQuantizedBool = isQuantized ? isQuantized.boolValue : YES;
   if ((inputDimensions && !outputDimensions) || (!inputDimensions && outputDimensions)) {
     NSLog(@"%@", @"Invalid input and output dimensions provided.");
     return NO;
   }
 
-  _isModelQuantized = isQuantizedBool;
-  NSString *labelsFilePath = [bundle pathForResource:quantizedLabelsFilename ofType:labelsExtension];
+  _isModelQuantized = isQuantized;
+  NSString *labelsFilePath = [bundle pathForResource:labelsFilename ofType:labelsExtension];
   if(!labelsFilePath) {
     NSLog(@"%@", @"Failed to get the labels file path.");
     return NO;

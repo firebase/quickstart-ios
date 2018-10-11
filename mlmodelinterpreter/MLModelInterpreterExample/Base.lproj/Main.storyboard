@@ -62,12 +62,13 @@
                                 </items>
                             </toolbar>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" apportionsSegmentWidthsByContent="YES" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="6RV-o1-t0Z" userLabel="Model Control">
-                                <rect key="frame" x="97.5" y="28" width="180" height="33"/>
+                                <rect key="frame" x="38.5" y="28" width="298" height="33"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="32" id="1EX-VR-Xeo"/>
                                 </constraints>
                                 <segments>
-                                    <segment title="Valid Model"/>
+                                    <segment title="Float Model"/>
+                                    <segment title="Quantized Model"/>
                                     <segment title="Invalid Model"/>
                                 </segments>
                                 <connections>

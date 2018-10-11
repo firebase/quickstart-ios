@@ -17,8 +17,6 @@
 #import "UIImage+TFLite.h"
 
 static Float32 const maxRGBValue = 255.0;
-static Float32 const meanRGBValue = maxRGBValue / 2.0;
-static Float32 const stdRGBValue = maxRGBValue / 2.0;
 static CGFloat const jpegCompressionQuality = 0.8;
 static int const alphaComponentBaseOffset = 4;
 static int const alphaComponentModuloRemainder = 3;
@@ -102,14 +100,14 @@ static int const alphaComponentModuloRemainder = 3;
           int inputIndex =
           (yCoordinate * size.height * oldComponentsCount) +
           (xCoordinate * oldComponentsCount + component);
-          UInt8 pixel = bytes[inputIndex];
-          if (isQuantized) {
-            [pixelArray addObject:[NSNumber numberWithUnsignedChar:pixel]];
-          } else {
-            // Convert pixel values from [0, 255] to [-1, 1] scale.
-            pixel = (Float32)pixel - meanRGBValue / stdRGBValue;
-            [pixelArray addObject:[NSNumber numberWithFloat:pixel]];
+          Float32 pixel = (Float32)bytes[inputIndex];
+          // Quantized model expects [0, 255] scale, but float expects [0, 1] scale.
+          if (!isQuantized) {
+            // Normalization:
+            // Convert pixel values from [0, 255] to [0, 1] scale for the float model.
+            pixel /= maxRGBValue;
           }
+          [pixelArray addObject:[NSNumber numberWithFloat:pixel]];
         }
         [rowArray addObject:pixelArray];
       }

@@ -43,8 +43,8 @@
 ///   - componentsCount: Number of color components for the image.
 ///   - batchSize: Batch size for the image.
 ///   - isQuantized: Indicates whether the model uses quantization. If `true`, apply
-///     `(value - mean) / std` to each pixel to convert the data from Int(0, 255) scale to
-///     Float(-1, 1).
+///     `(value) / 255` to each pixel to convert the data from Int(0, 255) scale to
+///     Float([0, 1]).
 /// - Returns: The scaled pixel array or `nil` if the image could not be scaled.
 - (NSArray *)scaledPixelArrayWithSize:(CGSize)size
                       componentsCount:(int)newComponentsCount

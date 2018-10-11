@@ -32,7 +32,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
 
   // MARK: - IBOutlets
 
-  /// A segmented control for changing models (0 = `cloudModelName1`, 1 = `cloudModelName2`).
+  /// A segmented control for changing models (0 = float, 1 = quantized, 2 = invalid).
   @IBOutlet private var modelControl: UISegmentedControl!
 
   @IBOutlet private var imageView: UIImageView!
@@ -69,7 +69,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
 
     if !downloadCloudModelButtonSelected {
       resultsTextView.text = "Loading the local model...\n"
-      if !modelManager.loadLocalModel() {
+      if !modelManager.loadLocalModel(isQuantized: quantized()) {
         resultsTextView.text = "Failed to load the local model."
         return
       }
@@ -79,8 +79,18 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
        newResultsTextString = currentText + newResultsTextString
     }
     resultsTextView.text = newResultsTextString
+    let isQuantized = quantized()
     DispatchQueue.global(qos: .userInitiated).async {
-      let imageData = self.modelManager.scaledImageData(from: image)
+      var imageData: Any?
+      if isQuantized {
+        imageData = self.modelManager.scaledImageData(from: image,
+                                                      componentsCount: 3)
+      } else {
+        imageData = self.modelManager.scaledPixelArray(from: image,
+                                                       componentsCount: 3,
+                                                       isQuantized: isQuantized)
+      }
+
       self.modelManager.detectObjects(in: imageData) { (results, error) in
         guard error == nil, let results = results, !results.isEmpty else {
           var errorString = error?.localizedDescription ?? Constants.failedToDetectObjectsMessage
@@ -122,13 +132,14 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
       "Cloud model loaded. Select the `Detect` button to start the inference." :
       "Downloading cloud model. Once the download has completed, select the `Detect` button to " +
       "start the inference."
-    if !modelManager.loadCloudModel() {
+    if !modelManager.loadCloudModel(isQuantized: quantized()) {
       resultsTextView.text = "Failed to load the cloud model."
     }
   }
 
   @IBAction func modelSwitched(_ sender: Any) {
     clearResults()
+    setUpLocalModel()
     setUpCloudModel()
   }
 
@@ -136,9 +147,36 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
 
   /// Returns the name for the currently selected cloud model.
   private func currentCloudModelName() -> String {
-    return (modelControl.selectedSegmentIndex == 0) ?
-      Constants.cloudModelName1 :
-      Constants.cloudModelName2
+    switch modelControl.selectedSegmentIndex {
+    case 0:
+      return Constants.cloudModelNameFloat
+    case 1:
+      return Constants.cloudModelNameQuantized
+    case 2:
+      return Constants.cloudModelNameInvalid
+    default:
+      fatalError("Unsupported model.")
+    }
+    return ""
+  }
+
+  /// Returns the name for the currently selected local model.
+  private func currentLocalModelName() -> String {
+    switch modelControl.selectedSegmentIndex {
+    case 0:
+      return ModelInterpreterConstants.floatModelFilename
+    case 1:
+      return ModelInterpreterConstants.quantizedModelFilename
+    case 2:
+      return ModelInterpreterConstants.invalidModelFilename
+    default:
+      fatalError("Unsupported model.")
+    }
+    return ""
+  }
+
+  fileprivate func quantized() -> Bool {
+    return (modelControl.selectedSegmentIndex == 1)
   }
 
   /// Returns the key for the currently selected cloud model.
@@ -159,7 +197,9 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
 
   /// Sets up the local model.
   private func setUpLocalModel() {
-    if !modelManager.setUpLocalModel(withName: Constants.localModelName) {
+    let name = currentLocalModelName()
+    let filename = currentLocalModelName()
+    if !modelManager.setUpLocalModel(withName: name, filename: filename) {
       resultsTextView.text = "\(resultsTextView.text ?? "")\nFailed to set up the local model."
     }
   }
@@ -217,12 +257,9 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
 
 extension ViewController: UIImagePickerControllerDelegate {
 
-  func imagePickerController(
-    _ picker: UIImagePickerController,
-    didFinishPickingMediaWithInfo info: [String: Any]
-  ) {
+  func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
     clearResults()
-    if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+    if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
       updateImageView(with: pickedImage)
     }
     dismiss(animated: true)
@@ -234,13 +271,24 @@ extension ViewController: UIImagePickerControllerDelegate {
 private enum Constants {
 
   // REPLACE THESE CLOUD MODEL NAMES WITH ONES THAT ARE UPLOADED TO YOUR FIREBASE CONSOLE.
-  static let cloudModelName1 = "image_classification"
-  static let cloudModelName2 = "invalid_model"
-
-  static let localModelName = "mobilenet"
+  static let cloudModelNameFloat = "imagenet-classification-float-v2"
+  static let cloudModelNameQuantized = "imagenet-classification-quant-v2"
+  static let cloudModelNameInvalid = "invalid_model"
 
   static let defaultImage = "grace_hopper.jpg"
   static let cloudModel1DownloadCompletedKey = "FIRCloudModel1DownloadCompleted"
   static let cloudModel2DownloadCompletedKey = "FIRCloudModel2DownloadCompleted"
   static let failedToDetectObjectsMessage = "Failed to detect objects in image."
 }
+
+// MARK: - Extensions
+
+#if !swift(>=4.2)
+extension UIImagePickerController {
+public typealias InfoKey = String
+}
+
+extension UIImagePickerController.InfoKey {
+public static let originalImage = UIImagePickerControllerOriginalImage
+}
+#endif  // !swift(>=4.2)

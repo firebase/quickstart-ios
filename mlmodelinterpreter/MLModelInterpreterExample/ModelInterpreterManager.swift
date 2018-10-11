@@ -56,14 +56,14 @@ public enum ModelInterpreterConstants {
 
   fileprivate static let labelsSeparator = "\n"
   fileprivate static let labelsFilename = "labels"
-  fileprivate static let modelFilename = "mobilenet_v1_1.0_224"
-  fileprivate static let quantizedLabelsFilename = "labels_quant"
-  fileprivate static let quantizedModelFilename = "mobilenet_quant_v1_224"
+  public static let invalidModelFilename = "mobilenet_v1_1.0_224"
+  public static let quantizedModelFilename = "mobilenet_quant_v2_1.0_299"
+  public static let floatModelFilename = "mobilenet_float_v2_1.0_299"
 
   fileprivate static let modelInputIndex: UInt = 0
   fileprivate static let dimensionBatchSize: NSNumber = 1
-  fileprivate static let dimensionImageWidth: NSNumber = 224
-  fileprivate static let dimensionImageHeight: NSNumber = 224
+  fileprivate static let dimensionImageWidth: NSNumber = 299
+  fileprivate static let dimensionImageHeight: NSNumber = 299
   fileprivate static let maxRGBValue: Float32 = 255.0
 
   fileprivate static let inputDimensions = [
@@ -123,9 +123,9 @@ public class ModelInterpreterManager {
   ///   - name: The name for the local model.
   ///   - bundle: The bundle to load model resources from. The default is the main bundle.
   /// - Returns: A `Bool` indicating whether the local model was successfully set up and registered.
-  public func setUpLocalModel(withName name: String, bundle: Bundle = .main) -> Bool {
+  public func setUpLocalModel(withName name: String, filename: String, bundle: Bundle = .main) -> Bool {
     guard let localModelFilePath = bundle.path(
-            forResource: ModelInterpreterConstants.quantizedModelFilename,
+            forResource: filename,
             ofType: ModelInterpreterConstants.modelExtension)
     else {
       print("Failed to get the local model file path.")
@@ -149,12 +149,12 @@ public class ModelInterpreterManager {
   /// - Parameters:
   ///   - bundle: The bundle to load model resources from. The default is the main bundle.
   /// - Returns: A `Bool` indicating whether the cloud model was successfully loaded.
-  public func loadCloudModel(bundle: Bundle = .main) -> Bool {
+  public func loadCloudModel(bundle: Bundle = .main, isQuantized: Bool = true) -> Bool {
     guard let cloudModelOptions = cloudModelOptions else {
       print("Failed to load the cloud model because the options are nil.")
       return false
     }
-    return loadModel(options: cloudModelOptions, bundle: bundle)
+    return loadModel(options: cloudModelOptions, isQuantized: isQuantized, bundle: bundle)
   }
 
   /// Loads the registered local model with the `ModelOptions` created during setup.
@@ -162,12 +162,12 @@ public class ModelInterpreterManager {
   /// - Parameters:
   ///   - bundle: The bundle to load model resources from. The default is the main bundle.
   /// - Returns: A `Bool` indicating whether the local model was successfully loaded.
-  public func loadLocalModel(bundle: Bundle = .main) -> Bool {
+  public func loadLocalModel(bundle: Bundle = .main, isQuantized: Bool = true) -> Bool {
     guard let localModelOptions = localModelOptions else {
       print("Failed to load the local model because the options are nil.")
       return false
     }
-    return loadModel(options: localModelOptions, bundle: bundle)
+    return loadModel(options: localModelOptions, isQuantized: isQuantized, bundle: bundle)
   }
 
   /// Detects objects in the given image data, represented as `Data` or an array of pixel values.
@@ -317,7 +317,7 @@ public class ModelInterpreterManager {
     do {
       let encoding = String.Encoding.utf8.rawValue
       guard let labelsFilePath = bundle.path(
-              forResource: ModelInterpreterConstants.quantizedLabelsFilename,
+              forResource: ModelInterpreterConstants.labelsFilename,
               ofType: ModelInterpreterConstants.labelsExtension)
       else {
         print("Failed to get the labels file path.")

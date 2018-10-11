@@ -20,15 +20,15 @@
 @import Firebase;
 
 // REPLACE THESE CLOUD MODEL NAMES WITH ONES THAT ARE UPLOADED TO YOUR FIREBASE CONSOLE.
-static NSString *const cloudModelName1 = @"image_classification";
-static NSString *const cloudModelName2 = @"invalid_model";
-
-static NSString *const localModelName = @"mobilenet";
+static NSString *const cloudModelNameFloat = @"imagenet-classification-float-v2";
+static NSString *const cloudModelNameQuantized = @"imagenet-classification-quant-v2";
+static NSString *const cloudModelNameInvalid = @"invalid_model";
 
 static NSString *const defaultImage = @"grace_hopper.jpg";
 static NSString *const cloudModel1DownloadCompletedKey = @"FIRCloudModel1DownloadCompleted";
 static NSString *const cloudModel2DownloadCompletedKey = @"FIRCloudModel2DownloadCompleted";
 static NSString *const failedToDetectObjectsMessage = @"Failed to detect objects in image.";
+static uint const componentsCount = 3;
 
 @interface ViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
@@ -45,7 +45,7 @@ static NSString *const failedToDetectObjectsMessage = @"Failed to detect objects
 
 #pragma mark - Properties
 
-/// A segmented control for changing models (0 = `cloudModelName1`, 1 = `cloudModelName2`).
+/// A segmented control for changing models (0 = float, 1 = quantized, 2 = invalid).
 @property (weak, nonatomic) IBOutlet UISegmentedControl *modelControl;
 
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
@@ -88,7 +88,7 @@ static NSString *const failedToDetectObjectsMessage = @"Failed to detect objects
 
   if (!_downloadCloudModelButtonSelected) {
     _resultsTextView.text = @"Loading the local model...\n";
-    if (![_modelManager loadLocalModel:nil]) {
+    if (![_modelManager loadLocalModelWithIsQuantized:[self quantized]]) {
       _resultsTextView.text = @"Failed to load the local model.";
       return;
     }
@@ -97,9 +97,14 @@ static NSString *const failedToDetectObjectsMessage = @"Failed to detect objects
   if (_resultsTextView.text) {
     _resultsTextView.text = [_resultsTextView.text stringByAppendingString:newResultsTextString];
   }
-
+  BOOL isQuantized = [self quantized];
   dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), ^{
-    NSData *imageData = [self.modelManager scaledImageDataFromImage:image componentsCount:nil];
+    NSObject *imageData;
+    if (isQuantized) {
+      imageData = [self.modelManager scaledImageDataFromImage:image componentsCount:componentsCount];
+    } else {
+      imageData = [self.modelManager scaledPixelArrayFromImage:image componentsCount:componentsCount isQuantized:isQuantized];
+    }
     [self.modelManager detectObjectsInImageData:imageData topResultsCount:nil completion:^(NSArray * _Nullable results, NSError * _Nullable error) {
       if (!results || results.count == 0) {
         NSString *errorString = error ? error.localizedDescription : failedToDetectObjectsMessage;
@@ -138,13 +143,14 @@ static NSString *const failedToDetectObjectsMessage = @"Failed to detect objects
   _resultsTextView.text = isCloudModelDownloaded ?
     @"Cloud model loaded. Select the `Detect` button to start the inference." :
   @"Downloading cloud model. Once the download has completed, select the `Detect` button to start the inference.";
-  if (![_modelManager loadCloudModel:nil]) {
+  if (![_modelManager loadCloudModelWithIsQuantized:[self quantized]]) {
     _resultsTextView.text = @"Failed to load the cloud model.";
   }
 }
 
 - (IBAction)modelSwitched:(id)sender {
   [self clearResults];
+  [self setUpLocalModel];
   [self setUpCloudModel];
 }
 
@@ -152,9 +158,30 @@ static NSString *const failedToDetectObjectsMessage = @"Failed to detect objects
 
   /// Returns the name for the currently selected cloud model.
 - (NSString *)currentCloudModelName {
-  return (_modelControl.selectedSegmentIndex == 0) ?
-    cloudModelName1 :
-  cloudModelName2;
+  switch (_modelControl.selectedSegmentIndex) {
+    case 0:
+    return cloudModelNameFloat;
+    case 1:
+    return cloudModelNameQuantized;
+    case 2:
+    return cloudModelNameInvalid;
+    default:
+    return @"";
+  }
+}
+
+  /// Returns the name for the currently selected cloud model.
+- (NSString *)currentLocalModelName {
+  switch (_modelControl.selectedSegmentIndex) {
+    case 0:
+    return floatModelFilename;
+    case 1:
+    return quantizedModelFilename;
+    case 2:
+    return invalidModelFilename;
+    default:
+    return @"";
+  }
 }
 
   /// Returns the key for the currently selected cloud model.
@@ -163,6 +190,10 @@ static NSString *const failedToDetectObjectsMessage = @"Failed to detect objects
     cloudModel1DownloadCompletedKey :
   cloudModel2DownloadCompletedKey;
   }
+
+- (BOOL)quantized {
+  return (_modelControl.selectedSegmentIndex == 1);
+}
 
   /// Sets up the currently selected cloud model.
 - (void)setUpCloudModel {
@@ -177,7 +208,11 @@ static NSString *const failedToDetectObjectsMessage = @"Failed to detect objects
 
   /// Sets up the local model.
 - (void)setUpLocalModel {
-  if (![_modelManager setUpLocalModelWithName:localModelName bundle:nil]) {
+  NSString *name = [self currentLocalModelName];
+  NSString *filename = [self currentLocalModelName];
+  [self currentLocalModelName];
+
+  if (![_modelManager setUpLocalModelWithName:name filename:filename]) {
     if (_resultsTextView.text) {
       _resultsTextView.text = @"";
     }

@@ -14,6 +14,14 @@ class CameraViewController: UIViewController {
   private lazy var captureSession = AVCaptureSession()
   private lazy var sessionQueue = DispatchQueue(label: Constant.sessionQueueLabel)
   private lazy var vision = Vision.vision()
+  private var lastFrame: CMSampleBuffer? = nil
+
+  private lazy var previewOverlayView: UIImageView = {
+    precondition(isViewLoaded)
+    let previewOverlayView = UIImageView(frame: .zero)
+    previewOverlayView.translatesAutoresizingMaskIntoConstraints = false
+    return previewOverlayView
+  }()
 
   private lazy var annotationOverlayView: UIView = {
     precondition(isViewLoaded)
@@ -32,7 +40,7 @@ class CameraViewController: UIViewController {
     super.viewDidLoad()
 
     previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
-    cameraView.layer.addSublayer(previewLayer)
+    setUpPreviewOverlayView()
     setUpAnnotationOverlayView()
     setUpCaptureSessionOutput()
     setUpCaptureSessionInput()
@@ -96,6 +104,7 @@ class CameraViewController: UIViewController {
     }
 
     DispatchQueue.main.sync {
+      self.updatePreviewOverlayView()
       self.removeDetectionAnnotations()
       for face in faces {
         let normalizedRect = CGRect(
@@ -128,6 +137,7 @@ class CameraViewController: UIViewController {
           "\(error?.localizedDescription ?? Constant.noResultsMessage)")
         return
       }
+      self.updatePreviewOverlayView()
       // Blocks.
       for block in text.blocks {
         let points = self.convertedPoints(from: block.cornerPoints, width: width, height: height)
@@ -233,10 +243,22 @@ class CameraViewController: UIViewController {
     }
   }
 
+  private func setUpPreviewOverlayView() {
+    cameraView.addSubview(previewOverlayView)
+    NSLayoutConstraint.activate([
+      previewOverlayView.topAnchor.constraint(greaterThanOrEqualTo: cameraView.topAnchor),
+      previewOverlayView.centerYAnchor.constraint(equalTo: cameraView.centerYAnchor),
+      previewOverlayView.leadingAnchor.constraint(equalTo: cameraView.leadingAnchor),
+      previewOverlayView.trailingAnchor.constraint(equalTo: cameraView.trailingAnchor),
+      previewOverlayView.bottomAnchor.constraint(lessThanOrEqualTo: cameraView.bottomAnchor),
+      ])
+  }
+
   private func setUpAnnotationOverlayView() {
     cameraView.addSubview(annotationOverlayView)
     NSLayoutConstraint.activate([
       annotationOverlayView.topAnchor.constraint(equalTo: cameraView.topAnchor),
+      //annotationOverlayView.centerYAnchor.constraint(equalTo: cameraView.centerYAnchor),
       annotationOverlayView.leadingAnchor.constraint(equalTo: cameraView.leadingAnchor),
       annotationOverlayView.trailingAnchor.constraint(equalTo: cameraView.trailingAnchor),
       annotationOverlayView.bottomAnchor.constraint(equalTo: cameraView.bottomAnchor),
@@ -276,6 +298,28 @@ class CameraViewController: UIViewController {
   private func removeDetectionAnnotations() {
     for annotationView in annotationOverlayView.subviews {
       annotationView.removeFromSuperview()
+    }
+  }
+
+  private func updatePreviewOverlayView() {
+    guard let lastFrame = lastFrame, let imageBuffer = CMSampleBufferGetImageBuffer(lastFrame)
+      else { return }
+    let ciImage = CIImage(cvPixelBuffer: imageBuffer)
+    let context = CIContext.init(options: nil)
+    guard let cgImage = context.createCGImage(ciImage, from: ciImage.extent) else {
+      return
+    }
+    let rotatedImage =
+      UIImage.init(cgImage: cgImage, scale: Constant.constantScale, orientation: .right)
+    if isUsingFrontCamera {
+      guard let rotatedCGImage = rotatedImage.cgImage else {
+        return
+      }
+      let mirroredImage = UIImage.init(
+        cgImage: rotatedCGImage, scale: Constant.constantScale, orientation: .leftMirrored)
+      previewOverlayView.image = mirroredImage
+    } else {
+      previewOverlayView.image = rotatedImage
     }
   }
 
@@ -473,6 +517,7 @@ extension CameraViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
       print("Failed to get image buffer from sample buffer.")
       return
     }
+    lastFrame = sampleBuffer
     let visionImage = VisionImage(buffer: sampleBuffer)
     let metadata = VisionImageMetadata()
     let orientation = UIUtilities.imageOrientation(
@@ -507,4 +552,5 @@ private enum Constant {
   static let sessionQueueLabel = "com.google.firebaseml.visiondetector.SessionQueue"
   static let noResultsMessage = "No Results"
   static let smallDotRadius: CGFloat = 4.0
+  static let constantScale: CGFloat = 1.0
 }

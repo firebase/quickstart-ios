@@ -14,9 +14,10 @@ class CameraViewController: UIViewController {
   private lazy var captureSession = AVCaptureSession()
   private lazy var sessionQueue = DispatchQueue(label: Constant.sessionQueueLabel)
   private lazy var vision = Vision.vision()
-  private var lastFrame: CMSampleBuffer? = nil
+  private var lastFrame: CMSampleBuffer?
 
   private lazy var previewOverlayView: UIImageView = {
+
     precondition(isViewLoaded)
     let previewOverlayView = UIImageView(frame: .zero)
     previewOverlayView.translatesAutoresizingMaskIntoConstraints = false
@@ -87,7 +88,6 @@ class CameraViewController: UIViewController {
     options.contourMode = .all
     options.classificationMode = .none
 
-    options.isTrackingEnabled = true
     options.performanceMode = .fast
     let faceDetector = vision.faceDetector(options: options)
 
@@ -127,17 +127,14 @@ class CameraViewController: UIViewController {
 
   private func recognizeTextOnDevice(in image: VisionImage, width: CGFloat, height: CGFloat) {
     let textRecognizer = vision.onDeviceTextRecognizer()
-    let group = DispatchGroup()
-    group.enter()
     textRecognizer.process(image) { text, error in
-      defer { group.leave() }
       self.removeDetectionAnnotations()
+      self.updatePreviewOverlayView()
       guard error == nil, let text = text else {
         print("On-Device text recognizer error: " +
           "\(error?.localizedDescription ?? Constant.noResultsMessage)")
         return
       }
-      self.updatePreviewOverlayView()
       // Blocks.
       for block in text.blocks {
         let points = self.convertedPoints(from: block.cornerPoints, width: width, height: height)
@@ -180,8 +177,6 @@ class CameraViewController: UIViewController {
         }
       }
     }
-
-    group.wait()
   }
 
   // MARK: - Private
@@ -258,7 +253,6 @@ class CameraViewController: UIViewController {
     cameraView.addSubview(annotationOverlayView)
     NSLayoutConstraint.activate([
       annotationOverlayView.topAnchor.constraint(equalTo: cameraView.topAnchor),
-      //annotationOverlayView.centerYAnchor.constraint(equalTo: cameraView.centerYAnchor),
       annotationOverlayView.leadingAnchor.constraint(equalTo: cameraView.leadingAnchor),
       annotationOverlayView.trailingAnchor.constraint(equalTo: cameraView.trailingAnchor),
       annotationOverlayView.bottomAnchor.constraint(equalTo: cameraView.bottomAnchor),
@@ -302,20 +296,23 @@ class CameraViewController: UIViewController {
   }
 
   private func updatePreviewOverlayView() {
-    guard let lastFrame = lastFrame, let imageBuffer = CMSampleBufferGetImageBuffer(lastFrame)
-      else { return }
+    guard let lastFrame = lastFrame,
+          let imageBuffer = CMSampleBufferGetImageBuffer(lastFrame)
+    else {
+      return
+    }
     let ciImage = CIImage(cvPixelBuffer: imageBuffer)
-    let context = CIContext.init(options: nil)
+    let context = CIContext(options: nil)
     guard let cgImage = context.createCGImage(ciImage, from: ciImage.extent) else {
       return
     }
     let rotatedImage =
-      UIImage.init(cgImage: cgImage, scale: Constant.constantScale, orientation: .right)
+      UIImage(cgImage: cgImage, scale: Constant.constantScale, orientation: .right)
     if isUsingFrontCamera {
       guard let rotatedCGImage = rotatedImage.cgImage else {
         return
       }
-      let mirroredImage = UIImage.init(
+      let mirroredImage = UIImage(
         cgImage: rotatedCGImage, scale: Constant.constantScale, orientation: .leftMirrored)
       previewOverlayView.image = mirroredImage
     } else {

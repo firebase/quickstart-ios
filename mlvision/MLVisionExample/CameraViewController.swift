@@ -307,13 +307,13 @@ class CameraViewController: UIViewController {
       return
     }
     let rotatedImage =
-      UIImage(cgImage: cgImage, scale: Constant.constantScale, orientation: .right)
+      UIImage(cgImage: cgImage, scale: Constant.originalScale, orientation: .right)
     if isUsingFrontCamera {
       guard let rotatedCGImage = rotatedImage.cgImage else {
         return
       }
       let mirroredImage = UIImage(
-        cgImage: rotatedCGImage, scale: Constant.constantScale, orientation: .leftMirrored)
+        cgImage: rotatedCGImage, scale: Constant.originalScale, orientation: .leftMirrored)
       previewOverlayView.image = mirroredImage
     } else {
       previewOverlayView.image = rotatedImage
@@ -549,5 +549,5 @@ private enum Constant {
   static let sessionQueueLabel = "com.google.firebaseml.visiondetector.SessionQueue"
   static let noResultsMessage = "No Results"
   static let smallDotRadius: CGFloat = 4.0
-  static let constantScale: CGFloat = 1.0
+  static let originalScale: CGFloat = 1.0
 }

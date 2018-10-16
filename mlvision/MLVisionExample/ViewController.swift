@@ -107,7 +107,7 @@ class ViewController:  UIViewController, UINavigationControllerDelegate {
         detectTextOnDevice(image: imageView.image)
       case .detectBarcodeOnDevice:
         detectBarcodes(image: imageView.image)
-      case .detectvImageLabelsOnDevice:
+      case .detectImageLabelsOnDevice:
         detectLabels(image: imageView.image)
       case .detectTextInCloud:
         detectTextInCloud(image: imageView.image)
@@ -1013,7 +1013,7 @@ private enum DetectorPickerRow: Int {
   case detectFaceOnDevice = 0,
   detectTextOnDevice,
   detectBarcodeOnDevice,
-  detectvImageLabelsOnDevice,
+  detectImageLabelsOnDevice,
   detectTextInCloud,
   detectDocumentTextInCloud,
   detectImageLabelsInCloud,
@@ -1030,7 +1030,7 @@ private enum DetectorPickerRow: Int {
       return "Text On-Device"
     case .detectBarcodeOnDevice:
       return "Barcode On-Device"
-    case .detectvImageLabelsOnDevice:
+    case .detectImageLabelsOnDevice:
       return "Image Labeling On-Device"
     case .detectTextInCloud:
       return "Text in Cloud"

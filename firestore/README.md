@@ -26,7 +26,8 @@ service cloud.firestore {
     match /restaurants/{restaurant} {
       match /ratings/{rating} {
         allow read: if request.auth != null;
-        allow write: if request.auth.uid == request.resource.data.userId;
+        allow write: if request.auth != null 
+                     && request.auth.uid == request.resource.data.userId;
       }
 
       allow read: if request.auth != null;

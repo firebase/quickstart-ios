@@ -52,9 +52,9 @@
 
 - (IBAction)handleSubscribeTouch:(id)sender {
   // [START subscribe_topic]
-  [[FIRMessaging messaging] subscribeToTopic:@"news"
+  [[FIRMessaging messaging] subscribeToTopic:@"weather"
                                   completion:^(NSError * _Nullable error) {
-    NSLog(@"Subscribed to news topic");
+    NSLog(@"Subscribed to weather topic");
   }];
   // [END subscribe_topic]
 }

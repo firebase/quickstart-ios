@@ -204,6 +204,7 @@ typedef NS_ENUM(NSInteger, Detector) {
     AVCaptureDevicePosition cameraPosition = self.isUsingFrontCamera ? AVCaptureDevicePositionFront : AVCaptureDevicePositionBack;
     AVCaptureDevice *device = [self captureDeviceForPosition:cameraPosition];
     if (device) {
+      [self->_captureSession beginConfiguration];
       NSArray<AVCaptureInput *> *currentInputs = self.captureSession.inputs;
       for (AVCaptureInput *input in currentInputs) {
         [self.captureSession removeInput:input];
@@ -220,6 +221,7 @@ typedef NS_ENUM(NSInteger, Detector) {
           NSLog(@"%@", @"Failed to add capture session input.");
         }
       }
+      [self.captureSession commitConfiguration];
     } else {
       NSLog(@"Failed to get capture device for camera position: %ld", cameraPosition);
     }

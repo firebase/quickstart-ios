@@ -18,38 +18,25 @@
 
 /// A `UIImage` category for scaling images.
 @interface UIImage (TFLite)
-
-/// Returns image scaled according to the given size.
-///
-/// - Parameter size: Maximum size of the returned image.
-/// - Return: Image scaled according to the give size or `nil` if image resize fails.
+  
+  /// Creates and returns a new image scaled to the given size. The image preserves its original PNG
+  /// or JPEG bitmap info.
+  ///
+  /// - Parameter size: The size to scale the image to.
+  /// - Returns: The scaled image or `nil` if image could not be resized.
 - (UIImage *)scaledImageWithSize:(CGSize)size;
-
-/// Returns scaled image data representation of the image from the given values.
-///
-/// - Parameters
-///   - size: Size to scale the image to (i.e. expected size of the image in the trained model).
-///   - componentsCount: Number of color components for the image.
-///   - batchSize: Batch size for the image.
-/// - Returns: The scaled image data or `nil` if the image could not be scaled.
-- (NSData *)scaledImageDataWithSize:(CGSize)size
-                    componentsCount:(int)newComponentsCount
-                          batchSize:(int)batchSize;
-
-/// Returns a scaled pixel array representation of the image from the given values.
-///
-/// - Parameters
-///   - size: Size to scale the image to (i.e. expected size of the image in the trained model).
-///   - componentsCount: Number of color components for the image.
-///   - batchSize: Batch size for the image.
-///   - isQuantized: Indicates whether the model uses quantization. If `true`, apply
-///     `(value) / 255` to each pixel to convert the data from Int(0, 255) scale to
-///     Float([0, 1]).
-/// - Returns: The scaled pixel array or `nil` if the image could not be scaled.
-- (NSArray *)scaledPixelArrayWithSize:(CGSize)size
-                      componentsCount:(int)newComponentsCount
-                            batchSize:(int)batchSize
-                          isQuantized:(BOOL)isQuantized;
-
+  
+  /// Returns the data representation of the image after scaling to the given `size` and removing
+  /// the alpha component.
+  ///
+  /// - Parameters
+  ///   - size: Size to scale the image to (i.e. image size used while training the model).
+  ///   - byteCount: The expected byte count for the scaled image data calculated using the values
+  ///       that the model was trained on: `imageWidth * imageHeight * componentsCount * batchSize`.
+  ///   - isQuantized: Whether the model is quantized (i.e. fixed point values rather than floating
+  ///       point values).
+  /// - Returns: The scaled image as data or `nil` if the image could not be scaled.
+- (NSData *)scaledDataWithSize:(CGSize)size
+                     byteCount:(int)byteCount
+                   isQuantized:(BOOL)isQuantized;
 @end
-

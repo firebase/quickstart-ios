@@ -22,35 +22,45 @@ static NSString *const labelsSeparator = @"\n";
 static NSString *const labelsFilename = @"labels";
 
 static uint const modelInputIndex = 0;
-static int const dimensionBatchSize = 1;
+static int const batchSize = 1;
 static float const dimensionImageWidth = 299;
 static float const dimensionImageHeight = 299;
-static Float32 const maxRGBValue = 255.0;
 
 typedef NS_ENUM(NSInteger, ModelInterpreterErrorCode) {
   ModelInterpreterErrorCodeInvalidImageData = 1,
-  ModelInterpreterErrorCodeInvalidResults = 2
+  ModelInterpreterErrorCodeInvalidResults = 2,
+  ModelInterpreterErrorCodeInvalidModelDataType = 3
 };
 
+/// Default quantization parameters for Softmax. The Softmax function is normally implemented as the
+/// final layer, just before the output layer, of a neural-network based classifier.
+///
+/// Quantized values can be mapped to float values using the following conversion:
+///   `realValue = scale * (quantizedValue - zeroPoint)`.
+static int const SoftmaxZeroPoint = 0;
+static float const SoftmaxMaxUInt8QuantizedValue = 255.0;
+static float const SoftmaxNormalizerValue = 1.0;
+static float const SoftmaxScale = 1.0 / (SoftmaxMaxUInt8QuantizedValue + SoftmaxNormalizerValue);
+
 @interface FIRModelManager (ModelManaging) <ModelManaging>
-@end
+  @end
 
 @interface ModelInterpreterError : NSError
   -(instancetype) initWithCode:(int)code;
-@end
+  @end
 
 @implementation ModelInterpreterError
 
 -(instancetype) initWithCode:(int)code {
   return [self initWithDomain:@"com.google.firebaseml.sampleapps.modelinterpreter" code:code userInfo:[NSDictionary dictionary]];
 }
-@end
+  @end
 
 @interface ModelInterpreterManager ()
 
-@property (nonatomic) NSArray *inputDimensions;
+  @property (nonatomic) NSArray *inputDimensions;
 
-@property(nonatomic) id<ModelManaging> modelManager;
+  @property(nonatomic) id<ModelManaging> modelManager;
   @property(nonatomic) FIRModelInputOutputOptions *modelInputOutputOptions;
   @property(nonatomic) NSMutableSet<NSString *> *registeredCloudModelNames;
   @property(nonatomic) NSMutableSet<NSString *> *registeredLocalModelNames;
@@ -58,11 +68,10 @@ typedef NS_ENUM(NSInteger, ModelInterpreterErrorCode) {
   @property(nonatomic) FIRModelOptions *localModelOptions;
   @property(nonatomic) FIRModelInterpreter *modelInterpreter;
   @property(nonatomic) FIRModelElementType modelElementType;
-  @property(nonatomic) BOOL isModelQuantized;
   @property(nonatomic) NSArray<NSString *> *labels;
   @property(nonatomic) int labelsCount;
 
-@end
+  @end
 
 @implementation ModelInterpreterManager
 
@@ -70,17 +79,16 @@ typedef NS_ENUM(NSInteger, ModelInterpreterErrorCode) {
   return [self initWithModelManager:[FIRModelManager modelManager]];
 }
 
-/// Creates a new instance with the given object that conforms to `ModelManaging`.
+  /// Creates a new instance with the given object that conforms to `ModelManaging`.
 - (instancetype)initWithModelManager:(id<ModelManaging>)modelManager {
   self.modelManager = modelManager;
   self.inputDimensions = @[
-                           [NSNumber numberWithInt:dimensionBatchSize],
+                           [NSNumber numberWithInt:batchSize],
                            [NSNumber numberWithFloat:dimensionImageWidth],
                            [NSNumber numberWithFloat:dimensionImageHeight],
-                           [NSNumber numberWithInt:dimensionComponents]
+                           [NSNumber numberWithInt:componentCount]
                            ];
   self.modelInputOutputOptions = [FIRModelInputOutputOptions new];
-  self.isModelQuantized = YES;
   self.labels = [NSArray new];
   self.labelsCount = 0;
   self.registeredCloudModelNames = [NSMutableSet new];
@@ -89,11 +97,11 @@ typedef NS_ENUM(NSInteger, ModelInterpreterErrorCode) {
   return self;
 }
 
-/// Sets up a cloud model by creating a `CloudModelSource` and registering it with the given name.
-///
-/// - Parameters:
-///   - name: The name for the cloud model.
-/// - Returns: A `Bool` indicating whether the cloud model was successfully set up and registered.
+  /// Sets up a cloud model by creating a `CloudModelSource` and registering it with the given name.
+  ///
+  /// - Parameters:
+  ///   - name: The name for the cloud model.
+  /// - Returns: A `Bool` indicating whether the cloud model was successfully set up and registered.
 - (BOOL)setUpCloudModelWithName:(NSString *)name {
   FIRModelDownloadConditions *conditions = [[FIRModelDownloadConditions alloc] initWithIsWiFiRequired:NO canDownloadInBackground:YES];
   FIRCloudModelSource *cloudModelSource = [[FIRCloudModelSource alloc] initWithModelName:name enableModelUpdates:YES initialConditions:conditions updateConditions:conditions];
@@ -109,12 +117,12 @@ typedef NS_ENUM(NSInteger, ModelInterpreterErrorCode) {
 - (BOOL)setUpLocalModelWithName:(NSString *)name filename:(NSString *)filename {
   return [self setUpLocalModelWithName:name filename:filename bundle:NSBundle.mainBundle];
 }
-/// Sets up a local model by creating a `LocalModelSource` and registering it with the given name.
-///
-/// - Parameters:
-///   - name: The name for the local model.
-///   - bundle: The bundle to load model resources from. The default is the main bundle.
-/// - Returns: A `Bool` indicating whether the local model was successfully set up and registered.
+  /// Sets up a local model by creating a `LocalModelSource` and registering it with the given name.
+  ///
+  /// - Parameters:
+  ///   - name: The name for the local model.
+  ///   - bundle: The bundle to load model resources from. The default is the main bundle.
+  /// - Returns: A `Bool` indicating whether the local model was successfully set up and registered.
 - (BOOL)setUpLocalModelWithName:(NSString *)name filename:(NSString *)filename bundle:(nullable NSBundle *)bundle {
   NSString *localModelFilePath = [bundle pathForResource:filename ofType:modelExtension];
   if(!localModelFilePath) {
@@ -134,54 +142,54 @@ typedef NS_ENUM(NSInteger, ModelInterpreterErrorCode) {
   }
 }
 
-- (BOOL)loadCloudModelWithIsQuantized:(BOOL)isQuantized {
-  return [self loadCloudModelWithBundle:NSBundle.mainBundle isQuantized:isQuantized];
+- (BOOL)loadCloudModelWithIsModelQuantized:(BOOL)isModelQuantized {
+  return [self loadCloudModelWithBundle:NSBundle.mainBundle isModelQuantized:isModelQuantized];
 }
 
-/// Loads the registered cloud model with the `ModelOptions` created during setup.
-///
-/// - Parameters:
-///   - bundle: The bundle to load model resources from. The default is the main bundle.
-/// - Returns: A `Bool` indicating whether the cloud model was successfully loaded.
-- (BOOL)loadCloudModelWithBundle:(NSBundle *)bundle isQuantized:(BOOL)isQuantized {
+  /// Loads the registered cloud model with the `ModelOptions` created during setup.
+  ///
+  /// - Parameters:
+  ///   - bundle: The bundle to load model resources from. The default is the main bundle.
+  /// - Returns: A `Bool` indicating whether the cloud model was successfully loaded.
+- (BOOL)loadCloudModelWithBundle:(NSBundle *)bundle isModelQuantized:(BOOL)isModelQuantized {
   if (_cloudModelOptions) {
-    return [self loadModelWithOptions:_cloudModelOptions isQuantized:isQuantized inputDimensions:nil outputDimensions:nil bundle:bundle];
+    return [self loadModelWithOptions:_cloudModelOptions isModelQuantized:isModelQuantized inputDimensions:nil outputDimensions:nil bundle:bundle];
   } else {
     NSLog(@"%@", @"Failed to load the cloud model because the options are nil.");
     return NO;
   }
 }
 
-- (BOOL)loadLocalModelWithIsQuantized:(BOOL)isQuantized {
-  return [self loadLocalModelWithBundle:NSBundle.mainBundle isQuantized:isQuantized];
+- (BOOL)loadLocalModelWithIsModelQuantized:(BOOL)isModelQuantized {
+  return [self loadLocalModelWithBundle:NSBundle.mainBundle isModelQuantized:isModelQuantized];
 }
 
-/// Loads the registered local model with the `ModelOptions` created during setup.
-///
-/// - Parameters:
-///   - bundle: The bundle to load model resources from. The default is the main bundle.
-/// - Returns: A `Bool` indicating whether the local model was successfully loaded.
-- (BOOL)loadLocalModelWithBundle:(NSBundle *)bundle isQuantized:(BOOL)isQuantized {
+  /// Loads the registered local model with the `ModelOptions` created during setup.
+  ///
+  /// - Parameters:
+  ///   - bundle: The bundle to load model resources from. The default is the main bundle.
+  /// - Returns: A `Bool` indicating whether the local model was successfully loaded.
+- (BOOL)loadLocalModelWithBundle:(NSBundle *)bundle isModelQuantized:(BOOL)isModelQuantized {
 
   if (_localModelOptions) {
-    return [self loadModelWithOptions:_localModelOptions isQuantized:isQuantized inputDimensions:nil outputDimensions:nil bundle:bundle];
+    return [self loadModelWithOptions:_localModelOptions isModelQuantized:isModelQuantized inputDimensions:nil outputDimensions:nil bundle:bundle];
   } else {
     NSLog(@"%@", @"Failed to load the local model because the options are nil.");
     return NO;
   }
 }
 
-/// Detects objects in the given image data, represented as `Data` or an array of pixel values.
-/// The completion is called with detection results as an array of tuples where each tuple
-/// contains a label and confidence value.
-///
-/// - Parameters
-///   - imageData: The data or pixel array representation of the image to detect objects in.
-///   - topResultsCount: The number of top results to return.
-///   - completion: The handler to be called on the main thread with detection results or error.
+  /// Detects objects in the given image data, represented as `Data` or an array of pixel values.
+  /// The completion is called with detection results as an array of tuples where each tuple
+  /// contains a label and confidence value.
+  ///
+  /// - Parameters
+  ///   - imageData: The data or pixel array representation of the image to detect objects in.
+  ///   - topResultsCount: The number of top results to return.
+  ///   - completion: The handler to be called on the main thread with detection results or error.
 - (void)detectObjectsInImageData:(NSObject *)imageData
-             topResultsCount:(nullable NSNumber *)topResultsCount
-                  completion:(DetectObjectsCompletion)completion {
+                 topResultsCount:(nullable NSNumber *)topResultsCount
+                      completion:(DetectObjectsCompletion)completion {
   int topResCount = topResultsCount ? topResultsCount.intValue : topResultsCountInt;
   if (!imageData) {
     [self safeDispatchOnMain:completion objects:nil error:[[ModelInterpreterError alloc] initWithCode:ModelInterpreterErrorCodeInvalidImageData]];
@@ -210,106 +218,58 @@ typedef NS_ENUM(NSInteger, ModelInterpreterErrorCode) {
 }
 
 - (nullable NSData *)scaledImageDataFromImage:(UIImage *)image {
-  return [self scaledImageDataFromImage:image componentsCount:dimensionComponents];
+  return [self scaledImageDataFromImage:image
+                               withSize:CGSizeMake(dimensionImageWidth, dimensionImageHeight)
+                         componentCount:componentCount
+                              batchSize:batchSize];
 }
 
-/// Scales the given image to the default size that the model was trained on.
-///
-/// - Parameters:
-///   - image: The image to scale.
-///   - componentsCount: The number of components in the scaled image. A component is a red,
-///       green, blue, or alpha value. The default value is 3, indicating that the model was
-///       trained on an image that contains only RGB components (i.e. the alpha component was
-///       removed).
-/// - Returns: The scaled image as `Data` or `nil` if the image could not be scaled. Scaling can
-///     fail for the following reasons: 1) components count is not less than or equal to the
-///     components count of the given image 2) the given image's size or CGImage is invalid.
+  /// Returns the data representation of the given image scaled to the given image size that the
+  /// model was trained on.
+  ///
+  /// - Parameters:
+  ///   - image: The image to scale.
+  ///   - size: The size to scale the image to. The default is `MobileNet.imageSize`.
+  ///   - componentCount: The number of components in the scaled image. A component is a red, green,
+  ///       blue, or alpha value. The default value is 3, indicating that the model was trained on
+  ///       an image that contains only RGB components (i.e. the alpha component was removed).
+  ///   - batchSize: The fixed number of examples in a batch. The default is 1.
+  /// - Returns: The scaled image as `Data` or `nil` if the image could not be scaled.
 - (nullable NSData *)scaledImageDataFromImage:(UIImage *)image
-                              componentsCount:(int)componentsCount {
-
-  CGSize imageSize = CGSizeMake(dimensionImageWidth, dimensionImageHeight);
-
-  NSData *scaledImageData = [image scaledImageDataWithSize:imageSize componentsCount:componentsCount batchSize:dimensionBatchSize];
+                                     withSize:(CGSize)size
+                               componentCount:(int)componentCount
+                                    batchSize:(int)batchSize {
+  NSData *scaledImageData = [image scaledDataWithSize:size
+                                            byteCount:size.width * size.height * componentCount * batchSize
+                                          isQuantized:(_modelElementType == FIRModelElementTypeUInt8)];
   if(!scaledImageData) {
-    NSLog(@"Failed to scale image to size: %@.", NSStringFromCGSize(imageSize));
+    NSLog(@"Failed to scale image to size: %@.", NSStringFromCGSize(size));
     return nil;
   }
   return scaledImageData;
 }
 
-- (NSArray *)scaledPixelArrayFromImage:(UIImage *)image {
-  return [self scaledPixelArrayFromImage:image componentsCount:dimensionComponents isQuantized:YES];
-}
-
-- (NSArray *)scaledPixelArrayFromImage:(UIImage *)image componentsCount:(int)componentsCount {
-  return [self scaledPixelArrayFromImage:image componentsCount:componentsCount isQuantized:YES];
-}
-
-- (NSArray *)scaledPixelArrayFromImage:(UIImage *)image isQuantized:(BOOL)isQuantized {
-  return [self scaledPixelArrayFromImage:image componentsCount:dimensionComponents isQuantized:isQuantized];
-}
-
-
-/// Scales the given image to the default size that the model was trained on.
-///
-/// - Parameters:
-///   - image: The image to scale.
-///   - componentsCount: The number of components in the scaled image. A component is a red,
-///       green, blue, or alpha value. The default value is 3, indicating that the model was
-///       trained on an image that contains only RGB components (i.e. the alpha component was
-///       removed).
-///   - isQuantized: Whether the model uses quantization (i.e. 8-bit fixed point weights and
-///       activations). See https://www.tensorflow.org/performance/quantization for more details.
-///       If NO, a floating point model is used. The default is `YES`.
-/// - Returns: A multidimensional array of fixed point (`UInt8`) values, if `isQuantized` is YES,
-///     or floating point (`Float32`) values, if `isQuantized` is NO, or `nil` if the image
-///     could not be scaled. The returned pixel array contains an array of horizontal pixels with
-///     a count equal to the default width of the image. Each horizontal pixel contains of an
-///     array of veritcal pixels with a count equal to the default height of the image. Each
-///     horizontal pixel contains an array of the components with a count equal to the given
-///     `componentsCount`. Scaling can fail for the following reasons: 1) components count is not
-///     less than or equal to the components count of the given image 2) the given image's size or
-///     CGImage is invalid.
-- (NSArray *)scaledPixelArrayFromImage:(UIImage *)image
-                        componentsCount:(int)componentsCount
-                            isQuantized:(BOOL)isQuantized {
-  CGSize imageSize = CGSizeMake(dimensionImageWidth, dimensionImageHeight);
-
-  NSArray *scaledPixelArray = [image scaledPixelArrayWithSize:imageSize componentsCount:componentsCount batchSize:dimensionBatchSize isQuantized:isQuantized];
-  if(!scaledPixelArray) {
-    NSLog(@"Failed to scale image to size: %@.", NSStringFromCGSize(imageSize));
-    return nil;
-  }
-  return scaledPixelArray;
-}
 
 #pragma mark - Private
 
+  /// Loads a model with the given options and input and output dimensions.
+  ///
+  /// - Parameters:
+  ///   - options: The model options consisting of the cloud and/or local sources to be loaded.
+  ///   - isQuantized: Whether the model uses quantization (i.e. 8-bit fixed point weights and
+  ///     activations). See https://www.tensorflow.org/performance/quantization for more details. If
+  ///     NO, a floating point model is used. The default is `YES`.
+  ///   - inputDimensions: An array of the input tensor dimensions. Must include `outputDimensions`
+  ///     if `inputDimensions` are specified. Pass `nil` to use the default input dimensions.
+  ///   - outputDimensions: An array of the output tensor dimensions. Must include `inputDimensions`
+  ///     if `outputDimensions` are specified. Pass `nil` to use the default output dimensions.
+  ///   - bundle: The bundle to load model resources from. The default is the main bundle.
+  /// - Returns: A `Bool` indicating whether the model was successfully loaded. If both local and
+  ///     cloud model sources were provided in the `ModelOptions`, the cloud model takes priority
+  ///     and is loaded. If the cloud model has not been downloaded yet from the Firebase console,
+  ///     the model download request is created and the local model is loaded as a fallback.
 - (BOOL)loadModelWithOptions:(FIRModelOptions *)options
-             inputDimensions:(nullable NSArray<NSNumber *> *)inputDimensions
-            outputDimensions:(nullable NSArray<NSNumber *> *)outputDimensions
-                      bundle:(nullable NSBundle *)bundle {
-  return [self loadModelWithOptions:options isQuantized:YES inputDimensions:inputDimensions outputDimensions:outputDimensions bundle:bundle];
-}
-
-/// Loads a model with the given options and input and output dimensions.
-///
-/// - Parameters:
-///   - options: The model options consisting of the cloud and/or local sources to be loaded.
-///   - isQuantized: Whether the model uses quantization (i.e. 8-bit fixed point weights and
-///     activations). See https://www.tensorflow.org/performance/quantization for more details. If
-///     NO, a floating point model is used. The default is `YES`.
-///   - inputDimensions: An array of the input tensor dimensions. Must include `outputDimensions`
-///     if `inputDimensions` are specified. Pass `nil` to use the default input dimensions.
-///   - outputDimensions: An array of the output tensor dimensions. Must include `inputDimensions`
-///     if `outputDimensions` are specified. Pass `nil` to use the default output dimensions.
-///   - bundle: The bundle to load model resources from. The default is the main bundle.
-/// - Returns: A `Bool` indicating whether the model was successfully loaded. If both local and
-///     cloud model sources were provided in the `ModelOptions`, the cloud model takes priority
-///     and is loaded. If the cloud model has not been downloaded yet from the Firebase console,
-///     the model download request is created and the local model is loaded as a fallback.
-- (BOOL)loadModelWithOptions:(FIRModelOptions *)options
-                 isQuantized:(BOOL)isQuantized
+            isModelQuantized:(BOOL)isModelQuantized
              inputDimensions:(nullable NSArray<NSNumber *> *)inputDimensions
             outputDimensions:(nullable NSArray<NSNumber *> *)outputDimensions
                       bundle:(nullable NSBundle *)bundle {
@@ -321,7 +281,6 @@ typedef NS_ENUM(NSInteger, ModelInterpreterErrorCode) {
     return NO;
   }
 
-  _isModelQuantized = isQuantized;
   NSString *labelsFilePath = [bundle pathForResource:labelsFilename ofType:labelsExtension];
   if(!labelsFilePath) {
     NSLog(@"%@", @"Failed to get the labels file path.");
@@ -337,10 +296,10 @@ typedef NS_ENUM(NSInteger, ModelInterpreterErrorCode) {
   _labelsCount = (int)_labels.count;
 
   NSArray<NSNumber *> *modelOutputDimensions;
-  modelOutputDimensions = outputDimensions ? outputDimensions : @[ [NSNumber numberWithInt:dimensionBatchSize], [NSNumber numberWithInt:_labelsCount] ];
+  modelOutputDimensions = outputDimensions ? outputDimensions : @[ [NSNumber numberWithInt:batchSize], [NSNumber numberWithInt:_labelsCount] ];
   self.modelInterpreter = [FIRModelInterpreter modelInterpreterWithOptions:options];
 
-  _modelElementType = _isModelQuantized ? FIRModelElementTypeUInt8 : FIRModelElementTypeFloat32;
+  _modelElementType = isModelQuantized ? FIRModelElementTypeUInt8 : FIRModelElementTypeFloat32;
   NSArray *modelInputDimensions = inputDimensions ? inputDimensions : _inputDimensions;
   NSError *inputError;
   [_modelInputOutputOptions setInputFormatForIndex:modelInputIndex type:_modelElementType dimensions:modelInputDimensions error:&inputError];
@@ -357,7 +316,7 @@ typedef NS_ENUM(NSInteger, ModelInterpreterErrorCode) {
   return YES;
 }
 
--(void) process:(FIRModelOutputs *)outputs
+- (void)process:(FIRModelOutputs *)outputs
 topResultsCount:(int)topResultsCount
      completion:(DetectObjectsCompletion)completion {
 
@@ -377,44 +336,48 @@ topResultsCount:(int)topResultsCount
     return;
   }
 
-  NSArray<NSNumber *> *outputArray = outputArrayOfArrays.firstObject;
-
-  // Convert the output from quantized 8-bit fixed point format to 32-bit floating point format.
-  if (_isModelQuantized) {
-    NSMutableArray<NSNumber *> *quantizedArray = [[NSMutableArray alloc] initWithCapacity:outputArray.count];
-    for (NSNumber *number in outputArray) {
-      [quantizedArray addObject:[NSNumber numberWithFloat:number.floatValue / maxRGBValue]];
-    }
-    outputArray = quantizedArray;
+  NSArray<NSNumber *> *firstOutput = outputArrayOfArrays.firstObject;
+  NSMutableArray<NSNumber *> *confidences = [[NSMutableArray alloc] initWithCapacity:firstOutput.count];
+  
+  switch (_modelElementType) {
+    case FIRModelElementTypeUInt8:
+      for (NSNumber *number in firstOutput) {
+        [confidences addObject:[NSNumber numberWithFloat:SoftmaxScale * (number.intValue - SoftmaxZeroPoint)]];
+      }
+      firstOutput = confidences;
+    break;
+    case FIRModelElementTypeFloat32:
+      break;
+    default:
+      completion(nil, [[ModelInterpreterError alloc] initWithCode:ModelInterpreterErrorCodeInvalidModelDataType]);
   }
 
-  // Create a zipped array of tuples ("confidence" as NSNumber, "labelIndex" as Int).
-  NSMutableArray *zippedArray = [[NSMutableArray alloc] initWithCapacity:_labelsCount];
-  for (int i = 0; i < _labelsCount; i++) {
-    [zippedArray addObject:@[
-                             outputArray[i],
-                              [NSNumber numberWithInt:i]
-                              ]];
+  // Create a zipped array of tuples [(labelIndex: Int, confidence: Float)].
+  NSMutableArray *zippedResults = [[NSMutableArray alloc] initWithCapacity:firstOutput.count];
+  for (int i = 0; i < firstOutput.count; i++) {
+    [zippedResults addObject:@[
+                             [NSNumber numberWithInt:i],
+                             firstOutput[i],
+                             ]];
   }
 
-  // Sort the zipped array of tuples ("confidence" as NSNumber, "labelIndex" as Int) by confidence
-  // value in descending order.
-  [zippedArray sortUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
-    float confidenceValue1 = ((NSNumber *)((NSArray *)obj1).firstObject).floatValue;
-    float confidenceValue2 = ((NSNumber *)((NSArray *)obj2).firstObject).floatValue;
+  // Sort the zipped results by confidence value in descending order.
+  [zippedResults sortUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+    float confidenceValue1 = ((NSNumber *)((NSArray *)obj1)[1]).floatValue;
+    float confidenceValue2 = ((NSNumber *)((NSArray *)obj2)[1]).floatValue;
     return confidenceValue1 < confidenceValue2;
   }];
 
   // Resize the sorted results array to match the `topResultsCount`.
-  NSArray<NSArray *> *sortedResults =[zippedArray subarrayWithRange:NSMakeRange(0, topResultsCount)];
+  NSArray<NSArray *> *sortedResults =[zippedResults subarrayWithRange:NSMakeRange(0, topResultsCount)];
 
-  // Create an array of tuples with the results as [("label" as String, "confidence" as Float)].
+  // Create an array of tuples with the results as [(label: String, confidence: Float)].
   NSMutableArray *results = [[NSMutableArray alloc] initWithCapacity:topResultsCount];
   for (NSArray *sortedResult in sortedResults) {
-    int labelIndex = ((NSNumber *)sortedResult[1]).intValue;
+    int labelIndex = ((NSNumber *)sortedResult[0]).intValue;
     [results addObject:@[
                          _labels[labelIndex],
-                         (NSNumber *)sortedResult[0]
+                         (NSNumber *)sortedResult[1]
                          ]];
   }
   completion(results, nil);
@@ -422,18 +385,18 @@ topResultsCount:(int)topResultsCount
 
 #pragma mark - Fileprivate
 
-/// Safely dispatches the given block on the main queue. If the current thread is `main`, the block
-/// is executed synchronously; otherwise, the block is executed asynchronously on the main thread.
--(void) safeDispatchOnMain:(DetectObjectsCompletion)block
+  /// Safely dispatches the given block on the main queue. If the current thread is `main`, the block
+  /// is executed synchronously; otherwise, the block is executed asynchronously on the main thread.
+- (void)safeDispatchOnMain:(DetectObjectsCompletion)block
                    objects:(NSArray *_Nullable)objects
                      error:(NSError *_Nullable)error {
   if (NSThread.isMainThread) {
     block(objects, error);
-  } else {
-    dispatch_async(dispatch_get_main_queue(), ^{
-      block(objects, error);
-    });
+    return;
   }
+  dispatch_async(dispatch_get_main_queue(), ^{
+    block(objects, error);
+  });
 }
 
 @end

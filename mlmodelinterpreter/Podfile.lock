@@ -36,23 +36,23 @@ PODS:
     - GoogleUtilities/Network (~> 5.2)
     - "GoogleUtilities/NSData+zlib (~> 5.2)"
     - nanopb (~> 0.3)
-  - GoogleUtilities/AppDelegateSwizzler (5.3.5):
+  - GoogleUtilities/AppDelegateSwizzler (5.3.6):
     - GoogleUtilities/Environment
     - GoogleUtilities/Logger
     - GoogleUtilities/Network
-  - GoogleUtilities/Environment (5.3.5)
-  - GoogleUtilities/Logger (5.3.5):
+  - GoogleUtilities/Environment (5.3.6)
+  - GoogleUtilities/Logger (5.3.6):
     - GoogleUtilities/Environment
-  - GoogleUtilities/MethodSwizzler (5.3.5):
+  - GoogleUtilities/MethodSwizzler (5.3.6):
     - GoogleUtilities/Logger
-  - GoogleUtilities/Network (5.3.5):
+  - GoogleUtilities/Network (5.3.6):
     - GoogleUtilities/Logger
     - "GoogleUtilities/NSData+zlib"
     - GoogleUtilities/Reachability
-  - "GoogleUtilities/NSData+zlib (5.3.5)"
-  - GoogleUtilities/Reachability (5.3.5):
+  - "GoogleUtilities/NSData+zlib (5.3.6)"
+  - GoogleUtilities/Reachability (5.3.6):
     - GoogleUtilities/Logger
-  - GoogleUtilities/UserDefaults (5.3.5):
+  - GoogleUtilities/UserDefaults (5.3.6):
     - GoogleUtilities/Logger
   - GTMSessionFetcher/Core (1.2.0)
   - nanopb (0.3.901):
@@ -88,7 +88,7 @@ SPEC CHECKSUMS:
   FirebaseMLCommon: 5fb0152dc0e4de69f86ec37e813fb2555566ebbd
   FirebaseMLModelInterpreter: d3719ce72f8e44d71025979faeac9cf209ef5998
   GoogleAppMeasurement: 5029d78f2b438bd30ffb44e6c558b57c21622727
-  GoogleUtilities: bb6ff5a302c97a0bc9820dad775505778c5a2676
+  GoogleUtilities: 95996bea7c7d9b8fb811b7507669a4a8762f80c7
   GTMSessionFetcher: 0c4baf0a73acd0041bf9f71ea018deedab5ea84e
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   TensorFlowLite: 6274f29bbf7e234edb3108f0f32728b5a4d53d77

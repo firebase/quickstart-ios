@@ -40,24 +40,18 @@ static int const alphaComponentModuloRemainder = 3;
   return [UIImage imageWithData:imageData];
 }
 
-- (NSData *)scaledImageDataWithSize:(CGSize)size
-                    componentsCount:(int)newComponentsCount
-                          batchSize:(int)batchSize {
+- (NSData *)scaledDataWithSize:(CGSize)size
+                     byteCount:(int)byteCount
+                   isQuantized:(BOOL)isQuantized {
   CGImageRef cgImage = self.CGImage;
   if (cgImage && CGImageGetWidth(cgImage) > 0 && CGImageGetHeight(cgImage) > 0) {
-    unsigned long oldComponentsCount = CGImageGetBytesPerRow(cgImage) / CGImageGetWidth(cgImage);
-    if (newComponentsCount > oldComponentsCount) {
-      return nil;
-    }
-    NSData *imageData = [self imageDataFromImage:cgImage size:size componentsCount:(int)oldComponentsCount];
+    NSData *imageData = [self imageDataFromCGImage:cgImage size:size];
     if (!imageData) {
       return nil;
     }
     const UInt8 *bytes = imageData.bytes;
 
-    int bytesCount = size.width * size.height * newComponentsCount * batchSize;
-
-    NSMutableData *scaledBytes = [NSMutableData dataWithLength:bytesCount];
+    NSMutableData *scaledBytes = [NSMutableData dataWithLength:byteCount];
     UInt8 *mutableBytes = scaledBytes.mutableBytes;
 
     // Extract the RGB(A) components from the scaled image data while ignoring the alpha component.
@@ -69,51 +63,12 @@ static int const alphaComponentModuloRemainder = 3;
       }
       mutableBytes[pixelIndex++] = bytes[offset];
     }
-    return scaledBytes;
-  } else {
-    return nil;
-  }
-}
-
-- (NSArray *)scaledPixelArrayWithSize:(CGSize)size
-                      componentsCount:(int)newComponentsCount
-                            batchSize:(int)batchSize
-                          isQuantized:(BOOL)isQuantized {
-  CGImageRef cgImage = self.CGImage;
-  if (cgImage && CGImageGetWidth(cgImage) > 0 && CGImageGetHeight(cgImage) > 0) {
-    unsigned long oldComponentsCount = CGImageGetBytesPerRow(cgImage) / CGImageGetWidth(cgImage);
-    if (newComponentsCount > oldComponentsCount) {
-      return nil;
-    }
-    NSData *imageData = [self imageDataFromImage:cgImage size:size componentsCount:(int)oldComponentsCount];
-    if (!imageData) {
-      return nil;
-    }
-    const UInt8 *bytes = imageData.bytes;
-
-    NSMutableArray *columnArray = [[NSMutableArray alloc] initWithCapacity:size.width];
-    for (int yCoordinate = 0; yCoordinate < size.width; yCoordinate++) {
-      NSMutableArray *rowArray = [[NSMutableArray alloc] initWithCapacity:size.height];;
-      for (int xCoordinate = 0; xCoordinate < size.height; xCoordinate++) {
-        NSMutableArray *pixelArray = [[NSMutableArray alloc] initWithCapacity:newComponentsCount];
-        for (int component = 0; component < newComponentsCount; component++) {
-          int inputIndex =
-          (yCoordinate * size.height * oldComponentsCount) +
-          (xCoordinate * oldComponentsCount + component);
-          Float32 pixel = (Float32)bytes[inputIndex];
-          // Quantized model expects [0, 255] scale, but float expects [0, 1] scale.
-          if (!isQuantized) {
-            // Normalization:
-            // Convert pixel values from [0, 255] to [0, 1] scale for the float model.
-            pixel /= maxRGBValue;
-          }
-          [pixelArray addObject:[NSNumber numberWithFloat:pixel]];
-        }
-        [rowArray addObject:pixelArray];
+    if (!isQuantized) {
+      for (int i = 0; i < byteCount; i++) {
+        mutableBytes[i] = (Float32)mutableBytes[i]/maxRGBValue;
       }
-      [columnArray addObject:rowArray];
     }
-    return @[columnArray];
+    return scaledBytes;
   } else {
     return nil;
   }
@@ -121,18 +76,21 @@ static int const alphaComponentModuloRemainder = 3;
 
 #pragma mark - Private
 
-/// Returns the image data from the given CGImage resized to the given width and height.
-- (NSData *)imageDataFromImage:(CGImageRef)image
-                          size:(CGSize)size
-               componentsCount:(int)componentsCount {
+  /// Returns the image data from the given CGImage resized to the given width and height.
+- (NSData *)imageDataFromCGImage:(CGImageRef)cgImage
+                            size:(CGSize)size {
   uint32_t bitmapInfo = kCGBitmapByteOrder32Big | kCGImageAlphaPremultipliedLast;
-  CGContextRef context = CGBitmapContextCreate(nil, size.width, size.height, CGImageGetBitsPerComponent(image), componentsCount * size.width, CGColorSpaceCreateDeviceRGB(), bitmapInfo);
+  int width = size.width;
+  int height = size.height;
+  int scaledBytesPerRow = (CGImageGetBytesPerRow(cgImage) / CGImageGetWidth(cgImage)) * width;
+
+  CGContextRef context = CGBitmapContextCreate(nil, width, height, CGImageGetBitsPerComponent(cgImage), scaledBytesPerRow, CGColorSpaceCreateDeviceRGB(), bitmapInfo);
   if (!context) {
     return nil;
   }
-  CGContextDrawImage(context, CGRectMake(0, 0, size.width, size.height), image);
+  CGContextDrawImage(context, CGRectMake(0, 0, width, height), cgImage);
   CFDataRef cfData = CGDataProviderCopyData(CGImageGetDataProvider(CGBitmapContextCreateImage(context)));
   return (__bridge_transfer NSData*)cfData;
 }
-
+  
 @end

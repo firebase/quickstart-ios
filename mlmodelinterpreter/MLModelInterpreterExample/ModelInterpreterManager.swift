@@ -349,7 +349,7 @@ public class ModelInterpreterManager {
     case .float32:
       confidences = firstOutput.map { $0.floatValue }
     default:
-      completion(nil, NSModelInterpreterError.invalidModelDataType)
+      completion(nil, ModelInterpreterError.invalidModelDataType)
       return
     }
 

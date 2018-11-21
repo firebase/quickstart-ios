@@ -1,17 +1,17 @@
 PODS:
-  - Firebase (5.12.0):
-    - Firebase/Core (= 5.12.0)
-  - Firebase/Core (5.12.0):
+  - Firebase (5.13.0):
+    - Firebase/Core (= 5.13.0)
+  - Firebase/Core (5.13.0):
     - Firebase/CoreOnly
     - FirebaseAnalytics (= 5.3.0)
-  - Firebase/CoreOnly (5.12.0):
-    - FirebaseCore (= 5.1.7)
-  - Firebase/DynamicLinks (5.12.0):
+  - Firebase/CoreOnly (5.13.0):
+    - FirebaseCore (= 5.1.8)
+  - Firebase/DynamicLinks (5.13.0):
     - Firebase/CoreOnly
-    - FirebaseDynamicLinks (= 3.1.1)
-  - Firebase/InAppMessagingDisplay (5.12.0):
+    - FirebaseDynamicLinks (= 3.2.0)
+  - Firebase/InAppMessagingDisplay (5.13.0):
     - Firebase/CoreOnly
-    - FirebaseInAppMessagingDisplay (= 0.12.0)
+    - FirebaseInAppMessagingDisplay (= 0.12.2)
   - FirebaseAnalytics (5.3.0):
     - FirebaseCore (~> 5.1)
     - FirebaseInstanceID (~> 3.3)
@@ -22,9 +22,9 @@ PODS:
     - "GoogleUtilities/NSData+zlib (~> 5.2)"
     - nanopb (~> 0.3)
   - FirebaseAnalyticsInterop (1.1.0)
-  - FirebaseCore (5.1.7):
+  - FirebaseCore (5.1.8):
     - GoogleUtilities/Logger (~> 5.2)
-  - FirebaseDynamicLinks (3.1.1):
+  - FirebaseDynamicLinks (3.2.0):
     - FirebaseAnalytics (~> 5.1)
     - FirebaseAnalyticsInterop (~> 1.0)
     - FirebaseCore (~> 5.1)
@@ -33,7 +33,7 @@ PODS:
     - FirebaseCore (~> 5.1)
     - FirebaseInstanceID (~> 3.3)
     - GoogleUtilities/Environment (~> 5.0)
-  - FirebaseInAppMessagingDisplay (0.12.0):
+  - FirebaseInAppMessagingDisplay (0.12.2):
     - FirebaseCore
     - FirebaseInAppMessaging (>= 0.12.0)
   - FirebaseInstanceID (3.3.0):
@@ -90,13 +90,13 @@ SPEC REPOS:
     - nanopb
 
 SPEC CHECKSUMS:
-  Firebase: 9190018e296139d938b99521cde0c15a6e8d2946
+  Firebase: 6df9a6114bc9f106a98fe83d5438d4d9833c2019
   FirebaseAnalytics: 63202d2665de4e6adcbdce189135255d8b5962ba
   FirebaseAnalyticsInterop: e5f21be9af6548372e2f0815834ff909bff395a2
-  FirebaseCore: 027d350adc039aa5483357c6f56556f117c5170e
-  FirebaseDynamicLinks: 000130a3fc3d81ac7322731b895009f3199ef584
+  FirebaseCore: fba2bfaa691c49028309b92e4dd37cc4b5512fbe
+  FirebaseDynamicLinks: bf911771a3cd80a2ceb8c03dc5afc5b125c31a94
   FirebaseInAppMessaging: aa04bdbbee12aa132156e6085b3bfad7d6e0dcbb
-  FirebaseInAppMessagingDisplay: 4a154d15e3a3480bab28241c9241084009f1f8b1
+  FirebaseInAppMessagingDisplay: 5591606580c1ed8040fbf55c938a1ccc0caad3ef
   FirebaseInstanceID: e2fa4cb35ef5558c200f7f0ad8a53e212215f93e
   GoogleAppMeasurement: 5029d78f2b438bd30ffb44e6c558b57c21622727
   GoogleUtilities: 95996bea7c7d9b8fb811b7507669a4a8762f80c7

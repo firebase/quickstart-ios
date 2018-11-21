@@ -1,10 +1,10 @@
 PODS:
-  - Firebase/Core (5.12.0):
+  - Firebase/Core (5.13.0):
     - Firebase/CoreOnly
     - FirebaseAnalytics (= 5.3.0)
-  - Firebase/CoreOnly (5.12.0):
-    - FirebaseCore (= 5.1.7)
-  - Firebase/RemoteConfig (5.12.0):
+  - Firebase/CoreOnly (5.13.0):
+    - FirebaseCore (= 5.1.8)
+  - Firebase/RemoteConfig (5.13.0):
     - Firebase/Core
     - FirebaseRemoteConfig (= 3.1.0)
   - FirebaseABTesting (2.0.0):
@@ -19,7 +19,7 @@ PODS:
     - GoogleUtilities/Network (~> 5.2)
     - "GoogleUtilities/NSData+zlib (~> 5.2)"
     - nanopb (~> 0.3)
-  - FirebaseCore (5.1.7):
+  - FirebaseCore (5.1.8):
     - GoogleUtilities/Logger (~> 5.2)
   - FirebaseInstanceID (3.3.0):
     - FirebaseCore (~> 5.1)
@@ -82,10 +82,10 @@ SPEC REPOS:
     - Protobuf
 
 SPEC CHECKSUMS:
-  Firebase: 9190018e296139d938b99521cde0c15a6e8d2946
+  Firebase: 6df9a6114bc9f106a98fe83d5438d4d9833c2019
   FirebaseABTesting: 1f50b8d50f5e3469eea54e7463a7b7fe221d1f5e
   FirebaseAnalytics: 63202d2665de4e6adcbdce189135255d8b5962ba
-  FirebaseCore: 027d350adc039aa5483357c6f56556f117c5170e
+  FirebaseCore: fba2bfaa691c49028309b92e4dd37cc4b5512fbe
   FirebaseInstanceID: e2fa4cb35ef5558c200f7f0ad8a53e212215f93e
   FirebaseRemoteConfig: 7e11c65f0769c09bff6947997c209515058c5318
   GoogleAppMeasurement: 5029d78f2b438bd30ffb44e6c558b57c21622727

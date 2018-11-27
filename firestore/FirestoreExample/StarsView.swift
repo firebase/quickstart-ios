@@ -196,7 +196,7 @@ class RatingView: UIControl {
   }
 
   override var accessibilityTraits: UIAccessibilityTraits {
-    get { return UIAccessibilityTraitAdjustable }
+    get { return UIAccessibilityTraits.adjustable }
     set {}
   }
 

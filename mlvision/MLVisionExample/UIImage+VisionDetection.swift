@@ -31,8 +31,8 @@ extension UIImage {
 
     // Attempt to convert the scaled image to PNG or JPEG data to preserve the bitmap info.
     guard let image = scaledImage else { return nil }
-    let imageData = UIImagePNGRepresentation(image) ??
-      UIImageJPEGRepresentation(image, Constants.jpegCompressionQuality)
+    let imageData = image.pngData() ??
+      image.jpegData(compressionQuality: Constants.jpegCompressionQuality)
     return imageData.map { UIImage(data: $0) } ?? nil
   }
 }

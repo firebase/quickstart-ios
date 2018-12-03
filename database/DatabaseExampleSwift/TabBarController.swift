@@ -20,7 +20,7 @@ import Firebase
 @objc(TabBarController)
 class TabBarController: UITabBarController {
 
-  override func didMove(toParent parent: UIViewController?) {
+  override func didMove(toParentViewController parent: UIViewController?) {
     if parent == nil {
       let firebaseAuth = Auth.auth()
       do {

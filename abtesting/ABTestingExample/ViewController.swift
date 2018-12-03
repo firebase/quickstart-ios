@@ -87,13 +87,8 @@ class ViewController: UIViewController, UITableViewDataSource {
   }
 
   @objc func printInstanceIDToken() {
-    InstanceID.instanceID().instanceID { (result, error) in
-        if let error = error {
-            print("Error fetching remote instange ID: \(error)")
-        } else if let result = result {
-            print("Remote instance ID token: \(result.token)")
-        }
-    }
+    let instanceID = InstanceID.instanceID().token() ?? "null"
+    print("InstanceID token: \(instanceID)")
   }
 
   deinit {
@@ -109,7 +104,7 @@ class ViewController: UIViewController, UITableViewDataSource {
       navigationController?.navigationBar.barTintColor = ViewController.lightColors.primary
       navigationController?.navigationBar.barStyle = .`default`
       navigationController?.navigationBar.titleTextAttributes = [
-        NSAttributedString.Key.foregroundColor: UIColor.black
+        NSAttributedStringKey.foregroundColor: UIColor.black
       ]
       tableView.separatorColor = .gray
       tableView.backgroundColor = UIColor(red: 0.94, green: 0.94, blue: 0.94, alpha: 1)
@@ -118,7 +113,7 @@ class ViewController: UIViewController, UITableViewDataSource {
       navigationController?.navigationBar.barTintColor = ViewController.darkColors.primary
       navigationController?.navigationBar.barStyle = .black
       navigationController?.navigationBar.titleTextAttributes = [
-        NSAttributedString.Key.foregroundColor: UIColor.white
+        NSAttributedStringKey.foregroundColor: UIColor.white
       ]
       tableView.separatorColor = .lightGray
       tableView.backgroundColor = ViewController.darkColors.secondary

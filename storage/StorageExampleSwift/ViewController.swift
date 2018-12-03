@@ -65,15 +65,12 @@ class ViewController: UIViewController,
   }
 
   func imagePickerController(_ picker: UIImagePickerController,
-    didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-// Local variable inserted by Swift 4.2 migrator.
-let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
-
+    didFinishPickingMediaWithInfo info: [String : Any]) {
       picker.dismiss(animated: true, completion:nil)
 
     urlTextView.text = "Beginning Upload"
     // if it's a photo from the library, not an image from the camera
-    if #available(iOS 8.0, *), let referenceUrl = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.referenceURL)] as? URL {
+    if #available(iOS 8.0, *), let referenceUrl = info[UIImagePickerControllerReferenceURL] as? URL {
       let assets = PHAsset.fetchAssets(withALAssetURLs: [referenceUrl], options: nil)
       let asset = assets.firstObject
       asset?.requestContentEditingInput(with: nil, completionHandler: { (contentEditingInput, info) in
@@ -93,8 +90,8 @@ let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
         // [END uploadimage]
       })
     } else {
-      guard let image = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.originalImage)] as? UIImage else { return }
-      guard let imageData = image.jpegData(compressionQuality: 0.8) else { return }
+      guard let image = info[UIImagePickerControllerOriginalImage] as? UIImage else { return }
+      guard let imageData = UIImageJPEGRepresentation(image, 0.8) else { return }
       let imagePath = Auth.auth().currentUser!.uid +
         "/\(Int(Date.timeIntervalSinceReferenceDate * 1000)).jpg"
       let metadata = StorageMetadata()
@@ -129,14 +126,4 @@ let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
   func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
     picker.dismiss(animated: true, completion:nil)
   }
-}
-
-// Helper function inserted by Swift 4.2 migrator.
-fileprivate func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
-	return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
-}
-
-// Helper function inserted by Swift 4.2 migrator.
-fileprivate func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController.InfoKey) -> String {
-	return input.rawValue
 }

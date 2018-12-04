@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   var window: UIWindow?
 
-  func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+  func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     // Uncomment the following line to disable In-App Messaging auto-startup.
     // InAppMessaging.inAppMessaging().automaticDataCollectionEnabled = false
 
@@ -34,7 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   func application(_ app: UIApplication,
                    open url: URL,
-                   options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+                   options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
     return application(app,
                        open: url,
                        sourceApplication: options[.sourceApplication] as? String,

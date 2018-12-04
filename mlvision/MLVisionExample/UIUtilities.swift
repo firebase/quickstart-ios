@@ -76,7 +76,7 @@ public class UIUtilities {
 
   public static func imageOrientation(
     fromDevicePosition devicePosition: AVCaptureDevice.Position = .back
-    ) -> UIImage.Orientation {
+    ) -> UIImageOrientation {
     var deviceOrientation = UIDevice.current.orientation
     if deviceOrientation == .faceDown || deviceOrientation == .faceUp ||
       deviceOrientation == .unknown {
@@ -97,7 +97,7 @@ public class UIUtilities {
   }
 
   public static func visionImageOrientation(
-    from imageOrientation: UIImage.Orientation
+    from imageOrientation: UIImageOrientation
     ) -> VisionDetectorImageOrientation {
     switch imageOrientation {
     case .up:

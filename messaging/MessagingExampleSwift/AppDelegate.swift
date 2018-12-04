@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   let gcmMessageIDKey = "gcm.message_id"
 
   func application(_ application: UIApplication,
-                   didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+                   didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
     FirebaseApp.configure()
 

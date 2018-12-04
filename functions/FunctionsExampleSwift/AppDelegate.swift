@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   var window: UIWindow?
 
   func application(_ application: UIApplication, didFinishLaunchingWithOptions
-      launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+      launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     // [START firebase_configure]
     // Use Firebase library to configure APIs
     FirebaseApp.configure()
@@ -39,8 +39,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   }
 
   @available(iOS 9.0, *)
-  func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any]) -> Bool {
-    guard let sourceApplication = options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String else {
+  func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey: Any]) -> Bool {
+    guard let sourceApplication = options[UIApplicationOpenURLOptionsKey.sourceApplication] as? String else {
       return false
     }
     return self.handleOpenUrl(url, sourceApplication: sourceApplication)

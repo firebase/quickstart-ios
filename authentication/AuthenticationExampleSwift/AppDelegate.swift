@@ -35,7 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
   var window: UIWindow?
 
   func application(_ application: UIApplication, didFinishLaunchingWithOptions
-      launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+      launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     // [START firebase_configure]
     // Use Firebase library to configure APIs
     FirebaseApp.configure()
@@ -59,13 +59,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
 
   // [START new_delegate]
   @available(iOS 9.0, *)
-  func application(_ application: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any])
+  func application(_ application: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any])
     -> Bool {
       // [END new_delegate]
       return self.application(application,
                               open: url,
                               // [START new_options]
-                              sourceApplication:options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String,
+                              sourceApplication:options[UIApplicationOpenURLOptionsKey.sourceApplication] as? String,
                               annotation: [:])
   }
   // [END new_options]
@@ -89,7 +89,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
   }
   // [END old_options]
 
-  func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
+  func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
     return userActivity.webpageURL.flatMap(handlePasswordlessSignIn)!
   }
 
@@ -100,7 +100,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
       // [END is_signin_link]
       UserDefaults.standard.set(link, forKey: "Link")
       (window?.rootViewController as? UINavigationController)?.popToRootViewController(animated: false)
-      window?.rootViewController?.children[0].performSegue(withIdentifier: "passwordless", sender: nil)
+      window?.rootViewController?.childViewControllers[0].performSegue(withIdentifier: "passwordless", sender: nil)
       return true
     }
     return false

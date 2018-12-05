@@ -36,8 +36,8 @@ NSString * const CloudModelDownloadCompletedKey[] = {
 
 // REPLACE THESE CLOUD MODEL NAMES WITH ONES THAT ARE UPLOADED TO YOUR FIREBASE CONSOLE.
 NSString * const CloudModelDescription[] = {
-  [CloudModelQuantized] = @"imagenet-classification-quant-v2",
-  [CloudModelFloat] = @"imagenet-classification-float-v2",
+  [CloudModelQuantized] = @"image-classification-quant-v2",
+  [CloudModelFloat] = @"image-classification-float-v2",
   [CloudModelInvalid] = @"invalid_model"
 };
 

@@ -30,7 +30,7 @@ PODS:
     - FirebaseMLCommon (~> 0.12)
     - GTMSessionFetcher/Core (~> 1.1)
     - TensorFlowLite (= 1.10.1)
-  - GoogleAppMeasurement (5.3.0):
+  - GoogleAppMeasurement (5.4.0):
     - GoogleUtilities/AppDelegateSwizzler (~> 5.2)
     - GoogleUtilities/MethodSwizzler (~> 5.2)
     - GoogleUtilities/Network (~> 5.2)
@@ -87,7 +87,7 @@ SPEC CHECKSUMS:
   FirebaseInstanceID: e2fa4cb35ef5558c200f7f0ad8a53e212215f93e
   FirebaseMLCommon: 5fb0152dc0e4de69f86ec37e813fb2555566ebbd
   FirebaseMLModelInterpreter: d3719ce72f8e44d71025979faeac9cf209ef5998
-  GoogleAppMeasurement: 5029d78f2b438bd30ffb44e6c558b57c21622727
+  GoogleAppMeasurement: 98b71f5e04142793729a5ef23e5b96651ff4b70f
   GoogleUtilities: 95996bea7c7d9b8fb811b7507669a4a8762f80c7
   GTMSessionFetcher: 32aeca0aa144acea523e1c8e053089dec2cb98ca
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48

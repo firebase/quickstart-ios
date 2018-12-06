@@ -1,0 +1,95 @@
+PODS:
+  - Firebase/Core (99.99.99):
+    - Firebase/CoreOnly
+    - FirebaseAnalytics (= 99.99.99)
+  - Firebase/CoreOnly (99.99.99):
+    - FirebaseCore (= 99.99.99)
+  - FirebaseAnalytics (99.99.99):
+    - FirebaseCore (~> 99.99)
+    - FirebaseInstanceID (~> 99.99)
+    - GoogleAppMeasurement (= 99.99.99)
+    - GoogleUtilities/AppDelegateSwizzler (~> 5.2)
+    - GoogleUtilities/MethodSwizzler (~> 5.2)
+    - GoogleUtilities/Network (~> 5.2)
+    - "GoogleUtilities/NSData+zlib (~> 5.2)"
+    - nanopb (~> 0.3)
+  - FirebaseCore (99.99.99):
+    - GoogleUtilities/Logger (~> 5.2)
+  - FirebaseInstanceID (99.99.99):
+    - FirebaseCore (~> 99.99)
+    - GoogleUtilities/Environment (~> 5.3)
+    - GoogleUtilities/UserDefaults (~> 5.3)
+  - FirebaseMLCommon (99.99.99):
+    - FirebaseCore (~> 99.99)
+    - GoogleUtilities/UserDefaults (~> 5.3)
+  - FirebaseMLNaturalLanguage (99.99.99):
+    - FirebaseCore (~> 99.99)
+    - FirebaseMLCommon (~> 99.99)
+  - FirebaseMLNLLanguageID (99.99.99):
+    - FirebaseCore (~> 99.99)
+    - FirebaseMLCommon (~> 99.99)
+    - FirebaseMLNaturalLanguage (~> 99.99)
+  - GoogleAppMeasurement (99.99.99):
+    - GoogleUtilities/AppDelegateSwizzler (~> 5.2)
+    - GoogleUtilities/MethodSwizzler (~> 5.2)
+    - GoogleUtilities/Network (~> 5.2)
+    - "GoogleUtilities/NSData+zlib (~> 5.2)"
+    - nanopb (~> 0.3)
+  - GoogleUtilities/AppDelegateSwizzler (5.3.6):
+    - GoogleUtilities/Environment
+    - GoogleUtilities/Logger
+    - GoogleUtilities/Network
+  - GoogleUtilities/Environment (5.3.6)
+  - GoogleUtilities/Logger (5.3.6):
+    - GoogleUtilities/Environment
+  - GoogleUtilities/MethodSwizzler (5.3.6):
+    - GoogleUtilities/Logger
+  - GoogleUtilities/Network (5.3.6):
+    - GoogleUtilities/Logger
+    - "GoogleUtilities/NSData+zlib"
+    - GoogleUtilities/Reachability
+  - "GoogleUtilities/NSData+zlib (5.3.6)"
+  - GoogleUtilities/Reachability (5.3.6):
+    - GoogleUtilities/Logger
+  - GoogleUtilities/UserDefaults (5.3.6):
+    - GoogleUtilities/Logger
+  - nanopb (0.3.901):
+    - nanopb/decode (= 0.3.901)
+    - nanopb/encode (= 0.3.901)
+  - nanopb/decode (0.3.901)
+  - nanopb/encode (0.3.901)
+
+DEPENDENCIES:
+  - Firebase/Core
+  - FirebaseMLNLLanguageID
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - GoogleUtilities
+  sso://cpdc-test/firebase-ml:
+    - FirebaseCore
+    - FirebaseMLCommon
+    - FirebaseMLNaturalLanguage
+    - FirebaseMLNLLanguageID
+  sso://cpdc-test/spec:
+    - Firebase
+    - FirebaseAnalytics
+    - FirebaseInstanceID
+    - GoogleAppMeasurement
+    - nanopb
+
+SPEC CHECKSUMS:
+  Firebase: 7ad47a5ab06f292d9c6ef799248b37a31cb83936
+  FirebaseAnalytics: a61c28b7e96c3ca4148aa8d325bcdc2d9ca1c585
+  FirebaseCore: 5d8418371134573dc71c0a339cd0532e669b9855
+  FirebaseInstanceID: 1f0573c0f3335ade153499f50cd3f62a71add3ba
+  FirebaseMLCommon: 7beee3c703059aac73df25f7e8c954b0b8565a80
+  FirebaseMLNaturalLanguage: f65ced18325cef575012c5eb89d43f76a83442fd
+  FirebaseMLNLLanguageID: 2cb3a3416cd24dc3609a890c6b21318989a3d680
+  GoogleAppMeasurement: 8ea77685ba8db50e1e7b238c6e56f50074f49478
+  GoogleUtilities: 95996bea7c7d9b8fb811b7507669a4a8762f80c7
+  nanopb: cf319651d4b9e5b247eea6c05b636fdefa85be83
+
+PODFILE CHECKSUM: 4eecccf8f66f46be8af6e2d4fdc78f11750e2680
+
+COCOAPODS: 1.5.3

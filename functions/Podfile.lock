@@ -49,14 +49,14 @@ PODS:
     - "GoogleToolboxForMac/NSDictionary+URLArguments (~> 2.1)"
     - "GoogleToolboxForMac/NSString+URLArguments (~> 2.1)"
     - GTMSessionFetcher/Core (~> 1.1)
-  - GoogleToolboxForMac/DebugUtils (2.1.4):
-    - GoogleToolboxForMac/Defines (= 2.1.4)
-  - GoogleToolboxForMac/Defines (2.1.4)
-  - "GoogleToolboxForMac/NSDictionary+URLArguments (2.1.4)":
-    - GoogleToolboxForMac/DebugUtils (= 2.1.4)
-    - GoogleToolboxForMac/Defines (= 2.1.4)
-    - "GoogleToolboxForMac/NSString+URLArguments (= 2.1.4)"
-  - "GoogleToolboxForMac/NSString+URLArguments (2.1.4)"
+  - GoogleToolboxForMac/DebugUtils (2.2.0):
+    - GoogleToolboxForMac/Defines (= 2.2.0)
+  - GoogleToolboxForMac/Defines (2.2.0)
+  - "GoogleToolboxForMac/NSDictionary+URLArguments (2.2.0)":
+    - GoogleToolboxForMac/DebugUtils (= 2.2.0)
+    - GoogleToolboxForMac/Defines (= 2.2.0)
+    - "GoogleToolboxForMac/NSString+URLArguments (= 2.2.0)"
+  - "GoogleToolboxForMac/NSString+URLArguments (2.2.0)"
   - GoogleUtilities/AppDelegateSwizzler (5.3.6):
     - GoogleUtilities/Environment
     - GoogleUtilities/Logger
@@ -76,8 +76,8 @@ PODS:
   - GoogleUtilities/UserDefaults (5.3.6):
     - GoogleUtilities/Logger
   - GTMSessionFetcher/Core (1.2.1)
-  - MaterialComponents/AnimationTiming (70.0.0)
-  - MaterialComponents/Buttons (70.0.0):
+  - MaterialComponents/AnimationTiming (72.0.1)
+  - MaterialComponents/Buttons (72.0.1):
     - MaterialComponents/Ink
     - MaterialComponents/private/Math
     - MaterialComponents/private/Shapes
@@ -86,7 +86,7 @@ PODS:
     - MaterialComponents/Typography
     - MDFInternationalization
     - MDFTextAccessibility
-  - MaterialComponents/CollectionCells (70.0.0):
+  - MaterialComponents/CollectionCells (72.0.1):
     - MaterialComponents/CollectionLayoutAttributes
     - MaterialComponents/Ink
     - MaterialComponents/Palettes
@@ -99,8 +99,8 @@ PODS:
     - MaterialComponents/private/Math
     - MaterialComponents/Typography
     - MDFInternationalization
-  - MaterialComponents/CollectionLayoutAttributes (70.0.0)
-  - MaterialComponents/Collections (70.0.0):
+  - MaterialComponents/CollectionLayoutAttributes (72.0.1)
+  - MaterialComponents/Collections (72.0.1):
     - MaterialComponents/CollectionCells
     - MaterialComponents/CollectionLayoutAttributes
     - MaterialComponents/Ink
@@ -108,41 +108,41 @@ PODS:
     - MaterialComponents/ShadowElevations
     - MaterialComponents/ShadowLayer
     - MaterialComponents/Typography
-  - MaterialComponents/Ink (70.0.0):
+  - MaterialComponents/Ink (72.0.1):
     - MaterialComponents/private/Math
-  - MaterialComponents/Palettes (70.0.0)
-  - MaterialComponents/private/Application (70.0.0)
-  - MaterialComponents/private/Icons/Base (70.0.0)
-  - MaterialComponents/private/Icons/ic_check (70.0.0):
+  - MaterialComponents/Palettes (72.0.1)
+  - MaterialComponents/private/Application (72.0.1)
+  - MaterialComponents/private/Icons/Base (72.0.1)
+  - MaterialComponents/private/Icons/ic_check (72.0.1):
     - MaterialComponents/private/Icons/Base
-  - MaterialComponents/private/Icons/ic_check_circle (70.0.0):
+  - MaterialComponents/private/Icons/ic_check_circle (72.0.1):
     - MaterialComponents/private/Icons/Base
-  - MaterialComponents/private/Icons/ic_chevron_right (70.0.0):
+  - MaterialComponents/private/Icons/ic_chevron_right (72.0.1):
     - MaterialComponents/private/Icons/Base
-  - MaterialComponents/private/Icons/ic_info (70.0.0):
+  - MaterialComponents/private/Icons/ic_info (72.0.1):
     - MaterialComponents/private/Icons/Base
-  - MaterialComponents/private/Icons/ic_radio_button_unchecked (70.0.0):
+  - MaterialComponents/private/Icons/ic_radio_button_unchecked (72.0.1):
     - MaterialComponents/private/Icons/Base
-  - MaterialComponents/private/Icons/ic_reorder (70.0.0):
+  - MaterialComponents/private/Icons/ic_reorder (72.0.1):
     - MaterialComponents/private/Icons/Base
-  - MaterialComponents/private/Math (70.0.0)
-  - MaterialComponents/private/Shapes (70.0.0):
+  - MaterialComponents/private/Math (72.0.1)
+  - MaterialComponents/private/Shapes (72.0.1):
     - MaterialComponents/private/Math
     - MaterialComponents/ShadowLayer
-  - MaterialComponents/ShadowElevations (70.0.0)
-  - MaterialComponents/ShadowLayer (70.0.0):
+  - MaterialComponents/ShadowElevations (72.0.1)
+  - MaterialComponents/ShadowLayer (72.0.1):
     - MaterialComponents/ShadowElevations
-  - MaterialComponents/TextFields (70.0.0):
+  - MaterialComponents/TextFields (72.0.1):
     - MaterialComponents/AnimationTiming
     - MaterialComponents/Palettes
     - MaterialComponents/private/Math
     - MaterialComponents/Typography
     - MDFInternationalization
-  - MaterialComponents/Typography (70.0.0):
+  - MaterialComponents/Typography (72.0.1):
     - MaterialComponents/private/Application
     - MaterialComponents/private/Math
-  - MDFInternationalization (1.1.0)
-  - MDFTextAccessibility (1.2.0)
+  - MDFInternationalization (2.0.0)
+  - MDFTextAccessibility (2.0.0)
   - nanopb (0.3.901):
     - nanopb/decode (= 0.3.901)
     - nanopb/encode (= 0.3.901)
@@ -190,12 +190,12 @@ SPEC CHECKSUMS:
   FirebaseUI: 09519bf436a055cd696bf68687d624423150e4c0
   GoogleAppMeasurement: 98b71f5e04142793729a5ef23e5b96651ff4b70f
   GoogleSignIn: 7ff245e1a7b26d379099d3243a562f5747e23d39
-  GoogleToolboxForMac: 91c824d21e85b31c2aae9bb011c5027c9b4e738f
+  GoogleToolboxForMac: ff31605b7d66400dcec09bed5861689aebadda4d
   GoogleUtilities: 95996bea7c7d9b8fb811b7507669a4a8762f80c7
   GTMSessionFetcher: 32aeca0aa144acea523e1c8e053089dec2cb98ca
-  MaterialComponents: 7c107af5ae6566de2f1ba94bde3db99d1b874bab
-  MDFInternationalization: b5b8626628abf026e630e5ebaeee563037712cbb
-  MDFTextAccessibility: 94098925e0853551c5a311ce7c1ecefbe297cdb6
+  MaterialComponents: fb709eff8adee8021cc55b3de93adb0f1050aa4a
+  MDFInternationalization: 010097556d6b09d2c4ea38e0820ea6d37be6a314
+  MDFTextAccessibility: 85c09a1bd9c321f494348e632a25063bcda35a53
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
 
 PODFILE CHECKSUM: 745a17aabcd57a85c2a338d1f67162a027be5e02

@@ -17,131 +17,138 @@
 #import "ViewController.h"
 #import "ModelInterpreterManager.h"
 #import "UIImage+TFLite.h"
-@import Firebase;
+@import FirebaseMLCommon;
 
 static NSString *const failedToDetectObjectsMessage = @"Failed to detect objects in image.";
 static NSString *const defaultImage = @"grace_hopper.jpg";
 
-typedef NS_ENUM(NSInteger, CloudModel) {
-  CloudModelQuantized = 0,
-  CloudModelFloat = 1,
-  CloudModelInvalid = 2
+typedef NS_ENUM(NSInteger, CloudModelType) {
+  CloudModelTypeQuantized = 0,
+  CloudModelTypeFloat = 1,
+  CloudModelTypeInvalid = 2
 };
 
 NSString * const CloudModelDownloadCompletedKey[] = {
-  [CloudModelQuantized] = @"FIRCloudModel1DownloadCompleted",
-  [CloudModelFloat] = @"FIRCloudModel2DownloadCompleted",
-  [CloudModelInvalid] = @"FIRCloudInvalidModel"
+  [CloudModelTypeQuantized] = @"FIRCloudModel1DownloadCompleted",
+  [CloudModelTypeFloat] = @"FIRCloudModel2DownloadCompleted",
+  [CloudModelTypeInvalid] = @"FIRCloudInvalidModel"
 };
 
 // REPLACE THESE CLOUD MODEL NAMES WITH ONES THAT ARE UPLOADED TO YOUR FIREBASE CONSOLE.
 NSString * const CloudModelDescription[] = {
-  [CloudModelQuantized] = @"image-classification-quant-v2",
-  [CloudModelFloat] = @"image-classification-float-v2",
-  [CloudModelInvalid] = @"invalid_model"
+  [CloudModelTypeQuantized] = @"image-classification-quant-v2",
+  [CloudModelTypeFloat] = @"image-classification-float-v2",
+  [CloudModelTypeInvalid] = @"invalid_model"
 };
 
-typedef NS_ENUM(NSInteger, LocalModel) {
-  LocalModelQuantized = 0,
-  LocalModelFloat = 1,
-  LocalModelInvalid = 2
+typedef NS_ENUM(NSInteger, LocalModelType) {
+  LocalModelTypeQuantized = 0,
+  LocalModelTypeFloat = 1,
+  LocalModelTypeInvalid = 2
 };
 
 NSString * const LocalModelDescription[] = {
-  [CloudModelQuantized] = quantizedModelFilename,
-  [CloudModelFloat] = floatModelFilename,
-  [CloudModelInvalid] = invalidModelFilename
+  [CloudModelTypeQuantized] = quantizedModelFilename,
+  [CloudModelTypeFloat] = floatModelFilename,
+  [CloudModelTypeInvalid] = invalidModelFilename
 };
 
 
 
 @interface ViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
-  
-  /// Model interpreter manager that manages loading models and detecting objects.
-  @property(nonatomic) ModelInterpreterManager *modelManager;
-  
-  /// Indicates whether the download cloud model button was selected.
-  @property(nonatomic) bool downloadCloudModelButtonSelected;
-  
-  /// An image picker for accessing the photo library or camera.
-  @property(nonatomic) UIImagePickerController *imagePicker;
-  
-  @property(nonatomic) CloudModel currentCloudModel;
-  @property(nonatomic) LocalModel currentLocalModel;
-  @property(nonatomic) BOOL isModelQuantized;
-  @property(nonatomic) BOOL isCloudModelDownloaded;
-  
-  
-  /// A segmented control for changing models (0 = float, 1 = quantized, 2 = invalid).
-  @property (weak, nonatomic) IBOutlet UISegmentedControl *modelControl;
-  
-  @property (weak, nonatomic) IBOutlet UIImageView *imageView;
-  @property (weak, nonatomic) IBOutlet UITextView *resultsTextView;
-  @property (weak, nonatomic) IBOutlet UIBarButtonItem *detectButton;
-  @property (weak, nonatomic) IBOutlet UIBarButtonItem *cameraButton;
-  @property (weak, nonatomic) IBOutlet UIBarButtonItem *downloadModelButton;
-  
-  @end
+
+/// Model interpreter manager that manages loading models and detecting objects.
+@property(nonatomic) ModelInterpreterManager *modelManager;
+
+/// An image picker for accessing the photo library or camera.
+@property(nonatomic) UIImagePickerController *imagePicker;
+
+/// The currently selected cloud model type.
+@property(nonatomic) CloudModelType currentCloudModelType;
+
+/// The currently selected local model type.
+@property(nonatomic) LocalModelType currentLocalModelType;
+@property(nonatomic) BOOL isModelQuantized;
+@property(nonatomic) BOOL isCloudModelDownloaded;
+
+/// A segmented control for changing models (0 = float, 1 = quantized, 2 = invalid).
+@property (weak, nonatomic) IBOutlet UISegmentedControl *modelControl;
+
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (weak, nonatomic) IBOutlet UITextView *resultsTextView;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *detectButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *cameraButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *downloadModelButton;
+
+@property(nonatomic) bool isLocalModelLoaded;
+
+@end
 
 @implementation ViewController
-  
-- (CloudModel) currentCloudModel {
+
+- (CloudModelType) currentCloudModel {
   return _modelControl.selectedSegmentIndex;
 }
-  
-- (LocalModel) currentLocalModel {
+
+- (LocalModelType) currentLocalModel {
   return _modelControl.selectedSegmentIndex;
 }
-  
+
 - (BOOL) isCloudModelDownloaded {
-  return [NSUserDefaults.standardUserDefaults boolForKey:CloudModelDownloadCompletedKey[_currentCloudModel]];
+  return [NSUserDefaults.standardUserDefaults boolForKey:CloudModelDownloadCompletedKey[_currentCloudModelType]];
 }
-  
+
 - (BOOL) isModelQuantized {
-  return _isCloudModelDownloaded ? _currentCloudModel == CloudModelQuantized : _currentLocalModel == LocalModelQuantized;
+  return _isCloudModelDownloaded ? _currentCloudModelType == CloudModelTypeQuantized : _currentLocalModelType == LocalModelTypeQuantized;
 }
-  
+
 - (void)viewDidLoad {
   [super viewDidLoad];
   
-  
   self.modelManager = [ModelInterpreterManager new];
-  self.downloadCloudModelButtonSelected = NO;
+  self.isLocalModelLoaded = NO;
   self.imagePicker = [UIImagePickerController new];
   _imageView.image = [UIImage imageNamed:defaultImage];
   _imagePicker.delegate = self;
-  
   if (![UIImagePickerController isCameraDeviceAvailable:UIImagePickerControllerCameraDeviceFront] ||
       ![UIImagePickerController isCameraDeviceAvailable:UIImagePickerControllerCameraDeviceRear]) {
     [_cameraButton setEnabled:NO];
   }
-  
   [self setUpCloudModel];
   [self setUpLocalModel];
+  _downloadModelButton.enabled = !_isCloudModelDownloaded;
 }
-  
+
 #pragma mark - IBActions
-  
+
 - (IBAction)detectObjects:(id)sender {
-  [self clearResults];
+  [self updateResultsText:nil];
   UIImage *image = _imageView.image;
   if (!image) {
-    _resultsTextView.text = @"Image must not be nil.\n";
+    [self updateResultsText:@"Image must not be nil.\n"];
     return;
   }
   
-  if (!_downloadCloudModelButtonSelected) {
-    _resultsTextView.text = @"Loading the local model...\n";
-    if (![_modelManager loadLocalModelWithIsModelQuantized:(_currentLocalModel == LocalModelQuantized)]) {
-      _resultsTextView.text = @"Failed to load the local model.";
+  if (_isCloudModelDownloaded) {
+    [self updateResultsText:@"Loading the cloud model...\n"];
+    if (![_modelManager loadCloudModelWithIsModelQuantized:(_currentCloudModelType == CloudModelTypeQuantized)]) {
+      [self updateResultsText:@"Failed to load the cloud model."];
       return;
     }
+  } else {
+    [self updateResultsText:@"Loading the local model...\n"];
+    if (![_modelManager loadLocalModelWithIsModelQuantized:(_currentLocalModelType == LocalModelTypeQuantized)]) {
+      [self updateResultsText:@"Failed to load the local model."];
+      return;
+    }
+    _isLocalModelLoaded = YES;
   }
   NSString *newResultsTextString = @"Starting inference...\n";
   if (_resultsTextView.text) {
-    _resultsTextView.text = [_resultsTextView.text stringByAppendingString:newResultsTextString];
+    newResultsTextString = [_resultsTextView.text stringByAppendingString:newResultsTextString];
   }
-  CloudModel cloudmodel = _currentCloudModel;
+  [self updateResultsText:newResultsTextString];
+  CloudModelType cloudmodel = _currentCloudModelType;
   dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), ^{
     NSObject *imageData = [self.modelManager scaledImageDataFromImage:image];
     [self.modelManager detectObjectsInImageData:imageData topResultsCount:nil completion:^(NSArray * _Nullable results, NSError * _Nullable error) {
@@ -149,74 +156,108 @@ NSString * const LocalModelDescription[] = {
         NSString *errorString = error ? error.localizedDescription : failedToDetectObjectsMessage;
         errorString = [NSString stringWithFormat:@"Inference error: %@", errorString];
         NSLog(@"%@", errorString);
-        self.resultsTextView.text = errorString;
+        [self updateResultsText:errorString];
         return;
       }
       
       NSString *inferenceMessageString = @"Inference results using ";
-      if (self.downloadCloudModelButtonSelected) {
-        [NSUserDefaults.standardUserDefaults setBool:YES forKey:CloudModelDownloadCompletedKey[cloudmodel]];
+      if (self.isCloudModelDownloaded) {
         inferenceMessageString = [inferenceMessageString stringByAppendingFormat:@"`%@` cloud model:\n", CloudModelDescription[cloudmodel]];
       } else {
         inferenceMessageString = [inferenceMessageString stringByAppendingFormat:@"`%@` local model:\n", LocalModelDescription[self.currentLocalModel]];;
       }
-      self.resultsTextView.text = [inferenceMessageString stringByAppendingString:[self detectionResultsStringRromResults:results]];
+      [self updateResultsText:[inferenceMessageString stringByAppendingString:[self detectionResultsStringRromResults:results]]];
     }];
   });
 }
-  
+
 - (IBAction)openPhotoLibrary:(id)sender {
   _imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
   [self presentViewController:_imagePicker animated:YES completion:nil];
 }
-  
+
 - (IBAction)openCamera:(id)sender {
   _imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
   [self presentViewController:_imagePicker animated:YES completion:nil];
 }
-  
+
 - (IBAction)downloadCloudModel:(id)sender {
-  [self clearResults];
-  _downloadCloudModelButtonSelected = true;
+  [self updateResultsText:nil];
+  _downloadModelButton.enabled = _isCloudModelDownloaded;
+  _detectButton.enabled = NO;
   _resultsTextView.text = _isCloudModelDownloaded ?
   @"Cloud model loaded. Select the `Detect` button to start the inference." :
   @"Downloading cloud model. Once the download has completed, select the `Detect` button to start the inference.";
-  if (![_modelManager loadCloudModelWithIsModelQuantized:(_currentCloudModel == CloudModelQuantized)]) {
+  if (![_modelManager loadCloudModelWithIsModelQuantized:(_currentCloudModelType == CloudModelTypeQuantized)]) {
     _resultsTextView.text = @"Failed to load the cloud model.";
   }
 }
-  
+
 - (IBAction)modelSwitched:(id)sender {
-  [self clearResults];
+  [self updateResultsText:nil];
   [self setUpLocalModel];
   [self setUpCloudModel];
 }
-  
+
+#pragma mark - Notifications
+
+- (void)cloudModelDownloadDidSucceed:(NSNotification *)notification {
+  [self runOnMainThread:^{
+    [NSUserDefaults.standardUserDefaults setBool:YES forKey:CloudModelDownloadCompletedKey[self.currentCloudModelType]];
+    [self updateResultsText:nil];
+    self.detectButton.enabled = YES;
+    self.downloadModelButton.enabled = NO;
+    FIRCloudModel *cloudmodel = notification.userInfo[FIRModelDownloadUserInfoKeyCloudModel];
+    if (cloudmodel == nil) {
+      [self updateResultsText:@"Successfully downloaded the cloud model. The model is ready for detection."];
+      return;
+    }
+    [self updateResultsText:[NSString stringWithFormat:@"Successfully downloaded the cloud model with name: %@. The model is ready for detection.", cloudmodel.name]];
+   }];
+}
+
+- (void)cloudModelDownloadDidFail:(NSNotification *)notification {
+  [self runOnMainThread:^{
+    [self updateResultsText:nil];
+    self.detectButton.enabled = YES;
+    self.downloadModelButton.enabled = YES;
+    FIRCloudModel *cloudModel = notification.userInfo[FIRModelDownloadUserInfoKeyCloudModel];
+    NSError *error = notification.userInfo[FIRModelDownloadUserInfoKeyError];
+    if (error == nil) {
+      [self updateResultsText:@"SFailed to download the cloud model."];
+      return;
+    }
+    [self updateResultsText:[NSString stringWithFormat:@"Failed to download the cloud model with name: %@, error: %@.", cloudModel, error.localizedDescription]];
+  }];
+}
+
 #pragma mark - Private
-  
-  /// Sets up the currently selected cloud model.
+
+/// Sets up the currently selected cloud model.
 - (void)setUpCloudModel {
-  NSString *modelName = CloudModelDescription[_currentCloudModel];
+  NSString *modelName = CloudModelDescription[_currentCloudModelType];
   if (![_modelManager setUpCloudModelWithName:modelName]) {
-    if (_resultsTextView.text) {
-      _resultsTextView.text = @"";
-    }
-    _resultsTextView.text = [NSString stringWithFormat:@"%@\nFailed to set up the `%@` cloud model.", _resultsTextView.text, modelName];
+    [self updateResultsText:[NSString stringWithFormat:@"%@\nFailed to set up the `%@` cloud model.", _resultsTextView.text, modelName]];
   }
+  [NSNotificationCenter.defaultCenter addObserver:self
+                                         selector:@selector(cloudModelDownloadDidSucceed:) name:FIRModelDownloadDidSucceedNotification object:nil];
+  [NSNotificationCenter.defaultCenter addObserver:self
+                                         selector:@selector(cloudModelDownloadDidFail:) name:FIRModelDownloadDidFailNotification object:nil];
 }
-  
-  /// Sets up the local model.
+
+/// Sets up the local model.
 - (void)setUpLocalModel {
-  NSString *localModelName = LocalModelDescription[_currentLocalModel];
+  NSString *localModelName = LocalModelDescription[_currentLocalModelType];
   if (![_modelManager setUpLocalModelWithName:localModelName filename:localModelName]) {
+    NSString *newResultsText = @"";
     if (_resultsTextView.text) {
-      _resultsTextView.text = @"";
+      newResultsText = _resultsTextView.text;
     }
-    _resultsTextView.text = [_resultsTextView.text stringByAppendingString:@"\nFailed to set up the local model."];
+    [self updateResultsText:[newResultsText stringByAppendingString:@"\nFailed to set up the local model."]];
   }
 }
-  
-  /// Returns a string representation of the detection results.
+
+/// Returns a string representation of the detection results.
 - (NSString *)detectionResultsStringRromResults:(NSArray *)results {
   if (!results) {
     return failedToDetectObjectsMessage;
@@ -228,13 +269,16 @@ NSString * const LocalModelDescription[] = {
   }
   return resultString;
 }
-  
-  /// Clears the results from the last inference call.
-- (void)clearResults {
-  _resultsTextView.text = nil;
+
+/// Updates the results text view with the given text. The default is `nil`, so calling
+/// `updateResultsText()` will clear the results.
+- (void)updateResultsText:(nullable NSString *)text {
+  [self runOnMainThread:^{
+    self.resultsTextView.text = text;
+  }];
 }
-  
-  /// Updates the image view with a scaled version of the given image.
+
+/// Updates the image view with a scaled version of the given image.
 - (void)updateImageViewWithImage:(UIImage *)image {
   UIInterfaceOrientation orientation =  UIApplication.sharedApplication.statusBarOrientation;
   CGFloat imageWidth = image.size.width;
@@ -248,16 +292,16 @@ NSString * const LocalModelDescription[] = {
   CGFloat scaledImageWidth = 0.0;
   CGFloat scaledImageHeight = 0.0;
   switch (orientation) {
-    case UIInterfaceOrientationPortrait:
-    case UIInterfaceOrientationPortraitUpsideDown:
-    case UIInterfaceOrientationUnknown:
-    scaledImageWidth = _imageView.bounds.size.width;
-    scaledImageHeight = imageHeight * scaledImageWidth / imageWidth;
-    break;
-    case UIInterfaceOrientationLandscapeLeft:
-    case UIInterfaceOrientationLandscapeRight:
-    scaledImageWidth = imageWidth * scaledImageHeight / imageHeight;
-    scaledImageHeight = _imageView.bounds.size.height;
+      case UIInterfaceOrientationPortrait:
+      case UIInterfaceOrientationPortraitUpsideDown:
+      case UIInterfaceOrientationUnknown:
+      scaledImageWidth = _imageView.bounds.size.width;
+      scaledImageHeight = imageHeight * scaledImageWidth / imageWidth;
+      break;
+      case UIInterfaceOrientationLandscapeLeft:
+      case UIInterfaceOrientationLandscapeRight:
+      scaledImageWidth = imageWidth * scaledImageHeight / imageHeight;
+      scaledImageHeight = _imageView.bounds.size.height;
   }
   dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), ^{
     // Scale image while maintaining aspect ratio so it displays better in the UIImageView.
@@ -267,15 +311,24 @@ NSString * const LocalModelDescription[] = {
     });
   });
 }
-  
+
 #pragma mark - Constants
-  
+
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
-  [self clearResults];
-  
+  [self updateResultsText:nil];
   UIImage *pickedImage = info[UIImagePickerControllerOriginalImage];
   if (pickedImage) [self updateImageViewWithImage:pickedImage];
   [self dismissViewControllerAnimated:YES completion:nil];
 }
-  
+
+- (void)runOnMainThread:(void (^)(void))functionBlock {
+  if (NSThread.isMainThread) {
+    functionBlock();
+    return;
+  }
+  dispatch_async(dispatch_get_main_queue(), ^{
+    functionBlock();
+  });
+}
+
 @end

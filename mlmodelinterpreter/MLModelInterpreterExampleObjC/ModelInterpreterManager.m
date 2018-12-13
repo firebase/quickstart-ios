@@ -16,7 +16,7 @@
 
 #import "ModelInterpreterManager.h"
 #import "UIImage+TFLite.h"
-@import Firebase;
+@import FirebaseMLModelInterpreter;
 
 static NSString *const labelsSeparator = @"\n";
 static NSString *const labelsFilename = @"labels";
@@ -43,35 +43,35 @@ static float const SoftmaxNormalizerValue = 1.0;
 static float const SoftmaxScale = 1.0 / (SoftmaxMaxUInt8QuantizedValue + SoftmaxNormalizerValue);
 
 @interface FIRModelManager (ModelManaging) <ModelManaging>
-  @end
+@end
 
 @interface ModelInterpreterError : NSError
-  -(instancetype) initWithCode:(int)code;
-  @end
+-(instancetype) initWithCode:(int)code;
+@end
 
 @implementation ModelInterpreterError
 
 -(instancetype) initWithCode:(int)code {
   return [self initWithDomain:@"com.google.firebaseml.sampleapps.modelinterpreter" code:code userInfo:[NSDictionary dictionary]];
 }
-  @end
+@end
 
 @interface ModelInterpreterManager ()
 
-  @property (nonatomic) NSArray *inputDimensions;
+@property (nonatomic) NSArray *inputDimensions;
 
-  @property(nonatomic) id<ModelManaging> modelManager;
-  @property(nonatomic) FIRModelInputOutputOptions *modelInputOutputOptions;
-  @property(nonatomic) NSMutableSet<NSString *> *registeredCloudModelNames;
-  @property(nonatomic) NSMutableSet<NSString *> *registeredLocalModelNames;
-  @property(nonatomic) FIRModelOptions *cloudModelOptions;
-  @property(nonatomic) FIRModelOptions *localModelOptions;
-  @property(nonatomic) FIRModelInterpreter *modelInterpreter;
-  @property(nonatomic) FIRModelElementType modelElementType;
-  @property(nonatomic) NSArray<NSString *> *labels;
-  @property(nonatomic) int labelsCount;
+@property(nonatomic) id<ModelManaging> modelManager;
+@property(nonatomic) FIRModelInputOutputOptions *modelInputOutputOptions;
+@property(nonatomic) NSMutableSet<NSString *> *registeredCloudModelNames;
+@property(nonatomic) NSMutableSet<NSString *> *registeredLocalModelNames;
+@property(nonatomic) FIRModelOptions *cloudModelOptions;
+@property(nonatomic) FIRModelOptions *localModelOptions;
+@property(nonatomic) FIRModelInterpreter *modelInterpreter;
+@property(nonatomic) FIRModelElementType modelElementType;
+@property(nonatomic) NSArray<NSString *> *labels;
+@property(nonatomic) int labelsCount;
 
-  @end
+@end
 
 @implementation ModelInterpreterManager
 
@@ -79,7 +79,7 @@ static float const SoftmaxScale = 1.0 / (SoftmaxMaxUInt8QuantizedValue + Softmax
   return [self initWithModelManager:[FIRModelManager modelManager]];
 }
 
-  /// Creates a new instance with the given object that conforms to `ModelManaging`.
+/// Creates a new instance with the given object that conforms to `ModelManaging`.
 - (instancetype)initWithModelManager:(id<ModelManaging>)modelManager {
   self.modelManager = modelManager;
   self.inputDimensions = @[
@@ -97,32 +97,32 @@ static float const SoftmaxScale = 1.0 / (SoftmaxMaxUInt8QuantizedValue + Softmax
   return self;
 }
 
-  /// Sets up a cloud model by creating a `CloudModelSource` and registering it with the given name.
-  ///
-  /// - Parameters:
-  ///   - name: The name for the cloud model.
-  /// - Returns: A `Bool` indicating whether the cloud model was successfully set up and registered.
+/// Sets up a cloud model by creating a `CloudModel` and registering it with the given name.
+///
+/// - Parameters:
+///   - name: The name for the cloud model.
+/// - Returns: A `Bool` indicating whether the cloud model was successfully set up and registered.
 - (BOOL)setUpCloudModelWithName:(NSString *)name {
   FIRModelDownloadConditions *conditions = [[FIRModelDownloadConditions alloc] initWithIsWiFiRequired:NO canDownloadInBackground:YES];
-  FIRCloudModelSource *cloudModelSource = [[FIRCloudModelSource alloc] initWithModelName:name enableModelUpdates:YES initialConditions:conditions updateConditions:conditions];
-  if ([_registeredCloudModelNames containsObject:name] || [_modelManager registerCloudModelSource:cloudModelSource]) {
+  FIRCloudModel *cloudModel = [[FIRCloudModel alloc] initWithModelName:name enableModelUpdates:YES initialConditions:conditions updateConditions:conditions];
+  if ([_registeredCloudModelNames containsObject:name] || [_modelManager registerCloudModel:cloudModel]) {
     self.cloudModelOptions = [[FIRModelOptions alloc] initWithCloudModelName:name localModelName:nil];
     [_registeredCloudModelNames addObject:name];
     return YES;
   } else {
-    NSLog(@"Failed to register the cloud model source with name: %@", name);
+    NSLog(@"Failed to register the cloud model with name: %@", name);
     return NO;
   }
 }
 - (BOOL)setUpLocalModelWithName:(NSString *)name filename:(NSString *)filename {
   return [self setUpLocalModelWithName:name filename:filename bundle:NSBundle.mainBundle];
 }
-  /// Sets up a local model by creating a `LocalModelSource` and registering it with the given name.
-  ///
-  /// - Parameters:
-  ///   - name: The name for the local model.
-  ///   - bundle: The bundle to load model resources from. The default is the main bundle.
-  /// - Returns: A `Bool` indicating whether the local model was successfully set up and registered.
+/// Sets up a local model by creating a `LocalModel` and registering it with the given name.
+///
+/// - Parameters:
+///   - name: The name for the local model.
+///   - bundle: The bundle to load model resources from. The default is the main bundle.
+/// - Returns: A `Bool` indicating whether the local model was successfully set up and registered.
 - (BOOL)setUpLocalModelWithName:(NSString *)name filename:(NSString *)filename bundle:(nullable NSBundle *)bundle {
   NSString *localModelFilePath = [bundle pathForResource:filename ofType:modelExtension];
   if(!localModelFilePath) {
@@ -130,14 +130,14 @@ static float const SoftmaxScale = 1.0 / (SoftmaxMaxUInt8QuantizedValue + Softmax
     return NO;
   }
 
-  FIRLocalModelSource *localModelSource = [[FIRLocalModelSource alloc] initWithModelName:name path:localModelFilePath];
-  if ([_registeredLocalModelNames containsObject:name] || [_modelManager registerLocalModelSource:localModelSource]) {
+  FIRLocalModel *localModel = [[FIRLocalModel alloc] initWithModelName:name path:localModelFilePath];
+  if ([_registeredLocalModelNames containsObject:name] || [_modelManager registerLocalModel:localModel]) {
     self.localModelOptions = [[FIRModelOptions alloc] initWithCloudModelName:nil localModelName:name];
     [_registeredLocalModelNames addObject:name];
     return YES;
   }
   else {
-    NSLog(@"Failed to register the local model source with name: %@", name);
+    NSLog(@"Failed to register the local model with name: %@", name);
     return NO;
   }
 }
@@ -146,11 +146,11 @@ static float const SoftmaxScale = 1.0 / (SoftmaxMaxUInt8QuantizedValue + Softmax
   return [self loadCloudModelWithBundle:NSBundle.mainBundle isModelQuantized:isModelQuantized];
 }
 
-  /// Loads the registered cloud model with the `ModelOptions` created during setup.
-  ///
-  /// - Parameters:
-  ///   - bundle: The bundle to load model resources from. The default is the main bundle.
-  /// - Returns: A `Bool` indicating whether the cloud model was successfully loaded.
+/// Loads the registered cloud model with the `ModelOptions` created during setup.
+///
+/// - Parameters:
+///   - bundle: The bundle to load model resources from. The default is the main bundle.
+/// - Returns: A `Bool` indicating whether the cloud model was successfully loaded.
 - (BOOL)loadCloudModelWithBundle:(NSBundle *)bundle isModelQuantized:(BOOL)isModelQuantized {
   if (_cloudModelOptions) {
     return [self loadModelWithOptions:_cloudModelOptions isModelQuantized:isModelQuantized inputDimensions:nil outputDimensions:nil bundle:bundle];
@@ -164,11 +164,11 @@ static float const SoftmaxScale = 1.0 / (SoftmaxMaxUInt8QuantizedValue + Softmax
   return [self loadLocalModelWithBundle:NSBundle.mainBundle isModelQuantized:isModelQuantized];
 }
 
-  /// Loads the registered local model with the `ModelOptions` created during setup.
-  ///
-  /// - Parameters:
-  ///   - bundle: The bundle to load model resources from. The default is the main bundle.
-  /// - Returns: A `Bool` indicating whether the local model was successfully loaded.
+/// Loads the registered local model with the `ModelOptions` created during setup.
+///
+/// - Parameters:
+///   - bundle: The bundle to load model resources from. The default is the main bundle.
+/// - Returns: A `Bool` indicating whether the local model was successfully loaded.
 - (BOOL)loadLocalModelWithBundle:(NSBundle *)bundle isModelQuantized:(BOOL)isModelQuantized {
 
   if (_localModelOptions) {
@@ -179,14 +179,14 @@ static float const SoftmaxScale = 1.0 / (SoftmaxMaxUInt8QuantizedValue + Softmax
   }
 }
 
-  /// Detects objects in the given image data, represented as `Data` or an array of pixel values.
-  /// The completion is called with detection results as an array of tuples where each tuple
-  /// contains a label and confidence value.
-  ///
-  /// - Parameters
-  ///   - imageData: The data or pixel array representation of the image to detect objects in.
-  ///   - topResultsCount: The number of top results to return.
-  ///   - completion: The handler to be called on the main thread with detection results or error.
+/// Detects objects in the given image data, represented as `Data` or an array of pixel values.
+/// The completion is called with detection results as an array of tuples where each tuple
+/// contains a label and confidence value.
+///
+/// - Parameters
+///   - imageData: The data or pixel array representation of the image to detect objects in.
+///   - topResultsCount: The number of top results to return.
+///   - completion: The handler to be called on the main thread with detection results or error.
 - (void)detectObjectsInImageData:(NSObject *)imageData
                  topResultsCount:(nullable NSNumber *)topResultsCount
                       completion:(DetectObjectsCompletion)completion {
@@ -224,17 +224,17 @@ static float const SoftmaxScale = 1.0 / (SoftmaxMaxUInt8QuantizedValue + Softmax
                               batchSize:batchSize];
 }
 
-  /// Returns the data representation of the given image scaled to the given image size that the
-  /// model was trained on.
-  ///
-  /// - Parameters:
-  ///   - image: The image to scale.
-  ///   - size: The size to scale the image to. The default is `MobileNet.imageSize`.
-  ///   - componentCount: The number of components in the scaled image. A component is a red, green,
-  ///       blue, or alpha value. The default value is 3, indicating that the model was trained on
-  ///       an image that contains only RGB components (i.e. the alpha component was removed).
-  ///   - batchSize: The fixed number of examples in a batch. The default is 1.
-  /// - Returns: The scaled image as `Data` or `nil` if the image could not be scaled.
+/// Returns the data representation of the given image scaled to the given image size that the
+/// model was trained on.
+///
+/// - Parameters:
+///   - image: The image to scale.
+///   - size: The size to scale the image to. The default is `MobileNet.imageSize`.
+///   - componentCount: The number of components in the scaled image. A component is a red, green,
+///       blue, or alpha value. The default value is 3, indicating that the model was trained on
+///       an image that contains only RGB components (i.e. the alpha component was removed).
+///   - batchSize: The fixed number of examples in a batch. The default is 1.
+/// - Returns: The scaled image as `Data` or `nil` if the image could not be scaled.
 - (nullable NSData *)scaledImageDataFromImage:(UIImage *)image
                                      withSize:(CGSize)size
                                componentCount:(int)componentCount
@@ -252,22 +252,22 @@ static float const SoftmaxScale = 1.0 / (SoftmaxMaxUInt8QuantizedValue + Softmax
 
 #pragma mark - Private
 
-  /// Loads a model with the given options and input and output dimensions.
-  ///
-  /// - Parameters:
-  ///   - options: The model options consisting of the cloud and/or local sources to be loaded.
-  ///   - isQuantized: Whether the model uses quantization (i.e. 8-bit fixed point weights and
-  ///     activations). See https://www.tensorflow.org/performance/quantization for more details. If
-  ///     NO, a floating point model is used. The default is `YES`.
-  ///   - inputDimensions: An array of the input tensor dimensions. Must include `outputDimensions`
-  ///     if `inputDimensions` are specified. Pass `nil` to use the default input dimensions.
-  ///   - outputDimensions: An array of the output tensor dimensions. Must include `inputDimensions`
-  ///     if `outputDimensions` are specified. Pass `nil` to use the default output dimensions.
-  ///   - bundle: The bundle to load model resources from. The default is the main bundle.
-  /// - Returns: A `Bool` indicating whether the model was successfully loaded. If both local and
-  ///     cloud model sources were provided in the `ModelOptions`, the cloud model takes priority
-  ///     and is loaded. If the cloud model has not been downloaded yet from the Firebase console,
-  ///     the model download request is created and the local model is loaded as a fallback.
+/// Loads a model with the given options and input and output dimensions.
+///
+/// - Parameters:
+///   - options: The model options consisting of the cloud and/or local models to be loaded.
+///   - isModelQuantized: Whether the model uses quantization (i.e. 8-bit fixed point weights and
+///     activations). See https://www.tensorflow.org/performance/quantization for more details. If
+///     false, a floating point model is used.
+///   - inputDimensions: An array of the input tensor dimensions. Must include `outputDimensions`
+///     if `inputDimensions` are specified. Pass `nil` to use the default input dimensions.
+///   - outputDimensions: An array of the output tensor dimensions. Must include `inputDimensions`
+///     if `outputDimensions` are specified. Pass `nil` to use the default output dimensions.
+///   - bundle: The bundle to load model resources from. The default is the main bundle.
+/// - Returns: A `Bool` indicating whether the model was successfully loaded. If both local and
+///     cloud models were provided in the `ModelOptions`, the cloud model takes priority and is
+///     loaded. If the cloud model has not been downloaded yet from the Firebase console, the
+///     model download request is created and the local model is loaded as a fallback.
 - (BOOL)loadModelWithOptions:(FIRModelOptions *)options
             isModelQuantized:(BOOL)isModelQuantized
              inputDimensions:(nullable NSArray<NSNumber *> *)inputDimensions
@@ -340,13 +340,13 @@ topResultsCount:(int)topResultsCount
   NSMutableArray<NSNumber *> *confidences = [[NSMutableArray alloc] initWithCapacity:firstOutput.count];
   
   switch (_modelElementType) {
-    case FIRModelElementTypeUInt8:
+      case FIRModelElementTypeUInt8:
       for (NSNumber *number in firstOutput) {
         [confidences addObject:[NSNumber numberWithFloat:SoftmaxScale * (number.intValue - SoftmaxZeroPoint)]];
       }
       firstOutput = confidences;
-    break;
-    case FIRModelElementTypeFloat32:
+      break;
+      case FIRModelElementTypeFloat32:
       break;
     default:
       completion(nil, [[ModelInterpreterError alloc] initWithCode:ModelInterpreterErrorCodeInvalidModelDataType]);
@@ -356,9 +356,9 @@ topResultsCount:(int)topResultsCount
   NSMutableArray *zippedResults = [[NSMutableArray alloc] initWithCapacity:firstOutput.count];
   for (int i = 0; i < firstOutput.count; i++) {
     [zippedResults addObject:@[
-                             [NSNumber numberWithInt:i],
-                             firstOutput[i],
-                             ]];
+                               [NSNumber numberWithInt:i],
+                               firstOutput[i],
+                               ]];
   }
 
   // Sort the zipped results by confidence value in descending order.
@@ -385,8 +385,8 @@ topResultsCount:(int)topResultsCount
 
 #pragma mark - Fileprivate
 
-  /// Safely dispatches the given block on the main queue. If the current thread is `main`, the block
-  /// is executed synchronously; otherwise, the block is executed asynchronously on the main thread.
+/// Safely dispatches the given block on the main queue. If the current thread is `main`, the block
+/// is executed synchronously; otherwise, the block is executed asynchronously on the main thread.
 - (void)safeDispatchOnMain:(DetectObjectsCompletion)block
                    objects:(NSArray *_Nullable)objects
                      error:(NSError *_Nullable)error {

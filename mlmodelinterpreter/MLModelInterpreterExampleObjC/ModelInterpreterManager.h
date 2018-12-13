@@ -15,20 +15,20 @@
 //
 
 #import <Foundation/Foundation.h>
-@import Firebase;
 @import UIKit;
+@import FirebaseMLCommon;
 
 /// Defines the requirements for managing cloud and local models.
 @protocol ModelManaging
-  
-  /// Returns a Bool indicating whether the cloud model source was successfully registered or had
-  /// already been registered.
-- (BOOL)registerCloudModelSource:(FIRCloudModelSource *)cloudModelSource;
-  
-  /// Returns a Bool indicating whether the local model source was successfully registered or had
-  /// already been registered.
-- (BOOL)registerLocalModelSource:(FIRLocalModelSource *)localModelSource;
-  
+
+/// Returns a Bool indicating whether the cloud model was successfully registered or had
+/// already been registered.
+- (BOOL)registerCloudModel:(FIRCloudModel *)cloudModel;
+
+/// Returns a Bool indicating whether the local model was successfully registered or had
+/// already been registered.
+- (BOOL)registerLocalModel:(FIRLocalModel *)localModel;
+
 @end
 
 static NSString *const modelExtension = @"tflite";
@@ -40,9 +40,9 @@ static NSString *const quantizedModelFilename = @"mobilenet_quant_v2_1.0_299";
 static NSString *const floatModelFilename = @"mobilenet_float_v2_1.0_299";
 
 @interface ModelInterpreterManager : NSObject
-  
-  typedef void (^DetectObjectsCompletion)(NSArray *_Nullable objects, NSError *_Nullable error);
-  
+
+typedef void (^DetectObjectsCompletion)(NSArray *_Nullable objects, NSError *_Nullable error);
+
 - (id)init;
 - (id)initWithModelManager:(id<ModelManaging>)modelManager;
 - (BOOL)setUpCloudModelWithName:(NSString *)name;

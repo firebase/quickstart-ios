@@ -76,7 +76,7 @@ static int const alphaComponentModuloRemainder = 3;
 
 #pragma mark - Private
 
-  /// Returns the image data from the given CGImage resized to the given width and height.
+/// Returns the image data from the given CGImage resized to the given width and height.
 - (NSData *)imageDataFromCGImage:(CGImageRef)cgImage
                             size:(CGSize)size {
   uint32_t bitmapInfo = kCGBitmapByteOrder32Big | kCGImageAlphaPremultipliedLast;
@@ -92,5 +92,5 @@ static int const alphaComponentModuloRemainder = 3;
   CFDataRef cfData = CGDataProviderCopyData(CGImageGetDataProvider(CGBitmapContextCreateImage(context)));
   return (__bridge_transfer NSData*)cfData;
 }
-  
+
 @end

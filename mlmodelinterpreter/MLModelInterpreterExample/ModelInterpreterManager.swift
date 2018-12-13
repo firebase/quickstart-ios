@@ -15,18 +15,19 @@
 //
 
 import UIKit
+import FirebaseMLCommon
 import FirebaseMLModelInterpreter
 
 /// Defines the requirements for managing cloud and local models.
 public protocol ModelManaging {
 
-  /// Returns a Bool indicating whether the cloud model source was successfully registered or had
-  /// already been registered.
-  func register(_ cloudModelSource: CloudModelSource) -> Bool
+  /// Returns a Bool indicating whether the cloud model was successfully registered or had already
+  /// been registered.
+  func register(_ cloudModel: CloudModel) -> Bool
 
-  /// Returns a Bool indicating whether the local model source was successfully registered or had
-  /// already been registered.
-  func register(_ localModelSource: LocalModelSource) -> Bool
+  /// Returns a Bool indicating whether the local model was successfully registered or had already
+  /// been registered.
+  func register(_ localModel: LocalModel) -> Bool
 }
 
 public enum ModelInterpreterError: Error {
@@ -83,21 +84,21 @@ public class ModelInterpreterManager {
     self.modelManager = modelManager
   }
 
-  /// Sets up a cloud model by creating a `CloudModelSource` and registering it with the given name.
+  /// Sets up a cloud model by creating a `CloudModel` and registering it with the given name.
   ///
   /// - Parameters:
   ///   - name: The name for the cloud model.
   /// - Returns: A `Bool` indicating whether the cloud model was successfully set up and registered.
   public func setUpCloudModel(name: String) -> Bool {
     let conditions = ModelDownloadConditions(isWiFiRequired: false, canDownloadInBackground: true)
-    let cloudModelSource = CloudModelSource(
+    let cloudModel = CloudModel(
       modelName: name,
       enableModelUpdates: true,
       initialConditions: conditions,
       updateConditions: conditions
     )
-    guard registeredCloudModelNames.contains(name) || modelManager.register(cloudModelSource) else {
-      print("Failed to register the cloud model source with name: \(name)")
+    guard registeredCloudModelNames.contains(name) || modelManager.register(cloudModel) else {
+      print("Failed to register the cloud model with name: \(name)")
       return false
     }
     cloudModelOptions = ModelOptions(cloudModelName: name, localModelName: nil)
@@ -105,7 +106,7 @@ public class ModelInterpreterManager {
     return true
   }
 
-  /// Sets up a local model by creating a `LocalModelSource` and registering it with the given name.
+  /// Sets up a local model by creating a `LocalModel` and registering it with the given name.
   ///
   /// - Parameters:
   ///   - name: The name for the local model.
@@ -120,9 +121,9 @@ public class ModelInterpreterManager {
         print("Failed to get the local model file path.")
         return false
     }
-    let localModelSource = LocalModelSource(modelName: name, path: localModelFilePath)
-    guard registeredLocalModelNames.contains(name) || modelManager.register(localModelSource) else {
-      print("Failed to register the local model source with name: \(name)")
+    let localModel = LocalModel(modelName: name, path: localModelFilePath)
+    guard registeredLocalModelNames.contains(name) || modelManager.register(localModel) else {
+      print("Failed to register the local model with name: \(name)")
       return false
     }
     localModelOptions = ModelOptions(cloudModelName: nil, localModelName: name)
@@ -261,7 +262,7 @@ public class ModelInterpreterManager {
   /// Loads a model with the given options and input and output dimensions.
   ///
   /// - Parameters:
-  ///   - options: The model options consisting of the cloud and/or local sources to be loaded.
+  ///   - options: The model options consisting of the cloud and/or local models to be loaded.
   ///   - isModelQuantized: Whether the model uses quantization (i.e. 8-bit fixed point weights and
   ///     activations). See https://www.tensorflow.org/performance/quantization for more details. If
   ///     false, a floating point model is used.
@@ -271,9 +272,9 @@ public class ModelInterpreterManager {
   ///     if `outputDimensions` are specified. Pass `nil` to use the default output dimensions.
   ///   - bundle: The bundle to load model resources from. The default is the main bundle.
   /// - Returns: A `Bool` indicating whether the model was successfully loaded. If both local and
-  ///     cloud model sources were provided in the `ModelOptions`, the cloud model takes priority
-  ///     and is loaded. If the cloud model has not been downloaded yet from the Firebase console,
-  ///     the model download request is created and the local model is loaded as a fallback.
+  ///     cloud models were provided in the `ModelOptions`, the cloud model takes priority and is
+  ///     loaded. If the cloud model has not been downloaded yet from the Firebase console, the
+  ///     model download request is created and the local model is loaded as a fallback.
   private func loadModel(
     options: ModelOptions,
     isModelQuantized: Bool,

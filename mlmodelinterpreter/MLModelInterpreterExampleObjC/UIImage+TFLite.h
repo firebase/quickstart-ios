@@ -18,24 +18,24 @@
 
 /// A `UIImage` category for scaling images.
 @interface UIImage (TFLite)
-  
-  /// Creates and returns a new image scaled to the given size. The image preserves its original PNG
-  /// or JPEG bitmap info.
-  ///
-  /// - Parameter size: The size to scale the image to.
-  /// - Returns: The scaled image or `nil` if image could not be resized.
+
+/// Creates and returns a new image scaled to the given size. The image preserves its original PNG
+/// or JPEG bitmap info.
+///
+/// - Parameter size: The size to scale the image to.
+/// - Returns: The scaled image or `nil` if image could not be resized.
 - (UIImage *)scaledImageWithSize:(CGSize)size;
-  
-  /// Returns the data representation of the image after scaling to the given `size` and removing
-  /// the alpha component.
-  ///
-  /// - Parameters
-  ///   - size: Size to scale the image to (i.e. image size used while training the model).
-  ///   - byteCount: The expected byte count for the scaled image data calculated using the values
-  ///       that the model was trained on: `imageWidth * imageHeight * componentsCount * batchSize`.
-  ///   - isQuantized: Whether the model is quantized (i.e. fixed point values rather than floating
-  ///       point values).
-  /// - Returns: The scaled image as data or `nil` if the image could not be scaled.
+
+/// Returns the data representation of the image after scaling to the given `size` and removing
+/// the alpha component.
+///
+/// - Parameters
+///   - size: Size to scale the image to (i.e. image size used while training the model).
+///   - byteCount: The expected byte count for the scaled image data calculated using the values
+///       that the model was trained on: `imageWidth * imageHeight * componentsCount * batchSize`.
+///   - isQuantized: Whether the model is quantized (i.e. fixed point values rather than floating
+///       point values).
+/// - Returns: The scaled image as data or `nil` if the image could not be scaled.
 - (NSData *)scaledDataWithSize:(CGSize)size
                      byteCount:(int)byteCount
                    isQuantized:(BOOL)isQuantized;

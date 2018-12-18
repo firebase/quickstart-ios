@@ -1,15 +1,15 @@
 PODS:
-  - Firebase/Auth (5.14.0):
+  - Firebase/Auth (5.15.0):
     - Firebase/CoreOnly
-    - FirebaseAuth (= 5.1.0)
-  - Firebase/Core (5.14.0):
+    - FirebaseAuth (= 5.2.0)
+  - Firebase/Core (5.15.0):
     - Firebase/CoreOnly
     - FirebaseAnalytics (= 5.4.0)
-  - Firebase/CoreOnly (5.14.0):
-    - FirebaseCore (= 5.1.9)
-  - Firebase/Functions (5.14.0):
+  - Firebase/CoreOnly (5.15.0):
+    - FirebaseCore (= 5.1.10)
+  - Firebase/Functions (5.15.0):
     - Firebase/CoreOnly
-    - FirebaseFunctions (= 2.1.1)
+    - FirebaseFunctions (= 2.1.2)
   - FirebaseAnalytics (5.4.0):
     - FirebaseCore (~> 5.1)
     - FirebaseInstanceID (~> 3.3)
@@ -19,16 +19,17 @@ PODS:
     - GoogleUtilities/Network (~> 5.2)
     - "GoogleUtilities/NSData+zlib (~> 5.2)"
     - nanopb (~> 0.3)
-  - FirebaseAuth (5.1.0):
+  - FirebaseAuth (5.2.0):
     - FirebaseAuthInterop (~> 1.0)
     - FirebaseCore (~> 5.1)
     - GoogleUtilities/Environment (~> 5.2)
     - GTMSessionFetcher/Core (~> 1.1)
   - FirebaseAuthInterop (1.0.0)
-  - FirebaseCore (5.1.9):
+  - FirebaseCore (5.1.10):
     - GoogleUtilities/Logger (~> 5.2)
-  - FirebaseFunctions (2.1.1):
-    - FirebaseCore (~> 5.0)
+  - FirebaseFunctions (2.1.2):
+    - FirebaseAuthInterop (~> 1.0)
+    - FirebaseCore (~> 5.1)
     - GTMSessionFetcher/Core (~> 1.1)
   - FirebaseInstanceID (3.3.0):
     - FirebaseCore (~> 5.1)
@@ -76,8 +77,8 @@ PODS:
   - GoogleUtilities/UserDefaults (5.3.6):
     - GoogleUtilities/Logger
   - GTMSessionFetcher/Core (1.2.1)
-  - MaterialComponents/AnimationTiming (72.0.1)
-  - MaterialComponents/Buttons (72.0.1):
+  - MaterialComponents/AnimationTiming (72.2.0)
+  - MaterialComponents/Buttons (72.2.0):
     - MaterialComponents/Ink
     - MaterialComponents/private/Math
     - MaterialComponents/private/Shapes
@@ -86,7 +87,7 @@ PODS:
     - MaterialComponents/Typography
     - MDFInternationalization
     - MDFTextAccessibility
-  - MaterialComponents/CollectionCells (72.0.1):
+  - MaterialComponents/CollectionCells (72.2.0):
     - MaterialComponents/CollectionLayoutAttributes
     - MaterialComponents/Ink
     - MaterialComponents/Palettes
@@ -99,8 +100,8 @@ PODS:
     - MaterialComponents/private/Math
     - MaterialComponents/Typography
     - MDFInternationalization
-  - MaterialComponents/CollectionLayoutAttributes (72.0.1)
-  - MaterialComponents/Collections (72.0.1):
+  - MaterialComponents/CollectionLayoutAttributes (72.2.0)
+  - MaterialComponents/Collections (72.2.0):
     - MaterialComponents/CollectionCells
     - MaterialComponents/CollectionLayoutAttributes
     - MaterialComponents/Ink
@@ -108,37 +109,37 @@ PODS:
     - MaterialComponents/ShadowElevations
     - MaterialComponents/ShadowLayer
     - MaterialComponents/Typography
-  - MaterialComponents/Ink (72.0.1):
+  - MaterialComponents/Ink (72.2.0):
     - MaterialComponents/private/Math
-  - MaterialComponents/Palettes (72.0.1)
-  - MaterialComponents/private/Application (72.0.1)
-  - MaterialComponents/private/Icons/Base (72.0.1)
-  - MaterialComponents/private/Icons/ic_check (72.0.1):
+  - MaterialComponents/Palettes (72.2.0)
+  - MaterialComponents/private/Application (72.2.0)
+  - MaterialComponents/private/Icons/Base (72.2.0)
+  - MaterialComponents/private/Icons/ic_check (72.2.0):
     - MaterialComponents/private/Icons/Base
-  - MaterialComponents/private/Icons/ic_check_circle (72.0.1):
+  - MaterialComponents/private/Icons/ic_check_circle (72.2.0):
     - MaterialComponents/private/Icons/Base
-  - MaterialComponents/private/Icons/ic_chevron_right (72.0.1):
+  - MaterialComponents/private/Icons/ic_chevron_right (72.2.0):
     - MaterialComponents/private/Icons/Base
-  - MaterialComponents/private/Icons/ic_info (72.0.1):
+  - MaterialComponents/private/Icons/ic_info (72.2.0):
     - MaterialComponents/private/Icons/Base
-  - MaterialComponents/private/Icons/ic_radio_button_unchecked (72.0.1):
+  - MaterialComponents/private/Icons/ic_radio_button_unchecked (72.2.0):
     - MaterialComponents/private/Icons/Base
-  - MaterialComponents/private/Icons/ic_reorder (72.0.1):
+  - MaterialComponents/private/Icons/ic_reorder (72.2.0):
     - MaterialComponents/private/Icons/Base
-  - MaterialComponents/private/Math (72.0.1)
-  - MaterialComponents/private/Shapes (72.0.1):
+  - MaterialComponents/private/Math (72.2.0)
+  - MaterialComponents/private/Shapes (72.2.0):
     - MaterialComponents/private/Math
     - MaterialComponents/ShadowLayer
-  - MaterialComponents/ShadowElevations (72.0.1)
-  - MaterialComponents/ShadowLayer (72.0.1):
+  - MaterialComponents/ShadowElevations (72.2.0)
+  - MaterialComponents/ShadowLayer (72.2.0):
     - MaterialComponents/ShadowElevations
-  - MaterialComponents/TextFields (72.0.1):
+  - MaterialComponents/TextFields (72.2.0):
     - MaterialComponents/AnimationTiming
     - MaterialComponents/Palettes
     - MaterialComponents/private/Math
     - MaterialComponents/Typography
     - MDFInternationalization
-  - MaterialComponents/Typography (72.0.1):
+  - MaterialComponents/Typography (72.2.0):
     - MaterialComponents/private/Application
     - MaterialComponents/private/Math
   - MDFInternationalization (2.0.0)
@@ -180,12 +181,12 @@ SPEC REPOS:
     - nanopb
 
 SPEC CHECKSUMS:
-  Firebase: 963d5685fae888a56d6d4d9cfce6b9c976958798
+  Firebase: 8bb9268bff82374f2cbaaabb143e725743c316ae
   FirebaseAnalytics: c06f9d70577d79074214700a71fd5d39de5550fb
-  FirebaseAuth: 4a5cc5fc2d1721e509e24699b93ebc3d94b1e195
+  FirebaseAuth: 02e969ff430e156d99d4cb842d77b806b71ad7bb
   FirebaseAuthInterop: 0ffa57668be100582bb7643d4fcb7615496c41fc
-  FirebaseCore: 8f49b70f57ab5cbb032ef41d64992ded21606459
-  FirebaseFunctions: 6c03d7c5d62520be4678dc3fb7957654aab82b4f
+  FirebaseCore: 35747502d9e8c6ee217385ad04446c7c2aaf9c5c
+  FirebaseFunctions: e37c7d4d2dec63972ca4642afeb8dae8ff8ab52e
   FirebaseInstanceID: e2fa4cb35ef5558c200f7f0ad8a53e212215f93e
   FirebaseUI: 09519bf436a055cd696bf68687d624423150e4c0
   GoogleAppMeasurement: 98b71f5e04142793729a5ef23e5b96651ff4b70f
@@ -193,7 +194,7 @@ SPEC CHECKSUMS:
   GoogleToolboxForMac: ff31605b7d66400dcec09bed5861689aebadda4d
   GoogleUtilities: 95996bea7c7d9b8fb811b7507669a4a8762f80c7
   GTMSessionFetcher: 32aeca0aa144acea523e1c8e053089dec2cb98ca
-  MaterialComponents: fb709eff8adee8021cc55b3de93adb0f1050aa4a
+  MaterialComponents: d1637df9976683348de8eabd10de0723ec81db3d
   MDFInternationalization: 010097556d6b09d2c4ea38e0820ea6d37be6a314
   MDFTextAccessibility: 85c09a1bd9c321f494348e632a25063bcda35a53
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48

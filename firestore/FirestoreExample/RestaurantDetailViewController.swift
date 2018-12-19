@@ -132,7 +132,7 @@ class RestaurantDetailViewController: UIViewController, UITableViewDataSource, U
     firestore.runTransaction({ (transaction, errorPointer) -> Any? in
 
       // Read data from Firestore inside the transaction, so we don't accidentally
-      // update using staled client data. Error if we're unable to read here.
+      // update using stale client data. Error if we're unable to read here.
       let restaurantSnapshot: DocumentSnapshot
       do {
         try restaurantSnapshot = transaction.getDocument(reference)

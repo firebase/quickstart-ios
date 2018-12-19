@@ -54,7 +54,8 @@ class NewReviewViewController: UIViewController, UITextFieldDelegate {
     let review = Review(rating: ratingView.rating!,
                         userID: Auth.auth().currentUser!.uid,
                         username: Auth.auth().currentUser?.displayName ?? "Anonymous",
-                        text: reviewTextField.text!, date: Date())
+                        text: reviewTextField.text!,
+                        date: Timestamp())
     delegate?.reviewController(self, didSubmitFormWithReview: review)
   }
 

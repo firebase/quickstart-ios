@@ -14,7 +14,7 @@
 //  limitations under the License.
 //
 
-import Foundation
+import Firebase
 
 struct Restaurant {
 
@@ -134,7 +134,7 @@ struct Review {
   var userID: String
   var username: String
   var text: String
-  var date: Date
+  var date: Timestamp
 
   var dictionary: [String: Any] {
     return [
@@ -156,8 +156,13 @@ extension Review: DocumentSerializable {
         let username = dictionary["userName"] as? String,
         let text = dictionary["text"] as? String,
         let date = dictionary["date"] as? Date else { return nil }
-    
-    self.init(rating: rating, userID: userID, username: username, text: text, date: date)
+    self.init(
+      rating: rating,
+      userID: userID,
+      username: username,
+      text: text,
+      date: Timestamp(date: date)
+    )
   }
 
 }

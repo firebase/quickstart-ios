@@ -192,7 +192,7 @@ class RestaurantsTableViewController: UIViewController, UITableViewDataSource, U
                             userID: user.uid,
                             username: user.displayName ?? "Anonymous",
                             text: text,
-                            date: Date())
+                            date: Timestamp())
         let ratingRef = restaurantRef.collection("ratings").document()
         batch.setData(review.dictionary, forDocument: ratingRef)
       }

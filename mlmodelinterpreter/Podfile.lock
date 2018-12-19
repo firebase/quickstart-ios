@@ -65,7 +65,7 @@ PODS:
   - TensorFlowLite (1.10.1)
 
 DEPENDENCIES:
-  - Firebase/Analytics (~> 5.15.0)
+  - Firebase/Analytics
   - Firebase/MLModelInterpreter
 
 SPEC REPOS:
@@ -95,6 +95,6 @@ SPEC CHECKSUMS:
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   TensorFlowLite: 6274f29bbf7e234edb3108f0f32728b5a4d53d77
 
-PODFILE CHECKSUM: 2dcf5e344d72224930efc5aef73dbafc487c9a2b
+PODFILE CHECKSUM: abdc6ba89ea1b519d7fe22d61e412691fd62fc6d
 
 COCOAPODS: 1.5.3

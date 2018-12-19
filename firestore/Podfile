@@ -9,6 +9,7 @@ target 'FirestoreExample' do
   pod 'FirebaseUI/Google', '~> 5.0'
   pod 'Firebase/Firestore'
   pod 'SDWebImage'
+  pod 'FirebaseFirestoreSwift', :path => '/Users/paulbeusterien/gh/firebase-ios-sdk/'
 
   target 'FirestoreExampleTests' do
     inherit! :search_paths

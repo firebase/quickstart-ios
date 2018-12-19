@@ -25,22 +25,9 @@ struct Restaurant {
   var ratingCount: Int // numRatings
   var averageRating: Float
   var photo: URL
-
-  var dictionary: [String: Any] {
-    return [
-      "name": name,
-      "category": category,
-      "city": city,
-      "price": price,
-      "numRatings": ratingCount,
-      "avgRating": averageRating,
-      "photo": photo.absoluteString
-    ]
-  }
-
 }
 
-extension Restaurant: DocumentSerializable {
+extension Restaurant: DocumentSerializable, Codable {
 
   static let cities = [
     "Albuquerque",
@@ -110,11 +97,11 @@ extension Restaurant: DocumentSerializable {
 
   init?(dictionary: [String : Any]) {
     guard let name = dictionary["name"] as? String,
-        let category = dictionary["category"] as? String,
-        let city = dictionary["city"] as? String,
-        let price = dictionary["price"] as? Int,
-        let ratingCount = dictionary["numRatings"] as? Int,
-        let averageRating = dictionary["avgRating"] as? Float,
+      let category = dictionary["category"] as? String,
+      let city = dictionary["city"] as? String,
+      let price = dictionary["price"] as? Int,
+      let ratingCount = dictionary["numRatings"] as? Int,
+      let averageRating = dictionary["avgRating"] as? Float,
       let photo = (dictionary["photo"] as? String).flatMap(URL.init(string:)) else { return nil }
 
     self.init(name: name,
@@ -126,6 +113,26 @@ extension Restaurant: DocumentSerializable {
               photo: photo)
   }
 
+  enum CodingKeys: String, CodingKey {
+    case name
+    case category
+    case city
+    case price
+    case ratingCount = "numRatings"
+    case averageRating = "avgRating"
+    case photo
+  }
+
+  public init(from decoder: Decoder) throws {
+    let values = try decoder.container(keyedBy: CodingKeys.self)
+    name = try values.decode(String.self, forKey: .name)
+    category = try values.decode(String.self, forKey: .category)
+    city = try values.decode(String.self, forKey: .city)
+    price = try values.decode(Int.self, forKey: .price)
+    ratingCount = try values.decode(Int.self, forKey: .ratingCount)
+    averageRating = try values.decode(Float.self, forKey: .averageRating)
+    photo = try values.decode(URL.self, forKey: .photo)
+  }
 }
 
 struct Review {
@@ -135,20 +142,17 @@ struct Review {
   var username: String
   var text: String
   var date: Timestamp
-
-  var dictionary: [String: Any] {
-    return [
-      "rating": rating,
-      "userId": userID,
-      "userName": username,
-      "text": text,
-      "date": date
-    ]
-  }
-
 }
 
-extension Review: DocumentSerializable {
+extension Review: DocumentSerializable, Codable {
+
+  enum CodingKeys: String, CodingKey {
+    case rating
+    case userID = "userId"
+    case username = "userName"
+    case text
+    case date
+  }
 
   init?(dictionary: [String : Any]) {
     guard let rating = dictionary["rating"] as? Int,
@@ -164,5 +168,4 @@ extension Review: DocumentSerializable {
       date: date
     )
   }
-
 }

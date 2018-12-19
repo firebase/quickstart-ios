@@ -18,6 +18,7 @@ import UIKit
 import Firebase
 import FirebaseUI
 import SDWebImage
+import FirebaseFirestoreSwift
 
 func priceString(from price: Int) -> String {
   let priceText: String
@@ -73,7 +74,7 @@ class RestaurantsTableViewController: UIViewController, UITableViewDataSource, U
         return
       }
       let models = snapshot.documents.map { (document) -> Restaurant in
-        if let model = Restaurant(dictionary: document.data()) {
+        if let model = try? Firestore.Decoder().decode(Restaurant.self, from: document.data()) {
           return model
         } else {
           // Don't use fatalError here in a real app.
@@ -178,8 +179,8 @@ class RestaurantsTableViewController: UIViewController, UITableViewDataSource, U
         averageRating: 0,
         photo: photo
       )
-
-      let restaurantRef = collection.addDocument(data: restaurant.dictionary)
+      let restaurantData = try! Firestore.Encoder().encode(restaurant)
+      let restaurantRef = collection.addDocument(data: restaurantData)
 
       let batch = Firestore.firestore().batch()
       guard let user = Auth.auth().currentUser else { continue }
@@ -194,7 +195,8 @@ class RestaurantsTableViewController: UIViewController, UITableViewDataSource, U
                             text: text,
                             date: Timestamp())
         let ratingRef = restaurantRef.collection("ratings").document()
-        batch.setData(review.dictionary, forDocument: ratingRef)
+        let reviewData = try! Firestore.Encoder().encode(review)
+        batch.setData(reviewData, forDocument: ratingRef)
       }
       batch.updateData(["avgRating": average], forDocument: restaurantRef)
       batch.commit(completion: { (error) in

@@ -155,7 +155,8 @@ class RestaurantDetailViewController: UIViewController, UITableViewDataSource, U
       let newAverage = (Float(restaurant.ratingCount) * restaurant.averageRating + Float(review.rating))
         / Float(restaurant.ratingCount + 1)
 
-      transaction.setData(review.dictionary, forDocument: newReviewReference)
+      let reviewData = try! Firestore.Encoder().encode(review)
+      transaction.setData(reviewData, forDocument: newReviewReference)
       transaction.updateData([
         "numRatings": restaurant.ratingCount + 1,
         "avgRating": newAverage

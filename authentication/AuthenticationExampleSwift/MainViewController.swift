@@ -15,6 +15,7 @@
 //
 
 import UIKit
+import GameKit
 
 // [START usermanagement_view_import]
 import Firebase
@@ -43,6 +44,7 @@ class MainViewController: UITableViewController, GIDSignInUIDelegate {
     case authPhone
     case authCustom
     case authPasswordless
+    case authGameCenter
   }
 
   /*! @var kOKButtonText
@@ -201,6 +203,31 @@ class MainViewController: UITableViewController, GIDSignInUIDelegate {
             }
           }
         }
+      case .authGameCenter:
+        action = UIAlertAction(title: "Game Center", style: .default) { (UIAlertAction) in
+          // [START firebase_auth_gamecenter]
+          GameCenterAuthProvider.getCredential() { (credential, error) in
+            self.showSpinner {
+              if let error = error {
+                self.hideSpinner {
+                  self.showMessagePrompt(error.localizedDescription)
+                  return
+                }
+              }
+              if let credential = credential {
+                Auth.auth().signInAndRetrieveData(with: credential, completion: { (result, error) in
+                  self.hideSpinner {
+                    if let error = error {
+                      self.showMessagePrompt(error.localizedDescription)
+                      return
+                    }
+                  }
+                })
+              }
+            }
+          }
+          // [END firebase_auth_gamecenter]
+        }
       }
       picker.addAction(action)
     }
@@ -218,7 +245,8 @@ class MainViewController: UITableViewController, GIDSignInUIDelegate {
       AuthProvider.authTwitter,
       AuthProvider.authPhone,
       AuthProvider.authCustom,
-      AuthProvider.authPasswordless
+      AuthProvider.authPasswordless,
+      AuthProvider.authGameCenter,
     ])
   }
 
@@ -321,6 +349,10 @@ class MainViewController: UITableViewController, GIDSignInUIDelegate {
       // [END_EXCLUDE]
     }
     // [END auth_listener]
+
+    // Authenticate Game Center Local Player
+    // Uncomment to sign in with Game Center
+    // self.authenticateGameCenterLocalPlayer()
   }
 
   override func viewWillDisappear(_ animated: Bool) {
@@ -328,6 +360,25 @@ class MainViewController: UITableViewController, GIDSignInUIDelegate {
     // [START remove_auth_listener]
     Auth.auth().removeStateDidChangeListener(handle!)
     // [END remove_auth_listener]
+  }
+
+  func authenticateGameCenterLocalPlayer() {
+    let localPlayer = GKLocalPlayer.localPlayer()
+    localPlayer.authenticateHandler = { (gcAuthViewController, error) in
+      if let gcAuthViewController = gcAuthViewController {
+        // Pause any activities that require user interaction, then present the
+        // gcAuthViewController to the player.
+        self.present(gcAuthViewController, animated: true, completion: nil)
+      } else if localPlayer.isAuthenticated {
+        // Local player is logged in to Game Center.
+      } else {
+        // Error
+        if let error = error {
+          self.showMessagePrompt(error.localizedDescription)
+          return
+        }
+      }
+    }
   }
 
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

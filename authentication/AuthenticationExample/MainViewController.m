@@ -16,6 +16,9 @@
 
 #import "MainViewController.h"
 #import "UIViewController+Alerts.h"
+
+#import "GameKit/GameKit.h"
+
 @import FBSDKCoreKit;
 @import FBSDKLoginKit;
 @import TwitterKit;
@@ -33,7 +36,8 @@ typedef enum : NSUInteger {
   AuthTwitter,
   AuthCustom,
   AuthPhone,
-  AuthPasswordless
+  AuthPasswordless,
+  AuthGameCenter,
 } AuthProvider;
 
 /*! @var kOKButtonText
@@ -283,6 +287,39 @@ static NSString *const kUpdatePhoneNumberText = @"Update Phone Number";
         }];
         }
         break;
+      case AuthGameCenter: {
+        action = [UIAlertAction actionWithTitle:@"Game Center"
+                                          style:UIAlertActionStyleDefault
+                                        handler:^(UIAlertAction * _Nonnull action) {
+            // [START firebase_auth_gamecenter]
+            [FIRGameCenterAuthProvider
+             getCredentialWithCompletion:^(FIRAuthCredential * _Nullable credential,
+                                           NSError * _Nullable error) {
+               [self showSpinner:^{
+                 if (error) {
+                   [self hideSpinner:^{
+                     [self showMessagePrompt:error.localizedDescription];
+                     return;
+                   }];
+                 }
+                 if (credential) {
+                   [[FIRAuth auth] signInAndRetrieveDataWithCredential:credential
+                                                            completion:^(FIRAuthDataResult * _Nullable authResult,
+                                                                         NSError * _Nullable error) {
+                     [self hideSpinner:^{
+                       if (error) {
+                         [self showMessagePrompt:error.localizedDescription];
+                         return;
+                       }
+                     }];
+                   }];
+                 }
+               }];
+             }];
+            // [END firebase_auth_gamecenter]
+        }];
+        }
+        break;
     }
 
     [picker addAction:action];
@@ -305,7 +342,8 @@ static NSString *const kUpdatePhoneNumberText = @"Update Phone Number";
                          @(AuthTwitter),
                          @(AuthPhone),
                          @(AuthCustom),
-                         @(AuthPasswordless)]];
+                         @(AuthPasswordless),
+                         @(AuthGameCenter)]];
 }
 
 - (IBAction)didTapLink:(id)sender {
@@ -342,6 +380,26 @@ static NSString *const kUpdatePhoneNumberText = @"Update Phone Number";
   // [END signout]
 }
 
+- (void)authenticateGameCenterLocalPlayer {
+  __weak GKLocalPlayer *localPlayer = [GKLocalPlayer localPlayer];
+  localPlayer.authenticateHandler = ^(UIViewController *gcAuthViewController,
+                                      NSError *error) {
+    if (gcAuthViewController != nil) {
+      // Pause any activities that require user interaction, then present the
+      // gcAuthViewController to the player.
+      [self presentViewController:gcAuthViewController animated:YES completion:nil];
+    } else if (localPlayer.isAuthenticated) {
+      // Local player is logged in to Game Center.
+    } else {
+      // Error
+      if (error) {
+        [self showMessagePrompt:error.localizedDescription];
+        return;
+      }
+    }
+  };
+}
+
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
   // [START auth_listener]
@@ -353,6 +411,10 @@ static NSString *const kUpdatePhoneNumberText = @"Update Phone Number";
         // [END_EXCLUDE]
       }];
   // [END auth_listener]
+
+  // Authenticate Game Center Local Player
+  // Uncomment to sign in with Game Center
+  [self authenticateGameCenterLocalPlayer];
 }
 
 - (void)setTitleDisplay: (FIRUser *)user {

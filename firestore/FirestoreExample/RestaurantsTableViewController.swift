@@ -74,7 +74,7 @@ class RestaurantsTableViewController: UIViewController, UITableViewDataSource, U
         return
       }
       let models = snapshot.documents.map { (document) -> Restaurant in
-        if let model = try? Firestore.Decoder().decode(Restaurant.self, from: document.data()) {
+        if let model = try? document.data(as:Restaurant.self) {
           return model
         } else {
           // Don't use fatalError here in a real app.
@@ -179,8 +179,7 @@ class RestaurantsTableViewController: UIViewController, UITableViewDataSource, U
         averageRating: 0,
         photo: photo
       )
-      let restaurantData = try! Firestore.Encoder().encode(restaurant)
-      let restaurantRef = collection.addDocument(data: restaurantData)
+      let restaurantRef = collection.addDocument(data: restaurant)
 
       let batch = Firestore.firestore().batch()
       guard let user = Auth.auth().currentUser else { continue }
@@ -195,8 +194,7 @@ class RestaurantsTableViewController: UIViewController, UITableViewDataSource, U
                             text: text,
                             date: Timestamp())
         let ratingRef = restaurantRef.collection("ratings").document()
-        let reviewData = try! Firestore.Encoder().encode(review)
-        batch.setData(reviewData, forDocument: ratingRef)
+        batch.setData(review, forDocument: ratingRef)
       }
       batch.updateData(["avgRating": average], forDocument: restaurantRef)
       batch.commit(completion: { (error) in

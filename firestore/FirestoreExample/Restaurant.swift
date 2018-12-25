@@ -136,7 +136,6 @@ extension Restaurant: DocumentSerializable, Codable {
 }
 
 struct Review {
-
   var rating: Int // Can also be enum
   var userID: String
   var username: String

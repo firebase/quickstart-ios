@@ -17,7 +17,6 @@
 import Firebase
 
 struct Restaurant {
-
   var name: String
   var category: String // Could become an enum
   var city: String

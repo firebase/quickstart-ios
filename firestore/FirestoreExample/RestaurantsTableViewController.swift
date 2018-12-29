@@ -74,7 +74,7 @@ class RestaurantsTableViewController: UIViewController, UITableViewDataSource, U
         return
       }
       let models = snapshot.documents.map { (document) -> Restaurant in
-        if let model = try? document.data(as:Restaurant.self) {
+        if let model = try? document.data(as: Restaurant.self) {
           return model
         } else {
           // Don't use fatalError here in a real app.

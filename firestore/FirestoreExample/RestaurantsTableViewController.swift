@@ -179,7 +179,12 @@ class RestaurantsTableViewController: UIViewController, UITableViewDataSource, U
         averageRating: 0,
         photo: photo
       )
-      let restaurantRef = collection.addDocument(data: restaurant)
+      let restaurantRef : DocumentReference
+      do {
+        restaurantRef = try collection.addDocument(restaurant)
+      } catch {
+        fatalError("Error encoding restaurant: \(error)..")
+      }
 
       let batch = Firestore.firestore().batch()
       guard let user = Auth.auth().currentUser else { continue }
@@ -194,7 +199,11 @@ class RestaurantsTableViewController: UIViewController, UITableViewDataSource, U
                             text: text,
                             date: Timestamp())
         let ratingRef = restaurantRef.collection("ratings").document()
-        batch.setData(review, forDocument: ratingRef)
+        do {
+          try batch.setData(review, forDocument: ratingRef)
+        } catch {
+          fatalError("Error encoding batch: \(error)")
+        }
       }
       batch.updateData(["avgRating": average], forDocument: restaurantRef)
       batch.commit(completion: { (error) in

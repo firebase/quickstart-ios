@@ -155,7 +155,12 @@ class RestaurantDetailViewController: UIViewController, UITableViewDataSource, U
       let newAverage = (Float(restaurant.ratingCount) * restaurant.averageRating + Float(review.rating))
         / Float(restaurant.ratingCount + 1)
 
-      transaction.setData(review, forDocument: newReviewReference)
+      do {
+        try transaction.setData(review, forDocument: newReviewReference)
+      } catch {
+        fatalError("Error encoding transaction: \(error)")
+      }
+
       transaction.updateData([
         "numRatings": restaurant.ratingCount + 1,
         "avgRating": newAverage

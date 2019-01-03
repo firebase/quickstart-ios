@@ -200,7 +200,7 @@ class RestaurantsTableViewController: UIViewController, UITableViewDataSource, U
                             date: Timestamp())
         let ratingRef = restaurantRef.collection("ratings").document()
         do {
-          try batch.setData(review, forDocument: ratingRef)
+          try batch.setData(value: review, forDocument: ratingRef)
         } catch {
           fatalError("Error encoding batch: \(error)")
         }

@@ -156,7 +156,7 @@ class RestaurantDetailViewController: UIViewController, UITableViewDataSource, U
         / Float(restaurant.ratingCount + 1)
 
       do {
-        try transaction.setData(review, forDocument: newReviewReference)
+        try transaction.setData(value: review, forDocument: newReviewReference)
       } catch {
         fatalError("Error encoding transaction: \(error)")
       }

@@ -414,7 +414,7 @@ static NSString *const kUpdatePhoneNumberText = @"Update Phone Number";
 
   // Authenticate Game Center Local Player
   // Uncomment to sign in with Game Center
-  [self authenticateGameCenterLocalPlayer];
+  // [self authenticateGameCenterLocalPlayer];
 }
 
 - (void)setTitleDisplay: (FIRUser *)user {

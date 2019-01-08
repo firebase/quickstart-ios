@@ -747,11 +747,12 @@ typedef NS_ENUM(NSInteger, DetectorPickerRow) {
   }
 
   // [START config_label]
-  FIRVisionLabelDetectorOptions *options =[[FIRVisionLabelDetectorOptions alloc] initWithConfidenceThreshold:labelConfidenceThreshold];
+  FIRVisionOnDeviceImageLabelerOptions *options =[FIRVisionOnDeviceImageLabelerOptions new];
+  options.confidenceThreshold = labelConfidenceThreshold;
   // [END config_label]
 
   // [START init_label]
-  FIRVisionLabelDetector *labelDetector = [_vision labelDetectorWithOptions:options];
+  FIRVisionImageLabeler *onDeviceLabeler = [_vision onDeviceImageLabelerWithOptions:options];
   // [END init_label]
 
   // Define the metadata for the image.
@@ -763,7 +764,7 @@ typedef NS_ENUM(NSInteger, DetectorPickerRow) {
   visionImage.metadata = imageMetadata;
 
   // [START detect_label]
-  [labelDetector detectInImage:visionImage completion:^(NSArray<FIRVisionLabel *> * _Nullable labels, NSError * _Nullable error) {
+  [onDeviceLabeler processImage:visionImage completion:^(NSArray<FIRVisionImageLabel *> * _Nullable labels, NSError * _Nullable error) {
     if (!labels ||  labels.count == 0) {
       // [START_EXCLUDE]
       NSString *errorString = error ? error.localizedDescription : detectionNoResultsMessage;
@@ -775,8 +776,8 @@ typedef NS_ENUM(NSInteger, DetectorPickerRow) {
 
     // [START_EXCLUDE]
     [self.resultsText setString:@""];
-    for (FIRVisionLabel *label in labels) {
-      [self.resultsText appendFormat:@"Label: %@, Confidence: %f, EntityID: %@\n", label.label, label.confidence, label.entityID];
+    for (FIRVisionImageLabel *label in labels) {
+      [self.resultsText appendFormat:@"Label: %@, Confidence: %@, EntityID: %@\n", label.text, label.confidence, label.entityID];
     }
     [self showResults];
     // [END_EXCLUDE]
@@ -933,9 +934,9 @@ typedef NS_ENUM(NSInteger, DetectorPickerRow) {
   }
 
   // [START init_label_cloud]
-  FIRVisionCloudLabelDetector *cloudDetector = [_vision cloudLabelDetector];
+  FIRVisionImageLabeler *cloudLabeler = [_vision cloudImageLabeler];
   // Or, to change the default settings:
-  // FIRVisionCloudLabelDetector *cloudDetector = [_vision cloudLabelDetectorWithOptions:options];
+  // FIRVisionImageLabeler *cloudLabeler = [_vision cloudImageLabelerWithOptions:options];
   // [END init_label_cloud]
 
   // Define the metadata for the image.
@@ -947,7 +948,7 @@ typedef NS_ENUM(NSInteger, DetectorPickerRow) {
   visionImage.metadata = imageMetadata;
 
   // [START detect_label_cloud]
-  [cloudDetector detectInImage:visionImage completion:^(NSArray<FIRVisionCloudLabel *> * _Nullable labels, NSError * _Nullable error) {
+  [cloudLabeler processImage:visionImage completion:^(NSArray<FIRVisionImageLabel *> * _Nullable labels, NSError * _Nullable error) {
     if (!labels || labels.count == 0) {
       // [START_EXCLUDE]
       NSString *errorString = error ? error.localizedDescription : detectionNoResultsMessage;
@@ -960,8 +961,8 @@ typedef NS_ENUM(NSInteger, DetectorPickerRow) {
     // Labeled image
     // [START_EXCLUDE]
     [self.resultsText setString:@""];
-    for (FIRVisionCloudLabel *label in labels) {
-      [self.resultsText appendFormat:@"Label: %@, Confidence: %@, EntityID: %@\n", label.label, label.confidence, label.entityId];
+    for (FIRVisionImageLabel *label in labels) {
+      [self.resultsText appendFormat:@"Label: %@, Confidence: %@, EntityID: %@\n", label.text, label.confidence, label.entityID];
     }
     [self showResults];
     // [END_EXCLUDE]

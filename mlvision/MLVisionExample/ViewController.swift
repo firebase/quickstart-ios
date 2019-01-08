@@ -786,13 +786,12 @@ extension ViewController {
     guard let image = image else { return }
 
     // [START config_label]
-    let options = VisionLabelDetectorOptions(
-      confidenceThreshold: Constants.labelConfidenceThreshold
-    )
+    let options = VisionOnDeviceImageLabelerOptions()
+    options.confidenceThreshold = Constants.labelConfidenceThreshold
     // [END config_label]
 
     // [START init_label]
-    let labelDetector = vision.labelDetector(options: options)
+    let onDeviceLabeler = vision.onDeviceImageLabeler(options: options)
     // [END init_label]
 
     // Define the metadata for the image.
@@ -804,8 +803,8 @@ extension ViewController {
     visionImage.metadata = imageMetadata
 
     // [START detect_label]
-    labelDetector.detect(in: visionImage) { features, error in
-      guard error == nil, let features = features, !features.isEmpty else {
+    onDeviceLabeler.process(visionImage) { labels, error in
+      guard error == nil, let labels = labels, !labels.isEmpty else {
         // [START_EXCLUDE]
         let errorString = error?.localizedDescription ?? Constants.detectionNoResultsMessage
         self.resultsText = "On-Device label detection failed with error: \(errorString)"
@@ -815,10 +814,10 @@ extension ViewController {
       }
 
       // [START_EXCLUDE]
-      self.resultsText = features.map { feature -> String in
-        return "Label: \(String(describing: feature.label)), " +
-          "Confidence: \(feature.confidence), " +
-          "EntityID: \(String(describing: feature.entityID))"
+      self.resultsText = labels.map { label -> String in
+        return "Label: \(label.text), " +
+          "Confidence: \(label.confidence ?? 0), " +
+          "EntityID: \(label.entityID ?? "")"
         }.joined(separator: "\n")
       self.showResults()
       // [END_EXCLUDE]
@@ -969,9 +968,9 @@ extension ViewController {
     guard let image = image else { return }
 
     // [START init_label_cloud]
-    let labelDetector = vision.cloudLabelDetector()
+    let cloudLabeler = vision.cloudImageLabeler()
     // Or, to change the default settings:
-    // let labelDetector = Vision.vision().cloudLabelDetector(options: options)
+    // let cloudLabeler = vision.cloudImageLabeler(options: options)
     // [END init_label_cloud]
 
     // Define the metadata for the image.
@@ -983,7 +982,7 @@ extension ViewController {
     visionImage.metadata = imageMetadata
 
     // [START detect_label_cloud]
-    labelDetector.detect(in: visionImage) { labels, error in
+    cloudLabeler.process(visionImage) { labels, error in
       guard error == nil, let labels = labels, !labels.isEmpty else {
         // [START_EXCLUDE]
         let errorString = error?.localizedDescription ?? Constants.detectionNoResultsMessage
@@ -996,9 +995,9 @@ extension ViewController {
       // Labeled image
       // START_EXCLUDE
       self.resultsText = labels.map { label -> String in
-        "Label: \(String(describing: label.label ?? "")), " +
-          "Confidence: \(label.confidence ?? 0), " +
-        "EntityID: \(label.entityId ?? "")"
+        "Label: \(label.text), " +
+        "Confidence: \(label.confidence ?? 0), " +
+        "EntityID: \(label.entityID ?? "")"
         }.joined(separator: "\n")
       self.showResults()
       // [END_EXCLUDE]

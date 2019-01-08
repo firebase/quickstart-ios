@@ -514,6 +514,8 @@ static NSString *const kUpdatePhoneNumberText = @"Update Phone Number";
     cell = [tableView dequeueReusableCellWithIdentifier:@"Token"];
     UIButton *requestEmailButton = [(UIButton *)cell viewWithTag:4];
     requestEmailButton.enabled = [FIRAuth auth].currentUser.email ? YES : NO;
+  } else {
+    [NSException raise:NSInternalInconsistencyException format:@"Unexpected state"];
   }
   return cell;
 }

@@ -6,9 +6,9 @@ PODS:
     - Bolts/Tasks
   - Bolts/Tasks (1.9.0)
   - Fabric (1.9.0)
-  - FBSDKCoreKit (4.39.0):
+  - FBSDKCoreKit (4.39.1):
     - Bolts (~> 1.9)
-  - FBSDKLoginKit (4.39.0):
+  - FBSDKLoginKit (4.39.1):
     - FBSDKCoreKit
   - Firebase/Auth (5.15.0):
     - Firebase/CoreOnly
@@ -117,8 +117,8 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
   Fabric: f988e33c97f08930a413e08123064d2e5f68d655
-  FBSDKCoreKit: 1e3981faefab8c88edfaa9eecd94aab02d99a9bc
-  FBSDKLoginKit: 30ba5039a2c53d65a75103889bc2deebdacd5a1f
+  FBSDKCoreKit: f442aa96179cc9b382bb4abeb7e340a47cca8f91
+  FBSDKLoginKit: c3079d9a4db27c492287b1eed7a4272b28cf8a59
   Firebase: 8bb9268bff82374f2cbaaabb143e725743c316ae
   FirebaseAnalytics: c06f9d70577d79074214700a71fd5d39de5550fb
   FirebaseAuth: 02e969ff430e156d99d4cb842d77b806b71ad7bb

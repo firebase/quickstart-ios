@@ -31,7 +31,6 @@ extension UIImage {
     UIGraphicsBeginImageContextWithOptions(size, false, scale)
     defer { UIGraphicsEndImageContext() }
     draw(in: CGRect(origin: .zero, size: size))
-    // Convert the scaled image to PNG or JPEG data to preserve the bitmap info.
     return UIGraphicsGetImageFromCurrentImageContext()?.data.flatMap(UIImage.init)
   }
 
@@ -81,12 +80,11 @@ extension UIImage {
       rawValue: CGBitmapInfo.byteOrder32Big.rawValue | CGImageAlphaInfo.premultipliedLast.rawValue
     )
     let width = Int(size.width)
-    let height = Int(size.height)
     let scaledBytesPerRow = (cgImage.bytesPerRow / cgImage.width) * width
     guard let context = CGContext(
       data: nil,
       width: width,
-      height: height,
+      height: Int(size.height),
       bitsPerComponent: cgImage.bitsPerComponent,
       bytesPerRow: scaledBytesPerRow,
       space: CGColorSpaceCreateDeviceRGB(),
@@ -94,7 +92,7 @@ extension UIImage {
       else {
         return nil
     }
-    context.draw(cgImage, in: CGRect(x: 0, y: 0, width: width, height: height))
+    context.draw(cgImage, in: CGRect(origin: .zero, size: size))
     return context.makeImage()?.dataProvider?.data as Data?
   }
 }

@@ -82,7 +82,7 @@ static int const alphaComponentModuloRemainder = 3;
   uint32_t bitmapInfo = kCGBitmapByteOrder32Big | kCGImageAlphaPremultipliedLast;
   int width = size.width;
   int height = size.height;
-  int scaledBytesPerRow = (CGImageGetBytesPerRow(cgImage) / CGImageGetWidth(cgImage)) * width;
+  size_t scaledBytesPerRow = (CGImageGetBytesPerRow(cgImage) / CGImageGetWidth(cgImage)) * width;
 
   CGContextRef context = CGBitmapContextCreate(nil, width, height, CGImageGetBitsPerComponent(cgImage), scaledBytesPerRow, CGColorSpaceCreateDeviceRGB(), bitmapInfo);
   if (!context) {

@@ -12,7 +12,7 @@
 		1001E6FD20CF0C8F00445CB3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1001E6FC20CF0C8F00445CB3 /* Assets.xcassets */; };
 		1001E70120CF132C00445CB3 /* shared in Resources */ = {isa = PBXBuildFile; fileRef = 1001E70020CF132C00445CB3 /* shared */; };
 		10224B582087E43100A77316 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10224B572087E43100A77316 /* ViewController.swift */; };
-		10224B5E2087E49F00A77316 /* UIImage+VisionDetection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10224B5B2087E49F00A77316 /* UIImage+VisionDetection.swift */; };
+		10224B5E2087E49F00A77316 /* MLKitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10224B5B2087E49F00A77316 /* MLKitExtensions.swift */; };
 		10224B762087E5A900A77316 /* grace_hopper.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 10224B702087E5A900A77316 /* grace_hopper.jpg */; };
 		1036DA2A2087CC16003253C9 /* MLVisionExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1036DA292087CC16003253C9 /* MLVisionExampleTests.swift */; };
 		1036DA382087CC26003253C9 /* MLVisionExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1036DA372087CC26003253C9 /* MLVisionExampleUITests.swift */; };
@@ -63,7 +63,7 @@
 		1001E6FC20CF0C8F00445CB3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1001E70020CF132C00445CB3 /* shared */ = {isa = PBXFileReference; lastKnownFileType = folder; name = shared; path = ../shared; sourceTree = "<group>"; };
 		10224B572087E43100A77316 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		10224B5B2087E49F00A77316 /* UIImage+VisionDetection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+VisionDetection.swift"; sourceTree = "<group>"; };
+		10224B5B2087E49F00A77316 /* MLKitExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MLKitExtensions.swift; sourceTree = "<group>"; };
 		10224B702087E5A900A77316 /* grace_hopper.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = grace_hopper.jpg; path = Resources/grace_hopper.jpg; sourceTree = "<group>"; };
 		1036DA272087CC16003253C9 /* MLVisionExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MLVisionExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1036DA292087CC16003253C9 /* MLVisionExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLVisionExampleTests.swift; sourceTree = "<group>"; };
@@ -205,7 +205,7 @@
 			children = (
 				BB287B3820729CE90069707A /* AppDelegate.swift */,
 				10224B572087E43100A77316 /* ViewController.swift */,
-				10224B5B2087E49F00A77316 /* UIImage+VisionDetection.swift */,
+				10224B5B2087E49F00A77316 /* MLKitExtensions.swift */,
 				1001E6F620CEE0DD00445CB3 /* UIUtilities.swift */,
 				1001E6F820CF021E00445CB3 /* CameraViewController.swift */,
 				BB287B4A2072A0200069707A /* Supporting Files */,
@@ -432,7 +432,7 @@
 				10224B582087E43100A77316 /* ViewController.swift in Sources */,
 				1001E6F920CF021E00445CB3 /* CameraViewController.swift in Sources */,
 				BB287B3920729CE90069707A /* AppDelegate.swift in Sources */,
-				10224B5E2087E49F00A77316 /* UIImage+VisionDetection.swift in Sources */,
+				10224B5E2087E49F00A77316 /* MLKitExtensions.swift in Sources */,
 				1001E6F720CEE0DD00445CB3 /* UIUtilities.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

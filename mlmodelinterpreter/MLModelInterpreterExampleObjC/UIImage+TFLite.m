@@ -82,14 +82,20 @@ static int const alphaComponentModuloRemainder = 3;
   uint32_t bitmapInfo = kCGBitmapByteOrder32Big | kCGImageAlphaPremultipliedLast;
   int width = size.width;
   int height = size.height;
-  int scaledBytesPerRow = (CGImageGetBytesPerRow(cgImage) / CGImageGetWidth(cgImage)) * width;
+  size_t scaledBytesPerRow = (CGImageGetBytesPerRow(cgImage) / CGImageGetWidth(cgImage)) * width;
 
-  CGContextRef context = CGBitmapContextCreate(nil, width, height, CGImageGetBitsPerComponent(cgImage), scaledBytesPerRow, CGColorSpaceCreateDeviceRGB(), bitmapInfo);
+  CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+  CGContextRef context = CGBitmapContextCreate(nil, width, height, CGImageGetBitsPerComponent(cgImage), scaledBytesPerRow, colorSpace, bitmapInfo);
+  CGColorSpaceRelease(colorSpace);
   if (!context) {
     return nil;
   }
   CGContextDrawImage(context, CGRectMake(0, 0, width, height), cgImage);
-  CFDataRef cfData = CGDataProviderCopyData(CGImageGetDataProvider(CGBitmapContextCreateImage(context)));
+  CGImageRef image = CGBitmapContextCreateImage(context);
+  CGDataProviderRef dataProvider = CGImageGetDataProvider(image);
+  CFDataRef cfData = CGDataProviderCopyData(dataProvider);
+  CGImageRelease(image);
+  CGContextRelease(context);
   return (__bridge_transfer NSData*)cfData;
 }
 

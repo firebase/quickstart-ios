@@ -29,12 +29,10 @@ extension UIImage {
   /// - Returns: The scaled image or `nil` if image could not be resized.
   public func scaledImage(with size: CGSize) -> UIImage? {
     UIGraphicsBeginImageContextWithOptions(size, false, scale)
-    draw(in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
-    let scaledImage = UIGraphicsGetImageFromCurrentImageContext()
-    UIGraphicsEndImageContext()
-
+    defer { UIGraphicsEndImageContext() }
+    draw(in: CGRect(origin: .zero, size: size))
     // Convert the scaled image to PNG or JPEG data to preserve the bitmap info.
-    return scaledImage?.data.map { UIImage(data: $0) } ?? nil
+    return UIGraphicsGetImageFromCurrentImageContext()?.data.flatMap(UIImage.init)
   }
 
   /// Returns the data representation of the image after scaling to the given `size` and removing

@@ -34,7 +34,7 @@ extension UIImage {
     UIGraphicsEndImageContext()
 
     // Convert the scaled image to PNG or JPEG data to preserve the bitmap info.
-    return scaledImage.data.map { UIImage(data: $0) }
+    return scaledImage.data.flatMap { UIImage(data: $0) }
   }
 
   /// Returns the data representation of the image after scaling to the given `size` and removing

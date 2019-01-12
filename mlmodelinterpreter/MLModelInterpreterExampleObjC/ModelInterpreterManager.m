@@ -190,7 +190,7 @@ static float const SoftmaxScale = 1.0 / (SoftmaxMaxUInt8QuantizedValue + Softmax
 - (void)detectObjectsInImageData:(NSObject *)imageData
                  topResultsCount:(nullable NSNumber *)topResultsCount
                       completion:(DetectObjectsCompletion)completion {
-  int topResCount = topResultsCount ? topResultsCount.intValue : topResultsCountInt;
+  int topResCount = topResultsCount != nil ? topResultsCount.intValue : topResultsCountInt;
   if (!imageData) {
     [self safeDispatchOnMain:completion objects:nil error:[[ModelInterpreterError alloc] initWithCode:ModelInterpreterErrorCodeInvalidImageData]];
     return;
@@ -330,7 +330,7 @@ topResultsCount:(int)topResultsCount
   }
 
   // Get the first output from the array of output arrays.
-  if(!outputArrayOfArrays || !outputArrayOfArrays.firstObject || ![outputArrayOfArrays.firstObject isKindOfClass:[NSArray class]] || !outputArrayOfArrays.firstObject.firstObject || ![outputArrayOfArrays.firstObject.firstObject isKindOfClass:[NSNumber class]]) {
+  if(outputArrayOfArrays == nil || outputArrayOfArrays.firstObject == nil || ![outputArrayOfArrays.firstObject isKindOfClass:[NSArray class]] || outputArrayOfArrays.firstObject.firstObject == nil || ![outputArrayOfArrays.firstObject.firstObject isKindOfClass:[NSNumber class]]) {
     NSLog(@"%@", @"Failed to get the results array from output.");
     completion(nil, [[ModelInterpreterError alloc] initWithCode:ModelInterpreterErrorCodeInvalidResults]);
     return;

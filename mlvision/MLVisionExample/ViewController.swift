@@ -193,7 +193,7 @@ class ViewController:  UIViewController, UINavigationControllerDelegate {
     DispatchQueue.global(qos: .userInitiated).async {
       // Scale image while maintaining aspect ratio so it displays better in the UIImageView.
       var scaledImage = image.scaledImage(
-        withSize: CGSize(width: scaledImageWidth, height: scaledImageHeight)
+        with: CGSize(width: scaledImageWidth, height: scaledImageHeight)
       )
       scaledImage = scaledImage ?? image
       guard let finalImage = scaledImage else { return }

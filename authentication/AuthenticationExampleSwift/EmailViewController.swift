@@ -29,24 +29,25 @@ class EmailViewController: UIViewController {
   }
 
   @IBAction func didTapEmailLogin(_ sender: AnyObject) {
-    if let email = self.emailField.text, let password = self.passwordField.text {
-      showSpinner {
-        // [START headless_email_auth]
-        Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
-          // [START_EXCLUDE]
-          self.hideSpinner {
-            if let error = error {
-              self.showMessagePrompt(error.localizedDescription)
-              return
-            }
-            self.navigationController!.popViewController(animated: true)
-          }
-          // [END_EXCLUDE]
-        }
-        // [END headless_email_auth]
-      }
-    } else {
+    guard let email = self.emailField.text, let password = self.passwordField.text else {
       self.showMessagePrompt("email/password can't be empty")
+      return
+    }
+    showSpinner {
+      // [START headless_email_auth]
+      Auth.auth().signIn(withEmail: email, password: password) { [weak self] user, error in
+        guard let strongSelf = self else { return }
+        // [START_EXCLUDE]
+        strongSelf.hideSpinner {
+          if let error = error {
+            strongSelf.showMessagePrompt(error.localizedDescription)
+            return
+          }
+          strongSelf.navigationController?.popViewController(animated: true)
+        }
+        // [END_EXCLUDE]
+      }
+      // [END headless_email_auth]
     }
   }
 
@@ -54,23 +55,24 @@ class EmailViewController: UIViewController {
    @brief Requests a "password reset" email be sent.
    */
   @IBAction func didRequestPasswordReset(_ sender: AnyObject) {
-    showTextInputPrompt(withMessage: "Email:") { (userPressedOK, email) in
-      if let email = email {
-        self.showSpinner {
-          // [START password_reset]
-          Auth.auth().sendPasswordReset(withEmail: email) { (error) in
-            // [START_EXCLUDE]
-            self.hideSpinner {
-              if let error = error {
-                self.showMessagePrompt(error.localizedDescription)
-                return
-              }
-              self.showMessagePrompt("Sent")
+    showTextInputPrompt(withMessage: "Email:") { [weak self] userPressedOK, email in
+      guard let strongSelf = self, let email = email else {
+        return
+      }
+      strongSelf.showSpinner {
+        // [START password_reset]
+        Auth.auth().sendPasswordReset(withEmail: email) { error in
+          // [START_EXCLUDE]
+          strongSelf.hideSpinner {
+            if let error = error {
+              strongSelf.showMessagePrompt(error.localizedDescription)
+              return
             }
-            // [END_EXCLUDE]
+            strongSelf.showMessagePrompt("Sent")
           }
-          // [END password_reset]
+          // [END_EXCLUDE]
         }
+        // [END password_reset]
       }
     }
   }
@@ -80,58 +82,60 @@ class EmailViewController: UIViewController {
    and displays the result.
    */
   @IBAction func didGetProvidersForEmail(_ sender: AnyObject) {
-    showTextInputPrompt(withMessage: "Email:") { (userPressedOK, email) in
-      if let email = email {
-        self.showSpinner {
-          // [START get_providers]
-          Auth.auth().fetchProviders(forEmail: email) { (providers, error) in
-            // [START_EXCLUDE]
-            self.hideSpinner {
-              if let error = error {
-                self.showMessagePrompt(error.localizedDescription)
-                return
-              }
-              self.showMessagePrompt(providers!.joined(separator: ", "))
+    showTextInputPrompt(withMessage: "Email:") { [weak self] userPressedOK, email in
+      guard let strongSelf = self else { return }
+      guard let email = email else {
+        strongSelf.showMessagePrompt("email can't be empty")
+        return
+      }
+      strongSelf.showSpinner {
+        // [START get_providers]
+        Auth.auth().fetchProviders(forEmail: email) { providers, error in
+          // [START_EXCLUDE]
+          strongSelf.hideSpinner {
+            if let error = error {
+              strongSelf.showMessagePrompt(error.localizedDescription)
+              return
             }
-            // [END_EXCLUDE]
+            strongSelf.showMessagePrompt(providers!.joined(separator: ", "))
           }
-          // [END get_providers]
+          // [END_EXCLUDE]
         }
-      } else {
-        self.showMessagePrompt("email can't be empty")
+        // [END get_providers]
       }
     }
   }
 
   @IBAction func didCreateAccount(_ sender: AnyObject) {
-    showTextInputPrompt(withMessage: "Email:") { (userPressedOK, email) in
-      if let email = email {
-        self.showTextInputPrompt(withMessage: "Password:") { (userPressedOK, password) in
-          if let password = password {
-            self.showSpinner {
-              // [START create_user]
-              Auth.auth().createUser(withEmail: email, password: password) { (authResult, error) in
-                // [START_EXCLUDE]
-                self.hideSpinner {
-                  guard let email = authResult?.user.email, error == nil else {
-                    self.showMessagePrompt(error!.localizedDescription)
-                    return
-                  }
-                  print("\(email) created")
-                  self.navigationController!.popViewController(animated: true)
-                }
-                // [END_EXCLUDE]
-                guard let user = authResult?.user else { return }
-              }
-              // [END create_user]
-            }
-          } else {
-            self.showMessagePrompt("password can't be empty")
-          }
+    showTextInputPrompt(withMessage: "Email:") {  [weak self] userPressedOK, email in
+      guard let strongSelf = self else { return }
+      guard let email = email else {
+        strongSelf.showMessagePrompt("email can't be empty")
+        return
+      }
+      strongSelf.showTextInputPrompt(withMessage: "Password:") { userPressedOK, password in
+        guard let password = password else {
+          strongSelf.showMessagePrompt("password can't be empty")
+          return
         }
-      } else {
-        self.showMessagePrompt("email can't be empty")
+        strongSelf.showSpinner {
+          // [START create_user]
+          Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
+            // [START_EXCLUDE]
+            strongSelf.hideSpinner {
+              guard let authResult = authResult, error == nil else {
+                strongSelf.showMessagePrompt(error!.localizedDescription)
+                return
+              }
+              print("\(authResult.user.email!) created")
+              strongSelf.navigationController?.popViewController(animated: true)
+            }
+            // [END_EXCLUDE]
+          }
+          // [END create_user]
+        }
       }
     }
   }
+
 }

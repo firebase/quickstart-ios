@@ -23,11 +23,11 @@
 
 /// Returns a Bool indicating whether the cloud model was successfully registered or had
 /// already been registered.
-- (BOOL)registerCloudModel:(FIRCloudModel *)cloudModel;
+- (BOOL)registerCloudModel:(FIRCloudModelSource *)cloudModel;
 
 /// Returns a Bool indicating whether the local model was successfully registered or had
 /// already been registered.
-- (BOOL)registerLocalModel:(FIRLocalModel *)localModel;
+- (BOOL)registerLocalModel:(FIRLocalModelSource *)localModel;
 
 @end
 

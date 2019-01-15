@@ -23,11 +23,11 @@ public protocol ModelManaging {
 
   /// Returns a Bool indicating whether the cloud model was successfully registered or had already
   /// been registered.
-  func register(_ cloudModel: CloudModel) -> Bool
+  func register(_ cloudModel: CloudModelSource) -> Bool
 
   /// Returns a Bool indicating whether the local model was successfully registered or had already
   /// been registered.
-  func register(_ localModel: LocalModel) -> Bool
+  func register(_ localModel: LocalModelSource) -> Bool
 }
 
 public enum ModelInterpreterError: Error {
@@ -91,8 +91,8 @@ public class ModelInterpreterManager {
   /// - Returns: A `Bool` indicating whether the cloud model was successfully set up and registered.
   public func setUpCloudModel(name: String) -> Bool {
     let conditions = ModelDownloadConditions(isWiFiRequired: false, canDownloadInBackground: true)
-    let cloudModel = CloudModel(
-      modelName: name,
+    let cloudModel = CloudModelSource(
+      name: name,
       enableModelUpdates: true,
       initialConditions: conditions,
       updateConditions: conditions
@@ -121,7 +121,7 @@ public class ModelInterpreterManager {
         print("Failed to get the local model file path.")
         return false
     }
-    let localModel = LocalModel(modelName: name, path: localModelFilePath)
+    let localModel = LocalModelSource(name: name, path: localModelFilePath)
     guard registeredLocalModelNames.contains(name) || modelManager.register(localModel) else {
       print("Failed to register the local model with name: \(name)")
       return false

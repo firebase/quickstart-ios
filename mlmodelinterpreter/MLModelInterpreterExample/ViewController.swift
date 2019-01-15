@@ -22,8 +22,11 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
 
   // MARK: - Properties
 
-  /// Model interpreter manager that manages loading models and detecting objects.
-  private lazy var modelManager = ModelInterpreterManager()
+  /// A map of `ModelInterpreterManager` instances where the key is cloud+local model name string.
+  private lazy var modelInterpreterManagerMap = [String: ModelInterpreterManager]()
+
+  /// The `ModelInterpreterManager` for the current cloud and local models.
+  private lazy var manager = ModelInterpreterManager()
 
   /// An image picker for accessing the photo library or camera.
   private var imagePicker = UIImagePickerController()
@@ -80,6 +83,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
       !UIImagePickerController.isCameraDeviceAvailable(.rear) {
       cameraButton.isEnabled = false
     }
+    updateModelInterpreterManager()
     setUpCloudModel()
     setUpLocalModel()
     downloadModelButton.isEnabled = !isCloudModelDownloaded
@@ -96,13 +100,13 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
 
     if isCloudModelDownloaded {
       updateResultsText("Loading the cloud model...\n")
-      if !modelManager.loadCloudModel(isModelQuantized: (currentCloudModelType == .quantized)) {
+      if !manager.loadCloudModel(isModelQuantized: (currentCloudModelType == .quantized)) {
         updateResultsText("Failed to load the cloud model.")
         return
       }
     } else {
       updateResultsText("Loading the local model...\n")
-      if !modelManager.loadLocalModel(isModelQuantized: (currentLocalModelType == .quantized)) {
+      if !manager.loadLocalModel(isModelQuantized: (currentLocalModelType == .quantized)) {
         updateResultsText("Failed to load the local model.")
         return
       }
@@ -115,8 +119,8 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
     updateResultsText(newResultsTextString)
     let cloudModelType = currentCloudModelType
     DispatchQueue.global(qos: .userInitiated).async {
-      let imageData = self.modelManager.scaledImageData(from: image)
-      self.modelManager.detectObjects(in: imageData) { (results, error) in
+      let imageData = self.manager.scaledImageData(from: image)
+      self.manager.detectObjects(in: imageData) { (results, error) in
         guard error == nil, let results = results, !results.isEmpty else {
           var errorString = error?.localizedDescription ?? Constant.failedToDetectObjectsMessage
           errorString = "Inference error: \(errorString)"
@@ -156,13 +160,14 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
       "Downloading cloud model...This text view will notify you when the downloaded model is " +
       "ready to be used."
     )
-    if !modelManager.loadCloudModel(isModelQuantized: (currentCloudModelType == .quantized)) {
+    if !manager.loadCloudModel(isModelQuantized: (currentCloudModelType == .quantized)) {
       updateResultsText("Failed to load the cloud model.")
     }
   }
 
   @IBAction func modelSwitched(_ sender: Any) {
     updateResultsText()
+    updateModelInterpreterManager()
     setUpLocalModel()
     setUpCloudModel()
     downloadModelButton.isEnabled = !isCloudModelDownloaded
@@ -173,17 +178,19 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
   @objc
   private func cloudModelDownloadDidSucceed(_ notification: Notification) {
     let notificationHandler = {
-      UserDefaults.standard.set(true, forKey: self.currentCloudModelType.downloadCompletedKey)
       self.updateResultsText()
-      self.detectButton.isEnabled = true
-      self.downloadModelButton.isEnabled = false
       guard let userInfo = notification.userInfo,
         let cloudModel =
         userInfo[ModelDownloadUserInfoKey.cloudModel.rawValue] as? CloudModel
         else {
-          self.updateResultsText("Successfully downloaded the cloud model. The model is ready for " +
-            "detection.")
+          self.updateResultsText("firebaseMLModelDownloadDidSucceed notification posted without a " +
+            "CloudModel instance.")
           return
+      }
+      self.updateUserDefaults(for: cloudModel)
+      if self.currentCloudModelType.description == cloudModel.name {
+        self.detectButton.isEnabled = true
+        self.downloadModelButton.isEnabled = false
       }
       self.updateResultsText("Successfully downloaded the cloud model with name: " +
         "\(cloudModel.name). The model is ready for detection.")
@@ -203,7 +210,8 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
         userInfo[ModelDownloadUserInfoKey.cloudModel.rawValue] as? CloudModel,
         let error = userInfo[ModelDownloadUserInfoKey.error.rawValue] as? NSError
         else {
-          self.updateResultsText("Failed to download the cloud model.")
+          self.updateResultsText("firebaseMLModelDownloadDidFail notification posted without a " +
+            "CloudModel instance or error.")
           return
       }
       self.updateResultsText("Failed to download the cloud model with name: " +
@@ -215,10 +223,19 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
 
   // MARK: - Private
 
+  /// Updates the `ModelInterpreterManager` instance based on the current cloud and local models.
+  private func updateModelInterpreterManager() {
+    precondition(Thread.isMainThread)
+    let key = currentCloudModelType.description + "\(currentCloudModelType.rawValue)" +
+      currentLocalModelType.description + "\(currentLocalModelType.rawValue)"
+    manager = modelInterpreterManagerMap[key] ?? ModelInterpreterManager()
+    modelInterpreterManagerMap[key] = manager
+  }
+
   /// Sets up the currently selected cloud model.
   private func setUpCloudModel() {
     let modelName = currentCloudModelType.description
-    if !modelManager.setUpCloudModel(name: modelName) {
+    if !manager.setUpCloudModel(name: modelName) {
       updateResultsText("\(resultsTextView.text ?? "")\nFailed to set up the `\(modelName)` " +
         "cloud model.")
     }
@@ -239,9 +256,16 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
   /// Sets up the local model.
   private func setUpLocalModel() {
     let modelName = currentLocalModelType.description
-    if !modelManager.setUpLocalModel(name: modelName, filename: modelName) {
+    if !manager.setUpLocalModel(name: modelName, filename: modelName) {
       updateResultsText("\(resultsTextView.text ?? "")\nFailed to set up the local model.")
     }
+  }
+
+  /// Updates the `downloadCompletedKey` in the User Defaults to true for the given cloud model.
+  private func updateUserDefaults(for cloudModel: CloudModelSource) {
+    let type = CloudModelType.allCases.first { $0.description == cloudModel.name }
+    guard let key = type?.downloadCompletedKey else { return }
+    UserDefaults.standard.set(true, forKey: key)
   }
 
   /// Returns a string representation of the detection results.
@@ -376,3 +400,11 @@ extension UIImagePickerController.InfoKey {
 public static let originalImage = UIImagePickerControllerOriginalImage
 }
 #endif  // !swift(>=4.2)
+
+#if swift(>=4.2)
+extension CloudModelType: CaseIterable {}
+#else
+extension CloudModelType {
+static let allCases: [CloudModelType] = [.quantized, .float, .invalid]
+}
+#endif  // swift(>=4.2)

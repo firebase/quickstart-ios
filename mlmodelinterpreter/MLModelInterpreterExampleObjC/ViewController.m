@@ -207,7 +207,7 @@ NSString * const LocalModelDescription[] = {
     [self updateResultsText:nil];
     self.detectButton.enabled = YES;
     self.downloadModelButton.enabled = NO;
-    FIRCloudModel *cloudmodel = notification.userInfo[FIRModelDownloadUserInfoKeyCloudModel];
+    FIRCloudModelSource *cloudmodel = notification.userInfo[FIRModelDownloadUserInfoKeyCloudModel];
     if (cloudmodel == nil) {
       [self updateResultsText:@"Successfully downloaded the cloud model. The model is ready for detection."];
       return;
@@ -221,7 +221,7 @@ NSString * const LocalModelDescription[] = {
     [self updateResultsText:nil];
     self.detectButton.enabled = YES;
     self.downloadModelButton.enabled = YES;
-    FIRCloudModel *cloudModel = notification.userInfo[FIRModelDownloadUserInfoKeyCloudModel];
+    FIRCloudModelSource *cloudModel = notification.userInfo[FIRModelDownloadUserInfoKeyCloudModel];
     NSError *error = notification.userInfo[FIRModelDownloadUserInfoKeyError];
     if (error == nil) {
       [self updateResultsText:@"SFailed to download the cloud model."];

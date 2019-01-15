@@ -104,7 +104,10 @@ static float const SoftmaxScale = 1.0 / (SoftmaxMaxUInt8QuantizedValue + Softmax
 /// - Returns: A `Bool` indicating whether the cloud model was successfully set up and registered.
 - (BOOL)setUpCloudModelWithName:(NSString *)name {
   FIRModelDownloadConditions *conditions = [[FIRModelDownloadConditions alloc] initWithIsWiFiRequired:NO canDownloadInBackground:YES];
-  FIRCloudModel *cloudModel = [[FIRCloudModel alloc] initWithModelName:name enableModelUpdates:YES initialConditions:conditions updateConditions:conditions];
+  FIRCloudModelSource *cloudModel = [[FIRCloudModelSource alloc] initWithName:name
+                                                           enableModelUpdates:YES
+                                                            initialConditions:conditions
+                                                             updateConditions:conditions];
   if ([_registeredCloudModelNames containsObject:name] || [_modelManager registerCloudModel:cloudModel]) {
     self.cloudModelOptions = [[FIRModelOptions alloc] initWithCloudModelName:name localModelName:nil];
     [_registeredCloudModelNames addObject:name];
@@ -130,7 +133,7 @@ static float const SoftmaxScale = 1.0 / (SoftmaxMaxUInt8QuantizedValue + Softmax
     return NO;
   }
 
-  FIRLocalModel *localModel = [[FIRLocalModel alloc] initWithModelName:name path:localModelFilePath];
+  FIRLocalModelSource *localModel = [[FIRLocalModelSource alloc] initWithName:name path:localModelFilePath];
   if ([_registeredLocalModelNames containsObject:name] || [_modelManager registerLocalModel:localModel]) {
     self.localModelOptions = [[FIRModelOptions alloc] initWithCloudModelName:nil localModelName:name];
     [_registeredLocalModelNames addObject:name];

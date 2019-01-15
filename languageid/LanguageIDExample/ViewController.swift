@@ -45,13 +45,13 @@ final class ViewController: UIViewController {
     }
   }
 
-  @IBAction func identifyAllLanguages(_ sender: Any) {
-    languageId.identifyAllLanguages(for: inputTextView.text) { (identifiedLanguages, error) in
+  @IBAction func identifyPossibleLanguages(_ sender: Any) {
+    languageId.identifyPossibleLanguages(for: inputTextView.text) { (identifiedLanguages, error) in
       if let error = error {
         self.outputTextView.text = "Failed with error: \(error)"
         return
       }
-      if identifiedLanguages.isEmpty {
+      guard let identifiedLanguages = identifiedLanguages, !identifiedLanguages.isEmpty else {
         self.outputTextView.text = "No language was identified";
         return
       }

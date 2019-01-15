@@ -46,13 +46,13 @@
   }];
 }
 
-- (IBAction)identifyAllLanguages:(id)sender {
-  [_languageId identifyAllLanguagesForText:_inputTextView.text completion:^(NSArray<FIRIdentifiedLanguage *> * _Nonnull identifiedLanguages, NSError * _Nullable error) {
+- (IBAction)identifyPossibleLanguages:(id)sender {
+  [_languageId identifyPossibleLanguagesForText:_inputTextView.text completion:^(NSArray<FIRIdentifiedLanguage *> * _Nonnull identifiedLanguages, NSError * _Nullable error) {
     if (error != nil) {
       self.outputTextView.text = [NSString stringWithFormat:@"Failed with error: %@", error.localizedDescription];
       return;
     }
-    if (identifiedLanguages.count == 0) {
+    if (identifiedLanguages == nil || identifiedLanguages.count == 0) {
       self.outputTextView.text = @"No language was identified";
       return;
     }

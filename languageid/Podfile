@@ -1,12 +1,8 @@
 platform :ios, '9.0'
 
-source 'sso://cpdc-test/firebase-ml'
-source 'sso://cpdc-test/spec'
-source 'https://github.com/CocoaPods/Specs.git'
-
 use_frameworks!
 pod 'Firebase/Core'
-pod 'FirebaseMLNLLanguageID'
+pod 'Firebase/MLNLLanguageID'
 
 target 'LanguageIDExample' do
 end

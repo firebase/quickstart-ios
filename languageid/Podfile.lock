@@ -1,58 +1,64 @@
 PODS:
-  - Firebase/Core (99.99.99):
+  - Firebase/Core (5.16.0):
     - Firebase/CoreOnly
-    - FirebaseAnalytics (= 99.99.99)
-  - Firebase/CoreOnly (99.99.99):
-    - FirebaseCore (= 99.99.99)
-  - FirebaseAnalytics (99.99.99):
-    - FirebaseCore (~> 99.99)
-    - FirebaseInstanceID (~> 99.99)
-    - GoogleAppMeasurement (= 99.99.99)
+    - FirebaseAnalytics (= 5.5.0)
+  - Firebase/CoreOnly (5.16.0):
+    - FirebaseCore (= 5.2.0)
+  - Firebase/MLNLLanguageID (5.16.0):
+    - Firebase/CoreOnly
+    - FirebaseMLNLLanguageID (= 0.14.0)
+  - FirebaseAnalytics (5.5.0):
+    - FirebaseCore (~> 5.2)
+    - FirebaseInstanceID (~> 3.4)
+    - GoogleAppMeasurement (= 5.5.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 5.2)
     - GoogleUtilities/MethodSwizzler (~> 5.2)
     - GoogleUtilities/Network (~> 5.2)
     - "GoogleUtilities/NSData+zlib (~> 5.2)"
     - nanopb (~> 0.3)
-  - FirebaseCore (99.99.99):
+  - FirebaseCore (5.2.0):
     - GoogleUtilities/Logger (~> 5.2)
-  - FirebaseInstanceID (99.99.99):
-    - FirebaseCore (~> 99.99)
+  - FirebaseInstanceID (3.4.0):
+    - FirebaseCore (~> 5.2)
     - GoogleUtilities/Environment (~> 5.3)
     - GoogleUtilities/UserDefaults (~> 5.3)
-  - FirebaseMLCommon (99.99.99):
-    - FirebaseCore (~> 99.99)
+  - FirebaseMLCommon (0.14.0):
+    - FirebaseCore (~> 5.2)
+    - FirebaseInstanceID (~> 3.4)
     - GoogleUtilities/UserDefaults (~> 5.3)
-  - FirebaseMLNaturalLanguage (99.99.99):
-    - FirebaseCore (~> 99.99)
-    - FirebaseMLCommon (~> 99.99)
-  - FirebaseMLNLLanguageID (99.99.99):
-    - FirebaseCore (~> 99.99)
-    - FirebaseMLCommon (~> 99.99)
-    - FirebaseMLNaturalLanguage (~> 99.99)
-  - GoogleAppMeasurement (99.99.99):
+    - GTMSessionFetcher/Core (~> 1.1)
+  - FirebaseMLNaturalLanguage (0.14.0):
+    - FirebaseCore (~> 5.2)
+    - FirebaseMLCommon (~> 0.14)
+  - FirebaseMLNLLanguageID (0.14.0):
+    - FirebaseCore (~> 5.2)
+    - FirebaseMLCommon (~> 0.14)
+    - FirebaseMLNaturalLanguage (~> 0.14)
+  - GoogleAppMeasurement (5.5.0):
     - GoogleUtilities/AppDelegateSwizzler (~> 5.2)
     - GoogleUtilities/MethodSwizzler (~> 5.2)
     - GoogleUtilities/Network (~> 5.2)
     - "GoogleUtilities/NSData+zlib (~> 5.2)"
     - nanopb (~> 0.3)
-  - GoogleUtilities/AppDelegateSwizzler (5.3.6):
+  - GoogleUtilities/AppDelegateSwizzler (5.3.7):
     - GoogleUtilities/Environment
     - GoogleUtilities/Logger
     - GoogleUtilities/Network
-  - GoogleUtilities/Environment (5.3.6)
-  - GoogleUtilities/Logger (5.3.6):
+  - GoogleUtilities/Environment (5.3.7)
+  - GoogleUtilities/Logger (5.3.7):
     - GoogleUtilities/Environment
-  - GoogleUtilities/MethodSwizzler (5.3.6):
+  - GoogleUtilities/MethodSwizzler (5.3.7):
     - GoogleUtilities/Logger
-  - GoogleUtilities/Network (5.3.6):
+  - GoogleUtilities/Network (5.3.7):
     - GoogleUtilities/Logger
     - "GoogleUtilities/NSData+zlib"
     - GoogleUtilities/Reachability
-  - "GoogleUtilities/NSData+zlib (5.3.6)"
-  - GoogleUtilities/Reachability (5.3.6):
+  - "GoogleUtilities/NSData+zlib (5.3.7)"
+  - GoogleUtilities/Reachability (5.3.7):
     - GoogleUtilities/Logger
-  - GoogleUtilities/UserDefaults (5.3.6):
+  - GoogleUtilities/UserDefaults (5.3.7):
     - GoogleUtilities/Logger
+  - GTMSessionFetcher/Core (1.2.1)
   - nanopb (0.3.901):
     - nanopb/decode (= 0.3.901)
     - nanopb/encode (= 0.3.901)
@@ -61,35 +67,35 @@ PODS:
 
 DEPENDENCIES:
   - Firebase/Core
-  - FirebaseMLNLLanguageID
+  - Firebase/MLNLLanguageID
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
-    - GoogleUtilities
-  sso://cpdc-test/firebase-ml:
+    - Firebase
+    - FirebaseAnalytics
     - FirebaseCore
+    - FirebaseInstanceID
     - FirebaseMLCommon
     - FirebaseMLNaturalLanguage
     - FirebaseMLNLLanguageID
-  sso://cpdc-test/spec:
-    - Firebase
-    - FirebaseAnalytics
-    - FirebaseInstanceID
     - GoogleAppMeasurement
+    - GoogleUtilities
+    - GTMSessionFetcher
     - nanopb
 
 SPEC CHECKSUMS:
-  Firebase: 7ad47a5ab06f292d9c6ef799248b37a31cb83936
-  FirebaseAnalytics: a61c28b7e96c3ca4148aa8d325bcdc2d9ca1c585
-  FirebaseCore: 5d8418371134573dc71c0a339cd0532e669b9855
-  FirebaseInstanceID: 1f0573c0f3335ade153499f50cd3f62a71add3ba
-  FirebaseMLCommon: 7beee3c703059aac73df25f7e8c954b0b8565a80
-  FirebaseMLNaturalLanguage: f65ced18325cef575012c5eb89d43f76a83442fd
-  FirebaseMLNLLanguageID: 2cb3a3416cd24dc3609a890c6b21318989a3d680
-  GoogleAppMeasurement: 8ea77685ba8db50e1e7b238c6e56f50074f49478
-  GoogleUtilities: 95996bea7c7d9b8fb811b7507669a4a8762f80c7
-  nanopb: cf319651d4b9e5b247eea6c05b636fdefa85be83
+  Firebase: 749a8ff4962f9d8c79dda1966de20f6f77583d67
+  FirebaseAnalytics: d35d47c03c50c73c14a7fd31463c5775843e78a9
+  FirebaseCore: ea2d1816723ef21492b8e9113303e1350db5e08c
+  FirebaseInstanceID: 97ea7a5dca9afd72c79bfcdddb7a44aa1cbb42a1
+  FirebaseMLCommon: d8a789e36a7faa175b1a5d1139e7fc7323c8db7b
+  FirebaseMLNaturalLanguage: 3422b50496d58d6a54d96bf0e0db797a1f15939a
+  FirebaseMLNLLanguageID: efff81c7a8b96268ac54133418b59c161bee8b44
+  GoogleAppMeasurement: 621f3bc6211d5ba548debe01fafad30cf5ab6859
+  GoogleUtilities: 111a012f4c3a29c9e7c954c082fafd6ee3c999c0
+  GTMSessionFetcher: 32aeca0aa144acea523e1c8e053089dec2cb98ca
+  nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
 
-PODFILE CHECKSUM: 4eecccf8f66f46be8af6e2d4fdc78f11750e2680
+PODFILE CHECKSUM: 9333adc1399d1f009a2fe05e4f42135557f548ab
 
 COCOAPODS: 1.5.3

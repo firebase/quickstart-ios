@@ -28,9 +28,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
   /// The `ModelInterpreterManager` for the current cloud and local models.
   private lazy var manager = ModelInterpreterManager()
 
-  /// Indicates whether the download cloud model button was selected.
-  private var downloadCloudModelButtonSelected = false
-
   /// An image picker for accessing the photo library or camera.
   private var imagePicker = UIImagePickerController()
 
@@ -62,6 +59,8 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
     return UserDefaults.standard.bool(forKey: currentCloudModelType.downloadCompletedKey)
   }
 
+  private var isLocalModelLoaded = false
+
   // MARK: - IBOutlets
 
   /// A segmented control for changing models (0 = float, 1 = quantized, 2 = invalid).
@@ -87,6 +86,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
     updateModelInterpreterManager()
     setUpCloudModel()
     setUpLocalModel()
+    downloadModelButton.isEnabled = !isCloudModelDownloaded
   }
 
   // MARK: - IBActions
@@ -98,12 +98,19 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
       return
     }
 
-    if !downloadCloudModelButtonSelected {
+    if isCloudModelDownloaded {
+      updateResultsText("Loading the cloud model...\n")
+      if !manager.loadCloudModel(isModelQuantized: (currentCloudModelType == .quantized)) {
+        updateResultsText("Failed to load the cloud model.")
+        return
+      }
+    } else {
       updateResultsText("Loading the local model...\n")
       if !manager.loadLocalModel(isModelQuantized: (currentLocalModelType == .quantized)) {
         updateResultsText("Failed to load the local model.")
         return
       }
+      isLocalModelLoaded = true
     }
     var newResultsTextString = "Starting inference...\n"
     if let currentText = resultsTextView.text {
@@ -123,8 +130,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
         }
 
         var inferenceMessageString = "Inference results using "
-        if self.downloadCloudModelButtonSelected {
-          UserDefaults.standard.set(true, forKey: cloudModelType.downloadCompletedKey)
+        if self.isCloudModelDownloaded {
           inferenceMessageString += "`\(cloudModelType.description)` cloud model:\n"
         } else {
           inferenceMessageString += "`\(self.currentLocalModelType.description)` local model:\n"
@@ -147,7 +153,8 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
 
   @IBAction func downloadCloudModel(_ sender: Any) {
     updateResultsText()
-    downloadCloudModelButtonSelected = true
+    downloadModelButton.isEnabled = isCloudModelDownloaded
+    detectButton.isEnabled = false
     updateResultsText(isCloudModelDownloaded ?
       "Cloud model loaded. Select the `Detect` button to start the inference." :
       "Downloading cloud model...This text view will notify you when the downloaded model is " +
@@ -163,6 +170,55 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
     updateModelInterpreterManager()
     setUpLocalModel()
     setUpCloudModel()
+    downloadModelButton.isEnabled = !isCloudModelDownloaded
+  }
+
+  // MARK: - Notifications
+
+  @objc
+  private func cloudModelDownloadDidSucceed(_ notification: Notification) {
+    let notificationHandler = {
+      self.updateResultsText()
+      guard let userInfo = notification.userInfo,
+        let cloudModel =
+        userInfo[ModelDownloadUserInfoKey.cloudModel.rawValue] as? CloudModel
+        else {
+          self.updateResultsText("firebaseMLModelDownloadDidSucceed notification posted without a " +
+            "CloudModel instance.")
+          return
+      }
+      self.updateUserDefaults(for: cloudModel)
+      if self.currentCloudModelType.description == cloudModel.name {
+        self.detectButton.isEnabled = true
+        self.downloadModelButton.isEnabled = false
+      }
+      self.updateResultsText("Successfully downloaded the cloud model with name: " +
+        "\(cloudModel.name). The model is ready for detection.")
+    }
+    if Thread.isMainThread { notificationHandler(); return }
+    DispatchQueue.main.async { notificationHandler() }
+  }
+
+  @objc
+  private func cloudModelDownloadDidFail(_ notification: Notification) {
+    let notificationHandler = {
+      self.updateResultsText()
+      self.detectButton.isEnabled = true
+      self.downloadModelButton.isEnabled = true
+      guard let userInfo = notification.userInfo,
+        let cloudModel =
+        userInfo[ModelDownloadUserInfoKey.cloudModel.rawValue] as? CloudModel,
+        let error = userInfo[ModelDownloadUserInfoKey.error.rawValue] as? NSError
+        else {
+          self.updateResultsText("firebaseMLModelDownloadDidFail notification posted without a " +
+            "CloudModel instance or error.")
+          return
+      }
+      self.updateResultsText("Failed to download the cloud model with name: " +
+        "\(cloudModel.name), error: \(error).")
+    }
+    if Thread.isMainThread { notificationHandler(); return }
+    DispatchQueue.main.async { notificationHandler() }
   }
 
   // MARK: - Private
@@ -183,6 +239,18 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
       updateResultsText("\(resultsTextView.text ?? "")\nFailed to set up the `\(modelName)` " +
         "cloud model.")
     }
+    NotificationCenter.default.addObserver(
+      self,
+      selector: #selector(cloudModelDownloadDidSucceed(_:)),
+      name: .firebaseMLModelDownloadDidSucceed,
+      object: nil
+    )
+    NotificationCenter.default.addObserver(
+      self,
+      selector: #selector(cloudModelDownloadDidFail(_:)),
+      name: .firebaseMLModelDownloadDidFail,
+      object: nil
+    )
   }
 
   /// Sets up the local model.

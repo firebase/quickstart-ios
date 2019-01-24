@@ -17,7 +17,6 @@
 #import "AppDelegate.h"
 #import "MainViewController.h"
 #import "UIViewController+Alerts.h"
-
 // [START auth_import]
 @import Firebase;
 // [END auth_import]
@@ -89,7 +88,11 @@
 }
 // [END old_options]
 
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 120000
 - (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray<id<UIUserActivityRestoring>> * _Nullable))restorationHandler {
+#else
+- (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void(^)(NSArray * __nullable restorableObjects))restorationHandler {
+#endif
   return [self handlePasswordlessSignInWithLink:userActivity.webpageURL];
 }
 

@@ -80,7 +80,8 @@ NSString * const LocalModelDescription[] = {
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *cameraButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *downloadModelButton;
 
-@property(nonatomic) bool isLocalModelLoaded;
+/// Indicates whether the download cloud model button was selected.
+@property(nonatomic) bool downloadCloudModelButtonSelected;
 
 @end
 
@@ -106,7 +107,7 @@ NSString * const LocalModelDescription[] = {
   [super viewDidLoad];
   
   self.modelManager = [ModelInterpreterManager new];
-  self.isLocalModelLoaded = NO;
+  self.downloadCloudModelButtonSelected = NO;
   self.imagePicker = [UIImagePickerController new];
   _imageView.image = [UIImage imageNamed:defaultImage];
   _imagePicker.delegate = self;
@@ -116,7 +117,6 @@ NSString * const LocalModelDescription[] = {
   }
   [self setUpCloudModel];
   [self setUpLocalModel];
-  _downloadModelButton.enabled = !_isCloudModelDownloaded;
 }
 
 #pragma mark - IBActions
@@ -129,19 +129,12 @@ NSString * const LocalModelDescription[] = {
     return;
   }
   
-  if (_isCloudModelDownloaded) {
-    [self updateResultsText:@"Loading the cloud model...\n"];
-    if (![_modelManager loadCloudModelWithIsModelQuantized:(_currentCloudModelType == CloudModelTypeQuantized)]) {
-      [self updateResultsText:@"Failed to load the cloud model."];
-      return;
-    }
-  } else {
+  if (!_downloadCloudModelButtonSelected) {
     [self updateResultsText:@"Loading the local model...\n"];
-    if (![_modelManager loadLocalModelWithIsModelQuantized:(_currentLocalModelType == LocalModelTypeQuantized)]) {
+    if (![_modelManager loadCloudModelWithIsModelQuantized:(_currentLocalModelType == CloudModelTypeQuantized)]) {
       [self updateResultsText:@"Failed to load the local model."];
       return;
     }
-    _isLocalModelLoaded = YES;
   }
   NSString *newResultsTextString = @"Starting inference...\n";
   if (_resultsTextView.text) {
@@ -161,7 +154,8 @@ NSString * const LocalModelDescription[] = {
       }
       
       NSString *inferenceMessageString = @"Inference results using ";
-      if (self.isCloudModelDownloaded) {
+      if (self.downloadCloudModelButtonSelected) {
+        [NSUserDefaults.standardUserDefaults setBool:YES forKey:CloudModelDownloadCompletedKey[self.currentCloudModelType]];
         inferenceMessageString = [inferenceMessageString stringByAppendingFormat:@"`%@` cloud model:\n", CloudModelDescription[cloudmodel]];
       } else {
         inferenceMessageString = [inferenceMessageString stringByAppendingFormat:@"`%@` local model:\n", LocalModelDescription[self.currentLocalModel]];;
@@ -183,8 +177,7 @@ NSString * const LocalModelDescription[] = {
 
 - (IBAction)downloadCloudModel:(id)sender {
   [self updateResultsText:nil];
-  _downloadModelButton.enabled = _isCloudModelDownloaded;
-  _detectButton.enabled = NO;
+  _downloadCloudModelButtonSelected = YES;
   _resultsTextView.text = _isCloudModelDownloaded ?
   @"Cloud model loaded. Select the `Detect` button to start the inference." :
   @"Downloading cloud model. Once the download has completed, select the `Detect` button to start the inference.";
@@ -199,38 +192,6 @@ NSString * const LocalModelDescription[] = {
   [self setUpCloudModel];
 }
 
-#pragma mark - Notifications
-
-- (void)cloudModelDownloadDidSucceed:(NSNotification *)notification {
-  [self runOnMainThread:^{
-    [NSUserDefaults.standardUserDefaults setBool:YES forKey:CloudModelDownloadCompletedKey[self.currentCloudModelType]];
-    [self updateResultsText:nil];
-    self.detectButton.enabled = YES;
-    self.downloadModelButton.enabled = NO;
-    FIRCloudModelSource *cloudmodel = notification.userInfo[FIRModelDownloadUserInfoKeyCloudModel];
-    if (cloudmodel == nil) {
-      [self updateResultsText:@"Successfully downloaded the cloud model. The model is ready for detection."];
-      return;
-    }
-    [self updateResultsText:[NSString stringWithFormat:@"Successfully downloaded the cloud model with name: %@. The model is ready for detection.", cloudmodel.name]];
-   }];
-}
-
-- (void)cloudModelDownloadDidFail:(NSNotification *)notification {
-  [self runOnMainThread:^{
-    [self updateResultsText:nil];
-    self.detectButton.enabled = YES;
-    self.downloadModelButton.enabled = YES;
-    FIRCloudModelSource *cloudModel = notification.userInfo[FIRModelDownloadUserInfoKeyCloudModel];
-    NSError *error = notification.userInfo[FIRModelDownloadUserInfoKeyError];
-    if (error == nil) {
-      [self updateResultsText:@"SFailed to download the cloud model."];
-      return;
-    }
-    [self updateResultsText:[NSString stringWithFormat:@"Failed to download the cloud model with name: %@, error: %@.", cloudModel, error.localizedDescription]];
-  }];
-}
-
 #pragma mark - Private
 
 /// Sets up the currently selected cloud model.
@@ -239,10 +200,6 @@ NSString * const LocalModelDescription[] = {
   if (![_modelManager setUpCloudModelWithName:modelName]) {
     [self updateResultsText:[NSString stringWithFormat:@"%@\nFailed to set up the `%@` cloud model.", _resultsTextView.text, modelName]];
   }
-  [NSNotificationCenter.defaultCenter addObserver:self
-                                         selector:@selector(cloudModelDownloadDidSucceed:) name:FIRModelDownloadDidSucceedNotification object:nil];
-  [NSNotificationCenter.defaultCenter addObserver:self
-                                         selector:@selector(cloudModelDownloadDidFail:) name:FIRModelDownloadDidFailNotification object:nil];
 }
 
 /// Sets up the local model.

@@ -41,10 +41,10 @@ PODS:
     - GTMSessionFetcher/Core (~> 1.1)
     - GTMSessionFetcher/Full (~> 1.1)
     - Protobuf (~> 3.5)
-  - GoogleAPIClientForREST (1.3.7):
-    - GoogleAPIClientForREST/Core (= 1.3.7)
+  - GoogleAPIClientForREST (1.3.8):
+    - GoogleAPIClientForREST/Core (= 1.3.8)
     - GTMSessionFetcher (>= 1.1.7)
-  - GoogleAPIClientForREST/Core (1.3.7):
+  - GoogleAPIClientForREST/Core (1.3.8):
     - GTMSessionFetcher (>= 1.1.7)
   - GoogleAppMeasurement (5.5.0):
     - GoogleUtilities/AppDelegateSwizzler (~> 5.2)
@@ -138,7 +138,7 @@ SPEC CHECKSUMS:
   FirebaseDynamicLinks: 83a0071c95ad715bc324fcb8f51028d5b6a58af0
   FirebaseInstanceID: 97ea7a5dca9afd72c79bfcdddb7a44aa1cbb42a1
   FirebaseInvites: da663c2436b88c2f56d13f38ea71e9055dc4c53d
-  GoogleAPIClientForREST: 825503f12cb5824601cf526cf06d81a1cea4afd9
+  GoogleAPIClientForREST: 5447a194eae517986cafe6421a5330b80b820591
   GoogleAppMeasurement: 621f3bc6211d5ba548debe01fafad30cf5ab6859
   GoogleSignIn: 7ff245e1a7b26d379099d3243a562f5747e23d39
   GoogleToolboxForMac: ff31605b7d66400dcec09bed5861689aebadda4d

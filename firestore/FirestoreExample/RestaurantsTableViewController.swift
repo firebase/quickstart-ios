@@ -179,7 +179,7 @@ class RestaurantsTableViewController: UIViewController, UITableViewDataSource, U
         averageRating: 0,
         photo: photo
       )
-      let restaurantRef = collection.addDocument(restaurant)
+      let restaurantRef = collection.addDocument(data: restaurant)
       let batch = Firestore.firestore().batch()
       guard let user = Auth.auth().currentUser else { continue }
       var average: Float = 0

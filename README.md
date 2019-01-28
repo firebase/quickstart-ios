@@ -31,7 +31,6 @@ directory of the sample you wish to run.
 - [Firestore](firestore/README.md)
 - [Functions](functions/README.md)
 - [Dynamic Links](dynamiclinks/README.md)
-- [Invites](invites/README.md)
 - [Cloud Messaging](messaging/README.md)
 - [Performance](performance/README.md)
 - [Storage](storage/README.md)

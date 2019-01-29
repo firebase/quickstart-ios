@@ -33,7 +33,6 @@ class SignInViewController: UIViewController, FUIAuthDelegate {
     let authUI = FUIAuth.defaultAuthUI()
     authUI?.delegate = self
     authUI?.tosurl = kFirebaseTermsOfService
-    authUI?.isSignInWithEmailHidden = true
     authUI?.providers = [FUIGoogleAuth()]
     let authViewController: UINavigationController? = authUI?.authViewController()
     authViewController?.navigationBar.isHidden = true

@@ -39,7 +39,6 @@
   FUIAuth *authUI = [FUIAuth defaultAuthUI];
   authUI.delegate = self;
   authUI.TOSURL = [NSURL URLWithString:@"https://firebase.google.com/terms/"];
-  authUI.signInWithEmailHidden = true;
   authUI.providers = @[[[FUIGoogleAuth alloc] init]];
   UINavigationController *authViewController = authUI.authViewController;
   authViewController.navigationBar.hidden = true;

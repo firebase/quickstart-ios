@@ -179,7 +179,7 @@ class RestaurantsTableViewController: UIViewController, UITableViewDataSource, U
         averageRating: 0,
         photo: photo
       )
-      let restaurantRef = collection.addDocument(encoderInput: restaurant)
+      let restaurantRef = collection.addDocument(from: restaurant)
       let batch = Firestore.firestore().batch()
       guard let user = Auth.auth().currentUser else { continue }
       var average: Float = 0
@@ -193,7 +193,7 @@ class RestaurantsTableViewController: UIViewController, UITableViewDataSource, U
                             text: text,
                             date: Timestamp())
         let ratingRef = restaurantRef.collection("ratings").document()
-        batch.setData(encoderInput: review, forDocument: ratingRef)
+        batch.setData(from: review, forDocument: ratingRef)
       }
       batch.updateData(["avgRating": average], forDocument: restaurantRef)
       batch.commit(completion: { (error) in

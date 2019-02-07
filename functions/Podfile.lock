@@ -35,9 +35,10 @@ PODS:
     - FirebaseCore (~> 5.2)
     - GoogleUtilities/Environment (~> 5.3)
     - GoogleUtilities/UserDefaults (~> 5.3)
-  - FirebaseUI/Auth (6.0.1):
+  - FirebaseUI/Auth (6.1.0):
     - Firebase/Auth (~> 5.0)
-  - FirebaseUI/Google (6.0.1):
+    - GoogleUtilities/UserDefaults
+  - FirebaseUI/Google (6.1.0):
     - FirebaseUI/Auth
     - GoogleSignIn (~> 4.0)
   - GoogleAppMeasurement (5.5.0):
@@ -188,7 +189,7 @@ SPEC CHECKSUMS:
   FirebaseCore: ea2d1816723ef21492b8e9113303e1350db5e08c
   FirebaseFunctions: f35dd01ba4cfd036c1c521b3ed99851d7ec08c70
   FirebaseInstanceID: 97ea7a5dca9afd72c79bfcdddb7a44aa1cbb42a1
-  FirebaseUI: dc1a1d1b461f56aad18336640bfb2167a30df1c8
+  FirebaseUI: 9107a94d6637ca22eedd307a7e3d38c1a450f93a
   GoogleAppMeasurement: 621f3bc6211d5ba548debe01fafad30cf5ab6859
   GoogleSignIn: 7ff245e1a7b26d379099d3243a562f5747e23d39
   GoogleToolboxForMac: ff31605b7d66400dcec09bed5861689aebadda4d
@@ -201,4 +202,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 745a17aabcd57a85c2a338d1f67162a027be5e02
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.6.0

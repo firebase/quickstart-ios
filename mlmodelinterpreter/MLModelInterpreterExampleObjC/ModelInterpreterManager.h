@@ -18,16 +18,16 @@
 @import UIKit;
 @import FirebaseMLCommon;
 
-/// Defines the requirements for managing cloud and local models.
+/// Defines the requirements for managing remote and local models.
 @protocol ModelManaging
 
-/// Returns a Bool indicating whether the cloud model was successfully registered or had
+/// Returns a Bool indicating whether the remote model was successfully registered or had
 /// already been registered.
-- (BOOL)registerCloudModel:(FIRCloudModelSource *)cloudModel;
+- (BOOL)registerRemoteModel:(FIRRemoteModel *)remoteModel;
 
 /// Returns a Bool indicating whether the local model was successfully registered or had
 /// already been registered.
-- (BOOL)registerLocalModel:(FIRLocalModelSource *)localModel;
+- (BOOL)registerLocalModel:(FIRLocalModel *)localModel;
 
 @end
 
@@ -45,10 +45,10 @@ typedef void (^DetectObjectsCompletion)(NSArray *_Nullable objects, NSError *_Nu
 
 - (id)init;
 - (id)initWithModelManager:(id<ModelManaging>)modelManager;
-- (BOOL)setUpCloudModelWithName:(NSString *)name;
+- (BOOL)setUpRemoteModelWithName:(NSString *)name;
 - (BOOL)setUpLocalModelWithName:(NSString *)name filename:(NSString *)filename;
 - (BOOL)setUpLocalModelWithName:(NSString *)name filename:(NSString *)filename bundle:(NSBundle *)bundle;
-- (BOOL)loadCloudModelWithIsModelQuantized:(BOOL)isModelQuantized;
+- (BOOL)loadRemoteModelWithIsModelQuantized:(BOOL)isModelQuantized;
 - (BOOL)loadLocalModelWithIsModelQuantized:(BOOL)isModelQuantized;
 - (void)detectObjectsInImageData:(NSObject *)imageData
                  topResultsCount:(nullable NSNumber *)topResultsCount

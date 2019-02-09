@@ -62,9 +62,9 @@ static float const SoftmaxScale = 1.0 / (SoftmaxMaxUInt8QuantizedValue + Softmax
 
 @property(nonatomic) id<ModelManaging> modelManager;
 @property(nonatomic) FIRModelInputOutputOptions *modelInputOutputOptions;
-@property(nonatomic) NSMutableSet<NSString *> *registeredCloudModelNames;
+@property(nonatomic) NSMutableSet<NSString *> *registeredRemoteModelNames;
 @property(nonatomic) NSMutableSet<NSString *> *registeredLocalModelNames;
-@property(nonatomic) FIRModelOptions *cloudModelOptions;
+@property(nonatomic) FIRModelOptions *remoteModelOptions;
 @property(nonatomic) FIRModelOptions *localModelOptions;
 @property(nonatomic) FIRModelInterpreter *modelInterpreter;
 @property(nonatomic) FIRModelElementType modelElementType;
@@ -91,39 +91,43 @@ static float const SoftmaxScale = 1.0 / (SoftmaxMaxUInt8QuantizedValue + Softmax
   self.modelInputOutputOptions = [FIRModelInputOutputOptions new];
   self.labels = [NSArray new];
   self.labelsCount = 0;
-  self.registeredCloudModelNames = [NSMutableSet new];
+  self.registeredRemoteModelNames = [NSMutableSet new];
   self.registeredLocalModelNames = [NSMutableSet new];
   self.modelElementType = FIRModelElementTypeUInt8;
   return self;
 }
 
-/// Sets up a cloud model by creating a `CloudModel` and registering it with the given name.
+// Sets up a remote model by creating a `RemoteModel` and registering it with the given name.
 ///
 /// - Parameters:
-///   - name: The name for the cloud model.
-/// - Returns: A `Bool` indicating whether the cloud model was successfully set up and registered.
-- (BOOL)setUpCloudModelWithName:(NSString *)name {
-  FIRModelDownloadConditions *conditions = [[FIRModelDownloadConditions alloc] initWithIsWiFiRequired:NO canDownloadInBackground:YES];
-  FIRCloudModelSource *cloudModel = [[FIRCloudModelSource alloc] initWithName:name
-                                                           enableModelUpdates:YES
-                                                            initialConditions:conditions
-                                                             updateConditions:conditions];
-  if ([_registeredCloudModelNames containsObject:name] || [_modelManager registerCloudModel:cloudModel]) {
-    self.cloudModelOptions = [[FIRModelOptions alloc] initWithCloudModelName:name localModelName:nil];
-    [_registeredCloudModelNames addObject:name];
+///   - name: The name for the remote model.
+/// - Returns: `Bool` indicating whether the remote model was successfully set up and registered.
+- (BOOL)setUpRemoteModelWithName:(NSString *)name {
+  FIRModelDownloadConditions *conditions = [[FIRModelDownloadConditions alloc] initWithAllowsCellularAccess:YES
+                                                                                allowsBackgroundDownloading:YES];
+  FIRRemoteModel *remoteModel = [[FIRRemoteModel alloc] initWithName:name
+                                                  allowsModelUpdates:YES
+                                                   initialConditions:conditions
+                                                    updateConditions:conditions];
+  if ([_registeredRemoteModelNames containsObject:name] || [_modelManager registerRemoteModel:remoteModel]) {
+    self.remoteModelOptions = [[FIRModelOptions alloc] initWithRemoteModelName:name localModelName:nil];
+    [_registeredRemoteModelNames addObject:name];
     return YES;
   } else {
-    NSLog(@"Failed to register the cloud model with name: %@", name);
+    NSLog(@"Failed to register the remote model with name: %@", name);
     return NO;
   }
 }
+
 - (BOOL)setUpLocalModelWithName:(NSString *)name filename:(NSString *)filename {
   return [self setUpLocalModelWithName:name filename:filename bundle:NSBundle.mainBundle];
 }
+
 /// Sets up a local model by creating a `LocalModel` and registering it with the given name.
 ///
 /// - Parameters:
 ///   - name: The name for the local model.
+///   - filename: The name for the local model file.
 ///   - bundle: The bundle to load model resources from. The default is the main bundle.
 /// - Returns: A `Bool` indicating whether the local model was successfully set up and registered.
 - (BOOL)setUpLocalModelWithName:(NSString *)name filename:(NSString *)filename bundle:(nullable NSBundle *)bundle {
@@ -133,9 +137,9 @@ static float const SoftmaxScale = 1.0 / (SoftmaxMaxUInt8QuantizedValue + Softmax
     return NO;
   }
 
-  FIRLocalModelSource *localModel = [[FIRLocalModelSource alloc] initWithName:name path:localModelFilePath];
+  FIRLocalModel *localModel = [[FIRLocalModel alloc] initWithName:name path:localModelFilePath];
   if ([_registeredLocalModelNames containsObject:name] || [_modelManager registerLocalModel:localModel]) {
-    self.localModelOptions = [[FIRModelOptions alloc] initWithCloudModelName:nil localModelName:name];
+    self.localModelOptions = [[FIRModelOptions alloc] initWithRemoteModelName:nil localModelName:name];
     [_registeredLocalModelNames addObject:name];
     return YES;
   }
@@ -145,20 +149,26 @@ static float const SoftmaxScale = 1.0 / (SoftmaxMaxUInt8QuantizedValue + Softmax
   }
 }
 
-- (BOOL)loadCloudModelWithIsModelQuantized:(BOOL)isModelQuantized {
-  return [self loadCloudModelWithBundle:NSBundle.mainBundle isModelQuantized:isModelQuantized];
+- (BOOL)loadRemoteModelWithIsModelQuantized:(BOOL)isModelQuantized {
+  return [self loadRemoteModelWithBundle:NSBundle.mainBundle isModelQuantized:isModelQuantized];
 }
 
-/// Loads the registered cloud model with the `ModelOptions` created during setup.
+/// Loads the registered remote model with the `ModelOptions` created during setup and the given
+/// input and output dimensions.
 ///
 /// - Parameters:
+///   - isModelQuantized: Indicates if the model is quantized. The default is `false`.
+///   - inputDimensions: An array of the input tensor dimensions. Must include `outputDimensions`
+///     if `inputDimensions` are specified. Pass `nil` to use the default input dimensions.
+///   - outputDimensions: An array of the output tensor dimensions. Must include `inputDimensions`
+///     if `outputDimensions` are specified. Pass `nil` to use the default output dimensions.
 ///   - bundle: The bundle to load model resources from. The default is the main bundle.
-/// - Returns: A `Bool` indicating whether the cloud model was successfully loaded.
-- (BOOL)loadCloudModelWithBundle:(NSBundle *)bundle isModelQuantized:(BOOL)isModelQuantized {
-  if (_cloudModelOptions) {
-    return [self loadModelWithOptions:_cloudModelOptions isModelQuantized:isModelQuantized inputDimensions:nil outputDimensions:nil bundle:bundle];
+/// - Returns: A `Bool` indicating whether the remote model was successfully loaded.
+- (BOOL)loadRemoteModelWithBundle:(NSBundle *)bundle isModelQuantized:(BOOL)isModelQuantized {
+  if (_remoteModelOptions) {
+    return [self loadModelWithOptions:_remoteModelOptions isModelQuantized:isModelQuantized inputDimensions:nil outputDimensions:nil bundle:bundle];
   } else {
-    NSLog(@"%@", @"Failed to load the cloud model because the options are nil.");
+    NSLog(@"%@", @"Failed to load the remote model because the options are nil.");
     return NO;
   }
 }
@@ -167,9 +177,15 @@ static float const SoftmaxScale = 1.0 / (SoftmaxMaxUInt8QuantizedValue + Softmax
   return [self loadLocalModelWithBundle:NSBundle.mainBundle isModelQuantized:isModelQuantized];
 }
 
-/// Loads the registered local model with the `ModelOptions` created during setup.
+/// Loads the registered local model with the `ModelOptions` created during setup and the given
+/// input and output dimensions.
 ///
 /// - Parameters:
+///   - isModelQuantized: Indicates if the model is quantized. The default is `false`.
+///   - inputDimensions: An array of the input tensor dimensions. Must include `outputDimensions`
+///     if `inputDimensions` are specified. Pass `nil` to use the default input dimensions.
+///   - outputDimensions: An array of the output tensor dimensions. Must include `inputDimensions`
+///     if `outputDimensions` are specified. Pass `nil` to use the default output dimensions.
 ///   - bundle: The bundle to load model resources from. The default is the main bundle.
 /// - Returns: A `Bool` indicating whether the local model was successfully loaded.
 - (BOOL)loadLocalModelWithBundle:(NSBundle *)bundle isModelQuantized:(BOOL)isModelQuantized {
@@ -258,7 +274,7 @@ static float const SoftmaxScale = 1.0 / (SoftmaxMaxUInt8QuantizedValue + Softmax
 /// Loads a model with the given options and input and output dimensions.
 ///
 /// - Parameters:
-///   - options: The model options consisting of the cloud and/or local models to be loaded.
+///   - options: The model options consisting of the remote and/or local models to be loaded.
 ///   - isModelQuantized: Whether the model uses quantization (i.e. 8-bit fixed point weights and
 ///     activations). See https://www.tensorflow.org/performance/quantization for more details. If
 ///     false, a floating point model is used.
@@ -268,8 +284,8 @@ static float const SoftmaxScale = 1.0 / (SoftmaxMaxUInt8QuantizedValue + Softmax
 ///     if `outputDimensions` are specified. Pass `nil` to use the default output dimensions.
 ///   - bundle: The bundle to load model resources from. The default is the main bundle.
 /// - Returns: A `Bool` indicating whether the model was successfully loaded. If both local and
-///     cloud models were provided in the `ModelOptions`, the cloud model takes priority and is
-///     loaded. If the cloud model has not been downloaded yet from the Firebase console, the
+///     remote models were provided in the `ModelOptions`, the remote model takes priority and is
+///     loaded. If the remote model has not been downloaded yet from the Firebase console, the
 ///     model download request is created and the local model is loaded as a fallback.
 - (BOOL)loadModelWithOptions:(FIRModelOptions *)options
             isModelQuantized:(BOOL)isModelQuantized

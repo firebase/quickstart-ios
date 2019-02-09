@@ -1,7 +1,11 @@
+source 'sso://cpdc-test/firebase-ml'
+source 'sso://cpdc-test/spec'
+source 'https://github.com/CocoaPods/Specs.git'
+
 platform :ios, '9.0'
 use_frameworks!
 
-pod 'Firebase/Analytics'
+pod 'Firebase/Core'
 pod 'Firebase/MLModelInterpreter'
 
 target 'MLModelInterpreterExample' do

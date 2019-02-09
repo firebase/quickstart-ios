@@ -55,7 +55,7 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="ftA-SS-6jS"/>
                                     <barButtonItem image="cloud_download" style="plain" id="wFf-Ba-Ydb" userLabel="Download Model Button">
                                         <connections>
-                                            <action selector="downloadCloudModel:" destination="BYZ-38-t0r" id="tnb-Tk-Nbo"/>
+                                            <action selector="downloadModel:" destination="BYZ-38-t0r" id="ftd-Mw-2fu"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="RgS-sN-vfD"/>

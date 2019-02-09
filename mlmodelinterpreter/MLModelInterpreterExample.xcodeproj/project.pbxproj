@@ -154,6 +154,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		009F785A0D26DF1AE9A534B1 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		10E114C120D5E5B40013E4A4 /* MLModelInterpreterExampleUITests */ = {
 			isa = PBXGroup;
 			children = (
@@ -217,6 +224,7 @@
 				10E115C220F469DC0013E4A4 /* MLModelInterpreterExampleObjCTests */,
 				10E115CD20F469DC0013E4A4 /* MLModelInterpreterExampleObjCUITests */,
 				4A56D20B20A138E500357F77 /* Products */,
+				009F785A0D26DF1AE9A534B1 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};

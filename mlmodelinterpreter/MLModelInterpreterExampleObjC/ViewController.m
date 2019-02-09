@@ -22,23 +22,23 @@
 static NSString *const failedToDetectObjectsMessage = @"Failed to detect objects in image.";
 static NSString *const defaultImage = @"grace_hopper.jpg";
 
-typedef NS_ENUM(NSInteger, CloudModelType) {
-  CloudModelTypeQuantized = 0,
-  CloudModelTypeFloat = 1,
-  CloudModelTypeInvalid = 2
+typedef NS_ENUM(NSInteger, RemoteModelType) {
+  RemoteModelTypeQuantized = 0,
+  RemoteModelTypeFloat = 1,
+  RemoteModelTypeInvalid = 2
 };
 
-NSString * const CloudModelDownloadCompletedKey[] = {
-  [CloudModelTypeQuantized] = @"FIRCloudModel1DownloadCompleted",
-  [CloudModelTypeFloat] = @"FIRCloudModel2DownloadCompleted",
-  [CloudModelTypeInvalid] = @"FIRCloudInvalidModel"
+NSString * const RemoteModelDownloadCompletedKey[] = {
+  [RemoteModelTypeQuantized] = @"FIRRemoteModel1DownloadCompleted",
+  [RemoteModelTypeFloat] = @"FIRRemoteModel2DownloadCompleted",
+  [RemoteModelTypeInvalid] = @"FIRRemoteInvalidModel"
 };
 
-// REPLACE THESE CLOUD MODEL NAMES WITH ONES THAT ARE UPLOADED TO YOUR FIREBASE CONSOLE.
-NSString * const CloudModelDescription[] = {
-  [CloudModelTypeQuantized] = @"image-classification-quant-v2",
-  [CloudModelTypeFloat] = @"image-classification-float-v2",
-  [CloudModelTypeInvalid] = @"invalid_model"
+// REPLACE THESE REMOTE MODEL NAMES WITH ONES THAT ARE UPLOADED TO YOUR FIREBASE CONSOLE.
+NSString * const RemoteModelDescription[] = {
+  [RemoteModelTypeQuantized] = @"image-classification-quant-v2",
+  [RemoteModelTypeFloat] = @"image-classification-float-v2",
+  [RemoteModelTypeInvalid] = @"invalid_model"
 };
 
 typedef NS_ENUM(NSInteger, LocalModelType) {
@@ -48,28 +48,30 @@ typedef NS_ENUM(NSInteger, LocalModelType) {
 };
 
 NSString * const LocalModelDescription[] = {
-  [CloudModelTypeQuantized] = quantizedModelFilename,
-  [CloudModelTypeFloat] = floatModelFilename,
-  [CloudModelTypeInvalid] = invalidModelFilename
+  [RemoteModelTypeQuantized] = quantizedModelFilename,
+  [RemoteModelTypeFloat] = floatModelFilename,
+  [RemoteModelTypeInvalid] = invalidModelFilename
 };
-
 
 
 @interface ViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
-/// Model interpreter manager that manages loading models and detecting objects.
-@property(nonatomic) ModelInterpreterManager *modelManager;
+/// A map of `ModelInterpreterManager` instances where the key is remote+local model name string.
+@property(nonatomic) NSMutableDictionary<NSString *, ModelInterpreterManager *> *modelInterpreterManagerMap;
+
+  /// The `ModelInterpreterManager` for the current remote and local models.
+@property(nonatomic) ModelInterpreterManager *manager;
 
 /// An image picker for accessing the photo library or camera.
 @property(nonatomic) UIImagePickerController *imagePicker;
 
-/// The currently selected cloud model type.
-@property(nonatomic) CloudModelType currentCloudModelType;
+/// The currently selected remote model type.
+@property(nonatomic) RemoteModelType currentRemoteModelType;
 
 /// The currently selected local model type.
 @property(nonatomic) LocalModelType currentLocalModelType;
 @property(nonatomic) BOOL isModelQuantized;
-@property(nonatomic) BOOL isCloudModelDownloaded;
+@property(nonatomic) BOOL isRemoteModelDownloaded;
 
 /// A segmented control for changing models (0 = float, 1 = quantized, 2 = invalid).
 @property (weak, nonatomic) IBOutlet UISegmentedControl *modelControl;
@@ -86,26 +88,27 @@ NSString * const LocalModelDescription[] = {
 
 @implementation ViewController
 
-- (CloudModelType) currentCloudModel {
+- (RemoteModelType) currentRemoteModelType {
   return _modelControl.selectedSegmentIndex;
 }
 
-- (LocalModelType) currentLocalModel {
+- (LocalModelType) currentLocalModelType {
   return _modelControl.selectedSegmentIndex;
 }
 
-- (BOOL) isCloudModelDownloaded {
-  return [NSUserDefaults.standardUserDefaults boolForKey:CloudModelDownloadCompletedKey[_currentCloudModelType]];
+- (BOOL) isRemoteModelDownloaded {
+  return [NSUserDefaults.standardUserDefaults boolForKey:RemoteModelDownloadCompletedKey[_currentRemoteModelType]];
 }
 
 - (BOOL) isModelQuantized {
-  return _isCloudModelDownloaded ? _currentCloudModelType == CloudModelTypeQuantized : _currentLocalModelType == LocalModelTypeQuantized;
+  return _isRemoteModelDownloaded ? _currentRemoteModelType == RemoteModelTypeQuantized : _currentLocalModelType == LocalModelTypeQuantized;
 }
 
 - (void)viewDidLoad {
   [super viewDidLoad];
   
-  self.modelManager = [ModelInterpreterManager new];
+  self.manager = [ModelInterpreterManager new];
+  self.modelInterpreterManagerMap = [NSMutableDictionary new];
   self.isLocalModelLoaded = NO;
   self.imagePicker = [UIImagePickerController new];
   _imageView.image = [UIImage imageNamed:defaultImage];
@@ -114,9 +117,9 @@ NSString * const LocalModelDescription[] = {
       ![UIImagePickerController isCameraDeviceAvailable:UIImagePickerControllerCameraDeviceRear]) {
     [_cameraButton setEnabled:NO];
   }
-  [self setUpCloudModel];
+  [self setUpRemoteModel];
   [self setUpLocalModel];
-  _downloadModelButton.enabled = !_isCloudModelDownloaded;
+  _downloadModelButton.enabled = !_isRemoteModelDownloaded;
 }
 
 #pragma mark - IBActions
@@ -129,15 +132,15 @@ NSString * const LocalModelDescription[] = {
     return;
   }
   
-  if (_isCloudModelDownloaded) {
-    [self updateResultsText:@"Loading the cloud model...\n"];
-    if (![_modelManager loadCloudModelWithIsModelQuantized:(_currentCloudModelType == CloudModelTypeQuantized)]) {
-      [self updateResultsText:@"Failed to load the cloud model."];
+  if (_isRemoteModelDownloaded) {
+    [self updateResultsText:@"Loading the  model...\n"];
+    if (![_manager loadRemoteModelWithIsModelQuantized:(_currentRemoteModelType == RemoteModelTypeQuantized)]) {
+      [self updateResultsText:@"Failed to load the remote model."];
       return;
     }
   } else {
     [self updateResultsText:@"Loading the local model...\n"];
-    if (![_modelManager loadLocalModelWithIsModelQuantized:(_currentLocalModelType == LocalModelTypeQuantized)]) {
+    if (![_manager loadLocalModelWithIsModelQuantized:(_currentLocalModelType == LocalModelTypeQuantized)]) {
       [self updateResultsText:@"Failed to load the local model."];
       return;
     }
@@ -148,10 +151,10 @@ NSString * const LocalModelDescription[] = {
     newResultsTextString = [_resultsTextView.text stringByAppendingString:newResultsTextString];
   }
   [self updateResultsText:newResultsTextString];
-  CloudModelType cloudmodel = _currentCloudModelType;
+  RemoteModelType remotemodel = _currentRemoteModelType;
   dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), ^{
-    NSObject *imageData = [self.modelManager scaledImageDataFromImage:image];
-    [self.modelManager detectObjectsInImageData:imageData topResultsCount:nil completion:^(NSArray * _Nullable results, NSError * _Nullable error) {
+    NSObject *imageData = [self.manager scaledImageDataFromImage:image];
+    [self.manager detectObjectsInImageData:imageData topResultsCount:nil completion:^(NSArray * _Nullable results, NSError * _Nullable error) {
       if (!results || results.count == 0) {
         NSString *errorString = error ? error.localizedDescription : failedToDetectObjectsMessage;
         errorString = [NSString stringWithFormat:@"Inference error: %@", errorString];
@@ -161,10 +164,10 @@ NSString * const LocalModelDescription[] = {
       }
       
       NSString *inferenceMessageString = @"Inference results using ";
-      if (self.isCloudModelDownloaded) {
-        inferenceMessageString = [inferenceMessageString stringByAppendingFormat:@"`%@` cloud model:\n", CloudModelDescription[cloudmodel]];
+      if (self.isRemoteModelDownloaded) {
+        inferenceMessageString = [inferenceMessageString stringByAppendingFormat:@"`%@` remote model:\n", RemoteModelDescription[remotemodel]];
       } else {
-        inferenceMessageString = [inferenceMessageString stringByAppendingFormat:@"`%@` local model:\n", LocalModelDescription[self.currentLocalModel]];;
+        inferenceMessageString = [inferenceMessageString stringByAppendingFormat:@"`%@` local model:\n", LocalModelDescription[self.currentLocalModelType]];;
       }
       [self updateResultsText:[inferenceMessageString stringByAppendingString:[self detectionResultsStringRromResults:results]]];
     }];
@@ -181,74 +184,90 @@ NSString * const LocalModelDescription[] = {
   [self presentViewController:_imagePicker animated:YES completion:nil];
 }
 
-- (IBAction)downloadCloudModel:(id)sender {
+- (IBAction)downloadModel:(id)sender {
   [self updateResultsText:nil];
-  _downloadModelButton.enabled = _isCloudModelDownloaded;
+  _downloadModelButton.enabled = _isRemoteModelDownloaded;
   _detectButton.enabled = NO;
-  _resultsTextView.text = _isCloudModelDownloaded ?
-  @"Cloud model loaded. Select the `Detect` button to start the inference." :
-  @"Downloading cloud model. Once the download has completed, select the `Detect` button to start the inference.";
-  if (![_modelManager loadCloudModelWithIsModelQuantized:(_currentCloudModelType == CloudModelTypeQuantized)]) {
-    _resultsTextView.text = @"Failed to load the cloud model.";
+  _resultsTextView.text = _isRemoteModelDownloaded ?
+  @"Remote model loaded. Select the `Detect` button to start the inference." :
+  @"Downloading remote model. Once the download has completed, select the `Detect` button to start the inference.";
+  if (![_manager loadRemoteModelWithIsModelQuantized:(_currentRemoteModelType == RemoteModelTypeQuantized)]) {
+    _resultsTextView.text = @"Failed to load the remote model.";
   }
 }
 
 - (IBAction)modelSwitched:(id)sender {
   [self updateResultsText:nil];
+  [self updateModelInterpreterManager];
   [self setUpLocalModel];
-  [self setUpCloudModel];
+  [self setUpRemoteModel];
+  _downloadModelButton.enabled = !_isRemoteModelDownloaded;
 }
 
 #pragma mark - Notifications
 
-- (void)cloudModelDownloadDidSucceed:(NSNotification *)notification {
+- (void)remoteModelDownloadDidSucceed:(NSNotification *)notification {
   [self runOnMainThread:^{
-    [NSUserDefaults.standardUserDefaults setBool:YES forKey:CloudModelDownloadCompletedKey[self.currentCloudModelType]];
+    [NSUserDefaults.standardUserDefaults setBool:YES forKey:RemoteModelDownloadCompletedKey[self.currentRemoteModelType]];
     [self updateResultsText:nil];
     self.detectButton.enabled = YES;
     self.downloadModelButton.enabled = NO;
-    FIRCloudModelSource *cloudmodel = notification.userInfo[FIRModelDownloadUserInfoKeyCloudModel];
-    if (cloudmodel == nil) {
-      [self updateResultsText:@"Successfully downloaded the cloud model. The model is ready for detection."];
+    FIRRemoteModel *remotemodel = notification.userInfo[FIRModelDownloadUserInfoKeyRemoteModel];
+    if (remotemodel == nil) {
+      [self updateResultsText:@"Successfully downloaded the remote model. The model is ready for detection."];
       return;
     }
-    [self updateResultsText:[NSString stringWithFormat:@"Successfully downloaded the cloud model with name: %@. The model is ready for detection.", cloudmodel.name]];
+    [self updateResultsText:[NSString stringWithFormat:@"Successfully downloaded the remote model with name: %@. The model is ready for detection.", remotemodel.name]];
    }];
 }
 
-- (void)cloudModelDownloadDidFail:(NSNotification *)notification {
+- (void)remoteModelDownloadDidFail:(NSNotification *)notification {
   [self runOnMainThread:^{
     [self updateResultsText:nil];
     self.detectButton.enabled = YES;
     self.downloadModelButton.enabled = YES;
-    FIRCloudModelSource *cloudModel = notification.userInfo[FIRModelDownloadUserInfoKeyCloudModel];
+    FIRRemoteModel *remoteModel = notification.userInfo[FIRModelDownloadUserInfoKeyRemoteModel];
     NSError *error = notification.userInfo[FIRModelDownloadUserInfoKeyError];
     if (error == nil) {
-      [self updateResultsText:@"SFailed to download the cloud model."];
+      [self updateResultsText:@"SFailed to download the remote model."];
       return;
     }
-    [self updateResultsText:[NSString stringWithFormat:@"Failed to download the cloud model with name: %@, error: %@.", cloudModel, error.localizedDescription]];
+    [self updateResultsText:[NSString stringWithFormat:@"Failed to download the remote model with name: %@, error: %@.", remoteModel, error.localizedDescription]];
   }];
 }
 
 #pragma mark - Private
 
-/// Sets up the currently selected cloud model.
-- (void)setUpCloudModel {
-  NSString *modelName = CloudModelDescription[_currentCloudModelType];
-  if (![_modelManager setUpCloudModelWithName:modelName]) {
-    [self updateResultsText:[NSString stringWithFormat:@"%@\nFailed to set up the `%@` cloud model.", _resultsTextView.text, modelName]];
+/// Updates the `ModelInterpreterManager` instance based on the current remote and local models.
+- (void)updateModelInterpreterManager {
+  NSString *key = [NSString stringWithFormat:@"%@%ld%@%ld", RemoteModelDescription[_currentRemoteModelType],
+                    _currentRemoteModelType,
+                    LocalModelDescription[_currentLocalModelType],
+                    _currentLocalModelType
+                   ];
+  _manager = _modelInterpreterManagerMap[key];
+  if (_manager == nil) {
+    _manager = [ModelInterpreterManager new];
+  }
+  _modelInterpreterManagerMap[key] = _manager;
+}
+
+/// Sets up the currently selected remote model.
+- (void)setUpRemoteModel {
+  NSString *modelName = RemoteModelDescription[_currentRemoteModelType];
+  if (![_manager setUpRemoteModelWithName:modelName]) {
+    [self updateResultsText:[NSString stringWithFormat:@"%@\nFailed to set up the `%@` remote model.", _resultsTextView.text, modelName]];
   }
   [NSNotificationCenter.defaultCenter addObserver:self
-                                         selector:@selector(cloudModelDownloadDidSucceed:) name:FIRModelDownloadDidSucceedNotification object:nil];
+                                         selector:@selector(remoteModelDownloadDidSucceed:) name:FIRModelDownloadDidSucceedNotification object:nil];
   [NSNotificationCenter.defaultCenter addObserver:self
-                                         selector:@selector(cloudModelDownloadDidFail:) name:FIRModelDownloadDidFailNotification object:nil];
+                                         selector:@selector(remoteModelDownloadDidFail:) name:FIRModelDownloadDidFailNotification object:nil];
 }
 
 /// Sets up the local model.
 - (void)setUpLocalModel {
   NSString *localModelName = LocalModelDescription[_currentLocalModelType];
-  if (![_modelManager setUpLocalModelWithName:localModelName filename:localModelName]) {
+  if (![_manager setUpLocalModelWithName:localModelName filename:localModelName]) {
     NSString *newResultsText = @"";
     if (_resultsTextView.text) {
       newResultsText = _resultsTextView.text;

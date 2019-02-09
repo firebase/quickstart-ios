@@ -18,16 +18,16 @@ import UIKit
 import FirebaseMLCommon
 import FirebaseMLModelInterpreter
 
-/// Defines the requirements for managing cloud and local models.
+/// Defines the requirements for managing remote and local models.
 public protocol ModelManaging {
 
-  /// Returns a Bool indicating whether the cloud model was successfully registered or had already
+  /// Returns a Bool indicating whether the remote model was successfully registered or had already
   /// been registered.
-  func register(_ cloudModel: CloudModelSource) -> Bool
+  func register(_ remoteModel: RemoteModel) -> Bool
 
   /// Returns a Bool indicating whether the local model was successfully registered or had already
   /// been registered.
-  func register(_ localModel: LocalModelSource) -> Bool
+  func register(_ localModel: LocalModel) -> Bool
 }
 
 public enum ModelInterpreterError: Error {
@@ -71,9 +71,9 @@ public class ModelInterpreterManager {
 
   private let modelManager: ModelManaging
   private let modelInputOutputOptions = ModelInputOutputOptions()
-  private var registeredCloudModelNames = Set<String>()
+  private var registeredRemoteModelNames = Set<String>()
   private var registeredLocalModelNames = Set<String>()
-  private var cloudModelOptions: ModelOptions?
+  private var remoteModelOptions: ModelOptions?
   private var localModelOptions: ModelOptions?
   private var modelInterpreter: ModelInterpreter?
   private var modelElementType: ModelElementType = .uInt8
@@ -84,25 +84,28 @@ public class ModelInterpreterManager {
     self.modelManager = modelManager
   }
 
-  /// Sets up a cloud model by creating a `CloudModel` and registering it with the given name.
+  // Sets up a remote model by creating a `RemoteModel` and registering it with the given name.
   ///
   /// - Parameters:
-  ///   - name: The name for the cloud model.
-  /// - Returns: A `Bool` indicating whether the cloud model was successfully set up and registered.
-  public func setUpCloudModel(name: String) -> Bool {
-    let conditions = ModelDownloadConditions(isWiFiRequired: false, canDownloadInBackground: true)
-    let cloudModel = CloudModelSource(
+  ///   - name: The name for the remote model.
+  /// - Returns: `Bool` indicating whether the remote model was successfully set up and registered.
+  public func setUpRemoteModel(name: String) -> Bool {
+    let conditions = ModelDownloadConditions(
+      allowsCellularAccess: true,
+      allowsBackgroundDownloading: true
+    )
+    let remoteModel = RemoteModel(
       name: name,
-      enableModelUpdates: true,
+      allowsModelUpdates: true,
       initialConditions: conditions,
       updateConditions: conditions
     )
-    guard registeredCloudModelNames.contains(name) || modelManager.register(cloudModel) else {
-      print("Failed to register the cloud model with name: \(name)")
+    guard registeredRemoteModelNames.contains(name) || modelManager.register(remoteModel) else {
+      print("Failed to register the remote model with name: \(name)")
       return false
     }
-    cloudModelOptions = ModelOptions(cloudModelName: name, localModelName: nil)
-    registeredCloudModelNames.insert(name)
+    remoteModelOptions = ModelOptions(remoteModelName: name, localModelName: nil)
+    registeredRemoteModelNames.insert(name)
     return true
   }
 
@@ -121,18 +124,18 @@ public class ModelInterpreterManager {
         print("Failed to get the local model file path.")
         return false
     }
-    let localModel = LocalModelSource(name: name, path: localModelFilePath)
+    let localModel = LocalModel(name: name, path: localModelFilePath)
     guard registeredLocalModelNames.contains(name) || modelManager.register(localModel) else {
       print("Failed to register the local model with name: \(name)")
       return false
     }
-    localModelOptions = ModelOptions(cloudModelName: nil, localModelName: name)
+    localModelOptions = ModelOptions(remoteModelName: nil, localModelName: name)
     registeredLocalModelNames.insert(name)
     return true
   }
 
-  /// Loads the registered cloud model with the `ModelOptions` created during setup and the given
-  /// input and output dimensions..
+  /// Loads the registered remote model with the `ModelOptions` created during setup and the given
+  /// input and output dimensions.
   ///
   /// - Parameters:
   ///   - isModelQuantized: Indicates if the model is quantized. The default is `false`.
@@ -141,19 +144,19 @@ public class ModelInterpreterManager {
   ///   - outputDimensions: An array of the output tensor dimensions. Must include `inputDimensions`
   ///     if `outputDimensions` are specified. Pass `nil` to use the default output dimensions.
   ///   - bundle: The bundle to load model resources from. The default is the main bundle.
-  /// - Returns: A `Bool` indicating whether the cloud model was successfully loaded.
-  public func loadCloudModel(
+  /// - Returns: A `Bool` indicating whether the remote model was successfully loaded.
+  public func loadRemoteModel(
     isModelQuantized: Bool = false,
     inputDimensions: [NSNumber]? = nil,
     outputDimensions: [NSNumber]? = nil,
     bundle: Bundle = .main
     ) -> Bool {
-    guard let cloudModelOptions = cloudModelOptions else {
-      print("Failed to load the cloud model because the options are nil.")
+    guard let remoteModelOptions = remoteModelOptions else {
+      print("Failed to load the remote model because the options are nil.")
       return false
     }
     return loadModel(
-      options: cloudModelOptions,
+      options: remoteModelOptions,
       isModelQuantized: isModelQuantized,
       inputDimensions: inputDimensions,
       outputDimensions: outputDimensions,
@@ -262,7 +265,7 @@ public class ModelInterpreterManager {
   /// Loads a model with the given options and input and output dimensions.
   ///
   /// - Parameters:
-  ///   - options: The model options consisting of the cloud and/or local models to be loaded.
+  ///   - options: The model options consisting of the remote and/or local models to be loaded.
   ///   - isModelQuantized: Whether the model uses quantization (i.e. 8-bit fixed point weights and
   ///     activations). See https://www.tensorflow.org/performance/quantization for more details. If
   ///     false, a floating point model is used.
@@ -272,8 +275,8 @@ public class ModelInterpreterManager {
   ///     if `outputDimensions` are specified. Pass `nil` to use the default output dimensions.
   ///   - bundle: The bundle to load model resources from. The default is the main bundle.
   /// - Returns: A `Bool` indicating whether the model was successfully loaded. If both local and
-  ///     cloud models were provided in the `ModelOptions`, the cloud model takes priority and is
-  ///     loaded. If the cloud model has not been downloaded yet from the Firebase console, the
+  ///     remote models were provided in the `ModelOptions`, the remote model takes priority and is
+  ///     loaded. If the remote model has not been downloaded yet from the Firebase console, the
   ///     model download request is created and the local model is loaded as a fallback.
   private func loadModel(
     options: ModelOptions,

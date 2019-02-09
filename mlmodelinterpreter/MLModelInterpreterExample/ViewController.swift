@@ -22,41 +22,41 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
 
   // MARK: - Properties
 
-  /// A map of `ModelInterpreterManager` instances where the key is cloud+local model name string.
+  /// A map of `ModelInterpreterManager` instances where the key is remote+local model name string.
   private lazy var modelInterpreterManagerMap = [String: ModelInterpreterManager]()
 
-  /// The `ModelInterpreterManager` for the current cloud and local models.
+  /// The `ModelInterpreterManager` for the current remote and local models.
   private lazy var manager = ModelInterpreterManager()
 
   /// An image picker for accessing the photo library or camera.
   private var imagePicker = UIImagePickerController()
 
-  /// The currently selected cloud model type.
-  private var currentCloudModelType: CloudModelType {
+  /// The currently selected remote model type.
+  private var currentRemoteModelType: RemoteModelType {
     precondition(Thread.isMainThread)
-    guard let currentCloudModel = CloudModelType(rawValue: modelControl.selectedSegmentIndex) else {
-      preconditionFailure("Invalid cloud model type for selected segment index.")
+    guard let type = RemoteModelType(rawValue: modelControl.selectedSegmentIndex) else {
+      preconditionFailure("Invalid remote model type for selected segment index.")
     }
-    return currentCloudModel
+    return type
   }
 
   /// The currently selected local model type.
   private var currentLocalModelType: LocalModelType {
     precondition(Thread.isMainThread)
-    guard let currentLocalModel = LocalModelType(rawValue: modelControl.selectedSegmentIndex) else {
+    guard let type = LocalModelType(rawValue: modelControl.selectedSegmentIndex) else {
       preconditionFailure("Invalid local model type for selected segment index.")
     }
-    return currentLocalModel
+    return type
   }
 
   private var isModelQuantized: Bool {
-    return isCloudModelDownloaded ?
-      currentCloudModelType == .quantized :
+    return isRemoteModelDownloaded ?
+      currentRemoteModelType == .quantized :
       currentLocalModelType == .quantized
   }
 
-  private var isCloudModelDownloaded: Bool {
-    return UserDefaults.standard.bool(forKey: currentCloudModelType.downloadCompletedKey)
+  private var isRemoteModelDownloaded: Bool {
+    return UserDefaults.standard.bool(forKey: currentRemoteModelType.downloadCompletedKey)
   }
 
   private var isLocalModelLoaded = false
@@ -84,9 +84,9 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
       cameraButton.isEnabled = false
     }
     updateModelInterpreterManager()
-    setUpCloudModel()
+    setUpRemoteModel()
     setUpLocalModel()
-    downloadModelButton.isEnabled = !isCloudModelDownloaded
+    downloadModelButton.isEnabled = !isRemoteModelDownloaded
   }
 
   // MARK: - IBActions
@@ -98,10 +98,10 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
       return
     }
 
-    if isCloudModelDownloaded {
-      updateResultsText("Loading the cloud model...\n")
-      if !manager.loadCloudModel(isModelQuantized: (currentCloudModelType == .quantized)) {
-        updateResultsText("Failed to load the cloud model.")
+    if isRemoteModelDownloaded {
+      updateResultsText("Loading the remote model...\n")
+      if !manager.loadRemoteModel(isModelQuantized: (currentRemoteModelType == .quantized)) {
+        updateResultsText("Failed to load the remote model.")
         return
       }
     } else {
@@ -117,7 +117,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
       newResultsTextString = currentText + newResultsTextString
     }
     updateResultsText(newResultsTextString)
-    let cloudModelType = currentCloudModelType
+    let remoteModelType = currentRemoteModelType
     DispatchQueue.global(qos: .userInitiated).async {
       let imageData = self.manager.scaledImageData(from: image)
       self.manager.detectObjects(in: imageData) { (results, error) in
@@ -130,8 +130,8 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
         }
 
         var inferenceMessageString = "Inference results using "
-        if self.isCloudModelDownloaded {
-          inferenceMessageString += "`\(cloudModelType.description)` cloud model:\n"
+        if self.isRemoteModelDownloaded {
+          inferenceMessageString += "`\(remoteModelType.description)` remote model:\n"
         } else {
           inferenceMessageString += "`\(self.currentLocalModelType.description)` local model:\n"
         }
@@ -151,17 +151,17 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
     present(imagePicker, animated: true)
   }
 
-  @IBAction func downloadCloudModel(_ sender: Any) {
+  @IBAction func downloadModel(_ sender: Any) {
     updateResultsText()
-    downloadModelButton.isEnabled = isCloudModelDownloaded
+    downloadModelButton.isEnabled = isRemoteModelDownloaded
     detectButton.isEnabled = false
-    updateResultsText(isCloudModelDownloaded ?
-      "Cloud model loaded. Select the `Detect` button to start the inference." :
-      "Downloading cloud model...This text view will notify you when the downloaded model is " +
+    updateResultsText(isRemoteModelDownloaded ?
+      "Remote model loaded. Select the `Detect` button to start the inference." :
+      "Downloading remote model...This text view will notify you when the downloaded model is " +
       "ready to be used."
     )
-    if !manager.loadCloudModel(isModelQuantized: (currentCloudModelType == .quantized)) {
-      updateResultsText("Failed to load the cloud model.")
+    if !manager.loadRemoteModel(isModelQuantized: (currentRemoteModelType == .quantized)) {
+      updateResultsText("Failed to load the remote model.")
     }
   }
 
@@ -169,53 +169,53 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
     updateResultsText()
     updateModelInterpreterManager()
     setUpLocalModel()
-    setUpCloudModel()
-    downloadModelButton.isEnabled = !isCloudModelDownloaded
+    setUpRemoteModel()
+    downloadModelButton.isEnabled = !isRemoteModelDownloaded
   }
 
   // MARK: - Notifications
 
   @objc
-  private func cloudModelDownloadDidSucceed(_ notification: Notification) {
+  private func remoteModelDownloadDidSucceed(_ notification: Notification) {
     let notificationHandler = {
       self.updateResultsText()
       guard let userInfo = notification.userInfo,
-        let cloudModel =
-        userInfo[ModelDownloadUserInfoKey.cloudModel.rawValue] as? CloudModel
+        let remoteModel =
+        userInfo[ModelDownloadUserInfoKey.remoteModel.rawValue] as? RemoteModel
         else {
           self.updateResultsText("firebaseMLModelDownloadDidSucceed notification posted without a " +
-            "CloudModel instance.")
+            "RemoteModel instance.")
           return
       }
-      self.updateUserDefaults(for: cloudModel)
-      if self.currentCloudModelType.description == cloudModel.name {
+      self.updateUserDefaults(for: remoteModel)
+      if self.currentRemoteModelType.description == remoteModel.name {
         self.detectButton.isEnabled = true
         self.downloadModelButton.isEnabled = false
       }
-      self.updateResultsText("Successfully downloaded the cloud model with name: " +
-        "\(cloudModel.name). The model is ready for detection.")
+      self.updateResultsText("Successfully downloaded the remote model with name: " +
+        "\(remoteModel.name). The model is ready for detection.")
     }
     if Thread.isMainThread { notificationHandler(); return }
     DispatchQueue.main.async { notificationHandler() }
   }
 
   @objc
-  private func cloudModelDownloadDidFail(_ notification: Notification) {
+  private func remoteModelDownloadDidFail(_ notification: Notification) {
     let notificationHandler = {
       self.updateResultsText()
       self.detectButton.isEnabled = true
       self.downloadModelButton.isEnabled = true
       guard let userInfo = notification.userInfo,
-        let cloudModel =
-        userInfo[ModelDownloadUserInfoKey.cloudModel.rawValue] as? CloudModel,
+        let remoteModel =
+        userInfo[ModelDownloadUserInfoKey.remoteModel.rawValue] as? RemoteModel,
         let error = userInfo[ModelDownloadUserInfoKey.error.rawValue] as? NSError
         else {
           self.updateResultsText("firebaseMLModelDownloadDidFail notification posted without a " +
-            "CloudModel instance or error.")
+            "RemoteModel instance or error.")
           return
       }
-      self.updateResultsText("Failed to download the cloud model with name: " +
-        "\(cloudModel.name), error: \(error).")
+      self.updateResultsText("Failed to download the remote model with name: " +
+        "\(remoteModel.name), error: \(error).")
     }
     if Thread.isMainThread { notificationHandler(); return }
     DispatchQueue.main.async { notificationHandler() }
@@ -223,31 +223,31 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
 
   // MARK: - Private
 
-  /// Updates the `ModelInterpreterManager` instance based on the current cloud and local models.
+  /// Updates the `ModelInterpreterManager` instance based on the current remote and local models.
   private func updateModelInterpreterManager() {
     precondition(Thread.isMainThread)
-    let key = currentCloudModelType.description + "\(currentCloudModelType.rawValue)" +
+    let key = currentRemoteModelType.description + "\(currentRemoteModelType.rawValue)" +
       currentLocalModelType.description + "\(currentLocalModelType.rawValue)"
     manager = modelInterpreterManagerMap[key] ?? ModelInterpreterManager()
     modelInterpreterManagerMap[key] = manager
   }
 
-  /// Sets up the currently selected cloud model.
-  private func setUpCloudModel() {
-    let modelName = currentCloudModelType.description
-    if !manager.setUpCloudModel(name: modelName) {
+  /// Sets up the currently selected remote model.
+  private func setUpRemoteModel() {
+    let modelName = currentRemoteModelType.description
+    if !manager.setUpRemoteModel(name: modelName) {
       updateResultsText("\(resultsTextView.text ?? "")\nFailed to set up the `\(modelName)` " +
-        "cloud model.")
+        "remote model.")
     }
     NotificationCenter.default.addObserver(
       self,
-      selector: #selector(cloudModelDownloadDidSucceed(_:)),
+      selector: #selector(remoteModelDownloadDidSucceed(_:)),
       name: .firebaseMLModelDownloadDidSucceed,
       object: nil
     )
     NotificationCenter.default.addObserver(
       self,
-      selector: #selector(cloudModelDownloadDidFail(_:)),
+      selector: #selector(remoteModelDownloadDidFail(_:)),
       name: .firebaseMLModelDownloadDidFail,
       object: nil
     )
@@ -261,9 +261,9 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
     }
   }
 
-  /// Updates the `downloadCompletedKey` in the User Defaults to true for the given cloud model.
-  private func updateUserDefaults(for cloudModel: CloudModelSource) {
-    let type = CloudModelType.allCases.first { $0.description == cloudModel.name }
+  /// Updates the `downloadCompletedKey` in the User Defaults to true for the given remote model.
+  private func updateUserDefaults(for remoteModel: RemoteModel) {
+    let type = RemoteModelType.allCases.first { $0.description == remoteModel.name }
     guard let key = type?.downloadCompletedKey else { return }
     UserDefaults.standard.set(true, forKey: key)
   }
@@ -339,7 +339,7 @@ private enum Constant {
   static let failedToDetectObjectsMessage = "Failed to detect objects in image."
 }
 
-private enum CloudModelType: Int, CustomStringConvertible {
+private enum RemoteModelType: Int, CustomStringConvertible {
   case quantized = 0
   case float = 1
   case invalid = 2
@@ -347,17 +347,17 @@ private enum CloudModelType: Int, CustomStringConvertible {
   var downloadCompletedKey: String {
     switch self {
     case .quantized:
-      return "FIRCloudModel1DownloadCompleted"
+      return "FIRRemoteModel1DownloadCompleted"
     case .float:
-      return "FIRCloudModel2DownloadCompleted"
+      return "FIRRemoteModel2DownloadCompleted"
     case .invalid:
-      return "FIRCloudInvalidModel"
+      return "FIRRemoteInvalidModel"
     }
   }
 
   // MARK: - CustomStringConvertible
 
-  // REPLACE THESE CLOUD MODEL NAMES WITH ONES THAT ARE UPLOADED TO YOUR FIREBASE CONSOLE.
+  // REPLACE THESE REMOTE MODEL NAMES WITH ONES THAT ARE UPLOADED TO YOUR FIREBASE CONSOLE.
   var description: String {
     switch self {
     case .quantized:
@@ -402,9 +402,9 @@ public static let originalImage = UIImagePickerControllerOriginalImage
 #endif  // !swift(>=4.2)
 
 #if swift(>=4.2)
-extension CloudModelType: CaseIterable {}
+extension RemoteModelType: CaseIterable {}
 #else
-extension CloudModelType {
-static let allCases: [CloudModelType] = [.quantized, .float, .invalid]
+extension RemoteModelType {
+static let allCases: [RemoteModelType] = [.quantized, .float, .invalid]
 }
 #endif  // swift(>=4.2)

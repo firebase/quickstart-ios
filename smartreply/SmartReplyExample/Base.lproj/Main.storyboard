@@ -53,6 +53,12 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" title="ML Kit Smart Reply" id="gMd-wJ-N4F">
+                        <barButtonItem key="leftBarButtonItem" title="SWITCH" id="x9v-rC-HaP">
+                            <color key="tintColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="switchUser:" destination="N42-xk-ULx" id="Oz2-Ho-enL"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="more" image="ic_more_vert_white" id="QIP-vr-CNA">
                             <connections>
                                 <action selector="didTapMore:" destination="N42-xk-ULx" id="Gk8-HG-dg9"/>

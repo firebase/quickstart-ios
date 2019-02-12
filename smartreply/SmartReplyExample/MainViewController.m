@@ -100,6 +100,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)viewDidLoad {
   [super viewDidLoad];
   self.messages = [NSMutableArray new];
+  self.isLocalUser = YES;
   self.messageInputContainerView = [UIView new];
   _messageInputContainerView.backgroundColor = UIColor.whiteColor;
   self.smartReply = [[FIRNaturalLanguage naturalLanguage] smartReply];
@@ -108,27 +109,22 @@ NS_ASSUME_NONNULL_BEGIN
   _inputTextView.font = [UIFont preferredFontForTextStyle:UIFontTextStyleCallout];
   _inputTextView.scrollEnabled = NO;
   self.smartReplyView = [UIStackView new];
+  _smartReplyView.distribution = UIStackViewDistributionEqualSpacing;
+
 
   for (int i = 0; i < 3; i++) {
     MDCChipView *chipView = [MDCChipView new];
     chipView.hidden = YES;
     [chipView setTitleColor:UIColor.redColor forState:UIControlStateSelected];
+    NSLayoutConstraint *widthConstraint = [chipView.widthAnchor constraintEqualToConstant:0];
+    widthConstraint.identifier = @"width";
+    widthConstraint.active = YES;
     [chipView addTarget:self
                  action:@selector(replySelected:)
        forControlEvents:UIControlEventTouchUpInside];
     [_smartReplyView addArrangedSubview:chipView];
   }
-  MDCButton *switchButton = [MDCButton new];
-  [switchButton setTitle:@"SWITCH" forState:UIControlStateNormal];
-  MDCButtonScheme *buttonScheme = [MDCButtonScheme new];
-  [MDCContainedButtonThemer applyScheme:buttonScheme toButton:switchButton];
-  [switchButton addTarget:self
-                   action:@selector(switchUser)
-         forControlEvents:UIControlEventTouchUpInside];
-  [_smartReplyView addArrangedSubview:switchButton];
-  _smartReplyView.distribution = UIStackViewDistributionEqualSpacing;
-  _smartReplyView.axis = UILayoutConstraintAxisHorizontal;
-  _smartReplyView.translatesAutoresizingMaskIntoConstraints = NO;
+
 
   self.sendButton = [[MDCFloatingButton alloc] initWithFrame:CGRectNull
                                                        shape:MDCFloatingButtonShapeMini];
@@ -191,11 +187,7 @@ NS_ASSUME_NONNULL_BEGIN
   [_messageInputContainerView addConstraintsWithFormat:@"H:|-8-[v0][v1(40)]-16-|"
                                                  views:@[ _inputTextView, _sendButton ]];
   [_messageInputContainerView addConstraintsWithFormat:@"H:|[v0]|" views:@[ topBorderView ]];
-  [_messageInputContainerView addConstraintsWithFormat:@"H:|[v0]-16-|" views:@[ _smartReplyView ]];
-  CGFloat bottomAreaInset = 0;
-  if (@available(iOS 11.0, *)) {
-    bottomAreaInset = UIApplication.sharedApplication.keyWindow.safeAreaInsets.bottom;
-  }
+  [_messageInputContainerView addConstraintsWithFormat:@"H:|-16-[v0]-16-|" views:@[ _smartReplyView ]];
 
   [_smartReplyView.topAnchor constraintEqualToAnchor:_messageInputContainerView.topAnchor
                                             constant:6]
@@ -205,12 +197,12 @@ NS_ASSUME_NONNULL_BEGIN
 
   NSLayoutConstraint *inputBottomConstraint =
       [_messageInputContainerView.bottomAnchor constraintEqualToAnchor:_inputTextView.bottomAnchor
-                                                              constant:bottomAreaInset];
+                                                              constant:_bottomAreaInset];
   inputBottomConstraint.active = YES;
 
   NSLayoutConstraint *sendBottomConstraint =
       [_messageInputContainerView.bottomAnchor constraintEqualToAnchor:_sendButton.bottomAnchor
-                                                              constant:bottomAreaInset + 6];
+                                                              constant:_bottomAreaInset + 6];
   sendBottomConstraint.active = YES;
 
   [_messageInputContainerView addConstraintsWithFormat:@"V:|[v0(0.5)]|" views:@[ topBorderView ]];
@@ -246,8 +238,8 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (IBAction)didTapMore:(UIBarButtonItem *)sender {
-  _moreAlert.popoverPresentationController.barButtonItem = sender;
-  [self presentViewController:_moreAlert animated:YES completion:nil];
+  self.moreAlert.popoverPresentationController.barButtonItem = sender;
+  [self presentViewController:self.moreAlert animated:YES completion:nil];
 }
 
 - (void)clearChips {
@@ -281,21 +273,29 @@ NS_ASSUME_NONNULL_BEGIN
        return;
      }
      for (int i = 0; i < 3; i++) {
-       MDCChipView *view = self.smartReplyView.arrangedSubviews[i];
-       view.titleLabel.text = result.suggestions[i].text;
-       [view sizeToFit];
-       view.hidden = NO;
+       MDCChipView *chip = self.smartReplyView.arrangedSubviews[i];
+       chip.titleLabel.text = result.suggestions[i].text;
+       [chip sizeToFit];
+       chip.hidden = NO;
+       for (NSLayoutConstraint *constraint in chip.constraints) {
+         if ([constraint.identifier isEqualToString:@"width"]) {
+           constraint.constant = chip.bounds.size.width;
+           return;
+         }
+       }
      }
    }];
 }
 
 - (void)handleKeyboardNotification:(NSNotification *)notification {
+  CGRect keyboardSize =
+  ((NSValue *)notification.userInfo[UIKeyboardFrameEndUserInfoKey]).CGRectValue;
   BOOL isKeyboardShowing = notification.name == UIKeyboardWillShowNotification;
   if (_isKeyboardShown == isKeyboardShowing) {
+    _bottomConstraint.constant = isKeyboardShowing ? -keyboardSize.size.height : 0;
     return;
   }
-  CGRect keyboardSize =
-      ((NSValue *)notification.userInfo[UIKeyboardFrameEndUserInfoKey]).CGRectValue;
+  _isKeyboardShown = isKeyboardShowing;
   _bottomConstraint.constant = isKeyboardShowing ? -keyboardSize.size.height : 0;
   double inset = isKeyboardShowing ? -_bottomAreaInset : _bottomAreaInset;
   _heightConstraint.constant += inset;
@@ -348,7 +348,7 @@ NS_ASSUME_NONNULL_BEGIN
   [_inputTextView insertText:reply.currentTitle];
 }
 
-- (void)switchUser {
+- (IBAction)switchUser:(id)sender {
   self.isLocalUser = !_isLocalUser;
   UIColor *color = _isLocalUser ? UIColor.blueColor : UIColor.redColor;
   _sendButton.tintColor = color;
@@ -428,7 +428,7 @@ NS_ASSUME_NONNULL_BEGIN
   CGSize size = CGSizeMake(self.view.frame.size.width - 60, INFINITY);
   CGSize estimatedSize = [textView sizeThatFits:size];
   _heightConstraint.constant =
-      estimatedSize.height + 54 + (_bottomConstraint.constant == 0 ? _bottomAreaInset : 0);
+  estimatedSize.height + 54 + (self.isKeyboardShown ? 0 : _bottomAreaInset);
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView

@@ -49,21 +49,17 @@ class MainViewController: MDCCollectionViewController, UITextViewDelegate {
 
   let smartReplyView: UIStackView = {
     let view = UIStackView()
+    view.distribution = .equalSpacing
     for index in 0..<3 {
       let chipView = MDCChipView()
       chipView.isHidden = true
       chipView.setTitleColor(UIColor.red, for: .selected)
+      let widthConstraint = chipView.widthAnchor.constraint(equalToConstant: 0)
+      widthConstraint.identifier = "width"
+      widthConstraint.isActive = true
       chipView.addTarget(self, action: #selector(replySelected(reply:)), for: .touchUpInside)
       view.addArrangedSubview(chipView)
     }
-    let button = MDCButton()
-    button.setTitle("SWITCH", for: .normal)
-    let buttonScheme = MDCButtonScheme()
-    MDCContainedButtonThemer.applyScheme(buttonScheme, to: button)
-    button.addTarget(self, action: #selector(switchUser), for: .touchUpInside)
-    view.addArrangedSubview(button)
-    view.distribution = .equalSpacing
-    view.translatesAutoresizingMaskIntoConstraints = false
     return view
   }()
 
@@ -95,63 +91,6 @@ class MainViewController: MDCCollectionViewController, UITextViewDelegate {
     alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
     return alert
   }()
-
-  @objc func replySelected(reply: MDCChipView) {
-    guard let title = reply.titleLabel.text else { return }
-    inputTextView.insertText(title)
-  }
-
-  @objc func switchUser() {
-    isLocalUser.toggle()
-    let color: UIColor = isLocalUser ? .blue : .red
-    sendButton.tintColor = color
-    navigationController?.navigationBar.barTintColor = color
-    updateReplies()
-  }
-
-  private func generateChatHistoryBasic() {
-    guard let date = Calendar.current.date(byAdding: .day, value: -1, to: Date()) else { return }
-    guard let dateAfter = Calendar.current.date(byAdding: .minute,
-                                                value: 10, to: date)?.timeIntervalSince1970 else { return }
-    messages = [
-      TextMessage(text: "Hello", timestamp: date.timeIntervalSince1970, userID: "", isLocalUser: true),
-      TextMessage(text: "Hey", timestamp: dateAfter, userID: "", isLocalUser: false)
-    ]
-    self.updateReplies()
-    self.collectionView.reloadData()
-  }
-
-  private func generateChatHistoryWithSensitiveContent() {
-    guard let date = Calendar.current.date(byAdding: .day, value: -1, to: Date()) else { return }
-    guard let dateAfter = Calendar.current.date(byAdding: .minute,
-                                                value: 10, to: date)?.timeIntervalSince1970 else { return }
-    guard let dateAfterAfter = Calendar.current.date(byAdding: .minute,
-                                                     value: 20, to: date)?.timeIntervalSince1970 else { return }
-    messages = [
-      TextMessage(text: "Hi", timestamp: date.timeIntervalSince1970, userID: "", isLocalUser: false),
-      TextMessage(text: "How are you?", timestamp: dateAfter, userID: "", isLocalUser: true),
-      TextMessage(text: "My cat died", timestamp: dateAfterAfter, userID: "", isLocalUser: false)
-    ]
-    self.updateReplies()
-    self.collectionView.reloadData()
-  }
-
-  func textViewDidEndEditing(_ textView: UITextView) {
-    sendButton.isEnabled = false
-    heightConstraint.constant = 88 + bottomAreaInset
-  }
-
-  func textViewDidChange(_ textView: UITextView) {
-    sendButton.isEnabled = !textView.text.isEmpty
-    let size = CGSize(width: view.frame.width - 60, height: .infinity)
-    let estimatedSize = textView.sizeThatFits(size)
-    heightConstraint.constant = estimatedSize.height + 54 + (self.isKeyboardShown ? 0 : bottomAreaInset)
-  }
-
-  @IBAction func didTapMore(_ sender: UIBarButtonItem) {
-    moreAlert.popoverPresentationController?.barButtonItem = sender
-    present(moreAlert, animated: true, completion: nil)
-  }
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -208,10 +147,6 @@ class MainViewController: MDCCollectionViewController, UITextViewDelegate {
                                                        views: inputTextView, sendButton)
     messageInputContainerView.addConstraintsWithFormat(format: "H:|[v0]|", views: topBorderView)
     messageInputContainerView.addConstraintsWithFormat(format: "H:|-16-[v0]-16-|", views: smartReplyView)
-    var bottomAreaInset: CGFloat = 0
-    if #available(iOS 11.0, *) {
-      bottomAreaInset = UIApplication.shared.keyWindow!.safeAreaInsets.bottom
-    }
 
     smartReplyView.topAnchor.constraint(equalTo: messageInputContainerView.topAnchor, constant: 6).isActive = true
     smartReplyView.bottomAnchor.constraint(equalTo: inputTextView.topAnchor, constant: -6).isActive = true
@@ -237,13 +172,70 @@ class MainViewController: MDCCollectionViewController, UITextViewDelegate {
     super.viewWillDisappear(animated)
   }
 
+  @objc func replySelected(reply: MDCChipView) {
+    guard let title = reply.titleLabel.text else { return }
+    inputTextView.insertText(title)
+  }
+
+  @IBAction func switchUser(_ sender: Any) {
+    isLocalUser.toggle()
+    let color: UIColor = isLocalUser ? .blue : .red
+    sendButton.tintColor = color
+    navigationController?.navigationBar.barTintColor = color
+    updateReplies()
+  }
+
+  private func generateChatHistoryBasic() {
+    guard let date = Calendar.current.date(byAdding: .day, value: -1, to: Date()) else { return }
+    guard let dateAfter = Calendar.current.date(byAdding: .minute,
+                                                value: 10, to: date)?.timeIntervalSince1970 else { return }
+    messages = [
+      TextMessage(text: "Hello", timestamp: date.timeIntervalSince1970, userID: "", isLocalUser: true),
+      TextMessage(text: "Hey", timestamp: dateAfter, userID: "", isLocalUser: false)
+    ]
+    self.updateReplies()
+    self.collectionView.reloadData()
+  }
+
+  private func generateChatHistoryWithSensitiveContent() {
+    guard let date = Calendar.current.date(byAdding: .day, value: -1, to: Date()) else { return }
+    guard let dateAfter = Calendar.current.date(byAdding: .minute,
+                                                value: 10, to: date)?.timeIntervalSince1970 else { return }
+    guard let dateAfterAfter = Calendar.current.date(byAdding: .minute,
+                                                     value: 20, to: date)?.timeIntervalSince1970 else { return }
+    messages = [
+      TextMessage(text: "Hi", timestamp: date.timeIntervalSince1970, userID: "", isLocalUser: false),
+      TextMessage(text: "How are you?", timestamp: dateAfter, userID: "", isLocalUser: true),
+      TextMessage(text: "My cat died", timestamp: dateAfterAfter, userID: "", isLocalUser: false)
+    ]
+    self.updateReplies()
+    self.collectionView.reloadData()
+  }
+
+  func textViewDidEndEditing(_ textView: UITextView) {
+    sendButton.isEnabled = false
+    heightConstraint.constant = 88 + bottomAreaInset
+  }
+
+  func textViewDidChange(_ textView: UITextView) {
+    sendButton.isEnabled = !textView.text.isEmpty
+    let size = CGSize(width: view.frame.width - 60, height: .infinity)
+    let estimatedSize = textView.sizeThatFits(size)
+    heightConstraint.constant = estimatedSize.height + 54 + (self.isKeyboardShown ? 0 : bottomAreaInset)
+  }
+
+  @IBAction func didTapMore(_ sender: UIBarButtonItem) {
+    moreAlert.popoverPresentationController?.barButtonItem = sender
+    present(moreAlert, animated: true, completion: nil)
+  }
+
   @objc func enterPressed() {
     inputTextView.endEditing(true)
     guard let text = inputTextView.text, !text.isEmpty else { return }
     let message = TextMessage(text: text, timestamp: Date().timeIntervalSince1970,
                                    userID: "", isLocalUser: isLocalUser)
     messages.append(message)
-    collectionView.insertItems(at: [IndexPath(item: messages.count-1, section: 0)])
+    collectionView.insertItems(at: [IndexPath(item: messages.count - 1, section: 0)])
     inputTextView.text = nil
     inputTextView.textViewDidChange(inputTextView)
     self.smartReplyView.arrangedSubviews.compactMap { $0 as? MDCChipView }.forEach { $0.isHidden = true }
@@ -262,52 +254,52 @@ class MainViewController: MDCCollectionViewController, UITextViewDelegate {
     }
 
     smartReply.suggestReplies(for: chat) { result, error in
-      let suggestionChips = self.smartReplyView.arrangedSubviews.compactMap { $0 as? MDCChipView }
+      let suggestionChips = self.smartReplyView.subviews.compactMap { $0 as? MDCChipView }
       guard error == nil, let suggestions = result?.suggestions, !suggestions.isEmpty else {
         suggestionChips.forEach { $0.isHidden = true }
         return
       }
       zip(suggestionChips, suggestions).forEach { chip, suggestion in
+        chip.isHidden = false
         chip.titleLabel.text = suggestion.text
         chip.sizeToFit()
-        chip.isHidden = false
+        chip.constraints.first { $0.identifier == "width" }?.constant = chip.bounds.width
       }
     }
   }
 
   @objc func handleKeyboardNotification(notification: NSNotification) {
+    guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey]
+      as? NSValue)?.cgRectValue else { return }
     let isKeyboardShowing = notification.name == UIResponder.keyboardWillShowNotification
     guard self.isKeyboardShown != isKeyboardShowing else {
+      bottomConstraint?.constant = isKeyboardShowing ? -keyboardSize.height : 0
       return
     }
     self.isKeyboardShown = isKeyboardShowing
-    if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-      bottomConstraint?.constant = isKeyboardShowing ? -keyboardSize.height : 0
-      let inset = isKeyboardShowing ? -bottomAreaInset : bottomAreaInset
-      heightConstraint?.constant += inset
-      inputBottomConstraint?.constant = isKeyboardShowing ? 0 : bottomAreaInset
-      sendBottomConstraint?.constant = isKeyboardShowing ? 6 : (6 + bottomAreaInset)
-      if let animationDuration = notification.userInfo![UIResponder.keyboardAnimationDurationUserInfoKey] as? Double {
-        UIView.animate(withDuration: animationDuration, delay: 0, options: .curveEaseOut, animations: {
-          self.view.layoutIfNeeded()
-        }, completion: { _ in
-          if isKeyboardShowing {
-            if !self.messages.isEmpty {
-              let indexPath = IndexPath(item: self.messages.count - 1, section: 0)
-              self.collectionView?.scrollToItem(at: indexPath, at: .bottom, animated: true)
-            }
+    bottomConstraint?.constant = isKeyboardShowing ? -keyboardSize.height : 0
+    let inset = isKeyboardShowing ? -bottomAreaInset : bottomAreaInset
+    heightConstraint?.constant += inset
+    inputBottomConstraint?.constant = isKeyboardShowing ? 0 : bottomAreaInset
+    sendBottomConstraint?.constant = isKeyboardShowing ? 6 : (6 + bottomAreaInset)
+    if let animationDuration = notification.userInfo![UIResponder.keyboardAnimationDurationUserInfoKey] as? Double {
+      UIView.animate(withDuration: animationDuration, delay: 0, options: .curveEaseOut, animations: {
+        self.view.layoutIfNeeded()
+      }, completion: { _ in
+        if isKeyboardShowing {
+          if !self.messages.isEmpty {
+            let indexPath = IndexPath(item: self.messages.count - 1, section: 0)
+            self.collectionView?.scrollToItem(at: indexPath, at: .bottom, animated: true)
           }
-        })
-      }
+        }
+      })
     }
   }
 
   func textViewDidBeginEditing(_ textView: UITextView) {
     textViewDidChange(textView)
   }
-}
 
-extension MainViewController {
   override func numberOfSections(in collectionView: UICollectionView) -> Int {
     return 1
   }

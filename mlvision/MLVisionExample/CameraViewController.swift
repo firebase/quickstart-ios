@@ -279,12 +279,15 @@ class CameraViewController: UIViewController {
   }
 
   private func captureDevice(forPosition position: AVCaptureDevice.Position) -> AVCaptureDevice? {
-    let discoverySession = AVCaptureDevice.DiscoverySession(
-      deviceTypes: [.builtInWideAngleCamera],
-      mediaType: .video,
-      position: .unspecified
-    )
-    return discoverySession.devices.first { $0.position == position }
+    if #available(iOS 10.0, *) {
+      let discoverySession = AVCaptureDevice.DiscoverySession(
+        deviceTypes: [.builtInWideAngleCamera],
+        mediaType: .video,
+        position: .unspecified
+      )
+      return discoverySession.devices.first { $0.position == position }
+    }
+    return nil
   }
 
   private func presentDetectorsAlertController() {

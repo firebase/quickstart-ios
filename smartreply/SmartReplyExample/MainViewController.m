@@ -195,15 +195,15 @@ NS_ASSUME_NONNULL_BEGIN
   [_smartReplyView.bottomAnchor constraintEqualToAnchor:_inputTextView.topAnchor constant:-6]
       .active = YES;
 
-  NSLayoutConstraint *inputBottomConstraint =
+  self.inputBottomConstraint =
       [_messageInputContainerView.bottomAnchor constraintEqualToAnchor:_inputTextView.bottomAnchor
                                                               constant:_bottomAreaInset];
-  inputBottomConstraint.active = YES;
+  _inputBottomConstraint.active = YES;
 
-  NSLayoutConstraint *sendBottomConstraint =
+  self.sendBottomConstraint =
       [_messageInputContainerView.bottomAnchor constraintEqualToAnchor:_sendButton.bottomAnchor
                                                               constant:_bottomAreaInset + 6];
-  sendBottomConstraint.active = YES;
+  _sendBottomConstraint.active = YES;
 
   [_messageInputContainerView addConstraintsWithFormat:@"V:|[v0(0.5)]|" views:@[ topBorderView ]];
 }
@@ -280,7 +280,7 @@ NS_ASSUME_NONNULL_BEGIN
        for (NSLayoutConstraint *constraint in chip.constraints) {
          if ([constraint.identifier isEqualToString:@"width"]) {
            constraint.constant = chip.bounds.size.width;
-           return;
+           break;
          }
        }
      }

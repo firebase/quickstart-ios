@@ -261,12 +261,15 @@ typedef NS_ENUM(NSInteger, Detector) {
 }
 
 - (AVCaptureDevice *)captureDeviceForPosition:(AVCaptureDevicePosition)position  {
-  AVCaptureDeviceDiscoverySession *discoverySession = [AVCaptureDeviceDiscoverySession discoverySessionWithDeviceTypes:@[AVCaptureDeviceTypeBuiltInWideAngleCamera]
-                                                                                                             mediaType:AVMediaTypeVideo
-                                                                                                              position:AVCaptureDevicePositionUnspecified];
-  for (AVCaptureDevice *device in discoverySession.devices) {
-    if (device.position == position) {
-      return device;
+  if (@available(iOS 11, *)) {
+    AVCaptureDeviceDiscoverySession *discoverySession =
+      [AVCaptureDeviceDiscoverySession discoverySessionWithDeviceTypes:@[AVCaptureDeviceTypeBuiltInWideAngleCamera]
+                                                             mediaType:AVMediaTypeVideo
+                                                             position:AVCaptureDevicePositionUnspecified];
+    for (AVCaptureDevice *device in discoverySession.devices) {
+      if (device.position == position) {
+        return device;
+      }
     }
   }
   return nil;

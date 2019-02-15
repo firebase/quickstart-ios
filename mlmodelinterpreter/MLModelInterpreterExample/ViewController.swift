@@ -28,6 +28,9 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
   /// The `ModelInterpreterManager` for the current remote and local models.
   private lazy var manager = ModelInterpreterManager()
 
+  /// Indicates whether the download model button was selected.
+  private var downloadModelButtonSelected = false
+
   /// An image picker for accessing the photo library or camera.
   private var imagePicker = UIImagePickerController()
 
@@ -59,8 +62,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
     return UserDefaults.standard.bool(forKey: currentRemoteModelType.downloadCompletedKey)
   }
 
-  private var isLocalModelLoaded = false
-
   // MARK: - IBOutlets
 
   /// A segmented control for changing models (0 = float, 1 = quantized, 2 = invalid).
@@ -86,7 +87,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
     updateModelInterpreterManager()
     setUpRemoteModel()
     setUpLocalModel()
-    downloadModelButton.isEnabled = !isRemoteModelDownloaded
   }
 
   // MARK: - IBActions
@@ -98,19 +98,12 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
       return
     }
 
-    if isRemoteModelDownloaded {
-      updateResultsText("Loading the remote model...\n")
-      if !manager.loadRemoteModel(isModelQuantized: (currentRemoteModelType == .quantized)) {
-        updateResultsText("Failed to load the remote model.")
-        return
-      }
-    } else {
+    if !downloadModelButtonSelected {
       updateResultsText("Loading the local model...\n")
       if !manager.loadLocalModel(isModelQuantized: (currentLocalModelType == .quantized)) {
         updateResultsText("Failed to load the local model.")
         return
       }
-      isLocalModelLoaded = true
     }
     var newResultsTextString = "Starting inference...\n"
     if let currentText = resultsTextView.text {
@@ -130,7 +123,8 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
         }
 
         var inferenceMessageString = "Inference results using "
-        if self.isRemoteModelDownloaded {
+        if self.downloadModelButtonSelected {
+          UserDefaults.standard.set(true, forKey: remoteModelType.downloadCompletedKey)
           inferenceMessageString += "`\(remoteModelType.description)` remote model:\n"
         } else {
           inferenceMessageString += "`\(self.currentLocalModelType.description)` local model:\n"
@@ -153,8 +147,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
 
   @IBAction func downloadModel(_ sender: Any) {
     updateResultsText()
-    downloadModelButton.isEnabled = isRemoteModelDownloaded
-    detectButton.isEnabled = false
+    downloadModelButtonSelected = true
     updateResultsText(isRemoteModelDownloaded ?
       "Remote model loaded. Select the `Detect` button to start the inference." :
       "Downloading remote model...This text view will notify you when the downloaded model is " +
@@ -170,55 +163,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
     updateModelInterpreterManager()
     setUpLocalModel()
     setUpRemoteModel()
-    downloadModelButton.isEnabled = !isRemoteModelDownloaded
-  }
-
-  // MARK: - Notifications
-
-  @objc
-  private func remoteModelDownloadDidSucceed(_ notification: Notification) {
-    let notificationHandler = {
-      self.updateResultsText()
-      guard let userInfo = notification.userInfo,
-        let remoteModel =
-        userInfo[ModelDownloadUserInfoKey.remoteModel.rawValue] as? RemoteModel
-        else {
-          self.updateResultsText("firebaseMLModelDownloadDidSucceed notification posted without a " +
-            "RemoteModel instance.")
-          return
-      }
-      self.updateUserDefaults(for: remoteModel)
-      if self.currentRemoteModelType.description == remoteModel.name {
-        self.detectButton.isEnabled = true
-        self.downloadModelButton.isEnabled = false
-      }
-      self.updateResultsText("Successfully downloaded the remote model with name: " +
-        "\(remoteModel.name). The model is ready for detection.")
-    }
-    if Thread.isMainThread { notificationHandler(); return }
-    DispatchQueue.main.async { notificationHandler() }
-  }
-
-  @objc
-  private func remoteModelDownloadDidFail(_ notification: Notification) {
-    let notificationHandler = {
-      self.updateResultsText()
-      self.detectButton.isEnabled = true
-      self.downloadModelButton.isEnabled = true
-      guard let userInfo = notification.userInfo,
-        let remoteModel =
-        userInfo[ModelDownloadUserInfoKey.remoteModel.rawValue] as? RemoteModel,
-        let error = userInfo[ModelDownloadUserInfoKey.error.rawValue] as? NSError
-        else {
-          self.updateResultsText("firebaseMLModelDownloadDidFail notification posted without a " +
-            "RemoteModel instance or error.")
-          return
-      }
-      self.updateResultsText("Failed to download the remote model with name: " +
-        "\(remoteModel.name), error: \(error).")
-    }
-    if Thread.isMainThread { notificationHandler(); return }
-    DispatchQueue.main.async { notificationHandler() }
   }
 
   // MARK: - Private
@@ -239,18 +183,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
       updateResultsText("\(resultsTextView.text ?? "")\nFailed to set up the `\(modelName)` " +
         "remote model.")
     }
-    NotificationCenter.default.addObserver(
-      self,
-      selector: #selector(remoteModelDownloadDidSucceed(_:)),
-      name: .firebaseMLModelDownloadDidSucceed,
-      object: nil
-    )
-    NotificationCenter.default.addObserver(
-      self,
-      selector: #selector(remoteModelDownloadDidFail(_:)),
-      name: .firebaseMLModelDownloadDidFail,
-      object: nil
-    )
   }
 
   /// Sets up the local model.

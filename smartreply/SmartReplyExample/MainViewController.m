@@ -55,8 +55,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(strong, nonatomic) FIRSmartReply *smartReply;
 
-@property(nonatomic) UIEdgeInsets insets;
-
 @property(nonatomic) CGFloat bottomAreaInset;
 
 @property(strong, nonatomic) UITextView *inputTextView;
@@ -137,7 +135,6 @@ NS_ASSUME_NONNULL_BEGIN
                   action:@selector(enterPressed)
         forControlEvents:UIControlEventTouchUpInside];
 
-  self.styler.cellStyle = MDCCollectionViewCellStyleCard;
   self.navigationController.navigationBar.barTintColor = UIColor.blueColor;
   [self.collectionView registerClass:MDCSelfSizingStereoCell.class
           forCellWithReuseIdentifier:@"cell"];
@@ -155,11 +152,8 @@ NS_ASSUME_NONNULL_BEGIN
                                          selector:@selector(handleKeyboardNotification:)
                                              name:UIKeyboardWillHideNotification
                                            object:nil];
-  _insets = [self collectionView:self.collectionView
-                          layout:self.collectionViewLayout
-          insetForSectionAtIndex:0];
   ((UICollectionViewFlowLayout *)self.collectionViewLayout).estimatedItemSize =
-      CGSizeMake(self.collectionView.bounds.size.width - _insets.left - _insets.right, 52);
+      CGSizeMake(self.collectionView.bounds.size.width, 52);
   [self.view addSubview:_messageInputContainerView];
   [self.view addConstraintsWithFormat:@"H:|[v0]|" views:@[ _messageInputContainerView ]];
   self.heightConstraint =

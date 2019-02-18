@@ -19,7 +19,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MainViewController : MDCCollectionViewController <UITextViewDelegate>
+@interface MainViewController : UICollectionViewController <UITextViewDelegate>
 
 @end
 

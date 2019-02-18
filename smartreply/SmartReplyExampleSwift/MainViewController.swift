@@ -19,7 +19,7 @@ import FirebaseMLNLSmartReply
 import MaterialComponents
 
 @objc(MainViewController)
-class MainViewController: MDCCollectionViewController, UITextViewDelegate {
+class MainViewController: UICollectionViewController, UITextViewDelegate {
   private lazy var messages = [TextMessage]()
   private var isLocalUser = true
 
@@ -35,8 +35,6 @@ class MainViewController: MDCCollectionViewController, UITextViewDelegate {
   }()
 
   lazy var smartReply = NaturalLanguage.naturalLanguage().smartReply()
-
-  var insets: UIEdgeInsets!
 
   var bottomAreaInset: CGFloat = 0
 
@@ -107,20 +105,15 @@ class MainViewController: MDCCollectionViewController, UITextViewDelegate {
       bottomAreaInset = UIApplication.shared.keyWindow!.safeAreaInsets.bottom
     }
 
-    styler.cellStyle = .card
-
     inputTextView.delegate = self
 
     NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardNotification),
                                            name: UIResponder.keyboardWillShowNotification, object: nil)
     NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardNotification),
                                            name: UIResponder.keyboardWillHideNotification, object: nil)
-    insets = self.collectionView(collectionView,
-                                 layout: collectionViewLayout,
-                                 insetForSectionAt: 0)
 
     guard let col = collectionViewLayout as? UICollectionViewFlowLayout else { return }
-    col.estimatedItemSize = CGSize.init(width: collectionView.bounds.width - insets.left - insets.right, height: 52)
+    col.estimatedItemSize = CGSize.init(width: collectionView.bounds.width, height: 52)
 
     view.addSubview(messageInputContainerView)
 

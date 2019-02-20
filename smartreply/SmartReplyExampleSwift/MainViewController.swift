@@ -302,7 +302,6 @@ class MainViewController: UICollectionViewController, UITextViewDelegate {
   }
 
   override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    super.collectionView(collectionView, didSelectItemAt: indexPath)
     inputTextView.endEditing(true)
   }
 

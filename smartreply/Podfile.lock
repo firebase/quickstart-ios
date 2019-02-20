@@ -159,11 +159,11 @@ PODS:
 DEPENDENCIES:
   - Firebase/Core
   - Firebase/MLNLSmartReply
-  - MaterialComponents/Buttons (= 77.0.0)
-  - "MaterialComponents/Buttons+ButtonThemer (= 77.0.0)"
-  - MaterialComponents/Chips (= 77.0.0)
-  - MaterialComponents/List (= 77.0.0)
-  - MaterialComponents/TextFields (= 77.0.0)
+  - MaterialComponents/Buttons
+  - "MaterialComponents/Buttons+ButtonThemer"
+  - MaterialComponents/Chips
+  - MaterialComponents/List
+  - MaterialComponents/TextFields
   - SwiftLint
 
 SPEC REPOS:
@@ -191,17 +191,17 @@ SPEC REPOS:
     - nanopb
 
 SPEC CHECKSUMS:
-  Firebase: 21c09a5b0696e4f23dabb5471d5a5999f939ecc7
-  FirebaseABTesting: bc41593c5856f5b571c7c660f5fee677523e5385
-  FirebaseAnalytics: 40700a4788fce60376f2b5f3a279fe81eb2957b6
+  Firebase: 51d1221db236a5bb277b0b9e50c08ad4c9651d19
+  FirebaseABTesting: aea90abf92c792df4e5ab7ccbbf071795f1a3c4d
+  FirebaseAnalytics: 7bcf5cd91670fa4b6f006bf1b8e6a68ef34a5d96
   FirebaseCore: 5d8418371134573dc71c0a339cd0532e669b9855
-  FirebaseInstanceID: 8dc40a7312aebda6299cf68beac5b833fc90807e
-  FirebaseMLCommon: 88bd37ad6f69db27fa91ddefb195d27c63cd35ec
-  FirebaseMLNaturalLanguage: 1f386c41fcbb5944c844f5fa225d43c2f4916d82
-  FirebaseMLNLLanguageID: 40f9fd1d560510e0e2bab9368994b5a6357fa478
-  FirebaseMLNLSmartReply: 246ebd14e97f0d2a88fcb143a9788fda8e735c2f
-  FirebaseRemoteConfig: d9333e572ab4cba0a31635bae827f896fef0cbdb
-  GoogleAppMeasurement: 047ac6b5749ee396348e9c6d67ce484578a18dfd
+  FirebaseInstanceID: b9fec9814e19563ca3eaf1c83349e61f8a4a7147
+  FirebaseMLCommon: 9019eca347b7c2a63a76511a5282e96a94961ce1
+  FirebaseMLNaturalLanguage: 14ddd3ac10e3e7732fdf7769f2d451e6b746e9a0
+  FirebaseMLNLLanguageID: 438055dbcafc20fb27f475cd8e3145f452470565
+  FirebaseMLNLSmartReply: 2acfafed79b9d3a7bb98af5deee7f21f2f64126a
+  FirebaseRemoteConfig: e35ac5a16ba442dbb4ad9a2c0eefb3c027c4cb50
+  GoogleAppMeasurement: fe8d802863d164f2d2e8ea0cfa168155ed0773ef
   GoogleUtilities: 111a012f4c3a29c9e7c954c082fafd6ee3c999c0
   GTMSessionFetcher: 32aeca0aa144acea523e1c8e053089dec2cb98ca
   MaterialComponents: 1dc805d52502bd9d5692c2ffcc8a169c8b65b916
@@ -211,6 +211,6 @@ SPEC CHECKSUMS:
   Protobuf: 1eb9700044745f00181c136ef21b8ff3ad5a0fd5
   SwiftLint: a54bf1fe12b55c68560eb2a7689dfc81458508f7
 
-PODFILE CHECKSUM: bb721a88a7e45565e92cde93e66dc4a0df661e93
+PODFILE CHECKSUM: 2622f41db76ae7553cef23965168b21bd94281b6
 
 COCOAPODS: 1.6.0

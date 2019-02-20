@@ -322,7 +322,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)collectionView:(UICollectionView *)collectionView
     didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-  [super collectionView:collectionView didSelectItemAtIndexPath:indexPath];
   [_inputTextView endEditing:YES];
 }
 

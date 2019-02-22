@@ -1,28 +1,28 @@
 PODS:
-  - Firebase (5.16.0):
-    - Firebase/Core (= 5.16.0)
-  - Firebase/Core (5.16.0):
+  - Firebase (5.17.0):
+    - Firebase/Core (= 5.17.0)
+  - Firebase/Core (5.17.0):
     - Firebase/CoreOnly
-    - FirebaseAnalytics (= 5.5.0)
-  - Firebase/CoreOnly (5.16.0):
-    - FirebaseCore (= 5.2.0)
-  - Firebase/DynamicLinks (5.16.0):
+    - FirebaseAnalytics (= 5.6.0)
+  - Firebase/CoreOnly (5.17.0):
+    - FirebaseCore (= 5.3.0)
+  - Firebase/DynamicLinks (5.17.0):
     - Firebase/CoreOnly
     - FirebaseDynamicLinks (= 3.4.0)
-  - Firebase/InAppMessagingDisplay (5.16.0):
+  - Firebase/InAppMessagingDisplay (5.17.0):
     - Firebase/CoreOnly
     - FirebaseInAppMessagingDisplay (= 0.12.2)
-  - FirebaseAnalytics (5.5.0):
-    - FirebaseCore (~> 5.2)
-    - FirebaseInstanceID (~> 3.4)
-    - GoogleAppMeasurement (= 5.5.0)
+  - FirebaseAnalytics (5.6.0):
+    - FirebaseCore (~> 5.3)
+    - FirebaseInstanceID (~> 3.5)
+    - GoogleAppMeasurement (= 5.6.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 5.2)
     - GoogleUtilities/MethodSwizzler (~> 5.2)
     - GoogleUtilities/Network (~> 5.2)
     - "GoogleUtilities/NSData+zlib (~> 5.2)"
     - nanopb (~> 0.3)
-  - FirebaseAnalyticsInterop (1.1.0)
-  - FirebaseCore (5.2.0):
+  - FirebaseAnalyticsInterop (1.2.0)
+  - FirebaseCore (5.3.0):
     - GoogleUtilities/Logger (~> 5.2)
   - FirebaseDynamicLinks (3.4.0):
     - FirebaseAnalytics (~> 5.1)
@@ -36,11 +36,11 @@ PODS:
   - FirebaseInAppMessagingDisplay (0.12.2):
     - FirebaseCore
     - FirebaseInAppMessaging (>= 0.12.0)
-  - FirebaseInstanceID (3.4.0):
-    - FirebaseCore (~> 5.2)
+  - FirebaseInstanceID (3.5.0):
+    - FirebaseCore (~> 5.3)
     - GoogleUtilities/Environment (~> 5.3)
     - GoogleUtilities/UserDefaults (~> 5.3)
-  - GoogleAppMeasurement (5.5.0):
+  - GoogleAppMeasurement (5.6.0):
     - GoogleUtilities/AppDelegateSwizzler (~> 5.2)
     - GoogleUtilities/MethodSwizzler (~> 5.2)
     - GoogleUtilities/Network (~> 5.2)
@@ -90,18 +90,18 @@ SPEC REPOS:
     - nanopb
 
 SPEC CHECKSUMS:
-  Firebase: 749a8ff4962f9d8c79dda1966de20f6f77583d67
-  FirebaseAnalytics: d35d47c03c50c73c14a7fd31463c5775843e78a9
-  FirebaseAnalyticsInterop: e5f21be9af6548372e2f0815834ff909bff395a2
-  FirebaseCore: ea2d1816723ef21492b8e9113303e1350db5e08c
+  Firebase: 59d557e064217fab6a03ff00baa73c06e73832e6
+  FirebaseAnalytics: 75e4bbc6417d190cc98ec1f17c41a4fad4c2c976
+  FirebaseAnalyticsInterop: efbe45c8385ec626e29f9525e5ebd38520dfb6c1
+  FirebaseCore: c0c4befb82374d6aef64d800e569f47625352edc
   FirebaseDynamicLinks: 83a0071c95ad715bc324fcb8f51028d5b6a58af0
   FirebaseInAppMessaging: aa04bdbbee12aa132156e6085b3bfad7d6e0dcbb
   FirebaseInAppMessagingDisplay: 5591606580c1ed8040fbf55c938a1ccc0caad3ef
-  FirebaseInstanceID: 97ea7a5dca9afd72c79bfcdddb7a44aa1cbb42a1
-  GoogleAppMeasurement: 621f3bc6211d5ba548debe01fafad30cf5ab6859
+  FirebaseInstanceID: 4522aad88f69297622062c0e9ffccdee3dd9b151
+  GoogleAppMeasurement: 008e04ecd8efedd97a693aea8634aefe220bd26e
   GoogleUtilities: 111a012f4c3a29c9e7c954c082fafd6ee3c999c0
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
 
 PODFILE CHECKSUM: c429d7cf84837e484f16f00ba9040334254bf3c0
 
-COCOAPODS: 1.6.0
+COCOAPODS: 1.6.1

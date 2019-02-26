@@ -1,0 +1,251 @@
+PODS:
+  - Firebase/Core (5.17.0):
+    - Firebase/CoreOnly
+    - FirebaseAnalytics (= 5.6.0)
+  - Firebase/CoreOnly (5.17.0):
+    - FirebaseCore (= 5.3.0)
+  - Firebase/MLNLSmartReply (5.17.0):
+    - Firebase/CoreOnly
+    - FirebaseMLNLSmartReply (= 0.15.0)
+  - FirebaseABTesting (2.0.0):
+    - FirebaseCore (~> 5.0)
+    - Protobuf (~> 3.5)
+  - FirebaseAnalytics (5.6.0):
+    - FirebaseCore (~> 5.3)
+    - FirebaseInstanceID (~> 3.5)
+    - GoogleAppMeasurement (= 5.6.0)
+    - GoogleUtilities/AppDelegateSwizzler (~> 5.2)
+    - GoogleUtilities/MethodSwizzler (~> 5.2)
+    - GoogleUtilities/Network (~> 5.2)
+    - "GoogleUtilities/NSData+zlib (~> 5.2)"
+    - nanopb (~> 0.3)
+  - FirebaseCore (5.3.0):
+    - GoogleUtilities/Logger (~> 5.2)
+  - FirebaseInstanceID (3.5.0):
+    - FirebaseCore (~> 5.3)
+    - GoogleUtilities/Environment (~> 5.3)
+    - GoogleUtilities/UserDefaults (~> 5.3)
+  - FirebaseMLCommon (0.15.0):
+    - FirebaseCore (~> 5.3)
+    - FirebaseInstanceID (~> 3.5)
+    - GoogleUtilities/UserDefaults (~> 5.3)
+    - GTMSessionFetcher/Core (~> 1.1)
+  - FirebaseMLNaturalLanguage (0.15.0):
+    - FirebaseCore (~> 5.3)
+    - FirebaseMLCommon (~> 0.15)
+  - FirebaseMLNLLanguageID (0.15.0):
+    - FirebaseCore (~> 5.3)
+    - FirebaseMLCommon (~> 0.15)
+    - FirebaseMLNaturalLanguage (~> 0.15)
+  - FirebaseMLNLSmartReply (0.15.0):
+    - FirebaseCore (~> 5.3)
+    - FirebaseMLCommon (~> 0.15)
+    - FirebaseMLNaturalLanguage (~> 0.15)
+    - FirebaseMLNLLanguageID (~> 0.15)
+    - FirebaseRemoteConfig (~> 3.1)
+  - FirebaseRemoteConfig (3.1.0):
+    - FirebaseABTesting (~> 2.0)
+    - FirebaseAnalytics (~> 5.3)
+    - FirebaseCore (~> 5.1)
+    - FirebaseInstanceID (~> 3.3)
+    - GoogleUtilities/Environment (~> 5.2)
+    - "GoogleUtilities/NSData+zlib (~> 5.2)"
+    - Protobuf (~> 3.5)
+  - GoogleAppMeasurement (5.6.0):
+    - GoogleUtilities/AppDelegateSwizzler (~> 5.2)
+    - GoogleUtilities/MethodSwizzler (~> 5.2)
+    - GoogleUtilities/Network (~> 5.2)
+    - "GoogleUtilities/NSData+zlib (~> 5.2)"
+    - nanopb (~> 0.3)
+  - GoogleUtilities/AppDelegateSwizzler (5.3.7):
+    - GoogleUtilities/Environment
+    - GoogleUtilities/Logger
+    - GoogleUtilities/Network
+  - GoogleUtilities/Environment (5.3.7)
+  - GoogleUtilities/Logger (5.3.7):
+    - GoogleUtilities/Environment
+  - GoogleUtilities/MethodSwizzler (5.3.7):
+    - GoogleUtilities/Logger
+  - GoogleUtilities/Network (5.3.7):
+    - GoogleUtilities/Logger
+    - "GoogleUtilities/NSData+zlib"
+    - GoogleUtilities/Reachability
+  - "GoogleUtilities/NSData+zlib (5.3.7)"
+  - GoogleUtilities/Reachability (5.3.7):
+    - GoogleUtilities/Logger
+  - GoogleUtilities/UserDefaults (5.3.7):
+    - GoogleUtilities/Logger
+  - GTMSessionFetcher/Core (1.2.1)
+  - MaterialComponents/AnimationTiming (76.1.2)
+  - MaterialComponents/Buttons (76.1.2):
+    - MaterialComponents/Ink
+    - MaterialComponents/private/Math
+    - MaterialComponents/ShadowElevations
+    - MaterialComponents/ShadowLayer
+    - MaterialComponents/Shapes
+    - MaterialComponents/Typography
+    - MDFInternationalization
+    - MDFTextAccessibility
+  - "MaterialComponents/Buttons+ButtonThemer (76.1.2)":
+    - MaterialComponents/Buttons
+    - "MaterialComponents/Buttons+ColorThemer"
+    - "MaterialComponents/Buttons+ShapeThemer"
+    - "MaterialComponents/Buttons+TypographyThemer"
+    - MaterialComponents/Palettes
+  - "MaterialComponents/Buttons+ColorThemer (76.1.2)":
+    - MaterialComponents/Buttons
+    - MaterialComponents/schemes/Color
+  - "MaterialComponents/Buttons+ShapeThemer (76.1.2)":
+    - MaterialComponents/Buttons
+    - MaterialComponents/schemes/Shape
+  - "MaterialComponents/Buttons+TypographyThemer (76.1.2)":
+    - MaterialComponents/Buttons
+    - MaterialComponents/schemes/Typography
+  - MaterialComponents/Chips (76.1.2):
+    - MaterialComponents/Ink
+    - MaterialComponents/private/Math
+    - MaterialComponents/ShadowElevations
+    - MaterialComponents/ShadowLayer
+    - MaterialComponents/ShapeLibrary
+    - MaterialComponents/Shapes
+    - MaterialComponents/TextFields
+    - MaterialComponents/Typography
+    - MDFInternationalization
+  - MaterialComponents/CollectionCells (76.1.2):
+    - MaterialComponents/CollectionLayoutAttributes
+    - MaterialComponents/Ink
+    - MaterialComponents/Palettes
+    - MaterialComponents/private/Icons/ic_check
+    - MaterialComponents/private/Icons/ic_check_circle
+    - MaterialComponents/private/Icons/ic_chevron_right
+    - MaterialComponents/private/Icons/ic_info
+    - MaterialComponents/private/Icons/ic_radio_button_unchecked
+    - MaterialComponents/private/Icons/ic_reorder
+    - MaterialComponents/private/Math
+    - MaterialComponents/Typography
+    - MDFInternationalization
+  - MaterialComponents/CollectionLayoutAttributes (76.1.2)
+  - MaterialComponents/Collections (76.1.2):
+    - MaterialComponents/CollectionCells
+    - MaterialComponents/CollectionLayoutAttributes
+    - MaterialComponents/Ink
+    - MaterialComponents/Palettes
+    - MaterialComponents/ShadowElevations
+    - MaterialComponents/ShadowLayer
+    - MaterialComponents/Typography
+  - MaterialComponents/Ink (76.1.2):
+    - MaterialComponents/private/Math
+  - MaterialComponents/List (76.1.2):
+    - MaterialComponents/Ink
+    - MaterialComponents/private/Math
+    - MaterialComponents/ShadowElevations
+    - MaterialComponents/ShadowLayer
+    - MaterialComponents/Typography
+    - MDFInternationalization
+  - MaterialComponents/Palettes (76.1.2)
+  - MaterialComponents/private/Application (76.1.2)
+  - MaterialComponents/private/Icons/Base (76.1.2)
+  - MaterialComponents/private/Icons/ic_check (76.1.2):
+    - MaterialComponents/private/Icons/Base
+  - MaterialComponents/private/Icons/ic_check_circle (76.1.2):
+    - MaterialComponents/private/Icons/Base
+  - MaterialComponents/private/Icons/ic_chevron_right (76.1.2):
+    - MaterialComponents/private/Icons/Base
+  - MaterialComponents/private/Icons/ic_info (76.1.2):
+    - MaterialComponents/private/Icons/Base
+  - MaterialComponents/private/Icons/ic_radio_button_unchecked (76.1.2):
+    - MaterialComponents/private/Icons/Base
+  - MaterialComponents/private/Icons/ic_reorder (76.1.2):
+    - MaterialComponents/private/Icons/Base
+  - MaterialComponents/private/Math (76.1.2)
+  - MaterialComponents/schemes/Color (76.1.2)
+  - MaterialComponents/schemes/Shape (76.1.2):
+    - MaterialComponents/ShapeLibrary
+    - MaterialComponents/Shapes
+  - MaterialComponents/schemes/Typography (76.1.2)
+  - MaterialComponents/ShadowElevations (76.1.2)
+  - MaterialComponents/ShadowLayer (76.1.2):
+    - MaterialComponents/ShadowElevations
+  - MaterialComponents/ShapeLibrary (76.1.2):
+    - MaterialComponents/private/Math
+    - MaterialComponents/Shapes
+  - MaterialComponents/Shapes (76.1.2):
+    - MaterialComponents/private/Math
+    - MaterialComponents/ShadowLayer
+  - MaterialComponents/TextFields (76.1.2):
+    - MaterialComponents/AnimationTiming
+    - MaterialComponents/Palettes
+    - MaterialComponents/private/Math
+    - MaterialComponents/Typography
+    - MDFInternationalization
+  - MaterialComponents/Typography (76.1.2):
+    - MaterialComponents/private/Application
+    - MaterialComponents/private/Math
+  - MDFInternationalization (2.0.0)
+  - MDFTextAccessibility (2.0.0)
+  - nanopb (0.3.901):
+    - nanopb/decode (= 0.3.901)
+    - nanopb/encode (= 0.3.901)
+  - nanopb/decode (0.3.901)
+  - nanopb/encode (0.3.901)
+  - Protobuf (3.6.1)
+  - SwiftLint (0.30.1)
+
+DEPENDENCIES:
+  - Firebase/Core
+  - Firebase/MLNLSmartReply
+  - MaterialComponents/Buttons (= 76.1.2)
+  - "MaterialComponents/Buttons+ButtonThemer (= 76.1.2)"
+  - MaterialComponents/Chips (= 76.1.2)
+  - MaterialComponents/Collections (= 76.1.2)
+  - MaterialComponents/List (= 76.1.2)
+  - MaterialComponents/TextFields (= 76.1.2)
+  - SwiftLint
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - FirebaseABTesting
+    - FirebaseRemoteConfig
+    - GoogleUtilities
+    - GTMSessionFetcher
+    - MaterialComponents
+    - MDFInternationalization
+    - MDFTextAccessibility
+    - nanopb
+    - Protobuf
+    - SwiftLint
+  sso://cpdc-internal/firebase:
+    - Firebase
+    - FirebaseAnalytics
+    - FirebaseCore
+    - FirebaseInstanceID
+    - FirebaseMLCommon
+    - FirebaseMLNaturalLanguage
+    - FirebaseMLNLLanguageID
+    - FirebaseMLNLSmartReply
+    - GoogleAppMeasurement
+
+SPEC CHECKSUMS:
+  Firebase: 39f1ea2339000f0395d357b2ed3127655264a843
+  FirebaseABTesting: 1f50b8d50f5e3469eea54e7463a7b7fe221d1f5e
+  FirebaseAnalytics: b6b4eaa1c4b50fd192e40754db5052f946d72f94
+  FirebaseCore: c0c4befb82374d6aef64d800e569f47625352edc
+  FirebaseInstanceID: 913f5a3753f89c487d85c3a0ed638b014bd8ad59
+  FirebaseMLCommon: 15e9fd5edb6a38e19d171f22ee5d2eb5efbbac1f
+  FirebaseMLNaturalLanguage: b799a015ccbbb4994b0506907f4b64894ca5842a
+  FirebaseMLNLLanguageID: c6e1f13976809a31d2c2d6608acc11c4726476c5
+  FirebaseMLNLSmartReply: f723e711f87a6c748c9518f020646257b6eae156
+  FirebaseRemoteConfig: 7e11c65f0769c09bff6947997c209515058c5318
+  GoogleAppMeasurement: 62d1d980ca2e1d883c336b338d9a445a27756ab4
+  GoogleUtilities: 111a012f4c3a29c9e7c954c082fafd6ee3c999c0
+  GTMSessionFetcher: 32aeca0aa144acea523e1c8e053089dec2cb98ca
+  MaterialComponents: 1aef341d47fbaed37ddb5163a01af94cb6da8506
+  MDFInternationalization: 010097556d6b09d2c4ea38e0820ea6d37be6a314
+  MDFTextAccessibility: 85c09a1bd9c321f494348e632a25063bcda35a53
+  nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
+  Protobuf: 1eb9700044745f00181c136ef21b8ff3ad5a0fd5
+  SwiftLint: a54bf1fe12b55c68560eb2a7689dfc81458508f7
+
+PODFILE CHECKSUM: 88ce1a3d50299f96478b77f71c48085c78a5a79e
+
+COCOAPODS: 1.6.0

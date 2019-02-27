@@ -16,8 +16,10 @@
 
 import UIKit
 // [START import_vision]
-import Firebase
+import FirebaseMLVision
 // [END import_vision]
+import FirebaseMLVisionAutoML
+import FirebaseMLCommon
 
 /// Main view controller class.
 @objc(ViewController)
@@ -26,6 +28,12 @@ class ViewController:  UIViewController, UINavigationControllerDelegate {
   // [START init_vision]
   lazy var vision = Vision.vision()
   // [END init_vision]
+
+  /// Manager for local and remote models.
+  lazy var modelManager = ModelManager.modelManager()
+
+  /// Whether the AutoML models are registered.
+  var areAutoMLModelsRegistered = false
 
   /// A string holding current results from detection.
   var resultsText = ""
@@ -115,6 +123,8 @@ class ViewController:  UIViewController, UINavigationControllerDelegate {
         detectBarcodes(image: imageView.image)
       case .detectImageLabelsOnDevice:
         detectLabels(image: imageView.image)
+      case .detectImageLabelsAutoMLOnDevice:
+        detectImageLabelsAutoMLOnDevice(image: imageView.image)
       case .detectTextInCloud:
         detectTextInCloud(image: imageView.image)
       case .detectDocumentTextInCloud:
@@ -608,6 +618,36 @@ class ViewController:  UIViewController, UINavigationControllerDelegate {
       self.showResults()
     }
   }
+
+  private func registerAutoMLModelsIfNeeded() {
+    if areAutoMLModelsRegistered {
+      return
+    }
+
+    let initialConditions = ModelDownloadConditions()
+    let updateConditions = ModelDownloadConditions(
+      allowsCellularAccess: false,
+      allowsBackgroundDownloading: true
+    )
+    let remoteModel = RemoteModel(
+      name: Constants.remoteAutoMLModelName,
+      allowsModelUpdates: true,
+      initialConditions: initialConditions,
+      updateConditions: updateConditions
+    )
+    modelManager.register(remoteModel)
+
+    guard let localModelFilePath = Bundle.main.path(
+      forResource: Constants.localModelManifestFileName,
+      ofType: Constants.autoMLManifestFileType
+      ) else {
+        print("Failed to find AutoML local model manifest file.")
+        return
+    }
+    let localModel = LocalModel(name: Constants.localAutoMLModelName, path: localModelFilePath)
+    modelManager.register(localModel)
+    areAutoMLModelsRegistered = true
+  }
 }
 
 extension ViewController: UIPickerViewDataSource, UIPickerViewDelegate {
@@ -831,6 +871,54 @@ extension ViewController {
     // [END detect_label]
   }
 
+  /// Detects labels on the specified image using On-Device AutoML Image Labeling API.
+  ///
+  /// - Parameter image: The image.
+  func detectImageLabelsAutoMLOnDevice(image: UIImage?) {
+    guard let image = image else { return }
+    registerAutoMLModelsIfNeeded()
+
+    // [START config_automl_label]
+    let options = VisionOnDeviceAutoMLImageLabelerOptions(
+      remoteModelName: Constants.remoteAutoMLModelName,
+      localModelName: Constants.localAutoMLModelName
+    )
+    options.confidenceThreshold = Constants.labelConfidenceThreshold
+    // [END config_automl_label]
+
+    // [START init_automl_label]
+    let autoMLOnDeviceLabeler = vision.onDeviceAutoMLImageLabeler(options: options)
+    // [END init_automl_label]
+
+    // Define the metadata for the image.
+    let imageMetadata = VisionImageMetadata()
+    imageMetadata.orientation = UIUtilities.visionImageOrientation(from: image.imageOrientation)
+
+    // Initialize a VisionImage object with the given UIImage.
+    let visionImage = VisionImage(image: image)
+    visionImage.metadata = imageMetadata
+
+    // [START detect_automl_label]
+    autoMLOnDeviceLabeler.process(visionImage) { labels, error in
+      guard error == nil, let labels = labels, !labels.isEmpty else {
+        // [START_EXCLUDE]
+        let errorString = error?.localizedDescription ?? Constants.detectionNoResultsMessage
+        self.resultsText = "On-Device AutoML label detection failed with error: \(errorString)"
+        self.showResults()
+        // [END_EXCLUDE]
+        return
+      }
+
+      // [START_EXCLUDE]
+      self.resultsText = labels.map { label -> String in
+        return "Label: \(label.text), Confidence: \(label.confidence ?? 0)"
+        }.joined(separator: "\n")
+      self.showResults()
+      // [END_EXCLUDE]
+    }
+    // [END detect_automl_label]
+  }
+
   /// Detects text on the specified image and draws a frame around the recognized text using the
   /// On-Device text recognizer.
   ///
@@ -1019,12 +1107,13 @@ private enum DetectorPickerRow: Int {
   detectTextOnDevice,
   detectBarcodeOnDevice,
   detectImageLabelsOnDevice,
+  detectImageLabelsAutoMLOnDevice,
   detectTextInCloud,
   detectDocumentTextInCloud,
   detectImageLabelsInCloud,
   detectLandmarkInCloud
 
-  static let rowsCount = 8
+  static let rowsCount = 9
   static let componentsCount = 1
 
   public var description: String {
@@ -1037,6 +1126,8 @@ private enum DetectorPickerRow: Int {
       return "Barcode On-Device"
     case .detectImageLabelsOnDevice:
       return "Image Labeling On-Device"
+    case .detectImageLabelsAutoMLOnDevice:
+      return "Image Labeling AutoML On-Device"
     case .detectTextInCloud:
       return "Text in Cloud"
     case .detectDocumentTextInCloud:
@@ -1058,6 +1149,11 @@ private enum Constants {
 
   static let detectionNoResultsMessage = "No results returned."
   static let failedToDetectObjectsMessage = "Failed to detect objects in image."
+
+  static let localAutoMLModelName = "local_automl_model"
+  static let remoteAutoMLModelName = "remote_automl_model"
+  static let localModelManifestFileName = "automl_labeler_manifest"
+  static let autoMLManifestFileType = "json"
 
   static let labelConfidenceThreshold: Float = 0.75
   static let smallDotRadius: CGFloat = 5.0

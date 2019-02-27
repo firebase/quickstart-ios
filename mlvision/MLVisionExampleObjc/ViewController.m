@@ -17,7 +17,9 @@
 #import "ViewController.h"
 #import "UIImage+VisionDetection.h"
 #import "UIUtilities.h"
-@import Firebase;
+@import FirebaseMLVision;
+@import FirebaseMLVisionAutoML;
+@import FirebaseMLCommon;
 
 static NSArray *images;
 static NSString *const ModelExtension = @"tflite";
@@ -27,13 +29,25 @@ static NSString *const quantizedModelFilename = @"mobilenet_quant_v1_224";
 static NSString *const detectionNoResultsMessage = @"No results returned.";
 static NSString *const failedToDetectObjectsMessage = @"Failed to detect objects in image.";
 
-static float const labelConfidenceThreshold = 0.75;
+/** Name of the local AutoML model. */
+static NSString *const FIRLocalAutoMLModelName = @"local_automl_model";
+
+/** Name of the remote AutoML model. */
+static NSString *const FIRRemoteAutoMLModelName = @"remote_automl_model";
+
+/** Filename of AutoML local model manifest in the main resource bundle. */
+static NSString *const FIRAutoMLLocalModelManifestFilename = @"automl_labeler_manifest";
+
+/** File type of AutoML local model manifest in the main resource bundle. */
+static NSString *const FIRAutoMLManifestFileType = @"json";
+
+static float const labelConfidenceThreshold = 0.01; // 0.75;
 static CGFloat const smallDotRadius = 5.0;
 static CGFloat const largeDotRadius = 10.0;
 static CGColorRef lineColor;
 static CGColorRef fillColor;
 
-static int const rowsCount = 8;
+static int const rowsCount = 9;
 static int const componentsCount = 1;
 
 /**
@@ -49,6 +63,8 @@ typedef NS_ENUM(NSInteger, DetectorPickerRow) {
   DetectorPickerRowDetectBarcodeOnDevice,
   /** On-Device vision image label detector. */
   DetectorPickerRowDetectImageLabelsOnDevice,
+  /** On-Device vision AutoML image label detector. */
+  DetectorPickerRowDetectImageLabelsAutoMLOnDevice,
   /** Cloud vision text vision detector. */
   DetectorPickerRowDetectTextInCloud,
   /** Cloud vision document text vision detector. */
@@ -61,6 +77,12 @@ typedef NS_ENUM(NSInteger, DetectorPickerRow) {
 
 @interface ViewController () <UINavigationControllerDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UIImagePickerControllerDelegate>
 @property(nonatomic) FIRVision *vision;
+
+@property(nonatomic) FIRModelManager *modelManager;
+
+/** Whether the AutoML model(s) are registered. */
+@property(nonatomic) BOOL areAutoMLModelsRegistered;
+
 
 /** A string holding current results from detection. */
 @property(nonatomic) NSMutableString *resultsText;
@@ -93,6 +115,8 @@ typedef NS_ENUM(NSInteger, DetectorPickerRow) {
       return @"Barcode On-Device";
     case DetectorPickerRowDetectImageLabelsOnDevice:
       return @"Image Labeling On-Device";
+    case DetectorPickerRowDetectImageLabelsAutoMLOnDevice:
+      return @"AutoML Image Labeling On-Device";
     case DetectorPickerRowDetectTextInCloud:
       return @"Text in Cloud";
     case DetectorPickerRowDetectDocumentTextInCloud:
@@ -114,6 +138,8 @@ typedef NS_ENUM(NSInteger, DetectorPickerRow) {
   // [START init_vision]
   self.vision = [FIRVision vision];
   // [END init_vision]
+
+  _modelManager = [FIRModelManager modelManager];
 
   self.imagePicker = [UIImagePickerController new];
   self.resultsText = [NSMutableString new];
@@ -175,6 +201,9 @@ typedef NS_ENUM(NSInteger, DetectorPickerRow) {
       break;
     case DetectorPickerRowDetectImageLabelsOnDevice:
       [self detectLabelsInImage:_imageView.image];
+      break;
+    case DetectorPickerRowDetectImageLabelsAutoMLOnDevice:
+      [self detectLabelsAutoMLInImage:_imageView.image];
       break;
     case DetectorPickerRowDetectTextInCloud:
       [self detectTextInCloudInImage:_imageView.image];
@@ -792,6 +821,58 @@ typedef NS_ENUM(NSInteger, DetectorPickerRow) {
   // [END detect_label]
 }
 
+/// Detects labels on the specified image using AutoML On-Device label API.
+///
+/// - Parameter image: The image.
+- (void)detectLabelsAutoMLOnDeviceInImage:(UIImage *)image {
+  if (!image) {
+    return;
+  }
+  [self registerAutoMLModelsIfNeeded];
+
+  // [START config_automl_label]
+  FIRVisionOnDeviceAutoMLImageLabelerOptions *options =
+  [[FIRVisionOnDeviceAutoMLImageLabelerOptions alloc]
+   initWithRemoteModelName:FIRRemoteAutoMLModelName
+   localModelName:FIRLocalAutoMLModelName];
+  options.confidenceThreshold = FIRVisionLabelDetectorConfidenceThreshold;
+  // [END config_automl_label]
+
+  // [START init_automl_label]
+  FIRVisionImageLabeler *onDeviceAutoMLLabeler =
+  [self.vision onDeviceAutoMLImageLabelerWithOptions:options];
+  // [END init_automl_label]
+
+  // Define the metadata for the image.
+  FIRVisionImageMetadata *imageMetadata = [FIRVisionImageMetadata new];
+  imageMetadata.orientation = [UIUtilities visionImageOrientationFromImageOrientation:image.imageOrientation];
+
+  // Initialize a VisionImage object with the given UIImage.
+  FIRVisionImage *visionImage = [[FIRVisionImage alloc] initWithImage:image];
+  visionImage.metadata = imageMetadata;
+
+  // [START detect_automl_label]
+  [onDeviceAutoMLLabeler processImage:image completion:^(NSArray<FIRVisionImageLabel *> * _Nullable labels, NSError * _Nullable error) {
+    if (!labels ||  labels.count == 0) {
+      // [START_EXCLUDE]
+      NSString *errorString = error ? error.localizedDescription : detectionNoResultsMessage;
+      [self.resultsText appendFormat:@"AutoML On-Device label detection failed with error: %@", errorString];
+      [self showResults];
+      // [END_EXCLUDE]
+      return;
+    }
+
+    // [START_EXCLUDE]
+    [self.resultsText setString:@""];
+    for (FIRVisionImageLabel *label in labels) {
+      [self.resultsText appendFormat:@"Label: %@, Confidence: %@\n", label.text, label.confidence];
+    }
+    [self showResults];
+    // [END_EXCLUDE]
+  }];
+  // [END detect_automl_label]
+}
+
 /// Detects text on the specified image and draws a frame around the recognized text using the
 /// On-Device text recognizer.
 ///
@@ -976,4 +1057,31 @@ typedef NS_ENUM(NSInteger, DetectorPickerRow) {
   }];
   // [END detect_label_cloud]
 }
+
+- (void)registerAutoMLModelsIfNeeded {
+  if (self.areAutoMLModelsRegistered) return;
+
+  FIRModelDownloadConditions *initialConditions = [[FIRModelDownloadConditions alloc] init];
+  FIRModelDownloadConditions *updateConditions =
+  [[FIRModelDownloadConditions alloc] initWithAllowsCellularAccess:NO
+                                       allowsBackgroundDownloading:YES];
+  FIRRemoteModel *remoteModel = [[FIRRemoteModel alloc] initWithName:FIRRemoteAutoMLModelName
+                                                  allowsModelUpdates:YES
+                                                   initialConditions:initialConditions
+                                                    updateConditions:updateConditions];
+  if (![_modelManager registerRemoteModel:remoteModel]) {
+    NSLog(@"Failed to register AutoML local model");
+  }
+
+  NSString *localModelFilePath =
+  [[NSBundle mainBundle] pathForResource:FIRAutoMLLocalModelManifestFilename
+                                  ofType:FIRAutoMLManifestFileType];
+  FIRLocalModel *localModel = [[FIRLocalModel alloc] initWithName:FIRLocalAutoMLModelName
+                                                             path:localModelFilePath];
+  if (![_modelManager registerLocalModel:localModel]) {
+    NSLog(@"Failed to register AutoML local model");
+  }
+  self.areAutoMLModelsRegistered = YES;
+}
+
 @end

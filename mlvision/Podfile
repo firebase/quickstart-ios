@@ -1,15 +1,28 @@
 platform :ios, '9.0'
-# Comment the next line if you're not using Swift and don't want to use dynamic frameworks
+
+source 'sso://cpdc-test/firebase-ml'
+source 'sso://cpdc-test/spec'
+source 'sso://cpdc-internal/spec'
+source 'https://github.com/CocoaPods/Specs.git'
+
 use_frameworks!
 
 # [START base_dependencies]
 pod 'Firebase/Core'
-pod 'Firebase/MLVision'
+pod 'FirebaseMLVision', '99.99.99'
 # [END base_dependencies]
-pod 'Firebase/MLVisionBarcodeModel'
-pod 'Firebase/MLVisionFaceModel'
-pod 'Firebase/MLVisionLabelModel'
-pod 'Firebase/MLVisionTextModel'
+pod 'FirebaseMLCommon', '99.99.99'
+pod 'FirebaseMLModelInterpreter', '99.99.99'
+pod 'FirebaseMLVisionAutoML', '99.99.99'
+pod 'FirebaseMLVisionFaceModel', '99.99.99'
+pod 'FirebaseMLVisionBarcodeModel', '99.99.99'
+pod 'FirebaseMLVisionLabelModel', '99.99.99'
+pod 'FirebaseMLVisionTextModel', '99.99.99'
+pod 'GoogleMobileVision/Detector', '1.5.0'
+pod 'GoogleMobileVision/FaceDetector', '1.5.0'
+pod 'GoogleMobileVision/TextDetector', '1.5.0'
+pod 'GoogleMobileVision/BarcodeDetector', '1.5.0'
+pod 'GoogleMobileVision/LabelDetector', '1.5.0'
 
 target 'MLVisionExample' do
 end

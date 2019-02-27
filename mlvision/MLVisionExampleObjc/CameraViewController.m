@@ -261,7 +261,7 @@ typedef NS_ENUM(NSInteger, Detector) {
 }
 
 - (AVCaptureDevice *)captureDeviceForPosition:(AVCaptureDevicePosition)position  {
-  if (@available(iOS 11, *)) {
+  if (@available(iOS 10, *)) {
     AVCaptureDeviceDiscoverySession *discoverySession =
       [AVCaptureDeviceDiscoverySession discoverySessionWithDeviceTypes:@[AVCaptureDeviceTypeBuiltInWideAngleCamera]
                                                              mediaType:AVMediaTypeVideo

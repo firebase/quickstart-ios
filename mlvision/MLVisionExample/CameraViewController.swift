@@ -19,11 +19,13 @@ import CoreVideo
 import UIKit
 
 import FirebaseMLVision
+import FirebaseMLCommon
+import FirebaseMLVisionAutoML
 
 @objc(CameraViewController)
 class CameraViewController: UIViewController {
 
-  private let detectors: [Detector] = [.onDeviceFace, .onDeviceText]
+  private let detectors: [Detector] = [.onDeviceAutoMLImageLabeler, .onDeviceFace, .onDeviceText]
   private var currentDetector: Detector = .onDeviceFace
   private var isUsingFrontCamera = true
   private var previewLayer: AVCaptureVideoPreviewLayer!
@@ -31,6 +33,8 @@ class CameraViewController: UIViewController {
   private lazy var sessionQueue = DispatchQueue(label: Constant.sessionQueueLabel)
   private lazy var vision = Vision.vision()
   private var lastFrame: CMSampleBuffer?
+  private var areAutoMLModelsRegistered = false
+  private lazy var modelManager = ModelManager.modelManager()
 
   private lazy var previewOverlayView: UIImageView = {
 
@@ -93,7 +97,92 @@ class CameraViewController: UIViewController {
     setUpCaptureSessionInput()
   }
 
-  // MARK: On-Device Detection
+  // MARK: - On-Device AutoML Detections
+
+  private func detectImageLabelsAutoMLOndevice(
+    in visionImage: VisionImage,
+    width: CGFloat,
+    height: CGFloat) {
+    registerAutoMLModelsIfNeeded()
+
+    let options = VisionOnDeviceAutoMLImageLabelerOptions(
+      remoteModelName: Constant.remoteAutoMLModelName,
+      localModelName: Constant.localAutoMLModelName
+    )
+    options.confidenceThreshold = Constant.labelConfidenceThreshold
+    let autoMLOnDeviceLabeler = vision.onDeviceAutoMLImageLabeler(options: options)
+    print("labeler: \(autoMLOnDeviceLabeler)\n")
+
+    let group = DispatchGroup()
+    group.enter()
+
+    autoMLOnDeviceLabeler.process(visionImage) { detectedLabels, error in
+      defer { group.leave() }
+
+      if let error = error {
+        print("Failed to detect labels with error: \(error.localizedDescription).")
+        return
+      }
+
+      guard let labels = detectedLabels, !labels.isEmpty else {
+        self.updatePreviewOverlayView()
+        self.removeDetectionAnnotations()
+        return
+      }
+
+      self.updatePreviewOverlayView()
+      self.removeDetectionAnnotations()
+      let annotationFrame = self.annotationOverlayView.frame
+      let resultsRect = CGRect(
+        x: annotationFrame.origin.x + Constant.padding,
+        y: annotationFrame.size.height - Constant.padding - Constant.resultsLabelHeight,
+        width: annotationFrame.width - 2 * Constant.padding,
+        height: Constant.resultsLabelHeight
+      )
+      let resultsLabel = UILabel(frame: resultsRect)
+      resultsLabel.textColor = .yellow
+      resultsLabel.text = labels.map { label -> String in
+        return "Label: \(label.text), Confidence: \(label.confidence ?? 0)"
+        }.joined(separator: "\n")
+      resultsLabel.adjustsFontSizeToFitWidth = true
+      resultsLabel.numberOfLines = Constant.resultsLabelLines
+      self.annotationOverlayView.addSubview(resultsLabel)
+    }
+
+    group.wait()
+  }
+
+  private func registerAutoMLModelsIfNeeded() {
+    if areAutoMLModelsRegistered {
+      return
+    }
+
+    let initialConditions = ModelDownloadConditions()
+    let updateConditions = ModelDownloadConditions(
+      allowsCellularAccess: false,
+      allowsBackgroundDownloading: true
+    )
+    let remoteModel = RemoteModel(
+      name: Constant.remoteAutoMLModelName,
+      allowsModelUpdates: true,
+      initialConditions: initialConditions,
+      updateConditions: updateConditions
+    )
+    modelManager.register(remoteModel)
+
+    guard let localModelFilePath = Bundle.main.path(
+      forResource: Constant.localModelManifestFileName,
+      ofType: Constant.autoMLManifestFileType
+      ) else {
+        print("Failed to find AutoML local model manifest file.")
+        return
+    }
+    let localModel = LocalModel(name: Constant.localAutoMLModelName, path: localModelFilePath)
+    modelManager.register(localModel)
+    areAutoMLModelsRegistered = true
+  }
+
+  // MARK: Other On-Device Detections
 
   private func detectFacesOnDevice(in image: VisionImage, width: CGFloat, height: CGFloat) {
     let options = VisionFaceDetectorOptions()
@@ -548,6 +637,8 @@ extension CameraViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
     let imageWidth = CGFloat(CVPixelBufferGetWidth(imageBuffer))
     let imageHeight = CGFloat(CVPixelBufferGetHeight(imageBuffer))
     switch currentDetector {
+    case .onDeviceAutoMLImageLabeler:
+      detectImageLabelsAutoMLOndevice(in: visionImage, width: imageWidth, height: imageHeight)
     case .onDeviceFace:
       detectFacesOnDevice(in: visionImage, width: imageWidth, height: imageHeight)
     case .onDeviceText:
@@ -559,6 +650,7 @@ extension CameraViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
 // MARK: - Constants
 
 public enum Detector: String {
+  case onDeviceAutoMLImageLabeler = "On-Device AutoML Image Labeler"
   case onDeviceFace = "On-Device Face Detection"
   case onDeviceText = "On-Device Text Recognition"
 }
@@ -570,6 +662,14 @@ private enum Constant {
   static let videoDataOutputQueueLabel = "com.google.firebaseml.visiondetector.VideoDataOutputQueue"
   static let sessionQueueLabel = "com.google.firebaseml.visiondetector.SessionQueue"
   static let noResultsMessage = "No Results"
+  static let localAutoMLModelName = "local_automl_model"
+  static let remoteAutoMLModelName = "remote_automl_model"
+  static let localModelManifestFileName = "automl_labeler_manifest"
+  static let autoMLManifestFileType = "json"
+  static let labelConfidenceThreshold: Float = 0.75
   static let smallDotRadius: CGFloat = 4.0
   static let originalScale: CGFloat = 1.0
+  static let padding: CGFloat = 10.0
+  static let resultsLabelHeight: CGFloat = 200.0
+  static let resultsLabelLines = 5
 }

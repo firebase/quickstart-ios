@@ -24,10 +24,7 @@ Getting Started
 ### Microsoft Sign In Setup
 - Go to the [Firebase Console](https://console.firebase.google.com) and navigate to your project:
   - Select the **Auth** panel and then click the **Sign In Method** tab.
-  - Open panel on bottom right corner and click **Experiment Panel**.
-  - Enable **FirebaseAuthProvidersExperimentEnabled** experiment
-  - Refresh console page and the microsoft option should appear.
-  - Turn on the **Enable** switch, then click **Save**.
+  - Click **Microsoft** and turn on the **Enable** switch, then click **Save**.
 - In Xcode, [add a custom URL scheme for your reversed client ID](https://developers.google.com/identity/sign-in/ios/start-integrating).
   - You can find this in the `GoogleService-Info.plist`
 - Run the app on your device or simulator.

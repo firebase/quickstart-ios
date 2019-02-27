@@ -475,7 +475,7 @@
 				INFOPLIST_FILE = MLVisionExampleTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.google.friendlypix.MLVisionExampleTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.MLVisionExampleTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -494,7 +494,7 @@
 				INFOPLIST_FILE = MLVisionExampleTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.google.friendlypix.MLVisionExampleTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.MLVisionExampleTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -512,7 +512,7 @@
 				INFOPLIST_FILE = MLVisionExampleUITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.google.friendlypix.MLVisionExampleUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.MLVisionExampleUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "985b9882-0e66-4497-8f7c-bd6c3bc484f7";
 				SWIFT_VERSION = 4.0;
@@ -531,7 +531,7 @@
 				INFOPLIST_FILE = MLVisionExampleUITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.google.friendlypix.MLVisionExampleUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.MLVisionExampleUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "985b9882-0e66-4497-8f7c-bd6c3bc484f7";
 				SWIFT_VERSION = 4.0;

@@ -19,6 +19,8 @@
 @import UIKit;
 @import FirebaseMLVision;
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface UIUtilities : NSObject
 
 + (void)addCircleAtPoint:(CGPoint)point
@@ -34,3 +36,5 @@
 + (UIDeviceOrientation)currentUIOrientation;
 
 @end
+
+NS_ASSUME_NONNULL_END

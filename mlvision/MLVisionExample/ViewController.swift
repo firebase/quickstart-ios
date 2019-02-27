@@ -16,8 +16,10 @@
 
 import UIKit
 // [START import_vision]
-import Firebase
+import FirebaseMLVision
 // [END import_vision]
+import FirebaseMLVisionObjectDetection
+
 
 /// Main view controller class.
 @objc(ViewController)
@@ -109,8 +111,14 @@ class ViewController:  UIViewController, UINavigationControllerDelegate {
         detectBarcodes(image: imageView.image)
       case .detectImageLabelsOnDevice:
         detectLabels(image: imageView.image)
-      case .detectTextInCloud:
+      case .detectObjectsOnDevice:
+        detectObjectsOnDevice(image: imageView.image)
+      case .detectTextInCloudSparse:
         detectTextInCloud(image: imageView.image)
+      case .detectTextInCloudDense:
+        let options = VisionCloudTextRecognizerOptions()
+        options.modelType = .dense
+        detectTextInCloud(image: imageView.image, options: options)
       case .detectDocumentTextInCloud:
         detectDocumentTextInCloud(image: imageView.image)
       case .detectImageLabelsInCloud:
@@ -681,8 +689,8 @@ extension ViewController {
     visionImage.metadata = imageMetadata
 
     // [START detect_faces]
-    faceDetector.process(visionImage) { features, error in
-      guard error == nil, let features = features, !features.isEmpty else {
+    faceDetector.process(visionImage) { faces, error in
+      guard error == nil, let faces = faces, !faces.isEmpty else {
         // [START_EXCLUDE]
         let errorString = error?.localizedDescription ?? Constants.detectionNoResultsMessage
         self.resultsText = "On-Device face detection failed with error: \(errorString)"
@@ -693,31 +701,18 @@ extension ViewController {
 
       // Faces detected
       // [START_EXCLUDE]
-      self.resultsText = features.map { feature -> String in
+      faces.forEach { face in
         let transform = self.transformMatrix()
-        let transformedRect = feature.frame.applying(transform)
+        let transformedRect = face.frame.applying(transform)
         UIUtilities.addRectangle(
           transformedRect,
           to: self.annotationOverlayView,
           color: UIColor.green
         )
-        self.addLandmarks(forFace: feature, transform: transform)
-        self.addContours(forFace: feature, transform: transform)
-
-        let headEulerAngleY = feature.hasHeadEulerAngleY ? feature.headEulerAngleY.description : "NA"
-        let headEulerAngleZ = feature.hasHeadEulerAngleZ ? feature.headEulerAngleZ.description : "NA"
-        let leftEyeOpenProbability = feature.hasLeftEyeOpenProbability ? feature.leftEyeOpenProbability.description : "NA"
-        let rightEyeOpenProbability = feature.hasRightEyeOpenProbability ? feature.rightEyeOpenProbability.description : "NA"
-        let smilingProbability = feature.hasSmilingProbability ? feature.smilingProbability.description : "NA"
-        let output = """
-                     Frame: \(feature.frame)
-                     Head Euler Angle Y: \(headEulerAngleY)
-                     Head Euler Angle Z: \(headEulerAngleZ)
-                     Left Eye Open Probability: \(leftEyeOpenProbability)
-                     Right Eye Open Probability: \(rightEyeOpenProbability)
-                     Smiling Probability: \(smilingProbability)
-                     """
-        return "\(output)"
+        self.addLandmarks(forFace: face, transform: transform)
+      }
+      self.resultsText = faces.map { face in
+        return "Frame: \(face.frame)"
         }.joined(separator: "\n")
       self.showResults()
       // [END_EXCLUDE]
@@ -763,13 +758,15 @@ extension ViewController {
       }
 
       // [START_EXCLUDE]
-      self.resultsText = features.map { feature in
+      features.forEach { feature in
         let transformedRect = feature.frame.applying(self.transformMatrix())
         UIUtilities.addRectangle(
           transformedRect,
           to: self.annotationOverlayView,
           color: UIColor.green
         )
+      }
+      self.resultsText = features.map { feature in
         return "DisplayValue: \(feature.displayValue ?? ""), RawValue: " +
         "\(feature.rawValue ?? ""), Frame: \(feature.frame)"
         }.joined(separator: "\n")
@@ -854,13 +851,8 @@ extension ViewController {
   /// Cloud text recognizer.
   ///
   /// - Parameter image: The image.
-  func detectTextInCloud(image: UIImage?) {
+  func detectTextInCloud(image: UIImage?, options: VisionCloudTextRecognizerOptions? = nil) {
     guard let image = image else { return }
-
-    // [START config_text_cloud]
-    let options = VisionCloudTextRecognizerOptions()
-    options.modelType = .dense
-    // [END config_text_cloud]
 
     // Define the metadata for the image.
     let imageMetadata = VisionImageMetadata()
@@ -871,11 +863,19 @@ extension ViewController {
     visionImage.metadata = imageMetadata
 
     // [START init_text_cloud]
-    let cloudTextRecognizer = vision.cloudTextRecognizer(options: options)
-    // Or, to use the default settings:
-    // let cloudTextRecognizer = vision.cloudTextRecognizer()
+    var cloudTextRecognizer: VisionTextRecognizer?
+    var modelTypeString = Constants.sparseTextModelName
+    if let options = options {
+      modelTypeString = (options.modelType == .dense) ?
+        Constants.denseTextModelName :
+      modelTypeString
+      cloudTextRecognizer = vision.cloudTextRecognizer(options: options)
+    } else {
+      cloudTextRecognizer = vision.cloudTextRecognizer()
+    }
     // [END init_text_cloud]
-    self.resultsText += "Running Cloud Text Recognition...\n"
+
+    self.resultsText += "Running Cloud Text Recognition (\(modelTypeString) model)...\n"
     process(visionImage, with: cloudTextRecognizer)
   }
 
@@ -943,18 +943,20 @@ extension ViewController {
 
       // Recognized landmarks
       // [START_EXCLUDE]
-      self.resultsText = landmarks.map { landmark -> String in
+      landmarks.forEach { landmark in
         let transformedRect = landmark.frame.applying(self.transformMatrix())
         UIUtilities.addRectangle(
           transformedRect,
           to: self.annotationOverlayView,
           color: UIColor.green
         )
+      }
+      self.resultsText = landmarks.map { landmark -> String in
         return "Landmark: \(String(describing: landmark.landmark ?? "")), " +
           "Confidence: \(String(describing: landmark.confidence ?? 0) ), " +
           "EntityID: \(String(describing: landmark.entityId ?? "") ), " +
         "Frame: \(landmark.frame)"
-        }.joined(separator: "\n")
+      }.joined(separator: "\n")
       self.showResults()
       // [END_EXCLUDE]
     }
@@ -1002,8 +1004,68 @@ extension ViewController {
       self.showResults()
       // [END_EXCLUDE]
     }
+    // [END detect_label_cloud]
   }
-  // [END detect_label_cloud]
+
+
+  /// Detects objects on the specified image and draws a frame around them.
+  ///
+  /// - Parameter image: The image.
+  func detectObjectsOnDevice(image: UIImage?) {
+    guard let image = image else { return }
+
+    // Define the metadata for the image.
+    let imageMetadata = VisionImageMetadata()
+    imageMetadata.orientation = UIUtilities.visionImageOrientation(from: image.imageOrientation)
+
+    // Initialize a VisionImage object with the given UIImage.
+    let visionImage = VisionImage(image: image)
+    visionImage.metadata = imageMetadata
+
+    // [START init_object_detector]
+    // Create an objects detector with default options.
+    let detector = vision.objectDetector()
+    // [END init_object_detector]
+
+    // [START detect_object]
+    detector.process(visionImage) { objects, error in
+      guard error == nil else {
+        // [START_EXCLUDE]
+        let errorString = error?.localizedDescription ?? Constants.detectionNoResultsMessage
+        self.resultsText = "Object detection failed with error: \(errorString)"
+        self.showResults()
+        // [END_EXCLUDE]
+        return
+      }
+      guard let objects = objects, !objects.isEmpty else {
+        // [START_EXCLUDE]
+        self.resultsText = "On-Device object detector returned no results."
+        self.showResults()
+        // [END_EXCLUDE]
+        return
+      }
+
+      objects.forEach { object in
+        // [START_EXCLUDE]
+        let transform = self.transformMatrix()
+        let transformedRect = object.frame.applying(transform)
+        UIUtilities.addRectangle(
+          transformedRect,
+          to: self.annotationOverlayView,
+          color: .green
+        )
+        // [END_EXCLUDE]
+      }
+
+       // [START_EXCLUDE]
+      self.resultsText = objects.map { object in
+        return "Class: \(object.label ?? ""), frame: \(object.frame), ID: \(object.trackingID ?? 0)"
+        }.joined(separator: "\n")
+      self.showResults()
+      // [END_EXCLUDE]
+    }
+    // [END detect_object]
+  }
 }
 
 // MARK: - Enums
@@ -1013,12 +1075,14 @@ private enum DetectorPickerRow: Int {
   detectTextOnDevice,
   detectBarcodeOnDevice,
   detectImageLabelsOnDevice,
-  detectTextInCloud,
+  detectObjectsOnDevice,
+  detectTextInCloudSparse,
+  detectTextInCloudDense,
   detectDocumentTextInCloud,
   detectImageLabelsInCloud,
   detectLandmarkInCloud
 
-  static let rowsCount = 8
+  static let rowsCount = 10
   static let componentsCount = 1
 
   public var description: String {
@@ -1031,8 +1095,12 @@ private enum DetectorPickerRow: Int {
       return "Barcode On-Device"
     case .detectImageLabelsOnDevice:
       return "Image Labeling On-Device"
-    case .detectTextInCloud:
-      return "Text in Cloud"
+    case .detectObjectsOnDevice:
+      return "Object Detection On-Device"
+    case .detectTextInCloudSparse:
+      return "Text in Cloud (Sparse)"
+    case .detectTextInCloudDense:
+      return "Text in Cloud (Dense)"
     case .detectDocumentTextInCloud:
       return "Document Text in Cloud"
     case .detectImageLabelsInCloud:
@@ -1052,7 +1120,8 @@ private enum Constants {
 
   static let detectionNoResultsMessage = "No results returned."
   static let failedToDetectObjectsMessage = "Failed to detect objects in image."
-
+  static let sparseTextModelName = "Sparse"
+  static let denseTextModelName = "Dense"
   static let labelConfidenceThreshold: Float = 0.75
   static let smallDotRadius: CGFloat = 5.0
   static let largeDotRadius: CGFloat = 10.0

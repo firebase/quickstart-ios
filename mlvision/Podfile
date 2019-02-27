@@ -10,6 +10,7 @@ pod 'Firebase/MLVisionBarcodeModel'
 pod 'Firebase/MLVisionFaceModel'
 pod 'Firebase/MLVisionLabelModel'
 pod 'Firebase/MLVisionTextModel'
+pod 'FirebaseMLVisionObjectDetection'
 
 target 'MLVisionExample' do
 end

@@ -14,9 +14,14 @@
 //  limitations under the License.
 //
 
-#import <UIKit/UIKit.h>
+@import UIKit;
+
+NS_ASSUME_NONNULL_BEGIN
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
-@property (strong, nonatomic) UIWindow *window;
+
+@property(nonatomic, strong) UIWindow *window;
+
 @end
 
+NS_ASSUME_NONNULL_END

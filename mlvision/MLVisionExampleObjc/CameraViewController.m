@@ -18,7 +18,11 @@
 #import "UIUtilities.h"
 @import AVFoundation;
 @import CoreVideo;
-@import Firebase;
+
+@import FirebaseMLVision;
+@import FirebaseMLVisionObjectDetection;
+
+NS_ASSUME_NONNULL_BEGIN
 
 static NSString *const alertControllerTitle = @"Vision Detectors";
 static NSString *const alertControllerMessage = @"Select a detector";
@@ -33,7 +37,8 @@ static const CGFloat FIRconstantScale = 41.0;
 
 typedef NS_ENUM(NSInteger, Detector) {
   DetectorOnDeviceFace,
-  DetectorOnDeviceText
+  DetectorOnDeviceText,
+  DetectorOnDeviceObject
 };
 
 @property (nonatomic) NSArray *detectors;
@@ -57,12 +62,14 @@ typedef NS_ENUM(NSInteger, Detector) {
     return @"On-Device Face Detection";
     case DetectorOnDeviceText:
     return @"On-Device Text Recognition";
+    case DetectorOnDeviceObject:
+    return @"On-Device Object Recognition";
   }
 }
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-  _detectors = @[[NSNumber numberWithInt:DetectorOnDeviceFace], [NSNumber numberWithInt:DetectorOnDeviceText]];
+  _detectors = @[[NSNumber numberWithInt:DetectorOnDeviceFace], [NSNumber numberWithInt:DetectorOnDeviceText], [NSNumber numberWithInt:DetectorOnDeviceObject]];
   _currentDetector = DetectorOnDeviceFace;
   _isUsingFrontCamera = YES;
   _captureSession = [[AVCaptureSession alloc] init];
@@ -143,7 +150,7 @@ typedef NS_ENUM(NSInteger, Detector) {
   });
 }
 
-- (void)recognizeTextOnDeviceInImage:(FIRVisionImage *)image width:(CGFloat) width height:(CGFloat)height {
+- (void)recognizeTextOnDeviceInImage:(FIRVisionImage *)image width:(CGFloat)width height:(CGFloat)height {
   FIRVisionTextRecognizer *textRecognizer = [_vision onDeviceTextRecognizer];
   [textRecognizer processImage:image completion:^(FIRVisionText * _Nullable text, NSError * _Nullable error) {
     [self removeDetectionAnnotations];
@@ -175,6 +182,53 @@ typedef NS_ENUM(NSInteger, Detector) {
       }
     }
   }];
+}
+
+#pragma mark - Object Detection
+
+- (void)detectObjectsOnDeviceInImage:(FIRVisionImage *)image width:(CGFloat)width height:(CGFloat)height {
+  FIRVisionObjectDetectorOptions *options = [FIRVisionObjectDetectorOptions new];
+  options.shouldEnableClassification = YES;
+  FIRVisionObjectDetector *detector = [_vision objectDetectorWithOptions:options];
+
+  NSError *error;
+  NSArray *objects = [detector resultsInImage:image error:&error];
+  if (error != nil) {
+    NSLog(@"Failed to detect object with error: %@", error.localizedDescription);
+    return;
+  }
+
+  if (!objects || objects.count == 0) {
+    NSLog(@"On-Device object detector returned no results.");
+    dispatch_sync(dispatch_get_main_queue(), ^{
+      [self updatePreviewOverlayView];
+      [self removeDetectionAnnotations];
+    });
+    return;
+  }
+
+  dispatch_sync(dispatch_get_main_queue(), ^{
+    [self updatePreviewOverlayView];
+    [self removeDetectionAnnotations];
+    for (FIRVisionObject *object in objects) {
+      CGRect normalizedRect = CGRectMake(object.frame.origin.x / width, object.frame.origin.y / height, object.frame.size.width / width, object.frame.size.height / height);
+      CGRect standardizedRect = CGRectStandardize([self.previewLayer rectForMetadataOutputRectOfInterest:normalizedRect]);
+      [UIUtilities addRectangle:standardizedRect toView:self.annotationOverlayView color:UIColor.greenColor];
+      UILabel *label = [[UILabel alloc] initWithFrame:standardizedRect];
+      label.numberOfLines = 2;
+      NSMutableString *description = [NSMutableString new];
+      if (object.trackingID != nil) {
+        [description appendFormat:@"ID: %@\n", object.trackingID];
+      }
+      if (object.label != nil) {
+        [description appendString:object.label];
+      }
+      label.text = description;
+
+      label.adjustsFontSizeToFitWidth = YES;
+      [self.annotationOverlayView addSubview:label];
+    }
+  });
 }
 
 #pragma mark - Private
@@ -493,6 +547,7 @@ typedef NS_ENUM(NSInteger, Detector) {
     FIRVisionImage *visionImage = [[FIRVisionImage alloc] initWithBuffer:sampleBuffer];
     FIRVisionImageMetadata *metadata = [[FIRVisionImageMetadata alloc] init];
     UIImageOrientation orientation = [UIUtilities imageOrientationFromDevicePosition:_isUsingFrontCamera ? AVCaptureDevicePositionFront : AVCaptureDevicePositionBack];
+
     FIRVisionDetectorImageOrientation visionOrientation = [UIUtilities visionImageOrientationFromImageOrientation:orientation];
     metadata.orientation = visionOrientation;
     visionImage.metadata = metadata;
@@ -505,6 +560,9 @@ typedef NS_ENUM(NSInteger, Detector) {
       case DetectorOnDeviceText:
         [self recognizeTextOnDeviceInImage:visionImage width:imageWidth height:imageHeight];
         break;
+      case DetectorOnDeviceObject:
+        [self detectObjectsOnDeviceInImage:visionImage width:imageWidth height:imageHeight];
+        break;
     }
   } else {
     NSLog(@"%@", @"Failed to get image buffer from sample buffer.");
@@ -512,3 +570,5 @@ typedef NS_ENUM(NSInteger, Detector) {
 }
 
 @end
+
+NS_ASSUME_NONNULL_END

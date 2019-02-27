@@ -16,14 +16,14 @@
 
 import AVFoundation
 import CoreVideo
-import UIKit
 
 import FirebaseMLVision
+import FirebaseMLVisionObjectDetection
 
 @objc(CameraViewController)
 class CameraViewController: UIViewController {
 
-  private let detectors: [Detector] = [.onDeviceFace, .onDeviceText]
+  private let detectors: [Detector] = [.onDeviceFace, .onDeviceText, .onDeviceObject]
   private var currentDetector: Detector = .onDeviceFace
   private var isUsingFrontCamera = true
   private var previewLayer: AVCaptureVideoPreviewLayer!
@@ -191,6 +191,63 @@ class CameraViewController: UIViewController {
             self.annotationOverlayView.addSubview(label)
           }
         }
+      }
+    }
+  }
+
+  // MARK: Object Detection
+
+  private func detectObjectsOnDevice(in image: VisionImage, width: CGFloat, height: CGFloat) {
+    let options = VisionObjectDetectorOptions()
+    options.shouldEnableClassification = true
+    let detector = vision.objectDetector(options: options)
+
+    var detectedObjects: [VisionObject]? = nil
+    do {
+      detectedObjects = try detector.results(in: image)
+    } catch let error {
+      print("Failed to detect object with error: \(error.localizedDescription).")
+      return
+    }
+    guard let objects = detectedObjects, !objects.isEmpty else {
+      print("On-Device object detector returned no results.")
+      DispatchQueue.main.sync {
+        self.updatePreviewOverlayView()
+        self.removeDetectionAnnotations()
+      }
+      return
+    }
+
+    DispatchQueue.main.sync {
+      self.updatePreviewOverlayView()
+      self.removeDetectionAnnotations()
+      for object in objects {
+        let normalizedRect = CGRect(
+          x: object.frame.origin.x / width,
+          y: object.frame.origin.y / height,
+          width: object.frame.size.width / width,
+          height: object.frame.size.height / height
+        )
+        let standardizedRect =
+          self.previewLayer.layerRectConverted(fromMetadataOutputRect: normalizedRect).standardized
+        UIUtilities.addRectangle(
+          standardizedRect,
+          to: self.annotationOverlayView,
+          color: UIColor.green
+        )
+        let label = UILabel(frame: standardizedRect)
+        label.numberOfLines = 2
+        var description = ""
+        if let trackingID = object.trackingID {
+          description = "ID:" + trackingID.stringValue + "\n"
+        }
+        if let objectLabel = object.label {
+          description += objectLabel
+        }
+        label.text = description
+
+        label.adjustsFontSizeToFitWidth = true
+        self.annotationOverlayView.addSubview(label)
       }
     }
   }
@@ -542,6 +599,7 @@ extension CameraViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
     let orientation = UIUtilities.imageOrientation(
       fromDevicePosition: isUsingFrontCamera ? .front : .back
     )
+
     let visionOrientation = UIUtilities.visionImageOrientation(from: orientation)
     metadata.orientation = visionOrientation
     visionImage.metadata = metadata
@@ -552,6 +610,8 @@ extension CameraViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
       detectFacesOnDevice(in: visionImage, width: imageWidth, height: imageHeight)
     case .onDeviceText:
       recognizeTextOnDevice(in: visionImage, width: imageWidth, height: imageHeight)
+    case .onDeviceObject:
+      detectObjectsOnDevice(in: visionImage, width: imageWidth, height: imageHeight)
     }
   }
 }
@@ -561,6 +621,7 @@ extension CameraViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
 public enum Detector: String {
   case onDeviceFace = "On-Device Face Detection"
   case onDeviceText = "On-Device Text Recognition"
+  case onDeviceObject = "On-Device Object Detection"
 }
 
 private enum Constant {

@@ -16,6 +16,8 @@
 
 #import "UIImage+VisionDetection.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @implementation UIImage (VisionDetection)
 
 /// Returns a scaled image to the given size.
@@ -38,4 +40,7 @@
   }
   return [UIImage imageWithData:imageData];
 }
+
 @end
+
+NS_ASSUME_NONNULL_END

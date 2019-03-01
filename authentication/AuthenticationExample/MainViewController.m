@@ -38,7 +38,6 @@ typedef enum : NSUInteger {
   AuthPhone,
   AuthPasswordless,
   AuthGameCenter,
-  AuthMicrosoft,
 } AuthProvider;
 
 /*! @var kOKButtonText
@@ -83,7 +82,6 @@ static NSString *const kUpdatePhoneNumberText = @"Update Phone Number";
 
 @interface MainViewController ()
 @property(strong, nonatomic) FIRAuthStateDidChangeListenerHandle handle;
-@property(strong, nonatomic) FIROAuthProvider *microsoftProvider;
 @end
 
 @implementation MainViewController
@@ -319,42 +317,9 @@ static NSString *const kUpdatePhoneNumberText = @"Update Phone Number";
                }];
              }];
             // [END firebase_auth_gamecenter]
-          }];
-        };
-        break;
-      case AuthMicrosoft: {
-        action = [UIAlertAction actionWithTitle:@"Microsoft"
-                                          style:UIAlertActionStyleDefault
-                                        handler:^(UIAlertAction * _Nonnull action) {
-            // [START firebase_auth_microsoft]
-            [self.microsoftProvider getCredentialWithUIDelegate:nil
-                completion:^(FIRAuthCredential *_Nullable credential, NSError *_Nullable error) {
-              [self showSpinner:^{
-                 if (error) {
-                   [self hideSpinner:^{
-                     [self showMessagePrompt:error.localizedDescription];
-                     return;
-                   }];
-                 }
-                if (credential) {
-                  [[FIRAuth auth] signInAndRetrieveDataWithCredential:credential
-                                                           completion:^(FIRAuthDataResult *_Nullable
-                                                                        authResult,
-                                                                        NSError *_Nullable error) {
-                    [self hideSpinner:^{
-                      if (error) {
-                        [self showMessagePrompt:error.localizedDescription];
-                        return;
-                      }
-                    }];
-                  }];
-                }
-              }];
-            }];
-            // [END firebase_auth_microsoft]
         }];
-      }
-      break;
+        }
+        break;
     }
 
     [picker addAction:action];
@@ -378,8 +343,7 @@ static NSString *const kUpdatePhoneNumberText = @"Update Phone Number";
                          @(AuthPhone),
                          @(AuthCustom),
                          @(AuthPasswordless),
-                         @(AuthGameCenter),
-                         @(AuthMicrosoft)]];
+                         @(AuthGameCenter)]];
 }
 
 - (IBAction)didTapLink:(id)sender {
@@ -447,8 +411,6 @@ static NSString *const kUpdatePhoneNumberText = @"Update Phone Number";
         // [END_EXCLUDE]
       }];
   // [END auth_listener]
-
-  self.microsoftProvider = [FIROAuthProvider providerWithProviderID:FIRMicrosoftAuthProviderID];
 
   // Authenticate Game Center Local Player
   // Uncomment to sign in with Game Center

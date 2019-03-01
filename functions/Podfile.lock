@@ -78,8 +78,8 @@ PODS:
   - GoogleUtilities/UserDefaults (5.3.7):
     - GoogleUtilities/Logger
   - GTMSessionFetcher/Core (1.2.1)
-  - MaterialComponents/AnimationTiming (78.0.0)
-  - MaterialComponents/Buttons (78.0.0):
+  - MaterialComponents/AnimationTiming (78.0.1)
+  - MaterialComponents/Buttons (78.0.1):
     - MaterialComponents/Ink
     - MaterialComponents/private/Math
     - MaterialComponents/ShadowElevations
@@ -88,7 +88,7 @@ PODS:
     - MaterialComponents/Typography
     - MDFInternationalization
     - MDFTextAccessibility
-  - MaterialComponents/CollectionCells (78.0.0):
+  - MaterialComponents/CollectionCells (78.0.1):
     - MaterialComponents/CollectionLayoutAttributes
     - MaterialComponents/Ink
     - MaterialComponents/Palettes
@@ -101,8 +101,8 @@ PODS:
     - MaterialComponents/private/Math
     - MaterialComponents/Typography
     - MDFInternationalization
-  - MaterialComponents/CollectionLayoutAttributes (78.0.0)
-  - MaterialComponents/Collections (78.0.0):
+  - MaterialComponents/CollectionLayoutAttributes (78.0.1)
+  - MaterialComponents/Collections (78.0.1):
     - MaterialComponents/CollectionCells
     - MaterialComponents/CollectionLayoutAttributes
     - MaterialComponents/Ink
@@ -110,37 +110,37 @@ PODS:
     - MaterialComponents/ShadowElevations
     - MaterialComponents/ShadowLayer
     - MaterialComponents/Typography
-  - MaterialComponents/Ink (78.0.0):
+  - MaterialComponents/Ink (78.0.1):
     - MaterialComponents/private/Math
-  - MaterialComponents/Palettes (78.0.0)
-  - MaterialComponents/private/Application (78.0.0)
-  - MaterialComponents/private/Icons/Base (78.0.0)
-  - MaterialComponents/private/Icons/ic_check (78.0.0):
+  - MaterialComponents/Palettes (78.0.1)
+  - MaterialComponents/private/Application (78.0.1)
+  - MaterialComponents/private/Icons/Base (78.0.1)
+  - MaterialComponents/private/Icons/ic_check (78.0.1):
     - MaterialComponents/private/Icons/Base
-  - MaterialComponents/private/Icons/ic_check_circle (78.0.0):
+  - MaterialComponents/private/Icons/ic_check_circle (78.0.1):
     - MaterialComponents/private/Icons/Base
-  - MaterialComponents/private/Icons/ic_chevron_right (78.0.0):
+  - MaterialComponents/private/Icons/ic_chevron_right (78.0.1):
     - MaterialComponents/private/Icons/Base
-  - MaterialComponents/private/Icons/ic_info (78.0.0):
+  - MaterialComponents/private/Icons/ic_info (78.0.1):
     - MaterialComponents/private/Icons/Base
-  - MaterialComponents/private/Icons/ic_radio_button_unchecked (78.0.0):
+  - MaterialComponents/private/Icons/ic_radio_button_unchecked (78.0.1):
     - MaterialComponents/private/Icons/Base
-  - MaterialComponents/private/Icons/ic_reorder (78.0.0):
+  - MaterialComponents/private/Icons/ic_reorder (78.0.1):
     - MaterialComponents/private/Icons/Base
-  - MaterialComponents/private/Math (78.0.0)
-  - MaterialComponents/ShadowElevations (78.0.0)
-  - MaterialComponents/ShadowLayer (78.0.0):
+  - MaterialComponents/private/Math (78.0.1)
+  - MaterialComponents/ShadowElevations (78.0.1)
+  - MaterialComponents/ShadowLayer (78.0.1):
     - MaterialComponents/ShadowElevations
-  - MaterialComponents/Shapes (78.0.0):
+  - MaterialComponents/Shapes (78.0.1):
     - MaterialComponents/private/Math
     - MaterialComponents/ShadowLayer
-  - MaterialComponents/TextFields (78.0.0):
+  - MaterialComponents/TextFields (78.0.1):
     - MaterialComponents/AnimationTiming
     - MaterialComponents/Palettes
     - MaterialComponents/private/Math
     - MaterialComponents/Typography
     - MDFInternationalization
-  - MaterialComponents/Typography (78.0.0):
+  - MaterialComponents/Typography (78.0.1):
     - MaterialComponents/private/Application
     - MaterialComponents/private/Math
   - MDFInternationalization (2.0.0)
@@ -195,7 +195,7 @@ SPEC CHECKSUMS:
   GoogleToolboxForMac: ff31605b7d66400dcec09bed5861689aebadda4d
   GoogleUtilities: 111a012f4c3a29c9e7c954c082fafd6ee3c999c0
   GTMSessionFetcher: 32aeca0aa144acea523e1c8e053089dec2cb98ca
-  MaterialComponents: f50582fcff415a2459e62a29310fb3ec70a70234
+  MaterialComponents: 1e1d1a8356bbf2b80f6a0aa32018cda8ac8065a5
   MDFInternationalization: 010097556d6b09d2c4ea38e0820ea6d37be6a314
   MDFTextAccessibility: 85c09a1bd9c321f494348e632a25063bcda35a53
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48

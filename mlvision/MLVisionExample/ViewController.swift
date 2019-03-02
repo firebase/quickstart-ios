@@ -72,10 +72,16 @@ class ViewController:  UIViewController, UINavigationControllerDelegate {
     detectorPicker.delegate = self
     detectorPicker.dataSource = self
 
-    if !UIImagePickerController.isCameraDeviceAvailable(.front) &&
-      !UIImagePickerController.isCameraDeviceAvailable(.rear) {
+    let isCameraAvailable = UIImagePickerController.isCameraDeviceAvailable(.front) ||
+      UIImagePickerController.isCameraDeviceAvailable(.rear)
+    if isCameraAvailable {
+      // `CameraViewController` uses `AVCaptureDevice.DiscoverySession` which is only supported for
+      // iOS 10 or newer.
+      if #available(iOS 10.0, *) {
+        videoCameraButton.isEnabled = true
+      }
+    } else {
       photoCameraButton.isEnabled = false
-      videoCameraButton.isEnabled = false
     }
 
     let defaultRow = (DetectorPickerRow.rowsCount / 2) - 1

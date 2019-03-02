@@ -134,9 +134,16 @@ typedef NS_ENUM(NSInteger, DetectorPickerRow) {
   _detectorPicker.delegate = self;
   _detectorPicker.dataSource = self;
 
-  if (![UIImagePickerController isCameraDeviceAvailable:UIImagePickerControllerCameraDeviceFront] && ![UIImagePickerController isCameraDeviceAvailable:UIImagePickerControllerCameraDeviceRear]) {
+  BOOL isCameraAvailable = [UIImagePickerController isCameraDeviceAvailable:UIImagePickerControllerCameraDeviceFront] ||
+                           [UIImagePickerController isCameraDeviceAvailable:UIImagePickerControllerCameraDeviceRear];
+  if (isCameraAvailable) {
+    // `CameraViewController` uses `AVCaptureDeviceDiscoverySession` which is only supported for
+    // iOS 10 or newer.
+    if (@available(iOS 10, *)) {
+      [_videoCameraButton setEnabled:YES];
+    }
+  } else {
     [_photoCameraButton setEnabled:NO];
-    [_videoCameraButton setEnabled:NO];
   }
 
   int defaultRow = (rowsCount / 2) - 1;

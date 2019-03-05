@@ -115,7 +115,7 @@ PODS:
     - nanopb/encode (= 0.3.901)
   - nanopb/decode (0.3.901)
   - nanopb/encode (0.3.901)
-  - Protobuf (3.6.1)
+  - Protobuf (3.7.0)
 
 DEPENDENCIES:
   - Firebase/Core
@@ -151,25 +151,25 @@ SPEC REPOS:
     - nanopb
 
 SPEC CHECKSUMS:
-  Firebase: cd5565e4bde38ee89332938ca7ba36988bb3b52c
-  FirebaseAnalytics: 1bac813366a0ec5267b28b3d72dadfc0e0557ef2
+  Firebase: f200d25c103dcfe004217ac8c715439520d44f5d
+  FirebaseAnalytics: 16b27fa548734d6638219f3f3e8ce1bd1d2bcc85
   FirebaseCore: 5d8418371134573dc71c0a339cd0532e669b9855
-  FirebaseInstanceID: ebc3d4aec3f19cd1b804a82976d7f790824f4217
-  FirebaseMLCommon: 94b2324e5c24e2a8643f91c2e5c5db020cacd883
-  FirebaseMLVision: f2b58886dedf516f7c11091b6e33c951af8394de
-  FirebaseMLVisionBarcodeModel: a70b912d212587ffe57b7d9640b456156d4e0594
-  FirebaseMLVisionFaceModel: 0cc2f850922ac19b949e041a46b7f76dca7b94f5
-  FirebaseMLVisionLabelModel: 419e3a1003e8c6a32e58067af7395164b911db08
-  FirebaseMLVisionObjectDetection: 115b680ce3db3587afd35606272e060ce5e475e3
-  FirebaseMLVisionTextModel: d47559415f6403144e6ba16e38144ab6e7066700
+  FirebaseInstanceID: bbc735b7a4744eb4b6edeb96205b94f9f965eb24
+  FirebaseMLCommon: fc0f6f347f309a7570708ccfc8fe85d2ef604aeb
+  FirebaseMLVision: 9c7845f537c07e8978105edfb79023ed4af23e84
+  FirebaseMLVisionBarcodeModel: fc77c44fb1ec3d0321f62d5519969183118fe8e6
+  FirebaseMLVisionFaceModel: 8f90457578fb1a2a468ace7741973705dc15e9a7
+  FirebaseMLVisionLabelModel: c3e7c457e5a0739e590975e88c33d215d9b2638a
+  FirebaseMLVisionObjectDetection: 0c98a31db1a74f54ffd33ddefb19a15ff2635e9d
+  FirebaseMLVisionTextModel: 0fe06c6a0d3d79a275f429380d4251b5ea478237
   GoogleAPIClientForREST: 5447a194eae517986cafe6421a5330b80b820591
-  GoogleAppMeasurement: 742a97726d00469c26afceaf95ddadc5a3bc8cea
-  GoogleMobileVision: c49f3a885a360dfdaba982d55225ae74553172df
+  GoogleAppMeasurement: f9dce83fb7c6fc62839e8bcbdbd6c5ad11a5f404
+  GoogleMobileVision: 729065f59bafded5c07e0f30eb36fafa38d6666c
   GoogleToolboxForMac: ff31605b7d66400dcec09bed5861689aebadda4d
   GoogleUtilities: 111a012f4c3a29c9e7c954c082fafd6ee3c999c0
   GTMSessionFetcher: 32aeca0aa144acea523e1c8e053089dec2cb98ca
   nanopb: cf319651d4b9e5b247eea6c05b636fdefa85be83
-  Protobuf: 1eb9700044745f00181c136ef21b8ff3ad5a0fd5
+  Protobuf: 7a877b7f3e5964e3fce995e2eb323dbc6831bb5a
 
 PODFILE CHECKSUM: a4a1b7b3e4824d0cc7d3359dbf2bc1392dd866d0
 

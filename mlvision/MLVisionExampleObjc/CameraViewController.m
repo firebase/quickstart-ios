@@ -69,7 +69,7 @@ typedef NS_ENUM(NSInteger, Detector) {
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-  _detectors = @[[NSNumber numberWithInt:DetectorOnDeviceFace], [NSNumber numberWithInt:DetectorOnDeviceText], [NSNumber numberWithInt:DetectorOnDeviceObject]];
+  _detectors = @[@(DetectorOnDeviceFace), @(DetectorOnDeviceText), @(DetectorOnDeviceObject)];
   _currentDetector = DetectorOnDeviceFace;
   _isUsingFrontCamera = YES;
   _captureSession = [[AVCaptureSession alloc] init];
@@ -315,7 +315,7 @@ typedef NS_ENUM(NSInteger, Detector) {
 }
 
 - (AVCaptureDevice *)captureDeviceForPosition:(AVCaptureDevicePosition)position  {
-  if (@available(iOS 11, *)) {
+  if (@available(iOS 10, *)) {
     AVCaptureDeviceDiscoverySession *discoverySession =
       [AVCaptureDeviceDiscoverySession discoverySessionWithDeviceTypes:@[AVCaptureDeviceTypeBuiltInWideAngleCamera]
                                                              mediaType:AVMediaTypeVideo

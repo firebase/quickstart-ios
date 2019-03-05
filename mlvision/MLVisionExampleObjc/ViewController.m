@@ -38,7 +38,7 @@ static CGFloat const largeDotRadius = 10.0;
 static CGColorRef lineColor;
 static CGColorRef fillColor;
 
-static int const rowsCount = 10;
+static int const rowsCount = 13;
 static int const componentsCount = 1;
 
 /**
@@ -54,8 +54,14 @@ typedef NS_ENUM(NSInteger, DetectorPickerRow) {
   DetectorPickerRowDetectBarcodeOnDevice,
   /** On-Device vision image label detector. */
   DetectorPickerRowDetectImageLabelsOnDevice,
-  /** On-Device vision object detector. */
-  DetectorPickerRowDetectObjectsOnDevice,
+  /** On-Device vision object detector, prominent, only tracking. */
+  DetectorPickerRowDetectObjectsProminentNoClassifier,
+  /** On-Device vision object detector, prominent, with classification. */
+  DetectorPickerRowDetectObjectsProminentWithClassifier,
+  /** On-Device vision object detector, multiple, only tracking. */
+  DetectorPickerRowDetectObjectsMultipleNoClassifier,
+  /** On-Device vision object detector, multiple, with classification. */
+  DetectorPickerRowDetectObjectsMultipleWithClassifier,
   /** Cloud vision text vision detector (Sparse). */
   DetectorPickerRowDetectTextInCloudSparse,
   /** Cloud vision text vision detector (Dense). */
@@ -104,8 +110,14 @@ typedef NS_ENUM(NSInteger, DetectorPickerRow) {
       return @"Barcode On-Device";
     case DetectorPickerRowDetectImageLabelsOnDevice:
       return @"Image Labeling On-Device";
-    case DetectorPickerRowDetectObjectsOnDevice:
-      return @"Object Detection On-Device";
+    case DetectorPickerRowDetectObjectsProminentNoClassifier:
+      return @"ODT, prominent, only tracking";
+    case DetectorPickerRowDetectObjectsProminentWithClassifier:
+      return @"ODT, prominent, with classification";
+    case DetectorPickerRowDetectObjectsMultipleNoClassifier:
+      return @"ODT, multiple, only tracking";
+    case DetectorPickerRowDetectObjectsMultipleWithClassifier:
+      return @"ODT, multiple, with classification";
     case DetectorPickerRowDetectTextInCloudSparse:
       return @"Text in Cloud (Sparse)";
     case DetectorPickerRowDetectTextInCloudDense:
@@ -149,9 +161,16 @@ typedef NS_ENUM(NSInteger, DetectorPickerRow) {
   _detectorPicker.delegate = self;
   _detectorPicker.dataSource = self;
 
-  if (![UIImagePickerController isCameraDeviceAvailable:UIImagePickerControllerCameraDeviceFront] && ![UIImagePickerController isCameraDeviceAvailable:UIImagePickerControllerCameraDeviceRear]) {
+  BOOL isCameraAvailable = [UIImagePickerController isCameraDeviceAvailable:UIImagePickerControllerCameraDeviceFront] ||
+                           [UIImagePickerController isCameraDeviceAvailable:UIImagePickerControllerCameraDeviceRear];
+  if (isCameraAvailable) {
+    // `CameraViewController` uses `AVCaptureDeviceDiscoverySession` which is only supported for
+    // iOS 10 or newer.
+    if (@available(iOS 10, *)) {
+      [_videoCameraButton setEnabled:YES];
+    }
+  } else {
     [_photoCameraButton setEnabled:NO];
-    [_videoCameraButton setEnabled:NO];
   }
 
   int defaultRow = (rowsCount / 2) - 1;
@@ -184,9 +203,21 @@ typedef NS_ENUM(NSInteger, DetectorPickerRow) {
     case DetectorPickerRowDetectImageLabelsOnDevice:
       [self detectLabelsInImage:_imageView.image];
       break;
-    case DetectorPickerRowDetectObjectsOnDevice:
-      [self detectObjectsOnDeviceInImage:_imageView.image];
+    case DetectorPickerRowDetectObjectsProminentNoClassifier:
+    case DetectorPickerRowDetectObjectsProminentWithClassifier:
+    case DetectorPickerRowDetectObjectsMultipleNoClassifier:
+    case DetectorPickerRowDetectObjectsMultipleWithClassifier: {
+      BOOL shouldEnableClassification = (rowIndex == DetectorPickerRowDetectObjectsProminentWithClassifier) ||
+      (rowIndex == DetectorPickerRowDetectObjectsMultipleWithClassifier);
+      BOOL shouldEnableMultipleObjects = (rowIndex == DetectorPickerRowDetectObjectsMultipleNoClassifier) ||
+      (rowIndex == DetectorPickerRowDetectObjectsMultipleWithClassifier);
+      FIRVisionObjectDetectorOptions *options = [FIRVisionObjectDetectorOptions new];
+      options.shouldEnableClassification = shouldEnableClassification;
+      options.shouldEnableMultipleObjects = shouldEnableMultipleObjects;
+      options.detectorMode = FIRVisionObjectDetectorModeSingleImage;
+      [self detectObjectsOnDeviceInImage:_imageView.image withOptions:options];
       break;
+    }
     case DetectorPickerRowDetectTextInCloudSparse:
       [self detectTextInCloudInImage:_imageView.image withOptions:nil];
       break;
@@ -998,16 +1029,15 @@ typedef NS_ENUM(NSInteger, DetectorPickerRow) {
 /// Detects objects on the specified image and draws a frame around them.
 ///
 /// - Parameter image: The image.
-- (void)detectObjectsOnDeviceInImage:(UIImage *)image {
+/// - Parameter options: The options for object detector.
+- (void)detectObjectsOnDeviceInImage:(UIImage *)image withOptions:(FIRVisionObjectDetectorOptions *)options {
   if (!image) {
     return;
   }
 
   // [START init_object_detector]
-  // Create an objects detector with default options.
-  FIRVisionObjectDetector *detector = [_vision objectDetector];
-  // Or, to change the default settings:
-  // FIRVisionImageLabeler *cloudLabeler = [_vision objectDetectorWithOptions:options];
+  // Create an objects detector with options.
+  FIRVisionObjectDetector *detector = [_vision objectDetectorWithOptions:options];
   // [END init_object_detector]
 
   // Define the metadata for the image.

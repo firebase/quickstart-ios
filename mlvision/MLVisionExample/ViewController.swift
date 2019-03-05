@@ -74,10 +74,16 @@ class ViewController:  UIViewController, UINavigationControllerDelegate {
     detectorPicker.delegate = self
     detectorPicker.dataSource = self
 
-    if !UIImagePickerController.isCameraDeviceAvailable(.front) &&
-      !UIImagePickerController.isCameraDeviceAvailable(.rear) {
+    let isCameraAvailable = UIImagePickerController.isCameraDeviceAvailable(.front) ||
+      UIImagePickerController.isCameraDeviceAvailable(.rear)
+    if isCameraAvailable {
+      // `CameraViewController` uses `AVCaptureDevice.DiscoverySession` which is only supported for
+      // iOS 10 or newer.
+      if #available(iOS 10.0, *) {
+        videoCameraButton.isEnabled = true
+      }
+    } else {
       photoCameraButton.isEnabled = false
-      videoCameraButton.isEnabled = false
     }
 
     let defaultRow = (DetectorPickerRow.rowsCount / 2) - 1
@@ -111,8 +117,17 @@ class ViewController:  UIViewController, UINavigationControllerDelegate {
         detectBarcodes(image: imageView.image)
       case .detectImageLabelsOnDevice:
         detectLabels(image: imageView.image)
-      case .detectObjectsOnDevice:
-        detectObjectsOnDevice(image: imageView.image)
+      case .detectObjectsProminentNoClassifier, .detectObjectsProminentWithClassifier,
+           .detectObjectsMultipleNoClassifier, .detectObjectsMultipleWithClassifier:
+        let shouldEnableClassification = (rowIndex == .detectObjectsProminentWithClassifier) ||
+          (rowIndex == .detectObjectsMultipleWithClassifier)
+        let shouldEnableMultipleObjects = (rowIndex == .detectObjectsMultipleWithClassifier) ||
+          (rowIndex == .detectObjectsMultipleNoClassifier)
+        let options = VisionObjectDetectorOptions()
+        options.shouldEnableClassification = shouldEnableClassification
+        options.shouldEnableMultipleObjects = shouldEnableMultipleObjects
+        options.detectorMode = .singleImage
+        detectObjectsOnDevice(in: imageView.image, options: options)
       case .detectTextInCloudSparse:
         detectTextInCloud(image: imageView.image)
       case .detectTextInCloudDense:
@@ -240,159 +255,159 @@ class ViewController:  UIViewController, UINavigationControllerDelegate {
     return CGPoint(x: CGFloat(visionPoint.x.floatValue), y: CGFloat(visionPoint.y.floatValue))
   }
 
-    private func addContours(forFace face: VisionFace, transform: CGAffineTransform) {
-        // Face
-        if let faceContour = face.contour(ofType: .face) {
-            for point in faceContour.points {
-                let transformedPoint = pointFrom(point).applying(transform);
-                UIUtilities.addCircle(
-                    atPoint: transformedPoint,
-                    to: annotationOverlayView,
-                    color: UIColor.yellow,
-                    radius: Constants.smallDotRadius
-                )
-            }
-        }
-
-        // Eyebrows
-        if let topLeftEyebrowContour = face.contour(ofType: .leftEyebrowTop) {
-            for point in topLeftEyebrowContour.points {
-                let transformedPoint = pointFrom(point).applying(transform);
-                UIUtilities.addCircle(
-                    atPoint: transformedPoint,
-                    to: annotationOverlayView,
-                    color: UIColor.yellow,
-                    radius: Constants.smallDotRadius
-                )
-            }
-        }
-        if let bottomLeftEyebrowContour = face.contour(ofType: .leftEyebrowBottom) {
-            for point in bottomLeftEyebrowContour.points {
-                let transformedPoint = pointFrom(point).applying(transform);
-                UIUtilities.addCircle(
-                    atPoint: transformedPoint,
-                    to: annotationOverlayView,
-                    color: UIColor.yellow,
-                    radius: Constants.smallDotRadius
-                )
-            }
-        }
-        if let topRightEyebrowContour = face.contour(ofType: .rightEyebrowTop) {
-            for point in topRightEyebrowContour.points {
-                let transformedPoint = pointFrom(point).applying(transform);
-                UIUtilities.addCircle(
-                    atPoint: transformedPoint,
-                    to: annotationOverlayView,
-                    color: UIColor.yellow,
-                    radius: Constants.smallDotRadius
-                )
-            }
-        }
-        if let bottomRightEyebrowContour = face.contour(ofType: .rightEyebrowBottom) {
-            for point in bottomRightEyebrowContour.points {
-                let transformedPoint = pointFrom(point).applying(transform);
-                UIUtilities.addCircle(
-                    atPoint: transformedPoint,
-                    to: annotationOverlayView,
-                    color: UIColor.yellow,
-                    radius: Constants.smallDotRadius
-                )
-            }
-        }
-
-        // Eyes
-        if let leftEyeContour = face.contour(ofType: .leftEye) {
-            for point in leftEyeContour.points {
-                let transformedPoint = pointFrom(point).applying(transform);
-                UIUtilities.addCircle(
-                    atPoint: transformedPoint,
-                    to: annotationOverlayView,
-                    color: UIColor.yellow,
-                    radius: Constants.smallDotRadius                )
-            }
-        }
-        if let rightEyeContour = face.contour(ofType: .rightEye) {
-            for point in rightEyeContour.points {
-                let transformedPoint = pointFrom(point).applying(transform);
-                UIUtilities.addCircle(
-                    atPoint: transformedPoint,
-                    to: annotationOverlayView,
-                    color: UIColor.yellow,
-                    radius: Constants.smallDotRadius
-                )
-            }
-        }
-
-        // Lips
-        if let topUpperLipContour = face.contour(ofType: .upperLipTop) {
-            for point in topUpperLipContour.points {
-                let transformedPoint = pointFrom(point).applying(transform);
-                UIUtilities.addCircle(
-                    atPoint: transformedPoint,
-                    to: annotationOverlayView,
-                    color: UIColor.yellow,
-                    radius: Constants.smallDotRadius
-                )
-            }
-        }
-        if let bottomUpperLipContour = face.contour(ofType: .upperLipBottom) {
-            for point in bottomUpperLipContour.points {
-                let transformedPoint = pointFrom(point).applying(transform);
-                UIUtilities.addCircle(
-                    atPoint: transformedPoint,
-                    to: annotationOverlayView,
-                    color: UIColor.yellow,
-                    radius: Constants.smallDotRadius
-                )
-            }
-        }
-        if let topLowerLipContour = face.contour(ofType: .lowerLipTop) {
-            for point in topLowerLipContour.points {
-                let transformedPoint = pointFrom(point).applying(transform);
-                UIUtilities.addCircle(
-                    atPoint: transformedPoint,
-                    to: annotationOverlayView,
-                    color: UIColor.yellow,
-                    radius: Constants.smallDotRadius
-                )
-            }
-        }
-        if let bottomLowerLipContour = face.contour(ofType: .lowerLipBottom) {
-            for point in bottomLowerLipContour.points {
-                let transformedPoint = pointFrom(point).applying(transform);
-                UIUtilities.addCircle(
-                    atPoint: transformedPoint,
-                    to: annotationOverlayView,
-                    color: UIColor.yellow,
-                    radius: Constants.smallDotRadius
-                )
-            }
-        }
-
-        // Nose
-        if let noseBridgeContour = face.contour(ofType: .noseBridge) {
-            for point in noseBridgeContour.points {
-                let transformedPoint = pointFrom(point).applying(transform);
-                UIUtilities.addCircle(
-                    atPoint: transformedPoint,
-                    to: annotationOverlayView,
-                    color: UIColor.yellow,
-                    radius: Constants.smallDotRadius
-                )
-            }
-        }
-        if let noseBottomContour = face.contour(ofType: .noseBottom) {
-            for point in noseBottomContour.points {
-                let transformedPoint = pointFrom(point).applying(transform);
-                UIUtilities.addCircle(
-                    atPoint: transformedPoint,
-                    to: annotationOverlayView,
-                    color: UIColor.yellow,
-                    radius: Constants.smallDotRadius
-                )
-            }
-        }
+  private func addContours(forFace face: VisionFace, transform: CGAffineTransform) {
+    // Face
+    if let faceContour = face.contour(ofType: .face) {
+      for point in faceContour.points {
+        let transformedPoint = pointFrom(point).applying(transform);
+        UIUtilities.addCircle(
+          atPoint: transformedPoint,
+          to: annotationOverlayView,
+          color: UIColor.yellow,
+          radius: Constants.smallDotRadius
+        )
+      }
     }
+
+    // Eyebrows
+    if let topLeftEyebrowContour = face.contour(ofType: .leftEyebrowTop) {
+      for point in topLeftEyebrowContour.points {
+        let transformedPoint = pointFrom(point).applying(transform);
+        UIUtilities.addCircle(
+          atPoint: transformedPoint,
+          to: annotationOverlayView,
+          color: UIColor.yellow,
+          radius: Constants.smallDotRadius
+        )
+      }
+    }
+    if let bottomLeftEyebrowContour = face.contour(ofType: .leftEyebrowBottom) {
+      for point in bottomLeftEyebrowContour.points {
+        let transformedPoint = pointFrom(point).applying(transform);
+        UIUtilities.addCircle(
+          atPoint: transformedPoint,
+          to: annotationOverlayView,
+          color: UIColor.yellow,
+          radius: Constants.smallDotRadius
+        )
+      }
+    }
+    if let topRightEyebrowContour = face.contour(ofType: .rightEyebrowTop) {
+      for point in topRightEyebrowContour.points {
+        let transformedPoint = pointFrom(point).applying(transform);
+        UIUtilities.addCircle(
+          atPoint: transformedPoint,
+          to: annotationOverlayView,
+          color: UIColor.yellow,
+          radius: Constants.smallDotRadius
+        )
+      }
+    }
+    if let bottomRightEyebrowContour = face.contour(ofType: .rightEyebrowBottom) {
+      for point in bottomRightEyebrowContour.points {
+        let transformedPoint = pointFrom(point).applying(transform);
+        UIUtilities.addCircle(
+          atPoint: transformedPoint,
+          to: annotationOverlayView,
+          color: UIColor.yellow,
+          radius: Constants.smallDotRadius
+        )
+      }
+    }
+
+    // Eyes
+    if let leftEyeContour = face.contour(ofType: .leftEye) {
+      for point in leftEyeContour.points {
+        let transformedPoint = pointFrom(point).applying(transform);
+        UIUtilities.addCircle(
+          atPoint: transformedPoint,
+          to: annotationOverlayView,
+          color: UIColor.yellow,
+          radius: Constants.smallDotRadius                )
+      }
+    }
+    if let rightEyeContour = face.contour(ofType: .rightEye) {
+      for point in rightEyeContour.points {
+        let transformedPoint = pointFrom(point).applying(transform);
+        UIUtilities.addCircle(
+          atPoint: transformedPoint,
+          to: annotationOverlayView,
+          color: UIColor.yellow,
+          radius: Constants.smallDotRadius
+        )
+      }
+    }
+
+    // Lips
+    if let topUpperLipContour = face.contour(ofType: .upperLipTop) {
+      for point in topUpperLipContour.points {
+        let transformedPoint = pointFrom(point).applying(transform);
+        UIUtilities.addCircle(
+          atPoint: transformedPoint,
+          to: annotationOverlayView,
+          color: UIColor.yellow,
+          radius: Constants.smallDotRadius
+        )
+      }
+    }
+    if let bottomUpperLipContour = face.contour(ofType: .upperLipBottom) {
+      for point in bottomUpperLipContour.points {
+        let transformedPoint = pointFrom(point).applying(transform);
+        UIUtilities.addCircle(
+          atPoint: transformedPoint,
+          to: annotationOverlayView,
+          color: UIColor.yellow,
+          radius: Constants.smallDotRadius
+        )
+      }
+    }
+    if let topLowerLipContour = face.contour(ofType: .lowerLipTop) {
+      for point in topLowerLipContour.points {
+        let transformedPoint = pointFrom(point).applying(transform);
+        UIUtilities.addCircle(
+          atPoint: transformedPoint,
+          to: annotationOverlayView,
+          color: UIColor.yellow,
+          radius: Constants.smallDotRadius
+        )
+      }
+    }
+    if let bottomLowerLipContour = face.contour(ofType: .lowerLipBottom) {
+      for point in bottomLowerLipContour.points {
+        let transformedPoint = pointFrom(point).applying(transform);
+        UIUtilities.addCircle(
+          atPoint: transformedPoint,
+          to: annotationOverlayView,
+          color: UIColor.yellow,
+          radius: Constants.smallDotRadius
+        )
+      }
+    }
+
+    // Nose
+    if let noseBridgeContour = face.contour(ofType: .noseBridge) {
+      for point in noseBridgeContour.points {
+        let transformedPoint = pointFrom(point).applying(transform);
+        UIUtilities.addCircle(
+          atPoint: transformedPoint,
+          to: annotationOverlayView,
+          color: UIColor.yellow,
+          radius: Constants.smallDotRadius
+        )
+      }
+    }
+    if let noseBottomContour = face.contour(ofType: .noseBottom) {
+      for point in noseBottomContour.points {
+        let transformedPoint = pointFrom(point).applying(transform);
+        UIUtilities.addCircle(
+          atPoint: transformedPoint,
+          to: annotationOverlayView,
+          color: UIColor.yellow,
+          radius: Constants.smallDotRadius
+        )
+      }
+    }
+  }
 
   private func addLandmarks(forFace face: VisionFace, transform: CGAffineTransform) {
     // Mouth
@@ -710,9 +725,23 @@ extension ViewController {
           color: UIColor.green
         )
         self.addLandmarks(forFace: face, transform: transform)
+        self.addContours(forFace: face, transform: transform)
       }
       self.resultsText = faces.map { face in
-        return "Frame: \(face.frame)"
+        let headEulerAngleY = face.hasHeadEulerAngleY ? face.headEulerAngleY.description : "NA"
+        let headEulerAngleZ = face.hasHeadEulerAngleZ ? face.headEulerAngleZ.description : "NA"
+        let leftEyeOpenProbability = face.hasLeftEyeOpenProbability ? face.leftEyeOpenProbability.description : "NA"
+        let rightEyeOpenProbability = face.hasRightEyeOpenProbability ? face.rightEyeOpenProbability.description : "NA"
+        let smilingProbability = face.hasSmilingProbability ? face.smilingProbability.description : "NA"
+        let output = """
+                     Frame: \(face.frame)
+                     Head Euler Angle Y: \(headEulerAngleY)
+                     Head Euler Angle Z: \(headEulerAngleZ)
+                     Left Eye Open Probability: \(leftEyeOpenProbability)
+                     Right Eye Open Probability: \(rightEyeOpenProbability)
+                     Smiling Probability: \(smilingProbability)
+                     """
+        return "\(output)"
         }.joined(separator: "\n")
       self.showResults()
       // [END_EXCLUDE]
@@ -1011,7 +1040,8 @@ extension ViewController {
   /// Detects objects on the specified image and draws a frame around them.
   ///
   /// - Parameter image: The image.
-  func detectObjectsOnDevice(image: UIImage?) {
+  /// - Parameter options: The options for object detector.
+  private func detectObjectsOnDevice(in image: UIImage?, options: VisionObjectDetectorOptions) {
     guard let image = image else { return }
 
     // Define the metadata for the image.
@@ -1023,8 +1053,8 @@ extension ViewController {
     visionImage.metadata = imageMetadata
 
     // [START init_object_detector]
-    // Create an objects detector with default options.
-    let detector = vision.objectDetector()
+    // Create an objects detector with options.
+    let detector = vision.objectDetector(options: options)
     // [END init_object_detector]
 
     // [START detect_object]
@@ -1075,14 +1105,17 @@ private enum DetectorPickerRow: Int {
   detectTextOnDevice,
   detectBarcodeOnDevice,
   detectImageLabelsOnDevice,
-  detectObjectsOnDevice,
+  detectObjectsProminentNoClassifier,
+  detectObjectsProminentWithClassifier,
+  detectObjectsMultipleNoClassifier,
+  detectObjectsMultipleWithClassifier,
   detectTextInCloudSparse,
   detectTextInCloudDense,
   detectDocumentTextInCloud,
   detectImageLabelsInCloud,
   detectLandmarkInCloud
 
-  static let rowsCount = 10
+  static let rowsCount = 13
   static let componentsCount = 1
 
   public var description: String {
@@ -1095,8 +1128,15 @@ private enum DetectorPickerRow: Int {
       return "Barcode On-Device"
     case .detectImageLabelsOnDevice:
       return "Image Labeling On-Device"
-    case .detectObjectsOnDevice:
-      return "Object Detection On-Device"
+    // TODO(b/124768657): Consider adding a settings screen for the detector options
+    case .detectObjectsProminentNoClassifier:
+      return "ODT, prominent, only tracking"
+    case .detectObjectsProminentWithClassifier:
+      return "ODT, prominent, with classification"
+    case .detectObjectsMultipleNoClassifier:
+      return "ODT, multiple, only tracking"
+    case .detectObjectsMultipleWithClassifier:
+      return "ODT, multiple, with classification"
     case .detectTextInCloudSparse:
       return "Text in Cloud (Sparse)"
     case .detectTextInCloudDense:

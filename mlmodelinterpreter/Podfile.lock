@@ -1,6 +1,4 @@
 PODS:
-  - Firebase/Analytics (5.17.0):
-    - Firebase/Core
   - Firebase/Core (5.17.0):
     - Firebase/CoreOnly
     - FirebaseAnalytics (= 5.6.0)
@@ -24,14 +22,14 @@ PODS:
     - FirebaseCore (~> 5.3)
     - GoogleUtilities/Environment (~> 5.3)
     - GoogleUtilities/UserDefaults (~> 5.3)
-  - FirebaseMLCommon (99.99.99):
-    - FirebaseCore (~> 99.99)
-    - FirebaseInstanceID (~> 99.99)
+  - FirebaseMLCommon (0.14.0):
+    - FirebaseCore (~> 5.2)
+    - FirebaseInstanceID (~> 3.4)
     - GoogleUtilities/UserDefaults (~> 5.3)
     - GTMSessionFetcher/Core (~> 1.1)
-  - FirebaseMLModelInterpreter (99.99.99):
-    - FirebaseCore (~> 99.99)
-    - FirebaseMLCommon (~> 99.99)
+  - FirebaseMLModelInterpreter (0.14.0):
+    - FirebaseCore (~> 5.2)
+    - FirebaseMLCommon (~> 0.14)
     - GoogleUtilities/UserDefaults (~> 5.3)
     - TensorFlowLite (= 1.12.0)
   - GoogleAppMeasurement (5.6.0):
@@ -72,19 +70,17 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
-    - GoogleUtilities
-    - GTMSessionFetcher
-    - TensorFlowLite
-  sso://cpdc-test/firebase-ml:
-    - FirebaseCore
-    - FirebaseMLCommon
-    - FirebaseMLModelInterpreter
-  sso://cpdc-test/spec:
     - Firebase
     - FirebaseAnalytics
+    - FirebaseCore
     - FirebaseInstanceID
+    - FirebaseMLCommon
+    - FirebaseMLModelInterpreter
     - GoogleAppMeasurement
+    - GoogleUtilities
+    - GTMSessionFetcher
     - nanopb
+    - TensorFlowLite
 
 SPEC CHECKSUMS:
   Firebase: 59d557e064217fab6a03ff00baa73c06e73832e6
@@ -96,9 +92,9 @@ SPEC CHECKSUMS:
   GoogleAppMeasurement: 008e04ecd8efedd97a693aea8634aefe220bd26e
   GoogleUtilities: 111a012f4c3a29c9e7c954c082fafd6ee3c999c0
   GTMSessionFetcher: 32aeca0aa144acea523e1c8e053089dec2cb98ca
-  nanopb: cf319651d4b9e5b247eea6c05b636fdefa85be83
+  nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   TensorFlowLite: e81aef029750aa46b42ad16553fa4cddd81498cc
 
-PODFILE CHECKSUM: 21ee3eb48301da7df4f2bb994c04822720a50ae4
+PODFILE CHECKSUM: 65d4d71c9322a1757fff66a418cde3dea054bb0c
 
 COCOAPODS: 1.6.1

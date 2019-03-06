@@ -1076,7 +1076,7 @@ typedef NS_ENUM(NSInteger, DetectorPickerRow) {
     [self showResults];
     // [END_EXCLUDE]
   }];
-  // [END detect_label_cloud]
+  // [END detect_object]
 }
 
 @end

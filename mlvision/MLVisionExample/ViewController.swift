@@ -124,7 +124,7 @@ class ViewController:  UIViewController, UINavigationControllerDelegate {
       case .detectImageLabelsOnDevice:
         detectLabels(image: imageView.image)
       case .detectImageLabelsAutoMLOnDevice:
-        detectImageLabelsAutoMLOnDevice(image: imageView.image)
+        detectImageLabelsAutoML(image: imageView.image)
       case .detectTextInCloud:
         detectTextInCloud(image: imageView.image)
       case .detectDocumentTextInCloud:
@@ -874,7 +874,7 @@ extension ViewController {
   /// Detects labels on the specified image using On-Device AutoML Image Labeling API.
   ///
   /// - Parameter image: The image.
-  func detectImageLabelsAutoMLOnDevice(image: UIImage?) {
+  func detectImageLabelsAutoML(image: UIImage?) {
     guard let image = image else { return }
     registerAutoMLModelsIfNeeded()
 

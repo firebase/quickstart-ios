@@ -1,59 +1,59 @@
 PODS:
-  - Firebase/Core (99.99.99):
+  - Firebase/Core (5.18.0):
     - Firebase/CoreOnly
-    - FirebaseAnalytics (= 99.99.99)
-  - Firebase/CoreOnly (99.99.99):
-    - FirebaseCore (= 99.99.99)
-  - FirebaseAnalytics (99.99.99):
-    - FirebaseCore (~> 99.99)
-    - FirebaseInstanceID (~> 99.99)
-    - GoogleAppMeasurement (= 99.99.99)
+    - FirebaseAnalytics (= 5.7.0)
+  - Firebase/CoreOnly (5.18.0):
+    - FirebaseCore (= 5.3.1)
+  - FirebaseAnalytics (5.7.0):
+    - FirebaseCore (~> 5.3)
+    - FirebaseInstanceID (~> 3.6)
+    - GoogleAppMeasurement (= 5.7.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 5.2)
     - GoogleUtilities/MethodSwizzler (~> 5.2)
     - GoogleUtilities/Network (~> 5.2)
     - "GoogleUtilities/NSData+zlib (~> 5.2)"
     - nanopb (~> 0.3)
-  - FirebaseCore (99.99.99):
+  - FirebaseCore (5.3.1):
     - GoogleUtilities/Logger (~> 5.2)
-  - FirebaseInstanceID (99.99.99):
-    - FirebaseCore (~> 99.99)
+  - FirebaseInstanceID (3.6.0):
+    - FirebaseCore (~> 5.3)
     - GoogleUtilities/Environment (~> 5.3)
     - GoogleUtilities/UserDefaults (~> 5.3)
-  - FirebaseMLCommon (99.99.99):
-    - FirebaseCore (~> 99.99)
-    - FirebaseInstanceID (~> 99.99)
+  - FirebaseMLCommon (0.1.45):
+    - FirebaseCore (~> 5.1)
+    - FirebaseInstanceID (~> 3.3)
     - GoogleUtilities/UserDefaults (~> 5.3)
     - GTMSessionFetcher/Core (~> 1.1)
-  - FirebaseMLModelInterpreter (99.99.99):
-    - FirebaseCore (~> 99.99)
-    - FirebaseMLCommon (~> 99.99)
+  - FirebaseMLModelInterpreter (0.1.45):
+    - FirebaseCore (~> 5.1)
+    - FirebaseMLCommon (~> 0.1)
     - GoogleUtilities/UserDefaults (~> 5.3)
     - TensorFlowLite (= 1.12.0)
-  - FirebaseMLVision (99.99.99):
-    - FirebaseCore (~> 99.99)
-    - FirebaseMLCommon (~> 99.99)
+  - FirebaseMLVision (0.1.45):
+    - FirebaseCore (~> 5.1)
+    - FirebaseMLCommon (~> 0.1)
     - GoogleAPIClientForREST/Core (~> 1.3)
     - GoogleAPIClientForREST/Vision (~> 1.3)
     - GoogleMobileVision/Detector (~> 1.4)
-  - FirebaseMLVisionAutoML (99.99.99):
-    - FirebaseCore (~> 99.99)
-    - FirebaseMLCommon (~> 99.99)
-    - FirebaseMLVision (~> 99.99)
+  - FirebaseMLVisionAutoML (0.1.45):
+    - FirebaseCore (~> 5.1)
+    - FirebaseMLCommon (~> 0.1)
+    - FirebaseMLVision (~> 0.1)
     - TensorFlowLite (= 1.12.0)
-  - FirebaseMLVisionBarcodeModel (99.99.99):
+  - FirebaseMLVisionBarcodeModel (0.1.45):
     - GoogleMobileVision/BarcodeDetector (~> 1.4)
-  - FirebaseMLVisionFaceModel (99.99.99):
+  - FirebaseMLVisionFaceModel (0.1.45):
     - GoogleMobileVision/FaceDetector (~> 1.4)
-  - FirebaseMLVisionLabelModel (99.99.99):
+  - FirebaseMLVisionLabelModel (0.1.45):
     - GoogleMobileVision/LabelDetector (~> 1.4)
-  - FirebaseMLVisionTextModel (99.99.99):
+  - FirebaseMLVisionTextModel (0.1.45):
     - GoogleMobileVision/TextDetector (~> 1.4)
   - GoogleAPIClientForREST/Core (1.3.8):
     - GTMSessionFetcher (>= 1.1.7)
   - GoogleAPIClientForREST/Vision (1.3.8):
     - GoogleAPIClientForREST/Core
     - GTMSessionFetcher (>= 1.1.7)
-  - GoogleAppMeasurement (99.99.99):
+  - GoogleAppMeasurement (5.7.0):
     - GoogleUtilities/AppDelegateSwizzler (~> 5.2)
     - GoogleUtilities/MethodSwizzler (~> 5.2)
     - GoogleUtilities/Network (~> 5.2)
@@ -110,14 +110,14 @@ PODS:
 
 DEPENDENCIES:
   - Firebase/Core
-  - FirebaseMLCommon (= 99.99.99)
-  - FirebaseMLModelInterpreter (= 99.99.99)
-  - FirebaseMLVision (= 99.99.99)
-  - FirebaseMLVisionAutoML (= 99.99.99)
-  - FirebaseMLVisionBarcodeModel (= 99.99.99)
-  - FirebaseMLVisionFaceModel (= 99.99.99)
-  - FirebaseMLVisionLabelModel (= 99.99.99)
-  - FirebaseMLVisionTextModel (= 99.99.99)
+  - FirebaseMLCommon (= 0.1.45)
+  - FirebaseMLModelInterpreter (= 0.1.45)
+  - FirebaseMLVision (= 0.1.45)
+  - FirebaseMLVisionAutoML (= 0.1.45)
+  - FirebaseMLVisionBarcodeModel (= 0.1.45)
+  - FirebaseMLVisionFaceModel (= 0.1.45)
+  - FirebaseMLVisionLabelModel (= 0.1.45)
+  - FirebaseMLVisionTextModel (= 0.1.45)
   - GoogleMobileVision/BarcodeDetector (= 1.5.0)
   - GoogleMobileVision/Detector (= 1.5.0)
   - GoogleMobileVision/FaceDetector (= 1.5.0)
@@ -126,16 +126,20 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - Firebase
+    - FirebaseAnalytics
+    - FirebaseCore
+    - FirebaseInstanceID
     - GoogleAPIClientForREST
+    - GoogleAppMeasurement
     - GoogleMobileVision
     - GoogleToolboxForMac
     - GoogleUtilities
     - GTMSessionFetcher
+    - nanopb
     - Protobuf
-  sso://cpdc-internal/spec:
     - TensorFlowLite
-  sso://cpdc-test/firebase-ml:
-    - FirebaseCore
+  sso://cpdc-eap/firebase-ml:
     - FirebaseMLCommon
     - FirebaseMLModelInterpreter
     - FirebaseMLVision
@@ -144,36 +148,30 @@ SPEC REPOS:
     - FirebaseMLVisionFaceModel
     - FirebaseMLVisionLabelModel
     - FirebaseMLVisionTextModel
-  sso://cpdc-test/spec:
-    - Firebase
-    - FirebaseAnalytics
-    - FirebaseInstanceID
-    - GoogleAppMeasurement
-    - nanopb
 
 SPEC CHECKSUMS:
-  Firebase: 53692204319c7fa534e7e078ba0924762e297256
-  FirebaseAnalytics: c6d23d5eb7af45017f7727c8cf2517b7ff6ec1dd
-  FirebaseCore: 5d8418371134573dc71c0a339cd0532e669b9855
-  FirebaseInstanceID: bbc735b7a4744eb4b6edeb96205b94f9f965eb24
-  FirebaseMLCommon: fc0f6f347f309a7570708ccfc8fe85d2ef604aeb
-  FirebaseMLModelInterpreter: 36bde8cc4cbcee37a5815cb66053dce4a02f9cd7
-  FirebaseMLVision: 9c7845f537c07e8978105edfb79023ed4af23e84
-  FirebaseMLVisionAutoML: 6acceb000ea11910988f37b254cf0d397de670e7
-  FirebaseMLVisionBarcodeModel: fc77c44fb1ec3d0321f62d5519969183118fe8e6
-  FirebaseMLVisionFaceModel: 8f90457578fb1a2a468ace7741973705dc15e9a7
-  FirebaseMLVisionLabelModel: c3e7c457e5a0739e590975e88c33d215d9b2638a
-  FirebaseMLVisionTextModel: 0fe06c6a0d3d79a275f429380d4251b5ea478237
+  Firebase: 02f3281965c075426141a0ce1277e9de6649cab9
+  FirebaseAnalytics: 23851fe602c872130a2c5c55040b302120346cc2
+  FirebaseCore: 52f851b30e11360f1e67cf04b1edfebf0a47a2d3
+  FirebaseInstanceID: 7221670e908b41e7ae669600db9d0d201417d0cd
+  FirebaseMLCommon: 6d94d8a429fe2bffbf8fb87b9fe0394a63b13fc0
+  FirebaseMLModelInterpreter: 4136a438703803e2cdc559a0e54355647ffee0df
+  FirebaseMLVision: efd7e86c205321341f590b6c8061fd4f5c57963a
+  FirebaseMLVisionAutoML: add06f110e185cc4d97c46a3ff8ef16cb73bbc15
+  FirebaseMLVisionBarcodeModel: dfa3017337aee59bd93aba50760f3b169eb4a1b0
+  FirebaseMLVisionFaceModel: 0d38f111a36b512e68a2ab08677d4bf5b825129c
+  FirebaseMLVisionLabelModel: 4b2cb1ea85787ade7f1673da0e331d95341969f9
+  FirebaseMLVisionTextModel: 5d539b7e7f979cfc06d04c6e5688db75a78d391e
   GoogleAPIClientForREST: 5447a194eae517986cafe6421a5330b80b820591
-  GoogleAppMeasurement: 4cc39e63348b9a66a923a260adc2809639311e2a
+  GoogleAppMeasurement: 6cf307834da065863f9faf4c0de0a936d81dd832
   GoogleMobileVision: a1f93108b3527d67339e2de80e1db76645f9e8b9
   GoogleToolboxForMac: ff31605b7d66400dcec09bed5861689aebadda4d
   GoogleUtilities: 111a012f4c3a29c9e7c954c082fafd6ee3c999c0
   GTMSessionFetcher: 32aeca0aa144acea523e1c8e053089dec2cb98ca
-  nanopb: cf319651d4b9e5b247eea6c05b636fdefa85be83
+  nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   Protobuf: 7a877b7f3e5964e3fce995e2eb323dbc6831bb5a
-  TensorFlowLite: 77ea2d46a716f3ec9ecd466baf0f55b3004e06f1
+  TensorFlowLite: e81aef029750aa46b42ad16553fa4cddd81498cc
 
-PODFILE CHECKSUM: 8835308953a941464b883af297a6c4663b2a4cdc
+PODFILE CHECKSUM: 03953b7f05f4f7816dbc1343873be6606eb332ec
 
 COCOAPODS: 1.6.1

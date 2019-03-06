@@ -41,7 +41,7 @@ static NSString *const FIRAutoMLLocalModelManifestFilename = @"automl_labeler_ma
 /** File type of AutoML local model manifest in the main resource bundle. */
 static NSString *const FIRAutoMLManifestFileType = @"json";
 
-static float const labelConfidenceThreshold = 0.01; // 0.75;
+static float const labelConfidenceThreshold = 0.75;
 static CGFloat const smallDotRadius = 5.0;
 static CGFloat const largeDotRadius = 10.0;
 static CGColorRef lineColor;
@@ -203,7 +203,7 @@ typedef NS_ENUM(NSInteger, DetectorPickerRow) {
       [self detectLabelsInImage:_imageView.image];
       break;
     case DetectorPickerRowDetectImageLabelsAutoMLOnDevice:
-      [self detectLabelsAutoMLInImage:_imageView.image];
+      [self detectImageLabelsAutoMLInImage:_imageView.image];
       break;
     case DetectorPickerRowDetectTextInCloud:
       [self detectTextInCloudInImage:_imageView.image];
@@ -824,7 +824,7 @@ typedef NS_ENUM(NSInteger, DetectorPickerRow) {
 /// Detects labels on the specified image using AutoML On-Device label API.
 ///
 /// - Parameter image: The image.
-- (void)detectLabelsAutoMLOnDeviceInImage:(UIImage *)image {
+- (void)detectImageLabelsAutoMLInImage:(UIImage *)image {
   if (!image) {
     return;
   }
@@ -835,7 +835,7 @@ typedef NS_ENUM(NSInteger, DetectorPickerRow) {
   [[FIRVisionOnDeviceAutoMLImageLabelerOptions alloc]
    initWithRemoteModelName:FIRRemoteAutoMLModelName
    localModelName:FIRLocalAutoMLModelName];
-  options.confidenceThreshold = FIRVisionLabelDetectorConfidenceThreshold;
+  options.confidenceThreshold = labelConfidenceThreshold;
   // [END config_automl_label]
 
   // [START init_automl_label]
@@ -852,7 +852,7 @@ typedef NS_ENUM(NSInteger, DetectorPickerRow) {
   visionImage.metadata = imageMetadata;
 
   // [START detect_automl_label]
-  [onDeviceAutoMLLabeler processImage:image completion:^(NSArray<FIRVisionImageLabel *> * _Nullable labels, NSError * _Nullable error) {
+  [onDeviceAutoMLLabeler processImage:visionImage completion:^(NSArray<FIRVisionImageLabel *> * _Nullable labels, NSError * _Nullable error) {
     if (!labels ||  labels.count == 0) {
       // [START_EXCLUDE]
       NSString *errorString = error ? error.localizedDescription : detectionNoResultsMessage;

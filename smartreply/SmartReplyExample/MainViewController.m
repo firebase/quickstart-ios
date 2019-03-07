@@ -344,8 +344,8 @@ NS_ASSUME_NONNULL_BEGIN
   return cell;
 }
 
-- (void)replySelected:(UIButton *)reply {
-  [_inputTextView insertText:reply.currentTitle];
+- (void)replySelected:(MDCChipView *)reply {
+  [_inputTextView insertText:reply.titleLabel.text];
 }
 
 - (IBAction)switchUser:(id)sender {

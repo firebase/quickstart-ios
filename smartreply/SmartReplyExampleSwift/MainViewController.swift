@@ -242,6 +242,11 @@ class MainViewController: MDCCollectionViewController, UITextViewDelegate {
   }
 
   private func updateReplies() {
+    // SmartReply for users' own messages is a non-use-case.
+    guard let lastMessage = messages.last, lastMessage.isLocalUser != isLocalUser else {
+      self.smartReplyView.subviews.compactMap { $0 as? MDCChipView }.forEach { $0.isHidden = true }
+      return
+    }
     var chat = messages
 
     // Revert isLocalUser field in text messages to simulate the remote user for the sample.

@@ -249,6 +249,13 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)updateReplies {
+  // SmartReply for users' own messages is a non-use-case.
+  FIRTextMessage *lastMessage = _messages.lastObject;
+  if (lastMessage == nil || lastMessage.isLocalUser == _isLocalUser) {
+    [self clearChips];
+    return;
+  }
+  
   NSMutableArray<FIRTextMessage *> *chat = _messages;
 
   // Revert isLocalUser field in text messages to simulate the remote user for the sample.

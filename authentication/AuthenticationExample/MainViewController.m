@@ -448,7 +448,7 @@ static NSString *const kUpdatePhoneNumberText = @"Update Phone Number";
       }];
   // [END auth_listener]
 
-  self.microsoftProvider = [FIROAuthProvider providerWithProviderID:FIRMicrosoftAuthProviderID];
+  self.microsoftProvider = [FIROAuthProvider providerWithProviderID:@"microsoft.com"];
 
   // Authenticate Game Center Local Player
   // Uncomment to sign in with Game Center

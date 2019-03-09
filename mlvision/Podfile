@@ -1,4 +1,4 @@
-source 'sso://cpdc-eap/firebase-ml'
+source 'https://cpdc-eap.googlesource.com/firebase-ml.git'
 source 'https://github.com/CocoaPods/Specs.git'
 
 platform :ios, '9.0'

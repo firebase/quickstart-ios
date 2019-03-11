@@ -115,7 +115,10 @@ class CameraViewController: UIViewController {
     }
     guard let faces = detectedFaces, !faces.isEmpty else {
       print("On-Device face detector returned no results.")
-      DispatchQueue.main.sync { self.removeDetectionAnnotations() }
+      DispatchQueue.main.sync {
+        self.updatePreviewOverlayView()
+        self.removeDetectionAnnotations()
+      }
       return
     }
 

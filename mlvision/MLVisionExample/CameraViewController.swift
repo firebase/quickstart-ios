@@ -83,11 +83,11 @@ class CameraViewController: UIViewController {
 
   // MARK: - IBActions
 
-  @IBAction func selectDetector(sender: AnyObject) {
+  @IBAction func selectDetector(_ sender: Any) {
     presentDetectorsAlertController()
   }
 
-  @IBAction func switchCamera(sender: AnyObject) {
+  @IBAction func switchCamera(_ sender: Any) {
     isUsingFrontCamera = !isUsingFrontCamera
     removeDetectionAnnotations()
     setUpCaptureSessionInput()

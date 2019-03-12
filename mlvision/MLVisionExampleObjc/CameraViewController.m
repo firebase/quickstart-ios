@@ -27,7 +27,7 @@ static NSString *const videoDataOutputQueueLabel = @"com.google.firebaseml.visio
 static NSString *const sessionQueueLabel = @"com.google.firebaseml.visiondetector.SessionQueue";
 static NSString *const noResultsMessage = @"No Results";
 static const CGFloat FIRSmallDotRadius = 4.0;
-static const CGFloat FIRconstantScale = 41.0;
+static const CGFloat FIRconstantScale = 1.0;
 
 @interface CameraViewController () <AVCaptureVideoDataOutputSampleBufferDelegate>
 

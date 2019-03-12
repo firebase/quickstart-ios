@@ -157,7 +157,7 @@ typedef NS_ENUM(NSInteger, DetectorPickerRow) {
 
 - (void)viewWillDisappear:(BOOL)animated {
   [super viewWillDisappear:animated];
-  [self.navigationController.navigationBar setHidden:YES];
+  [self.navigationController.navigationBar setHidden:NO];
 }
 
 - (IBAction)detect:(id)sender {

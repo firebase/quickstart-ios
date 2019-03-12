@@ -90,7 +90,7 @@ typedef NS_ENUM(NSInteger, Detector) {
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-  _detectors = @[[NSNumber numberWithInt:DetectorOnDeviceFace], [NSNumber numberWithInt:DetectorOnDeviceText]];
+  _detectors = @[@(DetectorOnDeviceAutoMLImageLabeler), @(DetectorOnDeviceFace), @(DetectorOnDeviceText)];
   _currentDetector = DetectorOnDeviceFace;
   _isUsingFrontCamera = YES;
   _captureSession = [[AVCaptureSession alloc] init];
@@ -161,6 +161,10 @@ typedef NS_ENUM(NSInteger, Detector) {
 
   // [START detect_automl_label]
   [onDeviceAutoMLLabeler processImage:image completion:^(NSArray<FIRVisionImageLabel *> * _Nullable labels, NSError * _Nullable error) {
+    // [START_EXCLUDE]
+    [self updatePreviewOverlayView];
+    [self removeDetectionAnnotations];
+    // [END_EXCLUDE]
     if (error != nil) {
       // [START_EXCLUDE]
       NSLog(@"Failed to detect labels with error: %@.", error.localizedDescription);
@@ -171,16 +175,12 @@ typedef NS_ENUM(NSInteger, Detector) {
 
     if (!labels ||  labels.count == 0) {
       // [START_EXCLUDE]
-      [self updatePreviewOverlayView];
-      [self removeDetectionAnnotations];
       dispatch_group_leave(group);
       // [END_EXCLUDE]
       return;
     }
 
     // [START_EXCLUDE]
-    [self updatePreviewOverlayView];
-    [self removeDetectionAnnotations];
     CGRect annotationFrame = self.annotationOverlayView.frame;
     CGRect resultsRect = CGRectMake(annotationFrame.origin.x + padding,
                                     annotationFrame.size.height - padding - resultsLabelHeight,

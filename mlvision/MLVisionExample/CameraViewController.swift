@@ -119,19 +119,18 @@ class CameraViewController: UIViewController {
     autoMLOnDeviceLabeler.process(visionImage) { detectedLabels, error in
       defer { group.leave() }
 
+      self.updatePreviewOverlayView()
+      self.removeDetectionAnnotations()
+
       if let error = error {
         print("Failed to detect labels with error: \(error.localizedDescription).")
         return
       }
 
       guard let labels = detectedLabels, !labels.isEmpty else {
-        self.updatePreviewOverlayView()
-        self.removeDetectionAnnotations()
         return
       }
 
-      self.updatePreviewOverlayView()
-      self.removeDetectionAnnotations()
       let annotationFrame = self.annotationOverlayView.frame
       let resultsRect = CGRect(
         x: annotationFrame.origin.x + Constant.padding,

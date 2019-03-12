@@ -96,6 +96,7 @@ typedef NS_ENUM(NSInteger, Detector) {
   _captureSession = [[AVCaptureSession alloc] init];
   _sessionQueue = dispatch_queue_create(sessionQueueLabel.UTF8String, nil);
   _vision = [FIRVision vision];
+  _modelManager = [FIRModelManager modelManager];
   _previewOverlayView = [[UIImageView alloc] initWithFrame:CGRectZero];
   _previewOverlayView.translatesAutoresizingMaskIntoConstraints = NO;
   _annotationOverlayView = [[UIView alloc] initWithFrame:CGRectZero];
@@ -214,7 +215,7 @@ typedef NS_ENUM(NSInteger, Detector) {
                                                    initialConditions:initialConditions
                                                     updateConditions:updateConditions];
   if (![_modelManager registerRemoteModel:remoteModel]) {
-    NSLog(@"Failed to register AutoML local model");
+    NSLog(@"Failed to register AutoML remote model");
   }
 
   NSString *localModelFilePath =

@@ -43,7 +43,7 @@ static NSString *const FIRAutoMLManifestFileType = @"json";
 
 static float const labelConfidenceThreshold = 0.75;
 static const CGFloat FIRSmallDotRadius = 4.0;
-static const CGFloat FIRconstantScale = 41.0;
+static const CGFloat FIRconstantScale = 1.0;
 static const CGFloat padding = 10.0;
 static const CGFloat resultsLabelHeight = 200.0;
 static const int resultsLabelLines = 5;
@@ -249,6 +249,7 @@ typedef NS_ENUM(NSInteger, Detector) {
   if (faces.count == 0) {
     NSLog(@"%@", @"On-Device face detector returned no results.");
     dispatch_sync(dispatch_get_main_queue(), ^{
+      [self updatePreviewOverlayView];
       [self removeDetectionAnnotations];
     });
     return;

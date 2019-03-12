@@ -156,12 +156,12 @@
                         <rightBarButtonItems>
                             <barButtonItem image="switch_camera" id="kXj-bT-GY0" userLabel="Switch Camera Button">
                                 <connections>
-                                    <action selector="switchCameraWithSender:" destination="YXl-5B-mBF" id="HSl-sq-rHs"/>
+                                    <action selector="switchCamera:" destination="YXl-5B-mBF" id="sFo-ar-LIv"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem title="Detectors" id="jrI-gv-coB" userLabel="Detectors Button">
                                 <connections>
-                                    <action selector="selectDetectorWithSender:" destination="YXl-5B-mBF" id="8c0-Ue-ADP"/>
+                                    <action selector="selectDetector:" destination="YXl-5B-mBF" id="AjI-Jr-07c"/>
                                 </connections>
                             </barButtonItem>
                         </rightBarButtonItems>

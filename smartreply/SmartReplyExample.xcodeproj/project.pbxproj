@@ -158,7 +158,6 @@
 				1036DA1A2087CA66003253C9 /* SmartReplyExampleSwiftUITests */,
 				5F5A534D1ADE670C00F81DF0 /* Products */,
 				5F9961041AE0CF4F0034F503 /* Shared */,
-				78231AC0BDBACA2184CC95DB /* Pods */,
 			);
 			sourceTree = "<group>";
 			wrapsLines = 0;
@@ -220,13 +219,6 @@
 			);
 			name = Shared;
 			path = ../shared;
-			sourceTree = "<group>";
-		};
-		78231AC0BDBACA2184CC95DB /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -310,6 +302,7 @@
 				5F5A53751ADE67D500F81DF0 /* Sources */,
 				5F5A53761ADE67D500F81DF0 /* Frameworks */,
 				5F5A53771ADE67D500F81DF0 /* Resources */,
+				10111604221B796200F5BF7E /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -439,6 +432,26 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		10111604221B796200F5BF7E /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "${PODS_ROOT}/SwiftLint/swiftlint\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1036D9F92087CA10003253C9 /* Sources */ = {

@@ -55,8 +55,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(strong, nonatomic) FIRSmartReply *smartReply;
 
-@property(nonatomic) UIEdgeInsets insets;
-
 @property(nonatomic) CGFloat bottomAreaInset;
 
 @property(strong, nonatomic) UITextView *inputTextView;
@@ -137,7 +135,6 @@ NS_ASSUME_NONNULL_BEGIN
                   action:@selector(enterPressed)
         forControlEvents:UIControlEventTouchUpInside];
 
-  self.styler.cellStyle = MDCCollectionViewCellStyleCard;
   self.navigationController.navigationBar.barTintColor = UIColor.blueColor;
   [self.collectionView registerClass:MDCSelfSizingStereoCell.class
           forCellWithReuseIdentifier:@"cell"];
@@ -155,11 +152,8 @@ NS_ASSUME_NONNULL_BEGIN
                                          selector:@selector(handleKeyboardNotification:)
                                              name:UIKeyboardWillHideNotification
                                            object:nil];
-  _insets = [self collectionView:self.collectionView
-                          layout:self.collectionViewLayout
-          insetForSectionAtIndex:0];
   ((UICollectionViewFlowLayout *)self.collectionViewLayout).estimatedItemSize =
-      CGSizeMake(self.collectionView.bounds.size.width - _insets.left - _insets.right, 52);
+      CGSizeMake(self.collectionView.bounds.size.width, 52);
   [self.view addSubview:_messageInputContainerView];
   [self.view addConstraintsWithFormat:@"H:|[v0]|" views:@[ _messageInputContainerView ]];
   self.heightConstraint =
@@ -249,13 +243,6 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)updateReplies {
-  // SmartReply for users' own messages is a non-use-case.
-  FIRTextMessage *lastMessage = _messages.lastObject;
-  if (lastMessage == nil || lastMessage.isLocalUser == _isLocalUser) {
-    [self clearChips];
-    return;
-  }
-  
   NSMutableArray<FIRTextMessage *> *chat = _messages;
 
   // Revert isLocalUser field in text messages to simulate the remote user for the sample.
@@ -335,7 +322,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)collectionView:(UICollectionView *)collectionView
     didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-  [super collectionView:collectionView didSelectItemAtIndexPath:indexPath];
   [_inputTextView endEditing:YES];
 }
 

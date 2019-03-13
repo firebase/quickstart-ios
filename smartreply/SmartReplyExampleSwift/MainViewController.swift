@@ -272,6 +272,10 @@ class MainViewController: UICollectionViewController, UITextViewDelegate {
     let isKeyboardShowing = notification.name == UIResponder.keyboardWillShowNotification
     guard self.isKeyboardShown != isKeyboardShowing else {
       bottomConstraint?.constant = isKeyboardShowing ? -keyboardSize.height : 0
+      if !self.messages.isEmpty {
+        let indexPath = IndexPath(item: self.messages.count - 1, section: 0)
+        self.collectionView?.scrollToItem(at: indexPath, at: .top, animated: false)
+      }
       return
     }
     self.isKeyboardShown = isKeyboardShowing
@@ -284,11 +288,9 @@ class MainViewController: UICollectionViewController, UITextViewDelegate {
       UIView.animate(withDuration: animationDuration, delay: 0, options: .curveEaseOut, animations: {
         self.view.layoutIfNeeded()
       }, completion: { _ in
-        if isKeyboardShowing {
-          if !self.messages.isEmpty {
-            let indexPath = IndexPath(item: self.messages.count - 1, section: 0)
-            self.collectionView?.scrollToItem(at: indexPath, at: .bottom, animated: true)
-          }
+        if !self.messages.isEmpty {
+          let indexPath = IndexPath(item: self.messages.count - 1, section: 0)
+          self.collectionView?.scrollToItem(at: indexPath, at: .top, animated: false)
         }
       })
     }

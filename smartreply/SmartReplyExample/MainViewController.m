@@ -294,6 +294,13 @@ NS_ASSUME_NONNULL_BEGIN
   BOOL isKeyboardShowing = notification.name == UIKeyboardWillShowNotification;
   if (_isKeyboardShown == isKeyboardShowing) {
     _bottomConstraint.constant = isKeyboardShowing ? -keyboardSize.size.height : 0;
+    if (self.messages.count > 0) {
+      NSIndexPath *indexPath = [NSIndexPath indexPathForItem:self.messages.count - 1
+                                                   inSection:0];
+      [self.collectionView scrollToItemAtIndexPath:indexPath
+                                  atScrollPosition:UICollectionViewScrollPositionTop
+                                          animated:YES];
+    }
     return;
   }
   _isKeyboardShown = isKeyboardShowing;
@@ -311,14 +318,12 @@ NS_ASSUME_NONNULL_BEGIN
         [self.view layoutIfNeeded];
       }
       completion:^(BOOL finished) {
-        if (isKeyboardShowing) {
-          if (self.messages.count > 0) {
-            [self.collectionView
-                scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:self.messages.count - 1
-                                                            inSection:0]
-                       atScrollPosition:UICollectionViewScrollPositionBottom
-                               animated:YES];
-          }
+        if (self.messages.count > 0) {
+          NSIndexPath *indexPath = [NSIndexPath indexPathForItem:self.messages.count - 1
+                                                       inSection:0];
+          [self.collectionView scrollToItemAtIndexPath:indexPath
+                                      atScrollPosition:UICollectionViewScrollPositionTop
+                                              animated:YES];
         }
       }];
 }

@@ -59,27 +59,27 @@ PODS:
     - GoogleToolboxForMac/Defines (= 2.2.0)
     - "GoogleToolboxForMac/NSString+URLArguments (= 2.2.0)"
   - "GoogleToolboxForMac/NSString+URLArguments (2.2.0)"
-  - GoogleUtilities/AppDelegateSwizzler (5.4.0):
+  - GoogleUtilities/AppDelegateSwizzler (5.5.0):
     - GoogleUtilities/Environment
     - GoogleUtilities/Logger
     - GoogleUtilities/Network
-  - GoogleUtilities/Environment (5.4.0)
-  - GoogleUtilities/Logger (5.4.0):
+  - GoogleUtilities/Environment (5.5.0)
+  - GoogleUtilities/Logger (5.5.0):
     - GoogleUtilities/Environment
-  - GoogleUtilities/MethodSwizzler (5.4.0):
+  - GoogleUtilities/MethodSwizzler (5.5.0):
     - GoogleUtilities/Logger
-  - GoogleUtilities/Network (5.4.0):
+  - GoogleUtilities/Network (5.5.0):
     - GoogleUtilities/Logger
     - "GoogleUtilities/NSData+zlib"
     - GoogleUtilities/Reachability
-  - "GoogleUtilities/NSData+zlib (5.4.0)"
-  - GoogleUtilities/Reachability (5.4.0):
+  - "GoogleUtilities/NSData+zlib (5.5.0)"
+  - GoogleUtilities/Reachability (5.5.0):
     - GoogleUtilities/Logger
-  - GoogleUtilities/UserDefaults (5.4.0):
+  - GoogleUtilities/UserDefaults (5.5.0):
     - GoogleUtilities/Logger
   - GTMSessionFetcher/Core (1.2.1)
-  - MaterialComponents/AnimationTiming (79.1.0)
-  - MaterialComponents/Buttons (79.1.0):
+  - MaterialComponents/AnimationTiming (79.1.1)
+  - MaterialComponents/Buttons (79.1.1):
     - MaterialComponents/Ink
     - MaterialComponents/private/Math
     - MaterialComponents/ShadowElevations
@@ -88,7 +88,7 @@ PODS:
     - MaterialComponents/Typography
     - MDFInternationalization
     - MDFTextAccessibility
-  - MaterialComponents/CollectionCells (79.1.0):
+  - MaterialComponents/CollectionCells (79.1.1):
     - MaterialComponents/CollectionLayoutAttributes
     - MaterialComponents/Ink
     - MaterialComponents/Palettes
@@ -101,8 +101,8 @@ PODS:
     - MaterialComponents/private/Math
     - MaterialComponents/Typography
     - MDFInternationalization
-  - MaterialComponents/CollectionLayoutAttributes (79.1.0)
-  - MaterialComponents/Collections (79.1.0):
+  - MaterialComponents/CollectionLayoutAttributes (79.1.1)
+  - MaterialComponents/Collections (79.1.1):
     - MaterialComponents/CollectionCells
     - MaterialComponents/CollectionLayoutAttributes
     - MaterialComponents/Ink
@@ -110,37 +110,37 @@ PODS:
     - MaterialComponents/ShadowElevations
     - MaterialComponents/ShadowLayer
     - MaterialComponents/Typography
-  - MaterialComponents/Ink (79.1.0):
+  - MaterialComponents/Ink (79.1.1):
     - MaterialComponents/private/Math
-  - MaterialComponents/Palettes (79.1.0)
-  - MaterialComponents/private/Application (79.1.0)
-  - MaterialComponents/private/Icons/Base (79.1.0)
-  - MaterialComponents/private/Icons/ic_check (79.1.0):
+  - MaterialComponents/Palettes (79.1.1)
+  - MaterialComponents/private/Application (79.1.1)
+  - MaterialComponents/private/Icons/Base (79.1.1)
+  - MaterialComponents/private/Icons/ic_check (79.1.1):
     - MaterialComponents/private/Icons/Base
-  - MaterialComponents/private/Icons/ic_check_circle (79.1.0):
+  - MaterialComponents/private/Icons/ic_check_circle (79.1.1):
     - MaterialComponents/private/Icons/Base
-  - MaterialComponents/private/Icons/ic_chevron_right (79.1.0):
+  - MaterialComponents/private/Icons/ic_chevron_right (79.1.1):
     - MaterialComponents/private/Icons/Base
-  - MaterialComponents/private/Icons/ic_info (79.1.0):
+  - MaterialComponents/private/Icons/ic_info (79.1.1):
     - MaterialComponents/private/Icons/Base
-  - MaterialComponents/private/Icons/ic_radio_button_unchecked (79.1.0):
+  - MaterialComponents/private/Icons/ic_radio_button_unchecked (79.1.1):
     - MaterialComponents/private/Icons/Base
-  - MaterialComponents/private/Icons/ic_reorder (79.1.0):
+  - MaterialComponents/private/Icons/ic_reorder (79.1.1):
     - MaterialComponents/private/Icons/Base
-  - MaterialComponents/private/Math (79.1.0)
-  - MaterialComponents/ShadowElevations (79.1.0)
-  - MaterialComponents/ShadowLayer (79.1.0):
+  - MaterialComponents/private/Math (79.1.1)
+  - MaterialComponents/ShadowElevations (79.1.1)
+  - MaterialComponents/ShadowLayer (79.1.1):
     - MaterialComponents/ShadowElevations
-  - MaterialComponents/Shapes (79.1.0):
+  - MaterialComponents/Shapes (79.1.1):
     - MaterialComponents/private/Math
     - MaterialComponents/ShadowLayer
-  - MaterialComponents/TextFields (79.1.0):
+  - MaterialComponents/TextFields (79.1.1):
     - MaterialComponents/AnimationTiming
     - MaterialComponents/Palettes
     - MaterialComponents/private/Math
     - MaterialComponents/Typography
     - MDFInternationalization
-  - MaterialComponents/Typography (79.1.0):
+  - MaterialComponents/Typography (79.1.1):
     - MaterialComponents/private/Application
     - MaterialComponents/private/Math
   - MDFInternationalization (2.0.0)
@@ -193,9 +193,9 @@ SPEC CHECKSUMS:
   GoogleAppMeasurement: 6cf307834da065863f9faf4c0de0a936d81dd832
   GoogleSignIn: 7ff245e1a7b26d379099d3243a562f5747e23d39
   GoogleToolboxForMac: ff31605b7d66400dcec09bed5861689aebadda4d
-  GoogleUtilities: fa768ad04b264be250ee9edf9f378ad006f7a560
+  GoogleUtilities: 6481e6318c5fcabaaa8513ef8120f329055d7c10
   GTMSessionFetcher: 32aeca0aa144acea523e1c8e053089dec2cb98ca
-  MaterialComponents: f270ac5fa2ee099424661ab8557f630c7926ba87
+  MaterialComponents: 8b8a7a49da5b5c35bc8dab1173bb7d5f7a87b2f8
   MDFInternationalization: 010097556d6b09d2c4ea38e0820ea6d37be6a314
   MDFTextAccessibility: 85c09a1bd9c321f494348e632a25063bcda35a53
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48

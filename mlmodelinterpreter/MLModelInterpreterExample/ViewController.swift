@@ -49,7 +49,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
     return type
   }
 
-  private var isModelQuantized: Bool {
+  private var isQuantizedModel: Bool {
     return isRemoteModelDownloaded ?
       currentRemoteModelType == .quantized :
       currentLocalModelType == .quantized
@@ -58,6 +58,8 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
   private var isRemoteModelDownloaded: Bool {
     return UserDefaults.standard.bool(forKey: currentRemoteModelType.downloadCompletedKey)
   }
+
+  private var isExplicitModelDownload: Bool { return modelControl.selectedSegmentIndex == 0 }
 
   private var isLocalModelLoaded = false
 
@@ -71,6 +73,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
   @IBOutlet private var detectButton: UIBarButtonItem!
   @IBOutlet private var cameraButton: UIBarButtonItem!
   @IBOutlet private var downloadModelButton: UIBarButtonItem!
+  @IBOutlet private var downloadProgressView: UIProgressView!
 
   // MARK: - UIViewController
 
@@ -97,16 +100,12 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
       updateResultsText("Image must not be nil.\n")
       return
     }
-
     if isRemoteModelDownloaded {
       updateResultsText("Loading the remote model...\n")
-      if !manager.loadRemoteModel(isModelQuantized: (currentRemoteModelType == .quantized)) {
-        updateResultsText("Failed to load the remote model.")
-        return
-      }
+      loadRemoteModel()
     } else {
       updateResultsText("Loading the local model...\n")
-      if !manager.loadLocalModel(isModelQuantized: (currentLocalModelType == .quantized)) {
+      if !manager.loadLocalModel(isQuantizedModel: isQuantizedModel) {
         updateResultsText("Failed to load the local model.")
         return
       }
@@ -155,14 +154,13 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
     updateResultsText()
     downloadModelButton.isEnabled = isRemoteModelDownloaded
     detectButton.isEnabled = false
+    downloadProgressView.isHidden = !isQuantizedModel || isRemoteModelDownloaded
     updateResultsText(isRemoteModelDownloaded ?
       "Remote model loaded. Select the `Detect` button to start the inference." :
       "Downloading remote model...This text view will notify you when the downloaded model is " +
       "ready to be used."
     )
-    if !manager.loadRemoteModel(isModelQuantized: (currentRemoteModelType == .quantized)) {
-      updateResultsText("Failed to load the remote model.")
-    }
+    downloadRemoteModel()
   }
 
   @IBAction func modelSwitched(_ sender: Any) {
@@ -171,6 +169,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
     setUpLocalModel()
     setUpRemoteModel()
     downloadModelButton.isEnabled = !isRemoteModelDownloaded
+    downloadProgressView.isHidden = !isExplicitModelDownload || isRemoteModelDownloaded
   }
 
   // MARK: - Notifications
@@ -188,9 +187,10 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
           return
       }
       self.updateUserDefaults(for: remoteModel)
-      if self.currentRemoteModelType.description == remoteModel.name {
+      if remoteModel.name == self.currentRemoteModelType.description {
         self.detectButton.isEnabled = true
         self.downloadModelButton.isEnabled = false
+        if self.isExplicitModelDownload { self.loadRemoteModel() }
       }
       self.updateResultsText("Successfully downloaded the remote model with name: " +
         "\(remoteModel.name). The model is ready for detection.")
@@ -232,7 +232,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
     modelInterpreterManagerMap[key] = manager
   }
 
-  /// Sets up the currently selected remote model.
   private func setUpRemoteModel() {
     let modelName = currentRemoteModelType.description
     if !manager.setUpRemoteModel(name: modelName) {
@@ -253,11 +252,31 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
     )
   }
 
-  /// Sets up the local model.
   private func setUpLocalModel() {
     let modelName = currentLocalModelType.description
     if !manager.setUpLocalModel(name: modelName, filename: modelName) {
       updateResultsText("\(resultsTextView.text ?? "")\nFailed to set up the local model.")
+    }
+  }
+
+  /// Downloads the currently selected remote model from the server either by explicitly invoking
+  // the `ModelManager`'s `download(_:)` method or by implicitly invoking download via the
+  // `ModelInterpreterManager`'s `loadRemoteModel(isQuantizedModel:)` method.
+  private func downloadRemoteModel() {
+    guard isExplicitModelDownload else { loadRemoteModel(); return}
+    let name = currentRemoteModelType.description
+    let modelManager = ModelManager.modelManager()
+    guard let remoteModel = modelManager.remoteModel(withName: name) else {
+      updateResultsText("Failed to download remote model with name: \(name) because the model " +
+        "was not registered with the Model Manager.")
+      return
+    }
+    downloadProgressView.observedProgress = modelManager.download(remoteModel)
+  }
+
+  private func loadRemoteModel() {
+    if !manager.loadRemoteModel(isQuantizedModel: isQuantizedModel) {
+      updateResultsText("Failed to load the remote model.")
     }
   }
 

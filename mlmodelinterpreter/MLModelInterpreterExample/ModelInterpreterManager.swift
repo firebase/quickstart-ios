@@ -90,15 +90,19 @@ public class ModelInterpreterManager {
   ///   - name: The name for the remote model.
   /// - Returns: `Bool` indicating whether the remote model was successfully set up and registered.
   public func setUpRemoteModel(name: String) -> Bool {
-    let conditions = ModelDownloadConditions(
+    let initialConditions = ModelDownloadConditions(
       allowsCellularAccess: true,
+      allowsBackgroundDownloading: true
+    )
+    let updateConditions = ModelDownloadConditions(
+      allowsCellularAccess: false,
       allowsBackgroundDownloading: true
     )
     let remoteModel = RemoteModel(
       name: name,
       allowsModelUpdates: true,
-      initialConditions: conditions,
-      updateConditions: conditions
+      initialConditions: initialConditions,
+      updateConditions: updateConditions
     )
     guard registeredRemoteModelNames.contains(name) || modelManager.register(remoteModel) else {
       print("Failed to register the remote model with name: \(name)")
@@ -138,7 +142,7 @@ public class ModelInterpreterManager {
   /// input and output dimensions.
   ///
   /// - Parameters:
-  ///   - isModelQuantized: Indicates if the model is quantized. The default is `false`.
+  ///   - isQuantizedModel: Indicates if the model is quantized. The default is `false`.
   ///   - inputDimensions: An array of the input tensor dimensions. Must include `outputDimensions`
   ///     if `inputDimensions` are specified. Pass `nil` to use the default input dimensions.
   ///   - outputDimensions: An array of the output tensor dimensions. Must include `inputDimensions`
@@ -146,7 +150,7 @@ public class ModelInterpreterManager {
   ///   - bundle: The bundle to load model resources from. The default is the main bundle.
   /// - Returns: A `Bool` indicating whether the remote model was successfully loaded.
   public func loadRemoteModel(
-    isModelQuantized: Bool = false,
+    isQuantizedModel: Bool = false,
     inputDimensions: [NSNumber]? = nil,
     outputDimensions: [NSNumber]? = nil,
     bundle: Bundle = .main
@@ -157,7 +161,7 @@ public class ModelInterpreterManager {
     }
     return loadModel(
       options: remoteModelOptions,
-      isModelQuantized: isModelQuantized,
+      isQuantizedModel: isQuantizedModel,
       inputDimensions: inputDimensions,
       outputDimensions: outputDimensions,
       bundle: bundle
@@ -176,7 +180,7 @@ public class ModelInterpreterManager {
   ///   - bundle: The bundle to load model resources from. The default is the main bundle.
   /// - Returns: A `Bool` indicating whether the local model was successfully loaded.
   public func loadLocalModel(
-    isModelQuantized: Bool = false,
+    isQuantizedModel: Bool = false,
     inputDimensions: [NSNumber]? = nil,
     outputDimensions: [NSNumber]? = nil,
     bundle: Bundle = .main
@@ -187,7 +191,7 @@ public class ModelInterpreterManager {
     }
     return loadModel(
       options: localModelOptions,
-      isModelQuantized: isModelQuantized,
+      isQuantizedModel: isQuantizedModel,
       inputDimensions: inputDimensions,
       outputDimensions: outputDimensions,
       bundle: bundle
@@ -266,7 +270,7 @@ public class ModelInterpreterManager {
   ///
   /// - Parameters:
   ///   - options: The model options consisting of the remote and/or local models to be loaded.
-  ///   - isModelQuantized: Whether the model uses quantization (i.e. 8-bit fixed point weights and
+  ///   - isQuantizedModel: Whether the model uses quantization (i.e. 8-bit fixed point weights and
   ///     activations). See https://www.tensorflow.org/performance/quantization for more details. If
   ///     false, a floating point model is used.
   ///   - inputDimensions: An array of the input tensor dimensions. Must include `outputDimensions`
@@ -280,7 +284,7 @@ public class ModelInterpreterManager {
   ///     model download request is created and the local model is loaded as a fallback.
   private func loadModel(
     options: ModelOptions,
-    isModelQuantized: Bool,
+    isQuantizedModel: Bool,
     inputDimensions: [NSNumber]? = nil,
     outputDimensions: [NSNumber]? = nil,
     bundle: Bundle = .main
@@ -303,7 +307,7 @@ public class ModelInterpreterManager {
       let contents = try String(contentsOfFile: labelsPath, encoding: .utf8)
       labels = contents.components(separatedBy: CharacterSet.newlines)
       modelInterpreter = ModelInterpreter.modelInterpreter(options: options)
-      modelElementType = isModelQuantized ? .uInt8 : .float32
+      modelElementType = isQuantizedModel ? .uInt8 : .float32
       let modelInputDimensions = inputDimensions ?? MobileNet.inputDimensions
       try modelInputOutputOptions.setInputFormat(
         index: MobileNet.inputOutputIndex,

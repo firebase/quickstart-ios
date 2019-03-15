@@ -103,12 +103,14 @@ static float const SoftmaxScale = 1.0 / (SoftmaxMaxUInt8QuantizedValue + Softmax
 ///   - name: The name for the remote model.
 /// - Returns: `Bool` indicating whether the remote model was successfully set up and registered.
 - (BOOL)setUpRemoteModelWithName:(NSString *)name {
-  FIRModelDownloadConditions *conditions = [[FIRModelDownloadConditions alloc] initWithAllowsCellularAccess:YES
+  FIRModelDownloadConditions *initialConditions = [[FIRModelDownloadConditions alloc] initWithAllowsCellularAccess:YES
                                                                                 allowsBackgroundDownloading:YES];
+  FIRModelDownloadConditions *updateConditions = [[FIRModelDownloadConditions alloc] initWithAllowsCellularAccess:NO
+                                                                                       allowsBackgroundDownloading:YES];
   FIRRemoteModel *remoteModel = [[FIRRemoteModel alloc] initWithName:name
                                                   allowsModelUpdates:YES
-                                                   initialConditions:conditions
-                                                    updateConditions:conditions];
+                                                   initialConditions:initialConditions
+                                                    updateConditions:updateConditions];
   if ([_registeredRemoteModelNames containsObject:name] || [_modelManager registerRemoteModel:remoteModel]) {
     self.remoteModelOptions = [[FIRModelOptions alloc] initWithRemoteModelName:name localModelName:nil];
     [_registeredRemoteModelNames addObject:name];
@@ -149,49 +151,49 @@ static float const SoftmaxScale = 1.0 / (SoftmaxMaxUInt8QuantizedValue + Softmax
   }
 }
 
-- (BOOL)loadRemoteModelWithIsModelQuantized:(BOOL)isModelQuantized {
-  return [self loadRemoteModelWithBundle:NSBundle.mainBundle isModelQuantized:isModelQuantized];
+- (BOOL)loadRemoteModelWithIsQuantizedModel:(BOOL)isQuantizedModel {
+  return [self loadRemoteModelWithBundle:NSBundle.mainBundle isQuantizedModel:isQuantizedModel];
 }
 
 /// Loads the registered remote model with the `ModelOptions` created during setup and the given
 /// input and output dimensions.
 ///
 /// - Parameters:
-///   - isModelQuantized: Indicates if the model is quantized. The default is `false`.
+///   - isQuantizedModel: Indicates if the model is quantized. The default is `false`.
 ///   - inputDimensions: An array of the input tensor dimensions. Must include `outputDimensions`
 ///     if `inputDimensions` are specified. Pass `nil` to use the default input dimensions.
 ///   - outputDimensions: An array of the output tensor dimensions. Must include `inputDimensions`
 ///     if `outputDimensions` are specified. Pass `nil` to use the default output dimensions.
 ///   - bundle: The bundle to load model resources from. The default is the main bundle.
 /// - Returns: A `Bool` indicating whether the remote model was successfully loaded.
-- (BOOL)loadRemoteModelWithBundle:(NSBundle *)bundle isModelQuantized:(BOOL)isModelQuantized {
+- (BOOL)loadRemoteModelWithBundle:(NSBundle *)bundle isQuantizedModel:(BOOL)isQuantizedModel {
   if (_remoteModelOptions) {
-    return [self loadModelWithOptions:_remoteModelOptions isModelQuantized:isModelQuantized inputDimensions:nil outputDimensions:nil bundle:bundle];
+    return [self loadModelWithOptions:_remoteModelOptions isQuantizedModel:isQuantizedModel inputDimensions:nil outputDimensions:nil bundle:bundle];
   } else {
     NSLog(@"%@", @"Failed to load the remote model because the options are nil.");
     return NO;
   }
 }
 
-- (BOOL)loadLocalModelWithIsModelQuantized:(BOOL)isModelQuantized {
-  return [self loadLocalModelWithBundle:NSBundle.mainBundle isModelQuantized:isModelQuantized];
+- (BOOL)loadLocalModelWithIsQuantizedModel:(BOOL)isQuantizedModel {
+  return [self loadLocalModelWithBundle:NSBundle.mainBundle isQuantizedModel:isQuantizedModel];
 }
 
 /// Loads the registered local model with the `ModelOptions` created during setup and the given
 /// input and output dimensions.
 ///
 /// - Parameters:
-///   - isModelQuantized: Indicates if the model is quantized. The default is `false`.
+///   - isQuantizedModel: Indicates if the model is quantized. The default is `false`.
 ///   - inputDimensions: An array of the input tensor dimensions. Must include `outputDimensions`
 ///     if `inputDimensions` are specified. Pass `nil` to use the default input dimensions.
 ///   - outputDimensions: An array of the output tensor dimensions. Must include `inputDimensions`
 ///     if `outputDimensions` are specified. Pass `nil` to use the default output dimensions.
 ///   - bundle: The bundle to load model resources from. The default is the main bundle.
 /// - Returns: A `Bool` indicating whether the local model was successfully loaded.
-- (BOOL)loadLocalModelWithBundle:(NSBundle *)bundle isModelQuantized:(BOOL)isModelQuantized {
+- (BOOL)loadLocalModelWithBundle:(NSBundle *)bundle isQuantizedModel:(BOOL)isQuantizedModel {
 
   if (_localModelOptions) {
-    return [self loadModelWithOptions:_localModelOptions isModelQuantized:isModelQuantized inputDimensions:nil outputDimensions:nil bundle:bundle];
+    return [self loadModelWithOptions:_localModelOptions isQuantizedModel:isQuantizedModel inputDimensions:nil outputDimensions:nil bundle:bundle];
   } else {
     NSLog(@"%@", @"Failed to load the local model because the options are nil.");
     return NO;
@@ -275,7 +277,7 @@ static float const SoftmaxScale = 1.0 / (SoftmaxMaxUInt8QuantizedValue + Softmax
 ///
 /// - Parameters:
 ///   - options: The model options consisting of the remote and/or local models to be loaded.
-///   - isModelQuantized: Whether the model uses quantization (i.e. 8-bit fixed point weights and
+///   - isQuantizedModel: Whether the model uses quantization (i.e. 8-bit fixed point weights and
 ///     activations). See https://www.tensorflow.org/performance/quantization for more details. If
 ///     false, a floating point model is used.
 ///   - inputDimensions: An array of the input tensor dimensions. Must include `outputDimensions`
@@ -288,7 +290,7 @@ static float const SoftmaxScale = 1.0 / (SoftmaxMaxUInt8QuantizedValue + Softmax
 ///     loaded. If the remote model has not been downloaded yet from the Firebase console, the
 ///     model download request is created and the local model is loaded as a fallback.
 - (BOOL)loadModelWithOptions:(FIRModelOptions *)options
-            isModelQuantized:(BOOL)isModelQuantized
+            isQuantizedModel:(BOOL)isQuantizedModel
              inputDimensions:(nullable NSArray<NSNumber *> *)inputDimensions
             outputDimensions:(nullable NSArray<NSNumber *> *)outputDimensions
                       bundle:(nullable NSBundle *)bundle {
@@ -315,10 +317,10 @@ static float const SoftmaxScale = 1.0 / (SoftmaxMaxUInt8QuantizedValue + Softmax
   _labelsCount = (int)_labels.count;
 
   NSArray<NSNumber *> *modelOutputDimensions;
-  modelOutputDimensions = outputDimensions ? outputDimensions : @[ [NSNumber numberWithInt:batchSize], [NSNumber numberWithInt:_labelsCount] ];
+  modelOutputDimensions = outputDimensions ? outputDimensions : @[@(batchSize), @(_labelsCount)];
   self.modelInterpreter = [FIRModelInterpreter modelInterpreterWithOptions:options];
 
-  _modelElementType = isModelQuantized ? FIRModelElementTypeUInt8 : FIRModelElementTypeFloat32;
+  _modelElementType = isQuantizedModel ? FIRModelElementTypeUInt8 : FIRModelElementTypeFloat32;
   NSArray *modelInputDimensions = inputDimensions ? inputDimensions : _inputDimensions;
   NSError *inputError;
   [_modelInputOutputOptions setInputFormatForIndex:modelInputIndex type:_modelElementType dimensions:modelInputDimensions error:&inputError];

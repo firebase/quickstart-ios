@@ -48,8 +48,8 @@ typedef void (^DetectObjectsCompletion)(NSArray *_Nullable objects, NSError *_Nu
 - (BOOL)setUpRemoteModelWithName:(NSString *)name;
 - (BOOL)setUpLocalModelWithName:(NSString *)name filename:(NSString *)filename;
 - (BOOL)setUpLocalModelWithName:(NSString *)name filename:(NSString *)filename bundle:(NSBundle *)bundle;
-- (BOOL)loadRemoteModelWithIsModelQuantized:(BOOL)isModelQuantized;
-- (BOOL)loadLocalModelWithIsModelQuantized:(BOOL)isModelQuantized;
+- (BOOL)loadRemoteModelWithIsQuantizedModel:(BOOL)isQuantizedModel;
+- (BOOL)loadLocalModelWithIsQuantizedModel:(BOOL)isQuantizedModel;
 - (void)detectObjectsInImageData:(NSObject *)imageData
                  topResultsCount:(nullable NSNumber *)topResultsCount
                       completion:(DetectObjectsCompletion)completion;

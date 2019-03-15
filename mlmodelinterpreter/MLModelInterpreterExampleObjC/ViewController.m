@@ -82,8 +82,7 @@ NSString * const LocalModelDescription[] = {
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *cameraButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *downloadModelButton;
 
-/// Indicates whether the download model button was selected.
-@property(nonatomic) bool downloadModelButtonSelected;
+@property(nonatomic) bool isLocalModelLoaded;
 
 @end
 
@@ -107,9 +106,10 @@ NSString * const LocalModelDescription[] = {
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-
+  
   self.manager = [ModelInterpreterManager new];
-  self.downloadModelButtonSelected = NO;
+  self.modelInterpreterManagerMap = [NSMutableDictionary new];
+  self.isLocalModelLoaded = NO;
   self.imagePicker = [UIImagePickerController new];
   _imageView.image = [UIImage imageNamed:defaultImage];
   _imagePicker.delegate = self;
@@ -119,6 +119,7 @@ NSString * const LocalModelDescription[] = {
   }
   [self setUpRemoteModel];
   [self setUpLocalModel];
+  _downloadModelButton.enabled = !_isRemoteModelDownloaded;
 }
 
 #pragma mark - IBActions
@@ -130,13 +131,20 @@ NSString * const LocalModelDescription[] = {
     [self updateResultsText:@"Image must not be nil.\n"];
     return;
   }
-
-  if (!_downloadModelButtonSelected) {
+  
+  if (_isRemoteModelDownloaded) {
+    [self updateResultsText:@"Loading the  model...\n"];
+    if (![_manager loadRemoteModelWithIsModelQuantized:(_currentRemoteModelType == RemoteModelTypeQuantized)]) {
+      [self updateResultsText:@"Failed to load the remote model."];
+      return;
+    }
+  } else {
     [self updateResultsText:@"Loading the local model...\n"];
     if (![_manager loadLocalModelWithIsModelQuantized:(_currentLocalModelType == LocalModelTypeQuantized)]) {
       [self updateResultsText:@"Failed to load the local model."];
       return;
     }
+    _isLocalModelLoaded = YES;
   }
   NSString *newResultsTextString = @"Starting inference...\n";
   if (_resultsTextView.text) {
@@ -156,8 +164,7 @@ NSString * const LocalModelDescription[] = {
       }
       
       NSString *inferenceMessageString = @"Inference results using ";
-      if (self.downloadModelButtonSelected) {
-        [NSUserDefaults.standardUserDefaults setBool:YES forKey:RemoteModelDownloadCompletedKey[self.currentRemoteModelType]];
+      if (self.isRemoteModelDownloaded) {
         inferenceMessageString = [inferenceMessageString stringByAppendingFormat:@"`%@` remote model:\n", RemoteModelDescription[remotemodel]];
       } else {
         inferenceMessageString = [inferenceMessageString stringByAppendingFormat:@"`%@` local model:\n", LocalModelDescription[self.currentLocalModelType]];;
@@ -179,7 +186,8 @@ NSString * const LocalModelDescription[] = {
 
 - (IBAction)downloadModel:(id)sender {
   [self updateResultsText:nil];
-  _downloadModelButtonSelected = YES;
+  _downloadModelButton.enabled = _isRemoteModelDownloaded;
+  _detectButton.enabled = NO;
   _resultsTextView.text = _isRemoteModelDownloaded ?
   @"Remote model loaded. Select the `Detect` button to start the inference." :
   @"Downloading remote model. Once the download has completed, select the `Detect` button to start the inference.";
@@ -194,6 +202,38 @@ NSString * const LocalModelDescription[] = {
   [self setUpLocalModel];
   [self setUpRemoteModel];
   _downloadModelButton.enabled = !_isRemoteModelDownloaded;
+}
+
+#pragma mark - Notifications
+
+- (void)remoteModelDownloadDidSucceed:(NSNotification *)notification {
+  [self runOnMainThread:^{
+    [NSUserDefaults.standardUserDefaults setBool:YES forKey:RemoteModelDownloadCompletedKey[self.currentRemoteModelType]];
+    [self updateResultsText:nil];
+    self.detectButton.enabled = YES;
+    self.downloadModelButton.enabled = NO;
+    FIRRemoteModel *remotemodel = notification.userInfo[FIRModelDownloadUserInfoKeyRemoteModel];
+    if (remotemodel == nil) {
+      [self updateResultsText:@"Successfully downloaded the remote model. The model is ready for detection."];
+      return;
+    }
+    [self updateResultsText:[NSString stringWithFormat:@"Successfully downloaded the remote model with name: %@. The model is ready for detection.", remotemodel.name]];
+   }];
+}
+
+- (void)remoteModelDownloadDidFail:(NSNotification *)notification {
+  [self runOnMainThread:^{
+    [self updateResultsText:nil];
+    self.detectButton.enabled = YES;
+    self.downloadModelButton.enabled = YES;
+    FIRRemoteModel *remoteModel = notification.userInfo[FIRModelDownloadUserInfoKeyRemoteModel];
+    NSError *error = notification.userInfo[FIRModelDownloadUserInfoKeyError];
+    if (error == nil) {
+      [self updateResultsText:@"SFailed to download the remote model."];
+      return;
+    }
+    [self updateResultsText:[NSString stringWithFormat:@"Failed to download the remote model with name: %@, error: %@.", remoteModel, error.localizedDescription]];
+  }];
 }
 
 #pragma mark - Private
@@ -218,6 +258,10 @@ NSString * const LocalModelDescription[] = {
   if (![_manager setUpRemoteModelWithName:modelName]) {
     [self updateResultsText:[NSString stringWithFormat:@"%@\nFailed to set up the `%@` remote model.", _resultsTextView.text, modelName]];
   }
+  [NSNotificationCenter.defaultCenter addObserver:self
+                                         selector:@selector(remoteModelDownloadDidSucceed:) name:FIRModelDownloadDidSucceedNotification object:nil];
+  [NSNotificationCenter.defaultCenter addObserver:self
+                                         selector:@selector(remoteModelDownloadDidFail:) name:FIRModelDownloadDidFailNotification object:nil];
 }
 
 /// Sets up the local model.

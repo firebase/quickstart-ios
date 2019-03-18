@@ -68,7 +68,7 @@ class NewPostViewController: UIViewController, UITextFieldDelegate {
     // Create new post at /user-posts/$userid/$postid and at
     // /posts/$postid simultaneously
     // [START write_fan_out]
-    let key = ref.child("posts").childByAutoId().key
+    guard let key = ref.child("posts").childByAutoId().key else { return }
     let post = ["uid": userID,
                 "author": username,
                 "title": title,

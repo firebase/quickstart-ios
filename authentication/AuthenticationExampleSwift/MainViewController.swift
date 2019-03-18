@@ -363,7 +363,7 @@ class MainViewController: UITableViewController, GIDSignInUIDelegate {
   }
 
   func authenticateGameCenterLocalPlayer() {
-    let localPlayer = GKLocalPlayer.localPlayer()
+    let localPlayer = GKLocalPlayer.local
     localPlayer.authenticateHandler = { (gcAuthViewController, error) in
       if let gcAuthViewController = gcAuthViewController {
         // Pause any activities that require user interaction, then present the
@@ -483,7 +483,7 @@ class MainViewController: UITableViewController, GIDSignInUIDelegate {
     return "Unlink"
   }
 
-  override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+  override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
     if indexPath.section == kSectionProviders {
       return .delete
     }
@@ -491,7 +491,7 @@ class MainViewController: UITableViewController, GIDSignInUIDelegate {
   }
 
   // Swipe to delete
-  override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+  override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
     if editingStyle == .delete {
       let providerID = Auth.auth().currentUser?.providerData[indexPath.row].providerID
       showSpinner({

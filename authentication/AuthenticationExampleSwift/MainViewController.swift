@@ -221,14 +221,14 @@ class MainViewController: UITableViewController, GIDSignInUIDelegate {
                 }
               }
               if let credential = credential {
-                Auth.auth().signInAndRetrieveData(with: credential, completion: { (result, error) in
+                Auth.auth().signInAndRetrieveData(with: credential) { (result, error) in
                   self.hideSpinner {
                     if let error = error {
                       self.showMessagePrompt(error.localizedDescription)
                       return
                     }
                   }
-                })
+                }
               }
             }
           }
@@ -237,7 +237,7 @@ class MainViewController: UITableViewController, GIDSignInUIDelegate {
       case .authMicrosoft:
         action = UIAlertAction(title: "Microsoft", style: .default) { (UIAlertAction) in
           // [START firebase_auth_microsoft]
-          self.microsoftProvider?.getCredentialWith(_:nil){ (credential, error) in
+          self.microsoftProvider?.getCredentialWith(_: nil){ (credential, error) in
             self.showSpinner {
               if let error = error {
                 self.hideSpinner {
@@ -246,14 +246,14 @@ class MainViewController: UITableViewController, GIDSignInUIDelegate {
                 }
               }
               if let credential = credential {
-                Auth.auth().signInAndRetrieveData(with: credential, completion: { (result, error) in
+                Auth.auth().signInAndRetrieveData(with: credential) { (result, error) in
                   self.hideSpinner {
                     if let error = error {
                       self.showMessagePrompt(error.localizedDescription)
                       return
                     }
                   }
-                })
+                }
               }
             }
           }

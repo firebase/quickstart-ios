@@ -9,6 +9,10 @@ target 'AdMobExample' do
   target 'AdMobExampleTests' do
     inherit! :search_paths
   end
+
+  target 'AdMobExampleUITests' do
+    inherit! :search_paths
+  end
 end
 
 target 'AdMobExampleSwift' do
@@ -17,6 +21,10 @@ target 'AdMobExampleSwift' do
   pod 'Firebase/AdMob'
 
   target 'AdMobExampleSwiftTests' do
+    inherit! :search_paths
+  end
+
+  target 'AdMobExampleSwiftUITests' do
     inherit! :search_paths
   end
 end

@@ -53,7 +53,7 @@ static NSString *const Android = @"Android";
 static NSString *const Social = @"Social Meta Tag";
 static NSString *const Other = @"Other Platform";
 
-static NSString *const DYNAMIC_LINK_DOMAIN = @"YOUR_DYNAMIC_LINK_DOMAIN";
+static NSString *const DOMAIN_URI_PREFIX = @"YOUR_DOMAIN_URI_PREFIX";
 
 @interface Section:NSObject
 @property(nonatomic, strong) NSString *name;
@@ -98,10 +98,10 @@ static NSString *const DYNAMIC_LINK_DOMAIN = @"YOUR_DYNAMIC_LINK_DOMAIN";
 }
 
 - (void)buildFDLLink {
-  if ([DYNAMIC_LINK_DOMAIN  isEqual: @"YOUR_DYNAMIC_LINK_DOMAIN"]) {
-    [NSException raise:@"YOUR_DYNAMIC_LINK_DOMAIN"
+  if ([DOMAIN_URI_PREFIX  isEqual: @"YOUR_DOMAIN_URI_PREFIX"]) {
+    [NSException raise:@"DOMAIN_URI_PREFIX"
                 format:@"%@",
-     @"Please update DYNAMIC_LINK_DOMAIN constant in your code from Firebase Console!"];
+     @"Please update DOMAIN_URI_PREFIX constant in your code from Firebase Console!"];
   }
   // [START buildFDLLink]
   // general link params
@@ -112,8 +112,7 @@ static NSString *const DYNAMIC_LINK_DOMAIN = @"YOUR_DYNAMIC_LINK_DOMAIN";
 
   NSURL *link = [NSURL URLWithString:_dictionary[Link].text];
   FIRDynamicLinkComponents *components =
-  [FIRDynamicLinkComponents componentsWithLink:link
-                                        domain:DYNAMIC_LINK_DOMAIN];
+  [FIRDynamicLinkComponents componentsWithLink:link domainURIPrefix:DOMAIN_URI_PREFIX];
 
   // analytics params
   FIRDynamicLinkGoogleAnalyticsParameters *analyticsParams =

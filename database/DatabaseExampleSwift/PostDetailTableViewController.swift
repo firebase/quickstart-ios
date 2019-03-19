@@ -54,13 +54,13 @@ class PostDetailTableViewController: UITableViewController, UITextFieldDelegate 
     // Listen for new comments in the Firebase database
     commentsRef.observe(.childAdded, with: { (snapshot) -> Void in
       self.comments.append(snapshot)
-      self.tableView.insertRows(at: [IndexPath(row: self.comments.count-1, section: self.kSectionComments)], with: UITableViewRowAnimation.automatic)
+      self.tableView.insertRows(at: [IndexPath(row: self.comments.count-1, section: self.kSectionComments)], with: UITableView.RowAnimation.automatic)
     })
     // Listen for deleted comments in the Firebase database
     commentsRef.observe(.childRemoved, with: { (snapshot) -> Void in
       let index = self.indexOfMessage(snapshot)
       self.comments.remove(at: index)
-      self.tableView.deleteRows(at: [IndexPath(row: index, section: self.kSectionComments)], with: UITableViewRowAnimation.automatic)
+      self.tableView.deleteRows(at: [IndexPath(row: index, section: self.kSectionComments)], with: UITableView.RowAnimation.automatic)
     })
     // [END child_event_listener]
 

@@ -45,52 +45,58 @@ class MainViewController: UITableViewController, GIDSignInUIDelegate {
     case authCustom
     case authPasswordless
     case authGameCenter
+    case authMicrosoft
   }
 
   /*! @var kOKButtonText
-  @brief The text of the "OK" button for the Sign In result dialogs.
+      @brief The text of the "OK" button for the Sign In result dialogs.
   */
   let kOKButtonText = "OK"
 
   /*! @var kTokenRefreshedAlertTitle
-  @brief The title of the "Token Refreshed" alert.
+      @brief The title of the "Token Refreshed" alert.
   */
   let kTokenRefreshedAlertTitle = "Token"
 
   /*! @var kTokenRefreshErrorAlertTitle
-  @brief The title of the "Token Refresh error" alert.
+      @brief The title of the "Token Refresh error" alert.
   */
   let kTokenRefreshErrorAlertTitle = "Get Token Error"
 
   /** @var kSetDisplayNameTitle
-  @brief The title of the "Set Display Name" error dialog.
+      @brief The title of the "Set Display Name" error dialog.
   */
   let kSetDisplayNameTitle = "Set Display Name"
 
   /** @var kUnlinkTitle
-   @brief The text of the "Unlink from Provider" error Dialog.
+      @brief The text of the "Unlink from Provider" error Dialog.
    */
   let kUnlinkTitle = "Unlink from Provider"
 
   /** @var kChangeEmailText
-  @brief The title of the "Change Email" button.
+      @brief The title of the "Change Email" button.
   */
   let kChangeEmailText = "Change Email"
 
   /** @var kChangePasswordText
-  @brief The title of the "Change Password" button.
+      @brief The title of the "Change Password" button.
   */
   let kChangePasswordText = "Change Password"
 
   /** @var kUpdatePhoneNumberText
-   @brief The title of the "Update Phone Number" button.
+      @brief The title of the "Update Phone Number" button.
    */
   let kUpdatePhoneNumberText = "Update Phone Number"
 
   /** @var handle
-   @brief The handler for the auth state listener, to allow cancelling later.
+      @brief The handler for the auth state listener, to allow cancelling later.
    */
   var handle: AuthStateDidChangeListenerHandle?
+
+  /** @var microsoftProvider
+      @brief The OAuth provider instance for Microsoft.
+   */
+  var microsoftProvider : OAuthProvider?
 
   func showAuthPicker(_ providers: [AuthProvider]) {
     let picker = UIAlertController(title: "Select Provider",
@@ -215,18 +221,43 @@ class MainViewController: UITableViewController, GIDSignInUIDelegate {
                 }
               }
               if let credential = credential {
-                Auth.auth().signInAndRetrieveData(with: credential, completion: { (result, error) in
+                Auth.auth().signInAndRetrieveData(with: credential) { (result, error) in
                   self.hideSpinner {
                     if let error = error {
                       self.showMessagePrompt(error.localizedDescription)
                       return
                     }
                   }
-                })
+                }
               }
             }
           }
           // [END firebase_auth_gamecenter]
+        }
+      case .authMicrosoft:
+        action = UIAlertAction(title: "Microsoft", style: .default) { (UIAlertAction) in
+          // [START firebase_auth_microsoft]
+          self.microsoftProvider?.getCredentialWith(_: nil){ (credential, error) in
+            self.showSpinner {
+              if let error = error {
+                self.hideSpinner {
+                  self.showMessagePrompt(error.localizedDescription)
+                  return
+                }
+              }
+              if let credential = credential {
+                Auth.auth().signInAndRetrieveData(with: credential) { (result, error) in
+                  self.hideSpinner {
+                    if let error = error {
+                      self.showMessagePrompt(error.localizedDescription)
+                      return
+                    }
+                  }
+                }
+              }
+            }
+          }
+          // [END firebase_auth_microsoft]
         }
       }
       picker.addAction(action)
@@ -247,6 +278,7 @@ class MainViewController: UITableViewController, GIDSignInUIDelegate {
       AuthProvider.authCustom,
       AuthProvider.authPasswordless,
       AuthProvider.authGameCenter,
+      AuthProvider.authMicrosoft,
     ])
   }
 
@@ -349,7 +381,7 @@ class MainViewController: UITableViewController, GIDSignInUIDelegate {
       // [END_EXCLUDE]
     }
     // [END auth_listener]
-
+    self.microsoftProvider = OAuthProvider.init(providerID:"microsoft.com");
     // Authenticate Game Center Local Player
     // Uncomment to sign in with Game Center
     // self.authenticateGameCenterLocalPlayer()

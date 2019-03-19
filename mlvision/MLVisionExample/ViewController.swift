@@ -59,6 +59,7 @@ class ViewController:  UIViewController, UINavigationControllerDelegate {
   @IBOutlet fileprivate weak var photoCameraButton: UIBarButtonItem!
   @IBOutlet fileprivate weak var videoCameraButton: UIBarButtonItem!
   @IBOutlet weak var detectButton: UIBarButtonItem!
+  @IBOutlet var downloadProgressView: UIProgressView!
 
   // MARK: - UIViewController
 
@@ -636,6 +637,20 @@ class ViewController:  UIViewController, UINavigationControllerDelegate {
       updateConditions: updateConditions
     )
     modelManager.register(remoteModel)
+    NotificationCenter.default.addObserver(
+      self,
+      selector: #selector(remoteModelDownloadDidSucceed(_:)),
+      name: .firebaseMLModelDownloadDidSucceed,
+      object: nil
+    )
+    NotificationCenter.default.addObserver(
+      self,
+      selector: #selector(remoteModelDownloadDidFail(_:)),
+      name: .firebaseMLModelDownloadDidFail,
+      object: nil
+    )
+    downloadProgressView.isHidden = false
+    downloadProgressView.observedProgress = modelManager.download(remoteModel)
 
     guard let localModelFilePath = Bundle.main.path(
       forResource: Constants.localModelManifestFileName,
@@ -647,6 +662,43 @@ class ViewController:  UIViewController, UINavigationControllerDelegate {
     let localModel = LocalModel(name: Constants.localAutoMLModelName, path: localModelFilePath)
     modelManager.register(localModel)
     areAutoMLModelsRegistered = true
+  }
+
+  // MARK: - Notifications
+
+  @objc
+  private func remoteModelDownloadDidSucceed(_ notification: Notification) {
+    let notificationHandler = {
+      self.downloadProgressView.isHidden = true
+      guard let userInfo = notification.userInfo,
+        let remoteModel =
+        userInfo[ModelDownloadUserInfoKey.remoteModel.rawValue] as? RemoteModel
+        else {
+          self.resultsText += "firebaseMLModelDownloadDidSucceed notification posted without a RemoteModel instance."
+          return
+      }
+      self.resultsText += "Successfully downloaded the remote model with name: \(remoteModel.name). The model is ready for detection."
+    }
+    if Thread.isMainThread { notificationHandler(); return }
+    DispatchQueue.main.async { notificationHandler() }
+  }
+
+  @objc
+  private func remoteModelDownloadDidFail(_ notification: Notification) {
+    let notificationHandler = {
+      self.downloadProgressView.isHidden = true
+      guard let userInfo = notification.userInfo,
+        let remoteModel =
+        userInfo[ModelDownloadUserInfoKey.remoteModel.rawValue] as? RemoteModel,
+        let error = userInfo[ModelDownloadUserInfoKey.error.rawValue] as? NSError
+        else {
+          self.resultsText += "firebaseMLModelDownloadDidFail notification posted without a RemoteModel instance or error."
+          return
+      }
+      self.resultsText += "Failed to download the remote model with name: \(remoteModel.name), error: \(error)."
+    }
+    if Thread.isMainThread { notificationHandler(); return }
+    DispatchQueue.main.async { notificationHandler() }
   }
 }
 

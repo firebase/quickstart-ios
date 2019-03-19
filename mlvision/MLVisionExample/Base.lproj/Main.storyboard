@@ -72,8 +72,14 @@
                                 </items>
                             </toolbar>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cCp-tA-gDT">
-                                <rect key="frame" x="0.0" y="120" width="375" height="330"/>
+                                <rect key="frame" x="0.0" y="126" width="375" height="324"/>
                             </imageView>
+                            <progressView hidden="YES" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="xaG-Fk-Kew">
+                                <rect key="frame" x="0.0" y="120" width="375" height="6"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="6" id="ENY-EP-7u6"/>
+                                </constraints>
+                            </progressView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="yof-fW-vlO" userLabel="Bottom Toolbar">
                                 <rect key="frame" x="0.0" y="450" width="375" height="44"/>
                                 <constraints>
@@ -97,19 +103,22 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="xaG-Fk-Kew" firstAttribute="width" secondItem="POq-8j-gOJ" secondAttribute="width" id="0A9-hi-nSv"/>
                             <constraint firstItem="cCp-tA-gDT" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="45c-Cz-uBY"/>
                             <constraint firstItem="POq-8j-gOJ" firstAttribute="top" secondItem="LHw-b6-B2a" secondAttribute="bottom" constant="12" id="7wp-P3-gcC"/>
                             <constraint firstItem="Xs4-mo-RjW" firstAttribute="top" secondItem="yof-fW-vlO" secondAttribute="bottom" constant="-6" id="Eqz-89-OCh"/>
                             <constraint firstAttribute="trailing" secondItem="POq-8j-gOJ" secondAttribute="trailing" id="I0X-8i-nPT"/>
+                            <constraint firstItem="xaG-Fk-Kew" firstAttribute="leading" secondItem="POq-8j-gOJ" secondAttribute="leading" id="J0C-6D-Ifi"/>
                             <constraint firstAttribute="trailing" secondItem="cCp-tA-gDT" secondAttribute="trailing" id="UKP-ZW-thL"/>
                             <constraint firstItem="yof-fW-vlO" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Wki-fU-blU"/>
-                            <constraint firstItem="cCp-tA-gDT" firstAttribute="top" secondItem="POq-8j-gOJ" secondAttribute="bottom" id="Wqu-KC-ihn"/>
                             <constraint firstItem="POq-8j-gOJ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="cho-7Z-rGg"/>
                             <constraint firstAttribute="trailing" secondItem="yof-fW-vlO" secondAttribute="trailing" id="etE-tG-0CW"/>
                             <constraint firstAttribute="trailing" secondItem="Xs4-mo-RjW" secondAttribute="trailing" id="gvn-CW-6Xx"/>
+                            <constraint firstItem="xaG-Fk-Kew" firstAttribute="top" secondItem="POq-8j-gOJ" secondAttribute="bottom" id="hSN-NL-d34"/>
                             <constraint firstItem="yof-fW-vlO" firstAttribute="top" secondItem="cCp-tA-gDT" secondAttribute="bottom" id="oQg-Ks-4Jj"/>
                             <constraint firstItem="Ydg-C1-MLG" firstAttribute="top" secondItem="Xs4-mo-RjW" secondAttribute="bottom" constant="-1" id="rWN-Im-hnc"/>
                             <constraint firstItem="Xs4-mo-RjW" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="uNU-KO-ASb"/>
+                            <constraint firstItem="cCp-tA-gDT" firstAttribute="top" secondItem="xaG-Fk-Kew" secondAttribute="bottom" id="v4h-9Q-PbG"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="xYg-VP-pps">
@@ -118,6 +127,7 @@
                     <connections>
                         <outlet property="detectButton" destination="Dwb-uQ-3dE" id="8Hn-BT-3m1"/>
                         <outlet property="detectorPicker" destination="Xs4-mo-RjW" id="kFH-5K-Mcc"/>
+                        <outlet property="downloadProgressView" destination="xaG-Fk-Kew" id="fZC-At-0QN"/>
                         <outlet property="imageView" destination="cCp-tA-gDT" id="FIt-va-neE"/>
                         <outlet property="photoCameraButton" destination="jD4-E9-bbj" id="cf0-4Q-UL8"/>
                         <outlet property="videoCameraButton" destination="M1D-Qg-lKI" id="3Cr-4e-JCG"/>
@@ -140,19 +150,29 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vwd-Qp-BMC" userLabel="Camera View">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="70" width="375" height="597"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
+                            <progressView hidden="YES" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="mn2-dQ-YNu">
+                                <rect key="frame" x="0.0" y="64" width="375" height="6"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="6" id="xIK-Vd-Y6R"/>
+                                </constraints>
+                            </progressView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="mn2-dQ-YNu" secondAttribute="trailing" id="EB2-tA-kM2"/>
+                            <constraint firstItem="mn2-dQ-YNu" firstAttribute="top" secondItem="qO2-JB-Jc4" secondAttribute="bottom" id="Ldx-Kl-J3W"/>
                             <constraint firstItem="Vwd-Qp-BMC" firstAttribute="leading" secondItem="bWY-Sx-TCF" secondAttribute="leading" id="bTr-O6-WSG"/>
                             <constraint firstAttribute="trailing" secondItem="Vwd-Qp-BMC" secondAttribute="trailing" id="cN6-F5-qVY"/>
-                            <constraint firstItem="Vwd-Qp-BMC" firstAttribute="top" secondItem="qO2-JB-Jc4" secondAttribute="bottom" id="dNK-32-b8b"/>
+                            <constraint firstItem="Vwd-Qp-BMC" firstAttribute="top" secondItem="mn2-dQ-YNu" secondAttribute="bottom" id="fhZ-Tc-nRJ"/>
                             <constraint firstItem="Vwd-Qp-BMC" firstAttribute="bottom" secondItem="7NG-lt-hPa" secondAttribute="top" id="ja0-Ki-fxw"/>
+                            <constraint firstItem="mn2-dQ-YNu" firstAttribute="leading" secondItem="bWY-Sx-TCF" secondAttribute="leading" id="qK3-Jn-xfl"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="8dJ-Hr-2St">
+                        <nil key="title"/>
                         <rightBarButtonItems>
                             <barButtonItem image="switch_camera" id="kXj-bT-GY0" userLabel="Switch Camera Button">
                                 <connections>
@@ -168,6 +188,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="cameraView" destination="Vwd-Qp-BMC" id="yRq-e8-30h"/>
+                        <outlet property="downloadProgressView" destination="mn2-dQ-YNu" id="OTK-Wu-Ckh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tub-Fx-HUo" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -176,9 +197,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="photo_camera" width="36" height="36"/>
-        <image name="photo_library" width="36" height="36"/>
-        <image name="switch_camera" width="36" height="36"/>
-        <image name="video_camera" width="36" height="36"/>
+        <image name="photo_camera" width="72" height="72"/>
+        <image name="photo_library" width="72" height="72"/>
+        <image name="switch_camera" width="72" height="72"/>
+        <image name="video_camera" width="72" height="72"/>
     </resources>
 </document>

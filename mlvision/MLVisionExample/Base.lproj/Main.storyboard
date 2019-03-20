@@ -127,7 +127,7 @@
                     <connections>
                         <outlet property="detectButton" destination="Dwb-uQ-3dE" id="8Hn-BT-3m1"/>
                         <outlet property="detectorPicker" destination="Xs4-mo-RjW" id="kFH-5K-Mcc"/>
-                        <outlet property="downloadProgressView" destination="xaG-Fk-Kew" id="fZC-At-0QN"/>
+                        <outlet property="downloadProgressView" destination="xaG-Fk-Kew" id="h0c-hg-58T"/>
                         <outlet property="imageView" destination="cCp-tA-gDT" id="FIt-va-neE"/>
                         <outlet property="photoCameraButton" destination="jD4-E9-bbj" id="cf0-4Q-UL8"/>
                         <outlet property="videoCameraButton" destination="M1D-Qg-lKI" id="3Cr-4e-JCG"/>
@@ -188,7 +188,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="cameraView" destination="Vwd-Qp-BMC" id="yRq-e8-30h"/>
-                        <outlet property="downloadProgressView" destination="mn2-dQ-YNu" id="OTK-Wu-Ckh"/>
+                        <outlet property="downloadProgressView" destination="mn2-dQ-YNu" id="lNZ-Xz-0FT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tub-Fx-HUo" userLabel="First Responder" sceneMemberID="firstResponder"/>

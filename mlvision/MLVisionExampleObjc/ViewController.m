@@ -93,6 +93,7 @@ typedef NS_ENUM(NSInteger, DetectorPickerRow) {
 /** An image picker for accessing the photo library or camera. */
 @property(nonatomic) UIImagePickerController *imagePicker;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *detectButton;
+@property (strong, nonatomic) IBOutlet UIProgressView *downloadProgressView;
 
 // Image counter.
 @property(nonatomic) NSUInteger currentImage;
@@ -1073,6 +1074,16 @@ typedef NS_ENUM(NSInteger, DetectorPickerRow) {
     NSLog(@"Failed to register AutoML local model");
   }
 
+  [NSNotificationCenter.defaultCenter addObserver:self
+                                         selector:@selector(remoteModelDownloadDidSucceed:) name:FIRModelDownloadDidSucceedNotification object:nil];
+  [NSNotificationCenter.defaultCenter addObserver:self
+                                         selector:@selector(remoteModelDownloadDidFail:) name:FIRModelDownloadDidFailNotification object:nil];
+
+  dispatch_async(dispatch_get_main_queue(), ^{
+    self.downloadProgressView.hidden = NO;
+    self.downloadProgressView.observedProgress = [self.modelManager downloadRemoteModel:remoteModel];
+  });
+
   NSString *localModelFilePath =
   [[NSBundle mainBundle] pathForResource:FIRAutoMLLocalModelManifestFilename
                                   ofType:FIRAutoMLManifestFileType];
@@ -1082,6 +1093,33 @@ typedef NS_ENUM(NSInteger, DetectorPickerRow) {
     NSLog(@"Failed to register AutoML local model");
   }
   self.areAutoMLModelsRegistered = YES;
+}
+
+#pragma mark - Notifications
+
+- (void)remoteModelDownloadDidSucceed:(NSNotification *)notification {
+  dispatch_async(dispatch_get_main_queue(), ^{
+    self.downloadProgressView.hidden = YES;
+    FIRRemoteModel *remotemodel = notification.userInfo[FIRModelDownloadUserInfoKeyRemoteModel];
+    if (remotemodel == nil) {
+      [self.resultsText appendString:@"firebaseMLModelDownloadDidSucceed notification posted without a RemoteModel instance."];
+      return;
+    }
+    [self.resultsText appendFormat:@"Successfully downloaded the remote model with name: %@. The model is ready for detection.", remotemodel.name];
+  });
+}
+
+- (void)remoteModelDownloadDidFail:(NSNotification *)notification {
+  dispatch_async(dispatch_get_main_queue(), ^{
+    self.downloadProgressView.hidden = YES;
+    FIRRemoteModel *remoteModel = notification.userInfo[FIRModelDownloadUserInfoKeyRemoteModel];
+    NSError *error = notification.userInfo[FIRModelDownloadUserInfoKeyError];
+    if (error == nil) {
+      [self.resultsText appendString:@"firebaseMLModelDownloadDidFail notification posted without a RemoteModel instance or error."];
+      return;
+    }
+    [self.resultsText appendFormat:@"Failed to download the remote model with name: %@, error: %@.", remoteModel, error.localizedDescription];
+  });
 }
 
 @end

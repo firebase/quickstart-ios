@@ -479,6 +479,34 @@
 			};
 			name = Release;
 		};
+		8DFFBFB81F9E6C5200C3483E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = ABTestingExample/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks $(PODS_CONFIGURATION_BUILD_DIR)/GoogleToolboxForMac $(PODS_CONFIGURATION_BUILD_DIR)/nanopb $(PODS_CONFIGURATION_BUILD_DIR)/Protobuf";
+				PRODUCT_BUNDLE_IDENTIFIER = com.firebase.ABTestingExample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.2;
+			};
+			name = Debug;
+		};
+		8DFFBFB91F9E6C5200C3483E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = ABTestingExample/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks $(PODS_CONFIGURATION_BUILD_DIR)/GoogleToolboxForMac $(PODS_CONFIGURATION_BUILD_DIR)/nanopb $(PODS_CONFIGURATION_BUILD_DIR)/Protobuf";
+				PRODUCT_BUNDLE_IDENTIFIER = com.firebase.ABTestingExample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.2;
+			};
+			name = Release;
+		};
 		8DFFBFBB1F9E6C5200C3483E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {

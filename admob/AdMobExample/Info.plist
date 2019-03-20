@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>GADIsAdManagerApp</key>
-	<string>YES</string>
+	<true/>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>

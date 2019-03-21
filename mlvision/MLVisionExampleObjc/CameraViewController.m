@@ -195,9 +195,10 @@ typedef NS_ENUM(NSInteger, Detector) {
     for (FIRVisionImageLabel *label in labels) {
       [labelStrings addObject:[NSString stringWithFormat:@"Label: %@, Confidence: %@", label.text, label.confidence]];
     }
-    resultsLabel.text = [labels componentsJoinedByString:@"\n"];
+    resultsLabel.text = [labelStrings componentsJoinedByString:@"\n"];
     resultsLabel.adjustsFontSizeToFitWidth = YES;
     resultsLabel.numberOfLines = resultsLabelLines;
+    [self.annotationOverlayView addSubview:resultsLabel];
     dispatch_group_leave(group);
     // [END_EXCLUDE]
   }];

@@ -6,15 +6,15 @@ use_frameworks!
 
 # [START base_dependencies]
 pod 'Firebase/Core'
-pod 'FirebaseMLVision', '0.1.45'
+pod 'FirebaseMLVision', '0.1.48'
 # [END base_dependencies]
-pod 'FirebaseMLCommon', '0.1.45'
-pod 'FirebaseMLModelInterpreter', '0.1.45'
-pod 'FirebaseMLVisionAutoML', '0.1.45'
-pod 'FirebaseMLVisionFaceModel', '0.1.45'
-pod 'FirebaseMLVisionBarcodeModel', '0.1.45'
-pod 'FirebaseMLVisionLabelModel', '0.1.45'
-pod 'FirebaseMLVisionTextModel', '0.1.45'
+pod 'FirebaseMLCommon', '0.1.48'
+pod 'FirebaseMLModelInterpreter', '0.1.48'
+pod 'FirebaseMLVisionAutoML', '0.1.48'
+pod 'FirebaseMLVisionFaceModel', '0.1.48'
+pod 'FirebaseMLVisionBarcodeModel', '0.1.48'
+pod 'FirebaseMLVisionLabelModel', '0.1.48'
+pod 'FirebaseMLVisionTextModel', '0.1.48'
 pod 'GoogleMobileVision/Detector', '1.5.0'
 pod 'GoogleMobileVision/FaceDetector', '1.5.0'
 pod 'GoogleMobileVision/TextDetector', '1.5.0'

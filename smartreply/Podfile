@@ -1,0 +1,19 @@
+use_frameworks!
+platform :ios, '9.0'
+
+pod 'Firebase/Core'
+# [START smartreply_pod]
+pod 'Firebase/MLNLSmartReply'
+# [END smartreply_pod]
+
+pod 'MaterialComponents/Buttons'
+pod 'MaterialComponents/Chips'
+pod 'MaterialComponents/List'
+pod 'MaterialComponents/TextFields'
+pod 'MaterialComponents/Buttons+ButtonThemer'
+pod 'SwiftLint'
+
+target 'SmartReplyExample' do
+end
+target 'SmartReplyExampleSwift' do
+end

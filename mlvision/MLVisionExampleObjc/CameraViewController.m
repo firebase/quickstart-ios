@@ -146,6 +146,7 @@ typedef NS_ENUM(NSInteger, Detector) {
   if (faces.count == 0) {
     NSLog(@"%@", @"On-Device face detector returned no results.");
     dispatch_sync(dispatch_get_main_queue(), ^{
+      [self updatePreviewOverlayView];
       [self removeDetectionAnnotations];
     });
     return;

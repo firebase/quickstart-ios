@@ -31,14 +31,17 @@ static NSString *const videoDataOutputQueueLabel = @"com.google.firebaseml.visio
 static NSString *const sessionQueueLabel = @"com.google.firebaseml.visiondetector.SessionQueue";
 static NSString *const noResultsMessage = @"No Results";
 static const CGFloat FIRSmallDotRadius = 4.0;
-static const CGFloat FIRconstantScale = 41.0;
+static const CGFloat FIRconstantScale = 1.0;
 
 @interface CameraViewController () <AVCaptureVideoDataOutputSampleBufferDelegate>
 
 typedef NS_ENUM(NSInteger, Detector) {
   DetectorOnDeviceFace,
   DetectorOnDeviceText,
-  DetectorOnDeviceObject
+  DetectorOnDeviceObjectProminentNoClassifier,
+  DetectorOnDeviceObjectProminentWithClassifier,
+  DetectorOnDeviceObjectMultipleNoClassifier,
+  DetectorOnDeviceObjectMultipleWithClassifier
 };
 
 @property (nonatomic) NSArray *detectors;
@@ -59,17 +62,27 @@ typedef NS_ENUM(NSInteger, Detector) {
 - (NSString *)stringForDetector:(Detector)detector {
   switch (detector) {
     case DetectorOnDeviceFace:
-    return @"On-Device Face Detection";
+      return @"On-Device Face Detection";
     case DetectorOnDeviceText:
-    return @"On-Device Text Recognition";
-    case DetectorOnDeviceObject:
-    return @"On-Device Object Recognition";
+      return @"On-Device Text Recognition";
+    case DetectorOnDeviceObjectProminentNoClassifier:
+      return @"ODT for prominent object, only tracking";
+    case DetectorOnDeviceObjectProminentWithClassifier:
+      return @"ODT for prominent object with classification";
+    case DetectorOnDeviceObjectMultipleNoClassifier:
+      return @"ODT for multiple objects, only tracking";
+    case DetectorOnDeviceObjectMultipleWithClassifier:
+      return @"ODT for multiple objects with classification";
   }
 }
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-  _detectors = @[@(DetectorOnDeviceFace), @(DetectorOnDeviceText), @(DetectorOnDeviceObject)];
+  _detectors = @[@(DetectorOnDeviceFace), @(DetectorOnDeviceText),
+                 @(DetectorOnDeviceObjectProminentNoClassifier),
+                 @(DetectorOnDeviceObjectProminentWithClassifier),
+                 @(DetectorOnDeviceObjectMultipleNoClassifier),
+                 @(DetectorOnDeviceObjectMultipleWithClassifier)];
   _currentDetector = DetectorOnDeviceFace;
   _isUsingFrontCamera = YES;
   _captureSession = [[AVCaptureSession alloc] init];
@@ -186,9 +199,15 @@ typedef NS_ENUM(NSInteger, Detector) {
 
 #pragma mark - Object Detection
 
-- (void)detectObjectsOnDeviceInImage:(FIRVisionImage *)image width:(CGFloat)width height:(CGFloat)height {
-  FIRVisionObjectDetectorOptions *options = [FIRVisionObjectDetectorOptions new];
-  options.shouldEnableClassification = YES;
+- (void)detectObjectsOnDeviceInImage:(FIRVisionImage *)image
+                               width:(CGFloat)width
+                              height:(CGFloat)height
+                             options:(FIRVisionObjectDetectorOptions *)options {
+  dispatch_sync(dispatch_get_main_queue(), ^{
+    [self updatePreviewOverlayView];
+    [self removeDetectionAnnotations];
+  });
+
   FIRVisionObjectDetector *detector = [_vision objectDetectorWithOptions:options];
 
   NSError *error;
@@ -200,16 +219,10 @@ typedef NS_ENUM(NSInteger, Detector) {
 
   if (!objects || objects.count == 0) {
     NSLog(@"On-Device object detector returned no results.");
-    dispatch_sync(dispatch_get_main_queue(), ^{
-      [self updatePreviewOverlayView];
-      [self removeDetectionAnnotations];
-    });
     return;
   }
 
   dispatch_sync(dispatch_get_main_queue(), ^{
-    [self updatePreviewOverlayView];
-    [self removeDetectionAnnotations];
     for (FIRVisionObject *object in objects) {
       CGRect normalizedRect = CGRectMake(object.frame.origin.x / width, object.frame.origin.y / height, object.frame.size.width / width, object.frame.size.height / height);
       CGRect standardizedRect = CGRectStandardize([self.previewLayer rectForMetadataOutputRectOfInterest:normalizedRect]);
@@ -553,6 +566,23 @@ typedef NS_ENUM(NSInteger, Detector) {
     visionImage.metadata = metadata;
     CGFloat imageWidth = CVPixelBufferGetWidth(imageBuffer);
     CGFloat imageHeight = CVPixelBufferGetHeight(imageBuffer);
+    BOOL shouldEnableClassification = NO;
+    BOOL shouldEnableMultipleObjects = NO;
+    switch (_currentDetector) {
+      case DetectorOnDeviceObjectProminentWithClassifier:
+      case DetectorOnDeviceObjectMultipleWithClassifier:
+      shouldEnableClassification = YES;
+    default:
+      break;
+    }
+    switch (_currentDetector) {
+      case DetectorOnDeviceObjectMultipleNoClassifier:
+      case DetectorOnDeviceObjectMultipleWithClassifier:
+      shouldEnableMultipleObjects = YES;
+    default:
+      break;
+    }
+
     switch (_currentDetector) {
       case DetectorOnDeviceFace:
         [self detectFacesOnDeviceInImage:visionImage width:imageWidth height:imageHeight];
@@ -560,9 +590,19 @@ typedef NS_ENUM(NSInteger, Detector) {
       case DetectorOnDeviceText:
         [self recognizeTextOnDeviceInImage:visionImage width:imageWidth height:imageHeight];
         break;
-      case DetectorOnDeviceObject:
-        [self detectObjectsOnDeviceInImage:visionImage width:imageWidth height:imageHeight];
+      case DetectorOnDeviceObjectProminentNoClassifier:
+      case DetectorOnDeviceObjectProminentWithClassifier:
+      case DetectorOnDeviceObjectMultipleNoClassifier:
+      case DetectorOnDeviceObjectMultipleWithClassifier: {
+        FIRVisionObjectDetectorOptions *options = [FIRVisionObjectDetectorOptions new];
+        options.shouldEnableClassification = shouldEnableClassification;
+        options.shouldEnableMultipleObjects = shouldEnableMultipleObjects;
+        [self detectObjectsOnDeviceInImage:visionImage
+                                     width:imageWidth
+                                    height:imageHeight
+                                   options:options];
         break;
+      }
     }
   } else {
     NSLog(@"%@", @"Failed to get image buffer from sample buffer.");

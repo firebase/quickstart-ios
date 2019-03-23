@@ -23,7 +23,11 @@ import FirebaseMLVisionObjectDetection
 @objc(CameraViewController)
 class CameraViewController: UIViewController {
 
-  private let detectors: [Detector] = [.onDeviceFace, .onDeviceText, .onDeviceObject]
+  private let detectors: [Detector] = [.onDeviceFace, .onDeviceText,
+                                       .onDeviceObjectProminentNoClassifier,
+                                       .onDeviceObjectProminentWithClassifier,
+                                       .onDeviceObjectMultipleNoClassifier,
+                                       .onDeviceObjectMultipleWithClassifier]
   private var currentDetector: Detector = .onDeviceFace
   private var isUsingFrontCamera = true
   private var previewLayer: AVCaptureVideoPreviewLayer!
@@ -197,9 +201,10 @@ class CameraViewController: UIViewController {
 
   // MARK: Object Detection
 
-  private func detectObjectsOnDevice(in image: VisionImage, width: CGFloat, height: CGFloat) {
-    let options = VisionObjectDetectorOptions()
-    options.shouldEnableClassification = true
+  private func detectObjectsOnDevice(in image: VisionImage,
+                                     width: CGFloat,
+                                     height: CGFloat,
+                                     options: VisionObjectDetectorOptions) {
     let detector = vision.objectDetector(options: options)
 
     var detectedObjects: [VisionObject]? = nil
@@ -605,13 +610,36 @@ extension CameraViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
     visionImage.metadata = metadata
     let imageWidth = CGFloat(CVPixelBufferGetWidth(imageBuffer))
     let imageHeight = CGFloat(CVPixelBufferGetHeight(imageBuffer))
+    var shouldEnableClassification = false
+    var shouldEnableMultipleObjects = false
+    switch currentDetector {
+    case .onDeviceObjectProminentWithClassifier, .onDeviceObjectMultipleWithClassifier:
+      shouldEnableClassification = true
+    default:
+      break
+    }
+    switch currentDetector {
+    case .onDeviceObjectMultipleNoClassifier, .onDeviceObjectMultipleWithClassifier:
+      shouldEnableMultipleObjects = true
+    default:
+      break
+    }
+
     switch currentDetector {
     case .onDeviceFace:
       detectFacesOnDevice(in: visionImage, width: imageWidth, height: imageHeight)
     case .onDeviceText:
       recognizeTextOnDevice(in: visionImage, width: imageWidth, height: imageHeight)
-    case .onDeviceObject:
-      detectObjectsOnDevice(in: visionImage, width: imageWidth, height: imageHeight)
+    case .onDeviceObjectProminentNoClassifier, .onDeviceObjectProminentWithClassifier,
+         .onDeviceObjectMultipleNoClassifier, .onDeviceObjectMultipleWithClassifier:
+      let options = VisionObjectDetectorOptions()
+      options.shouldEnableClassification = shouldEnableClassification
+      options.shouldEnableMultipleObjects = shouldEnableMultipleObjects
+      options.detectorMode = .stream
+      detectObjectsOnDevice(in: visionImage,
+                            width: imageWidth,
+                            height: imageHeight,
+                            options: options)
     }
   }
 }
@@ -621,7 +649,10 @@ extension CameraViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
 public enum Detector: String {
   case onDeviceFace = "On-Device Face Detection"
   case onDeviceText = "On-Device Text Recognition"
-  case onDeviceObject = "On-Device Object Detection"
+  case onDeviceObjectProminentNoClassifier = "ODT for prominent object, only tracking"
+  case onDeviceObjectProminentWithClassifier = "ODT for prominent object with classification"
+  case onDeviceObjectMultipleNoClassifier = "ODT for multiple objects, only tracking"
+  case onDeviceObjectMultipleWithClassifier = "ODT for multiple objects with classification"
 }
 
 private enum Constant {

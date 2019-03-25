@@ -73,7 +73,7 @@ enum ParamTypes: String {
 @objc(ViewController)
 class ViewController: UITableViewController {
 
-  static let DYNAMIC_LINK_DOMAIN = "YOUR_DYNAMIC_LINK_DOMAIN"
+  static let DOMAIN_URI_PREFIX = "YOUR_DOMAIN_URI_PREFIX"
 
   var sections = [Section]()
   var dictionary = [Params: UITextField]()
@@ -96,8 +96,8 @@ class ViewController: UITableViewController {
   }
 
   @objc func buildFDLLink() {
-    if ViewController.DYNAMIC_LINK_DOMAIN == "YOUR_DYNAMIC_LINK_DOMAIN" {
-      fatalError("Please update DYNAMIC_LINK_DOMAIN constant in your code from Firebase Console!")
+    if ViewController.DOMAIN_URI_PREFIX == "YOUR_DOMAIN_URI_PREFIX" {
+      fatalError("Please update DOMAIN_URI_PREFIX constant in your code from Firebase Console!")
     }
     // [START buildFDLLink]
     // general link params
@@ -107,7 +107,7 @@ class ViewController: UITableViewController {
     }
 
     guard let link = URL(string: linkString) else { return }
-    let components = DynamicLinkComponents(link: link, domain: ViewController.DYNAMIC_LINK_DOMAIN)
+    guard let components = DynamicLinkComponents(link: link, domainURIPrefix: ViewController.DOMAIN_URI_PREFIX) else { return }
 
     // analytics params
     let analyticsParams = DynamicLinkGoogleAnalyticsParameters(

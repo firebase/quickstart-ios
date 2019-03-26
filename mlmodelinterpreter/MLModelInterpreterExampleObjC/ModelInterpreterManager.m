@@ -18,10 +18,10 @@
 #import "UIImage+TFLite.h"
 @import FirebaseMLModelInterpreter;
 
-static NSString *const labelsSeparator = @"\n";
-static NSString *const labelsFilename = @"labels";
+static NSString *const labelsName = @"labels";
+static int const labelsCount = 1001;
 
-static uint const modelInputIndex = 0;
+static uint const inputOutputIndex = 0;
 static int const batchSize = 1;
 static float const dimensionImageWidth = 299;
 static float const dimensionImageHeight = 299;
@@ -59,6 +59,7 @@ static float const SoftmaxScale = 1.0 / (SoftmaxMaxUInt8QuantizedValue + Softmax
 @interface ModelInterpreterManager ()
 
 @property (nonatomic) NSArray *inputDimensions;
+@property (nonatomic) NSArray *outputDimensions;
 
 @property(nonatomic) id<ModelManaging> modelManager;
 @property(nonatomic) FIRModelInputOutputOptions *modelInputOutputOptions;
@@ -83,14 +84,14 @@ static float const SoftmaxScale = 1.0 / (SoftmaxMaxUInt8QuantizedValue + Softmax
 - (instancetype)initWithModelManager:(id<ModelManaging>)modelManager {
   self.modelManager = modelManager;
   self.inputDimensions = @[
-                           [NSNumber numberWithInt:batchSize],
-                           [NSNumber numberWithFloat:dimensionImageWidth],
-                           [NSNumber numberWithFloat:dimensionImageHeight],
-                           [NSNumber numberWithInt:componentCount]
+                           @(batchSize),
+                           @(dimensionImageWidth),
+                           @(dimensionImageHeight),
+                           @(componentCount)
                            ];
+  self.outputDimensions = @[@(batchSize), @(labelsCount)];
   self.modelInputOutputOptions = [FIRModelInputOutputOptions new];
   self.labels = [NSArray new];
-  self.labelsCount = 0;
   self.registeredRemoteModelNames = [NSMutableSet new];
   self.registeredLocalModelNames = [NSMutableSet new];
   self.modelElementType = FIRModelElementTypeUInt8;
@@ -167,7 +168,7 @@ static float const SoftmaxScale = 1.0 / (SoftmaxMaxUInt8QuantizedValue + Softmax
 ///   - bundle: The bundle to load model resources from. The default is the main bundle.
 /// - Returns: A `Bool` indicating whether the remote model was successfully loaded.
 - (BOOL)loadRemoteModelWithBundle:(NSBundle *)bundle isQuantizedModel:(BOOL)isQuantizedModel {
-  if (_remoteModelOptions) {
+  if (_remoteModelOptions != nil) {
     return [self loadModelWithOptions:_remoteModelOptions isQuantizedModel:isQuantizedModel inputDimensions:nil outputDimensions:nil bundle:bundle];
   } else {
     NSLog(@"%@", @"Failed to load the remote model because the options are nil.");
@@ -302,7 +303,7 @@ static float const SoftmaxScale = 1.0 / (SoftmaxMaxUInt8QuantizedValue + Softmax
     return NO;
   }
 
-  NSString *labelsFilePath = [bundle pathForResource:labelsFilename ofType:labelsExtension];
+  NSString *labelsFilePath = [bundle pathForResource:labelsName ofType:labelsExtension];
   if(!labelsFilePath) {
     NSLog(@"%@", @"Failed to get the labels file path.");
     return NO;
@@ -313,23 +314,19 @@ static float const SoftmaxScale = 1.0 / (SoftmaxMaxUInt8QuantizedValue + Softmax
     NSLog(@"Failed to load the model with error: %@", stringError.localizedDescription);
     return NO;
   }
-  _labels = [contents componentsSeparatedByString:labelsSeparator];
-  _labelsCount = (int)_labels.count;
-
-  NSArray<NSNumber *> *modelOutputDimensions;
-  modelOutputDimensions = outputDimensions ? outputDimensions : @[@(batchSize), @(_labelsCount)];
+  _labels = [contents componentsSeparatedByCharactersInSet:NSCharacterSet.newlineCharacterSet];
   self.modelInterpreter = [FIRModelInterpreter modelInterpreterWithOptions:options];
-
   _modelElementType = isQuantizedModel ? FIRModelElementTypeUInt8 : FIRModelElementTypeFloat32;
   NSArray *modelInputDimensions = inputDimensions ? inputDimensions : _inputDimensions;
   NSError *inputError;
-  [_modelInputOutputOptions setInputFormatForIndex:modelInputIndex type:_modelElementType dimensions:modelInputDimensions error:&inputError];
+  [_modelInputOutputOptions setInputFormatForIndex:inputOutputIndex type:_modelElementType dimensions:modelInputDimensions error:&inputError];
   if (inputError) {
     NSLog(@"Failed to load the model with error: %@", inputError.localizedDescription);
     return NO;
   }
+  NSArray *modelOutputDimensions = outputDimensions ? outputDimensions : _outputDimensions;
   NSError *outputError;
-  [_modelInputOutputOptions setOutputFormatForIndex:modelInputIndex type:_modelElementType dimensions:modelOutputDimensions error:&outputError];
+  [_modelInputOutputOptions setOutputFormatForIndex:inputOutputIndex type:_modelElementType dimensions:modelOutputDimensions error:&outputError];
   if (outputError) {
     NSLog(@"Failed to load the model with error: %@", outputError.localizedDescription);
     return NO;

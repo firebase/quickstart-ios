@@ -56,7 +56,7 @@ public enum MobileNet {
   fileprivate static let inputDimensions = [
     NSNumber(value: batchSize),
     NSNumber(value: Double(imageSize.width)),
-    NSNumber(value: Double(imageSize.width)),
+    NSNumber(value: Double(imageSize.height)),
     NSNumber(value: componentCount),
     ]
   fileprivate static let outputDimensions = [

@@ -133,7 +133,7 @@ static float const SoftmaxScale = 1.0 / (SoftmaxMaxUInt8QuantizedValue + Softmax
 ///   - filename: The name for the local model file.
 ///   - bundle: The bundle to load model resources from. The default is the main bundle.
 /// - Returns: A `Bool` indicating whether the local model was successfully set up and registered.
-- (BOOL)setUpLocalModelWithName:(NSString *)name filename:(NSString *)filename bundle:(nullable NSBundle *)bundle {
+- (BOOL)setUpLocalModelWithName:(NSString *)name filename:(NSString *)filename bundle:(NSBundle *)bundle {
   NSString *localModelFilePath = [bundle pathForResource:filename ofType:modelExtension];
   if(!localModelFilePath) {
     NSLog(@"%@",@"Failed to get the local model file path.");

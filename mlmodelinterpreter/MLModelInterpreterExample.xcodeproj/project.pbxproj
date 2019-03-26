@@ -36,8 +36,6 @@
 		4A56D23020A154E100357F77 /* mobilenet_v1_1.0_224.tflite in Resources */ = {isa = PBXBuildFile; fileRef = 4A56D22620A154E100357F77 /* mobilenet_v1_1.0_224.tflite */; };
 		4A56D23420A154E100357F77 /* labels.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4A56D22A20A154E100357F77 /* labels.txt */; };
 		4A56D23520A154E100357F77 /* grace_hopper.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4A56D22B20A154E100357F77 /* grace_hopper.jpg */; };
-		FBD7BB7BBF5512EEFCB8F7B0 /* Pods_MLModelInterpreterExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 278D0E0B0642D05465533E52 /* Pods_MLModelInterpreterExample.framework */; };
-		FC096EC05CFEFB2709514832 /* Pods_MLModelInterpreterExampleObjC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB2957D6097226AFBEE6AC39 /* Pods_MLModelInterpreterExampleObjC.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,8 +95,6 @@
 		10E115E320F46A200013E4A4 /* ModelInterpreterManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ModelInterpreterManager.m; sourceTree = "<group>"; };
 		10E115E520F46A340013E4A4 /* UIImage+TFLite.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+TFLite.h"; sourceTree = "<group>"; };
 		10E115E620F46A340013E4A4 /* UIImage+TFLite.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+TFLite.m"; sourceTree = "<group>"; };
-		14C907853C49E46EEFE2AE6D /* Pods-MLModelInterpreterExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MLModelInterpreterExample.debug.xcconfig"; path = "Target Support Files/Pods-MLModelInterpreterExample/Pods-MLModelInterpreterExample.debug.xcconfig"; sourceTree = "<group>"; };
-		278D0E0B0642D05465533E52 /* Pods_MLModelInterpreterExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MLModelInterpreterExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A56D20A20A138E500357F77 /* MLModelInterpreterExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MLModelInterpreterExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A56D21220A138E500357F77 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4A56D21420A138E500357F77 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -110,10 +106,6 @@
 		4A56D22620A154E100357F77 /* mobilenet_v1_1.0_224.tflite */ = {isa = PBXFileReference; lastKnownFileType = file; path = mobilenet_v1_1.0_224.tflite; sourceTree = "<group>"; };
 		4A56D22A20A154E100357F77 /* labels.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = labels.txt; sourceTree = "<group>"; };
 		4A56D22B20A154E100357F77 /* grace_hopper.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = grace_hopper.jpg; sourceTree = "<group>"; };
-		97CAA16317830171C6863730 /* Pods-MLModelInterpreterExampleObjC.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MLModelInterpreterExampleObjC.debug.xcconfig"; path = "Target Support Files/Pods-MLModelInterpreterExampleObjC/Pods-MLModelInterpreterExampleObjC.debug.xcconfig"; sourceTree = "<group>"; };
-		E8810CF647104C74C50E4015 /* Pods-MLModelInterpreterExampleObjC.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MLModelInterpreterExampleObjC.release.xcconfig"; path = "Target Support Files/Pods-MLModelInterpreterExampleObjC/Pods-MLModelInterpreterExampleObjC.release.xcconfig"; sourceTree = "<group>"; };
-		EB2957D6097226AFBEE6AC39 /* Pods_MLModelInterpreterExampleObjC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MLModelInterpreterExampleObjC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F934357CED2D39F62D590410 /* Pods-MLModelInterpreterExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MLModelInterpreterExample.release.xcconfig"; path = "Target Support Files/Pods-MLModelInterpreterExample/Pods-MLModelInterpreterExample.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,7 +127,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FC096EC05CFEFB2709514832 /* Pods_MLModelInterpreterExampleObjC.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -157,7 +148,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FBD7BB7BBF5512EEFCB8F7B0 /* Pods_MLModelInterpreterExample.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -228,7 +218,6 @@
 				10E115CD20F469DC0013E4A4 /* MLModelInterpreterExampleObjCUITests */,
 				4A56D20B20A138E500357F77 /* Products */,
 				5E8F070C10E91B3893D00F01 /* Pods */,
-				652430288B8B5D64419A10AE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -275,22 +264,8 @@
 		5E8F070C10E91B3893D00F01 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				14C907853C49E46EEFE2AE6D /* Pods-MLModelInterpreterExample.debug.xcconfig */,
-				F934357CED2D39F62D590410 /* Pods-MLModelInterpreterExample.release.xcconfig */,
-				97CAA16317830171C6863730 /* Pods-MLModelInterpreterExampleObjC.debug.xcconfig */,
-				E8810CF647104C74C50E4015 /* Pods-MLModelInterpreterExampleObjC.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
-			sourceTree = "<group>";
-		};
-		652430288B8B5D64419A10AE /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				278D0E0B0642D05465533E52 /* Pods_MLModelInterpreterExample.framework */,
-				EB2957D6097226AFBEE6AC39 /* Pods_MLModelInterpreterExampleObjC.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -336,11 +311,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 10E115D120F469DC0013E4A4 /* Build configuration list for PBXNativeTarget "MLModelInterpreterExampleObjC" */;
 			buildPhases = (
-				79A44ADEA2DF0F8C617A9435 /* [CP] Check Pods Manifest.lock */,
 				10E115A420F469DB0013E4A4 /* Sources */,
 				10E115A520F469DB0013E4A4 /* Frameworks */,
 				10E115A620F469DB0013E4A4 /* Resources */,
-				74167BB0DEFD1B8C8FB8BFCB /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -391,11 +364,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4A56D21C20A138E500357F77 /* Build configuration list for PBXNativeTarget "MLModelInterpreterExample" */;
 			buildPhases = (
-				0F8EDD7DAEF4333D5DA2DA37 /* [CP] Check Pods Manifest.lock */,
 				4A56D20620A138E500357F77 /* Sources */,
 				4A56D20720A138E500357F77 /* Frameworks */,
 				4A56D20820A138E500357F77 /* Resources */,
-				A12DAEC93BD7523394C98A9E /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -526,87 +497,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		0F8EDD7DAEF4333D5DA2DA37 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-MLModelInterpreterExample-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		74167BB0DEFD1B8C8FB8BFCB /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MLModelInterpreterExampleObjC/Pods-MLModelInterpreterExampleObjC-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MLModelInterpreterExampleObjC/Pods-MLModelInterpreterExampleObjC-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MLModelInterpreterExampleObjC/Pods-MLModelInterpreterExampleObjC-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		79A44ADEA2DF0F8C617A9435 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-MLModelInterpreterExampleObjC-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		A12DAEC93BD7523394C98A9E /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MLModelInterpreterExample/Pods-MLModelInterpreterExample-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MLModelInterpreterExample/Pods-MLModelInterpreterExample-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MLModelInterpreterExample/Pods-MLModelInterpreterExample-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		10E114BC20D5E5B40013E4A4 /* Sources */ = {
@@ -781,7 +671,6 @@
 		};
 		10E115D220F469DC0013E4A4 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 97CAA16317830171C6863730 /* Pods-MLModelInterpreterExampleObjC.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -801,7 +690,6 @@
 		};
 		10E115D320F469DC0013E4A4 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E8810CF647104C74C50E4015 /* Pods-MLModelInterpreterExampleObjC.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1009,7 +897,6 @@
 		};
 		4A56D21D20A138E500357F77 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 14C907853C49E46EEFE2AE6D /* Pods-MLModelInterpreterExample.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1030,7 +917,6 @@
 		};
 		4A56D21E20A138E500357F77 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F934357CED2D39F62D590410 /* Pods-MLModelInterpreterExample.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";

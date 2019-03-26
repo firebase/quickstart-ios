@@ -390,6 +390,7 @@ typedef NS_ENUM(NSInteger, Detector) {
   } else {
     _previewOverlayView.image = rotatedImage;
   }
+  CGImageRelease(cgImage);
 }
 
 - (NSArray <NSValue *>*)convertedPointsFromPoints:(NSArray<NSValue *> *)points

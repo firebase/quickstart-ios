@@ -18,6 +18,8 @@
 @import UIKit;
 @import FirebaseMLCommon;
 
+NS_ASSUME_NONNULL_BEGIN
+
 /// Defines the requirements for managing remote and local models.
 @protocol ModelManaging
 
@@ -56,3 +58,5 @@ typedef void (^DetectObjectsCompletion)(NSArray *_Nullable objects, NSError *_Nu
 - (nullable NSData *)scaledImageDataFromImage:(UIImage *)image;
 
 @end
+
+NS_ASSUME_NONNULL_END

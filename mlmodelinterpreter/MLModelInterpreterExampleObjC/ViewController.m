@@ -117,6 +117,7 @@ NSString * const LocalModelDescription[] = {
       ![UIImagePickerController isCameraDeviceAvailable:UIImagePickerControllerCameraDeviceRear]) {
     [_cameraButton setEnabled:NO];
   }
+  [self updateModelInterpreterManager];
   [self setUpRemoteModel];
   [self setUpLocalModel];
 }
@@ -193,7 +194,6 @@ NSString * const LocalModelDescription[] = {
   [self updateModelInterpreterManager];
   [self setUpLocalModel];
   [self setUpRemoteModel];
-  _downloadModelButton.enabled = !_isRemoteModelDownloaded;
 }
 
 #pragma mark - Private

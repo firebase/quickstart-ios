@@ -1,5 +1,5 @@
 //
-//  Copyright (c) 2019 Google Inc.
+// Copyright (c) 2019 Google Inc.
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -14,15 +14,10 @@
 //  limitations under the License.
 //
 
-@import UIKit;
-
-NS_ASSUME_NONNULL_BEGIN
+#import <UIKit/UIKit.h>
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
-@property (strong, nonatomic) UIWindow *window;
+@property(strong, nonatomic) UIWindow *window;
 
 @end
-
-NS_ASSUME_NONNULL_END
-

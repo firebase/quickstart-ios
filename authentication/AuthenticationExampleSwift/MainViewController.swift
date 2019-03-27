@@ -23,7 +23,6 @@ import Firebase
 import GoogleSignIn
 import FBSDKCoreKit
 import FBSDKLoginKit
-import TwitterKit
 
 @objc(MainViewController)
 // [START signin_controller]
@@ -40,7 +39,6 @@ class MainViewController: UITableViewController, GIDSignInUIDelegate {
     case authAnonymous
     case authFacebook
     case authGoogle
-    case authTwitter
     case authPhone
     case authCustom
     case authPasswordless
@@ -157,19 +155,6 @@ class MainViewController: UITableViewController, GIDSignInUIDelegate {
           GIDSignIn.sharedInstance().signIn()
           // [END setup_gid_uidelegate]
         }
-      case .authTwitter:
-        action = UIAlertAction(title: "Twitter", style: .default) { (UIAlertAction) in
-          Twitter.sharedInstance().logIn() { (session, error) in
-            if let session = session {
-              // [START headless_twitter_auth]
-              let credential = TwitterAuthProvider.credential(withToken: session.authToken, secret: session.authTokenSecret)
-              // [END headless_twitter_auth]
-              self.firebaseLogin(credential)
-            } else {
-              self.showMessagePrompt((error?.localizedDescription)!)
-            }
-          }
-        }
       case .authPhone:
         action = UIAlertAction(title: "Phone", style: .default) { (UIAlertAction) in
           self.showTextInputPrompt(withMessage: "Phone Number:") { (userPressedOK, userInput) in
@@ -273,7 +258,6 @@ class MainViewController: UITableViewController, GIDSignInUIDelegate {
       AuthProvider.authAnonymous,
       AuthProvider.authGoogle,
       AuthProvider.authFacebook,
-      AuthProvider.authTwitter,
       AuthProvider.authPhone,
       AuthProvider.authCustom,
       AuthProvider.authPasswordless,
@@ -286,7 +270,6 @@ class MainViewController: UITableViewController, GIDSignInUIDelegate {
     var providers = Set([
       AuthProvider.authGoogle,
       AuthProvider.authFacebook,
-      AuthProvider.authTwitter,
       AuthProvider.authPhone
     ])
     // Remove any existing providers. Note that this is not a complete list of
@@ -295,8 +278,6 @@ class MainViewController: UITableViewController, GIDSignInUIDelegate {
     let user = Auth.auth().currentUser
     for info in (user?.providerData)! {
       switch info.providerID {
-      case TwitterAuthProviderID:
-        providers.remove(AuthProvider.authTwitter)
       case FacebookAuthProviderID:
         providers.remove(AuthProvider.authFacebook)
       case GoogleAuthProviderID:

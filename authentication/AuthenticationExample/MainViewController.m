@@ -21,7 +21,6 @@
 
 @import FBSDKCoreKit;
 @import FBSDKLoginKit;
-@import TwitterKit;
 
 static const int kSectionToken = 3;
 static const int kSectionProviders = 2;
@@ -33,7 +32,6 @@ typedef enum : NSUInteger {
   AuthAnonymous,
   AuthFacebook,
   AuthGoogle,
-  AuthTwitter,
   AuthCustom,
   AuthPhone,
   AuthPasswordless,
@@ -164,26 +162,6 @@ static NSString *const kUpdatePhoneNumberText = @"Update Phone Number";
                                           style:UIAlertActionStyleDefault
                                         handler:^(UIAlertAction * _Nonnull action) {
           [self performSegueWithIdentifier:@"customToken" sender:nil];
-        }];
-      }
-        break;
-      case AuthTwitter:
-      {
-        action = [UIAlertAction actionWithTitle:@"Twitter"
-                                          style:UIAlertActionStyleDefault
-                                        handler:^(UIAlertAction * _Nonnull action) {
-          [[Twitter sharedInstance] logInWithCompletion:^(TWTRSession *session, NSError *error) {
-            if (session) {
-              // [START headless_twitter_auth]
-              FIRAuthCredential *credential =
-                  [FIRTwitterAuthProvider credentialWithToken:session.authToken
-                                                       secret:session.authTokenSecret];
-              // [END headless_twitter_auth]
-              [self firebaseLoginWithCredential:credential];
-            } else {
-              [self showMessagePrompt:error.localizedDescription];
-            }
-          }];
         }];
       }
         break;
@@ -374,7 +352,6 @@ static NSString *const kUpdatePhoneNumberText = @"Update Phone Number";
                          @(AuthAnonymous),
                          @(AuthGoogle),
                          @(AuthFacebook),
-                         @(AuthTwitter),
                          @(AuthPhone),
                          @(AuthCustom),
                          @(AuthPasswordless),
@@ -385,7 +362,6 @@ static NSString *const kUpdatePhoneNumberText = @"Update Phone Number";
 - (IBAction)didTapLink:(id)sender {
   NSMutableArray *providers = [@[@(AuthGoogle),
                                  @(AuthFacebook),
-                                 @(AuthTwitter),
                                  @(AuthPhone)] mutableCopy];
 
   // Remove any existing providers. Note that this is not a complete list of
@@ -396,8 +372,6 @@ static NSString *const kUpdatePhoneNumberText = @"Update Phone Number";
       [providers removeObject:@(AuthFacebook)];
     } else if ([userInfo.providerID isEqualToString:FIRGoogleAuthProviderID]) {
       [providers removeObject:@(AuthGoogle)];
-    } else if ([userInfo.providerID isEqualToString:FIRTwitterAuthProviderID]) {
-      [providers removeObject:@(AuthTwitter)];
     } else if ([userInfo.providerID isEqualToString:FIRPhoneAuthProviderID]) {
       [providers removeObject:@(AuthPhone)];
     }

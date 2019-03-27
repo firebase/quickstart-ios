@@ -40,7 +40,7 @@ static int const alphaComponentModuloRemainder = 3;
   return [UIImage imageWithData:imageData];
 }
 
-- (NSData *)scaledDataWithSize:(CGSize)size
+- (nullable NSData *)scaledDataWithSize:(CGSize)size
                      byteCount:(int)byteCount
                    isQuantized:(BOOL)isQuantized {
   CGImageRef cgImage = self.CGImage;
@@ -63,12 +63,15 @@ static int const alphaComponentModuloRemainder = 3;
       }
       mutableBytes[pixelIndex++] = bytes[offset];
     }
-    if (!isQuantized) {
-      for (int i = 0; i < byteCount; i++) {
-        mutableBytes[i] = (Float32)mutableBytes[i]/maxRGBValue;
-      }
+    if (isQuantized) {
+        return scaledBytes;
     }
-    return scaledBytes;
+    NSMutableData *scaledFloats = [NSMutableData dataWithLength:byteCount*4];
+    Float32 *mutableFloats = scaledFloats.mutableBytes;
+    for (int i = 0; i < byteCount; i++) {
+      mutableFloats[i] = (Float32)mutableBytes[i]/maxRGBValue;
+    }
+      return scaledFloats;
   } else {
     return nil;
   }

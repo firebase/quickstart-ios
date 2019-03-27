@@ -36,7 +36,7 @@
 ///   - isQuantized: Whether the model is quantized (i.e. fixed point values rather than floating
 ///       point values).
 /// - Returns: The scaled image as data or `nil` if the image could not be scaled.
-- (NSData *)scaledDataWithSize:(CGSize)size
+- (nullable NSData *)scaledDataWithSize:(CGSize)size
                      byteCount:(int)byteCount
                    isQuantized:(BOOL)isQuantized;
 @end

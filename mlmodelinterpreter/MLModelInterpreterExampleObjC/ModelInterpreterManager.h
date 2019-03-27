@@ -45,14 +45,12 @@ static NSString *const floatModelFilename = @"mobilenet_float_v2_1.0_299";
 
 typedef void (^DetectObjectsCompletion)(NSArray *_Nullable objects, NSError *_Nullable error);
 
-- (id)init;
-- (id)initWithModelManager:(id<ModelManaging>)modelManager;
 - (BOOL)setUpRemoteModelWithName:(NSString *)name;
 - (BOOL)setUpLocalModelWithName:(NSString *)name filename:(NSString *)filename;
 - (BOOL)setUpLocalModelWithName:(NSString *)name filename:(NSString *)filename bundle:(NSBundle *)bundle;
 - (BOOL)loadRemoteModelWithIsModelQuantized:(BOOL)isModelQuantized;
 - (BOOL)loadLocalModelWithIsModelQuantized:(BOOL)isModelQuantized;
-- (void)detectObjectsInImageData:(NSObject *)imageData
+- (void)detectObjectsInImageData:(NSData *)imageData
                  topResultsCount:(nullable NSNumber *)topResultsCount
                       completion:(DetectObjectsCompletion)completion;
 - (nullable NSData *)scaledImageDataFromImage:(UIImage *)image;

@@ -79,22 +79,23 @@ static float const SoftmaxScale = 1.0 / (SoftmaxMaxUInt8QuantizedValue + Softmax
 - (instancetype)init {
   return [self initWithModelManager:[FIRModelManager modelManager]];
 }
-
 /// Creates a new instance with the given object that conforms to `ModelManaging`.
 - (instancetype)initWithModelManager:(id<ModelManaging>)modelManager {
-  self.modelManager = modelManager;
-  self.inputDimensions = @[
-                           @(batchSize),
-                           @(dimensionImageWidth),
-                           @(dimensionImageHeight),
-                           @(componentCount)
-                           ];
-  self.outputDimensions = @[@(batchSize), @(labelsCount)];
-  self.modelInputOutputOptions = [FIRModelInputOutputOptions new];
-  self.labels = [NSArray new];
-  self.registeredRemoteModelNames = [NSMutableSet new];
-  self.registeredLocalModelNames = [NSMutableSet new];
-  self.modelElementType = FIRModelElementTypeUInt8;
+  self = [super init];
+  if (self != nil) {
+    _modelManager = [FIRModelManager modelManager];
+    _inputDimensions = @[
+                         @(batchSize),
+                         @(dimensionImageWidth),
+                         @(dimensionImageHeight),
+                         @(componentCount)];
+    _outputDimensions = @[@(batchSize), @(labelsCount)];
+    _modelInputOutputOptions = [FIRModelInputOutputOptions new];
+    _labels = [NSArray new];
+    _registeredRemoteModelNames = [NSMutableSet new];
+    _registeredLocalModelNames = [NSMutableSet new];
+    _modelElementType = FIRModelElementTypeUInt8;
+  }
   return self;
 }
 
@@ -207,7 +208,7 @@ static float const SoftmaxScale = 1.0 / (SoftmaxMaxUInt8QuantizedValue + Softmax
 ///   - imageData: The data or pixel array representation of the image to detect objects in.
 ///   - topResultsCount: The number of top results to return.
 ///   - completion: The handler to be called on the main thread with detection results or error.
-- (void)detectObjectsInImageData:(NSObject *)imageData
+- (void)detectObjectsInImageData:(NSData *)imageData
                  topResultsCount:(nullable NSNumber *)topResultsCount
                       completion:(DetectObjectsCompletion)completion {
   int topResCount = topResultsCount != nil ? topResultsCount.intValue : topResultsCountInt;

@@ -5,8 +5,8 @@ platform :ios, '9.0'
 use_frameworks!
 
 pod 'Firebase/Core'
-pod 'FirebaseMLCommon', '0.1.48'
-pod 'FirebaseMLModelInterpreter', '0.1.48'
+pod 'FirebaseMLCommon', '0.1.50'
+pod 'FirebaseMLModelInterpreter', '0.1.50'
 
 target 'MLModelInterpreterExample' do
 end

@@ -66,13 +66,13 @@ NSString * const LocalModelDescription[] = {
 @property(nonatomic) UIImagePickerController *imagePicker;
 
 /// The currently selected remote model type.
-@property(nonatomic) RemoteModelType currentRemoteModelType;
+@property(nonatomic, readonly) RemoteModelType currentRemoteModelType;
 
 /// The currently selected local model type.
-@property(nonatomic) LocalModelType currentLocalModelType;
-@property(nonatomic) BOOL isQuantizedModel;
-@property(nonatomic) BOOL isRemoteModelDownloaded;
-@property(nonatomic) BOOL isExplicitModelDownload;
+@property(nonatomic, readonly) LocalModelType currentLocalModelType;
+@property(nonatomic, readonly ) BOOL isQuantizedModel;
+@property(nonatomic, readonly) BOOL isRemoteModelDownloaded;
+@property(nonatomic, readonly) BOOL isExplicitModelDownload;
 
 /// A segmented control for changing models (0 = float, 1 = quantized, 2 = invalid).
 @property (weak, nonatomic) IBOutlet UISegmentedControl *modelControl;
@@ -99,11 +99,11 @@ NSString * const LocalModelDescription[] = {
 }
 
 - (BOOL) isRemoteModelDownloaded {
-  return [NSUserDefaults.standardUserDefaults boolForKey:RemoteModelDownloadCompletedKey[_currentRemoteModelType]];
+  return [NSUserDefaults.standardUserDefaults boolForKey:RemoteModelDownloadCompletedKey[self.currentRemoteModelType]];
 }
 
 - (BOOL) isQuantizedModel {
-  return _isRemoteModelDownloaded ? _currentRemoteModelType == RemoteModelTypeQuantized : _currentLocalModelType == LocalModelTypeQuantized;
+  return self.isRemoteModelDownloaded ? self.currentRemoteModelType == RemoteModelTypeQuantized : self.currentLocalModelType == LocalModelTypeQuantized;
 }
 
 - (BOOL) isExplicitModelDownload {
@@ -112,8 +112,7 @@ NSString * const LocalModelDescription[] = {
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-  
-  self.manager = [ModelInterpreterManager new];
+
   self.modelInterpreterManagerMap = [NSMutableDictionary new];
   self.isLocalModelLoaded = NO;
   self.imagePicker = [UIImagePickerController new];
@@ -126,7 +125,7 @@ NSString * const LocalModelDescription[] = {
   [self updateModelInterpreterManager];
   [self setUpRemoteModel];
   [self setUpLocalModel];
-  _downloadModelButton.enabled = !_isRemoteModelDownloaded;
+  self.downloadModelButton.enabled = !self.isRemoteModelDownloaded;
 }
 
 #pragma mark - IBActions
@@ -138,12 +137,12 @@ NSString * const LocalModelDescription[] = {
     [self updateResultsText:@"Image must not be nil.\n"];
     return;
   }
-  if (_isRemoteModelDownloaded) {
+  if (self.isRemoteModelDownloaded) {
     [self updateResultsText:@"Loading the  model...\n"];
     [self loadRemoteModel];
   } else {
     [self updateResultsText:@"Loading the local model...\n"];
-    if (![_manager loadLocalModelWithIsQuantizedModel:_isQuantizedModel]) {
+    if (![_manager loadLocalModelWithIsQuantizedModel:self.isQuantizedModel]) {
       [self updateResultsText:@"Failed to load the local model."];
       return;
     }
@@ -154,9 +153,9 @@ NSString * const LocalModelDescription[] = {
     newResultsTextString = [_resultsTextView.text stringByAppendingString:newResultsTextString];
   }
   [self updateResultsText:newResultsTextString];
-  RemoteModelType remotemodel = _currentRemoteModelType;
+  RemoteModelType remotemodel = self.currentRemoteModelType;
   dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), ^{
-    NSObject *imageData = [self.manager scaledImageDataFromImage:image];
+    NSData *imageData = [self.manager scaledImageDataFromImage:image];
     [self.manager detectObjectsInImageData:imageData topResultsCount:nil completion:^(NSArray * _Nullable results, NSError * _Nullable error) {
       if (!results || results.count == 0) {
         NSString *errorString = error ? error.localizedDescription : failedToDetectObjectsMessage;
@@ -189,10 +188,10 @@ NSString * const LocalModelDescription[] = {
 
 - (IBAction)downloadModel:(id)sender {
   [self updateResultsText:nil];
-  _downloadModelButton.enabled = _isRemoteModelDownloaded;
-  _detectButton.enabled = NO;
-  _downloadProgressView.hidden = !_isQuantizedModel || _isRemoteModelDownloaded;
-  _resultsTextView.text = _isRemoteModelDownloaded ?
+  self.downloadModelButton.enabled = self.isRemoteModelDownloaded;
+  self.detectButton.enabled = NO;
+  self.downloadProgressView.hidden = !self.isQuantizedModel || self.isRemoteModelDownloaded;
+  self.resultsTextView.text = self.isRemoteModelDownloaded ?
   @"Remote model loaded. Select the `Detect` button to start the inference." :
   @"Downloading remote model. Once the download has completed, select the `Detect` button to start the inference.";
   [self downloadRemoteModel];
@@ -203,8 +202,8 @@ NSString * const LocalModelDescription[] = {
   [self updateModelInterpreterManager];
   [self setUpLocalModel];
   [self setUpRemoteModel];
-  _downloadModelButton.enabled = !_isRemoteModelDownloaded;
-  _downloadProgressView.hidden = !_isExplicitModelDownload || _isRemoteModelDownloaded;
+  self.downloadModelButton.enabled = !self.isRemoteModelDownloaded;
+  self.downloadProgressView.hidden = !self.isExplicitModelDownload || self.isRemoteModelDownloaded;
 }
 
 #pragma mark - Notifications
@@ -248,10 +247,10 @@ NSString * const LocalModelDescription[] = {
 
 /// Updates the `ModelInterpreterManager` instance based on the current remote and local models.
 - (void)updateModelInterpreterManager {
-  NSString *key = [NSString stringWithFormat:@"%@%ld%@%ld", RemoteModelDescription[_currentRemoteModelType],
-                    _currentRemoteModelType,
-                    LocalModelDescription[_currentLocalModelType],
-                    _currentLocalModelType
+  NSString *key = [NSString stringWithFormat:@"%@%ld%@%ld", RemoteModelDescription[self.currentRemoteModelType],
+                    self.currentRemoteModelType,
+                    LocalModelDescription[self.currentLocalModelType],
+                    self.currentLocalModelType
                    ];
   _manager = _modelInterpreterManagerMap[key];
   if (_manager == nil) {
@@ -261,7 +260,7 @@ NSString * const LocalModelDescription[] = {
 }
 
 - (void)setUpRemoteModel {
-  NSString *modelName = RemoteModelDescription[_currentRemoteModelType];
+  NSString *modelName = RemoteModelDescription[self.currentRemoteModelType];
   if (![_manager setUpRemoteModelWithName:modelName]) {
     [self updateResultsText:[NSString stringWithFormat:@"%@\nFailed to set up the `%@` remote model.", _resultsTextView.text, modelName]];
   }
@@ -272,7 +271,7 @@ NSString * const LocalModelDescription[] = {
 }
 
 - (void)setUpLocalModel {
-  NSString *localModelName = LocalModelDescription[_currentLocalModelType];
+  NSString *localModelName = LocalModelDescription[self.currentLocalModelType];
   if (![_manager setUpLocalModelWithName:localModelName filename:localModelName]) {
     NSString *newResultsText = @"";
     if (_resultsTextView.text) {
@@ -286,11 +285,11 @@ NSString * const LocalModelDescription[] = {
 // the `ModelManager`'s `download(_:)` method or by implicitly invoking download via the
 // `ModelInterpreterManager`'s `loadRemoteModel(isQuantizedModel:)` method.
 - (void)downloadRemoteModel {
-  if (!_isExplicitModelDownload) {
+  if (!self.isExplicitModelDownload) {
     [self loadRemoteModel];
     return;
   }
-  NSString *name = RemoteModelDescription[_currentRemoteModelType];
+  NSString *name = RemoteModelDescription[self.currentRemoteModelType];
   FIRModelManager *modelManager = [FIRModelManager modelManager];
   FIRRemoteModel *remoteModel = [modelManager remoteModelWithName:name];
   if (remoteModel == nil) {
@@ -301,7 +300,7 @@ NSString * const LocalModelDescription[] = {
 }
 
 - (void)loadRemoteModel {
-  if (![_manager loadRemoteModelWithIsQuantizedModel:_isQuantizedModel]) {
+  if (![_manager loadRemoteModelWithIsQuantizedModel:self.isQuantizedModel]) {
     [self updateResultsText:@"Failed to load the remote model."];
   }
 }

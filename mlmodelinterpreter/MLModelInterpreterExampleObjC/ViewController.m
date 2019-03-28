@@ -70,7 +70,7 @@ NSString * const LocalModelDescription[] = {
 
 /// The currently selected local model type.
 @property(nonatomic, readonly) LocalModelType currentLocalModelType;
-@property(nonatomic, readonly ) BOOL isQuantizedModel;
+@property(nonatomic, readonly) BOOL isQuantizedModel;
 @property(nonatomic, readonly) BOOL isRemoteModelDownloaded;
 @property(nonatomic, readonly) BOOL isExplicitModelDownload;
 
@@ -300,7 +300,7 @@ NSString * const LocalModelDescription[] = {
 }
 
 - (void)loadRemoteModel {
-  if (![_manager loadRemoteModelWithIsQuantizedModel:self.isQuantizedModel]) {
+  if (![self.manager loadRemoteModelWithIsQuantizedModel:self.isQuantizedModel]) {
     [self updateResultsText:@"Failed to load the remote model."];
   }
 }

@@ -24,8 +24,6 @@ import Firebase
 import GoogleSignIn
 // [END google_import]
 import FBSDKCoreKit
-import Fabric
-import TwitterKit
 
 @UIApplicationMain
 // [START signin_delegate]
@@ -49,11 +47,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     FBSDKApplicationDelegate.sharedInstance().application(application,
         didFinishLaunchingWithOptions:launchOptions)
 
-    let key = Bundle.main.object(forInfoDictionaryKey: "consumerKey"),
-        secret = Bundle.main.object(forInfoDictionaryKey: "consumerSecret")
-    if let key = key as? String, let secret = secret as? String, !key.isEmpty && !secret.isEmpty {
-      Twitter.sharedInstance().start(withConsumerKey: key, consumerSecret: secret)
-    }
     return true
   }
 

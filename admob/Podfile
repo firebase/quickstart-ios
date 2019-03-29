@@ -1,10 +1,10 @@
 use_frameworks!
 platform :ios, '8.0'
 
-target 'AdMobExample' do
+pod 'Firebase/Core'
+pod 'Firebase/AdMob'
 
-  pod 'Firebase/Core'
-  pod 'Firebase/AdMob'
+target 'AdMobExample' do
 
   target 'AdMobExampleTests' do
     inherit! :search_paths
@@ -16,9 +16,6 @@ target 'AdMobExample' do
 end
 
 target 'AdMobExampleSwift' do
-
-  pod 'Firebase/Core'
-  pod 'Firebase/AdMob'
 
   target 'AdMobExampleSwiftTests' do
     inherit! :search_paths

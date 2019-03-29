@@ -1,47 +1,48 @@
 PODS:
-  - Firebase/Auth (5.18.0):
+  - Firebase/Auth (5.19.0):
     - Firebase/CoreOnly
-    - FirebaseAuth (= 5.4.0)
-  - Firebase/Core (5.18.0):
+    - FirebaseAuth (= 5.4.1)
+  - Firebase/Core (5.19.0):
     - Firebase/CoreOnly
-    - FirebaseAnalytics (= 5.7.0)
-  - Firebase/CoreOnly (5.18.0):
-    - FirebaseCore (= 5.3.1)
-  - Firebase/Functions (5.18.0):
+    - FirebaseAnalytics (= 5.8.0)
+  - Firebase/CoreOnly (5.19.0):
+    - FirebaseCore (= 5.4.0)
+  - Firebase/Functions (5.19.0):
     - Firebase/CoreOnly
-    - FirebaseFunctions (= 2.3.0)
-  - FirebaseAnalytics (5.7.0):
-    - FirebaseCore (~> 5.3)
-    - FirebaseInstanceID (~> 3.6)
-    - GoogleAppMeasurement (= 5.7.0)
+    - FirebaseFunctions (= 2.4.0)
+  - FirebaseAnalytics (5.8.0):
+    - FirebaseCore (~> 5.4)
+    - FirebaseInstanceID (~> 3.8)
+    - GoogleAppMeasurement (= 5.8.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 5.2)
     - GoogleUtilities/MethodSwizzler (~> 5.2)
     - GoogleUtilities/Network (~> 5.2)
     - "GoogleUtilities/NSData+zlib (~> 5.2)"
     - nanopb (~> 0.3)
-  - FirebaseAuth (5.4.0):
+  - FirebaseAuth (5.4.1):
     - FirebaseAuthInterop (~> 1.0)
     - FirebaseCore (~> 5.2)
     - GoogleUtilities/Environment (~> 5.2)
     - GTMSessionFetcher/Core (~> 1.1)
   - FirebaseAuthInterop (1.0.0)
-  - FirebaseCore (5.3.1):
+  - FirebaseCore (5.4.0):
+    - GoogleUtilities/Environment (~> 5.2)
     - GoogleUtilities/Logger (~> 5.2)
-  - FirebaseFunctions (2.3.0):
+  - FirebaseFunctions (2.4.0):
     - FirebaseAuthInterop (~> 1.0)
     - FirebaseCore (~> 5.2)
     - GTMSessionFetcher/Core (~> 1.1)
-  - FirebaseInstanceID (3.7.0):
+  - FirebaseInstanceID (3.8.0):
     - FirebaseCore (~> 5.2)
     - GoogleUtilities/Environment (~> 5.2)
     - GoogleUtilities/UserDefaults (~> 5.2)
-  - FirebaseUI/Auth (6.1.1):
+  - FirebaseUI/Auth (6.2.1):
     - Firebase/Auth (~> 5.0)
     - GoogleUtilities/UserDefaults
-  - FirebaseUI/Google (6.1.1):
+  - FirebaseUI/Google (6.2.1):
     - FirebaseUI/Auth
     - GoogleSignIn (~> 4.0)
-  - GoogleAppMeasurement (5.7.0):
+  - GoogleAppMeasurement (5.8.0):
     - GoogleUtilities/AppDelegateSwizzler (~> 5.2)
     - GoogleUtilities/MethodSwizzler (~> 5.2)
     - GoogleUtilities/Network (~> 5.2)
@@ -78,8 +79,8 @@ PODS:
   - GoogleUtilities/UserDefaults (5.5.0):
     - GoogleUtilities/Logger
   - GTMSessionFetcher/Core (1.2.1)
-  - MaterialComponents/AnimationTiming (79.1.1)
-  - MaterialComponents/Buttons (79.1.1):
+  - MaterialComponents/AnimationTiming (80.0.0)
+  - MaterialComponents/Buttons (80.0.0):
     - MaterialComponents/Ink
     - MaterialComponents/private/Math
     - MaterialComponents/ShadowElevations
@@ -88,7 +89,7 @@ PODS:
     - MaterialComponents/Typography
     - MDFInternationalization
     - MDFTextAccessibility
-  - MaterialComponents/CollectionCells (79.1.1):
+  - MaterialComponents/CollectionCells (80.0.0):
     - MaterialComponents/CollectionLayoutAttributes
     - MaterialComponents/Ink
     - MaterialComponents/Palettes
@@ -101,8 +102,8 @@ PODS:
     - MaterialComponents/private/Math
     - MaterialComponents/Typography
     - MDFInternationalization
-  - MaterialComponents/CollectionLayoutAttributes (79.1.1)
-  - MaterialComponents/Collections (79.1.1):
+  - MaterialComponents/CollectionLayoutAttributes (80.0.0)
+  - MaterialComponents/Collections (80.0.0):
     - MaterialComponents/CollectionCells
     - MaterialComponents/CollectionLayoutAttributes
     - MaterialComponents/Ink
@@ -110,37 +111,37 @@ PODS:
     - MaterialComponents/ShadowElevations
     - MaterialComponents/ShadowLayer
     - MaterialComponents/Typography
-  - MaterialComponents/Ink (79.1.1):
+  - MaterialComponents/Ink (80.0.0):
     - MaterialComponents/private/Math
-  - MaterialComponents/Palettes (79.1.1)
-  - MaterialComponents/private/Application (79.1.1)
-  - MaterialComponents/private/Icons/Base (79.1.1)
-  - MaterialComponents/private/Icons/ic_check (79.1.1):
+  - MaterialComponents/Palettes (80.0.0)
+  - MaterialComponents/private/Application (80.0.0)
+  - MaterialComponents/private/Icons/Base (80.0.0)
+  - MaterialComponents/private/Icons/ic_check (80.0.0):
     - MaterialComponents/private/Icons/Base
-  - MaterialComponents/private/Icons/ic_check_circle (79.1.1):
+  - MaterialComponents/private/Icons/ic_check_circle (80.0.0):
     - MaterialComponents/private/Icons/Base
-  - MaterialComponents/private/Icons/ic_chevron_right (79.1.1):
+  - MaterialComponents/private/Icons/ic_chevron_right (80.0.0):
     - MaterialComponents/private/Icons/Base
-  - MaterialComponents/private/Icons/ic_info (79.1.1):
+  - MaterialComponents/private/Icons/ic_info (80.0.0):
     - MaterialComponents/private/Icons/Base
-  - MaterialComponents/private/Icons/ic_radio_button_unchecked (79.1.1):
+  - MaterialComponents/private/Icons/ic_radio_button_unchecked (80.0.0):
     - MaterialComponents/private/Icons/Base
-  - MaterialComponents/private/Icons/ic_reorder (79.1.1):
+  - MaterialComponents/private/Icons/ic_reorder (80.0.0):
     - MaterialComponents/private/Icons/Base
-  - MaterialComponents/private/Math (79.1.1)
-  - MaterialComponents/ShadowElevations (79.1.1)
-  - MaterialComponents/ShadowLayer (79.1.1):
+  - MaterialComponents/private/Math (80.0.0)
+  - MaterialComponents/ShadowElevations (80.0.0)
+  - MaterialComponents/ShadowLayer (80.0.0):
     - MaterialComponents/ShadowElevations
-  - MaterialComponents/Shapes (79.1.1):
+  - MaterialComponents/Shapes (80.0.0):
     - MaterialComponents/private/Math
     - MaterialComponents/ShadowLayer
-  - MaterialComponents/TextFields (79.1.1):
+  - MaterialComponents/TextFields (80.0.0):
     - MaterialComponents/AnimationTiming
     - MaterialComponents/Palettes
     - MaterialComponents/private/Math
     - MaterialComponents/Typography
     - MDFInternationalization
-  - MaterialComponents/Typography (79.1.1):
+  - MaterialComponents/Typography (80.0.0):
     - MaterialComponents/private/Application
     - MaterialComponents/private/Math
   - MDFInternationalization (2.0.0)
@@ -182,24 +183,24 @@ SPEC REPOS:
     - nanopb
 
 SPEC CHECKSUMS:
-  Firebase: 02f3281965c075426141a0ce1277e9de6649cab9
-  FirebaseAnalytics: 23851fe602c872130a2c5c55040b302120346cc2
-  FirebaseAuth: d85d052354447f30b4b2a805ab91b511458b56a6
+  Firebase: c60d49e9c2630875a96207d15e2affb8364996d1
+  FirebaseAnalytics: fd72a26bf8dac84cefba2f0864366f718555a5b0
+  FirebaseAuth: cbb892a66baed025efc179372598941252acf853
   FirebaseAuthInterop: 0ffa57668be100582bb7643d4fcb7615496c41fc
-  FirebaseCore: 52f851b30e11360f1e67cf04b1edfebf0a47a2d3
-  FirebaseFunctions: 3ee25c43a467ec3099718d77323de04ce07828d8
-  FirebaseInstanceID: bd6fc5a258884e206fd5c474ebe4f5b00e21770e
-  FirebaseUI: 1345f778d53f9484f21474c7b10bba313b28a76b
-  GoogleAppMeasurement: 6cf307834da065863f9faf4c0de0a936d81dd832
+  FirebaseCore: 22a79a961c3951ef2f77b67bfbc99e454247b319
+  FirebaseFunctions: 35b530c69ef8c322c414104280d36a06347a5d49
+  FirebaseInstanceID: cf488df2f4b79782f0e430b04a0e17c0aa7979b2
+  FirebaseUI: c9e227a7d44e2e422a461cb3f4ead8dc5c7326e6
+  GoogleAppMeasurement: 1624046ab1bcc5e170061a56ef5679000b079c8e
   GoogleSignIn: 7ff245e1a7b26d379099d3243a562f5747e23d39
   GoogleToolboxForMac: ff31605b7d66400dcec09bed5861689aebadda4d
   GoogleUtilities: 6481e6318c5fcabaaa8513ef8120f329055d7c10
   GTMSessionFetcher: 32aeca0aa144acea523e1c8e053089dec2cb98ca
-  MaterialComponents: 8b8a7a49da5b5c35bc8dab1173bb7d5f7a87b2f8
+  MaterialComponents: fcd7ab0d6087bce852e2c60c2c712809f76c7f9e
   MDFInternationalization: 010097556d6b09d2c4ea38e0820ea6d37be6a314
   MDFTextAccessibility: 85c09a1bd9c321f494348e632a25063bcda35a53
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
 
 PODFILE CHECKSUM: 745a17aabcd57a85c2a338d1f67162a027be5e02
 
-COCOAPODS: 1.7.0.beta.2
+COCOAPODS: 1.6.1

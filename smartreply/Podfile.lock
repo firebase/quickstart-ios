@@ -1,83 +1,84 @@
 PODS:
-  - Firebase/Core (99.99.99):
+  - Firebase/Core (5.19.0):
     - Firebase/CoreOnly
-    - FirebaseAnalytics (= 99.99.99)
-  - Firebase/CoreOnly (99.99.99):
-    - FirebaseCore (= 99.99.99)
-  - Firebase/MLNLSmartReply (99.99.99):
+    - FirebaseAnalytics (= 5.8.0)
+  - Firebase/CoreOnly (5.19.0):
+    - FirebaseCore (= 5.4.0)
+  - Firebase/MLNLSmartReply (5.19.0):
     - Firebase/CoreOnly
-    - FirebaseMLNLSmartReply (= 99.99.99)
-  - FirebaseABTesting (99.99.99):
-    - FirebaseCore (~> 99.99)
+    - FirebaseMLNLSmartReply (= 0.15.0)
+  - FirebaseABTesting (2.0.0):
+    - FirebaseCore (~> 5.0)
     - Protobuf (~> 3.5)
-  - FirebaseAnalytics (99.99.99):
-    - FirebaseCore (~> 99.99)
-    - FirebaseInstanceID (~> 99.99)
-    - GoogleAppMeasurement (= 99.99.99)
+  - FirebaseAnalytics (5.8.0):
+    - FirebaseCore (~> 5.4)
+    - FirebaseInstanceID (~> 3.8)
+    - GoogleAppMeasurement (= 5.8.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 5.2)
     - GoogleUtilities/MethodSwizzler (~> 5.2)
     - GoogleUtilities/Network (~> 5.2)
     - "GoogleUtilities/NSData+zlib (~> 5.2)"
     - nanopb (~> 0.3)
-  - FirebaseCore (99.99.99):
+  - FirebaseCore (5.4.0):
+    - GoogleUtilities/Environment (~> 5.2)
     - GoogleUtilities/Logger (~> 5.2)
-  - FirebaseInstanceID (99.99.99):
-    - FirebaseCore (~> 99.99)
-    - GoogleUtilities/Environment (~> 5.3)
-    - GoogleUtilities/UserDefaults (~> 5.3)
-  - FirebaseMLCommon (99.99.99):
-    - FirebaseCore (~> 99.99)
-    - FirebaseInstanceID (~> 99.99)
+  - FirebaseInstanceID (3.8.0):
+    - FirebaseCore (~> 5.2)
+    - GoogleUtilities/Environment (~> 5.2)
+    - GoogleUtilities/UserDefaults (~> 5.2)
+  - FirebaseMLCommon (0.15.0):
+    - FirebaseCore (~> 5.4)
+    - FirebaseInstanceID (~> 3.8)
     - GoogleUtilities/UserDefaults (~> 5.3)
     - GTMSessionFetcher/Core (~> 1.1)
-  - FirebaseMLNaturalLanguage (99.99.99):
-    - FirebaseCore (~> 99.99)
-    - FirebaseMLCommon (~> 99.99)
-  - FirebaseMLNLLanguageID (99.99.99):
-    - FirebaseCore (~> 99.99)
-    - FirebaseMLCommon (~> 99.99)
-    - FirebaseMLNaturalLanguage (~> 99.99)
-  - FirebaseMLNLSmartReply (99.99.99):
-    - FirebaseCore (~> 99.99)
-    - FirebaseMLCommon (~> 99.99)
-    - FirebaseMLNaturalLanguage (~> 99.99)
-    - FirebaseMLNLLanguageID (~> 99.99)
-    - FirebaseRemoteConfig (~> 99.99)
-  - FirebaseRemoteConfig (99.99.99):
-    - FirebaseABTesting (~> 99.99)
-    - FirebaseAnalytics (~> 99.99)
-    - FirebaseCore (~> 99.99)
-    - FirebaseInstanceID (~> 99.99)
+  - FirebaseMLNaturalLanguage (0.15.0):
+    - FirebaseCore (~> 5.4)
+    - FirebaseMLCommon (~> 0.15)
+  - FirebaseMLNLLanguageID (0.15.0):
+    - FirebaseCore (~> 5.4)
+    - FirebaseMLCommon (~> 0.15)
+    - FirebaseMLNaturalLanguage (~> 0.15)
+  - FirebaseMLNLSmartReply (0.15.0):
+    - FirebaseCore (~> 5.4)
+    - FirebaseMLCommon (~> 0.15)
+    - FirebaseMLNaturalLanguage (~> 0.15)
+    - FirebaseMLNLLanguageID (~> 0.15)
+    - FirebaseRemoteConfig (~> 3.1)
+  - FirebaseRemoteConfig (3.1.0):
+    - FirebaseABTesting (~> 2.0)
+    - FirebaseAnalytics (~> 5.3)
+    - FirebaseCore (~> 5.1)
+    - FirebaseInstanceID (~> 3.3)
     - GoogleUtilities/Environment (~> 5.2)
     - "GoogleUtilities/NSData+zlib (~> 5.2)"
     - Protobuf (~> 3.5)
-  - GoogleAppMeasurement (99.99.99):
+  - GoogleAppMeasurement (5.8.0):
     - GoogleUtilities/AppDelegateSwizzler (~> 5.2)
     - GoogleUtilities/MethodSwizzler (~> 5.2)
     - GoogleUtilities/Network (~> 5.2)
     - "GoogleUtilities/NSData+zlib (~> 5.2)"
     - nanopb (~> 0.3)
-  - GoogleUtilities/AppDelegateSwizzler (5.3.7):
+  - GoogleUtilities/AppDelegateSwizzler (5.5.0):
     - GoogleUtilities/Environment
     - GoogleUtilities/Logger
     - GoogleUtilities/Network
-  - GoogleUtilities/Environment (5.3.7)
-  - GoogleUtilities/Logger (5.3.7):
+  - GoogleUtilities/Environment (5.5.0)
+  - GoogleUtilities/Logger (5.5.0):
     - GoogleUtilities/Environment
-  - GoogleUtilities/MethodSwizzler (5.3.7):
+  - GoogleUtilities/MethodSwizzler (5.5.0):
     - GoogleUtilities/Logger
-  - GoogleUtilities/Network (5.3.7):
+  - GoogleUtilities/Network (5.5.0):
     - GoogleUtilities/Logger
     - "GoogleUtilities/NSData+zlib"
     - GoogleUtilities/Reachability
-  - "GoogleUtilities/NSData+zlib (5.3.7)"
-  - GoogleUtilities/Reachability (5.3.7):
+  - "GoogleUtilities/NSData+zlib (5.5.0)"
+  - GoogleUtilities/Reachability (5.5.0):
     - GoogleUtilities/Logger
-  - GoogleUtilities/UserDefaults (5.3.7):
+  - GoogleUtilities/UserDefaults (5.5.0):
     - GoogleUtilities/Logger
   - GTMSessionFetcher/Core (1.2.1)
-  - MaterialComponents/AnimationTiming (77.0.0)
-  - MaterialComponents/Buttons (77.0.0):
+  - MaterialComponents/AnimationTiming (80.0.0)
+  - MaterialComponents/Buttons (80.0.0):
     - MaterialComponents/Ink
     - MaterialComponents/private/Math
     - MaterialComponents/ShadowElevations
@@ -86,22 +87,22 @@ PODS:
     - MaterialComponents/Typography
     - MDFInternationalization
     - MDFTextAccessibility
-  - "MaterialComponents/Buttons+ButtonThemer (77.0.0)":
+  - "MaterialComponents/Buttons+ButtonThemer (80.0.0)":
     - MaterialComponents/Buttons
     - "MaterialComponents/Buttons+ColorThemer"
     - "MaterialComponents/Buttons+ShapeThemer"
     - "MaterialComponents/Buttons+TypographyThemer"
     - MaterialComponents/Palettes
-  - "MaterialComponents/Buttons+ColorThemer (77.0.0)":
+  - "MaterialComponents/Buttons+ColorThemer (80.0.0)":
     - MaterialComponents/Buttons
     - MaterialComponents/schemes/Color
-  - "MaterialComponents/Buttons+ShapeThemer (77.0.0)":
+  - "MaterialComponents/Buttons+ShapeThemer (80.0.0)":
     - MaterialComponents/Buttons
     - MaterialComponents/schemes/Shape
-  - "MaterialComponents/Buttons+TypographyThemer (77.0.0)":
+  - "MaterialComponents/Buttons+TypographyThemer (80.0.0)":
     - MaterialComponents/Buttons
     - MaterialComponents/schemes/Typography
-  - MaterialComponents/Chips (77.0.0):
+  - MaterialComponents/Chips (80.0.0):
     - MaterialComponents/Ink
     - MaterialComponents/private/Math
     - MaterialComponents/ShadowElevations
@@ -111,39 +112,40 @@ PODS:
     - MaterialComponents/TextFields
     - MaterialComponents/Typography
     - MDFInternationalization
-  - MaterialComponents/Ink (77.0.0):
+  - MaterialComponents/Ink (80.0.0):
     - MaterialComponents/private/Math
-  - MaterialComponents/List (77.0.0):
+  - MaterialComponents/List (80.0.0):
     - MaterialComponents/Ink
     - MaterialComponents/private/Math
     - MaterialComponents/ShadowElevations
     - MaterialComponents/ShadowLayer
     - MaterialComponents/Typography
     - MDFInternationalization
-  - MaterialComponents/Palettes (77.0.0)
-  - MaterialComponents/private/Application (77.0.0)
-  - MaterialComponents/private/Math (77.0.0)
-  - MaterialComponents/schemes/Color (77.0.0)
-  - MaterialComponents/schemes/Shape (77.0.0):
+  - MaterialComponents/Palettes (80.0.0)
+  - MaterialComponents/private/Application (80.0.0)
+  - MaterialComponents/private/Math (80.0.0)
+  - MaterialComponents/schemes/Color (80.0.0)
+  - MaterialComponents/schemes/Shape (80.0.0):
     - MaterialComponents/ShapeLibrary
     - MaterialComponents/Shapes
-  - MaterialComponents/schemes/Typography (77.0.0)
-  - MaterialComponents/ShadowElevations (77.0.0)
-  - MaterialComponents/ShadowLayer (77.0.0):
+  - MaterialComponents/schemes/Typography (80.0.0):
+    - MaterialComponents/Typography
+  - MaterialComponents/ShadowElevations (80.0.0)
+  - MaterialComponents/ShadowLayer (80.0.0):
     - MaterialComponents/ShadowElevations
-  - MaterialComponents/ShapeLibrary (77.0.0):
+  - MaterialComponents/ShapeLibrary (80.0.0):
     - MaterialComponents/private/Math
     - MaterialComponents/Shapes
-  - MaterialComponents/Shapes (77.0.0):
+  - MaterialComponents/Shapes (80.0.0):
     - MaterialComponents/private/Math
     - MaterialComponents/ShadowLayer
-  - MaterialComponents/TextFields (77.0.0):
+  - MaterialComponents/TextFields (80.0.0):
     - MaterialComponents/AnimationTiming
     - MaterialComponents/Palettes
     - MaterialComponents/private/Math
     - MaterialComponents/Typography
     - MDFInternationalization
-  - MaterialComponents/Typography (77.0.0):
+  - MaterialComponents/Typography (80.0.0):
     - MaterialComponents/private/Application
     - MaterialComponents/private/Math
   - MDFInternationalization (2.0.0)
@@ -153,8 +155,8 @@ PODS:
     - nanopb/encode (= 0.3.901)
   - nanopb/decode (0.3.901)
   - nanopb/encode (0.3.901)
-  - Protobuf (3.6.1)
-  - SwiftLint (0.30.1)
+  - Protobuf (3.7.0)
+  - SwiftLint (0.31.0)
 
 DEPENDENCIES:
   - Firebase/Core
@@ -168,49 +170,47 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - Firebase
+    - FirebaseABTesting
+    - FirebaseAnalytics
+    - FirebaseCore
+    - FirebaseInstanceID
+    - FirebaseMLCommon
+    - FirebaseMLNaturalLanguage
+    - FirebaseMLNLLanguageID
+    - FirebaseMLNLSmartReply
+    - FirebaseRemoteConfig
+    - GoogleAppMeasurement
     - GoogleUtilities
     - GTMSessionFetcher
     - MaterialComponents
     - MDFInternationalization
     - MDFTextAccessibility
+    - nanopb
     - Protobuf
     - SwiftLint
-  sso://cpdc-test/firebase-ml:
-    - FirebaseCore
-    - FirebaseMLCommon
-    - FirebaseMLNaturalLanguage
-    - FirebaseMLNLLanguageID
-    - FirebaseMLNLSmartReply
-  sso://cpdc-test/spec:
-    - Firebase
-    - FirebaseABTesting
-    - FirebaseAnalytics
-    - FirebaseInstanceID
-    - FirebaseRemoteConfig
-    - GoogleAppMeasurement
-    - nanopb
 
 SPEC CHECKSUMS:
-  Firebase: 51d1221db236a5bb277b0b9e50c08ad4c9651d19
-  FirebaseABTesting: aea90abf92c792df4e5ab7ccbbf071795f1a3c4d
-  FirebaseAnalytics: 7bcf5cd91670fa4b6f006bf1b8e6a68ef34a5d96
-  FirebaseCore: 5d8418371134573dc71c0a339cd0532e669b9855
-  FirebaseInstanceID: b9fec9814e19563ca3eaf1c83349e61f8a4a7147
-  FirebaseMLCommon: 9019eca347b7c2a63a76511a5282e96a94961ce1
-  FirebaseMLNaturalLanguage: 14ddd3ac10e3e7732fdf7769f2d451e6b746e9a0
-  FirebaseMLNLLanguageID: 438055dbcafc20fb27f475cd8e3145f452470565
-  FirebaseMLNLSmartReply: 2acfafed79b9d3a7bb98af5deee7f21f2f64126a
-  FirebaseRemoteConfig: e35ac5a16ba442dbb4ad9a2c0eefb3c027c4cb50
-  GoogleAppMeasurement: fe8d802863d164f2d2e8ea0cfa168155ed0773ef
-  GoogleUtilities: 111a012f4c3a29c9e7c954c082fafd6ee3c999c0
+  Firebase: c60d49e9c2630875a96207d15e2affb8364996d1
+  FirebaseABTesting: 1f50b8d50f5e3469eea54e7463a7b7fe221d1f5e
+  FirebaseAnalytics: fd72a26bf8dac84cefba2f0864366f718555a5b0
+  FirebaseCore: 22a79a961c3951ef2f77b67bfbc99e454247b319
+  FirebaseInstanceID: cf488df2f4b79782f0e430b04a0e17c0aa7979b2
+  FirebaseMLCommon: 192c49ec584f1fb559747f1da8052441158b04d7
+  FirebaseMLNaturalLanguage: 340b92288e88aef3b8e39040502da926d1012b20
+  FirebaseMLNLLanguageID: 64851edf8bc1d27877cd46e34e288335a2f9c82e
+  FirebaseMLNLSmartReply: 087410cd2ab6f6308236f0020ad2500b2524cd21
+  FirebaseRemoteConfig: 7e11c65f0769c09bff6947997c209515058c5318
+  GoogleAppMeasurement: 1624046ab1bcc5e170061a56ef5679000b079c8e
+  GoogleUtilities: 6481e6318c5fcabaaa8513ef8120f329055d7c10
   GTMSessionFetcher: 32aeca0aa144acea523e1c8e053089dec2cb98ca
-  MaterialComponents: 1dc805d52502bd9d5692c2ffcc8a169c8b65b916
+  MaterialComponents: fcd7ab0d6087bce852e2c60c2c712809f76c7f9e
   MDFInternationalization: 010097556d6b09d2c4ea38e0820ea6d37be6a314
   MDFTextAccessibility: 85c09a1bd9c321f494348e632a25063bcda35a53
-  nanopb: cf319651d4b9e5b247eea6c05b636fdefa85be83
-  Protobuf: 1eb9700044745f00181c136ef21b8ff3ad5a0fd5
-  SwiftLint: a54bf1fe12b55c68560eb2a7689dfc81458508f7
+  nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
+  Protobuf: 7a877b7f3e5964e3fce995e2eb323dbc6831bb5a
+  SwiftLint: 7a0227733d786395817373b2d0ca799fd0093ff3
 
-PODFILE CHECKSUM: 2622f41db76ae7553cef23965168b21bd94281b6
+PODFILE CHECKSUM: 9e6ed118c78fb81c82c02e3530a006c3616df6fe
 
-COCOAPODS: 1.6.0
+COCOAPODS: 1.6.1

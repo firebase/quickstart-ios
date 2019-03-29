@@ -25,6 +25,8 @@
 @import GoogleSignIn;
 // [END google_import]
 @import FBSDKCoreKit;
+@import Fabric;
+@import TwitterKit;
 
 @implementation AppDelegate
 
@@ -42,6 +44,12 @@
 
   [[FBSDKApplicationDelegate sharedInstance] application:application
                            didFinishLaunchingWithOptions:launchOptions];
+
+  NSString *key = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"consumerKey"],
+      *secret = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"consumerSecret"];
+  if ([key length] && [secret length]) {
+    [[Twitter sharedInstance] startWithConsumerKey:key consumerSecret:secret];
+  }
   return YES;
 }
 

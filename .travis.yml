@@ -44,7 +44,6 @@ before_install:
   - cd $SAMPLE
   - bundle install
   - gem install xcpretty
-  - gem install bundler
   - bundle exec pod install --repo-update
   - cp ../mock-GoogleService-Info.plist ./GoogleService-Info.plist
   - sed -i '' '/<key>BUNDLE_ID</{n;s/id/com.google.firebase.quickstart.'$SAMPLE'Example/;}' GoogleService-Info.plist

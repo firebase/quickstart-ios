@@ -1,15 +1,15 @@
 PODS:
-  - Firebase (5.20.0):
-    - Firebase/Core (= 5.20.0)
-  - Firebase/Core (5.20.0):
+  - Firebase (5.20.1):
+    - Firebase/Core (= 5.20.1)
+  - Firebase/Core (5.20.1):
     - Firebase/CoreOnly
     - FirebaseAnalytics (= 5.8.0)
-  - Firebase/CoreOnly (5.20.0):
+  - Firebase/CoreOnly (5.20.1):
     - FirebaseCore (= 5.4.1)
-  - Firebase/DynamicLinks (5.20.0):
+  - Firebase/DynamicLinks (5.20.1):
     - Firebase/CoreOnly
     - FirebaseDynamicLinks (= 3.4.3)
-  - Firebase/InAppMessagingDisplay (5.20.0):
+  - Firebase/InAppMessagingDisplay (5.20.1):
     - Firebase/CoreOnly
     - FirebaseInAppMessagingDisplay (= 0.13.1)
   - FirebaseAnalytics (5.8.0):
@@ -91,7 +91,7 @@ SPEC REPOS:
     - nanopb
 
 SPEC CHECKSUMS:
-  Firebase: 5090da4bb82900179004133bb2b2178919387fd9
+  Firebase: 2f5235e62f141cb86181c3af0dfe4509706351ac
   FirebaseAnalytics: fd72a26bf8dac84cefba2f0864366f718555a5b0
   FirebaseAnalyticsInterop: efbe45c8385ec626e29f9525e5ebd38520dfb6c1
   FirebaseCore: f1a9a8be1aee4bf71a2fc0f4096df6788bdfda61

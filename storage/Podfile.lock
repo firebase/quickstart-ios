@@ -1,13 +1,13 @@
 PODS:
-  - Firebase/Auth (5.20.0):
+  - Firebase/Auth (5.20.1):
     - Firebase/CoreOnly
     - FirebaseAuth (= 5.4.2)
-  - Firebase/Core (5.20.0):
+  - Firebase/Core (5.20.1):
     - Firebase/CoreOnly
     - FirebaseAnalytics (= 5.8.0)
-  - Firebase/CoreOnly (5.20.0):
+  - Firebase/CoreOnly (5.20.1):
     - FirebaseCore (= 5.4.1)
-  - Firebase/Storage (5.20.0):
+  - Firebase/Storage (5.20.1):
     - Firebase/CoreOnly
     - FirebaseStorage (= 3.1.1)
   - FirebaseAnalytics (5.8.0):
@@ -87,7 +87,7 @@ SPEC REPOS:
     - nanopb
 
 SPEC CHECKSUMS:
-  Firebase: 5090da4bb82900179004133bb2b2178919387fd9
+  Firebase: 2f5235e62f141cb86181c3af0dfe4509706351ac
   FirebaseAnalytics: fd72a26bf8dac84cefba2f0864366f718555a5b0
   FirebaseAuth: dd7bbf03a5aee0eafb3a1aee4d2812bd74bac890
   FirebaseAuthInterop: 0ffa57668be100582bb7643d4fcb7615496c41fc

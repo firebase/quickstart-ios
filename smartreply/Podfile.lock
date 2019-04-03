@@ -77,8 +77,8 @@ PODS:
   - GoogleUtilities/UserDefaults (5.5.0):
     - GoogleUtilities/Logger
   - GTMSessionFetcher/Core (1.2.1)
-  - MaterialComponents/AnimationTiming (80.0.0)
-  - MaterialComponents/Buttons (80.0.0):
+  - MaterialComponents/AnimationTiming (81.0.0)
+  - MaterialComponents/Buttons (81.0.0):
     - MaterialComponents/Ink
     - MaterialComponents/private/Math
     - MaterialComponents/ShadowElevations
@@ -87,22 +87,22 @@ PODS:
     - MaterialComponents/Typography
     - MDFInternationalization
     - MDFTextAccessibility
-  - "MaterialComponents/Buttons+ButtonThemer (80.0.0)":
+  - "MaterialComponents/Buttons+ButtonThemer (81.0.0)":
     - MaterialComponents/Buttons
     - "MaterialComponents/Buttons+ColorThemer"
     - "MaterialComponents/Buttons+ShapeThemer"
     - "MaterialComponents/Buttons+TypographyThemer"
     - MaterialComponents/Palettes
-  - "MaterialComponents/Buttons+ColorThemer (80.0.0)":
+  - "MaterialComponents/Buttons+ColorThemer (81.0.0)":
     - MaterialComponents/Buttons
     - MaterialComponents/schemes/Color
-  - "MaterialComponents/Buttons+ShapeThemer (80.0.0)":
+  - "MaterialComponents/Buttons+ShapeThemer (81.0.0)":
     - MaterialComponents/Buttons
     - MaterialComponents/schemes/Shape
-  - "MaterialComponents/Buttons+TypographyThemer (80.0.0)":
+  - "MaterialComponents/Buttons+TypographyThemer (81.0.0)":
     - MaterialComponents/Buttons
     - MaterialComponents/schemes/Typography
-  - MaterialComponents/Chips (80.0.0):
+  - MaterialComponents/Chips (81.0.0):
     - MaterialComponents/Ink
     - MaterialComponents/private/Math
     - MaterialComponents/ShadowElevations
@@ -112,40 +112,40 @@ PODS:
     - MaterialComponents/TextFields
     - MaterialComponents/Typography
     - MDFInternationalization
-  - MaterialComponents/Ink (80.0.0):
+  - MaterialComponents/Ink (81.0.0):
     - MaterialComponents/private/Math
-  - MaterialComponents/List (80.0.0):
+  - MaterialComponents/List (81.0.0):
     - MaterialComponents/Ink
     - MaterialComponents/private/Math
     - MaterialComponents/ShadowElevations
     - MaterialComponents/ShadowLayer
     - MaterialComponents/Typography
     - MDFInternationalization
-  - MaterialComponents/Palettes (80.0.0)
-  - MaterialComponents/private/Application (80.0.0)
-  - MaterialComponents/private/Math (80.0.0)
-  - MaterialComponents/schemes/Color (80.0.0)
-  - MaterialComponents/schemes/Shape (80.0.0):
+  - MaterialComponents/Palettes (81.0.0)
+  - MaterialComponents/private/Application (81.0.0)
+  - MaterialComponents/private/Math (81.0.0)
+  - MaterialComponents/schemes/Color (81.0.0)
+  - MaterialComponents/schemes/Shape (81.0.0):
     - MaterialComponents/ShapeLibrary
     - MaterialComponents/Shapes
-  - MaterialComponents/schemes/Typography (80.0.0):
+  - MaterialComponents/schemes/Typography (81.0.0):
     - MaterialComponents/Typography
-  - MaterialComponents/ShadowElevations (80.0.0)
-  - MaterialComponents/ShadowLayer (80.0.0):
+  - MaterialComponents/ShadowElevations (81.0.0)
+  - MaterialComponents/ShadowLayer (81.0.0):
     - MaterialComponents/ShadowElevations
-  - MaterialComponents/ShapeLibrary (80.0.0):
+  - MaterialComponents/ShapeLibrary (81.0.0):
     - MaterialComponents/private/Math
     - MaterialComponents/Shapes
-  - MaterialComponents/Shapes (80.0.0):
+  - MaterialComponents/Shapes (81.0.0):
     - MaterialComponents/private/Math
     - MaterialComponents/ShadowLayer
-  - MaterialComponents/TextFields (80.0.0):
+  - MaterialComponents/TextFields (81.0.0):
     - MaterialComponents/AnimationTiming
     - MaterialComponents/Palettes
     - MaterialComponents/private/Math
     - MaterialComponents/Typography
     - MDFInternationalization
-  - MaterialComponents/Typography (80.0.0):
+  - MaterialComponents/Typography (81.0.0):
     - MaterialComponents/private/Application
     - MaterialComponents/private/Math
   - MDFInternationalization (2.0.0)
@@ -204,7 +204,7 @@ SPEC CHECKSUMS:
   GoogleAppMeasurement: 1624046ab1bcc5e170061a56ef5679000b079c8e
   GoogleUtilities: 6481e6318c5fcabaaa8513ef8120f329055d7c10
   GTMSessionFetcher: 32aeca0aa144acea523e1c8e053089dec2cb98ca
-  MaterialComponents: fcd7ab0d6087bce852e2c60c2c712809f76c7f9e
+  MaterialComponents: 9ef60e1abd89463ac018ca6d354be41fd5df059a
   MDFInternationalization: 010097556d6b09d2c4ea38e0820ea6d37be6a314
   MDFTextAccessibility: 85c09a1bd9c321f494348e632a25063bcda35a53
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48

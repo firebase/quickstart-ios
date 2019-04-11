@@ -51,6 +51,8 @@ NS_ASSUME_NONNULL_BEGIN
   self.inputPicker.delegate = self;
   self.outputPicker.delegate = self;
   self.inputTextView.delegate = self;
+  self.inputTextView.returnKeyType = UIReturnKeyDone;
+
   [self pickerView:self.inputPicker didSelectRow:0 inComponent:0];
   [self updateDownloadDeleteButtonLabels];
 
@@ -80,6 +82,18 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)textViewDidChange:(UITextView *)textView {
   [self translate];
+}
+
+- (BOOL)textView:(UITextView *)textView
+    shouldChangeTextInRange:(NSRange)range
+            replacementText:(NSString *)text {
+  // Hide the keyboard when "Done" is pressed.
+  // See: https://stackoverflow.com/questions/26600359/dismiss-keyboard-with-a-uitextview
+  if ([text isEqualToString:@"\n"]) {
+    [textView resignFirstResponder];
+    return NO;
+  }
+  return YES;
 }
 
 - (IBAction)didTapSwap {

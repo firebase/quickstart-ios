@@ -43,6 +43,7 @@ class ViewController: UIViewController, UITextViewDelegate, UIPickerViewDataSour
     inputPicker.delegate = self
     outputPicker.delegate = self
     inputTextView.delegate = self
+    inputTextView.returnKeyType = .done
     pickerView(inputPicker, didSelectRow: 0, inComponent: 0)
     setDownloadDeleteButtonLabels()
 
@@ -60,6 +61,17 @@ class ViewController: UIViewController, UITextViewDelegate, UIPickerViewDataSour
 
   func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
     return allLanguages.count
+  }
+
+  func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange,
+                replacementText text: String) -> Bool {
+    // Hide the keyboard when "Done" is pressed.
+    // See: https://stackoverflow.com/questions/26600359/dismiss-keyboard-with-a-uitextview
+    if (text == "\n") {
+      textView.resignFirstResponder()
+      return false
+    }
+    return true
   }
 
   func textViewDidChange(_ textView: UITextView) {
@@ -166,6 +178,7 @@ class ViewController: UIViewController, UITextViewDelegate, UIPickerViewDataSour
 
   func translate() {
     let translatorForDownloading = self.translator!
+
     translatorForDownloading.downloadModelIfNeeded { error in
       guard error == nil else {
         self.outputTextView.text = "Failed to ensure model downloaded with error \(error!)"
@@ -186,4 +199,3 @@ class ViewController: UIViewController, UITextViewDelegate, UIPickerViewDataSour
     }
   }
 }
-

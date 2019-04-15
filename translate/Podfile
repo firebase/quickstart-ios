@@ -3,9 +3,8 @@ source 'https://github.com/CocoaPods/Specs.git'
 
 use_frameworks!
 
-pod 'FirebaseMLNLTranslate', '0.1.48'
-pod 'FirebaseMLNaturalLanguage', '0.1.48'
-pod 'FirebaseMLCommon', '0.1.48'
+pod 'Firebase/MLNLTranslate'
+pod 'Firebase/Core'
 
 target 'TranslateExample' do
   target 'TranslateExampleTests' do

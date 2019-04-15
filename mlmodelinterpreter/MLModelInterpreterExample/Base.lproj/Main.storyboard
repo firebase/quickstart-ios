@@ -21,9 +21,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cCp-tA-gDT">
-                                <rect key="frame" x="0.0" y="120" width="375" height="363"/>
-                            </imageView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Mj-sL-hrd">
                                 <rect key="frame" x="0.0" y="527" width="375" height="140"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -90,6 +87,16 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="Qad-Pa-ySg"/>
                                 </items>
                             </toolbar>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cCp-tA-gDT">
+                              <rect key="frame" x="0.0" y="126" width="375" height="357"/>
+                            </imageView>
+                            <progressView hidden="YES" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Sym-FY-2ML">
+                              <rect key="frame" x="0.0" y="120" width="375" height="6"/>
+                              <constraints>
+                                <constraint firstAttribute="height" constant="6" id="URi-hk-xNg"/>
+                              </constraints>
+                              <color key="progressTintColor" red="0.0" green="0.97680455450000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </progressView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -99,12 +106,15 @@
                             <constraint firstItem="7Mj-sL-hrd" firstAttribute="top" secondItem="Qwg-EP-bd6" secondAttribute="bottom" id="ELA-C6-NiG"/>
                             <constraint firstItem="6RV-o1-t0Z" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="GME-vK-ppg"/>
                             <constraint firstAttribute="trailing" secondItem="7Mj-sL-hrd" secondAttribute="trailing" id="HDO-xr-mBl"/>
-                            <constraint firstItem="cCp-tA-gDT" firstAttribute="top" secondItem="POq-8j-gOJ" secondAttribute="bottom" id="Iwg-7E-784"/>
                             <constraint firstItem="Qwg-EP-bd6" firstAttribute="top" secondItem="cCp-tA-gDT" secondAttribute="bottom" id="Ksx-Zc-tXU"/>
                             <constraint firstItem="cCp-tA-gDT" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="T1A-BT-NVH"/>
+                            <constraint firstItem="cCp-tA-gDT" firstAttribute="top" secondItem="Sym-FY-2ML" secondAttribute="bottom" id="bYN-98-YoJ"/>
                             <constraint firstItem="POq-8j-gOJ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="bnu-so-Rmc"/>
+                            <constraint firstItem="Sym-FY-2ML" firstAttribute="top" secondItem="POq-8j-gOJ" secondAttribute="bottom" id="feS-ka-DF5"/>
+                            <constraint firstItem="Sym-FY-2ML" firstAttribute="width" secondItem="POq-8j-gOJ" secondAttribute="width" id="fuo-EB-i4f"/>
                             <constraint firstItem="Qwg-EP-bd6" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="hGu-lm-fMG"/>
                             <constraint firstAttribute="trailing" secondItem="Qwg-EP-bd6" secondAttribute="trailing" id="iXR-LK-nTO"/>
+                            <constraint firstItem="Sym-FY-2ML" firstAttribute="leading" secondItem="POq-8j-gOJ" secondAttribute="leading" id="lgc-Gj-oLs"/>
                             <constraint firstItem="7Mj-sL-hrd" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="nr7-jW-ZYf"/>
                             <constraint firstItem="6RV-o1-t0Z" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="xTa-6d-o2o"/>
                             <constraint firstAttribute="trailing" secondItem="cCp-tA-gDT" secondAttribute="trailing" id="yPG-po-nte"/>
@@ -114,6 +124,7 @@
                         <outlet property="cameraButton" destination="jD4-E9-bbj" id="A9d-iO-e8d"/>
                         <outlet property="detectButton" destination="A4J-Mg-nmd" id="ZOU-DC-zHr"/>
                         <outlet property="downloadModelButton" destination="wFf-Ba-Ydb" id="aJi-kv-sIl"/>
+                        <outlet property="downloadProgressView" destination="Sym-FY-2ML" id="m4Z-zf-aDl"/>
                         <outlet property="imageView" destination="cCp-tA-gDT" id="RCb-zU-37O"/>
                         <outlet property="modelControl" destination="6RV-o1-t0Z" id="4Ta-AF-buV"/>
                         <outlet property="resultsTextView" destination="7Mj-sL-hrd" id="T4I-z4-tYA"/>

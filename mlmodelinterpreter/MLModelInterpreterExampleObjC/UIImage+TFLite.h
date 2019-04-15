@@ -16,6 +16,8 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /// A `UIImage` category for scaling images.
 @interface UIImage (TFLite)
 
@@ -40,3 +42,5 @@
                      byteCount:(int)byteCount
                    isQuantized:(BOOL)isQuantized;
 @end
+
+NS_ASSUME_NONNULL_END

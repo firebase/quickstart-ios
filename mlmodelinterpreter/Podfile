@@ -1,8 +1,12 @@
+source 'https://cpdc-eap.googlesource.com/firebase-ml.git'
+source 'https://github.com/CocoaPods/Specs.git'
+
 platform :ios, '9.0'
 use_frameworks!
 
 pod 'Firebase/Core'
-pod 'Firebase/MLModelInterpreter'
+pod 'FirebaseMLCommon', '0.1.50'
+pod 'FirebaseMLModelInterpreter', '0.1.50'
 
 target 'MLModelInterpreterExample' do
 end

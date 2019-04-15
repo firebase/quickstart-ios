@@ -3,7 +3,7 @@ use_frameworks!
 
 # [START base_dependencies]
 pod 'Firebase/Core'
-pod 'FirebaseMLVision'
+pod 'Firebase/MLVision'
 # [END base_dependencies]
 pod 'Firebase/MLVisionAutoML'
 pod 'Firebase/MLVisionObjectDetection'

@@ -1245,13 +1245,13 @@ private enum DetectorPickerRow: Int {
   detectTextOnDevice,
   detectBarcodeOnDevice,
   detectImageLabelsOnDevice,
+  detectImageLabelsAutoMLOnDevice,
   detectObjectsProminentNoClassifier,
   detectObjectsProminentWithClassifier,
   detectObjectsMultipleNoClassifier,
   detectObjectsMultipleWithClassifier,
   detectTextInCloudSparse,
   detectTextInCloudDense,
-  detectImageLabelsAutoMLOnDevice,
   detectDocumentTextInCloud,
   detectImageLabelsInCloud,
   detectLandmarkInCloud
@@ -1269,6 +1269,8 @@ private enum DetectorPickerRow: Int {
       return "Barcode On-Device"
     case .detectImageLabelsOnDevice:
       return "Image Labeling On-Device"
+    case .detectImageLabelsAutoMLOnDevice:
+      return "Image Labeling AutoML On-Device"
     case .detectObjectsProminentNoClassifier:
       return "ODT, prominent, only tracking"
     case .detectObjectsProminentWithClassifier:
@@ -1281,8 +1283,6 @@ private enum DetectorPickerRow: Int {
       return "Text in Cloud (Sparse)"
     case .detectTextInCloudDense:
       return "Text in Cloud (Dense)"
-    case .detectImageLabelsAutoMLOnDevice:
-      return "Image Labeling AutoML On-Device"
     case .detectDocumentTextInCloud:
       return "Document Text in Cloud"
     case .detectImageLabelsInCloud:

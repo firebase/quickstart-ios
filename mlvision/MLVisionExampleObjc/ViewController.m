@@ -18,14 +18,11 @@
 #import "UIImage+VisionDetection.h"
 #import "UIUtilities.h"
 @import FirebaseMLVision;
-<<<<<<< HEAD
+@import FirebaseMLVisionAutoML;
+@import FirebaseMLCommon;
 @import FirebaseMLVisionObjectDetection;
 
 NS_ASSUME_NONNULL_BEGIN
-=======
-@import FirebaseMLVisionAutoML;
-@import FirebaseMLCommon;
->>>>>>> automl
 
 static NSArray *images;
 static NSString *const ModelExtension = @"tflite";
@@ -55,11 +52,7 @@ static CGFloat const largeDotRadius = 10.0;
 static CGColorRef lineColor;
 static CGColorRef fillColor;
 
-<<<<<<< HEAD
-static int const rowsCount = 13;
-=======
-static int const rowsCount = 9;
->>>>>>> automl
+static int const rowsCount = 14;
 static int const componentsCount = 1;
 
 /**
@@ -75,7 +68,8 @@ typedef NS_ENUM(NSInteger, DetectorPickerRow) {
   DetectorPickerRowDetectBarcodeOnDevice,
   /** On-Device vision image label detector. */
   DetectorPickerRowDetectImageLabelsOnDevice,
-<<<<<<< HEAD
+  /** On-Device vision AutoML image label detector. */
+  DetectorPickerRowDetectImageLabelsAutoMLOnDevice,
   /** On-Device vision object detector, prominent, only tracking. */
   DetectorPickerRowDetectObjectsProminentNoClassifier,
   /** On-Device vision object detector, prominent, with classification. */
@@ -88,12 +82,6 @@ typedef NS_ENUM(NSInteger, DetectorPickerRow) {
   DetectorPickerRowDetectTextInCloudSparse,
   /** Cloud vision text vision detector (Dense). */
   DetectorPickerRowDetectTextInCloudDense,
-=======
-  /** On-Device vision AutoML image label detector. */
-  DetectorPickerRowDetectImageLabelsAutoMLOnDevice,
-  /** Cloud vision text vision detector. */
-  DetectorPickerRowDetectTextInCloud,
->>>>>>> automl
   /** Cloud vision document text vision detector. */
   DetectorPickerRowDetectDocumentTextInCloud,
   /** Cloud vision label vision detector. */
@@ -145,7 +133,8 @@ typedef NS_ENUM(NSInteger, DetectorPickerRow) {
       return @"Barcode On-Device";
     case DetectorPickerRowDetectImageLabelsOnDevice:
       return @"Image Labeling On-Device";
-<<<<<<< HEAD
+    case DetectorPickerRowDetectImageLabelsAutoMLOnDevice:
+      return @"AutoML Image Labeling On-Device";
     case DetectorPickerRowDetectObjectsProminentNoClassifier:
       return @"ODT, prominent, only tracking";
     case DetectorPickerRowDetectObjectsProminentWithClassifier:
@@ -158,12 +147,6 @@ typedef NS_ENUM(NSInteger, DetectorPickerRow) {
       return @"Text in Cloud (Sparse)";
     case DetectorPickerRowDetectTextInCloudDense:
       return @"Text in Cloud (Dense)";
-=======
-    case DetectorPickerRowDetectImageLabelsAutoMLOnDevice:
-      return @"AutoML Image Labeling On-Device";
-    case DetectorPickerRowDetectTextInCloud:
-      return @"Text in Cloud";
->>>>>>> automl
     case DetectorPickerRowDetectDocumentTextInCloud:
       return @"Document Text in Cloud";
     case DetectorPickerRowDetectImageLabelsInCloud:
@@ -247,7 +230,9 @@ typedef NS_ENUM(NSInteger, DetectorPickerRow) {
     case DetectorPickerRowDetectImageLabelsOnDevice:
       [self detectLabelsInImage:_imageView.image];
       break;
-<<<<<<< HEAD
+    case DetectorPickerRowDetectImageLabelsAutoMLOnDevice:
+      [self detectImageLabelsAutoMLInImage:_imageView.image];
+      break;
     case DetectorPickerRowDetectObjectsProminentNoClassifier:
     case DetectorPickerRowDetectObjectsProminentWithClassifier:
     case DetectorPickerRowDetectObjectsMultipleNoClassifier:
@@ -261,13 +246,6 @@ typedef NS_ENUM(NSInteger, DetectorPickerRow) {
       options.shouldEnableMultipleObjects = shouldEnableMultipleObjects;
       options.detectorMode = FIRVisionObjectDetectorModeSingleImage;
       [self detectObjectsOnDeviceInImage:_imageView.image withOptions:options];
-=======
-    case DetectorPickerRowDetectImageLabelsAutoMLOnDevice:
-      [self detectImageLabelsAutoMLInImage:_imageView.image];
-      break;
-    case DetectorPickerRowDetectTextInCloud:
-      [self detectTextInCloudInImage:_imageView.image];
->>>>>>> automl
       break;
     }
     case DetectorPickerRowDetectTextInCloudSparse:
@@ -1130,7 +1108,6 @@ typedef NS_ENUM(NSInteger, DetectorPickerRow) {
   // [END detect_label_cloud]
 }
 
-<<<<<<< HEAD
 /// Detects objects on the specified image and draws a frame around them.
 ///
 /// - Parameter image: The image.
@@ -1182,7 +1159,8 @@ typedef NS_ENUM(NSInteger, DetectorPickerRow) {
     // [END_EXCLUDE]
   }];
   // [END detect_object]
-=======
+}
+
 - (void)registerAutoMLModelsIfNeeded {
   if (self.areAutoMLModelsRegistered) return;
 
@@ -1244,7 +1222,6 @@ typedef NS_ENUM(NSInteger, DetectorPickerRow) {
     }
     [self.resultsText appendFormat:@"Failed to download the remote model with name: %@, error: %@.", remoteModel, error.localizedDescription];
   });
->>>>>>> automl
 }
 
 @end

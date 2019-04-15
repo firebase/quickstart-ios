@@ -24,7 +24,7 @@ import FirebaseMLVisionAutoML
 
 @objc(CameraViewController)
 class CameraViewController: UIViewController {
-  private let detectors: [Detector] = [.onDeviceAutoMLImageLabeler
+  private let detectors: [Detector] = [.onDeviceAutoMLImageLabeler,
                                        .onDeviceFace,
                                        .onDeviceText,
                                        .onDeviceObjectProminentNoClassifier,

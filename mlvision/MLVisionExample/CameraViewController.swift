@@ -19,11 +19,14 @@ import CoreVideo
 
 import FirebaseMLVision
 import FirebaseMLVisionObjectDetection
+import FirebaseMLCommon
+import FirebaseMLVisionAutoML
 
 @objc(CameraViewController)
 class CameraViewController: UIViewController {
-
-  private let detectors: [Detector] = [.onDeviceFace, .onDeviceText,
+  private let detectors: [Detector] = [.onDeviceAutoMLImageLabeler
+                                       .onDeviceFace,
+                                       .onDeviceText,
                                        .onDeviceObjectProminentNoClassifier,
                                        .onDeviceObjectProminentWithClassifier,
                                        .onDeviceObjectMultipleNoClassifier,
@@ -35,6 +38,9 @@ class CameraViewController: UIViewController {
   private lazy var sessionQueue = DispatchQueue(label: Constant.sessionQueueLabel)
   private lazy var vision = Vision.vision()
   private var lastFrame: CMSampleBuffer?
+  private var areAutoMLModelsRegistered = false
+  private lazy var modelManager = ModelManager.modelManager()
+  @IBOutlet var downloadProgressView: UIProgressView!
 
   private lazy var previewOverlayView: UIImageView = {
 
@@ -97,7 +103,144 @@ class CameraViewController: UIViewController {
     setUpCaptureSessionInput()
   }
 
-  // MARK: On-Device Detection
+  // MARK: - On-Device AutoML Detections
+
+  private func detectImageLabelsAutoMLOndevice(
+    in visionImage: VisionImage,
+    width: CGFloat,
+    height: CGFloat) {
+    registerAutoMLModelsIfNeeded()
+
+    let options = VisionOnDeviceAutoMLImageLabelerOptions(
+      remoteModelName: Constant.remoteAutoMLModelName,
+      localModelName: Constant.localAutoMLModelName
+    )
+    options.confidenceThreshold = Constant.labelConfidenceThreshold
+    let autoMLOnDeviceLabeler = vision.onDeviceAutoMLImageLabeler(options: options)
+    print("labeler: \(autoMLOnDeviceLabeler)\n")
+
+    let group = DispatchGroup()
+    group.enter()
+
+    autoMLOnDeviceLabeler.process(visionImage) { detectedLabels, error in
+      defer { group.leave() }
+
+      self.updatePreviewOverlayView()
+      self.removeDetectionAnnotations()
+
+      if let error = error {
+        print("Failed to detect labels with error: \(error.localizedDescription).")
+        return
+      }
+
+      guard let labels = detectedLabels, !labels.isEmpty else {
+        return
+      }
+
+      let annotationFrame = self.annotationOverlayView.frame
+      let resultsRect = CGRect(
+        x: annotationFrame.origin.x + Constant.padding,
+        y: annotationFrame.size.height - Constant.padding - Constant.resultsLabelHeight,
+        width: annotationFrame.width - 2 * Constant.padding,
+        height: Constant.resultsLabelHeight
+      )
+      let resultsLabel = UILabel(frame: resultsRect)
+      resultsLabel.textColor = .yellow
+      resultsLabel.text = labels.map { label -> String in
+        return "Label: \(label.text), Confidence: \(label.confidence ?? 0)"
+        }.joined(separator: "\n")
+      resultsLabel.adjustsFontSizeToFitWidth = true
+      resultsLabel.numberOfLines = Constant.resultsLabelLines
+      self.annotationOverlayView.addSubview(resultsLabel)
+    }
+
+    group.wait()
+  }
+
+  private func registerAutoMLModelsIfNeeded() {
+    if areAutoMLModelsRegistered {
+      return
+    }
+
+    let initialConditions = ModelDownloadConditions()
+    let updateConditions = ModelDownloadConditions(
+      allowsCellularAccess: false,
+      allowsBackgroundDownloading: true
+    )
+    let remoteModel = RemoteModel(
+      name: Constant.remoteAutoMLModelName,
+      allowsModelUpdates: true,
+      initialConditions: initialConditions,
+      updateConditions: updateConditions
+    )
+    modelManager.register(remoteModel)
+    NotificationCenter.default.addObserver(
+      self,
+      selector: #selector(remoteModelDownloadDidSucceed(_:)),
+      name: .firebaseMLModelDownloadDidSucceed,
+      object: nil
+    )
+    NotificationCenter.default.addObserver(
+      self,
+      selector: #selector(remoteModelDownloadDidFail(_:)),
+      name: .firebaseMLModelDownloadDidFail,
+      object: nil
+    )
+    DispatchQueue.main.async {
+      self.downloadProgressView.isHidden = false
+      self.downloadProgressView.observedProgress = self.modelManager.download(remoteModel)
+    }
+
+    guard let localModelFilePath = Bundle.main.path(
+      forResource: Constant.localModelManifestFileName,
+      ofType: Constant.autoMLManifestFileType
+      ) else {
+        print("Failed to find AutoML local model manifest file.")
+        return
+    }
+    let localModel = LocalModel(name: Constant.localAutoMLModelName, path: localModelFilePath)
+    modelManager.register(localModel)
+    areAutoMLModelsRegistered = true
+  }
+
+  // MARK: - Notifications
+
+  @objc
+  private func remoteModelDownloadDidSucceed(_ notification: Notification) {
+    let notificationHandler = {
+      self.downloadProgressView.isHidden = true
+      guard let userInfo = notification.userInfo,
+        let remoteModel =
+        userInfo[ModelDownloadUserInfoKey.remoteModel.rawValue] as? RemoteModel
+        else {
+          print("firebaseMLModelDownloadDidSucceed notification posted without a RemoteModel instance.")
+          return
+      }
+      print("Successfully downloaded the remote model with name: \(remoteModel.name). The model is ready for detection.")
+    }
+    if Thread.isMainThread { notificationHandler(); return }
+    DispatchQueue.main.async { notificationHandler() }
+  }
+
+  @objc
+  private func remoteModelDownloadDidFail(_ notification: Notification) {
+    let notificationHandler = {
+      self.downloadProgressView.isHidden = true
+      guard let userInfo = notification.userInfo,
+        let remoteModel =
+        userInfo[ModelDownloadUserInfoKey.remoteModel.rawValue] as? RemoteModel,
+        let error = userInfo[ModelDownloadUserInfoKey.error.rawValue] as? NSError
+        else {
+          print("firebaseMLModelDownloadDidFail notification posted without a RemoteModel instance or error.")
+          return
+      }
+      print("Failed to download the remote model with name: \(remoteModel.name), error: \(error).")
+    }
+    if Thread.isMainThread { notificationHandler(); return }
+    DispatchQueue.main.async { notificationHandler() }
+  }
+
+  // MARK: Other On-Device Detections
 
   private func detectFacesOnDevice(in image: VisionImage, width: CGFloat, height: CGFloat) {
     let options = VisionFaceDetectorOptions()
@@ -629,6 +772,8 @@ extension CameraViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
     }
 
     switch currentDetector {
+    case .onDeviceAutoMLImageLabeler:
+      detectImageLabelsAutoMLOndevice(in: visionImage, width: imageWidth, height: imageHeight)
     case .onDeviceFace:
       detectFacesOnDevice(in: visionImage, width: imageWidth, height: imageHeight)
     case .onDeviceText:
@@ -650,6 +795,7 @@ extension CameraViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
 // MARK: - Constants
 
 public enum Detector: String {
+  case onDeviceAutoMLImageLabeler = "On-Device AutoML Image Labeler"
   case onDeviceFace = "On-Device Face Detection"
   case onDeviceText = "On-Device Text Recognition"
   case onDeviceObjectProminentNoClassifier = "ODT for prominent object, only tracking"
@@ -665,6 +811,14 @@ private enum Constant {
   static let videoDataOutputQueueLabel = "com.google.firebaseml.visiondetector.VideoDataOutputQueue"
   static let sessionQueueLabel = "com.google.firebaseml.visiondetector.SessionQueue"
   static let noResultsMessage = "No Results"
+  static let localAutoMLModelName = "local_automl_model"
+  static let remoteAutoMLModelName = "remote_automl_model"
+  static let localModelManifestFileName = "automl_labeler_manifest"
+  static let autoMLManifestFileType = "json"
+  static let labelConfidenceThreshold: Float = 0.75
   static let smallDotRadius: CGFloat = 4.0
   static let originalScale: CGFloat = 1.0
+  static let padding: CGFloat = 10.0
+  static let resultsLabelHeight: CGFloat = 200.0
+  static let resultsLabelLines = 5
 }

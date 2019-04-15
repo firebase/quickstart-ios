@@ -18,8 +18,10 @@ import UIKit
 // [START import_vision]
 import FirebaseMLVision
 // [END import_vision]
-import FirebaseMLVisionObjectDetection
 
+import FirebaseMLVisionObjectDetection
+import FirebaseMLVisionAutoML
+import FirebaseMLCommon
 
 /// Main view controller class.
 @objc(ViewController)
@@ -28,6 +30,12 @@ class ViewController:  UIViewController, UINavigationControllerDelegate {
   // [START init_vision]
   lazy var vision = Vision.vision()
   // [END init_vision]
+
+  /// Manager for local and remote models.
+  lazy var modelManager = ModelManager.modelManager()
+
+  /// Whether the AutoML models are registered.
+  var areAutoMLModelsRegistered = false
 
   /// A string holding current results from detection.
   var resultsText = ""
@@ -53,6 +61,7 @@ class ViewController:  UIViewController, UINavigationControllerDelegate {
   @IBOutlet fileprivate weak var photoCameraButton: UIBarButtonItem!
   @IBOutlet fileprivate weak var videoCameraButton: UIBarButtonItem!
   @IBOutlet weak var detectButton: UIBarButtonItem!
+  @IBOutlet var downloadProgressView: UIProgressView!
 
   // MARK: - UIViewController
 
@@ -117,6 +126,8 @@ class ViewController:  UIViewController, UINavigationControllerDelegate {
         detectBarcodes(image: imageView.image)
       case .detectImageLabelsOnDevice:
         detectLabels(image: imageView.image)
+      case .detectImageLabelsAutoMLOnDevice:
+        detectImageLabelsAutoML(image: imageView.image)
       case .detectObjectsProminentNoClassifier, .detectObjectsProminentWithClassifier,
            .detectObjectsMultipleNoClassifier, .detectObjectsMultipleWithClassifier:
         let shouldEnableClassification = (rowIndex == .detectObjectsProminentWithClassifier) ||
@@ -625,6 +636,87 @@ class ViewController:  UIViewController, UINavigationControllerDelegate {
       self.showResults()
     }
   }
+
+  private func registerAutoMLModelsIfNeeded() {
+    if areAutoMLModelsRegistered {
+      return
+    }
+
+    let initialConditions = ModelDownloadConditions()
+    let updateConditions = ModelDownloadConditions(
+      allowsCellularAccess: false,
+      allowsBackgroundDownloading: true
+    )
+    let remoteModel = RemoteModel(
+      name: Constants.remoteAutoMLModelName,
+      allowsModelUpdates: true,
+      initialConditions: initialConditions,
+      updateConditions: updateConditions
+    )
+    modelManager.register(remoteModel)
+    NotificationCenter.default.addObserver(
+      self,
+      selector: #selector(remoteModelDownloadDidSucceed(_:)),
+      name: .firebaseMLModelDownloadDidSucceed,
+      object: nil
+    )
+    NotificationCenter.default.addObserver(
+      self,
+      selector: #selector(remoteModelDownloadDidFail(_:)),
+      name: .firebaseMLModelDownloadDidFail,
+      object: nil
+    )
+    downloadProgressView.isHidden = false
+    downloadProgressView.observedProgress = modelManager.download(remoteModel)
+
+    guard let localModelFilePath = Bundle.main.path(
+      forResource: Constants.localModelManifestFileName,
+      ofType: Constants.autoMLManifestFileType
+      ) else {
+        print("Failed to find AutoML local model manifest file.")
+        return
+    }
+    let localModel = LocalModel(name: Constants.localAutoMLModelName, path: localModelFilePath)
+    modelManager.register(localModel)
+    areAutoMLModelsRegistered = true
+  }
+
+  // MARK: - Notifications
+
+  @objc
+  private func remoteModelDownloadDidSucceed(_ notification: Notification) {
+    let notificationHandler = {
+      self.downloadProgressView.isHidden = true
+      guard let userInfo = notification.userInfo,
+        let remoteModel =
+        userInfo[ModelDownloadUserInfoKey.remoteModel.rawValue] as? RemoteModel
+        else {
+          self.resultsText += "firebaseMLModelDownloadDidSucceed notification posted without a RemoteModel instance."
+          return
+      }
+      self.resultsText += "Successfully downloaded the remote model with name: \(remoteModel.name). The model is ready for detection."
+    }
+    if Thread.isMainThread { notificationHandler(); return }
+    DispatchQueue.main.async { notificationHandler() }
+  }
+
+  @objc
+  private func remoteModelDownloadDidFail(_ notification: Notification) {
+    let notificationHandler = {
+      self.downloadProgressView.isHidden = true
+      guard let userInfo = notification.userInfo,
+        let remoteModel =
+        userInfo[ModelDownloadUserInfoKey.remoteModel.rawValue] as? RemoteModel,
+        let error = userInfo[ModelDownloadUserInfoKey.error.rawValue] as? NSError
+        else {
+          self.resultsText += "firebaseMLModelDownloadDidFail notification posted without a RemoteModel instance or error."
+          return
+      }
+      self.resultsText += "Failed to download the remote model with name: \(remoteModel.name), error: \(error)."
+    }
+    if Thread.isMainThread { notificationHandler(); return }
+    DispatchQueue.main.async { notificationHandler() }
+  }
 }
 
 extension ViewController: UIPickerViewDataSource, UIPickerViewDelegate {
@@ -849,6 +941,54 @@ extension ViewController {
       // [END_EXCLUDE]
     }
     // [END detect_label]
+  }
+
+  /// Detects labels on the specified image using On-Device AutoML Image Labeling API.
+  ///
+  /// - Parameter image: The image.
+  func detectImageLabelsAutoML(image: UIImage?) {
+    guard let image = image else { return }
+    registerAutoMLModelsIfNeeded()
+
+    // [START config_automl_label]
+    let options = VisionOnDeviceAutoMLImageLabelerOptions(
+      remoteModelName: Constants.remoteAutoMLModelName,
+      localModelName: Constants.localAutoMLModelName
+    )
+    options.confidenceThreshold = Constants.labelConfidenceThreshold
+    // [END config_automl_label]
+
+    // [START init_automl_label]
+    let autoMLOnDeviceLabeler = vision.onDeviceAutoMLImageLabeler(options: options)
+    // [END init_automl_label]
+
+    // Define the metadata for the image.
+    let imageMetadata = VisionImageMetadata()
+    imageMetadata.orientation = UIUtilities.visionImageOrientation(from: image.imageOrientation)
+
+    // Initialize a VisionImage object with the given UIImage.
+    let visionImage = VisionImage(image: image)
+    visionImage.metadata = imageMetadata
+
+    // [START detect_automl_label]
+    autoMLOnDeviceLabeler.process(visionImage) { labels, error in
+      guard error == nil, let labels = labels, !labels.isEmpty else {
+        // [START_EXCLUDE]
+        let errorString = error?.localizedDescription ?? Constants.detectionNoResultsMessage
+        self.resultsText = "On-Device AutoML label detection failed with error: \(errorString)"
+        self.showResults()
+        // [END_EXCLUDE]
+        return
+      }
+
+      // [START_EXCLUDE]
+      self.resultsText = labels.map { label -> String in
+        return "Label: \(label.text), Confidence: \(label.confidence ?? 0)"
+        }.joined(separator: "\n")
+      self.showResults()
+      // [END_EXCLUDE]
+    }
+    // [END detect_automl_label]
   }
 
   /// Detects text on the specified image and draws a frame around the recognized text using the
@@ -1111,11 +1251,12 @@ private enum DetectorPickerRow: Int {
   detectObjectsMultipleWithClassifier,
   detectTextInCloudSparse,
   detectTextInCloudDense,
+  detectImageLabelsAutoMLOnDevice,
   detectDocumentTextInCloud,
   detectImageLabelsInCloud,
   detectLandmarkInCloud
 
-  static let rowsCount = 13
+  static let rowsCount = 14
   static let componentsCount = 1
 
   public var description: String {
@@ -1128,7 +1269,6 @@ private enum DetectorPickerRow: Int {
       return "Barcode On-Device"
     case .detectImageLabelsOnDevice:
       return "Image Labeling On-Device"
-    // TODO(b/124768657): Consider adding a settings screen for the detector options
     case .detectObjectsProminentNoClassifier:
       return "ODT, prominent, only tracking"
     case .detectObjectsProminentWithClassifier:
@@ -1141,6 +1281,8 @@ private enum DetectorPickerRow: Int {
       return "Text in Cloud (Sparse)"
     case .detectTextInCloudDense:
       return "Text in Cloud (Dense)"
+    case .detectImageLabelsAutoMLOnDevice:
+      return "Image Labeling AutoML On-Device"
     case .detectDocumentTextInCloud:
       return "Document Text in Cloud"
     case .detectImageLabelsInCloud:
@@ -1162,6 +1304,12 @@ private enum Constants {
   static let failedToDetectObjectsMessage = "Failed to detect objects in image."
   static let sparseTextModelName = "Sparse"
   static let denseTextModelName = "Dense"
+
+  static let localAutoMLModelName = "local_automl_model"
+  static let remoteAutoMLModelName = "remote_automl_model"
+  static let localModelManifestFileName = "automl_labeler_manifest"
+  static let autoMLManifestFileType = "json"
+
   static let labelConfidenceThreshold: Float = 0.75
   static let smallDotRadius: CGFloat = 5.0
   static let largeDotRadius: CGFloat = 10.0

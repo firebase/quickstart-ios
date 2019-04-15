@@ -21,6 +21,8 @@
 
 @import FirebaseMLVision;
 @import FirebaseMLVisionObjectDetection;
+@import FirebaseMLCommon;
+@import FirebaseMLVisionAutoML;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -30,12 +32,31 @@ static NSString *const cancelActionTitleText = @"Cancel";
 static NSString *const videoDataOutputQueueLabel = @"com.google.firebaseml.visiondetector.VideoDataOutputQueue";
 static NSString *const sessionQueueLabel = @"com.google.firebaseml.visiondetector.SessionQueue";
 static NSString *const noResultsMessage = @"No Results";
+
+/** Name of the local AutoML model. */
+static NSString *const FIRLocalAutoMLModelName = @"local_automl_model";
+
+/** Name of the remote AutoML model. */
+static NSString *const FIRRemoteAutoMLModelName = @"remote_automl_model";
+
+/** Filename of AutoML local model manifest in the main resource bundle. */
+static NSString *const FIRAutoMLLocalModelManifestFilename = @"automl_labeler_manifest";
+
+/** File type of AutoML local model manifest in the main resource bundle. */
+static NSString *const FIRAutoMLManifestFileType = @"json";
+
+static float const labelConfidenceThreshold = 0.75;
 static const CGFloat FIRSmallDotRadius = 4.0;
 static const CGFloat FIRconstantScale = 1.0;
+static const CGFloat padding = 10.0;
+static const CGFloat resultsLabelHeight = 200.0;
+static const int resultsLabelLines = 5;
+
 
 @interface CameraViewController () <AVCaptureVideoDataOutputSampleBufferDelegate>
 
 typedef NS_ENUM(NSInteger, Detector) {
+  DetectorOnDeviceAutoMLImageLabeler,
   DetectorOnDeviceFace,
   DetectorOnDeviceText,
   DetectorOnDeviceObjectProminentNoClassifier,
@@ -55,12 +76,21 @@ typedef NS_ENUM(NSInteger, Detector) {
 @property (nonatomic) UIImageView *previewOverlayView;
 @property (weak, nonatomic) IBOutlet UIView *cameraView;
 @property (nonatomic) CMSampleBufferRef lastFrame;
+@property(nonatomic) FIRModelManager *modelManager;
+
+/** Whether the AutoML model(s) are registered. */
+@property(nonatomic) BOOL areAutoMLModelsRegistered;
+@property (strong, nonatomic) IBOutlet UIProgressView *downloadProgressView;
+
+
 @end
 
 @implementation CameraViewController
 
 - (NSString *)stringForDetector:(Detector)detector {
   switch (detector) {
+    case DetectorOnDeviceAutoMLImageLabeler:
+      return @"On-Device AutoML Image Labeler";
     case DetectorOnDeviceFace:
       return @"On-Device Face Detection";
     case DetectorOnDeviceText:
@@ -78,7 +108,9 @@ typedef NS_ENUM(NSInteger, Detector) {
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-  _detectors = @[@(DetectorOnDeviceFace), @(DetectorOnDeviceText),
+  _detectors = @[@(DetectorOnDeviceAutoMLImageLabeler),
+                 @(DetectorOnDeviceFace),
+                 @(DetectorOnDeviceText),
                  @(DetectorOnDeviceObjectProminentNoClassifier),
                  @(DetectorOnDeviceObjectProminentWithClassifier),
                  @(DetectorOnDeviceObjectMultipleNoClassifier),
@@ -88,6 +120,7 @@ typedef NS_ENUM(NSInteger, Detector) {
   _captureSession = [[AVCaptureSession alloc] init];
   _sessionQueue = dispatch_queue_create(sessionQueueLabel.UTF8String, nil);
   _vision = [FIRVision vision];
+  _modelManager = [FIRModelManager modelManager];
   _previewOverlayView = [[UIImageView alloc] initWithFrame:CGRectZero];
   _previewOverlayView.translatesAutoresizingMaskIntoConstraints = NO;
   _annotationOverlayView = [[UIView alloc] initWithFrame:CGRectZero];
@@ -125,7 +158,140 @@ typedef NS_ENUM(NSInteger, Detector) {
   [self setUpCaptureSessionInput];
 }
 
-#pragma mark - On-Device Detection
+#pragma mark - On-Device AutoML Detection
+
+/// Detects labels on the specified image using AutoML On-Device label API.
+///
+/// - Parameter image: The image.
+- (void)detectImageLabelsAutoMLOnDeviceInImage:(FIRVisionImage *)image
+                                         width:(CGFloat) width
+                                        height:(CGFloat)height {
+  [self registerAutoMLModelsIfNeeded];
+
+  // [START config_automl_label]
+  FIRVisionOnDeviceAutoMLImageLabelerOptions *options =
+  [[FIRVisionOnDeviceAutoMLImageLabelerOptions alloc]
+   initWithRemoteModelName:FIRRemoteAutoMLModelName
+   localModelName:FIRLocalAutoMLModelName];
+  options.confidenceThreshold = labelConfidenceThreshold;
+  // [END config_automl_label]
+
+  // [START init_automl_label]
+  FIRVisionImageLabeler *onDeviceAutoMLLabeler =
+  [self.vision onDeviceAutoMLImageLabelerWithOptions:options];
+  // [END init_automl_label]
+
+  dispatch_group_t group = dispatch_group_create();
+  dispatch_group_enter(group);
+
+  // [START detect_automl_label]
+  [onDeviceAutoMLLabeler processImage:image completion:^(NSArray<FIRVisionImageLabel *> * _Nullable labels, NSError * _Nullable error) {
+    // [START_EXCLUDE]
+    [self updatePreviewOverlayView];
+    [self removeDetectionAnnotations];
+    // [END_EXCLUDE]
+    if (error != nil) {
+      // [START_EXCLUDE]
+      NSLog(@"Failed to detect labels with error: %@.", error.localizedDescription);
+      dispatch_group_leave(group);
+      // [END_EXCLUDE]
+      return;
+    }
+
+    if (!labels ||  labels.count == 0) {
+      // [START_EXCLUDE]
+      dispatch_group_leave(group);
+      // [END_EXCLUDE]
+      return;
+    }
+
+    // [START_EXCLUDE]
+    CGRect annotationFrame = self.annotationOverlayView.frame;
+    CGRect resultsRect = CGRectMake(annotationFrame.origin.x + padding,
+                                    annotationFrame.size.height - padding - resultsLabelHeight,
+                                    annotationFrame.size.width - 2 * padding,
+                                    resultsLabelHeight);
+    UILabel *resultsLabel = [[UILabel alloc] initWithFrame:resultsRect];
+    resultsLabel.textColor = UIColor.yellowColor;
+    NSMutableArray *labelStrings = [NSMutableArray arrayWithCapacity:labels.count];
+    for (FIRVisionImageLabel *label in labels) {
+      [labelStrings addObject:[NSString stringWithFormat:@"Label: %@, Confidence: %@", label.text, label.confidence]];
+    }
+    resultsLabel.text = [labelStrings componentsJoinedByString:@"\n"];
+    resultsLabel.adjustsFontSizeToFitWidth = YES;
+    resultsLabel.numberOfLines = resultsLabelLines;
+    [self.annotationOverlayView addSubview:resultsLabel];
+    dispatch_group_leave(group);
+    // [END_EXCLUDE]
+  }];
+  // [END detect_automl_label]
+  dispatch_group_wait(group, DISPATCH_TIME_FOREVER);
+}
+
+- (void)registerAutoMLModelsIfNeeded {
+  if (self.areAutoMLModelsRegistered) return;
+
+  FIRModelDownloadConditions *initialConditions = [[FIRModelDownloadConditions alloc] init];
+  FIRModelDownloadConditions *updateConditions =
+  [[FIRModelDownloadConditions alloc] initWithAllowsCellularAccess:NO
+                                       allowsBackgroundDownloading:YES];
+  FIRRemoteModel *remoteModel = [[FIRRemoteModel alloc] initWithName:FIRRemoteAutoMLModelName
+                                                  allowsModelUpdates:YES
+                                                   initialConditions:initialConditions
+                                                    updateConditions:updateConditions];
+  if (![_modelManager registerRemoteModel:remoteModel]) {
+    NSLog(@"Failed to register AutoML remote model");
+  }
+
+  [NSNotificationCenter.defaultCenter addObserver:self
+                                         selector:@selector(remoteModelDownloadDidSucceed:) name:FIRModelDownloadDidSucceedNotification object:nil];
+  [NSNotificationCenter.defaultCenter addObserver:self
+                                         selector:@selector(remoteModelDownloadDidFail:) name:FIRModelDownloadDidFailNotification object:nil];
+
+  dispatch_async(dispatch_get_main_queue(), ^{
+    self.downloadProgressView.hidden = NO;
+    self.downloadProgressView.observedProgress = [self.modelManager downloadRemoteModel:remoteModel];
+  });
+
+  NSString *localModelFilePath =
+  [[NSBundle mainBundle] pathForResource:FIRAutoMLLocalModelManifestFilename
+                                  ofType:FIRAutoMLManifestFileType];
+  FIRLocalModel *localModel = [[FIRLocalModel alloc] initWithName:FIRLocalAutoMLModelName
+                                                             path:localModelFilePath];
+  if (![_modelManager registerLocalModel:localModel]) {
+    NSLog(@"Failed to register AutoML local model");
+  }
+  self.areAutoMLModelsRegistered = YES;
+}
+
+#pragma mark - Notifications
+
+- (void)remoteModelDownloadDidSucceed:(NSNotification *)notification {
+  dispatch_async(dispatch_get_main_queue(), ^{
+    self.downloadProgressView.hidden = YES;
+    FIRRemoteModel *remotemodel = notification.userInfo[FIRModelDownloadUserInfoKeyRemoteModel];
+    if (remotemodel == nil) {
+      NSLog(@"firebaseMLModelDownloadDidSucceed notification posted without a RemoteModel instance.");
+      return;
+    }
+    NSLog(@"Successfully downloaded the remote model with name: %@. The model is ready for detection.", remotemodel.name);
+  });
+}
+
+- (void)remoteModelDownloadDidFail:(NSNotification *)notification {
+  dispatch_async(dispatch_get_main_queue(), ^{
+    self.downloadProgressView.hidden = YES;
+    FIRRemoteModel *remoteModel = notification.userInfo[FIRModelDownloadUserInfoKeyRemoteModel];
+    NSError *error = notification.userInfo[FIRModelDownloadUserInfoKeyError];
+    if (error == nil) {
+      NSLog(@"firebaseMLModelDownloadDidFail notification posted without a RemoteModel instance or error.");
+      return;
+    }
+    NSLog(@"Failed to download the remote model with name: %@, error: %@.", remoteModel, error.localizedDescription);
+  });
+}
+
+#pragma mark - Other On-Device Detections
 
 - (void)detectFacesOnDeviceInImage:(FIRVisionImage *)image width:(CGFloat) width height:(CGFloat)height {
   FIRVisionFaceDetectorOptions *options = [[FIRVisionFaceDetectorOptions alloc] init];
@@ -586,6 +752,9 @@ typedef NS_ENUM(NSInteger, Detector) {
     }
 
     switch (_currentDetector) {
+      case DetectorOnDeviceAutoMLImageLabeler:
+        [self detectImageLabelsAutoMLOnDeviceInImage:visionImage width:imageWidth height: imageHeight];
+        break;
       case DetectorOnDeviceFace:
         [self detectFacesOnDeviceInImage:visionImage width:imageWidth height:imageHeight];
         break;

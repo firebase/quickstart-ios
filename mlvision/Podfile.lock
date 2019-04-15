@@ -114,6 +114,7 @@ PODS:
   - nanopb/decode (0.3.901)
   - nanopb/encode (0.3.901)
   - Protobuf (3.7.0)
+  - TensorFlowLite (1.12.0)
 
 DEPENDENCIES:
   - Firebase/Core
@@ -167,6 +168,7 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 32aeca0aa144acea523e1c8e053089dec2cb98ca
   nanopb: cf319651d4b9e5b247eea6c05b636fdefa85be83
   Protobuf: 7a877b7f3e5964e3fce995e2eb323dbc6831bb5a
+  TensorFlowLite: e81aef029750aa46b42ad16553fa4cddd81498cc
 
 PODFILE CHECKSUM: a4a1b7b3e4824d0cc7d3359dbf2bc1392dd866d0
 

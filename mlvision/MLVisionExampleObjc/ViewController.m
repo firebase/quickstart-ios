@@ -17,7 +17,10 @@
 #import "ViewController.h"
 #import "UIImage+VisionDetection.h"
 #import "UIUtilities.h"
-@import Firebase;
+@import FirebaseMLVision;
+@import FirebaseMLVisionObjectDetection;
+
+NS_ASSUME_NONNULL_BEGIN
 
 static NSArray *images;
 static NSString *const ModelExtension = @"tflite";
@@ -26,6 +29,8 @@ static NSString *const quantizedModelFilename = @"mobilenet_quant_v1_224";
 
 static NSString *const detectionNoResultsMessage = @"No results returned.";
 static NSString *const failedToDetectObjectsMessage = @"Failed to detect objects in image.";
+static NSString *const sparseTextModelName = @"Sparse";
+static NSString *const denseTextModelName = @"Dense";
 
 static float const labelConfidenceThreshold = 0.75;
 static CGFloat const smallDotRadius = 5.0;
@@ -33,7 +38,7 @@ static CGFloat const largeDotRadius = 10.0;
 static CGColorRef lineColor;
 static CGColorRef fillColor;
 
-static int const rowsCount = 8;
+static int const rowsCount = 13;
 static int const componentsCount = 1;
 
 /**
@@ -49,17 +54,28 @@ typedef NS_ENUM(NSInteger, DetectorPickerRow) {
   DetectorPickerRowDetectBarcodeOnDevice,
   /** On-Device vision image label detector. */
   DetectorPickerRowDetectImageLabelsOnDevice,
-  /** Cloud vision text vision detector. */
-  DetectorPickerRowDetectTextInCloud,
+  /** On-Device vision object detector, prominent, only tracking. */
+  DetectorPickerRowDetectObjectsProminentNoClassifier,
+  /** On-Device vision object detector, prominent, with classification. */
+  DetectorPickerRowDetectObjectsProminentWithClassifier,
+  /** On-Device vision object detector, multiple, only tracking. */
+  DetectorPickerRowDetectObjectsMultipleNoClassifier,
+  /** On-Device vision object detector, multiple, with classification. */
+  DetectorPickerRowDetectObjectsMultipleWithClassifier,
+  /** Cloud vision text vision detector (Sparse). */
+  DetectorPickerRowDetectTextInCloudSparse,
+  /** Cloud vision text vision detector (Dense). */
+  DetectorPickerRowDetectTextInCloudDense,
   /** Cloud vision document text vision detector. */
   DetectorPickerRowDetectDocumentTextInCloud,
   /** Cloud vision label vision detector. */
   DetectorPickerRowDetectImageLabelsInCloud,
   /** Cloud vision landmark vision detector. */
-  DetectorPickerRowDetectLandmarkInCloud,
+  DetectorPickerRowDetectLandmarkInCloud
 };
 
 @interface ViewController () <UINavigationControllerDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UIImagePickerControllerDelegate>
+
 @property(nonatomic) FIRVision *vision;
 
 /** A string holding current results from detection. */
@@ -79,6 +95,7 @@ typedef NS_ENUM(NSInteger, DetectorPickerRow) {
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *photoCameraButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *videoCameraButton;
+
 @end
 
 @implementation ViewController
@@ -93,8 +110,18 @@ typedef NS_ENUM(NSInteger, DetectorPickerRow) {
       return @"Barcode On-Device";
     case DetectorPickerRowDetectImageLabelsOnDevice:
       return @"Image Labeling On-Device";
-    case DetectorPickerRowDetectTextInCloud:
-      return @"Text in Cloud";
+    case DetectorPickerRowDetectObjectsProminentNoClassifier:
+      return @"ODT, prominent, only tracking";
+    case DetectorPickerRowDetectObjectsProminentWithClassifier:
+      return @"ODT, prominent, with classification";
+    case DetectorPickerRowDetectObjectsMultipleNoClassifier:
+      return @"ODT, multiple, only tracking";
+    case DetectorPickerRowDetectObjectsMultipleWithClassifier:
+      return @"ODT, multiple, with classification";
+    case DetectorPickerRowDetectTextInCloudSparse:
+      return @"Text in Cloud (Sparse)";
+    case DetectorPickerRowDetectTextInCloudDense:
+      return @"Text in Cloud (Dense)";
     case DetectorPickerRowDetectDocumentTextInCloud:
       return @"Document Text in Cloud";
     case DetectorPickerRowDetectImageLabelsInCloud:
@@ -176,9 +203,30 @@ typedef NS_ENUM(NSInteger, DetectorPickerRow) {
     case DetectorPickerRowDetectImageLabelsOnDevice:
       [self detectLabelsInImage:_imageView.image];
       break;
-    case DetectorPickerRowDetectTextInCloud:
-      [self detectTextInCloudInImage:_imageView.image];
+    case DetectorPickerRowDetectObjectsProminentNoClassifier:
+    case DetectorPickerRowDetectObjectsProminentWithClassifier:
+    case DetectorPickerRowDetectObjectsMultipleNoClassifier:
+    case DetectorPickerRowDetectObjectsMultipleWithClassifier: {
+      BOOL shouldEnableClassification = (rowIndex == DetectorPickerRowDetectObjectsProminentWithClassifier) ||
+      (rowIndex == DetectorPickerRowDetectObjectsMultipleWithClassifier);
+      BOOL shouldEnableMultipleObjects = (rowIndex == DetectorPickerRowDetectObjectsMultipleNoClassifier) ||
+      (rowIndex == DetectorPickerRowDetectObjectsMultipleWithClassifier);
+      FIRVisionObjectDetectorOptions *options = [FIRVisionObjectDetectorOptions new];
+      options.shouldEnableClassification = shouldEnableClassification;
+      options.shouldEnableMultipleObjects = shouldEnableMultipleObjects;
+      options.detectorMode = FIRVisionObjectDetectorModeSingleImage;
+      [self detectObjectsOnDeviceInImage:_imageView.image withOptions:options];
       break;
+    }
+    case DetectorPickerRowDetectTextInCloudSparse:
+      [self detectTextInCloudInImage:_imageView.image withOptions:nil];
+      break;
+    case DetectorPickerRowDetectTextInCloudDense: {
+      FIRVisionCloudTextRecognizerOptions *options = [FIRVisionCloudTextRecognizerOptions new];
+      options.modelType = FIRVisionCloudTextModelTypeDense;
+      [self detectTextInCloudInImage:_imageView.image withOptions:options];
+      break;
+    }
     case DetectorPickerRowDetectDocumentTextInCloud:
       [self detectDocumentTextInCloudInImage:_imageView.image];
       break;
@@ -823,21 +871,10 @@ typedef NS_ENUM(NSInteger, DetectorPickerRow) {
 /// Cloud text recognizer.
 ///
 /// - Parameter image: The image.
-- (void)detectTextInCloudInImage:(UIImage *)image {
+- (void)detectTextInCloudInImage:(UIImage *)image withOptions:(nullable FIRVisionCloudTextRecognizerOptions *)options {
   if (!image) {
     return;
   }
-
-  // [START config_text_cloud]
-  FIRVisionCloudTextRecognizerOptions *options = [FIRVisionCloudTextRecognizerOptions new];
-  options.modelType = FIRVisionCloudTextModelTypeDense;
-  // [END config_text_cloud]
-
-  // [START init_text_cloud]
-  FIRVisionTextRecognizer *cloudTextRecognizer = [_vision cloudTextRecognizerWithOptions:options];
-  // Or, to use the default settings:
-  // FIRVisionCloudTextRecognizer *cloudTextRecognizer = [_vision cloudTextRecognizer];
-  // [END init_text_cloud]
 
   // Define the metadata for the image.
   FIRVisionImageMetadata *imageMetadata = [FIRVisionImageMetadata new];
@@ -847,7 +884,19 @@ typedef NS_ENUM(NSInteger, DetectorPickerRow) {
   FIRVisionImage *visionImage = [[FIRVisionImage alloc] initWithImage:image];
   visionImage.metadata = imageMetadata;
 
-  [_resultsText appendString:@"Running Cloud Text Recognition...\n"];
+
+  FIRVisionTextRecognizer *cloudTextRecognizer;
+  NSString *modelTypeString = sparseTextModelName;
+  if (options != nil) {
+    modelTypeString = (options.modelType == FIRVisionCloudTextModelTypeDense) ? denseTextModelName : modelTypeString;
+    // [START init_text_cloud]
+    cloudTextRecognizer = [_vision cloudTextRecognizerWithOptions:options];
+    // [END init_text_cloud]
+  } else {
+    cloudTextRecognizer = [_vision cloudTextRecognizer];
+  }
+
+  [_resultsText appendString:[NSString stringWithFormat:@"Running Cloud Text Recognition (%@ model)...\n", modelTypeString]];
   [self process:visionImage withTextRecognizer:cloudTextRecognizer];
 }
 
@@ -976,4 +1025,60 @@ typedef NS_ENUM(NSInteger, DetectorPickerRow) {
   }];
   // [END detect_label_cloud]
 }
+
+/// Detects objects on the specified image and draws a frame around them.
+///
+/// - Parameter image: The image.
+/// - Parameter options: The options for object detector.
+- (void)detectObjectsOnDeviceInImage:(UIImage *)image withOptions:(FIRVisionObjectDetectorOptions *)options {
+  if (!image) {
+    return;
+  }
+
+  // [START init_object_detector]
+  // Create an objects detector with options.
+  FIRVisionObjectDetector *detector = [_vision objectDetectorWithOptions:options];
+  // [END init_object_detector]
+
+  // Define the metadata for the image.
+  FIRVisionImageMetadata *imageMetadata = [FIRVisionImageMetadata new];
+  imageMetadata.orientation = [UIUtilities visionImageOrientationFromImageOrientation:image.imageOrientation];
+
+  // Initialize a VisionImage object with the given UIImage.
+  FIRVisionImage *visionImage = [[FIRVisionImage alloc] initWithImage:image];
+  visionImage.metadata = imageMetadata;
+
+  // [START detect_object]
+  [detector processImage:visionImage completion:^(NSArray<FIRVisionObject *> * _Nullable objects, NSError * _Nullable error) {
+    if (error != nil) {
+      // [START_EXCLUDE]
+      NSString *errorString = error ? error.localizedDescription : detectionNoResultsMessage;
+      self.resultsText = [NSMutableString stringWithFormat:@"Object detection failed with error: %@", errorString];
+      [self showResults];
+      // [END_EXCLUDE]
+    }
+    if (!objects || objects.count == 0) {
+      // [START_EXCLUDE]
+      self.resultsText = [@"On-Device object detector returned no results." mutableCopy];
+      [self showResults];
+      // [END_EXCLUDE]
+      return;
+    }
+
+    // [START_EXCLUDE]
+    [self.resultsText setString:@""];
+    for (FIRVisionObject *object in objects) {
+      CGAffineTransform transform = [self transformMatrix];
+      CGRect transformedRect = CGRectApplyAffineTransform(object.frame, transform);
+      [UIUtilities addRectangle:transformedRect toView:self.annotationOverlayView color:UIColor.greenColor];
+      [self.resultsText appendFormat:@"Class: %@, frame: %@, ID: %@\n", object.label, NSStringFromCGRect(object.frame), object.trackingID];
+    }
+    [self showResults];
+    // [END_EXCLUDE]
+  }];
+  // [END detect_object]
+}
+
 @end
+
+NS_ASSUME_NONNULL_END

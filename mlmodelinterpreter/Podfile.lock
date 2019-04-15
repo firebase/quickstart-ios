@@ -71,17 +71,19 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
-    - Firebase
-    - FirebaseAnalytics
-    - FirebaseCore
-    - FirebaseInstanceID
-    - FirebaseMLCommon
-    - FirebaseMLModelInterpreter
-    - GoogleAppMeasurement
     - GoogleUtilities
     - GTMSessionFetcher
-    - nanopb
     - TensorFlowLite
+  sso://cpdc-test/firebase-ml:
+    - FirebaseCore
+    - FirebaseMLCommon
+    - FirebaseMLModelInterpreter
+  sso://cpdc-test/spec:
+    - Firebase
+    - FirebaseAnalytics
+    - FirebaseInstanceID
+    - GoogleAppMeasurement
+    - nanopb
 
 SPEC CHECKSUMS:
   Firebase: 2f5235e62f141cb86181c3af0dfe4509706351ac
@@ -93,9 +95,9 @@ SPEC CHECKSUMS:
   GoogleAppMeasurement: 1624046ab1bcc5e170061a56ef5679000b079c8e
   GoogleUtilities: 6481e6318c5fcabaaa8513ef8120f329055d7c10
   GTMSessionFetcher: 32aeca0aa144acea523e1c8e053089dec2cb98ca
-  nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
+  nanopb: cf319651d4b9e5b247eea6c05b636fdefa85be83
   TensorFlowLite: e81aef029750aa46b42ad16553fa4cddd81498cc
 
-PODFILE CHECKSUM: 65d4d71c9322a1757fff66a418cde3dea054bb0c
+PODFILE CHECKSUM: 21ee3eb48301da7df4f2bb994c04822720a50ae4
 
 COCOAPODS: 1.6.1

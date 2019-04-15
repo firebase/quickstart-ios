@@ -21,6 +21,8 @@ static CGFloat const rectangleViewAlpha = 0.3;
 static CGFloat const shapeViewAlpha = 0.3;
 static CGFloat const rectangleViewCornerRadius = 10.0;
 
+NS_ASSUME_NONNULL_BEGIN
+
 @implementation UIUtilities
 
 + (void)addCircleAtPoint:(CGPoint)point
@@ -140,4 +142,7 @@ static CGFloat const rectangleViewCornerRadius = 10.0;
     return currentOrientation;
   }
 }
+
 @end
+
+NS_ASSUME_NONNULL_END

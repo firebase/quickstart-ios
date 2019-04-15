@@ -65,19 +65,21 @@ PODS:
     - GoogleUtilities/Network (~> 5.2)
     - "GoogleUtilities/NSData+zlib (~> 5.2)"
     - nanopb (~> 0.3)
-  - GoogleMobileVision/BarcodeDetector (1.5.0):
-    - GoogleMobileVision/Detector (~> 1.5)
-  - GoogleMobileVision/Detector (1.5.0):
+  - GoogleMobileVision/BarcodeDetector (1.6.0-beta1):
+    - GoogleMobileVision/Detector (~> 1.6)
+  - GoogleMobileVision/Detector (1.6.0-beta1):
     - GoogleToolboxForMac/Logger (~> 2.1)
     - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
     - GTMSessionFetcher/Core (~> 1.1)
     - Protobuf (~> 3.1)
-  - GoogleMobileVision/FaceDetector (1.5.0):
-    - GoogleMobileVision/Detector (~> 1.5)
-  - GoogleMobileVision/LabelDetector (1.5.0):
-    - GoogleMobileVision/Detector (~> 1.5)
-  - GoogleMobileVision/TextDetector (1.5.0):
-    - GoogleMobileVision/Detector (~> 1.5)
+  - GoogleMobileVision/FaceDetector (1.6.0-beta1):
+    - GoogleMobileVision/Detector (~> 1.6)
+  - GoogleMobileVision/LabelDetector (1.6.0-beta1):
+    - GoogleMobileVision/Detector (~> 1.6)
+  - GoogleMobileVision/ObjectDetector (1.6.0-beta1):
+    - GoogleMobileVision/Detector (~> 1.6)
+  - GoogleMobileVision/TextDetector (1.6.0-beta1):
+    - GoogleMobileVision/Detector (~> 1.6)
   - GoogleToolboxForMac/Defines (2.2.0)
   - GoogleToolboxForMac/Logger (2.2.0):
     - GoogleToolboxForMac/Defines (= 2.2.0)
@@ -120,27 +122,31 @@ DEPENDENCIES:
   - Firebase/MLVisionFaceModel
   - Firebase/MLVisionLabelModel
   - Firebase/MLVisionTextModel
+  - FirebaseMLVisionObjectDetection
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
-    - Firebase
-    - FirebaseAnalytics
+    - GoogleAPIClientForREST
+    - GoogleToolboxForMac
+    - GoogleUtilities
+    - GTMSessionFetcher
+    - Protobuf
+  sso://cpdc-test/firebase-ml:
     - FirebaseCore
-    - FirebaseInstanceID
     - FirebaseMLCommon
     - FirebaseMLVision
     - FirebaseMLVisionBarcodeModel
     - FirebaseMLVisionFaceModel
     - FirebaseMLVisionLabelModel
+    - FirebaseMLVisionObjectDetection
     - FirebaseMLVisionTextModel
-    - GoogleAPIClientForREST
-    - GoogleAppMeasurement
     - GoogleMobileVision
-    - GoogleToolboxForMac
-    - GoogleUtilities
-    - GTMSessionFetcher
+  sso://cpdc-test/spec:
+    - Firebase
+    - FirebaseAnalytics
+    - FirebaseInstanceID
+    - GoogleAppMeasurement
     - nanopb
-    - Protobuf
 
 SPEC CHECKSUMS:
   Firebase: 2f5235e62f141cb86181c3af0dfe4509706351ac
@@ -159,9 +165,9 @@ SPEC CHECKSUMS:
   GoogleToolboxForMac: ff31605b7d66400dcec09bed5861689aebadda4d
   GoogleUtilities: 6481e6318c5fcabaaa8513ef8120f329055d7c10
   GTMSessionFetcher: 32aeca0aa144acea523e1c8e053089dec2cb98ca
-  nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
+  nanopb: cf319651d4b9e5b247eea6c05b636fdefa85be83
   Protobuf: 7a877b7f3e5964e3fce995e2eb323dbc6831bb5a
 
-PODFILE CHECKSUM: ffa5cb82325be3e2c062350921a64862bc5186cd
+PODFILE CHECKSUM: a4a1b7b3e4824d0cc7d3359dbf2bc1392dd866d0
 
 COCOAPODS: 1.6.1

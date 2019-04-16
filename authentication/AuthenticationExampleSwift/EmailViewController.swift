@@ -123,11 +123,11 @@ class EmailViewController: UIViewController {
           Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
             // [START_EXCLUDE]
             strongSelf.hideSpinner {
-              guard let authResult = authResult, error == nil else {
+              guard let user = authResult?.user, error == nil else {
                 strongSelf.showMessagePrompt(error!.localizedDescription)
                 return
               }
-              print("\(authResult.user.email!) created")
+              print("\(user.email!) created")
               strongSelf.navigationController?.popViewController(animated: true)
             }
             // [END_EXCLUDE]

@@ -1,0 +1,20 @@
+platform :ios, '9.0'
+source 'https://github.com/CocoaPods/Specs.git'
+
+use_frameworks!
+
+pod 'Firebase/MLNLTranslate'
+pod 'Firebase/Core'
+
+target 'TranslateExample' do
+  target 'TranslateExampleTests' do
+    inherit! :search_paths
+  end
+end
+
+target 'TranslateExampleObjC' do
+  target 'TranslateExampleObjCTests' do
+    inherit! :search_paths
+  end
+end
+

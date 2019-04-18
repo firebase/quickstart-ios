@@ -4,7 +4,7 @@ platform :ios, '8.0'
 
 target 'CrashlyticsExample'  do
 
-  pod 'Firebase/Core'
+  pod 'Firebase/Analytics'
   pod 'Fabric'
   pod 'Crashlytics'
 
@@ -14,7 +14,7 @@ target 'CrashlyticsExample'  do
 end
 
 target 'CrashlyticsExampleSwift' do
-  pod 'Firebase/Core'
+  pod 'Firebase/Analytics'
   pod 'Fabric'
   pod 'Crashlytics'
 end

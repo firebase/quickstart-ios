@@ -4,7 +4,6 @@ use_frameworks!
 platform :ios, '8.0'
 
 target 'AnalyticsExample' do
-  pod 'Firebase/Core'
   pod 'Firebase/Analytics'
 
   target 'AnalyticsExampleTests' do
@@ -13,6 +12,5 @@ target 'AnalyticsExample' do
 end
 
 target 'AnalyticsExampleSwift' do
-  pod 'Firebase/Core'
   pod 'Firebase/Analytics'
 end

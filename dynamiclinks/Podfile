@@ -4,7 +4,7 @@ use_frameworks!
 platform :ios, '8.0'
 
 # [START pod_ddl]
-pod 'Firebase/Core'
+pod 'Firebase/Analytics'
 pod 'Firebase/DynamicLinks'
 # [END pod_ddl]
 

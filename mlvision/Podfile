@@ -2,7 +2,7 @@ platform :ios, '9.0'
 use_frameworks!
 
 # [START base_dependencies]
-pod 'Firebase/Core'
+pod 'Firebase/Analytics'
 pod 'Firebase/MLVision'
 # [END base_dependencies]
 pod 'Firebase/MLVisionAutoML'

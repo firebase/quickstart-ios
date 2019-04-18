@@ -1,7 +1,7 @@
 # CrashReportingExample
 use_frameworks!
 platform :ios, '8.0'
-pod 'Firebase/Core'
+pod 'Firebase/Analytics'
 pod 'Firebase/Crash'
 
 target 'CrashReportingExample'  do

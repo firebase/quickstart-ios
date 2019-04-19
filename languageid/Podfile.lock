@@ -1,4 +1,6 @@
 PODS:
+  - Firebase/Analytics (5.20.2):
+    - Firebase/Core
   - Firebase/Core (5.20.2):
     - Firebase/CoreOnly
     - FirebaseAnalytics (= 5.8.1)
@@ -67,7 +69,7 @@ PODS:
   - nanopb/encode (0.3.901)
 
 DEPENDENCIES:
-  - Firebase/Core
+  - Firebase/Analytics
   - Firebase/MLNLLanguageID
 
 SPEC REPOS:
@@ -97,6 +99,6 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 32aeca0aa144acea523e1c8e053089dec2cb98ca
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
 
-PODFILE CHECKSUM: 9333adc1399d1f009a2fe05e4f42135557f548ab
+PODFILE CHECKSUM: e92f8f0861f0d967f7bbccbff356bc3f5d9dbb5d
 
 COCOAPODS: 1.6.1

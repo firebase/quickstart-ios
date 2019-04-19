@@ -1,4 +1,6 @@
 PODS:
+  - Firebase/Analytics (5.20.2):
+    - Firebase/Core
   - Firebase/Core (5.20.2):
     - Firebase/CoreOnly
     - FirebaseAnalytics (= 5.8.1)
@@ -59,7 +61,7 @@ PODS:
   - nanopb/encode (0.3.901)
 
 DEPENDENCIES:
-  - Firebase/Core
+  - Firebase/Analytics
   - Firebase/DynamicLinks
 
 SPEC REPOS:
@@ -85,6 +87,6 @@ SPEC CHECKSUMS:
   GoogleUtilities: 273e67030e0de313e7304f6dcfa96fc5214f6c23
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
 
-PODFILE CHECKSUM: 626cfa37d84bc081b5bbcd0bd1ccecc6ca467bfa
+PODFILE CHECKSUM: 5439fdd96e8cfd81a6f7f419823c16836a39d53b
 
 COCOAPODS: 1.6.1

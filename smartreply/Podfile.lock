@@ -1,4 +1,6 @@
 PODS:
+  - Firebase/Analytics (5.20.2):
+    - Firebase/Core
   - Firebase/Core (5.20.2):
     - Firebase/CoreOnly
     - FirebaseAnalytics (= 5.8.1)
@@ -163,7 +165,7 @@ PODS:
   - SwiftLint (0.31.0)
 
 DEPENDENCIES:
-  - Firebase/Core
+  - Firebase/Analytics
   - Firebase/MLNLSmartReply
   - MaterialComponents/Buttons
   - "MaterialComponents/Buttons+ButtonThemer"
@@ -215,6 +217,6 @@ SPEC CHECKSUMS:
   Protobuf: 7a877b7f3e5964e3fce995e2eb323dbc6831bb5a
   SwiftLint: 7a0227733d786395817373b2d0ca799fd0093ff3
 
-PODFILE CHECKSUM: 9e6ed118c78fb81c82c02e3530a006c3616df6fe
+PODFILE CHECKSUM: c2417aaece5985c3ae4ab16b0606e877bc160b67
 
 COCOAPODS: 1.6.1

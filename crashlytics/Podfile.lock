@@ -2,6 +2,8 @@ PODS:
   - Crashlytics (3.12.0):
     - Fabric (~> 1.9.0)
   - Fabric (1.9.0)
+  - Firebase/Analytics (5.20.2):
+    - Firebase/Core
   - Firebase/Core (5.20.2):
     - Firebase/CoreOnly
     - FirebaseAnalytics (= 5.8.1)
@@ -56,7 +58,7 @@ PODS:
 DEPENDENCIES:
   - Crashlytics
   - Fabric
-  - Firebase/Core
+  - Firebase/Analytics
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -81,6 +83,6 @@ SPEC CHECKSUMS:
   GoogleUtilities: 273e67030e0de313e7304f6dcfa96fc5214f6c23
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
 
-PODFILE CHECKSUM: c01b8de586b4338f5f025a163206d5d63405ef95
+PODFILE CHECKSUM: d441d22c32adb286e2bfa889145a7883707cf2ee
 
 COCOAPODS: 1.6.1

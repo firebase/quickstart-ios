@@ -1,7 +1,7 @@
 platform :ios, '9.0'
 use_frameworks!
 
-pod 'Firebase/Core'
+pod 'Firebase/Analytics'
 pod 'Firebase/MLModelInterpreter'
 
 target 'MLModelInterpreterExample' do

@@ -1,4 +1,6 @@
 PODS:
+  - Firebase/Analytics (5.20.2):
+    - Firebase/Core
   - Firebase/Core (5.20.2):
     - Firebase/CoreOnly
     - FirebaseAnalytics (= 5.8.1)
@@ -66,7 +68,7 @@ PODS:
   - Protobuf (3.7.0)
 
 DEPENDENCIES:
-  - Firebase/Core
+  - Firebase/Analytics
   - Firebase/RemoteConfig
 
 SPEC REPOS:
@@ -94,6 +96,6 @@ SPEC CHECKSUMS:
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   Protobuf: 7a877b7f3e5964e3fce995e2eb323dbc6831bb5a
 
-PODFILE CHECKSUM: fb8326090832adfc5e7db53d449e4e9175a5d964
+PODFILE CHECKSUM: 6e70c70b8f9747978fc48fab347d595e7c4efb45
 
 COCOAPODS: 1.6.1

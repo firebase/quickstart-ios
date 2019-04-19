@@ -54,7 +54,6 @@ PODS:
 
 DEPENDENCIES:
   - Firebase/Analytics
-  - Firebase/Core
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -75,6 +74,6 @@ SPEC CHECKSUMS:
   GoogleUtilities: 273e67030e0de313e7304f6dcfa96fc5214f6c23
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
 
-PODFILE CHECKSUM: 91c90931e2de8c1848e0cf3557ba1350378ca935
+PODFILE CHECKSUM: 83c3e6d50c04da62525acae469d2a05036ff4ec2
 
 COCOAPODS: 1.6.1

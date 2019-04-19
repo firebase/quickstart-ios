@@ -5,6 +5,8 @@ PODS:
   - BoringSSL-GRPC/Implementation (0.0.2):
     - BoringSSL-GRPC/Interface (= 0.0.2)
   - BoringSSL-GRPC/Interface (0.0.2)
+  - Firebase/Analytics (5.20.2):
+    - Firebase/Core
   - Firebase/Auth (5.20.2):
     - Firebase/CoreOnly
     - FirebaseAuth (= 5.4.2)
@@ -123,8 +125,8 @@ PODS:
   - SDWebImage/Core (5.0.1)
 
 DEPENDENCIES:
+  - Firebase/Analytics
   - Firebase/Auth
-  - Firebase/Core
   - Firebase/Firestore
   - FirebaseUI/Auth (~> 5.0)
   - FirebaseUI/Google (~> 5.0)
@@ -175,6 +177,6 @@ SPEC CHECKSUMS:
   Protobuf: 7a877b7f3e5964e3fce995e2eb323dbc6831bb5a
   SDWebImage: 27dd2c9ea07a2252f94557c9fbb6105ee94b74c9
 
-PODFILE CHECKSUM: 452b763e750e1de28ebd3dfa94d35aa01afc1618
+PODFILE CHECKSUM: f6a1db0a15f174910a7b1019d2664aa543558332
 
 COCOAPODS: 1.6.1

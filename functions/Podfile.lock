@@ -1,4 +1,6 @@
 PODS:
+  - Firebase/Analytics (5.20.2):
+    - Firebase/Core
   - Firebase/Auth (5.20.2):
     - Firebase/CoreOnly
     - FirebaseAuth (= 5.4.2)
@@ -157,8 +159,8 @@ PODS:
   - nanopb/encode (0.3.901)
 
 DEPENDENCIES:
+  - Firebase/Analytics
   - Firebase/Auth
-  - Firebase/Core
   - Firebase/Functions
   - FirebaseUI/Auth
   - FirebaseUI/Google
@@ -205,6 +207,6 @@ SPEC CHECKSUMS:
   MDFTextAccessibility: 85c09a1bd9c321f494348e632a25063bcda35a53
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
 
-PODFILE CHECKSUM: 745a17aabcd57a85c2a338d1f67162a027be5e02
+PODFILE CHECKSUM: 24da91db027c807e0d0fa3d435be58be395a4ca0
 
 COCOAPODS: 1.6.1

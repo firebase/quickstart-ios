@@ -1,4 +1,6 @@
 PODS:
+  - Firebase/Analytics (5.20.2):
+    - Firebase/Core
   - Firebase/Core (5.20.2):
     - Firebase/CoreOnly
     - FirebaseAnalytics (= 5.8.1)
@@ -114,7 +116,7 @@ PODS:
   - Protobuf (3.7.0)
 
 DEPENDENCIES:
-  - Firebase/Core
+  - Firebase/Analytics
   - Firebase/MLVision
   - Firebase/MLVisionBarcodeModel
   - Firebase/MLVisionFaceModel
@@ -162,6 +164,6 @@ SPEC CHECKSUMS:
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   Protobuf: 7a877b7f3e5964e3fce995e2eb323dbc6831bb5a
 
-PODFILE CHECKSUM: ffa5cb82325be3e2c062350921a64862bc5186cd
+PODFILE CHECKSUM: 51d9516156c47759030dd16c4826816eb281717c
 
 COCOAPODS: 1.6.1

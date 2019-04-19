@@ -332,11 +332,14 @@ typedef NS_ENUM(NSInteger, Detector) {
 
 - (void)recognizeTextOnDeviceInImage:(FIRVisionImage *)image width:(CGFloat)width height:(CGFloat)height {
   FIRVisionTextRecognizer *textRecognizer = [_vision onDeviceTextRecognizer];
+  dispatch_group_t group = dispatch_group_create();
+  dispatch_group_enter(group);
   [textRecognizer processImage:image completion:^(FIRVisionText * _Nullable text, NSError * _Nullable error) {
     [self removeDetectionAnnotations];
     [self updatePreviewOverlayView];
     if (text == nil) {
       NSLog(@"On-Device text recognizer error: %@", error ? error.localizedDescription : noResultsMessage);
+      dispatch_group_leave(group);
       return;
     }
     // Blocks.
@@ -361,7 +364,9 @@ typedef NS_ENUM(NSInteger, Detector) {
         }
       }
     }
+    dispatch_group_leave(group);
   }];
+  dispatch_group_wait(group, DISPATCH_TIME_FOREVER);
 }
 
 #pragma mark - Object Detection

@@ -2,6 +2,8 @@ PODS:
   - Firebase/AdMob (5.20.2):
     - Firebase/Core
     - Google-Mobile-Ads-SDK (~> 7.42)
+  - Firebase/Analytics (5.20.2):
+    - Firebase/Core
   - Firebase/Core (5.20.2):
     - Firebase/CoreOnly
     - FirebaseAnalytics (= 5.8.1)
@@ -23,7 +25,7 @@ PODS:
     - FirebaseCore (~> 5.2)
     - GoogleUtilities/Environment (~> 5.2)
     - GoogleUtilities/UserDefaults (~> 5.2)
-  - Google-Mobile-Ads-SDK (7.42.2):
+  - Google-Mobile-Ads-SDK (7.43.0):
     - GoogleAppMeasurement (~> 5.7)
   - GoogleAppMeasurement (5.8.1):
     - GoogleUtilities/AppDelegateSwizzler (~> 5.2)
@@ -57,7 +59,7 @@ PODS:
 
 DEPENDENCIES:
   - Firebase/AdMob
-  - Firebase/Core
+  - Firebase/Analytics
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -75,11 +77,11 @@ SPEC CHECKSUMS:
   FirebaseAnalytics: ece1aa57a4f43c64d53a648b5a5e05151aae947b
   FirebaseCore: f1a9a8be1aee4bf71a2fc0f4096df6788bdfda61
   FirebaseInstanceID: a122b0c258720cf250551bb2bedf48c699f80d90
-  Google-Mobile-Ads-SDK: 8f4f7e793bfd3fff5b082181b54112f81b579a67
+  Google-Mobile-Ads-SDK: e911f5544fc6488f8372a183627a802c8bdb5e36
   GoogleAppMeasurement: ffe513e90551844a739e7bcbb1d2aca1c28a4338
   GoogleUtilities: 273e67030e0de313e7304f6dcfa96fc5214f6c23
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
 
-PODFILE CHECKSUM: cb1300c27638a540c06387177de70c4864f0f1a2
+PODFILE CHECKSUM: 684a45a18862f0bfd06fb08db1a7e978f8c62d49
 
 COCOAPODS: 1.6.1

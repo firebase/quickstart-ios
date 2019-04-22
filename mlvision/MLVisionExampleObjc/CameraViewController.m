@@ -375,26 +375,31 @@ typedef NS_ENUM(NSInteger, Detector) {
                                width:(CGFloat)width
                               height:(CGFloat)height
                              options:(FIRVisionObjectDetectorOptions *)options {
-  dispatch_sync(dispatch_get_main_queue(), ^{
-    [self updatePreviewOverlayView];
-    [self removeDetectionAnnotations];
-  });
-
   FIRVisionObjectDetector *detector = [_vision objectDetectorWithOptions:options];
 
   NSError *error;
   NSArray *objects = [detector resultsInImage:image error:&error];
   if (error != nil) {
     NSLog(@"Failed to detect object with error: %@", error.localizedDescription);
+    dispatch_sync(dispatch_get_main_queue(), ^{
+      [self updatePreviewOverlayView];
+      [self removeDetectionAnnotations];
+    });
     return;
   }
 
   if (!objects || objects.count == 0) {
     NSLog(@"On-Device object detector returned no results.");
+    dispatch_sync(dispatch_get_main_queue(), ^{
+      [self updatePreviewOverlayView];
+      [self removeDetectionAnnotations];
+    });
     return;
   }
 
   dispatch_sync(dispatch_get_main_queue(), ^{
+    [self updatePreviewOverlayView];
+    [self removeDetectionAnnotations];
     for (FIRVisionObject *object in objects) {
       CGRect normalizedRect = CGRectMake(object.frame.origin.x / width, object.frame.origin.y / height, object.frame.size.width / width, object.frame.size.height / height);
       CGRect standardizedRect = CGRectStandardize([self.previewLayer rectForMetadataOutputRectOfInterest:normalizedRect]);

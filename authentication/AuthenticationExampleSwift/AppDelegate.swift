@@ -46,7 +46,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     GIDSignIn.sharedInstance().delegate = self
     // [END setup_gidsignin]
 
-    FBSDKApplicationDelegate.sharedInstance().application(application,
+    ApplicationDelegate.shared.application(application,
         didFinishLaunchingWithOptions:launchOptions)
 
     let key = Bundle.main.object(forInfoDictionaryKey: "consumerKey"),
@@ -81,11 +81,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
                                          annotation: annotation) {
       return true
     }
-    return FBSDKApplicationDelegate.sharedInstance().application(application,
-                                                                 open: url,
-                                                                 // [START old_options]
-                                                                 sourceApplication: sourceApplication,
-                                                                 annotation: annotation)
+    return ApplicationDelegate.shared.application(application,
+                                                            open: url,
+                                                            // [START old_options]
+                                                            sourceApplication: sourceApplication,
+                                                            annotation: annotation)
   }
   // [END old_options]
 

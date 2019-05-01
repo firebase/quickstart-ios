@@ -136,15 +136,15 @@ class MainViewController: UITableViewController, GIDSignInUIDelegate {
         }
       case .authFacebook:
         action = UIAlertAction(title: "Facebook", style: .default) { (UIAlertAction) in
-          let loginManager = FBSDKLoginManager()
-          loginManager.logIn(withReadPermissions: ["email"], from: self, handler: { (result, error) in
+          let loginManager = LoginManager()
+          loginManager.logIn(permissions: ["email"], from: self, handler: { (result, error) in
             if let error = error {
               self.showMessagePrompt(error.localizedDescription)
             } else if result!.isCancelled {
               print("FBLogin cancelled")
             } else {
               // [START headless_facebook_auth]
-              let credential = FacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
+              let credential = FacebookAuthProvider.credential(withAccessToken: AccessToken.current!.tokenString)
               // [END headless_facebook_auth]
               self.firebaseLogin(credential)
             }

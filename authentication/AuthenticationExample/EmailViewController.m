@@ -93,8 +93,8 @@
 
     [self showSpinner:^{
       // [START get_providers]
-      [[FIRAuth auth] fetchProvidersForEmail:userInput
-                                  completion:^(NSArray<NSString *> *_Nullable providers, NSError *_Nullable error) {
+      [[FIRAuth auth] fetchSignInMethodsForEmail:userInput
+                                      completion:^(NSArray<NSString *> *_Nullable providers, NSError *_Nullable error) {
         // [START_EXCLUDE]
         [self hideSpinner:^{
           if (error) {

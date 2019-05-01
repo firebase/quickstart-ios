@@ -221,7 +221,7 @@ class MainViewController: UITableViewController, GIDSignInUIDelegate {
                 }
               }
               if let credential = credential {
-                Auth.auth().signInAndRetrieveData(with: credential) { (result, error) in
+                Auth.auth().signIn(with: credential) { (result, error) in
                   self.hideSpinner {
                     if let error = error {
                       self.showMessagePrompt(error.localizedDescription)
@@ -246,7 +246,7 @@ class MainViewController: UITableViewController, GIDSignInUIDelegate {
                 }
               }
               if let credential = credential {
-                Auth.auth().signInAndRetrieveData(with: credential) { (result, error) in
+                Auth.auth().signIn(with: credential) { (result, error) in
                   self.hideSpinner {
                     if let error = error {
                       self.showMessagePrompt(error.localizedDescription)
@@ -322,7 +322,7 @@ class MainViewController: UITableViewController, GIDSignInUIDelegate {
     showSpinner {
       if let user = Auth.auth().currentUser {
         // [START link_credential]
-        user.linkAndRetrieveData(with: credential) { (authResult, error) in
+        user.link(with: credential) { (authResult, error) in
           // [START_EXCLUDE]
           self.hideSpinner {
             if let error = error {
@@ -336,7 +336,7 @@ class MainViewController: UITableViewController, GIDSignInUIDelegate {
         // [END link_credential]
       } else {
         // [START signin_credential]
-        Auth.auth().signInAndRetrieveData(with: credential) { (authResult, error) in
+        Auth.auth().signIn(with: credential) { (authResult, error) in
           // [START_EXCLUDE silent]
           self.hideSpinner {
           // [END_EXCLUDE]

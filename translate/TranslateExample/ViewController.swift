@@ -33,15 +33,13 @@ class ViewController: UIViewController, UITextViewDelegate, UIPickerViewDataSour
   @IBOutlet var targetDownloadDeleteButton: UIButton!
 
   var translator: Translator!
-  lazy var allLanguages = TranslateLanguage.allLanguages().compactMap {
-    TranslateLanguage(rawValue: $0.uintValue)
-  }
+  lazy var allLanguages = Array(TranslateLanguage.allLanguages())
 
   override func viewDidLoad() {
     inputPicker.dataSource = self
     outputPicker.dataSource = self
-    inputPicker.selectRow(allLanguages.index(of: TranslateLanguage.en) ?? 0, inComponent: 0, animated: false)
-    outputPicker.selectRow(allLanguages.index(of: TranslateLanguage.es) ?? 0, inComponent: 0, animated: false)
+    inputPicker.selectRow(allLanguages.index(of: TranslateLanguage.EN.rawValue as NSNumber) ?? 0, inComponent: 0, animated: false)
+    outputPicker.selectRow(allLanguages.index(of: TranslateLanguage.ES.rawValue as NSNumber) ?? 0, inComponent: 0, animated: false)
     inputPicker.delegate = self
     outputPicker.delegate = self
     inputTextView.delegate = self
@@ -58,7 +56,7 @@ class ViewController: UIViewController, UITextViewDelegate, UIPickerViewDataSour
   }
 
   func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-    return allLanguages[row].toLanguageCode()
+    return TranslateLanguage(rawValue: allLanguages[row].uintValue)?.toLanguageCode()
   }
 
   func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
@@ -104,7 +102,7 @@ class ViewController: UIViewController, UITextViewDelegate, UIPickerViewDataSour
   }
 
   func handleDownloadDelete(picker: UIPickerView, button: UIButton) {
-    let language = allLanguages[picker.selectedRow(inComponent: 0)]
+    guard let language = TranslateLanguage(rawValue: allLanguages[picker.selectedRow(inComponent: 0)].uintValue) else { return }
     button.setTitle("working...", for: .normal)
     let model = self.model(forLanguage: language)
     let modelManager = ModelManager.modelManager()
@@ -155,8 +153,8 @@ class ViewController: UIViewController, UITextViewDelegate, UIPickerViewDataSour
   }
 
   func setDownloadDeleteButtonLabels() {
-    let inputLanguage = allLanguages[inputPicker.selectedRow(inComponent: 0)]
-    let outputLanguage = allLanguages[outputPicker.selectedRow(inComponent: 0)]
+    guard let inputLanguage = TranslateLanguage(rawValue: allLanguages[inputPicker.selectedRow(inComponent: 0)].uintValue) else { return }
+    guard let outputLanguage = TranslateLanguage(rawValue: allLanguages[outputPicker.selectedRow(inComponent: 0)].uintValue) else { return }
     if self.isLanguageDownloaded(inputLanguage) {
       self.sourceDownloadDeleteButton.setTitle("Delete model", for: .normal)
     } else {
@@ -170,8 +168,8 @@ class ViewController: UIViewController, UITextViewDelegate, UIPickerViewDataSour
   }
 
   func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-    let inputLanguage = allLanguages[inputPicker.selectedRow(inComponent: 0)]
-    let outputLanguage = allLanguages[outputPicker.selectedRow(inComponent: 0)]
+    guard let inputLanguage = TranslateLanguage(rawValue: allLanguages[inputPicker.selectedRow(inComponent: 0)].uintValue) else { return }
+    guard let outputLanguage = TranslateLanguage(rawValue: allLanguages[outputPicker.selectedRow(inComponent: 0)].uintValue) else { return }
     self.setDownloadDeleteButtonLabels()
     let options = TranslatorOptions(sourceLanguage: inputLanguage, targetLanguage: outputLanguage)
     translator = NaturalLanguage.naturalLanguage().translator(options: options)

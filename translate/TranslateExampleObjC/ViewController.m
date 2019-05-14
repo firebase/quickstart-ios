@@ -199,14 +199,14 @@ NS_ASSUME_NONNULL_BEGIN
 - (IBAction)listDownloadedModels {
   FIRApp *app = [FIRApp defaultApp];
   FIRModelManager *modelManager = [FIRModelManager modelManager];
-  NSMutableString *listOfLanguages = [NSMutableString string];
+  NSMutableString *listOfLanguages = [NSMutableString stringWithString:@"Downloaded models: "];
   for (FIRTranslateRemoteModel *model in [modelManager availableTranslateModelsWithApp:app]) {
     if (listOfLanguages.length > 0) {
       [listOfLanguages appendString:@", "];
     }
     [listOfLanguages appendString:FIRTranslateLanguageCodeForLanguage(model.language)];
   }
-  self.statusTextView.text = [NSString stringWithFormat:@"Downloaded models: %@", listOfLanguages];
+  self.statusTextView.text = listOfLanguages;
 }
 
 - (IBAction)didTapDownloadDeleteSourceLanguage {

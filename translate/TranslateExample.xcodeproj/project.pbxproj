@@ -14,12 +14,10 @@
 		108489C8224415A5004D37A8 /* TranslateExampleObjCUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 108489C7224415A5004D37A8 /* TranslateExampleObjCUITests.m */; };
 		108489DA224415FF004D37A8 /* TranslateExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108489D9224415FF004D37A8 /* TranslateExampleTests.swift */; };
 		108489E82244160B004D37A8 /* TranslateExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108489E72244160B004D37A8 /* TranslateExampleUITests.swift */; };
-		/* 108489F6224531B3004D37A8 GoogleService-Info.plist in Resources = {isa = PBXBuildFile; fileRef = C1E1C4E2224113D2000FE5AF GoogleService-Info.plist ; }; */
 		108489F7224531B6004D37A8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C1E8DDCB22259E3500536A5C /* Assets.xcassets */; };
 		108489F8224531B9004D37A8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1E8DDC822259E3400536A5C /* Main.storyboard */; };
 		108489F9224531BF004D37A8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1E8DDCD22259E3500536A5C /* LaunchScreen.storyboard */; };
 		C18E1D3722410D0E00B5F51C /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C18E1D3622410D0E00B5F51C /* libc++.tbd */; };
-		/* C1E1C4E3224113D3000FE5AF GoogleService-Info.plist in Resources = {isa = PBXBuildFile; fileRef = C1E1C4E2224113D2000FE5AF GoogleService-Info.plist; }; */
 		C1E8DDC522259E3400536A5C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E8DDC422259E3400536A5C /* AppDelegate.swift */; };
 		C1E8DDC722259E3400536A5C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E8DDC622259E3400536A5C /* ViewController.swift */; };
 		C1E8DDCA22259E3400536A5C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1E8DDC822259E3400536A5C /* Main.storyboard */; };
@@ -78,7 +76,6 @@
 		108489E72244160B004D37A8 /* TranslateExampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateExampleUITests.swift; sourceTree = "<group>"; };
 		108489E92244160B004D37A8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C18E1D3622410D0E00B5F51C /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
-		/* C1E1C4E2224113D2000FE5AF GoogleService-Info.plist = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "Resources/GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; }; */
 		C1E8DDC122259E3400536A5C /* TranslateExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TranslateExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1E8DDC422259E3400536A5C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C1E8DDC622259E3400536A5C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -194,7 +191,6 @@
 		C1E8DDB822259E3400536A5C = {
 			isa = PBXGroup;
 			children = (
-				/* C1E1C4E2224113D2000FE5AF  GoogleService-Info.plist ,*/
 				C1E8DDC322259E3400536A5C /* TranslateExample */,
 				108489A2224415A1004D37A8 /* TranslateExampleObjC */,
 				108489BB224415A4004D37A8 /* TranslateExampleObjCTests */,
@@ -406,7 +402,6 @@
 				108489F8224531B9004D37A8 /* Main.storyboard in Resources */,
 				108489F9224531BF004D37A8 /* LaunchScreen.storyboard in Resources */,
 				108489F7224531B6004D37A8 /* Assets.xcassets in Resources */,
-				/* 108489F6224531B3004D37A8 GoogleService-Info.plist in Resources ,*/
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -443,7 +438,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C1E8DDCF22259E3500536A5C /* LaunchScreen.storyboard in Resources */,
-				/* C1E1C4E3224113D3000FE5AF GoogleService-Info.plist in Resources ,*/
 				C1E8DDCC22259E3500536A5C /* Assets.xcassets in Resources */,
 				C1E8DDCA22259E3400536A5C /* Main.storyboard in Resources */,
 			);

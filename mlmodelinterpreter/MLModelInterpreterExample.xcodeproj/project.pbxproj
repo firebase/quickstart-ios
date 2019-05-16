@@ -154,13 +154,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		009F785A0D26DF1AE9A534B1 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 		10E114C120D5E5B40013E4A4 /* MLModelInterpreterExampleUITests */ = {
 			isa = PBXGroup;
 			children = (

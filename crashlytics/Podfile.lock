@@ -1,7 +1,7 @@
 PODS:
-  - Crashlytics (3.13.0):
-    - Fabric (~> 1.10.0)
-  - Fabric (1.10.0)
+  - Crashlytics (3.13.1):
+    - Fabric (~> 1.10.1)
+  - Fabric (1.10.1)
   - Firebase/Analytics (6.0.0):
     - Firebase/Core
   - Firebase/Core (6.0.0):
@@ -73,8 +73,8 @@ SPEC REPOS:
     - nanopb
 
 SPEC CHECKSUMS:
-  Crashlytics: 1f5f752c7feac0add0cc1774756f96444fa3b1a7
-  Fabric: 09de1e053eb7dc415593166ad3e53d4c88123405
+  Crashlytics: 5aa8e90dcbf2f34898b4f5a0037787531246cca0
+  Fabric: f6f21452846788bb44595d73e9909d79d328e617
   Firebase: fa80b9d987ca014a1ba9357496ef2a0178b28b12
   FirebaseAnalytics: 1743c5f4de3687d0745709dfdc4b1dea1484f44c
   FirebaseCore: e38f025287b413255a53acc1945d048a112047f7

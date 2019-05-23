@@ -199,7 +199,7 @@ NS_ASSUME_NONNULL_BEGIN
                                                               constant:_bottomAreaInset + 6];
   _sendBottomConstraint.active = YES;
 
-  [_messageInputContainerView addConstraintsWithFormat:@"V:|[v0(0.5)]|" views:@[ topBorderView ]];
+  [_messageInputContainerView addConstraintsWithFormat:@"V:|[v0(0.5)]" views:@[ topBorderView ]];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

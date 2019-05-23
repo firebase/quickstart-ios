@@ -152,7 +152,7 @@ class MainViewController: UICollectionViewController, UITextViewDelegate {
                                                                              constant: bottomAreaInset + 6)
     sendBottomConstraint.isActive = true
 
-    messageInputContainerView.addConstraintsWithFormat(format: "V:|[v0(0.5)]|", views: topBorderView)
+    messageInputContainerView.addConstraintsWithFormat(format: "V:|[v0(0.5)]", views: topBorderView)
   }
 
   override func viewWillAppear(_ animated: Bool) {

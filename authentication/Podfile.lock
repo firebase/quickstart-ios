@@ -1,13 +1,13 @@
 PODS:
   - Fabric (1.10.1)
-  - FBSDKCoreKit (5.0.0):
-    - FBSDKCoreKit/Basics (= 5.0.0)
-    - FBSDKCoreKit/Core (= 5.0.0)
-  - FBSDKCoreKit/Basics (5.0.0)
-  - FBSDKCoreKit/Core (5.0.0):
+  - FBSDKCoreKit (5.0.1):
+    - FBSDKCoreKit/Basics (= 5.0.1)
+    - FBSDKCoreKit/Core (= 5.0.1)
+  - FBSDKCoreKit/Basics (5.0.1)
+  - FBSDKCoreKit/Core (5.0.1):
     - FBSDKCoreKit/Basics
-  - FBSDKLoginKit (5.0.0):
-    - FBSDKCoreKit (= 5.0.0)
+  - FBSDKLoginKit (5.0.1):
+    - FBSDKCoreKit (~> 5.0)
   - Firebase/Analytics (6.1.0):
     - Firebase/Core
   - Firebase/Auth (6.1.0):
@@ -117,8 +117,8 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Fabric: f6f21452846788bb44595d73e9909d79d328e617
-  FBSDKCoreKit: ba361d4a9d4dc29ff218822b849b22d4f869c7bb
-  FBSDKLoginKit: c6d0dc187bd076e370dffa10f7fc8a3562a6892c
+  FBSDKCoreKit: 4a19534474ade7c71bd016d800aa5e7722bcdda1
+  FBSDKLoginKit: 41efa754b909b0ea813fa9a8596dacc8ed196d50
   Firebase: 8d77bb33624ae9b62d745d82ec023de5f70f7e4f
   FirebaseAnalytics: 629301c2b9925f3537d4093a17a72751ae5b7084
   FirebaseAuth: 4281d6d98a90881e00710fa8d9e37c2ccdfc7d80
@@ -136,4 +136,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: b20cc8d31bd7db3df1fbd22f7b98be86b686e9a8
 
-COCOAPODS: 1.6.2
+COCOAPODS: 1.7.0

@@ -192,9 +192,9 @@ static NSString *const kUpdatePhoneNumberText = @"Update Phone Number";
                                           style:UIAlertActionStyleDefault
                                         handler:^(UIAlertAction * _Nonnull action) {
           FBSDKLoginManager *loginManager = [[FBSDKLoginManager alloc] init];
-          [loginManager logInWithReadPermissions:@[ @"public_profile", @"email" ]
-                              fromViewController:self
-                                         handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
+          [loginManager logInWithPermissions:@[ @"public_profile", @"email" ]
+                          fromViewController:self
+                                     handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
             if (error) {
               [self showMessagePrompt:error.localizedDescription];
             } else if (result.isCancelled) {

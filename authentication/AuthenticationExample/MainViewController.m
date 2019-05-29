@@ -92,7 +92,7 @@ static NSString *const kUpdatePhoneNumberText = @"Update Phone Number";
   [self showSpinner:^{
     if ([FIRAuth auth].currentUser) {
       // [START link_credential]
-      [[FIRAuth auth].currentUser linkAndRetrieveDataWithCredential:credential
+      [[FIRAuth auth].currentUser linkWithCredential:credential
           completion:^(FIRAuthDataResult *result, NSError *_Nullable error) {
         // [START_EXCLUDE]
         [self hideSpinner:^{
@@ -107,9 +107,9 @@ static NSString *const kUpdatePhoneNumberText = @"Update Phone Number";
       // [END link_credential]
     } else {
       // [START signin_credential]
-      [[FIRAuth auth] signInAndRetrieveDataWithCredential:credential
-                                               completion:^(FIRAuthDataResult * _Nullable authResult,
-                                                            NSError * _Nullable error) {
+      [[FIRAuth auth] signInWithCredential:credential
+                                completion:^(FIRAuthDataResult * _Nullable authResult,
+                                             NSError * _Nullable error) {
         // [START_EXCLUDE silent]
         [self hideSpinner:^{
         // [END_EXCLUDE]
@@ -305,9 +305,9 @@ static NSString *const kUpdatePhoneNumberText = @"Update Phone Number";
                    }];
                  }
                  if (credential) {
-                   [[FIRAuth auth] signInAndRetrieveDataWithCredential:credential
-                                                            completion:^(FIRAuthDataResult * _Nullable authResult,
-                                                                         NSError * _Nullable error) {
+                   [[FIRAuth auth] signInWithCredential:credential
+                                             completion:^(FIRAuthDataResult * _Nullable authResult,
+                                                          NSError * _Nullable error) {
                      [self hideSpinner:^{
                        if (error) {
                          [self showMessagePrompt:error.localizedDescription];
@@ -337,10 +337,9 @@ static NSString *const kUpdatePhoneNumberText = @"Update Phone Number";
                    }];
                  }
                 if (credential) {
-                  [[FIRAuth auth] signInAndRetrieveDataWithCredential:credential
-                                                           completion:^(FIRAuthDataResult *_Nullable
-                                                                        authResult,
-                                                                        NSError *_Nullable error) {
+                  [[FIRAuth auth] signInWithCredential:credential
+                                            completion:^(FIRAuthDataResult *_Nullable authResult,
+                                                         NSError *_Nullable error) {
                     [self hideSpinner:^{
                       if (error) {
                         [self showMessagePrompt:error.localizedDescription];

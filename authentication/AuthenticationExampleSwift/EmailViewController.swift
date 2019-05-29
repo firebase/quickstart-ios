@@ -89,19 +89,19 @@ class EmailViewController: UIViewController {
         return
       }
       strongSelf.showSpinner {
-        // [START get_providers]
-        Auth.auth().fetchProviders(forEmail: email) { providers, error in
+        // [START get_methods]
+        Auth.auth().fetchSignInMethods(forEmail: email) { methods, error in
           // [START_EXCLUDE]
           strongSelf.hideSpinner {
             if let error = error {
               strongSelf.showMessagePrompt(error.localizedDescription)
               return
             }
-            strongSelf.showMessagePrompt(providers!.joined(separator: ", "))
+            strongSelf.showMessagePrompt(methods!.joined(separator: ", "))
           }
           // [END_EXCLUDE]
         }
-        // [END get_providers]
+        // [END get_methods]
       }
     }
   }

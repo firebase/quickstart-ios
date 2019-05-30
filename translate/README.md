@@ -1,20 +1,20 @@
-ML Kit Smart Reply for Firebase Quickstart
+ML Kit Translate ID for Firebase Quickstart
 =======================
 
-The ML Kit Smart Reply for Firebase iOS Quickstart app demonstrates how to use the Smart Reply feature of
-ML Kit to automatically generate replies to conversation threads in your application.
+The ML Kit Translate for Firebase iOS Quickstart app demonstrates how to use the Translate feature of ML Kit
+to perform translations of text in your application.
 
 Introduction
 ------------
 
-- [Read more about ML Kit Smart Reply for Firebase](https://firebase.google.com/docs/ml-kit/android/generate-smart-replies)
+- [Read more about ML Kit Translate for Firebase](https://firebase.google.com/docs/ml-kit/android/translate-text)
 
 Getting Started
 ---------------
 
 - [Add Firebase to your iOS Project](https://firebase.google.com/docs/ios/setup).
 - Run the sample on your iOS device or simulator.
-- Type message text and press Swith button to generate smart replies.
+- Type input text and change languages to see translate in action.
 
 Support
 -------

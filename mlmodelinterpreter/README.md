@@ -1,20 +1,31 @@
-ML Kit Smart Reply for Firebase Quickstart
+ML Kit Custom Models for Firebase Quickstart
 =======================
 
-The ML Kit Smart Reply for Firebase iOS Quickstart app demonstrates how to use the Smart Reply feature of
-ML Kit to automatically generate replies to conversation threads in your application.
+ML Kit Custom Models for Firebase iOS quickstart demonstrates how to use custom models with ML Kit to add machine learning to your application.
 
 Introduction
 ------------
 
-- [Read more about ML Kit Smart Reply for Firebase](https://firebase.google.com/docs/ml-kit/android/generate-smart-replies)
+- [Read more about ML Kit Custom Models for Firebase](https://firebase.google.com/docs/ml-kit/use-custom-models)
 
 Getting Started
 ---------------
 
 - [Add Firebase to your iOS Project](https://firebase.google.com/docs/ios/setup).
 - Run the sample on your iOS device or simulator.
-- Type message text and press Swith button to generate smart replies.
+
+Hosting a Custom Model
+-----------
+- [Download](http://download.tensorflow.org/models/mobilenet_v1_2018_02_22/mobilenet_v1_1.0_224_quant.tgz)
+the TensorFlow Lite custom model we are using in this sample.
+- Go to the Firebase console.
+- Select your project.
+- Select ML Kit under the DEVELOP section in the left hand navigation.
+- Click on the CUSTOM tab.
+- Click on Add another model and use "mobilenet_v1" as the name.
+- Click BROWSE and upload the mobilenet_v1_1.0_224_quant.tflite file you
+downloaded earlier.
+- Click PUBLISH.
 
 Support
 -------

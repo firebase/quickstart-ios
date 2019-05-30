@@ -1,20 +1,19 @@
-ML Kit Smart Reply for Firebase Quickstart
+ML Kit Language ID for Firebase Quickstart
 =======================
 
-The ML Kit Smart Reply for Firebase iOS Quickstart app demonstrates how to use the Smart Reply feature of
-ML Kit to automatically generate replies to conversation threads in your application.
+ML Kit Language ID for Firebase iOS quickstart demonstrates how to use the Language ID feature of ML Kit to
+identify the language of text in your application.
 
 Introduction
 ------------
 
-- [Read more about ML Kit Smart Reply for Firebase](https://firebase.google.com/docs/ml-kit/android/generate-smart-replies)
+- [Read more about ML Kit LanguageID for Firebase](https://firebase.google.com/docs/ml-kit/ios/identify-languages)
 
 Getting Started
 ---------------
 
 - [Add Firebase to your iOS Project](https://firebase.google.com/docs/ios/setup).
 - Run the sample on your iOS device or simulator.
-- Type message text and press Swith button to generate smart replies.
 
 Support
 -------

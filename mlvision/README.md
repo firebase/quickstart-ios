@@ -1,20 +1,32 @@
-ML Kit Smart Reply for Firebase Quickstart
+ML Kit for Firebase Quickstart
 =======================
 
-The ML Kit Smart Reply for Firebase iOS Quickstart app demonstrates how to use the Smart Reply feature of
-ML Kit to automatically generate replies to conversation threads in your application.
+ML Kit for Firebase iOS quickstart demonstrates how to use the various features of ML Kit to add machine
+learning to your application.
 
 Introduction
 ------------
 
-- [Read more about ML Kit Smart Reply for Firebase](https://firebase.google.com/docs/ml-kit/android/generate-smart-replies)
+- [Read more about ML Kit for Firebase](https://firebase.google.com/docs/ml-kit)
 
 Getting Started
 ---------------
 
 - [Add Firebase to your iOS Project](https://firebase.google.com/docs/ios/setup).
 - Run the sample on your iOS device or simulator.
-- Type message text and press Swith button to generate smart replies.
+- Choose Photo Library or Photo Camera to see a demo of the following:
+  - Recognize text (on-device and in Cloud (sparse, dense, document text))
+  - Detect faces (on-device)
+  - Scan barcodes (on-device)
+  - Label images (on-device, AutoML on-device, in Cloud)
+  - Detect and track objects (on-device prominent/multiple, only tacking/with classsification)
+  - Recognize landmarks (in Cloud)
+
+- Choose Video Camera to see a demo of the on-device features:
+- Label images (AutoML)
+- Recognize text
+- Detect faces
+  - Detect and track objects (prominent/multiple, only tacking/with classsification)
 
 Support
 -------

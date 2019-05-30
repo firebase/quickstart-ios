@@ -397,8 +397,8 @@ class MainViewController: UITableViewController, GIDSignInUIDelegate {
       // [END_EXCLUDE]
     }
     // [END auth_listener]
-    self.microsoftProvider = OAuthProvider.init(providerID:"microsoft.com");
-    self.twitterProvider = OAuthProvider.init(providerID:"twitter.com");
+    self.microsoftProvider = OAuthProvider(providerID:"microsoft.com");
+    self.twitterProvider = OAuthProvider(providerID:"twitter.com");
     // Authenticate Game Center Local Player
     // Uncomment to sign in with Game Center
     // self.authenticateGameCenterLocalPlayer()

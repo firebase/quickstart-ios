@@ -39,6 +39,7 @@ class MainViewController: UITableViewController, GIDSignInUIDelegate {
     case authAnonymous
     case authFacebook
     case authGoogle
+    case authTwitter
     case authPhone
     case authCustom
     case authPasswordless
@@ -95,6 +96,11 @@ class MainViewController: UITableViewController, GIDSignInUIDelegate {
       @brief The OAuth provider instance for Microsoft.
    */
   var microsoftProvider : OAuthProvider?
+
+  /** @var twitterProvider
+      @brief The OAuth provider instance for Twitter.
+   */
+  var twitterProvider : OAuthProvider?
 
   func showAuthPicker(_ providers: [AuthProvider]) {
     let picker = UIAlertController(title: "Select Provider",
@@ -154,6 +160,31 @@ class MainViewController: UITableViewController, GIDSignInUIDelegate {
           GIDSignIn.sharedInstance().uiDelegate = self
           GIDSignIn.sharedInstance().signIn()
           // [END setup_gid_uidelegate]
+        }
+      case .authTwitter:
+        action = UIAlertAction(title: "Twitter", style: .default) { (UIAlertAction) in
+          // [START firebase_auth_twitter]
+          self.twitterProvider?.getCredentialWith(_: nil){ (credential, error) in
+            self.showSpinner {
+              if let error = error {
+                self.hideSpinner {
+                  self.showMessagePrompt(error.localizedDescription)
+                  return
+                }
+              }
+              if let credential = credential {
+                Auth.auth().signIn(with: credential) { (result, error) in
+                  self.hideSpinner {
+                    if let error = error {
+                      self.showMessagePrompt(error.localizedDescription)
+                      return
+                    }
+                  }
+                }
+              }
+            }
+          }
+          // [END firebase_auth_twitter]
         }
       case .authPhone:
         action = UIAlertAction(title: "Phone", style: .default) { (UIAlertAction) in
@@ -258,6 +289,7 @@ class MainViewController: UITableViewController, GIDSignInUIDelegate {
       AuthProvider.authAnonymous,
       AuthProvider.authGoogle,
       AuthProvider.authFacebook,
+      AuthProvider.authTwitter,
       AuthProvider.authPhone,
       AuthProvider.authCustom,
       AuthProvider.authPasswordless,
@@ -270,6 +302,7 @@ class MainViewController: UITableViewController, GIDSignInUIDelegate {
     var providers = Set([
       AuthProvider.authGoogle,
       AuthProvider.authFacebook,
+      AuthProvider.authTwitter,
       AuthProvider.authPhone
     ])
     // Remove any existing providers. Note that this is not a complete list of
@@ -278,6 +311,8 @@ class MainViewController: UITableViewController, GIDSignInUIDelegate {
     let user = Auth.auth().currentUser
     for info in (user?.providerData)! {
       switch info.providerID {
+      case TwitterAuthProviderID:
+        providers.remove(AuthProvider.authTwitter)
       case FacebookAuthProviderID:
         providers.remove(AuthProvider.authFacebook)
       case GoogleAuthProviderID:
@@ -363,6 +398,7 @@ class MainViewController: UITableViewController, GIDSignInUIDelegate {
     }
     // [END auth_listener]
     self.microsoftProvider = OAuthProvider.init(providerID:"microsoft.com");
+    self.twitterProvider = OAuthProvider.init(providerID:"twitter.com");
     // Authenticate Game Center Local Player
     // Uncomment to sign in with Game Center
     // self.authenticateGameCenterLocalPlayer()

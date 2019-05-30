@@ -32,6 +32,7 @@ typedef enum : NSUInteger {
   AuthAnonymous,
   AuthFacebook,
   AuthGoogle,
+  AuthTwitter,
   AuthCustom,
   AuthPhone,
   AuthPasswordless,
@@ -82,6 +83,7 @@ static NSString *const kUpdatePhoneNumberText = @"Update Phone Number";
 @interface MainViewController ()
 @property(strong, nonatomic) FIRAuthStateDidChangeListenerHandle handle;
 @property(strong, nonatomic) FIROAuthProvider *microsoftProvider;
+@property(strong, nonatomic) FIROAuthProvider *twitterProvider;
 @end
 
 @implementation MainViewController
@@ -163,6 +165,39 @@ static NSString *const kUpdatePhoneNumberText = @"Update Phone Number";
                                         handler:^(UIAlertAction * _Nonnull action) {
           [self performSegueWithIdentifier:@"customToken" sender:nil];
         }];
+      }
+        break;
+      case AuthTwitter:
+      {
+        action = [UIAlertAction actionWithTitle:@"Twitter"
+                                          style:UIAlertActionStyleDefault
+                                        handler:^(UIAlertAction * _Nonnull action) {
+            // [START firebase_auth_twitter]
+            [self.twitterProvider getCredentialWithUIDelegate:nil
+                completion:^(FIRAuthCredential *_Nullable credential, NSError *_Nullable error) {
+              [self showSpinner:^{
+                 if (error) {
+                   [self hideSpinner:^{
+                     [self showMessagePrompt:error.localizedDescription];
+                     return;
+                   }];
+                 }
+                if (credential) {
+                  [[FIRAuth auth] signInWithCredential:credential
+                                            completion:^(FIRAuthDataResult *_Nullable authResult,
+                                                         NSError *_Nullable error) {
+                    [self hideSpinner:^{
+                      if (error) {
+                        [self showMessagePrompt:error.localizedDescription];
+                        return;
+                      }
+                    }];
+                  }];
+                }
+              }];
+            }];
+            // [END firebase_auth_twitter]
+         }];
       }
         break;
       case AuthFacebook: {
@@ -351,6 +386,7 @@ static NSString *const kUpdatePhoneNumberText = @"Update Phone Number";
                          @(AuthAnonymous),
                          @(AuthGoogle),
                          @(AuthFacebook),
+                         @(AuthTwitter),
                          @(AuthPhone),
                          @(AuthCustom),
                          @(AuthPasswordless),
@@ -361,6 +397,7 @@ static NSString *const kUpdatePhoneNumberText = @"Update Phone Number";
 - (IBAction)didTapLink:(id)sender {
   NSMutableArray *providers = [@[@(AuthGoogle),
                                  @(AuthFacebook),
+                                 @(AuthTwitter),
                                  @(AuthPhone)] mutableCopy];
 
   // Remove any existing providers. Note that this is not a complete list of
@@ -371,6 +408,8 @@ static NSString *const kUpdatePhoneNumberText = @"Update Phone Number";
       [providers removeObject:@(AuthFacebook)];
     } else if ([userInfo.providerID isEqualToString:FIRGoogleAuthProviderID]) {
       [providers removeObject:@(AuthGoogle)];
+    } else if ([userInfo.providerID isEqualToString:FIRTwitterAuthProviderID]) {
+      [providers removeObject:@(AuthTwitter)];
     } else if ([userInfo.providerID isEqualToString:FIRPhoneAuthProviderID]) {
       [providers removeObject:@(AuthPhone)];
     }
@@ -422,6 +461,7 @@ static NSString *const kUpdatePhoneNumberText = @"Update Phone Number";
   // [END auth_listener]
 
   self.microsoftProvider = [FIROAuthProvider providerWithProviderID:@"microsoft.com"];
+  self.twitterProvider = [FIROAuthProvider providerWithProviderID:@"twitter.com"];
 
   // Authenticate Game Center Local Player
   // Uncomment to sign in with Game Center

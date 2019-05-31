@@ -21,7 +21,6 @@
 
 @import FBSDKCoreKit;
 @import FBSDKLoginKit;
-@import TwitterKit;
 
 static const int kSectionToken = 3;
 static const int kSectionProviders = 2;
@@ -84,6 +83,7 @@ static NSString *const kUpdatePhoneNumberText = @"Update Phone Number";
 @interface MainViewController ()
 @property(strong, nonatomic) FIRAuthStateDidChangeListenerHandle handle;
 @property(strong, nonatomic) FIROAuthProvider *microsoftProvider;
+@property(strong, nonatomic) FIROAuthProvider *twitterProvider;
 @end
 
 @implementation MainViewController
@@ -172,19 +172,32 @@ static NSString *const kUpdatePhoneNumberText = @"Update Phone Number";
         action = [UIAlertAction actionWithTitle:@"Twitter"
                                           style:UIAlertActionStyleDefault
                                         handler:^(UIAlertAction * _Nonnull action) {
-          [[Twitter sharedInstance] logInWithCompletion:^(TWTRSession *session, NSError *error) {
-            if (session) {
-              // [START headless_twitter_auth]
-              FIRAuthCredential *credential =
-                  [FIRTwitterAuthProvider credentialWithToken:session.authToken
-                                                       secret:session.authTokenSecret];
-              // [END headless_twitter_auth]
-              [self firebaseLoginWithCredential:credential];
-            } else {
-              [self showMessagePrompt:error.localizedDescription];
-            }
-          }];
-        }];
+            // [START firebase_auth_twitter]
+            [self.twitterProvider getCredentialWithUIDelegate:nil
+                completion:^(FIRAuthCredential *_Nullable credential, NSError *_Nullable error) {
+              [self showSpinner:^{
+                 if (error) {
+                   [self hideSpinner:^{
+                     [self showMessagePrompt:error.localizedDescription];
+                     return;
+                   }];
+                 }
+                if (credential) {
+                  [[FIRAuth auth] signInWithCredential:credential
+                                            completion:^(FIRAuthDataResult *_Nullable authResult,
+                                                         NSError *_Nullable error) {
+                    [self hideSpinner:^{
+                      if (error) {
+                        [self showMessagePrompt:error.localizedDescription];
+                        return;
+                      }
+                    }];
+                  }];
+                }
+              }];
+            }];
+            // [END firebase_auth_twitter]
+         }];
       }
         break;
       case AuthFacebook: {
@@ -448,6 +461,7 @@ static NSString *const kUpdatePhoneNumberText = @"Update Phone Number";
   // [END auth_listener]
 
   self.microsoftProvider = [FIROAuthProvider providerWithProviderID:@"microsoft.com"];
+  self.twitterProvider = [FIROAuthProvider providerWithProviderID:@"twitter.com"];
 
   // Authenticate Game Center Local Player
   // Uncomment to sign in with Game Center

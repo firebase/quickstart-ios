@@ -23,7 +23,6 @@ import Firebase
 import GoogleSignIn
 import FBSDKCoreKit
 import FBSDKLoginKit
-import TwitterKit
 
 @objc(MainViewController)
 // [START signin_controller]
@@ -98,6 +97,11 @@ class MainViewController: UITableViewController, GIDSignInUIDelegate {
    */
   var microsoftProvider : OAuthProvider?
 
+  /** @var twitterProvider
+      @brief The OAuth provider instance for Twitter.
+   */
+  var twitterProvider : OAuthProvider?
+
   func showAuthPicker(_ providers: [AuthProvider]) {
     let picker = UIAlertController(title: "Select Provider",
                                    message: nil,
@@ -159,16 +163,28 @@ class MainViewController: UITableViewController, GIDSignInUIDelegate {
         }
       case .authTwitter:
         action = UIAlertAction(title: "Twitter", style: .default) { (UIAlertAction) in
-          Twitter.sharedInstance().logIn() { (session, error) in
-            if let session = session {
-              // [START headless_twitter_auth]
-              let credential = TwitterAuthProvider.credential(withToken: session.authToken, secret: session.authTokenSecret)
-              // [END headless_twitter_auth]
-              self.firebaseLogin(credential)
-            } else {
-              self.showMessagePrompt((error?.localizedDescription)!)
+          // [START firebase_auth_twitter]
+          self.twitterProvider?.getCredentialWith(_: nil){ (credential, error) in
+            self.showSpinner {
+              if let error = error {
+                self.hideSpinner {
+                  self.showMessagePrompt(error.localizedDescription)
+                  return
+                }
+              }
+              if let credential = credential {
+                Auth.auth().signIn(with: credential) { (result, error) in
+                  self.hideSpinner {
+                    if let error = error {
+                      self.showMessagePrompt(error.localizedDescription)
+                      return
+                    }
+                  }
+                }
+              }
             }
           }
+          // [END firebase_auth_twitter]
         }
       case .authPhone:
         action = UIAlertAction(title: "Phone", style: .default) { (UIAlertAction) in
@@ -381,7 +397,8 @@ class MainViewController: UITableViewController, GIDSignInUIDelegate {
       // [END_EXCLUDE]
     }
     // [END auth_listener]
-    self.microsoftProvider = OAuthProvider.init(providerID:"microsoft.com");
+    self.microsoftProvider = OAuthProvider(providerID:"microsoft.com");
+    self.twitterProvider = OAuthProvider(providerID:"twitter.com");
     // Authenticate Game Center Local Player
     // Uncomment to sign in with Game Center
     // self.authenticateGameCenterLocalPlayer()

@@ -122,6 +122,7 @@ typedef NS_ENUM(NSInteger, Detector) {
   _vision = [FIRVision vision];
   _modelManager = [FIRModelManager modelManager];
   _previewOverlayView = [[UIImageView alloc] initWithFrame:CGRectZero];
+  _previewOverlayView.contentMode = UIViewContentModeScaleAspectFill;
   _previewOverlayView.translatesAutoresizingMaskIntoConstraints = NO;
   _annotationOverlayView = [[UIView alloc] initWithFrame:CGRectZero];
   _annotationOverlayView.translatesAutoresizingMaskIntoConstraints = NO;
@@ -487,11 +488,10 @@ typedef NS_ENUM(NSInteger, Detector) {
 - (void)setUpPreviewOverlayView {
   [_cameraView addSubview:_previewOverlayView];
   [NSLayoutConstraint activateConstraints:@[
-                                            [_previewOverlayView.topAnchor constraintGreaterThanOrEqualToAnchor:_cameraView.topAnchor],
                                             [_previewOverlayView.centerYAnchor constraintEqualToAnchor:_cameraView.centerYAnchor],
+                                            [_previewOverlayView.centerXAnchor constraintEqualToAnchor:_cameraView.centerXAnchor],
                                             [_previewOverlayView.leadingAnchor constraintEqualToAnchor:_cameraView.leadingAnchor],
-                                            [_previewOverlayView.trailingAnchor constraintEqualToAnchor:_cameraView.trailingAnchor],
-                                            [_previewOverlayView.bottomAnchor constraintLessThanOrEqualToAnchor:_cameraView.bottomAnchor]
+                                            [_previewOverlayView.trailingAnchor constraintEqualToAnchor:_cameraView.trailingAnchor]
                                             ]];
 }
 - (void)setUpAnnotationOverlayView {

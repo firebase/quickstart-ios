@@ -40,6 +40,7 @@ class MainViewController: UITableViewController, GIDSignInUIDelegate {
     case authFacebook
     case authGoogle
     case authTwitter
+    case authGitHub
     case authPhone
     case authCustom
     case authPasswordless
@@ -101,6 +102,11 @@ class MainViewController: UITableViewController, GIDSignInUIDelegate {
       @brief The OAuth provider instance for Twitter.
    */
   var twitterProvider : OAuthProvider?
+
+  /** @var gitHubProvider
+      @brief The OAuth provider instance for GitHub.
+   */
+  var gitHubProvider : OAuthProvider?
 
   func showAuthPicker(_ providers: [AuthProvider]) {
     let picker = UIAlertController(title: "Select Provider",
@@ -185,6 +191,31 @@ class MainViewController: UITableViewController, GIDSignInUIDelegate {
             }
           }
           // [END firebase_auth_twitter]
+        }
+      case .authGitHub:
+        action = UIAlertAction(title: "GitHub", style: .default) { (UIAlertAction) in
+          // [START firebase_auth_github]
+          self.gitHubProvider?.getCredentialWith(_: nil){ (credential, error) in
+            self.showSpinner {
+              if let error = error {
+                self.hideSpinner {
+                  self.showMessagePrompt(error.localizedDescription)
+                  return
+                }
+              }
+              if let credential = credential {
+                Auth.auth().signIn(with: credential) { (result, error) in
+                  self.hideSpinner {
+                    if let error = error {
+                      self.showMessagePrompt(error.localizedDescription)
+                      return
+                    }
+                  }
+                }
+              }
+            }
+          }
+          // [END firebase_auth_github]
         }
       case .authPhone:
         action = UIAlertAction(title: "Phone", style: .default) { (UIAlertAction) in
@@ -290,6 +321,7 @@ class MainViewController: UITableViewController, GIDSignInUIDelegate {
       AuthProvider.authGoogle,
       AuthProvider.authFacebook,
       AuthProvider.authTwitter,
+      AuthProvider.authGitHub,
       AuthProvider.authPhone,
       AuthProvider.authCustom,
       AuthProvider.authPasswordless,
@@ -399,6 +431,7 @@ class MainViewController: UITableViewController, GIDSignInUIDelegate {
     // [END auth_listener]
     self.microsoftProvider = OAuthProvider(providerID:"microsoft.com");
     self.twitterProvider = OAuthProvider(providerID:"twitter.com");
+    self.gitHubProvider = OAuthProvider(providerID:"github.com");
     // Authenticate Game Center Local Player
     // Uncomment to sign in with Game Center
     // self.authenticateGameCenterLocalPlayer()

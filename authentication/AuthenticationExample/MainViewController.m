@@ -33,6 +33,7 @@ typedef enum : NSUInteger {
   AuthFacebook,
   AuthGoogle,
   AuthTwitter,
+  AuthGitHub,
   AuthCustom,
   AuthPhone,
   AuthPasswordless,
@@ -84,6 +85,7 @@ static NSString *const kUpdatePhoneNumberText = @"Update Phone Number";
 @property(strong, nonatomic) FIRAuthStateDidChangeListenerHandle handle;
 @property(strong, nonatomic) FIROAuthProvider *microsoftProvider;
 @property(strong, nonatomic) FIROAuthProvider *twitterProvider;
+@property(strong, nonatomic) FIROAuthProvider *gitHubProvider;
 @end
 
 @implementation MainViewController
@@ -197,6 +199,39 @@ static NSString *const kUpdatePhoneNumberText = @"Update Phone Number";
               }];
             }];
             // [END firebase_auth_twitter]
+         }];
+      }
+        break;
+      case AuthGitHub:
+      {
+        action = [UIAlertAction actionWithTitle:@"GitHub"
+                                          style:UIAlertActionStyleDefault
+                                        handler:^(UIAlertAction * _Nonnull action) {
+            // [START firebase_auth_github]
+            [self.gitHubProvider getCredentialWithUIDelegate:nil
+                completion:^(FIRAuthCredential *_Nullable credential, NSError *_Nullable error) {
+              [self showSpinner:^{
+                 if (error) {
+                   [self hideSpinner:^{
+                     [self showMessagePrompt:error.localizedDescription];
+                     return;
+                   }];
+                 }
+                if (credential) {
+                  [[FIRAuth auth] signInWithCredential:credential
+                                            completion:^(FIRAuthDataResult *_Nullable authResult,
+                                                         NSError *_Nullable error) {
+                    [self hideSpinner:^{
+                      if (error) {
+                        [self showMessagePrompt:error.localizedDescription];
+                        return;
+                      }
+                    }];
+                  }];
+                }
+              }];
+            }];
+            // [END firebase_auth_github]
          }];
       }
         break;
@@ -387,6 +422,7 @@ static NSString *const kUpdatePhoneNumberText = @"Update Phone Number";
                          @(AuthGoogle),
                          @(AuthFacebook),
                          @(AuthTwitter),
+                         @(AuthGitHub),
                          @(AuthPhone),
                          @(AuthCustom),
                          @(AuthPasswordless),
@@ -462,6 +498,7 @@ static NSString *const kUpdatePhoneNumberText = @"Update Phone Number";
 
   self.microsoftProvider = [FIROAuthProvider providerWithProviderID:@"microsoft.com"];
   self.twitterProvider = [FIROAuthProvider providerWithProviderID:@"twitter.com"];
+  self.gitHubProvider = [FIROAuthProvider providerWithProviderID:@"github.com"];
 
   // Authenticate Game Center Local Player
   // Uncomment to sign in with Game Center

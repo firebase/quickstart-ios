@@ -1,30 +1,30 @@
 PODS:
-  - Firebase/Analytics (6.1.0):
+  - Firebase/Analytics (6.2.0):
     - Firebase/Core
-  - Firebase/Core (6.1.0):
+  - Firebase/Core (6.2.0):
     - Firebase/CoreOnly
     - FirebaseAnalytics (= 6.0.1)
-  - Firebase/CoreOnly (6.1.0):
-    - FirebaseCore (= 6.0.1)
-  - Firebase/MLVision (6.1.0):
+  - Firebase/CoreOnly (6.2.0):
+    - FirebaseCore (= 6.0.2)
+  - Firebase/MLVision (6.2.0):
     - Firebase/CoreOnly
     - FirebaseMLVision (~> 0.16.0)
-  - Firebase/MLVisionAutoML (6.1.0):
+  - Firebase/MLVisionAutoML (6.2.0):
     - Firebase/CoreOnly
     - FirebaseMLVisionAutoML (~> 0.16.0)
-  - Firebase/MLVisionBarcodeModel (6.1.0):
+  - Firebase/MLVisionBarcodeModel (6.2.0):
     - Firebase/CoreOnly
     - FirebaseMLVisionBarcodeModel (~> 0.16.0)
-  - Firebase/MLVisionFaceModel (6.1.0):
+  - Firebase/MLVisionFaceModel (6.2.0):
     - Firebase/CoreOnly
     - FirebaseMLVisionFaceModel (~> 0.16.0)
-  - Firebase/MLVisionLabelModel (6.1.0):
+  - Firebase/MLVisionLabelModel (6.2.0):
     - Firebase/CoreOnly
     - FirebaseMLVisionLabelModel (~> 0.16.0)
-  - Firebase/MLVisionObjectDetection (6.1.0):
+  - Firebase/MLVisionObjectDetection (6.2.0):
     - Firebase/CoreOnly
     - FirebaseMLVisionObjectDetection (~> 0.16.0)
-  - Firebase/MLVisionTextModel (6.1.0):
+  - Firebase/MLVisionTextModel (6.2.0):
     - Firebase/CoreOnly
     - FirebaseMLVisionTextModel (~> 0.16.0)
   - FirebaseAnalytics (6.0.1):
@@ -36,10 +36,10 @@ PODS:
     - GoogleUtilities/Network (~> 6.0)
     - "GoogleUtilities/NSData+zlib (~> 6.0)"
     - nanopb (~> 0.3)
-  - FirebaseCore (6.0.1):
+  - FirebaseCore (6.0.2):
     - GoogleUtilities/Environment (~> 6.0)
     - GoogleUtilities/Logger (~> 6.0)
-  - FirebaseInstanceID (4.1.0):
+  - FirebaseInstanceID (4.1.1):
     - FirebaseCore (~> 6.0)
     - GoogleUtilities/Environment (~> 6.0)
     - GoogleUtilities/UserDefaults (~> 6.0)
@@ -165,10 +165,10 @@ SPEC REPOS:
     - TensorFlowLite
 
 SPEC CHECKSUMS:
-  Firebase: 8d77bb33624ae9b62d745d82ec023de5f70f7e4f
+  Firebase: 5965bac23e7fcb5fa6d926ed429c9ecef8a2014e
   FirebaseAnalytics: 629301c2b9925f3537d4093a17a72751ae5b7084
-  FirebaseCore: 66bdef3b310a026880e2a5bc8aa586ab62ce4543
-  FirebaseInstanceID: 27bed93a59b6685f5c3e0c028a878a764fd75c33
+  FirebaseCore: b0f0262acebfa540e5f97b3832dbb13186980822
+  FirebaseInstanceID: cdb3827746d53ece7ae87a5c51c25c3055443366
   FirebaseMLCommon: d430756ba2a16bac8fefc81ea416e7f822f052fd
   FirebaseMLVision: 35d0a720334b141d70a55e7e817c1cac23f32285
   FirebaseMLVisionAutoML: ce20b5b0e169cafa07f5bf61048a86aa7df6232c

@@ -1,14 +1,14 @@
 PODS:
-  - Firebase/Analytics (6.1.0):
+  - Firebase/Analytics (6.2.0):
     - Firebase/Core
-  - Firebase/Core (6.1.0):
+  - Firebase/Core (6.2.0):
     - Firebase/CoreOnly
     - FirebaseAnalytics (= 6.0.1)
-  - Firebase/CoreOnly (6.1.0):
-    - FirebaseCore (= 6.0.1)
-  - Firebase/Messaging (6.1.0):
+  - Firebase/CoreOnly (6.2.0):
+    - FirebaseCore (= 6.0.2)
+  - Firebase/Messaging (6.2.0):
     - Firebase/CoreOnly
-    - FirebaseMessaging (~> 4.0.1)
+    - FirebaseMessaging (~> 4.0.2)
   - FirebaseAnalytics (6.0.1):
     - FirebaseCore (~> 6.0)
     - FirebaseInstanceID (~> 4.1)
@@ -19,21 +19,21 @@ PODS:
     - "GoogleUtilities/NSData+zlib (~> 6.0)"
     - nanopb (~> 0.3)
   - FirebaseAnalyticsInterop (1.2.0)
-  - FirebaseCore (6.0.1):
+  - FirebaseCore (6.0.2):
     - GoogleUtilities/Environment (~> 6.0)
     - GoogleUtilities/Logger (~> 6.0)
-  - FirebaseInstanceID (4.1.0):
+  - FirebaseInstanceID (4.1.1):
     - FirebaseCore (~> 6.0)
     - GoogleUtilities/Environment (~> 6.0)
     - GoogleUtilities/UserDefaults (~> 6.0)
-  - FirebaseMessaging (4.0.1):
+  - FirebaseMessaging (4.0.2):
     - FirebaseAnalyticsInterop (~> 1.1)
     - FirebaseCore (~> 6.0)
     - FirebaseInstanceID (~> 4.1)
-    - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
-    - GoogleUtilities/Environment (~> 6.0)
-    - GoogleUtilities/Reachability (~> 6.0)
-    - GoogleUtilities/UserDefaults (~> 6.0)
+    - GoogleUtilities/AppDelegateSwizzler (~> 6.2)
+    - GoogleUtilities/Environment (~> 6.2)
+    - GoogleUtilities/Reachability (~> 6.2)
+    - GoogleUtilities/UserDefaults (~> 6.2)
     - Protobuf (~> 3.1)
   - GoogleAppMeasurement (6.0.1):
     - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
@@ -84,12 +84,12 @@ SPEC REPOS:
     - Protobuf
 
 SPEC CHECKSUMS:
-  Firebase: 8d77bb33624ae9b62d745d82ec023de5f70f7e4f
+  Firebase: 5965bac23e7fcb5fa6d926ed429c9ecef8a2014e
   FirebaseAnalytics: 629301c2b9925f3537d4093a17a72751ae5b7084
   FirebaseAnalyticsInterop: efbe45c8385ec626e29f9525e5ebd38520dfb6c1
-  FirebaseCore: 66bdef3b310a026880e2a5bc8aa586ab62ce4543
-  FirebaseInstanceID: 27bed93a59b6685f5c3e0c028a878a764fd75c33
-  FirebaseMessaging: 31377e05331d16dc6c9fd82554f9a5c49aa70aed
+  FirebaseCore: b0f0262acebfa540e5f97b3832dbb13186980822
+  FirebaseInstanceID: cdb3827746d53ece7ae87a5c51c25c3055443366
+  FirebaseMessaging: 20b6626c41be7840aed7a3dd9a14003efae3d588
   GoogleAppMeasurement: 51d8d9ea48f0ca44484d29cfbdef976fbd4fc336
   GoogleUtilities: 996e0db07153674fd1b54b220fda3a3dc3547cba
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48

@@ -15,6 +15,8 @@
 		10B053F91C6631CD0061077D /* UIViewController+Alerts.m in Sources */ = {isa = PBXBuildFile; fileRef = 10B053F81C6631CD0061077D /* UIViewController+Alerts.m */; };
 		10B053FB1C6945D80061077D /* UIViewController+Alerts.m in Sources */ = {isa = PBXBuildFile; fileRef = 10B053F81C6631CD0061077D /* UIViewController+Alerts.m */; };
 		10B054031C6A3C630061077D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10B054011C6A3C630061077D /* Main.storyboard */; };
+		403580D922A9C09400F6B217 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 403580D822A9C09400F6B217 /* GoogleService-Info.plist */; };
+		403580DA22A9C0BE00F6B217 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 403580D822A9C09400F6B217 /* GoogleService-Info.plist */; };
 		5F5A53521ADE670C00F81DF0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5A53511ADE670C00F81DF0 /* main.m */; };
 		5F5A53551ADE670C00F81DF0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5A53541ADE670C00F81DF0 /* AppDelegate.m */; };
 		5F5A537E1ADE67D500F81DF0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5A537D1ADE67D500F81DF0 /* AppDelegate.swift */; };
@@ -71,6 +73,7 @@
 		10B053F71C6631CD0061077D /* UIViewController+Alerts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Alerts.h"; sourceTree = "<group>"; };
 		10B053F81C6631CD0061077D /* UIViewController+Alerts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Alerts.m"; sourceTree = "<group>"; };
 		10B054021C6A3C630061077D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		403580D822A9C09400F6B217 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5F5A534C1ADE670C00F81DF0 /* AuthenticationExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AuthenticationExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F5A53501ADE670C00F81DF0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5F5A53511ADE670C00F81DF0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -186,7 +189,6 @@
 		5F5A534E1ADE670C00F81DF0 /* AuthenticationExample */ = {
 			isa = PBXGroup;
 			children = (
-				10757BDD205AD4FC007623FD /* AuthenticationExample.entitlements */,
 				10757BD32059CFC7007623FD /* PasswordlessViewController.h */,
 				10757BD42059CFC7007623FD /* PasswordlessViewController.m */,
 				EF6DB4D11CDD610200319C08 /* CustomTokenViewController.h */,
@@ -205,11 +207,13 @@
 		5F5A534F1ADE670C00F81DF0 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				10B053F71C6631CD0061077D /* UIViewController+Alerts.h */,
-				10B053F81C6631CD0061077D /* UIViewController+Alerts.m */,
-				10B054011C6A3C630061077D /* Main.storyboard */,
+				10757BDD205AD4FC007623FD /* AuthenticationExample.entitlements */,
+				403580D822A9C09400F6B217 /* GoogleService-Info.plist */,
 				5F5A53501ADE670C00F81DF0 /* Info.plist */,
 				5F5A53511ADE670C00F81DF0 /* main.m */,
+				10B054011C6A3C630061077D /* Main.storyboard */,
+				10B053F71C6631CD0061077D /* UIViewController+Alerts.h */,
+				10B053F81C6631CD0061077D /* UIViewController+Alerts.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -395,6 +399,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -439,6 +444,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5F99610C1AE0CF4F0034F503 /* LaunchScreen.xib in Resources */,
+				403580D922A9C09400F6B217 /* GoogleService-Info.plist in Resources */,
 				10B054031C6A3C630061077D /* Main.storyboard in Resources */,
 				5F99610A1AE0CF4F0034F503 /* Images.xcassets in Resources */,
 			);
@@ -449,6 +455,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EF4857041C752B7700649485 /* Main.storyboard in Resources */,
+				403580DA22A9C0BE00F6B217 /* GoogleService-Info.plist in Resources */,
 				5F99610D1AE0CF4F0034F503 /* LaunchScreen.xib in Resources */,
 				5F99610B1AE0CF4F0034F503 /* Images.xcassets in Resources */,
 			);

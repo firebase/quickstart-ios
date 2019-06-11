@@ -46,6 +46,7 @@ class CameraViewController: UIViewController {
 
     precondition(isViewLoaded)
     let previewOverlayView = UIImageView(frame: .zero)
+    previewOverlayView.contentMode = UIViewContentMode.scaleAspectFill
     previewOverlayView.translatesAutoresizingMaskIntoConstraints = false
     return previewOverlayView
   }()
@@ -468,11 +469,11 @@ class CameraViewController: UIViewController {
   private func setUpPreviewOverlayView() {
     cameraView.addSubview(previewOverlayView)
     NSLayoutConstraint.activate([
-      previewOverlayView.topAnchor.constraint(greaterThanOrEqualTo: cameraView.topAnchor),
+      previewOverlayView.centerXAnchor.constraint(equalTo: cameraView.centerXAnchor),
       previewOverlayView.centerYAnchor.constraint(equalTo: cameraView.centerYAnchor),
       previewOverlayView.leadingAnchor.constraint(equalTo: cameraView.leadingAnchor),
       previewOverlayView.trailingAnchor.constraint(equalTo: cameraView.trailingAnchor),
-      previewOverlayView.bottomAnchor.constraint(lessThanOrEqualTo: cameraView.bottomAnchor),
+
       ])
   }
 

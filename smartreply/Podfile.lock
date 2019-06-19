@@ -76,8 +76,8 @@ PODS:
   - GoogleUtilities/UserDefaults (6.2.0):
     - GoogleUtilities/Logger
   - GTMSessionFetcher/Core (1.2.2)
-  - MaterialComponents/AnimationTiming (84.6.0)
-  - MaterialComponents/Buttons (84.6.0):
+  - MaterialComponents/AnimationTiming (85.0.0)
+  - MaterialComponents/Buttons (85.0.0):
     - MaterialComponents/Ink
     - MaterialComponents/private/Math
     - MaterialComponents/Ripple
@@ -87,22 +87,22 @@ PODS:
     - MaterialComponents/Typography
     - MDFInternationalization
     - MDFTextAccessibility
-  - "MaterialComponents/Buttons+ButtonThemer (84.6.0)":
+  - "MaterialComponents/Buttons+ButtonThemer (85.0.0)":
     - MaterialComponents/Buttons
     - "MaterialComponents/Buttons+ColorThemer"
     - "MaterialComponents/Buttons+ShapeThemer"
     - "MaterialComponents/Buttons+TypographyThemer"
     - MaterialComponents/Palettes
-  - "MaterialComponents/Buttons+ColorThemer (84.6.0)":
+  - "MaterialComponents/Buttons+ColorThemer (85.0.0)":
     - MaterialComponents/Buttons
     - MaterialComponents/schemes/Color
-  - "MaterialComponents/Buttons+ShapeThemer (84.6.0)":
+  - "MaterialComponents/Buttons+ShapeThemer (85.0.0)":
     - MaterialComponents/Buttons
     - MaterialComponents/schemes/Shape
-  - "MaterialComponents/Buttons+TypographyThemer (84.6.0)":
+  - "MaterialComponents/Buttons+TypographyThemer (85.0.0)":
     - MaterialComponents/Buttons
     - MaterialComponents/schemes/Typography
-  - MaterialComponents/Chips (84.6.0):
+  - MaterialComponents/Chips (85.0.0):
     - MaterialComponents/Ink
     - MaterialComponents/private/Math
     - MaterialComponents/Ripple
@@ -113,43 +113,44 @@ PODS:
     - MaterialComponents/TextFields
     - MaterialComponents/Typography
     - MDFInternationalization
-  - MaterialComponents/Ink (84.6.0):
+  - MaterialComponents/Ink (85.0.0):
     - MaterialComponents/private/Math
-  - MaterialComponents/List (84.6.0):
+  - MaterialComponents/List (85.0.0):
     - MaterialComponents/Ink
     - MaterialComponents/private/Math
+    - MaterialComponents/Ripple
     - MaterialComponents/ShadowElevations
     - MaterialComponents/ShadowLayer
     - MaterialComponents/Typography
     - MDFInternationalization
-  - MaterialComponents/Palettes (84.6.0)
-  - MaterialComponents/private/Application (84.6.0)
-  - MaterialComponents/private/Math (84.6.0)
-  - MaterialComponents/Ripple (84.6.0):
+  - MaterialComponents/Palettes (85.0.0)
+  - MaterialComponents/private/Application (85.0.0)
+  - MaterialComponents/private/Math (85.0.0)
+  - MaterialComponents/Ripple (85.0.0):
     - MaterialComponents/AnimationTiming
     - MaterialComponents/private/Math
-  - MaterialComponents/schemes/Color (84.6.0)
-  - MaterialComponents/schemes/Shape (84.6.0):
+  - MaterialComponents/schemes/Color (85.0.0)
+  - MaterialComponents/schemes/Shape (85.0.0):
     - MaterialComponents/ShapeLibrary
     - MaterialComponents/Shapes
-  - MaterialComponents/schemes/Typography (84.6.0):
+  - MaterialComponents/schemes/Typography (85.0.0):
     - MaterialComponents/Typography
-  - MaterialComponents/ShadowElevations (84.6.0)
-  - MaterialComponents/ShadowLayer (84.6.0):
+  - MaterialComponents/ShadowElevations (85.0.0)
+  - MaterialComponents/ShadowLayer (85.0.0):
     - MaterialComponents/ShadowElevations
-  - MaterialComponents/ShapeLibrary (84.6.0):
+  - MaterialComponents/ShapeLibrary (85.0.0):
     - MaterialComponents/private/Math
     - MaterialComponents/Shapes
-  - MaterialComponents/Shapes (84.6.0):
+  - MaterialComponents/Shapes (85.0.0):
     - MaterialComponents/private/Math
     - MaterialComponents/ShadowLayer
-  - MaterialComponents/TextFields (84.6.0):
+  - MaterialComponents/TextFields (85.0.0):
     - MaterialComponents/AnimationTiming
     - MaterialComponents/Palettes
     - MaterialComponents/private/Math
     - MaterialComponents/Typography
     - MDFInternationalization
-  - MaterialComponents/Typography (84.6.0):
+  - MaterialComponents/Typography (85.0.0):
     - MaterialComponents/private/Application
     - MaterialComponents/private/Math
   - MDFInternationalization (2.0.0)
@@ -208,7 +209,7 @@ SPEC CHECKSUMS:
   GoogleAppMeasurement: 51d8d9ea48f0ca44484d29cfbdef976fbd4fc336
   GoogleUtilities: 996e0db07153674fd1b54b220fda3a3dc3547cba
   GTMSessionFetcher: 61bb0f61a4cb560030f1222021178008a5727a23
-  MaterialComponents: 71139af6ca6875fbde8ab8e64a275b7fd6a22d7f
+  MaterialComponents: 9e545cf19802e6acf017fe774c90e36176ea7066
   MDFInternationalization: 010097556d6b09d2c4ea38e0820ea6d37be6a314
   MDFTextAccessibility: 85c09a1bd9c321f494348e632a25063bcda35a53
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48

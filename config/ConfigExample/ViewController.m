@@ -33,7 +33,8 @@ NSString *const kLoadingPhraseConfigKey = @"loading_phrase";
   // the number of fetches available per hour during development. See Best Practices in the
   // README for more information.
   // [START enable_dev_mode]
-  FIRRemoteConfigSettings *remoteConfigSettings = [[FIRRemoteConfigSettings alloc] initWithDeveloperModeEnabled:YES];
+  FIRRemoteConfigSettings *remoteConfigSettings = [[FIRRemoteConfigSettings alloc] init];
+  remoteConfigSettings.minimumFetchInterval = 0;
   self.remoteConfig.configSettings = remoteConfigSettings;
   // [END enable_dev_mode]
 
@@ -52,11 +53,6 @@ NSString *const kLoadingPhraseConfigKey = @"loading_phrase";
     self.welcomeLabel.text = self.remoteConfig[kLoadingPhraseConfigKey].stringValue;
 
     long expirationDuration = 3600;
-    // If your app is using developer mode, expirationDuration is set to 0, so each fetch will
-    // retrieve values from the Remote Config service.
-    if (self.remoteConfig.configSettings.isDeveloperModeEnabled) {
-        expirationDuration = 0;
-    }
 
     // [START fetch_config_with_callback]
     // TimeInterval is set to expirationDuration here, indicating the next fetch request will use
@@ -66,7 +62,9 @@ NSString *const kLoadingPhraseConfigKey = @"loading_phrase";
     [self.remoteConfig fetchWithExpirationDuration:expirationDuration completionHandler:^(FIRRemoteConfigFetchStatus status, NSError *error) {
         if (status == FIRRemoteConfigFetchStatusSuccess) {
             NSLog(@"Config fetched!");
-            [self.remoteConfig activateFetched];
+          [self.remoteConfig activateWithCompletionHandler:^(NSError * _Nullable error) {
+            // ...
+          }];
         } else {
             NSLog(@"Config not fetched");
             NSLog(@"Error %@", error.localizedDescription);

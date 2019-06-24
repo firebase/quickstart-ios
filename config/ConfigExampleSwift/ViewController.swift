@@ -38,7 +38,9 @@ class ViewController: UIViewController {
     // the number of fetches available per hour during development. See Best Practices in the
     // README for more information.
     // [START enable_dev_mode]
-    remoteConfig.configSettings = RemoteConfigSettings(developerModeEnabled: true)
+    let settings = RemoteConfigSettings()
+    settings.minimumFetchInterval = 0
+    remoteConfig.configSettings = settings
     // [END enable_dev_mode]
 
     // Set default Remote Config parameter values. An app uses the in-app default values, and
@@ -55,12 +57,7 @@ class ViewController: UIViewController {
   func fetchConfig() {
     welcomeLabel.text = remoteConfig[loadingPhraseConfigKey].stringValue
 
-    var expirationDuration = 3600
-    // If your app is using developer mode, expirationDuration is set to 0, so each fetch will
-    // retrieve values from the service.
-    if remoteConfig.configSettings.isDeveloperModeEnabled {
-      expirationDuration = 0
-    }
+    let expirationDuration = 3600
 
     // [START fetch_config_with_callback]
     // TimeInterval is set to expirationDuration here, indicating the next fetch request will use
@@ -70,7 +67,9 @@ class ViewController: UIViewController {
     remoteConfig.fetch(withExpirationDuration: TimeInterval(expirationDuration)) { (status, error) -> Void in
       if status == .success {
         print("Config fetched!")
-        self.remoteConfig.activateFetched()
+        self.remoteConfig.activate(completionHandler: { (error) in
+          // ...
+        })
       } else {
         print("Config not fetched")
         print("Error: \(error?.localizedDescription ?? "No error available.")")

@@ -411,9 +411,9 @@ typedef NS_ENUM(NSInteger, Detector) {
       if (object.trackingID != nil) {
         [description appendFormat:@"ID: %@\n", object.trackingID];
       }
-      if (object.label != nil) {
-        [description appendString:object.label];
-      }
+      NSString *categoryString =
+        [NSString stringWithFormat:@"Class: %lu", object.classificationCategory];
+      [description appendString:categoryString];
       label.text = description;
 
       label.adjustsFontSizeToFitWidth = YES;

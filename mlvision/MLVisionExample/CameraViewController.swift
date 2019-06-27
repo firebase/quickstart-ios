@@ -393,9 +393,7 @@ class CameraViewController: UIViewController {
         if let trackingID = object.trackingID {
           description = "ID:" + trackingID.stringValue + "\n"
         }
-        if let objectLabel = object.label {
-          description += objectLabel
-        }
+        description = description + " Class:\(object.classificationCategory.rawValue)"
         label.text = description
 
         label.adjustsFontSizeToFitWidth = true

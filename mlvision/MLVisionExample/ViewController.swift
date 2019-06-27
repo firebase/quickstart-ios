@@ -1229,7 +1229,7 @@ extension ViewController {
 
        // [START_EXCLUDE]
       self.resultsText = objects.map { object in
-        return "Class: \(object.label ?? ""), frame: \(object.frame), ID: \(object.trackingID ?? 0)"
+        return "Frame: \(object.frame), ID: \(object.trackingID ?? 0)"
         }.joined(separator: "\n")
       self.showResults()
       // [END_EXCLUDE]

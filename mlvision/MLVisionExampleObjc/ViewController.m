@@ -1153,7 +1153,8 @@ typedef NS_ENUM(NSInteger, DetectorPickerRow) {
       CGAffineTransform transform = [self transformMatrix];
       CGRect transformedRect = CGRectApplyAffineTransform(object.frame, transform);
       [UIUtilities addRectangle:transformedRect toView:self.annotationOverlayView color:UIColor.greenColor];
-      [self.resultsText appendFormat:@"Class: %@, frame: %@, ID: %@\n", object.label, NSStringFromCGRect(object.frame), object.trackingID];
+      [self.resultsText appendFormat:@"Class: %lu, frame: %@, ID: %@\n",
+        object.classificationCategory, NSStringFromCGRect(object.frame), object.trackingID];
     }
     [self showResults];
     // [END_EXCLUDE]

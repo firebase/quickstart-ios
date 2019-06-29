@@ -16,6 +16,7 @@
 
 #import "ModelInterpreterManager.h"
 #import "UIImage+TFLite.h"
+
 @import FirebaseMLModelInterpreter;
 
 static NSString *const labelsName = @"labels";

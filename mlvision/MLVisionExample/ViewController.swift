@@ -15,10 +15,8 @@
 //
 
 import UIKit
-// [START import_vision]
-import FirebaseMLVision
-// [END import_vision]
 
+import FirebaseMLVision
 import FirebaseMLVisionObjectDetection
 import FirebaseMLVisionAutoML
 import FirebaseMLCommon

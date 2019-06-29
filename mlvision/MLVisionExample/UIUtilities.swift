@@ -19,7 +19,6 @@ import UIKit
 
 import FirebaseMLVision
 
-
 /// Defines UI-related utilitiy methods for vision detection.
 public class UIUtilities {
 

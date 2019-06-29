@@ -17,6 +17,7 @@
 #import "ViewController.h"
 #import "ModelInterpreterManager.h"
 #import "UIImage+TFLite.h"
+
 @import FirebaseMLCommon;
 
 static NSString *const failedToDetectObjectsMessage = @"Failed to detect objects in image.";

@@ -17,6 +17,7 @@
 #import "ViewController.h"
 #import "UIImage+VisionDetection.h"
 #import "UIUtilities.h"
+
 @import FirebaseMLVision;
 @import FirebaseMLVisionAutoML;
 @import FirebaseMLCommon;

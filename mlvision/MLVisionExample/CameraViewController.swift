@@ -17,10 +17,10 @@
 import AVFoundation
 import CoreVideo
 
-import FirebaseMLVision
-import FirebaseMLVisionObjectDetection
 import FirebaseMLCommon
+import FirebaseMLVision
 import FirebaseMLVisionAutoML
+import FirebaseMLVisionObjectDetection
 
 @objc(CameraViewController)
 class CameraViewController: UIViewController {

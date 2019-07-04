@@ -1,0 +1,43 @@
+PODS:
+  - FirebaseCore (6.0.3):
+    - GoogleUtilities/Environment (~> 6.0)
+    - GoogleUtilities/Logger (~> 6.0)
+  - FirebaseInstallations (0.1.0):
+    - FirebaseCore (~> 6.0)
+    - GoogleUtilities/UserDefaults (~> 6.2)
+    - PromisesObjC (~> 1.2)
+  - GoogleUtilities/Environment (6.2.1)
+  - GoogleUtilities/Logger (6.2.1):
+    - GoogleUtilities/Environment
+  - GoogleUtilities/UserDefaults (6.2.1):
+    - GoogleUtilities/Logger
+  - PromisesObjC (1.2.8)
+
+DEPENDENCIES:
+  - FirebaseInstallations (from `https://github.com/firebase/firebase-ios-sdk.git`, branch `mm/fis-master`)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - FirebaseCore
+    - GoogleUtilities
+    - PromisesObjC
+
+EXTERNAL SOURCES:
+  FirebaseInstallations:
+    :branch: mm/fis-master
+    :git: https://github.com/firebase/firebase-ios-sdk.git
+
+CHECKOUT OPTIONS:
+  FirebaseInstallations:
+    :commit: df5f9a5be6985f9be7b8fc926859ca1c94db1f98
+    :git: https://github.com/firebase/firebase-ios-sdk.git
+
+SPEC CHECKSUMS:
+  FirebaseCore: 68f8a7f50cdae542715d4e86afa37c4067217dcb
+  FirebaseInstallations: 52bc538e7c10d1ebf4c93beb0d3d57f013c6d3dc
+  GoogleUtilities: c7a0b08bda3bf808be823ed151f0e28ac6866e71
+  PromisesObjC: c119f3cd559f50b7ae681fa59dc1acd19173b7e6
+
+PODFILE CHECKSUM: f50add5499713f207c7ce73c84587e54ca12a28c
+
+COCOAPODS: 1.6.1

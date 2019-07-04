@@ -39,6 +39,8 @@ matrix:
     env: SAMPLE=Performance
   - podfile: storage/Podfile
     env: SAMPLE=Storage
+  - podfile: installations/Podfile
+    env: SAMPLE=Installations
 
 before_install:
   - cd $SAMPLE

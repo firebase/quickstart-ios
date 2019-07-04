@@ -12,21 +12,21 @@
 		9A0A6EEE22CE55B2004CF0FF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A0A6EEC22CE55B2004CF0FF /* Main.storyboard */; };
 		9A0A6EF022CE55B3004CF0FF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A0A6EEF22CE55B3004CF0FF /* Assets.xcassets */; };
 		9A0A6EF322CE55B3004CF0FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A0A6EF122CE55B3004CF0FF /* LaunchScreen.storyboard */; };
-		9A63CEBF22CE5EA40037A27A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9A63CEBE22CE5EA40037A27A /* GoogleService-Info.plist */; };
+		9A63CEC122CE6E3C0037A27A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9A63CEC022CE6E3C0037A27A /* GoogleService-Info.plist */; };
 		D5179FB87C9B918C4DE4C884 /* Pods_InstallationsExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6CA6133D2D968477431B154 /* Pods_InstallationsExample.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		35D34296F9C3A2A300B60EBC /* Pods-InstallationsExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstallationsExample.release.xcconfig"; path = "Target Support Files/Pods-InstallationsExample/Pods-InstallationsExample.release.xcconfig"; sourceTree = "<group>"; };
 		70F717F00696922FBB735B9D /* Pods-InstallationsExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstallationsExample.debug.xcconfig"; path = "Target Support Files/Pods-InstallationsExample/Pods-InstallationsExample.debug.xcconfig"; sourceTree = "<group>"; };
-		9A0A6EE522CE55B2004CF0FF /* InstallationsExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstallationsExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A0A6EE522CE55B2004CF0FF /* InstallationsExampleSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstallationsExampleSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A0A6EE822CE55B2004CF0FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9A0A6EEA22CE55B2004CF0FF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		9A0A6EED22CE55B2004CF0FF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9A0A6EEF22CE55B3004CF0FF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9A0A6EF222CE55B3004CF0FF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9A0A6EF422CE55B3004CF0FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9A63CEBE22CE5EA40037A27A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		9A63CEC022CE6E3C0037A27A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F6CA6133D2D968477431B154 /* Pods_InstallationsExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InstallationsExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -63,7 +63,7 @@
 		9A0A6EE622CE55B2004CF0FF /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9A0A6EE522CE55B2004CF0FF /* InstallationsExample.app */,
+				9A0A6EE522CE55B2004CF0FF /* InstallationsExampleSwift.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -71,7 +71,7 @@
 		9A0A6EE722CE55B2004CF0FF /* InstallationsExample */ = {
 			isa = PBXGroup;
 			children = (
-				9A63CEBE22CE5EA40037A27A /* GoogleService-Info.plist */,
+				9A63CEC022CE6E3C0037A27A /* GoogleService-Info.plist */,
 				9A0A6EE822CE55B2004CF0FF /* AppDelegate.swift */,
 				9A0A6EEA22CE55B2004CF0FF /* ViewController.swift */,
 				9A0A6EEC22CE55B2004CF0FF /* Main.storyboard */,
@@ -94,9 +94,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		9A0A6EE422CE55B2004CF0FF /* InstallationsExample */ = {
+		9A0A6EE422CE55B2004CF0FF /* InstallationsExampleSwift */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9A0A6EF722CE55B3004CF0FF /* Build configuration list for PBXNativeTarget "InstallationsExample" */;
+			buildConfigurationList = 9A0A6EF722CE55B3004CF0FF /* Build configuration list for PBXNativeTarget "InstallationsExampleSwift" */;
 			buildPhases = (
 				39F43AA8F9EC179370AF8EB8 /* [CP] Check Pods Manifest.lock */,
 				9A0A6EE122CE55B2004CF0FF /* Sources */,
@@ -108,9 +108,9 @@
 			);
 			dependencies = (
 			);
-			name = InstallationsExample;
+			name = InstallationsExampleSwift;
 			productName = InstallationsExample;
-			productReference = 9A0A6EE522CE55B2004CF0FF /* InstallationsExample.app */;
+			productReference = 9A0A6EE522CE55B2004CF0FF /* InstallationsExampleSwift.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -125,6 +125,7 @@
 				TargetAttributes = {
 					9A0A6EE422CE55B2004CF0FF = {
 						CreatedOnToolsVersion = 10.2.1;
+						LastSwiftMigration = 1020;
 					};
 				};
 			};
@@ -141,7 +142,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				9A0A6EE422CE55B2004CF0FF /* InstallationsExample */,
+				9A0A6EE422CE55B2004CF0FF /* InstallationsExampleSwift */,
 			);
 		};
 /* End PBXProject section */
@@ -151,10 +152,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A63CEC122CE6E3C0037A27A /* GoogleService-Info.plist in Resources */,
 				9A0A6EF322CE55B3004CF0FF /* LaunchScreen.storyboard in Resources */,
 				9A0A6EF022CE55B3004CF0FF /* Assets.xcassets in Resources */,
 				9A0A6EEE22CE55B2004CF0FF /* Main.storyboard in Resources */,
-				9A63CEBF22CE5EA40037A27A /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -407,7 +408,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9A0A6EF722CE55B3004CF0FF /* Build configuration list for PBXNativeTarget "InstallationsExample" */ = {
+		9A0A6EF722CE55B3004CF0FF /* Build configuration list for PBXNativeTarget "InstallationsExampleSwift" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9A0A6EF822CE55B3004CF0FF /* Debug */,

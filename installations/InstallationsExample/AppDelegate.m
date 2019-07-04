@@ -18,7 +18,7 @@
 
 // TODO: Remove once FirebaseInstallations has released.
 #import <FirebaseInstallations/FIRInstallations.h>
-@import Firebase
+@import Firebase;
 
 @interface AppDelegate ()
 
@@ -28,7 +28,7 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-  // Override point for customization after application launch.
+  [FIRApp configure];
   return YES;
 }
 

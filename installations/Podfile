@@ -1,11 +1,13 @@
 platform :ios, '9.0'
 
+# Replace both pods by pod 'Firebase/Installations' once FirebaseInstallations has released
 pod 'FirebaseInstallations', :git => 'https://github.com/firebase/firebase-ios-sdk.git', :branch => 'mm/fis-master'
+pod 'Firebase/CoreOnly'
 
 target 'InstallationsExample' do
-  # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
+end
 
-  # Pods for InstallationsExample
-
+target 'InstallationsExampleSwift' do
+  use_frameworks!
 end

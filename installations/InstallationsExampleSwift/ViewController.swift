@@ -16,9 +16,9 @@
 
 import UIKit
 
-// TODO: Update to `import Firebase` once released.
+// TODO: Remove once released.
 import FirebaseInstallations
-import FirebaseCore
+import Firebase
 
 class ViewController: UIViewController {
   @IBOutlet private var getInstallationButton: UIButton!

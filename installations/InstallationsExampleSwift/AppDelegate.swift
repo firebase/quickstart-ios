@@ -16,8 +16,7 @@
 
 import UIKit
 
-// TODO: Update to `import Firebase` once released.
-import FirebaseCore
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

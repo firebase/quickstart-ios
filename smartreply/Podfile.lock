@@ -76,8 +76,8 @@ PODS:
   - GoogleUtilities/UserDefaults (6.2.1):
     - GoogleUtilities/Logger
   - GTMSessionFetcher/Core (1.2.2)
-  - MaterialComponents/AnimationTiming (85.1.0)
-  - MaterialComponents/Buttons (85.1.0):
+  - MaterialComponents/AnimationTiming (85.4.0)
+  - MaterialComponents/Buttons (85.4.0):
     - MaterialComponents/Ink
     - MaterialComponents/private/Math
     - MaterialComponents/Ripple
@@ -87,22 +87,22 @@ PODS:
     - MaterialComponents/Typography
     - MDFInternationalization
     - MDFTextAccessibility
-  - "MaterialComponents/Buttons+ButtonThemer (85.1.0)":
+  - "MaterialComponents/Buttons+ButtonThemer (85.4.0)":
     - MaterialComponents/Buttons
     - "MaterialComponents/Buttons+ColorThemer"
     - "MaterialComponents/Buttons+ShapeThemer"
     - "MaterialComponents/Buttons+TypographyThemer"
     - MaterialComponents/Palettes
-  - "MaterialComponents/Buttons+ColorThemer (85.1.0)":
+  - "MaterialComponents/Buttons+ColorThemer (85.4.0)":
     - MaterialComponents/Buttons
     - MaterialComponents/schemes/Color
-  - "MaterialComponents/Buttons+ShapeThemer (85.1.0)":
+  - "MaterialComponents/Buttons+ShapeThemer (85.4.0)":
     - MaterialComponents/Buttons
     - MaterialComponents/schemes/Shape
-  - "MaterialComponents/Buttons+TypographyThemer (85.1.0)":
+  - "MaterialComponents/Buttons+TypographyThemer (85.4.0)":
     - MaterialComponents/Buttons
     - MaterialComponents/schemes/Typography
-  - MaterialComponents/Chips (85.1.0):
+  - MaterialComponents/Chips (85.4.0):
     - MaterialComponents/Ink
     - MaterialComponents/private/Math
     - MaterialComponents/Ripple
@@ -113,9 +113,9 @@ PODS:
     - MaterialComponents/TextFields
     - MaterialComponents/Typography
     - MDFInternationalization
-  - MaterialComponents/Ink (85.1.0):
+  - MaterialComponents/Ink (85.4.0):
     - MaterialComponents/private/Math
-  - MaterialComponents/List (85.1.0):
+  - MaterialComponents/List (85.4.0):
     - MaterialComponents/Ink
     - MaterialComponents/private/Math
     - MaterialComponents/Ripple
@@ -123,34 +123,34 @@ PODS:
     - MaterialComponents/ShadowLayer
     - MaterialComponents/Typography
     - MDFInternationalization
-  - MaterialComponents/Palettes (85.1.0)
-  - MaterialComponents/private/Application (85.1.0)
-  - MaterialComponents/private/Math (85.1.0)
-  - MaterialComponents/Ripple (85.1.0):
+  - MaterialComponents/Palettes (85.4.0)
+  - MaterialComponents/private/Application (85.4.0)
+  - MaterialComponents/private/Math (85.4.0)
+  - MaterialComponents/Ripple (85.4.0):
     - MaterialComponents/AnimationTiming
     - MaterialComponents/private/Math
-  - MaterialComponents/schemes/Color (85.1.0)
-  - MaterialComponents/schemes/Shape (85.1.0):
+  - MaterialComponents/schemes/Color (85.4.0)
+  - MaterialComponents/schemes/Shape (85.4.0):
     - MaterialComponents/ShapeLibrary
     - MaterialComponents/Shapes
-  - MaterialComponents/schemes/Typography (85.1.0):
+  - MaterialComponents/schemes/Typography (85.4.0):
     - MaterialComponents/Typography
-  - MaterialComponents/ShadowElevations (85.1.0)
-  - MaterialComponents/ShadowLayer (85.1.0):
+  - MaterialComponents/ShadowElevations (85.4.0)
+  - MaterialComponents/ShadowLayer (85.4.0):
     - MaterialComponents/ShadowElevations
-  - MaterialComponents/ShapeLibrary (85.1.0):
+  - MaterialComponents/ShapeLibrary (85.4.0):
     - MaterialComponents/private/Math
     - MaterialComponents/Shapes
-  - MaterialComponents/Shapes (85.1.0):
+  - MaterialComponents/Shapes (85.4.0):
     - MaterialComponents/private/Math
     - MaterialComponents/ShadowLayer
-  - MaterialComponents/TextFields (85.1.0):
+  - MaterialComponents/TextFields (85.4.0):
     - MaterialComponents/AnimationTiming
     - MaterialComponents/Palettes
     - MaterialComponents/private/Math
     - MaterialComponents/Typography
     - MDFInternationalization
-  - MaterialComponents/Typography (85.1.0):
+  - MaterialComponents/Typography (85.4.0):
     - MaterialComponents/private/Application
     - MaterialComponents/private/Math
   - MDFInternationalization (2.0.0)
@@ -209,7 +209,7 @@ SPEC CHECKSUMS:
   GoogleAppMeasurement: a35a645835bae31b6bdc0576396bc23908f12a22
   GoogleUtilities: c7a0b08bda3bf808be823ed151f0e28ac6866e71
   GTMSessionFetcher: 61bb0f61a4cb560030f1222021178008a5727a23
-  MaterialComponents: 7401c9849f9860a214f35453e040dc17502e8b6f
+  MaterialComponents: 3a4461d58df95e97115eab9e29103ee8b11f6a19
   MDFInternationalization: 010097556d6b09d2c4ea38e0820ea6d37be6a314
   MDFTextAccessibility: 85c09a1bd9c321f494348e632a25063bcda35a53
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
@@ -218,4 +218,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: c2417aaece5985c3ae4ab16b0606e877bc160b67
 
-COCOAPODS: 1.7.2
+COCOAPODS: 1.7.3

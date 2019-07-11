@@ -16,10 +16,7 @@
 
 import UIKit
 
-import FirebaseCore
-import FirebaseMLCommon
-import FirebaseMLNLTranslate
-import FirebaseMLNaturalLanguage
+import Firebase
 
 @objc(ViewController)
 class ViewController: UIViewController, UITextViewDelegate, UIPickerViewDataSource, UIPickerViewDelegate {

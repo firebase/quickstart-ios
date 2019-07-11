@@ -15,8 +15,7 @@
 //
 
 import UIKit
-import FirebaseMLNLLanguageID
-import FirebaseMLNaturalLanguage
+import Firebase
 
 @objc(ViewController)
 final class ViewController: UIViewController {

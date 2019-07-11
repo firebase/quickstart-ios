@@ -18,7 +18,7 @@
 @import AVFoundation;
 @import UIKit;
 
-@import FirebaseMLVision;
+@import Firebase;
 
 NS_ASSUME_NONNULL_BEGIN
 

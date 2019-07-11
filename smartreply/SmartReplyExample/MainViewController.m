@@ -17,8 +17,7 @@
 #import "MainViewController.h"
 #import "NSDate+Format.h"
 #import "UITextView+Placeholder.h"
-@import FirebaseCore;
-@import FirebaseMLNLSmartReply;
+@import Firebase;
 @import MaterialComponents;
 
 NS_ASSUME_NONNULL_BEGIN

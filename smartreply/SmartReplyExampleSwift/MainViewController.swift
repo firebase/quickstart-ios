@@ -14,8 +14,7 @@
 //  limitations under the License.
 //
 
-import FirebaseCore
-import FirebaseMLNLSmartReply
+import Firebase
 import MaterialComponents
 
 @objc(MainViewController)

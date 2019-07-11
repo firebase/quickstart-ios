@@ -16,8 +16,7 @@
 
 import UIKit
 
-import FirebaseMLCommon
-import FirebaseMLModelInterpreter
+import Firebase
 
 /// Defines the requirements for managing remote and local models.
 public protocol ModelManaging {

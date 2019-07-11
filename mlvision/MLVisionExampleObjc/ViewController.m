@@ -18,10 +18,7 @@
 #import "UIImage+VisionDetection.h"
 #import "UIUtilities.h"
 
-@import FirebaseMLCommon;
-@import FirebaseMLVision;
-@import FirebaseMLVisionAutoML;
-@import FirebaseMLVisionObjectDetection;
+@import Firebase;
 
 NS_ASSUME_NONNULL_BEGIN
 

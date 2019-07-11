@@ -14,9 +14,7 @@
 //  limitations under the License.
 //
 
-import FirebaseCore
-import FirebaseDynamicLinks
-import FirebaseInAppMessaging
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

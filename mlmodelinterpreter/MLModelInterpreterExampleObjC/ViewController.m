@@ -18,7 +18,7 @@
 #import "ModelInterpreterManager.h"
 #import "UIImage+TFLite.h"
 
-@import FirebaseMLCommon;
+@import Firebase;
 
 static NSString *const failedToDetectObjectsMessage = @"Failed to detect objects in image.";
 static NSString *const defaultImage = @"grace_hopper.jpg";

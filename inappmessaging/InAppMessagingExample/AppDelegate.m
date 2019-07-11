@@ -14,9 +14,7 @@
 
 #import "AppDelegate.h"
 
-#import <FirebaseCore/FirebaseCore.h>
-#import <FirebaseDynamicLinks/FirebaseDynamicLinks.h>
-#import <FirebaseInAppMessaging/FirebaseInAppMessaging.h>
+@import Firebase;
 
 @interface AppDelegate ()
 

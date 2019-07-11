@@ -16,10 +16,7 @@
 
 import UIKit
 
-import FirebaseMLCommon
-import FirebaseMLVision
-import FirebaseMLVisionAutoML
-import FirebaseMLVisionObjectDetection
+import Firebase
 
 /// Main view controller class.
 @objc(ViewController)

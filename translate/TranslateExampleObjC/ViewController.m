@@ -15,10 +15,7 @@
 //
 
 #import "ViewController.h"
-@import FirebaseCore;
-@import FirebaseMLCommon;
-@import FirebaseMLNLTranslate;
-@import FirebaseMLNaturalLanguage;
+@import Firebase;
 
 NS_ASSUME_NONNULL_BEGIN
 

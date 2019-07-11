@@ -17,7 +17,7 @@
 #import <Foundation/Foundation.h>
 @import UIKit;
 
-@import FirebaseMLCommon;
+@import Firebase;
 
 NS_ASSUME_NONNULL_BEGIN
 

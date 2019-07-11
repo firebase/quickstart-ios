@@ -14,9 +14,7 @@
 //  limitations under the License.
 //
 
-import UIKit
-import FirebaseAnalytics
-import FirebaseDynamicLinks
+import Firebase
 
 class ViewController: UIViewController {
 

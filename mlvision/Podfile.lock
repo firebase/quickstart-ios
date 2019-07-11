@@ -1,81 +1,81 @@
 PODS:
-  - Firebase/Analytics (6.3.0):
+  - Firebase/Analytics (6.4.0):
     - Firebase/Core
-  - Firebase/Core (6.3.0):
+  - Firebase/Core (6.4.0):
     - Firebase/CoreOnly
-    - FirebaseAnalytics (= 6.0.2)
-  - Firebase/CoreOnly (6.3.0):
-    - FirebaseCore (= 6.0.3)
-  - Firebase/MLVision (6.3.0):
+    - FirebaseAnalytics (= 6.0.3)
+  - Firebase/CoreOnly (6.4.0):
+    - FirebaseCore (= 6.0.4)
+  - Firebase/MLVision (6.4.0):
     - Firebase/CoreOnly
-    - FirebaseMLVision (~> 0.16.0)
-  - Firebase/MLVisionAutoML (6.3.0):
+    - FirebaseMLVision (~> 0.17.0)
+  - Firebase/MLVisionAutoML (6.4.0):
     - Firebase/CoreOnly
-    - FirebaseMLVisionAutoML (~> 0.16.0)
-  - Firebase/MLVisionBarcodeModel (6.3.0):
+    - FirebaseMLVisionAutoML (~> 0.17.0)
+  - Firebase/MLVisionBarcodeModel (6.4.0):
     - Firebase/CoreOnly
-    - FirebaseMLVisionBarcodeModel (~> 0.16.0)
-  - Firebase/MLVisionFaceModel (6.3.0):
+    - FirebaseMLVisionBarcodeModel (~> 0.17.0)
+  - Firebase/MLVisionFaceModel (6.4.0):
     - Firebase/CoreOnly
-    - FirebaseMLVisionFaceModel (~> 0.16.0)
-  - Firebase/MLVisionLabelModel (6.3.0):
+    - FirebaseMLVisionFaceModel (~> 0.17.0)
+  - Firebase/MLVisionLabelModel (6.4.0):
     - Firebase/CoreOnly
-    - FirebaseMLVisionLabelModel (~> 0.16.0)
-  - Firebase/MLVisionObjectDetection (6.3.0):
+    - FirebaseMLVisionLabelModel (~> 0.17.0)
+  - Firebase/MLVisionObjectDetection (6.4.0):
     - Firebase/CoreOnly
-    - FirebaseMLVisionObjectDetection (~> 0.16.0)
-  - Firebase/MLVisionTextModel (6.3.0):
+    - FirebaseMLVisionObjectDetection (~> 0.17.0)
+  - Firebase/MLVisionTextModel (6.4.0):
     - Firebase/CoreOnly
-    - FirebaseMLVisionTextModel (~> 0.16.0)
-  - FirebaseAnalytics (6.0.2):
+    - FirebaseMLVisionTextModel (~> 0.17.0)
+  - FirebaseAnalytics (6.0.3):
     - FirebaseCore (~> 6.0)
     - FirebaseInstanceID (~> 4.2)
-    - GoogleAppMeasurement (= 6.0.2)
+    - GoogleAppMeasurement (= 6.0.3)
     - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
     - GoogleUtilities/MethodSwizzler (~> 6.0)
     - GoogleUtilities/Network (~> 6.0)
     - "GoogleUtilities/NSData+zlib (~> 6.0)"
     - nanopb (~> 0.3)
-  - FirebaseCore (6.0.3):
+  - FirebaseCore (6.0.4):
     - GoogleUtilities/Environment (~> 6.0)
     - GoogleUtilities/Logger (~> 6.0)
-  - FirebaseInstanceID (4.2.0):
+  - FirebaseInstanceID (4.2.1):
     - FirebaseCore (~> 6.0)
     - GoogleUtilities/Environment (~> 6.0)
     - GoogleUtilities/UserDefaults (~> 6.0)
-  - FirebaseMLCommon (0.16.0):
+  - FirebaseMLCommon (0.17.0):
     - FirebaseCore (~> 6.0)
-    - FirebaseInstanceID (~> 4.0)
+    - FirebaseInstanceID (~> 4.2)
     - GoogleUtilities/UserDefaults (~> 6.0)
     - GTMSessionFetcher/Core (~> 1.1)
-  - FirebaseMLVision (0.16.0):
+  - FirebaseMLVision (0.17.0):
     - FirebaseCore (~> 6.0)
-    - FirebaseMLCommon (~> 0.16)
+    - FirebaseMLCommon (~> 0.17)
     - GoogleAPIClientForREST/Core (~> 1.3)
     - GoogleAPIClientForREST/Vision (~> 1.3)
     - GoogleMobileVision/Detector (~> 1.4)
-  - FirebaseMLVisionAutoML (0.16.0):
+  - FirebaseMLVisionAutoML (0.17.0):
     - FirebaseCore (~> 6.0)
-    - FirebaseMLCommon (~> 0.16)
-    - FirebaseMLVision (~> 0.16)
+    - FirebaseMLCommon (~> 0.17)
+    - FirebaseMLVision (~> 0.17)
     - TensorFlowLite (= 1.13.1)
-  - FirebaseMLVisionBarcodeModel (0.16.0):
+  - FirebaseMLVisionBarcodeModel (0.17.0):
     - GoogleMobileVision/BarcodeDetector (~> 1.4)
-  - FirebaseMLVisionFaceModel (0.16.0):
+  - FirebaseMLVisionFaceModel (0.17.0):
     - GoogleMobileVision/FaceDetector (~> 1.4)
-  - FirebaseMLVisionLabelModel (0.16.0):
+  - FirebaseMLVisionLabelModel (0.17.0):
     - GoogleMobileVision/LabelDetector (~> 1.4)
-  - FirebaseMLVisionObjectDetection (0.16.0):
-    - FirebaseMLVision (~> 0.16)
+  - FirebaseMLVisionObjectDetection (0.17.0):
+    - FirebaseMLVision (~> 0.17)
     - GoogleMobileVision/Detector (~> 1.6.0)
-  - FirebaseMLVisionTextModel (0.16.0):
+  - FirebaseMLVisionTextModel (0.17.0):
     - GoogleMobileVision/TextDetector (~> 1.4)
   - GoogleAPIClientForREST/Core (1.3.9):
     - GTMSessionFetcher (>= 1.1.7)
   - GoogleAPIClientForREST/Vision (1.3.9):
     - GoogleAPIClientForREST/Core
     - GTMSessionFetcher (>= 1.1.7)
-  - GoogleAppMeasurement (6.0.2):
+  - GoogleAppMeasurement (6.0.3):
     - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
     - GoogleUtilities/MethodSwizzler (~> 6.0)
     - GoogleUtilities/Network (~> 6.0)
@@ -165,20 +165,20 @@ SPEC REPOS:
     - TensorFlowLite
 
 SPEC CHECKSUMS:
-  Firebase: 8432d732974498afd5987e9001a05f90f1a3d625
-  FirebaseAnalytics: 470ddab7253b21ad5a40bebd4a9903d7ae19386a
-  FirebaseCore: 68f8a7f50cdae542715d4e86afa37c4067217dcb
-  FirebaseInstanceID: f20243a1d828e0e9a3798b995174dedc16f1b32a
-  FirebaseMLCommon: d430756ba2a16bac8fefc81ea416e7f822f052fd
-  FirebaseMLVision: 35d0a720334b141d70a55e7e817c1cac23f32285
-  FirebaseMLVisionAutoML: ce20b5b0e169cafa07f5bf61048a86aa7df6232c
-  FirebaseMLVisionBarcodeModel: 2abf9867e2c9914726c4d0a6936aaf8b75eb7d46
-  FirebaseMLVisionFaceModel: 897589c0a1d967739cdbb495cf4ca296f8750f75
-  FirebaseMLVisionLabelModel: e270ea50a47b9bd5f332c3dffa22eb896ee422cf
-  FirebaseMLVisionObjectDetection: 5f12feb52df46afb3d205ba8aaca1921a8c57b44
-  FirebaseMLVisionTextModel: f5ca6d55bee8f00e08afca69d211fdc4efee1fef
+  Firebase: 9445469655a98e9010737f4bc4720e5bda465873
+  FirebaseAnalytics: 69fe25866d2ec87c6f02d72c3c9a82bce9c065a0
+  FirebaseCore: 7ea99e200f0024262650be56623fbe6a7bef1707
+  FirebaseInstanceID: 9782fcfb89e4d7da76cc28eac4b8543dc7be4a4b
+  FirebaseMLCommon: b236f9bc8a020d4c36744d6e402b2fb9d6fe3f6d
+  FirebaseMLVision: ff6a597d10017c5dfe1cc6d24293b77f84808060
+  FirebaseMLVisionAutoML: 40a3044a53244a46a0fe8a4f82eaa7daa572bfea
+  FirebaseMLVisionBarcodeModel: 4ac90a8ed5a92e1ed8d9278b92d794230a01dd16
+  FirebaseMLVisionFaceModel: 14dc2ae87fac3108b993739e4bfafab7316019e5
+  FirebaseMLVisionLabelModel: 284a87850732244733cbabcb5f1f730ff367d7fb
+  FirebaseMLVisionObjectDetection: eecfe8f51244c808ceb3c0a875fc302a32be4b32
+  FirebaseMLVisionTextModel: 2a660797599db1be13a9f453df88b7f7c96bba74
   GoogleAPIClientForREST: 44c7b678cbab11d26a47eab7309d6179b1a61f0c
-  GoogleAppMeasurement: a35a645835bae31b6bdc0576396bc23908f12a22
+  GoogleAppMeasurement: 1e45fa601e6280c180880d57010390f6679cd971
   GoogleMobileVision: 31cfb4319fd0c03d80105680abd9eae9da5e3b47
   GoogleToolboxForMac: b3553629623a3b1bff17f555e736cd5a6d95ad55
   GoogleUtilities: c7a0b08bda3bf808be823ed151f0e28ac6866e71
@@ -189,4 +189,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 065f6f64a2dbe4ac037a29034e3c06e86fb1677c
 
-COCOAPODS: 1.7.3
+COCOAPODS: 1.7.4

@@ -17,6 +17,7 @@
 import UIKit
 
 import Firebase
+import FirebaseMLCommon
 
 /// Main view controller class.
 @objc(ViewController)

@@ -18,6 +18,7 @@ import AVFoundation
 import CoreVideo
 
 import Firebase
+import FirebaseMLCommon
 
 @objc(CameraViewController)
 class CameraViewController: UIViewController {

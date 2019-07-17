@@ -24,8 +24,8 @@ extension UIImage {
     #if swift(>=4.2)
     return self.pngData() ?? self.jpegData(compressionQuality: Constant.jpegCompressionQuality)
     #else
-    return UIImagePNGRepresentation(self) ??
-      UIImageJPEGRepresentation(self, Constant.jpegCompressionQuality)
+    return self.pngData() ??
+      self.jpegData(compressionQuality: Constant.jpegCompressionQuality)
     #endif  // swift(>=4.2)
   }
 }

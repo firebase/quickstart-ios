@@ -44,7 +44,7 @@ class CameraViewController: UIViewController {
 
     precondition(isViewLoaded)
     let previewOverlayView = UIImageView(frame: .zero)
-    previewOverlayView.contentMode = UIViewContentMode.scaleAspectFill
+    previewOverlayView.contentMode = UIView.ContentMode.scaleAspectFill
     previewOverlayView.translatesAutoresizingMaskIntoConstraints = false
     return previewOverlayView
   }()

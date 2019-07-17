@@ -1,11 +1,11 @@
 PODS:
-  - FBSDKCoreKit (5.2.2):
-    - FBSDKCoreKit/Basics (= 5.2.2)
-    - FBSDKCoreKit/Core (= 5.2.2)
-  - FBSDKCoreKit/Basics (5.2.2)
-  - FBSDKCoreKit/Core (5.2.2):
+  - FBSDKCoreKit (5.2.3):
+    - FBSDKCoreKit/Basics (= 5.2.3)
+    - FBSDKCoreKit/Core (= 5.2.3)
+  - FBSDKCoreKit/Basics (5.2.3)
+  - FBSDKCoreKit/Core (5.2.3):
     - FBSDKCoreKit/Basics
-  - FBSDKLoginKit (5.2.2):
+  - FBSDKLoginKit (5.2.3):
     - FBSDKCoreKit (~> 5.0)
   - Firebase/Analytics (6.4.0):
     - Firebase/Core
@@ -107,8 +107,8 @@ SPEC REPOS:
     - nanopb
 
 SPEC CHECKSUMS:
-  FBSDKCoreKit: e56801ebceaee1eaa4019e53bfaa04dc6ad2a60d
-  FBSDKLoginKit: 32af638b7e00b6bb2b22698bbeb72113bdacfd3a
+  FBSDKCoreKit: 5154c35d9058fd7dfa0445ba19e194c4b172fc32
+  FBSDKLoginKit: dc98b6bf12334f1a42f28d0457fffc9aa3d1eca5
   Firebase: 9445469655a98e9010737f4bc4720e5bda465873
   FirebaseAnalytics: 69fe25866d2ec87c6f02d72c3c9a82bce9c065a0
   FirebaseAuth: 68cfa47997f53d29ce978e7a615fb78d7925fcbe

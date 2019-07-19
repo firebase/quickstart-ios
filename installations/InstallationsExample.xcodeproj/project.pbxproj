@@ -14,12 +14,10 @@
 		9A0A6EF322CE55B3004CF0FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A0A6EF122CE55B3004CF0FF /* LaunchScreen.storyboard */; };
 		9A44BF7222CE72BC0039A7EE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A0A6EEF22CE55B3004CF0FF /* Assets.xcassets */; };
 		9A44BF7322CE72C20039A7EE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A0A6EF122CE55B3004CF0FF /* LaunchScreen.storyboard */; };
-		9A44BF7622CE72D30039A7EE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9A63CEC022CE6E3C0037A27A /* GoogleService-Info.plist */; };
 		9A44BF8122CE73980039A7EE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A44BF7922CE73980039A7EE /* ViewController.m */; };
 		9A44BF8422CE73980039A7EE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A44BF7E22CE73980039A7EE /* main.m */; };
 		9A44BF8522CE73980039A7EE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A44BF7F22CE73980039A7EE /* AppDelegate.m */; };
 		9A44BF8B22CE75B90039A7EE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A44BF8922CE75B90039A7EE /* Main.storyboard */; };
-		9A63CEC122CE6E3C0037A27A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9A63CEC022CE6E3C0037A27A /* GoogleService-Info.plist */; };
 		9A76AE3122E20A0C0024E473 /* InstallationsExampleSwiftTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A76AE3022E20A0C0024E473 /* InstallationsExampleSwiftTests.m */; };
 		9A76AE3F22E20A240024E473 /* InstallationsExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A76AE3E22E20A240024E473 /* InstallationsExampleTests.m */; };
 /* End PBXBuildFile section */
@@ -55,7 +53,6 @@
 		9A44BF7F22CE73980039A7EE /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		9A44BF8022CE73980039A7EE /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		9A44BF8A22CE75B90039A7EE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		9A63CEC022CE6E3C0037A27A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9A76AE2322E206380024E473 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9A76AE2922E207640024E473 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9A76AE2E22E20A0C0024E473 /* InstallationsExampleSwiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InstallationsExampleSwiftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -101,7 +98,6 @@
 		9A0A6EDC22CE55B2004CF0FF = {
 			isa = PBXGroup;
 			children = (
-				9A63CEC022CE6E3C0037A27A /* GoogleService-Info.plist */,
 				9A44BF5722CE71810039A7EE /* Common */,
 				9A44BF7722CE73980039A7EE /* InstallationsExample */,
 				9A0A6EE722CE55B2004CF0FF /* InstallationsExampleSwift */,
@@ -308,7 +304,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A63CEC122CE6E3C0037A27A /* GoogleService-Info.plist in Resources */,
 				9A0A6EF322CE55B3004CF0FF /* LaunchScreen.storyboard in Resources */,
 				9A0A6EF022CE55B3004CF0FF /* Assets.xcassets in Resources */,
 				9A0A6EEE22CE55B2004CF0FF /* Main.storyboard in Resources */,
@@ -322,7 +317,6 @@
 				9A44BF7222CE72BC0039A7EE /* Assets.xcassets in Resources */,
 				9A44BF8B22CE75B90039A7EE /* Main.storyboard in Resources */,
 				9A44BF7322CE72C20039A7EE /* LaunchScreen.storyboard in Resources */,
-				9A44BF7622CE72D30039A7EE /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

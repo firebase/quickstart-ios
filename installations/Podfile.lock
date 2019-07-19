@@ -1,7 +1,7 @@
 PODS:
-  - Firebase/CoreOnly (6.4.0):
-    - FirebaseCore (= 6.0.4)
-  - FirebaseCore (6.0.4):
+  - Firebase/CoreOnly (6.5.0):
+    - FirebaseCore (= 6.1.0)
+  - FirebaseCore (6.1.0):
     - GoogleUtilities/Environment (~> 6.0)
     - GoogleUtilities/Logger (~> 6.0)
   - FirebaseInstallations (0.1.0):
@@ -37,8 +37,8 @@ CHECKOUT OPTIONS:
     :git: https://github.com/firebase/firebase-ios-sdk.git
 
 SPEC CHECKSUMS:
-  Firebase: 9445469655a98e9010737f4bc4720e5bda465873
-  FirebaseCore: 7ea99e200f0024262650be56623fbe6a7bef1707
+  Firebase: dedc9e48ea3f3649ad5f6b982f8a0c73508a14b5
+  FirebaseCore: aecf02fb2274ec361b9bebeac112f5daa18273bd
   FirebaseInstallations: 52bc538e7c10d1ebf4c93beb0d3d57f013c6d3dc
   GoogleUtilities: d2b0e277a95962e09bb27f5cd42f5f0b6a506c7d
   PromisesObjC: c119f3cd559f50b7ae681fa59dc1acd19173b7e6

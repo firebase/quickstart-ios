@@ -1,17 +1,17 @@
 PODS:
-  - Firebase/CoreOnly (6.3.0):
-    - FirebaseCore (= 6.0.3)
-  - FirebaseCore (6.0.3):
+  - Firebase/CoreOnly (6.4.0):
+    - FirebaseCore (= 6.0.4)
+  - FirebaseCore (6.0.4):
     - GoogleUtilities/Environment (~> 6.0)
     - GoogleUtilities/Logger (~> 6.0)
   - FirebaseInstallations (0.1.0):
     - FirebaseCore (~> 6.0)
     - GoogleUtilities/UserDefaults (~> 6.2)
     - PromisesObjC (~> 1.2)
-  - GoogleUtilities/Environment (6.2.1)
-  - GoogleUtilities/Logger (6.2.1):
+  - GoogleUtilities/Environment (6.2.3)
+  - GoogleUtilities/Logger (6.2.3):
     - GoogleUtilities/Environment
-  - GoogleUtilities/UserDefaults (6.2.1):
+  - GoogleUtilities/UserDefaults (6.2.3):
     - GoogleUtilities/Logger
   - PromisesObjC (1.2.8)
 
@@ -33,14 +33,14 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   FirebaseInstallations:
-    :commit: df5f9a5be6985f9be7b8fc926859ca1c94db1f98
+    :commit: 024dc1c94344cb7d7a45daf2dfba77bda69815f0
     :git: https://github.com/firebase/firebase-ios-sdk.git
 
 SPEC CHECKSUMS:
-  Firebase: 8432d732974498afd5987e9001a05f90f1a3d625
-  FirebaseCore: 68f8a7f50cdae542715d4e86afa37c4067217dcb
+  Firebase: 9445469655a98e9010737f4bc4720e5bda465873
+  FirebaseCore: 7ea99e200f0024262650be56623fbe6a7bef1707
   FirebaseInstallations: 52bc538e7c10d1ebf4c93beb0d3d57f013c6d3dc
-  GoogleUtilities: c7a0b08bda3bf808be823ed151f0e28ac6866e71
+  GoogleUtilities: d2b0e277a95962e09bb27f5cd42f5f0b6a506c7d
   PromisesObjC: c119f3cd559f50b7ae681fa59dc1acd19173b7e6
 
 PODFILE CHECKSUM: 6c5683efa6d8696c0a43b45108f630f3f5c3b998

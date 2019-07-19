@@ -3,6 +3,9 @@ platform :ios, '8.4'
 
 use_frameworks!
 
+pod 'FirebaseInstanceID', :git => 'https://github.com/firebase/firebase-ios-sdk.git', :branch => 'mm/iid-with-fis'
+pod 'FirebaseInstallations', :git => 'https://github.com/firebase/firebase-ios-sdk.git', :branch => 'mm/iid-with-fis'
+
 target 'InAppMessagingExample' do
   pod 'Firebase'
   pod 'Firebase/InAppMessagingDisplay'

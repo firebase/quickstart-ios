@@ -29,8 +29,8 @@ matrix:
   #   env: SAMPLE=Firestore
   # - podfile: functions/Podfile
   #   env: SAMPLE=Functions
-  # - podfile: messaging/Podfile
-  #   env: SAMPLE=Messaging
+  - podfile: messaging/Podfile
+    env: SAMPLE=Messaging
   # - podfile: mlmodelinterpreter/Podfile
   #   env: SAMPLE=MLModelInterpreter
   # - podfile: mlvision/Podfile

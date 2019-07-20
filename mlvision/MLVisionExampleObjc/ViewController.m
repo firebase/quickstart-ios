@@ -19,7 +19,6 @@
 #import "UIUtilities.h"
 
 @import Firebase;
-@import FirebaseMLCommon;
 
 NS_ASSUME_NONNULL_BEGIN
 

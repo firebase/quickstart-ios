@@ -18,7 +18,6 @@
 @import UIKit;
 
 @import Firebase;
-@import FirebaseMLCommon;
 
 NS_ASSUME_NONNULL_BEGIN
 

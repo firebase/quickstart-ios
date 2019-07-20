@@ -17,7 +17,6 @@
 import UIKit
 
 import Firebase
-import FirebaseMLCommon
 
 @objc(ViewController)
 class ViewController: UIViewController, UINavigationControllerDelegate {

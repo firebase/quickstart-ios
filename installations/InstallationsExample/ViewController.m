@@ -33,10 +33,16 @@
 
 @implementation ViewController
 
+- (void)dealloc {
+  [NSNotificationCenter defaultCenter];
+}
+
 - (void)viewDidLoad {
   [super viewDidLoad];
 
   self.log = @"";
+
+  [self subscribeForInstallationsUpdateNotifications];
 }
 
 - (FIRInstallations *)installations {
@@ -67,6 +73,15 @@
                          error ?: @"SUCCESS"];
     [self logMessage:message];
   }];
+}
+
+- (void)subscribeForInstallationsUpdateNotifications {
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(installationUpdateNotificationReceived:) name:FIRInstallationIDDidChangeNotification object:nil];
+}
+
+- (void)installationUpdateNotificationReceived:(NSNotification *)notification {
+  NSString *message = [NSString stringWithFormat:@"Notification received: %@", notification];
+  [self logMessage:message];
 }
 
 #pragma mark - Log

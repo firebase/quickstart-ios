@@ -43,9 +43,8 @@ class ViewController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-
+    subscribeForInstallationsUpdateNotifications()
   }
-
 
   @IBAction func getInstallationButtonPressed() {
     log(message: "Call Installations.installationID()")
@@ -82,12 +81,11 @@ class ViewController: UIViewController {
 
   // MARK: Installation update notifications
   private func subscribeForInstallationsUpdateNotifications() {
-    // TODO: Implement once merged.
-//    NotificationCenter.default.addObserver(self, selector: #selector(installationUpdateNotificationReceived), name: NSNotification.Name.FI, object: <#T##Any?#>)
+    NotificationCenter.default.addObserver(self, selector: #selector(installationUpdateNotificationReceived), name: Notification.Name.FIRInstallationIDDidChange, object: nil)
   }
 
-  @objc private func installationUpdateNotificationReceived() {
-
+  @objc private func installationUpdateNotificationReceived(_ notification: Notification) {
+    log(message: "Notification received: \(notification)")
   }
 
   private func log(message: String) {

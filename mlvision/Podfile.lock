@@ -1,45 +1,53 @@
 PODS:
-  - Firebase/Analytics (6.5.0):
+  - Firebase/Analytics (6.6.0):
     - Firebase/Core
-  - Firebase/Core (6.5.0):
+  - Firebase/Core (6.6.0):
     - Firebase/CoreOnly
-    - FirebaseAnalytics (= 6.0.4)
-  - Firebase/CoreOnly (6.5.0):
-    - FirebaseCore (= 6.1.0)
-  - Firebase/MLVision (6.5.0):
+    - FirebaseAnalytics (= 6.1.0)
+  - Firebase/CoreOnly (6.6.0):
+    - FirebaseCore (= 6.2.0)
+  - Firebase/MLVision (6.6.0):
     - Firebase/CoreOnly
     - FirebaseMLVision (~> 0.17.0)
-  - Firebase/MLVisionAutoML (6.5.0):
+  - Firebase/MLVisionAutoML (6.6.0):
     - Firebase/CoreOnly
     - FirebaseMLVisionAutoML (~> 0.17.0)
-  - Firebase/MLVisionBarcodeModel (6.5.0):
+  - Firebase/MLVisionBarcodeModel (6.6.0):
     - Firebase/CoreOnly
     - FirebaseMLVisionBarcodeModel (~> 0.17.0)
-  - Firebase/MLVisionFaceModel (6.5.0):
+  - Firebase/MLVisionFaceModel (6.6.0):
     - Firebase/CoreOnly
     - FirebaseMLVisionFaceModel (~> 0.17.0)
-  - Firebase/MLVisionLabelModel (6.5.0):
+  - Firebase/MLVisionLabelModel (6.6.0):
     - Firebase/CoreOnly
     - FirebaseMLVisionLabelModel (~> 0.17.0)
-  - Firebase/MLVisionObjectDetection (6.5.0):
+  - Firebase/MLVisionObjectDetection (6.6.0):
     - Firebase/CoreOnly
     - FirebaseMLVisionObjectDetection (~> 0.17.0)
-  - Firebase/MLVisionTextModel (6.5.0):
+  - Firebase/MLVisionTextModel (6.6.0):
     - Firebase/CoreOnly
     - FirebaseMLVisionTextModel (~> 0.17.0)
-  - FirebaseAnalytics (6.0.4):
-    - FirebaseCore (~> 6.1)
+  - FirebaseAnalytics (6.1.0):
+    - FirebaseCore (~> 6.2)
     - FirebaseInstanceID (~> 4.2)
-    - GoogleAppMeasurement (= 6.0.4)
+    - GoogleAppMeasurement (= 6.1.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
     - GoogleUtilities/MethodSwizzler (~> 6.0)
     - GoogleUtilities/Network (~> 6.0)
     - "GoogleUtilities/NSData+zlib (~> 6.0)"
     - nanopb (~> 0.3)
-  - FirebaseCore (6.1.0):
-    - GoogleUtilities/Environment (~> 6.0)
-    - GoogleUtilities/Logger (~> 6.0)
-  - FirebaseInstanceID (4.2.2):
+  - FirebaseCore (6.2.0):
+    - FirebaseCoreDiagnostics (~> 1.0)
+    - FirebaseCoreDiagnosticsInterop (~> 1.0)
+    - GoogleUtilities/Environment (~> 6.2)
+    - GoogleUtilities/Logger (~> 6.2)
+  - FirebaseCoreDiagnostics (1.0.0):
+    - FirebaseCoreDiagnosticsInterop (~> 1.0)
+    - GoogleDataTransportCCTSupport (~> 1.0)
+    - GoogleUtilities/Environment (~> 6.2)
+    - GoogleUtilities/Logger (~> 6.2)
+  - FirebaseCoreDiagnosticsInterop (1.0.0)
+  - FirebaseInstanceID (4.2.3):
     - FirebaseCore (~> 6.0)
     - GoogleUtilities/Environment (~> 6.0)
     - GoogleUtilities/UserDefaults (~> 6.0)
@@ -75,12 +83,16 @@ PODS:
   - GoogleAPIClientForREST/Vision (1.3.9):
     - GoogleAPIClientForREST/Core
     - GTMSessionFetcher (>= 1.1.7)
-  - GoogleAppMeasurement (6.0.4):
+  - GoogleAppMeasurement (6.1.0):
     - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
     - GoogleUtilities/MethodSwizzler (~> 6.0)
     - GoogleUtilities/Network (~> 6.0)
     - "GoogleUtilities/NSData+zlib (~> 6.0)"
     - nanopb (~> 0.3)
+  - GoogleDataTransport (1.0.0)
+  - GoogleDataTransportCCTSupport (1.0.0):
+    - GoogleDataTransport (~> 1.0)
+    - nanopb
   - GoogleMobileVision/BarcodeDetector (1.6.0):
     - GoogleMobileVision/Detector (~> 1.6)
   - GoogleMobileVision/Detector (1.6.0):
@@ -99,23 +111,23 @@ PODS:
     - GoogleToolboxForMac/Defines (= 2.2.1)
   - "GoogleToolboxForMac/NSData+zlib (2.2.1)":
     - GoogleToolboxForMac/Defines (= 2.2.1)
-  - GoogleUtilities/AppDelegateSwizzler (6.2.3):
+  - GoogleUtilities/AppDelegateSwizzler (6.2.4):
     - GoogleUtilities/Environment
     - GoogleUtilities/Logger
     - GoogleUtilities/Network
-  - GoogleUtilities/Environment (6.2.3)
-  - GoogleUtilities/Logger (6.2.3):
+  - GoogleUtilities/Environment (6.2.4)
+  - GoogleUtilities/Logger (6.2.4):
     - GoogleUtilities/Environment
-  - GoogleUtilities/MethodSwizzler (6.2.3):
+  - GoogleUtilities/MethodSwizzler (6.2.4):
     - GoogleUtilities/Logger
-  - GoogleUtilities/Network (6.2.3):
+  - GoogleUtilities/Network (6.2.4):
     - GoogleUtilities/Logger
     - "GoogleUtilities/NSData+zlib"
     - GoogleUtilities/Reachability
-  - "GoogleUtilities/NSData+zlib (6.2.3)"
-  - GoogleUtilities/Reachability (6.2.3):
+  - "GoogleUtilities/NSData+zlib (6.2.4)"
+  - GoogleUtilities/Reachability (6.2.4):
     - GoogleUtilities/Logger
-  - GoogleUtilities/UserDefaults (6.2.3):
+  - GoogleUtilities/UserDefaults (6.2.4):
     - GoogleUtilities/Logger
   - GTMSessionFetcher (1.2.2):
     - GTMSessionFetcher/Full (= 1.2.2)
@@ -145,6 +157,8 @@ SPEC REPOS:
     - Firebase
     - FirebaseAnalytics
     - FirebaseCore
+    - FirebaseCoreDiagnostics
+    - FirebaseCoreDiagnosticsInterop
     - FirebaseInstanceID
     - FirebaseMLCommon
     - FirebaseMLVision
@@ -156,6 +170,8 @@ SPEC REPOS:
     - FirebaseMLVisionTextModel
     - GoogleAPIClientForREST
     - GoogleAppMeasurement
+    - GoogleDataTransport
+    - GoogleDataTransportCCTSupport
     - GoogleMobileVision
     - GoogleToolboxForMac
     - GoogleUtilities
@@ -165,10 +181,12 @@ SPEC REPOS:
     - TensorFlowLite
 
 SPEC CHECKSUMS:
-  Firebase: dedc9e48ea3f3649ad5f6b982f8a0c73508a14b5
-  FirebaseAnalytics: 3fb375bc9d13779add4039716f868d233a473fad
-  FirebaseCore: aecf02fb2274ec361b9bebeac112f5daa18273bd
-  FirebaseInstanceID: 662b8108a09fe9ed01aafdedba100fde8536b0f6
+  Firebase: a2b5951f30ff38fd3b3bdae9c7d340f940fd3c51
+  FirebaseAnalytics: 48414ae5cbf6976d8a2f7177e0466540e5ab33ce
+  FirebaseCore: 8c9e08bce0c72a3affd83927d8184cf244918bc8
+  FirebaseCoreDiagnostics: 5807d8a32ea4455d6476da6de828675f89a8d8f3
+  FirebaseCoreDiagnosticsInterop: 6829da2b8d1fc795ff1bd99df751d3788035d2cb
+  FirebaseInstanceID: 8b42755db950682e7de0d167bc6fb26a57b244af
   FirebaseMLCommon: b236f9bc8a020d4c36744d6e402b2fb9d6fe3f6d
   FirebaseMLVision: ff6a597d10017c5dfe1cc6d24293b77f84808060
   FirebaseMLVisionAutoML: 40a3044a53244a46a0fe8a4f82eaa7daa572bfea
@@ -178,10 +196,12 @@ SPEC CHECKSUMS:
   FirebaseMLVisionObjectDetection: eecfe8f51244c808ceb3c0a875fc302a32be4b32
   FirebaseMLVisionTextModel: 2a660797599db1be13a9f453df88b7f7c96bba74
   GoogleAPIClientForREST: 44c7b678cbab11d26a47eab7309d6179b1a61f0c
-  GoogleAppMeasurement: 183bd916af7f80deb67c01888368f1108d641832
+  GoogleAppMeasurement: 47285fa897e5a125df56b9ef8750a1d81e4598a8
+  GoogleDataTransport: fe6af28a312ae5a56d5cec00ff14f6e3ded3beef
+  GoogleDataTransportCCTSupport: e6fa721757b147d7f1481d7367b8dab3e9010889
   GoogleMobileVision: 31cfb4319fd0c03d80105680abd9eae9da5e3b47
   GoogleToolboxForMac: b3553629623a3b1bff17f555e736cd5a6d95ad55
-  GoogleUtilities: d2b0e277a95962e09bb27f5cd42f5f0b6a506c7d
+  GoogleUtilities: 64b5e3982b1b01bda26712affd5c523ef32563cf
   GTMSessionFetcher: 61bb0f61a4cb560030f1222021178008a5727a23
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   Protobuf: 1097ca58584c8d9be81bfbf2c5ff5975648dd87a

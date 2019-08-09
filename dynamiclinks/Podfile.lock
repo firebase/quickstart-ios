@@ -24,7 +24,7 @@ PODS:
     - FirebaseCoreDiagnosticsInterop (~> 1.0)
     - GoogleUtilities/Environment (~> 6.2)
     - GoogleUtilities/Logger (~> 6.2)
-  - FirebaseCoreDiagnostics (1.0.0):
+  - FirebaseCoreDiagnostics (1.0.1):
     - FirebaseCoreDiagnosticsInterop (~> 1.0)
     - GoogleDataTransportCCTSupport (~> 1.0)
     - GoogleUtilities/Environment (~> 6.2)
@@ -43,9 +43,9 @@ PODS:
     - GoogleUtilities/Network (~> 6.0)
     - "GoogleUtilities/NSData+zlib (~> 6.0)"
     - nanopb (~> 0.3)
-  - GoogleDataTransport (1.0.0)
-  - GoogleDataTransportCCTSupport (1.0.0):
-    - GoogleDataTransport (~> 1.0)
+  - GoogleDataTransport (1.1.0)
+  - GoogleDataTransportCCTSupport (1.0.1):
+    - GoogleDataTransport (~> 1.1)
     - nanopb
   - GoogleUtilities/AppDelegateSwizzler (6.2.4):
     - GoogleUtilities/Environment
@@ -96,13 +96,13 @@ SPEC CHECKSUMS:
   FirebaseAnalytics: 48414ae5cbf6976d8a2f7177e0466540e5ab33ce
   FirebaseAnalyticsInterop: 0f250d71e8741352407a8db351e6de78c5c56d35
   FirebaseCore: 8c9e08bce0c72a3affd83927d8184cf244918bc8
-  FirebaseCoreDiagnostics: 5807d8a32ea4455d6476da6de828675f89a8d8f3
+  FirebaseCoreDiagnostics: 4c04ae09d0ab027c30179828c6bb47764df1bd13
   FirebaseCoreDiagnosticsInterop: 6829da2b8d1fc795ff1bd99df751d3788035d2cb
   FirebaseDynamicLinks: 5eee7e229ff8a5d56af1fca9f5a71115b7a2fe8b
   FirebaseInstanceID: 8b42755db950682e7de0d167bc6fb26a57b244af
   GoogleAppMeasurement: 47285fa897e5a125df56b9ef8750a1d81e4598a8
-  GoogleDataTransport: fe6af28a312ae5a56d5cec00ff14f6e3ded3beef
-  GoogleDataTransportCCTSupport: e6fa721757b147d7f1481d7367b8dab3e9010889
+  GoogleDataTransport: b0115dbdf1943c998628dca30800ddd263aaa166
+  GoogleDataTransportCCTSupport: 3451e7d8ba19093e533362a6d78d6d9014c6a037
   GoogleUtilities: 64b5e3982b1b01bda26712affd5c523ef32563cf
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
 

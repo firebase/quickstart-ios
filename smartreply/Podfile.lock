@@ -86,27 +86,27 @@ PODS:
     - GoogleToolboxForMac/Defines (= 2.2.1)
     - "GoogleToolboxForMac/NSString+URLArguments (= 2.2.1)"
   - "GoogleToolboxForMac/NSString+URLArguments (2.2.1)"
-  - GoogleUtilities/AppDelegateSwizzler (6.2.4):
+  - GoogleUtilities/AppDelegateSwizzler (6.2.5):
     - GoogleUtilities/Environment
     - GoogleUtilities/Logger
     - GoogleUtilities/Network
-  - GoogleUtilities/Environment (6.2.4)
-  - GoogleUtilities/Logger (6.2.4):
+  - GoogleUtilities/Environment (6.2.5)
+  - GoogleUtilities/Logger (6.2.5):
     - GoogleUtilities/Environment
-  - GoogleUtilities/MethodSwizzler (6.2.4):
+  - GoogleUtilities/MethodSwizzler (6.2.5):
     - GoogleUtilities/Logger
-  - GoogleUtilities/Network (6.2.4):
+  - GoogleUtilities/Network (6.2.5):
     - GoogleUtilities/Logger
     - "GoogleUtilities/NSData+zlib"
     - GoogleUtilities/Reachability
-  - "GoogleUtilities/NSData+zlib (6.2.4)"
-  - GoogleUtilities/Reachability (6.2.4):
+  - "GoogleUtilities/NSData+zlib (6.2.5)"
+  - GoogleUtilities/Reachability (6.2.5):
     - GoogleUtilities/Logger
-  - GoogleUtilities/UserDefaults (6.2.4):
+  - GoogleUtilities/UserDefaults (6.2.5):
     - GoogleUtilities/Logger
   - GTMSessionFetcher/Core (1.2.2)
-  - MaterialComponents/AnimationTiming (86.1.0)
-  - MaterialComponents/Buttons (86.1.0):
+  - MaterialComponents/AnimationTiming (87.0.0)
+  - MaterialComponents/Buttons (87.0.0):
     - MaterialComponents/Elevation
     - MaterialComponents/Ink
     - MaterialComponents/private/Math
@@ -117,22 +117,22 @@ PODS:
     - MaterialComponents/Typography
     - MDFInternationalization
     - MDFTextAccessibility
-  - "MaterialComponents/Buttons+ButtonThemer (86.1.0)":
+  - "MaterialComponents/Buttons+ButtonThemer (87.0.0)":
     - MaterialComponents/Buttons
     - "MaterialComponents/Buttons+ColorThemer"
     - "MaterialComponents/Buttons+ShapeThemer"
     - "MaterialComponents/Buttons+TypographyThemer"
     - MaterialComponents/Palettes
-  - "MaterialComponents/Buttons+ColorThemer (86.1.0)":
+  - "MaterialComponents/Buttons+ColorThemer (87.0.0)":
     - MaterialComponents/Buttons
     - MaterialComponents/schemes/Color
-  - "MaterialComponents/Buttons+ShapeThemer (86.1.0)":
+  - "MaterialComponents/Buttons+ShapeThemer (87.0.0)":
     - MaterialComponents/Buttons
     - MaterialComponents/schemes/Shape
-  - "MaterialComponents/Buttons+TypographyThemer (86.1.0)":
+  - "MaterialComponents/Buttons+TypographyThemer (87.0.0)":
     - MaterialComponents/Buttons
     - MaterialComponents/schemes/Typography
-  - MaterialComponents/Chips (86.1.0):
+  - MaterialComponents/Chips (87.0.0):
     - MaterialComponents/Elevation
     - MaterialComponents/Ink
     - MaterialComponents/private/Math
@@ -144,13 +144,13 @@ PODS:
     - MaterialComponents/TextFields
     - MaterialComponents/Typography
     - MDFInternationalization
-  - MaterialComponents/Elevation (86.1.0):
+  - MaterialComponents/Elevation (87.0.0):
     - MaterialComponents/private/Color
     - MaterialComponents/private/Math
-  - MaterialComponents/Ink (86.1.0):
+  - MaterialComponents/Ink (87.0.0):
     - MaterialComponents/private/Color
     - MaterialComponents/private/Math
-  - MaterialComponents/List (86.1.0):
+  - MaterialComponents/List (87.0.0):
     - MaterialComponents/Elevation
     - MaterialComponents/Ink
     - MaterialComponents/private/Math
@@ -159,37 +159,37 @@ PODS:
     - MaterialComponents/ShadowLayer
     - MaterialComponents/Typography
     - MDFInternationalization
-  - MaterialComponents/Palettes (86.1.0)
-  - MaterialComponents/private/Application (86.1.0)
-  - MaterialComponents/private/Color (86.1.0)
-  - MaterialComponents/private/Math (86.1.0)
-  - MaterialComponents/Ripple (86.1.0):
+  - MaterialComponents/Palettes (87.0.0)
+  - MaterialComponents/private/Application (87.0.0)
+  - MaterialComponents/private/Color (87.0.0)
+  - MaterialComponents/private/Math (87.0.0)
+  - MaterialComponents/Ripple (87.0.0):
     - MaterialComponents/AnimationTiming
     - MaterialComponents/private/Color
     - MaterialComponents/private/Math
-  - MaterialComponents/schemes/Color (86.1.0):
+  - MaterialComponents/schemes/Color (87.0.0):
     - MaterialComponents/private/Color
-  - MaterialComponents/schemes/Shape (86.1.0):
+  - MaterialComponents/schemes/Shape (87.0.0):
     - MaterialComponents/ShapeLibrary
     - MaterialComponents/Shapes
-  - MaterialComponents/schemes/Typography (86.1.0):
+  - MaterialComponents/schemes/Typography (87.0.0):
     - MaterialComponents/Typography
-  - MaterialComponents/ShadowElevations (86.1.0)
-  - MaterialComponents/ShadowLayer (86.1.0):
+  - MaterialComponents/ShadowElevations (87.0.0)
+  - MaterialComponents/ShadowLayer (87.0.0):
     - MaterialComponents/ShadowElevations
-  - MaterialComponents/ShapeLibrary (86.1.0):
+  - MaterialComponents/ShapeLibrary (87.0.0):
     - MaterialComponents/private/Math
     - MaterialComponents/Shapes
-  - MaterialComponents/Shapes (86.1.0):
+  - MaterialComponents/Shapes (87.0.0):
     - MaterialComponents/private/Math
     - MaterialComponents/ShadowLayer
-  - MaterialComponents/TextFields (86.1.0):
+  - MaterialComponents/TextFields (87.0.0):
     - MaterialComponents/AnimationTiming
     - MaterialComponents/Palettes
     - MaterialComponents/private/Math
     - MaterialComponents/Typography
     - MDFInternationalization
-  - MaterialComponents/Typography (86.1.0):
+  - MaterialComponents/Typography (87.0.0):
     - MaterialComponents/private/Application
     - MaterialComponents/private/Math
   - MDFInternationalization (2.0.0)
@@ -256,9 +256,9 @@ SPEC CHECKSUMS:
   GoogleDataTransport: ffbadce4ab93c88fb9dd8e6366c47bfcb4a32193
   GoogleDataTransportCCTSupport: 3451e7d8ba19093e533362a6d78d6d9014c6a037
   GoogleToolboxForMac: b3553629623a3b1bff17f555e736cd5a6d95ad55
-  GoogleUtilities: 64b5e3982b1b01bda26712affd5c523ef32563cf
+  GoogleUtilities: e7dc37039b19df7fe543479d3e4a02ac8d11bb69
   GTMSessionFetcher: 61bb0f61a4cb560030f1222021178008a5727a23
-  MaterialComponents: 4031efaaa2cd2cf2507d229478ddce9f1049fcef
+  MaterialComponents: 37478e606a0b4bb41e25c03cdf3be9e35fe59b78
   MDFInternationalization: 010097556d6b09d2c4ea38e0820ea6d37be6a314
   MDFTextAccessibility: 85c09a1bd9c321f494348e632a25063bcda35a53
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48

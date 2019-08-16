@@ -26,7 +26,7 @@ import FBSDKLoginKit
 
 @objc(MainViewController)
 // [START signin_controller]
-class MainViewController: UITableViewController, GIDSignInUIDelegate {
+class MainViewController: UITableViewController {
 // [END signin_controller]
 
   let kSectionToken = 3
@@ -163,7 +163,7 @@ class MainViewController: UITableViewController, GIDSignInUIDelegate {
       case .authGoogle:
         action = UIAlertAction(title: "Google", style: .default) { (UIAlertAction) in
           // [START setup_gid_uidelegate]
-          GIDSignIn.sharedInstance().uiDelegate = self
+          GIDSignIn.sharedInstance()?.presentingViewController = self
           GIDSignIn.sharedInstance().signIn()
           // [END setup_gid_uidelegate]
         }

@@ -263,7 +263,7 @@ static NSString *const kUpdatePhoneNumberText = @"Update Phone Number";
                                           style:UIAlertActionStyleDefault
                                         handler:^(UIAlertAction * _Nonnull action) {
           // [START setup_gid_uidelegate]
-          [GIDSignIn sharedInstance].uiDelegate = self;
+          [GIDSignIn sharedInstance].presentingViewController = self;
           [[GIDSignIn sharedInstance] signIn];
           // [END setup_gid_uidelegate]
         }];

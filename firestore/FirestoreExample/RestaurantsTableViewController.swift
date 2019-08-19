@@ -140,7 +140,8 @@ class RestaurantsTableViewController: UIViewController, UITableViewDataSource, U
     super.viewDidAppear(animated)
     let auth = FUIAuth.defaultAuthUI()!
     if auth.auth?.currentUser == nil {
-      auth.providers = []
+      let emailAuthProvider = FUIEmailAuth()
+      auth.providers = [emailAuthProvider]
       present(auth.authViewController(), animated: true, completion: nil)
     }
   }

@@ -6,7 +6,7 @@ target 'FirestoreExample' do
   pod 'Firebase/Analytics'
   pod 'Firebase/Auth'
   pod 'FirebaseUI/Auth'
-  pod 'FirebaseUI/Google'
+  pod 'FirebaseUI/Email'
   pod 'Firebase/Firestore'
   pod 'SDWebImage'
 

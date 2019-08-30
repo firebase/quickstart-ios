@@ -142,7 +142,7 @@ class RestaurantDetailViewController: UIViewController, UITableViewDataSource, U
       }
 
       // Error if the restaurant data in Firestore has somehow changed or is malformed.
-      guard let restaurant = restaurantSnapshot.data().flatMap(Restaurant.init(dictionary:)) else {
+      guard let restaurant = try? restaurantSnapshot.data(as: Restaurant.self) else {
         let error = NSError(domain: "FriendlyEatsErrorDomain", code: 0, userInfo: [
           NSLocalizedDescriptionKey: "Unable to write to restaurant at Firestore path: \(reference.path)"
           ])
@@ -155,7 +155,12 @@ class RestaurantDetailViewController: UIViewController, UITableViewDataSource, U
       let newAverage = (Float(restaurant.ratingCount) * restaurant.averageRating + Float(review.rating))
         / Float(restaurant.ratingCount + 1)
 
-      transaction.setData(review.dictionary, forDocument: newReviewReference)
+      do {
+        try transaction.setData(from: review, forDocument: newReviewReference)
+      } catch let error as NSError {
+        errorPointer?.pointee = error
+        return nil
+      }
       transaction.updateData([
         "numRatings": restaurant.ratingCount + 1,
         "avgRating": newAverage

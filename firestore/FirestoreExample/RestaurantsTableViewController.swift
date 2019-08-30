@@ -16,6 +16,7 @@
 
 import UIKit
 import Firebase
+import FirebaseFirestoreSwift
 import FirebaseUI
 import SDWebImage
 
@@ -73,7 +74,7 @@ class RestaurantsTableViewController: UIViewController, UITableViewDataSource, U
         return
       }
       let models = snapshot.documents.map { (document) -> Restaurant in
-        if let model = Restaurant(dictionary: document.data()) {
+        if let model = try? document.data(as: Restaurant.self) {
           return model
         } else {
           // Don't use fatalError here in a real app.
@@ -151,7 +152,7 @@ class RestaurantsTableViewController: UIViewController, UITableViewDataSource, U
     stopObserving()
   }
 
-  @IBAction func didTapPopulateButton(_ sender: Any) {
+  @IBAction func didTapPopulateButton(_ sender: Any) throws {
     let words = ["Bar", "Fire", "Grill", "Drive Thru", "Place", "Best", "Spot", "Prime", "Eatin'"]
 
     let cities = Restaurant.cities
@@ -180,7 +181,8 @@ class RestaurantsTableViewController: UIViewController, UITableViewDataSource, U
         photo: photo
       )
 
-      let restaurantRef = collection.addDocument(data: restaurant.dictionary)
+      let restaurantRef = collection.document()
+      try restaurantRef.setData(from: restaurant)
 
       let batch = Firestore.firestore().batch()
       guard let user = Auth.auth().currentUser else { continue }
@@ -195,7 +197,7 @@ class RestaurantsTableViewController: UIViewController, UITableViewDataSource, U
                             text: text,
                             date: Timestamp())
         let ratingRef = restaurantRef.collection("ratings").document()
-        batch.setData(review.dictionary, forDocument: ratingRef)
+        try batch.setData(from: review, forDocument: ratingRef)
       }
       batch.updateData(["avgRating": average], forDocument: restaurantRef)
       batch.commit(completion: { (error) in

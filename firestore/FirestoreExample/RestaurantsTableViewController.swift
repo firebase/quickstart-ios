@@ -152,7 +152,7 @@ class RestaurantsTableViewController: UIViewController, UITableViewDataSource, U
     stopObserving()
   }
 
-  @IBAction func didTapPopulateButton(_ sender: Any) throws {
+  @IBAction func didTapPopulateButton(_ sender: Any) {
     let words = ["Bar", "Fire", "Grill", "Drive Thru", "Place", "Best", "Spot", "Prime", "Eatin'"]
 
     let cities = Restaurant.cities
@@ -182,7 +182,11 @@ class RestaurantsTableViewController: UIViewController, UITableViewDataSource, U
       )
 
       let restaurantRef = collection.document()
-      try restaurantRef.setData(from: restaurant)
+      do {
+        try restaurantRef.setData(from: restaurant)
+      } catch {
+        fatalError("Encoding Restaurant failed: \(error)")
+      }
 
       let batch = Firestore.firestore().batch()
       guard let user = Auth.auth().currentUser else { continue }
@@ -197,7 +201,11 @@ class RestaurantsTableViewController: UIViewController, UITableViewDataSource, U
                             text: text,
                             date: Timestamp())
         let ratingRef = restaurantRef.collection("ratings").document()
-        try batch.setData(from: review, forDocument: ratingRef)
+        do {
+          try batch.setData(from: review, forDocument: ratingRef)
+        } catch {
+          fatalError("Encoding Rating failed: \(error)")
+        }
       }
       batch.updateData(["avgRating": average], forDocument: restaurantRef)
       batch.commit(completion: { (error) in

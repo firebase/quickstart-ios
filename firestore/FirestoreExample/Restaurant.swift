@@ -34,7 +34,7 @@ struct Restaurant: Codable {
     case price
     case ratingCount = "numRatings"
     case averageRating = "avgRating"
-    case photo = "photo"
+    case photo
   }
 
 }

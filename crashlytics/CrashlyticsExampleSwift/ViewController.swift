@@ -16,22 +16,21 @@
 
 import UIKit
 import Firebase
-import Crashlytics
+import FirebaseCrashlytics
 
 @objc(ViewController)
 class ViewController: UIViewController {
+  lazy var crashlytics = Crashlytics.crashlytics()
 
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    // Log that the view did load, CLSNSLogv is used here so the log message will be
-    // shown in the console output. If CLSLogv is used the message is not shown in
-    // the console output.
-    CLSNSLogv("%@", getVaList(["View loaded"]))
+    // Log that the view did load.
+    crashlytics.log(format: "%@", arguments: getVaList(["View loaded"]))
 
-    Crashlytics.sharedInstance().setIntValue(42, forKey: "MeaningOfLife")
-    Crashlytics.sharedInstance().setObjectValue("Test value", forKey: "last_UI_action")
-    Crashlytics.sharedInstance().setUserIdentifier("123456789")
+    crashlytics.setCustomValue(42, forKey: "MeaningOfLife")
+    crashlytics.setCustomValue("Test value", forKey: "last_UI_action")
+    crashlytics.setUserID("123456789")
 
     let userInfo = [
       NSLocalizedDescriptionKey: NSLocalizedString("The request failed.", comment: ""),
@@ -41,16 +40,13 @@ class ViewController: UIViewController {
       "UserID": "Jane Smith"
     ]
     let error = NSError.init(domain: NSURLErrorDomain, code: -1001, userInfo: userInfo)
-    Crashlytics.sharedInstance().recordError(error)
+    crashlytics.record(error: error)
   }
 
   @IBAction func initiateCrash(_ sender: AnyObject) {
-    // CLSLogv is used here to indicate that the log message
-    // will not be shown in the console output. Use CLSNSLogv to have the
-    // log message show in the console output.
     // [START log_and_crash_swift]
-    CLSLogv("%@", getVaList(["Cause Crash button clicked"]))
-    Crashlytics.sharedInstance().crash()
+    crashlytics.log("Cause Crash button clicked")
+    fatalError()
     // [END log_and_crash_swift]
   }
 }

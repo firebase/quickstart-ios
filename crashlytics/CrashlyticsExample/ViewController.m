@@ -16,21 +16,28 @@
 
 #import "ViewController.h"
 @import Firebase;
-@import Crashlytics;
+@import FirebaseCrashlytics;
+
+@interface ViewController ()
+
+@property(nonatomic) FIRCrashlytics *crashlytics;
+
+@end
 
 @implementation ViewController
+
 
 - (void)viewDidLoad {
   [super viewDidLoad];
 
-  // Log that the view did load, CLSNSLog is used here so the log message will be
-  // shown in the console output. If CLSLog is used the message is not shown in
-  // the console output.
-  CLSNSLog(@"View loaded");
+  self.crashlytics = [FIRCrashlytics crashlytics];
 
-  [CrashlyticsKit setIntValue:3 forKey:@"current_level"];
-  [CrashlyticsKit setObjectValue:@"logged_in" forKey:@"last_UI_action"];
-  [CrashlyticsKit setUserIdentifier:@"123456789"];
+  // Log that the view did load.
+  [_crashlytics logWithFormat:@"%@", @"View loaded"];
+
+  [_crashlytics setCustomValue:3 forKey:@"current_level"];
+  [_crashlytics setCustomValue:@"logged_in" forKey:@"last_UI_action"];
+  [_crashlytics setUserID:@"123456789"];
 
   NSDictionary *userInfo = @{
                              NSLocalizedDescriptionKey: NSLocalizedString(@"The request failed.", nil),
@@ -42,17 +49,14 @@
   NSError *error = [NSError errorWithDomain:NSURLErrorDomain
                                        code:-1001
                                    userInfo:userInfo];
-  [CrashlyticsKit recordError:error];
+  [_crashlytics recordError:error];
 }
 
 - (IBAction)initiateCrash:(id)sender {
-  // CLSLog is used here to indicate that the log message
-  // will not be shown in the console output. Use CLSNSLog to have the
-  // log message show in the console output.
   // [START log_and_crash]
-  CLSLog(@"Cause Crash button clicked");
-  [Crashlytics.sharedInstance crash];
-    // [END log_and_crash]
+  [_crashlytics log:@"Cause Crash button clicked"];
+  @[][1];
+  // [END log_and_crash]
 }
 
 @end

@@ -3,8 +3,7 @@ use_frameworks!
 platform :ios, '8.0'
 
 pod 'Firebase/Analytics'
-pod 'Fabric'
-pod 'Crashlytics'
+pod 'FirebaseCrashlytics', :podspec => 'https://storage.googleapis.com/firebase-preview-drop/ios/crashlytics-eap/0.0.9/FirebaseCrashlyticsEAP.podspec'
 
 target 'CrashlyticsExample'  do
 end

@@ -2,19 +2,12 @@
 use_frameworks!
 platform :ios, '8.0'
 
+pod 'Firebase/Analytics'
+pod 'Fabric'
+pod 'Crashlytics'
+
 target 'CrashlyticsExample'  do
-
-  pod 'Firebase/Analytics'
-  pod 'Fabric'
-  pod 'Crashlytics'
-
-  target 'CrashlyticsExampleTests' do
-    inherit! :search_paths
-  end
 end
 
 target 'CrashlyticsExampleSwift' do
-  pod 'Firebase/Analytics'
-  pod 'Fabric'
-  pod 'Crashlytics'
 end

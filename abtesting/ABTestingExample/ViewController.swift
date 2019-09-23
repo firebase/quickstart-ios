@@ -15,6 +15,7 @@
 //
 
 import Firebase
+import UIKit
 
 enum ColorScheme {
   case light

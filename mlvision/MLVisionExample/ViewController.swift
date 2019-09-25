@@ -20,17 +20,15 @@ import Firebase
 
 /// Main view controller class.
 @objc(ViewController)
-class ViewController:  UIViewController, UINavigationControllerDelegate {
+class ViewController: UIViewController, UINavigationControllerDelegate {
   /// Firebase vision instance.
   // [START init_vision]
   lazy var vision = Vision.vision()
+
   // [END init_vision]
 
   /// Manager for local and remote models.
   lazy var modelManager = ModelManager.modelManager()
-
-  /// Whether the AutoML models are registered.
-  var areAutoMLModelsRegistered = false
 
   /// A string holding current results from detection.
   var resultsText = ""
@@ -45,13 +43,14 @@ class ViewController:  UIViewController, UINavigationControllerDelegate {
 
   /// An image picker for accessing the photo library or camera.
   var imagePicker = UIImagePickerController()
-    
+
   // Image counter.
   var currentImage = 0
 
   // MARK: - IBOutlets
 
   @IBOutlet fileprivate weak var detectorPicker: UIPickerView!
+
   @IBOutlet fileprivate weak var imageView: UIImageView!
   @IBOutlet fileprivate weak var photoCameraButton: UIBarButtonItem!
   @IBOutlet fileprivate weak var videoCameraButton: UIBarButtonItem!
@@ -70,7 +69,7 @@ class ViewController:  UIViewController, UINavigationControllerDelegate {
       annotationOverlayView.leadingAnchor.constraint(equalTo: imageView.leadingAnchor),
       annotationOverlayView.trailingAnchor.constraint(equalTo: imageView.trailingAnchor),
       annotationOverlayView.bottomAnchor.constraint(equalTo: imageView.bottomAnchor),
-      ])
+    ])
 
     imagePicker.delegate = self
     imagePicker.sourceType = .photoLibrary
@@ -78,8 +77,8 @@ class ViewController:  UIViewController, UINavigationControllerDelegate {
     detectorPicker.delegate = self
     detectorPicker.dataSource = self
 
-    let isCameraAvailable = UIImagePickerController.isCameraDeviceAvailable(.front) ||
-      UIImagePickerController.isCameraDeviceAvailable(.rear)
+    let isCameraAvailable = UIImagePickerController.isCameraDeviceAvailable(.front)
+      || UIImagePickerController.isCameraDeviceAvailable(.rear)
     if isCameraAvailable {
       // `CameraViewController` uses `AVCaptureDevice.DiscoverySession` which is only supported for
       // iOS 10 or newer.
@@ -124,11 +123,13 @@ class ViewController:  UIViewController, UINavigationControllerDelegate {
       case .detectImageLabelsAutoMLOnDevice:
         detectImageLabelsAutoML(image: imageView.image)
       case .detectObjectsProminentNoClassifier, .detectObjectsProminentWithClassifier,
-           .detectObjectsMultipleNoClassifier, .detectObjectsMultipleWithClassifier:
-        let shouldEnableClassification = (rowIndex == .detectObjectsProminentWithClassifier) ||
-          (rowIndex == .detectObjectsMultipleWithClassifier)
-        let shouldEnableMultipleObjects = (rowIndex == .detectObjectsMultipleWithClassifier) ||
-          (rowIndex == .detectObjectsMultipleNoClassifier)
+        .detectObjectsMultipleNoClassifier, .detectObjectsMultipleWithClassifier:
+        let shouldEnableClassification = (rowIndex == .detectObjectsProminentWithClassifier) || (
+          rowIndex == .detectObjectsMultipleWithClassifier
+        )
+        let shouldEnableMultipleObjects = (rowIndex == .detectObjectsMultipleWithClassifier) || (
+          rowIndex == .detectObjectsMultipleNoClassifier
+        )
         let options = VisionObjectDetectorOptions()
         options.shouldEnableClassification = shouldEnableClassification
         options.shouldEnableMultipleObjects = shouldEnableMultipleObjects
@@ -158,15 +159,16 @@ class ViewController:  UIViewController, UINavigationControllerDelegate {
   }
 
   @IBAction func openCamera(_ sender: Any) {
-    guard UIImagePickerController.isCameraDeviceAvailable(.front) ||
-      UIImagePickerController.isCameraDeviceAvailable(.rear)
-      else {
-        return
+    guard
+      UIImagePickerController.isCameraDeviceAvailable(.front) || UIImagePickerController
+      .isCameraDeviceAvailable(.rear)
+    else {
+      return
     }
     imagePicker.sourceType = .camera
     present(imagePicker, animated: true)
   }
-    
+
   @IBAction func changeImage(_ sender: Any) {
     clearResults()
     currentImage = (currentImage + 1) % Constants.images.count
@@ -241,9 +243,8 @@ class ViewController:  UIViewController, UINavigationControllerDelegate {
 
     let imageViewAspectRatio = imageViewWidth / imageViewHeight
     let imageAspectRatio = imageWidth / imageHeight
-    let scale = (imageViewAspectRatio > imageAspectRatio) ?
-      imageViewHeight / imageHeight :
-      imageViewWidth / imageWidth
+    let scale = (imageViewAspectRatio > imageAspectRatio)
+      ? imageViewHeight / imageHeight : imageViewWidth / imageWidth
 
     // Image view's `contentMode` is `scaleAspectFit`, which scales the image to fit the size of the
     // image view by maintaining the aspect ratio. Multiple by `scale` to get image's original size.
@@ -329,7 +330,7 @@ class ViewController:  UIViewController, UINavigationControllerDelegate {
           atPoint: transformedPoint,
           to: annotationOverlayView,
           color: UIColor.yellow,
-          radius: Constants.smallDotRadius                )
+          radius: Constants.smallDotRadius)
       }
     }
     if let rightEyeContour = face.contour(ofType: .rightEye) {
@@ -576,7 +577,7 @@ class ViewController:  UIViewController, UINavigationControllerDelegate {
   private func process(
     _ visionImage: VisionImage,
     with documentTextRecognizer: VisionDocumentTextRecognizer?
-    ) {
+  ) {
     documentTextRecognizer?.process(visionImage) { text, error in
       guard error == nil, let text = text else {
         let errorString = error?.localizedDescription ?? Constants.detectionNoResultsMessage
@@ -632,23 +633,11 @@ class ViewController:  UIViewController, UINavigationControllerDelegate {
     }
   }
 
-  private func registerAutoMLModelsIfNeeded() {
-    if areAutoMLModelsRegistered {
+  private func requestAutoMLRemoteModelIfNeeded() {
+    let remoteModel = AutoMLRemoteModel(name: Constants.remoteAutoMLModelName)
+    if (modelManager.isModelDownloaded(remoteModel)) {
       return
     }
-
-    let initialConditions = ModelDownloadConditions()
-    let updateConditions = ModelDownloadConditions(
-      allowsCellularAccess: false,
-      allowsBackgroundDownloading: true
-    )
-    let remoteModel = RemoteModel(
-      name: Constants.remoteAutoMLModelName,
-      allowsModelUpdates: true,
-      initialConditions: initialConditions,
-      updateConditions: updateConditions
-    )
-    modelManager.register(remoteModel)
     NotificationCenter.default.addObserver(
       self,
       selector: #selector(remoteModelDownloadDidSucceed(_:)),
@@ -662,18 +651,13 @@ class ViewController:  UIViewController, UINavigationControllerDelegate {
       object: nil
     )
     downloadProgressView.isHidden = false
-    downloadProgressView.observedProgress = modelManager.download(remoteModel)
-
-    guard let localModelFilePath = Bundle.main.path(
-      forResource: Constants.localModelManifestFileName,
-      ofType: Constants.autoMLManifestFileType
-      ) else {
-        print("Failed to find AutoML local model manifest file.")
-        return
-    }
-    let localModel = LocalModel(name: Constants.localAutoMLModelName, path: localModelFilePath)
-    modelManager.register(localModel)
-    areAutoMLModelsRegistered = true
+    let conditions = ModelDownloadConditions(
+      allowsCellularAccess: true,
+      allowsBackgroundDownloading: true)
+    downloadProgressView.observedProgress = modelManager.download(
+      remoteModel,
+      conditions: conditions)
+    print("Start downloading AutoML remote model");
   }
 
   // MARK: - Notifications
@@ -683,15 +667,17 @@ class ViewController:  UIViewController, UINavigationControllerDelegate {
     let notificationHandler = {
       self.downloadProgressView.isHidden = true
       guard let userInfo = notification.userInfo,
-        let remoteModel =
-        userInfo[ModelDownloadUserInfoKey.remoteModel.rawValue] as? RemoteModel
-        else {
-          self.resultsText += "firebaseMLModelDownloadDidSucceed notification posted without a RemoteModel instance."
-          return
+        let remoteModel = userInfo[ModelDownloadUserInfoKey.remoteModel.rawValue] as? RemoteModel
+      else {
+        self.resultsText
+          += "firebaseMLModelDownloadDidSucceed notification posted without a RemoteModel instance."
+        return
       }
-      self.resultsText += "Successfully downloaded the remote model with name: \(remoteModel.name). The model is ready for detection."
+      self.resultsText
+        += "Successfully downloaded the remote model with name: \(remoteModel.name). The model is ready for detection."
+      print("Sucessfully downloaded AutoML remote model.")
     }
-    if Thread.isMainThread { notificationHandler(); return }
+    if Thread.isMainThread { notificationHandler();return }
     DispatchQueue.main.async { notificationHandler() }
   }
 
@@ -700,16 +686,18 @@ class ViewController:  UIViewController, UINavigationControllerDelegate {
     let notificationHandler = {
       self.downloadProgressView.isHidden = true
       guard let userInfo = notification.userInfo,
-        let remoteModel =
-        userInfo[ModelDownloadUserInfoKey.remoteModel.rawValue] as? RemoteModel,
+        let remoteModel = userInfo[ModelDownloadUserInfoKey.remoteModel.rawValue] as? RemoteModel,
         let error = userInfo[ModelDownloadUserInfoKey.error.rawValue] as? NSError
-        else {
-          self.resultsText += "firebaseMLModelDownloadDidFail notification posted without a RemoteModel instance or error."
-          return
+      else {
+        self.resultsText
+          += "firebaseMLModelDownloadDidFail notification posted without a RemoteModel instance or error."
+        return
       }
-      self.resultsText += "Failed to download the remote model with name: \(remoteModel.name), error: \(error)."
+      self.resultsText
+        += "Failed to download the remote model with name: \(remoteModel.name), error: \(error)."
+      print("Failed to download AutoML remote model.")
     }
-    if Thread.isMainThread { notificationHandler(); return }
+    if Thread.isMainThread { notificationHandler();return }
     DispatchQueue.main.async { notificationHandler() }
   }
 }
@@ -732,7 +720,7 @@ extension ViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     _ pickerView: UIPickerView,
     titleForRow row: Int,
     forComponent component: Int
-    ) -> String? {
+  ) -> String? {
     return DetectorPickerRow(rawValue: row)?.description
   }
 
@@ -748,12 +736,15 @@ extension ViewController: UIImagePickerControllerDelegate {
   func imagePickerController(
     _ picker: UIImagePickerController,
     didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]
-    ) {
-// Local variable inserted by Swift 4.2 migrator.
-let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
+  ) {
+    // Local variable inserted by Swift 4.2 migrator.
+    let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
 
     clearResults()
-    if let pickedImage = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.originalImage)] as? UIImage {
+    if let pickedImage = info[
+      convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.originalImage)]
+      as? UIImage
+    {
       updateImageView(with: pickedImage)
     }
     dismiss(animated: true)
@@ -820,10 +811,14 @@ extension ViewController {
       self.resultsText = faces.map { face in
         let headEulerAngleY = face.hasHeadEulerAngleY ? face.headEulerAngleY.description : "NA"
         let headEulerAngleZ = face.hasHeadEulerAngleZ ? face.headEulerAngleZ.description : "NA"
-        let leftEyeOpenProbability = face.hasLeftEyeOpenProbability ? face.leftEyeOpenProbability.description : "NA"
-        let rightEyeOpenProbability = face.hasRightEyeOpenProbability ? face.rightEyeOpenProbability.description : "NA"
-        let smilingProbability = face.hasSmilingProbability ? face.smilingProbability.description : "NA"
-        let output = """
+        let leftEyeOpenProbability = face.hasLeftEyeOpenProbability
+          ? face.leftEyeOpenProbability.description : "NA"
+        let rightEyeOpenProbability = face.hasRightEyeOpenProbability
+          ? face.rightEyeOpenProbability.description : "NA"
+        let smilingProbability = face.hasSmilingProbability
+          ? face.smilingProbability.description : "NA"
+        let output
+          = """
                      Frame: \(face.frame)
                      Head Euler Angle Y: \(headEulerAngleY)
                      Head Euler Angle Z: \(headEulerAngleZ)
@@ -832,7 +827,7 @@ extension ViewController {
                      Smiling Probability: \(smilingProbability)
                      """
         return "\(output)"
-        }.joined(separator: "\n")
+      }.joined(separator: "\n")
       self.showResults()
       // [END_EXCLUDE]
     }
@@ -886,9 +881,9 @@ extension ViewController {
         )
       }
       self.resultsText = features.map { feature in
-        return "DisplayValue: \(feature.displayValue ?? ""), RawValue: " +
-        "\(feature.rawValue ?? ""), Frame: \(feature.frame)"
-        }.joined(separator: "\n")
+        return "DisplayValue: \(feature.displayValue ?? ""), RawValue: "
+          + "\(feature.rawValue ?? ""), Frame: \(feature.frame)"
+      }.joined(separator: "\n")
       self.showResults()
       // [END_EXCLUDE]
     }
@@ -931,10 +926,9 @@ extension ViewController {
 
       // [START_EXCLUDE]
       self.resultsText = labels.map { label -> String in
-        return "Label: \(label.text), " +
-          "Confidence: \(label.confidence ?? 0), " +
-          "EntityID: \(label.entityID ?? "")"
-        }.joined(separator: "\n")
+        return "Label: \(label.text), " + "Confidence: \(label.confidence ?? 0), "
+          + "EntityID: \(label.entityID ?? "")"
+      }.joined(separator: "\n")
       self.showResults()
       // [END_EXCLUDE]
     }
@@ -946,13 +940,25 @@ extension ViewController {
   /// - Parameter image: The image.
   func detectImageLabelsAutoML(image: UIImage?) {
     guard let image = image else { return }
-    registerAutoMLModelsIfNeeded()
+    requestAutoMLRemoteModelIfNeeded()
 
     // [START config_automl_label]
-    let options = VisionOnDeviceAutoMLImageLabelerOptions(
-      remoteModelName: Constants.remoteAutoMLModelName,
-      localModelName: Constants.localAutoMLModelName
-    )
+    let remoteModel = AutoMLRemoteModel(name: Constants.remoteAutoMLModelName)
+    guard
+      let localModelFilePath = Bundle.main.path(
+        forResource: Constants.localModelManifestFileName,
+        ofType: Constants.autoMLManifestFileType
+      )
+    else {
+      print("Failed to find AutoML local model manifest file.")
+      return
+    }
+    let localModel = AutoMLLocalModel(manifestPath: localModelFilePath)
+    let isModelDownloaded = modelManager.isModelDownloaded(remoteModel);
+    let options = isModelDownloaded ?
+      VisionOnDeviceAutoMLImageLabelerOptions(remoteModel: remoteModel) :
+      VisionOnDeviceAutoMLImageLabelerOptions(localModel: localModel)
+    print("Use AutoML \(isModelDownloaded ? "remote" : "local") in detector picker.")
     options.confidenceThreshold = Constants.labelConfidenceThreshold
     // [END config_automl_label]
 
@@ -982,7 +988,7 @@ extension ViewController {
       // [START_EXCLUDE]
       self.resultsText = labels.map { label -> String in
         return "Label: \(label.text), Confidence: \(label.confidence ?? 0)"
-        }.joined(separator: "\n")
+      }.joined(separator: "\n")
       self.showResults()
       // [END_EXCLUDE]
     }
@@ -1033,9 +1039,8 @@ extension ViewController {
     var cloudTextRecognizer: VisionTextRecognizer?
     var modelTypeString = Constants.sparseTextModelName
     if let options = options {
-      modelTypeString = (options.modelType == .dense) ?
-        Constants.denseTextModelName :
-      modelTypeString
+      modelTypeString = (options.modelType == .dense)
+        ? Constants.denseTextModelName : modelTypeString
       cloudTextRecognizer = vision.cloudTextRecognizer(options: options)
     } else {
       cloudTextRecognizer = vision.cloudTextRecognizer()
@@ -1119,10 +1124,10 @@ extension ViewController {
         )
       }
       self.resultsText = landmarks.map { landmark -> String in
-        return "Landmark: \(String(describing: landmark.landmark ?? "")), " +
-          "Confidence: \(String(describing: landmark.confidence ?? 0) ), " +
-          "EntityID: \(String(describing: landmark.entityId ?? "") ), " +
-        "Frame: \(landmark.frame)"
+        return "Landmark: \(String(describing: landmark.landmark ?? "")), "
+          + "Confidence: \(String(describing: landmark.confidence ?? 0) ), "
+          + "EntityID: \(String(describing: landmark.entityId ?? "") ), "
+          + "Frame: \(landmark.frame)"
       }.joined(separator: "\n")
       self.showResults()
       // [END_EXCLUDE]
@@ -1164,16 +1169,14 @@ extension ViewController {
       // Labeled image
       // START_EXCLUDE
       self.resultsText = labels.map { label -> String in
-        "Label: \(label.text), " +
-        "Confidence: \(label.confidence ?? 0), " +
-        "EntityID: \(label.entityID ?? "")"
-        }.joined(separator: "\n")
+        "Label: \(label.text), " + "Confidence: \(label.confidence ?? 0), "
+          + "EntityID: \(label.entityID ?? "")"
+      }.joined(separator: "\n")
       self.showResults()
       // [END_EXCLUDE]
     }
     // [END detect_label_cloud]
   }
-
 
   /// Detects objects on the specified image and draws a frame around them.
   ///
@@ -1225,10 +1228,10 @@ extension ViewController {
         // [END_EXCLUDE]
       }
 
-       // [START_EXCLUDE]
+      // [START_EXCLUDE]
       self.resultsText = objects.map { object in
         return "Frame: \(object.frame), ID: \(object.trackingID ?? 0)"
-        }.joined(separator: "\n")
+      }.joined(separator: "\n")
       self.showResults()
       // [END_EXCLUDE]
     }
@@ -1239,20 +1242,22 @@ extension ViewController {
 // MARK: - Enums
 
 private enum DetectorPickerRow: Int {
-  case detectFaceOnDevice = 0,
-  detectTextOnDevice,
-  detectBarcodeOnDevice,
-  detectImageLabelsOnDevice,
-  detectImageLabelsAutoMLOnDevice,
-  detectObjectsProminentNoClassifier,
-  detectObjectsProminentWithClassifier,
-  detectObjectsMultipleNoClassifier,
-  detectObjectsMultipleWithClassifier,
-  detectTextInCloudSparse,
-  detectTextInCloudDense,
-  detectDocumentTextInCloud,
-  detectImageLabelsInCloud,
-  detectLandmarkInCloud
+  case detectFaceOnDevice = 0
+
+  case
+    detectTextOnDevice,
+    detectBarcodeOnDevice,
+    detectImageLabelsOnDevice,
+    detectImageLabelsAutoMLOnDevice,
+    detectObjectsProminentNoClassifier,
+    detectObjectsProminentWithClassifier,
+    detectObjectsMultipleNoClassifier,
+    detectObjectsMultipleWithClassifier,
+    detectTextInCloudSparse,
+    detectTextInCloudDense,
+    detectDocumentTextInCloud,
+    detectImageLabelsInCloud,
+    detectLandmarkInCloud
 
   static let rowsCount = 14
   static let componentsCount = 1
@@ -1292,8 +1297,11 @@ private enum DetectorPickerRow: Int {
 }
 
 private enum Constants {
-  static let images = ["grace_hopper.jpg", "barcode_128.png", "qr_code.jpg", "beach.jpg",
-                       "image_has_text.jpg", "liberty.jpg"]
+  static let images = [
+    "grace_hopper.jpg", "barcode_128.png", "qr_code.jpg", "beach.jpg",
+    "image_has_text.jpg", "liberty.jpg",
+  ]
+
   static let modelExtension = "tflite"
   static let localModelName = "mobilenet"
   static let quantizedModelFilename = "mobilenet_quant_v1_224"
@@ -1303,7 +1311,6 @@ private enum Constants {
   static let sparseTextModelName = "Sparse"
   static let denseTextModelName = "Dense"
 
-  static let localAutoMLModelName = "local_automl_model"
   static let remoteAutoMLModelName = "remote_automl_model"
   static let localModelManifestFileName = "automl_labeler_manifest"
   static let autoMLManifestFileType = "json"
@@ -1316,11 +1323,15 @@ private enum Constants {
 }
 
 // Helper function inserted by Swift 4.2 migrator.
-fileprivate func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
-	return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
+fileprivate func convertFromUIImagePickerControllerInfoKeyDictionary(
+  _ input: [UIImagePickerController.InfoKey: Any]
+) -> [String: Any] {
+  return Dictionary(uniqueKeysWithValues: input.map { key, value in (key.rawValue, value) })
 }
 
 // Helper function inserted by Swift 4.2 migrator.
-fileprivate func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController.InfoKey) -> String {
-	return input.rawValue
+fileprivate func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController.InfoKey)
+  -> String
+{
+  return input.rawValue
 }

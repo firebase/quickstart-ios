@@ -1,0 +1,42 @@
+platform :ios, '9.0'
+
+use_frameworks!
+
+pod 'Firebase/MLVision'
+pod 'Firebase/MLVisionAutoML'
+pod 'Firebase/MLVisionObjectDetection'
+pod 'Firebase/MLVisionBarcodeModel'
+pod 'Firebase/MLVisionFaceModel'
+pod 'Firebase/MLVisionLabelModel'
+pod 'Firebase/MLVisionTextModel'
+pod 'Firebase/Analytics'
+
+# The following pods are open source and this Podfile is only used within
+# Firebase nightlies. So we will pull from a local path provided by iCarp environment.
+# Pods in this path are pulled from github and versions rewritten to 99.99.99.
+# Note: We are not adding GoogleUtilites although we have "GoogleUtilities/UserDefaults ~> 6.0"
+# dependency, because we are not depending on the "99.99.99" version (only the
+# "core" Firebase pod versions are rewritten to 99.99.99 by iCarp).
+if ENV['ICARP_ENV'] == 'NIGHTLY'
+  pod 'FirebaseCore', :path => '~/firebase-ios-sdk'
+  pod 'FirebaseCoreDiagnostics', :path => '~/firebase-ios-sdk'
+  pod 'FirebaseCoreDiagnosticsInterop', :path => '~/firebase-ios-sdk'
+  pod 'FirebaseInstanceID', :path => '~/firebase-ios-sdk'
+  pod 'GoogleDataTransport', :path => '~/firebase-ios-sdk'
+  pod 'GoogleDataTransportCCTSupport', :path => '~/firebase-ios-sdk'
+end
+
+target 'MLVisionExample' do
+  target 'MLVisionExampleTests' do
+    inherit! :search_paths
+  end
+end
+
+target 'MLVisionExampleObjC' do
+  target 'MLVisionExampleObjCTests' do
+    inherit! :search_paths
+  end
+end
+
+target 'MLVisionExampleUITests' do
+end

@@ -21,13 +21,16 @@ import Firebase
 
 @objc(CameraViewController)
 class CameraViewController: UIViewController {
-  private let detectors: [Detector] = [.onDeviceAutoMLImageLabeler,
-                                       .onDeviceFace,
-                                       .onDeviceText,
-                                       .onDeviceObjectProminentNoClassifier,
-                                       .onDeviceObjectProminentWithClassifier,
-                                       .onDeviceObjectMultipleNoClassifier,
-                                       .onDeviceObjectMultipleWithClassifier]
+  private let detectors: [Detector] = [
+    .onDeviceAutoMLImageLabeler,
+    .onDeviceFace,
+    .onDeviceText,
+    .onDeviceObjectProminentNoClassifier,
+    .onDeviceObjectProminentWithClassifier,
+    .onDeviceObjectMultipleNoClassifier,
+    .onDeviceObjectMultipleWithClassifier,
+  ]
+
   private var currentDetector: Detector = .onDeviceFace
   private var isUsingFrontCamera = true
   private var previewLayer: AVCaptureVideoPreviewLayer!
@@ -35,7 +38,6 @@ class CameraViewController: UIViewController {
   private lazy var sessionQueue = DispatchQueue(label: Constant.sessionQueueLabel)
   private lazy var vision = Vision.vision()
   private var lastFrame: CMSampleBuffer?
-  private var areAutoMLModelsRegistered = false
   private lazy var modelManager = ModelManager.modelManager()
   @IBOutlet var downloadProgressView: UIProgressView!
 
@@ -106,13 +108,26 @@ class CameraViewController: UIViewController {
   private func detectImageLabelsAutoMLOndevice(
     in visionImage: VisionImage,
     width: CGFloat,
-    height: CGFloat) {
-    registerAutoMLModelsIfNeeded()
+    height: CGFloat
+  ) {
+    requestAutoMLRemoteModelIfNeeded()
 
-    let options = VisionOnDeviceAutoMLImageLabelerOptions(
-      remoteModelName: Constant.remoteAutoMLModelName,
-      localModelName: Constant.localAutoMLModelName
-    )
+    let remoteModel = AutoMLRemoteModel(name: Constant.remoteAutoMLModelName)
+    guard
+      let localModelFilePath = Bundle.main.path(
+        forResource: Constant.localModelManifestFileName,
+        ofType: Constant.autoMLManifestFileType
+      )
+    else {
+      print("Failed to find AutoML local model manifest file.")
+      return
+    }
+    let localModel = AutoMLLocalModel(manifestPath:localModelFilePath)
+    let isModelDownloaded = modelManager.isModelDownloaded(remoteModel);
+    let options = isModelDownloaded ?
+      VisionOnDeviceAutoMLImageLabelerOptions(remoteModel: remoteModel) :
+      VisionOnDeviceAutoMLImageLabelerOptions(localModel: localModel)
+    print("Use AutoML \(isModelDownloaded ? "remote" : "local") model in detector picker.")
     options.confidenceThreshold = Constant.labelConfidenceThreshold
     let autoMLOnDeviceLabeler = vision.onDeviceAutoMLImageLabeler(options: options)
     print("labeler: \(autoMLOnDeviceLabeler)\n")
@@ -146,7 +161,7 @@ class CameraViewController: UIViewController {
       resultsLabel.textColor = .yellow
       resultsLabel.text = labels.map { label -> String in
         return "Label: \(label.text), Confidence: \(label.confidence ?? 0)"
-        }.joined(separator: "\n")
+      }.joined(separator: "\n")
       resultsLabel.adjustsFontSizeToFitWidth = true
       resultsLabel.numberOfLines = Constant.resultsLabelLines
       self.annotationOverlayView.addSubview(resultsLabel)
@@ -155,23 +170,11 @@ class CameraViewController: UIViewController {
     group.wait()
   }
 
-  private func registerAutoMLModelsIfNeeded() {
-    if areAutoMLModelsRegistered {
+  private func requestAutoMLRemoteModelIfNeeded() {
+    let remoteModel = AutoMLRemoteModel(name: Constant.remoteAutoMLModelName)
+    if (modelManager.isModelDownloaded(remoteModel)) {
       return
     }
-
-    let initialConditions = ModelDownloadConditions()
-    let updateConditions = ModelDownloadConditions(
-      allowsCellularAccess: false,
-      allowsBackgroundDownloading: true
-    )
-    let remoteModel = RemoteModel(
-      name: Constant.remoteAutoMLModelName,
-      allowsModelUpdates: true,
-      initialConditions: initialConditions,
-      updateConditions: updateConditions
-    )
-    modelManager.register(remoteModel)
     NotificationCenter.default.addObserver(
       self,
       selector: #selector(remoteModelDownloadDidSucceed(_:)),
@@ -186,19 +189,15 @@ class CameraViewController: UIViewController {
     )
     DispatchQueue.main.async {
       self.downloadProgressView.isHidden = false
-      self.downloadProgressView.observedProgress = self.modelManager.download(remoteModel)
+      let conditions = ModelDownloadConditions(
+        allowsCellularAccess: true,
+        allowsBackgroundDownloading: true)
+      self.downloadProgressView.observedProgress = self.modelManager.download(
+        remoteModel,
+        conditions: conditions)
     }
 
-    guard let localModelFilePath = Bundle.main.path(
-      forResource: Constant.localModelManifestFileName,
-      ofType: Constant.autoMLManifestFileType
-      ) else {
-        print("Failed to find AutoML local model manifest file.")
-        return
-    }
-    let localModel = LocalModel(name: Constant.localAutoMLModelName, path: localModelFilePath)
-    modelManager.register(localModel)
-    areAutoMLModelsRegistered = true
+    print("Start downloading AutoML remote model");
   }
 
   // MARK: - Notifications
@@ -208,15 +207,17 @@ class CameraViewController: UIViewController {
     let notificationHandler = {
       self.downloadProgressView.isHidden = true
       guard let userInfo = notification.userInfo,
-        let remoteModel =
-        userInfo[ModelDownloadUserInfoKey.remoteModel.rawValue] as? RemoteModel
-        else {
-          print("firebaseMLModelDownloadDidSucceed notification posted without a RemoteModel instance.")
-          return
+        let remoteModel = userInfo[ModelDownloadUserInfoKey.remoteModel.rawValue] as? RemoteModel
+      else {
+        print(
+          "firebaseMLModelDownloadDidSucceed notification posted without a RemoteModel instance.")
+        return
       }
-      print("Successfully downloaded the remote model with name: \(remoteModel.name). The model is ready for detection.")
+      print(
+        "Successfully downloaded the remote model with name: \(remoteModel.name). The model "
+          + "is ready for detection.")
     }
-    if Thread.isMainThread { notificationHandler(); return }
+    if Thread.isMainThread { notificationHandler();return }
     DispatchQueue.main.async { notificationHandler() }
   }
 
@@ -225,16 +226,17 @@ class CameraViewController: UIViewController {
     let notificationHandler = {
       self.downloadProgressView.isHidden = true
       guard let userInfo = notification.userInfo,
-        let remoteModel =
-        userInfo[ModelDownloadUserInfoKey.remoteModel.rawValue] as? RemoteModel,
+        let remoteModel = userInfo[ModelDownloadUserInfoKey.remoteModel.rawValue] as? RemoteModel,
         let error = userInfo[ModelDownloadUserInfoKey.error.rawValue] as? NSError
-        else {
-          print("firebaseMLModelDownloadDidFail notification posted without a RemoteModel instance or error.")
-          return
+      else {
+        print(
+          "firebaseMLModelDownloadDidFail notification posted without a RemoteModel instance or error."
+        )
+        return
       }
       print("Failed to download the remote model with name: \(remoteModel.name), error: \(error).")
     }
-    if Thread.isMainThread { notificationHandler(); return }
+    if Thread.isMainThread { notificationHandler();return }
     DispatchQueue.main.async { notificationHandler() }
   }
 
@@ -277,8 +279,8 @@ class CameraViewController: UIViewController {
           width: face.frame.size.width / width,
           height: face.frame.size.height / height
         )
-        let standardizedRect =
-          self.previewLayer.layerRectConverted(fromMetadataOutputRect: normalizedRect).standardized
+        let standardizedRect = self.previewLayer.layerRectConverted(
+          fromMetadataOutputRect: normalizedRect).standardized
         UIUtilities.addRectangle(
           standardizedRect,
           to: self.annotationOverlayView,
@@ -295,8 +297,9 @@ class CameraViewController: UIViewController {
       self.removeDetectionAnnotations()
       self.updatePreviewOverlayView()
       guard error == nil, let text = text else {
-        print("On-Device text recognizer error: " +
-          "\(error?.localizedDescription ?? Constant.noResultsMessage)")
+        print(
+          "On-Device text recognizer error: "
+            + "\(error?.localizedDescription ?? Constant.noResultsMessage)")
         return
       }
       // Blocks.
@@ -345,10 +348,12 @@ class CameraViewController: UIViewController {
 
   // MARK: Object Detection
 
-  private func detectObjectsOnDevice(in image: VisionImage,
-                                     width: CGFloat,
-                                     height: CGFloat,
-                                     options: VisionObjectDetectorOptions) {
+  private func detectObjectsOnDevice(
+    in image: VisionImage,
+    width: CGFloat,
+    height: CGFloat,
+    options: VisionObjectDetectorOptions
+  ) {
     let detector = vision.objectDetector(options: options)
 
     var detectedObjects: [VisionObject]? = nil
@@ -377,8 +382,8 @@ class CameraViewController: UIViewController {
           width: object.frame.size.width / width,
           height: object.frame.size.height / height
         )
-        let standardizedRect =
-          self.previewLayer.layerRectConverted(fromMetadataOutputRect: normalizedRect).standardized
+        let standardizedRect = self.previewLayer.layerRectConverted(
+          fromMetadataOutputRect: normalizedRect).standardized
         UIUtilities.addRectangle(
           standardizedRect,
           to: self.annotationOverlayView,
@@ -409,8 +414,9 @@ class CameraViewController: UIViewController {
       self.captureSession.sessionPreset = AVCaptureSession.Preset.medium
 
       let output = AVCaptureVideoDataOutput()
-      output.videoSettings =
-        [(kCVPixelBufferPixelFormatTypeKey as String): kCVPixelFormatType_32BGRA]
+      output.videoSettings = [
+        (kCVPixelBufferPixelFormatTypeKey as String): kCVPixelFormatType_32BGRA,
+      ]
       let outputQueue = DispatchQueue(label: Constant.videoDataOutputQueueLabel)
       output.setSampleBufferDelegate(self, queue: outputQueue)
       guard self.captureSession.canAddOutput(output) else {
@@ -469,7 +475,7 @@ class CameraViewController: UIViewController {
       previewOverlayView.leadingAnchor.constraint(equalTo: cameraView.leadingAnchor),
       previewOverlayView.trailingAnchor.constraint(equalTo: cameraView.trailingAnchor),
 
-      ])
+    ])
   }
 
   private func setUpAnnotationOverlayView() {
@@ -479,7 +485,7 @@ class CameraViewController: UIViewController {
       annotationOverlayView.leadingAnchor.constraint(equalTo: cameraView.leadingAnchor),
       annotationOverlayView.trailingAnchor.constraint(equalTo: cameraView.trailingAnchor),
       annotationOverlayView.bottomAnchor.constraint(equalTo: cameraView.bottomAnchor),
-      ])
+    ])
   }
 
   private func captureDevice(forPosition position: AVCaptureDevice.Position) -> AVCaptureDevice? {
@@ -523,7 +529,7 @@ class CameraViewController: UIViewController {
 
   private func updatePreviewOverlayView() {
     guard let lastFrame = lastFrame,
-          let imageBuffer = CMSampleBufferGetImageBuffer(lastFrame)
+      let imageBuffer = CMSampleBufferGetImageBuffer(lastFrame)
     else {
       return
     }
@@ -532,8 +538,7 @@ class CameraViewController: UIViewController {
     guard let cgImage = context.createCGImage(ciImage, from: ciImage.extent) else {
       return
     }
-    let rotatedImage =
-      UIImage(cgImage: cgImage, scale: Constant.originalScale, orientation: .right)
+    let rotatedImage = UIImage(cgImage: cgImage, scale: Constant.originalScale, orientation: .right)
     if isUsingFrontCamera {
       guard let rotatedCGImage = rotatedImage.cgImage else {
         return
@@ -735,7 +740,7 @@ extension CameraViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
     _ output: AVCaptureOutput,
     didOutput sampleBuffer: CMSampleBuffer,
     from connection: AVCaptureConnection
-    ) {
+  ) {
     guard let imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else {
       print("Failed to get image buffer from sample buffer.")
       return
@@ -775,15 +780,16 @@ extension CameraViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
     case .onDeviceText:
       recognizeTextOnDevice(in: visionImage, width: imageWidth, height: imageHeight)
     case .onDeviceObjectProminentNoClassifier, .onDeviceObjectProminentWithClassifier,
-         .onDeviceObjectMultipleNoClassifier, .onDeviceObjectMultipleWithClassifier:
+      .onDeviceObjectMultipleNoClassifier, .onDeviceObjectMultipleWithClassifier:
       let options = VisionObjectDetectorOptions()
       options.shouldEnableClassification = shouldEnableClassification
       options.shouldEnableMultipleObjects = shouldEnableMultipleObjects
       options.detectorMode = .stream
-      detectObjectsOnDevice(in: visionImage,
-                            width: imageWidth,
-                            height: imageHeight,
-                            options: options)
+      detectObjectsOnDevice(
+        in: visionImage,
+        width: imageWidth,
+        height: imageHeight,
+        options: options)
     }
   }
 }
@@ -807,7 +813,6 @@ private enum Constant {
   static let videoDataOutputQueueLabel = "com.google.firebaseml.visiondetector.VideoDataOutputQueue"
   static let sessionQueueLabel = "com.google.firebaseml.visiondetector.SessionQueue"
   static let noResultsMessage = "No Results"
-  static let localAutoMLModelName = "local_automl_model"
   static let remoteAutoMLModelName = "remote_automl_model"
   static let localModelManifestFileName = "automl_labeler_manifest"
   static let autoMLManifestFileType = "json"

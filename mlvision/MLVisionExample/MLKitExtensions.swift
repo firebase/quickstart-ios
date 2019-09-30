@@ -22,10 +22,9 @@ extension UIImage {
   /// The PNG or JPEG data representation of the image or `nil` if the conversion failed.
   private var data: Data? {
     #if swift(>=4.2)
-    return self.pngData() ?? self.jpegData(compressionQuality: Constant.jpegCompressionQuality)
+      return self.pngData() ?? self.jpegData(compressionQuality: Constant.jpegCompressionQuality)
     #else
-    return self.pngData() ??
-      self.jpegData(compressionQuality: Constant.jpegCompressionQuality)
+      return self.pngData() ?? self.jpegData(compressionQuality: Constant.jpegCompressionQuality)
     #endif  // swift(>=4.2)
   }
 }

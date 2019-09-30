@@ -48,7 +48,9 @@ NS_ASSUME_NONNULL_BEGIN
   [view addSubview:rectangleView];
 }
 
-+ (void)addShapeWithPoints:(NSArray<NSValue *> *)points toView:(UIView *)view color:(UIColor *)color {
++ (void)addShapeWithPoints:(NSArray<NSValue *> *)points
+                    toView:(UIView *)view
+                     color:(UIColor *)color {
   UIBezierPath *path = [UIBezierPath new];
   for (int i = 0; i < [points count]; i++) {
     CGPoint point = points[i].CGPointValue;
@@ -75,60 +77,67 @@ NS_ASSUME_NONNULL_BEGIN
   return [self imageOrientationFromDevicePosition:AVCaptureDevicePositionBack];
 }
 
-+ (UIImageOrientation) imageOrientationFromDevicePosition:(AVCaptureDevicePosition)devicePosition {
++ (UIImageOrientation)imageOrientationFromDevicePosition:(AVCaptureDevicePosition)devicePosition {
   UIDeviceOrientation deviceOrientation = UIDevice.currentDevice.orientation;
-  if (deviceOrientation == UIDeviceOrientationFaceDown || deviceOrientation == UIDeviceOrientationFaceUp || deviceOrientation == UIDeviceOrientationUnknown) {
+  if (deviceOrientation == UIDeviceOrientationFaceDown ||
+      deviceOrientation == UIDeviceOrientationFaceUp ||
+      deviceOrientation == UIDeviceOrientationUnknown) {
     deviceOrientation = [self currentUIOrientation];
   }
   switch (deviceOrientation) {
     case UIDeviceOrientationPortrait:
-    return devicePosition == AVCaptureDevicePositionFront ? UIImageOrientationLeftMirrored : UIImageOrientationRight;
+      return devicePosition == AVCaptureDevicePositionFront ? UIImageOrientationLeftMirrored
+                                                            : UIImageOrientationRight;
     case UIDeviceOrientationLandscapeLeft:
-    return devicePosition == AVCaptureDevicePositionFront ? UIImageOrientationDownMirrored : UIImageOrientationUp;
+      return devicePosition == AVCaptureDevicePositionFront ? UIImageOrientationDownMirrored
+                                                            : UIImageOrientationUp;
     case UIDeviceOrientationPortraitUpsideDown:
-    return devicePosition == AVCaptureDevicePositionFront ? UIImageOrientationRightMirrored : UIImageOrientationLeft;
+      return devicePosition == AVCaptureDevicePositionFront ? UIImageOrientationRightMirrored
+                                                            : UIImageOrientationLeft;
     case UIDeviceOrientationLandscapeRight:
-    return devicePosition == AVCaptureDevicePositionFront ? UIImageOrientationUpMirrored : UIImageOrientationDown;
+      return devicePosition == AVCaptureDevicePositionFront ? UIImageOrientationUpMirrored
+                                                            : UIImageOrientationDown;
     case UIDeviceOrientationFaceDown:
     case UIDeviceOrientationFaceUp:
     case UIDeviceOrientationUnknown:
-    return UIImageOrientationUp;
+      return UIImageOrientationUp;
   }
 }
 
-+ (FIRVisionDetectorImageOrientation) visionImageOrientationFromImageOrientation:(UIImageOrientation)imageOrientation {
++ (FIRVisionDetectorImageOrientation)visionImageOrientationFromImageOrientation:
+    (UIImageOrientation)imageOrientation {
   switch (imageOrientation) {
     case UIImageOrientationUp:
-    return FIRVisionDetectorImageOrientationTopLeft;
+      return FIRVisionDetectorImageOrientationTopLeft;
     case UIImageOrientationDown:
-    return FIRVisionDetectorImageOrientationBottomRight;
+      return FIRVisionDetectorImageOrientationBottomRight;
     case UIImageOrientationLeft:
-    return FIRVisionDetectorImageOrientationLeftBottom;
+      return FIRVisionDetectorImageOrientationLeftBottom;
     case UIImageOrientationRight:
-    return FIRVisionDetectorImageOrientationRightTop;
+      return FIRVisionDetectorImageOrientationRightTop;
     case UIImageOrientationUpMirrored:
-    return FIRVisionDetectorImageOrientationTopRight;
+      return FIRVisionDetectorImageOrientationTopRight;
     case UIImageOrientationDownMirrored:
-    return FIRVisionDetectorImageOrientationBottomLeft;
+      return FIRVisionDetectorImageOrientationBottomLeft;
     case UIImageOrientationLeftMirrored:
-    return FIRVisionDetectorImageOrientationLeftTop;
+      return FIRVisionDetectorImageOrientationLeftTop;
     case UIImageOrientationRightMirrored:
-    return FIRVisionDetectorImageOrientationRightBottom;
+      return FIRVisionDetectorImageOrientationRightBottom;
   }
 }
 
-+ (UIDeviceOrientation) currentUIOrientation {
++ (UIDeviceOrientation)currentUIOrientation {
   UIDeviceOrientation (^deviceOrientation)(void) = ^UIDeviceOrientation(void) {
     switch (UIApplication.sharedApplication.statusBarOrientation) {
       case UIInterfaceOrientationLandscapeLeft:
-      return UIDeviceOrientationLandscapeRight;
+        return UIDeviceOrientationLandscapeRight;
       case UIInterfaceOrientationLandscapeRight:
-      return UIDeviceOrientationLandscapeLeft;
+        return UIDeviceOrientationLandscapeLeft;
       case UIInterfaceOrientationPortraitUpsideDown:
-      return UIDeviceOrientationPortraitUpsideDown;
+        return UIDeviceOrientationPortraitUpsideDown;
       case UIInterfaceOrientationPortrait:
       case UIInterfaceOrientationUnknown:
-      return UIDeviceOrientationPortrait;
+        return UIDeviceOrientationPortrait;
     }
   };
 

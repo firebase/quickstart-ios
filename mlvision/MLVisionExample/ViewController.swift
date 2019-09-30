@@ -47,6 +47,9 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
   // Image counter.
   var currentImage = 0
 
+  // Detect counter
+  var detectionCountWithCurrentModel = 0
+
   // MARK: - IBOutlets
 
   @IBOutlet fileprivate weak var detectorPicker: UIPickerView!
@@ -124,12 +127,14 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
         detectImageLabelsAutoML(image: imageView.image)
       case .detectObjectsProminentNoClassifier, .detectObjectsProminentWithClassifier,
         .detectObjectsMultipleNoClassifier, .detectObjectsMultipleWithClassifier:
-        let shouldEnableClassification = (rowIndex == .detectObjectsProminentWithClassifier) || (
-          rowIndex == .detectObjectsMultipleWithClassifier
-        )
-        let shouldEnableMultipleObjects = (rowIndex == .detectObjectsMultipleWithClassifier) || (
-          rowIndex == .detectObjectsMultipleNoClassifier
-        )
+        let shouldEnableClassification = (rowIndex == .detectObjectsProminentWithClassifier)
+          || (
+            rowIndex == .detectObjectsMultipleWithClassifier
+          )
+        let shouldEnableMultipleObjects = (rowIndex == .detectObjectsMultipleWithClassifier)
+          || (
+            rowIndex == .detectObjectsMultipleNoClassifier
+          )
         let options = VisionObjectDetectorOptions()
         options.shouldEnableClassification = shouldEnableClassification
         options.shouldEnableMultipleObjects = shouldEnableMultipleObjects
@@ -160,8 +165,9 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
 
   @IBAction func openCamera(_ sender: Any) {
     guard
-      UIImagePickerController.isCameraDeviceAvailable(.front) || UIImagePickerController
-      .isCameraDeviceAvailable(.rear)
+      UIImagePickerController.isCameraDeviceAvailable(.front)
+        || UIImagePickerController
+          .isCameraDeviceAvailable(.rear)
     else {
       return
     }
@@ -266,7 +272,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
     // Face
     if let faceContour = face.contour(ofType: .face) {
       for point in faceContour.points {
-        let transformedPoint = pointFrom(point).applying(transform);
+        let transformedPoint = pointFrom(point).applying(transform)
         UIUtilities.addCircle(
           atPoint: transformedPoint,
           to: annotationOverlayView,
@@ -279,7 +285,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
     // Eyebrows
     if let topLeftEyebrowContour = face.contour(ofType: .leftEyebrowTop) {
       for point in topLeftEyebrowContour.points {
-        let transformedPoint = pointFrom(point).applying(transform);
+        let transformedPoint = pointFrom(point).applying(transform)
         UIUtilities.addCircle(
           atPoint: transformedPoint,
           to: annotationOverlayView,
@@ -290,7 +296,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
     }
     if let bottomLeftEyebrowContour = face.contour(ofType: .leftEyebrowBottom) {
       for point in bottomLeftEyebrowContour.points {
-        let transformedPoint = pointFrom(point).applying(transform);
+        let transformedPoint = pointFrom(point).applying(transform)
         UIUtilities.addCircle(
           atPoint: transformedPoint,
           to: annotationOverlayView,
@@ -301,7 +307,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
     }
     if let topRightEyebrowContour = face.contour(ofType: .rightEyebrowTop) {
       for point in topRightEyebrowContour.points {
-        let transformedPoint = pointFrom(point).applying(transform);
+        let transformedPoint = pointFrom(point).applying(transform)
         UIUtilities.addCircle(
           atPoint: transformedPoint,
           to: annotationOverlayView,
@@ -312,7 +318,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
     }
     if let bottomRightEyebrowContour = face.contour(ofType: .rightEyebrowBottom) {
       for point in bottomRightEyebrowContour.points {
-        let transformedPoint = pointFrom(point).applying(transform);
+        let transformedPoint = pointFrom(point).applying(transform)
         UIUtilities.addCircle(
           atPoint: transformedPoint,
           to: annotationOverlayView,
@@ -325,7 +331,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
     // Eyes
     if let leftEyeContour = face.contour(ofType: .leftEye) {
       for point in leftEyeContour.points {
-        let transformedPoint = pointFrom(point).applying(transform);
+        let transformedPoint = pointFrom(point).applying(transform)
         UIUtilities.addCircle(
           atPoint: transformedPoint,
           to: annotationOverlayView,
@@ -335,7 +341,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
     }
     if let rightEyeContour = face.contour(ofType: .rightEye) {
       for point in rightEyeContour.points {
-        let transformedPoint = pointFrom(point).applying(transform);
+        let transformedPoint = pointFrom(point).applying(transform)
         UIUtilities.addCircle(
           atPoint: transformedPoint,
           to: annotationOverlayView,
@@ -348,7 +354,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
     // Lips
     if let topUpperLipContour = face.contour(ofType: .upperLipTop) {
       for point in topUpperLipContour.points {
-        let transformedPoint = pointFrom(point).applying(transform);
+        let transformedPoint = pointFrom(point).applying(transform)
         UIUtilities.addCircle(
           atPoint: transformedPoint,
           to: annotationOverlayView,
@@ -359,7 +365,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
     }
     if let bottomUpperLipContour = face.contour(ofType: .upperLipBottom) {
       for point in bottomUpperLipContour.points {
-        let transformedPoint = pointFrom(point).applying(transform);
+        let transformedPoint = pointFrom(point).applying(transform)
         UIUtilities.addCircle(
           atPoint: transformedPoint,
           to: annotationOverlayView,
@@ -370,7 +376,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
     }
     if let topLowerLipContour = face.contour(ofType: .lowerLipTop) {
       for point in topLowerLipContour.points {
-        let transformedPoint = pointFrom(point).applying(transform);
+        let transformedPoint = pointFrom(point).applying(transform)
         UIUtilities.addCircle(
           atPoint: transformedPoint,
           to: annotationOverlayView,
@@ -381,7 +387,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
     }
     if let bottomLowerLipContour = face.contour(ofType: .lowerLipBottom) {
       for point in bottomLowerLipContour.points {
-        let transformedPoint = pointFrom(point).applying(transform);
+        let transformedPoint = pointFrom(point).applying(transform)
         UIUtilities.addCircle(
           atPoint: transformedPoint,
           to: annotationOverlayView,
@@ -394,7 +400,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
     // Nose
     if let noseBridgeContour = face.contour(ofType: .noseBridge) {
       for point in noseBridgeContour.points {
-        let transformedPoint = pointFrom(point).applying(transform);
+        let transformedPoint = pointFrom(point).applying(transform)
         UIUtilities.addCircle(
           atPoint: transformedPoint,
           to: annotationOverlayView,
@@ -405,7 +411,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
     }
     if let noseBottomContour = face.contour(ofType: .noseBottom) {
       for point in noseBottomContour.points {
-        let transformedPoint = pointFrom(point).applying(transform);
+        let transformedPoint = pointFrom(point).applying(transform)
         UIUtilities.addCircle(
           atPoint: transformedPoint,
           to: annotationOverlayView,
@@ -635,7 +641,14 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
 
   private func requestAutoMLRemoteModelIfNeeded() {
     let remoteModel = AutoMLRemoteModel(name: Constants.remoteAutoMLModelName)
-    if (modelManager.isModelDownloaded(remoteModel)) {
+    if modelManager.isModelDownloaded(remoteModel) {
+      if detectionCountWithCurrentModel >= 5 {
+        modelManager.deleteDownloadedModel(remoteModel) { error in
+          guard error == nil else { preconditionFailure("Failed to delete the AutoML model.") }
+          print("The downloaded remote model has been successfully deleted.\n")
+          self.detectionCountWithCurrentModel = 0
+        }
+      }
       return
     }
     NotificationCenter.default.addObserver(
@@ -654,10 +667,12 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
     let conditions = ModelDownloadConditions(
       allowsCellularAccess: true,
       allowsBackgroundDownloading: true)
-    downloadProgressView.observedProgress = modelManager.download(
-      remoteModel,
-      conditions: conditions)
-    print("Start downloading AutoML remote model");
+    downloadProgressView.observedProgress
+      = modelManager.download(
+        remoteModel,
+        conditions: conditions)
+    print("Start downloading AutoML remote model")
+    detectionCountWithCurrentModel += 1
   }
 
   // MARK: - Notifications
@@ -677,7 +692,10 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
         += "Successfully downloaded the remote model with name: \(remoteModel.name). The model is ready for detection."
       print("Sucessfully downloaded AutoML remote model.")
     }
-    if Thread.isMainThread { notificationHandler();return }
+    if Thread.isMainThread {
+      notificationHandler()
+      return
+    }
     DispatchQueue.main.async { notificationHandler() }
   }
 
@@ -697,7 +715,10 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
         += "Failed to download the remote model with name: \(remoteModel.name), error: \(error)."
       print("Failed to download AutoML remote model.")
     }
-    if Thread.isMainThread { notificationHandler();return }
+    if Thread.isMainThread {
+      notificationHandler()
+      return
+    }
     DispatchQueue.main.async { notificationHandler() }
   }
 }
@@ -741,8 +762,9 @@ extension ViewController: UIImagePickerControllerDelegate {
     let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
 
     clearResults()
-    if let pickedImage = info[
-      convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.originalImage)]
+    if let pickedImage
+      = info[
+        convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.originalImage)]
       as? UIImage
     {
       updateImageView(with: pickedImage)
@@ -808,26 +830,27 @@ extension ViewController {
         self.addLandmarks(forFace: face, transform: transform)
         self.addContours(forFace: face, transform: transform)
       }
-      self.resultsText = faces.map { face in
-        let headEulerAngleY = face.hasHeadEulerAngleY ? face.headEulerAngleY.description : "NA"
-        let headEulerAngleZ = face.hasHeadEulerAngleZ ? face.headEulerAngleZ.description : "NA"
-        let leftEyeOpenProbability = face.hasLeftEyeOpenProbability
-          ? face.leftEyeOpenProbability.description : "NA"
-        let rightEyeOpenProbability = face.hasRightEyeOpenProbability
-          ? face.rightEyeOpenProbability.description : "NA"
-        let smilingProbability = face.hasSmilingProbability
-          ? face.smilingProbability.description : "NA"
-        let output
-          = """
-                     Frame: \(face.frame)
-                     Head Euler Angle Y: \(headEulerAngleY)
-                     Head Euler Angle Z: \(headEulerAngleZ)
-                     Left Eye Open Probability: \(leftEyeOpenProbability)
-                     Right Eye Open Probability: \(rightEyeOpenProbability)
-                     Smiling Probability: \(smilingProbability)
-                     """
-        return "\(output)"
-      }.joined(separator: "\n")
+      self.resultsText
+        = faces.map { face in
+          let headEulerAngleY = face.hasHeadEulerAngleY ? face.headEulerAngleY.description : "NA"
+          let headEulerAngleZ = face.hasHeadEulerAngleZ ? face.headEulerAngleZ.description : "NA"
+          let leftEyeOpenProbability = face.hasLeftEyeOpenProbability
+            ? face.leftEyeOpenProbability.description : "NA"
+          let rightEyeOpenProbability = face.hasRightEyeOpenProbability
+            ? face.rightEyeOpenProbability.description : "NA"
+          let smilingProbability = face.hasSmilingProbability
+            ? face.smilingProbability.description : "NA"
+          let output
+            = """
+            Frame: \(face.frame)
+            Head Euler Angle Y: \(headEulerAngleY)
+            Head Euler Angle Z: \(headEulerAngleZ)
+            Left Eye Open Probability: \(leftEyeOpenProbability)
+            Right Eye Open Probability: \(rightEyeOpenProbability)
+            Smiling Probability: \(smilingProbability)
+            """
+          return "\(output)"
+        }.joined(separator: "\n")
       self.showResults()
       // [END_EXCLUDE]
     }
@@ -880,10 +903,11 @@ extension ViewController {
           color: UIColor.green
         )
       }
-      self.resultsText = features.map { feature in
-        return "DisplayValue: \(feature.displayValue ?? ""), RawValue: "
-          + "\(feature.rawValue ?? ""), Frame: \(feature.frame)"
-      }.joined(separator: "\n")
+      self.resultsText
+        = features.map { feature in
+          return "DisplayValue: \(feature.displayValue ?? ""), RawValue: "
+            + "\(feature.rawValue ?? ""), Frame: \(feature.frame)"
+        }.joined(separator: "\n")
       self.showResults()
       // [END_EXCLUDE]
     }
@@ -925,10 +949,11 @@ extension ViewController {
       }
 
       // [START_EXCLUDE]
-      self.resultsText = labels.map { label -> String in
-        return "Label: \(label.text), " + "Confidence: \(label.confidence ?? 0), "
-          + "EntityID: \(label.entityID ?? "")"
-      }.joined(separator: "\n")
+      self.resultsText
+        = labels.map { label -> String in
+          return "Label: \(label.text), " + "Confidence: \(label.confidence ?? 0), "
+            + "EntityID: \(label.entityID ?? "")"
+        }.joined(separator: "\n")
       self.showResults()
       // [END_EXCLUDE]
     }
@@ -954,10 +979,10 @@ extension ViewController {
       return
     }
     let localModel = AutoMLLocalModel(manifestPath: localModelFilePath)
-    let isModelDownloaded = modelManager.isModelDownloaded(remoteModel);
-    let options = isModelDownloaded ?
-      VisionOnDeviceAutoMLImageLabelerOptions(remoteModel: remoteModel) :
-      VisionOnDeviceAutoMLImageLabelerOptions(localModel: localModel)
+    let isModelDownloaded = modelManager.isModelDownloaded(remoteModel)
+    let options = isModelDownloaded
+      ? VisionOnDeviceAutoMLImageLabelerOptions(remoteModel: remoteModel)
+      : VisionOnDeviceAutoMLImageLabelerOptions(localModel: localModel)
     print("Use AutoML \(isModelDownloaded ? "remote" : "local") in detector picker.")
     options.confidenceThreshold = Constants.labelConfidenceThreshold
     // [END config_automl_label]
@@ -986,9 +1011,10 @@ extension ViewController {
       }
 
       // [START_EXCLUDE]
-      self.resultsText = labels.map { label -> String in
-        return "Label: \(label.text), Confidence: \(label.confidence ?? 0)"
-      }.joined(separator: "\n")
+      self.resultsText
+        = labels.map { label -> String in
+          return "Label: \(label.text), Confidence: \(label.confidence ?? 0)"
+        }.joined(separator: "\n")
       self.showResults()
       // [END_EXCLUDE]
     }
@@ -1123,12 +1149,13 @@ extension ViewController {
           color: UIColor.green
         )
       }
-      self.resultsText = landmarks.map { landmark -> String in
-        return "Landmark: \(String(describing: landmark.landmark ?? "")), "
-          + "Confidence: \(String(describing: landmark.confidence ?? 0) ), "
-          + "EntityID: \(String(describing: landmark.entityId ?? "") ), "
-          + "Frame: \(landmark.frame)"
-      }.joined(separator: "\n")
+      self.resultsText
+        = landmarks.map { landmark -> String in
+          return "Landmark: \(String(describing: landmark.landmark ?? "")), "
+            + "Confidence: \(String(describing: landmark.confidence ?? 0) ), "
+            + "EntityID: \(String(describing: landmark.entityId ?? "") ), "
+            + "Frame: \(landmark.frame)"
+        }.joined(separator: "\n")
       self.showResults()
       // [END_EXCLUDE]
     }
@@ -1168,10 +1195,11 @@ extension ViewController {
 
       // Labeled image
       // START_EXCLUDE
-      self.resultsText = labels.map { label -> String in
-        "Label: \(label.text), " + "Confidence: \(label.confidence ?? 0), "
-          + "EntityID: \(label.entityID ?? "")"
-      }.joined(separator: "\n")
+      self.resultsText
+        = labels.map { label -> String in
+          "Label: \(label.text), " + "Confidence: \(label.confidence ?? 0), "
+            + "EntityID: \(label.entityID ?? "")"
+        }.joined(separator: "\n")
       self.showResults()
       // [END_EXCLUDE]
     }
@@ -1229,9 +1257,10 @@ extension ViewController {
       }
 
       // [START_EXCLUDE]
-      self.resultsText = objects.map { object in
-        return "Frame: \(object.frame), ID: \(object.trackingID ?? 0)"
-      }.joined(separator: "\n")
+      self.resultsText
+        = objects.map { object in
+          return "Frame: \(object.frame), ID: \(object.trackingID ?? 0)"
+        }.joined(separator: "\n")
       self.showResults()
       // [END_EXCLUDE]
     }

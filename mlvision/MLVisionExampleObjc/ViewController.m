@@ -110,6 +110,9 @@ typedef NS_ENUM(NSInteger, DetectorPickerRow) {
 // Image counter.
 @property(nonatomic) NSUInteger currentImage;
 
+// Detect counter
+@property(nonatomic) NSUInteger detectionCountWithCurrentModel;
+
 @property(weak, nonatomic) IBOutlet UIPickerView *detectorPicker;
 @property(weak, nonatomic) IBOutlet UIImageView *imageView;
 @property(weak, nonatomic) IBOutlet UIBarButtonItem *photoCameraButton;
@@ -171,6 +174,7 @@ typedef NS_ENUM(NSInteger, DetectorPickerRow) {
   self.imagePicker = [UIImagePickerController new];
   self.resultsText = [NSMutableString new];
   _currentImage = 0;
+  self.detectionCountWithCurrentModel = 0;
   _imageView.image = [UIImage imageNamed:images[_currentImage]];
   _annotationOverlayView = [[UIView alloc] initWithFrame:CGRectZero];
   _annotationOverlayView.translatesAutoresizingMaskIntoConstraints = NO;
@@ -1012,7 +1016,7 @@ typedef NS_ENUM(NSInteger, DetectorPickerRow) {
       return;
     }
     FIRAutoMLLocalModel *localModel =
-          [[FIRAutoMLLocalModel alloc] initWithManifestPath:localModelFilePath];
+        [[FIRAutoMLLocalModel alloc] initWithManifestPath:localModelFilePath];
     options = [[FIRVisionOnDeviceAutoMLImageLabelerOptions alloc] initWithLocalModel:localModel];
   }
   options.confidenceThreshold = labelConfidenceThreshold;
@@ -1334,6 +1338,18 @@ typedef NS_ENUM(NSInteger, DetectorPickerRow) {
   FIRAutoMLRemoteModel *remoteModel =
       [[FIRAutoMLRemoteModel alloc] initWithName:FIRRemoteAutoMLModelName];
   if ([self.modelManager isModelDownloaded:remoteModel]) {
+    if (self.detectionCountWithCurrentModel >= 5) {
+      [self.modelManager
+          deleteDownloadedModel:remoteModel
+                     completion:^(NSError *_Nullable error) {
+                       if (error) {
+                         NSLog(@"Failed to delete the AutoML model.");
+                         return;
+                       }
+                       NSLog(@"The downloaded remote model has been successfully deleted.");
+                       self.detectionCountWithCurrentModel = 0;
+                     }];
+    }
     return;
   }
   [NSNotificationCenter.defaultCenter addObserver:self
@@ -1350,10 +1366,11 @@ typedef NS_ENUM(NSInteger, DetectorPickerRow) {
     FIRModelDownloadConditions *conditions =
         [[FIRModelDownloadConditions alloc] initWithAllowsCellularAccess:YES
                                              allowsBackgroundDownloading:YES];
-    self.downloadProgressView.observedProgress =
-        [self.modelManager downloadModel:remoteModel conditions:conditions];
+    self.downloadProgressView.observedProgress = [self.modelManager downloadModel:remoteModel
+                                                                       conditions:conditions];
     NSLog(@"Start downloading AutoML remote model.");
   });
+  self.detectionCountWithCurrentModel++;
 }
 
 #pragma mark - Notifications

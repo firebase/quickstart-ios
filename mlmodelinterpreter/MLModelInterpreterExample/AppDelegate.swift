@@ -19,7 +19,6 @@ import UIKit
 import Firebase
 
 @UIApplicationMain
-
 final class AppDelegate: UIResponder, UIApplicationDelegate {
 
   /// The main window of the app.
@@ -27,7 +26,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
 
   func application(
     _ application: UIApplication,
-    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
+    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil
   ) -> Bool {
     // Configure Firebase.
     FirebaseApp.configure()
@@ -38,7 +37,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
 // MARK: - Extensions
 
 #if !swift(>=4.2)
-extension UIApplication {
-typealias LaunchOptionsKey = UIApplicationLaunchOptionsKey
-}
+  extension UIApplication {
+    typealias LaunchOptionsKey = UIApplicationLaunchOptionsKey
+  }
 #endif  // !swift(>=4.2)

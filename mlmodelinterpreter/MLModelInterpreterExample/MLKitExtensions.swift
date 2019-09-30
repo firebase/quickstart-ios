@@ -51,8 +51,8 @@ extension UIImage {
     var index = 0
     for component in imageData.enumerated() {
       let offset = component.offset
-      let isAlphaComponent =
-        (offset % Constant.alphaComponent.baseOffset) == Constant.alphaComponent.moduloRemainder
+      let isAlphaComponent = (offset % Constant.alphaComponent.baseOffset) == Constant
+        .alphaComponent.moduloRemainder
       guard !isAlphaComponent else { continue }
       scaledBytes[index] = component.element
       index += 1
@@ -67,10 +67,10 @@ extension UIImage {
   /// The PNG or JPEG data representation of the image or `nil` if the conversion failed.
   private var data: Data? {
     #if swift(>=4.2)
-    return self.pngData() ?? self.jpegData(compressionQuality: Constant.jpegCompressionQuality)
+      return self.pngData() ?? self.jpegData(compressionQuality: Constant.jpegCompressionQuality)
     #else
-    return UIImagePNGRepresentation(self) ??
-    UIImageJPEGRepresentation(self, Constant.jpegCompressionQuality)
+      return UIImagePNGRepresentation(self) ?? UIImageJPEGRepresentation(
+        self, Constant.jpegCompressionQuality)
     #endif  // swift(>=4.2)
   }
 
@@ -81,16 +81,17 @@ extension UIImage {
     )
     let width = Int(size.width)
     let scaledBytesPerRow = (cgImage.bytesPerRow / cgImage.width) * width
-    guard let context = CGContext(
-      data: nil,
-      width: width,
-      height: Int(size.height),
-      bitsPerComponent: cgImage.bitsPerComponent,
-      bytesPerRow: scaledBytesPerRow,
-      space: CGColorSpaceCreateDeviceRGB(),
-      bitmapInfo: bitmapInfo.rawValue)
-      else {
-        return nil
+    guard
+      let context = CGContext(
+        data: nil,
+        width: width,
+        height: Int(size.height),
+        bitsPerComponent: cgImage.bitsPerComponent,
+        bytesPerRow: scaledBytesPerRow,
+        space: CGColorSpaceCreateDeviceRGB(),
+        bitmapInfo: bitmapInfo.rawValue)
+    else {
+      return nil
     }
     context.draw(cgImage, in: CGRect(origin: .zero, size: size))
     return context.makeImage()?.dataProvider?.data as Data?

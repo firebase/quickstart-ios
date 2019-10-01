@@ -15,10 +15,8 @@
 //
 
 #import "ViewController.h"
-@import FirebaseCore;
+@import Firebase;
 @import FirebaseMLCommon;
-@import FirebaseMLNLTranslate;
-@import FirebaseMLNaturalLanguage;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -157,17 +155,20 @@ NS_ASSUME_NONNULL_BEGIN
   FIRTranslateRemoteModel *model = [self modelForLanguage:language];
   FIRModelManager *modelManager = [FIRModelManager modelManager];
 
-  if ([modelManager isRemoteModelDownloaded:model]) {
+  if ([modelManager isModelDownloaded:model]) {
     self.statusTextView.text = [NSString stringWithFormat:@"Deleting %@", languageCode];
-    [modelManager deleteDownloadedTranslateModel:model
-                                      completion:^(NSError *_Nullable error) {
-                                        [self updateDownloadDeleteButtonLabels];
-                                        self.statusTextView.text =
-                                            [NSString stringWithFormat:@"Deleted %@", languageCode];
-                                      }];
+    [modelManager deleteDownloadedModel:model
+                             completion:^(NSError *_Nullable error) {
+                               [self updateDownloadDeleteButtonLabels];
+                               self.statusTextView.text =
+                                   [NSString stringWithFormat:@"Deleted %@", languageCode];
+                             }];
   } else {
     self.statusTextView.text = [NSString stringWithFormat:@"Downloading %@", languageCode];
-    [modelManager downloadRemoteModel:model];
+    FIRModelDownloadConditions *conditions =
+        [[FIRModelDownloadConditions alloc] initWithAllowsCellularAccess:YES
+                                             allowsBackgroundDownloading:YES];
+    [modelManager downloadModel:model conditions:conditions];
   }
 }
 
@@ -193,14 +194,13 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL)isLanguageDownloaded:(FIRTranslateLanguage)language {
   FIRTranslateRemoteModel *model = [self modelForLanguage:language];
   FIRModelManager *modelManager = [FIRModelManager modelManager];
-  return [modelManager isRemoteModelDownloaded:model];
+  return [modelManager isModelDownloaded:model];
 }
 
 - (IBAction)listDownloadedModels {
-  FIRApp *app = [FIRApp defaultApp];
   FIRModelManager *modelManager = [FIRModelManager modelManager];
   NSMutableString *listOfLanguages = [NSMutableString string];
-  for (FIRTranslateRemoteModel *model in [modelManager availableTranslateModelsWithApp:app]) {
+  for (FIRTranslateRemoteModel *model in modelManager.downloadedTranslateModels) {
     if (listOfLanguages.length > 0) {
       [listOfLanguages appendString:@", "];
     }
@@ -218,13 +218,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (FIRTranslateRemoteModel *)modelForLanguage:(FIRTranslateLanguage)language {
-  FIRApp *app = [FIRApp defaultApp];
-  FIRModelDownloadConditions *conditions =
-      [[FIRModelDownloadConditions alloc] initWithAllowsCellularAccess:YES
-                                           allowsBackgroundDownloading:YES];
-  return [FIRTranslateRemoteModel translateRemoteModelForApp:app
-                                                    language:language
-                                                  conditions:conditions];
+  return [FIRTranslateRemoteModel translateRemoteModelWithLanguage:language];
 }
 
 - (void)modelDownloadDidCompleteWithNotification:(NSNotification *)notification {

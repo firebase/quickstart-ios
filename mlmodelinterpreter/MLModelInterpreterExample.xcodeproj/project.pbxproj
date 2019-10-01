@@ -23,11 +23,9 @@
 		10E115DF20F46A020013E4A4 /* grace_hopper.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4A56D22B20A154E100357F77 /* grace_hopper.jpg */; };
 		10E115E020F46A0B0013E4A4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A56D21120A138E500357F77 /* Main.storyboard */; };
 		10E115E120F46A0D0013E4A4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A56D21420A138E500357F77 /* Assets.xcassets */; };
-		10E115E420F46A200013E4A4 /* ModelInterpreterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 10E115E320F46A200013E4A4 /* ModelInterpreterManager.m */; };
 		10E115E720F46A340013E4A4 /* UIImage+TFLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 10E115E620F46A340013E4A4 /* UIImage+TFLite.m */; };
 		4A56D21320A138E500357F77 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A56D21120A138E500357F77 /* Main.storyboard */; };
 		4A56D21520A138E500357F77 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A56D21420A138E500357F77 /* Assets.xcassets */; };
-		4A56D22C20A154E100357F77 /* ModelInterpreterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A56D22020A154E100357F77 /* ModelInterpreterManager.swift */; };
 		4A56D22D20A154E100357F77 /* MLKitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A56D22120A154E100357F77 /* MLKitExtensions.swift */; };
 		4A56D22E20A154E100357F77 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A56D22320A154E100357F77 /* ViewController.swift */; };
 		4A56D22F20A154E100357F77 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A56D22420A154E100357F77 /* AppDelegate.swift */; };
@@ -88,15 +86,12 @@
 		10E115CA20F469DC0013E4A4 /* MLModelInterpreterExampleObjCUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MLModelInterpreterExampleObjCUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		10E115CE20F469DC0013E4A4 /* MLModelInterpreterExampleObjCUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MLModelInterpreterExampleObjCUITests.m; sourceTree = "<group>"; };
 		10E115D020F469DC0013E4A4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		10E115E220F46A200013E4A4 /* ModelInterpreterManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ModelInterpreterManager.h; sourceTree = "<group>"; };
-		10E115E320F46A200013E4A4 /* ModelInterpreterManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ModelInterpreterManager.m; sourceTree = "<group>"; };
 		10E115E520F46A340013E4A4 /* UIImage+TFLite.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+TFLite.h"; sourceTree = "<group>"; };
 		10E115E620F46A340013E4A4 /* UIImage+TFLite.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+TFLite.m"; sourceTree = "<group>"; };
 		4A56D20A20A138E500357F77 /* MLModelInterpreterExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MLModelInterpreterExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A56D21220A138E500357F77 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4A56D21420A138E500357F77 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4A56D21920A138E500357F77 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4A56D22020A154E100357F77 /* ModelInterpreterManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelInterpreterManager.swift; sourceTree = "<group>"; };
 		4A56D22120A154E100357F77 /* MLKitExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MLKitExtensions.swift; sourceTree = "<group>"; };
 		4A56D22320A154E100357F77 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		4A56D22420A154E100357F77 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -177,8 +172,6 @@
 				10E115AD20F469DB0013E4A4 /* ViewController.h */,
 				10E115AE20F469DB0013E4A4 /* ViewController.m */,
 				10E115B920F469DC0013E4A4 /* main.m */,
-				10E115E220F46A200013E4A4 /* ModelInterpreterManager.h */,
-				10E115E320F46A200013E4A4 /* ModelInterpreterManager.m */,
 				10E115E520F46A340013E4A4 /* UIImage+TFLite.h */,
 				10E115E620F46A340013E4A4 /* UIImage+TFLite.m */,
 			);
@@ -234,7 +227,6 @@
 			children = (
 				4A56D22320A154E100357F77 /* ViewController.swift */,
 				4A56D22420A154E100357F77 /* AppDelegate.swift */,
-				4A56D22020A154E100357F77 /* ModelInterpreterManager.swift */,
 				4A56D22120A154E100357F77 /* MLKitExtensions.swift */,
 				4A56D22520A154E100357F77 /* Resources */,
 				4A56D21120A138E500357F77 /* Main.storyboard */,
@@ -506,7 +498,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				10E115E720F46A340013E4A4 /* UIImage+TFLite.m in Sources */,
-				10E115E420F46A200013E4A4 /* ModelInterpreterManager.m in Sources */,
 				10E115AF20F469DB0013E4A4 /* ViewController.m in Sources */,
 				10E115BA20F469DC0013E4A4 /* main.m in Sources */,
 				10E115AC20F469DB0013E4A4 /* AppDelegate.m in Sources */,
@@ -535,7 +526,6 @@
 			files = (
 				4A56D22F20A154E100357F77 /* AppDelegate.swift in Sources */,
 				4A56D22E20A154E100357F77 /* ViewController.swift in Sources */,
-				4A56D22C20A154E100357F77 /* ModelInterpreterManager.swift in Sources */,
 				4A56D22D20A154E100357F77 /* MLKitExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

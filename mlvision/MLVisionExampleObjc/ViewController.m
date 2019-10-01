@@ -110,13 +110,11 @@ typedef NS_ENUM(NSInteger, DetectorPickerRow) {
 // Image counter.
 @property(nonatomic) NSUInteger currentImage;
 
-// Detect counter
-@property(nonatomic) NSUInteger detectionCountWithCurrentModel;
-
 @property(weak, nonatomic) IBOutlet UIPickerView *detectorPicker;
 @property(weak, nonatomic) IBOutlet UIImageView *imageView;
 @property(weak, nonatomic) IBOutlet UIBarButtonItem *photoCameraButton;
 @property(weak, nonatomic) IBOutlet UIBarButtonItem *videoCameraButton;
+@property(weak, nonatomic) IBOutlet UIBarButtonItem *downloadOrDeleteModelButton;
 
 @end
 
@@ -170,11 +168,15 @@ typedef NS_ENUM(NSInteger, DetectorPickerRow) {
   // [END init_vision]
 
   _modelManager = [FIRModelManager modelManager];
+  FIRAutoMLRemoteModel *remoteModel =
+      [[FIRAutoMLRemoteModel alloc] initWithName:FIRRemoteAutoMLModelName];
+  NSString *buttonImage =
+      [self.modelManager isModelDownloaded:remoteModel] ? @"delete" : @"cloud_download";
+  self.downloadOrDeleteModelButton.image = [UIImage imageNamed:buttonImage];
 
   self.imagePicker = [UIImagePickerController new];
   self.resultsText = [NSMutableString new];
   _currentImage = 0;
-  self.detectionCountWithCurrentModel = 0;
   _imageView.image = [UIImage imageNamed:images[_currentImage]];
   _annotationOverlayView = [[UIView alloc] initWithFrame:CGRectZero];
   _annotationOverlayView.translatesAutoresizingMaskIntoConstraints = NO;
@@ -288,10 +290,30 @@ typedef NS_ENUM(NSInteger, DetectorPickerRow) {
   _imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
   [self presentViewController:_imagePicker animated:YES completion:nil];
 }
+
 - (IBAction)changeImage:(id)sender {
   [self clearResults];
   self.currentImage = (_currentImage + 1) % images.count;
   _imageView.image = [UIImage imageNamed:images[_currentImage]];
+}
+
+- (IBAction)downloadOrDeleteModel:(id)sender {
+  [self clearResults];
+  FIRAutoMLRemoteModel *remoteModel =
+      [[FIRAutoMLRemoteModel alloc] initWithName:FIRRemoteAutoMLModelName];
+  if ([self.modelManager isModelDownloaded:remoteModel]) {
+    [self.modelManager
+        deleteDownloadedModel:remoteModel
+                   completion:^(NSError *_Nullable error) {
+                     if (error) {
+                       NSLog(@"Failed to delete the AutoML model.");
+                       return;
+                     }
+                     NSLog(@"The downloaded remote model has been successfully deleted.");
+                     self.downloadOrDeleteModelButton.image =
+                         [UIImage imageNamed:@"cloud_download"];
+                   }];
+  }
 }
 
 /// Removes the detection annotations from the annotation overlay view.
@@ -767,6 +789,8 @@ typedef NS_ENUM(NSInteger, DetectorPickerRow) {
       didSelectRow:(NSInteger)row
        inComponent:(NSInteger)component {
   [self clearResults];
+  self.downloadOrDeleteModelButton.enabled =
+      row == DetectorPickerRowDetectImageLabelsAutoMLOnDevice;
 }
 
 #pragma mark - UIImagePickerControllerDelegate
@@ -1338,18 +1362,6 @@ typedef NS_ENUM(NSInteger, DetectorPickerRow) {
   FIRAutoMLRemoteModel *remoteModel =
       [[FIRAutoMLRemoteModel alloc] initWithName:FIRRemoteAutoMLModelName];
   if ([self.modelManager isModelDownloaded:remoteModel]) {
-    if (self.detectionCountWithCurrentModel >= 5) {
-      [self.modelManager
-          deleteDownloadedModel:remoteModel
-                     completion:^(NSError *_Nullable error) {
-                       if (error) {
-                         NSLog(@"Failed to delete the AutoML model.");
-                         return;
-                       }
-                       NSLog(@"The downloaded remote model has been successfully deleted.");
-                       self.detectionCountWithCurrentModel = 0;
-                     }];
-    }
     return;
   }
   [NSNotificationCenter.defaultCenter addObserver:self
@@ -1370,7 +1382,6 @@ typedef NS_ENUM(NSInteger, DetectorPickerRow) {
                                                                        conditions:conditions];
     NSLog(@"Start downloading AutoML remote model.");
   });
-  self.detectionCountWithCurrentModel++;
 }
 
 #pragma mark - Notifications
@@ -1378,6 +1389,7 @@ typedef NS_ENUM(NSInteger, DetectorPickerRow) {
 - (void)remoteModelDownloadDidSucceed:(NSNotification *)notification {
   dispatch_async(dispatch_get_main_queue(), ^{
     self.downloadProgressView.hidden = YES;
+    self.downloadOrDeleteModelButton.image = [UIImage imageNamed:@"delete"];
     FIRRemoteModel *remotemodel = notification.userInfo[FIRModelDownloadUserInfoKeyRemoteModel];
     if (remotemodel == nil) {
       [self.resultsText appendString:@"firebaseMLModelDownloadDidSucceed notification posted "

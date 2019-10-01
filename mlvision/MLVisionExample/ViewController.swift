@@ -47,9 +47,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
   // Image counter.
   var currentImage = 0
 
-  // Detect counter
-  var detectionCountWithCurrentModel = 0
-
   // MARK: - IBOutlets
 
   @IBOutlet fileprivate weak var detectorPicker: UIPickerView!
@@ -57,6 +54,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
   @IBOutlet fileprivate weak var imageView: UIImageView!
   @IBOutlet fileprivate weak var photoCameraButton: UIBarButtonItem!
   @IBOutlet fileprivate weak var videoCameraButton: UIBarButtonItem!
+  @IBOutlet fileprivate weak var downloadOrDeleteModelButton: UIBarButtonItem!
   @IBOutlet weak var detectButton: UIBarButtonItem!
   @IBOutlet var downloadProgressView: UIProgressView!
 
@@ -65,6 +63,9 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
   override func viewDidLoad() {
     super.viewDidLoad()
 
+    let remoteModel = AutoMLRemoteModel(name: Constants.remoteAutoMLModelName)
+    downloadOrDeleteModelButton.image = modelManager.isModelDownloaded(remoteModel)
+      ? #imageLiteral(resourceName: "delete") : #imageLiteral(resourceName: "cloud_download")
     imageView.image = UIImage(named: Constants.images[currentImage])
     imageView.addSubview(annotationOverlayView)
     NSLayoutConstraint.activate([
@@ -179,6 +180,20 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
     clearResults()
     currentImage = (currentImage + 1) % Constants.images.count
     imageView.image = UIImage(named: Constants.images[currentImage])
+  }
+
+  @IBAction func downloadOrDeleteModel(_ sender: Any) {
+    clearResults()
+    let remoteModel = AutoMLRemoteModel(name: Constants.remoteAutoMLModelName)
+    if modelManager.isModelDownloaded(remoteModel) {
+      modelManager.deleteDownloadedModel(remoteModel) { error in
+        guard error == nil else { preconditionFailure("Failed to delete the AutoML model.") }
+        print("The downloaded remote model has been successfully deleted.\n")
+        self.downloadOrDeleteModelButton.image = #imageLiteral(resourceName: "cloud_download")
+      }
+    } else {
+      downloadAutoMLRemoteModel(remoteModel)
+    }
   }
 
   // MARK: - Private
@@ -642,15 +657,12 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
   private func requestAutoMLRemoteModelIfNeeded() {
     let remoteModel = AutoMLRemoteModel(name: Constants.remoteAutoMLModelName)
     if modelManager.isModelDownloaded(remoteModel) {
-      if detectionCountWithCurrentModel >= 5 {
-        modelManager.deleteDownloadedModel(remoteModel) { error in
-          guard error == nil else { preconditionFailure("Failed to delete the AutoML model.") }
-          print("The downloaded remote model has been successfully deleted.\n")
-          self.detectionCountWithCurrentModel = 0
-        }
-      }
       return
     }
+    downloadAutoMLRemoteModel(remoteModel)
+  }
+
+  private func downloadAutoMLRemoteModel(_ remoteModel: RemoteModel) {
     NotificationCenter.default.addObserver(
       self,
       selector: #selector(remoteModelDownloadDidSucceed(_:)),
@@ -672,7 +684,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
         remoteModel,
         conditions: conditions)
     print("Start downloading AutoML remote model")
-    detectionCountWithCurrentModel += 1
   }
 
   // MARK: - Notifications
@@ -681,6 +692,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
   private func remoteModelDownloadDidSucceed(_ notification: Notification) {
     let notificationHandler = {
       self.downloadProgressView.isHidden = true
+      self.downloadOrDeleteModelButton.image = #imageLiteral(resourceName: "delete")
       guard let userInfo = notification.userInfo,
         let remoteModel = userInfo[ModelDownloadUserInfoKey.remoteModel.rawValue] as? RemoteModel
       else {
@@ -747,6 +759,8 @@ extension ViewController: UIPickerViewDataSource, UIPickerViewDelegate {
 
   func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
     clearResults()
+    downloadOrDeleteModelButton.isEnabled = row
+      == DetectorPickerRow.detectImageLabelsAutoMLOnDevice.rawValue
   }
 }
 

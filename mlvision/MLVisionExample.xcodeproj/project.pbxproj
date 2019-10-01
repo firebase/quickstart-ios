@@ -20,6 +20,8 @@
 		1036DA382087CC26003253C9 /* MLVisionExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1036DA372087CC26003253C9 /* MLVisionExampleUITests.swift */; };
 		1077670E210FBBB6007A19A7 /* liberty.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1077670D210FBBB6007A19A7 /* liberty.jpg */; };
 		1077670F210FBBB6007A19A7 /* liberty.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1077670D210FBBB6007A19A7 /* liberty.jpg */; };
+		10B3184E22EB9C5E00E834FF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 10B3184D22EB9C5E00E834FF /* GoogleService-Info.plist */; };
+		10B3184F22EB9C5E00E834FF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 10B3184D22EB9C5E00E834FF /* GoogleService-Info.plist */; };
 		10E114E420E5CBAA0013E4A4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 10E114E320E5CBAA0013E4A4 /* AppDelegate.m */; };
 		10E114E720E5CBAA0013E4A4 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10E114E620E5CBAA0013E4A4 /* ViewController.m */; };
 		10E114F220E5CBAE0013E4A4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 10E114F120E5CBAE0013E4A4 /* main.m */; };
@@ -75,6 +77,7 @@
 		1036DA372087CC26003253C9 /* MLVisionExampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLVisionExampleUITests.swift; sourceTree = "<group>"; };
 		1036DA392087CC26003253C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1077670D210FBBB6007A19A7 /* liberty.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = liberty.jpg; sourceTree = "<group>"; };
+		10B3184D22EB9C5E00E834FF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "MLVisionExample/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		10E114E020E5CBAA0013E4A4 /* MLVisionExampleObjc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MLVisionExampleObjc.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		10E114E220E5CBAA0013E4A4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		10E114E320E5CBAA0013E4A4 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -187,6 +190,7 @@
 		BB287B2C20729CE90069707A = {
 			isa = PBXGroup;
 			children = (
+				10B3184D22EB9C5E00E834FF /* GoogleService-Info.plist */,
 				1001E6FC20CF0C8F00445CB3 /* Assets.xcassets */,
 				10224B642087E52600A77316 /* Resources */,
 				BB287B3720729CE90069707A /* MLVisionExample */,
@@ -379,6 +383,7 @@
 				B217D4AD220D24CA001CE5AA /* automl_labeler_model.tflite in Resources */,
 				10E1152720F3E0960013E4A4 /* barcode_128.png in Resources */,
 				10E1152820F3E0990013E4A4 /* beach.jpg in Resources */,
+				10B3184F22EB9C5E00E834FF /* GoogleService-Info.plist in Resources */,
 				B217D4AB220D24CA001CE5AA /* automl_labeler_labels.txt in Resources */,
 				10E1152620F3E0930013E4A4 /* grace_hopper.jpg in Resources */,
 				10E1152920F3E09C0013E4A4 /* image_has_text.jpg in Resources */,
@@ -397,6 +402,7 @@
 				7202DC6C20D0C1A300034C35 /* beach.jpg in Resources */,
 				7202DC6920D0C1A300034C35 /* qr_code.jpg in Resources */,
 				100D2A52222F37E100DF5C02 /* automl_labeler_model.tflite in Resources */,
+				10B3184E22EB9C5E00E834FF /* GoogleService-Info.plist in Resources */,
 				7202DC6B20D0C1A300034C35 /* barcode_128.png in Resources */,
 				7202DC6A20D0C1A300034C35 /* image_has_text.jpg in Resources */,
 				BB287B3E20729CE90069707A /* Main.storyboard in Resources */,

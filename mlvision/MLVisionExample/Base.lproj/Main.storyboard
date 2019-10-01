@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="0Q6-lG-sCk">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="0Q6-lG-sCk">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -14,7 +11,7 @@
             <objects>
                 <navigationController id="0Q6-lG-sCk" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="JoS-YE-9OV">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -45,7 +42,7 @@
                                 <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
                             </pickerView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="POq-8j-gOJ" userLabel="Top Toolbar">
-                                <rect key="frame" x="0.0" y="76" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="56" width="375" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="it0-iL-OwQ"/>
                                 </constraints>
@@ -69,13 +66,19 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="aEw-JJ-oRD"/>
+                                    <barButtonItem image="cloud_download" style="plain" id="dpl-CD-O71" userLabel="Download Model Button">
+                                        <connections>
+                                            <action selector="downloadOrDeleteModel:" destination="BYZ-38-t0r" id="Snl-c4-XyJ"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="1ha-dt-VEM"/>
                                 </items>
                             </toolbar>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cCp-tA-gDT">
-                                <rect key="frame" x="0.0" y="126" width="375" height="324"/>
+                                <rect key="frame" x="0.0" y="106" width="375" height="344"/>
                             </imageView>
                             <progressView hidden="YES" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="xaG-Fk-Kew">
-                                <rect key="frame" x="0.0" y="120" width="375" height="6"/>
+                                <rect key="frame" x="0.0" y="100" width="375" height="6"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="6" id="ENY-EP-7u6"/>
                                 </constraints>
@@ -127,6 +130,7 @@
                     <connections>
                         <outlet property="detectButton" destination="Dwb-uQ-3dE" id="8Hn-BT-3m1"/>
                         <outlet property="detectorPicker" destination="Xs4-mo-RjW" id="kFH-5K-Mcc"/>
+                        <outlet property="downloadOrDeleteModelButton" destination="dpl-CD-O71" id="JKy-Vj-6MP"/>
                         <outlet property="downloadProgressView" destination="xaG-Fk-Kew" id="h0c-hg-58T"/>
                         <outlet property="imageView" destination="cCp-tA-gDT" id="FIt-va-neE"/>
                         <outlet property="photoCameraButton" destination="jD4-E9-bbj" id="cf0-4Q-UL8"/>
@@ -150,11 +154,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vwd-Qp-BMC" userLabel="Camera View">
-                                <rect key="frame" x="0.0" y="70" width="375" height="597"/>
+                                <rect key="frame" x="0.0" y="50" width="375" height="617"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <progressView hidden="YES" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="mn2-dQ-YNu">
-                                <rect key="frame" x="0.0" y="64" width="375" height="6"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="6"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="6" id="xIK-Vd-Y6R"/>
                                 </constraints>
@@ -197,6 +201,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="cloud_download" width="16" height="16"/>
         <image name="photo_camera" width="72" height="72"/>
         <image name="photo_library" width="72" height="72"/>
         <image name="switch_camera" width="72" height="72"/>

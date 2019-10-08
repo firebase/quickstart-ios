@@ -86,18 +86,13 @@ class ViewController: UIViewController, UITextViewDelegate, UIPickerViewDataSour
   }
 
   func model(forLanguage: TranslateLanguage) -> TranslateRemoteModel {
-    let app = FirebaseApp.app()!
-    let conditions = ModelDownloadConditions(
-      allowsCellularAccess: true,
-      allowsBackgroundDownloading: true
-    )
-    return TranslateRemoteModel.translateRemoteModel(app: app, language: forLanguage, conditions: conditions)
+    return TranslateRemoteModel.translateRemoteModel(language: forLanguage)
   }
 
   func isLanguageDownloaded(_ language: TranslateLanguage) -> Bool {
     let model = self.model(forLanguage: language)
     let modelManager = ModelManager.modelManager()
-    return modelManager.isRemoteModelDownloaded(model)
+    return modelManager.isModelDownloaded(model)
   }
 
   func handleDownloadDelete(picker: UIPickerView, button: UIButton) {
@@ -105,15 +100,19 @@ class ViewController: UIViewController, UITextViewDelegate, UIPickerViewDataSour
     button.setTitle("working...", for: .normal)
     let model = self.model(forLanguage: language)
     let modelManager = ModelManager.modelManager()
-    if modelManager.isRemoteModelDownloaded(model) {
+    if modelManager.isModelDownloaded(model) {
       self.statusTextView.text = "Deleting " + language.toLanguageCode()
-      modelManager.deleteDownloadedTranslateModel(model, completion: { error in
+      modelManager.deleteDownloadedModel(model) { error in
         self.statusTextView.text = "Deleted " + language.toLanguageCode()
         self.setDownloadDeleteButtonLabels()
-      })
+      }
     } else {
       self.statusTextView.text = "Downloading " + language.toLanguageCode()
-      modelManager.download(model)
+      let conditions = ModelDownloadConditions(
+        allowsCellularAccess: true,
+        allowsBackgroundDownloading: true
+      )
+      modelManager.download(model, conditions:conditions)
     }
   }
 
@@ -126,9 +125,8 @@ class ViewController: UIViewController, UITextViewDelegate, UIPickerViewDataSour
   }
 
   @IBAction func listDownloadedModels() {
-    let app = FirebaseApp.app()!
     let msg = "Downloaded models:" + ModelManager.modelManager()
-      .availableTranslateModels(app:app)
+      .downloadedTranslateModels
       .map { model in model.language.toLanguageCode() }
       .joined(separator: ", ");
     self.statusTextView.text = msg

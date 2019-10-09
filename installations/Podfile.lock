@@ -34,28 +34,29 @@ PODS:
 
 DEPENDENCIES:
   - Firebase/CoreOnly
-  - FirebaseInstallations (from `https://github.com/firebase/firebase-ios-sdk.git`, branch `mm/fis-integration-master`)
+  - FirebaseInstallations (from `https://github.com/firebase/firebase-ios-sdk.git`, branch `mm/fis-errors`)
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  https://github.com/CocoaPods/Specs.git:
     - Firebase
     - FirebaseCore
     - FirebaseCoreDiagnostics
     - FirebaseCoreDiagnosticsInterop
     - GoogleDataTransport
     - GoogleDataTransportCCTSupport
-    - GoogleUtilities
     - nanopb
+  trunk:
+    - GoogleUtilities
     - PromisesObjC
 
 EXTERNAL SOURCES:
   FirebaseInstallations:
-    :branch: mm/fis-integration-master
+    :branch: mm/fis-errors
     :git: https://github.com/firebase/firebase-ios-sdk.git
 
 CHECKOUT OPTIONS:
   FirebaseInstallations:
-    :commit: 94d6fba5e0a0cbb8839f2605761f8ea22812c471
+    :commit: bbafdf47d08610f7b6a542fce389a66507e08faf
     :git: https://github.com/firebase/firebase-ios-sdk.git
 
 SPEC CHECKSUMS:
@@ -63,13 +64,13 @@ SPEC CHECKSUMS:
   FirebaseCore: 8c9e08bce0c72a3affd83927d8184cf244918bc8
   FirebaseCoreDiagnostics: 5807d8a32ea4455d6476da6de828675f89a8d8f3
   FirebaseCoreDiagnosticsInterop: 6829da2b8d1fc795ff1bd99df751d3788035d2cb
-  FirebaseInstallations: 52bc538e7c10d1ebf4c93beb0d3d57f013c6d3dc
+  FirebaseInstallations: cadf09084c86a302323e070803caf3bd5aa80af2
   GoogleDataTransport: fe6af28a312ae5a56d5cec00ff14f6e3ded3beef
   GoogleDataTransportCCTSupport: e6fa721757b147d7f1481d7367b8dab3e9010889
   GoogleUtilities: 64b5e3982b1b01bda26712affd5c523ef32563cf
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   PromisesObjC: c119f3cd559f50b7ae681fa59dc1acd19173b7e6
 
-PODFILE CHECKSUM: bb1c0a9433dd3741004fc3266449490e5726d840
+PODFILE CHECKSUM: 757fd4b74f963aaaa073db67155c28994fe071be
 
-COCOAPODS: 1.6.1
+COCOAPODS: 1.8.3

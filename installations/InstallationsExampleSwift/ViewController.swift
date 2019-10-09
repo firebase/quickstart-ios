@@ -33,8 +33,7 @@ class ViewController: UIViewController {
   }
 
   private var installations: Installations! {
-    // TODO: Update to `Installations.installations()` once implemented.
-    return Installations.installations(app: FirebaseApp.app()!)
+    return Installations.installations()
   }
 
   deinit {

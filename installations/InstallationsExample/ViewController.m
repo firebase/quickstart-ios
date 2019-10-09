@@ -46,8 +46,7 @@
 }
 
 - (FIRInstallations *)installations {
-  // TODO: Replace by [FIRInstallations installations] when implemented.
-  return [FIRInstallations installationsWithApp:[FIRApp defaultApp]];
+  return [FIRInstallations installations];
 }
 
 - (IBAction)getInstallationButtonPressed {

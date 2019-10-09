@@ -3,7 +3,7 @@ platform :ios, '9.0'
 use_frameworks!
 
 pod 'Firebase/MLNLTranslate'
-pod 'Firebase/Core'
+pod 'Firebase/Analytics'
 
 target 'TranslateExample' do
   target 'TranslateExampleTests' do

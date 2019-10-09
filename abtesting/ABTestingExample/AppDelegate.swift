@@ -14,8 +14,8 @@
 //  limitations under the License.
 //
 
+import Firebase
 import UIKit
-import FirebaseCore
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

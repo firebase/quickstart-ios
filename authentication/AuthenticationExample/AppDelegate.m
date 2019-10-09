@@ -67,9 +67,7 @@
   if ([self handlePasswordlessSignInWithLink:url]) {
     return YES;
   }
-  if ([[GIDSignIn sharedInstance] handleURL:url
-                          sourceApplication:sourceApplication
-                                 annotation:annotation]) {
+  if ([[GIDSignIn sharedInstance] handleURL:url]) {
     return YES;
   }
   return [[FBSDKApplicationDelegate sharedInstance] application:application
@@ -106,7 +104,7 @@
 didSignInForUser:(GIDGoogleUser *)user
      withError:(NSError *)error {
   // [START_EXCLUDE]
-  MainViewController *controller = (MainViewController*) [GIDSignIn sharedInstance].uiDelegate;
+  MainViewController *controller = (MainViewController*) [GIDSignIn sharedInstance].presentingViewController;
   // [END_EXCLUDE]
   if (error == nil) {
     // [START google_credential]

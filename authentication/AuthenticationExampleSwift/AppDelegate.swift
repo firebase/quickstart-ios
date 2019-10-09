@@ -69,9 +69,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     if handlePasswordlessSignIn(withURL: url) {
       return true
     }
-    if GIDSignIn.sharedInstance().handle(url,
-                                         sourceApplication: sourceApplication,
-                                         annotation: annotation) {
+    if GIDSignIn.sharedInstance().handle(url) {
       return true
     }
     return ApplicationDelegate.shared.application(application,
@@ -102,7 +100,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
   // [START headless_google_auth]
   func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error?) {
     // [START_EXCLUDE]
-    guard let controller = GIDSignIn.sharedInstance().uiDelegate as? MainViewController else { return }
+    guard let controller = GIDSignIn.sharedInstance().presentingViewController as? MainViewController else { return }
     // [END_EXCLUDE]
     if let error = error {
       // [START_EXCLUDE]

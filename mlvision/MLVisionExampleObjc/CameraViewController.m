@@ -16,25 +16,20 @@
 
 #import "CameraViewController.h"
 #import "UIUtilities.h"
-@import AVFoundation;
-@import CoreVideo;
+#import <AVFoundation/AVFoundation.h>
+#import <CoreVideo/CoreVideo.h>
 
-@import FirebaseMLVision;
-@import FirebaseMLVisionObjectDetection;
-@import FirebaseMLCommon;
-@import FirebaseMLVisionAutoML;
+@import Firebase;
 
 NS_ASSUME_NONNULL_BEGIN
 
 static NSString *const alertControllerTitle = @"Vision Detectors";
 static NSString *const alertControllerMessage = @"Select a detector";
 static NSString *const cancelActionTitleText = @"Cancel";
-static NSString *const videoDataOutputQueueLabel = @"com.google.firebaseml.visiondetector.VideoDataOutputQueue";
+static NSString *const videoDataOutputQueueLabel =
+    @"com.google.firebaseml.visiondetector.VideoDataOutputQueue";
 static NSString *const sessionQueueLabel = @"com.google.firebaseml.visiondetector.SessionQueue";
 static NSString *const noResultsMessage = @"No Results";
-
-/** Name of the local AutoML model. */
-static NSString *const FIRLocalAutoMLModelName = @"local_automl_model";
 
 /** Name of the remote AutoML model. */
 static NSString *const FIRRemoteAutoMLModelName = @"remote_automl_model";
@@ -52,11 +47,11 @@ static const CGFloat padding = 10.0;
 static const CGFloat resultsLabelHeight = 200.0;
 static const int resultsLabelLines = 5;
 
-
 @interface CameraViewController () <AVCaptureVideoDataOutputSampleBufferDelegate>
 
 typedef NS_ENUM(NSInteger, Detector) {
   DetectorOnDeviceAutoMLImageLabeler,
+  DetectorOnDeviceBarcode,
   DetectorOnDeviceFace,
   DetectorOnDeviceText,
   DetectorOnDeviceObjectProminentNoClassifier,
@@ -65,23 +60,20 @@ typedef NS_ENUM(NSInteger, Detector) {
   DetectorOnDeviceObjectMultipleWithClassifier
 };
 
-@property (nonatomic) NSArray *detectors;
-@property (nonatomic) Detector currentDetector;
-@property (nonatomic) bool isUsingFrontCamera;
-@property (nonatomic, nonnull) AVCaptureVideoPreviewLayer *previewLayer;
-@property (nonatomic) AVCaptureSession *captureSession;
-@property (nonatomic) dispatch_queue_t sessionQueue;
-@property (nonatomic) FIRVision *vision;
-@property (nonatomic) UIView *annotationOverlayView;
-@property (nonatomic) UIImageView *previewOverlayView;
-@property (weak, nonatomic) IBOutlet UIView *cameraView;
-@property (nonatomic) CMSampleBufferRef lastFrame;
+@property(nonatomic) NSArray *detectors;
+@property(nonatomic) Detector currentDetector;
+@property(nonatomic) bool isUsingFrontCamera;
+@property(nonatomic, nonnull) AVCaptureVideoPreviewLayer *previewLayer;
+@property(nonatomic) AVCaptureSession *captureSession;
+@property(nonatomic) dispatch_queue_t sessionQueue;
+@property(nonatomic) FIRVision *vision;
+@property(nonatomic) UIView *annotationOverlayView;
+@property(nonatomic) UIImageView *previewOverlayView;
+@property(weak, nonatomic) IBOutlet UIView *cameraView;
+@property(nonatomic) CMSampleBufferRef lastFrame;
 @property(nonatomic) FIRModelManager *modelManager;
 
-/** Whether the AutoML model(s) are registered. */
-@property(nonatomic) BOOL areAutoMLModelsRegistered;
-@property (strong, nonatomic) IBOutlet UIProgressView *downloadProgressView;
-
+@property(strong, nonatomic) IBOutlet UIProgressView *downloadProgressView;
 
 @end
 
@@ -91,6 +83,8 @@ typedef NS_ENUM(NSInteger, Detector) {
   switch (detector) {
     case DetectorOnDeviceAutoMLImageLabeler:
       return @"On-Device AutoML Image Labeler";
+    case DetectorOnDeviceBarcode:
+      return @"On-Device Barcode detector";
     case DetectorOnDeviceFace:
       return @"On-Device Face Detection";
     case DetectorOnDeviceText:
@@ -108,13 +102,12 @@ typedef NS_ENUM(NSInteger, Detector) {
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-  _detectors = @[@(DetectorOnDeviceAutoMLImageLabeler),
-                 @(DetectorOnDeviceFace),
-                 @(DetectorOnDeviceText),
-                 @(DetectorOnDeviceObjectProminentNoClassifier),
-                 @(DetectorOnDeviceObjectProminentWithClassifier),
-                 @(DetectorOnDeviceObjectMultipleNoClassifier),
-                 @(DetectorOnDeviceObjectMultipleWithClassifier)];
+  _detectors = @[
+    @(DetectorOnDeviceAutoMLImageLabeler), @(DetectorOnDeviceBarcode), @(DetectorOnDeviceFace),
+    @(DetectorOnDeviceText), @(DetectorOnDeviceObjectProminentNoClassifier),
+    @(DetectorOnDeviceObjectProminentWithClassifier), @(DetectorOnDeviceObjectMultipleNoClassifier),
+    @(DetectorOnDeviceObjectMultipleWithClassifier)
+  ];
   _currentDetector = DetectorOnDeviceFace;
   _isUsingFrontCamera = YES;
   _captureSession = [[AVCaptureSession alloc] init];
@@ -165,104 +158,114 @@ typedef NS_ENUM(NSInteger, Detector) {
 ///
 /// - Parameter image: The image.
 - (void)detectImageLabelsAutoMLOnDeviceInImage:(FIRVisionImage *)image
-                                         width:(CGFloat) width
+                                         width:(CGFloat)width
                                         height:(CGFloat)height {
-  [self registerAutoMLModelsIfNeeded];
+  [self requestAutoMLRemoteModelIfNeeded];
 
   // [START config_automl_label]
-  FIRVisionOnDeviceAutoMLImageLabelerOptions *options =
-  [[FIRVisionOnDeviceAutoMLImageLabelerOptions alloc]
-   initWithRemoteModelName:FIRRemoteAutoMLModelName
-   localModelName:FIRLocalAutoMLModelName];
+  FIRVisionOnDeviceAutoMLImageLabelerOptions *options;
+  FIRAutoMLRemoteModel *remoteModel =
+      [[FIRAutoMLRemoteModel alloc] initWithName:FIRRemoteAutoMLModelName];
+  if ([self.modelManager isModelDownloaded:remoteModel]) {
+    NSLog(@"Use AutoML remote model.");
+    options = [[FIRVisionOnDeviceAutoMLImageLabelerOptions alloc] initWithRemoteModel:remoteModel];
+  } else {
+    NSLog(@"Use AutoML local model.");
+    NSString *localModelFilePath =
+        [[NSBundle mainBundle] pathForResource:FIRAutoMLLocalModelManifestFilename
+                                        ofType:FIRAutoMLManifestFileType];
+    if (localModelFilePath == nil) {
+      NSLog(@"Failed to find AutoML local model manifest file: %@",
+            FIRAutoMLLocalModelManifestFilename);
+      return;
+    }
+    FIRAutoMLLocalModel *localModel =
+        [[FIRAutoMLLocalModel alloc] initWithManifestPath:localModelFilePath];
+    options = [[FIRVisionOnDeviceAutoMLImageLabelerOptions alloc] initWithLocalModel:localModel];
+  }
   options.confidenceThreshold = labelConfidenceThreshold;
   // [END config_automl_label]
 
   // [START init_automl_label]
   FIRVisionImageLabeler *onDeviceAutoMLLabeler =
-  [self.vision onDeviceAutoMLImageLabelerWithOptions:options];
+      [self.vision onDeviceAutoMLImageLabelerWithOptions:options];
   // [END init_automl_label]
 
   dispatch_group_t group = dispatch_group_create();
   dispatch_group_enter(group);
 
   // [START detect_automl_label]
-  [onDeviceAutoMLLabeler processImage:image completion:^(NSArray<FIRVisionImageLabel *> * _Nullable labels, NSError * _Nullable error) {
-    // [START_EXCLUDE]
-    [self updatePreviewOverlayView];
-    [self removeDetectionAnnotations];
-    // [END_EXCLUDE]
-    if (error != nil) {
-      // [START_EXCLUDE]
-      NSLog(@"Failed to detect labels with error: %@.", error.localizedDescription);
-      dispatch_group_leave(group);
-      // [END_EXCLUDE]
-      return;
-    }
+  [onDeviceAutoMLLabeler
+      processImage:image
+        completion:^(NSArray<FIRVisionImageLabel *> *_Nullable labels, NSError *_Nullable error) {
+          // [START_EXCLUDE]
+          [self updatePreviewOverlayView];
+          [self removeDetectionAnnotations];
+          // [END_EXCLUDE]
+          if (error != nil) {
+            // [START_EXCLUDE]
+            NSLog(@"Failed to detect labels with error: %@.", error.localizedDescription);
+            dispatch_group_leave(group);
+            // [END_EXCLUDE]
+            return;
+          }
 
-    if (!labels ||  labels.count == 0) {
-      // [START_EXCLUDE]
-      dispatch_group_leave(group);
-      // [END_EXCLUDE]
-      return;
-    }
+          if (!labels || labels.count == 0) {
+            // [START_EXCLUDE]
+            dispatch_group_leave(group);
+            // [END_EXCLUDE]
+            return;
+          }
 
-    // [START_EXCLUDE]
-    CGRect annotationFrame = self.annotationOverlayView.frame;
-    CGRect resultsRect = CGRectMake(annotationFrame.origin.x + padding,
-                                    annotationFrame.size.height - padding - resultsLabelHeight,
-                                    annotationFrame.size.width - 2 * padding,
-                                    resultsLabelHeight);
-    UILabel *resultsLabel = [[UILabel alloc] initWithFrame:resultsRect];
-    resultsLabel.textColor = UIColor.yellowColor;
-    NSMutableArray *labelStrings = [NSMutableArray arrayWithCapacity:labels.count];
-    for (FIRVisionImageLabel *label in labels) {
-      [labelStrings addObject:[NSString stringWithFormat:@"Label: %@, Confidence: %@", label.text, label.confidence]];
-    }
-    resultsLabel.text = [labelStrings componentsJoinedByString:@"\n"];
-    resultsLabel.adjustsFontSizeToFitWidth = YES;
-    resultsLabel.numberOfLines = resultsLabelLines;
-    [self.annotationOverlayView addSubview:resultsLabel];
-    dispatch_group_leave(group);
-    // [END_EXCLUDE]
-  }];
+          // [START_EXCLUDE]
+          CGRect annotationFrame = self.annotationOverlayView.frame;
+          CGRect resultsRect =
+              CGRectMake(annotationFrame.origin.x + padding,
+                         annotationFrame.size.height - padding - resultsLabelHeight,
+                         annotationFrame.size.width - 2 * padding, resultsLabelHeight);
+          UILabel *resultsLabel = [[UILabel alloc] initWithFrame:resultsRect];
+          resultsLabel.textColor = UIColor.yellowColor;
+          NSMutableArray *labelStrings = [NSMutableArray arrayWithCapacity:labels.count];
+          for (FIRVisionImageLabel *label in labels) {
+            [labelStrings addObject:[NSString stringWithFormat:@"Label: %@, Confidence: %@",
+                                                               label.text, label.confidence]];
+          }
+          resultsLabel.text = [labelStrings componentsJoinedByString:@"\n"];
+          resultsLabel.adjustsFontSizeToFitWidth = YES;
+          resultsLabel.numberOfLines = resultsLabelLines;
+          [self.annotationOverlayView addSubview:resultsLabel];
+          dispatch_group_leave(group);
+          // [END_EXCLUDE]
+        }];
   // [END detect_automl_label]
   dispatch_group_wait(group, DISPATCH_TIME_FOREVER);
 }
 
-- (void)registerAutoMLModelsIfNeeded {
-  if (self.areAutoMLModelsRegistered) return;
-
-  FIRModelDownloadConditions *initialConditions = [[FIRModelDownloadConditions alloc] init];
-  FIRModelDownloadConditions *updateConditions =
-  [[FIRModelDownloadConditions alloc] initWithAllowsCellularAccess:NO
-                                       allowsBackgroundDownloading:YES];
-  FIRRemoteModel *remoteModel = [[FIRRemoteModel alloc] initWithName:FIRRemoteAutoMLModelName
-                                                  allowsModelUpdates:YES
-                                                   initialConditions:initialConditions
-                                                    updateConditions:updateConditions];
-  if (![_modelManager registerRemoteModel:remoteModel]) {
-    NSLog(@"Failed to register AutoML remote model");
+- (void)requestAutoMLRemoteModelIfNeeded {
+  FIRAutoMLRemoteModel *remoteModel =
+      [[FIRAutoMLRemoteModel alloc] initWithName:FIRRemoteAutoMLModelName];
+  if ([self.modelManager isModelDownloaded:remoteModel]) {
+    return;
   }
 
   [NSNotificationCenter.defaultCenter addObserver:self
-                                         selector:@selector(remoteModelDownloadDidSucceed:) name:FIRModelDownloadDidSucceedNotification object:nil];
+                                         selector:@selector(remoteModelDownloadDidSucceed:)
+                                             name:FIRModelDownloadDidSucceedNotification
+                                           object:nil];
   [NSNotificationCenter.defaultCenter addObserver:self
-                                         selector:@selector(remoteModelDownloadDidFail:) name:FIRModelDownloadDidFailNotification object:nil];
+                                         selector:@selector(remoteModelDownloadDidFail:)
+                                             name:FIRModelDownloadDidFailNotification
+                                           object:nil];
 
   dispatch_async(dispatch_get_main_queue(), ^{
     self.downloadProgressView.hidden = NO;
-    self.downloadProgressView.observedProgress = [self.modelManager downloadRemoteModel:remoteModel];
+    FIRModelDownloadConditions *conditions =
+        [[FIRModelDownloadConditions alloc] initWithAllowsCellularAccess:YES
+                                             allowsBackgroundDownloading:YES];
+    self.downloadProgressView.observedProgress =
+        [self.modelManager downloadModel:remoteModel conditions:conditions];
+    NSLog(@"Start downloading AutoML remote model.");
   });
-
-  NSString *localModelFilePath =
-  [[NSBundle mainBundle] pathForResource:FIRAutoMLLocalModelManifestFilename
-                                  ofType:FIRAutoMLManifestFileType];
-  FIRLocalModel *localModel = [[FIRLocalModel alloc] initWithName:FIRLocalAutoMLModelName
-                                                             path:localModelFilePath];
-  if (![_modelManager registerLocalModel:localModel]) {
-    NSLog(@"Failed to register AutoML local model");
-  }
-  self.areAutoMLModelsRegistered = YES;
 }
 
 #pragma mark - Notifications
@@ -272,10 +275,13 @@ typedef NS_ENUM(NSInteger, Detector) {
     self.downloadProgressView.hidden = YES;
     FIRRemoteModel *remotemodel = notification.userInfo[FIRModelDownloadUserInfoKeyRemoteModel];
     if (remotemodel == nil) {
-      NSLog(@"firebaseMLModelDownloadDidSucceed notification posted without a RemoteModel instance.");
+      NSLog(
+          @"firebaseMLModelDownloadDidSucceed notification posted without a RemoteModel instance.");
       return;
     }
-    NSLog(@"Successfully downloaded the remote model with name: %@. The model is ready for detection.", remotemodel.name);
+    NSLog(@"Successfully downloaded the remote model with name: %@. The model is ready for "
+          @"detection.",
+          remotemodel.name);
   });
 }
 
@@ -285,16 +291,20 @@ typedef NS_ENUM(NSInteger, Detector) {
     FIRRemoteModel *remoteModel = notification.userInfo[FIRModelDownloadUserInfoKeyRemoteModel];
     NSError *error = notification.userInfo[FIRModelDownloadUserInfoKeyError];
     if (error == nil) {
-      NSLog(@"firebaseMLModelDownloadDidFail notification posted without a RemoteModel instance or error.");
+      NSLog(@"firebaseMLModelDownloadDidFail notification posted without a RemoteModel instance or "
+            @"error.");
       return;
     }
-    NSLog(@"Failed to download the remote model with name: %@, error: %@.", remoteModel, error.localizedDescription);
+    NSLog(@"Failed to download the remote model with name: %@, error: %@.", remoteModel,
+          error.localizedDescription);
   });
 }
 
 #pragma mark - Other On-Device Detections
 
-- (void)detectFacesOnDeviceInImage:(FIRVisionImage *)image width:(CGFloat) width height:(CGFloat)height {
+- (void)detectFacesOnDeviceInImage:(FIRVisionImage *)image
+                             width:(CGFloat)width
+                            height:(CGFloat)height {
   FIRVisionFaceDetectorOptions *options = [[FIRVisionFaceDetectorOptions alloc] init];
   // When performing latency tests to determine ideal detection settings,
   // run the app in 'release' mode to get accurate performance metrics
@@ -311,7 +321,7 @@ typedef NS_ENUM(NSInteger, Detector) {
     return;
   }
   if (faces.count == 0) {
-    NSLog(@"%@", @"On-Device face detector returned no results.");
+    NSLog(@"On-Device face detector returned no results.");
     dispatch_sync(dispatch_get_main_queue(), ^{
       [self updatePreviewOverlayView];
       [self removeDetectionAnnotations];
@@ -323,50 +333,125 @@ typedef NS_ENUM(NSInteger, Detector) {
     [self updatePreviewOverlayView];
     [self removeDetectionAnnotations];
     for (FIRVisionFace *face in faces) {
-      CGRect normalizedRect = CGRectMake(face.frame.origin.x / width, face.frame.origin.y / height, face.frame.size.width / width, face.frame.size.height / height);
-      CGRect standardizedRect = CGRectStandardize([self->_previewLayer rectForMetadataOutputRectOfInterest:normalizedRect]);
-      [UIUtilities addRectangle:standardizedRect toView:self->_annotationOverlayView color:UIColor.greenColor];
+      CGRect normalizedRect =
+          CGRectMake(face.frame.origin.x / width, face.frame.origin.y / height,
+                     face.frame.size.width / width, face.frame.size.height / height);
+      CGRect standardizedRect = CGRectStandardize(
+          [self->_previewLayer rectForMetadataOutputRectOfInterest:normalizedRect]);
+      [UIUtilities addRectangle:standardizedRect
+                         toView:self->_annotationOverlayView
+                          color:UIColor.greenColor];
       [self addContoursForFace:face width:width height:height];
     }
   });
 }
 
-- (void)recognizeTextOnDeviceInImage:(FIRVisionImage *)image width:(CGFloat)width height:(CGFloat)height {
+- (void)recognizeTextOnDeviceInImage:(FIRVisionImage *)image
+                               width:(CGFloat)width
+                              height:(CGFloat)height {
   FIRVisionTextRecognizer *textRecognizer = [_vision onDeviceTextRecognizer];
   dispatch_group_t group = dispatch_group_create();
   dispatch_group_enter(group);
-  [textRecognizer processImage:image completion:^(FIRVisionText * _Nullable text, NSError * _Nullable error) {
-    [self removeDetectionAnnotations];
-    [self updatePreviewOverlayView];
-    if (text == nil) {
-      NSLog(@"On-Device text recognizer error: %@", error ? error.localizedDescription : noResultsMessage);
-      dispatch_group_leave(group);
-      return;
-    }
-    // Blocks.
-    for (FIRVisionTextBlock *block in text.blocks) {
-      NSArray<NSValue *> *points = [self convertedPointsFromPoints:block.cornerPoints width:width height:height];
-      [UIUtilities addShapeWithPoints:points toView:self->_annotationOverlayView color:UIColor.purpleColor];
+  [textRecognizer
+      processImage:image
+        completion:^(FIRVisionText *_Nullable text, NSError *_Nullable error) {
+          [self removeDetectionAnnotations];
+          [self updatePreviewOverlayView];
+          if (text == nil) {
+            NSLog(@"On-Device text recognizer error: %@",
+                  error ? error.localizedDescription : noResultsMessage);
+            dispatch_group_leave(group);
+            return;
+          }
+          // Blocks.
+          for (FIRVisionTextBlock *block in text.blocks) {
+            NSArray<NSValue *> *points = [self convertedPointsFromPoints:block.cornerPoints
+                                                                   width:width
+                                                                  height:height];
+            [UIUtilities addShapeWithPoints:points
+                                     toView:self->_annotationOverlayView
+                                      color:UIColor.purpleColor];
 
-      // Lines.
-      for (FIRVisionTextLine *line in block.lines) {
-        NSArray<NSValue *> *points = [self  convertedPointsFromPoints:line.cornerPoints width:width height:height];
-        [UIUtilities addShapeWithPoints:points toView:self->_annotationOverlayView color:UIColor.purpleColor];
+            // Lines.
+            for (FIRVisionTextLine *line in block.lines) {
+              NSArray<NSValue *> *points = [self convertedPointsFromPoints:line.cornerPoints
+                                                                     width:width
+                                                                    height:height];
+              [UIUtilities addShapeWithPoints:points
+                                       toView:self->_annotationOverlayView
+                                        color:UIColor.purpleColor];
 
-        // Elements.
-        for (FIRVisionTextElement *element in line.elements) {
-          CGRect normalizedRect = CGRectMake(element.frame.origin.x / width, element.frame.origin.y / height, element.frame.size.width / width, element.frame.size.height / height);
-          CGRect convertedRect = [self->_previewLayer rectForMetadataOutputRectOfInterest:normalizedRect];
-          [UIUtilities addRectangle:convertedRect toView:self->_annotationOverlayView color:UIColor.greenColor];
-          UILabel *label = [[UILabel alloc] initWithFrame:convertedRect];
-          label.text = element.text;
-          label.adjustsFontSizeToFitWidth = YES;
-          [self.annotationOverlayView addSubview:label];
-        }
-      }
-    }
-    dispatch_group_leave(group);
-  }];
+              // Elements.
+              for (FIRVisionTextElement *element in line.elements) {
+                CGRect normalizedRect = CGRectMake(
+                    element.frame.origin.x / width, element.frame.origin.y / height,
+                    element.frame.size.width / width, element.frame.size.height / height);
+                CGRect convertedRect =
+                    [self->_previewLayer rectForMetadataOutputRectOfInterest:normalizedRect];
+                [UIUtilities addRectangle:convertedRect
+                                   toView:self->_annotationOverlayView
+                                    color:UIColor.greenColor];
+                UILabel *label = [[UILabel alloc] initWithFrame:convertedRect];
+                label.text = element.text;
+                label.adjustsFontSizeToFitWidth = YES;
+                [self.annotationOverlayView addSubview:label];
+              }
+            }
+          }
+          dispatch_group_leave(group);
+        }];
+  dispatch_group_wait(group, DISPATCH_TIME_FOREVER);
+}
+
+- (void)detectBarcodesOnDeviceInImage:(FIRVisionImage *)image
+                                width:(CGFloat)width
+                               height:(CGFloat)height
+                              options:(FIRVisionBarcodeDetectorOptions *)options {
+  FIRVisionBarcodeDetector *detector = [_vision barcodeDetectorWithOptions:options];
+  dispatch_group_t group = dispatch_group_create();
+  dispatch_group_enter(group);
+
+  [detector detectInImage:image
+               completion:^(NSArray<FIRVisionBarcode *> *barcodes, NSError *error) {
+                 if (error != nil) {
+                   NSLog(@"Failed to detect barcodes with error: %@", error.localizedDescription);
+                   [self updatePreviewOverlayView];
+                   [self removeDetectionAnnotations];
+                   dispatch_group_leave(group);
+                   return;
+                 }
+                 if (barcodes.count == 0) {
+                   NSLog(@"On-Device barcode detector returned no results.");
+                   [self updatePreviewOverlayView];
+                   [self removeDetectionAnnotations];
+                   dispatch_group_leave(group);
+                   return;
+                 }
+
+                 [self updatePreviewOverlayView];
+                 [self removeDetectionAnnotations];
+                 for (FIRVisionBarcode *barcode in barcodes) {
+                   CGRect normalizedRect =
+                       CGRectMake(barcode.frame.origin.x / width,       // X
+                                  barcode.frame.origin.y / height,      // Y
+                                  barcode.frame.size.width / width,     // Width
+                                  barcode.frame.size.height / height);  // Height
+                   CGRect standardizedRect = CGRectStandardize(
+                       [self.previewLayer rectForMetadataOutputRectOfInterest:normalizedRect]);
+                   [UIUtilities addRectangle:standardizedRect
+                                      toView:self.annotationOverlayView
+                                       color:UIColor.greenColor];
+                   UILabel *label = [[UILabel alloc] initWithFrame:standardizedRect];
+                   label.numberOfLines = 0;
+                   NSMutableString *description = [NSMutableString new];
+                   [description appendString:barcode.rawValue];
+                   label.text = description;
+
+                   label.adjustsFontSizeToFitWidth = YES;
+                   [self.annotationOverlayView addSubview:label];
+                 }
+                 dispatch_group_leave(group);
+               }];
   dispatch_group_wait(group, DISPATCH_TIME_FOREVER);
 }
 
@@ -402,18 +487,23 @@ typedef NS_ENUM(NSInteger, Detector) {
     [self updatePreviewOverlayView];
     [self removeDetectionAnnotations];
     for (FIRVisionObject *object in objects) {
-      CGRect normalizedRect = CGRectMake(object.frame.origin.x / width, object.frame.origin.y / height, object.frame.size.width / width, object.frame.size.height / height);
-      CGRect standardizedRect = CGRectStandardize([self.previewLayer rectForMetadataOutputRectOfInterest:normalizedRect]);
-      [UIUtilities addRectangle:standardizedRect toView:self.annotationOverlayView color:UIColor.greenColor];
+      CGRect normalizedRect =
+          CGRectMake(object.frame.origin.x / width, object.frame.origin.y / height,
+                     object.frame.size.width / width, object.frame.size.height / height);
+      CGRect standardizedRect =
+          CGRectStandardize([self.previewLayer rectForMetadataOutputRectOfInterest:normalizedRect]);
+      [UIUtilities addRectangle:standardizedRect
+                         toView:self.annotationOverlayView
+                          color:UIColor.greenColor];
       UILabel *label = [[UILabel alloc] initWithFrame:standardizedRect];
       label.numberOfLines = 2;
       NSMutableString *description = [NSMutableString new];
       if (object.trackingID != nil) {
         [description appendFormat:@"ID: %@\n", object.trackingID];
       }
-      if (object.label != nil) {
-        [description appendString:object.label];
-      }
+      NSString *categoryString =
+          [NSString stringWithFormat:@"Class: %lu", object.classificationCategory];
+      [description appendString:categoryString];
       label.text = description;
 
       label.adjustsFontSizeToFitWidth = YES;
@@ -432,7 +522,10 @@ typedef NS_ENUM(NSInteger, Detector) {
     self->_captureSession.sessionPreset = AVCaptureSessionPresetMedium;
 
     AVCaptureVideoDataOutput *output = [[AVCaptureVideoDataOutput alloc] init];
-    output.videoSettings = @{(id)kCVPixelBufferPixelFormatTypeKey: [NSNumber numberWithUnsignedInt:kCVPixelFormatType_32BGRA]};
+    output.videoSettings = @{
+      (id)
+      kCVPixelBufferPixelFormatTypeKey : [NSNumber numberWithUnsignedInt:kCVPixelFormatType_32BGRA]
+    };
     dispatch_queue_t outputQueue = dispatch_queue_create(videoDataOutputQueueLabel.UTF8String, nil);
     [output setSampleBufferDelegate:self queue:outputQueue];
     if ([self.captureSession canAddOutput:output]) {
@@ -446,7 +539,8 @@ typedef NS_ENUM(NSInteger, Detector) {
 
 - (void)setUpCaptureSessionInput {
   dispatch_async(_sessionQueue, ^{
-    AVCaptureDevicePosition cameraPosition = self.isUsingFrontCamera ? AVCaptureDevicePositionFront : AVCaptureDevicePositionBack;
+    AVCaptureDevicePosition cameraPosition =
+        self.isUsingFrontCamera ? AVCaptureDevicePositionFront : AVCaptureDevicePositionBack;
     AVCaptureDevice *device = [self captureDeviceForPosition:cameraPosition];
     if (device) {
       [self->_captureSession beginConfiguration];
@@ -455,7 +549,8 @@ typedef NS_ENUM(NSInteger, Detector) {
         [self.captureSession removeInput:input];
       }
       NSError *error;
-      AVCaptureDeviceInput *input = [AVCaptureDeviceInput deviceInputWithDevice:device error:&error];
+      AVCaptureDeviceInput *input = [AVCaptureDeviceInput deviceInputWithDevice:device
+                                                                          error:&error];
       if (error) {
         NSLog(@"Failed to create capture device input: %@", error.localizedDescription);
         return;
@@ -488,28 +583,28 @@ typedef NS_ENUM(NSInteger, Detector) {
 - (void)setUpPreviewOverlayView {
   [_cameraView addSubview:_previewOverlayView];
   [NSLayoutConstraint activateConstraints:@[
-                                            [_previewOverlayView.centerYAnchor constraintEqualToAnchor:_cameraView.centerYAnchor],
-                                            [_previewOverlayView.centerXAnchor constraintEqualToAnchor:_cameraView.centerXAnchor],
-                                            [_previewOverlayView.leadingAnchor constraintEqualToAnchor:_cameraView.leadingAnchor],
-                                            [_previewOverlayView.trailingAnchor constraintEqualToAnchor:_cameraView.trailingAnchor]
-                                            ]];
+    [_previewOverlayView.centerYAnchor constraintEqualToAnchor:_cameraView.centerYAnchor],
+    [_previewOverlayView.centerXAnchor constraintEqualToAnchor:_cameraView.centerXAnchor],
+    [_previewOverlayView.leadingAnchor constraintEqualToAnchor:_cameraView.leadingAnchor],
+    [_previewOverlayView.trailingAnchor constraintEqualToAnchor:_cameraView.trailingAnchor]
+  ]];
 }
 - (void)setUpAnnotationOverlayView {
   [_cameraView addSubview:_annotationOverlayView];
   [NSLayoutConstraint activateConstraints:@[
-                                            [_annotationOverlayView.topAnchor constraintEqualToAnchor:_cameraView.topAnchor],
-                                            [_annotationOverlayView.leadingAnchor constraintEqualToAnchor:_cameraView.leadingAnchor],
-                                            [_annotationOverlayView.trailingAnchor constraintEqualToAnchor:_cameraView.trailingAnchor],
-                                            [_annotationOverlayView.bottomAnchor constraintEqualToAnchor:_cameraView.bottomAnchor]
-                                            ]];
+    [_annotationOverlayView.topAnchor constraintEqualToAnchor:_cameraView.topAnchor],
+    [_annotationOverlayView.leadingAnchor constraintEqualToAnchor:_cameraView.leadingAnchor],
+    [_annotationOverlayView.trailingAnchor constraintEqualToAnchor:_cameraView.trailingAnchor],
+    [_annotationOverlayView.bottomAnchor constraintEqualToAnchor:_cameraView.bottomAnchor]
+  ]];
 }
 
-- (AVCaptureDevice *)captureDeviceForPosition:(AVCaptureDevicePosition)position  {
+- (AVCaptureDevice *)captureDeviceForPosition:(AVCaptureDevicePosition)position {
   if (@available(iOS 10, *)) {
-    AVCaptureDeviceDiscoverySession *discoverySession =
-      [AVCaptureDeviceDiscoverySession discoverySessionWithDeviceTypes:@[AVCaptureDeviceTypeBuiltInWideAngleCamera]
-                                                             mediaType:AVMediaTypeVideo
-                                                             position:AVCaptureDevicePositionUnspecified];
+    AVCaptureDeviceDiscoverySession *discoverySession = [AVCaptureDeviceDiscoverySession
+        discoverySessionWithDeviceTypes:@[ AVCaptureDeviceTypeBuiltInWideAngleCamera ]
+                              mediaType:AVMediaTypeVideo
+                               position:AVCaptureDevicePositionUnspecified];
     for (AVCaptureDevice *device in discoverySession.devices) {
       if (device.position == position) {
         return device;
@@ -520,21 +615,26 @@ typedef NS_ENUM(NSInteger, Detector) {
 }
 
 - (void)presentDetectorsAlertController {
-  UIAlertController *alertController = [UIAlertController alertControllerWithTitle:alertControllerTitle message:alertControllerMessage preferredStyle:UIAlertControllerStyleAlert];
+  UIAlertController *alertController =
+      [UIAlertController alertControllerWithTitle:alertControllerTitle
+                                          message:alertControllerMessage
+                                   preferredStyle:UIAlertControllerStyleAlert];
   for (NSNumber *detectorType in _detectors) {
     NSInteger detector = detectorType.integerValue;
     UIAlertAction *action = [UIAlertAction actionWithTitle:[self stringForDetector:detector]
-                                                     style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                                                       self.currentDetector = detector;
-                                                       [self removeDetectionAnnotations];
-                                                     }];
+                                                     style:UIAlertActionStyleDefault
+                                                   handler:^(UIAlertAction *_Nonnull action) {
+                                                     self.currentDetector = detector;
+                                                     [self removeDetectionAnnotations];
+                                                   }];
     if (detector == _currentDetector) {
       [action setEnabled:NO];
     }
     [alertController addAction:action];
   }
   [alertController addAction:[UIAlertAction actionWithTitle:cancelActionTitleText
-                                                      style:UIAlertActionStyleCancel handler:nil]];
+                                                      style:UIAlertActionStyleCancel
+                                                    handler:nil]];
   [self presentViewController:alertController animated:YES completion:nil];
 }
 
@@ -555,13 +655,17 @@ typedef NS_ENUM(NSInteger, Detector) {
   if (cgImage == nil) {
     return;
   }
-  UIImage *rotatedImage = [UIImage imageWithCGImage:cgImage scale:FIRconstantScale orientation:UIImageOrientationRight];
+  UIImage *rotatedImage = [UIImage imageWithCGImage:cgImage
+                                              scale:FIRconstantScale
+                                        orientation:UIImageOrientationRight];
   if (_isUsingFrontCamera) {
     CGImageRef rotatedCGImage = rotatedImage.CGImage;
     if (rotatedCGImage == nil) {
       return;
     }
-    UIImage *mirroredImage = [UIImage imageWithCGImage:rotatedCGImage scale:FIRconstantScale orientation:UIImageOrientationLeftMirrored];
+    UIImage *mirroredImage = [UIImage imageWithCGImage:rotatedCGImage
+                                                 scale:FIRconstantScale
+                                           orientation:UIImageOrientationLeftMirrored];
     _previewOverlayView.image = mirroredImage;
   } else {
     _previewOverlayView.image = rotatedImage;
@@ -569,7 +673,7 @@ typedef NS_ENUM(NSInteger, Detector) {
   CGImageRelease(cgImage);
 }
 
-- (NSArray <NSValue *>*)convertedPointsFromPoints:(NSArray<NSValue *> *)points
+- (NSArray<NSValue *> *)convertedPointsFromPoints:(NSArray<NSValue *> *)points
                                             width:(CGFloat)width
                                            height:(CGFloat)height {
   NSMutableArray *result = [NSMutableArray arrayWithCapacity:points.count];
@@ -577,7 +681,7 @@ typedef NS_ENUM(NSInteger, Detector) {
     CGPoint cgPointValue = point.CGPointValue;
     CGPoint normalizedPoint = CGPointMake(cgPointValue.x / width, cgPointValue.y / height);
     CGPoint cgPoint = [_previewLayer pointForCaptureDevicePointOfInterest:normalizedPoint];
-    [result addObject: [NSValue valueWithCGPoint:cgPoint]];
+    [result addObject:[NSValue valueWithCGPoint:cgPoint]];
   }
   return result;
 }
@@ -591,14 +695,11 @@ typedef NS_ENUM(NSInteger, Detector) {
   return cgPoint;
 }
 
-- (void)addContoursForFace:(FIRVisionFace *)face
-                     width:(CGFloat)width
-                    height:(CGFloat)height {
+- (void)addContoursForFace:(FIRVisionFace *)face width:(CGFloat)width height:(CGFloat)height {
   // Face
   FIRVisionFaceContour *faceContour = [face contourOfType:FIRFaceContourTypeFace];
   for (FIRVisionPoint *point in faceContour.points) {
-    CGPoint cgPoint =
-    [self normalizedPointFromVisionPoint:point width:width height:height];
+    CGPoint cgPoint = [self normalizedPointFromVisionPoint:point width:width height:height];
     [UIUtilities addCircleAtPoint:cgPoint
                            toView:self->_annotationOverlayView
                             color:UIColor.blueColor
@@ -607,40 +708,36 @@ typedef NS_ENUM(NSInteger, Detector) {
 
   // Eyebrows
   FIRVisionFaceContour *leftEyebrowTopContour =
-  [face contourOfType:FIRFaceContourTypeLeftEyebrowTop];
+      [face contourOfType:FIRFaceContourTypeLeftEyebrowTop];
   for (FIRVisionPoint *point in leftEyebrowTopContour.points) {
-    CGPoint cgPoint =
-    [self normalizedPointFromVisionPoint:point width:width height:height];
+    CGPoint cgPoint = [self normalizedPointFromVisionPoint:point width:width height:height];
     [UIUtilities addCircleAtPoint:cgPoint
                            toView:self->_annotationOverlayView
                             color:UIColor.orangeColor
                            radius:FIRSmallDotRadius];
   }
   FIRVisionFaceContour *leftEyebrowBottomContour =
-  [face contourOfType:FIRFaceContourTypeLeftEyebrowBottom];
+      [face contourOfType:FIRFaceContourTypeLeftEyebrowBottom];
   for (FIRVisionPoint *point in leftEyebrowBottomContour.points) {
-    CGPoint cgPoint =
-    [self normalizedPointFromVisionPoint:point width:width height:height];
+    CGPoint cgPoint = [self normalizedPointFromVisionPoint:point width:width height:height];
     [UIUtilities addCircleAtPoint:cgPoint
                            toView:self->_annotationOverlayView
                             color:UIColor.orangeColor
                            radius:FIRSmallDotRadius];
   }
   FIRVisionFaceContour *rightEyebrowTopContour =
-  [face contourOfType:FIRFaceContourTypeRightEyebrowTop];
+      [face contourOfType:FIRFaceContourTypeRightEyebrowTop];
   for (FIRVisionPoint *point in rightEyebrowTopContour.points) {
-    CGPoint cgPoint =
-    [self normalizedPointFromVisionPoint:point width:width height:height];
+    CGPoint cgPoint = [self normalizedPointFromVisionPoint:point width:width height:height];
     [UIUtilities addCircleAtPoint:cgPoint
                            toView:self->_annotationOverlayView
                             color:UIColor.orangeColor
                            radius:FIRSmallDotRadius];
   }
   FIRVisionFaceContour *rightEyebrowBottomContour =
-  [face contourOfType:FIRFaceContourTypeRightEyebrowBottom];
+      [face contourOfType:FIRFaceContourTypeRightEyebrowBottom];
   for (FIRVisionPoint *point in rightEyebrowBottomContour.points) {
-    CGPoint cgPoint =
-    [self normalizedPointFromVisionPoint:point width:width height:height];
+    CGPoint cgPoint = [self normalizedPointFromVisionPoint:point width:width height:height];
     [UIUtilities addCircleAtPoint:cgPoint
                            toView:self->_annotationOverlayView
                             color:UIColor.orangeColor
@@ -650,8 +747,7 @@ typedef NS_ENUM(NSInteger, Detector) {
   // Eyes
   FIRVisionFaceContour *leftEyeContour = [face contourOfType:FIRFaceContourTypeLeftEye];
   for (FIRVisionPoint *point in leftEyeContour.points) {
-    CGPoint cgPoint =
-    [self normalizedPointFromVisionPoint:point width:width height:height];
+    CGPoint cgPoint = [self normalizedPointFromVisionPoint:point width:width height:height];
     [UIUtilities addCircleAtPoint:cgPoint
                            toView:self->_annotationOverlayView
                             color:UIColor.cyanColor
@@ -659,8 +755,7 @@ typedef NS_ENUM(NSInteger, Detector) {
   }
   FIRVisionFaceContour *rightEyeContour = [face contourOfType:FIRFaceContourTypeRightEye];
   for (FIRVisionPoint *point in rightEyeContour.points) {
-    CGPoint cgPoint =
-    [self normalizedPointFromVisionPoint:point width:width height:height];
+    CGPoint cgPoint = [self normalizedPointFromVisionPoint:point width:width height:height];
     [UIUtilities addCircleAtPoint:cgPoint
                            toView:self->_annotationOverlayView
                             color:UIColor.cyanColor
@@ -670,18 +765,16 @@ typedef NS_ENUM(NSInteger, Detector) {
   // Lips
   FIRVisionFaceContour *upperLipTopContour = [face contourOfType:FIRFaceContourTypeUpperLipTop];
   for (FIRVisionPoint *point in upperLipTopContour.points) {
-    CGPoint cgPoint =
-    [self normalizedPointFromVisionPoint:point width:width height:height];
+    CGPoint cgPoint = [self normalizedPointFromVisionPoint:point width:width height:height];
     [UIUtilities addCircleAtPoint:cgPoint
                            toView:self->_annotationOverlayView
                             color:UIColor.redColor
                            radius:FIRSmallDotRadius];
   }
   FIRVisionFaceContour *upperLipBottomContour =
-  [face contourOfType:FIRFaceContourTypeUpperLipBottom];
+      [face contourOfType:FIRFaceContourTypeUpperLipBottom];
   for (FIRVisionPoint *point in upperLipBottomContour.points) {
-    CGPoint cgPoint =
-    [self normalizedPointFromVisionPoint:point width:width height:height];
+    CGPoint cgPoint = [self normalizedPointFromVisionPoint:point width:width height:height];
     [UIUtilities addCircleAtPoint:cgPoint
                            toView:self->_annotationOverlayView
                             color:UIColor.redColor
@@ -689,18 +782,16 @@ typedef NS_ENUM(NSInteger, Detector) {
   }
   FIRVisionFaceContour *lowerLipTopContour = [face contourOfType:FIRFaceContourTypeLowerLipTop];
   for (FIRVisionPoint *point in lowerLipTopContour.points) {
-    CGPoint cgPoint =
-    [self normalizedPointFromVisionPoint:point width:width height:height];
+    CGPoint cgPoint = [self normalizedPointFromVisionPoint:point width:width height:height];
     [UIUtilities addCircleAtPoint:cgPoint
                            toView:self->_annotationOverlayView
                             color:UIColor.redColor
                            radius:FIRSmallDotRadius];
   }
   FIRVisionFaceContour *lowerLipBottomContour =
-  [face contourOfType:FIRFaceContourTypeLowerLipBottom];
+      [face contourOfType:FIRFaceContourTypeLowerLipBottom];
   for (FIRVisionPoint *point in lowerLipBottomContour.points) {
-    CGPoint cgPoint =
-    [self normalizedPointFromVisionPoint:point width:width height:height];
+    CGPoint cgPoint = [self normalizedPointFromVisionPoint:point width:width height:height];
     [UIUtilities addCircleAtPoint:cgPoint
                            toView:self->_annotationOverlayView
                             color:UIColor.redColor
@@ -710,8 +801,7 @@ typedef NS_ENUM(NSInteger, Detector) {
   // Nose
   FIRVisionFaceContour *noseBridgeContour = [face contourOfType:FIRFaceContourTypeNoseBridge];
   for (FIRVisionPoint *point in noseBridgeContour.points) {
-    CGPoint cgPoint =
-    [self normalizedPointFromVisionPoint:point width:width height:height];
+    CGPoint cgPoint = [self normalizedPointFromVisionPoint:point width:width height:height];
     [UIUtilities addCircleAtPoint:cgPoint
                            toView:self->_annotationOverlayView
                             color:UIColor.yellowColor
@@ -719,8 +809,7 @@ typedef NS_ENUM(NSInteger, Detector) {
   }
   FIRVisionFaceContour *noseBottomContour = [face contourOfType:FIRFaceContourTypeNoseBottom];
   for (FIRVisionPoint *point in noseBottomContour.points) {
-    CGPoint cgPoint =
-    [self normalizedPointFromVisionPoint:point width:width height:height];
+    CGPoint cgPoint = [self normalizedPointFromVisionPoint:point width:width height:height];
     [UIUtilities addCircleAtPoint:cgPoint
                            toView:self->_annotationOverlayView
                             color:UIColor.yellowColor
@@ -728,18 +817,22 @@ typedef NS_ENUM(NSInteger, Detector) {
   }
 }
 
-
 #pragma mark - AVCaptureVideoDataOutputSampleBufferDelegate
 
-- (void)captureOutput:(AVCaptureOutput *)output didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer fromConnection:(AVCaptureConnection *)connection {
+- (void)captureOutput:(AVCaptureOutput *)output
+    didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
+           fromConnection:(AVCaptureConnection *)connection {
   CVImageBufferRef imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
   if (imageBuffer) {
     _lastFrame = sampleBuffer;
     FIRVisionImage *visionImage = [[FIRVisionImage alloc] initWithBuffer:sampleBuffer];
     FIRVisionImageMetadata *metadata = [[FIRVisionImageMetadata alloc] init];
-    UIImageOrientation orientation = [UIUtilities imageOrientationFromDevicePosition:_isUsingFrontCamera ? AVCaptureDevicePositionFront : AVCaptureDevicePositionBack];
+    UIImageOrientation orientation = [UIUtilities
+        imageOrientationFromDevicePosition:_isUsingFrontCamera ? AVCaptureDevicePositionFront
+                                                               : AVCaptureDevicePositionBack];
 
-    FIRVisionDetectorImageOrientation visionOrientation = [UIUtilities visionImageOrientationFromImageOrientation:orientation];
+    FIRVisionDetectorImageOrientation visionOrientation =
+        [UIUtilities visionImageOrientationFromImageOrientation:orientation];
     metadata.orientation = visionOrientation;
     visionImage.metadata = metadata;
     CGFloat imageWidth = CVPixelBufferGetWidth(imageBuffer);
@@ -749,22 +842,32 @@ typedef NS_ENUM(NSInteger, Detector) {
     switch (_currentDetector) {
       case DetectorOnDeviceObjectProminentWithClassifier:
       case DetectorOnDeviceObjectMultipleWithClassifier:
-      shouldEnableClassification = YES;
-    default:
-      break;
+        shouldEnableClassification = YES;
+      default:
+        break;
     }
     switch (_currentDetector) {
       case DetectorOnDeviceObjectMultipleNoClassifier:
       case DetectorOnDeviceObjectMultipleWithClassifier:
-      shouldEnableMultipleObjects = YES;
-    default:
-      break;
+        shouldEnableMultipleObjects = YES;
+      default:
+        break;
     }
 
     switch (_currentDetector) {
       case DetectorOnDeviceAutoMLImageLabeler:
-        [self detectImageLabelsAutoMLOnDeviceInImage:visionImage width:imageWidth height: imageHeight];
+        [self detectImageLabelsAutoMLOnDeviceInImage:visionImage
+                                               width:imageWidth
+                                              height:imageHeight];
         break;
+      case DetectorOnDeviceBarcode: {
+        FIRVisionBarcodeDetectorOptions *options = [[FIRVisionBarcodeDetectorOptions alloc] init];
+        [self detectBarcodesOnDeviceInImage:visionImage
+                                      width:imageWidth
+                                     height:imageHeight
+                                    options:options];
+        break;
+      }
       case DetectorOnDeviceFace:
         [self detectFacesOnDeviceInImage:visionImage width:imageWidth height:imageHeight];
         break;

@@ -16,8 +16,7 @@
 
 #import "ViewController.h"
 
-@import FirebaseMLNLLanguageID;
-@import FirebaseMLNaturalLanguage;
+@import Firebase;
 
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet UITextView *inputTextView;

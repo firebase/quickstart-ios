@@ -20,7 +20,7 @@
 @import Firebase;
 
 // [START signin_controller]
-@interface MainViewController : UITableViewController<GIDSignInUIDelegate>
+@interface MainViewController : UITableViewController
 // [END signin_controller]
 - (void)firebaseLoginWithCredential:(FIRAuthCredential *)credential;
 @end

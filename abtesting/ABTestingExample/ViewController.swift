@@ -14,9 +14,8 @@
 //  limitations under the License.
 //
 
+import Firebase
 import UIKit
-import FirebaseInstanceID
-import FirebaseRemoteConfig
 
 enum ColorScheme {
   case light

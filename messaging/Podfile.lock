@@ -33,7 +33,6 @@ PODS:
   - FirebaseCoreDiagnosticsInterop (1.0.0)
   - FirebaseInstanceID (4.2.5):
     - FirebaseCore (~> 6.0)
-    - FirebaseInstallations (~> 0.1)
     - GoogleUtilities/Environment (~> 6.0)
     - GoogleUtilities/UserDefaults (~> 6.0)
   - FirebaseMessaging (4.1.6):
@@ -83,8 +82,6 @@ PODS:
 DEPENDENCIES:
   - Firebase/Analytics
   - Firebase/Messaging
-  - FirebaseInstallations (from `https://github.com/firebase/firebase-ios-sdk.git`, branch `mm/iid-with-fis`)
-  - FirebaseInstanceID (from `https://github.com/firebase/firebase-ios-sdk.git`, branch `mm/iid-with-fis`)
 
 SPEC REPOS:
   trunk:
@@ -101,24 +98,7 @@ SPEC REPOS:
     - GoogleDataTransportCCTSupport
     - GoogleUtilities
     - nanopb
-    - PromisesObjC
     - Protobuf
-
-EXTERNAL SOURCES:
-  FirebaseInstallations:
-    :branch: mm/iid-with-fis
-    :git: https://github.com/firebase/firebase-ios-sdk.git
-  FirebaseInstanceID:
-    :branch: mm/iid-with-fis
-    :git: https://github.com/firebase/firebase-ios-sdk.git
-
-CHECKOUT OPTIONS:
-  FirebaseInstallations:
-    :commit: 6a9872dfe94dd9a323e0125098db3918a5e6ad0c
-    :git: https://github.com/firebase/firebase-ios-sdk.git
-  FirebaseInstanceID:
-    :commit: 6a9872dfe94dd9a323e0125098db3918a5e6ad0c
-    :git: https://github.com/firebase/firebase-ios-sdk.git
 
 SPEC CHECKSUMS:
   Firebase: 5e6b7b12bf9adb90986688edc06b156c37e109cd
@@ -136,6 +116,6 @@ SPEC CHECKSUMS:
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   Protobuf: a4dc852ad69c027ca2166ed287b856697814375b
 
-PODFILE CHECKSUM: 7f1bc69de61bd80ec9cd8b697820714dbca70a2c
+PODFILE CHECKSUM: 632861cb11e1778ca43c2667a10a1cb16c0e1e78
 
-COCOAPODS: 1.8.3
+COCOAPODS: 1.8.1

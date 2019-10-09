@@ -12,38 +12,38 @@ env:
 
 matrix:
   include:
-  - podfile: abtesting/Podfile
-    env: SAMPLE=ABTesting
-  - podfile: admob/Podfile
-    env: SAMPLE=AdMob
-  - podfile: analytics/Podfile
-    env: SAMPLE=Analytics
-  - podfile: authentication/Podfile
-    env: SAMPLE=Authentication
-  - podfile: config/Podfile
-    env: SAMPLE=Config
-  - podfile: crashlytics/Podfile
-    env: SAMPLE=Crashlytics
-  - podfile: crashreporting/Podfile
-    env: SAMPLE=CrashReporting
-  - podfile: database/Podfile
-    env: SAMPLE=Database
-  - podfile: dynamiclinks/Podfile
-    env: SAMPLE=DynamicLinks
-  - podfile: firestore/Podfile
-    env: SAMPLE=Firestore
-  - podfile: functions/Podfile
-    env: SAMPLE=Functions
-  - podfile: messaging/Podfile
-    env: SAMPLE=Messaging
-  - podfile: mlmodelinterpreter/Podfile
-    env: SAMPLE=MLModelInterpreter
-  - podfile: mlvision/Podfile
-    env: SAMPLE=MLVision
-  - podfile: performance/Podfile
-    env: SAMPLE=Performance
-  - podfile: storage/Podfile
-    env: SAMPLE=Storage
+  # - podfile: abtesting/Podfile
+  #   env: SAMPLE=ABTesting
+  # - podfile: admob/Podfile
+  #   env: SAMPLE=AdMob
+  # - podfile: analytics/Podfile
+  #   env: SAMPLE=Analytics
+  # - podfile: authentication/Podfile
+  #   env: SAMPLE=Authentication
+  # - podfile: config/Podfile
+  #   env: SAMPLE=Config
+  # - podfile: crashlytics/Podfile
+  #   env: SAMPLE=Crashlytics
+  # - podfile: crashreporting/Podfile
+  #   env: SAMPLE=CrashReporting
+  # - podfile: database/Podfile
+  #   env: SAMPLE=Database
+  # - podfile: dynamiclinks/Podfile
+  #   env: SAMPLE=DynamicLinks
+  # - podfile: firestore/Podfile
+  #   env: SAMPLE=Firestore
+  # - podfile: functions/Podfile
+  #   env: SAMPLE=Functions
+  # - podfile: messaging/Podfile
+  #   env: SAMPLE=Messaging
+  # - podfile: mlmodelinterpreter/Podfile
+  #   env: SAMPLE=MLModelInterpreter
+  # - podfile: mlvision/Podfile
+  #   env: SAMPLE=MLVision
+  # - podfile: performance/Podfile
+  #   env: SAMPLE=Performance
+  # - podfile: storage/Podfile
+  #   env: SAMPLE=Storage
   - podfile: installations/Podfile
     env: SAMPLE=Installations
   - podfile: installations/Podfile

@@ -1,40 +1,41 @@
 PODS:
-  - Firebase/Analytics (6.9.0):
+  - Firebase/Analytics (6.10.0):
     - Firebase/Core
-  - Firebase/Core (6.9.0):
+  - Firebase/Core (6.10.0):
     - Firebase/CoreOnly
-    - FirebaseAnalytics (= 6.1.2)
-  - Firebase/CoreOnly (6.9.0):
-    - FirebaseCore (= 6.3.0)
-  - Firebase/MLNLLanguageID (6.9.0):
+    - FirebaseAnalytics (= 6.1.3)
+  - Firebase/CoreOnly (6.10.0):
+    - FirebaseCore (= 6.3.1)
+  - Firebase/MLNLLanguageID (6.10.0):
     - Firebase/CoreOnly
-    - FirebaseMLNLLanguageID (~> 0.16.4)
-  - FirebaseAnalytics (6.1.2):
+    - FirebaseMLNLLanguageID (~> 0.17.0)
+  - FirebaseAnalytics (6.1.3):
     - FirebaseCore (~> 6.3)
     - FirebaseInstanceID (~> 4.2)
-    - GoogleAppMeasurement (= 6.1.2)
+    - GoogleAppMeasurement (= 6.1.3)
     - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
     - GoogleUtilities/MethodSwizzler (~> 6.0)
     - GoogleUtilities/Network (~> 6.0)
     - "GoogleUtilities/NSData+zlib (~> 6.0)"
-    - nanopb (~> 0.3)
-  - FirebaseCore (6.3.0):
+    - nanopb (~> 0.3.901)
+  - FirebaseCore (6.3.1):
     - FirebaseCoreDiagnostics (~> 1.0)
     - FirebaseCoreDiagnosticsInterop (~> 1.0)
     - GoogleUtilities/Environment (~> 6.2)
     - GoogleUtilities/Logger (~> 6.2)
-  - FirebaseCoreDiagnostics (1.1.0):
+  - FirebaseCoreDiagnostics (1.1.1):
     - FirebaseCoreDiagnosticsInterop (~> 1.0)
     - GoogleDataTransportCCTSupport (~> 1.0)
     - GoogleUtilities/Environment (~> 6.2)
     - GoogleUtilities/Logger (~> 6.2)
+    - nanopb (~> 0.3.901)
   - FirebaseCoreDiagnosticsInterop (1.0.0)
   - FirebaseInstanceID (4.2.5):
     - FirebaseCore (~> 6.0)
     - GoogleUtilities/Environment (~> 6.0)
     - GoogleUtilities/UserDefaults (~> 6.0)
-  - FirebaseMLCommon (0.18.0):
-    - FirebaseCore (~> 6.2)
+  - FirebaseMLCommon (0.19.0):
+    - FirebaseCore (~> 6.3)
     - FirebaseInstanceID (~> 4.2)
     - GoogleToolboxForMac/Logger (~> 2.1)
     - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
@@ -42,27 +43,27 @@ PODS:
     - GoogleUtilities/UserDefaults (~> 6.0)
     - GTMSessionFetcher/Core (~> 1.1)
     - Protobuf (~> 3.5)
-  - FirebaseMLNaturalLanguage (0.16.4):
+  - FirebaseMLNaturalLanguage (0.17.0):
     - FirebaseCore (~> 6.3)
-    - FirebaseMLCommon (~> 0.18)
+    - FirebaseMLCommon (~> 0.19)
     - GoogleToolboxForMac/Logger (~> 2.1)
     - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
     - "GoogleToolboxForMac/NSDictionary+URLArguments (~> 2.1)"
     - GTMSessionFetcher/Core (~> 1.1)
     - Protobuf (~> 3.5)
-  - FirebaseMLNLLanguageID (0.16.4):
+  - FirebaseMLNLLanguageID (0.17.0):
     - FirebaseCore (~> 6.3)
-    - FirebaseMLNaturalLanguage (~> 0.16)
-  - GoogleAppMeasurement (6.1.2):
+    - FirebaseMLNaturalLanguage (~> 0.17)
+  - GoogleAppMeasurement (6.1.3):
     - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
     - GoogleUtilities/MethodSwizzler (~> 6.0)
     - GoogleUtilities/Network (~> 6.0)
     - "GoogleUtilities/NSData+zlib (~> 6.0)"
-    - nanopb (~> 0.3)
-  - GoogleDataTransport (2.0.0)
-  - GoogleDataTransportCCTSupport (1.1.0):
-    - GoogleDataTransport (~> 2.0)
-    - nanopb
+    - nanopb (~> 0.3.901)
+  - GoogleDataTransport (3.0.0)
+  - GoogleDataTransportCCTSupport (1.2.0):
+    - GoogleDataTransport (~> 3.0)
+    - nanopb (~> 0.3.901)
   - GoogleToolboxForMac/DebugUtils (2.2.1):
     - GoogleToolboxForMac/Defines (= 2.2.1)
   - GoogleToolboxForMac/Defines (2.2.1)
@@ -126,18 +127,18 @@ SPEC REPOS:
     - Protobuf
 
 SPEC CHECKSUMS:
-  Firebase: 2d750c54cda57d5a6ae31212cfe5cc813c6be7e4
-  FirebaseAnalytics: 5d9ccbf46ed25d3ec9304d263f85bddf1e93e2d2
-  FirebaseCore: 8b2765c445d40db7137989b7146a3aa3f91b5529
-  FirebaseCoreDiagnostics: be4f7a09d02ab305f18de59a470412caddb64c2a
+  Firebase: 5e6b7b12bf9adb90986688edc06b156c37e109cd
+  FirebaseAnalytics: 0e3ecff2c5d86070f7d4325e21f1edabfbd558dc
+  FirebaseCore: 064c2dd92a8ca5974bbdcb080df9921e46bd34cd
+  FirebaseCoreDiagnostics: af29e43048607588c050889d19204f4d7b758c9f
   FirebaseCoreDiagnosticsInterop: 6829da2b8d1fc795ff1bd99df751d3788035d2cb
   FirebaseInstanceID: 550df9be1f99f751d8fcde3ac342a1e21a0e6c42
-  FirebaseMLCommon: 45b456098f5d38c0fe023dd6dca3ee0f91256b2d
-  FirebaseMLNaturalLanguage: 50d6d0edf93a94cb5d43727ae39c2332f63df0cf
-  FirebaseMLNLLanguageID: 0726eb17329e117abfb6fc384662fcae52e27abc
-  GoogleAppMeasurement: 0ae90be1cc4dad40f4a27fc767ef59fa032ec87b
-  GoogleDataTransport: c8617c00e4f3eb9418e42ac0e8ac5241a9d555dd
-  GoogleDataTransportCCTSupport: 9f352523e8785a71f6754f51eeff09f49ec19268
+  FirebaseMLCommon: 074a67e05122b1c9f6401a4e33b2cea3b4efd224
+  FirebaseMLNaturalLanguage: 9d38301a41b1201d248588bf66937b975391e8f4
+  FirebaseMLNLLanguageID: afd2e97dfc8ff215f7527acc7e4cd56d4f537737
+  GoogleAppMeasurement: 434cc7be25e71dc04b8d0e3079125127b330e84a
+  GoogleDataTransport: f6fe28f43e3a300736854260961ad485b473edc5
+  GoogleDataTransportCCTSupport: 862418a8cdda520c4dd4af83a756d04efe4a6990
   GoogleToolboxForMac: b3553629623a3b1bff17f555e736cd5a6d95ad55
   GoogleUtilities: f895fde57977df4e0233edda0dbeac490e3703b6
   GTMSessionFetcher: 61bb0f61a4cb560030f1222021178008a5727a23

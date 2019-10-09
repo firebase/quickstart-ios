@@ -6,8 +6,8 @@ platform :ios, '8.0'
 pod 'Firebase/Analytics'
 pod 'Firebase/Messaging'
 
-pod 'FirebaseInstanceID', :git => 'https://github.com/firebase/firebase-ios-sdk.git', :branch => 'mm/iid-with-fis'
-pod 'FirebaseInstallations', :git => 'https://github.com/firebase/firebase-ios-sdk.git', :branch => 'mm/iid-with-fis'
+pod 'FirebaseInstanceID', :git => 'https://github.com/firebase/firebase-ios-sdk.git', :branch => 'mm/fis-integration-master'
+pod 'FirebaseInstallations', :git => 'https://github.com/firebase/firebase-ios-sdk.git', :branch => 'mm/fis-integration-master'
 
 target 'MessagingExample' do
 end

@@ -53,10 +53,10 @@ PODS:
     - FirebaseCore (~> 6.0)
     - GoogleUtilities/Environment (~> 6.0)
     - GoogleUtilities/UserDefaults (~> 6.0)
-  - FirebaseUI/Auth (8.1.0):
+  - FirebaseUI/Auth (8.2.0):
     - Firebase/Auth (~> 6.0)
     - GoogleUtilities/UserDefaults
-  - FirebaseUI/Google (8.1.0):
+  - FirebaseUI/Google (8.2.0):
     - FirebaseUI/Auth
     - GoogleSignIn (~> 5.0)
   - GoogleAppMeasurement (6.1.3):
@@ -69,8 +69,8 @@ PODS:
   - GoogleDataTransportCCTSupport (1.2.0):
     - GoogleDataTransport (~> 3.0)
     - nanopb (~> 0.3.901)
-  - GoogleSignIn (5.0.0):
-    - AppAuth (~> 1.1)
+  - GoogleSignIn (5.0.1):
+    - AppAuth (~> 1.2)
     - GTMAppAuth (~> 1.0)
     - GTMSessionFetcher/Core (~> 1.1)
   - GoogleUtilities/AppDelegateSwizzler (6.3.1):
@@ -222,11 +222,11 @@ SPEC CHECKSUMS:
   FirebaseCoreDiagnosticsInterop: 6829da2b8d1fc795ff1bd99df751d3788035d2cb
   FirebaseFunctions: 5af7c35d1c5e41608fecbb667eb6c4e672e318d0
   FirebaseInstanceID: 550df9be1f99f751d8fcde3ac342a1e21a0e6c42
-  FirebaseUI: 41e06c5f7f6e34a8f430862d67637e36e4aa696c
+  FirebaseUI: d9393ff139b2671921153c0060cf6fd154afad16
   GoogleAppMeasurement: 434cc7be25e71dc04b8d0e3079125127b330e84a
   GoogleDataTransport: f6fe28f43e3a300736854260961ad485b473edc5
   GoogleDataTransportCCTSupport: 862418a8cdda520c4dd4af83a756d04efe4a6990
-  GoogleSignIn: a62edd0516721d2a3db1259a5681b91f9b41c06a
+  GoogleSignIn: 3a51b9bb8e48b635fd7f4272cee06ca260345b86
   GoogleUtilities: f895fde57977df4e0233edda0dbeac490e3703b6
   GTMAppAuth: 4deac854479704f348309e7b66189e604cf5e01e
   GTMSessionFetcher: 61bb0f61a4cb560030f1222021178008a5727a23

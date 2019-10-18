@@ -117,7 +117,7 @@ static float const SoftmaxScale = 1.0 / (SoftmaxMaxUInt8QuantizedValue + Softmax
 }
 
 - (FIRCustomLocalModel *)currentLocalModel {
-  return self.remoteModels[[self currentModelType]];
+  return self.localModels[[self currentModelType]];
 }
 
 - (NSArray<NSString *> *)labels {

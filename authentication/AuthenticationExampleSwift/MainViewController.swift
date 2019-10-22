@@ -840,7 +840,7 @@ class MainViewController: UITableViewController {
       }
 
       randoms.forEach { random in
-        if length == 0 {
+        if remainingLength == 0 {
           return
         }
 
@@ -885,7 +885,7 @@ extension MainViewController: ASAuthorizationControllerDelegate {
       }
       // Initialize a Firebase credential.
       let credential = OAuthProvider.credential(withProviderID: "apple.com",
-                                                idToken:idTokenString,
+                                                idToken: idTokenString,
                                                 rawNonce: nonce)
       // Sign in with Firebase.
       self.firebaseLogin(credential)

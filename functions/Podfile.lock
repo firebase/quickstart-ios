@@ -170,11 +170,11 @@ PODS:
     - MaterialComponents/private/Math
   - MDFInternationalization (2.0.0)
   - MDFTextAccessibility (2.0.0)
-  - nanopb (0.3.901):
-    - nanopb/decode (= 0.3.901)
-    - nanopb/encode (= 0.3.901)
-  - nanopb/decode (0.3.901)
-  - nanopb/encode (0.3.901)
+  - nanopb (0.3.904):
+    - nanopb/decode (= 0.3.904)
+    - nanopb/encode (= 0.3.904)
+  - nanopb/decode (0.3.904)
+  - nanopb/encode (0.3.904)
 
 DEPENDENCIES:
   - Firebase/Analytics
@@ -233,7 +233,7 @@ SPEC CHECKSUMS:
   MaterialComponents: c2045515505992357e210b33cb3ffc3a404a14fd
   MDFInternationalization: 010097556d6b09d2c4ea38e0820ea6d37be6a314
   MDFTextAccessibility: 85c09a1bd9c321f494348e632a25063bcda35a53
-  nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
+  nanopb: 06f6030d554e6473f5e172460173fcf80f5548f4
 
 PODFILE CHECKSUM: 24da91db027c807e0d0fa3d435be58be395a4ca0
 

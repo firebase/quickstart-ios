@@ -77,11 +77,11 @@ PODS:
     - GoogleUtilities/Logger
   - GoogleUtilities/UserDefaults (6.3.1):
     - GoogleUtilities/Logger
-  - nanopb (0.3.901):
-    - nanopb/decode (= 0.3.901)
-    - nanopb/encode (= 0.3.901)
-  - nanopb/decode (0.3.901)
-  - nanopb/encode (0.3.901)
+  - nanopb (0.3.904):
+    - nanopb/decode (= 0.3.904)
+    - nanopb/encode (= 0.3.904)
+  - nanopb/decode (0.3.904)
+  - nanopb/encode (0.3.904)
 
 DEPENDENCIES:
   - Firebase
@@ -121,7 +121,7 @@ SPEC CHECKSUMS:
   GoogleDataTransport: 166f9b9f82cbf60a204e8fe2daa9db3e3ec1fb15
   GoogleDataTransportCCTSupport: f6ab1962e9dc05ab1fb938b795e5b310209edeec
   GoogleUtilities: f895fde57977df4e0233edda0dbeac490e3703b6
-  nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
+  nanopb: 06f6030d554e6473f5e172460173fcf80f5548f4
 
 PODFILE CHECKSUM: c429d7cf84837e484f16f00ba9040334254bf3c0
 

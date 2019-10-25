@@ -206,7 +206,6 @@
 				10E115C220F469DC0013E4A4 /* MLModelInterpreterExampleObjCTests */,
 				10E115CD20F469DC0013E4A4 /* MLModelInterpreterExampleObjCUITests */,
 				4A56D20B20A138E500357F77 /* Products */,
-				FDA9FD9B7F4EF8FF2BD7CA4A /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -247,13 +246,6 @@
 				4A56D22B20A154E100357F77 /* grace_hopper.jpg */,
 			);
 			path = Resources;
-			sourceTree = "<group>";
-		};
-		FDA9FD9B7F4EF8FF2BD7CA4A /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

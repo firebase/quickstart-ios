@@ -66,20 +66,12 @@
 			path = LanguageIDExampleObjC;
 			sourceTree = "<group>";
 		};
-		50B80D71D5DB211F2CFA9921 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 		C1C916F721AD98EE00DD171F = {
 			isa = PBXGroup;
 			children = (
 				C1C9170221AD98EE00DD171F /* LanguageIDExample */,
 				10F9324421B997E8008B6C9D /* LanguageIDExampleObjC */,
 				C1C9170121AD98EE00DD171F /* Products */,
-				50B80D71D5DB211F2CFA9921 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};

@@ -135,7 +135,6 @@
 				10360400224D9A1600E6532E /* AdMobExampleUITests */,
 				1036040E224D9A2900E6532E /* AdMobExampleSwiftUITests */,
 				1036038D224D95D300E6532E /* Products */,
-				3AEBAF555832C3803F0ABCD1 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -209,13 +208,6 @@
 				10360411224D9A2900E6532E /* Info.plist */,
 			);
 			path = AdMobExampleSwiftUITests;
-			sourceTree = "<group>";
-		};
-		3AEBAF555832C3803F0ABCD1 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

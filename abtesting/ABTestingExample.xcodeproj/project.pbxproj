@@ -83,13 +83,6 @@
 			path = ABTestingExampleUITests;
 			sourceTree = "<group>";
 		};
-		88E0B04268756179EE0F55F6 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 		8DFFBF911F9E6C5200C3483E = {
 			isa = PBXGroup;
 			children = (
@@ -97,7 +90,6 @@
 				8DFFBFB11F9E6C5200C3483E /* ABTestingExampleTests */,
 				10B92C9D202E3603008DBD68 /* ABTestingExampleUITests */,
 				8DFFBF9B1F9E6C5200C3483E /* Products */,
-				88E0B04268756179EE0F55F6 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};

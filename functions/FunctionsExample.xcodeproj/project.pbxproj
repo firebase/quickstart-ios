@@ -171,7 +171,6 @@
 				1036DA1A2087CA66003253C9 /* FunctionsExampleSwiftUITests */,
 				5F5A534D1ADE670C00F81DF0 /* Products */,
 				5F9961041AE0CF4F0034F503 /* Shared */,
-				9E82ACFE336783519A1A1826 /* Pods */,
 			);
 			sourceTree = "<group>";
 			wrapsLines = 0;
@@ -240,13 +239,6 @@
 			);
 			name = Shared;
 			path = ../shared;
-			sourceTree = "<group>";
-		};
-		9E82ACFE336783519A1A1826 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -184,13 +184,6 @@
 			path = MLVisionExampleObjc;
 			sourceTree = "<group>";
 		};
-		914E95D65AA907F22D8C0BD3 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 		BB287B2C20729CE90069707A = {
 			isa = PBXGroup;
 			children = (
@@ -201,7 +194,6 @@
 				1036DA362087CC26003253C9 /* MLVisionExampleUITests */,
 				10E114E120E5CBAA0013E4A4 /* MLVisionExampleObjc */,
 				BB287B3620729CE90069707A /* Products */,
-				914E95D65AA907F22D8C0BD3 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};

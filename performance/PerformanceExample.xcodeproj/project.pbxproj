@@ -128,13 +128,6 @@
 			path = PerformanceExampleUITests;
 			sourceTree = "<group>";
 		};
-		39A43BBF055E5E5767636404 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 		5F5A53431ADE670C00F81DF0 = {
 			isa = PBXGroup;
 			children = (
@@ -145,7 +138,6 @@
 				1073486D20333C0C004A66D1 /* PerformanceExampleUITests */,
 				5F5A534D1ADE670C00F81DF0 /* Products */,
 				5F9961041AE0CF4F0034F503 /* Shared */,
-				39A43BBF055E5E5767636404 /* Pods */,
 			);
 			sourceTree = "<group>";
 			wrapsLines = 0;

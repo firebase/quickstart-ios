@@ -133,13 +133,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		568C2B9D9F699FA7A015B9F6 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 		8DB25F8220BE0C29000ABEE2 = {
 			isa = PBXGroup;
 			children = (
@@ -150,7 +143,6 @@
 				8DECFE81211CC15F00DC99BD /* InAppMessagingExampleSwiftTests */,
 				8DECFE8F211CC16F00DC99BD /* InAppMessagingExampleSwiftUITests */,
 				8DB25F8C20BE0C29000ABEE2 /* Products */,
-				568C2B9D9F699FA7A015B9F6 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};

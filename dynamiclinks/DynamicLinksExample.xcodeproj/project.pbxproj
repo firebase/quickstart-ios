@@ -157,7 +157,6 @@
 				1073484320333BB3004A66D1 /* DynamicLinksExampleUITests */,
 				5F5A534D1ADE670C00F81DF0 /* Products */,
 				5F9961041AE0CF4F0034F503 /* Shared */,
-				F58CCDD49F890F41B67F494F /* Pods */,
 			);
 			sourceTree = "<group>";
 			wrapsLines = 0;
@@ -220,13 +219,6 @@
 			);
 			name = Shared;
 			path = ../shared;
-			sourceTree = "<group>";
-		};
-		F58CCDD49F890F41B67F494F /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -157,13 +157,6 @@
 			path = AuthenticationExampleTests;
 			sourceTree = "<group>";
 		};
-		48A4E6FB5760AF2F2C807AD2 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 		5F5A53431ADE670C00F81DF0 = {
 			isa = PBXGroup;
 			children = (
@@ -174,7 +167,6 @@
 				1073480B20333B18004A66D1 /* AuthenticationExampleUITests */,
 				5F5A534D1ADE670C00F81DF0 /* Products */,
 				5F9961041AE0CF4F0034F503 /* Shared */,
-				48A4E6FB5760AF2F2C807AD2 /* Pods */,
 			);
 			sourceTree = "<group>";
 			wrapsLines = 0;

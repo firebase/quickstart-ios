@@ -199,7 +199,6 @@
 				108489E62244160B004D37A8 /* TranslateExampleUITests */,
 				C1E8DDC222259E3400536A5C /* Products */,
 				65AC6D81F1B268042A1E4A79 /* Frameworks */,
-				E5C849EF54A4DD21CE8C487D /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -227,13 +226,6 @@
 				C1E8DDD022259E3500536A5C /* Info.plist */,
 			);
 			path = TranslateExample;
-			sourceTree = "<group>";
-		};
-		E5C849EF54A4DD21CE8C487D /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -892,7 +884,6 @@
 					"-framework",
 					"\"Security\"",
 				);
-				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS";
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebaseml.sampleapp.translate;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -942,7 +933,6 @@
 					"-framework",
 					"\"Security\"",
 				);
-				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS";
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebaseml.sampleapp.translate;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

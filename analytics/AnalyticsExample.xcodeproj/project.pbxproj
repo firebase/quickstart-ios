@@ -159,7 +159,6 @@
 				5F5A534D1ADE670C00F81DF0 /* Products */,
 				5F9961041AE0CF4F0034F503 /* Shared */,
 				5FC29E541AE9255700668C8D /* Images */,
-				74A550DF29D046049E3299BF /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -240,13 +239,6 @@
 				5FC7AD8F1B0D44B9004E3100 /* LogWrapper.h */,
 			);
 			path = AnalyticsExampleTests;
-			sourceTree = "<group>";
-		};
-		74A550DF29D046049E3299BF /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

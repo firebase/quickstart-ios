@@ -138,7 +138,6 @@
 				1073482720333B71004A66D1 /* CrashlyticsExampleUITests */,
 				5F5A534D1ADE670C00F81DF0 /* Products */,
 				5F9961041AE0CF4F0034F503 /* Shared */,
-				F476DBE63B7939F0E332B090 /* Pods */,
 			);
 			sourceTree = "<group>";
 			wrapsLines = 0;
@@ -202,13 +201,6 @@
 				5FDE055C1B0DAA090037B82F /* AppTests.m */,
 			);
 			path = CrashlyticsExampleTests;
-			sourceTree = "<group>";
-		};
-		F476DBE63B7939F0E332B090 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

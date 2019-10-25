@@ -141,7 +141,6 @@
 				1073481920333B45004A66D1 /* ConfigExampleUITests */,
 				5F5A534D1ADE670C00F81DF0 /* Products */,
 				5F9961041AE0CF4F0034F503 /* Shared */,
-				FA4B3D0AA836D352CAAE2ECD /* Pods */,
 			);
 			sourceTree = "<group>";
 			wrapsLines = 0;
@@ -207,13 +206,6 @@
 			);
 			name = ConfigExamleTests;
 			path = ConfigExampleTests;
-			sourceTree = "<group>";
-		};
-		FA4B3D0AA836D352CAAE2ECD /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

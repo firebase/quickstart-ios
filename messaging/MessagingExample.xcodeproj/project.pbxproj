@@ -140,7 +140,6 @@
 				1073485F20333BF5004A66D1 /* MessagingExampleUITests */,
 				5F5A534D1ADE670C00F81DF0 /* Products */,
 				5F9961041AE0CF4F0034F503 /* Shared */,
-				9C93E2B5D21F5F3B499683C2 /* Pods */,
 			);
 			sourceTree = "<group>";
 			wrapsLines = 0;
@@ -206,13 +205,6 @@
 				5FDE055C1B0DAA090037B82F /* AppTests.m */,
 			);
 			path = MessagingExampleTests;
-			sourceTree = "<group>";
-		};
-		9C93E2B5D21F5F3B499683C2 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

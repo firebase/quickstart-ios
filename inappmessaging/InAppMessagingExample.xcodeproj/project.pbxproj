@@ -133,6 +133,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		568C2B9D9F699FA7A015B9F6 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		8DB25F8220BE0C29000ABEE2 = {
 			isa = PBXGroup;
 			children = (
@@ -143,6 +150,7 @@
 				8DECFE81211CC15F00DC99BD /* InAppMessagingExampleSwiftTests */,
 				8DECFE8F211CC16F00DC99BD /* InAppMessagingExampleSwiftUITests */,
 				8DB25F8C20BE0C29000ABEE2 /* Products */,
+				568C2B9D9F699FA7A015B9F6 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -345,7 +353,7 @@
 				TargetAttributes = {
 					8DB25F8A20BE0C29000ABEE2 = {
 						CreatedOnToolsVersion = 9.3;
-						LastSwiftMigration = 1010;
+						LastSwiftMigration = 1110;
 					};
 					8DECFE49211CC14500DC99BD = {
 						CreatedOnToolsVersion = 9.4.1;
@@ -681,7 +689,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.firebase.InAppMessagingExampleSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -698,7 +706,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.firebase.InAppMessagingExampleSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

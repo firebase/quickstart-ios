@@ -159,6 +159,7 @@
 				5F5A534D1ADE670C00F81DF0 /* Products */,
 				5F9961041AE0CF4F0034F503 /* Shared */,
 				5FC29E541AE9255700668C8D /* Images */,
+				74A550DF29D046049E3299BF /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -239,6 +240,13 @@
 				5FC7AD8F1B0D44B9004E3100 /* LogWrapper.h */,
 			);
 			path = AnalyticsExampleTests;
+			sourceTree = "<group>";
+		};
+		74A550DF29D046049E3299BF /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -344,7 +352,7 @@
 				TargetAttributes = {
 					107346D520315877004A66D1 = {
 						CreatedOnToolsVersion = 9.2;
-						LastSwiftMigration = 1010;
+						LastSwiftMigration = 1110;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 5F5A53781ADE67D500F81DF0;
 					};
@@ -360,7 +368,7 @@
 					};
 					5F5A53781ADE67D500F81DF0 = {
 						CreatedOnToolsVersion = 6.3;
-						LastSwiftMigration = 1010;
+						LastSwiftMigration = 1110;
 						ProvisioningStyle = Automatic;
 					};
 					5FC7AD811B0D4106004E3100 = {
@@ -373,7 +381,7 @@
 			};
 			buildConfigurationList = 5F5A53471ADE670C00F81DF0 /* Build configuration list for PBXProject "AnalyticsExample" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
@@ -540,7 +548,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.AnalyticsExampleSwiftUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = AnalyticsExampleSwift;
 			};
@@ -564,7 +572,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.AnalyticsExampleSwiftUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = AnalyticsExampleSwift;
 			};
@@ -631,7 +639,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.AnalyticsExample;
 				PRODUCT_NAME = AnalyticsExampleSwift;
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -787,7 +795,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};

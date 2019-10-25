@@ -37,8 +37,8 @@ class ViewController: UIViewController, UITextViewDelegate, UIPickerViewDataSour
   override func viewDidLoad() {
     inputPicker.dataSource = self
     outputPicker.dataSource = self
-    inputPicker.selectRow(allLanguages.index(of: TranslateLanguage.en) ?? 0, inComponent: 0, animated: false)
-    outputPicker.selectRow(allLanguages.index(of: TranslateLanguage.es) ?? 0, inComponent: 0, animated: false)
+    inputPicker.selectRow(allLanguages.firstIndex(of: TranslateLanguage.en) ?? 0, inComponent: 0, animated: false)
+    outputPicker.selectRow(allLanguages.firstIndex(of: TranslateLanguage.es) ?? 0, inComponent: 0, animated: false)
     inputPicker.delegate = self
     outputPicker.delegate = self
     inputTextView.delegate = self

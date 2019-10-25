@@ -206,13 +206,13 @@ PODS:
     - MaterialComponents/private/Math
   - MDFInternationalization (2.0.0)
   - MDFTextAccessibility (2.0.0)
-  - nanopb (0.3.904):
-    - nanopb/decode (= 0.3.904)
-    - nanopb/encode (= 0.3.904)
-  - nanopb/decode (0.3.904)
-  - nanopb/encode (0.3.904)
+  - nanopb (0.3.9011):
+    - nanopb/decode (= 0.3.9011)
+    - nanopb/encode (= 0.3.9011)
+  - nanopb/decode (0.3.9011)
+  - nanopb/encode (0.3.9011)
   - Protobuf (3.10.0)
-  - SwiftLint (0.35.0)
+  - SwiftLint (0.36.0)
 
 DEPENDENCIES:
   - Firebase/Analytics
@@ -275,9 +275,9 @@ SPEC CHECKSUMS:
   MaterialComponents: 8083cd21bae53f331cac588b4c57e9c0468472fa
   MDFInternationalization: 010097556d6b09d2c4ea38e0820ea6d37be6a314
   MDFTextAccessibility: 85c09a1bd9c321f494348e632a25063bcda35a53
-  nanopb: 06f6030d554e6473f5e172460173fcf80f5548f4
+  nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
   Protobuf: a4dc852ad69c027ca2166ed287b856697814375b
-  SwiftLint: 5553187048b900c91aa03552807681bb6b027846
+  SwiftLint: fc9859e4e1752340664851f667bb1898b9c90114
 
 PODFILE CHECKSUM: c2417aaece5985c3ae4ab16b0606e877bc160b67
 

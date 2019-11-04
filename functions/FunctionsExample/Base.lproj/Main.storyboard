@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Tjv-AT-FJM">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Tjv-AT-FJM">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -14,7 +12,7 @@
             <objects>
                 <navigationController id="Tjv-AT-FJM" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="o3e-Ch-GOB">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.01176470588" green="0.60784313729999995" blue="0.8980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <textAttributes key="titleTextAttributes">
@@ -52,7 +50,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add two numbers" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mTV-70-RgN">
-                                            <rect key="frame" x="16" y="16" width="114" height="14"/>
+                                            <rect key="frame" x="16" y="16" width="114" height="17"/>
                                             <accessibility key="accessibilityConfiguration">
                                                 <accessibilityTraits key="traits" staticText="YES" notEnabled="YES"/>
                                             </accessibility>
@@ -60,41 +58,41 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Number 1" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VqS-i9-5oU" customClass="MDCTextField">
-                                            <rect key="frame" x="16" y="46" width="66" height="30"/>
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Num 1" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VqS-i9-5oU" customClass="MDCTextField">
+                                            <rect key="frame" x="16" y="49" width="60" height="34"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="66" id="67m-WK-NpW"/>
+                                                <constraint firstAttribute="width" constant="60" id="67m-WK-NpW"/>
                                             </constraints>
-                                            <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits"/>
                                         </textField>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IXg-aV-mBK">
-                                            <rect key="frame" x="94" y="51" width="11" height="20.5"/>
+                                            <rect key="frame" x="88" y="56" width="11" height="20.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Number 2" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Uny-hg-53e" customClass="MDCTextField">
-                                            <rect key="frame" x="117" y="46" width="66" height="30"/>
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Num 2" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Uny-hg-53e" customClass="MDCTextField">
+                                            <rect key="frame" x="111" y="49" width="60" height="34"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="66" id="gey-Bd-n3T"/>
+                                                <constraint firstAttribute="width" constant="60" id="gey-Bd-n3T"/>
                                             </constraints>
-                                            <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits"/>
                                         </textField>
                                         <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ccd-hP-5Ck">
-                                            <rect key="frame" x="218" y="46" width="67" height="30"/>
+                                            <rect key="frame" x="206" y="49" width="68" height="34"/>
                                             <accessibility key="accessibilityConfiguration">
                                                 <accessibilityTraits key="traits" staticText="YES" notEnabled="YES"/>
                                             </accessibility>
-                                            <nil key="textColor"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="68" id="0pZ-VL-fRB"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits"/>
                                         </textField>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dmi-uv-gmK" customClass="MDCButton">
-                                            <rect key="frame" x="185" y="92" width="100" height="24"/>
+                                            <rect key="frame" x="174" y="99" width="100" height="24"/>
                                             <color key="backgroundColor" red="0.01176470588" green="0.60784313729999995" blue="0.8980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="100" id="e8v-7W-lDC"/>
@@ -109,7 +107,7 @@
                                             </connections>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="=" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ay8-wT-d2q">
-                                            <rect key="frame" x="195" y="51" width="11" height="20.5"/>
+                                            <rect key="frame" x="183" y="56" width="11" height="20.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -124,12 +122,10 @@
                                     <constraint firstItem="VqS-i9-5oU" firstAttribute="leading" secondItem="mTV-70-RgN" secondAttribute="leading" id="HUN-Ql-0rz"/>
                                     <constraint firstItem="mTV-70-RgN" firstAttribute="leading" secondItem="R5i-XJ-Nps" secondAttribute="leading" constant="16" id="III-Ng-XHw"/>
                                     <constraint firstItem="VqS-i9-5oU" firstAttribute="top" secondItem="mTV-70-RgN" secondAttribute="bottom" constant="16" id="IpD-s2-sL2"/>
-                                    <constraint firstAttribute="bottom" secondItem="dmi-uv-gmK" secondAttribute="bottom" constant="16" id="Nmp-VT-1hB"/>
                                     <constraint firstItem="Uny-hg-53e" firstAttribute="leading" secondItem="IXg-aV-mBK" secondAttribute="trailing" constant="12" id="eso-4v-diS"/>
                                     <constraint firstItem="Ccd-hP-5Ck" firstAttribute="leading" secondItem="ay8-wT-d2q" secondAttribute="trailing" constant="12" id="f1m-Mt-979"/>
                                     <constraint firstItem="mTV-70-RgN" firstAttribute="top" secondItem="R5i-XJ-Nps" secondAttribute="top" constant="16" id="hp1-Vx-rlq"/>
                                     <constraint firstItem="Uny-hg-53e" firstAttribute="centerY" secondItem="VqS-i9-5oU" secondAttribute="centerY" id="lRU-GL-Isg"/>
-                                    <constraint firstAttribute="trailing" secondItem="Ccd-hP-5Ck" secondAttribute="trailing" constant="16" id="nWT-5W-cdb"/>
                                     <constraint firstItem="Ccd-hP-5Ck" firstAttribute="centerY" secondItem="Uny-hg-53e" secondAttribute="centerY" id="pkV-r0-ssL"/>
                                     <constraint firstItem="IXg-aV-mBK" firstAttribute="centerY" secondItem="VqS-i9-5oU" secondAttribute="centerY" id="tm5-k7-QJl"/>
                                     <constraint firstItem="IXg-aV-mBK" firstAttribute="leading" secondItem="VqS-i9-5oU" secondAttribute="trailing" constant="12" id="uhF-Hp-IrN"/>
@@ -149,7 +145,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="281" height="165"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sanitize a message" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J9r-ue-IJs">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Sanitize a message" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J9r-ue-IJs">
                                             <rect key="frame" x="16" y="16" width="125" height="17"/>
                                             <accessibility key="accessibilityConfiguration">
                                                 <accessibilityTraits key="traits" staticText="YES" notEnabled="YES"/>
@@ -158,23 +154,21 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Add your message" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OXj-U6-8N6" customClass="MDCTextField">
-                                            <rect key="frame" x="16" y="49" width="249" height="30"/>
-                                            <nil key="textColor"/>
+                                        <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Add your message" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OXj-U6-8N6" customClass="MDCTextField">
+                                            <rect key="frame" x="16" y="49" width="117" height="30"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits"/>
                                         </textField>
-                                        <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CJK-vk-dJP">
-                                            <rect key="frame" x="16" y="79" width="249" height="30"/>
+                                        <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CJK-vk-dJP">
+                                            <rect key="frame" x="16" y="79" width="117" height="30"/>
                                             <accessibility key="accessibilityConfiguration">
                                                 <accessibilityTraits key="traits" staticText="YES" notEnabled="YES"/>
                                             </accessibility>
-                                            <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits"/>
                                         </textField>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eU9-jE-1Pp" customClass="MDCButton">
-                                            <rect key="frame" x="145" y="125" width="120" height="24"/>
+                                            <rect key="frame" x="13" y="89" width="120" height="24"/>
                                             <color key="backgroundColor" red="1" green="0.62745098040000002" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="120" id="CLw-1Q-ksc"/>

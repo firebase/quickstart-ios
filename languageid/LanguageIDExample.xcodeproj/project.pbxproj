@@ -20,26 +20,7 @@
 		C1C9170E21AD98F000DD171F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1C9170C21AD98F000DD171F /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		1083A50D22403A0A00E00B11 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C1C916F821AD98EE00DD171F /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = C1C916FF21AD98EE00DD171F;
-			remoteInfo = LanguageIDExample;
-		};
-		1083A51B22403A1800E00B11 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C1C916F821AD98EE00DD171F /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = C1C916FF21AD98EE00DD171F;
-			remoteInfo = LanguageIDExample;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
-		1083A50822403A0A00E00B11 /* LanguageIDExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LanguageIDExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		1083A51622403A1800E00B11 /* LanguageIDExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LanguageIDExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		10F9324321B997E8008B6C9D /* LanguageIDExampleObjC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LanguageIDExampleObjC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		10F9324521B997E9008B6C9D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		10F9324621B997E9008B6C9D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -56,20 +37,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		1083A50522403A0A00E00B11 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		1083A51322403A1800E00B11 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		10F9324021B997E8008B6C9D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -113,8 +80,6 @@
 			children = (
 				C1C9170021AD98EE00DD171F /* LanguageIDExample.app */,
 				10F9324321B997E8008B6C9D /* LanguageIDExampleObjC.app */,
-				1083A50822403A0A00E00B11 /* LanguageIDExampleUITests.xctest */,
-				1083A51622403A1800E00B11 /* LanguageIDExampleTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -135,42 +100,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		1083A50722403A0A00E00B11 /* LanguageIDExampleUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 1083A50F22403A0A00E00B11 /* Build configuration list for PBXNativeTarget "LanguageIDExampleUITests" */;
-			buildPhases = (
-				1083A50422403A0A00E00B11 /* Sources */,
-				1083A50522403A0A00E00B11 /* Frameworks */,
-				1083A50622403A0A00E00B11 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				1083A50E22403A0A00E00B11 /* PBXTargetDependency */,
-			);
-			name = LanguageIDExampleUITests;
-			productName = LanguageIDExampleUITests;
-			productReference = 1083A50822403A0A00E00B11 /* LanguageIDExampleUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
-		1083A51522403A1800E00B11 /* LanguageIDExampleTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 1083A51D22403A1800E00B11 /* Build configuration list for PBXNativeTarget "LanguageIDExampleTests" */;
-			buildPhases = (
-				1083A51222403A1800E00B11 /* Sources */,
-				1083A51322403A1800E00B11 /* Frameworks */,
-				1083A51422403A1800E00B11 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				1083A51C22403A1800E00B11 /* PBXTargetDependency */,
-			);
-			name = LanguageIDExampleTests;
-			productName = LanguageIDExampleTests;
-			productReference = 1083A51622403A1800E00B11 /* LanguageIDExampleTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 		10F9324221B997E8008B6C9D /* LanguageIDExampleObjC */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 10F9325821B997E9008B6C9D /* Build configuration list for PBXNativeTarget "LanguageIDExampleObjC" */;
@@ -215,19 +144,12 @@
 				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = "Google Inc";
 				TargetAttributes = {
-					1083A50722403A0A00E00B11 = {
-						CreatedOnToolsVersion = 10.1;
-						TestTargetID = C1C916FF21AD98EE00DD171F;
-					};
-					1083A51522403A1800E00B11 = {
-						CreatedOnToolsVersion = 10.1;
-						TestTargetID = C1C916FF21AD98EE00DD171F;
-					};
 					10F9324221B997E8008B6C9D = {
 						CreatedOnToolsVersion = 10.1;
 					};
 					C1C916FF21AD98EE00DD171F = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1110;
 					};
 				};
 			};
@@ -246,27 +168,11 @@
 			targets = (
 				C1C916FF21AD98EE00DD171F /* LanguageIDExample */,
 				10F9324221B997E8008B6C9D /* LanguageIDExampleObjC */,
-				1083A50722403A0A00E00B11 /* LanguageIDExampleUITests */,
-				1083A51522403A1800E00B11 /* LanguageIDExampleTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		1083A50622403A0A00E00B11 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		1083A51422403A1800E00B11 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		10F9324121B997E8008B6C9D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -290,20 +196,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		1083A50422403A0A00E00B11 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		1083A51222403A1800E00B11 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		10F9323F21B997E8008B6C9D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -325,19 +217,6 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXTargetDependency section */
-		1083A50E22403A0A00E00B11 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = C1C916FF21AD98EE00DD171F /* LanguageIDExample */;
-			targetProxy = 1083A50D22403A0A00E00B11 /* PBXContainerItemProxy */;
-		};
-		1083A51C22403A1800E00B11 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = C1C916FF21AD98EE00DD171F /* LanguageIDExample */;
-			targetProxy = 1083A51B22403A1800E00B11 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
 /* Begin PBXVariantGroup section */
 		C1085F3721AEB545007C8D86 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -358,80 +237,6 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		1083A51022403A0A00E00B11 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = LanguageIDExampleUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.LanguageIDExampleUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = LanguageIDExample;
-			};
-			name = Debug;
-		};
-		1083A51122403A0A00E00B11 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = LanguageIDExampleUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.LanguageIDExampleUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = LanguageIDExample;
-			};
-			name = Release;
-		};
-		1083A51E22403A1800E00B11 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = LanguageIDExampleTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.LanguageIDExampleTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LanguageIDExample.app/LanguageIDExample";
-			};
-			name = Debug;
-		};
-		1083A51F22403A1800E00B11 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = LanguageIDExampleTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.LanguageIDExampleTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LanguageIDExample.app/LanguageIDExample";
-			};
-			name = Release;
-		};
 		10F9325621B997E9008B6C9D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -598,7 +403,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.LanguageIDExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "Google Development";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -617,7 +422,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.LanguageIDExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -625,24 +430,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1083A50F22403A0A00E00B11 /* Build configuration list for PBXNativeTarget "LanguageIDExampleUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				1083A51022403A0A00E00B11 /* Debug */,
-				1083A51122403A0A00E00B11 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		1083A51D22403A1800E00B11 /* Build configuration list for PBXNativeTarget "LanguageIDExampleTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				1083A51E22403A1800E00B11 /* Debug */,
-				1083A51F22403A1800E00B11 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		10F9325821B997E9008B6C9D /* Build configuration list for PBXNativeTarget "LanguageIDExampleObjC" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -11,7 +11,6 @@
 		10423210216EBE9000908D8C /* mobilenet_float_v2_1.0_299.tflite in Resources */ = {isa = PBXBuildFile; fileRef = 1042320D216EBE9000908D8C /* mobilenet_float_v2_1.0_299.tflite */; };
 		10423211216EBE9000908D8C /* mobilenet_quant_v2_1.0_299.tflite in Resources */ = {isa = PBXBuildFile; fileRef = 1042320E216EBE9000908D8C /* mobilenet_quant_v2_1.0_299.tflite */; };
 		10423212216EBE9000908D8C /* mobilenet_quant_v2_1.0_299.tflite in Resources */ = {isa = PBXBuildFile; fileRef = 1042320E216EBE9000908D8C /* mobilenet_quant_v2_1.0_299.tflite */; };
-		10E114BB20D5E4CD0013E4A4 /* shared in Resources */ = {isa = PBXBuildFile; fileRef = 10E114BA20D5E4CD0013E4A4 /* shared */; };
 		10E114C320D5E5B40013E4A4 /* MLModelInterpreterExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E114C220D5E5B40013E4A4 /* MLModelInterpreterExampleUITests.swift */; };
 		10E114D120D5E5C40013E4A4 /* MLModelInterpreterExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E114D020D5E5C40013E4A4 /* MLModelInterpreterExampleTests.swift */; };
 		10E115AC20F469DB0013E4A4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 10E115AB20F469DB0013E4A4 /* AppDelegate.m */; };
@@ -20,16 +19,13 @@
 		10E115C420F469DC0013E4A4 /* MLModelInterpreterExampleObjCTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 10E115C320F469DC0013E4A4 /* MLModelInterpreterExampleObjCTests.m */; };
 		10E115CF20F469DC0013E4A4 /* MLModelInterpreterExampleObjCUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 10E115CE20F469DC0013E4A4 /* MLModelInterpreterExampleObjCUITests.m */; };
 		10E115DA20F469F60013E4A4 /* mobilenet_v1_1.0_224.tflite in Resources */ = {isa = PBXBuildFile; fileRef = 4A56D22620A154E100357F77 /* mobilenet_v1_1.0_224.tflite */; };
-		10E115DB20F469F90013E4A4 /* shared in Resources */ = {isa = PBXBuildFile; fileRef = 10E114BA20D5E4CD0013E4A4 /* shared */; };
 		10E115DE20F46A000013E4A4 /* labels.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4A56D22A20A154E100357F77 /* labels.txt */; };
 		10E115DF20F46A020013E4A4 /* grace_hopper.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4A56D22B20A154E100357F77 /* grace_hopper.jpg */; };
 		10E115E020F46A0B0013E4A4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A56D21120A138E500357F77 /* Main.storyboard */; };
 		10E115E120F46A0D0013E4A4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A56D21420A138E500357F77 /* Assets.xcassets */; };
-		10E115E420F46A200013E4A4 /* ModelInterpreterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 10E115E320F46A200013E4A4 /* ModelInterpreterManager.m */; };
 		10E115E720F46A340013E4A4 /* UIImage+TFLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 10E115E620F46A340013E4A4 /* UIImage+TFLite.m */; };
 		4A56D21320A138E500357F77 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A56D21120A138E500357F77 /* Main.storyboard */; };
 		4A56D21520A138E500357F77 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A56D21420A138E500357F77 /* Assets.xcassets */; };
-		4A56D22C20A154E100357F77 /* ModelInterpreterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A56D22020A154E100357F77 /* ModelInterpreterManager.swift */; };
 		4A56D22D20A154E100357F77 /* MLKitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A56D22120A154E100357F77 /* MLKitExtensions.swift */; };
 		4A56D22E20A154E100357F77 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A56D22320A154E100357F77 /* ViewController.swift */; };
 		4A56D22F20A154E100357F77 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A56D22420A154E100357F77 /* AppDelegate.swift */; };
@@ -72,7 +68,6 @@
 /* Begin PBXFileReference section */
 		1042320D216EBE9000908D8C /* mobilenet_float_v2_1.0_299.tflite */ = {isa = PBXFileReference; lastKnownFileType = file; path = mobilenet_float_v2_1.0_299.tflite; sourceTree = "<group>"; };
 		1042320E216EBE9000908D8C /* mobilenet_quant_v2_1.0_299.tflite */ = {isa = PBXFileReference; lastKnownFileType = file; path = mobilenet_quant_v2_1.0_299.tflite; sourceTree = "<group>"; };
-		10E114BA20D5E4CD0013E4A4 /* shared */ = {isa = PBXFileReference; lastKnownFileType = folder; name = shared; path = ../shared; sourceTree = "<group>"; };
 		10E114C020D5E5B40013E4A4 /* MLModelInterpreterExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MLModelInterpreterExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		10E114C220D5E5B40013E4A4 /* MLModelInterpreterExampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLModelInterpreterExampleUITests.swift; sourceTree = "<group>"; };
 		10E114C420D5E5B40013E4A4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -91,15 +86,12 @@
 		10E115CA20F469DC0013E4A4 /* MLModelInterpreterExampleObjCUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MLModelInterpreterExampleObjCUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		10E115CE20F469DC0013E4A4 /* MLModelInterpreterExampleObjCUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MLModelInterpreterExampleObjCUITests.m; sourceTree = "<group>"; };
 		10E115D020F469DC0013E4A4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		10E115E220F46A200013E4A4 /* ModelInterpreterManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ModelInterpreterManager.h; sourceTree = "<group>"; };
-		10E115E320F46A200013E4A4 /* ModelInterpreterManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ModelInterpreterManager.m; sourceTree = "<group>"; };
 		10E115E520F46A340013E4A4 /* UIImage+TFLite.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+TFLite.h"; sourceTree = "<group>"; };
 		10E115E620F46A340013E4A4 /* UIImage+TFLite.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+TFLite.m"; sourceTree = "<group>"; };
 		4A56D20A20A138E500357F77 /* MLModelInterpreterExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MLModelInterpreterExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A56D21220A138E500357F77 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4A56D21420A138E500357F77 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4A56D21920A138E500357F77 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4A56D22020A154E100357F77 /* ModelInterpreterManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelInterpreterManager.swift; sourceTree = "<group>"; };
 		4A56D22120A154E100357F77 /* MLKitExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MLKitExtensions.swift; sourceTree = "<group>"; };
 		4A56D22320A154E100357F77 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		4A56D22420A154E100357F77 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -180,8 +172,6 @@
 				10E115AD20F469DB0013E4A4 /* ViewController.h */,
 				10E115AE20F469DB0013E4A4 /* ViewController.m */,
 				10E115B920F469DC0013E4A4 /* main.m */,
-				10E115E220F46A200013E4A4 /* ModelInterpreterManager.h */,
-				10E115E320F46A200013E4A4 /* ModelInterpreterManager.m */,
 				10E115E520F46A340013E4A4 /* UIImage+TFLite.h */,
 				10E115E620F46A340013E4A4 /* UIImage+TFLite.m */,
 			);
@@ -209,7 +199,6 @@
 		4A56D20120A138E500357F77 = {
 			isa = PBXGroup;
 			children = (
-				10E114BA20D5E4CD0013E4A4 /* shared */,
 				4A56D20C20A138E500357F77 /* MLModelInterpreterExample */,
 				10E114C120D5E5B40013E4A4 /* MLModelInterpreterExampleUITests */,
 				10E114CF20D5E5C40013E4A4 /* MLModelInterpreterExampleTests */,
@@ -238,7 +227,6 @@
 			children = (
 				4A56D22320A154E100357F77 /* ViewController.swift */,
 				4A56D22420A154E100357F77 /* AppDelegate.swift */,
-				4A56D22020A154E100357F77 /* ModelInterpreterManager.swift */,
 				4A56D22120A154E100357F77 /* MLKitExtensions.swift */,
 				4A56D22520A154E100357F77 /* Resources */,
 				4A56D21120A138E500357F77 /* Main.storyboard */,
@@ -381,12 +369,12 @@
 				TargetAttributes = {
 					10E114BF20D5E5B40013E4A4 = {
 						CreatedOnToolsVersion = 9.4;
-						LastSwiftMigration = 1000;
+						LastSwiftMigration = 1110;
 						TestTargetID = 4A56D20920A138E500357F77;
 					};
 					10E114CD20D5E5C40013E4A4 = {
 						CreatedOnToolsVersion = 9.4;
-						LastSwiftMigration = 1000;
+						LastSwiftMigration = 1110;
 						TestTargetID = 4A56D20920A138E500357F77;
 					};
 					10E115A720F469DB0013E4A4 = {
@@ -402,7 +390,7 @@
 					};
 					4A56D20920A138E500357F77 = {
 						CreatedOnToolsVersion = 9.3;
-						LastSwiftMigration = 1000;
+						LastSwiftMigration = 1110;
 					};
 				};
 			};
@@ -454,7 +442,6 @@
 				10E115DA20F469F60013E4A4 /* mobilenet_v1_1.0_224.tflite in Resources */,
 				10E115DE20F46A000013E4A4 /* labels.txt in Resources */,
 				10E115E120F46A0D0013E4A4 /* Assets.xcassets in Resources */,
-				10E115DB20F469F90013E4A4 /* shared in Resources */,
 				10423210216EBE9000908D8C /* mobilenet_float_v2_1.0_299.tflite in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -481,7 +468,6 @@
 				4A56D21520A138E500357F77 /* Assets.xcassets in Resources */,
 				10423211216EBE9000908D8C /* mobilenet_quant_v2_1.0_299.tflite in Resources */,
 				4A56D23420A154E100357F77 /* labels.txt in Resources */,
-				10E114BB20D5E4CD0013E4A4 /* shared in Resources */,
 				4A56D21320A138E500357F77 /* Main.storyboard in Resources */,
 				4A56D23020A154E100357F77 /* mobilenet_v1_1.0_224.tflite in Resources */,
 				1042320F216EBE9000908D8C /* mobilenet_float_v2_1.0_299.tflite in Resources */,
@@ -512,7 +498,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				10E115E720F46A340013E4A4 /* UIImage+TFLite.m in Sources */,
-				10E115E420F46A200013E4A4 /* ModelInterpreterManager.m in Sources */,
 				10E115AF20F469DB0013E4A4 /* ViewController.m in Sources */,
 				10E115BA20F469DC0013E4A4 /* main.m in Sources */,
 				10E115AC20F469DB0013E4A4 /* AppDelegate.m in Sources */,
@@ -541,7 +526,6 @@
 			files = (
 				4A56D22F20A154E100357F77 /* AppDelegate.swift in Sources */,
 				4A56D22E20A154E100357F77 /* ViewController.swift in Sources */,
-				4A56D22C20A154E100357F77 /* ModelInterpreterManager.swift in Sources */,
 				4A56D22D20A154E100357F77 /* MLKitExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -586,7 +570,10 @@
 		10E114C820D5E5B40013E4A4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = MLModelInterpreterExampleUITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -596,7 +583,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.MLModelInterpreterExampleUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = MLModelInterpreterExample;
 			};
@@ -605,7 +594,10 @@
 		10E114C920D5E5B40013E4A4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = MLModelInterpreterExampleUITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -615,7 +607,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.MLModelInterpreterExampleUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = MLModelInterpreterExample;
 			};
@@ -625,7 +619,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = MLModelInterpreterExampleTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -635,7 +632,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.MLModelInterpreterExampleTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MLModelInterpreterExample.app/MLModelInterpreterExample";
 			};
@@ -645,7 +644,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = MLModelInterpreterExampleTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -655,7 +657,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.MLModelInterpreterExampleTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MLModelInterpreterExample.app/MLModelInterpreterExample";
 			};
@@ -665,7 +669,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "$(SRCROOT)/MLModelInterpreterExample/Info.plist";
@@ -684,7 +688,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "$(SRCROOT)/MLModelInterpreterExample/Info.plist";
@@ -703,7 +707,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = MLModelInterpreterExampleObjCTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -713,6 +720,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.MLModelInterpreterExample.MLModelInterpreterExampleObjCTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MLModelInterpreterExampleObjC.app/MLModelInterpreterExampleObjC";
 			};
@@ -722,7 +731,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = MLModelInterpreterExampleObjCTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -732,6 +744,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.MLModelInterpreterExample.MLModelInterpreterExampleObjCTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MLModelInterpreterExampleObjC.app/MLModelInterpreterExampleObjC";
 			};
@@ -740,7 +754,10 @@
 		10E115D820F469DC0013E4A4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = MLModelInterpreterExampleObjCUITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -750,6 +767,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.MLModelInterpreterExample.MLModelInterpreterExampleObjCUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = MLModelInterpreterExampleObjC;
 			};
@@ -758,7 +777,10 @@
 		10E115D920F469DC0013E4A4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = MLModelInterpreterExampleObjCUITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -768,6 +790,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.MLModelInterpreterExample.MLModelInterpreterExampleObjCUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = MLModelInterpreterExampleObjC;
 			};
@@ -891,7 +915,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "$(SRCROOT)/MLModelInterpreterExample/Info.plist";
@@ -902,7 +926,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.MLModelInterpreterExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -911,7 +935,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "$(SRCROOT)/MLModelInterpreterExample/Info.plist";
@@ -922,7 +946,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.MLModelInterpreterExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

@@ -35,7 +35,7 @@ class EmailViewController: UIViewController {
     }
     showSpinner {
       // [START headless_email_auth]
-      Auth.auth().signIn(withEmail: email, password: password) { [weak self] user, error in
+      Auth.auth().signIn(withEmail: email, password: password) { [weak self] authResult, error in
         guard let strongSelf = self else { return }
         // [START_EXCLUDE]
         strongSelf.hideSpinner {

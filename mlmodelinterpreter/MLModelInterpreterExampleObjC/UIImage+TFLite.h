@@ -39,8 +39,8 @@ NS_ASSUME_NONNULL_BEGIN
 ///       point values).
 /// - Returns: The scaled image as data or `nil` if the image could not be scaled.
 - (nullable NSData *)scaledDataWithSize:(CGSize)size
-                     byteCount:(int)byteCount
-                   isQuantized:(BOOL)isQuantized;
+                              byteCount:(int)byteCount
+                            isQuantized:(BOOL)isQuantized;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -97,13 +97,6 @@
 			path = FirestoreExampleUITests;
 			sourceTree = "<group>";
 		};
-		7424B6D222398A5AAA5AB5F5 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 		8D9BBC241EE2200800194E9A = {
 			isa = PBXGroup;
 			children = (
@@ -111,7 +104,6 @@
 				8D9BBC441EE2200900194E9A /* FirestoreExampleTests */,
 				10734771203159E4004A66D1 /* FirestoreExampleUITests */,
 				8D9BBC2E1EE2200900194E9A /* Products */,
-				7424B6D222398A5AAA5AB5F5 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};

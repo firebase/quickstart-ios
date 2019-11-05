@@ -53,16 +53,16 @@ Getting Started
     - Select **Sign In** and select Email to begin.
 
 ### Twitter Login Setup
-- Go to the [Twitter Developers Site](https://apps.twitter.com/) and follow all
-  instructions to set up a new iOS app.
+- [Register your app](https://apps.twitter.com) as a developer application on Twitter and get your
+  app's OAuth API key and API secret.
 - Go to the [Firebase Console](https://console.firebase.google.com) and navigate to your project:
   - Select the **Auth** panel and then click the **Sign In Method** tab.
   - Click **Twitter** and turn on the **Enable** switch, then click **Save**.
   - Enter your Twitter **API Key** and **App Secret** and click **Save**.
-- Open your regular `Info.plist` and replace the value of the `consumerKey` and `consumerSecret` values with the keys from the Twitter app you just created.
+  - Make sure your Firebase OAuth redirect URI (e.g. my-app-12345.firebaseapp.com/__/auth/handler) is set as your  
+    Authorization callback URL in your app's settings page on your [Twitter app's config](https://apps.twitter.com).
 - Run the app on your device or simulator.
     - Select **Sign In** and select Twitter to begin.
-- Note: you can also integrate with Twitter via Fabric using `[Fabric with:@[ [Twitter class] ]];`
 
 ### Custom Authentication Setup
 - Go to the [Google Developers Console](https://console.developers.google.com/project) and navigate to your project:

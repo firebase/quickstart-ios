@@ -74,11 +74,18 @@ class RestaurantsTableViewController: UIViewController, UITableViewDataSource, U
         return
       }
       let models = snapshot.documents.map { (document) -> Restaurant in
-        if let model = try? document.data(as: Restaurant.self) {
+        let maybeModel: Restaurant?
+        do {
+          maybeModel = try document.data(as: Restaurant.self)
+        } catch {
+          fatalError("Unable to initialize type \(Restaurant.self) with dictionary \(document.data()): \(error)")
+        }
+
+        if let model = maybeModel {
           return model
         } else {
           // Don't use fatalError here in a real app.
-          fatalError("Unable to initialize type \(Restaurant.self) with dictionary \(document.data())")
+          fatalError("Missing document of type \(Restaurant.self) at \(document.reference.path)")
         }
       }
       self.restaurants = models

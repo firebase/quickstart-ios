@@ -63,11 +63,17 @@ final class LocalCollection<T: Codable> {
         return
       }
       let models = snapshot.documents.map { (document) -> T in
-        if let model = try? document.data(as: T.self) {
+        let maybeModel: T?
+        do {
+          maybeModel = try document.data(as: T.self);
+        } catch {
+          fatalError("Unable to initialize type \(T.self) from data \(document.data()): \(error)")
+        }
+
+        if let model = maybeModel {
           return model
         } else {
-          // handle error
-          fatalError("Unable to initialize type \(T.self) with dictionary \(document.data())")
+          fatalError("Missing document of type \(T.self) at \(document.reference.path)")
         }
       }
       self.items = models

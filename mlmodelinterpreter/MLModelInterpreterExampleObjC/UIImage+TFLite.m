@@ -41,8 +41,8 @@ static int const alphaComponentModuloRemainder = 3;
 }
 
 - (nullable NSData *)scaledDataWithSize:(CGSize)size
-                     byteCount:(int)byteCount
-                   isQuantized:(BOOL)isQuantized {
+                              byteCount:(int)byteCount
+                            isQuantized:(BOOL)isQuantized {
   CGImageRef cgImage = self.CGImage;
   if (cgImage && CGImageGetWidth(cgImage) > 0 && CGImageGetHeight(cgImage) > 0) {
     NSData *imageData = [self imageDataFromCGImage:cgImage size:size];
@@ -57,21 +57,20 @@ static int const alphaComponentModuloRemainder = 3;
     // Extract the RGB(A) components from the scaled image data while ignoring the alpha component.
     int pixelIndex = 0;
     for (int offset = 0; offset < imageData.length; offset++) {
-      if ((offset % alphaComponentBaseOffset) ==
-          alphaComponentModuloRemainder) {
+      if ((offset % alphaComponentBaseOffset) == alphaComponentModuloRemainder) {
         continue;
       }
       mutableBytes[pixelIndex++] = bytes[offset];
     }
     if (isQuantized) {
-        return scaledBytes;
+      return scaledBytes;
     }
-    NSMutableData *scaledFloats = [NSMutableData dataWithLength:byteCount*4];
+    NSMutableData *scaledFloats = [NSMutableData dataWithLength:byteCount * 4];
     Float32 *mutableFloats = scaledFloats.mutableBytes;
     for (int i = 0; i < byteCount; i++) {
-      mutableFloats[i] = (Float32)mutableBytes[i]/maxRGBValue;
+      mutableFloats[i] = (Float32)mutableBytes[i] / maxRGBValue;
     }
-      return scaledFloats;
+    return scaledFloats;
   } else {
     return nil;
   }
@@ -80,15 +79,16 @@ static int const alphaComponentModuloRemainder = 3;
 #pragma mark - Private
 
 /// Returns the image data from the given CGImage resized to the given width and height.
-- (NSData *)imageDataFromCGImage:(CGImageRef)cgImage
-                            size:(CGSize)size {
+- (NSData *)imageDataFromCGImage:(CGImageRef)cgImage size:(CGSize)size {
   uint32_t bitmapInfo = kCGBitmapByteOrder32Big | kCGImageAlphaPremultipliedLast;
   int width = size.width;
   int height = size.height;
   size_t scaledBytesPerRow = (CGImageGetBytesPerRow(cgImage) / CGImageGetWidth(cgImage)) * width;
 
   CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-  CGContextRef context = CGBitmapContextCreate(nil, width, height, CGImageGetBitsPerComponent(cgImage), scaledBytesPerRow, colorSpace, bitmapInfo);
+  CGContextRef context =
+      CGBitmapContextCreate(nil, width, height, CGImageGetBitsPerComponent(cgImage),
+                            scaledBytesPerRow, colorSpace, bitmapInfo);
   CGColorSpaceRelease(colorSpace);
   if (!context) {
     return nil;
@@ -99,7 +99,7 @@ static int const alphaComponentModuloRemainder = 3;
   CFDataRef cfData = CGDataProviderCopyData(dataProvider);
   CGImageRelease(image);
   CGContextRelease(context);
-  return (__bridge_transfer NSData*)cfData;
+  return (__bridge_transfer NSData *)cfData;
 }
 
 @end

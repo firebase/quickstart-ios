@@ -103,9 +103,5 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>consumerKey</key>
-	<string></string>
-	<key>consumerSecret</key>
-	<string></string>
 </dict>
 </plist>

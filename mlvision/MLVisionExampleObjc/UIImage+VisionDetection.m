@@ -24,7 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 ///
 /// - Parameter size: Maximum size of the returned image.
 /// - Return: Image scaled according to the give size or `nil` if image resize fails.
-- (UIImage *)scaledImageWithSize:(CGSize) size {
+- (UIImage *)scaledImageWithSize:(CGSize)size {
   UIGraphicsBeginImageContextWithOptions(size, NO, self.scale);
   [self drawInRect:CGRectMake(0, 0, size.width, size.height)];
   UIImage *scaledImage = UIGraphicsGetImageFromCurrentImageContext();
@@ -35,7 +35,7 @@ NS_ASSUME_NONNULL_BEGIN
     return nil;
   }
   NSData *imageData = UIImagePNGRepresentation(scaledImage);
-  if(!imageData) {
+  if (!imageData) {
     imageData = UIImageJPEGRepresentation(scaledImage, 0.8);
   }
   return [UIImage imageWithData:imageData];

@@ -29,7 +29,7 @@ public class UIUtilities {
     to view: UIView,
     color: UIColor,
     radius: CGFloat
-    ) {
+  ) {
     let divisor: CGFloat = 2.0
     let xCoord = point.x - radius / divisor
     let yCoord = point.y - radius / divisor
@@ -75,10 +75,11 @@ public class UIUtilities {
 
   public static func imageOrientation(
     fromDevicePosition devicePosition: AVCaptureDevice.Position = .back
-    ) -> UIImage.Orientation {
+  ) -> UIImage.Orientation {
     var deviceOrientation = UIDevice.current.orientation
-    if deviceOrientation == .faceDown || deviceOrientation == .faceUp ||
-      deviceOrientation == .unknown {
+    if deviceOrientation == .faceDown || deviceOrientation == .faceUp || deviceOrientation
+      == .unknown
+    {
       deviceOrientation = currentUIOrientation()
     }
     switch deviceOrientation {
@@ -97,7 +98,7 @@ public class UIUtilities {
 
   public static func visionImageOrientation(
     from imageOrientation: UIImage.Orientation
-    ) -> VisionDetectorImageOrientation {
+  ) -> VisionDetectorImageOrientation {
     switch imageOrientation {
     case .up:
       return .topLeft

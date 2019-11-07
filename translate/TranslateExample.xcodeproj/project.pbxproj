@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -360,14 +360,17 @@
 					};
 					108489D6224415FF004D37A8 = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1110;
 						TestTargetID = C1E8DDC022259E3400536A5C;
 					};
 					108489E42244160B004D37A8 = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1110;
 						TestTargetID = C1E8DDC022259E3400536A5C;
 					};
 					C1E8DDC022259E3400536A5C = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1110;
 					};
 				};
 			};
@@ -663,7 +666,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.TranslateExampleTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TranslateExample.app/TranslateExample";
 			};
@@ -682,7 +685,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.TranslateExampleTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TranslateExample.app/TranslateExample";
 			};
@@ -700,7 +703,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.TranslateExampleUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = TranslateExample;
 			};
@@ -718,7 +721,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.TranslateExampleUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = TranslateExample;
 			};
@@ -881,11 +884,10 @@
 					"-framework",
 					"\"Security\"",
 				);
-				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS";
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebaseml.sampleapp.translate;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -931,11 +933,10 @@
 					"-framework",
 					"\"Security\"",
 				);
-				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS";
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebaseml.sampleapp.translate;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

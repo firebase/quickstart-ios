@@ -10,7 +10,6 @@
 		1001E6F720CEE0DD00445CB3 /* UIUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001E6F620CEE0DD00445CB3 /* UIUtilities.swift */; };
 		1001E6F920CF021E00445CB3 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001E6F820CF021E00445CB3 /* CameraViewController.swift */; };
 		1001E6FD20CF0C8F00445CB3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1001E6FC20CF0C8F00445CB3 /* Assets.xcassets */; };
-		1001E70120CF132C00445CB3 /* shared in Resources */ = {isa = PBXBuildFile; fileRef = 1001E70020CF132C00445CB3 /* shared */; };
 		100D2A50222F37DB00DF5C02 /* automl_labeler_labels.txt in Resources */ = {isa = PBXBuildFile; fileRef = B217D4A8220D24C9001CE5AA /* automl_labeler_labels.txt */; };
 		100D2A51222F37DE00DF5C02 /* automl_labeler_manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = B217D4A9220D24CA001CE5AA /* automl_labeler_manifest.json */; };
 		100D2A52222F37E100DF5C02 /* automl_labeler_model.tflite in Resources */ = {isa = PBXBuildFile; fileRef = B217D4AA220D24CA001CE5AA /* automl_labeler_model.tflite */; };
@@ -34,7 +33,6 @@
 		10E1152820F3E0990013E4A4 /* beach.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7202DC6720D0C1A300034C35 /* beach.jpg */; };
 		10E1152920F3E09C0013E4A4 /* image_has_text.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7202DC6520D0C1A300034C35 /* image_has_text.jpg */; };
 		10E1152A20F3E09F0013E4A4 /* qr_code.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7202DC6420D0C1A300034C35 /* qr_code.jpg */; };
-		10E1156520F4681E0013E4A4 /* shared in Resources */ = {isa = PBXBuildFile; fileRef = 1001E70020CF132C00445CB3 /* shared */; };
 		7202DC6920D0C1A300034C35 /* qr_code.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7202DC6420D0C1A300034C35 /* qr_code.jpg */; };
 		7202DC6A20D0C1A300034C35 /* image_has_text.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7202DC6520D0C1A300034C35 /* image_has_text.jpg */; };
 		7202DC6B20D0C1A300034C35 /* barcode_128.png in Resources */ = {isa = PBXBuildFile; fileRef = 7202DC6620D0C1A300034C35 /* barcode_128.png */; };
@@ -67,7 +65,6 @@
 		1001E6F620CEE0DD00445CB3 /* UIUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIUtilities.swift; sourceTree = "<group>"; };
 		1001E6F820CF021E00445CB3 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		1001E6FC20CF0C8F00445CB3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		1001E70020CF132C00445CB3 /* shared */ = {isa = PBXFileReference; lastKnownFileType = folder; name = shared; path = ../shared; sourceTree = "<group>"; };
 		10224B572087E43100A77316 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		10224B5B2087E49F00A77316 /* MLKitExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MLKitExtensions.swift; sourceTree = "<group>"; };
 		10224B702087E5A900A77316 /* grace_hopper.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = grace_hopper.jpg; path = Resources/grace_hopper.jpg; sourceTree = "<group>"; };
@@ -190,7 +187,6 @@
 		BB287B2C20729CE90069707A = {
 			isa = PBXGroup;
 			children = (
-				1001E70020CF132C00445CB3 /* shared */,
 				1001E6FC20CF0C8F00445CB3 /* Assets.xcassets */,
 				10224B642087E52600A77316 /* Resources */,
 				BB287B3720729CE90069707A /* MLVisionExample */,
@@ -319,11 +315,13 @@
 				TargetAttributes = {
 					1036DA262087CC16003253C9 = {
 						CreatedOnToolsVersion = 9.3;
+						LastSwiftMigration = 1110;
 						ProvisioningStyle = Automatic;
 						TestTargetID = BB287B3420729CE90069707A;
 					};
 					1036DA342087CC25003253C9 = {
 						CreatedOnToolsVersion = 9.3;
+						LastSwiftMigration = 1110;
 						ProvisioningStyle = Automatic;
 						TestTargetID = BB287B3420729CE90069707A;
 					};
@@ -385,7 +383,6 @@
 				10E1152820F3E0990013E4A4 /* beach.jpg in Resources */,
 				B217D4AB220D24CA001CE5AA /* automl_labeler_labels.txt in Resources */,
 				10E1152620F3E0930013E4A4 /* grace_hopper.jpg in Resources */,
-				10E1156520F4681E0013E4A4 /* shared in Resources */,
 				10E1152920F3E09C0013E4A4 /* image_has_text.jpg in Resources */,
 				10E1152A20F3E09F0013E4A4 /* qr_code.jpg in Resources */,
 				B217D4AC220D24CA001CE5AA /* automl_labeler_manifest.json in Resources */,
@@ -397,7 +394,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1001E70120CF132C00445CB3 /* shared in Resources */,
 				100D2A51222F37DE00DF5C02 /* automl_labeler_manifest.json in Resources */,
 				10224B762087E5A900A77316 /* grace_hopper.jpg in Resources */,
 				7202DC6C20D0C1A300034C35 /* beach.jpg in Resources */,
@@ -496,7 +492,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.MLVisionExampleTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MLVisionExample.app/MLVisionExample";
 			};
@@ -515,7 +511,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.MLVisionExampleTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MLVisionExample.app/MLVisionExample";
 			};
@@ -534,7 +530,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.MLVisionExampleUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "985b9882-0e66-4497-8f7c-bd6c3bc484f7";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = MLVisionExample;
 			};
@@ -553,7 +549,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.MLVisionExampleUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "985b9882-0e66-4497-8f7c-bd6c3bc484f7";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = MLVisionExample;
 			};

@@ -345,7 +345,7 @@
 				TargetAttributes = {
 					8DB25F8A20BE0C29000ABEE2 = {
 						CreatedOnToolsVersion = 9.3;
-						LastSwiftMigration = 1010;
+						LastSwiftMigration = 1110;
 					};
 					8DECFE49211CC14500DC99BD = {
 						CreatedOnToolsVersion = 9.4.1;
@@ -681,7 +681,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.firebase.InAppMessagingExampleSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -698,7 +698,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.firebase.InAppMessagingExampleSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

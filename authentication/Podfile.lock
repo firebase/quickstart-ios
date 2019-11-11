@@ -4,15 +4,15 @@ PODS:
     - AppAuth/ExternalUserAgent (= 1.2.0)
   - AppAuth/Core (1.2.0)
   - AppAuth/ExternalUserAgent (1.2.0)
-  - FBSDKCoreKit (5.8.0):
-    - FBSDKCoreKit/Basics (= 5.8.0)
-    - FBSDKCoreKit/Core (= 5.8.0)
-  - FBSDKCoreKit/Basics (5.8.0)
-  - FBSDKCoreKit/Core (5.8.0):
+  - FBSDKCoreKit (5.10.0):
+    - FBSDKCoreKit/Basics (= 5.10.0)
+    - FBSDKCoreKit/Core (= 5.10.0)
+  - FBSDKCoreKit/Basics (5.10.0)
+  - FBSDKCoreKit/Core (5.10.0):
     - FBSDKCoreKit/Basics
-  - FBSDKLoginKit (5.8.0):
-    - FBSDKLoginKit/Login (= 5.8.0)
-  - FBSDKLoginKit/Login (5.8.0):
+  - FBSDKLoginKit (5.10.0):
+    - FBSDKLoginKit/Login (= 5.10.0)
+  - FBSDKLoginKit/Login (5.10.0):
     - FBSDKCoreKit (~> 5.0)
   - Firebase/Analytics (6.12.0):
     - Firebase/Core
@@ -132,8 +132,8 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   AppAuth: bce82c76043657c99d91e7882e8a9e1a93650cd4
-  FBSDKCoreKit: e7dcac0aabcfb09d0166998edd95fe3b05a0ce5d
-  FBSDKLoginKit: 1b0cf04df0370b37404213157b060d6666ede814
+  FBSDKCoreKit: f9bae468a078f20c05c73450825ccd54cfafbbb7
+  FBSDKLoginKit: 4ece964272a52c4e1363d5c048a545e33761491b
   Firebase: da031bc7012374e3bed17a6731b89327b29863b9
   FirebaseAnalytics: 4e53a7eb7b76bc703c4d9239bc964545e9b23361
   FirebaseAuth: b401a012cc33b04df3b52bb308b04e8766f2693e

@@ -113,8 +113,8 @@ PODS:
   - GoogleUtilities/UserDefaults (6.3.1):
     - GoogleUtilities/Logger
   - GTMSessionFetcher/Core (1.3.0)
-  - MaterialComponents/AnimationTiming (93.4.0)
-  - MaterialComponents/Buttons (93.4.0):
+  - MaterialComponents/AnimationTiming (94.0.0)
+  - MaterialComponents/Buttons (94.0.0):
     - MaterialComponents/Elevation
     - MaterialComponents/Ink
     - MaterialComponents/private/Math
@@ -125,22 +125,22 @@ PODS:
     - MaterialComponents/Typography
     - MDFInternationalization
     - MDFTextAccessibility
-  - "MaterialComponents/Buttons+ButtonThemer (93.4.0)":
+  - "MaterialComponents/Buttons+ButtonThemer (94.0.0)":
     - MaterialComponents/Buttons
     - "MaterialComponents/Buttons+ColorThemer"
     - "MaterialComponents/Buttons+ShapeThemer"
     - "MaterialComponents/Buttons+TypographyThemer"
     - MaterialComponents/Palettes
-  - "MaterialComponents/Buttons+ColorThemer (93.4.0)":
+  - "MaterialComponents/Buttons+ColorThemer (94.0.0)":
     - MaterialComponents/Buttons
     - MaterialComponents/schemes/Color
-  - "MaterialComponents/Buttons+ShapeThemer (93.4.0)":
+  - "MaterialComponents/Buttons+ShapeThemer (94.0.0)":
     - MaterialComponents/Buttons
     - MaterialComponents/schemes/Shape
-  - "MaterialComponents/Buttons+TypographyThemer (93.4.0)":
+  - "MaterialComponents/Buttons+TypographyThemer (94.0.0)":
     - MaterialComponents/Buttons
     - MaterialComponents/schemes/Typography
-  - MaterialComponents/Chips (93.4.0):
+  - MaterialComponents/Chips (94.0.0):
     - MaterialComponents/Elevation
     - MaterialComponents/Ink
     - MaterialComponents/private/Math
@@ -152,13 +152,13 @@ PODS:
     - MaterialComponents/TextFields
     - MaterialComponents/Typography
     - MDFInternationalization
-  - MaterialComponents/Elevation (93.4.0):
+  - MaterialComponents/Elevation (94.0.0):
     - MaterialComponents/private/Color
     - MaterialComponents/private/Math
-  - MaterialComponents/Ink (93.4.0):
+  - MaterialComponents/Ink (94.0.0):
     - MaterialComponents/private/Color
     - MaterialComponents/private/Math
-  - MaterialComponents/List (93.4.0):
+  - MaterialComponents/List (94.0.0):
     - MaterialComponents/Elevation
     - MaterialComponents/Ink
     - MaterialComponents/private/Math
@@ -167,41 +167,41 @@ PODS:
     - MaterialComponents/ShadowLayer
     - MaterialComponents/Typography
     - MDFInternationalization
-  - MaterialComponents/Palettes (93.4.0)
-  - MaterialComponents/private/Application (93.4.0)
-  - MaterialComponents/private/Color (93.4.0)
-  - MaterialComponents/private/Math (93.4.0)
-  - MaterialComponents/Ripple (93.4.0):
+  - MaterialComponents/Palettes (94.0.0)
+  - MaterialComponents/private/Application (94.0.0)
+  - MaterialComponents/private/Color (94.0.0)
+  - MaterialComponents/private/Math (94.0.0)
+  - MaterialComponents/Ripple (94.0.0):
     - MaterialComponents/AnimationTiming
     - MaterialComponents/private/Color
     - MaterialComponents/private/Math
-  - MaterialComponents/schemes/Color (93.4.0):
+  - MaterialComponents/schemes/Color (94.0.0):
     - MaterialComponents/private/Color
-  - MaterialComponents/schemes/Shape (93.4.0):
+  - MaterialComponents/schemes/Shape (94.0.0):
     - MaterialComponents/ShapeLibrary
     - MaterialComponents/Shapes
-  - MaterialComponents/schemes/Typography (93.4.0):
+  - MaterialComponents/schemes/Typography (94.0.0):
     - "MaterialComponents/schemes/Typography+BasicFontScheme"
     - MaterialComponents/Typography
-  - "MaterialComponents/schemes/Typography+BasicFontScheme (93.4.0)"
-  - MaterialComponents/ShadowElevations (93.4.0)
-  - MaterialComponents/ShadowLayer (93.4.0):
+  - "MaterialComponents/schemes/Typography+BasicFontScheme (94.0.0)"
+  - MaterialComponents/ShadowElevations (94.0.0)
+  - MaterialComponents/ShadowLayer (94.0.0):
     - MaterialComponents/ShadowElevations
-  - MaterialComponents/ShapeLibrary (93.4.0):
+  - MaterialComponents/ShapeLibrary (94.0.0):
     - MaterialComponents/private/Math
     - MaterialComponents/Shapes
-  - MaterialComponents/Shapes (93.4.0):
+  - MaterialComponents/Shapes (94.0.0):
     - MaterialComponents/private/Color
     - MaterialComponents/private/Math
     - MaterialComponents/ShadowLayer
-  - MaterialComponents/TextFields (93.4.0):
+  - MaterialComponents/TextFields (94.0.0):
     - MaterialComponents/AnimationTiming
     - MaterialComponents/Elevation
     - MaterialComponents/Palettes
     - MaterialComponents/private/Math
     - MaterialComponents/Typography
     - MDFInternationalization
-  - MaterialComponents/Typography (93.4.0):
+  - MaterialComponents/Typography (94.0.0):
     - MaterialComponents/private/Application
     - MaterialComponents/private/Math
   - MDFInternationalization (2.0.0)
@@ -212,7 +212,7 @@ PODS:
   - nanopb/decode (0.3.9011)
   - nanopb/encode (0.3.9011)
   - Protobuf (3.10.0)
-  - SwiftLint (0.36.0)
+  - SwiftLint (0.37.0)
 
 DEPENDENCIES:
   - Firebase/Analytics
@@ -272,12 +272,12 @@ SPEC CHECKSUMS:
   GoogleToolboxForMac: 800648f8b3127618c1b59c7f97684427630c5ea3
   GoogleUtilities: f895fde57977df4e0233edda0dbeac490e3703b6
   GTMSessionFetcher: 43b8b64263023d4f32caa0b40f4c8bfa3c5f36d8
-  MaterialComponents: ae5d08b2f5b8ea435871dc0970ada8c9bbf2364a
+  MaterialComponents: af933df927a64ba202b3162bd59ff0fe746686cb
   MDFInternationalization: 010097556d6b09d2c4ea38e0820ea6d37be6a314
   MDFTextAccessibility: 85c09a1bd9c321f494348e632a25063bcda35a53
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
   Protobuf: a4dc852ad69c027ca2166ed287b856697814375b
-  SwiftLint: fc9859e4e1752340664851f667bb1898b9c90114
+  SwiftLint: c078a14d7d7ade75e5507795d185e3da41d844d2
 
 PODFILE CHECKSUM: c2417aaece5985c3ae4ab16b0606e877bc160b67
 

@@ -21,6 +21,14 @@ Getting Started
 - Run the app on your device or simulator.
     - Select **Sign In** and select Google to begin.
 
+### Sign in with Apple Setup
+- Go to the [Firebase Console](https://console.firebase.google.com) and navigate to your project:
+  - Select the **Auth** panel and then click the **Sign In Method** tab.
+  - Click **Apple** and turn on the **Enable** switch, then click **Save**.
+- Run the app on your device or simulator.
+    - Select **Sign In** and select Apple to begin.
+- See the [Getting Started guide](https://firebase.google.com/docs/auth/ios/apple) for more details.
+
 ### Microsoft Sign In Setup
 - Go to the [Firebase Console](https://console.firebase.google.com) and navigate to your project:
   - Select the **Auth** panel and then click the **Sign In Method** tab.

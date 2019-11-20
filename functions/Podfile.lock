@@ -38,7 +38,7 @@ PODS:
     - FirebaseCoreDiagnosticsInterop (~> 1.0)
     - GoogleUtilities/Environment (~> 6.2)
     - GoogleUtilities/Logger (~> 6.2)
-  - FirebaseCoreDiagnostics (1.1.1):
+  - FirebaseCoreDiagnostics (1.1.2):
     - FirebaseCoreDiagnosticsInterop (~> 1.0)
     - GoogleDataTransportCCTSupport (~> 1.0)
     - GoogleUtilities/Environment (~> 6.2)
@@ -65,9 +65,9 @@ PODS:
     - GoogleUtilities/Network (~> 6.0)
     - "GoogleUtilities/NSData+zlib (~> 6.0)"
     - nanopb (= 0.3.9011)
-  - GoogleDataTransport (3.1.0)
-  - GoogleDataTransportCCTSupport (1.2.1):
-    - GoogleDataTransport (~> 3.0)
+  - GoogleDataTransport (3.2.0)
+  - GoogleDataTransportCCTSupport (1.2.2):
+    - GoogleDataTransport (~> 3.2)
     - nanopb (~> 0.3.901)
   - GoogleSignIn (5.0.2):
     - AppAuth (~> 1.2)
@@ -218,14 +218,14 @@ SPEC CHECKSUMS:
   FirebaseAuth: 7d0f84873926f6648bbd1391a318dfb1a26b5e4f
   FirebaseAuthInterop: 0ffa57668be100582bb7643d4fcb7615496c41fc
   FirebaseCore: 307ea2508df730c5865334e41965bd9ea344b0e5
-  FirebaseCoreDiagnostics: af29e43048607588c050889d19204f4d7b758c9f
+  FirebaseCoreDiagnostics: 511f4f3ed7d440bb69127e8b97c2bc8befae639e
   FirebaseCoreDiagnosticsInterop: e9b1b023157e3a2fc6418b5cb601e79b9af7b3a0
   FirebaseFunctions: 5af7c35d1c5e41608fecbb667eb6c4e672e318d0
   FirebaseInstanceID: ebd2ea79ee38db0cb5f5167b17a0d387e1cc7b6e
   FirebaseUI: 433550cb9e3d03ec7ee2c25f87493f76358d9b68
   GoogleAppMeasurement: dfe55efa543e899d906309eaaac6ca26d249862f
-  GoogleDataTransport: 67cc56f6280d1bc9d470285e851ec49ee9013dba
-  GoogleDataTransportCCTSupport: f6ab1962e9dc05ab1fb938b795e5b310209edeec
+  GoogleDataTransport: 8e9b210c97d55fbff306cc5468ff91b9cb32dcf5
+  GoogleDataTransportCCTSupport: ef79a4728b864946a8aafdbab770d5294faf3b5f
   GoogleSignIn: 7137d297ddc022a7e0aa4619c86d72c909fa7213
   GoogleUtilities: 547a86735c6f0ee30ad17e94df4fc21f616b71cb
   GTMAppAuth: 4deac854479704f348309e7b66189e604cf5e01e

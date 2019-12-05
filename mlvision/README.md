@@ -26,7 +26,7 @@ Getting Started
 - Label images (AutoML)
 - Recognize text
 - Detect faces
-  - Detect and track objects (prominent/multiple, only tacking/with classsification)
+  - Detect and track objects (prominent/multiple, only tacking/with classification)
 
 Support
 -------

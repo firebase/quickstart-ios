@@ -1,13 +1,12 @@
 platform :ios, '9.0'
+use_frameworks!
 
 # Replace both pods by pod 'Firebase/Installations' once FirebaseInstallations is public.
 pod 'FirebaseInstallations', :git => 'https://github.com/firebase/firebase-ios-sdk.git', :branch => 'master'
 pod 'Firebase/CoreOnly'
 
 target 'InstallationsExample' do
-  use_frameworks!
 end
 
 target 'InstallationsExampleSwift' do
-  use_frameworks!
 end

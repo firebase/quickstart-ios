@@ -14,7 +14,6 @@
 		8DFFBFA51F9E6C5200C3483E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8DFFBFA41F9E6C5200C3483E /* Assets.xcassets */; };
 		8DFFBFA81F9E6C5200C3483E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8DFFBFA61F9E6C5200C3483E /* LaunchScreen.storyboard */; };
 		8DFFBFB31F9E6C5200C3483E /* ABTestingExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFFBFB21F9E6C5200C3483E /* ABTestingExampleTests.swift */; };
-		DEC82E2923AACEAC000EA7B1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DEC82E2823AACEAC000EA7B1 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,7 +47,6 @@
 		8DFFBFAE1F9E6C5200C3483E /* ABTestingExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ABTestingExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DFFBFB21F9E6C5200C3483E /* ABTestingExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ABTestingExampleTests.swift; sourceTree = "<group>"; };
 		8DFFBFB41F9E6C5200C3483E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DEC82E2823AACEAC000EA7B1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,7 +86,6 @@
 		8DFFBF911F9E6C5200C3483E = {
 			isa = PBXGroup;
 			children = (
-				DEC82E2823AACEAC000EA7B1 /* GoogleService-Info.plist */,
 				8DFFBF9C1F9E6C5200C3483E /* ABTestingExample */,
 				8DFFBFB11F9E6C5200C3483E /* ABTestingExampleTests */,
 				10B92C9D202E3603008DBD68 /* ABTestingExampleUITests */,
@@ -246,7 +243,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8DFFBFA81F9E6C5200C3483E /* LaunchScreen.storyboard in Resources */,
-				DEC82E2923AACEAC000EA7B1 /* GoogleService-Info.plist in Resources */,
 				8DFFBFA51F9E6C5200C3483E /* Assets.xcassets in Resources */,
 				8DFFBFA31F9E6C5200C3483E /* Main.storyboard in Resources */,
 			);

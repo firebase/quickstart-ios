@@ -18,7 +18,6 @@ class ABTestingExampleUITests: XCTestCase {
         
     override func setUp() {
         super.setUp()
-        continueAfterFailure = false
         XCUIApplication().launch()
     }
     
@@ -27,8 +26,8 @@ class ABTestingExampleUITests: XCTestCase {
     }
     
     func testExample() {
-      XCTAssertNotNil(XCUIApplication().navigationBars["Firenotes"],
-                      "Firenotes is missing from the view")
+      XCTAssertTrue(XCUIApplication().navigationBars["Firenotes"].exists,
+                      "Firenotes is missing from the navigation bar")
     }
     
 }

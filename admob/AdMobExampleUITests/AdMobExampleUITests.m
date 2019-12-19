@@ -16,31 +16,81 @@
 
 #import <XCTest/XCTest.h>
 
-@interface AdMobExampleUITests : XCTestCase
+static NSTimeInterval const defaultTimeout = 10;
+static NSString *const header = @"AdMob Example";
+static NSString *const bannerButtonLabel = @"SHOW INTERSTITIAL AD";
+static NSString *const closeButtonLabel = @"Close Advertisement";
 
+@interface AdMobExampleUITests : XCTestCase
 @end
 
-@implementation AdMobExampleUITests
+@implementation AdMobExampleUITests {
+  XCUIApplication *_app;
+  XCUIElement *adMobBanner;
+}
 
 - (void)setUp {
-    // Put setup code here. This method is called before the invocation of each test method in the class.
+  [super setUp];
+  _app = [[XCUIApplication alloc] init];
+  [_app launch];
 
-    // In UI tests it is usually best to stop immediately when a failure occurs.
-    self.continueAfterFailure = NO;
+  adMobBanner = [_app staticTexts][@"Test Ad"];
 
-    // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
-    [[[XCUIApplication alloc] init] launch];
-
-    // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
+  // Wait till banner is loaded.
+  NSPredicate *bannerIsLoaded = [NSPredicate predicateWithFormat:@"isHittable == true"];
+  FIRWaitForPredicateWithTimeout(bannerIsLoaded, adMobBanner, 30);
 }
 
-- (void)tearDown {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
+ // Verify that Ad Banner is displayed.
+- (void)testVerifyAdBanner {
+  // Make sure app is in foreground.
+  [self checkAppInForeground];
+
+  // Verify that Ad Banner is Hittable.
+  XCTAssertTrue(adMobBanner.isHittable);
+
 }
 
-- (void)testExample {
-    // Use recording to get started writing UI tests.
-    // Use XCTAssert and related functions to verify your tests produce the correct results.
+// Verify that user is taken to web view if they tap on the banner button.
+- (void)testVerifyButton {
+  // Make sure header is visible.
+  XCUIElement *appHeader = [_app navigationBars][header];
+  XCTAssertTrue(appHeader.exists);
+
+  // Make sure the button is visible.
+  XCUIElement *bannerButton = [_app buttons][bannerButtonLabel];
+  XCTAssertTrue(bannerButton.isHittable);
+
+  [bannerButton tap];
+  // Make sure some web views are loaded.
+  XCTAssertTrue([[_app webViews] count] > 0);
+}
+
+- (void)checkAppInForeground {
+  NSPredicate *appInForeground =
+      [NSPredicate predicateWithFormat:@"state == %d", XCUIApplicationStateRunningForeground];
+  FIRWaitForPredicate(appInForeground, _app);
+  XCTAssertEqual(_app.state, XCUIApplicationStateRunningForeground, @"App should be in foreground");
+}
+
+- (void)checkAppInBackground {
+  NSPredicate *appInBackground = [NSPredicate
+      predicateWithFormat:@"state == %d", XCUIApplicationStateRunningBackgroundSuspended];
+  FIRWaitForPredicate(appInBackground, _app);
+  XCTAssertEqual(_app.state, XCUIApplicationStateRunningBackgroundSuspended,
+                 @"App should be in background");
+}
+
+static void FIRWaitForPredicate(NSPredicate *predicate, XCUIElement *element) {
+  FIRWaitForPredicateWithTimeout(predicate, element, defaultTimeout);
+}
+
+static void FIRWaitForPredicateWithTimeout(NSPredicate *predicate, XCUIElement *element,
+                                    NSUInteger timeout) {
+  XCTestExpectation *expectation =
+      [[XCTNSPredicateExpectation alloc] initWithPredicate:predicate object:element];
+  NSArray *expectationArray = @[ expectation ];
+  (void)[XCTWaiter waitForExpectations:expectationArray timeout:timeout];
 }
 
 @end

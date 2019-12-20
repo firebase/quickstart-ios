@@ -5,6 +5,11 @@ cache:
   - bundler
   - cocoapods
 
+env:
+  # Override this variable in the matrix to specify a Swift target name suffix.
+  # The variable is used by `./test.sh`
+  - SWIFT_SUFFIX=
+
 matrix:
   include:
   - podfile: abtesting/Podfile
@@ -37,6 +42,12 @@ matrix:
     env: SAMPLE=Performance
   - podfile: storage/Podfile
     env: SAMPLE=Storage
+  - podfile: installations/Podfile
+    env: SAMPLE=Installations
+  - podfile: installations/Podfile
+    env:
+      - SAMPLE=Installations
+      - SWIFT_SUFFIX=Swift
 
 before_install:
   - cd $SAMPLE
@@ -44,8 +55,8 @@ before_install:
   - gem install xcpretty
   - bundle exec pod install --repo-update
   - cp ../mock-GoogleService-Info.plist ./GoogleService-Info.plist
-  - sed -i '' '/<key>BUNDLE_ID</{n;s/id/com.google.firebase.quickstart.'$SAMPLE'Example/;}' GoogleService-Info.plist
-  - sed -i '' 's/YOUR_REVERSED_CLIENT_ID/com.googleusercontent.apps.123456789000-hjugbg6ud799v4c49dim8ce2usclthar/' "$SAMPLE"Example/Info.plist
+  - sed -i '' '/<key>BUNDLE_ID</{n;s/id/com.google.firebase.quickstart.${SAMPLE}Example/;}' GoogleService-Info.plist
+  - sed -i '' 's/YOUR_REVERSED_CLIENT_ID/com.googleusercontent.apps.123456789000-hjugbg6ud799v4c49dim8ce2usclthar/' ${SAMPLE}Example/Info.plist
   - gem install xcodeproj
   - ruby ../info_script.rb $SAMPLE
   - cd -

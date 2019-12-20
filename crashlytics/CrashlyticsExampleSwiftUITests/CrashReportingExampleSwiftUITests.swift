@@ -20,12 +20,12 @@ class CrashReportingExampleSwiftUITests: XCTestCase {
       super.setUp()
       XCUIApplication().launch()
   }
-        
+
   func testVerifyAppLaunched() {
     XCTAssertTrue(XCUIApplication().navigationBars["Crashlytics Example"].exists,
                     "Crashlytics is missing from the navigation bar")
     XCTAssertTrue(XCUIApplication().buttons["Cause Crash"].exists,
                     "Cause Crash button is missing")
   }
-    
+
 }

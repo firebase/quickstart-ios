@@ -1,0 +1,13 @@
+platform :ios, '9.0'
+use_frameworks!
+
+# TODO(M61): Replace 'FirebaseInstallations' and 'Firebase/CoreOnly' by pod
+# 'Firebase/Installations' once it is released.
+pod 'FirebaseInstallations', :git => 'https://github.com/firebase/firebase-ios-sdk.git', :branch => 'master'
+pod 'Firebase/CoreOnly'
+
+target 'InstallationsExample' do
+end
+
+target 'InstallationsExampleSwift' do
+end

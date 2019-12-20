@@ -3,21 +3,23 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		9A0A6EE922CE55B2004CF0FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0A6EE822CE55B2004CF0FF /* AppDelegate.swift */; };
 		9A0A6EEB22CE55B2004CF0FF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0A6EEA22CE55B2004CF0FF /* ViewController.swift */; };
 		9A0A6EEE22CE55B2004CF0FF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A0A6EEC22CE55B2004CF0FF /* Main.storyboard */; };
-		9A0A6EF022CE55B3004CF0FF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A0A6EEF22CE55B3004CF0FF /* Assets.xcassets */; };
-		9A0A6EF322CE55B3004CF0FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A0A6EF122CE55B3004CF0FF /* LaunchScreen.storyboard */; };
-		9A44BF7222CE72BC0039A7EE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A0A6EEF22CE55B3004CF0FF /* Assets.xcassets */; };
-		9A44BF7322CE72C20039A7EE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A0A6EF122CE55B3004CF0FF /* LaunchScreen.storyboard */; };
 		9A44BF8122CE73980039A7EE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A44BF7922CE73980039A7EE /* ViewController.m */; };
 		9A44BF8422CE73980039A7EE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A44BF7E22CE73980039A7EE /* main.m */; };
 		9A44BF8522CE73980039A7EE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A44BF7F22CE73980039A7EE /* AppDelegate.m */; };
 		9A44BF8B22CE75B90039A7EE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A44BF8922CE75B90039A7EE /* Main.storyboard */; };
+		9A5908BF23AD479B000CD3B9 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A5908BA23AD479B000CD3B9 /* LaunchScreen.xib */; };
+		9A5908C023AD479B000CD3B9 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A5908BA23AD479B000CD3B9 /* LaunchScreen.xib */; };
+		9A5908C323AD479B000CD3B9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A5908BC23AD479B000CD3B9 /* Images.xcassets */; };
+		9A5908C423AD479B000CD3B9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A5908BC23AD479B000CD3B9 /* Images.xcassets */; };
+		9A5908C823AD47EF000CD3B9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9A5908C723AD47EF000CD3B9 /* GoogleService-Info.plist */; };
+		9A5908C923AD47EF000CD3B9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9A5908C723AD47EF000CD3B9 /* GoogleService-Info.plist */; };
 		9A76AE3122E20A0C0024E473 /* InstallationsExampleSwiftTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A76AE3022E20A0C0024E473 /* InstallationsExampleSwiftTests.m */; };
 		9A76AE3F22E20A240024E473 /* InstallationsExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A76AE3E22E20A240024E473 /* InstallationsExampleTests.m */; };
 /* End PBXBuildFile section */
@@ -44,8 +46,6 @@
 		9A0A6EE822CE55B2004CF0FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9A0A6EEA22CE55B2004CF0FF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		9A0A6EED22CE55B2004CF0FF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		9A0A6EEF22CE55B3004CF0FF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		9A0A6EF222CE55B3004CF0FF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9A44BF5C22CE72B60039A7EE /* InstallationsExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstallationsExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A44BF7822CE73980039A7EE /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		9A44BF7922CE73980039A7EE /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
@@ -53,6 +53,9 @@
 		9A44BF7F22CE73980039A7EE /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		9A44BF8022CE73980039A7EE /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		9A44BF8A22CE75B90039A7EE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		9A5908BA23AD479B000CD3B9 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
+		9A5908BC23AD479B000CD3B9 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		9A5908C723AD47EF000CD3B9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		9A76AE2322E206380024E473 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9A76AE2922E207640024E473 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9A76AE2E22E20A0C0024E473 /* InstallationsExampleSwiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InstallationsExampleSwiftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -98,7 +101,7 @@
 		9A0A6EDC22CE55B2004CF0FF = {
 			isa = PBXGroup;
 			children = (
-				9A44BF5722CE71810039A7EE /* Common */,
+				9A5908B923AD479B000CD3B9 /* shared */,
 				9A44BF7722CE73980039A7EE /* InstallationsExample */,
 				9A0A6EE722CE55B2004CF0FF /* InstallationsExampleSwift */,
 				9A76AE2F22E20A0C0024E473 /* InstallationsExampleSwiftTests */,
@@ -130,15 +133,6 @@
 			path = InstallationsExampleSwift;
 			sourceTree = "<group>";
 		};
-		9A44BF5722CE71810039A7EE /* Common */ = {
-			isa = PBXGroup;
-			children = (
-				9A0A6EF122CE55B3004CF0FF /* LaunchScreen.storyboard */,
-				9A0A6EEF22CE55B3004CF0FF /* Assets.xcassets */,
-			);
-			path = Common;
-			sourceTree = "<group>";
-		};
 		9A44BF7722CE73980039A7EE /* InstallationsExample */ = {
 			isa = PBXGroup;
 			children = (
@@ -151,6 +145,17 @@
 				9A44BF7E22CE73980039A7EE /* main.m */,
 			);
 			path = InstallationsExample;
+			sourceTree = "<group>";
+		};
+		9A5908B923AD479B000CD3B9 /* shared */ = {
+			isa = PBXGroup;
+			children = (
+				9A5908C723AD47EF000CD3B9 /* GoogleService-Info.plist */,
+				9A5908BA23AD479B000CD3B9 /* LaunchScreen.xib */,
+				9A5908BC23AD479B000CD3B9 /* Images.xcassets */,
+			);
+			name = shared;
+			path = ../shared;
 			sourceTree = "<group>";
 		};
 		9A76AE2F22E20A0C0024E473 /* InstallationsExampleSwiftTests */ = {
@@ -304,8 +309,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A0A6EF322CE55B3004CF0FF /* LaunchScreen.storyboard in Resources */,
-				9A0A6EF022CE55B3004CF0FF /* Assets.xcassets in Resources */,
+				9A5908C323AD479B000CD3B9 /* Images.xcassets in Resources */,
+				9A5908C823AD47EF000CD3B9 /* GoogleService-Info.plist in Resources */,
+				9A5908BF23AD479B000CD3B9 /* LaunchScreen.xib in Resources */,
 				9A0A6EEE22CE55B2004CF0FF /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -314,9 +320,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A44BF7222CE72BC0039A7EE /* Assets.xcassets in Resources */,
+				9A5908C423AD479B000CD3B9 /* Images.xcassets in Resources */,
+				9A5908C923AD47EF000CD3B9 /* GoogleService-Info.plist in Resources */,
+				9A5908C023AD479B000CD3B9 /* LaunchScreen.xib in Resources */,
 				9A44BF8B22CE75B90039A7EE /* Main.storyboard in Resources */,
-				9A44BF7322CE72C20039A7EE /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -394,14 +401,6 @@
 				9A0A6EED22CE55B2004CF0FF /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		9A0A6EF122CE55B3004CF0FF /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				9A0A6EF222CE55B3004CF0FF /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 		9A44BF8922CE75B90039A7EE /* Main.storyboard */ = {

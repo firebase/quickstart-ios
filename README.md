@@ -26,7 +26,7 @@ directory of the sample you wish to run.
 - [Analytics](analytics/README.md)
 - [Authentication](authentication/README.md)
 - [Config](config/README.md)
-- [Crash Reporting](crashreporting/README.md)
+- [Crashlytics](crashlytics/README.md)
 - [Database](database/README.md)
 - [Firestore](firestore/README.md)
 - [Functions](functions/README.md)

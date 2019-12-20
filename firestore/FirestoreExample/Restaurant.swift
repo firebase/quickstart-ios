@@ -15,8 +15,9 @@
 //
 
 import Firebase
+import FirebaseFirestoreSwift
 
-struct Restaurant {
+struct Restaurant: Codable {
 
   var name: String
   var category: String // Could become an enum
@@ -26,21 +27,19 @@ struct Restaurant {
   var averageRating: Float
   var photo: URL
 
-  var dictionary: [String: Any] {
-    return [
-      "name": name,
-      "category": category,
-      "city": city,
-      "price": price,
-      "numRatings": ratingCount,
-      "avgRating": averageRating,
-      "photo": photo.absoluteString
-    ]
+  enum CodingKeys: String, CodingKey {
+    case name
+    case category
+    case city
+    case price
+    case ratingCount = "numRatings"
+    case averageRating = "avgRating"
+    case photo
   }
 
 }
 
-extension Restaurant: DocumentSerializable {
+extension Restaurant {
 
   static let cities = [
     "Albuquerque",
@@ -108,27 +107,9 @@ extension Restaurant: DocumentSerializable {
     return Restaurant.imageURL(forName: name)
   }
 
-  init?(dictionary: [String : Any]) {
-    guard let name = dictionary["name"] as? String,
-        let category = dictionary["category"] as? String,
-        let city = dictionary["city"] as? String,
-        let price = dictionary["price"] as? Int,
-        let ratingCount = dictionary["numRatings"] as? Int,
-        let averageRating = dictionary["avgRating"] as? Float,
-      let photo = (dictionary["photo"] as? String).flatMap(URL.init(string:)) else { return nil }
-
-    self.init(name: name,
-              category: category,
-              city: city,
-              price: price,
-              ratingCount: ratingCount,
-              averageRating: averageRating,
-              photo: photo)
-  }
-
 }
 
-struct Review {
+struct Review: Codable {
 
   var rating: Int // Can also be enum
   var userID: String
@@ -136,33 +117,11 @@ struct Review {
   var text: String
   var date: Timestamp
 
-  var dictionary: [String: Any] {
-    return [
-      "rating": rating,
-      "userId": userID,
-      "userName": username,
-      "text": text,
-      "date": date
-    ]
+  enum CodingKeys: String, CodingKey {
+    case rating
+    case userID = "userId"
+    case username = "userName"
+    case text
+    case date
   }
-
-}
-
-extension Review: DocumentSerializable {
-
-  init?(dictionary: [String : Any]) {
-    guard let rating = dictionary["rating"] as? Int,
-        let userID = dictionary["userId"] as? String,
-        let username = dictionary["userName"] as? String,
-        let text = dictionary["text"] as? String,
-        let date = dictionary["date"] as? Timestamp else { return nil }
-    self.init(
-      rating: rating,
-      userID: userID,
-      username: username,
-      text: text,
-      date: date
-    )
-  }
-
 }

@@ -16,6 +16,7 @@
 
 import UIKit
 import Firebase
+import FirebaseFirestoreSwift
 import FirebaseUI
 import SDWebImage
 
@@ -73,11 +74,18 @@ class RestaurantsTableViewController: UIViewController, UITableViewDataSource, U
         return
       }
       let models = snapshot.documents.map { (document) -> Restaurant in
-        if let model = Restaurant(dictionary: document.data()) {
+        let maybeModel: Restaurant?
+        do {
+          maybeModel = try document.data(as: Restaurant.self)
+        } catch {
+          fatalError("Unable to initialize type \(Restaurant.self) with dictionary \(document.data()): \(error)")
+        }
+
+        if let model = maybeModel {
           return model
         } else {
           // Don't use fatalError here in a real app.
-          fatalError("Unable to initialize type \(Restaurant.self) with dictionary \(document.data())")
+          fatalError("Missing document of type \(Restaurant.self) at \(document.reference.path)")
         }
       }
       self.restaurants = models
@@ -180,7 +188,12 @@ class RestaurantsTableViewController: UIViewController, UITableViewDataSource, U
         photo: photo
       )
 
-      let restaurantRef = collection.addDocument(data: restaurant.dictionary)
+      let restaurantRef = collection.document()
+      do {
+        try restaurantRef.setData(from: restaurant)
+      } catch {
+        fatalError("Encoding Restaurant failed: \(error)")
+      }
 
       let batch = Firestore.firestore().batch()
       guard let user = Auth.auth().currentUser else { continue }
@@ -195,7 +208,11 @@ class RestaurantsTableViewController: UIViewController, UITableViewDataSource, U
                             text: text,
                             date: Timestamp())
         let ratingRef = restaurantRef.collection("ratings").document()
-        batch.setData(review.dictionary, forDocument: ratingRef)
+        do {
+          try batch.setData(from: review, forDocument: ratingRef)
+        } catch {
+          fatalError("Encoding Rating failed: \(error)")
+        }
       }
       batch.updateData(["avgRating": average], forDocument: restaurantRef)
       batch.commit(completion: { (error) in

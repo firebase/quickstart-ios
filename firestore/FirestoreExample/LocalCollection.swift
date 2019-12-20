@@ -15,13 +15,9 @@
 //
 
 import Firebase
+import FirebaseFirestoreSwift
 
-// A type that can be initialized from a Firestore document.
-protocol DocumentSerializable {
-  init?(dictionary: [String: Any])
-}
-
-final class LocalCollection<T: DocumentSerializable> {
+final class LocalCollection<T: Codable> {
 
   private(set) var items: [T]
   private(set) var documents: [DocumentSnapshot] = []
@@ -67,11 +63,17 @@ final class LocalCollection<T: DocumentSerializable> {
         return
       }
       let models = snapshot.documents.map { (document) -> T in
-        if let model = T(dictionary: document.data()) {
+        let maybeModel: T?
+        do {
+          maybeModel = try document.data(as: T.self);
+        } catch {
+          fatalError("Unable to initialize type \(T.self) from data \(document.data()): \(error)")
+        }
+
+        if let model = maybeModel {
           return model
         } else {
-          // handle error
-          fatalError("Unable to initialize type \(T.self) with dictionary \(document.data())")
+          fatalError("Missing document of type \(T.self) at \(document.reference.path)")
         }
       }
       self.items = models

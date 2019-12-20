@@ -135,18 +135,27 @@ class RestaurantDetailViewController: UIViewController, UITableViewDataSource, U
       // update using stale client data. Error if we're unable to read here.
       let restaurantSnapshot: DocumentSnapshot
       do {
-        try restaurantSnapshot = transaction.getDocument(reference)
+        restaurantSnapshot = try transaction.getDocument(reference)
       } catch let error as NSError {
         errorPointer?.pointee = error
         return nil
       }
 
       // Error if the restaurant data in Firestore has somehow changed or is malformed.
-      guard let restaurant = restaurantSnapshot.data().flatMap(Restaurant.init(dictionary:)) else {
-        let error = NSError(domain: "FriendlyEatsErrorDomain", code: 0, userInfo: [
-          NSLocalizedDescriptionKey: "Unable to write to restaurant at Firestore path: \(reference.path)"
-          ])
-        errorPointer?.pointee = error
+      let maybeRestaurant: Restaurant?
+      do {
+        maybeRestaurant = try restaurantSnapshot.data(as: Restaurant.self)
+      } catch {
+        errorPointer?.pointee = NSError(domain: "FriendlyEatsErrorDomain", code: 0, userInfo: [
+          NSLocalizedDescriptionKey: "Unable to read restaurant at Firestore path: \(reference.path): \(error)"
+        ])
+        return nil
+      }
+
+      guard let restaurant = maybeRestaurant else {
+        errorPointer?.pointee = NSError(domain: "FriendlyEatsErrorDomain", code: 0, userInfo: [
+          NSLocalizedDescriptionKey: "Missing restaurant at Firestore path: \(reference.path)"
+        ])
         return nil
       }
 
@@ -155,7 +164,12 @@ class RestaurantDetailViewController: UIViewController, UITableViewDataSource, U
       let newAverage = (Float(restaurant.ratingCount) * restaurant.averageRating + Float(review.rating))
         / Float(restaurant.ratingCount + 1)
 
-      transaction.setData(review.dictionary, forDocument: newReviewReference)
+      do {
+        try transaction.setData(from: review, forDocument: newReviewReference)
+      } catch let error as NSError {
+        errorPointer?.pointee = error
+        return nil
+      }
       transaction.updateData([
         "numRatings": restaurant.ratingCount + 1,
         "avgRating": newAverage

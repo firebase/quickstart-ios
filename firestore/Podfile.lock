@@ -205,7 +205,7 @@ PODS:
     - GoogleUtilities/Logger (~> 6.2)
     - nanopb (~> 0.3.901)
   - FirebaseCoreDiagnosticsInterop (1.1.0)
-  - FirebaseFirestore (1.8.2):
+  - FirebaseFirestore (1.8.3):
     - abseil/algorithm (= 0.20190808)
     - abseil/base (= 0.20190808)
     - abseil/memory (= 0.20190808)
@@ -329,7 +329,7 @@ SPEC CHECKSUMS:
   FirebaseCore: 632e05cc5e1199d9147122c16d92305eb04c34bd
   FirebaseCoreDiagnostics: 511f4f3ed7d440bb69127e8b97c2bc8befae639e
   FirebaseCoreDiagnosticsInterop: e9b1b023157e3a2fc6418b5cb601e79b9af7b3a0
-  FirebaseFirestore: 7a3d02dd11fcc5d79691ee1d3986a52bbf80f00a
+  FirebaseFirestore: 52120e2833f804a874ba1a9f59aab864a8ae2286
   FirebaseFirestoreSwift: 0437bb10d83f8161a9131da1739998254c78fdf5
   FirebaseInstanceID: ce993a3c3670a8f5d47ce371ac5d143c560608c5
   FirebaseUI: 433550cb9e3d03ec7ee2c25f87493f76358d9b68

@@ -70,7 +70,7 @@ class ViewController: UIViewController {
 
   @IBAction func deleteInstallationButtonPressed() {
     log(message: "Call Installations.delete()")
-    installations.delete {[weak self] (error) in
+    installations.delete { [weak self] (error) in
       self?.log(message: """
         Installations.delete() result:
         \(error != nil ? String(describing: error) : "SUCCESS")

@@ -34,7 +34,7 @@
 @implementation ViewController
 
 - (void)dealloc {
-  [NSNotificationCenter defaultCenter];
+  [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)viewDidLoad {

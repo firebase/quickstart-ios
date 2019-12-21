@@ -14,9 +14,12 @@
 
 # Set up secrets to get the GoogleService-Info.plist files.
 
+set -x
+
 # This does not work for pull requests from forks. See
 # https://docs.travis-ci.com/user/pull-requests#pull-requests-and-security-restrictions
-if [[ ! -z $encrypted_d6a88994a5ab_key ]]; then
+
+if [[ ! -z $encrypted_2858fa01aa14_key ]]; then
   openssl aes-256-cbc -K $encrypted_2858fa01aa14_key -iv $encrypted_2858fa01aa14_iv \
   -in scripts/Secrets.tar.enc -out scripts/Secrets.tar -d
 

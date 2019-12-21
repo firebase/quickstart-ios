@@ -30,7 +30,6 @@
   [FIRApp configure];
   FIRRemoteConfig *remoteConfig = [FIRRemoteConfig remoteConfig];
   XCTAssert([remoteConfig isKindOfClass:[FIRRemoteConfig class]]);
-  XCTAssertTrue([[remoteConfig configSettings] isDeveloperModeEnabled]);
 }
 
 @end

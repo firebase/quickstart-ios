@@ -22,6 +22,8 @@
 		5F99610B1AE0CF4F0034F503 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F9961061AE0CF4F0034F503 /* Images.xcassets */; };
 		5F99610C1AE0CF4F0034F503 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F9961071AE0CF4F0034F503 /* LaunchScreen.xib */; };
 		5F99610D1AE0CF4F0034F503 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F9961071AE0CF4F0034F503 /* LaunchScreen.xib */; };
+		DEC82E4423AAEDF7000EA7B1 /* FIREGSignInHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DEC82E3F23AAEDEC000EA7B1 /* FIREGSignInHelper.m */; };
+		DEC82E4523AAEDFD000EA7B1 /* FIREGHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DEC82E4023AAEDEC000EA7B1 /* FIREGHelper.m */; };
 		EF4857041C752B7700649485 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10B054011C6A3C630061077D /* Main.storyboard */; };
 		EF6DB4CB1CDD60F700319C08 /* CustomTokenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF6DB4C81CDD60F700319C08 /* CustomTokenViewController.swift */; };
 		EF6DB4CC1CDD60F700319C08 /* EmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF6DB4C91CDD60F700319C08 /* EmailViewController.swift */; };
@@ -81,6 +83,10 @@
 		5F5A539B1ADE695B00F81DF0 /* BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
 		5F9961061AE0CF4F0034F503 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		5F9961071AE0CF4F0034F503 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
+		DEC82E3E23AAEDEC000EA7B1 /* FIREGHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FIREGHelper.h; sourceTree = "<group>"; };
+		DEC82E3F23AAEDEC000EA7B1 /* FIREGSignInHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FIREGSignInHelper.m; sourceTree = "<group>"; };
+		DEC82E4023AAEDEC000EA7B1 /* FIREGHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FIREGHelper.m; sourceTree = "<group>"; };
+		DEC82E4123AAEDEC000EA7B1 /* FIREGSignInHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FIREGSignInHelper.h; sourceTree = "<group>"; };
 		EF6DB4C81CDD60F700319C08 /* CustomTokenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTokenViewController.swift; sourceTree = "<group>"; };
 		EF6DB4C91CDD60F700319C08 /* EmailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailViewController.swift; sourceTree = "<group>"; };
 		EF6DB4CA1CDD60F700319C08 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -165,6 +171,7 @@
 				10AF4D0F1DD3966C0096D192 /* AuthenticationExampleTests */,
 				107346F32031590C004A66D1 /* AuthenticationExampleSwiftUITests */,
 				1073480B20333B18004A66D1 /* AuthenticationExampleUITests */,
+				DEC82E3D23AAEDEC000EA7B1 /* TestUtils */,
 				5F5A534D1ADE670C00F81DF0 /* Products */,
 				5F9961041AE0CF4F0034F503 /* Shared */,
 			);
@@ -243,6 +250,18 @@
 			);
 			name = Shared;
 			path = ../shared;
+			sourceTree = "<group>";
+		};
+		DEC82E3D23AAEDEC000EA7B1 /* TestUtils */ = {
+			isa = PBXGroup;
+			children = (
+				DEC82E3E23AAEDEC000EA7B1 /* FIREGHelper.h */,
+				DEC82E3F23AAEDEC000EA7B1 /* FIREGSignInHelper.m */,
+				DEC82E4023AAEDEC000EA7B1 /* FIREGHelper.m */,
+				DEC82E4123AAEDEC000EA7B1 /* FIREGSignInHelper.h */,
+			);
+			name = TestUtils;
+			path = ../TestUtils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -470,6 +489,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				1073480D20333B18004A66D1 /* AuthenticationExampleUITests.m in Sources */,
+				DEC82E4423AAEDF7000EA7B1 /* FIREGSignInHelper.m in Sources */,
+				DEC82E4523AAEDFD000EA7B1 /* FIREGHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

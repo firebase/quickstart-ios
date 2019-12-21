@@ -24,5 +24,6 @@ else
       build \
       ONLY_ACTIVE_ARCH=YES \
       | xcpretty) || EXIT_STATUS=$?
+fi
 
   exit $EXIT_STATUS

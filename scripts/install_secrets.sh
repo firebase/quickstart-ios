@@ -14,9 +14,7 @@
 
 # Set up secrets to get the GoogleService-Info.plist files.
 
-set -x
-
-# This does not work for pull requests from forks. See
+# Secret keys do not work for pull requests from forks. See
 # https://docs.travis-ci.com/user/pull-requests#pull-requests-and-security-restrictions
 
 if [[ ! -z $encrypted_2858fa01aa14_key ]]; then

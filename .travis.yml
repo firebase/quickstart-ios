@@ -60,6 +60,7 @@ before_install:
   - gem install xcodeproj
   - ruby ../info_script.rb $SAMPLE
   - cd -
+  - ./scripts/install_secrets.sh
 
 script: ./test.sh
 

@@ -49,6 +49,8 @@
 		5F99610C1AE0CF4F0034F503 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F9961071AE0CF4F0034F503 /* LaunchScreen.xib */; };
 		5F99610D1AE0CF4F0034F503 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F9961071AE0CF4F0034F503 /* LaunchScreen.xib */; };
 		5FDE055D1B0DAA090037B82F /* AppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FDE055C1B0DAA090037B82F /* AppTests.m */; };
+		DEC82E5523AD38E4000EA7B1 /* FIREGSignInHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DEC82E5223AD38E4000EA7B1 /* FIREGSignInHelper.m */; };
+		DEC82E5623AD38E4000EA7B1 /* FIREGHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DEC82E5323AD38E4000EA7B1 /* FIREGHelper.m */; };
 		EF94DD7B1CE533AC009A635D /* PostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EFDCBD531CE4FCC800F68D48 /* PostTableViewCell.xib */; };
 		EFDCBD541CE4FCC800F68D48 /* PostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EFDCBD531CE4FCC800F68D48 /* PostTableViewCell.xib */; };
 /* End PBXBuildFile section */
@@ -139,6 +141,10 @@
 		5F9961071AE0CF4F0034F503 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		5FDE05581B0DAA090037B82F /* DatabaseExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DatabaseExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FDE055C1B0DAA090037B82F /* AppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppTests.m; sourceTree = "<group>"; };
+		DEC82E5123AD38E4000EA7B1 /* FIREGHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FIREGHelper.h; sourceTree = "<group>"; };
+		DEC82E5223AD38E4000EA7B1 /* FIREGSignInHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FIREGSignInHelper.m; sourceTree = "<group>"; };
+		DEC82E5323AD38E4000EA7B1 /* FIREGHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FIREGHelper.m; sourceTree = "<group>"; };
+		DEC82E5423AD38E4000EA7B1 /* FIREGSignInHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FIREGSignInHelper.h; sourceTree = "<group>"; };
 		EFDCBD531CE4FCC800F68D48 /* PostTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -263,6 +269,7 @@
 		5F5A53431ADE670C00F81DF0 = {
 			isa = PBXGroup;
 			children = (
+				DEC82E5023AD38E4000EA7B1 /* TestUtils */,
 				5F5A534E1ADE670C00F81DF0 /* DatabaseExample */,
 				5F5A537A1ADE67D500F81DF0 /* DatabaseExampleSwift */,
 				5FDE05591B0DAA090037B82F /* DatabaseExampleTests */,
@@ -345,6 +352,18 @@
 				5FDE055C1B0DAA090037B82F /* AppTests.m */,
 			);
 			path = DatabaseExampleTests;
+			sourceTree = "<group>";
+		};
+		DEC82E5023AD38E4000EA7B1 /* TestUtils */ = {
+			isa = PBXGroup;
+			children = (
+				DEC82E5123AD38E4000EA7B1 /* FIREGHelper.h */,
+				DEC82E5223AD38E4000EA7B1 /* FIREGSignInHelper.m */,
+				DEC82E5323AD38E4000EA7B1 /* FIREGHelper.m */,
+				DEC82E5423AD38E4000EA7B1 /* FIREGSignInHelper.h */,
+			);
+			name = TestUtils;
+			path = ../TestUtils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -559,6 +578,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				1073483720333B8C004A66D1 /* DatabaseExampleUITests.m in Sources */,
+				DEC82E5523AD38E4000EA7B1 /* FIREGSignInHelper.m in Sources */,
+				DEC82E5623AD38E4000EA7B1 /* FIREGHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

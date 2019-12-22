@@ -1,5 +1,5 @@
 //
-//  Copyright (c) 2016 Google Inc.
+//  Copyright (c) 2019 Google Inc.
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -14,22 +14,9 @@
 //  limitations under the License.
 //
 
-#import <UIKit/UIKit.h>
-#import <XCTest/XCTest.h>
+#import <Foundation/Foundation.h>
 
-#import "FIRApp.h"
-#import "FIRRemoteConfig.h"
+#pragma mark - Helpers for Google Sign-In flow.
 
-@interface AppTests : XCTestCase
-@end
-
-@implementation AppTests
-
-
-- (void)testRemoteConfig {
-  [FIRApp configure];
-  FIRRemoteConfig *remoteConfig = [FIRRemoteConfig remoteConfig];
-  XCTAssert([remoteConfig isKindOfClass:[FIRRemoteConfig class]]);
-}
-
-@end
+void tapNext(XCUIApplication* app);
+void doGoogleSignIn(XCUIApplication *app, BOOL correctPassword, BOOL withAlert);

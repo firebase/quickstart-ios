@@ -360,6 +360,9 @@ class RestaurantTableViewCell: UITableViewCell {
     categoryLabel.text = restaurant.category
     starsView.rating = Int(restaurant.averageRating.rounded())
     priceLabel.text = priceString(from: restaurant.price)
+    self.isAccessibilityElement = true
+    self.accessibilityLabel = nameLabel.text
+    self.accessibilityIdentifier = nameLabel.text
 
     let image = restaurant.photo
     thumbnailView.sd_setImage(with: image)

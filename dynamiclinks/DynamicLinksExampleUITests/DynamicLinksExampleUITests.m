@@ -1,40 +1,81 @@
 //
-//  DynamicLinksExampleUITests.m
-//  DynamicLinksExampleUITests
+//  Copyright (c) 2019 Google Inc.
 //
-//  Created by Ibrahim Ulukaya on 2/13/18.
-//  Copyright © 2018 Google Inc. All rights reserved.
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//  http://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
 //
 
 #import <XCTest/XCTest.h>
 
-@interface DynamicLinksExampleUITests : XCTestCase
+#import "FIREGHelper.h"
 
+static NSString *const header = @"Dynamic Links Example";
+static NSString *const okButton = @"OK";
+static NSString *const generateButton = @"Click HERE to Generate Links";
+static NSString *const urlToConvert = @"https://google.com/photos/about/";
+static NSString *const linkTrait = @"https://";
+
+@interface DynamicLinksExampleUITests : XCTestCase
 @end
 
-@implementation DynamicLinksExampleUITests
+@implementation DynamicLinksExampleUITests {
+  XCUIApplication *_app;
+}
 
 - (void)setUp {
-    [super setUp];
-    
-    // Put setup code here. This method is called before the invocation of each test method in the class.
-    
-    // In UI tests it is usually best to stop immediately when a failure occurs.
-    self.continueAfterFailure = NO;
-    // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
-    [[[XCUIApplication alloc] init] launch];
-    
-    // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
+  [super setUp];
+  _app = [[XCUIApplication alloc] init];
+  [_app launch];
+  // This is not a system alert, so it can be handled by regular EG means.
+  [self dismissAlertIfOpen];
 }
 
-- (void)tearDown {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
-    [super tearDown];
+- (void)testVerifyLinksGenerated {
+  XCTAssertTrue([_app navigationBars][header].exists);
+
+  // Type url to convert.
+  XCUIElement *inputText = [[_app textFields] elementBoundByIndex:0];
+  FIRWaitForVisible(inputText);
+  [inputText tap];
+  [inputText typeText:urlToConvert];
+
+  // Navigate to the bottom.
+  [inputText swipeUp];
+
+  // Make sure there is no links generated.
+  NSPredicate *linkPredicate =
+  [NSPredicate predicateWithFormat:@"(label CONTAINS[c] %@)", linkTrait];
+  XCTAssertEqual([[[_app staticTexts] matchingPredicate:linkPredicate] count], 0,
+                 @"There shouldn't be any links generated.");
+
+  // Generate links.
+  [[_app staticTexts][generateButton] tap];
+
+  // The long link appears immediately, while we need to wait for the short link.
+  XCUIElement *shortLink =
+  [[[_app staticTexts] matchingPredicate:linkPredicate] elementBoundByIndex:1];
+  FIRWaitForVisible(shortLink);
+
+  // Make sure both links are present.
+  XCTAssertEqual([[[_app staticTexts] matchingPredicate:linkPredicate] count], 2,
+                 @"Both links should be generated.");
 }
 
-- (void)testExample {
-    // Use recording to get started writing UI tests.
-    // Use XCTAssert and related functions to verify your tests produce the correct results.
+// Dismiss alert by tapping "OK" button.
+- (void)dismissAlertIfOpen {
+  FIRWaitForVisible(_app.buttons[okButton]);
+  if (_app.buttons[okButton].exists) {
+    [_app.buttons[okButton] tap];
+  }
 }
 
 @end

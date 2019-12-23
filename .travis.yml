@@ -57,12 +57,14 @@ before_install:
   - cp ../mock-GoogleService-Info.plist ./GoogleService-Info.plist
   - sed -i '' '/<key>BUNDLE_ID</{n;s/id/com.google.firebase.quickstart.${SAMPLE}Example/;}' GoogleService-Info.plist
   - sed -i '' 's/YOUR_REVERSED_CLIENT_ID/com.googleusercontent.apps.123456789000-hjugbg6ud799v4c49dim8ce2usclthar/' ${SAMPLE}Example/Info.plist
+  - sed -i '' 's#DYNAMIC_LINK_DOMAIN#https://qpf6m.app.goo.gl#' dynamiclinks/DynamicLinksExample/DynamicLinksExample.entitlements
+  - sed -i '' 's#YOUR_DOMAIN_URI_PREFIX";#https://qpf6m.app.goo.gl";#' dynamiclinks/DynamicLinksExample/ViewController.m
   - gem install xcodeproj
   - ruby ../info_script.rb $SAMPLE
   - cd -
   - ./scripts/install_secrets.sh
 
-script: ./test.sh
+script: travis_retry ./test.sh
 
 branches:
   only:

@@ -120,6 +120,7 @@ static NSString *const uploadStartedTrait = @"Beginning upload";
 
   // Select the "Moments" folder.
   XCUIElement *momentsLink = [[[[_app tables] cells] matchingIdentifier:momentsHeader] element];
+  FIRWaitForVisible(momentsLink);
   [momentsLink tap];
 
   // Wait till UIImagePickerController has loaded photo library.

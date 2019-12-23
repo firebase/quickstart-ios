@@ -50,8 +50,11 @@ static NSString *const testPassword = @"Test123";
 
 - (void)testAddComment {
   // Navigate to the first restaurant in the list.
-  FIRWaitForVisible([[_app cells] firstMatch]);
-  [[[_app cells] firstMatch] tap];
+  FIRWaitForVisible(_app.navigationBars[@"Friendly Eats"]);
+  XCUIElement *firstRestaurant = [[_app cells] firstMatch];
+  XCTAssertNotNil(firstRestaurant);
+  FIRWaitForVisible(firstRestaurant);
+  [firstRestaurant tap];
 
   // Navigate to the review section.
   FIRWaitForVisible(_app.buttons[@"Add"]);

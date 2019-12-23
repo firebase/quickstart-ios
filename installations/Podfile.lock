@@ -56,7 +56,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   FirebaseInstallations:
-    :commit: f62c7ddcecdae4aa60dac54e656c249b00c1b39d
+    :commit: 9f97f4ec8e84e81916cc410ee6d2f0651c2f6a6a
     :git: https://github.com/firebase/firebase-ios-sdk.git
 
 SPEC CHECKSUMS:
@@ -71,6 +71,6 @@ SPEC CHECKSUMS:
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
   PromisesObjC: c119f3cd559f50b7ae681fa59dc1acd19173b7e6
 
-PODFILE CHECKSUM: 8dba33ffd5e1cc0f70ce4ef147a5477a96b9a601
+PODFILE CHECKSUM: 1de451465a6f6c679267202cd027af776e859778
 
-COCOAPODS: 1.8.3
+COCOAPODS: 1.8.4

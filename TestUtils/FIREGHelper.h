@@ -23,7 +23,7 @@ static NSString *const FIRCellClassName = @"UITableViewCell";
 static NSString *const FIRTextFieldClassName = @"UITextField";
 static NSString *const FIRUIFieldClassName = @"UIFieldEditor";
 
-static NSTimeInterval const defaultTimeout = 60;
+static NSTimeInterval const defaultTimeout = 10;
 static NSTimeInterval const pollInterval = 0.5;
 
 // Common EarlGrey methods that are used in various tests.

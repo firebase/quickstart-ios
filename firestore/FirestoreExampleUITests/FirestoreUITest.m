@@ -40,13 +40,14 @@ static NSString *const testPassword = @"Test123";
     [self doSignIn];
   }
   // The next two navigations are to give the restaurants time to load.  Is there a better way?
+
   // Navigate to the filter screen.
   [_app.buttons[@"Filter"] tap];
 
   // Navigate back.
   [_app.buttons[@"Done"] tap];
 
-  // Make sure table with restaurants is not empty.
+  // Make sure table with restaurants has loaded.
   NSUInteger allRestaurants = [self restaurantsCount];
   XCTAssertEqual(allRestaurants, 50, @"50 restaurants are loaded.");
 }
@@ -59,42 +60,9 @@ static NSString *const testPassword = @"Test123";
 }
 
 - (void)testAddComment {
-  // Navigate to the a restaurant called Prime Bar in the list.
+  // Navigate to the first restaurant in the list.
   FIRWaitForVisible(_app.navigationBars[@"Friendly Eats"]);
-  FIRWaitForVisible(_app.cells[@"Prime Bar"]);
-  XCUIElement *firstRestaurant = [_app.cells[@"Prime Bar"] firstMatch];
-  [firstRestaurant tap];
-
-  // Navigate to the review section.
-  FIRWaitForVisible(_app.buttons[@"Add"]);
-  [_app.buttons[@"Add"] tap];
-  FIRWaitForVisible(_app.navigationBars[@"Write a Review"]);
-
-  // If we have 5 stars in the Imageview, the last, 5th star will be somewhere between 80% and 100%
-  // of image width, so 90% is just the horizontal middle of it.
-  XCUIElement *stars = _app.otherElements[starRating];
-  [[stars coordinateWithNormalizedOffset:(CGVectorMake(0.9, 0.5))] tap];
-
-  // Type the comment into text field.
-  XCUIElement *textField = [[_app textFields] firstMatch];
-  [textField tap];
-  [textField typeText:@"The food was delicious!"];
-
-  // Navigate back to main screen.
-  NSArray *backButtons = @[ @"Done", @"Friendly Eats" ];
-  for (id button in backButtons) {
-    FIRWaitForVisible(_app.buttons[button]);
-    [_app.buttons[button] tap];
-    FIRWaitForVisible([[_app tables] firstMatch]);
-  }
-  [self checkMainScreenIsDisplayed];
-}
-
-- (void)testAddComment2 {
-  // Navigate to the a restaurant called Prime Bar in the list.
-  FIRWaitForVisible(_app.navigationBars[@"Friendly Eats"]);
-  FIRWaitForVisible(_app.cells[@"Prime Bar"]);
-  XCUIElement *firstRestaurant = [_app.cells[@"Prime Bar"] firstMatch];
+  XCUIElement *firstRestaurant = [_app.cells firstMatch];
   [firstRestaurant tap];
 
   // Navigate to the review section.

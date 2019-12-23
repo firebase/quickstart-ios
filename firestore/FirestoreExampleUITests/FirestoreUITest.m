@@ -39,6 +39,9 @@ static NSString *const testPassword = @"Test123";
   if (![self isSignedIn]) {
     [self doSignIn];
   }
+  // Make sure table with restaurants is not empty.
+  NSUInteger allRestaurants = [self restaurantsCount];
+  XCTAssertEqual(allRestaurants, 50, @"50 restaurants are loaded.");
 }
 
 - (void)testVerifyAppLaunched {
@@ -50,6 +53,7 @@ static NSString *const testPassword = @"Test123";
 
 - (void)testAddComment {
   // Navigate to the a restaurant called Prime Bar in the list.
+  sleep(10);
   FIRWaitForVisible(_app.navigationBars[@"Friendly Eats"]);
   FIRWaitForVisible(_app.cells[@"Prime Bar"]);
   XCUIElement *firstRestaurant = [_app.cells[@"Prime Bar"] firstMatch];
@@ -81,10 +85,6 @@ static NSString *const testPassword = @"Test123";
 }
 
 - (void)testApplyFilter {
-  // Make sure table with restaurants is not empty.
-  NSUInteger allRestaurants = [self restaurantsCount];
-  XCTAssertEqual(allRestaurants, 50, @"50 restaurants are loaded.");
-
   // Navigate to the filter screen.
   [_app.buttons[@"Filter"] tap];
 

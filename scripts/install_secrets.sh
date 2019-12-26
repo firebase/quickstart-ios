@@ -19,11 +19,7 @@
 
 if [[ ! -z $encrypted_2858fa01aa14_key ]]; then
   openssl aes-256-cbc -K $encrypted_2858fa01aa14_key -iv $encrypted_2858fa01aa14_iv \
-  -in scripts/Secrets.tar.enc -out scripts/Secrets.tar -d
+    -in Secrets.tar.enc -out Secrets.tar -d
 
   tar xvf scripts/Secrets.tar
-  cd Secrets/quickstart-ios
-  for dir in *; do
-    cp $dir/GoogleService-Info.plist ../../$dir
-  done
 fi

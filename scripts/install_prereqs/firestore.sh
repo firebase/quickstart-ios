@@ -12,6 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-ruby ../scripts/info_script.rb ABTesting
+ruby ../scripts/info_script.rb Firestore
 ../scripts/install_secrets.sh
-cp Secrets/quickstart-ios/abtesting/GoogleService-Info.plist ./
+cp Secrets/quickstart-ios/firestore/GoogleService-Info.plist ./

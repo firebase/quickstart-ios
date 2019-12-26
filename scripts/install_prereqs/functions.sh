@@ -12,6 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-ruby ../scripts/info_script.rb ABTesting
+ruby ../scripts/info_script.rb Functions
 ../scripts/install_secrets.sh
-cp Secrets/quickstart-ios/abtesting/GoogleService-Info.plist ./
+cp Secrets/quickstart-ios/functions/GoogleService-Info.plist ./
+sed -i '' 's/REVERSED_CLIENT_ID/com.googleusercontent.apps.1025801074639-6p6ebi8amuklcjrto20gvpe295smm8u6/' FunctionsExample/Info.plist

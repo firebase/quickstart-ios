@@ -51,8 +51,6 @@ void doGoogleSignIn(XCUIApplication *app, BOOL correctPassword, BOOL withAlert) 
   XCUIElement *password = app.webViews.secureTextFields[passwordField];
   FIRWaitForVisible(password);
   [password tap];
-
- // FIRWaitForPredicate(focused, password);
   [password typeText:testPassword];
   [webView.buttons[nextButton] tap];
 

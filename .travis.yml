@@ -63,3 +63,5 @@ script: travis_retry ./scripts/test.sh
 branches:
   only:
     - master
+    - pb-script-refactor
+

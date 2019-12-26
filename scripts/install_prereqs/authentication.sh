@@ -15,3 +15,4 @@
 ruby ../scripts/info_script.rb Authentication
 ../scripts/install_secrets.sh
 cp Secrets/quickstart-ios/authentication/GoogleService-Info.plist ./
+sed -i '' 's/REVERSED_CLIENT_ID/com.googleusercontent.apps.1025801074639-qkaflmcjc2mlfb7r5n0pda5eejdpi36t/' AuthenticationExample/Info.plist

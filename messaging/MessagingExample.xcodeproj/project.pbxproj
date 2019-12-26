@@ -21,6 +21,8 @@
 		5F99610C1AE0CF4F0034F503 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F9961071AE0CF4F0034F503 /* LaunchScreen.xib */; };
 		5F99610D1AE0CF4F0034F503 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F9961071AE0CF4F0034F503 /* LaunchScreen.xib */; };
 		5FDE055D1B0DAA090037B82F /* AppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FDE055C1B0DAA090037B82F /* AppTests.m */; };
+		DEB13BC923AEC9DF0066A6F3 /* FIREGSignInHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DEB13BC623AEC9DF0066A6F3 /* FIREGSignInHelper.m */; };
+		DEB13BCA23AEC9DF0066A6F3 /* FIREGHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DEB13BC723AEC9DF0066A6F3 /* FIREGHelper.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +73,10 @@
 		5F9961071AE0CF4F0034F503 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		5FDE05581B0DAA090037B82F /* MessagingExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MessagingExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FDE055C1B0DAA090037B82F /* AppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppTests.m; sourceTree = "<group>"; };
+		DEB13BC523AEC9DF0066A6F3 /* FIREGHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FIREGHelper.h; sourceTree = "<group>"; };
+		DEB13BC623AEC9DF0066A6F3 /* FIREGSignInHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FIREGSignInHelper.m; sourceTree = "<group>"; };
+		DEB13BC723AEC9DF0066A6F3 /* FIREGHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FIREGHelper.m; sourceTree = "<group>"; };
+		DEB13BC823AEC9DF0066A6F3 /* FIREGSignInHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FIREGSignInHelper.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +144,7 @@
 				5FDE05591B0DAA090037B82F /* MessagingExampleTests */,
 				107347A920315A3A004A66D1 /* MessagingExampleSwiftUITests */,
 				1073485F20333BF5004A66D1 /* MessagingExampleUITests */,
+				DEB13BC423AEC9DF0066A6F3 /* TestUtils */,
 				5F5A534D1ADE670C00F81DF0 /* Products */,
 				5F9961041AE0CF4F0034F503 /* Shared */,
 			);
@@ -205,6 +212,18 @@
 				5FDE055C1B0DAA090037B82F /* AppTests.m */,
 			);
 			path = MessagingExampleTests;
+			sourceTree = "<group>";
+		};
+		DEB13BC423AEC9DF0066A6F3 /* TestUtils */ = {
+			isa = PBXGroup;
+			children = (
+				DEB13BC523AEC9DF0066A6F3 /* FIREGHelper.h */,
+				DEB13BC623AEC9DF0066A6F3 /* FIREGSignInHelper.m */,
+				DEB13BC723AEC9DF0066A6F3 /* FIREGHelper.m */,
+				DEB13BC823AEC9DF0066A6F3 /* FIREGSignInHelper.h */,
+			);
+			name = TestUtils;
+			path = ../TestUtils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -429,6 +448,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				1073486120333BF5004A66D1 /* MessagingExampleUITests.m in Sources */,
+				DEB13BC923AEC9DF0066A6F3 /* FIREGSignInHelper.m in Sources */,
+				DEB13BCA23AEC9DF0066A6F3 /* FIREGHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -33,6 +33,8 @@ matrix:
   - podfile: functions/Podfile
     env: SAMPLE=Functions
   - podfile: messaging/Podfile
+    env: SAMPLE=InAppMessaging
+  - podfile: inappmessaging/Podfile
     env: SAMPLE=Messaging
   - podfile: mlmodelinterpreter/Podfile
     env: SAMPLE=MLModelInterpreter

@@ -9,11 +9,9 @@ target 'InAppMessagingExample' do
   pod 'Firebase/DynamicLinks'
 
   target 'InAppMessagingExampleTests' do
-    inherit! :search_paths
   end
 
   target 'InAppMessagingExampleUITests' do
-    inherit! :search_paths
   end
 end
 
@@ -23,10 +21,8 @@ target 'InAppMessagingExampleSwift' do
   pod 'Firebase/DynamicLinks'
 
   target 'InAppMessagingExampleSwiftTests' do
-    inherit! :search_paths
   end
 
   target 'InAppMessagingExampleSwiftUITests' do
-    inherit! :search_paths
   end
 end

@@ -27,55 +27,32 @@ static NSString *const testAccount = @"fb.engprod7@gmail.com";
 static NSString *const testPassword = @"123testing";
 static NSString *const wrongTestPassword = @"123testing!";
 
-void tapNext(XCUIApplication *app) {
-  // Dismiss the keyboard, on small screens "Next" button could be hidden.
-  [[[app toolbars] buttons][@"Done"] tap];
-  if (app.buttons[nextButton.uppercaseString].exists) {
-    FIRTapSafely(app, app.buttons[nextButton.uppercaseString]);
-  } else {
-    FIRTapSafely(app, app.webViews.buttons[nextButton]);
-  }
-}
-
 void doGoogleSignIn(XCUIApplication *app, BOOL correctPassword, BOOL withAlert) {
   // Google Sign-In permission request handling if needed.
   if (withAlert) {
     FIRWaitTillAlertPresent(10);
     // Required for triggering SystemAlertHandler logic.
-    // Tap on status bar is always safe while [app tap] is not safe.
-    [[[app statusBars] element] tap];
+    [app tap];
   }
 
   // WebView with Google Sign-In should be loaded. All further user interactions happen on WebViews.
-  XCUIElement *switchButton = app.webViews.links[switchAccount];
-  FIRWaitForVisible(switchButton);
-
-  // Even though some account could be saved and suggested, we'd like to enter the test
-  // account credentials. This simplifies the test logic.
-  if ([switchButton exists]) {
-    FIRTapSafely(app, switchButton);
-  }
-
   // Enter account.
-  XCUIElement *login = app.webViews.textFields[loginField];
+  XCUIElementQuery *webView = app.webViews;
+  XCUIElement *login = webView.textFields[loginField];
   FIRWaitForVisible(login);
-  FIRTapSafely(app, login);
-
-  // Make sure login is focused.
-  NSPredicate *focused = [NSPredicate predicateWithFormat:@"hasKeyboardFocus == true"];
-  FIRWaitForPredicate(focused, login);
+  [login tap];
+  FIRWaitForVisible(app.keyboards.firstMatch);
   [login typeText:testAccount];
 
-  tapNext(app);
+  FIRWaitForVisible(webView.buttons[nextButton]);
+  [webView.buttons[nextButton] tap];
 
   // Enter password.
   XCUIElement *password = app.webViews.secureTextFields[passwordField];
   FIRWaitForVisible(password);
-  FIRTapSafely(app, password);
-
-  FIRWaitForPredicate(focused, password);
+  [password tap];
   [password typeText:testPassword];
-  tapNext(app);
+  [webView.buttons[nextButton] tap];
 
   // It could take some time to do authentication.
   NSPredicate* gone = [NSPredicate predicateWithFormat:@"exists == false"];

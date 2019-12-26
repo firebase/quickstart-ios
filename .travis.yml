@@ -57,6 +57,7 @@ before_install:
   - gem install xcpretty
   - bundle exec pod install --repo-update
   - ../scripts/install_prereqs/$SAMPLE.sh
+  - cd -
 
 script: travis_retry ./scripts/test.sh
 

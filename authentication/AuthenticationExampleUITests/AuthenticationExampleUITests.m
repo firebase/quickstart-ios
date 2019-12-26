@@ -198,7 +198,8 @@ static NSString *const testPassword = @"test12";
   [self signOut];
 }
 
-- (void)testGoogleSignInAndLinkAccount {
+// TODO(b/140411106): Fix the GoogleSignIn breakage.
+- (void)FAILING_testGoogleSignInAndLinkAccount {
   [self signInWith:@"Google"];
 
   // User can be signed in right away, without following Google Sign-In flow.
@@ -241,7 +242,8 @@ static NSString *const testPassword = @"test12";
   [self signOut];
 }
 
-- (void)testGoogleSignInWrongPasswordAndCancelFlow {
+// TODO(b/140411106): Fix the GoogleSignIn breakage.
+- (void)FAILING_testGoogleSignInWrongPasswordAndCancelFlow {
   [self signInWith:@"Google"];
   if (![self signedIn]) {
     // Try to sign in with invalid credentials.

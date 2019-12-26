@@ -14,4 +14,4 @@
 
 ruby ../scripts/info_script.rb ABTesting
 ../scripts/install_secrets.sh
-cp ../scripts/Secrets/quickstart-ios/abtesting/GoogleService-Info.plist ./
+cp Secrets/quickstart-ios/abtesting/GoogleService-Info.plist ./

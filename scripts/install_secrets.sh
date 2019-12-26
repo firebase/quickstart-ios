@@ -19,7 +19,7 @@
 
 if [[ ! -z $encrypted_2858fa01aa14_key ]]; then
   openssl aes-256-cbc -K $encrypted_2858fa01aa14_key -iv $encrypted_2858fa01aa14_iv \
-    -in Secrets.tar.enc -out Secrets.tar -d
+    -in ../scripts/Secrets.tar.enc -out ../scripts/Secrets.tar -d
 
-  tar xvf scripts/Secrets.tar
+  tar xvf ../scripts/Secrets.tar
 fi

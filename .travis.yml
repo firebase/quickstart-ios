@@ -56,18 +56,10 @@ before_install:
   - bundle install
   - gem install xcpretty
   - bundle exec pod install --repo-update
-  - cp ../mock-GoogleService-Info.plist ./GoogleService-Info.plist
-  - sed -i '' '/<key>BUNDLE_ID</{n;s/id/com.google.firebase.quickstart.${SAMPLE}Example/;}' GoogleService-Info.plist
-  - gem install xcodeproj
-  - ruby ../info_script.rb $SAMPLE
+  - ../scripts/install_prereqs/$SAMPLE.sh
   - cd -
-  - sed -i '' 's#DYNAMIC_LINK_DOMAIN#https://qpf6m.app.goo.gl#' dynamiclinks/DynamicLinksExample/DynamicLinksExample.entitlements
-  - sed -i '' 's#YOUR_DOMAIN_URI_PREFIX";#https://qpf6m.app.goo.gl";#' dynamiclinks/DynamicLinksExample/ViewController.m
-  - sed -i '' 's/REVERSED_CLIENT_ID/com.googleusercontent.apps.1025801074639-qkaflmcjc2mlfb7r5n0pda5eejdpi36t/' authentication/AuthenticationExample/Info.plist
-  - sed -i '' 's/REVERSED_CLIENT_ID/com.googleusercontent.apps.1025801074639-6p6ebi8amuklcjrto20gvpe295smm8u6/' functions/FunctionsExample/Info.plist
-  - ./scripts/install_secrets.sh
 
-script: travis_retry ./test.sh
+script: travis_retry ./scripts/test.sh
 
 branches:
   only:

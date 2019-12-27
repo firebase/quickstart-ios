@@ -3,3 +3,5 @@ Pods/
 xcuserdata/
 *.xcworkspace/
 GoogleService-Info.plist
+Secrets
+Secrets.tar

@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby
+
 # Copyright 2019 Google
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,14 +14,19 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Set up secrets to get the GoogleService-Info.plist files.
+require 'xcodeproj'
+sample = ARGV[0]
+project_path = "#{sample}Example.xcodeproj"
+project = Xcodeproj::Project.open(project_path)
 
-# Secret keys do not work for pull requests from forks. See
-# https://docs.travis-ci.com/user/pull-requests#pull-requests-and-security-restrictions
+# Add a file to the project in the main group
+file_name = 'GoogleService-Info.plist'
+file = project.new_file(file_name)
 
-if [[ ! -z $encrypted_2858fa01aa14_key ]]; then
-  openssl aes-256-cbc -K $encrypted_2858fa01aa14_key -iv $encrypted_2858fa01aa14_iv \
-    -in ../scripts/Secrets.tar.enc -out ../scripts/Secrets.tar -d
+# Add the file to the all targets
+project.targets.each do |target|
+  target.add_file_references([file])
+end
 
-  tar xvf ../scripts/Secrets.tar
-fi
+#save project
+project.save()

@@ -12,14 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Set up secrets to get the GoogleService-Info.plist files.
-
-# Secret keys do not work for pull requests from forks. See
-# https://docs.travis-ci.com/user/pull-requests#pull-requests-and-security-restrictions
-
-if [[ ! -z $encrypted_2858fa01aa14_key ]]; then
-  openssl aes-256-cbc -K $encrypted_2858fa01aa14_key -iv $encrypted_2858fa01aa14_iv \
-    -in ../scripts/Secrets.tar.enc -out ../scripts/Secrets.tar -d
-
-  tar xvf ../scripts/Secrets.tar
-fi
+cp ../mock-GoogleService-Info.plist ./GoogleService-Info.plist
+ruby ../scripts/info_script.rb Installations
+sed -i '' '/<key>BUNDLE_ID</{n;s/id/com.google.firebase.quickstart.Installations/;}' GoogleService-Info.plist

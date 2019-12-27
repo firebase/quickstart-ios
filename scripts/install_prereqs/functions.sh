@@ -12,14 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Set up secrets to get the GoogleService-Info.plist files.
-
-# Secret keys do not work for pull requests from forks. See
-# https://docs.travis-ci.com/user/pull-requests#pull-requests-and-security-restrictions
-
-if [[ ! -z $encrypted_2858fa01aa14_key ]]; then
-  openssl aes-256-cbc -K $encrypted_2858fa01aa14_key -iv $encrypted_2858fa01aa14_iv \
-    -in ../scripts/Secrets.tar.enc -out ../scripts/Secrets.tar -d
-
-  tar xvf ../scripts/Secrets.tar
-fi
+ruby ../scripts/info_script.rb Functions
+../scripts/install_secrets.sh
+cp Secrets/quickstart-ios/functions/GoogleService-Info.plist ./
+sed -i '' 's/REVERSED_CLIENT_ID/com.googleusercontent.apps.1025801074639-6p6ebi8amuklcjrto20gvpe295smm8u6/' FunctionsExample/Info.plist

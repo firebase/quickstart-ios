@@ -14,11 +14,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+
+# Build the quickstart. If we're running on the main repo (not a fork), we
+# also run the tests along with the decoded GoogleService-Info.plist files.
+
 set -eo pipefail
 
 EXIT_STATUS=0
 
-if [[ ! -z $encrypted_2858fa01aa14_key ]]; then
+if [[ "$TRAVIS_PULL_REQUEST" == "false" ||
+      "$TRAVIS_PULL_REQUEST_SLUG" == "$TRAVIS_REPO_SLUG" ]]; then
     (xcodebuild \
       -workspace ${SAMPLE}/${SAMPLE}Example.xcworkspace \
       -scheme ${SAMPLE}Example${SWIFT_SUFFIX} \

@@ -12,6 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-ruby ../scripts/info_script.rb InAppMessaging
-../scripts/install_secrets.sh
-cp Secrets/quickstart-ios/inappmessaging/GoogleService-Info.plist ./
+TRAVIS_PULL_REQUEST="$TRAVIS_PULL_REQUEST" \
+TRAVIS_PULL_REQUEST_SLUG="$TRAVIS_PULL_REQUEST_SLUG" \
+DIRECTORY=inappmessaging \
+PROJECT=InAppMessaging \
+../scripts/prereq_core.sh

@@ -12,6 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+set -x
 TRAVIS_PULL_REQUEST="$TRAVIS_PULL_REQUEST" \
 TRAVIS_PULL_REQUEST_SLUG="$TRAVIS_PULL_REQUEST_SLUG" \
 DIRECTORY=abtesting \

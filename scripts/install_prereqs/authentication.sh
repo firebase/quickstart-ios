@@ -12,7 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-ruby ../scripts/info_script.rb Authentication
-../scripts/install_secrets.sh
-cp Secrets/quickstart-ios/authentication/GoogleService-Info.plist ./
-sed -i '' 's/REVERSED_CLIENT_ID/com.googleusercontent.apps.1025801074639-qkaflmcjc2mlfb7r5n0pda5eejdpi36t/' AuthenticationExample/Info.plist
+TRAVIS_PULL_REQUEST="$TRAVIS_PULL_REQUEST" \
+TRAVIS_PULL_REQUEST_SLUG="$TRAVIS_PULL_REQUEST_SLUG" \
+DIRECTORY=authentication \
+PROJECT=Authentication \
+../scripts/prereq_core.sh

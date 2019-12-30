@@ -12,9 +12,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-TRAVIS_PULL_REQUEST="$TRAVIS_PULL_REQUEST" \
-TRAVIS_PULL_REQUEST_SLUG="$TRAVIS_PULL_REQUEST_SLUG" \
-TRAVIS_REPO_SLUG="$TRAVIS_REPO_SLUG" \
-DIRECTORY=admob \
-PROJECT=AdMob \
-../scripts/prereq_core.sh
+ruby ../scripts/info_script.rb "${PROJECT}"
+if [[ "$TRAVIS_PULL_REQUEST" == "false" ||
+      "$TRAVIS_PULL_REQUEST_SLUG" == "$TRAVIS_REPO_SLUG" ]]; then
+  ../scripts/install_secrets.sh
+  cp Secrets/quickstart-ios/"${DIRECTORY}"/GoogleService-Info.plist ./
+else
+  cp ../mock-GoogleService-Info.plist ./GoogleService-Info.plist
+  sed -i '' "/<key>BUNDLE_ID</{n;s/id/com.google.firebase.quickstart.${PROJECT}Example/;}" GoogleService-Info.plist
+fi

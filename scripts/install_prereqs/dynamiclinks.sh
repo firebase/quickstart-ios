@@ -12,8 +12,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-ruby ../scripts/info_script.rb DynamicLinks
-../scripts/install_secrets.sh
-cp Secrets/quickstart-ios/dynamiclinks/GoogleService-Info.plist ./
+TRAVIS_PULL_REQUEST="$TRAVIS_PULL_REQUEST" \
+TRAVIS_PULL_REQUEST_SLUG="$TRAVIS_PULL_REQUEST_SLUG" \
+TRAVIS_REPO_SLUG="$TRAVIS_REPO_SLUG" \
+DIRECTORY=dynamiclinks \
+PROJECT=DynamicLinks \
+../scripts/prereq_core.sh
+
 sed -i '' 's#DYNAMIC_LINK_DOMAIN#https://qpf6m.app.goo.gl#' DynamicLinksExample/DynamicLinksExample.entitlements
 sed -i '' 's#YOUR_DOMAIN_URI_PREFIX";#https://qpf6m.app.goo.gl";#' DynamicLinksExample/ViewController.m

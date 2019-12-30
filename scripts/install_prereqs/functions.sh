@@ -12,7 +12,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-ruby ../scripts/info_script.rb Functions
-../scripts/install_secrets.sh
-cp Secrets/quickstart-ios/functions/GoogleService-Info.plist ./
+TRAVIS_PULL_REQUEST="$TRAVIS_PULL_REQUEST" \
+TRAVIS_PULL_REQUEST_SLUG="$TRAVIS_PULL_REQUEST_SLUG" \
+TRAVIS_REPO_SLUG="$TRAVIS_REPO_SLUG" \
+DIRECTORY=functions \
+PROJECT=Functions \
+../scripts/prereq_core.sh
+
 sed -i '' 's/REVERSED_CLIENT_ID/com.googleusercontent.apps.1025801074639-6p6ebi8amuklcjrto20gvpe295smm8u6/' FunctionsExample/Info.plist

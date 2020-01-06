@@ -215,7 +215,7 @@ PODS:
   - nanopb/decode (0.3.9011)
   - nanopb/encode (0.3.9011)
   - Protobuf (3.11.2)
-  - SwiftLint (0.38.0)
+  - SwiftLint (0.38.1)
 
 DEPENDENCIES:
   - Firebase/Analytics
@@ -280,7 +280,7 @@ SPEC CHECKSUMS:
   MDFTextAccessibility: 85c09a1bd9c321f494348e632a25063bcda35a53
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
   Protobuf: dd1aaea7140debfe4dd0683fb8ef208e527ae153
-  SwiftLint: 4105f061f9812b214568b736dab580ab2c73a582
+  SwiftLint: 0aeb99ca7ccfc222ef93e2560a35e669f5465e6c
 
 PODFILE CHECKSUM: c2417aaece5985c3ae4ab16b0606e877bc160b67
 

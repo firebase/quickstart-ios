@@ -112,9 +112,9 @@ PODS:
     - GoogleUtilities/Logger
   - GoogleUtilities/UserDefaults (6.4.0):
     - GoogleUtilities/Logger
-  - GTMSessionFetcher/Core (1.3.0)
-  - MaterialComponents/AnimationTiming (100.0.0)
-  - MaterialComponents/Buttons (100.0.0):
+  - GTMSessionFetcher/Core (1.3.1)
+  - MaterialComponents/AnimationTiming (100.0.1)
+  - MaterialComponents/Buttons (100.0.1):
     - MaterialComponents/Elevation
     - MaterialComponents/Ink
     - MaterialComponents/private/Math
@@ -125,22 +125,22 @@ PODS:
     - MaterialComponents/Typography
     - MDFInternationalization
     - MDFTextAccessibility
-  - "MaterialComponents/Buttons+ButtonThemer (100.0.0)":
+  - "MaterialComponents/Buttons+ButtonThemer (100.0.1)":
     - MaterialComponents/Buttons
     - "MaterialComponents/Buttons+ColorThemer"
     - "MaterialComponents/Buttons+ShapeThemer"
     - "MaterialComponents/Buttons+TypographyThemer"
     - MaterialComponents/Palettes
-  - "MaterialComponents/Buttons+ColorThemer (100.0.0)":
+  - "MaterialComponents/Buttons+ColorThemer (100.0.1)":
     - MaterialComponents/Buttons
     - MaterialComponents/schemes/Color
-  - "MaterialComponents/Buttons+ShapeThemer (100.0.0)":
+  - "MaterialComponents/Buttons+ShapeThemer (100.0.1)":
     - MaterialComponents/Buttons
     - MaterialComponents/schemes/Shape
-  - "MaterialComponents/Buttons+TypographyThemer (100.0.0)":
+  - "MaterialComponents/Buttons+TypographyThemer (100.0.1)":
     - MaterialComponents/Buttons
     - MaterialComponents/schemes/Typography
-  - MaterialComponents/Chips (100.0.0):
+  - MaterialComponents/Chips (100.0.1):
     - MaterialComponents/Elevation
     - MaterialComponents/Ink
     - MaterialComponents/private/Math
@@ -152,13 +152,13 @@ PODS:
     - MaterialComponents/TextFields
     - MaterialComponents/Typography
     - MDFInternationalization
-  - MaterialComponents/Elevation (100.0.0):
+  - MaterialComponents/Elevation (100.0.1):
     - MaterialComponents/private/Color
     - MaterialComponents/private/Math
-  - MaterialComponents/Ink (100.0.0):
+  - MaterialComponents/Ink (100.0.1):
     - MaterialComponents/private/Color
     - MaterialComponents/private/Math
-  - MaterialComponents/List (100.0.0):
+  - MaterialComponents/List (100.0.1):
     - MaterialComponents/Elevation
     - MaterialComponents/Ink
     - MaterialComponents/private/Math
@@ -167,36 +167,36 @@ PODS:
     - MaterialComponents/ShadowLayer
     - MaterialComponents/Typography
     - MDFInternationalization
-  - MaterialComponents/Palettes (100.0.0)
-  - MaterialComponents/private/Application (100.0.0)
-  - MaterialComponents/private/Color (100.0.0)
-  - MaterialComponents/private/Math (100.0.0)
-  - MaterialComponents/Ripple (100.0.0):
+  - MaterialComponents/Palettes (100.0.1)
+  - MaterialComponents/private/Application (100.0.1)
+  - MaterialComponents/private/Color (100.0.1)
+  - MaterialComponents/private/Math (100.0.1)
+  - MaterialComponents/Ripple (100.0.1):
     - MaterialComponents/AnimationTiming
     - MaterialComponents/private/Color
     - MaterialComponents/private/Math
-  - MaterialComponents/schemes/Color (100.0.0):
+  - MaterialComponents/schemes/Color (100.0.1):
     - MaterialComponents/private/Color
-  - MaterialComponents/schemes/Shape (100.0.0):
+  - MaterialComponents/schemes/Shape (100.0.1):
     - MaterialComponents/ShapeLibrary
     - MaterialComponents/Shapes
-  - MaterialComponents/schemes/Typography (100.0.0):
+  - MaterialComponents/schemes/Typography (100.0.1):
     - "MaterialComponents/schemes/Typography+BasicFontScheme"
     - "MaterialComponents/schemes/Typography+Scheming"
     - MaterialComponents/Typography
-  - "MaterialComponents/schemes/Typography+BasicFontScheme (100.0.0)"
-  - "MaterialComponents/schemes/Typography+Scheming (100.0.0)"
-  - MaterialComponents/ShadowElevations (100.0.0)
-  - MaterialComponents/ShadowLayer (100.0.0):
+  - "MaterialComponents/schemes/Typography+BasicFontScheme (100.0.1)"
+  - "MaterialComponents/schemes/Typography+Scheming (100.0.1)"
+  - MaterialComponents/ShadowElevations (100.0.1)
+  - MaterialComponents/ShadowLayer (100.0.1):
     - MaterialComponents/ShadowElevations
-  - MaterialComponents/ShapeLibrary (100.0.0):
+  - MaterialComponents/ShapeLibrary (100.0.1):
     - MaterialComponents/private/Math
     - MaterialComponents/Shapes
-  - MaterialComponents/Shapes (100.0.0):
+  - MaterialComponents/Shapes (100.0.1):
     - MaterialComponents/private/Color
     - MaterialComponents/private/Math
     - MaterialComponents/ShadowLayer
-  - MaterialComponents/TextFields (100.0.0):
+  - MaterialComponents/TextFields (100.0.1):
     - MaterialComponents/AnimationTiming
     - MaterialComponents/Buttons
     - MaterialComponents/Elevation
@@ -204,7 +204,7 @@ PODS:
     - MaterialComponents/private/Math
     - MaterialComponents/Typography
     - MDFInternationalization
-  - MaterialComponents/Typography (100.0.0):
+  - MaterialComponents/Typography (100.0.1):
     - MaterialComponents/private/Application
     - MaterialComponents/private/Math
   - MDFInternationalization (2.0.0)
@@ -215,7 +215,7 @@ PODS:
   - nanopb/decode (0.3.9011)
   - nanopb/encode (0.3.9011)
   - Protobuf (3.11.2)
-  - SwiftLint (0.38.1)
+  - SwiftLint (0.38.2)
 
 DEPENDENCIES:
   - Firebase/Analytics
@@ -274,13 +274,13 @@ SPEC CHECKSUMS:
   GoogleDataTransportCCTSupport: 202d7cdf9c4a7d81a2bb7f7e7e1ba6faa421b1f2
   GoogleToolboxForMac: 800648f8b3127618c1b59c7f97684427630c5ea3
   GoogleUtilities: 29bd0d8f850efbd28cff6d99e8b7da1f8d236bcf
-  GTMSessionFetcher: 43b8b64263023d4f32caa0b40f4c8bfa3c5f36d8
-  MaterialComponents: b4cc6c1649a566d70bd72096f3e1aae2c3701e4f
+  GTMSessionFetcher: cea130bbfe5a7edc8d06d3f0d17288c32ffe9925
+  MaterialComponents: a7727eed5194fc4a65ba61ed7ec6fa9e6b0290f7
   MDFInternationalization: 010097556d6b09d2c4ea38e0820ea6d37be6a314
   MDFTextAccessibility: 85c09a1bd9c321f494348e632a25063bcda35a53
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
   Protobuf: dd1aaea7140debfe4dd0683fb8ef208e527ae153
-  SwiftLint: 0aeb99ca7ccfc222ef93e2560a35e669f5465e6c
+  SwiftLint: 8f5d2f903e1c9bcbc832fd16771e80a263ac6cbb
 
 PODFILE CHECKSUM: c2417aaece5985c3ae4ab16b0606e877bc160b67
 

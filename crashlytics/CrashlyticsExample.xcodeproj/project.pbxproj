@@ -128,13 +128,6 @@
 			path = CrashlyticsExampleUITests;
 			sourceTree = "<group>";
 		};
-		3E68189DB1DD7B4868EE2558 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 		5F5A53431ADE670C00F81DF0 = {
 			isa = PBXGroup;
 			children = (
@@ -145,7 +138,6 @@
 				1073482720333B71004A66D1 /* CrashlyticsExampleUITests */,
 				5F5A534D1ADE670C00F81DF0 /* Products */,
 				5F9961041AE0CF4F0034F503 /* Shared */,
-				3E68189DB1DD7B4868EE2558 /* Pods */,
 			);
 			sourceTree = "<group>";
 			wrapsLines = 0;

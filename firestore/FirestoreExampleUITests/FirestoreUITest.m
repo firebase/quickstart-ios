@@ -90,7 +90,8 @@ static NSString *const testPassword = @"Test123";
   [self checkMainScreenIsDisplayed];
 }
 
-- (void)testApplyFilter {
+// TODO(b/147740878): reenable this test once we've figured out how to make it deterministic
+- (void)xtestApplyFilter {
   // Navigate to the filter screen.
   [_app.buttons[@"Filter"] tap];
 

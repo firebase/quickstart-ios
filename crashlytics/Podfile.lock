@@ -22,7 +22,7 @@ PODS:
     - FirebaseCore (>= 6.3.2, ~> 6.3)
     - FirebaseInstanceID (~> 4.1)
     - PromisesObjC (~> 1.2)
-  - FirebaseInstallations (1.0.0):
+  - FirebaseInstallations (1.1.0):
     - FirebaseCore (~> 6.6)
     - GoogleUtilities/UserDefaults (~> 6.5)
     - PromisesObjC (~> 1.2)
@@ -51,7 +51,7 @@ DEPENDENCIES:
   - Firebase/Crashlytics
 
 SPEC REPOS:
-  sso://cpdc-internal/firebase:
+  trunk:
     - Firebase
     - FirebaseAnalyticsInterop
     - FirebaseCore
@@ -63,7 +63,6 @@ SPEC REPOS:
     - GoogleDataTransport
     - GoogleDataTransportCCTSupport
     - GoogleUtilities
-  trunk:
     - nanopb
     - PromisesObjC
 
@@ -74,7 +73,7 @@ SPEC CHECKSUMS:
   FirebaseCoreDiagnostics: 5e78803ab276bc5b50340e3c539c06c3de35c649
   FirebaseCoreDiagnosticsInterop: 296e2c5f5314500a850ad0b83e9e7c10b011a850
   FirebaseCrashlytics: 98c17c7e764cfe17422ffb7510b44f7085d586aa
-  FirebaseInstallations: ae1dbf899b1f071b1f93dff78f748380bb6616d0
+  FirebaseInstallations: 575cd32f2aec0feeb0e44f5d0110a09e5e60b47b
   FirebaseInstanceID: 6668efc1655a4052c083f287a7141f1ead12f9c2
   GoogleDataTransport: 574a983e829327d7c18f2627f65d9e80164ea8a4
   GoogleDataTransportCCTSupport: cad3cd6cdbdbad6b5c2c9206ec413402755faaaa
@@ -82,6 +81,6 @@ SPEC CHECKSUMS:
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
   PromisesObjC: c119f3cd559f50b7ae681fa59dc1acd19173b7e6
 
-PODFILE CHECKSUM: 7ddcd17d89f360814c98607f520f51494d85bd08
+PODFILE CHECKSUM: ced217c20b4d2eba4315b424efb6046eadd1c70d
 
 COCOAPODS: 1.8.4

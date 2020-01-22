@@ -16,7 +16,7 @@
 
 #import "ViewController.h"
 @import Firebase;
-@import Crashlytics;
+@import FirebaseCrashlytics;
 
 @implementation ViewController
 
@@ -26,11 +26,11 @@
   // Log that the view did load, CLSNSLog is used here so the log message will be
   // shown in the console output. If CLSLog is used the message is not shown in
   // the console output.
-  CLSNSLog(@"View loaded");
+  [[FIRCrashlytics crashlytics] log:@"View loaded"];
 
-  [CrashlyticsKit setIntValue:3 forKey:@"current_level"];
-  [CrashlyticsKit setObjectValue:@"logged_in" forKey:@"last_UI_action"];
-  [CrashlyticsKit setUserIdentifier:@"123456789"];
+  [[FIRCrashlytics crashlytics] setCustomValue:@3 forKey:@"current_level"];
+  [[FIRCrashlytics crashlytics] setCustomValue:@"logged_in" forKey:@"last_UI_action"];
+  [[FIRCrashlytics crashlytics] setUserID:@"123456789"];
 
   NSDictionary *userInfo = @{
                              NSLocalizedDescriptionKey: NSLocalizedString(@"The request failed.", nil),
@@ -42,7 +42,7 @@
   NSError *error = [NSError errorWithDomain:NSURLErrorDomain
                                        code:-1001
                                    userInfo:userInfo];
-  [CrashlyticsKit recordError:error];
+  [[FIRCrashlytics crashlytics] recordError:error];
 }
 
 - (IBAction)initiateCrash:(id)sender {
@@ -50,8 +50,10 @@
   // will not be shown in the console output. Use CLSNSLog to have the
   // log message show in the console output.
   // [START log_and_crash]
-  CLSLog(@"Cause Crash button clicked");
-  [Crashlytics.sharedInstance crash];
+  [[FIRCrashlytics crashlytics] log:@"Cause Crash button clicked"];
+  // crash
+  int *x = NULL;
+  *x = 10;
     // [END log_and_crash]
 }
 

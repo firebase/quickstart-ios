@@ -18,7 +18,7 @@
 # https://docs.travis-ci.com/user/pull-requests#pull-requests-and-security-restrictions
 
 if [[ ! -z $encrypted_2858fa01aa14_key ]]; then
-  openssl aes-256-cbc -K $encrypted_2858fa01aa14_key -iv $encrypted_2858fa01aa14_iv \
+  openssl aes-256-cbc -K $encrypted_eca01cfda15a_key -iv $encrypted_eca01cfda15a_iv \
     -in ../scripts/Secrets.tar.enc -out ../scripts/Secrets.tar -d
 
   tar xvf ../scripts/Secrets.tar

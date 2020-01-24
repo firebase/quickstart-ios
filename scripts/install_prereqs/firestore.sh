@@ -12,9 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-TRAVIS_PULL_REQUEST="$TRAVIS_PULL_REQUEST" \
-TRAVIS_PULL_REQUEST_SLUG="$TRAVIS_PULL_REQUEST_SLUG" \
-TRAVIS_REPO_SLUG="$TRAVIS_REPO_SLUG" \
 DIRECTORY=firestore \
 PROJECT=Firestore \
-../scripts/prereq_core.sh
+. ../scripts/prereq_core.sh

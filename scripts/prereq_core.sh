@@ -12,6 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+set -x
+echo $TRAVIS_PULL_REQUEST
+echo $TRAVIS_PULL_REQUEST_SLUG
+
 ruby ../scripts/info_script.rb "${PROJECT}"
 if [[ "$TRAVIS_PULL_REQUEST" == "false" ||
       "$TRAVIS_PULL_REQUEST_SLUG" == "$TRAVIS_REPO_SLUG" ]]; then

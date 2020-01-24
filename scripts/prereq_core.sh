@@ -12,14 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-set -x
-
 ruby ../scripts/info_script.rb "${PROJECT}"
-
-echo "TRAVIS_PULL_REQUEST=$TRAVIS_PULL_REQUEST"
-echo "TRAVIS_PULL_REQUEST_SLUG=$TRAVIS_PULL_REQUEST_SLUG"
-echo "TRAVIS_REPO_SLUG=$TRAVIS_REPO_SLUG"
-
 if [[ "$TRAVIS_PULL_REQUEST" == "false" ||
       "$TRAVIS_PULL_REQUEST_SLUG" == "$TRAVIS_REPO_SLUG" ]]; then
   ../scripts/install_secrets.sh

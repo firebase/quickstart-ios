@@ -22,8 +22,10 @@ set -eo pipefail
 
 EXIT_STATUS=0
 
-if [[ "$TRAVIS_PULL_REQUEST" == "false" ||
-      "$TRAVIS_PULL_REQUEST_SLUG" == "$TRAVIS_REPO_SLUG" ]]; then
+. ./scripts/check_secrets.sh
+check_secrets
+
+if [[ "$have_secrets" == true ]]; then
     (xcodebuild \
       -workspace ${SAMPLE}/${SAMPLE}Example.xcworkspace \
       -scheme ${SAMPLE}Example${SWIFT_SUFFIX} \

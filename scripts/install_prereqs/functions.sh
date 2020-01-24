@@ -12,11 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-TRAVIS_PULL_REQUEST="$TRAVIS_PULL_REQUEST" \
-TRAVIS_PULL_REQUEST_SLUG="$TRAVIS_PULL_REQUEST_SLUG" \
-TRAVIS_REPO_SLUG="$TRAVIS_REPO_SLUG" \
 DIRECTORY=functions \
 PROJECT=Functions \
-../scripts/prereq_core.sh
+. ../scripts/prereq_core.sh
 
 sed -i '' 's/REVERSED_CLIENT_ID/com.googleusercontent.apps.1025801074639-6p6ebi8amuklcjrto20gvpe295smm8u6/' FunctionsExample/Info.plist

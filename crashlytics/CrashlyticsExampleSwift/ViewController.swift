@@ -20,6 +20,7 @@ import FirebaseCrashlytics
 
 @objc(ViewController)
 class ViewController: UIViewController {
+  lazy var crashlytics = Crashlytics.crashlytics()
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -45,9 +46,6 @@ class ViewController: UIViewController {
   }
 
   @IBAction func initiateCrash(_ sender: AnyObject) {
-    // CLSLogv is used here to indicate that the log message
-    // will not be shown in the console output. Use CLSNSLogv to have the
-    // log message show in the console output.
     // [START log_and_crash_swift]
     Crashlytics.crashlytics().log("Cause Crash button clicked")
     fatalError()

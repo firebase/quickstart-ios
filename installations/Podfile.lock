@@ -56,7 +56,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   FirebaseInstallations:
-    :commit: 0dea8a64c3c655aabe303741a8398c4311971f26
+    :commit: edb6a9ecfcbf231dc99f811f5cd51379933bc552
     :git: https://github.com/firebase/firebase-ios-sdk.git
 
 SPEC CHECKSUMS:

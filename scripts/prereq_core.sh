@@ -12,9 +12,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+. ../scripts/check_secrets.sh
+check_secrets
+
 ruby ../scripts/info_script.rb "${PROJECT}"
-if [[ "$TRAVIS_PULL_REQUEST" == "false" ||
-      "$TRAVIS_PULL_REQUEST_SLUG" == "$TRAVIS_REPO_SLUG" ]]; then
+if [[ "$have_secrets" == true ]]; then
   ../scripts/install_secrets.sh
   cp Secrets/quickstart-ios/"${DIRECTORY}"/GoogleService-Info.plist ./
 else

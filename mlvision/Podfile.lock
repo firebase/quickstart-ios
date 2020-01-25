@@ -91,9 +91,9 @@ PODS:
     - FirebaseMLVision (~> 0.19)
   - FirebaseMLVisionTextModel (0.19.0):
     - FirebaseMLVision (~> 0.19)
-  - GoogleAPIClientForREST/Core (1.3.10):
+  - GoogleAPIClientForREST/Core (1.3.11):
     - GTMSessionFetcher (>= 1.1.7)
-  - GoogleAPIClientForREST/Vision (1.3.10):
+  - GoogleAPIClientForREST/Vision (1.3.11):
     - GoogleAPIClientForREST/Core
     - GTMSessionFetcher (>= 1.1.7)
   - GoogleAppMeasurement (6.2.1):
@@ -208,7 +208,7 @@ SPEC CHECKSUMS:
   FirebaseMLVisionLabelModel: 7638a20d27219d5baa4b534a62375fc1d5bd077d
   FirebaseMLVisionObjectDetection: 63472fa09c90cfaec1cdf74d5fe28114beacecb2
   FirebaseMLVisionTextModel: c264caa3100ca804580bf2a7c1cb9ff390d1f471
-  GoogleAPIClientForREST: 4acfffd77f1c3c8741b6be9eaed0e603278efbde
+  GoogleAPIClientForREST: 0f19a8280dfe6471f76016645d26eb5dae305101
   GoogleAppMeasurement: a08a43b8677b95ed51fcef880e36737334d804fd
   GoogleDataTransport: 574a983e829327d7c18f2627f65d9e80164ea8a4
   GoogleDataTransportCCTSupport: cad3cd6cdbdbad6b5c2c9206ec413402755faaaa

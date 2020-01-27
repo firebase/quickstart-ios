@@ -15,7 +15,9 @@ matrix:
   - podfile: abtesting/Podfile
     env: SAMPLE=ABTesting
   - podfile: admob/Podfile
-    env: SAMPLE=AdMob
+    env:
+      - SAMPLE=AdMob
+      - SWIFT_SUFFIX=Swift
   - podfile: analytics/Podfile
     env: SAMPLE=Analytics
   - podfile: authentication/Podfile

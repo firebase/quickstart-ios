@@ -77,6 +77,7 @@
 		DEB13BC623AEC9DF0066A6F3 /* FIREGSignInHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FIREGSignInHelper.m; sourceTree = "<group>"; };
 		DEB13BC723AEC9DF0066A6F3 /* FIREGHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FIREGHelper.m; sourceTree = "<group>"; };
 		DEB13BC823AEC9DF0066A6F3 /* FIREGSignInHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FIREGSignInHelper.h; sourceTree = "<group>"; };
+		DED65CF723E9DE6400461312 /* FIREGSignInInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FIREGSignInInfo.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -221,6 +222,7 @@
 				DEB13BC623AEC9DF0066A6F3 /* FIREGSignInHelper.m */,
 				DEB13BC723AEC9DF0066A6F3 /* FIREGHelper.m */,
 				DEB13BC823AEC9DF0066A6F3 /* FIREGSignInHelper.h */,
+				DED65CF723E9DE6400461312 /* FIREGSignInInfo.h */,
 			);
 			name = TestUtils;
 			path = ../TestUtils;

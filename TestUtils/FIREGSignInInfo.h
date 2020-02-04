@@ -1,5 +1,5 @@
 //
-//  Copyright (c) 2019 Google Inc.
+//  Copyright (c) 2020 Google Inc.
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -14,10 +14,6 @@
 //  limitations under the License.
 //
 
-#import <Foundation/Foundation.h>
-#import <XCTest/XCTest.h>
-
-#pragma mark - Helpers for Google Sign-In flow.
-
-void tapNext(XCUIApplication* app);
-void doGoogleSignIn(XCUIApplication *app, BOOL correctPassword, BOOL withAlert);
+#error Fill in #define values and delete this line
+#define TESTACCOUNT @"ACCOUNT HERE"
+#define TESTPASSWORD @"PASSWORD HERE"

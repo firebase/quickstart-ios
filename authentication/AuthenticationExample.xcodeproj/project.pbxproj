@@ -87,6 +87,7 @@
 		DEC82E3F23AAEDEC000EA7B1 /* FIREGSignInHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FIREGSignInHelper.m; sourceTree = "<group>"; };
 		DEC82E4023AAEDEC000EA7B1 /* FIREGHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FIREGHelper.m; sourceTree = "<group>"; };
 		DEC82E4123AAEDEC000EA7B1 /* FIREGSignInHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FIREGSignInHelper.h; sourceTree = "<group>"; };
+		DED65CF723E9DE6400461312 /* FIREGSignInInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FIREGSignInInfo.h; sourceTree = "<group>"; };
 		EF6DB4C81CDD60F700319C08 /* CustomTokenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTokenViewController.swift; sourceTree = "<group>"; };
 		EF6DB4C91CDD60F700319C08 /* EmailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailViewController.swift; sourceTree = "<group>"; };
 		EF6DB4CA1CDD60F700319C08 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -259,6 +260,7 @@
 				DEC82E3F23AAEDEC000EA7B1 /* FIREGSignInHelper.m */,
 				DEC82E4023AAEDEC000EA7B1 /* FIREGHelper.m */,
 				DEC82E4123AAEDEC000EA7B1 /* FIREGSignInHelper.h */,
+				DED65CF723E9DE6400461312 /* FIREGSignInInfo.h */,
 			);
 			name = TestUtils;
 			path = ../TestUtils;

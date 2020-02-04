@@ -17,8 +17,8 @@
 # Secret keys do not work for pull requests from forks. See
 # https://docs.travis-ci.com/user/pull-requests#pull-requests-and-security-restrictions
 
-if [[ ! -z $encrypted_2858fa01aa14_key ]]; then
-  openssl aes-256-cbc -K $encrypted_eca01cfda15a_key -iv $encrypted_eca01cfda15a_iv \
+if [[ ! -z $encrypted_019e14991c95_key ]]; then
+  openssl aes-256-cbc -K $encrypted_019e14991c95_key -iv $encrypted_019e14991c95_iv \
     -in ../scripts/Secrets.tar.enc -out ../scripts/Secrets.tar -d
 
   tar xvf ../scripts/Secrets.tar

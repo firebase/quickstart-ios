@@ -14,7 +14,10 @@
 //  limitations under the License.
 //
 
+#import "FIREGSignInHelper.h"
+
 #import "FIREGHelper.h"
+#import "FIREGSignInInfo.h"
 
 // Google Sign-In constants.
 static NSString *const switchAccount = @"Use another account";
@@ -23,8 +26,8 @@ static NSString *const passwordField = @"Enter your password";
 static NSString *const nextButton = @"Next";
 
 // Test credentials.
-static NSString *const testAccount = @"fb.engprod7@gmail.com";
-static NSString *const testPassword = @"123testing";
+static NSString *const testAccount = TESTACCOUNT;
+static NSString *const testPassword = TESTPASSWORD;
 static NSString *const wrongTestPassword = @"123testing!";
 
 void doGoogleSignIn(XCUIApplication *app, BOOL correctPassword, BOOL withAlert) {

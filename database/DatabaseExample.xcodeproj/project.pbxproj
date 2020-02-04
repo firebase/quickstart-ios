@@ -145,6 +145,7 @@
 		DEC82E5223AD38E4000EA7B1 /* FIREGSignInHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FIREGSignInHelper.m; sourceTree = "<group>"; };
 		DEC82E5323AD38E4000EA7B1 /* FIREGHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FIREGHelper.m; sourceTree = "<group>"; };
 		DEC82E5423AD38E4000EA7B1 /* FIREGSignInHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FIREGSignInHelper.h; sourceTree = "<group>"; };
+		DED65CF723E9DE6400461312 /* FIREGSignInInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FIREGSignInInfo.h; sourceTree = "<group>"; };
 		EFDCBD531CE4FCC800F68D48 /* PostTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -361,6 +362,7 @@
 				DEC82E5223AD38E4000EA7B1 /* FIREGSignInHelper.m */,
 				DEC82E5323AD38E4000EA7B1 /* FIREGHelper.m */,
 				DEC82E5423AD38E4000EA7B1 /* FIREGSignInHelper.h */,
+				DED65CF723E9DE6400461312 /* FIREGSignInInfo.h */,
 			);
 			name = TestUtils;
 			path = ../TestUtils;

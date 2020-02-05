@@ -1,0 +1,23 @@
+name: xcodetest
+
+on: [push]
+
+jobs:
+
+  build:
+
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: CocoaPod Install
+        run: |
+          cd ./analytics/
+          pod install
+      #- name: Testing....
+      # run: ls /Applications | grep Xcode
+      - name: Force xcode 11
+        run: sudo xcode-select -switch /Applications/Xcode_11.3.app
+      - name: iPhone 11 Test
+        run: xcodebuild test -scheme affirm-me-test -workspace affirm-me.xcworkspace -destination 'platform=iOS Simulator,name=iPhone 11,OS=13.3'

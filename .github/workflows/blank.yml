@@ -22,5 +22,6 @@ jobs:
         run: sudo xcode-select -switch /Applications/Xcode_11.3.app
       - name: iPhone 11 Test
         run: |
+          cd ./analytics/
           pwd
           xcodebuild test -scheme affirm-me-test -workspace AnalyticsExample.xcworkspace -destination 'platform=iOS Simulator,name=iPhone 11,OS=13.3'

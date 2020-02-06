@@ -24,4 +24,4 @@ jobs:
         run: |
           cd ./analytics/
           pwd
-          xcodebuild test -scheme affirm-me-test -workspace AnalyticsExample.xcworkspace -destination 'platform=iOS Simulator,name=iPhone 11,OS=13.3'
+          xcodebuild test -scheme AnalyticsExample -workspace AnalyticsExample.xcworkspace -destination 'platform=iOS Simulator,name=iPhone 11,OS=13.3'

@@ -413,7 +413,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n";
+			shellScript = "\n# If installed via CocoaPods, then the \"run\" script will exist there\nif test -f \"${PODS_ROOT}/FirebaseCrashlytics/run\"; then\n  \"${PODS_ROOT}/FirebaseCrashlytics/run\"\n\n# If just the contents of the \"FirebaseCrashlytics\" folder from the\n# zip download was dragged into the Xcode project, check the project root\nelif test -f \"${PROJECT_DIR}/run\"; then\n  \"${PROJECT_DIR}/run\"\n  \n# If the whole \"FirebaseCrashlytics\" folder was dragged in from the\n# zip download, check for it in the root of the project \nelif test -f \"${PROJECT_DIR}/FirebaseCrashlytics/run\"; then\n  \"${PROJECT_DIR}/FirebaseCrashlytics/run\"\n  \n# If we can't find the run script, fail the build so that we\n# know to fix the issue\nelse\n  echo 'error: Could not find path to Crashlytics \"run\" script. Please ensure you have included the Crashlytics \"run\" script in the Xcode project directory, or update the path to the script in the Xcode project \"Build Phases\" > \"Run Script\"'\n  exit 1\nfi\n";
 		};
 		10E114DB20E3DDF00013E4A4 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;

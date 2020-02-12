@@ -1,15 +1,15 @@
 PODS:
-  - Firebase/Analytics (6.16.0):
+  - Firebase/Analytics (6.17.0):
     - Firebase/Core
-  - Firebase/Auth (6.16.0):
+  - Firebase/Auth (6.17.0):
     - Firebase/CoreOnly
     - FirebaseAuth (~> 6.4.3)
-  - Firebase/Core (6.16.0):
+  - Firebase/Core (6.17.0):
     - Firebase/CoreOnly
     - FirebaseAnalytics (= 6.2.2)
-  - Firebase/CoreOnly (6.16.0):
-    - FirebaseCore (= 6.6.1)
-  - Firebase/Database (6.16.0):
+  - Firebase/CoreOnly (6.17.0):
+    - FirebaseCore (= 6.6.2)
+  - Firebase/Database (6.17.0):
     - Firebase/CoreOnly
     - FirebaseDatabase (~> 6.1.4)
   - FirebaseAnalytics (6.2.2):
@@ -28,7 +28,7 @@ PODS:
     - GoogleUtilities/Environment (~> 6.5)
     - GTMSessionFetcher/Core (~> 1.1)
   - FirebaseAuthInterop (1.0.0)
-  - FirebaseCore (6.6.1):
+  - FirebaseCore (6.6.2):
     - FirebaseCoreDiagnostics (~> 1.2)
     - FirebaseCoreDiagnosticsInterop (~> 1.2)
     - GoogleUtilities/Environment (~> 6.5)
@@ -48,7 +48,7 @@ PODS:
     - FirebaseCore (~> 6.6)
     - GoogleUtilities/UserDefaults (~> 6.5)
     - PromisesObjC (~> 1.2)
-  - FirebaseInstanceID (4.3.0):
+  - FirebaseInstanceID (4.3.1):
     - FirebaseCore (~> 6.6)
     - FirebaseInstallations (~> 1.0)
     - GoogleUtilities/Environment (~> 6.5)
@@ -61,9 +61,9 @@ PODS:
     - GoogleUtilities/Network (~> 6.0)
     - "GoogleUtilities/NSData+zlib (~> 6.0)"
     - nanopb (= 0.3.9011)
-  - GoogleDataTransport (3.3.1)
-  - GoogleDataTransportCCTSupport (1.3.1):
-    - GoogleDataTransport (~> 3.3)
+  - GoogleDataTransport (4.0.0)
+  - GoogleDataTransportCCTSupport (1.4.0):
+    - GoogleDataTransport (~> 4.0)
     - nanopb (~> 0.3.901)
   - GoogleUtilities/AppDelegateSwizzler (6.5.1):
     - GoogleUtilities/Environment
@@ -121,20 +121,20 @@ SPEC REPOS:
     - PromisesObjC
 
 SPEC CHECKSUMS:
-  Firebase: 497158b816d0a86fc31babbd05546fcd7e6083ff
+  Firebase: 2672e5636b42f977177716317e68346ae5e9de25
   FirebaseAnalytics: cf95d3aab897612783020fbd98401d5366f135ee
   FirebaseAuth: 5ce2b03a3d7fe56b7a6e4c5ec7ff1522890b1d6f
   FirebaseAuthInterop: 0ffa57668be100582bb7643d4fcb7615496c41fc
-  FirebaseCore: 85064903ed6c28e47fec9c7bd149d94ba1b6b6e7
+  FirebaseCore: a1dd9dd6355a8356dd30a8f076839e242285a81c
   FirebaseCoreDiagnostics: 5e78803ab276bc5b50340e3c539c06c3de35c649
   FirebaseCoreDiagnosticsInterop: 296e2c5f5314500a850ad0b83e9e7c10b011a850
   FirebaseDatabase: 0144e0706a4761f1b0e8679572eba8095ddb59be
   FirebaseInstallations: 575cd32f2aec0feeb0e44f5d0110a09e5e60b47b
-  FirebaseInstanceID: 6668efc1655a4052c083f287a7141f1ead12f9c2
+  FirebaseInstanceID: 031d7d0c8e7b5c030bbeb4d2a690550375e83fec
   FirebaseUI: 69f7e480265758a9a9ea39915694b0949bcab23f
   GoogleAppMeasurement: d0560d915abf15e692e8538ba1d58442217b6aff
-  GoogleDataTransport: 0048df6388dab1c254799f2a30365b1dffe20422
-  GoogleDataTransportCCTSupport: f880d70972efa2ed1be4e9173a0f4c5f3dc2d176
+  GoogleDataTransport: 47fe3b8e1673e5187dfd615656a3c5034f150d69
+  GoogleDataTransportCCTSupport: 36f69887fd212db6d7ef4dd45ba44523717a434e
   GoogleUtilities: 06eb53bb579efe7099152735900dd04bf09e7275
   GTMSessionFetcher: cea130bbfe5a7edc8d06d3f0d17288c32ffe9925
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7

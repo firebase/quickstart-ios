@@ -20,7 +20,7 @@
 #import <FirebaseInstallations/FIRInstallations.h>
 #import <FirebaseInstallations/FIRInstallationsAuthTokenResult.h>
 
-@import Firebase;
+@import FirebaseInstallations;
 
 @interface ViewController ()
 @property (strong, nonatomic) IBOutlet UIButton *getInstallationButton;

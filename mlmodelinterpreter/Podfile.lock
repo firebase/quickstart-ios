@@ -101,7 +101,7 @@ PODS:
   - nanopb/decode (0.3.9011)
   - nanopb/encode (0.3.9011)
   - PromisesObjC (1.2.8)
-  - Protobuf (3.11.3)
+  - Protobuf (3.11.4)
   - TensorFlowLiteC (1.14.0)
   - TensorFlowLiteObjC (1.14.0):
     - TensorFlowLiteC (= 1.14.0)
@@ -151,7 +151,7 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: cea130bbfe5a7edc8d06d3f0d17288c32ffe9925
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
   PromisesObjC: c119f3cd559f50b7ae681fa59dc1acd19173b7e6
-  Protobuf: 0e94afe3b47cb11876eb6aee296638711a24bf75
+  Protobuf: 176220c526ad8bd09ab1fb40a978eac3fef665f7
   TensorFlowLiteC: a6702011fb661928634e59565b5fe262f69692d0
   TensorFlowLiteObjC: ece71b1e78f3df5952996c1606934b1d5538c875
 

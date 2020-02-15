@@ -106,7 +106,7 @@ PODS:
   - nanopb/decode (0.3.9011)
   - nanopb/encode (0.3.9011)
   - PromisesObjC (1.2.8)
-  - Protobuf (3.11.3)
+  - Protobuf (3.11.4)
 
 DEPENDENCIES:
   - Firebase/Analytics
@@ -153,7 +153,7 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: cea130bbfe5a7edc8d06d3f0d17288c32ffe9925
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
   PromisesObjC: c119f3cd559f50b7ae681fa59dc1acd19173b7e6
-  Protobuf: 0e94afe3b47cb11876eb6aee296638711a24bf75
+  Protobuf: 176220c526ad8bd09ab1fb40a978eac3fef665f7
 
 PODFILE CHECKSUM: e92f8f0861f0d967f7bbccbff356bc3f5d9dbb5d
 

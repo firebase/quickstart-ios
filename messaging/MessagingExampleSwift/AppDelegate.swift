@@ -68,7 +68,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Messaging.messaging().appDidReceiveMessage(userInfo)
 
     // Print message ID.
-    if let messageID = userInfo[gcmMessageIDKey] {
+    if let messageID = userInfo["gcmMessageIDKey"] {
       print("Message ID: \(messageID)")
     }
 
@@ -86,7 +86,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Messaging.messaging().appDidReceiveMessage(userInfo)
 
     // Print message ID.
-    if let messageID = userInfo[gcmMessageIDKey] {
+    if let messageID = userInfo["gcmMessageIDKey"] {
       print("Message ID: \(messageID)")
     }
 
@@ -126,7 +126,7 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
     // Messaging.messaging().appDidReceiveMessage(userInfo)
 
     // Print message ID.
-    if let messageID = userInfo[gcmMessageIDKey] {
+    if let messageID = userInfo["gcmMessageIDKey"] {
       print("Message ID: \(messageID)")
     }
 
@@ -142,7 +142,7 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
                               withCompletionHandler completionHandler: @escaping () -> Void) {
     let userInfo = response.notification.request.content.userInfo
     // Print message ID.
-    if let messageID = userInfo[gcmMessageIDKey] {
+    if let messageID = userInfo["gcmMessageIDKey"] {
       print("Message ID: \(messageID)")
     }
 

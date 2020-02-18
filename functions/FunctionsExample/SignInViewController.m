@@ -45,9 +45,7 @@
   [self presentViewController:authViewController animated:true completion:nil];
 }
 
-- (void)authUI:(FUIAuth *)authUI
-didSignInWithAuthDataResult:(nullable FIRAuthDataResult *)authDataResult
-         error:(nullable NSError *)error {
+- (void)authUI:(FUIAuth *)authUI didSignInWithAuthDataResult:(FIRAuthDataResult *)authDataResult error:(NSError *)error {
   if (error) {
     if (error.code == FUIAuthErrorCodeUserCancelledSignIn) {
       NSLog(@"User cancelled sign-in");
@@ -58,13 +56,22 @@ didSignInWithAuthDataResult:(nullable FIRAuthDataResult *)authDataResult
       }
       NSLog(@"Login error: %@", detailedError.localizedDescription);
     }
+    return;
   }
+  [self signedIn:authDataResult.user];
 }
 
 - (FUIAuthPickerViewController *)authPickerViewControllerForAuthUI:(FUIAuth *)authUI {
   return [[FAuthPickerViewController alloc] initWithNibName:@"FAuthPickerViewController"
                                                      bundle:[NSBundle mainBundle]
                                                      authUI:authUI];
+}
+
+- (void)signedIn:(FIRUser *)user {
+  AppDelegate *appDelegate = (AppDelegate *)UIApplication.sharedApplication.delegate;
+  appDelegate.window.rootViewController = [[UIStoryboard storyboardWithName:@"Main"
+                                                                         bundle:[NSBundle mainBundle]] instantiateInitialViewController];
+  [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

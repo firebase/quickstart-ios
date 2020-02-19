@@ -1,6 +1,4 @@
 PODS:
-  - Firebase/CoreOnly (6.17.0):
-    - FirebaseCore (= 6.6.2)
   - FirebaseCore (6.6.2):
     - FirebaseCoreDiagnostics (~> 1.2)
     - FirebaseCoreDiagnosticsInterop (~> 1.2)
@@ -34,43 +32,31 @@ PODS:
   - PromisesObjC (1.2.8)
 
 DEPENDENCIES:
-  - Firebase/CoreOnly
-  - FirebaseInstallations (from `https://github.com/firebase/firebase-ios-sdk.git`, branch `master`)
+  - FirebaseInstallations
 
 SPEC REPOS:
   trunk:
-    - Firebase
     - FirebaseCore
     - FirebaseCoreDiagnostics
     - FirebaseCoreDiagnosticsInterop
+    - FirebaseInstallations
     - GoogleDataTransport
     - GoogleDataTransportCCTSupport
     - GoogleUtilities
     - nanopb
     - PromisesObjC
 
-EXTERNAL SOURCES:
-  FirebaseInstallations:
-    :branch: master
-    :git: https://github.com/firebase/firebase-ios-sdk.git
-
-CHECKOUT OPTIONS:
-  FirebaseInstallations:
-    :commit: d9b7a33f0c0464e72e894aa7c207efc07dadbbbe
-    :git: https://github.com/firebase/firebase-ios-sdk.git
-
 SPEC CHECKSUMS:
-  Firebase: 2672e5636b42f977177716317e68346ae5e9de25
   FirebaseCore: a1dd9dd6355a8356dd30a8f076839e242285a81c
   FirebaseCoreDiagnostics: 5e78803ab276bc5b50340e3c539c06c3de35c649
   FirebaseCoreDiagnosticsInterop: 296e2c5f5314500a850ad0b83e9e7c10b011a850
-  FirebaseInstallations: bdf311d1b79ed5921e159c89f3349434a73ae822
+  FirebaseInstallations: 575cd32f2aec0feeb0e44f5d0110a09e5e60b47b
   GoogleDataTransport: 47fe3b8e1673e5187dfd615656a3c5034f150d69
   GoogleDataTransportCCTSupport: 36f69887fd212db6d7ef4dd45ba44523717a434e
   GoogleUtilities: 06eb53bb579efe7099152735900dd04bf09e7275
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
   PromisesObjC: c119f3cd559f50b7ae681fa59dc1acd19173b7e6
 
-PODFILE CHECKSUM: 1de451465a6f6c679267202cd027af776e859778
+PODFILE CHECKSUM: c9221192e1a9afbd761ba6a75c44722eb1ea8ff3
 
 COCOAPODS: 1.8.4

@@ -20,6 +20,7 @@
 
 @implementation ViewController
 
+
 - (void)viewDidLoad {
   [super viewDidLoad];
 
@@ -46,9 +47,6 @@
 }
 
 - (IBAction)initiateCrash:(id)sender {
-  // CLSLog is used here to indicate that the log message
-  // will not be shown in the console output. Use CLSNSLog to have the
-  // log message show in the console output.
   // [START log_and_crash]
   [[FIRCrashlytics crashlytics] log:@"Cause Crash button clicked"];
   // crash

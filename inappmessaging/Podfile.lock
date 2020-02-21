@@ -1,6 +1,6 @@
 PODS:
-  - Firebase (6.17.0):
-    - Firebase/Core (= 6.17.0)
+  - Firebase/Analytics (6.17.0):
+    - Firebase/Core
   - Firebase/Core (6.17.0):
     - Firebase/CoreOnly
     - FirebaseAnalytics (= 6.2.2)
@@ -9,9 +9,9 @@ PODS:
   - Firebase/DynamicLinks (6.17.0):
     - Firebase/CoreOnly
     - FirebaseDynamicLinks (~> 4.0.7)
-  - Firebase/InAppMessagingDisplay (6.17.0):
+  - Firebase/InAppMessaging (6.17.0):
     - Firebase/CoreOnly
-    - FirebaseInAppMessagingDisplay (~> 0.17.0)
+    - FirebaseInAppMessaging (~> 0.17.0)
   - FirebaseAnalytics (6.2.2):
     - FirebaseCore (~> 6.6)
     - FirebaseInstanceID (~> 4.3)
@@ -37,7 +37,11 @@ PODS:
   - FirebaseDynamicLinks (4.0.7):
     - FirebaseAnalyticsInterop (~> 1.3)
     - FirebaseCore (~> 6.2)
-  - FirebaseInAppMessagingDisplay (0.17.0)
+  - FirebaseInAppMessaging (0.17.0):
+    - FirebaseAnalyticsInterop (~> 1.3)
+    - FirebaseCore (~> 6.2)
+    - FirebaseInstanceID (~> 4.0)
+    - GoogleDataTransportCCTSupport (~> 1.0)
   - FirebaseInstallations (1.1.0):
     - FirebaseCore (~> 6.6)
     - GoogleUtilities/UserDefaults (~> 6.5)
@@ -83,9 +87,9 @@ PODS:
   - PromisesObjC (1.2.8)
 
 DEPENDENCIES:
-  - Firebase
+  - Firebase/Analytics
   - Firebase/DynamicLinks
-  - Firebase/InAppMessagingDisplay
+  - Firebase/InAppMessaging
 
 SPEC REPOS:
   trunk:
@@ -96,7 +100,7 @@ SPEC REPOS:
     - FirebaseCoreDiagnostics
     - FirebaseCoreDiagnosticsInterop
     - FirebaseDynamicLinks
-    - FirebaseInAppMessagingDisplay
+    - FirebaseInAppMessaging
     - FirebaseInstallations
     - FirebaseInstanceID
     - GoogleAppMeasurement
@@ -114,7 +118,7 @@ SPEC CHECKSUMS:
   FirebaseCoreDiagnostics: 5e78803ab276bc5b50340e3c539c06c3de35c649
   FirebaseCoreDiagnosticsInterop: 296e2c5f5314500a850ad0b83e9e7c10b011a850
   FirebaseDynamicLinks: b3338d0c0423ee3d409f5ecc0fb774a9baa6537b
-  FirebaseInAppMessagingDisplay: b55300a5353ed570ee18e7be6d853feccb17e4aa
+  FirebaseInAppMessaging: 7fbdce4f57017abfc448f67571f2b1694a4f5b47
   FirebaseInstallations: 575cd32f2aec0feeb0e44f5d0110a09e5e60b47b
   FirebaseInstanceID: 031d7d0c8e7b5c030bbeb4d2a690550375e83fec
   GoogleAppMeasurement: d0560d915abf15e692e8538ba1d58442217b6aff
@@ -124,6 +128,6 @@ SPEC CHECKSUMS:
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
   PromisesObjC: c119f3cd559f50b7ae681fa59dc1acd19173b7e6
 
-PODFILE CHECKSUM: 68045a124b2083a05c0fba4d13243dbd5263c0f2
+PODFILE CHECKSUM: e76695878d7ef3ba4e6350710de2acfa112a78df
 
 COCOAPODS: 1.8.4

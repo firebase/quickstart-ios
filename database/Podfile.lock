@@ -48,7 +48,7 @@ PODS:
     - FirebaseCore (~> 6.6)
     - GoogleUtilities/UserDefaults (~> 6.5)
     - PromisesObjC (~> 1.2)
-  - FirebaseUI/Database (8.4.1):
+  - FirebaseUI/Database (8.4.2):
     - Firebase/Database (~> 6.0)
   - GoogleAppMeasurement (6.3.0):
     - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
@@ -124,7 +124,7 @@ SPEC CHECKSUMS:
   FirebaseCoreDiagnosticsInterop: 296e2c5f5314500a850ad0b83e9e7c10b011a850
   FirebaseDatabase: 0144e0706a4761f1b0e8679572eba8095ddb59be
   FirebaseInstallations: 575cd32f2aec0feeb0e44f5d0110a09e5e60b47b
-  FirebaseUI: 69f7e480265758a9a9ea39915694b0949bcab23f
+  FirebaseUI: e57e9b9c4340631151fbe67a14206d23d0974f37
   GoogleAppMeasurement: 39ecba10918b21c83877d392246157f65db351cf
   GoogleDataTransport: 653963cf5be60fb59cf051e070f0836fdc305f81
   GoogleDataTransportCCTSupport: 84e4d4bbab642f2e9d83ee65d78aca2b5527d314

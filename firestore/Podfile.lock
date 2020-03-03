@@ -224,10 +224,10 @@ PODS:
     - FirebaseCore (~> 6.6)
     - GoogleUtilities/UserDefaults (~> 6.5)
     - PromisesObjC (~> 1.2)
-  - FirebaseUI/Auth (8.4.1):
+  - FirebaseUI/Auth (8.4.2):
     - Firebase/Auth (~> 6.0)
     - GoogleUtilities/UserDefaults
-  - FirebaseUI/Email (8.4.1):
+  - FirebaseUI/Email (8.4.2):
     - FirebaseUI/Auth
   - GoogleAppMeasurement (6.3.0):
     - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
@@ -334,7 +334,7 @@ SPEC CHECKSUMS:
   FirebaseFirestore: a23d596ae3a8c13d3b8353b565d2adfb690f9032
   FirebaseFirestoreSwift: 0437bb10d83f8161a9131da1739998254c78fdf5
   FirebaseInstallations: 575cd32f2aec0feeb0e44f5d0110a09e5e60b47b
-  FirebaseUI: 69f7e480265758a9a9ea39915694b0949bcab23f
+  FirebaseUI: e57e9b9c4340631151fbe67a14206d23d0974f37
   GoogleAppMeasurement: 39ecba10918b21c83877d392246157f65db351cf
   GoogleDataTransport: 653963cf5be60fb59cf051e070f0836fdc305f81
   GoogleDataTransportCCTSupport: 84e4d4bbab642f2e9d83ee65d78aca2b5527d314

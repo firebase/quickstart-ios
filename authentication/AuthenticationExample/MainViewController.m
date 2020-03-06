@@ -24,6 +24,7 @@
 @import FBSDKCoreKit;
 @import FBSDKLoginKit;
 
+static const int kSectionMultiFactor = 4;
 static const int kSectionToken = 3;
 static const int kSectionProviders = 2;
 static const int kSectionUser = 1;
@@ -129,7 +130,48 @@ static NSString *const kUpdatePhoneNumberText = @"Update Phone Number";
         // [START_EXCLUDE silent]
         [self hideSpinner:^{
         // [END_EXCLUDE]
-        if (error) {
+          if (error && error.code == FIRAuthErrorCodeSecondFactorRequired) {
+            FIRMultiFactorResolver *resolver = error.userInfo[FIRAuthErrorUserInfoMultiFactorResolverKey];
+            NSMutableString *displayNameString = [NSMutableString string];
+            for (FIRMultiFactorInfo *tmpFactorInfo in resolver.hints) {
+              [displayNameString appendString:tmpFactorInfo.displayName];
+              [displayNameString appendString:@" "];
+            }
+            [self showTextInputPromptWithMessage:[NSString stringWithFormat:@"Select factor to sign in\n%@", displayNameString]
+                                 completionBlock:^(BOOL userPressedOK, NSString *_Nullable displayName) {
+             FIRPhoneMultiFactorInfo* selectedHint;
+             for (FIRMultiFactorInfo *tmpFactorInfo in resolver.hints) {
+               if ([displayName isEqualToString:tmpFactorInfo.displayName]) {
+                 selectedHint = (FIRPhoneMultiFactorInfo *)tmpFactorInfo;
+               }
+             }
+             [FIRPhoneAuthProvider.provider
+              verifyPhoneNumberWithMultiFactorInfo:selectedHint
+              UIDelegate:nil
+              multiFactorSession:resolver.session
+              completion:^(NSString * _Nullable verificationID, NSError * _Nullable error) {
+                if (error) {
+                  [self showMessagePrompt:error.localizedDescription];
+                } else {
+                  [self showTextInputPromptWithMessage:[NSString stringWithFormat:@"Verification code for %@", selectedHint.displayName]
+                                       completionBlock:^(BOOL userPressedOK, NSString *_Nullable verificationCode) {
+                   FIRPhoneAuthCredential *credential =
+                       [[FIRPhoneAuthProvider provider] credentialWithVerificationID:verificationID
+                                                                    verificationCode:verificationCode];
+                   FIRMultiFactorAssertion *assertion = [FIRPhoneMultiFactorGenerator assertionWithCredential:credential];
+                   [resolver resolveSignInWithAssertion:assertion completion:^(FIRAuthDataResult * _Nullable authResult, NSError * _Nullable error) {
+                     if (error) {
+                       [self showMessagePrompt:error.localizedDescription];
+                     } else {
+                       NSLog(@"Multi factor finanlize sign in succeeded.");
+                     }
+                   }];
+                 }];
+                }
+              }];
+           }];
+          }
+        else if (error) {
           // [START_EXCLUDE]
           [self showMessagePrompt:error.localizedDescription];
           // [END_EXCLUDE]
@@ -551,7 +593,7 @@ static NSString *const kUpdatePhoneNumberText = @"Update Phone Number";
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
   if (section == kSectionSignIn) {
     return 1;
-  } else if (section == kSectionUser || section == kSectionToken) {
+  } else if (section == kSectionUser || section == kSectionToken || section == kSectionMultiFactor) {
     if ([FIRAuth auth].currentUser) {
       return 1;
     } else {
@@ -591,16 +633,23 @@ static NSString *const kUpdatePhoneNumberText = @"Update Phone Number";
       // The user's ID, unique to the Firebase project.
       // Do NOT use this value to authenticate with your backend server,
       // if you have one. Use getTokenWithCompletion:completion: instead.
-      NSString *uid = user.uid;
       NSString *email = user.email;
+      NSString *uid = user.uid;
+      NSMutableString *multiFactorString = [NSMutableString stringWithFormat:@"MultiFactor: "];
+      for (FIRMultiFactorInfo *info in user.multiFactor.enrolledFactors) {
+        [multiFactorString appendString:info.displayName];
+        [multiFactorString appendString:@" "];
+      }
       NSURL *photoURL = user.photoURL;
       // [START_EXCLUDE]
       UILabel *emailLabel = [(UILabel *)cell viewWithTag:1];
       UILabel *userIDLabel = [(UILabel *)cell viewWithTag:2];
       UIImageView *profileImageView = [(UIImageView *)cell viewWithTag:3];
+      UILabel *multiFactorLabel = [(UILabel *)cell viewWithTag:4];
       emailLabel.text = email;
       userIDLabel.text = uid;
-
+      multiFactorLabel.text = multiFactorString;
+      
       static NSURL *lastPhotoURL = nil;
       lastPhotoURL = photoURL;  // to prevent earlier image overwrites later one.
       if (photoURL) {
@@ -630,6 +679,8 @@ static NSString *const kUpdatePhoneNumberText = @"Update Phone Number";
     cell = [tableView dequeueReusableCellWithIdentifier:@"Token"];
     UIButton *requestEmailButton = [(UIButton *)cell viewWithTag:4];
     requestEmailButton.enabled = [FIRAuth auth].currentUser.email ? YES : NO;
+  } else if (indexPath.section == kSectionMultiFactor) {
+    cell = [tableView dequeueReusableCellWithIdentifier:@"MultiFactor"];
   } else {
     [NSException raise:NSInternalInconsistencyException format:@"Unexpected state"];
   }
@@ -681,7 +732,80 @@ static NSString *const kUpdatePhoneNumberText = @"Update Phone Number";
   return 44;
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-  return 4;
+  return 5;
+}
+
+- (IBAction)didMultiFactorEnroll:(id)sender {
+  FIRUser *user = FIRAuth.auth.currentUser;
+  if (!user) {
+    NSLog(@"Please sign in first.");
+  } else {
+    [self showTextInputPromptWithMessage:@"Phone Number"
+                         completionBlock:^(BOOL userPressedOK, NSString *_Nullable phoneNumber) {
+     [user.multiFactor
+      getSessionWithCompletion:^(FIRMultiFactorSession *_Nullable session, NSError *_Nullable error) {
+        [FIRPhoneAuthProvider.provider verifyPhoneNumber:phoneNumber
+                                              UIDelegate:nil
+                                      multiFactorSession:session
+                                              completion:^(NSString * _Nullable verificationID,
+                                                           NSError * _Nullable error) {
+          if (error) {
+            [self showMessagePrompt:error.localizedDescription];
+          } else {
+            [self showTextInputPromptWithMessage:@"Verification code"
+                                 completionBlock:^(BOOL userPressedOK,
+                                                   NSString *_Nullable verificationCode) {
+             FIRPhoneAuthCredential *credential =
+             [[FIRPhoneAuthProvider provider] credentialWithVerificationID:verificationID
+                                                          verificationCode:verificationCode];
+             FIRMultiFactorAssertion *assertion =
+             [FIRPhoneMultiFactorGenerator assertionWithCredential:credential];
+             [self showTextInputPromptWithMessage:@"Display name"
+                                  completionBlock:^(BOOL userPressedOK,
+                                                    NSString *_Nullable displayName) {
+              [user.multiFactor enrollWithAssertion:assertion
+                                        displayName:displayName
+                                         completion:^(NSError *_Nullable error) {
+               if (error) {
+                 [self showMessagePrompt:error.localizedDescription];
+               } else {
+                 NSLog(@"Multi factor finanlize enroll succeeded.");
+                 [self showTypicalUIForUserUpdateResultsWithTitle:@"Multi Factor" error:error];
+               }
+             }];
+            }];
+           }];
+          }
+        }];
+      }];
+   }];
+  }
+}
+
+- (IBAction)didMultiFactorUnenroll:(id)sender {
+  NSMutableString *displayNameString = [NSMutableString string];
+  for (FIRMultiFactorInfo *tmpFactorInfo in FIRAuth.auth.currentUser.multiFactor.enrolledFactors) {
+    [displayNameString appendString:tmpFactorInfo.displayName];
+    [displayNameString appendString:@" "];
+  }
+  [self showTextInputPromptWithMessage:[NSString stringWithFormat:@"Multifactor Unenroll\n%@", displayNameString]
+                       completionBlock:^(BOOL userPressedOK, NSString *_Nullable displayName) {
+   FIRMultiFactorInfo *factorInfo;
+   for (FIRMultiFactorInfo *tmpFactorInfo in FIRAuth.auth.currentUser.multiFactor.enrolledFactors) {
+     if ([displayName isEqualToString:tmpFactorInfo.displayName]) {
+       factorInfo = tmpFactorInfo;
+     }
+   }
+   [FIRAuth.auth.currentUser.multiFactor unenrollWithInfo:factorInfo
+                                               completion:^(NSError * _Nullable error) {
+     if (error) {
+       [self showMessagePrompt:error.localizedDescription];
+     } else {
+       NSLog(@"Multi factor finanlize unenroll succeeded.");
+       [self showTypicalUIForUserUpdateResultsWithTitle:@"Multi Factor" error:error];
+     }
+   }];
+ }];
 }
 
 - (IBAction)didTokenRefresh:(id)sender {

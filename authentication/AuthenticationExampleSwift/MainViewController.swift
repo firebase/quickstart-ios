@@ -33,6 +33,7 @@ import FBSDKLoginKit
 class MainViewController: UITableViewController {
 // [END signin_controller]
 
+  let kSectionMultiFactor = 4
   let kSectionToken = 3
   let kSectionProviders = 2
   let kSectionUser = 1
@@ -403,6 +404,44 @@ class MainViewController: UITableViewController {
           self.hideSpinner {
           // [END_EXCLUDE]
           if let error = error {
+            let authError = error as NSError
+            if (authError.code == AuthErrorCode.secondFactorRequired.rawValue) {
+              // The user is a multi-factor user. Second factor challenge is required.
+              let resolver = authError.userInfo[AuthErrorUserInfoMultiFactorResolverKey] as! MultiFactorResolver
+              var displayNameString = ""
+              for tmpFactorInfo in (resolver.hints) {
+                displayNameString += tmpFactorInfo.displayName ?? ""
+                displayNameString += " "
+              }
+              self.showTextInputPrompt(withMessage: "Select factor to sign in\n\(displayNameString)", completionBlock: { userPressedOK, displayName in
+                var selectedHint: PhoneMultiFactorInfo?
+                for tmpFactorInfo in resolver.hints {
+                  if (displayName == tmpFactorInfo.displayName) {
+                    selectedHint = tmpFactorInfo as? PhoneMultiFactorInfo
+                  }
+                }
+                PhoneAuthProvider.provider().verifyPhoneNumber(with: selectedHint!, uiDelegate: nil, multiFactorSession: resolver.session) { verificationID, error in
+                  if error != nil {
+                    print("Multi factor start sign in failed. Error: \(error.debugDescription)")
+                  } else {
+                    self.showTextInputPrompt(withMessage: "Verification code for \(selectedHint?.displayName ?? "")", completionBlock: { userPressedOK, verificationCode in
+                      let credential: PhoneAuthCredential? = PhoneAuthProvider.provider().credential(withVerificationID: verificationID!, verificationCode: verificationCode!)
+                      let assertion: MultiFactorAssertion? = PhoneMultiFactorGenerator.assertion(with: credential!)
+                      resolver.resolveSignIn(with: assertion!) { authResult, error in
+                        if error != nil {
+                          print("Multi factor finanlize sign in failed. Error: \(error.debugDescription)")
+                        } else {
+                          self.navigationController?.popViewController(animated: true)
+                        }
+                      }
+                    })
+                  }
+                }
+              })
+            } else {
+              self.showMessagePrompt(error.localizedDescription)
+              return
+            }
             // [START_EXCLUDE]
             self.showMessagePrompt(error.localizedDescription)
             // [END_EXCLUDE]
@@ -481,7 +520,7 @@ class MainViewController: UITableViewController {
     switch section {
     case kSectionSignIn:
       return 1
-    case kSectionUser, kSectionToken:
+    case kSectionUser, kSectionToken, kSectionMultiFactor:
       if Auth.auth().currentUser != nil {
         return 1
       } else {
@@ -527,12 +566,19 @@ class MainViewController: UITableViewController {
         let uid = user.uid
         let email = user.email
         let photoURL = user.photoURL
+        var multiFactorString = "MultiFactor: "
+        for info in user.multiFactor.enrolledFactors {
+          multiFactorString += info.displayName ?? "[DispayName]"
+          multiFactorString += " "
+        }
         // [START_EXCLUDE]
         let emailLabel = cell?.viewWithTag(1) as? UILabel
         let userIDLabel = cell?.viewWithTag(2) as? UILabel
         let profileImageView = cell?.viewWithTag(3) as? UIImageView
+        let multiFactorLabel = cell?.viewWithTag(4) as? UILabel
         emailLabel?.text = email
         userIDLabel?.text = uid
+        multiFactorLabel?.text = multiFactorString
 
         struct last {
             static var photoURL: URL? = nil
@@ -568,6 +614,8 @@ class MainViewController: UITableViewController {
       cell = tableView.dequeueReusableCell(withIdentifier: "Token")
       let requestEmailButton = cell?.viewWithTag(4) as? UIButton
       requestEmailButton?.isEnabled = (Auth.auth().currentUser?.email != nil) ? true : false
+    case kSectionMultiFactor:
+      cell = tableView.dequeueReusableCell(withIdentifier: "MultiFactor")
 
     default:
       fatalError("Unknown section in UITableView")
@@ -616,7 +664,62 @@ class MainViewController: UITableViewController {
   }
 
   override func numberOfSections(in tableView: UITableView) -> Int {
-    return 4
+    return 5
+  }
+
+  @IBAction func didMultiFactorEnroll(_ sender: Any) {
+    let user = Auth.auth().currentUser
+    if user == nil {
+      print("Please sign in first.")
+    } else {
+      self.showTextInputPrompt(withMessage: "Phone Number") { (userPressedOK, phoneNumber) in
+        user?.multiFactor.getSessionWithCompletion({ (session, error) in
+          PhoneAuthProvider.provider().verifyPhoneNumber(phoneNumber!, uiDelegate: nil, multiFactorSession: session, completion: { (verificationID, error) in
+            if let error = error {
+              self.showMessagePrompt(error.localizedDescription)
+            } else {
+              self.showTextInputPrompt(withMessage: "Verification code", completionBlock: { (userPressedOK, verificationCode) in
+                let credential = PhoneAuthProvider.provider().credential(withVerificationID: verificationID!, verificationCode: verificationCode!)
+                let assertion = PhoneMultiFactorGenerator.assertion(with: credential)
+                self.showTextInputPrompt(withMessage: "Display name", completionBlock: { (userPressedOK, displayName) in
+                  user?.multiFactor.enroll(with: assertion, displayName: displayName, completion: { (error) in
+                    if let error = error {
+                      self.showMessagePrompt(error.localizedDescription)
+                    } else {
+                      print("Multi factor finanlize enroll succeeded.")
+                      self.showTypicalUIForUserUpdateResults(withTitle: "Multi Factor", error: error)
+                    }
+                  })
+                })
+              })
+            }
+          })
+        })
+      }
+    }
+  }
+
+  @IBAction func didMultiFactorUnenroll(_ sender: Any) {
+    var displayNameString = ""
+    for tmpFactorInfo in Auth.auth().currentUser!.multiFactor.enrolledFactors {
+      displayNameString += tmpFactorInfo.displayName ?? " "
+      displayNameString += " "
+    }
+    self.showTextInputPrompt(withMessage: "Multifactor Unenroll \(displayNameString)") { (userPressedOK, displayName) in
+      var factorInfo:MultiFactorInfo?
+      for tmpFactorInfo:MultiFactorInfo in Auth.auth().currentUser!.multiFactor.enrolledFactors {
+        if displayName == tmpFactorInfo.displayName {
+          factorInfo = tmpFactorInfo
+        }
+      }
+      Auth.auth().currentUser?.multiFactor.unenroll(with: factorInfo!, completion: { (error) in
+        if let error = error {
+          self.showMessagePrompt(error.localizedDescription)
+        } else {
+          print("Multi factor finanlize unenroll succeeded.")
+          self.showTypicalUIForUserUpdateResults(withTitle: "Multi Factor", error: error)        }
+      })
+    }
   }
 
   @IBAction func didTokenRefresh(_ sender: AnyObject) {

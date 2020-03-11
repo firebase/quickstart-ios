@@ -57,7 +57,7 @@ void doGoogleSignIn(XCUIApplication *app, BOOL correctPassword, BOOL withAlert) 
   FIRWaitForVisible(password);
   [password tap];
   [password typeText:testPassword];
-  [app tap]
+  [app tap];
   [webView.buttons[nextButton] tap];
 
   // It could take some time to do authentication.

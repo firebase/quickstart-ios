@@ -2,7 +2,7 @@ use_frameworks!
 platform :ios, '8.0'
 
 pod 'Firebase/Analytics'
-pod 'Firebase/AdMob'
+pod 'Google-Mobile-Ads-SDK'
 
 target 'AdMobExample' do
 

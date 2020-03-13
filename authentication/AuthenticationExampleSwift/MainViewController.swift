@@ -28,7 +28,7 @@ import GoogleSignIn
 import FBSDKCoreKit
 import FBSDKLoginKit
 
-var isMFAEnabled = false
+private var isMFAEnabled = false
 
 @objc(MainViewController)
 // [START signin_controller]

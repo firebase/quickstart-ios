@@ -43,6 +43,7 @@ typedef enum : NSUInteger {
   AuthPasswordless,
   AuthGameCenter,
   AuthMicrosoft,
+  AuthEmailMFA,
 } AuthProvider;
 
 /*! @var kOKButtonText
@@ -84,6 +85,8 @@ static NSString *const kChangePasswordText = @"Change Password";
  @brief The title of the "Update Phone Number" button.
  */
 static NSString *const kUpdatePhoneNumberText = @"Update Phone Number";
+
+static BOOL isMFAEnabled = NO;
 
 @interface MainViewController ()
 @property(strong, nonatomic) FIRAuthStateDidChangeListenerHandle handle;
@@ -130,7 +133,7 @@ static NSString *const kUpdatePhoneNumberText = @"Update Phone Number";
         // [START_EXCLUDE silent]
         [self hideSpinner:^{
         // [END_EXCLUDE]
-          if (error && error.code == FIRAuthErrorCodeSecondFactorRequired) {
+          if (isMFAEnabled && error && error.code == FIRAuthErrorCodeSecondFactorRequired) {
             FIRMultiFactorResolver *resolver = error.userInfo[FIRAuthErrorUserInfoMultiFactorResolverKey];
             NSMutableString *displayNameString = [NSMutableString string];
             for (FIRMultiFactorInfo *tmpFactorInfo in resolver.hints) {
@@ -203,6 +206,16 @@ static NSString *const kUpdatePhoneNumberText = @"Update Phone Number";
         action = [UIAlertAction actionWithTitle:@"Email"
                                           style:UIAlertActionStyleDefault
                                         handler:^(UIAlertAction * _Nonnull action) {
+          [self performSegueWithIdentifier:@"email" sender:nil];
+        }];
+      }
+        break;
+      case AuthEmailMFA:
+      {
+        action = [UIAlertAction actionWithTitle:@"Email with MFA"
+                                          style:UIAlertActionStyleDefault
+                                        handler:^(UIAlertAction * _Nonnull action) {
+          isMFAEnabled = YES;
           [self performSegueWithIdentifier:@"email" sender:nil];
         }];
       }
@@ -487,6 +500,7 @@ static NSString *const kUpdatePhoneNumberText = @"Update Phone Number";
 
 - (IBAction)didTapSignIn:(id)sender {
   [self showAuthPicker:@[@(AuthEmail),
+                         @(AuthEmailMFA),
                          @(AuthAnonymous),
                          @(AuthApple),
                          @(AuthGoogle),
@@ -649,6 +663,11 @@ static NSString *const kUpdatePhoneNumberText = @"Update Phone Number";
       emailLabel.text = email;
       userIDLabel.text = uid;
       multiFactorLabel.text = multiFactorString;
+      if (isMFAEnabled) {
+        multiFactorLabel.hidden = NO;
+      } else {
+        multiFactorLabel.hidden = YES;
+      }
       
       static NSURL *lastPhotoURL = nil;
       lastPhotoURL = photoURL;  // to prevent earlier image overwrites later one.
@@ -732,7 +751,11 @@ static NSString *const kUpdatePhoneNumberText = @"Update Phone Number";
   return 44;
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-  return 5;
+  if (isMFAEnabled) {
+    return 5;
+  } else {
+    return 4;
+  }
 }
 
 - (IBAction)didMultiFactorEnroll:(id)sender {

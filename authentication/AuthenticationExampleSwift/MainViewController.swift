@@ -28,6 +28,8 @@ import GoogleSignIn
 import FBSDKCoreKit
 import FBSDKLoginKit
 
+var isMFAEnabled = false
+
 @objc(MainViewController)
 // [START signin_controller]
 class MainViewController: UITableViewController {
@@ -41,6 +43,7 @@ class MainViewController: UITableViewController {
 
   enum AuthProvider {
     case authEmail
+    case authEmailMFA
     case authAnonymous
     case authApple
     case authFacebook
@@ -123,6 +126,11 @@ class MainViewController: UITableViewController {
       switch provider {
       case .authEmail:
         action = UIAlertAction(title: "Email", style: .default) { (UIAlertAction) in
+          self.performSegue(withIdentifier: "email", sender:nil)
+        }
+      case .authEmailMFA:
+        action = UIAlertAction(title: "Email with MFA", style: .default) { (UIAlertAction) in
+          isMFAEnabled = true;
           self.performSegue(withIdentifier: "email", sender:nil)
         }
       case .authPasswordless:
@@ -405,7 +413,7 @@ class MainViewController: UITableViewController {
           // [END_EXCLUDE]
           if let error = error {
             let authError = error as NSError
-            if (authError.code == AuthErrorCode.secondFactorRequired.rawValue) {
+            if (isMFAEnabled && authError.code == AuthErrorCode.secondFactorRequired.rawValue) {
               // The user is a multi-factor user. Second factor challenge is required.
               let resolver = authError.userInfo[AuthErrorUserInfoMultiFactorResolverKey] as! MultiFactorResolver
               var displayNameString = ""
@@ -579,6 +587,11 @@ class MainViewController: UITableViewController {
         emailLabel?.text = email
         userIDLabel?.text = uid
         multiFactorLabel?.text = multiFactorString
+        if (isMFAEnabled) {
+          multiFactorLabel?.isHidden = false
+        } else {
+          multiFactorLabel?.isHidden = true
+        }
 
         struct last {
             static var photoURL: URL? = nil
@@ -664,7 +677,11 @@ class MainViewController: UITableViewController {
   }
 
   override func numberOfSections(in tableView: UITableView) -> Int {
-    return 5
+    if (isMFAEnabled) {
+      return 5
+    } else {
+      return 4
+    }
   }
 
   @IBAction func didMultiFactorEnroll(_ sender: Any) {

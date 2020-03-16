@@ -61,7 +61,7 @@ Getting Started
     - Select **Sign In** and select Email to begin.
 
 ### Multi Factor Authentication
-**Note**: Multi Factor authentication only works for apps using Google Cloud Identity Platform,
+**Note**: Multi Factor authentication only works for apps using [Google Cloud Identity Platform](https://cloud.google.com/identity-platform/docs/ios/mfa),
 a paid service. If you are only using Firebase Authentication this sample will not work for you.
 
 - Run the app on your device

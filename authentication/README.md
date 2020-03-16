@@ -60,6 +60,16 @@ Getting Started
 - Run the app on your device or simulator.
     - Select **Sign In** and select Email to begin.
 
+### Multi Factor Authentication
+**Note**: Multi Factor authentication only works for apps using Google Cloud Identity Platform,
+a paid service. If you are only using Firebase Authentication this sample will not work for you.
+
+- Run the app on your device
+    - Select **Email (with MFA)** from the main screen.
+    - Sign in (if necessary).
+    - Verify your email (if necessary).
+    - Hit **Enroll MFA** to begin enrolling an SMS second factor.
+
 ### Twitter Login Setup
 - [Register your app](https://apps.twitter.com) as a developer application on Twitter and get your
   app's OAuth API key and API secret.

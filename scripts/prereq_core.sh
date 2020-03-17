@@ -12,8 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# Set have_secrets to true or false.
 . ../scripts/check_secrets.sh
-check_secrets
 
 ruby ../scripts/info_script.rb "${PROJECT}"
 if [[ "$have_secrets" == true ]]; then

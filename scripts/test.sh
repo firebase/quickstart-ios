@@ -22,8 +22,8 @@ set -eo pipefail
 
 EXIT_STATUS=0
 
+# Set have_secrets to true or false.
 . ./scripts/check_secrets.sh
-check_secrets
 
 if [[ "$have_secrets" == true ]]; then
     (xcodebuild \

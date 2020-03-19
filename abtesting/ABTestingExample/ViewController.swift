@@ -15,6 +15,8 @@
 //
 
 import Firebase
+import FirebaseRemoteConfig
+import FirebaseInstallations
 import UIKit
 
 enum ColorScheme {
@@ -54,8 +56,9 @@ class ViewController: UIViewController, UITableViewDataSource {
 
     NotificationCenter.default.addObserver(self,
                                            selector: #selector(printInstanceIDToken),
-                                           name: .InstanceIDTokenRefresh,
+                                           name: .FIRInstallationIDDidChange,
                                            object: nil)
+    printInstanceIDToken()
   }
 
   override func viewWillAppear(_ animated: Bool) {
@@ -75,7 +78,7 @@ class ViewController: UIViewController, UITableViewDataSource {
   }
 
   func setAppearance() {
-    RemoteConfig.remoteConfig().activateFetched()
+    RemoteConfig.remoteConfig().activate()
     let configValue = RemoteConfig.remoteConfig()["color_scheme"]
     print("Config value: \(configValue.stringValue ?? "null")")
     if configValue.stringValue == "dark" {
@@ -86,11 +89,11 @@ class ViewController: UIViewController, UITableViewDataSource {
   }
 
   @objc func printInstanceIDToken() {
-    InstanceID.instanceID().instanceID { (result, error) in
+    Installations.installations().authToken { (result, error) in
       if let error = error {
-        print("Error fetching remote instange ID: \(error)")
+        print("Error fetching remote installations ID: \(error)")
       } else if let result = result {
-        print("Remote instance ID token: \(result.token)")
+        print("Remote installations ID token: \(result.authToken)")
       }
     }
   }

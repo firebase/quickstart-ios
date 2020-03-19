@@ -1,3 +1,8 @@
+
+# Remove CPDC source before submit.
+source 'sso://cpdc-internal/firebase'
+source 'https://cdn.cocoapods.org/'
+
 platform :ios, '8.0'
 
 target 'ABTestingExample' do

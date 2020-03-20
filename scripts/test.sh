@@ -34,7 +34,7 @@ if [[ "$have_secrets" == true ]]; then
       build \
       test \
       ONLY_ACTIVE_ARCH=YES \
-      | xcpretty) || EXIT_STATUS=$?
+      ) || EXIT_STATUS=$?
 else
     # Skip running tests if GoogleService-Info.plist's weren't decoded.
     (xcodebuild \

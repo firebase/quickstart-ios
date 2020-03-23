@@ -13,7 +13,13 @@ In Firebase Console, create a new A/B test with any name. In step two under
 `color_scheme`. Set its default value in the control group to `default` and
 its value in 'Variant A' to `dark`. In the third step, select any goal metric.
 
-At this point, you can either run the sample and copy the printed Instance ID
-token from Xcode's console into the 'Test Device' section in Firebase Console,
-or simply run the experiment at a high percentage and reinstall the app
-until your app instance is in the A/B test.
+Verify the following two flows:
+
+Test on device: 
+Run the sample and copy the printed Instance ID token from Xcode's console
+into the 'Manage test devices' section in Firebase Console (click into details
+in 'Experiment Overview' when experiment is in Draft status).
+
+Published experiment:
+Run the experiment at a high percentage and reinstall the app until your app
+instance is in the A/B test.

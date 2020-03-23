@@ -26,6 +26,8 @@
 		5F99610B1AE0CF4F0034F503 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F9961061AE0CF4F0034F503 /* Images.xcassets */; };
 		5F99610C1AE0CF4F0034F503 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F9961071AE0CF4F0034F503 /* LaunchScreen.xib */; };
 		5F99610D1AE0CF4F0034F503 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F9961071AE0CF4F0034F503 /* LaunchScreen.xib */; };
+		DE22423B2429046F00C7BAA1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DE22423A2429046E00C7BAA1 /* GoogleService-Info.plist */; };
+		DE22423C2429046F00C7BAA1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DE22423A2429046E00C7BAA1 /* GoogleService-Info.plist */; };
 		DE43B5D023AEC6980056B15F /* FIREGSignInHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DE43B5CD23AEC6980056B15F /* FIREGSignInHelper.m */; };
 		DE43B5D123AEC6980056B15F /* FIREGHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DE43B5CE23AEC6980056B15F /* FIREGHelper.m */; };
 		EF4857041C752B7700649485 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10B054011C6A3C630061077D /* Main.storyboard */; };
@@ -88,6 +90,7 @@
 		5F5A537D1ADE67D500F81DF0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5F9961061AE0CF4F0034F503 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		5F9961071AE0CF4F0034F503 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
+		DE22423A2429046E00C7BAA1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DE43B5CC23AEC6980056B15F /* FIREGHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FIREGHelper.h; sourceTree = "<group>"; };
 		DE43B5CD23AEC6980056B15F /* FIREGSignInHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FIREGSignInHelper.m; sourceTree = "<group>"; };
 		DE43B5CE23AEC6980056B15F /* FIREGHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FIREGHelper.m; sourceTree = "<group>"; };
@@ -171,6 +174,7 @@
 		5F5A53431ADE670C00F81DF0 = {
 			isa = PBXGroup;
 			children = (
+				DE22423A2429046E00C7BAA1 /* GoogleService-Info.plist */,
 				5F5A534E1ADE670C00F81DF0 /* FunctionsExample */,
 				5F5A537A1ADE67D500F81DF0 /* FunctionsExampleSwift */,
 				1036D9FE2087CA10003253C9 /* FunctionsExampleTests */,
@@ -459,6 +463,7 @@
 			files = (
 				10B1CCB7205C4CA70067EDB4 /* FAuthPickerViewController.xib in Resources */,
 				5F99610C1AE0CF4F0034F503 /* LaunchScreen.xib in Resources */,
+				DE22423B2429046F00C7BAA1 /* GoogleService-Info.plist in Resources */,
 				10B054031C6A3C630061077D /* Main.storyboard in Resources */,
 				5F99610A1AE0CF4F0034F503 /* Images.xcassets in Resources */,
 			);
@@ -470,6 +475,7 @@
 			files = (
 				10B1CCB8205C4CA70067EDB4 /* FAuthPickerViewController.xib in Resources */,
 				EF4857041C752B7700649485 /* Main.storyboard in Resources */,
+				DE22423C2429046F00C7BAA1 /* GoogleService-Info.plist in Resources */,
 				5F99610D1AE0CF4F0034F503 /* LaunchScreen.xib in Resources */,
 				5F99610B1AE0CF4F0034F503 /* Images.xcassets in Resources */,
 			);

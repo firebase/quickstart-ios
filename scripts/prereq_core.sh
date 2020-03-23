@@ -14,8 +14,6 @@
 
 # Set have_secrets to true or false.
 
-ruby ../scripts/info_script.rb "${PROJECT}"
-
 if [[ -n "${TRAVIS_PULL_REQUEST:-}" ]]; then
   . ../scripts/check_secrets.sh
   if [[ "$have_secrets" == true ]]; then

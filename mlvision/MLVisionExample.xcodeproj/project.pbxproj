@@ -42,6 +42,8 @@
 		B217D4AD220D24CA001CE5AA /* automl_labeler_model.tflite in Resources */ = {isa = PBXBuildFile; fileRef = B217D4AA220D24CA001CE5AA /* automl_labeler_model.tflite */; };
 		BB287B3920729CE90069707A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB287B3820729CE90069707A /* AppDelegate.swift */; };
 		BB287B3E20729CE90069707A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB287B3C20729CE90069707A /* Main.storyboard */; };
+		DE224249242904FE00C7BAA1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DE224248242904FD00C7BAA1 /* GoogleService-Info.plist */; };
+		DE22424A242904FE00C7BAA1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DE224248242904FD00C7BAA1 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,6 +100,7 @@
 		BB287B3820729CE90069707A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BB287B3D20729CE90069707A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BB287B4420729CE90069707A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DE224248242904FD00C7BAA1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -187,6 +190,7 @@
 		BB287B2C20729CE90069707A = {
 			isa = PBXGroup;
 			children = (
+				DE224248242904FD00C7BAA1 /* GoogleService-Info.plist */,
 				1001E6FC20CF0C8F00445CB3 /* Assets.xcassets */,
 				10224B642087E52600A77316 /* Resources */,
 				BB287B3720729CE90069707A /* MLVisionExample */,
@@ -381,6 +385,7 @@
 				B217D4AD220D24CA001CE5AA /* automl_labeler_model.tflite in Resources */,
 				10E1152720F3E0960013E4A4 /* barcode_128.png in Resources */,
 				10E1152820F3E0990013E4A4 /* beach.jpg in Resources */,
+				DE22424A242904FE00C7BAA1 /* GoogleService-Info.plist in Resources */,
 				B217D4AB220D24CA001CE5AA /* automl_labeler_labels.txt in Resources */,
 				10E1152620F3E0930013E4A4 /* grace_hopper.jpg in Resources */,
 				10E1152920F3E09C0013E4A4 /* image_has_text.jpg in Resources */,
@@ -399,6 +404,7 @@
 				7202DC6C20D0C1A300034C35 /* beach.jpg in Resources */,
 				7202DC6920D0C1A300034C35 /* qr_code.jpg in Resources */,
 				100D2A52222F37E100DF5C02 /* automl_labeler_model.tflite in Resources */,
+				DE224249242904FE00C7BAA1 /* GoogleService-Info.plist in Resources */,
 				7202DC6B20D0C1A300034C35 /* barcode_128.png in Resources */,
 				7202DC6A20D0C1A300034C35 /* image_has_text.jpg in Resources */,
 				BB287B3E20729CE90069707A /* Main.storyboard in Resources */,

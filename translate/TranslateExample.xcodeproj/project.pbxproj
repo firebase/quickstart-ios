@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -23,6 +23,8 @@
 		C1E8DDCA22259E3400536A5C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1E8DDC822259E3400536A5C /* Main.storyboard */; };
 		C1E8DDCC22259E3500536A5C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C1E8DDCB22259E3500536A5C /* Assets.xcassets */; };
 		C1E8DDCF22259E3500536A5C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1E8DDCD22259E3500536A5C /* LaunchScreen.storyboard */; };
+		DE2242522429055300C7BAA1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DE2242512429055300C7BAA1 /* GoogleService-Info.plist */; };
+		DE2242532429055300C7BAA1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DE2242512429055300C7BAA1 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +85,7 @@
 		C1E8DDCB22259E3500536A5C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C1E8DDCE22259E3500536A5C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C1E8DDD022259E3500536A5C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DE2242512429055300C7BAA1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,6 +194,7 @@
 		C1E8DDB822259E3400536A5C = {
 			isa = PBXGroup;
 			children = (
+				DE2242512429055300C7BAA1 /* GoogleService-Info.plist */,
 				C1E8DDC322259E3400536A5C /* TranslateExample */,
 				108489A2224415A1004D37A8 /* TranslateExampleObjC */,
 				108489BB224415A4004D37A8 /* TranslateExampleObjCTests */,
@@ -403,6 +407,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				108489F8224531B9004D37A8 /* Main.storyboard in Resources */,
+				DE2242532429055300C7BAA1 /* GoogleService-Info.plist in Resources */,
 				108489F9224531BF004D37A8 /* LaunchScreen.storyboard in Resources */,
 				108489F7224531B6004D37A8 /* Assets.xcassets in Resources */,
 			);
@@ -441,6 +446,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C1E8DDCF22259E3500536A5C /* LaunchScreen.storyboard in Resources */,
+				DE2242522429055300C7BAA1 /* GoogleService-Info.plist in Resources */,
 				C1E8DDCC22259E3500536A5C /* Assets.xcassets in Resources */,
 				C1E8DDCA22259E3400536A5C /* Main.storyboard in Resources */,
 			);

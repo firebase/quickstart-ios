@@ -14,4 +14,3 @@
 
 cp ../mock-GoogleService-Info.plist ./GoogleService-Info.plist
 sed -i '' '/<key>BUNDLE_ID</{n;s/id/com.google.firebase.quickstart.MLVisionExample/;}' GoogleService-Info.plist
-ruby ../scripts/info_script.rb MLVision

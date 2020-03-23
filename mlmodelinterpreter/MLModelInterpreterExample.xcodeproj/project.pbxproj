@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -32,6 +32,8 @@
 		4A56D23020A154E100357F77 /* mobilenet_v1_1.0_224.tflite in Resources */ = {isa = PBXBuildFile; fileRef = 4A56D22620A154E100357F77 /* mobilenet_v1_1.0_224.tflite */; };
 		4A56D23420A154E100357F77 /* labels.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4A56D22A20A154E100357F77 /* labels.txt */; };
 		4A56D23520A154E100357F77 /* grace_hopper.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4A56D22B20A154E100357F77 /* grace_hopper.jpg */; };
+		DE224246242904DF00C7BAA1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DE224245242904DF00C7BAA1 /* GoogleService-Info.plist */; };
+		DE224247242904DF00C7BAA1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DE224245242904DF00C7BAA1 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,6 +100,7 @@
 		4A56D22620A154E100357F77 /* mobilenet_v1_1.0_224.tflite */ = {isa = PBXFileReference; lastKnownFileType = file; path = mobilenet_v1_1.0_224.tflite; sourceTree = "<group>"; };
 		4A56D22A20A154E100357F77 /* labels.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = labels.txt; sourceTree = "<group>"; };
 		4A56D22B20A154E100357F77 /* grace_hopper.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = grace_hopper.jpg; sourceTree = "<group>"; };
+		DE224245242904DF00C7BAA1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -199,6 +202,7 @@
 		4A56D20120A138E500357F77 = {
 			isa = PBXGroup;
 			children = (
+				DE224245242904DF00C7BAA1 /* GoogleService-Info.plist */,
 				4A56D20C20A138E500357F77 /* MLModelInterpreterExample */,
 				10E114C120D5E5B40013E4A4 /* MLModelInterpreterExampleUITests */,
 				10E114CF20D5E5C40013E4A4 /* MLModelInterpreterExampleTests */,
@@ -437,6 +441,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				10E115E020F46A0B0013E4A4 /* Main.storyboard in Resources */,
+				DE224247242904DF00C7BAA1 /* GoogleService-Info.plist in Resources */,
 				10E115DF20F46A020013E4A4 /* grace_hopper.jpg in Resources */,
 				10423212216EBE9000908D8C /* mobilenet_quant_v2_1.0_299.tflite in Resources */,
 				10E115DA20F469F60013E4A4 /* mobilenet_v1_1.0_224.tflite in Resources */,
@@ -465,6 +470,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4A56D23520A154E100357F77 /* grace_hopper.jpg in Resources */,
+				DE224246242904DF00C7BAA1 /* GoogleService-Info.plist in Resources */,
 				4A56D21520A138E500357F77 /* Assets.xcassets in Resources */,
 				10423211216EBE9000908D8C /* mobilenet_quant_v2_1.0_299.tflite in Resources */,
 				4A56D23420A154E100357F77 /* labels.txt in Resources */,

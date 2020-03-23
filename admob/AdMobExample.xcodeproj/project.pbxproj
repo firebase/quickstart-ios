@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -20,6 +20,8 @@
 		103603FA224D97BC00E6532E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10360395224D95D300E6532E /* Main.storyboard */; };
 		10360402224D9A1600E6532E /* AdMobExampleUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 10360401224D9A1600E6532E /* AdMobExampleUITests.m */; };
 		10360410224D9A2900E6532E /* AdMobExampleSwiftUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1036040F224D9A2900E6532E /* AdMobExampleSwiftUITests.swift */; };
+		DE2242242429034F00C7BAA1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DE2242232429034F00C7BAA1 /* GoogleService-Info.plist */; };
+		DE2242252429034F00C7BAA1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DE2242232429034F00C7BAA1 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +79,7 @@
 		1036040D224D9A2900E6532E /* AdMobExampleSwiftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AdMobExampleSwiftUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1036040F224D9A2900E6532E /* AdMobExampleSwiftUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdMobExampleSwiftUITests.swift; sourceTree = "<group>"; };
 		10360411224D9A2900E6532E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DE2242232429034F00C7BAA1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +131,7 @@
 		10360383224D95D300E6532E = {
 			isa = PBXGroup;
 			children = (
+				DE2242232429034F00C7BAA1 /* GoogleService-Info.plist */,
 				1036038E224D95D300E6532E /* AdMobExample */,
 				103603A7224D95D400E6532E /* AdMobExampleTests */,
 				103603C6224D95F800E6532E /* AdMobExampleSwift */,
@@ -385,6 +389,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				10360397224D95D300E6532E /* Main.storyboard in Resources */,
+				DE2242242429034F00C7BAA1 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -401,6 +406,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				103603F4224D969300E6532E /* Main.storyboard in Resources */,
+				DE2242252429034F00C7BAA1 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

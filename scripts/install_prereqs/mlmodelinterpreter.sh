@@ -12,6 +12,5 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-ruby ../scripts/info_script.rb MLModelInterpreter
 cp ../mock-GoogleService-Info.plist ./GoogleService-Info.plist
 sed -i '' '/<key>BUNDLE_ID</{n;s/id/com.google.firebase.quickstart.MLModelInterpreterExample/;}' GoogleService-Info.plist

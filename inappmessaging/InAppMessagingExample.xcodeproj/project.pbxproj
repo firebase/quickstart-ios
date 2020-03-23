@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -22,6 +22,8 @@
 		8DECFE71211CC14700DC99BD /* InAppMessagingExampleUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DECFE70211CC14700DC99BD /* InAppMessagingExampleUITests.m */; };
 		8DECFE83211CC15F00DC99BD /* InAppMessagingExampleSwiftTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DECFE82211CC15F00DC99BD /* InAppMessagingExampleSwiftTests.m */; };
 		8DECFE91211CC16F00DC99BD /* InAppMessagingExampleSwiftUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DECFE90211CC16F00DC99BD /* InAppMessagingExampleSwiftUITests.m */; };
+		DE22423E2429048800C7BAA1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DE22423D2429048800C7BAA1 /* GoogleService-Info.plist */; };
+		DE22423F2429048800C7BAA1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DE22423D2429048800C7BAA1 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +87,7 @@
 		8DECFE8E211CC16F00DC99BD /* InAppMessagingExampleSwiftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InAppMessagingExampleSwiftUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DECFE90211CC16F00DC99BD /* InAppMessagingExampleSwiftUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InAppMessagingExampleSwiftUITests.m; sourceTree = "<group>"; };
 		8DECFE92211CC16F00DC99BD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DE22423D2429048800C7BAA1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +139,7 @@
 		8DB25F8220BE0C29000ABEE2 = {
 			isa = PBXGroup;
 			children = (
+				DE22423D2429048800C7BAA1 /* GoogleService-Info.plist */,
 				8DB25F8D20BE0C29000ABEE2 /* InAppMessagingExampleSwift */,
 				8DECFE4B211CC14500DC99BD /* InAppMessagingExample */,
 				8DECFE64211CC14700DC99BD /* InAppMessagingExampleTests */,
@@ -397,6 +401,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8DB25F9920BE0C2A000ABEE2 /* LaunchScreen.storyboard in Resources */,
+				DE22423E2429048800C7BAA1 /* GoogleService-Info.plist in Resources */,
 				8DB25F9620BE0C2A000ABEE2 /* Assets.xcassets in Resources */,
 				8DB25F9420BE0C29000ABEE2 /* Main.storyboard in Resources */,
 			);
@@ -407,6 +412,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8DECFE59211CC14700DC99BD /* LaunchScreen.storyboard in Resources */,
+				DE22423F2429048800C7BAA1 /* GoogleService-Info.plist in Resources */,
 				8DECFE56211CC14700DC99BD /* Assets.xcassets in Resources */,
 				8DECFE54211CC14600DC99BD /* Main.storyboard in Resources */,
 			);

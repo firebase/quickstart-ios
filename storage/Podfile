@@ -10,6 +10,7 @@ pod 'Firebase/Storage'
 target 'StorageExample' do
 end
 target 'StorageExampleSwift' do
+  pod 'FirebaseStorageSwift'
 end
 target 'StorageExampleTests' do
 end

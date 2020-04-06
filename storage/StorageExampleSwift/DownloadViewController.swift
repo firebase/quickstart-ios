@@ -16,6 +16,7 @@
 
 import UIKit
 import Firebase
+import FirebaseStorageSwift
 
 @objc(DownloadViewController)
 class DownloadViewController: UIViewController {
@@ -37,16 +38,16 @@ class DownloadViewController: UIViewController {
     }
 
     // [START downloadimage]
-    storageRef.child(storagePath).write(toFile: fileURL, completion: { (url, error) in
-      if let error = error {
+    storageRef.child(storagePath).write(toFile: fileURL) { result in
+      switch result {
+      case let .success(url):
+        self.statusTextView.text = "Download Succeeded!"
+        self.imageView.image = UIImage(contentsOfFile: url.path)
+      case let .failure(error):
         print("Error downloading:\(error)")
         self.statusTextView.text = "Download Failed"
-        return
-      } else if let imagePath = url?.path {
-        self.statusTextView.text = "Download Succeeded!"
-        self.imageView.image = UIImage(contentsOfFile: imagePath)
       }
-    })
+    }
     // [END downloadimage]
   }
 }

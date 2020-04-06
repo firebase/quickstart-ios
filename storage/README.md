@@ -7,6 +7,7 @@ Introduction
 ------------
 
 - [Read more about Cloud Storage for Firebase](https://firebase.google.com/docs/storage)
+- The APIs involving the Swift Result type are in beta and may change in future releases.
 
 Getting Started
 ---------------

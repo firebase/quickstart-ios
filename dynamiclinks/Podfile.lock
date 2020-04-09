@@ -1,30 +1,30 @@
 PODS:
-  - Firebase/Analytics (6.21.0):
+  - Firebase/Analytics (6.22.0):
     - Firebase/Core
-  - Firebase/Core (6.21.0):
+  - Firebase/Core (6.22.0):
     - Firebase/CoreOnly
-    - FirebaseAnalytics (= 6.4.0)
-  - Firebase/CoreOnly (6.21.0):
-    - FirebaseCore (= 6.6.5)
-  - Firebase/DynamicLinks (6.21.0):
+    - FirebaseAnalytics (= 6.4.1)
+  - Firebase/CoreOnly (6.22.0):
+    - FirebaseCore (= 6.6.6)
+  - Firebase/DynamicLinks (6.22.0):
     - Firebase/CoreOnly
     - FirebaseDynamicLinks (~> 4.0.8)
-  - FirebaseAnalytics (6.4.0):
+  - FirebaseAnalytics (6.4.1):
     - FirebaseCore (~> 6.6)
     - FirebaseInstallations (~> 1.1)
-    - GoogleAppMeasurement (= 6.4.0)
+    - GoogleAppMeasurement (= 6.4.1)
     - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
     - GoogleUtilities/MethodSwizzler (~> 6.0)
     - GoogleUtilities/Network (~> 6.0)
     - "GoogleUtilities/NSData+zlib (~> 6.0)"
     - nanopb (= 0.3.9011)
   - FirebaseAnalyticsInterop (1.5.0)
-  - FirebaseCore (6.6.5):
+  - FirebaseCore (6.6.6):
     - FirebaseCoreDiagnostics (~> 1.2)
     - FirebaseCoreDiagnosticsInterop (~> 1.2)
     - GoogleUtilities/Environment (~> 6.5)
     - GoogleUtilities/Logger (~> 6.5)
-  - FirebaseCoreDiagnostics (1.2.2):
+  - FirebaseCoreDiagnostics (1.2.3):
     - FirebaseCoreDiagnosticsInterop (~> 1.2)
     - GoogleDataTransportCCTSupport (~> 2.0)
     - GoogleUtilities/Environment (~> 6.5)
@@ -38,14 +38,14 @@ PODS:
     - FirebaseCore (~> 6.6)
     - GoogleUtilities/UserDefaults (~> 6.5)
     - PromisesObjC (~> 1.2)
-  - GoogleAppMeasurement (6.4.0):
+  - GoogleAppMeasurement (6.4.1):
     - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
     - GoogleUtilities/MethodSwizzler (~> 6.0)
     - GoogleUtilities/Network (~> 6.0)
     - "GoogleUtilities/NSData+zlib (~> 6.0)"
     - nanopb (= 0.3.9011)
-  - GoogleDataTransport (5.1.0)
-  - GoogleDataTransportCCTSupport (2.0.1):
+  - GoogleDataTransport (5.1.1)
+  - GoogleDataTransportCCTSupport (2.0.2):
     - GoogleDataTransport (~> 5.1)
     - nanopb (~> 0.3.901)
   - GoogleUtilities/AppDelegateSwizzler (6.5.2):
@@ -95,17 +95,17 @@ SPEC REPOS:
     - PromisesObjC
 
 SPEC CHECKSUMS:
-  Firebase: f378c80340dd41c0ad0914af740c021eb282a04b
-  FirebaseAnalytics: a1a0b3327ceb5cd5b4bacffdb293f6c909aa087d
+  Firebase: 32f9520684e87c7af3f0704f7f88042626d6b536
+  FirebaseAnalytics: 83f822fd0d33a46f49f89b8c3ab16ab4d89df08a
   FirebaseAnalyticsInterop: 3f86269c38ae41f47afeb43ebf32a001f58fcdae
-  FirebaseCore: 9f495d3afacb7b558711e6218ebb14b1c51b5802
-  FirebaseCoreDiagnostics: e9b4cd8ba60dee0f2d13347332e4b7898cca5b61
+  FirebaseCore: 9aca0f1fffb405176ba15311a5621fcde4106fcf
+  FirebaseCoreDiagnostics: 13a6564cd6d5375066bbc8940cc1753af24497f3
   FirebaseCoreDiagnosticsInterop: 296e2c5f5314500a850ad0b83e9e7c10b011a850
   FirebaseDynamicLinks: 417dc6dbb6013233c77558290d73296f429656a6
   FirebaseInstallations: acb3216eb9784d3b1d2d2d635ff74fa892cc0c44
-  GoogleAppMeasurement: 6e68a94d0eaeb1d73ef6b0ed4f7334e29d63ae29
-  GoogleDataTransport: b29a21d813e906014ca16c00897827e40e4a24ab
-  GoogleDataTransportCCTSupport: 6f15a89b0ca35d6fa523e1f752ef818588885988
+  GoogleAppMeasurement: e49be3954045b17d046f271b9cc1ec052bad9702
+  GoogleDataTransport: 6ffa4dd0b6d547f8d27b91bd92fa9e197a3f5f1f
+  GoogleDataTransportCCTSupport: 12f02e5c8f09c055615de90bcd5ba2c375546051
   GoogleUtilities: ad0f3b691c67909d03a3327cc205222ab8f42e0e
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
   PromisesObjC: c119f3cd559f50b7ae681fa59dc1acd19173b7e6

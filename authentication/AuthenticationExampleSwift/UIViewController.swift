@@ -17,16 +17,18 @@
 import UIKit
 
 private class SaveAlertHandle {
-  static var alertHandle: UIAlertController? = nil
+  static var alertHandle: UIAlertController?
 
   class func set(_ handle: UIAlertController) {
-    alertHandle = handle;
+    alertHandle = handle
   }
+
   class func clear() {
-    alertHandle = nil;
+    alertHandle = nil
   }
+
   class func get() -> UIAlertController? {
-    return alertHandle;
+    return alertHandle
   }
 }
 
@@ -39,22 +41,22 @@ extension UIViewController {
     let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
     let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
     alert.addAction(okAction)
-    self.present(alert, animated: false, completion: nil)
+    present(alert, animated: false, completion: nil)
   }
 
   /*! @fn showTextInputPromptWithMessage
-  @brief Shows a prompt with a text field and 'OK'/'Cancel' buttons.
-  @param message The message to display.
-  @param completion A block to call when the user taps 'OK' or 'Cancel'.
-  */
+   @brief Shows a prompt with a text field and 'OK'/'Cancel' buttons.
+   @param message The message to display.
+   @param completion A block to call when the user taps 'OK' or 'Cancel'.
+   */
   func showTextInputPrompt(withMessage message: String,
-                          completionBlock:  @escaping  ((Bool, String?) -> Void)) {
+                           completionBlock: @escaping ((Bool, String?) -> Void)) {
     let prompt = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-    let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
+    let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
       completionBlock(false, nil)
     }
     weak var weakPrompt = prompt
-    let okAction = UIAlertAction(title: "OK", style: .default) { (action) in
+    let okAction = UIAlertAction(title: "OK", style: .default) { _ in
       if let strongPrompt = weakPrompt {
         completionBlock(true, strongPrompt.textFields![0].text)
       }
@@ -62,13 +64,13 @@ extension UIViewController {
     prompt.addTextField(configurationHandler: nil)
     prompt.addAction(cancelAction)
     prompt.addAction(okAction)
-    self.present(prompt, animated: true, completion: nil)
+    present(prompt, animated: true, completion: nil)
   }
 
   /*! @fn showSpinner
-  @brief Shows the please wait spinner.
-  @param completion Called after the spinner has been hidden.
-  */
+   @brief Shows the please wait spinner.
+   @param completion Called after the spinner has been hidden.
+   */
   func showSpinner(_ completion: (() -> Void)?) {
     let alertController = UIAlertController(title: nil, message: "Please Wait...\n\n\n\n",
                                             preferredStyle: .alert)
@@ -81,13 +83,13 @@ extension UIViewController {
                                 .flexibleLeftMargin, .flexibleRightMargin]
     spinner.startAnimating()
     alertController.view.addSubview(spinner)
-    self.present(alertController, animated: true, completion:completion)
+    present(alertController, animated: true, completion: completion)
   }
 
   /*! @fn hideSpinner
-  @brief Hides the please wait spinner.
-  @param completion Called after the spinner has been hidden.
-  */
+   @brief Hides the please wait spinner.
+   @param completion Called after the spinner has been hidden.
+   */
   func hideSpinner(_ completion: (() -> Void)?) {
     if let controller = SaveAlertHandle.get() {
       SaveAlertHandle.clear()

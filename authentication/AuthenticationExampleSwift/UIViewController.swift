@@ -57,8 +57,8 @@ extension UIViewController {
     }
     weak var weakPrompt = prompt
     let okAction = UIAlertAction(title: "OK", style: .default) { _ in
-      if let strongPrompt = weakPrompt {
-        completionBlock(true, strongPrompt.textFields![0].text)
+      if let text = weakPrompt?.textFields?.first?.text {
+        completionBlock(true, text)
       }
     }
     prompt.addTextField(configurationHandler: nil)
@@ -77,8 +77,8 @@ extension UIViewController {
     SaveAlertHandle.set(alertController)
     let spinner = UIActivityIndicatorView(style: .whiteLarge)
     spinner.color = UIColor(ciColor: .black)
-    spinner.center = CGPoint(x: alertController.view.bounds.size.width / 2,
-                             y: alertController.view.bounds.size.height / 2)
+    spinner.center = CGPoint(x: alertController.view.frame.midX,
+                             y: alertController.view.frame.midY)
     spinner.autoresizingMask = [.flexibleBottomMargin, .flexibleTopMargin,
                                 .flexibleLeftMargin, .flexibleRightMargin]
     spinner.startAnimating()

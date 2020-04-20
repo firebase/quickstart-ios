@@ -16,10 +16,6 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-  var alertController :UIAlertController? = nil
-}
-
 private class SaveAlertHandle {
   static var alertHandle: UIAlertController? = nil
 

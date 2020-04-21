@@ -57,9 +57,8 @@ extension UIViewController {
     }
     weak var weakPrompt = prompt
     let okAction = UIAlertAction(title: "OK", style: .default) { _ in
-      if let text = weakPrompt?.textFields?.first?.text {
-        completionBlock(true, text)
-      }
+      guard let text = weakPrompt?.textFields?.first?.text else { return }
+      completionBlock(true, text)
     }
     prompt.addTextField(configurationHandler: nil)
     prompt.addAction(cancelAction)

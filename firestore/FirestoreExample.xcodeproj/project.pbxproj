@@ -19,6 +19,8 @@
 		8DD9ACDA1F7B166900C2DD24 /* pizza-monster.png in Resources */ = {isa = PBXBuildFile; fileRef = 8DD9ACD91F7B166900C2DD24 /* pizza-monster.png */; };
 		8DEE9BE924579C0800824F5F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8DEE9BE824579C0700824F5F /* GoogleService-Info.plist */; };
 		8DEE9BEB2457A4A700824F5F /* ShowAllViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEE9BEA2457A4A700824F5F /* ShowAllViewController.swift */; };
+		8DEE9BED245A044300824F5F /* Combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEE9BEC245A044300824F5F /* Combine.swift */; };
+		8DEE9BEF245A47F700824F5F /* NameTakenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEE9BEE245A47F700824F5F /* NameTakenViewController.swift */; };
 		8DF1E3131EE5CFF900192CDE /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF1E3121EE5CFF900192CDE /* Restaurant.swift */; };
 		8DF1E3151EE72C4600192CDE /* LocalCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF1E3141EE72C4600192CDE /* LocalCollection.swift */; };
 		8DF77E1A1EEB45E500CB2330 /* RestaurantDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF77E191EEB45E500CB2330 /* RestaurantDetailViewController.swift */; };
@@ -64,6 +66,8 @@
 		8DD9ACD91F7B166900C2DD24 /* pizza-monster.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pizza-monster.png"; sourceTree = "<group>"; };
 		8DEE9BE824579C0700824F5F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../FirebaseUI-iOS/samples/swift/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8DEE9BEA2457A4A700824F5F /* ShowAllViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowAllViewController.swift; sourceTree = "<group>"; };
+		8DEE9BEC245A044300824F5F /* Combine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Combine.swift; sourceTree = "<group>"; };
+		8DEE9BEE245A47F700824F5F /* NameTakenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameTakenViewController.swift; sourceTree = "<group>"; };
 		8DF1E3121EE5CFF900192CDE /* Restaurant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
 		8DF1E3141EE72C4600192CDE /* LocalCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalCollection.swift; sourceTree = "<group>"; };
 		8DF77E191EEB45E500CB2330 /* RestaurantDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantDetailViewController.swift; sourceTree = "<group>"; };
@@ -150,11 +154,13 @@
 				8D9BBC321EE2200900194E9A /* RestaurantsTableViewController.swift */,
 				8DF77E191EEB45E500CB2330 /* RestaurantDetailViewController.swift */,
 				8DEE9BEA2457A4A700824F5F /* ShowAllViewController.swift */,
+				8DEE9BEE245A47F700824F5F /* NameTakenViewController.swift */,
 				8D5DF7011F7EF3BA00B0D24F /* NewReviewViewController.swift */,
 				8D004D2C1EE879B5004DEF35 /* FiltersViewController.swift */,
 				8DF77E1B1EEB645100CB2330 /* StarsView.swift */,
 				8DF1E3141EE72C4600192CDE /* LocalCollection.swift */,
 				8DF1E3121EE5CFF900192CDE /* Restaurant.swift */,
+				8DEE9BEC245A044300824F5F /* Combine.swift */,
 				8D9BBC341EE2200900194E9A /* Main.storyboard */,
 				8D9BBC371EE2200900194E9A /* Assets.xcassets */,
 				8DD9ACD91F7B166900C2DD24 /* pizza-monster.png */,
@@ -339,7 +345,9 @@
 				8D9BBC331EE2200900194E9A /* RestaurantsTableViewController.swift in Sources */,
 				8D9BBC311EE2200900194E9A /* AppDelegate.swift in Sources */,
 				8DF1E3151EE72C4600192CDE /* LocalCollection.swift in Sources */,
+				8DEE9BED245A044300824F5F /* Combine.swift in Sources */,
 				8D5DF7021F7EF3BA00B0D24F /* NewReviewViewController.swift in Sources */,
+				8DEE9BEF245A47F700824F5F /* NameTakenViewController.swift in Sources */,
 				8DF1E3131EE5CFF900192CDE /* Restaurant.swift in Sources */,
 				8DF77E1A1EEB45E500CB2330 /* RestaurantDetailViewController.swift in Sources */,
 				8D004D2D1EE879B5004DEF35 /* FiltersViewController.swift in Sources */,
@@ -496,7 +504,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -550,7 +558,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";

@@ -477,13 +477,22 @@
                                                     <segue destination="Cvk-Id-vdf" kind="show" id="CRN-An-R44"/>
                                                 </connections>
                                             </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Aw1-2p-Nez">
+                                                <rect key="frame" x="57" y="46" width="245" height="30"/>
+                                                <state key="normal" title="Check if a Restaurant name is taken"/>
+                                                <connections>
+                                                    <segue destination="LHe-ne-w1A" kind="show" id="52h-S8-BqX"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstItem="6rT-iE-xJw" firstAttribute="centerX" secondItem="dBd-IO-jan" secondAttribute="centerX" id="Cwr-Db-iIe"/>
+                                            <constraint firstItem="Aw1-2p-Nez" firstAttribute="centerX" secondItem="dBd-IO-jan" secondAttribute="centerX" id="O3k-sP-Q5F"/>
                                             <constraint firstItem="6rT-iE-xJw" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="dBd-IO-jan" secondAttribute="leading" constant="8" id="WfW-zT-Kh6"/>
                                             <constraint firstItem="6rT-iE-xJw" firstAttribute="top" secondItem="dBd-IO-jan" secondAttribute="top" constant="8" id="eNg-OU-DOn"/>
                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="6rT-iE-xJw" secondAttribute="trailing" constant="8" id="mAd-KV-bWd"/>
+                                            <constraint firstItem="Aw1-2p-Nez" firstAttribute="top" secondItem="6rT-iE-xJw" secondAttribute="bottom" constant="8" id="t6q-ve-emT"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -566,6 +575,70 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zlQ-HT-FEt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1649" y="70"/>
+        </scene>
+        <!--Name Taken View Controller-->
+        <scene sceneID="Oqz-ad-E87">
+            <objects>
+                <viewController id="LHe-ne-w1A" customClass="NameTakenViewController" customModule="FirestoreExample" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="lWN-re-Uz1"/>
+                        <viewControllerLayoutGuide type="bottom" id="PQ0-MW-sla"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="3lW-yu-87P">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="800" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4ON-2d-nCU">
+                                <rect key="frame" x="24" y="64" width="327" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <stackView opaque="NO" contentMode="scaleToFill" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="eQ7-Bs-Een">
+                                <rect key="frame" x="144" y="106" width="87.5" height="64"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Available" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uj4-Fg-bv7">
+                                        <rect key="frame" x="0.0" y="0.0" width="67.5" height="64"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="839-0Q-fhs">
+                                        <rect key="frame" x="67.5" y="0.0" width="20" height="64"/>
+                                    </activityIndicatorView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="839-0Q-fhs" secondAttribute="trailing" id="3gr-kb-twp"/>
+                                    <constraint firstAttribute="height" constant="64" id="6V4-jU-88i"/>
+                                    <constraint firstItem="Uj4-Fg-bv7" firstAttribute="leading" secondItem="eQ7-Bs-Een" secondAttribute="leading" id="UXj-eX-4nC"/>
+                                    <constraint firstAttribute="bottom" secondItem="839-0Q-fhs" secondAttribute="bottom" id="XTc-ew-rhl"/>
+                                    <constraint firstItem="839-0Q-fhs" firstAttribute="top" secondItem="eQ7-Bs-Een" secondAttribute="top" id="a1Y-fP-qmr"/>
+                                    <constraint firstItem="Uj4-Fg-bv7" firstAttribute="top" secondItem="eQ7-Bs-Een" secondAttribute="top" id="ds9-BO-LEY"/>
+                                    <constraint firstAttribute="bottom" secondItem="Uj4-Fg-bv7" secondAttribute="bottom" id="enZ-OW-m74"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="eQ7-Bs-Een" firstAttribute="centerX" secondItem="3lW-yu-87P" secondAttribute="centerX" id="OvY-DA-XCm"/>
+                            <constraint firstItem="4ON-2d-nCU" firstAttribute="leading" secondItem="3lW-yu-87P" secondAttribute="leadingMargin" constant="8" id="ele-rB-Zfb"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="4ON-2d-nCU" secondAttribute="trailing" constant="8" id="h5m-GZ-kJH"/>
+                            <constraint firstItem="4ON-2d-nCU" firstAttribute="top" secondItem="lWN-re-Uz1" secondAttribute="bottom" constant="20" id="hAw-PU-ZIz"/>
+                            <constraint firstItem="eQ7-Bs-Een" firstAttribute="top" secondItem="4ON-2d-nCU" secondAttribute="bottom" constant="8" id="iLI-i8-1BQ"/>
+                            <constraint firstItem="eQ7-Bs-Een" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="3lW-yu-87P" secondAttribute="leadingMargin" constant="8" id="tUh-fq-DBm"/>
+                            <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="eQ7-Bs-Een" secondAttribute="trailing" constant="8" id="ybo-9p-9xW"/>
+                            <constraint firstItem="PQ0-MW-sla" firstAttribute="top" relation="greaterThanOrEqual" secondItem="eQ7-Bs-Een" secondAttribute="bottom" constant="8" id="zst-xO-zmB"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="1kL-3r-0LH"/>
+                    <connections>
+                        <outlet property="activityIndicator" destination="839-0Q-fhs" id="J3O-Ca-uW1"/>
+                        <outlet property="isAvailableLabel" destination="Uj4-Fg-bv7" id="FOu-JL-0XN"/>
+                        <outlet property="textField" destination="4ON-2d-nCU" id="K54-Ge-O8F"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="T6D-QU-ALD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2345" y="70"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="lET-T3-plO">

@@ -40,21 +40,55 @@ class NameTakenViewController: UIViewController {
     }
 
     textFieldCancellable = textField.textPublisher.sink { value in
+      self.queryCancellable?.cancel()
       guard let name = value else {
-        self.queryCancellable?.cancel()
         self.hideActivityIndicator()
         return
       }
       self.displayActivityIndicator()
       self.queryCancellable = checkNameQuery(for: name).getDocuments().sink(
         receiveCompletion: { status in
-          // do nothing on completion
+          switch status {
+          case .failure(let error):
+            print(error)
+          case .finished:
+            break // do nothing
+          }
         },
         receiveValue: { snapshot in
           self.updateUI(isTaken: snapshot.count > 0)
           self.hideActivityIndicator()
         }
       )
+    }
+  }
+
+  private var handler: NSObjectProtocol?
+  private var listener: ListenerRegistration?
+
+  func withoutCombine() {
+    func checkNameQuery(for name: String) -> Query {
+      return Firestore.firestore().collection("restaurants").whereField("name", isEqualTo: name)
+    }
+
+    handler = NotificationCenter.default
+        .addObserver(forName: UITextField.textDidChangeNotification,
+                     object: textField,
+                     queue: nil) { _ in
+      self.listener?.remove()
+      guard let name = self.textField.text else { return }
+
+      let query = checkNameQuery(for: name)
+      self.displayActivityIndicator()
+      self.listener = query.addSnapshotListener { (snapshot, error) in
+        self.hideActivityIndicator()
+        if let error = error {
+          print(error)
+          return
+        }
+        guard let snapshot = snapshot else { return }
+        self.updateUI(isTaken: snapshot.count > 0)
+      }
     }
   }
 

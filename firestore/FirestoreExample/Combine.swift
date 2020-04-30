@@ -57,6 +57,9 @@ extension Query {
     }
     .eraseToAnyPublisher()
   }
+}
+
+extension Query {
 
   public struct QuerySnapshotPublisher: Publisher {
     public typealias Output = QuerySnapshot
@@ -103,5 +106,19 @@ extension Query {
 
   public func snapshotPublisher() -> QuerySnapshotPublisher {
     return QuerySnapshotPublisher(self)
+  }
+}
+
+// would like to be able to do this but it is currently illegal
+// https://github.com/apple/swift/blob/master/docs/GenericsManifesto.md#parameterized-extensions
+// extension Array where Element == Result<T, Error> {
+//
+// }
+
+func sequence<T, E: Error>(_ arrayOfResults: [Result<T, E>]) -> Result<[T], E> {
+  // haskell programmers naming variables be like
+  // "wow. the code is so readable"
+  return arrayOfResults.reduce(.success([])) { (p, q) in
+    return p.flatMap { x in return q.map { y in return x + [y] } }
   }
 }

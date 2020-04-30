@@ -16,24 +16,71 @@
 
 import UIKit
 import Firebase
+import Combine
 
 class ShowAllViewController: UITableViewController {
 
-  var restaurants: LocalCollection<Restaurant>?
-  var reviewCollections: [LocalCollection<Review>] = []
+  var cancellable: Cancellable?
+  var restaurants: [Restaurant] = []
+  var reviews: [[Review]] = [[]]
 
   override func viewDidLoad() {
     super.viewDidLoad()
+    let restaurantsQuery = Firestore.firestore().collection("restaurants")
+
+    // hmm...
+    cancellable = restaurantsQuery.snapshotPublisher()
+      .map(\.documents)
+      .map { (documents) -> Result<[Restaurant], Error> in
+        return sequence(
+          documents.map { document in
+            return Result {
+              return try document.data(as: Restaurant.self)
+            }
+          }
+        )
+        .map { restaurants in
+          return restaurants.compactMap { $0 }
+        }
+      }
+      .eraseToAnyPublisher()
+      .sink(
+        receiveCompletion: { status in
+          switch status {
+          case .failure(let error):
+            print("Error fetching data: \(error)")
+          case .finished:
+            break // do nothing
+          }
+        },
+        receiveValue: { restaurantsResult in
+          switch restaurantsResult {
+          case .success(let restaurants):
+            self.restaurants = restaurants
+          case .failure(let error):
+            print("Error decoding restaurants: \(error)")
+          }
+        }
+      )
+
+    tableView.register(UITableViewCell.self,
+                       forCellReuseIdentifier: "CondensedReviewCell")
+  }
+
+  var _restaurants: LocalCollection<Restaurant>?
+  var _reviewCollections: [LocalCollection<Review>] = []
+
+  private func withoutCombine() {
     let query = Firestore.firestore().collection("restaurants")
-    restaurants = LocalCollection(query: query) { [weak self] _ in
+    _restaurants = LocalCollection(query: query) { [weak self] _ in
       guard let self = self else { return }
-      guard let restaurants = self.restaurants else { return }
+      guard let restaurants = self._restaurants else { return }
       self.tableView.reloadData()
       func buildQuery(for restaurant: DocumentSnapshot) -> Query {
         return Firestore.firestore().collection("restaurants/\(restaurant.documentID)/ratings")
       }
 
-      self.reviewCollections.forEach { $0.stopListening() }
+      self._reviewCollections.forEach { $0.stopListening() }
       guard let tableView = self.tableView else { return }
 
       let reviews = restaurants.documents.indices.map { (index) -> LocalCollection<Review> in
@@ -45,21 +92,18 @@ class ShowAllViewController: UITableViewController {
       }
 
       reviews.forEach { $0.listen() }
-      self.reviewCollections = reviews
+      self._reviewCollections = reviews
     }
-
-    tableView.register(UITableViewCell.self,
-                       forCellReuseIdentifier: "CondensedReviewCell")
   }
 
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
-    restaurants?.listen()
+    _restaurants?.listen()
   }
 
   override func viewDidDisappear(_ animated: Bool) {
     super.viewDidDisappear(animated)
-    restaurants?.stopListening()
+    _restaurants?.stopListening()
   }
 
   // MARK: - UITableViewDataSource
@@ -68,28 +112,31 @@ class ShowAllViewController: UITableViewController {
                           cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "CondensedReviewCell",
                                              for: indexPath)
-    let reviews = reviewCollections[indexPath.section]
-    let review = reviews[indexPath.row]
-    cell.textLabel?.text = review.text
+//    let reviews = reviewCollections[indexPath.section]
+//    let review = reviews[indexPath.row]
+//    cell.textLabel?.text = review.text
     return cell
   }
 
   override func tableView(_ tableView: UITableView,
                           titleForHeaderInSection section: Int) -> String? {
-    guard let restaurants = restaurants else {
-      fatalError("view should be empty if no items are present")
-    }
-    return restaurants[section].name
+//    guard let restaurants = restaurants else {
+//      fatalError("view should be empty if no items are present")
+//    }
+//    return restaurants[section].name
+    return nil
   }
 
   override func numberOfSections(in tableView: UITableView) -> Int {
-    guard let restaurants = restaurants else { return 0 }
-    return restaurants.count
+//    guard let restaurants = restaurants else { return 0 }
+//    return restaurants.count
+    return 0
   }
 
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    guard reviewCollections.count > section else { return 0 }
-    return reviewCollections[section].count
+//    guard reviewCollections.count > section else { return 0 }
+//    return reviewCollections[section].count
+    return 0
   }
 
 }

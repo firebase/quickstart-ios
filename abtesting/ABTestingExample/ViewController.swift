@@ -52,10 +52,12 @@ class ViewController: UIViewController, UITableViewDataSource {
     self.tableView.dataSource = self
     self.tableView.tableFooterView = UIView()
 
+    #if DEBUG
     NotificationCenter.default.addObserver(self,
                                            selector: #selector(printInstanceIDToken),
                                            name: .InstanceIDTokenRefresh,
                                            object: nil)
+    #endif
   }
 
   override func viewWillAppear(_ animated: Bool) {
@@ -86,6 +88,7 @@ class ViewController: UIViewController, UITableViewDataSource {
   }
 
   @objc func printInstanceIDToken() {
+    #if DEBUG
     InstanceID.instanceID().instanceID { (result, error) in
       if let error = error {
         print("Error fetching remote instange ID: \(error)")
@@ -93,6 +96,7 @@ class ViewController: UIViewController, UITableViewDataSource {
         print("Remote instance ID token: \(result.token)")
       }
     }
+    #endif
   }
 
   deinit {

@@ -1,11 +1,16 @@
+source 'sso://cpdc-internal/firebase'
+source 'https://cdn.cocoapods.org/'
+
 platform :ios, '8.0'
 
 target 'ABTestingExample' do
   use_frameworks!
 
   pod 'Firebase/Analytics'
-  pod 'FirebaseInstanceID'
   pod 'Firebase/RemoteConfig'
+
+  # FirebaseInstanceID is needed to get a device token for debugging an experiment.
+  pod 'FirebaseInstanceID', :configurations => ['Debug']
 
   target 'ABTestingExampleTests' do
     inherit! :search_paths

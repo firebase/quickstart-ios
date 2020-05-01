@@ -119,10 +119,10 @@ PODS:
     - GoogleUtilities/Logger
   - GoogleUtilities/UserDefaults (6.6.0):
     - GoogleUtilities/Logger
-  - GTMSessionFetcher/Core (1.3.1)
-  - MaterialComponents/AnimationTiming (109.0.0)
-  - MaterialComponents/Availability (109.0.0)
-  - MaterialComponents/Buttons (109.0.0):
+  - GTMSessionFetcher/Core (1.4.0)
+  - MaterialComponents/AnimationTiming (109.1.0)
+  - MaterialComponents/Availability (109.1.0)
+  - MaterialComponents/Buttons (109.1.0):
     - MaterialComponents/Elevation
     - MaterialComponents/Ink
     - MaterialComponents/private/Math
@@ -133,22 +133,22 @@ PODS:
     - MaterialComponents/Typography
     - MDFInternationalization
     - MDFTextAccessibility
-  - "MaterialComponents/Buttons+ButtonThemer (109.0.0)":
+  - "MaterialComponents/Buttons+ButtonThemer (109.1.0)":
     - MaterialComponents/Buttons
     - "MaterialComponents/Buttons+ColorThemer"
     - "MaterialComponents/Buttons+ShapeThemer"
     - "MaterialComponents/Buttons+TypographyThemer"
     - MaterialComponents/Palettes
-  - "MaterialComponents/Buttons+ColorThemer (109.0.0)":
+  - "MaterialComponents/Buttons+ColorThemer (109.1.0)":
     - MaterialComponents/Buttons
     - MaterialComponents/schemes/Color
-  - "MaterialComponents/Buttons+ShapeThemer (109.0.0)":
+  - "MaterialComponents/Buttons+ShapeThemer (109.1.0)":
     - MaterialComponents/Buttons
     - MaterialComponents/schemes/Shape
-  - "MaterialComponents/Buttons+TypographyThemer (109.0.0)":
+  - "MaterialComponents/Buttons+TypographyThemer (109.1.0)":
     - MaterialComponents/Buttons
     - MaterialComponents/schemes/Typography
-  - MaterialComponents/Chips (109.0.0):
+  - MaterialComponents/Chips (109.1.0):
     - MaterialComponents/Elevation
     - MaterialComponents/Ink
     - MaterialComponents/private/Math
@@ -160,15 +160,15 @@ PODS:
     - MaterialComponents/TextFields
     - MaterialComponents/Typography
     - MDFInternationalization
-  - MaterialComponents/Elevation (109.0.0):
+  - MaterialComponents/Elevation (109.1.0):
     - MaterialComponents/Availability
     - MaterialComponents/private/Color
     - MaterialComponents/private/Math
-  - MaterialComponents/Ink (109.0.0):
+  - MaterialComponents/Ink (109.1.0):
     - MaterialComponents/Availability
     - MaterialComponents/private/Color
     - MaterialComponents/private/Math
-  - MaterialComponents/List (109.0.0):
+  - MaterialComponents/List (109.1.0):
     - MaterialComponents/Elevation
     - MaterialComponents/Ink
     - MaterialComponents/private/Math
@@ -177,39 +177,39 @@ PODS:
     - MaterialComponents/ShadowLayer
     - MaterialComponents/Typography
     - MDFInternationalization
-  - MaterialComponents/Palettes (109.0.0)
-  - MaterialComponents/private/Application (109.0.0)
-  - MaterialComponents/private/Color (109.0.0):
+  - MaterialComponents/Palettes (109.1.0)
+  - MaterialComponents/private/Application (109.1.0)
+  - MaterialComponents/private/Color (109.1.0):
     - MaterialComponents/Availability
-  - MaterialComponents/private/Math (109.0.0)
-  - MaterialComponents/Ripple (109.0.0):
+  - MaterialComponents/private/Math (109.1.0)
+  - MaterialComponents/Ripple (109.1.0):
     - MaterialComponents/AnimationTiming
     - MaterialComponents/Availability
     - MaterialComponents/private/Color
     - MaterialComponents/private/Math
-  - MaterialComponents/schemes/Color (109.0.0):
+  - MaterialComponents/schemes/Color (109.1.0):
     - MaterialComponents/Availability
     - MaterialComponents/private/Color
-  - MaterialComponents/schemes/Shape (109.0.0):
+  - MaterialComponents/schemes/Shape (109.1.0):
     - MaterialComponents/ShapeLibrary
     - MaterialComponents/Shapes
-  - MaterialComponents/schemes/Typography (109.0.0):
+  - MaterialComponents/schemes/Typography (109.1.0):
     - "MaterialComponents/schemes/Typography+BasicFontScheme"
     - "MaterialComponents/schemes/Typography+Scheming"
     - MaterialComponents/Typography
-  - "MaterialComponents/schemes/Typography+BasicFontScheme (109.0.0)"
-  - "MaterialComponents/schemes/Typography+Scheming (109.0.0)"
-  - MaterialComponents/ShadowElevations (109.0.0)
-  - MaterialComponents/ShadowLayer (109.0.0):
+  - "MaterialComponents/schemes/Typography+BasicFontScheme (109.1.0)"
+  - "MaterialComponents/schemes/Typography+Scheming (109.1.0)"
+  - MaterialComponents/ShadowElevations (109.1.0)
+  - MaterialComponents/ShadowLayer (109.1.0):
     - MaterialComponents/ShadowElevations
-  - MaterialComponents/ShapeLibrary (109.0.0):
+  - MaterialComponents/ShapeLibrary (109.1.0):
     - MaterialComponents/private/Math
     - MaterialComponents/Shapes
-  - MaterialComponents/Shapes (109.0.0):
+  - MaterialComponents/Shapes (109.1.0):
     - MaterialComponents/private/Color
     - MaterialComponents/private/Math
     - MaterialComponents/ShadowLayer
-  - MaterialComponents/TextFields (109.0.0):
+  - MaterialComponents/TextFields (109.1.0):
     - MaterialComponents/AnimationTiming
     - MaterialComponents/Buttons
     - MaterialComponents/Elevation
@@ -217,7 +217,7 @@ PODS:
     - MaterialComponents/private/Math
     - MaterialComponents/Typography
     - MDFInternationalization
-  - MaterialComponents/Typography (109.0.0):
+  - MaterialComponents/Typography (109.1.0):
     - MaterialComponents/private/Application
     - MaterialComponents/private/Math
   - MDFInternationalization (2.0.0)
@@ -291,8 +291,8 @@ SPEC CHECKSUMS:
   GoogleDataTransportCCTSupport: 0f39025e8cf51f168711bd3fb773938d7e62ddb5
   GoogleToolboxForMac: 800648f8b3127618c1b59c7f97684427630c5ea3
   GoogleUtilities: 39530bc0ad980530298e9c4af8549e991fd033b1
-  GTMSessionFetcher: cea130bbfe5a7edc8d06d3f0d17288c32ffe9925
-  MaterialComponents: efea7f96438838624ea3a4fcc881bfd6b3b0bb7b
+  GTMSessionFetcher: 6f5c8abbab8a9bce4bb3f057e317728ec6182b10
+  MaterialComponents: 194731e6041c0f05798867af15389f261332c330
   MDFInternationalization: 010097556d6b09d2c4ea38e0820ea6d37be6a314
   MDFTextAccessibility: 85c09a1bd9c321f494348e632a25063bcda35a53
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd

@@ -20,13 +20,17 @@ jobs:
       # run: ls /Applications | grep Xcode
       - name: Force xcode 11
         run: sudo xcode-select -switch /Applications/Xcode_11.3.app
+      - name: Add GoogleService-Info
+        env:
+          google_service_info: ${{ secrets.configGoogleServiceInfo }}
+        run: |
+          echo "$google_service_info" > ./GoogleService-Info.plist
+          ruby GHA_testing_workflow/add_files_to_project.rb --files=./GoogleService-Info.plist --extras=add_reversed_client_id --project=./config/ConfigExample.xcodeproj
       - name: iPhone 11 Test
         env: # Or as an environment variable 
           super_secret: ${{ secrets.FIREGSignInInfo }}
-          google_service_info: ${{ secrets.configGoogleServiceInfo }}
         run: |
           echo "$super_secret"> ./TestUtils/FIREGSignInInfo.h
-          echo "$google_service_info" > ./GoogleService-Info.plist
           cd ./config/
           pwd
           xcodebuild -workspace *.xcworkspace -list

@@ -25,6 +25,7 @@ jobs:
           super_secret: ${{ secrets.FIREGSignInInfo }}
         run: |
           echo "$super_secret"> ./TestUtils/FIREGSignInInfo.h
+          cat ./TestUtils/FIREGSignInInfo.h
           cd ./config/
           pwd
           #          xcodebuild -workspace *.xcworkspace -list

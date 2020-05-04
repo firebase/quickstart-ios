@@ -55,80 +55,43 @@ static NSString *const kCancel = @"Cancel";
 
 @implementation UIViewController (Alerts)
 
-/*! @fn supportsAlertController
- @brief Determines if the current platform supports @c UIAlertController.
- @return YES if the current platform supports @c UIAlertController.
- */
-- (BOOL)supportsAlertController {
-  return NSClassFromString(@"UIAlertController") != nil;
-}
-
 - (void)showMessagePrompt:(NSString *)message {
-  if ([self supportsAlertController]) {
-    UIAlertController *alert =
-        [UIAlertController alertControllerWithTitle:nil
-                                            message:message
-                                     preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *okAction =
-        [UIAlertAction actionWithTitle:kOK style:UIAlertActionStyleDefault handler:nil];
-    [alert addAction:okAction];
-    [self presentViewController:alert animated:YES completion:nil];
-  } else {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
-                                                    message:message
-                                                   delegate:nil
-                                          cancelButtonTitle:nil
-                                          otherButtonTitles:kOK, nil];
-    [alert show];
-  }
+  UIAlertController *alert =
+      [UIAlertController alertControllerWithTitle:nil
+                                          message:message
+                                   preferredStyle:UIAlertControllerStyleAlert];
+  UIAlertAction *okAction =
+      [UIAlertAction actionWithTitle:kOK style:UIAlertActionStyleDefault handler:nil];
+  [alert addAction:okAction];
+  [self presentViewController:alert animated:YES completion:nil];
 }
 
 - (void)showTextInputPromptWithMessage:(NSString *)message
                        completionBlock:(AlertPromptCompletionBlock)completion {
-  if ([self supportsAlertController]) {
-    UIAlertController *prompt =
-        [UIAlertController alertControllerWithTitle:nil
-                                            message:message
-                                     preferredStyle:UIAlertControllerStyleAlert];
-    __weak UIAlertController *weakPrompt = prompt;
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:kCancel
-                                                           style:UIAlertActionStyleCancel
-                                                         handler:^(UIAlertAction *_Nonnull action) {
-                                                           completion(NO, nil);
-                                                         }];
-    UIAlertAction *okAction =
-        [UIAlertAction actionWithTitle:kOK
-                                 style:UIAlertActionStyleDefault
-                               handler:^(UIAlertAction *_Nonnull action) {
-                                 UIAlertController *strongPrompt = weakPrompt;
-                                 completion(YES, strongPrompt.textFields[0].text);
-                               }];
-    [prompt addTextFieldWithConfigurationHandler:nil];
-    [prompt addAction:cancelAction];
-    [prompt addAction:okAction];
-    [self presentViewController:prompt animated:YES completion:nil];
-  } else {
-    SimpleTextPromptDelegate *prompt =
-        [[SimpleTextPromptDelegate alloc] initWithCompletionHandler:completion];
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil
-                                                        message:message
-                                                       delegate:prompt
-                                              cancelButtonTitle:@"Cancel"
-                                              otherButtonTitles:@"Ok", nil];
-    alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
-    [alertView show];
-  }
+  UIAlertController *prompt =
+      [UIAlertController alertControllerWithTitle:nil
+                                          message:message
+                                   preferredStyle:UIAlertControllerStyleAlert];
+  __weak UIAlertController *weakPrompt = prompt;
+  UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:kCancel
+                                                         style:UIAlertActionStyleCancel
+                                                       handler:^(UIAlertAction *_Nonnull action) {
+                                                         completion(NO, nil);
+                                                       }];
+  UIAlertAction *okAction =
+      [UIAlertAction actionWithTitle:kOK
+                               style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction *_Nonnull action) {
+                               UIAlertController *strongPrompt = weakPrompt;
+                               completion(YES, strongPrompt.textFields[0].text);
+                             }];
+  [prompt addTextFieldWithConfigurationHandler:nil];
+  [prompt addAction:cancelAction];
+  [prompt addAction:okAction];
+  [self presentViewController:prompt animated:YES completion:nil];
 }
 
 - (void)showSpinner:(nullable void (^)(void))completion {
-  if ([self supportsAlertController]) {
-    [self showModernSpinner:completion];
-  } else {
-    [self showIOS7Spinner:completion];
-  }
-}
-
-- (void)showModernSpinner:(nullable void (^)(void))completion {
   UIAlertController *pleaseWaitAlert =
       objc_getAssociatedObject(self, (__bridge const void *)(kPleaseWaitAssociatedObjectKey));
   if (pleaseWaitAlert) {
@@ -157,61 +120,7 @@ static NSString *const kCancel = @"Cancel";
   [self presentViewController:pleaseWaitAlert animated:YES completion:completion];
 }
 
-- (void)showIOS7Spinner:(nullable void (^)(void))completion {
-  UIWindow *pleaseWaitWindow =
-      objc_getAssociatedObject(self, (__bridge const void *)(kPleaseWaitAssociatedObjectKey));
-
-  if (pleaseWaitWindow) {
-    if (completion) {
-      completion();
-    }
-    return;
-  }
-
-  pleaseWaitWindow = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-  pleaseWaitWindow.backgroundColor = [UIColor clearColor];
-  pleaseWaitWindow.windowLevel = UIWindowLevelStatusBar - 1;
-
-  UIView *pleaseWaitView = [[UIView alloc] initWithFrame:pleaseWaitWindow.bounds];
-  pleaseWaitView.autoresizingMask =
-      UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-  pleaseWaitView.backgroundColor = [UIColor colorWithWhite:0 alpha:0.5];
-  UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc]
-      initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
-  spinner.center = pleaseWaitView.center;
-  [pleaseWaitView addSubview:spinner];
-  [spinner startAnimating];
-
-  pleaseWaitView.layer.opacity = 0.0;
-  [self.view addSubview:pleaseWaitView];
-
-  [pleaseWaitWindow addSubview:pleaseWaitView];
-
-  [pleaseWaitWindow makeKeyAndVisible];
-
-  objc_setAssociatedObject(self, (__bridge const void *)(kPleaseWaitAssociatedObjectKey),
-                           pleaseWaitWindow, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-
-  [UIView animateWithDuration:0.5f
-      animations:^{
-        pleaseWaitView.layer.opacity = 1.0f;
-      }
-      completion:^(BOOL finished) {
-        if (completion) {
-          completion();
-        }
-      }];
-}
-
 - (void)hideSpinner:(nullable void (^)(void))completion {
-  if ([self supportsAlertController]) {
-    [self hideModernSpinner:completion];
-  } else {
-    [self hideIOS7Spinner:completion];
-  }
-}
-
-- (void)hideModernSpinner:(nullable void (^)(void))completion {
   UIAlertController *pleaseWaitAlert =
       objc_getAssociatedObject(self, (__bridge const void *)(kPleaseWaitAssociatedObjectKey));
 
@@ -219,27 +128,6 @@ static NSString *const kCancel = @"Cancel";
 
   objc_setAssociatedObject(self, (__bridge const void *)(kPleaseWaitAssociatedObjectKey), nil,
                            OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
-
-- (void)hideIOS7Spinner:(nullable void (^)(void))completion {
-  UIWindow *pleaseWaitWindow =
-      objc_getAssociatedObject(self, (__bridge const void *)(kPleaseWaitAssociatedObjectKey));
-
-  UIView *pleaseWaitView;
-  pleaseWaitView = pleaseWaitWindow.subviews.firstObject;
-
-  [UIView animateWithDuration:0.5f
-      animations:^{
-        pleaseWaitView.layer.opacity = 0.0f;
-      }
-      completion:^(BOOL finished) {
-        [pleaseWaitWindow resignKeyWindow];
-        objc_setAssociatedObject(self, (__bridge const void *)(kPleaseWaitAssociatedObjectKey), nil,
-                                 OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-        if (completion) {
-          completion();
-        }
-      }];
 }
 
 @end

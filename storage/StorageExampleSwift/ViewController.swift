@@ -17,6 +17,7 @@
 import UIKit
 import Photos
 import Firebase
+import FirebaseStorageSwift
 
 @objc(ViewController)
 class ViewController: UIViewController,
@@ -73,7 +74,7 @@ let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
 
     urlTextView.text = "Beginning Upload"
     // if it's a photo from the library, not an image from the camera
-    if #available(iOS 8.0, *), let referenceUrl = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.referenceURL)] as? URL {
+    if let referenceUrl = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.referenceURL)] as? URL {
       let assets = PHAsset.fetchAssets(withALAssetURLs: [referenceUrl], options: nil)
       let asset = assets.firstObject
       asset?.requestContentEditingInput(with: nil, completionHandler: { (contentEditingInput, info) in
@@ -82,13 +83,14 @@ let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
           "/\(Int(Date.timeIntervalSinceReferenceDate * 1000))/\(imageFile!.lastPathComponent)"
         // [START uploadimage]
         let storageRef = self.storage.reference(withPath: filePath)
-        storageRef.putFile(from: imageFile!, metadata: nil) { (metadata, error) in
-            if let error = error {
-              print("Error uploading: \(error)")
-              self.urlTextView.text = "Upload Failed"
-              return
-            }
+        storageRef.putFile(from: imageFile!) { result in
+          switch result {
+          case .success:
             self.uploadSuccess(storageRef, storagePath: filePath)
+          case let .failure(error):
+            print("Error uploading: \(error)")
+            self.urlTextView.text = "Upload Failed"
+          }
         }
         // [END uploadimage]
       })
@@ -100,29 +102,31 @@ let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
       let metadata = StorageMetadata()
       metadata.contentType = "image/jpeg"
       let storageRef = self.storage.reference(withPath: imagePath)
-      storageRef.putData(imageData, metadata: metadata) { (metadata, error) in
-        if let error = error {
+      storageRef.putData(imageData, metadata: metadata) { result in
+        switch result {
+        case .success:
+          self.uploadSuccess(storageRef, storagePath: imagePath)
+        case let .failure(error):
           print("Error uploading: \(error)")
           self.urlTextView.text = "Upload Failed"
-          return
         }
-        self.uploadSuccess(storageRef, storagePath: imagePath)
       }
     }
   }
 
   func uploadSuccess(_ storageRef: StorageReference, storagePath: String) {
     print("Upload Succeeded!")
-    storageRef.downloadURL { (url, error) in
-      if let error = error {
+    storageRef.downloadURL { result in
+      switch result {
+      case let .success(url):
+        self.urlTextView.text = url.absoluteString
+        UserDefaults.standard.set(storagePath, forKey: "storagePath")
+        UserDefaults.standard.synchronize()
+        self.downloadPicButton.isEnabled = true
+      case let .failure(error):
         print("Error getting download URL: \(error)")
         self.urlTextView.text = "Can't get download URL"
-        return
       }
-      self.urlTextView.text = url?.absoluteString ?? ""
-      UserDefaults.standard.set(storagePath, forKey: "storagePath")
-      UserDefaults.standard.synchronize()
-      self.downloadPicButton.isEnabled = true
     }
   }
 

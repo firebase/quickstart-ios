@@ -45,7 +45,7 @@ typedef void (^AlertPromptCompletionBlock)(BOOL userPressedOK, NSString *_Nullab
 
 /*! @fn showSpinner
  @brief Shows the please wait spinner.
- @param completion Called after the spinner has been hidden.
+ @param completion Called after the spinner has been shown.
  */
 - (void)showSpinner:(nullable void (^)(void))completion;
 

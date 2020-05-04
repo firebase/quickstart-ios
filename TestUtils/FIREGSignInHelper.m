@@ -47,6 +47,8 @@ void doGoogleSignIn(XCUIApplication *app, BOOL correctPassword, BOOL withAlert) 
   FIRWaitForVisible(app.keyboards.firstMatch);
   [login typeText:testAccount];
 
+  // This is to hide keyboards after testAccount filled in.
+  [app tap];
   FIRWaitForVisible(webView.buttons[nextButton]);
   [webView.buttons[nextButton] tap];
 
@@ -55,6 +57,7 @@ void doGoogleSignIn(XCUIApplication *app, BOOL correctPassword, BOOL withAlert) 
   FIRWaitForVisible(password);
   [password tap];
   [password typeText:testPassword];
+  [app tap];
   [webView.buttons[nextButton] tap];
 
   // It could take some time to do authentication.

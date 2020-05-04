@@ -39,7 +39,7 @@ class SignInViewController: UIViewController, FUIAuthDelegate {
     present(authViewController!, animated: true, completion: nil)
   }
 
-  func authUI(_ authUI: FUIAuth, didSignInWith user: User?, error: Error?) {
+  func authUI(_ authUI: FUIAuth, didSignInWith authDataResult: AuthDataResult?, error: Error?) {
     switch error {
     case .some(let error as NSError) where UInt(error.code) == FUIAuthErrorCode.userCancelledSignIn.rawValue:
       print("User cancelled sign-in")
@@ -48,7 +48,7 @@ class SignInViewController: UIViewController, FUIAuthDelegate {
     case .some(let error):
       print("Login error: \(error.localizedDescription)")
     case .none:
-      if let user = user {
+      if let user = authDataResult?.user {
         signed(in: user)
       }
     }
@@ -59,5 +59,8 @@ class SignInViewController: UIViewController, FUIAuthDelegate {
   }
 
   func signed(in user: User) {
+    let appDelegate = UIApplication.shared.delegate as? AppDelegate
+    appDelegate?.window?.rootViewController = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateInitialViewController()
+    dismiss(animated: true, completion: nil)
   }
 }

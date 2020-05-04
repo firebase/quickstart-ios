@@ -22,6 +22,8 @@ jobs:
         run: sudo xcode-select -switch /Applications/Xcode_11.3.app
       - name: iPhone 11 Test
         run: |
-          cd ./analytics/
+          cd ./config/
           pwd
+          xcodebuild -workspace *.xcworkspace -list
+          echo --------------------------------------------
           xcodebuild test -scheme AnalyticsExample -workspace AnalyticsExample.xcworkspace -destination 'platform=iOS Simulator,name=iPhone 11,OS=13.3'

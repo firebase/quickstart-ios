@@ -11,19 +11,22 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v1
-      - name: CocoaPod Install
-        run: |
-          cd ./config/
-          pwd
-          pod install
-      #- name: Testing....
-      # run: ls /Applications | grep Xcode
-      - name: Force xcode 11
-        run: sudo xcode-select -switch /Applications/Xcode_11.3.app
+        #      - name: CocoaPod Install
+        #        run: |
+        #          cd ./config/
+        #          pwd
+        #          pod install
+        #      #- name: Testing....
+        #      # run: ls /Applications | grep Xcode
+        #      - name: Force xcode 11
+        #        run: sudo xcode-select -switch /Applications/Xcode_11.3.app
       - name: iPhone 11 Test
+        env: # Or as an environment variable 
+          super_secret: ${{ secrets.FIREGSignInInfo }}
         run: |
+          echo "$super_secret"> ./TestUtils/FIREGSignInInfo.h
           cd ./config/
           pwd
-          xcodebuild -workspace *.xcworkspace -list
-          echo --------------------------------------------
-          xcodebuild test -scheme ConfigExample -workspace ConfigExample.xcworkspace -destination 'platform=iOS Simulator,name=iPhone 11,OS=13.3'
+          #          xcodebuild -workspace *.xcworkspace -list
+          #          echo --------------------------------------------
+          #          xcodebuild test -scheme ConfigExample -workspace ConfigExample.xcworkspace -destination 'platform=iOS Simulator,name=iPhone 11,OS=13.3'

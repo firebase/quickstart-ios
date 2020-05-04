@@ -31,6 +31,16 @@
 }
 
 - (void)testRemoteConfig {
+  // Verify that Remote Config Example app is launched successfully and its title is visible.
+  XCTAssertTrue([_app navigationBars][@"Remote Config Example"].exists);
+
+  // Tap on 'Fetch Remote Config' button.
+  [_app.buttons[@"Fetch Remote Config"] tap];
+
+  // Verify that the Remote Config value is visible.
+  XCUIElement* config = [_app staticTexts][@"WELCOME TO MY AWESOME APP!"];
+  FIRWaitForVisibleWithTimeout(config, 20);
+  XCTAssertTrue(config.exists);
 }
 
 @end

@@ -23,8 +23,11 @@ jobs:
       - name: iPhone 11 Test
         env: # Or as an environment variable 
           super_secret: ${{ secrets.FIREGSignInInfo }}
+        env: # Or as an environment variable 
+          google_service_info: ${{ secrets.configGoogleServiceInfo }}
         run: |
           echo "$super_secret"> ./TestUtils/FIREGSignInInfo.h
+          echo "$google_service_info" > ./GoogleService-Info.plist
           cd ./config/
           pwd
           xcodebuild -workspace *.xcworkspace -list

@@ -124,7 +124,7 @@ NSString *const kGCMMessageIDKey = @"gcm.message_id";
   NSLog(@"%@", userInfo);
 
   // Change this to your preferred presentation option
-  completionHandler(UNNotificationPresentationOptionNone);
+  completionHandler(UNNotificationPresentationOptionBadge | UNNotificationPresentationOptionAlert);
 }
 
 // Handle notification messages after display notification is tapped by the user.
@@ -155,14 +155,6 @@ didReceiveNotificationResponse:(UNNotificationResponse *)response
     // Note: This callback is fired at each app startup and whenever a new token is generated.
 }
 // [END refresh_token]
-
-// [START ios_10_data_message]
-// Receive data messages on iOS 10+ directly from FCM (bypassing APNs) when the app is in the foreground.
-// To enable direct data messages, you can set [Messaging messaging].shouldEstablishDirectChannel to YES.
-- (void)messaging:(FIRMessaging *)messaging didReceiveMessage:(FIRMessagingRemoteMessage *)remoteMessage {
-  NSLog(@"Received data message: %@", remoteMessage.appData);
-}
-// [END ios_10_data_message]
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
   NSLog(@"Unable to register for remote notifications: %@", error);

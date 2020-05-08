@@ -52,14 +52,8 @@ NSString *const kLoadingPhraseConfigKey = @"loading_phrase";
 - (void)fetchConfig {
     self.welcomeLabel.text = self.remoteConfig[kLoadingPhraseConfigKey].stringValue;
 
-    long expirationDuration = 3600;
-
     // [START fetch_config_with_callback]
-    // TimeInterval is set to expirationDuration here, indicating the next fetch request will use
-    // data fetched from the Remote Config service, rather than cached parameter values, if cached
-    // parameter values are more than expirationDuration seconds old. See Best Practices in the
-    // README for more information.
-    [self.remoteConfig fetchWithExpirationDuration:expirationDuration completionHandler:^(FIRRemoteConfigFetchStatus status, NSError *error) {
+    [self.remoteConfig fetchWithCompletionHandler:^(FIRRemoteConfigFetchStatus status, NSError *error) {
         if (status == FIRRemoteConfigFetchStatusSuccess) {
             NSLog(@"Config fetched!");
           [self.remoteConfig activateWithCompletionHandler:^(NSError * _Nullable error) {

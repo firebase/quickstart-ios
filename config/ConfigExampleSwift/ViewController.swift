@@ -57,19 +57,13 @@ class ViewController: UIViewController {
   func fetchConfig() {
     welcomeLabel.text = remoteConfig[loadingPhraseConfigKey].stringValue
 
-    let expirationDuration = 3600
-
     // [START fetch_config_with_callback]
-    // TimeInterval is set to expirationDuration here, indicating the next fetch request will use
-    // data fetched from the Remote Config service, rather than cached parameter values, if cached
-    // parameter values are more than expirationDuration seconds old. See Best Practices in the
-    // README for more information.
-    remoteConfig.fetch(withExpirationDuration: TimeInterval(expirationDuration)) { (status, error) -> Void in
+    remoteConfig.fetch() { (status, error) -> Void in
       if status == .success {
         print("Config fetched!")
-        self.remoteConfig.activate(completionHandler: { (error) in
+        self.remoteConfig.activate() { (error) in
           // ...
-        })
+        }
       } else {
         print("Config not fetched")
         print("Error: \(error?.localizedDescription ?? "No error available.")")

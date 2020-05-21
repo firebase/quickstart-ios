@@ -28,6 +28,7 @@ project.targets.each do |project_target|
   project_framework_group = project.frameworks_group
   framework_build_phase = project_target.frameworks_build_phase
   framework_set = project_target.frameworks_build_phase.files.to_set
+	puts "The following frameworks are added to #{project_target}"
   framework_group.each do |framework|
     next if framework_set.size == framework_set.add(framework).size
     ref = project_framework_group.new_reference("#{framework}")

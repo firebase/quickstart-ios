@@ -34,8 +34,8 @@ project.targets.each do |project_target|
     ref = project_framework_group.new_reference("#{framework}")
     ref.name = "#{File.basename(framework)}"
     ref.source_tree = "SOURCE_ROOT"
-    puts ref
     framework_build_phase.add_file_reference(ref)
+    puts ref
   end
 end
 project.save()

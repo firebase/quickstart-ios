@@ -138,6 +138,13 @@
 			path = ConfigExampleUITests;
 			sourceTree = "<group>";
 		};
+		4FF36D7912274F61AB898964 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		5F5A53431ADE670C00F81DF0 = {
 			isa = PBXGroup;
 			children = (
@@ -149,6 +156,7 @@
 				DEC82E3223AAEA0F000EA7B1 /* TestUtils */,
 				5F5A534D1ADE670C00F81DF0 /* Products */,
 				5F9961041AE0CF4F0034F503 /* Shared */,
+				4FF36D7912274F61AB898964 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 			wrapsLines = 0;

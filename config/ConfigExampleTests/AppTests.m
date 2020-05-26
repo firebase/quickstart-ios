@@ -17,8 +17,8 @@
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
 
-#import "FirebaseCore/FIRApp.h"
-#import "FirebaseRemoteConfig/FIRRemoteConfig.h"
+#import "FIRApp.h"
+#import "FIRRemoteConfig.h"
 
 @interface AppTests : XCTestCase
 @end

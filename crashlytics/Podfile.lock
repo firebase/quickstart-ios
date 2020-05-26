@@ -1,11 +1,11 @@
 PODS:
-  - Firebase/CoreOnly (6.24.0):
-    - FirebaseCore (= 6.7.0)
-  - Firebase/Crashlytics (6.24.0):
+  - Firebase/CoreOnly (6.25.0):
+    - FirebaseCore (= 6.7.1)
+  - Firebase/Crashlytics (6.25.0):
     - Firebase/CoreOnly
     - FirebaseCrashlytics (~> 4.1.0)
   - FirebaseAnalyticsInterop (1.5.0)
-  - FirebaseCore (6.7.0):
+  - FirebaseCore (6.7.1):
     - FirebaseCoreDiagnostics (~> 1.3)
     - FirebaseCoreDiagnosticsInterop (~> 1.2)
     - GoogleUtilities/Environment (~> 6.5)
@@ -30,7 +30,7 @@ PODS:
     - GoogleUtilities/Environment (~> 6.6)
     - GoogleUtilities/UserDefaults (~> 6.6)
     - PromisesObjC (~> 1.2)
-  - GoogleDataTransport (6.1.0)
+  - GoogleDataTransport (6.1.1)
   - GoogleDataTransportCCTSupport (3.1.0):
     - GoogleDataTransport (~> 6.1)
     - nanopb (~> 1.30905.0)
@@ -66,14 +66,14 @@ SPEC REPOS:
     - PromisesObjC
 
 SPEC CHECKSUMS:
-  Firebase: b28e55c60efd98963cd9011fe2fac5a10c2ba124
+  Firebase: 5719b4f965f76643241a1bb8244483ff6117db39
   FirebaseAnalyticsInterop: 3f86269c38ae41f47afeb43ebf32a001f58fcdae
-  FirebaseCore: e610482f64097b0e9f056cd97bc6b33dfabcbb6a
+  FirebaseCore: 6023faeada5afa95a349fccafb40900e32e9ac42
   FirebaseCoreDiagnostics: 4a773a47bd83bbd5a9b1ccf1ce7caa8b2d535e67
   FirebaseCoreDiagnosticsInterop: 296e2c5f5314500a850ad0b83e9e7c10b011a850
   FirebaseCrashlytics: fff345f16a07f0b23cb342d8de5a42cec6de3492
   FirebaseInstallations: 2119fb3e46b0a88bfdbf12562f855ee3252462fa
-  GoogleDataTransport: f6f8eba931df03ebd2232ff4645aa85f8f47b5ab
+  GoogleDataTransport: ad884314b81cdb808fb1d23787b367ff8da4e28a
   GoogleDataTransportCCTSupport: d70a561f7d236af529fee598835caad5e25f6d3d
   GoogleUtilities: 39530bc0ad980530298e9c4af8549e991fd033b1
   nanopb: c43f40fadfe79e8b8db116583945847910cbabc9
@@ -81,4 +81,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: ced217c20b4d2eba4315b424efb6046eadd1c70d
 
-COCOAPODS: 1.9.1
+COCOAPODS: 1.9.2

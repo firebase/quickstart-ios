@@ -31,7 +31,7 @@ if [[ "$have_secrets" == true ]]; then
 		-project ${SAMPLE}Example.xcodeproj 
 		-scheme ${SAMPLE}Example 
 		-destination 'platform=iOS Simulator,name=iPhone 11 Pro' 'OTHER_LDFLAGS=\$(OTHER_LDFLAGS) -ObjC' 'FRAMEWORK_SEARCH_PATHS= \$(FRAMEWORK_SEARCH_PATHS) \$(PROJECT_DIR)/Firebase/**' 'HEADER_SEARCH_PATHS=$(HEADER_SEARCH_PATHS) $(PROJECT_DIR)/Firebase/**'
-		) || EXIT_STATUS=$?
+    ) || EXIT_STATUS=$?
 else
     # Skip running tests if GoogleService-Info.plist's weren't decoded.
     (

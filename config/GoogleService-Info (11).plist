@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>1025801074639-ft3d6189mlcref8v1gpov2kvoobbr025.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.1025801074639-ft3d6189mlcref8v1gpov2kvoobbr025</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBs_L_5dD0Zb-VhGxQsEkT89Ij4YXeGXCI</string>
+	<key>GCM_SENDER_ID</key>
+	<string>1025801074639</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.google.firebase.quickstart.ConfigExample</string>
+	<key>PROJECT_ID</key>
+	<string>ios-quickstart-apps</string>
+	<key>STORAGE_BUCKET</key>
+	<string>ios-quickstart-apps.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:1025801074639:ios:98b327d59be73abf</string>
+	<key>DATABASE_URL</key>
+	<string>https://ios-quickstart-apps.firebaseio.com</string>
+</dict>
+</plist>

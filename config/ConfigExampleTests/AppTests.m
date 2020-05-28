@@ -17,8 +17,8 @@
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
 
-#import "FIRApp.h"
-#import "FIRRemoteConfig.h"
+#import "FirebaseCore/FIRApp.h"
+#import "FirebaseRemoteConfig/FIRRemoteConfig.h"
 
 @interface AppTests : XCTestCase
 @end
@@ -27,7 +27,7 @@
 
 
 - (void)testRemoteConfig {
-  [FIRApp configure];
+  if([FIRApp defaultApp] == nil){ [FIRApp configure]; };
   FIRRemoteConfig *remoteConfig = [FIRRemoteConfig remoteConfig];
   XCTAssert([remoteConfig isKindOfClass:[FIRRemoteConfig class]]);
 }

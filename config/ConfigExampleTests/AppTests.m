@@ -27,6 +27,7 @@
 
 
 - (void)testRemoteConfig {
+  [FIRApp configure];
   FIRRemoteConfig *remoteConfig = [FIRRemoteConfig remoteConfig];
   XCTAssert([remoteConfig isKindOfClass:[FIRRemoteConfig class]]);
 }

@@ -25,9 +25,14 @@
 
 @implementation AppTests
 
+- (void)setUp {
+  [super setUp];
+  if ([FIRApp defaultApp] == nil) {
+    [FIRApp configure];
+  }
+}
 
 - (void)testRemoteConfig {
-  [FIRApp configure];
   FIRRemoteConfig *remoteConfig = [FIRRemoteConfig remoteConfig];
   XCTAssert([remoteConfig isKindOfClass:[FIRRemoteConfig class]]);
 }

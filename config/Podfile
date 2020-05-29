@@ -2,7 +2,6 @@
 use_frameworks!
 platform :ios, '8.0'
 
-pod 'Firebase/Analytics'
 pod 'Firebase/RemoteConfig'
 
 target 'ConfigExample' do

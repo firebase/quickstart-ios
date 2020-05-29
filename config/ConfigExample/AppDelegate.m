@@ -22,9 +22,7 @@
 - (BOOL)application:(UIApplication *)application
     didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // [START configure_firebase]
-    if ([FIRApp defaultApp] == nil) {
-      [FIRApp configure];
-    }
+    [FIRApp configure];
     // [END configure_firebase]
   return YES;
 }

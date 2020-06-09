@@ -17,7 +17,6 @@
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
 
-
 #import <FirebaseCore/FIRApp.h>
 #import <FirebaseRemoteConfig/FIRRemoteConfig.h>
 

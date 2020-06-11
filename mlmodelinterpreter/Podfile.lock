@@ -40,7 +40,7 @@ PODS:
     - FirebaseInstallations (~> 1.0)
     - GoogleUtilities/Environment (~> 6.5)
     - GoogleUtilities/UserDefaults (~> 6.5)
-  - FirebaseMLCommon (0.20.0):
+  - FirebaseMLCommon (0.20.1):
     - FirebaseCore (~> 6.7)
     - FirebaseInstanceID (~> 4.3)
     - GoogleToolboxForMac/Logger (~> 2.1)
@@ -48,7 +48,7 @@ PODS:
     - "GoogleToolboxForMac/NSDictionary+URLArguments (~> 2.1)"
     - GoogleUtilities/UserDefaults (~> 6.0)
     - GTMSessionFetcher/Core (~> 1.1)
-    - Protobuf (~> 3.5)
+    - Protobuf (~> 3.12)
   - FirebaseMLModelInterpreter (0.20.0):
     - FirebaseCore (~> 6.7)
     - FirebaseMLCommon (~> 0.20)
@@ -143,7 +143,7 @@ SPEC CHECKSUMS:
   FirebaseCoreDiagnosticsInterop: 296e2c5f5314500a850ad0b83e9e7c10b011a850
   FirebaseInstallations: 6f5f680e65dc374397a483c32d1799ba822a395b
   FirebaseInstanceID: cef67c4967c7cecb56ea65d8acbb4834825c587b
-  FirebaseMLCommon: ddb73ec0ad174afd0f3ba292680b5aa8af008520
+  FirebaseMLCommon: 5e1184cfdddbd097f55cad75b598881d348d900f
   FirebaseMLModelInterpreter: 9150ed49b933e4c693381bfd60f60ba5d1f998e7
   GoogleAppMeasurement: 67458367830514fb20fd9e233496f1eef9d90185
   GoogleDataTransport: 9a8a16f79feffc7f42096743de2a7c4815e84020

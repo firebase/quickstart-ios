@@ -58,7 +58,7 @@ PODS:
     - FirebaseInstallations (~> 1.0)
     - GoogleUtilities/Environment (~> 6.5)
     - GoogleUtilities/UserDefaults (~> 6.5)
-  - FirebaseMLCommon (0.20.0):
+  - FirebaseMLCommon (0.20.1):
     - FirebaseCore (~> 6.7)
     - FirebaseInstanceID (~> 4.3)
     - GoogleToolboxForMac/Logger (~> 2.1)
@@ -66,8 +66,8 @@ PODS:
     - "GoogleToolboxForMac/NSDictionary+URLArguments (~> 2.1)"
     - GoogleUtilities/UserDefaults (~> 6.0)
     - GTMSessionFetcher/Core (~> 1.1)
-    - Protobuf (~> 3.5)
-  - FirebaseMLVision (0.20.0):
+    - Protobuf (~> 3.12)
+  - FirebaseMLVision (0.20.1):
     - FirebaseCore (~> 6.7)
     - FirebaseMLCommon (~> 0.20)
     - GoogleAPIClientForREST/Core (~> 1.3)
@@ -75,7 +75,7 @@ PODS:
     - GoogleToolboxForMac/Logger (~> 2.1)
     - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
     - GTMSessionFetcher/Core (~> 1.1)
-    - Protobuf (~> 3.5)
+    - Protobuf (~> 3.12)
   - FirebaseMLVisionAutoML (0.20.0):
     - FirebaseCore (~> 6.7)
     - FirebaseMLCommon (~> 0.20)
@@ -202,8 +202,8 @@ SPEC CHECKSUMS:
   FirebaseCoreDiagnosticsInterop: 296e2c5f5314500a850ad0b83e9e7c10b011a850
   FirebaseInstallations: 6f5f680e65dc374397a483c32d1799ba822a395b
   FirebaseInstanceID: cef67c4967c7cecb56ea65d8acbb4834825c587b
-  FirebaseMLCommon: ddb73ec0ad174afd0f3ba292680b5aa8af008520
-  FirebaseMLVision: 0e65f5fe6a0fce6c5cee55205ee698aa29342218
+  FirebaseMLCommon: 5e1184cfdddbd097f55cad75b598881d348d900f
+  FirebaseMLVision: 485358b97d3332669ecc4fed55ee360aaef2813d
   FirebaseMLVisionAutoML: 03f056e68f0441087ce868fe19033d0a324e8f1e
   FirebaseMLVisionBarcodeModel: 35cfeaa9494d8c6106423a4672055dd8e07ddbc3
   FirebaseMLVisionFaceModel: 762b3af94fb29a981d76b3ab28cd1f53708f58c5

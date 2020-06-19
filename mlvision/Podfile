@@ -5,12 +5,6 @@ use_frameworks!
 pod 'Firebase/Analytics'
 pod 'Firebase/MLVision'
 # [END base_dependencies]
-pod 'Firebase/MLVisionAutoML'
-pod 'Firebase/MLVisionObjectDetection'
-pod 'Firebase/MLVisionBarcodeModel'
-pod 'Firebase/MLVisionFaceModel'
-pod 'Firebase/MLVisionLabelModel'
-pod 'Firebase/MLVisionTextModel'
 
 target 'MLVisionExample' do
 end

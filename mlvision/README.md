@@ -1,15 +1,14 @@
 UPDATE: On June 3, 2020, we started offering ML Kit's on-device APIs through a new standalone SDK. Cloud APIs, AutoML Vision Edge, and custom model deployment will continue to be available via Firebase Machine Learning. [Learn more](https://developers.google.com/ml-kit)
 
-ML Kit for Firebase Quickstart
+Firebase Machine Learning Quickstart
 =======================
 
-ML Kit for Firebase iOS quickstart demonstrates how to use the various features of ML Kit to add machine
-learning to your application.
+Firebase Machine Learning iOS quickstart demonstrates how to use the various features of Firebase to add machine learning to your application.
 
 Introduction
 ------------
 
-- [Read more about ML Kit for Firebase](https://firebase.google.com/docs/ml-kit)
+- [Read more about Firebase Machine Learning](https://firebase.google.com/docs/ml)
 
 Getting Started
 ---------------
@@ -17,18 +16,9 @@ Getting Started
 - [Add Firebase to your iOS Project](https://firebase.google.com/docs/ios/setup).
 - Run the sample on your iOS device or simulator.
 - Choose Photo Library or Photo Camera to see a demo of the following:
-  - Recognize text (on-device and in Cloud (sparse, dense, document text))
-  - Detect faces (on-device)
-  - Scan barcodes (on-device)
-  - Label images (on-device, AutoML on-device, in Cloud)
-  - Detect and track objects (on-device prominent/multiple, only tacking/with classsification)
+  - Recognize text (in Cloud (sparse, dense, document text))
+  - Label images (in Cloud)
   - Recognize landmarks (in Cloud)
-
-- Choose Video Camera to see a demo of the on-device features:
-- Label images (AutoML)
-- Recognize text
-- Detect faces
-  - Detect and track objects (prominent/multiple, only tacking/with classification)
 
 Support
 -------

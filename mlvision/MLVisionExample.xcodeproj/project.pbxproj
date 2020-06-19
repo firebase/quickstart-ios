@@ -8,11 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1001E6F720CEE0DD00445CB3 /* UIUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001E6F620CEE0DD00445CB3 /* UIUtilities.swift */; };
-		1001E6F920CF021E00445CB3 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001E6F820CF021E00445CB3 /* CameraViewController.swift */; };
 		1001E6FD20CF0C8F00445CB3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1001E6FC20CF0C8F00445CB3 /* Assets.xcassets */; };
-		100D2A50222F37DB00DF5C02 /* automl_labeler_labels.txt in Resources */ = {isa = PBXBuildFile; fileRef = B217D4A8220D24C9001CE5AA /* automl_labeler_labels.txt */; };
-		100D2A51222F37DE00DF5C02 /* automl_labeler_manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = B217D4A9220D24CA001CE5AA /* automl_labeler_manifest.json */; };
-		100D2A52222F37E100DF5C02 /* automl_labeler_model.tflite in Resources */ = {isa = PBXBuildFile; fileRef = B217D4AA220D24CA001CE5AA /* automl_labeler_model.tflite */; };
 		10224B582087E43100A77316 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10224B572087E43100A77316 /* ViewController.swift */; };
 		10224B5E2087E49F00A77316 /* MLKitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10224B5B2087E49F00A77316 /* MLKitExtensions.swift */; };
 		10224B762087E5A900A77316 /* grace_hopper.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 10224B702087E5A900A77316 /* grace_hopper.jpg */; };
@@ -24,22 +20,14 @@
 		10E114E720E5CBAA0013E4A4 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10E114E620E5CBAA0013E4A4 /* ViewController.m */; };
 		10E114F220E5CBAE0013E4A4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 10E114F120E5CBAE0013E4A4 /* main.m */; };
 		10E1151420EBF5EB0013E4A4 /* UIUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 10E1151320EBF5EB0013E4A4 /* UIUtilities.m */; };
-		10E1151720EBF6220013E4A4 /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10E1151620EBF6220013E4A4 /* CameraViewController.m */; };
 		10E1151A20EBF7E10013E4A4 /* UIImage+VisionDetection.m in Sources */ = {isa = PBXBuildFile; fileRef = 10E1151920EBF7E10013E4A4 /* UIImage+VisionDetection.m */; };
 		10E1152120F3D5F60013E4A4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB287B3C20729CE90069707A /* Main.storyboard */; };
 		10E1152520F3DFE20013E4A4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1001E6FC20CF0C8F00445CB3 /* Assets.xcassets */; };
 		10E1152620F3E0930013E4A4 /* grace_hopper.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 10224B702087E5A900A77316 /* grace_hopper.jpg */; };
-		10E1152720F3E0960013E4A4 /* barcode_128.png in Resources */ = {isa = PBXBuildFile; fileRef = 7202DC6620D0C1A300034C35 /* barcode_128.png */; };
 		10E1152820F3E0990013E4A4 /* beach.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7202DC6720D0C1A300034C35 /* beach.jpg */; };
 		10E1152920F3E09C0013E4A4 /* image_has_text.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7202DC6520D0C1A300034C35 /* image_has_text.jpg */; };
-		10E1152A20F3E09F0013E4A4 /* qr_code.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7202DC6420D0C1A300034C35 /* qr_code.jpg */; };
-		7202DC6920D0C1A300034C35 /* qr_code.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7202DC6420D0C1A300034C35 /* qr_code.jpg */; };
 		7202DC6A20D0C1A300034C35 /* image_has_text.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7202DC6520D0C1A300034C35 /* image_has_text.jpg */; };
-		7202DC6B20D0C1A300034C35 /* barcode_128.png in Resources */ = {isa = PBXBuildFile; fileRef = 7202DC6620D0C1A300034C35 /* barcode_128.png */; };
 		7202DC6C20D0C1A300034C35 /* beach.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7202DC6720D0C1A300034C35 /* beach.jpg */; };
-		B217D4AB220D24CA001CE5AA /* automl_labeler_labels.txt in Resources */ = {isa = PBXBuildFile; fileRef = B217D4A8220D24C9001CE5AA /* automl_labeler_labels.txt */; };
-		B217D4AC220D24CA001CE5AA /* automl_labeler_manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = B217D4A9220D24CA001CE5AA /* automl_labeler_manifest.json */; };
-		B217D4AD220D24CA001CE5AA /* automl_labeler_model.tflite in Resources */ = {isa = PBXBuildFile; fileRef = B217D4AA220D24CA001CE5AA /* automl_labeler_model.tflite */; };
 		BB287B3920729CE90069707A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB287B3820729CE90069707A /* AppDelegate.swift */; };
 		BB287B3E20729CE90069707A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB287B3C20729CE90069707A /* Main.storyboard */; };
 /* End PBXBuildFile section */
@@ -63,7 +51,6 @@
 
 /* Begin PBXFileReference section */
 		1001E6F620CEE0DD00445CB3 /* UIUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIUtilities.swift; sourceTree = "<group>"; };
-		1001E6F820CF021E00445CB3 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		1001E6FC20CF0C8F00445CB3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		10224B572087E43100A77316 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		10224B5B2087E49F00A77316 /* MLKitExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MLKitExtensions.swift; sourceTree = "<group>"; };
@@ -83,17 +70,10 @@
 		10E114F120E5CBAE0013E4A4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		10E1151220EBF5EB0013E4A4 /* UIUtilities.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIUtilities.h; sourceTree = "<group>"; };
 		10E1151320EBF5EB0013E4A4 /* UIUtilities.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIUtilities.m; sourceTree = "<group>"; };
-		10E1151520EBF6220013E4A4 /* CameraViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CameraViewController.h; sourceTree = "<group>"; };
-		10E1151620EBF6220013E4A4 /* CameraViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CameraViewController.m; sourceTree = "<group>"; };
 		10E1151820EBF7E10013E4A4 /* UIImage+VisionDetection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+VisionDetection.h"; sourceTree = "<group>"; };
 		10E1151920EBF7E10013E4A4 /* UIImage+VisionDetection.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+VisionDetection.m"; sourceTree = "<group>"; };
-		7202DC6420D0C1A300034C35 /* qr_code.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = qr_code.jpg; path = Resources/qr_code.jpg; sourceTree = "<group>"; };
 		7202DC6520D0C1A300034C35 /* image_has_text.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = image_has_text.jpg; path = Resources/image_has_text.jpg; sourceTree = "<group>"; };
-		7202DC6620D0C1A300034C35 /* barcode_128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = barcode_128.png; path = Resources/barcode_128.png; sourceTree = "<group>"; };
 		7202DC6720D0C1A300034C35 /* beach.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = beach.jpg; path = Resources/beach.jpg; sourceTree = "<group>"; };
-		B217D4A8220D24C9001CE5AA /* automl_labeler_labels.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = automl_labeler_labels.txt; path = Resources/automl_labeler_labels.txt; sourceTree = "<group>"; };
-		B217D4A9220D24CA001CE5AA /* automl_labeler_manifest.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = automl_labeler_manifest.json; path = Resources/automl_labeler_manifest.json; sourceTree = "<group>"; };
-		B217D4AA220D24CA001CE5AA /* automl_labeler_model.tflite */ = {isa = PBXFileReference; lastKnownFileType = file; name = automl_labeler_model.tflite; path = Resources/automl_labeler_model.tflite; sourceTree = "<group>"; };
 		BB287B3520729CE90069707A /* MLVisionExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MLVisionExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB287B3820729CE90069707A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BB287B3D20729CE90069707A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -135,14 +115,9 @@
 		10224B642087E52600A77316 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				B217D4A8220D24C9001CE5AA /* automl_labeler_labels.txt */,
-				B217D4A9220D24CA001CE5AA /* automl_labeler_manifest.json */,
-				B217D4AA220D24CA001CE5AA /* automl_labeler_model.tflite */,
 				10224B702087E5A900A77316 /* grace_hopper.jpg */,
-				7202DC6620D0C1A300034C35 /* barcode_128.png */,
 				7202DC6720D0C1A300034C35 /* beach.jpg */,
 				7202DC6520D0C1A300034C35 /* image_has_text.jpg */,
-				7202DC6420D0C1A300034C35 /* qr_code.jpg */,
 				1077670D210FBBB6007A19A7 /* liberty.jpg */,
 			);
 			name = Resources;
@@ -176,8 +151,6 @@
 				10E114F120E5CBAE0013E4A4 /* main.m */,
 				10E1151220EBF5EB0013E4A4 /* UIUtilities.h */,
 				10E1151320EBF5EB0013E4A4 /* UIUtilities.m */,
-				10E1151520EBF6220013E4A4 /* CameraViewController.h */,
-				10E1151620EBF6220013E4A4 /* CameraViewController.m */,
 				10E1151820EBF7E10013E4A4 /* UIImage+VisionDetection.h */,
 				10E1151920EBF7E10013E4A4 /* UIImage+VisionDetection.m */,
 			);
@@ -194,6 +167,7 @@
 				1036DA362087CC26003253C9 /* MLVisionExampleUITests */,
 				10E114E120E5CBAA0013E4A4 /* MLVisionExampleObjc */,
 				BB287B3620729CE90069707A /* Products */,
+				F0B596D788690A62ACDF0818 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -215,7 +189,6 @@
 				10224B572087E43100A77316 /* ViewController.swift */,
 				10224B5B2087E49F00A77316 /* MLKitExtensions.swift */,
 				1001E6F620CEE0DD00445CB3 /* UIUtilities.swift */,
-				1001E6F820CF021E00445CB3 /* CameraViewController.swift */,
 				BB287B4A2072A0200069707A /* Supporting Files */,
 				BB287B4420729CE90069707A /* Info.plist */,
 			);
@@ -228,6 +201,13 @@
 				BB287B3C20729CE90069707A /* Main.storyboard */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F0B596D788690A62ACDF0818 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -378,14 +358,9 @@
 			files = (
 				10E1152120F3D5F60013E4A4 /* Main.storyboard in Resources */,
 				10E1152520F3DFE20013E4A4 /* Assets.xcassets in Resources */,
-				B217D4AD220D24CA001CE5AA /* automl_labeler_model.tflite in Resources */,
-				10E1152720F3E0960013E4A4 /* barcode_128.png in Resources */,
 				10E1152820F3E0990013E4A4 /* beach.jpg in Resources */,
-				B217D4AB220D24CA001CE5AA /* automl_labeler_labels.txt in Resources */,
 				10E1152620F3E0930013E4A4 /* grace_hopper.jpg in Resources */,
 				10E1152920F3E09C0013E4A4 /* image_has_text.jpg in Resources */,
-				10E1152A20F3E09F0013E4A4 /* qr_code.jpg in Resources */,
-				B217D4AC220D24CA001CE5AA /* automl_labeler_manifest.json in Resources */,
 				1077670F210FBBB6007A19A7 /* liberty.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -394,15 +369,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				100D2A51222F37DE00DF5C02 /* automl_labeler_manifest.json in Resources */,
 				10224B762087E5A900A77316 /* grace_hopper.jpg in Resources */,
 				7202DC6C20D0C1A300034C35 /* beach.jpg in Resources */,
-				7202DC6920D0C1A300034C35 /* qr_code.jpg in Resources */,
-				100D2A52222F37E100DF5C02 /* automl_labeler_model.tflite in Resources */,
-				7202DC6B20D0C1A300034C35 /* barcode_128.png in Resources */,
 				7202DC6A20D0C1A300034C35 /* image_has_text.jpg in Resources */,
 				BB287B3E20729CE90069707A /* Main.storyboard in Resources */,
-				100D2A50222F37DB00DF5C02 /* automl_labeler_labels.txt in Resources */,
 				1001E6FD20CF0C8F00445CB3 /* Assets.xcassets in Resources */,
 				1077670E210FBBB6007A19A7 /* liberty.jpg in Resources */,
 			);
@@ -431,7 +401,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				10E1151720EBF6220013E4A4 /* CameraViewController.m in Sources */,
 				10E1151A20EBF7E10013E4A4 /* UIImage+VisionDetection.m in Sources */,
 				10E114E720E5CBAA0013E4A4 /* ViewController.m in Sources */,
 				10E114F220E5CBAE0013E4A4 /* main.m in Sources */,
@@ -445,7 +414,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				10224B582087E43100A77316 /* ViewController.swift in Sources */,
-				1001E6F920CF021E00445CB3 /* CameraViewController.swift in Sources */,
 				BB287B3920729CE90069707A /* AppDelegate.swift in Sources */,
 				10224B5E2087E49F00A77316 /* MLKitExtensions.swift in Sources */,
 				1001E6F720CEE0DD00445CB3 /* UIUtilities.swift in Sources */,

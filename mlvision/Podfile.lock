@@ -9,24 +9,6 @@ PODS:
   - Firebase/MLVision (6.27.0):
     - Firebase/CoreOnly
     - FirebaseMLVision (~> 0.20.1)
-  - Firebase/MLVisionAutoML (6.27.0):
-    - Firebase/CoreOnly
-    - FirebaseMLVisionAutoML (~> 0.20.0)
-  - Firebase/MLVisionBarcodeModel (6.27.0):
-    - Firebase/CoreOnly
-    - FirebaseMLVisionBarcodeModel (~> 0.20.0)
-  - Firebase/MLVisionFaceModel (6.27.0):
-    - Firebase/CoreOnly
-    - FirebaseMLVisionFaceModel (~> 0.20.0)
-  - Firebase/MLVisionLabelModel (6.27.0):
-    - Firebase/CoreOnly
-    - FirebaseMLVisionLabelModel (~> 0.20.0)
-  - Firebase/MLVisionObjectDetection (6.27.0):
-    - Firebase/CoreOnly
-    - FirebaseMLVisionObjectDetection (~> 0.20.0)
-  - Firebase/MLVisionTextModel (6.27.0):
-    - Firebase/CoreOnly
-    - FirebaseMLVisionTextModel (~> 0.20.0)
   - FirebaseAnalytics (6.6.1):
     - FirebaseCore (~> 6.8)
     - FirebaseInstallations (~> 1.4)
@@ -73,22 +55,6 @@ PODS:
     - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
     - GTMSessionFetcher/Core (~> 1.1)
     - Protobuf (~> 3.12)
-  - FirebaseMLVisionAutoML (0.20.0):
-    - FirebaseCore (~> 6.7)
-    - FirebaseMLCommon (~> 0.20)
-    - FirebaseMLVision (~> 0.20)
-    - GTMSessionFetcher/Core (~> 1.1)
-    - TensorFlowLiteObjC (~> 2.1.0)
-  - FirebaseMLVisionBarcodeModel (0.20.0):
-    - FirebaseMLVision (~> 0.20)
-  - FirebaseMLVisionFaceModel (0.20.0):
-    - FirebaseMLVision (~> 0.20)
-  - FirebaseMLVisionLabelModel (0.20.0):
-    - FirebaseMLVision (~> 0.20)
-  - FirebaseMLVisionObjectDetection (0.20.0):
-    - FirebaseMLVision (~> 0.20)
-  - FirebaseMLVisionTextModel (0.20.0):
-    - FirebaseMLVision (~> 0.20)
   - GoogleAPIClientForREST/Core (1.4.1):
     - GTMSessionFetcher (>= 1.1.7)
   - GoogleAPIClientForREST/Vision (1.4.1):
@@ -147,19 +113,10 @@ PODS:
   - nanopb/encode (1.30905.0)
   - PromisesObjC (1.2.9)
   - Protobuf (3.12.0)
-  - TensorFlowLiteC (2.1.0)
-  - TensorFlowLiteObjC (2.1.0):
-    - TensorFlowLiteC (= 2.1.0)
 
 DEPENDENCIES:
   - Firebase/Analytics
   - Firebase/MLVision
-  - Firebase/MLVisionAutoML
-  - Firebase/MLVisionBarcodeModel
-  - Firebase/MLVisionFaceModel
-  - Firebase/MLVisionLabelModel
-  - Firebase/MLVisionObjectDetection
-  - Firebase/MLVisionTextModel
 
 SPEC REPOS:
   trunk:
@@ -171,12 +128,6 @@ SPEC REPOS:
     - FirebaseInstanceID
     - FirebaseMLCommon
     - FirebaseMLVision
-    - FirebaseMLVisionAutoML
-    - FirebaseMLVisionBarcodeModel
-    - FirebaseMLVisionFaceModel
-    - FirebaseMLVisionLabelModel
-    - FirebaseMLVisionObjectDetection
-    - FirebaseMLVisionTextModel
     - GoogleAPIClientForREST
     - GoogleAppMeasurement
     - GoogleDataTransport
@@ -187,8 +138,6 @@ SPEC REPOS:
     - nanopb
     - PromisesObjC
     - Protobuf
-    - TensorFlowLiteC
-    - TensorFlowLiteObjC
 
 SPEC CHECKSUMS:
   Firebase: fc4cbf6f1592636431821ef9a3c557e4dfd9f268
@@ -199,12 +148,6 @@ SPEC CHECKSUMS:
   FirebaseInstanceID: 3b119bfe90e904851218159c9a4ecb847cc51d18
   FirebaseMLCommon: 5e1184cfdddbd097f55cad75b598881d348d900f
   FirebaseMLVision: 485358b97d3332669ecc4fed55ee360aaef2813d
-  FirebaseMLVisionAutoML: 03f056e68f0441087ce868fe19033d0a324e8f1e
-  FirebaseMLVisionBarcodeModel: 35cfeaa9494d8c6106423a4672055dd8e07ddbc3
-  FirebaseMLVisionFaceModel: 762b3af94fb29a981d76b3ab28cd1f53708f58c5
-  FirebaseMLVisionLabelModel: 3dbf36096c0802bd09167bee09063183d964f4db
-  FirebaseMLVisionObjectDetection: 284bb1111148d56e460a5db204e1099c00d70549
-  FirebaseMLVisionTextModel: 2ec9bf2287b29ef2b7d79152aad454cce5bc3040
   GoogleAPIClientForREST: e50dc3267b3131ee3a25e707c10204f6bec15ae9
   GoogleAppMeasurement: 2fd5c5a56c069db635c8e7b92d4809a9591d0a69
   GoogleDataTransport: 9a8a16f79feffc7f42096743de2a7c4815e84020
@@ -215,9 +158,7 @@ SPEC CHECKSUMS:
   nanopb: c43f40fadfe79e8b8db116583945847910cbabc9
   PromisesObjC: b48e0338dbbac2207e611750777895f7a5811b75
   Protobuf: 2793fcd0622a00b546c60e7cbbcc493e043e9bb9
-  TensorFlowLiteC: 215603d4426d93810eace5947e317389554a4b66
-  TensorFlowLiteObjC: 2e074eb41084037aeda9a8babe111fdd3ac99974
 
-PODFILE CHECKSUM: 065f6f64a2dbe4ac037a29034e3c06e86fb1677c
+PODFILE CHECKSUM: 8a6eb1c0045ad35799504f5f41e08b4c24b33bc4
 
 COCOAPODS: 1.9.3

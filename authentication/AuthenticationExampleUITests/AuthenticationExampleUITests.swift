@@ -225,7 +225,7 @@ class AuthenticationExampleUITests: XCTestCase {
         if app.staticTexts["Sign Out"].exists {
             app.staticTexts["Sign Out"].tap()
         }
-        app.tabBars.buttons["Authentication"].tap()
+        app.tabBars.firstMatch.buttons.element(boundBy: 0).tap()
     }
 
 }

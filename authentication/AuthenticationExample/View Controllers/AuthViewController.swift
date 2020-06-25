@@ -114,7 +114,7 @@ class AuthViewController: UIViewController, DataSourceProviderDelegate {
 
     private func performFacebookSignInFlow() {
         // The following config can also be stored in the project's .plist
-        Settings.appID = "ENTER FACEBOOK APP ID HERE"
+        Settings.appID = "1561463120688851"
         Settings.displayName = "Swifty Auth"
         
         // Create a Facebook `LoginManager` instance

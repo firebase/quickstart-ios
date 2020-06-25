@@ -1,11 +1,11 @@
 # Uncomment the next line to define a global platform for your project
 platform :ios, '13.0'
 
-target 'Swifty Auth' do
+target 'AuthenticationExample' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 
-  # Pods for Swifty Auth
+  # Pods for AuthenticationExample
   ## Firebase 🔥 Pods
   pod 'Firebase/Analytics'
   pod 'Firebase/Auth'
@@ -19,12 +19,12 @@ target 'Swifty Auth' do
   ## Pod for Sign in with Facebook
   pod 'FBSDKLoginKit'
 
-  target 'Swifty AuthTests' do
+  target 'AuthenticationExampleTests' do
     inherit! :search_paths
     # Pods for testing
   end
 
-  target 'Swifty AuthUITests' do
+  target 'AuthenticationExampleUITests' do
     # Pods for testing
   end
 

@@ -17,7 +17,56 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleURLTypes</key>
-	<array/>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string></string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.google.Swifty-Auth</string>
+				<string>com.googleusercontent.apps.1090500314679-17jvae1b271eica3nrloe8auufs3paik</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>fb1561463120688851</string>
+				<string>com.googleusercontent.apps.1090500314679-17jvae1b271eica3nrloe8auufs3paik</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>kaYXc86k</string>
+				<string>
+com.googleusercontent.apps.1090500314679-17jvae1b271eica3nrloe8auufs3paik</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>482198bb-ae7b-4b25-8b7a-6d7f32faa083</string>
+				<string>
+com.googleusercontent.apps.1090500314679-17jvae1b271eica3nrloe8auufs3paik</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.google.Swifty-Auth</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>

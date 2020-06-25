@@ -26,11 +26,12 @@
 		EAE4CBC724855E3A00245E92 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE4CBC624855E3A00245E92 /* SceneDelegate.swift */; };
 		EAE4CBC924855E3A00245E92 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE4CBC824855E3A00245E92 /* AuthViewController.swift */; };
 		EAE4CBCE24855E3D00245E92 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EAE4CBCD24855E3D00245E92 /* Assets.xcassets */; };
-		EAE4CBDC24855E3E00245E92 /* Swifty_AuthTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE4CBDB24855E3E00245E92 /* Swifty_AuthTests.swift */; };
-		EAE4CBE724855E3E00245E92 /* Swifty_AuthUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE4CBE624855E3E00245E92 /* Swifty_AuthUITests.swift */; };
+		EAE4CBDC24855E3E00245E92 /* AuthenticationExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE4CBDB24855E3E00245E92 /* AuthenticationExampleTests.swift */; };
+		EAE4CBE724855E3E00245E92 /* AuthenticationExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE4CBE624855E3E00245E92 /* AuthenticationExampleUITests.swift */; };
 		EAE4CBF524857A5100245E92 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE4CBF424857A5100245E92 /* LoginController.swift */; };
 		EAEBCE0F2489FFDE00FCEA92 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAEBCE0E2489FFDE00FCEA92 /* Extensions.swift */; };
 		EAEBCE11248A9AA000FCEA92 /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAEBCE10248A9AA000FCEA92 /* Section.swift */; };
+		EAEBCE1B248B091100FCEA92 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EAEBCE1A248B091100FCEA92 /* GoogleService-Info.plist */; };
 		EAFDF2BE2490439F0082B6F1 /* Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFDF2BD2490439F0082B6F1 /* Animator.swift */; };
 /* End PBXBuildFile section */
 
@@ -58,6 +59,7 @@
 		EA20B46B2495A9F900B5E581 /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
 		EA20B46D2495B2C700B5E581 /* DataSourceProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSourceProtocols.swift; sourceTree = "<group>"; };
 		EA20B502249C6C3D00B5E581 /* CustomAuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAuthViewController.swift; sourceTree = "<group>"; };
+		EA20B506249CA63300B5E581 /* AuthenticationExample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AuthenticationExample.entitlements; sourceTree = "<group>"; };
 		EA20B507249CCB0000B5E581 /* PhoneAuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneAuthViewController.swift; sourceTree = "<group>"; };
 		EA20B509249D3D8600B5E581 /* PasswordlessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordlessViewController.swift; sourceTree = "<group>"; };
 		EA20B50B249E8F0700B5E581 /* AuthProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthProvider.swift; sourceTree = "<group>"; };
@@ -67,21 +69,22 @@
 		EA527CAB24A0EE9600ADB9A2 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		EAB3A1782494433500385291 /* DataSourceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSourceProvider.swift; sourceTree = "<group>"; };
 		EAB3A17B2494628200385291 /* UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
-		EAE4CBC124855E3A00245E92 /* Swifty Auth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Swifty Auth.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EAE4CBC124855E3A00245E92 /* AuthenticationExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AuthenticationExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAE4CBC424855E3A00245E92 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EAE4CBC624855E3A00245E92 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		EAE4CBC824855E3A00245E92 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		EAE4CBCD24855E3D00245E92 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EAE4CBD224855E3D00245E92 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EAE4CBD724855E3E00245E92 /* Swifty AuthTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Swifty AuthTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		EAE4CBDB24855E3E00245E92 /* Swifty_AuthTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Swifty_AuthTests.swift; sourceTree = "<group>"; };
+		EAE4CBD724855E3E00245E92 /* AuthenticationExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AuthenticationExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EAE4CBDB24855E3E00245E92 /* AuthenticationExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationExampleTests.swift; sourceTree = "<group>"; };
 		EAE4CBDD24855E3E00245E92 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EAE4CBE224855E3E00245E92 /* Swifty AuthUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Swifty AuthUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		EAE4CBE624855E3E00245E92 /* Swifty_AuthUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Swifty_AuthUITests.swift; sourceTree = "<group>"; };
+		EAE4CBE224855E3E00245E92 /* AuthenticationExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AuthenticationExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EAE4CBE624855E3E00245E92 /* AuthenticationExampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationExampleUITests.swift; sourceTree = "<group>"; };
 		EAE4CBE824855E3E00245E92 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EAE4CBF424857A5100245E92 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		EAEBCE0E2489FFDE00FCEA92 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		EAEBCE10248A9AA000FCEA92 /* Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
+		EAEBCE1A248B091100FCEA92 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EAFDF2BD2490439F0082B6F1 /* Animator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -190,10 +193,9 @@
 		EAE4CBB824855E3A00245E92 = {
 			isa = PBXGroup;
 			children = (
-				EA062D5C24A0FEB6006714D3 /* README.md */,
-				EAE4CBC324855E3A00245E92 /* Swifty Auth */,
-				EAE4CBDA24855E3E00245E92 /* Swifty AuthTests */,
-				EAE4CBE524855E3E00245E92 /* Swifty AuthUITests */,
+				EAE4CBC324855E3A00245E92 /* AuthenticationExample */,
+				EAE4CBDA24855E3E00245E92 /* AuthenticationExampleTests */,
+				EAE4CBE524855E3E00245E92 /* AuthenticationExampleUITests */,
 				EAE4CBC224855E3A00245E92 /* Products */,
 				CE54897B57069002714B8FA5 /* Pods */,
 			);
@@ -202,16 +204,18 @@
 		EAE4CBC224855E3A00245E92 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				EAE4CBC124855E3A00245E92 /* Swifty Auth.app */,
-				EAE4CBD724855E3E00245E92 /* Swifty AuthTests.xctest */,
-				EAE4CBE224855E3E00245E92 /* Swifty AuthUITests.xctest */,
+				EAE4CBC124855E3A00245E92 /* AuthenticationExample.app */,
+				EAE4CBD724855E3E00245E92 /* AuthenticationExampleTests.xctest */,
+				EAE4CBE224855E3E00245E92 /* AuthenticationExampleUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		EAE4CBC324855E3A00245E92 /* Swifty Auth */ = {
+		EAE4CBC324855E3A00245E92 /* AuthenticationExample */ = {
 			isa = PBXGroup;
 			children = (
+				EA062D5C24A0FEB6006714D3 /* README.md */,
+				EA20B506249CA63300B5E581 /* AuthenticationExample.entitlements */,
 				EAE4CBC424855E3A00245E92 /* AppDelegate.swift */,
 				EAE4CBC624855E3A00245E92 /* SceneDelegate.swift */,
 				EA20B47624973B8A00B5E581 /* Models */,
@@ -221,34 +225,35 @@
 				EAE4CBCD24855E3D00245E92 /* Assets.xcassets */,
 				EA217894248979E200736757 /* LaunchScreen.storyboard */,
 				EAE4CBD224855E3D00245E92 /* Info.plist */,
+				EAEBCE1A248B091100FCEA92 /* GoogleService-Info.plist */,
 			);
-			path = "Swifty Auth";
+			path = AuthenticationExample;
 			sourceTree = "<group>";
 		};
-		EAE4CBDA24855E3E00245E92 /* Swifty AuthTests */ = {
+		EAE4CBDA24855E3E00245E92 /* AuthenticationExampleTests */ = {
 			isa = PBXGroup;
 			children = (
-				EAE4CBDB24855E3E00245E92 /* Swifty_AuthTests.swift */,
+				EAE4CBDB24855E3E00245E92 /* AuthenticationExampleTests.swift */,
 				EAE4CBDD24855E3E00245E92 /* Info.plist */,
 			);
-			path = "Swifty AuthTests";
+			path = AuthenticationExampleTests;
 			sourceTree = "<group>";
 		};
-		EAE4CBE524855E3E00245E92 /* Swifty AuthUITests */ = {
+		EAE4CBE524855E3E00245E92 /* AuthenticationExampleUITests */ = {
 			isa = PBXGroup;
 			children = (
-				EAE4CBE624855E3E00245E92 /* Swifty_AuthUITests.swift */,
+				EAE4CBE624855E3E00245E92 /* AuthenticationExampleUITests.swift */,
 				EAE4CBE824855E3E00245E92 /* Info.plist */,
 			);
-			path = "Swifty AuthUITests";
+			path = AuthenticationExampleUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		EAE4CBC024855E3A00245E92 /* Swifty Auth */ = {
+		EAE4CBC024855E3A00245E92 /* AuthenticationExample */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EAE4CBEB24855E3E00245E92 /* Build configuration list for PBXNativeTarget "Swifty Auth" */;
+			buildConfigurationList = EAE4CBEB24855E3E00245E92 /* Build configuration list for PBXNativeTarget "AuthenticationExample" */;
 			buildPhases = (
 				EAE4CBBD24855E3A00245E92 /* Sources */,
 				EAE4CBBE24855E3A00245E92 /* Frameworks */,
@@ -258,14 +263,14 @@
 			);
 			dependencies = (
 			);
-			name = "Swifty Auth";
+			name = AuthenticationExample;
 			productName = "Swifty Auth";
-			productReference = EAE4CBC124855E3A00245E92 /* Swifty Auth.app */;
+			productReference = EAE4CBC124855E3A00245E92 /* AuthenticationExample.app */;
 			productType = "com.apple.product-type.application";
 		};
-		EAE4CBD624855E3E00245E92 /* Swifty AuthTests */ = {
+		EAE4CBD624855E3E00245E92 /* AuthenticationExampleTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EAE4CBEE24855E3E00245E92 /* Build configuration list for PBXNativeTarget "Swifty AuthTests" */;
+			buildConfigurationList = EAE4CBEE24855E3E00245E92 /* Build configuration list for PBXNativeTarget "AuthenticationExampleTests" */;
 			buildPhases = (
 				EAE4CBD324855E3E00245E92 /* Sources */,
 				EAE4CBD424855E3E00245E92 /* Frameworks */,
@@ -276,14 +281,14 @@
 			dependencies = (
 				EAE4CBD924855E3E00245E92 /* PBXTargetDependency */,
 			);
-			name = "Swifty AuthTests";
+			name = AuthenticationExampleTests;
 			productName = "Swifty AuthTests";
-			productReference = EAE4CBD724855E3E00245E92 /* Swifty AuthTests.xctest */;
+			productReference = EAE4CBD724855E3E00245E92 /* AuthenticationExampleTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		EAE4CBE124855E3E00245E92 /* Swifty AuthUITests */ = {
+		EAE4CBE124855E3E00245E92 /* AuthenticationExampleUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EAE4CBF124855E3E00245E92 /* Build configuration list for PBXNativeTarget "Swifty AuthUITests" */;
+			buildConfigurationList = EAE4CBF124855E3E00245E92 /* Build configuration list for PBXNativeTarget "AuthenticationExampleUITests" */;
 			buildPhases = (
 				EAE4CBDE24855E3E00245E92 /* Sources */,
 				EAE4CBDF24855E3E00245E92 /* Frameworks */,
@@ -294,9 +299,9 @@
 			dependencies = (
 				EAE4CBE424855E3E00245E92 /* PBXTargetDependency */,
 			);
-			name = "Swifty AuthUITests";
+			name = AuthenticationExampleUITests;
 			productName = "Swifty AuthUITests";
-			productReference = EAE4CBE224855E3E00245E92 /* Swifty AuthUITests.xctest */;
+			productReference = EAE4CBE224855E3E00245E92 /* AuthenticationExampleUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -322,7 +327,7 @@
 					};
 				};
 			};
-			buildConfigurationList = EAE4CBBC24855E3A00245E92 /* Build configuration list for PBXProject "Swifty Auth" */;
+			buildConfigurationList = EAE4CBBC24855E3A00245E92 /* Build configuration list for PBXProject "AuthenticationExample" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -335,9 +340,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				EAE4CBC024855E3A00245E92 /* Swifty Auth */,
-				EAE4CBD624855E3E00245E92 /* Swifty AuthTests */,
-				EAE4CBE124855E3E00245E92 /* Swifty AuthUITests */,
+				EAE4CBC024855E3A00245E92 /* AuthenticationExample */,
+				EAE4CBD624855E3E00245E92 /* AuthenticationExampleTests */,
+				EAE4CBE124855E3E00245E92 /* AuthenticationExampleUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -350,6 +355,7 @@
 				EA217895248979E200736757 /* LaunchScreen.storyboard in Resources */,
 				EAE4CBCE24855E3D00245E92 /* Assets.xcassets in Resources */,
 				EA062D5D24A0FEB6006714D3 /* README.md in Resources */,
+				EAEBCE1B248B091100FCEA92 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -401,7 +407,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EAE4CBDC24855E3E00245E92 /* Swifty_AuthTests.swift in Sources */,
+				EAE4CBDC24855E3E00245E92 /* AuthenticationExampleTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -409,7 +415,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EAE4CBE724855E3E00245E92 /* Swifty_AuthUITests.swift in Sources */,
+				EAE4CBE724855E3E00245E92 /* AuthenticationExampleUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -418,12 +424,12 @@
 /* Begin PBXTargetDependency section */
 		EAE4CBD924855E3E00245E92 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = EAE4CBC024855E3A00245E92 /* Swifty Auth */;
+			target = EAE4CBC024855E3A00245E92 /* AuthenticationExample */;
 			targetProxy = EAE4CBD824855E3E00245E92 /* PBXContainerItemProxy */;
 		};
 		EAE4CBE424855E3E00245E92 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = EAE4CBC024855E3A00245E92 /* Swifty Auth */;
+			target = EAE4CBC024855E3A00245E92 /* AuthenticationExample */;
 			targetProxy = EAE4CBE324855E3E00245E92 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -547,16 +553,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "";
+				CODE_SIGN_ENTITLEMENTS = AuthenticationExample/AuthenticationExample.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = K2A6VGGX23;
-				INFOPLIST_FILE = "Swifty Auth/Info.plist";
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = AuthenticationExample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.google.Swifty-Auth";
+				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.AuthenticationExample.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -567,16 +573,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "";
+				CODE_SIGN_ENTITLEMENTS = AuthenticationExample/AuthenticationExample.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = K2A6VGGX23;
-				INFOPLIST_FILE = "Swifty Auth/Info.plist";
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = AuthenticationExample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.google.Swifty-Auth";
+				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.AuthenticationExample.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -589,18 +595,18 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = "Swifty AuthTests/Info.plist";
+				INFOPLIST_FILE = AuthenticationExampleTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.google.Swifty-AuthTests";
+				PRODUCT_BUNDLE_IDENTIFIER = com.google.AuthenticationExampleTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Swifty Auth.app/Swifty Auth";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AuthenticationExample.app/AuthenticationExample";
 			};
 			name = Debug;
 		};
@@ -610,18 +616,18 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = "Swifty AuthTests/Info.plist";
+				INFOPLIST_FILE = AuthenticationExampleTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.google.Swifty-AuthTests";
+				PRODUCT_BUNDLE_IDENTIFIER = com.google.AuthenticationExampleTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Swifty Auth.app/Swifty Auth";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AuthenticationExample.app/AuthenticationExample";
 			};
 			name = Release;
 		};
@@ -630,17 +636,18 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = "Swifty AuthUITests/Info.plist";
+				INFOPLIST_FILE = AuthenticationExampleUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.google.Swifty-AuthUITests";
+				PRODUCT_BUNDLE_IDENTIFIER = com.google.AuthenticationExampleUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "Swifty Auth";
+				TEST_TARGET_NAME = AuthenticationExample;
 			};
 			name = Debug;
 		};
@@ -649,24 +656,25 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = "Swifty AuthUITests/Info.plist";
+				INFOPLIST_FILE = AuthenticationExampleUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.google.Swifty-AuthUITests";
+				PRODUCT_BUNDLE_IDENTIFIER = com.google.AuthenticationExampleUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "Swifty Auth";
+				TEST_TARGET_NAME = AuthenticationExample;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		EAE4CBBC24855E3A00245E92 /* Build configuration list for PBXProject "Swifty Auth" */ = {
+		EAE4CBBC24855E3A00245E92 /* Build configuration list for PBXProject "AuthenticationExample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EAE4CBE924855E3E00245E92 /* Debug */,
@@ -675,7 +683,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		EAE4CBEB24855E3E00245E92 /* Build configuration list for PBXNativeTarget "Swifty Auth" */ = {
+		EAE4CBEB24855E3E00245E92 /* Build configuration list for PBXNativeTarget "AuthenticationExample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EAE4CBEC24855E3E00245E92 /* Debug */,
@@ -684,7 +692,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		EAE4CBEE24855E3E00245E92 /* Build configuration list for PBXNativeTarget "Swifty AuthTests" */ = {
+		EAE4CBEE24855E3E00245E92 /* Build configuration list for PBXNativeTarget "AuthenticationExampleTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EAE4CBEF24855E3E00245E92 /* Debug */,
@@ -693,7 +701,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		EAE4CBF124855E3E00245E92 /* Build configuration list for PBXNativeTarget "Swifty AuthUITests" */ = {
+		EAE4CBF124855E3E00245E92 /* Build configuration list for PBXNativeTarget "AuthenticationExampleUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EAE4CBF224855E3E00245E92 /* Debug */,

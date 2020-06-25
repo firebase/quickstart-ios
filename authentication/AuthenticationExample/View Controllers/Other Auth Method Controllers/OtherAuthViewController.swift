@@ -32,7 +32,7 @@ class OtherAuthViewController: UIViewController {
     
     private lazy var button: UIButton = {
         let button = UIButton()
-        button.setTitleColor(.label, for: .normal)
+        button.setTitleColor(.white, for: .normal)
         button.setTitleColor(.highlightedLabel, for: .highlighted)
         button.setBackgroundImage(UIColor.systemOrange.image, for: .normal)
         button.setBackgroundImage(UIColor.systemOrange.highlighted.image, for: .highlighted)

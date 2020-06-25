@@ -89,7 +89,7 @@ class AuthenticationExampleUITests: XCTestCase {
         
         // Go back and check that there is no user that is signed in
         app.navigationBars.buttons.firstMatch.tap()
-        app.tabBars.buttons["Current User"].tap()
+        app.tabBars.firstMatch.buttons.element(boundBy: 1).tap()
         wait(forElement: app.navigationBars["User"], timeout: 5.0)
         XCTAssertEqual(app.cells.count, 0, "The user shouldn't be signed in and the user view should have no cells.")
     }
@@ -115,7 +115,7 @@ class AuthenticationExampleUITests: XCTestCase {
         
         // Go back and check that there is no user that is signed in
         app.navigationBars.buttons.firstMatch.tap()
-        app.tabBars.buttons["Current User"].tap()
+        app.tabBars.firstMatch.buttons.element(boundBy: 1).tap()
         wait(forElement: app.navigationBars["User"], timeout: 5.0)
         XCTAssertEqual(app.cells.count, 0, "The user shouldn't be signed in and the user view should have no cells.")
     }
@@ -141,7 +141,7 @@ class AuthenticationExampleUITests: XCTestCase {
         
         // Go back and check that there is no user that is signed in
         app.navigationBars.buttons.firstMatch.tap()
-        app.tabBars.buttons["Current User"].tap()
+        app.tabBars.firstMatch.buttons.element(boundBy: 1).tap()
         wait(forElement: app.navigationBars["User"], timeout: 5.0)
         XCTAssertEqual(app.cells.count, 0, "The user shouldn't be signed in and the user view should have no cells.")
     }
@@ -220,7 +220,7 @@ class AuthenticationExampleUITests: XCTestCase {
     // MARK: - Private Helpers
 
     private func signOut() {
-        app.tabBars.buttons["Current User"].tap()
+        app.tabBars.firstMatch.buttons.element(boundBy: 1).tap()
         wait(forElement: app.navigationBars["User"], timeout: 5.0)
         if app.staticTexts["Sign Out"].exists {
             app.staticTexts["Sign Out"].tap()

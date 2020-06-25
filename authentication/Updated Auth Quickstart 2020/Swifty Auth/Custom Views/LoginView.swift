@@ -25,7 +25,7 @@ class LoginView: UIView {
     lazy var loginButton: UIButton = {
         let button = UIButton()
         button.setTitle("Login", for: .normal)
-        button.setTitleColor(.label, for: .normal)
+        button.setTitleColor(.white, for: .normal)
         button.setTitleColor(.highlightedLabel, for: .highlighted)
         button.setBackgroundImage(UIColor.systemOrange.image, for: .normal)
         button.setBackgroundImage(UIColor.systemOrange.highlighted.image, for: .highlighted)
@@ -36,7 +36,7 @@ class LoginView: UIView {
 
     lazy var createAccountButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Create an account", for: .normal)
+        button.setTitle("Create Account", for: .normal)
         button.setTitleColor(.secondaryLabel, for: .normal)
         button.setTitleColor(UIColor.secondaryLabel.highlighted, for: .highlighted)
         return button

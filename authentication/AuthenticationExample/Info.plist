@@ -22,11 +22,9 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>Client</string>
+			<string></string>
 			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>REVERSED_CLIENT_ID</string>
-			</array>
+			<array/>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>

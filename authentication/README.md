@@ -45,8 +45,10 @@ We will need to connect our quickstart with the Firebase Console. For an in dept
 To enable sign in with each of the following identity providers, there are a few configuration steps required to make sure everything works properly.
 
 **When it comes to configuring most of the below identity providers**, you may have to have to [add a custom URL scheme](https://developer.apple.com/documentation/uikit/inter-process_communication/allowing_apps_and_websites_to_link_to_your_content/defining_a_custom_url_scheme_for_your_app) in your Xcode project so Firebase Auth can correctly work with the corresponding Identity Provider. This is done by selecting the app's target in Xcode and navigating to the **Info** tab. For each login flow that requires adding a custom URL scheme, be sure to add a new URL Scheme for each respective identity provider rather than replace existing schemes you have created previously. 
-  
 
+
+  
+  
 ### Google Sign In
 
 We have already included the **`GoogleSignIn`** cocoapod in the quickstart's `Podfile`. This cocoapod is **required** for **Google Sign In**.
@@ -58,28 +60,30 @@ We have already included the **`GoogleSignIn`** cocoapod in the quickstart's `Po
 - Click **Google** and turn on the **Enable** switch, then click **Save**.
 
 - In Xcode, [add a custom URL scheme for your reversed client ID](https://developers.google.com/identity/sign-in/ios/start-integrating#add_a_url_scheme_to_your_project).
-
     - You can find this in the `GoogleService-Info.plist`. This is the value associated with the **`REVERSED_CLIENT_ID`** key in the  `GoogleService-Info.plist` file. 
-    - For the `URL Type`'s **Identifier**, feel free to put whatever. Something like "Google Sign In" adds some context for what the reversed link is related to.
+    - For the `URL Type`'s **Identifier**, feel free to put whatever. Something like "Firebase Auth" adds some context for what the reversed link is related to.
     - In Xcode, select the quickstart's target and navigate to the `Info` tab. Look for the `URL Types` section. Expand the section and select the first 'URL Type' and paste in the URL 
+
 
 - Run the app on your device or simulator.
 
-- Choose **Google** under **Identity Providers** to launch the Google Sign In flow
+- Choose **Google** under **Identity Providers** to launch the **Google Sign In** flow
 
   
 
 ### Sign in with Apple
+
+As outlined in the docs, **Sign in with Apple** requires enabling the *Sign In with Apple* [`Capability`](https://developer.apple.com/documentation/xcode/adding_capabilities_to_your_app) in this quickstart's Xcode project. Please visit the [Firebase docs](firebase auth apple) for more info.
 
 #### Start by going to the [Firebase Console](https://console.firebase.google.com) and navigate to your project:
 
 - Select the **Auth** panel and then click the **Sign In Method** tab.
 - Click **Apple** and turn on the **Enable** switch, then click **Save**.
 - Run the app on your device or simulator.
-- Select **Sign In** and select Apple to begin.
+- Choose **Apple** under **Identity Providers** to launch the **Sign in with Apple** flow
 - See the [Getting Started with Apple Sign In guide](https://firebase.google.com/docs/auth/ios/apple) for more details.
 
-As outlined in the docs, **Sign in with Apple** requires enabling the *Sign In with Apple* [`Capability`](https://developer.apple.com/documentation/xcode/adding_capabilities_to_your_app) in this quickstart's Xcode project. 
+ 
 
 ### Twitter
 #### Start by going to the [Firebase Console](https://console.firebase.google.com) and navigate to your project:
@@ -88,8 +92,11 @@ As outlined in the docs, **Sign in with Apple** requires enabling the *Sign In w
   - Enter your Twitter **API Key** and **App Secret** and click **Save**.
   - Make sure your Firebase OAuth redirect URI (e.g. my-app-12345.firebaseapp.com/__/auth/handler) is set as your  
     Authorization callback URL in your app's settings page on your [Twitter app's config](https://apps.twitter.com).
+   - In Xcode, [add a custom URL scheme for your reversed client ID](https://developers.google.com/identity/sign-in/ios/start-integrating).
+        - You can find this in the  `GoogleService-Info.plist`
 - Run the app on your device or simulator.
-    - Select **Sign In** and select Twitter to begin.
+- Choose **Twitter** under **Identity Providers** to launch the **Twitter Sign In** flow
+
   
 
 ### Microsoft
@@ -99,7 +106,7 @@ As outlined in the docs, **Sign in with Apple** requires enabling the *Sign In w
 - In Xcode, [add a custom URL scheme for your reversed client ID](https://developers.google.com/identity/sign-in/ios/start-integrating).
   - You can find this in the `GoogleService-Info.plist`
 - Run the app on your device or simulator.
-    - Select **Sign In** and select Microsoft to begin.
+- Choose **Microsoft** under **Identity Providers** to launch the **Microsoft Sign In** flow
 
 See the [Getting Started with Microsoft Sign In guide](https://firebase.google.com/docs/auth/ios/microsoft-oauth) for more details.
 
@@ -111,7 +118,7 @@ See the [Getting Started with Microsoft Sign In guide](https://firebase.google.c
 - In Xcode, [add a custom URL scheme for your reversed client ID](https://developers.google.com/identity/sign-in/ios/start-integrating).
   - You can find this in the `GoogleService-Info.plist`
 - Run the app on your device or simulator.
-    - Select **Sign In** and select GitHub to begin.
+- Choose **GitHub** under **Identity Providers** to launch the **GitHub Sign In** flow
    
 See the [Getting Started with GitHub Sign In guide](https://firebase.google.com/docs/auth/ios/github-auth) for more details.
 
@@ -122,7 +129,7 @@ See the [Getting Started with GitHub Sign In guide](https://firebase.google.com/
 - In Xcode, [add a custom URL scheme for your reversed client ID](https://developers.google.com/identity/sign-in/ios/start-integrating).
   - You can find this in the `GoogleService-Info.plist`
 - Run the app on your device or simulator.
-    - Select **Sign In** and select Yahoo to begin.
+- Choose **Yahoo** under **Identity Providers** to launch the **Yahoo Sign In** flow
   
 See the [Getting Started with Yahoo Sign In guide](https://firebase.google.com/docs/auth/ios/yahoo-oauth) for more details.
 
@@ -143,24 +150,23 @@ We have already included the **`FBSDKLoginKit`** cocoapod in the quickstart's `P
 - In the *Info* tab of your target settings add a *URL Type* with a *URL Scheme* of 'fb' + the ID
   of your Facebook app, e.g. fb1234567.
 - Run the app on your device or simulator.
-    - Select **Sign In** and select Facebook to begin.
+- Choose **Facebook** under **Identity Providers** to launch the **Facebook Sign In** flow
   
 ### Email/Password Setup
 #### Start by going to the [Firebase Console](https://console.firebase.google.com) and navigate to your project:
   - Select the **Auth** panel and then click the **Sign In Method** tab.
   - Click **Email/Password** and turn on the **Enable** switch, then click **Save**.
 - Run the app on your device or simulator.
-    - Select **Sign In** and select Email to begin.
+- Choose **Email & Password** to launch the **Email & Password Sign In** flow
  
   
-
 ## Other Auth Methods
 
   
 
 ### Email Link/Passwordless
 
-Email Link authentication, which is also referred to as Passwordless authentication, works by sending a verification email to a user requesting to sign in. This verification email contains a special `Dynamic Link` that links the user back to your app, completing authentication in the process. In order to configure this method of authentication, we will use [Firebase Dynamic Links](link), which we will need to set up.
+Email Link authentication, which is also referred to as Passwordless authentication, works by sending a verification email to a user requesting to sign in. This verification email contains a special **Dynamic Link** that links the user back to your app, completing authentication in the process. In order to configure this method of authentication, we will use [Firebase Dynamic Links](link), which we will need to set up.
 
 If this is your first time working with Dynamic Links, here's a great [introduction](link). Note, we will outline most of the steps covered in this tutorial below!
 
@@ -168,26 +174,32 @@ If this is your first time working with Dynamic Links, here's a great [introduct
   - Select the **Auth** panel and then click the **Sign In Method** tab.
   - Click **Email/Password** and ensure it is enabled.
   - Turn on **Email link (passwordless sign-in)**, then click **Save**.
-  - Configure **Dynamic Links**, by enabling it in the Firebase console
+  - 
+##### Configuring Dynamic Links
+As we mentioned above, we will need to configure dynamic links for this auth flow. 
+
+- Go to the project's settings on the Firebase console. when enabling dynamic links, you will need to add an **App Store ID** and a **Team ID**. Feel free to make up the **App Store ID** (ex: 123456789). For the **Team ID**, enter an id affiliated with an Apple Developer account.
+- Navigate to the **Dynamic Links** in the Firebase Console and click "Get Started"
+- Enter a domain. Something like **authenticationexample.page.link** works. Note, this domain will likely be taken so adjust  **authenticationexample** accordingly (ex: authenticationexample123). Either way, be sure to add the **.page.link** to complete the domain link!
+- Now, copy the domain you created above and navigate in Xcode to the **Signing & Capabilities** tab of the app's main target. You will need to add the [Associated Domains]() capability. If your project has automatically manage signing checked (also on this tab), you can add the Associated Domains capability by tapping the "+" button (also on that tab). If not, you will need to add this capability on the Apple Developer console and download the resulting provisioning profile before moving to the next steps. Please refer to the Firebase docs for more info.
+- Once you have the Associated Domains capability enabled and have copied the domain you created on the Firebase Console, paste `applinks:[insert the domain you copied]` into the Associated Domains section on either Xcode or Apple developer console (depending on how you set up Associated Domains in the previous step)
+- Now let's create the dynamic link that will be used in the Passwordless login flow. Return to the Dynamic Links tab on the Firebase Console. Click "New Dynamic Link", then:
+    - Setup your short URL. Feel free to put whatever here, like "demo" or "passwordless" for example. Click "Next".
+    - For the Deep Link URL, configure the URL to look like:
+    >        https://[insert an authorized domain]/login?email=email
+    >For the authorized domain ⬆, go to the the Authentication tab, then click the "Sign-in method", and scroll down to the "Authorized domains" section. Copy the domain that looks like [the app's name].firebaseapp.com. Paste this entire domain into the Deep Link we are creating above. You can also whitelist the dynamic links URL prefix.
+    - On step 3, **Define link behavior for iOS**, select **Open the deep link in your iOS App** and make sure your app is selected in the drop down.
+    - Configure the following steps as you please and then hit **Create**!
+
+  - Dynamic links use your app's bundle identifier as a url scheme by default. In Xcode, [add a custom URL scheme for your **bundle identifier**](https://developers.google.com/identity/sign-in/ios/start-integrating).
+  - Last todo! Navigate to [`sendSignInLink()`]() in [`PasswordlessViewController.swift`](). Within the method, there is a `stringURL` constant. Paste in the long deeplink you created from the steps above. It should look something like:
+> `let stringURL = String(format: "https://[the authorized domain from earlier].firebaseapp.com/login?email=%@", email)`
 
 - Run the app on your device or simulator.
     - Select **Email Link /Passwordless** and this will present a login screen where you can enter an email for the verification to be sent to
     - Enter an email and tap **Send Sign In Link**. While keeping the current view controller displayed, switch to a mail app and wait to receive the verification email.
     - Once the email has been received, open it and tap the sign in link. This will link back to the quickstart and finish the login flow.
 
-#### Setup
-TODO:
-1. Firebase Console -> Email Password -> Select Passwordless
-
-2. Enable Dynamic Links
-
-3. Create a dynamic link
-
-4. Associated Domains in Capabilities (add the dynamic links domain)
-
-  
-
-  
 
 ### So how does this work?
 
@@ -235,13 +247,15 @@ When Firebase Auth uses Phone Number authentication, Auth will attempt to send a
 
 #### Start by going to the [Firebase Console](https://console.firebase.google.com) and navigate to your project:
   - Select the **Auth** panel and then click the **Sign In Method** tab.
-  - Click **Anonymous** and turn on the **Enable** switch, then click **Save**. See the official [Firebase docs](link!) for more info!
+  - Click **Phone** and turn on the **Enable** switch, then click **Save**. See the official [Firebase docs](link!) for more info!
   
 
 ### Anonymous Authentication
 #### Start by going to the [Firebase Console](https://console.firebase.google.com) and navigate to your project:
   - Select the **Auth** panel and then click the **Sign In Method** tab.
   - Click **Anonymous** and turn on the **Enable** switch, then click **Save**.
+  - Run the app on your device or simulator.
+  - Choose **Anonymous Authentication**  to launch the **Anonymous Sign In** flow
   
 
 ### Custom Auth System

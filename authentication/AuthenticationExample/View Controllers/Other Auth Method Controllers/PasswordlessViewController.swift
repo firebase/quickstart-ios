@@ -36,7 +36,7 @@ class PasswordlessViewController: OtherAuthViewController {
     private func sendSignInLink(to email: String) {
         
         let actionCodeSettings = ActionCodeSettings()
-        let stringURL = String(format: "https://swifty-auth.firebaseapp.com/login?email=%@", email)
+        let stringURL = String(format: "https://[ENTER AUTHORIZED DOMAIN].firebaseapp.com/login?email=%@", email)
         actionCodeSettings.url = URL(string: stringURL)
         // The sign-in operation must be completed in the app.
         actionCodeSettings.handleCodeInApp = true

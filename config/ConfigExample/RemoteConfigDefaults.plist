@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>topLabelKey</key>
+        <string>Hi, I'm a label</string>
+        <key>bottomLabelKey</key>
+        <string>Today only, buy one get one free!</string>
+    </dict>
+</plist>

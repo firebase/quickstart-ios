@@ -46,8 +46,6 @@ final class EmptyView: UIView {
         label.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 20).isActive = true
         label.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         label.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.80).isActive = true
-        
-        //self.autoresizingMask = [.flexibleHeight, .flexibleWidth]
     }
     
     private func configuredAttributedString() -> NSAttributedString {

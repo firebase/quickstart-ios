@@ -21,7 +21,7 @@ target = ARGV[1]
 framework_dir = ARGV[2]
 project_path = "#{sdk}Example.xcodeproj"
 project = Xcodeproj::Project.open(project_path)
-framework_group = Dir.glob(File.join(framework_dir ,"*framework"))
+framework_group = Dir.glob(File.join(framework_dir ,"*{framework,dylib}"))
 
 project.targets.each do |project_target|
   next unless project_target.name == target

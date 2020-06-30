@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		EA02F68524A000E00079D000 /* UserActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA02F68424A000E00079D000 /* UserActions.swift */; };
-		EA02F68D24A063E90079D000 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA02F68C24A063E90079D000 /* Protocols.swift */; };
+		EA02F68D24A063E90079D000 /* LoginDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA02F68C24A063E90079D000 /* LoginDelegate.swift */; };
 		EA062D5D24A0FEB6006714D3 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = EA062D5C24A0FEB6006714D3 /* README.md */; };
 		EA20B46C2495A9F900B5E581 /* SignedOutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA20B46B2495A9F900B5E581 /* SignedOutView.swift */; };
 		EA20B46E2495B2C700B5E581 /* DataSourceProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA20B46D2495B2C700B5E581 /* DataSourceProtocols.swift */; };
@@ -53,7 +53,7 @@
 
 /* Begin PBXFileReference section */
 		EA02F68424A000E00079D000 /* UserActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserActions.swift; sourceTree = "<group>"; };
-		EA02F68C24A063E90079D000 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
+		EA02F68C24A063E90079D000 /* LoginDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginDelegate.swift; sourceTree = "<group>"; };
 		EA062D5C24A0FEB6006714D3 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		EA20B46B2495A9F900B5E581 /* SignedOutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignedOutView.swift; sourceTree = "<group>"; };
 		EA20B46D2495B2C700B5E581 /* DataSourceProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSourceProtocols.swift; sourceTree = "<group>"; };
@@ -181,7 +181,7 @@
 			isa = PBXGroup;
 			children = (
 				EAEBCE0E2489FFDE00FCEA92 /* Extensions.swift */,
-				EA02F68C24A063E90079D000 /* Protocols.swift */,
+				EA02F68C24A063E90079D000 /* LoginDelegate.swift */,
 				EA20B47924973C0400B5E581 /* DataSourceProvider */,
 				EA20B47824973BEC00B5E581 /* Transition Animator */,
 			);
@@ -385,7 +385,7 @@
 				EA20B50C249E8F0700B5E581 /* AuthProvider.swift in Sources */,
 				EAE4CBC924855E3A00245E92 /* AuthViewController.swift in Sources */,
 				EA02F68524A000E00079D000 /* UserActions.swift in Sources */,
-				EA02F68D24A063E90079D000 /* Protocols.swift in Sources */,
+				EA02F68D24A063E90079D000 /* LoginDelegate.swift in Sources */,
 				EA20B50A249D3D8600B5E581 /* PasswordlessViewController.swift in Sources */,
 				EAE4CBF524857A5100245E92 /* LoginController.swift in Sources */,
 				EA20B510249FDB4400B5E581 /* OtherAuthMethods.swift in Sources */,

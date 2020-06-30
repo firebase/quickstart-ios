@@ -33,10 +33,12 @@ class PasswordlessViewController: OtherAuthViewController {
     
     // MARK: - Firebase 🔥
     
+    private let authorizedDomain: String = "ENTER AUTHORIZED DOMAIN"
+    
     private func sendSignInLink(to email: String) {
         
         let actionCodeSettings = ActionCodeSettings()
-        let stringURL = String(format: "https://[ENTER AUTHORIZED DOMAIN].firebaseapp.com/login?email=%@", email)
+        let stringURL = "https://\(authorizedDomain).firebaseapp.com/login?email=\(email)"
         actionCodeSettings.url = URL(string: stringURL)
         // The sign-in operation must be completed in the app.
         actionCodeSettings.handleCodeInApp = true

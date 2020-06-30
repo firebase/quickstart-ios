@@ -14,7 +14,7 @@
 
 import UIKit
 
-
+/// Represents the main view shown in RemoteConfigViewController
 class RemoteConfigView: UIView {
     
     var topLabel: UILabel!
@@ -73,6 +73,7 @@ class RemoteConfigView: UIView {
         setupFetchButton()
     }
 
+    /// Sets up an info label with a remotely configurable label below it
     private func setupTopSubviews() {
         let label = UILabel()
         label.attributedText = topInfoLabelText
@@ -93,6 +94,7 @@ class RemoteConfigView: UIView {
         ])
     }
     
+    /// Sets up the container view to display data from JSON objects
     private func setupJSONSubview() {
         jsonView = UIView()
         jsonView.backgroundColor = .secondarySystemBackground
@@ -116,6 +118,7 @@ class RemoteConfigView: UIView {
         ])
     }
     
+    /// Sets up an info label with a remotely configurable label below it
     private func setupBottomSubviews() {
         let label = UILabel()
         label.attributedText = bottomLabelInfoText
@@ -149,3 +152,60 @@ class RemoteConfigView: UIView {
     }
 }
 
+extension UIColor {
+    
+    var highlighted: UIColor { self.withAlphaComponent(0.8) }
+    
+    var image: UIImage {
+        let pixel = CGSize(width: 1, height: 1)
+        return UIGraphicsImageRenderer(size: pixel).image { (context) in
+            self.setFill()
+            context.fill(CGRect(origin: .zero, size: pixel))
+        }
+    }
+}
+
+extension NSMutableAttributedString {
+    
+    /// Convenience init for generating attributred string with SF Symbols
+    /// - Parameters:
+    ///   - text: The text for the attributed string.
+    ///           Add a `%@` at the location for the SF Symbol.
+    ///   - symbol: the name of the SF symbol
+    convenience init(text: String, textColor: UIColor = .label, symbol: String? = nil, symbolColor: UIColor = .label) {
+        var symbolAttachment: NSAttributedString? = nil
+        if let symbolName = symbol, let symbolImage = UIImage(systemName: symbolName) {
+          let configuredSymbolImage = symbolImage.withTintColor(symbolColor, renderingMode: .alwaysOriginal)
+          let imageAttachment = NSTextAttachment(image: configuredSymbolImage)
+          symbolAttachment = NSAttributedString(attachment: imageAttachment)
+        }
+
+        let splitStrings = text.components(separatedBy: "%@")
+        let attributedString = NSMutableAttributedString()
+
+        if let symbolAttachment = symbolAttachment, let range = text.range(of: "%@") {
+            let shouldAddSymbolAtEnd = range.contains(text.endIndex)
+            splitStrings.enumerated().forEach { (index, string) in
+              
+                let attributedPart = NSAttributedString(string: string)
+                attributedString.append(attributedPart)
+                if (index < splitStrings.endIndex - 1) {
+                    attributedString.append(symbolAttachment)
+                } else if (index == splitStrings.endIndex - 1 && shouldAddSymbolAtEnd) {
+                    attributedString.append(symbolAttachment)
+                }
+            }
+        }
+          
+        let attributes: [NSAttributedString.Key : Any] = [.foregroundColor: textColor]
+        attributedString.addAttributes(attributes, range: NSRange(location: 0, length: attributedString.length))
+          
+        self.init(attributedString: attributedString)
+    }
+    
+    func setColorForText(text: String, color: UIColor) {
+        let range = self.mutableString.range(of: text, options: .caseInsensitive)
+        self.addAttribute(NSAttributedString.Key.foregroundColor, value: color, range: range)
+    }
+
+}

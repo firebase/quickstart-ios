@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		EA062D6024A13966006714D3 /* RemoteConfigView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA062D5F24A13966006714D3 /* RemoteConfigView.swift */; };
-		EA062D6224A15BF5006714D3 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA062D6124A15BF5006714D3 /* Extensions.swift */; };
 		EA20B48A2497CC9D00B5E581 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA20B4892497CC9D00B5E581 /* AppDelegate.swift */; };
 		EA20B48C2497CC9D00B5E581 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA20B48B2497CC9D00B5E581 /* SceneDelegate.swift */; };
 		EA20B48E2497CC9D00B5E581 /* RemoteConfigViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA20B48D2497CC9D00B5E581 /* RemoteConfigViewController.swift */; };
@@ -41,7 +40,6 @@
 
 /* Begin PBXFileReference section */
 		EA062D5F24A13966006714D3 /* RemoteConfigView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteConfigView.swift; sourceTree = "<group>"; };
-		EA062D6124A15BF5006714D3 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		EA20B4862497CC9D00B5E581 /* ConfigExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ConfigExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA20B4892497CC9D00B5E581 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EA20B48B2497CC9D00B5E581 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -124,7 +122,6 @@
 				EA20B48D2497CC9D00B5E581 /* RemoteConfigViewController.swift */,
 				EA062D5F24A13966006714D3 /* RemoteConfigView.swift */,
 				EABC75EA24AA185900D53A19 /* RemoteConfigDefaults.plist */,
-				EA062D6124A15BF5006714D3 /* Extensions.swift */,
 				EA062D5E24A135EC006714D3 /* JSON Recipes */,
 				EA20B4922497CC9F00B5E581 /* Assets.xcassets */,
 				EA20B4942497CC9F00B5E581 /* LaunchScreen.storyboard */,
@@ -285,7 +282,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA062D6224A15BF5006714D3 /* Extensions.swift in Sources */,
 				EA20B48E2497CC9D00B5E581 /* RemoteConfigViewController.swift in Sources */,
 				EA20B48A2497CC9D00B5E581 /* AppDelegate.swift in Sources */,
 				EA062D6024A13966006714D3 /* RemoteConfigView.swift in Sources */,

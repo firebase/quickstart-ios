@@ -43,10 +43,6 @@ class RemoteConfigViewController: UIViewController {
         configureFetchButtonAction()
     }
     
-    private func configureFetchButtonAction() {
-        remoteConfigView.fetchButton.addTarget(self, action: #selector(fetchAndActivateRemoteConfig), for: .touchUpInside)
-    }
-    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         fetchAndActivateRemoteConfig()
@@ -54,6 +50,7 @@ class RemoteConfigViewController: UIViewController {
     
     // MARK: - Firebase 🔥
     
+    /// Initializes defaults from `RemoteConfigDefaults.plist` and sets config's settings to developer mode
     private func setupRemoteConfig() {
         remoteConfig = RemoteConfig.remoteConfig()
         remoteConfig.setDefaults(fromPlist: "RemoteConfigDefaults")
@@ -109,6 +106,10 @@ class RemoteConfigViewController: UIViewController {
         navigationBar.prefersLargeTitles = true
         navigationBar.titleTextAttributes = [.foregroundColor: UIColor.systemOrange]
         navigationBar.largeTitleTextAttributes = [.foregroundColor: UIColor.systemOrange]
+    }
+    
+    private func configureFetchButtonAction() {
+        remoteConfigView.fetchButton.addTarget(self, action: #selector(fetchAndActivateRemoteConfig), for: .touchUpInside)
     }
      
     private func updateJSONView() {
@@ -172,4 +173,17 @@ class RemoteConfigViewController: UIViewController {
             view.alpha =  1
         })
     }
+}
+
+extension UIViewController {
+    
+    public  func displayError(_ error: Error?, from function: StaticString = #function) {
+        guard let error = error else { return }
+        print("🚨 Error in \(function): \(error.localizedDescription)")
+        let message = "\(error.localizedDescription)\n\n Ocurred in \(function)"
+        let errorAlertController = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+        errorAlertController.addAction(UIAlertAction(title: "OK", style: .default))
+        self.present(errorAlertController, animated: true, completion: nil)
+    }
+    
 }

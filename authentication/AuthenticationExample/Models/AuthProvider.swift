@@ -17,12 +17,19 @@ import UIKit
 
 /// Firebase Auth supported identity providers and other methods of authentication
 enum AuthProvider: String {
-    case google, apple, twitter, microsoft, gitHub, yahoo, facebook
+    case google = "Google"
+    case apple = "Apple"
+    case twitter = "Twitter"
+    case microsoft = "Microsoft"
+    case gitHub = "GitHub"
+    case yahoo = "Yahoo"
+    case facebook = "Facebook"
     case EmailPassword = "Email & Password Login"
     case Passwordless = "Email Link/Passwordless"
     case PhoneNumber = "Phone Number"
     case Anonymous = "Anonymous Authentication"
     case Custom = "Custom Auth System"
+    
     
     var id: String { self.rawValue.lowercased().appending(".com") }
 }
@@ -36,7 +43,7 @@ extension AuthProvider: DataSourceProvidable {
     }
     
     static var providerSection: Section {
-        let providers = self.providers.map { Item(title: $0.rawValue.capitalized) }
+        let providers = self.providers.map { Item(title: $0.rawValue) }
         let header = "Identity Providers"
         let footer = "Choose a login flow from one of the identity providers above."
         return Section(headerDescription: header, footerDescription: footer, items: providers)

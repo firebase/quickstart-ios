@@ -15,6 +15,7 @@
 //
 
 import Firebase
+import UIKit
 
 @objc(PasswordlessViewController)
 class PasswordlessViewController: UIViewController {

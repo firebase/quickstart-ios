@@ -14,6 +14,7 @@
 
 import UIKit
 
+/// Login View presented when peforming Email & Password Login Flow
 class LoginView: UIView {
     
     var emailTextField: UITextField!

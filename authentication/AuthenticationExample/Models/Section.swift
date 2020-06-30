@@ -15,12 +15,14 @@
 import UIKit
 
 
+/// Model object for a section in a tableview
 struct Section: Sectionable {
     var headerDescription: String?
     var footerDescription: String?
     var items: [Item]
 }
 
+/// Model object for a cell in a tableview section
 struct Item: Itemable {
     
     var title: String?

@@ -12,10 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import UIKit
+
 
 /// Firebase Auth supported identity providers and other methods of authentication
 enum AuthProvider: String {
-    case Google, Apple, Twitter, Microsoft, GitHub, Yahoo, Facebook
+    case google, apple, twitter, microsoft, gitHub, yahoo, facebook
     case EmailPassword = "Email & Password Login"
     case Passwordless = "Email Link/Passwordless"
     case PhoneNumber = "Phone Number"
@@ -23,4 +25,49 @@ enum AuthProvider: String {
     case Custom = "Custom Auth System"
     
     var id: String { self.rawValue.lowercased().appending(".com") }
+}
+
+// MARK: DataSourceProvidable
+
+extension AuthProvider: DataSourceProvidable {
+    
+    private static var providers: [AuthProvider] {
+        [.google, .apple, .twitter, .microsoft, .gitHub, .yahoo, .facebook]
+    }
+    
+    static var providerSection: Section {
+        let providers = self.providers.map { Item(title: $0.rawValue.capitalized) }
+        let header = "Identity Providers"
+        let footer = "Choose a login flow from one of the identity providers above."
+        return Section(headerDescription: header, footerDescription: footer, items: providers)
+    }
+    
+    static var emailPasswordSection: Section {
+        let image = UIImage(named: "firebaseIcon")
+        let item = Item(title: self.EmailPassword.rawValue, hasNestedContent: true, image: image)
+        let footer = "A example login flow with password authentication."
+        return Section(footerDescription: footer, items: [item])
+    }
+    
+    static var otherSection: Section {
+        let lockSymbol = UIImage.systemImage("lock.slash.fill", tintColor: .systemOrange)
+        let phoneSymbol = UIImage.systemImage("phone.fill", tintColor: .systemOrange)
+        let anonSymbol = UIImage.systemImage("questionmark.circle.fill", tintColor: .systemOrange)
+        let shieldSymbol = UIImage.systemImage("lock.shield.fill", tintColor: .systemOrange)
+        
+        let otherOptions = [
+            Item(title: self.Passwordless.rawValue, image: lockSymbol),
+            Item(title: self.PhoneNumber.rawValue, image: phoneSymbol),
+            Item(title: self.Anonymous.rawValue, image: anonSymbol),
+            Item(title: self.Custom.rawValue, image: shieldSymbol)
+        ]
+        return Section(footerDescription: "Other authentication methods.", items: otherOptions)
+    }
+    
+    static var sections: [Section] {
+        [providerSection, emailPasswordSection, otherSection]
+    }
+    
+    var sections: [Section] { AuthProvider.sections }
+
 }

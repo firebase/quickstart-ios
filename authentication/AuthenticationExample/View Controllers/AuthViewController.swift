@@ -53,16 +53,16 @@ class AuthViewController: UIViewController, DataSourceProviderDelegate {
         }
 
         switch provider {
-        case .Google:
+        case .google:
             performGoogleSignInFlow()
 
-        case .Apple:
+        case .apple:
             performAppleSignInFlow()
 
-        case .Facebook:
+        case .facebook:
             performFacebookSignInFlow()
 
-        case .Twitter, .Microsoft, .GitHub, .Yahoo:
+        case .twitter, .microsoft, .gitHub, .yahoo:
             performOAuthLoginFlow(for: provider)
 
         case .EmailPassword:

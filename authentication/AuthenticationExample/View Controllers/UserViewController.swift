@@ -198,7 +198,7 @@ class UserViewController: UIViewController, DataSourceProviderDelegate {
     }
     
     private func configureDataSourceProvider() {
-        dataSourceProvider = DataSourceProvider(dataSource: user?.sections, emptyStateView: EmptyView(), tableView: tableView)
+        dataSourceProvider = DataSourceProvider(dataSource: user?.sections, emptyStateView: SignedOutView(), tableView: tableView)
         dataSourceProvider.delegate = self
     }
     

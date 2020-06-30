@@ -15,29 +15,30 @@
 import UIKit
 
 
-class DataSourceProvider<Datasource: DataSourceProvidable>: NSObject, UITableViewDataSource, UITableViewDelegate {
+/// Abstracts away view/view controller based tableview configuration by acting as a tableview's datasource and delegate
+class DataSourceProvider<DataSource: DataSourceProvidable>: NSObject, UITableViewDataSource, UITableViewDelegate {
     
     weak var delegate: DataSourceProviderDelegate?
     
     private var emptyView: UIView?
     
-    private var sections: [Datasource.Section]!
+    private var sections: [DataSource.Section]!
     
-    convenience init(dataSource: [Datasource.Section]?, emptyStateView: UIView? = nil, tableView: UITableView? = nil) {
+    convenience init(dataSource: [DataSource.Section]?, emptyStateView: UIView? = nil, tableView: UITableView? = nil) {
         self.init()
         self.emptyView = emptyStateView
-        self.sections = dataSource ?? [Datasource.Section]()
+        self.sections = dataSource ?? [DataSource.Section]()
         tableView?.dataSource = self
         tableView?.delegate = self
     }
     
     // MARK: Public Section and Item Getters
     
-    public func section(at indexPath: IndexPath) -> Datasource.Section {
+    public func section(at indexPath: IndexPath) -> DataSource.Section {
         return sections[indexPath.section]
     }
     
-    public func item(at indexPath: IndexPath) -> Datasource.Section.Item {
+    public func item(at indexPath: IndexPath) -> DataSource.Section.Item {
         return sectionItem(at: indexPath)
     }
     
@@ -96,17 +97,17 @@ class DataSourceProvider<Datasource: DataSourceProvidable>: NSObject, UITableVie
         tableView.isScrollEnabled = !sections.isEmpty
     }
     
-    private func sectionItem(at indexPath: IndexPath) -> Datasource.Section.Item {
+    private func sectionItem(at indexPath: IndexPath) -> DataSource.Section.Item {
         return sections[indexPath.section].items[indexPath.row]
     }
     
-    private func config(_ label: inout UILabel, for section: Datasource.Section) {
+    private func config(_ label: inout UILabel, for section: DataSource.Section) {
         label.text = section.headerDescription
         label.textColor = .label
         label.font = UIFont.boldSystemFont(ofSize: 19.0)
     }
     
-    private func config(_ cell: inout UITableViewCell, for item: Datasource.Section.Item) {
+    private func config(_ cell: inout UITableViewCell, for item: DataSource.Section.Item) {
         cell.textLabel?.text = item.title
         cell.textLabel?.textColor = item.textColor
         cell.detailTextLabel?.text = item.detailTitle

@@ -14,7 +14,8 @@
 
 import UIKit
 
-final class EmptyView: UIView {
+/// This view is shown on the `User` screen when no one in signed in.
+final class SignedOutView: UIView {
     
     init() {
         super.init(frame: CGRect.zero)
@@ -25,6 +26,7 @@ final class EmptyView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    /// Layout exclamation symbol and label explaining there is no user signed in
     private func setupSubviews() {
         let systemImageName = "exclamationmark.circle"
         let placeHolderImage = UIImage(systemName: systemImageName)?.withTintColor(.secondaryLabel, renderingMode: .alwaysOriginal)

@@ -25,315 +25,309 @@ import FBSDKLoginKit
 import AuthenticationServices
 import CryptoKit
 
-
 class AuthViewController: UIViewController, DataSourceProviderDelegate {
+  var dataSourceProvider: DataSourceProvider<AuthProvider>!
 
-    var dataSourceProvider: DataSourceProvider<AuthProvider>!
+  override func loadView() {
+    view = UITableView(frame: .zero, style: .insetGrouped)
+  }
 
-    override func loadView() {
-        view = UITableView(frame: .zero, style: .insetGrouped)
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    configureNavigationBar()
+    configureDataSourceProvider()
+  }
+
+  // MARK: - DataSourceProviderDelegate
+
+  func didSelectRowAt(_ indexPath: IndexPath, on tableView: UITableView) {
+    let item = dataSourceProvider.item(at: indexPath)
+
+    let providerName = item.isEditable ? item.detailTitle! : item.title!
+
+    guard let provider = AuthProvider(rawValue: providerName) else {
+      // The row tapped has no affiliated action.
+      return
     }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        configureNavigationBar()
-        configureDataSourceProvider()
+    switch provider {
+    case .google:
+      performGoogleSignInFlow()
+
+    case .apple:
+      performAppleSignInFlow()
+
+    case .facebook:
+      performFacebookSignInFlow()
+
+    case .twitter, .microsoft, .gitHub, .yahoo:
+      performOAuthLoginFlow(for: provider)
+
+    case .EmailPassword:
+      performDemoEmailPasswordLoginFlow()
+
+    case .Passwordless:
+      performPasswordlessLoginFlow()
+
+    case .PhoneNumber:
+      performPhoneNumberLoginFlow()
+
+    case .Anonymous:
+      performAnonymousLoginFlow()
+
+    case .Custom:
+      performCustomAuthLoginFlow()
     }
-    
-    // MARK: - DataSourceProviderDelegate
-    
-    func didSelectRowAt(_ indexPath: IndexPath, on tableView: UITableView) {
-        let item = dataSourceProvider.item(at: indexPath)
+  }
 
-        let providerName = item.isEditable ? item.detailTitle! : item.title!
+  // MARK: - Firebase 🔥
 
-        guard let provider = AuthProvider(rawValue: providerName) else {
-            // The row tapped has no affiliated action.
-            return
-        }
+  private func performGoogleSignInFlow() {
+    // Configure the Google Sign In instance
+    GIDSignIn.sharedInstance().clientID = FirebaseApp.app()!.options.clientID
+    GIDSignIn.sharedInstance().delegate = self
 
-        switch provider {
-        case .google:
-            performGoogleSignInFlow()
+    // Start the sign in flow!
+    GIDSignIn.sharedInstance()?.presentingViewController = self
+    GIDSignIn.sharedInstance().signIn()
+  }
 
-        case .apple:
-            performAppleSignInFlow()
+  // For Sign in with Apple
+  var currentNonce: String?
 
-        case .facebook:
-            performFacebookSignInFlow()
+  private func performAppleSignInFlow() {
+    let nonce = randomNonceString()
+    currentNonce = nonce
+    let appleIDProvider = ASAuthorizationAppleIDProvider()
+    let request = appleIDProvider.createRequest()
+    request.requestedScopes = [.fullName, .email]
+    request.nonce = sha256(nonce)
 
-        case .twitter, .microsoft, .gitHub, .yahoo:
-            performOAuthLoginFlow(for: provider)
+    let authorizationController = ASAuthorizationController(authorizationRequests: [request])
+    authorizationController.delegate = self
+    authorizationController.presentationContextProvider = self
+    authorizationController.performRequests()
+  }
 
-        case .EmailPassword:
-            performDemoEmailPasswordLoginFlow()
+  private func performFacebookSignInFlow() {
+    // The following config can also be stored in the project's .plist
+    Settings.appID = "ENTER APP ID HERE"
+    Settings.displayName = "AuthenticationExample"
 
-        case .Passwordless:
-            performPasswordlessLoginFlow()
-
-        case .PhoneNumber:
-            performPhoneNumberLoginFlow()
-
-        case .Anonymous:
-            performAnonymousLoginFlow()
-
-        case .Custom:
-            performCustomAuthLoginFlow()
-        }
-
+    // Create a Facebook `LoginManager` instance
+    let loginManager = LoginManager()
+    loginManager.logIn(permissions: ["email"], from: self) { result, error in
+      guard error == nil else { return self.displayError(error) }
+      guard let accessToken = AccessToken.current else { return }
+      let credential = FacebookAuthProvider.credential(withAccessToken: accessToken.tokenString)
+      self.signin(with: credential)
     }
-    
-    // MARK: - Firebase 🔥
-    
-    private func performGoogleSignInFlow() {
-        // Configure the Google Sign In instance
-        GIDSignIn.sharedInstance().clientID = FirebaseApp.app()!.options.clientID
-        GIDSignIn.sharedInstance().delegate = self
+  }
 
-        // Start the sign in flow!
-        GIDSignIn.sharedInstance()?.presentingViewController = self
-        GIDSignIn.sharedInstance().signIn()
-    }
-    
-    // For Sign in with Apple
-    var currentNonce: String?
+  // Maintain a strong reference to an OAuthProvider for login
+  private var oauthProvider: OAuthProvider!
 
-    private func performAppleSignInFlow() {
-        let nonce = randomNonceString()
-        currentNonce = nonce
-        let appleIDProvider = ASAuthorizationAppleIDProvider()
-        let request = appleIDProvider.createRequest()
-        request.requestedScopes = [.fullName, .email]
-        request.nonce = sha256(nonce)
+  private func performOAuthLoginFlow(for provider: AuthProvider) {
+    oauthProvider = OAuthProvider(providerID: provider.id)
+    oauthProvider.getCredentialWith(nil) { credential, error in
+      guard error == nil else { return self.displayError(error) }
+      guard let credential = credential else { return }
+      self.signin(with: credential)
+    }
+  }
 
-        let authorizationController = ASAuthorizationController(authorizationRequests: [request])
-        authorizationController.delegate = self
-        authorizationController.presentationContextProvider = self
-        authorizationController.performRequests()
-    }
+  private func performDemoEmailPasswordLoginFlow() {
+    let loginController = LoginController()
+    loginController.delegate = self
+    navigationController?.pushViewController(loginController, animated: true)
+  }
 
-    private func performFacebookSignInFlow() {
-        // The following config can also be stored in the project's .plist
-        Settings.appID = "ENTER APP ID HERE"
-        Settings.displayName = "AuthenticationExample"
-        
-        // Create a Facebook `LoginManager` instance
-        let loginManager = LoginManager()
-        loginManager.logIn(permissions: ["email"], from: self) { (result, error) in
-            guard error == nil else { return self.displayError(error) }
-            guard let accessToken = AccessToken.current else { return }
-            let credential = FacebookAuthProvider.credential(withAccessToken: accessToken.tokenString)
-            self.signin(with: credential)
-        }
-    }
+  private func performPasswordlessLoginFlow() {
+    let passwordlessViewController = PasswordlessViewController()
+    passwordlessViewController.delegate = self
+    let navPasswordlessAuthController =
+      UINavigationController(rootViewController: passwordlessViewController)
+    navigationController?.present(navPasswordlessAuthController, animated: true)
+  }
 
-    // Maintain a strong reference to an OAuthProvider for login
-    private var oauthProvider: OAuthProvider!
+  private func performPhoneNumberLoginFlow() {
+    let phoneAuthViewController = PhoneAuthViewController()
+    phoneAuthViewController.delegate = self
+    let navPhoneAuthController = UINavigationController(rootViewController: phoneAuthViewController)
+    navigationController?.present(navPhoneAuthController, animated: true)
+  }
 
-    private func performOAuthLoginFlow(for provider: AuthProvider) {
-        oauthProvider = OAuthProvider(providerID: provider.id)
-        oauthProvider.getCredentialWith(nil) { (credential, error) in
-            guard error == nil else { return self.displayError(error) }
-            guard let credential = credential else { return }
-            self.signin(with: credential)
-        }
+  private func performAnonymousLoginFlow() {
+    Auth.auth().signInAnonymously { result, error in
+      guard error == nil else { return self.displayError(error) }
+      self.transitionToUserViewController()
     }
-    
-    private func performDemoEmailPasswordLoginFlow() {
-        let loginController = LoginController()
-        loginController.delegate = self
-        navigationController?.pushViewController(loginController, animated: true)
-    }
-    
-    private func performPasswordlessLoginFlow() {
-        let passwordlessViewController = PasswordlessViewController()
-        passwordlessViewController.delegate = self
-        let navPasswordlessAuthController = UINavigationController(rootViewController: passwordlessViewController)
-        self.navigationController?.present(navPasswordlessAuthController, animated: true)
-    }
-    
-    private func performPhoneNumberLoginFlow() {
-        let phoneAuthViewController = PhoneAuthViewController()
-        phoneAuthViewController.delegate = self
-        let navPhoneAuthController = UINavigationController(rootViewController: phoneAuthViewController)
-        self.navigationController?.present(navPhoneAuthController, animated: true)
-    }
-    
-    private func performAnonymousLoginFlow() {
-        Auth.auth().signInAnonymously { (result, error) in
-            guard error == nil else { return self.displayError(error) }
-            self.transitionToUserViewController()
-        }
-    }
-    
-    private func performCustomAuthLoginFlow() {
-        let customAuthController = CustomAuthViewController()
-        customAuthController.delegate = self
-        let navCustomAuthController = UINavigationController(rootViewController: customAuthController)
-        self.navigationController?.present(navCustomAuthController, animated: true)
-    }
-    
-    private func signin(with credential: AuthCredential) {
-        Auth.auth().signIn(with: credential) { (result, error) in
-            guard error == nil else { return self.displayError(error) }
-            self.transitionToUserViewController()
-        }
-    }
-    
-    // MARK: - Private Helpers
-    
-    private func configureDataSourceProvider() {
-        let tableView = view as! UITableView
-        dataSourceProvider = DataSourceProvider(dataSource: AuthProvider.sections, tableView: tableView)
-        dataSourceProvider.delegate = self
-    }
-    
-    private func configureNavigationBar() {
-        navigationItem.title = "Firebase Auth"
-        guard let navigationBar = navigationController?.navigationBar else { return }
-        navigationBar.prefersLargeTitles = true
-        navigationBar.titleTextAttributes = [.foregroundColor: UIColor.systemOrange]
-        navigationBar.largeTitleTextAttributes = [.foregroundColor: UIColor.systemOrange]
-    }
-    
-    private func transitionToUserViewController() {
-        // UserViewController is at index 1 in the tabBarController.viewControllers array
-        tabBarController?.transitionToViewController(atIndex: 1)
-    }
+  }
 
+  private func performCustomAuthLoginFlow() {
+    let customAuthController = CustomAuthViewController()
+    customAuthController.delegate = self
+    let navCustomAuthController = UINavigationController(rootViewController: customAuthController)
+    navigationController?.present(navCustomAuthController, animated: true)
+  }
+
+  private func signin(with credential: AuthCredential) {
+    Auth.auth().signIn(with: credential) { result, error in
+      guard error == nil else { return self.displayError(error) }
+      self.transitionToUserViewController()
+    }
+  }
+
+  // MARK: - Private Helpers
+
+  private func configureDataSourceProvider() {
+    let tableView = view as! UITableView
+    dataSourceProvider = DataSourceProvider(dataSource: AuthProvider.sections, tableView: tableView)
+    dataSourceProvider.delegate = self
+  }
+
+  private func configureNavigationBar() {
+    navigationItem.title = "Firebase Auth"
+    guard let navigationBar = navigationController?.navigationBar else { return }
+    navigationBar.prefersLargeTitles = true
+    navigationBar.titleTextAttributes = [.foregroundColor: UIColor.systemOrange]
+    navigationBar.largeTitleTextAttributes = [.foregroundColor: UIColor.systemOrange]
+  }
+
+  private func transitionToUserViewController() {
+    // UserViewController is at index 1 in the tabBarController.viewControllers array
+    tabBarController?.transitionToViewController(atIndex: 1)
+  }
 }
 
 // MARK: - GIDSignInDelegate for Google Sign In
 
 extension AuthViewController: GIDSignInDelegate {
-    
-    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
-        guard error == nil else { return self.displayError(error) }
-        
-        guard let authentication = user.authentication else { return }
-        let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken,
-                                                       accessToken: authentication.accessToken)
-        
-        Auth.auth().signIn(with: credential) { (result, error) in
-            guard error == nil else { return self.displayError(error) }
+  func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+    guard error == nil else { return displayError(error) }
 
-            // At this point, our user is signed in
-            // so we advance to the User View Controller
-            self.transitionToUserViewController()
-        }
+    guard let authentication = user.authentication else { return }
+    let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken,
+                                                   accessToken: authentication.accessToken)
+
+    Auth.auth().signIn(with: credential) { result, error in
+      guard error == nil else { return self.displayError(error) }
+
+      // At this point, our user is signed in
+      // so we advance to the User View Controller
+      self.transitionToUserViewController()
     }
-    
+  }
 }
 
 // MARK: - LoginDelegate
 
 extension AuthViewController: LoginDelegate {
-    
-    public func loginDidOccur() {
-        transitionToUserViewController()
-    }
-    
+  public func loginDidOccur() {
+    transitionToUserViewController()
+  }
 }
-
 
 // MARK: - Implementing Sign in with Apple with Firebase
 
-extension AuthViewController: ASAuthorizationControllerDelegate, ASAuthorizationControllerPresentationContextProviding {
-    
-    // MARK: ASAuthorizationControllerDelegate
-    
-    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
-        
-        guard let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential else {
-            print("Unable to retrieve AppleIDCredential")
-            return
-        }
-        
-        guard let nonce = currentNonce else {
-            fatalError("Invalid state: A login callback was received, but no login request was sent.")
-        }
-        guard let appleIDToken = appleIDCredential.identityToken else {
-            print("Unable to fetch identity token")
-            return
-        }
-        guard let idTokenString = String(data: appleIDToken, encoding: .utf8) else {
-            print("Unable to serialize token string from data: \(appleIDToken.debugDescription)")
-            return
-        }
+extension AuthViewController: ASAuthorizationControllerDelegate,
+  ASAuthorizationControllerPresentationContextProviding {
+  // MARK: ASAuthorizationControllerDelegate
 
-        let credential = OAuthProvider.credential(withProviderID: "apple.com",
-                                                  idToken: idTokenString,
-                                                  rawNonce: nonce)
-
-        Auth.auth().signIn(with: credential) { (result, error) in
-            // Error. If error.code == .MissingOrInvalidNonce, make sure
-            // you're sending the SHA256-hashed nonce as a hex string with
-            // your request to Apple.
-            guard error == nil else { return self.displayError(error) }
-
-            // At this point, our user is signed in
-            // so we advance to the User View Controller
-            self.transitionToUserViewController()
-        }
-
+  func authorizationController(controller: ASAuthorizationController,
+                               didCompleteWithAuthorization authorization: ASAuthorization) {
+    guard let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential
+    else {
+      print("Unable to retrieve AppleIDCredential")
+      return
     }
-    
-    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
-        // Ensure that you have:
-        //  - enabled `Sign in with Apple` on the Firebase console
-        //  - added the `Sign in with Apple` capability for this project
-        print("Sign in with Apple errored: \(error)")
+
+    guard let nonce = currentNonce else {
+      fatalError("Invalid state: A login callback was received, but no login request was sent.")
     }
-    
-    // MARK: ASAuthorizationControllerPresentationContextProviding
-    
-    func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
-        return self.view.window!
+    guard let appleIDToken = appleIDCredential.identityToken else {
+      print("Unable to fetch identity token")
+      return
     }
-    
-    // MARK: Aditional `Sign in with Apple` Helpers
-    
-    // Adapted from https://auth0.com/docs/api-auth/tutorials/nonce#generate-a-cryptographically-random-nonce
-    private func randomNonceString(length: Int = 32) -> String {
-      precondition(length > 0)
-      let charset: Array<Character> =
-          Array("0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._")
-      var result = ""
-      var remainingLength = length
+    guard let idTokenString = String(data: appleIDToken, encoding: .utf8) else {
+      print("Unable to serialize token string from data: \(appleIDToken.debugDescription)")
+      return
+    }
 
-      while remainingLength > 0 {
-        let randoms: [UInt8] = (0 ..< 16).map { _ in
-          var random: UInt8 = 0
-          let errorCode = SecRandomCopyBytes(kSecRandomDefault, 1, &random)
-          if errorCode != errSecSuccess {
-            fatalError("Unable to generate nonce. SecRandomCopyBytes failed with OSStatus \(errorCode)")
-          }
-          return random
+    let credential = OAuthProvider.credential(withProviderID: "apple.com",
+                                              idToken: idTokenString,
+                                              rawNonce: nonce)
+
+    Auth.auth().signIn(with: credential) { result, error in
+      // Error. If error.code == .MissingOrInvalidNonce, make sure
+      // you're sending the SHA256-hashed nonce as a hex string with
+      // your request to Apple.
+      guard error == nil else { return self.displayError(error) }
+
+      // At this point, our user is signed in
+      // so we advance to the User View Controller
+      self.transitionToUserViewController()
+    }
+  }
+
+  func authorizationController(controller: ASAuthorizationController,
+                               didCompleteWithError error: Error) {
+    // Ensure that you have:
+    //  - enabled `Sign in with Apple` on the Firebase console
+    //  - added the `Sign in with Apple` capability for this project
+    print("Sign in with Apple errored: \(error)")
+  }
+
+  // MARK: ASAuthorizationControllerPresentationContextProviding
+
+  func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
+    return view.window!
+  }
+
+  // MARK: Aditional `Sign in with Apple` Helpers
+
+  // Adapted from https://auth0.com/docs/api-auth/tutorials/nonce#generate-a-cryptographically-random-nonce
+  private func randomNonceString(length: Int = 32) -> String {
+    precondition(length > 0)
+    let charset: [Character] =
+      Array("0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._")
+    var result = ""
+    var remainingLength = length
+
+    while remainingLength > 0 {
+      let randoms: [UInt8] = (0 ..< 16).map { _ in
+        var random: UInt8 = 0
+        let errorCode = SecRandomCopyBytes(kSecRandomDefault, 1, &random)
+        if errorCode != errSecSuccess {
+          fatalError(
+            "Unable to generate nonce. SecRandomCopyBytes failed with OSStatus \(errorCode)"
+          )
         }
-
-        randoms.forEach { random in
-          if remainingLength == 0 {
-            return
-          }
-
-          if random < charset.count {
-            result.append(charset[Int(random)])
-            remainingLength -= 1
-          }
-        }
+        return random
       }
 
-      return result
-    }
-    
-    private func sha256(_ input: String) -> String {
-      let inputData = Data(input.utf8)
-      let hashedData = SHA256.hash(data: inputData)
-      let hashString = hashedData.compactMap {
-        return String(format: "%02x", $0)
-      }.joined()
+      randoms.forEach { random in
+        if remainingLength == 0 {
+          return
+        }
 
-      return hashString
+        if random < charset.count {
+          result.append(charset[Int(random)])
+          remainingLength -= 1
+        }
+      }
     }
-    
+
+    return result
+  }
+
+  private func sha256(_ input: String) -> String {
+    let inputData = Data(input.utf8)
+    let hashedData = SHA256.hash(data: inputData)
+    let hashString = hashedData.compactMap {
+      String(format: "%02x", $0)
+    }.joined()
+
+    return hashString
+  }
 }

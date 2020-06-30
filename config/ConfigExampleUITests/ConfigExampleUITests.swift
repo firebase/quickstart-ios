@@ -31,8 +31,8 @@ class ConfigExampleUITests: XCTestCase {
         super.tearDown()
     }
     
-    func testAuth() {
-        // Verify that Auth Example app launched successfully
+    func testConfigStartup() {
+        // Verify that Config Example app launched successfully
         XCTAssertTrue(app.navigationBars["Firebase Config"].exists)
     }
 

@@ -5,7 +5,7 @@
 
 This Firebase quickstart is written in Swift and aims to showcase how Firebase Auth can help manage user authentication. You can read more about Firebase Auth [here](https://firebase.google.com/docs/auth)!
 
-To view the older Objective-C and Swift quickstarts, view the [`AuthLegacyQuickstart`](https://github.com/firebase/quickstart-ios/blob/master/authentication/LegacyAuthQuickstart) directory.
+To view the older Objective-C and Swift quickstarts, view the [`LegacyAuthQuickstart`](https://github.com/firebase/quickstart-ios/blob/master/authentication/LegacyAuthQuickstart) directory.
 
 ## Getting Started
 

@@ -1,13 +1,13 @@
 PODS:
-  - Firebase/CoreOnly (6.27.0):
-    - FirebaseCore (= 6.8.0)
-  - Firebase/RemoteConfig (6.27.0):
+  - Firebase/CoreOnly (6.27.1):
+    - FirebaseCore (= 6.8.1)
+  - Firebase/RemoteConfig (6.27.1):
     - Firebase/CoreOnly
     - FirebaseRemoteConfig (~> 4.6.0)
   - FirebaseABTesting (3.3.0):
     - FirebaseCore (~> 6.8)
     - Protobuf (>= 3.9.2, ~> 3.9)
-  - FirebaseCore (6.8.0):
+  - FirebaseCore (6.8.1):
     - FirebaseCoreDiagnostics (~> 1.3)
     - GoogleUtilities/Environment (~> 6.5)
     - GoogleUtilities/Logger (~> 6.5)
@@ -65,9 +65,9 @@ SPEC REPOS:
     - Protobuf
 
 SPEC CHECKSUMS:
-  Firebase: fc4cbf6f1592636431821ef9a3c557e4dfd9f268
+  Firebase: 919186c8e119dd9372a45fd1dd17a8a942bc1892
   FirebaseABTesting: b7f8b6c8c9398e98bb30c4195f697b5b73a330d0
-  FirebaseCore: feda061cb1ee6d8ad4824f4a4a8ffbcfe284f595
+  FirebaseCore: 8cd4f8ea22075e0ee582849b1cf79d8816506085
   FirebaseCoreDiagnostics: 4505e4d4009b1d93f605088ee7d7764d5f0d1c84
   FirebaseInstallations: 293f567159b6d66d1c990f13bb868066096c94ec
   FirebaseRemoteConfig: 63ae9d14848e645c7f070daa6af89265be48f803

@@ -56,7 +56,7 @@ NSString *const kLoadingPhraseConfigKey = @"loading_phrase";
     [self.remoteConfig fetchWithCompletionHandler:^(FIRRemoteConfigFetchStatus status, NSError *error) {
         if (status == FIRRemoteConfigFetchStatusSuccess) {
             NSLog(@"Config fetched!");
-          [self.remoteConfig activateWithCompletionHandler:^(NSError * _Nullable error) {
+          [self.remoteConfig activateWithCompletion:^(BOOL changed, NSError * _Nullable error) {
             // ...
           }];
         } else {

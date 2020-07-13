@@ -98,7 +98,7 @@ As outlined in the docs, **Sign in with Apple** requires enabling the *Sign In w
 - Run the app on your device or simulator.
 - Choose **Twitter** under **Identity Providers** to launch the **Twitter Sign In** flow
 
-- See the [Getting Started with Twitter Sign In guide](https://firebase.google.com/docs/auth/ios/twitter) for more details.
+- See the [Getting Started with Twitter Sign In guide](https://firebase.google.com/docs/auth/ios/twitter-login) for more details.
 
 ### Microsoft
 #### Start by going to the [Firebase Console](https://console.firebase.google.com) and navigate to your project:

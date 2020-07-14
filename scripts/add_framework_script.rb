@@ -16,26 +16,69 @@
 
 require 'xcodeproj'
 require 'set'
-sdk = ARGV[0]
-target = ARGV[1]
-framework_dir = ARGV[2]
+require 'optparse'
+
+options = {}
+options[:source_tree] = "SOURCE_ROOT"
+options[:file_ext] = "xcframework,framework,dylib"
+OptionParser.new do |opt|
+  opt.on('--sdk SDK') { |o| options[:sdk] = o }
+  opt.on('--target TARGET') { |o| options[:target] = o }
+  opt.on('--framework_path FRAMEWORK_PATH') { |o| options[:framework_path] = o }
+  opt.on('--source_tree SOURCE_TREE') { |o| options[:source_tree] = o }
+  opt.on('--file_ext FILE_EXT') { |o| options[:file_ext] = o}
+end.parse!
+sdk = options[:sdk]
+target = options[:target]
+framework_path = options[:framework_path]
+source_tree = options[:source_tree]
+file_ext = options[:file_ext]
 project_path = "#{sdk}Example.xcodeproj"
 project = Xcodeproj::Project.open(project_path)
-framework_group = Dir.glob(File.join(framework_dir ,"*framework"))
+project_framework_group = project.frameworks_group
 
-project.targets.each do |project_target|
-  next unless project_target.name == target
-  project_framework_group = project.frameworks_group
-  framework_build_phase = project_target.frameworks_build_phase
-  framework_set = project_target.frameworks_build_phase.files.to_set
-	puts "The following frameworks are added to #{project_target}"
-  framework_group.each do |framework|
-    next if framework_set.size == framework_set.add(framework).size
-    ref = project_framework_group.new_reference("#{framework}")
-    ref.name = "#{File.basename(framework)}"
-    ref.source_tree = "SOURCE_ROOT"
-    framework_build_phase.add_file_reference(ref)
-    puts ref
+def add_ref(group, path, source_tree, phase)
+  ref = group.new_reference("#{path}")
+  ref.name = "#{File.basename(path)}"
+  ref.source_tree = source_tree
+  phase.add_file_reference(ref)
+  puts ref
+end
+
+if File.directory?(framework_path)
+  if framework_path.end_with?("bundle")
+    project.targets.each do |project_target|
+      next unless project_target.name == target
+      puts "The following bundle is added to #{project_target}"
+      add_ref(project.main_group,
+              framework_path,
+              source_tree,
+              project_target.resources_build_phase)
+    end
+  else
+    framework_group = Dir.glob(File.join(framework_path, "*.{#{file_ext}}"))
+
+    project.targets.each do |project_target|
+      next unless project_target.name == target
+      framework_set = project_target.frameworks_build_phase.files.to_set
+      puts "The following frameworks are added to #{project_target}"
+      framework_group.each do |framework|
+        next if framework_set.size == framework_set.add(framework).size
+        add_ref(project_framework_group,
+                framework,
+                source_tree,
+                project_target.frameworks_build_phase)
+      end
+    end
+  end
+else
+  project.targets.each do |project_target|
+    next unless project_target.name == target
+    puts "The following file is added to #{project_target}"
+    add_ref(project_framework_group,
+            framework_path,
+            source_tree,
+            project_target.frameworks_build_phase)
   end
 end
 project.save()

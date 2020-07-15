@@ -1,20 +1,19 @@
 PODS:
-  - Firebase/Analytics (6.27.1):
+  - Firebase/Analytics (6.28.0):
     - Firebase/Core
-  - Firebase/Core (6.27.1):
+  - Firebase/Core (6.28.0):
     - Firebase/CoreOnly
     - FirebaseAnalytics (= 6.6.2)
-  - Firebase/CoreOnly (6.27.1):
-    - FirebaseCore (= 6.8.1)
-  - Firebase/DynamicLinks (6.27.1):
+  - Firebase/CoreOnly (6.28.0):
+    - FirebaseCore (= 6.9.0)
+  - Firebase/DynamicLinks (6.28.0):
     - Firebase/CoreOnly
-    - FirebaseDynamicLinks (~> 4.1.0)
-  - Firebase/InAppMessaging (6.27.1):
+    - FirebaseDynamicLinks (~> 4.2.0)
+  - Firebase/InAppMessaging (6.28.0):
     - Firebase/CoreOnly
-    - FirebaseInAppMessaging (~> 0.21.0)
-  - FirebaseABTesting (3.3.0):
+    - FirebaseInAppMessaging (~> 0.22.0)
+  - FirebaseABTesting (4.0.0):
     - FirebaseCore (~> 6.8)
-    - Protobuf (>= 3.9.2, ~> 3.9)
   - FirebaseAnalytics (6.6.2):
     - FirebaseCore (~> 6.8)
     - FirebaseInstallations (~> 1.4)
@@ -24,28 +23,27 @@ PODS:
     - GoogleUtilities/Network (~> 6.0)
     - "GoogleUtilities/NSData+zlib (~> 6.0)"
     - nanopb (~> 1.30905.0)
-  - FirebaseCore (6.8.1):
+  - FirebaseCore (6.9.0):
     - FirebaseCoreDiagnostics (~> 1.3)
-    - GoogleUtilities/Environment (~> 6.5)
-    - GoogleUtilities/Logger (~> 6.5)
-  - FirebaseCoreDiagnostics (1.4.0):
-    - GoogleDataTransportCCTSupport (~> 3.1)
-    - GoogleUtilities/Environment (~> 6.5)
-    - GoogleUtilities/Logger (~> 6.5)
+    - GoogleUtilities/Environment (~> 6.7)
+    - GoogleUtilities/Logger (~> 6.7)
+  - FirebaseCoreDiagnostics (1.5.0):
+    - GoogleDataTransport (~> 7.0)
+    - GoogleUtilities/Environment (~> 6.7)
+    - GoogleUtilities/Logger (~> 6.7)
     - nanopb (~> 1.30905.0)
-  - FirebaseDynamicLinks (4.1.0):
+  - FirebaseDynamicLinks (4.2.0):
     - FirebaseCore (~> 6.8)
-  - FirebaseInAppMessaging (0.21.0):
-    - FirebaseABTesting (~> 3.2)
+  - FirebaseInAppMessaging (0.22.0):
+    - FirebaseABTesting (~> 4.0)
     - FirebaseCore (~> 6.8)
     - FirebaseInstallations (~> 1.1)
-    - GoogleDataTransportCCTSupport (~> 3.1)
-    - GoogleUtilities/Environment (~> 6.5)
+    - GoogleUtilities/Environment (~> 6.7)
     - nanopb (~> 1.30905.0)
-  - FirebaseInstallations (1.4.0):
+  - FirebaseInstallations (1.5.0):
     - FirebaseCore (~> 6.8)
-    - GoogleUtilities/Environment (~> 6.6)
-    - GoogleUtilities/UserDefaults (~> 6.6)
+    - GoogleUtilities/Environment (~> 6.7)
+    - GoogleUtilities/UserDefaults (~> 6.7)
     - PromisesObjC (~> 1.2)
   - GoogleAppMeasurement (6.6.2):
     - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
@@ -53,28 +51,26 @@ PODS:
     - GoogleUtilities/Network (~> 6.0)
     - "GoogleUtilities/NSData+zlib (~> 6.0)"
     - nanopb (~> 1.30905.0)
-  - GoogleDataTransport (6.2.1)
-  - GoogleDataTransportCCTSupport (3.2.0):
-    - GoogleDataTransport (~> 6.1)
+  - GoogleDataTransport (7.0.0):
     - nanopb (~> 1.30905.0)
-  - GoogleUtilities/AppDelegateSwizzler (6.6.0):
+  - GoogleUtilities/AppDelegateSwizzler (6.7.0):
     - GoogleUtilities/Environment
     - GoogleUtilities/Logger
     - GoogleUtilities/Network
-  - GoogleUtilities/Environment (6.6.0):
+  - GoogleUtilities/Environment (6.7.0):
     - PromisesObjC (~> 1.2)
-  - GoogleUtilities/Logger (6.6.0):
+  - GoogleUtilities/Logger (6.7.0):
     - GoogleUtilities/Environment
-  - GoogleUtilities/MethodSwizzler (6.6.0):
+  - GoogleUtilities/MethodSwizzler (6.7.0):
     - GoogleUtilities/Logger
-  - GoogleUtilities/Network (6.6.0):
+  - GoogleUtilities/Network (6.7.0):
     - GoogleUtilities/Logger
     - "GoogleUtilities/NSData+zlib"
     - GoogleUtilities/Reachability
-  - "GoogleUtilities/NSData+zlib (6.6.0)"
-  - GoogleUtilities/Reachability (6.6.0):
+  - "GoogleUtilities/NSData+zlib (6.7.0)"
+  - GoogleUtilities/Reachability (6.7.0):
     - GoogleUtilities/Logger
-  - GoogleUtilities/UserDefaults (6.6.0):
+  - GoogleUtilities/UserDefaults (6.7.0):
     - GoogleUtilities/Logger
   - nanopb (1.30905.0):
     - nanopb/decode (= 1.30905.0)
@@ -82,7 +78,6 @@ PODS:
   - nanopb/decode (1.30905.0)
   - nanopb/encode (1.30905.0)
   - PromisesObjC (1.2.9)
-  - Protobuf (3.12.0)
 
 DEPENDENCIES:
   - Firebase/Analytics
@@ -101,28 +96,24 @@ SPEC REPOS:
     - FirebaseInstallations
     - GoogleAppMeasurement
     - GoogleDataTransport
-    - GoogleDataTransportCCTSupport
     - GoogleUtilities
     - nanopb
     - PromisesObjC
-    - Protobuf
 
 SPEC CHECKSUMS:
-  Firebase: 919186c8e119dd9372a45fd1dd17a8a942bc1892
-  FirebaseABTesting: b7f8b6c8c9398e98bb30c4195f697b5b73a330d0
+  Firebase: dc81c6c4701aa965eda3b1433d1b993e3f291e7b
+  FirebaseABTesting: dc041951b2d9d9279c300222647b0cba48022d1f
   FirebaseAnalytics: 5fa308e1b13f838d0f6dc74719ac2a72e8c5afc4
-  FirebaseCore: 8cd4f8ea22075e0ee582849b1cf79d8816506085
-  FirebaseCoreDiagnostics: 4505e4d4009b1d93f605088ee7d7764d5f0d1c84
-  FirebaseDynamicLinks: 50cff91aff05347770be750dde61d3311ff7ffc8
-  FirebaseInAppMessaging: b91934b2c8dfc6ae3ce6bbdf3fb9b57224c3b47b
-  FirebaseInstallations: 293f567159b6d66d1c990f13bb868066096c94ec
+  FirebaseCore: aab9d4dd2d819197a0157166cb065ae88ff612b5
+  FirebaseCoreDiagnostics: 7535fe695737f8c5b350584292a70b7f8ff0357b
+  FirebaseDynamicLinks: cf3cfedfd47ce6ea56fa66a5c940ea0ca9c60950
+  FirebaseInAppMessaging: 417ef2696fcf7dc79dfcb0adc46fdb2f3bd0e12e
+  FirebaseInstallations: 3c520c951305cbf9ca54eb891ff9e6d1fd384881
   GoogleAppMeasurement: 8cd1f289d60e629cf16ab03363b9e89c776b9651
-  GoogleDataTransport: 9a8a16f79feffc7f42096743de2a7c4815e84020
-  GoogleDataTransportCCTSupport: 489c1265d2c85b68187a83a911913d190012158d
-  GoogleUtilities: 39530bc0ad980530298e9c4af8549e991fd033b1
+  GoogleDataTransport: 8a40cb194ad242b6f6dfe72c14fe40fc67c4dcd7
+  GoogleUtilities: 23ad5d79794b8ded1954466d5be6f8f694d3f7f3
   nanopb: c43f40fadfe79e8b8db116583945847910cbabc9
   PromisesObjC: b48e0338dbbac2207e611750777895f7a5811b75
-  Protobuf: 2793fcd0622a00b546c60e7cbbcc493e043e9bb9
 
 PODFILE CHECKSUM: e76695878d7ef3ba4e6350710de2acfa112a78df
 

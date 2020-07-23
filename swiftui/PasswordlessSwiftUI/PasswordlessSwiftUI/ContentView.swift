@@ -15,14 +15,12 @@
 import SwiftUI
 import Firebase
 
-
 /// Main view where user can login in using Email Link Authentication.
 struct ContentView: View {
   @State private var email: String = ""
   @State private var isPresentingSheet = false
 
   var body: some View {
-
     NavigationView {
       VStack(alignment: .leading) {
         Text("Authenticate users with only their email, no password required!")
@@ -32,26 +30,29 @@ struct ContentView: View {
           text: $email, placeholder: "Email", symbolName: "person.circle.fill"
         )
 
-        CustomStyledButton(title: "Send Sign In Link") {
-          sendSignInLink()
-        }
-        .disabled(email.isEmpty)
+        CustomStyledButton(title: "Send Sign In Link", action: sendSignInLink)
+          .disabled(email.isEmpty)
 
         Spacer()
       }
       .padding()
       .navigationBarTitle("Passwordless Login")
     }
-    .onOpenURL { (url) in
+    .onOpenURL { url in
       let link = url.absoluteString
       if Auth.auth().isSignIn(withEmailLink: link) {
-        passwordlessSignIn(email: email, link: link) { user, error in
-          isPresentingSheet = user?.isEmailVerified ?? false
+        passwordlessSignIn(email: email, link: link) { result in
+          switch result {
+          case let .success(user):
+            isPresentingSheet = user?.isEmailVerified ?? false
+          case .failure:
+            isPresentingSheet = false
+          }
         }
       }
     }
     .sheet(isPresented: $isPresentingSheet) {
-      SuccessView(email: $email)
+      SuccessView(email: email)
     }
   }
 
@@ -67,11 +68,15 @@ struct ContentView: View {
   }
 
   private func passwordlessSignIn(email: String, link: String,
-                                  completion: @escaping (_ user: User?, _ error: Error?) -> ()) {
+                                  completion: @escaping (Result<User?, Error>) -> Void) {
     Auth.auth().signIn(withEmail: email, link: link) { result, error in
-      print(error ?? "Authentication was successful.")
-      let newUser = error == nil ? Auth.auth().currentUser : nil
-      completion(newUser, error)
+      if let error = error {
+        print("ⓧ Authentication error: \(error.localizedDescription).")
+        completion(.failure(error))
+      } else {
+        print("✔ Authentication was successful.")
+        completion(.success(Auth.auth().currentUser))
+      }
     }
   }
 }
@@ -81,13 +86,13 @@ struct CustomStyledTextField: View {
   @Binding var text: String
   let placeholder: String
   let symbolName: String
-  
+
   var body: some View {
     HStack {
       Image(systemName: symbolName)
         .imageScale(.large)
         .padding(.leading)
-      
+
       TextField(placeholder, text: $text)
         .padding(.vertical)
         .accentColor(.orange)
@@ -95,7 +100,7 @@ struct CustomStyledTextField: View {
     }
     .background(
       RoundedRectangle(cornerRadius: 16.0, style: .circular)
-      .foregroundColor(Color(.secondarySystemFill))
+        .foregroundColor(Color(.secondarySystemFill))
     )
   }
 }
@@ -107,42 +112,43 @@ struct CustomStyledButton: View {
 
   var body: some View {
     Button(action: action) {
-      Spacer()
-      Text(title)
-        .padding()
-        .accentColor(.white)
-      Spacer()
+      HStack {
+        Spacer()
+        Text(title)
+          .padding()
+          .accentColor(.white)
+        Spacer()
+      }
     }
     .background(Color.orange)
     .cornerRadius(16.0)
   }
-
 }
 
 /// Displayed when a user successfuly logs in.
 struct SuccessView: View {
-  @Binding var email: String
-  
+  let email: String
+
   var body: some View {
     /// The first view in this `ZStack` is a `Color` view that expands
     /// to set the background color of the `SucessView`.
     ZStack {
       Color.orange
         .edgesIgnoringSafeArea(.all)
-        
+
       VStack(alignment: .leading) {
         Group {
           Text("Welcome")
             .font(.largeTitle)
             .fontWeight(.semibold)
-          
+
           Text(email.lowercased())
             .font(.title3)
             .fontWeight(.bold)
             .multilineTextAlignment(.leading)
         }
         .padding(.leading)
-        
+
         Image(systemName: "checkmark.circle")
           .resizable()
           .aspectRatio(contentMode: .fit)
@@ -154,26 +160,29 @@ struct SuccessView: View {
 }
 
 struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-      ContentView()
-    }
+  static var previews: some View {
+    ContentView()
+  }
 }
 
 // MARK: Example Auth View Modifier
 
 extension View {
   func handlePasswordlessLogin(forEmail email: String,
-                               completion: @escaping (_ user: User?, _ error: Error?) -> ()) -> some View {
-      self.onOpenURL { (url) in
-        let link = url.absoluteString
-        if Auth.auth().isSignIn(withEmailLink: link) {
-          Auth.auth().signIn(withEmail: email, link: link) { result, error in
-            print(error ?? "Authentication was successful.")
-            let newUser = error == nil ? Auth.auth().currentUser : nil
-            completion(newUser, error)
+                               completion: @escaping (Result<User?, Error>) -> Void) -> some View {
+    onOpenURL { url in
+      let link = url.absoluteString
+      if Auth.auth().isSignIn(withEmailLink: link) {
+        Auth.auth().signIn(withEmail: email, link: link) { result, error in
+          if let error = error {
+            print("ⓧ Authentication error: \(error.localizedDescription).")
+            completion(.failure(error))
+          } else {
+            print("✔ Authentication was successful.")
+            completion(.success(Auth.auth().currentUser))
           }
         }
       }
     }
+  }
 }
-

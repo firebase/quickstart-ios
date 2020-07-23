@@ -1,7 +1,7 @@
 # Google Analytics for Firebase Quickstart
 
 This Firebase quickstart is written in Swift and aims to showcase how Firebase 
-Auth can provide insight on app usage and user engagement. You can read more 
+Analytics can provide insight on app usage and user engagement. You can read more 
 about Google Analytics for Firebase [here](https://firebase.google.com/docs/analytics)!
 
 To view the older Objective-C and Swift quickstarts, view the 

@@ -15,7 +15,6 @@
 		EA5C0BD224C5D2070010FDF6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA5C0BD024C5D2070010FDF6 /* LaunchScreen.storyboard */; };
 		EA5C0BDD24C5D2070010FDF6 /* AnalyticsExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA5C0BDC24C5D2070010FDF6 /* AnalyticsExampleTests.swift */; };
 		EA5C0BE824C5D2070010FDF6 /* AnalyticsExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA5C0BE724C5D2070010FDF6 /* AnalyticsExampleUITests.swift */; };
-		EA5C0BF624C5D8AE0010FDF6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EA5C0BF524C5D8AE0010FDF6 /* GoogleService-Info.plist */; };
 		EAC4C14F24C68145001111A3 /* AnalyticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC4C14E24C68145001111A3 /* AnalyticsView.swift */; };
 /* End PBXBuildFile section */
 
@@ -51,7 +50,6 @@
 		EA5C0BE324C5D2070010FDF6 /* AnalyticsExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AnalyticsExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA5C0BE724C5D2070010FDF6 /* AnalyticsExampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsExampleUITests.swift; sourceTree = "<group>"; };
 		EA5C0BE924C5D2070010FDF6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EA5C0BF524C5D8AE0010FDF6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EAC4C14E24C68145001111A3 /* AnalyticsView.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = AnalyticsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -119,7 +117,6 @@
 				EA5C0BCE24C5D2070010FDF6 /* Assets.xcassets */,
 				EA5C0BD024C5D2070010FDF6 /* LaunchScreen.storyboard */,
 				EA5C0BD324C5D2070010FDF6 /* Info.plist */,
-				EA5C0BF524C5D8AE0010FDF6 /* GoogleService-Info.plist */,
 			);
 			path = AnalyticsExample;
 			sourceTree = "<group>";
@@ -246,7 +243,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA5C0BD224C5D2070010FDF6 /* LaunchScreen.storyboard in Resources */,
-				EA5C0BF624C5D8AE0010FDF6 /* GoogleService-Info.plist in Resources */,
 				EA5C0BCF24C5D2070010FDF6 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -220,7 +220,7 @@ final class AnalyticsView: UIScrollView {
     // MARK: - Content Size
 
     /// Sets the appropriate `contentSize` of self (a `UIScrollview`) so the entire
-    /// content can fit in its smaller displays.
+    /// content can scroll to fit on smaller screens.
     contentSize = CGSize(width: frame.width, height: postButton.frame.maxY + 20)
   }
 

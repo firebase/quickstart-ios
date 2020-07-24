@@ -75,7 +75,7 @@ struct ContentView: View {
         completion(.failure(error))
       } else {
         print("✔ Authentication was successful.")
-        completion(.success(Auth.auth().currentUser))
+        completion(.success(result?.user))
       }
     }
   }
@@ -112,6 +112,7 @@ struct CustomStyledButton: View {
 
   var body: some View {
     Button(action: action) {
+      /// Embed in an HStack to display a wide button with centered text.
       HStack {
         Spacer()
         Text(title)
@@ -162,27 +163,5 @@ struct SuccessView: View {
 struct ContentView_Previews: PreviewProvider {
   static var previews: some View {
     ContentView()
-  }
-}
-
-// MARK: Example Auth View Modifier
-
-extension View {
-  func handlePasswordlessLogin(forEmail email: String,
-                               completion: @escaping (Result<User?, Error>) -> Void) -> some View {
-    onOpenURL { url in
-      let link = url.absoluteString
-      if Auth.auth().isSignIn(withEmailLink: link) {
-        Auth.auth().signIn(withEmail: email, link: link) { result, error in
-          if let error = error {
-            print("ⓧ Authentication error: \(error.localizedDescription).")
-            completion(.failure(error))
-          } else {
-            print("✔ Authentication was successful.")
-            completion(.success(Auth.auth().currentUser))
-          }
-        }
-      }
-    }
   }
 }

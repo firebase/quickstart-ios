@@ -18,7 +18,7 @@ import Firebase
 @main
 struct PasswordlessSwiftUIApp: App {
   
-  /// With the removal of `AppDelegate`, it is recommended to configure Firbase here.
+  /// With the removal of `AppDelegate`, this is one of the ways to now configure Firebase.
   init() {
     FirebaseApp.configure()
   }

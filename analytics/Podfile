@@ -1,16 +1,20 @@
-# AnalyticsExample
-
-use_frameworks!
-platform :ios, '8.0'
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
 
 target 'AnalyticsExample' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for AnalyticsExample
   pod 'Firebase/Analytics'
 
   target 'AnalyticsExampleTests' do
     inherit! :search_paths
+    # Pods for testing
   end
-end
 
-target 'AnalyticsExampleSwift' do
-  pod 'Firebase/Analytics'
+  target 'AnalyticsExampleUITests' do
+    # Pods for testing
+  end
+
 end

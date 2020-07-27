@@ -34,11 +34,10 @@ PODS:
     - GoogleUtilities/Environment (~> 6.7)
     - GoogleUtilities/UserDefaults (~> 6.7)
     - PromisesObjC (~> 1.2)
-  - FirebasePerformance (3.2.0):
+  - FirebasePerformance (3.2.1):
     - FirebaseCore (~> 6.9)
     - FirebaseInstallations (~> 1.5)
     - FirebaseRemoteConfig (~> 4.7)
-    - GoogleDataTransport (~> 7.0)
     - GoogleToolboxForMac/Logger (~> 2.1)
     - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
     - GoogleUtilities/Environment (~> 6.2)
@@ -124,7 +123,7 @@ SPEC CHECKSUMS:
   FirebaseCore: 687b8e6a0a4337b898a6326d68254c2f80c143af
   FirebaseCoreDiagnostics: 7535fe695737f8c5b350584292a70b7f8ff0357b
   FirebaseInstallations: 3c520c951305cbf9ca54eb891ff9e6d1fd384881
-  FirebasePerformance: 739fca84a1485f371fc89c090d8f2371564bd482
+  FirebasePerformance: 9cb28cff0fbfcde01eac95d35fa8c001970e8849
   FirebaseRemoteConfig: a7d272194b5336a66ca3e35beb5de67f18c79b91
   GoogleAppMeasurement: 8cd1f289d60e629cf16ab03363b9e89c776b9651
   GoogleDataTransport: 8a40cb194ad242b6f6dfe72c14fe40fc67c4dcd7

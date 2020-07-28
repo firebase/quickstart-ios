@@ -51,7 +51,7 @@ class PasswordlessViewController: OtherAuthViewController {
 
   @objc
   private func passwordlessSignIn() {
-    // Retrieve link that we stored in user defaults in `SceneDelegate`
+    // Retrieve link that we stored in user defaults in `SceneDelegate`.
     guard let link = UserDefaults.standard.value(forKey: "Link") as? String else { return }
 
     Auth.auth().signIn(withEmail: email, link: link) { result, error in
@@ -62,9 +62,9 @@ class PasswordlessViewController: OtherAuthViewController {
       if currentUser.isEmailVerified {
         print("User verified with passwordless email.")
 
-        self.navigationController?.dismiss(animated: true, completion: {
+        self.navigationController?.dismiss(animated: true) {
           self.delegate?.loginDidOccur()
-                })
+        }
       } else {
         print("User could not be verified by passwordless email")
       }

@@ -59,7 +59,7 @@ class PhoneAuthViewController: OtherAuthViewController {
       preferredStyle: .alert
     )
     phoneAuthController.addTextField { textfield in
-      textfield.placeholder = "Enter Verification Code"
+      textfield.placeholder = "Enter verification code."
       textfield.textContentType = .oneTimeCode
     }
 

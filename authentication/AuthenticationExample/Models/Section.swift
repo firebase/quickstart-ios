@@ -27,7 +27,8 @@ struct Item: Itemable {
   var detailTitle: String?
   var textColor: UIColor?
   let isEditable: Bool
-  let hasNestedContent: Bool
+  var hasNestedContent: Bool
+  var isChecked: Bool
 
   private var _image: UIImage?
   var image: UIImage? {
@@ -35,16 +36,19 @@ struct Item: Itemable {
     set { _image = newValue }
   }
 
-  init(title: String? = nil, detailTitle: String? = nil,
+  init(title: String? = nil,
+       detailTitle: String? = nil,
        textColor: UIColor? = .label,
        isEditable: Bool = false,
        hasNestedContent: Bool = false,
+       isChecked: Bool = false,
        image: UIImage? = nil) {
     self.title = title
     self.detailTitle = detailTitle
     self.textColor = textColor
     self.isEditable = isEditable
     self.hasNestedContent = hasNestedContent
+    self.isChecked = isChecked
     self.image = image
   }
 }

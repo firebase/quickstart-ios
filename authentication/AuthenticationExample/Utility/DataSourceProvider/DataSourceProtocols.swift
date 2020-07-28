@@ -21,7 +21,8 @@ protocol Itemable {
   var image: UIImage? { get set }
   var textColor: UIColor? { get }
   var isEditable: Bool { get }
-  var hasNestedContent: Bool { get }
+  var hasNestedContent: Bool { get set }
+  var isChecked: Bool { get set }
 }
 
 /// Models an object that can be used as a section in a tableview

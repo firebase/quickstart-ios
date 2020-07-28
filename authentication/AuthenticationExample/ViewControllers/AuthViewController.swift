@@ -63,19 +63,19 @@ class AuthViewController: UIViewController, DataSourceProviderDelegate {
     case .twitter, .microsoft, .gitHub, .yahoo:
       performOAuthLoginFlow(for: provider)
 
-    case .EmailPassword:
+    case .emailPassword:
       performDemoEmailPasswordLoginFlow()
 
-    case .Passwordless:
+    case .passwordless:
       performPasswordlessLoginFlow()
 
-    case .PhoneNumber:
+    case .phoneNumber:
       performPhoneNumberLoginFlow()
 
-    case .Anonymous:
+    case .anonymous:
       performAnonymousLoginFlow()
 
-    case .Custom:
+    case .custom:
       performCustomAuthLoginFlow()
     }
   }

@@ -59,7 +59,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
   private func handleIncomingDynamicLink(_ incomingURL: URL) {
     DynamicLinks.dynamicLinks().handleUniversalLink(incomingURL) { dynamicLink, error in
       guard error == nil else {
-        return print("🚨 Error in \(#function): \(error!.localizedDescription)")
+        return print("ⓧ Error in \(#function): \(error!.localizedDescription)")
       }
 
       guard let link = dynamicLink?.url?.absoluteString else { return }

@@ -28,7 +28,7 @@ $ git clone https://github.com/firebase/quickstart-ios.git
 
 $ cd analytics/
 
-$ pod install
+$ pod install --repo-update
 
 $ open AnalyticsExample.xcworkspace
 

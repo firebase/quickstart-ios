@@ -220,7 +220,7 @@
 				5F9961071AE0CF4F0034F503 /* LaunchScreen.xib */,
 			);
 			name = Shared;
-			path = ../shared;
+            		path = ../../shared;
 			sourceTree = "<group>";
 		};
 		5FC29E541AE9255700668C8D /* Images */ = {

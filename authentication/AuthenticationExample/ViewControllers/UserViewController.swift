@@ -76,7 +76,7 @@ class UserViewController: UIViewController, DataSourceProviderDelegate {
       signCurrentUserOut()
 
     case .link:
-      link()
+      linkUserToOtherAuthProviders()
 
     case .requestVerifyEmail:
       requestVerifyEmail()
@@ -108,9 +108,11 @@ class UserViewController: UIViewController, DataSourceProviderDelegate {
     updateUI()
   }
 
-  public func link() {
-    print(#function)
-    // TODO: maybe display first screen in modal view and
+  public func linkUserToOtherAuthProviders() {
+    guard let user = user else { return }
+    let accountLinkingController = AccountLinkingViewController(for: user)
+    let navController = UINavigationController(rootViewController: accountLinkingController)
+    navigationController?.present(navController, animated: true, completion: nil)
   }
 
   public func requestVerifyEmail() {
@@ -131,12 +133,12 @@ class UserViewController: UIViewController, DataSourceProviderDelegate {
   }
 
   public func refreshUserInfo() {
-    user?.reload(completion: { error in
+    user?.reload { error in
       if let error = error {
         print(error)
       }
       self.updateUI()
-        })
+    }
   }
 
   public func updateUserDisplayName(to newDisplayName: String) {

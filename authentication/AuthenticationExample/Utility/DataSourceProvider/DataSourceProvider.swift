@@ -114,6 +114,7 @@ class DataSourceProvider<DataSource: DataSourceProvidable>: NSObject, UITableVie
     cell.imageView?.image = item.image
     cell.accessoryView = item.isEditable ? editableImageView() : nil
     cell.accessoryType = item.hasNestedContent ? .disclosureIndicator : .none
+    cell.accessoryType = item.isChecked ? .checkmark : cell.accessoryType
   }
 
   private func editableImageView() -> UIImageView {

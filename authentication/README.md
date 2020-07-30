@@ -22,7 +22,7 @@ $ git clone https://github.com/firebase/quickstart-ios.git
 
 $ cd authentication/
 
-$ pod install
+$ pod install --repo-update
 
 $ open AuthenticationExample.xcworkspace
 

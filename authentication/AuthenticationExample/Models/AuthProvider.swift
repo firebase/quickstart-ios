@@ -16,20 +16,83 @@ import UIKit
 
 /// Firebase Auth supported identity providers and other methods of authentication
 enum AuthProvider: String {
-  case google = "Google"
-  case apple = "Apple"
-  case twitter = "Twitter"
-  case microsoft = "Microsoft"
-  case gitHub = "GitHub"
-  case yahoo = "Yahoo"
-  case facebook = "Facebook"
-  case EmailPassword = "Email & Password Login"
-  case Passwordless = "Email Link/Passwordless"
-  case PhoneNumber = "Phone Number"
-  case Anonymous = "Anonymous Authentication"
-  case Custom = "Custom Auth System"
-
-  var id: String { rawValue.lowercased().appending(".com") }
+  case google = "google.com"
+  case apple = "apple.com"
+  case twitter = "twitter.com"
+  case microsoft = "microsoft.com"
+  case gitHub = "github.com"
+  case yahoo = "yahoo.com"
+  case facebook = "facebook.com"
+  case emailPassword = "password"
+  case passwordless = "emailLink"
+  case phoneNumber = "phone"
+  case anonymous = "anonymous"
+  case custom = "custom"
+  
+  /// More intuitively named getter for `rawValue`.
+  var id: String { self.rawValue }
+  
+  /// The UI friendly name of the `AuthProvider`. Used for display.
+  var name: String {
+    switch self {
+    case .google:
+      return "Google"
+    case .apple:
+      return "Apple"
+    case .twitter:
+      return "Twitter"
+    case .microsoft:
+      return "Microsoft"
+    case .gitHub:
+      return "GitHub"
+    case .yahoo:
+      return "Yahoo"
+    case .facebook:
+      return "Facebook"
+    case .emailPassword:
+      return "Email & Password Login"
+    case .passwordless:
+      return "Email Link/Passwordless"
+    case .phoneNumber:
+      return "Phone Number"
+    case .anonymous:
+      return "Anonymous Authentication"
+    case .custom:
+      return "Custom Auth System"
+    }
+  }
+  
+  /// Failable initializer to create an `AuthProvider` from it's corresponding `name` value.
+  /// - Parameter rawValue: String value representing `AuthProvider`'s name or type.
+  init?(rawValue: String) {
+    switch rawValue {
+    case "Google":
+      self = .google
+    case "Apple":
+      self = .apple
+    case "Twitter":
+      self = .twitter
+    case "Microsoft":
+      self = .microsoft
+    case "GitHub":
+      self = .gitHub
+    case "Yahoo":
+      self = .yahoo
+    case "Facebook":
+      self = .facebook
+    case "Email & Password Login":
+      self = .emailPassword
+    case "Email Link/Passwordless":
+      self = .passwordless
+    case "Phone Number":
+      self = .phoneNumber
+    case "Anonymous Authentication":
+      self = .anonymous
+    case "Custom Auth System":
+      self = .custom
+    default: return nil
+    }
+  }
 }
 
 // MARK: DataSourceProvidable
@@ -40,7 +103,7 @@ extension AuthProvider: DataSourceProvidable {
   }
 
   static var providerSection: Section {
-    let providers = self.providers.map { Item(title: $0.rawValue) }
+    let providers = self.providers.map { Item(title: $0.name) }
     let header = "Identity Providers"
     let footer = "Choose a login flow from one of the identity providers above."
     return Section(headerDescription: header, footerDescription: footer, items: providers)
@@ -48,7 +111,7 @@ extension AuthProvider: DataSourceProvidable {
 
   static var emailPasswordSection: Section {
     let image = UIImage(named: "firebaseIcon")
-    let item = Item(title: EmailPassword.rawValue, hasNestedContent: true, image: image)
+    let item = Item(title: emailPassword.name, hasNestedContent: true, image: image)
     let footer = "A example login flow with password authentication."
     return Section(footerDescription: footer, items: [item])
   }
@@ -60,16 +123,24 @@ extension AuthProvider: DataSourceProvidable {
     let shieldSymbol = UIImage.systemImage("lock.shield.fill", tintColor: .systemOrange)
 
     let otherOptions = [
-      Item(title: Passwordless.rawValue, image: lockSymbol),
-      Item(title: PhoneNumber.rawValue, image: phoneSymbol),
-      Item(title: Anonymous.rawValue, image: anonSymbol),
-      Item(title: Custom.rawValue, image: shieldSymbol),
+      Item(title: passwordless.name, image: lockSymbol),
+      Item(title: phoneNumber.name, image: phoneSymbol),
+      Item(title: anonymous.name, image: anonSymbol),
+      Item(title: custom.name, image: shieldSymbol),
     ]
     return Section(footerDescription: "Other authentication methods.", items: otherOptions)
   }
 
   static var sections: [Section] {
     [providerSection, emailPasswordSection, otherSection]
+  }
+
+  static var authLinkSections: [Section] {
+    let allItems = AuthProvider.sections.flatMap { $0.items }
+    let header = "Manage linking between providers"
+    let footer =
+      "Select an unchecked row to link the currently signed in user to that auth provider. To unlink the user from a linked provider, select its corresponding row marked with a checkmark."
+    return [Section(headerDescription: header, footerDescription: footer, items: allItems)]
   }
 
   var sections: [Section] { AuthProvider.sections }

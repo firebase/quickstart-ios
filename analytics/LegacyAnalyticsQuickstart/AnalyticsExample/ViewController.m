@@ -13,7 +13,6 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 //
-
 //
 // For more information on setting up and running this sample code, see
 // https://firebase.google.com/docs/analytics/ios/start
@@ -47,7 +46,9 @@
   NSString *screenClass = [self.classForCoder description];
 
   // [START set_current_screen]
-  [FIRAnalytics setScreenName:screenName screenClass:screenClass];
+  [FIRAnalytics logEventWithName:kFIREventScreenView
+                      parameters:@{kFIRParameterScreenClass: screenClass,
+                                   kFIRParameterScreenName: screenName}];
   // [END set_current_screen]
 }
 

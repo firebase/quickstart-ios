@@ -136,6 +136,9 @@ didReceiveNotificationResponse:(UNNotificationResponse *)response
     NSLog(@"Message ID: %@", userInfo[kGCMMessageIDKey]);
   }
 
+  // With swizzling disabled you must let Messaging know about the message, for Analytics
+  // [[FIRMessaging messaging] appDidReceiveMessage:userInfo];
+
   // Print full message.
   NSLog(@"%@", userInfo);
 

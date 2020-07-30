@@ -146,6 +146,9 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
       print("Message ID: \(messageID)")
     }
 
+    // With swizzling disabled you must let Messaging know about the message, for Analytics
+    // Messaging.messaging().appDidReceiveMessage(userInfo)
+
     // Print full message.
     print(userInfo)
 

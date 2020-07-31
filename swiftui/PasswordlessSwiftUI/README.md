@@ -20,11 +20,7 @@ $ open PasswordlessSwiftUI.xcworkspace
 ```
 
 # Finished Demo
-
-<img src="https://raw.githubusercontent.com/firebase/quickstart-ios/nc-passwordless-swiftui/swiftui/PasswordlessSwiftUI/media/login_flow.gif" img align="center">
-
-![Demo](https://raw.githubusercontent.com/firebase/quickstart-ios/nc-passwordless-swiftui/swiftui/PasswordlessSwiftUI/media/login_flow.gif)
-![Demo](./media/login_flow.gif)
+![The completed demo.](./media/login_flow.gif)
 
 # License
   

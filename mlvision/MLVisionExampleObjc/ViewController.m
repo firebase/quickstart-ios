@@ -286,10 +286,6 @@ typedef NS_ENUM(NSInteger, DetectorPickerRow) {
   return CGAffineTransformScale(transform, scale, scale);
 }
 
-- (CGPoint)pointFromVisionPoint:(FIRVisionPoint *)visionPoint {
-  return CGPointMake(visionPoint.x.floatValue, visionPoint.y.floatValue);
-}
-
 - (void)process:(FIRVisionImage *)visionImage
     withTextRecognizer:(FIRVisionTextRecognizer *)textRecognizer {
   // [START recognize_text]

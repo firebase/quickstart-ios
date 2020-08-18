@@ -78,7 +78,7 @@ PODS:
   - nanopb/decode (1.30905.0)
   - nanopb/encode (1.30905.0)
   - PromisesObjC (1.2.10)
-  - Protobuf (3.12.0)
+  - Protobuf (3.13.0)
 
 DEPENDENCIES:
   - Firebase/Analytics
@@ -113,7 +113,7 @@ SPEC CHECKSUMS:
   GoogleUtilities: 7f2f5a07f888cdb145101d6042bc4422f57e70b3
   nanopb: c43f40fadfe79e8b8db116583945847910cbabc9
   PromisesObjC: b14b1c6b68e306650688599de8a45e49fae81151
-  Protobuf: 2793fcd0622a00b546c60e7cbbcc493e043e9bb9
+  Protobuf: 3dac39b34a08151c6d949560efe3f86134a3f748
 
 PODFILE CHECKSUM: 632861cb11e1778ca43c2667a10a1cb16c0e1e78
 

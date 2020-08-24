@@ -162,7 +162,7 @@ We have already included the **`FBSDKLoginKit`** cocoapod in the quickstart's `P
   - Click **Facebook** and turn on the **Enable** switch, then click **Save**.
   - Enter your Facebook **App Id** and **App Secret** and click **Save**.
 - To finish configuring the Facebook Login Flow:
-  - Add your Facebook App Id [here](https://github.com/firebase/quickstart-ios/blob/master/authentication/AuthenticationExample/View%20Controllers/AuthViewController.swift#L117)
+  - Add your Facebook App Id [here](https://github.com/firebase/quickstart-ios/blob/master/authentication/AuthenticationExample/ViewControllers/AuthViewController.swift#L114)
   - Note, you can also configure Facebook Login in the quickstart's `Info.plist`
   - In Xcode, [add a custom URL scheme for your Facebook App Id](https://developers.google.com/identity/sign-in/ios/start-integrating#add_a_url_scheme_to_your_project).
   - The **URL Scheme** should be in the format of `'fb' + the Facebook App Id`

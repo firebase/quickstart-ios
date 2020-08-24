@@ -26,7 +26,7 @@ class AppDistributionViewController: UIViewController {
   override func viewDidAppear(_ animated: Bool) {
     AppDistribution.appDistribution().checkForUpdate { release, error in
       guard let release = release else {
-        print("asx")
+        print("No release found")
         return
       }
 

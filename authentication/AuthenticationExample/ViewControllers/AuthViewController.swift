@@ -25,6 +25,8 @@ import FBSDKLoginKit
 import AuthenticationServices
 import CryptoKit
 
+private let kFacebookAppID = "ENTER APP ID HERE"
+
 class AuthViewController: UIViewController, DataSourceProviderDelegate {
   var dataSourceProvider: DataSourceProvider<AuthProvider>!
 
@@ -111,7 +113,7 @@ class AuthViewController: UIViewController, DataSourceProviderDelegate {
 
   private func performFacebookSignInFlow() {
     // The following config can also be stored in the project's .plist
-    Settings.appID = "ENTER APP ID HERE"
+    Settings.appID = kFacebookAppID
     Settings.displayName = "AuthenticationExample"
 
     // Create a Facebook `LoginManager` instance

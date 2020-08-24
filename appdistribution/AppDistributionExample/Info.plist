@@ -24,7 +24,7 @@
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>dev.firebase.appdistribution.</string>
-				<string>com.google.firebase.quickstart.AnalyticsExample</string>
+				<string>com.google.firebase.quickstart.AppDistributionExample</string>
 			</array>
 		</dict>
 	</array>

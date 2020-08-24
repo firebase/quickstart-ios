@@ -3,11 +3,10 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		EA11716F24C6AB3D0085BD17 /* BlogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA11716E24C6AB3D0085BD17 /* BlogViewController.swift */; };
 		EA5C0BC624C5D2060010FDF6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA5C0BC524C5D2060010FDF6 /* AppDelegate.swift */; };
 		EA5C0BC824C5D2060010FDF6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA5C0BC724C5D2060010FDF6 /* SceneDelegate.swift */; };
 		EA5C0BCA24C5D2060010FDF6 /* AppDistributionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA5C0BC924C5D2060010FDF6 /* AppDistributionViewController.swift */; };
@@ -15,7 +14,6 @@
 		EA5C0BD224C5D2070010FDF6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA5C0BD024C5D2070010FDF6 /* LaunchScreen.storyboard */; };
 		EA5C0BDD24C5D2070010FDF6 /* AppDistributionExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA5C0BDC24C5D2070010FDF6 /* AppDistributionExampleTests.swift */; };
 		EA5C0BE824C5D2070010FDF6 /* AppDistributionExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA5C0BE724C5D2070010FDF6 /* AppDistributionExampleUITests.swift */; };
-		EAC4C14F24C68145001111A3 /* AppDistributionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC4C14E24C68145001111A3 /* AppDistributionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +34,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		EA11716E24C6AB3D0085BD17 /* BlogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlogViewController.swift; sourceTree = "<group>"; };
 		EA5C0BC224C5D2060010FDF6 /* AppDistributionExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppDistributionExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA5C0BC524C5D2060010FDF6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EA5C0BC724C5D2060010FDF6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -50,7 +47,6 @@
 		EA5C0BE324C5D2070010FDF6 /* AppDistributionExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AppDistributionExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA5C0BE724C5D2070010FDF6 /* AppDistributionExampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDistributionExampleUITests.swift; sourceTree = "<group>"; };
 		EA5C0BE924C5D2070010FDF6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EAC4C14E24C68145001111A3 /* AppDistributionView.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = AppDistributionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,8 +108,6 @@
 				EA5C0BC524C5D2060010FDF6 /* AppDelegate.swift */,
 				EA5C0BC724C5D2060010FDF6 /* SceneDelegate.swift */,
 				EA5C0BC924C5D2060010FDF6 /* AppDistributionViewController.swift */,
-				EAC4C14E24C68145001111A3 /* AppDistributionView.swift */,
-				EA11716E24C6AB3D0085BD17 /* BlogViewController.swift */,
 				EA5C0BCE24C5D2070010FDF6 /* Assets.xcassets */,
 				EA5C0BD024C5D2070010FDF6 /* LaunchScreen.storyboard */,
 				EA5C0BD324C5D2070010FDF6 /* Info.plist */,
@@ -269,8 +263,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA5C0BCA24C5D2060010FDF6 /* AppDistributionViewController.swift in Sources */,
-				EAC4C14F24C68145001111A3 /* AppDistributionView.swift in Sources */,
-				EA11716F24C6AB3D0085BD17 /* BlogViewController.swift in Sources */,
 				EA5C0BC624C5D2060010FDF6 /* AppDelegate.swift in Sources */,
 				EA5C0BC824C5D2060010FDF6 /* SceneDelegate.swift in Sources */,
 			);
@@ -448,8 +440,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.6;
-				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.AnalyticsExample;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.AppDistributionExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "Google Development";
 				SWIFT_VERSION = 5.0;
@@ -470,8 +462,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.6;
-				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.AnalyticsExample;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.AppDistributionExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "Google Development";
 				SWIFT_VERSION = 5.0;

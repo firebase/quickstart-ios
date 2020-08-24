@@ -16,18 +16,17 @@ import UIKit
 import FirebaseAppDistribution
 
 class AppDistributionViewController: UIViewController {
-  private lazy var appdistributionView = AppDistributionView(frame: view.frame)
 
   override func viewDidLoad() {
     super.viewDidLoad()
     configureNavigationBar()
-    view.addSubview(appdistributionView)
   }
 
+  // MARK: - Firebase 🔥
   override func viewDidAppear(_ animated: Bool) {
     AppDistribution.appDistribution().checkForUpdate { release, error in
       guard let release = release else {
-        print("x")
+        print("asx")
         return
       }
 
@@ -47,9 +46,6 @@ class AppDistributionViewController: UIViewController {
       self.present(uialert, animated: true, completion: nil)
     }
   }
-
-  // MARK: - Firebase 🔥
-
   // MARK: - Private Helpers
 
   private func configureNavigationBar() {

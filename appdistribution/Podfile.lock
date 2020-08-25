@@ -92,7 +92,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   FirebaseAppDistribution:
-    :commit: c13201babf9da732e9077f671dc8b729744e7488
+    :commit: 54421ead250a987cddbd1d2e397bee124ed7ae83
     :git: https://github.com/firebase/firebase-ios-sdk.git
 
 SPEC CHECKSUMS:

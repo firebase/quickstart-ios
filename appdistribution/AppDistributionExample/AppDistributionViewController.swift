@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import UIKit
-import FirebaseAppDistribution
+import Firebase
 
 class AppDistributionViewController: UIViewController {
 

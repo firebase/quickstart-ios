@@ -4,46 +4,46 @@ PODS:
     - AppAuth/ExternalUserAgent (= 1.4.0)
   - AppAuth/Core (1.4.0)
   - AppAuth/ExternalUserAgent (1.4.0)
-  - Firebase/Analytics (6.30.0):
+  - Firebase/Analytics (6.31.0):
     - Firebase/Core
-  - Firebase/Auth (6.30.0):
+  - Firebase/Auth (6.31.0):
     - Firebase/CoreOnly
-    - FirebaseAuth (~> 6.8.0)
-  - Firebase/Core (6.30.0):
+    - FirebaseAuth (~> 6.9.0)
+  - Firebase/Core (6.31.0):
     - Firebase/CoreOnly
-    - FirebaseAnalytics (= 6.7.2)
-  - Firebase/CoreOnly (6.30.0):
-    - FirebaseCore (= 6.10.0)
-  - Firebase/Functions (6.30.0):
+    - FirebaseAnalytics (= 6.8.0)
+  - Firebase/CoreOnly (6.31.0):
+    - FirebaseCore (= 6.10.1)
+  - Firebase/Functions (6.31.0):
     - Firebase/CoreOnly
     - FirebaseFunctions (~> 2.8.0)
-  - FirebaseAnalytics (6.7.2):
-    - FirebaseCore (~> 6.8)
-    - FirebaseInstallations (~> 1.4)
-    - GoogleAppMeasurement (= 6.7.2)
+  - FirebaseAnalytics (6.8.0):
+    - FirebaseCore (~> 6.10)
+    - FirebaseInstallations (~> 1.6)
+    - GoogleAppMeasurement (= 6.8.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 6.7)
     - GoogleUtilities/MethodSwizzler (~> 6.7)
     - GoogleUtilities/Network (~> 6.7)
     - "GoogleUtilities/NSData+zlib (~> 6.7)"
-    - nanopb (~> 1.30905.0)
-  - FirebaseAuth (6.8.0):
+    - nanopb (~> 1.30906.0)
+  - FirebaseAuth (6.9.0):
     - FirebaseCore (~> 6.10)
     - GoogleUtilities/AppDelegateSwizzler (~> 6.7)
     - GoogleUtilities/Environment (~> 6.7)
     - GTMSessionFetcher/Core (~> 1.1)
-  - FirebaseCore (6.10.0):
-    - FirebaseCoreDiagnostics (~> 1.3)
+  - FirebaseCore (6.10.1):
+    - FirebaseCoreDiagnostics (~> 1.6)
     - GoogleUtilities/Environment (~> 6.7)
     - GoogleUtilities/Logger (~> 6.7)
-  - FirebaseCoreDiagnostics (1.5.0):
-    - GoogleDataTransport (~> 7.0)
+  - FirebaseCoreDiagnostics (1.6.0):
+    - GoogleDataTransport (~> 7.2)
     - GoogleUtilities/Environment (~> 6.7)
     - GoogleUtilities/Logger (~> 6.7)
-    - nanopb (~> 1.30905.0)
+    - nanopb (~> 1.30906.0)
   - FirebaseFunctions (2.8.0):
     - FirebaseCore (~> 6.10)
     - GTMSessionFetcher/Core (~> 1.1)
-  - FirebaseInstallations (1.6.0):
+  - FirebaseInstallations (1.7.0):
     - FirebaseCore (~> 6.10)
     - GoogleUtilities/Environment (~> 6.7)
     - GoogleUtilities/UserDefaults (~> 6.7)
@@ -54,14 +54,14 @@ PODS:
   - FirebaseUI/Google (8.4.2):
     - FirebaseUI/Auth
     - GoogleSignIn (~> 5.0)
-  - GoogleAppMeasurement (6.7.2):
+  - GoogleAppMeasurement (6.8.0):
     - GoogleUtilities/AppDelegateSwizzler (~> 6.7)
     - GoogleUtilities/MethodSwizzler (~> 6.7)
     - GoogleUtilities/Network (~> 6.7)
     - "GoogleUtilities/NSData+zlib (~> 6.7)"
-    - nanopb (~> 1.30905.0)
-  - GoogleDataTransport (7.2.0):
-    - nanopb (~> 1.30905.0)
+    - nanopb (~> 1.30906.0)
+  - GoogleDataTransport (7.3.0):
+    - nanopb (~> 1.30906.0)
   - GoogleSignIn (5.0.2):
     - AppAuth (~> 1.2)
     - GTMAppAuth (~> 1.0)
@@ -164,11 +164,11 @@ PODS:
     - MaterialComponents/private/Math
   - MDFInternationalization (2.0.0)
   - MDFTextAccessibility (2.0.0)
-  - nanopb (1.30905.0):
-    - nanopb/decode (= 1.30905.0)
-    - nanopb/encode (= 1.30905.0)
-  - nanopb/decode (1.30905.0)
-  - nanopb/encode (1.30905.0)
+  - nanopb (1.30906.0):
+    - nanopb/decode (= 1.30906.0)
+    - nanopb/encode (= 1.30906.0)
+  - nanopb/decode (1.30906.0)
+  - nanopb/encode (1.30906.0)
   - PromisesObjC (1.2.10)
 
 DEPENDENCIES:
@@ -206,16 +206,16 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   AppAuth: 31bcec809a638d7bd2f86ea8a52bd45f6e81e7c7
-  Firebase: 210f41ca352067d83b1ba4fd2e7fb49a0c017397
-  FirebaseAnalytics: a299a86ef70fcc6aa011418bc65a7e101fb9636c
-  FirebaseAuth: 300433de340c1b058dbb8aec224a3f1bcfda5184
-  FirebaseCore: 9a41e2de78fef10f63cee30ab10e2945266bc1fc
-  FirebaseCoreDiagnostics: 7535fe695737f8c5b350584292a70b7f8ff0357b
+  Firebase: 87483fa19acfdf99244523f2389e931927b91457
+  FirebaseAnalytics: 0ca9aa2af7cc4dc92392b7a78bfc49feaa2eb60f
+  FirebaseAuth: 09f086fae98643f1ef235674cf3ae171ce26f5ba
+  FirebaseCore: 6fb954e350af0885803d5aa49865d15d9a6b264c
+  FirebaseCoreDiagnostics: 7415bfb3883b3500c5a95c42b6ba66baae78f600
   FirebaseFunctions: e0694e614a5e3300120a10d925e2cd3be60a9c81
-  FirebaseInstallations: 45f9d44d3a8d6f780fa337ee8987dad87210fcbc
+  FirebaseInstallations: 466c7b4d1f58fe16707693091da253726a731ed2
   FirebaseUI: e57e9b9c4340631151fbe67a14206d23d0974f37
-  GoogleAppMeasurement: 3def7652b1f5b5a576178dc332e2a36a260fbef6
-  GoogleDataTransport: 672fb0ce96fe7f7f31d43672fca62ad2c9c86f7b
+  GoogleAppMeasurement: ecc30d0ab5b66d7d18e85ce1b8e2b345db60626d
+  GoogleDataTransport: e85fb700c9b027079ce182c3d08e12e0f9618bb4
   GoogleSignIn: 7137d297ddc022a7e0aa4619c86d72c909fa7213
   GoogleUtilities: 7f2f5a07f888cdb145101d6042bc4422f57e70b3
   GTMAppAuth: 4deac854479704f348309e7b66189e604cf5e01e
@@ -223,7 +223,7 @@ SPEC CHECKSUMS:
   MaterialComponents: c2045515505992357e210b33cb3ffc3a404a14fd
   MDFInternationalization: 010097556d6b09d2c4ea38e0820ea6d37be6a314
   MDFTextAccessibility: 85c09a1bd9c321f494348e632a25063bcda35a53
-  nanopb: c43f40fadfe79e8b8db116583945847910cbabc9
+  nanopb: 59317e09cf1f1a0af72f12af412d54edf52603fc
   PromisesObjC: b14b1c6b68e306650688599de8a45e49fae81151
 
 PODFILE CHECKSUM: 24da91db027c807e0d0fa3d435be58be395a4ca0

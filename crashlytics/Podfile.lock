@@ -1,42 +1,42 @@
 PODS:
-  - Firebase/CoreOnly (6.30.0):
-    - FirebaseCore (= 6.10.0)
-  - Firebase/Crashlytics (6.30.0):
+  - Firebase/CoreOnly (6.31.0):
+    - FirebaseCore (= 6.10.1)
+  - Firebase/Crashlytics (6.31.0):
     - Firebase/CoreOnly
-    - FirebaseCrashlytics (~> 4.4.0)
-  - FirebaseCore (6.10.0):
-    - FirebaseCoreDiagnostics (~> 1.3)
+    - FirebaseCrashlytics (~> 4.5.0)
+  - FirebaseCore (6.10.1):
+    - FirebaseCoreDiagnostics (~> 1.6)
     - GoogleUtilities/Environment (~> 6.7)
     - GoogleUtilities/Logger (~> 6.7)
-  - FirebaseCoreDiagnostics (1.5.0):
-    - GoogleDataTransport (~> 7.0)
+  - FirebaseCoreDiagnostics (1.6.0):
+    - GoogleDataTransport (~> 7.2)
     - GoogleUtilities/Environment (~> 6.7)
     - GoogleUtilities/Logger (~> 6.7)
-    - nanopb (~> 1.30905.0)
-  - FirebaseCrashlytics (4.4.0):
+    - nanopb (~> 1.30906.0)
+  - FirebaseCrashlytics (4.5.0):
     - FirebaseCore (~> 6.10)
     - FirebaseInstallations (~> 1.6)
     - GoogleDataTransport (~> 7.2)
-    - nanopb (~> 1.30905.0)
+    - nanopb (~> 1.30906.0)
     - PromisesObjC (~> 1.2)
-  - FirebaseInstallations (1.6.0):
+  - FirebaseInstallations (1.7.0):
     - FirebaseCore (~> 6.10)
     - GoogleUtilities/Environment (~> 6.7)
     - GoogleUtilities/UserDefaults (~> 6.7)
     - PromisesObjC (~> 1.2)
-  - GoogleDataTransport (7.2.0):
-    - nanopb (~> 1.30905.0)
+  - GoogleDataTransport (7.3.0):
+    - nanopb (~> 1.30906.0)
   - GoogleUtilities/Environment (6.7.2):
     - PromisesObjC (~> 1.2)
   - GoogleUtilities/Logger (6.7.2):
     - GoogleUtilities/Environment
   - GoogleUtilities/UserDefaults (6.7.2):
     - GoogleUtilities/Logger
-  - nanopb (1.30905.0):
-    - nanopb/decode (= 1.30905.0)
-    - nanopb/encode (= 1.30905.0)
-  - nanopb/decode (1.30905.0)
-  - nanopb/encode (1.30905.0)
+  - nanopb (1.30906.0):
+    - nanopb/decode (= 1.30906.0)
+    - nanopb/encode (= 1.30906.0)
+  - nanopb/decode (1.30906.0)
+  - nanopb/encode (1.30906.0)
   - PromisesObjC (1.2.10)
 
 DEPENDENCIES:
@@ -55,14 +55,14 @@ SPEC REPOS:
     - PromisesObjC
 
 SPEC CHECKSUMS:
-  Firebase: 210f41ca352067d83b1ba4fd2e7fb49a0c017397
-  FirebaseCore: 9a41e2de78fef10f63cee30ab10e2945266bc1fc
-  FirebaseCoreDiagnostics: 7535fe695737f8c5b350584292a70b7f8ff0357b
-  FirebaseCrashlytics: 859918905322e8816d2b5ab7fe54bf5a0c84d21c
-  FirebaseInstallations: 45f9d44d3a8d6f780fa337ee8987dad87210fcbc
-  GoogleDataTransport: 672fb0ce96fe7f7f31d43672fca62ad2c9c86f7b
+  Firebase: 87483fa19acfdf99244523f2389e931927b91457
+  FirebaseCore: 6fb954e350af0885803d5aa49865d15d9a6b264c
+  FirebaseCoreDiagnostics: 7415bfb3883b3500c5a95c42b6ba66baae78f600
+  FirebaseCrashlytics: d2a350ec7fd4a332031b906b0802a7a73697630b
+  FirebaseInstallations: 466c7b4d1f58fe16707693091da253726a731ed2
+  GoogleDataTransport: e85fb700c9b027079ce182c3d08e12e0f9618bb4
   GoogleUtilities: 7f2f5a07f888cdb145101d6042bc4422f57e70b3
-  nanopb: c43f40fadfe79e8b8db116583945847910cbabc9
+  nanopb: 59317e09cf1f1a0af72f12af412d54edf52603fc
   PromisesObjC: b14b1c6b68e306650688599de8a45e49fae81151
 
 PODFILE CHECKSUM: ced217c20b4d2eba4315b424efb6046eadd1c70d

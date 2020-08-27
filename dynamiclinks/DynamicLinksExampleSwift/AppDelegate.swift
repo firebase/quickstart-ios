@@ -68,8 +68,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                    restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
     let handled = DynamicLinks.dynamicLinks().handleUniversalLink(userActivity.webpageURL!) { (dynamiclink, error) in
       // [START_EXCLUDE]
-
-    // [END_EXCLUDE]
+      if let dynamiclink = dynamiclink {
+        self.handleDynamicLink(dynamiclink)
+      }
+      // [END_EXCLUDE]
     }
 
     // [START_EXCLUDE silent]

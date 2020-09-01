@@ -14,15 +14,15 @@ PODS:
     - FBSDKLoginKit/Login (= 7.1.1)
   - FBSDKLoginKit/Login (7.1.1):
     - FBSDKCoreKit (~> 7.1.1)
-  - Firebase/Analytics (6.31.0):
+  - Firebase/Analytics (6.31.1):
     - Firebase/Core
-  - Firebase/Auth (6.31.0):
+  - Firebase/Auth (6.31.1):
     - Firebase/CoreOnly
     - FirebaseAuth (~> 6.9.0)
-  - Firebase/Core (6.31.0):
+  - Firebase/Core (6.31.1):
     - Firebase/CoreOnly
     - FirebaseAnalytics (= 6.8.0)
-  - Firebase/CoreOnly (6.31.0):
+  - Firebase/CoreOnly (6.31.1):
     - FirebaseCore (= 6.10.1)
   - FirebaseAnalytics (6.8.0):
     - FirebaseCore (~> 6.10)
@@ -128,7 +128,7 @@ SPEC CHECKSUMS:
   AppAuth: 31bcec809a638d7bd2f86ea8a52bd45f6e81e7c7
   FBSDKCoreKit: b46507dc8b8cefed31d644e74d7cc30e2a715ef8
   FBSDKLoginKit: 1a61d79e2b25e2fc0d03dccab1e34b38bbdf2546
-  Firebase: 87483fa19acfdf99244523f2389e931927b91457
+  Firebase: 658370fa0181826a74b7cfca8d68c5856ca749ae
   FirebaseAnalytics: 0ca9aa2af7cc4dc92392b7a78bfc49feaa2eb60f
   FirebaseAuth: 09f086fae98643f1ef235674cf3ae171ce26f5ba
   FirebaseCore: 6fb954e350af0885803d5aa49865d15d9a6b264c

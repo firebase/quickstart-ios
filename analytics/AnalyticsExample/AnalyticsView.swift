@@ -238,7 +238,8 @@ final class AnalyticsView: UIScrollView {
     )
 
     let backgroundLabel = buildLabel(
-      text: "Set user properties when a user \nselects their favorite season ↑ or \npreferred teperature units ↓",
+      text: "Set user properties when a user \nselects their favorite season ↑ or \n" +
+            "preferred temperature units ↓",
       textColor: .secondaryLabel, numberOfLines: 3, textAlignment: .center
     )
     addSubview(backgroundLabel)

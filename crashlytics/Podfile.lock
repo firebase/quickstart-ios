@@ -1,7 +1,7 @@
 PODS:
-  - Firebase/CoreOnly (6.32.0):
+  - Firebase/CoreOnly (6.32.2):
     - FirebaseCore (= 6.10.2)
-  - Firebase/Crashlytics (6.32.0):
+  - Firebase/Crashlytics (6.32.2):
     - Firebase/CoreOnly
     - FirebaseCrashlytics (~> 4.6.0)
   - FirebaseCore (6.10.2):
@@ -55,7 +55,7 @@ SPEC REPOS:
     - PromisesObjC
 
 SPEC CHECKSUMS:
-  Firebase: afa030f17f5421810f379a42b0e5d3302d27eb26
+  Firebase: 47176280bfba198e531f909cfb1612dad216cb96
   FirebaseCore: 1d697bb944bf2af5fc248f1a66e165c9dd88bf97
   FirebaseCoreDiagnostics: 7415bfb3883b3500c5a95c42b6ba66baae78f600
   FirebaseCrashlytics: eea40d2a33f01b927b9f6f00ef305baa22a6a58e

@@ -57,7 +57,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No InstanceID token" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1wF-0v-e01">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No FCM registration token" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1wF-0v-e01">
                                 <rect key="frame" x="67.5" y="565" width="240" height="13.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="240" id="FXq-Tm-sRh"/>
@@ -83,7 +83,7 @@
                     <navigationItem key="navigationItem" title="FCM Example" id="uI5-jL-nrY"/>
                     <connections>
                         <outlet property="fcmTokenMessage" destination="RBg-uJ-gCV" id="FUs-GZ-mfF"/>
-                        <outlet property="instanceIDTokenMessage" destination="1wF-0v-e01" id="Dmb-Lh-hLD"/>
+                        <outlet property="fcmRegTokenMessage" destination="1wF-0v-e01" id="Dmb-Lh-hLD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

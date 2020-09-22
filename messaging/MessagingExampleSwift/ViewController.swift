@@ -19,15 +19,15 @@ import Firebase
 
 @objc(ViewController)
 class ViewController: UIViewController {
- 
+
   @IBOutlet weak var fcmTokenMessage: UILabel!
-  @IBOutlet weak var instanceIDTokenMessage: UILabel!
-    
+  @IBOutlet weak var fcmRegTokenMessage: UILabel!
+
   override func viewDidLoad() {
     NotificationCenter.default.addObserver(self, selector: #selector(self.displayFCMToken(notification:)),
                                            name: Notification.Name("FCMToken"), object: nil)
   }
-    
+
   @IBAction func handleLogTokenTouch(_ sender: UIButton) {
     // [START log_fcm_reg_token]
     let token = Messaging.messaging().fcmToken
@@ -35,16 +35,16 @@ class ViewController: UIViewController {
     // [END log_fcm_reg_token]
     self.fcmTokenMessage.text  = "Logged FCM token: \(token ?? "")"
 
-    // [START log_iid_reg_token]
-    InstanceID.instanceID().instanceID { (result, error) in
+    // [START log_reg_token]
+    Messaging.messaging().token { token, error in
       if let error = error {
-        print("Error fetching remote instance ID: \(error)")
-      } else if let result = result {
-        print("Remote instance ID token: \(result.token)")
-        self.instanceIDTokenMessage.text  = "Remote InstanceID token: \(result.token)"
+        print("Error fetching FCM registration token: \(error)")
+      } else if let token = token {
+        print("FCM registration token: \(token)")
+        self.fcmRegTokenMessage.text  = "Remote FCM registration token: \(token)"
       }
     }
-    // [END log_iid_reg_token]
+    // [END log_reg_token]
   }
 
   @IBAction func handleSubscribeTouch(_ sender: UIButton) {

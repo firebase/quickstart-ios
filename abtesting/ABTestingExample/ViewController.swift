@@ -77,13 +77,16 @@ class ViewController: UIViewController, UITableViewDataSource {
   }
 
   func setAppearance() {
-    RemoteConfig.remoteConfig().activateFetched()
-    let configValue = RemoteConfig.remoteConfig()["color_scheme"]
-    print("Config value: \(configValue.stringValue ?? "null")")
-    if configValue.stringValue == "dark" {
-      colorScheme = .dark
-    } else {
-      colorScheme = .light
+    RemoteConfig.remoteConfig().activate() { activated, error in
+      let configValue = RemoteConfig.remoteConfig()["color_scheme"]
+      print("Config value: \(configValue.stringValue ?? "null")")
+      DispatchQueue.main.async {
+        if configValue.stringValue == "dark" {
+          self.colorScheme = .dark
+        } else {
+          self.colorScheme = .light
+        }
+      }
     }
   }
 

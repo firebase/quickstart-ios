@@ -80,10 +80,12 @@ class ViewController: UIViewController, UITableViewDataSource {
     RemoteConfig.remoteConfig().activate() { activated, error in
       let configValue = RemoteConfig.remoteConfig()["color_scheme"]
       print("Config value: \(configValue.stringValue ?? "null")")
-      if configValue.stringValue == "dark" {
-        self.colorScheme = .dark
-      } else {
-        self.colorScheme = .light
+      DispatchQueue.main.async {
+        if configValue.stringValue == "dark" {
+          self.colorScheme = .dark
+        } else {
+          self.colorScheme = .light
+        }
       }
     }
   }

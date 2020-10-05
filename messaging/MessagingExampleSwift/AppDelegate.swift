@@ -160,7 +160,7 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
 
 extension AppDelegate : MessagingDelegate {
   // [START refresh_token]
-  func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
+  func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
     print("Firebase registration token: \(fcmToken)")
     
     let dataDict:[String: String] = ["token": fcmToken]

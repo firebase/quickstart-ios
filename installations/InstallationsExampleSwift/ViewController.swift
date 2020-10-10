@@ -78,7 +78,17 @@ class ViewController: UIViewController {
 
   // MARK: Installation update notifications
   private func subscribeForInstallationsUpdateNotifications() {
-    NotificationCenter.default.addObserver(self, selector: #selector(installationUpdateNotificationReceived), name: Notification.Name.FIRInstallationIDDidChange, object: nil)
+    #if FIREBASE7
+    NotificationCenter.default.addObserver(self,
+                                           selector: #selector(installationUpdateNotificationReceived),
+                                           name: Notification.Name.InstallationIDDidChange,
+                                           object: nil)
+    #else
+    NotificationCenter.default.addObserver(self,
+                                           selector: #selector(installationUpdateNotificationReceived),
+                                           name: Notification.Name.FIRInstallationIDDidChange,
+                                           object: nil)
+    #endif
   }
 
   @objc private func installationUpdateNotificationReceived(_ notification: Notification) {

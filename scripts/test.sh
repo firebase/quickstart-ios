@@ -34,6 +34,7 @@ if [[ "$have_secrets" == true ]]; then
       build \
       test \
       ONLY_ACTIVE_ARCH=YES \
+      OTHER_SWIFT_FLAGS=${SWIFT_DEFINES} \
       | xcpretty) || EXIT_STATUS=$?
 else
     # Skip running tests if GoogleService-Info.plist's weren't decoded.
@@ -44,7 +45,7 @@ else
       -destination 'platform=iOS Simulator,name=iPhone 11' \
       build \
       ONLY_ACTIVE_ARCH=YES \
-      OTHER_SWIFT_FLAGS=${SWIFT_DEFINES}\
+      OTHER_SWIFT_FLAGS=${SWIFT_DEFINES} \
       | xcpretty) || EXIT_STATUS=$?
 fi
 

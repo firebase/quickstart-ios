@@ -1,37 +1,37 @@
 PODS:
-  - Firebase/Analytics (6.32.2):
+  - Firebase/Analytics (6.34.0):
     - Firebase/Core
-  - Firebase/Auth (6.32.2):
+  - Firebase/Auth (6.34.0):
     - Firebase/CoreOnly
-    - FirebaseAuth (~> 6.9.1)
-  - Firebase/Core (6.32.2):
+    - FirebaseAuth (~> 6.9.2)
+  - Firebase/Core (6.34.0):
     - Firebase/CoreOnly
-    - FirebaseAnalytics (= 6.8.2)
-  - Firebase/CoreOnly (6.32.2):
-    - FirebaseCore (= 6.10.2)
-  - Firebase/Database (6.32.2):
+    - FirebaseAnalytics (= 6.9.0)
+  - Firebase/CoreOnly (6.34.0):
+    - FirebaseCore (= 6.10.4)
+  - Firebase/Database (6.34.0):
     - Firebase/CoreOnly
     - FirebaseDatabase (~> 6.6.0)
-  - FirebaseAnalytics (6.8.2):
+  - FirebaseAnalytics (6.9.0):
     - FirebaseCore (~> 6.10)
-    - FirebaseInstallations (~> 1.6)
-    - GoogleAppMeasurement (= 6.8.2)
+    - FirebaseInstallations (~> 1.7)
+    - GoogleAppMeasurement (= 6.9.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 6.7)
     - GoogleUtilities/MethodSwizzler (~> 6.7)
     - GoogleUtilities/Network (~> 6.7)
     - "GoogleUtilities/NSData+zlib (~> 6.7)"
     - nanopb (~> 1.30906.0)
-  - FirebaseAuth (6.9.1):
+  - FirebaseAuth (6.9.2):
     - FirebaseCore (~> 6.10)
     - GoogleUtilities/AppDelegateSwizzler (~> 6.7)
     - GoogleUtilities/Environment (~> 6.7)
     - GTMSessionFetcher/Core (~> 1.1)
-  - FirebaseCore (6.10.2):
+  - FirebaseCore (6.10.4):
     - FirebaseCoreDiagnostics (~> 1.6)
     - GoogleUtilities/Environment (~> 6.7)
     - GoogleUtilities/Logger (~> 6.7)
-  - FirebaseCoreDiagnostics (1.6.0):
-    - GoogleDataTransport (~> 7.2)
+  - FirebaseCoreDiagnostics (1.7.0):
+    - GoogleDataTransport (~> 7.4)
     - GoogleUtilities/Environment (~> 6.7)
     - GoogleUtilities/Logger (~> 6.7)
     - nanopb (~> 1.30906.0)
@@ -43,15 +43,15 @@ PODS:
     - GoogleUtilities/Environment (~> 6.7)
     - GoogleUtilities/UserDefaults (~> 6.7)
     - PromisesObjC (~> 1.2)
-  - FirebaseUI/Database (8.4.2):
-    - Firebase/Database (~> 6.0)
-  - GoogleAppMeasurement (6.8.2):
+  - FirebaseUI/Database (9.0.0):
+    - Firebase/Database
+  - GoogleAppMeasurement (6.9.0):
     - GoogleUtilities/AppDelegateSwizzler (~> 6.7)
     - GoogleUtilities/MethodSwizzler (~> 6.7)
     - GoogleUtilities/Network (~> 6.7)
     - "GoogleUtilities/NSData+zlib (~> 6.7)"
     - nanopb (~> 1.30906.0)
-  - GoogleDataTransport (7.3.0):
+  - GoogleDataTransport (7.5.1):
     - nanopb (~> 1.30906.0)
   - GoogleUtilities/AppDelegateSwizzler (6.7.2):
     - GoogleUtilities/Environment
@@ -79,7 +79,7 @@ PODS:
     - nanopb/encode (= 1.30906.0)
   - nanopb/decode (1.30906.0)
   - nanopb/encode (1.30906.0)
-  - PromisesObjC (1.2.10)
+  - PromisesObjC (1.2.11)
 
 DEPENDENCIES:
   - Firebase/Analytics
@@ -106,22 +106,22 @@ SPEC REPOS:
     - PromisesObjC
 
 SPEC CHECKSUMS:
-  Firebase: 47176280bfba198e531f909cfb1612dad216cb96
-  FirebaseAnalytics: 3c2fee6a922023ccfda7af87e4e641bad1fc11ba
-  FirebaseAuth: f7b269b33c1e842a35400ddc9bbc8b03cdc47ba3
-  FirebaseCore: 1d697bb944bf2af5fc248f1a66e165c9dd88bf97
-  FirebaseCoreDiagnostics: 7415bfb3883b3500c5a95c42b6ba66baae78f600
+  Firebase: c23a36d9e4cdf7877dfcba8dd0c58add66358999
+  FirebaseAnalytics: 3bb096873ee0d7fa4b6c70f5e9166b6da413cc7f
+  FirebaseAuth: c92d49ada7948d1a23466e3db17bc4c2039dddc3
+  FirebaseCore: d3a978a3cfa3240bf7e4ba7d137fdf5b22b628ec
+  FirebaseCoreDiagnostics: 770ac5958e1372ce67959ae4b4f31d8e127c3ac1
   FirebaseDatabase: 13a865a4b85897462b930eb683bda8f52583713f
   FirebaseInstallations: 466c7b4d1f58fe16707693091da253726a731ed2
-  FirebaseUI: e57e9b9c4340631151fbe67a14206d23d0974f37
-  GoogleAppMeasurement: 1a66f478c68ecd6c16ee63ee60c7c3a648e6b337
-  GoogleDataTransport: e85fb700c9b027079ce182c3d08e12e0f9618bb4
+  FirebaseUI: f0677a1cc235f6da602cbd5c9b5fbbd24544a6b3
+  GoogleAppMeasurement: a6a3a066369828db64eda428cb2856dc1cdc7c4e
+  GoogleDataTransport: f56af7caa4ed338dc8e138a5d7c5973e66440833
   GoogleUtilities: 7f2f5a07f888cdb145101d6042bc4422f57e70b3
   GTMSessionFetcher: 6f5c8abbab8a9bce4bb3f057e317728ec6182b10
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
   nanopb: 59317e09cf1f1a0af72f12af412d54edf52603fc
-  PromisesObjC: b14b1c6b68e306650688599de8a45e49fae81151
+  PromisesObjC: 8c196f5a328c2cba3e74624585467a557dcb482f
 
-PODFILE CHECKSUM: f0550025ab4e0dc2b4ded1de92d6559fb7bd03eb
+PODFILE CHECKSUM: 139b3e1bf11ca616a99ef3c12ba37d3cde875843
 
 COCOAPODS: 1.9.3

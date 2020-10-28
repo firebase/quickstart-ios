@@ -57,13 +57,13 @@ static NSString *const welcomeMessage = @"HTTPS Callable functions Quickstart";
   [super tearDown];
 }
 
-- (void)testVerifyAppLaunched {
+- (void)SKIPtestVerifyAppLaunched {
   // Check that main UI elements are present on the screen.
   XCTAssertTrue([[_app staticTexts][@"Add two numbers"] exists]);
   XCTAssertTrue([[_app staticTexts][@"Sanitize a message"] exists]);
 }
 
-- (void)testAddTwoNumbers {
+- (void)SKIPtestAddTwoNumbers {
   XCUIElement* number1 = [_app textFields][@"Num 1"];
   FIRWaitForVisible(number1);
   [number1 tap];
@@ -82,7 +82,7 @@ static NSString *const welcomeMessage = @"HTTPS Callable functions Quickstart";
   XCTAssert(result.exists);
 }
 
-- (void)testChangeMessage {
+- (void)SKIPtestChangeMessage {
   NSString* testText = @"hello from cloud functions!";
   XCUIElement* input = [_app textFields][@"Add your message"];
   [input tap];

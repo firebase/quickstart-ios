@@ -2,14 +2,32 @@
 
 use_frameworks!
 platform :ios, '10.0'
-pod 'Firebase/Analytics'
-pod 'Firebase/Auth'
-pod 'Firebase/Database'
-pod 'FirebaseUI/Database'
+
+def firebase_pods
+  pod 'Firebase/Auth'
+  pod 'Firebase/Database'
+  pod 'FirebaseUI/Database'
+end
 
 target 'DatabaseExample' do
+  firebase_pods
+
+  target 'DatabaseExampleTests' do
+    inherit! :search_paths
+  end
+
+  target 'DatabaseExampleUITests' do
+    inherit! :search_paths
+  end
+
 end
+
 target 'DatabaseExampleSwift' do
+  firebase_pods
+
+  target 'DatabaseExampleSwiftUITests' do
+    inherit! :search_paths
+  end
+
 end
-target 'DatabaseExampleTests' do
-end
+

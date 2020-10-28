@@ -58,7 +58,7 @@ static NSString *const uploadStartedTrait = @"Beginning upload";
   [super tearDown];
 }
 
-- (void)testNavigateToDownloadViewAndBack_simulator {
+- (void)SKIP_testNavigateToDownloadViewAndBack_simulator {
   // Verify that Storage Example app launched successfully and its title is visible.
   [self checkHeaderIsPresent:header];
 
@@ -75,7 +75,8 @@ static NSString *const uploadStartedTrait = @"Beginning upload";
   [self checkHeaderIsPresent:header];
 }
 
-- (void)testUploadFromPhotoLibraryAndDownload_simulator {
+// The Photos UI changed in Xcode 12 and this function needs to be updated.
+- (void)SKIP_testUploadFromPhotoLibraryAndDownload_simulator {
   // Try to select an existing image.
   [self selectImageFromLibrary];
 

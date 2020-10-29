@@ -684,7 +684,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = DatabaseExampleSwiftUITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks \"${PODS_CONFIGURATION_BUILD_DIR}/PromisesObjC\" \"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseAuth\" \"${PODS_CONFIGURATION_BUILD_DIR}/nanopb\" \"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseCore\" \"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseCoreDiagnostics\" \"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseDatabase\" \"${PODS_CONFIGURATION_BUILD_DIR}/GTMSessionFetcher\" \"${PODS_CONFIGURATION_BUILD_DIR}/GoogleDataTransport\" \"${PODS_CONFIGURATION_BUILD_DIR}/GoogleUtilities\" \"${PODS_CONFIGURATION_BUILD_DIR}/leveldb-library\"";
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.DatabaseExampleSwiftUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -709,7 +709,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = DatabaseExampleSwiftUITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks \"${PODS_CONFIGURATION_BUILD_DIR}/PromisesObjC\" \"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseAuth\" \"${PODS_CONFIGURATION_BUILD_DIR}/nanopb\" \"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseCore\" \"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseCoreDiagnostics\" \"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseDatabase\" \"${PODS_CONFIGURATION_BUILD_DIR}/GTMSessionFetcher\" \"${PODS_CONFIGURATION_BUILD_DIR}/GoogleDataTransport\" \"${PODS_CONFIGURATION_BUILD_DIR}/GoogleUtilities\" \"${PODS_CONFIGURATION_BUILD_DIR}/leveldb-library\"";
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.DatabaseExampleSwiftUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -732,7 +732,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = DatabaseExampleUITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks \"${PODS_CONFIGURATION_BUILD_DIR}/PromisesObjC\" \"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseAuth\" \"${PODS_CONFIGURATION_BUILD_DIR}/nanopb\" \"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseCore\" \"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseCoreDiagnostics\" \"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseDatabase\" \"${PODS_CONFIGURATION_BUILD_DIR}/GTMSessionFetcher\" \"${PODS_CONFIGURATION_BUILD_DIR}/GoogleDataTransport\" \"${PODS_CONFIGURATION_BUILD_DIR}/GoogleUtilities\" \"${PODS_CONFIGURATION_BUILD_DIR}/leveldb-library\"";
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.DatabaseExampleUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -755,7 +755,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = DatabaseExampleUITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks \"${PODS_CONFIGURATION_BUILD_DIR}/PromisesObjC\" \"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseAuth\" \"${PODS_CONFIGURATION_BUILD_DIR}/nanopb\" \"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseCore\" \"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseCoreDiagnostics\" \"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseDatabase\" \"${PODS_CONFIGURATION_BUILD_DIR}/GTMSessionFetcher\" \"${PODS_CONFIGURATION_BUILD_DIR}/GoogleDataTransport\" \"${PODS_CONFIGURATION_BUILD_DIR}/GoogleUtilities\" \"${PODS_CONFIGURATION_BUILD_DIR}/leveldb-library\"";
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.DatabaseExampleUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -964,6 +964,10 @@
 				);
 				INFOPLIST_FILE = DatabaseExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.google.firebase.quickstart.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -990,6 +994,10 @@
 				);
 				INFOPLIST_FILE = DatabaseExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.google.firebase.quickstart.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

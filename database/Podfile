@@ -17,7 +17,7 @@ target 'DatabaseExample' do
   end
 
   target 'DatabaseExampleUITests' do
-    inherit! :search_paths
+    inherit! :complete
   end
 
 end
@@ -26,7 +26,7 @@ target 'DatabaseExampleSwift' do
   firebase_pods
 
   target 'DatabaseExampleSwiftUITests' do
-    inherit! :search_paths
+    inherit! :complete
   end
 
 end

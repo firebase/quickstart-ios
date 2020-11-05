@@ -34,7 +34,7 @@ PODS:
     - GoogleUtilities/Environment (~> 7.0)
     - GoogleUtilities/UserDefaults (~> 7.0)
     - PromisesObjC (~> 1.2)
-  - FirebasePerformance (7.0.0):
+  - FirebasePerformance (7.0.1):
     - FirebaseCore (~> 7.0)
     - FirebaseInstallations (~> 7.0)
     - FirebaseRemoteConfig (~> 7.0)
@@ -124,7 +124,7 @@ SPEC CHECKSUMS:
   FirebaseCore: cf3122185fce1cf71cedbbc498ea84d2b3e7cb69
   FirebaseCoreDiagnostics: 5f4aa04fdb04923693cc704c7ef9158bdf41a48b
   FirebaseInstallations: c28d4bcbb5c6884d1a39afbc0bd7fc590e31e9b7
-  FirebasePerformance: 4341f46dd638e6293aeaeee31d85e30ac34f63f7
+  FirebasePerformance: feb172454ef6568c8246d5713b6e65fde9f2e384
   FirebaseRemoteConfig: ff8d3542cbd919c9d3851fd544690b8848fc0402
   GoogleAppMeasurement: 7790ef975d1d463c8614cd949a847e612edf087a
   GoogleDataTransport: 6ce8004a961db1b905740d7be106c61ba7e89c21

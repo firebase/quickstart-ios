@@ -9,12 +9,12 @@ target 'ConfigExample' do
   pod 'Firebase/Analytics'
   pod 'Firebase/RemoteConfig'
 
-  target 'ConfigExampleTests’ do
+  target 'ConfigExampleTests' do
     inherit! :search_paths
     # Pods for testing
   end
 
-  target 'ConfigExampleUITests’ do
+  target 'ConfigExampleUITests' do
     # Pods for testing
   end
 

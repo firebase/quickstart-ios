@@ -66,24 +66,24 @@ PODS:
     - AppAuth (~> 1.2)
     - GTMAppAuth (~> 1.0)
     - GTMSessionFetcher/Core (~> 1.1)
-  - GoogleUtilities/AppDelegateSwizzler (7.1.0):
+  - GoogleUtilities/AppDelegateSwizzler (7.1.1):
     - GoogleUtilities/Environment
     - GoogleUtilities/Logger
     - GoogleUtilities/Network
-  - GoogleUtilities/Environment (7.1.0):
+  - GoogleUtilities/Environment (7.1.1):
     - PromisesObjC (~> 1.2)
-  - GoogleUtilities/Logger (7.1.0):
+  - GoogleUtilities/Logger (7.1.1):
     - GoogleUtilities/Environment
-  - GoogleUtilities/MethodSwizzler (7.1.0):
+  - GoogleUtilities/MethodSwizzler (7.1.1):
     - GoogleUtilities/Logger
-  - GoogleUtilities/Network (7.1.0):
+  - GoogleUtilities/Network (7.1.1):
     - GoogleUtilities/Logger
     - "GoogleUtilities/NSData+zlib"
     - GoogleUtilities/Reachability
-  - "GoogleUtilities/NSData+zlib (7.1.0)"
-  - GoogleUtilities/Reachability (7.1.0):
+  - "GoogleUtilities/NSData+zlib (7.1.1)"
+  - GoogleUtilities/Reachability (7.1.1):
     - GoogleUtilities/Logger
-  - GoogleUtilities/UserDefaults (7.1.0):
+  - GoogleUtilities/UserDefaults (7.1.1):
     - GoogleUtilities/Logger
   - GTMAppAuth (1.1.0):
     - AppAuth/Core (~> 1.4)
@@ -93,9 +93,9 @@ PODS:
   - GTMSessionFetcher/Core (1.5.0)
   - GTMSessionFetcher/Full (1.5.0):
     - GTMSessionFetcher/Core (= 1.5.0)
-  - MaterialComponents/AnimationTiming (119.1.0)
-  - MaterialComponents/Availability (119.1.0)
-  - MaterialComponents/Buttons (119.1.0):
+  - MaterialComponents/AnimationTiming (119.1.1)
+  - MaterialComponents/Availability (119.1.1)
+  - MaterialComponents/Buttons (119.1.1):
     - MaterialComponents/Elevation
     - MaterialComponents/Ink
     - MaterialComponents/private/Math
@@ -107,7 +107,7 @@ PODS:
     - MaterialComponents/Typography
     - MDFInternationalization
     - MDFTextAccessibility
-  - MaterialComponents/CollectionCells (119.1.0):
+  - MaterialComponents/CollectionCells (119.1.1):
     - MaterialComponents/CollectionLayoutAttributes
     - MaterialComponents/Ink
     - MaterialComponents/Palettes
@@ -121,8 +121,8 @@ PODS:
     - MaterialComponents/Ripple
     - MaterialComponents/Typography
     - MDFInternationalization
-  - MaterialComponents/CollectionLayoutAttributes (119.1.0)
-  - MaterialComponents/Collections (119.1.0):
+  - MaterialComponents/CollectionLayoutAttributes (119.1.1)
+  - MaterialComponents/Collections (119.1.1):
     - MaterialComponents/Availability
     - MaterialComponents/CollectionCells
     - MaterialComponents/CollectionLayoutAttributes
@@ -132,48 +132,48 @@ PODS:
     - MaterialComponents/ShadowElevations
     - MaterialComponents/ShadowLayer
     - MaterialComponents/Typography
-  - MaterialComponents/Elevation (119.1.0):
+  - MaterialComponents/Elevation (119.1.1):
     - MaterialComponents/Availability
     - MaterialComponents/private/Color
     - MaterialComponents/private/Math
-  - MaterialComponents/Ink (119.1.0):
+  - MaterialComponents/Ink (119.1.1):
     - MaterialComponents/Availability
     - MaterialComponents/private/Color
     - MaterialComponents/private/Math
-  - MaterialComponents/Palettes (119.1.0)
-  - MaterialComponents/private/Application (119.1.0)
-  - MaterialComponents/private/Color (119.1.0):
+  - MaterialComponents/Palettes (119.1.1)
+  - MaterialComponents/private/Application (119.1.1)
+  - MaterialComponents/private/Color (119.1.1):
     - MaterialComponents/Availability
-  - MaterialComponents/private/Icons/Base (119.1.0)
-  - MaterialComponents/private/Icons/ic_check (119.1.0):
+  - MaterialComponents/private/Icons/Base (119.1.1)
+  - MaterialComponents/private/Icons/ic_check (119.1.1):
     - MaterialComponents/private/Icons/Base
-  - MaterialComponents/private/Icons/ic_check_circle (119.1.0):
+  - MaterialComponents/private/Icons/ic_check_circle (119.1.1):
     - MaterialComponents/private/Icons/Base
-  - MaterialComponents/private/Icons/ic_chevron_right (119.1.0):
+  - MaterialComponents/private/Icons/ic_chevron_right (119.1.1):
     - MaterialComponents/private/Icons/Base
-  - MaterialComponents/private/Icons/ic_info (119.1.0):
+  - MaterialComponents/private/Icons/ic_info (119.1.1):
     - MaterialComponents/private/Icons/Base
-  - MaterialComponents/private/Icons/ic_radio_button_unchecked (119.1.0):
+  - MaterialComponents/private/Icons/ic_radio_button_unchecked (119.1.1):
     - MaterialComponents/private/Icons/Base
-  - MaterialComponents/private/Icons/ic_reorder (119.1.0):
+  - MaterialComponents/private/Icons/ic_reorder (119.1.1):
     - MaterialComponents/private/Icons/Base
-  - MaterialComponents/private/Math (119.1.0)
-  - MaterialComponents/Ripple (119.1.0):
+  - MaterialComponents/private/Math (119.1.1)
+  - MaterialComponents/Ripple (119.1.1):
     - MaterialComponents/AnimationTiming
     - MaterialComponents/Availability
     - MaterialComponents/private/Color
     - MaterialComponents/private/Math
-  - MaterialComponents/ShadowElevations (119.1.0)
-  - MaterialComponents/ShadowLayer (119.1.0):
+  - MaterialComponents/ShadowElevations (119.1.1)
+  - MaterialComponents/ShadowLayer (119.1.1):
     - MaterialComponents/ShadowElevations
-  - MaterialComponents/ShapeLibrary (119.1.0):
+  - MaterialComponents/ShapeLibrary (119.1.1):
     - MaterialComponents/private/Math
     - MaterialComponents/Shapes
-  - MaterialComponents/Shapes (119.1.0):
+  - MaterialComponents/Shapes (119.1.1):
     - MaterialComponents/private/Color
     - MaterialComponents/private/Math
     - MaterialComponents/ShadowLayer
-  - MaterialComponents/TextFields (119.1.0):
+  - MaterialComponents/TextFields (119.1.1):
     - MaterialComponents/AnimationTiming
     - MaterialComponents/Buttons
     - MaterialComponents/Elevation
@@ -181,7 +181,7 @@ PODS:
     - MaterialComponents/private/Math
     - MaterialComponents/Typography
     - MDFInternationalization
-  - MaterialComponents/Typography (119.1.0):
+  - MaterialComponents/Typography (119.1.1):
     - MaterialComponents/private/Application
     - MaterialComponents/private/Math
     - MDFTextAccessibility
@@ -240,10 +240,10 @@ SPEC CHECKSUMS:
   GoogleAppMeasurement: 89e1a64593f968713b0506ba1b53b38a154bf9a5
   GoogleDataTransport: e4085e6762f36a6141738f46b0153473ce57fb18
   GoogleSignIn: 7137d297ddc022a7e0aa4619c86d72c909fa7213
-  GoogleUtilities: f734da554aade8cc7928a31c2f3311897933a1bd
+  GoogleUtilities: 3dc4ff0d5e4840e2fa8eef0889620e8c33d4218c
   GTMAppAuth: 197a8dabfea5d665224aa00d17f164fc2248dab9
   GTMSessionFetcher: b3503b20a988c4e20cc189aa798fd18220133f52
-  MaterialComponents: 04f29e3ec4965c29a48e13a626a0ab4bbd19e289
+  MaterialComponents: 75e8c6bcf6223ce5b53ffeabc55feae95ce90c05
   MDFInternationalization: 010097556d6b09d2c4ea38e0820ea6d37be6a314
   MDFTextAccessibility: 85c09a1bd9c321f494348e632a25063bcda35a53
   nanopb: 1bf24dd71191072e120b83dd02d08f3da0d65e53

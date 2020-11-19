@@ -1,21 +1,41 @@
 # Uncomment the next line to define a global platform for your project
-platform :ios, '13.0'
 
-target 'ConfigExample' do
-  # Comment the next line if you don't want to use dynamic frameworks
+
+
   use_frameworks!
 
-  # Pods for ConfigExample
-  pod 'Firebase/Analytics'
   pod 'Firebase/RemoteConfig'
+  pod 'Firebase/Firestore'
+  pod 'FirebaseFirestoreSwift', '~> 7.1-beta'
+  pod 'FirebaseSegmentationFirestore', :path => '/Users/paulbeusterien/gh4/firebase-ios-sdk'
 
-  target 'ConfigExampleTests’ do
+
+  pod 'FirebaseCrashlytics', :path => '/Users/paulbeusterien/gh4/firebase-ios-sdk'
+
+target 'ConfigExample' do
+  platform :ios, '13.0'
+  # Comment the next line if you don't want to use dynamic frameworks
+
+
+  # Pods for ConfigExampl
+
+
+# Recommended: Add the Firebase pod for Google Analytics
+ # pod 'Firebase/Analytics'
+
+
+
+  target 'ConfigExampleTests' do
     inherit! :search_paths
     # Pods for testing
   end
 
-  target 'ConfigExampleUITests’ do
+  target 'ConfigExampleUITests' do
     # Pods for testing
   end
 
+end
+
+target 'tvOSTarget' do
+  platform :tvos, '11.0'
 end

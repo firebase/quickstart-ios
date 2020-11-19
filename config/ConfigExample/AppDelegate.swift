@@ -14,6 +14,7 @@
 
 import UIKit
 import Firebase
+import FirebaseSegmentationFirestore
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -21,6 +22,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                    didFinishLaunchingWithOptions launchOptions: [UIApplication
                      .LaunchOptionsKey: Any]?) -> Bool {
     FirebaseApp.configure()
+
+    #if targetEnvironment(macCatalyst)
+    let target = "macOS"
+    #elseif os(OSX)
+    let target = "macOS"
+    #elseif os(iOS)
+    let target = "iOS"
+    #elseif os(tvOS)
+    let target = "tvOS"
+    #elseif os(watchOS)
+    let target = "watchOS"
+    #endif
+    SegmentationEvent.logForTargeting(events: [target])
 
     return true
   }

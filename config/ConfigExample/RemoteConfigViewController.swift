@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import UIKit
+//import UIKit
 import Firebase
 
 class RemoteConfigViewController: UIViewController {
@@ -24,7 +24,7 @@ class RemoteConfigViewController: UIViewController {
   private let bottomLabelKey = "bottomLabelKey"
 
   override func loadView() {
-    view = RemoteConfigView()
+    self.view = RemoteConfigView()
   }
 
   /// Convenience init for injecting Remote Config instances during testing
@@ -39,6 +39,7 @@ class RemoteConfigViewController: UIViewController {
     configureNavigationBar()
     setupRemoteConfig()
     configureFetchButtonAction()
+    configureCrashButtonAction()
   }
 
   override func viewDidAppear(_ animated: Bool) {
@@ -70,7 +71,7 @@ class RemoteConfigViewController: UIViewController {
   private func activateRemoteConfig() {
     remoteConfig.activate { success, error in
       guard error == nil else { return self.displayError(error) }
-      print("Remote config successfully activated!")
+      print("Remote config successfully activaed!")
       DispatchQueue.main.async {
         self.updateUI()
       }
@@ -82,6 +83,7 @@ class RemoteConfigViewController: UIViewController {
   private func fetchAndActivateRemoteConfig() {
     remoteConfig.fetchAndActivate { status, error in
       guard error == nil else { return self.displayError(error) }
+
       print("Remote config successfully fetched & activated!")
       DispatchQueue.main.async {
         self.updateUI()
@@ -89,10 +91,18 @@ class RemoteConfigViewController: UIViewController {
     }
   }
 
+  @objc
+  private func crash() {
+    let foo:String? = nil
+    print (foo!)
+  }
+
   /// This method applies our remote config values to our UI
   private func updateUI() {
     remoteConfigView.topLabel.text = remoteConfig["topLabelKey"].stringValue
-    updateJSONView()
+    remoteConfigView.topLabel.font = remoteConfigView.topLabel.font.withSize(70)
+    remoteConfigView.topLabel.textColor = .purple
+    //updateJSONView()
     remoteConfigView.bottomLabel.text = remoteConfig["bottomLabelKey"].stringValue
   }
 
@@ -101,9 +111,11 @@ class RemoteConfigViewController: UIViewController {
   private func configureNavigationBar() {
     navigationItem.title = "Firebase Config"
     guard let navigationBar = navigationController?.navigationBar else { return }
-    navigationBar.prefersLargeTitles = true
     navigationBar.titleTextAttributes = [.foregroundColor: UIColor.systemOrange]
+    #if os(iOS)
+    navigationBar.prefersLargeTitles = true
     navigationBar.largeTitleTextAttributes = [.foregroundColor: UIColor.systemOrange]
+    #endif
   }
 
   private func configureFetchButtonAction() {
@@ -114,75 +126,83 @@ class RemoteConfigViewController: UIViewController {
     )
   }
 
-  private func updateJSONView() {
-    let jsonView = remoteConfigView.jsonView!
-    let displayedJSON = jsonView.subviews
-    displayedJSON.forEach { label in
-      UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
-        label.alpha = 0
-            }) { _ in
-        label.removeFromSuperview()
-      }
-    }
-
-    // Specify keys in the order we would like to display the information in
-    let keys = [
-      "recipe_name",
-      "ingredients",
-      "prep_time",
-      "cook_time",
-      "instructions",
-      "yield",
-      "serving_size",
-      "notes",
-    ]
-    guard let recipeDictionary = remoteConfig[recipeKey].jsonValue as? [String: Any] else { return }
-
-    keys.enumerated().forEach { index, key in
-      guard var value = recipeDictionary[key] else { return }
-
-      if let list = value as? [String] {
-        let joinedValue = list.joined(separator: " • ")
-        value = joinedValue
-      } else if let stringValue = value as? String {
-        value = stringValue
-      }
-
-      guard let stringValue = value as? String else { return }
-
-      var formattedKey = key.capitalized
-      formattedKey = formattedKey.replacingOccurrences(of: "_", with: " ")
-      formattedKey.append(": ")
-
-      let attributedKey = NSAttributedString(
-        string: formattedKey,
-        attributes: [.foregroundColor: UIColor.secondaryLabel]
-      )
-      let attributedValue = NSAttributedString(
-        string: stringValue,
-        attributes: [.foregroundColor: UIColor.systemOrange]
-      )
-      let labelAttributedText = NSMutableAttributedString()
-      labelAttributedText.append(attributedKey)
-      labelAttributedText.append(attributedValue)
-
-      let label = UILabel()
-      label.attributedText = labelAttributedText
-      label.alpha = 0
-      label.sizeToFit()
-      jsonView.addSubview(label)
-      animateFadeIn(for: label, duration: 0.3)
-
-      let height = jsonView.frame.height
-      let step = height / CGFloat(keys.count)
-      let offset = height * 0.2 * 1 / CGFloat(keys.count)
-
-      let x: CGFloat = jsonView.frame.width * 0.05
-      let y: CGFloat = step * CGFloat(index) + offset
-
-      label.frame.origin = CGPoint(x: x, y: y)
-    }
+  private func configureCrashButtonAction() {
+    remoteConfigView.crashButton.addTarget(
+      self,
+      action: #selector(crash),
+      for: .touchUpInside
+    )
   }
+
+//  private func updateJSONView() {
+//    let jsonView = remoteConfigView.jsonView!
+//    let displayedJSON = jsonView.subviews
+//    displayedJSON.forEach { label in
+//      UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
+//        label.alpha = 0
+//            }) { _ in
+//        label.removeFromSuperview()
+//      }
+//    }
+//
+//    // Specify keys in the order we would like to display the information in
+//    let keys = [
+//      "recipe_name",
+//      "ingredients",
+//      "prep_time",
+//      "cook_time",
+//      "instructions",
+//      "yield",
+//      "serving_size",
+//      "notes",
+//    ]
+//    guard let recipeDictionary = remoteConfig[recipeKey].jsonValue as? [String: Any] else { return }
+//
+//    keys.enumerated().forEach { index, key in
+//      guard var value = recipeDictionary[key] else { return }
+//
+//      if let list = value as? [String] {
+//        let joinedValue = list.joined(separator: " • ")
+//        value = joinedValue
+//      } else if let stringValue = value as? String {
+//        value = stringValue
+//      }
+//
+//      guard let stringValue = value as? String else { return }
+//
+//      var formattedKey = key.capitalized
+//      formattedKey = formattedKey.replacingOccurrences(of: "_", with: " ")
+//      formattedKey.append(": ")
+//
+//      let attributedKey = NSAttributedString(
+//        string: formattedKey,
+//        attributes: [.foregroundColor: UIColor.secondaryLabel]
+//      )
+//      let attributedValue = NSAttributedString(
+//        string: stringValue,
+//        attributes: [.foregroundColor: UIColor.systemOrange]
+//      )
+//      let labelAttributedText = NSMutableAttributedString()
+//      labelAttributedText.append(attributedKey)
+//      labelAttributedText.append(attributedValue)
+//
+//      let label = UILabel()
+//      label.attributedText = labelAttributedText
+//      label.alpha = 0
+//      label.sizeToFit()
+//      jsonView.addSubview(label)
+//      animateFadeIn(for: label, duration: 0.3)
+//
+//      let height = jsonView.frame.height
+//      let step = height / CGFloat(keys.count)
+//      let offset = height * 0.2 * 1 / CGFloat(keys.count)
+//
+//      let x: CGFloat = jsonView.frame.width * 0.05
+//      let y: CGFloat = step * CGFloat(index) + offset
+//
+//      label.frame.origin = CGPoint(x: x, y: y)
+//    }
+//  }
 
   private func animateFadeIn(for view: UIView, duration: TimeInterval) {
     UIView.animate(withDuration: duration, delay: 0, options: .curveEaseIn, animations: {
@@ -195,7 +215,7 @@ extension UIViewController {
   public func displayError(_ error: Error?, from function: StaticString = #function) {
     guard let error = error else { return }
     print("🚨 Error in \(function): \(error.localizedDescription)")
-    let message = "\(error.localizedDescription)\n\n Ocurred in \(function)"
+    let message = "\(error.localizedDescription)\n\n Occurred in \(function)"
     let errorAlertController = UIAlertController(
       title: "Error",
       message: message,

@@ -13,12 +13,24 @@
 // limitations under the License.
 
 import UIKit
+import Firebase
 
 /// Represents the main view shown in RemoteConfigViewController
 class RemoteConfigView: UIView {
   var topLabel: UILabel!
   var jsonView: UIView!
   var bottomLabel: UILabel!
+
+  lazy var crashButton: UIButton = {
+    let button = UIButton()
+    button.setTitle("Crash", for: .normal)
+    button.setTitleColor(UIColor.white.highlighted, for: .highlighted)
+    button.setBackgroundImage(UIColor.systemOrange.image, for: .normal)
+    button.setBackgroundImage(UIColor.systemOrange.highlighted.image, for: .highlighted)
+    button.clipsToBounds = true
+    button.layer.cornerRadius = 14
+    return button
+  }()
 
   lazy var fetchButton: UIButton = {
     let button = UIButton()
@@ -33,7 +45,7 @@ class RemoteConfigView: UIView {
 
   convenience init() {
     self.init(frame: .zero)
-    backgroundColor = .systemBackground
+    backgroundColor = .white
     setupSubviews()
   }
 
@@ -48,7 +60,7 @@ class RemoteConfigView: UIView {
       symbol: symbolName,
       symbolColor: .systemYellow
     )
-    attributedText.setColorForText(text: "text", color: .systemYellow)
+    attributedText.setColorForText(text: "labelText", color: .systemPurple)
     return attributedText
   }
 
@@ -77,8 +89,9 @@ class RemoteConfigView: UIView {
 
   private func setupSubviews() {
     setupTopSubviews()
-    setupJSONSubview()
+//    setupJSONSubview()
     setupBottomSubviews()
+    setupCrashButton()
     setupFetchButton()
   }
 
@@ -109,7 +122,7 @@ class RemoteConfigView: UIView {
   /// Sets up the container view to display data from JSON objects
   private func setupJSONSubview() {
     jsonView = UIView()
-    jsonView.backgroundColor = .secondarySystemBackground
+    //jsonView.backgroundColor = .secondarySystemBackground
     jsonView.layer.cornerRadius = 16
     jsonView.clipsToBounds = true
     jsonView.translatesAutoresizingMaskIntoConstraints = false
@@ -146,7 +159,7 @@ class RemoteConfigView: UIView {
     addSubview(bottomLabel)
 
     NSLayoutConstraint.activate([
-      label.topAnchor.constraint(equalTo: jsonView.bottomAnchor, constant: 30),
+//      label.topAnchor.constraint(equalTo: jsonView.bottomAnchor, constant: 30),
       label.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 15),
       bottomLabel.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 10),
       bottomLabel.leadingAnchor.constraint(
@@ -157,6 +170,27 @@ class RemoteConfigView: UIView {
         equalTo: safeAreaLayoutGuide.trailingAnchor,
         constant: -15
       ),
+    ])
+  }
+
+  private func setupCrashButton() {
+    crashButton.translatesAutoresizingMaskIntoConstraints = false
+    addSubview(crashButton)
+    NSLayoutConstraint.activate([
+      crashButton.leadingAnchor.constraint(
+        equalTo: safeAreaLayoutGuide.leadingAnchor,
+        constant: 15
+      ),
+      crashButton.trailingAnchor.constraint(
+        equalTo: safeAreaLayoutGuide.trailingAnchor,
+        constant: -15
+      ),
+      crashButton.bottomAnchor.constraint(greaterThanOrEqualTo: bottomAnchor, constant: -50),
+      crashButton.topAnchor.constraint(
+        greaterThanOrEqualTo: bottomLabel.bottomAnchor,
+        constant: 20
+      ),
+      crashButton.heightAnchor.constraint(equalToConstant: 45),
     ])
   }
 
@@ -172,7 +206,7 @@ class RemoteConfigView: UIView {
         equalTo: safeAreaLayoutGuide.trailingAnchor,
         constant: -15
       ),
-      fetchButton.bottomAnchor.constraint(greaterThanOrEqualTo: bottomAnchor, constant: -50),
+      fetchButton.bottomAnchor.constraint(greaterThanOrEqualTo: bottomAnchor, constant: -100),
       fetchButton.topAnchor.constraint(
         greaterThanOrEqualTo: bottomLabel.bottomAnchor,
         constant: 20

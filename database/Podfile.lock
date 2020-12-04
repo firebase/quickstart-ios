@@ -1,27 +1,27 @@
 PODS:
-  - Firebase/Auth (7.1.0):
+  - Firebase/Auth (7.2.0):
     - Firebase/CoreOnly
-    - FirebaseAuth (~> 7.1.0)
-  - Firebase/CoreOnly (7.1.0):
-    - FirebaseCore (= 7.1.0)
-  - Firebase/Database (7.1.0):
+    - FirebaseAuth (~> 7.2.0)
+  - Firebase/CoreOnly (7.2.0):
+    - FirebaseCore (= 7.2.0)
+  - Firebase/Database (7.2.0):
     - Firebase/CoreOnly
-    - FirebaseDatabase (~> 7.1.0)
-  - FirebaseAuth (7.1.0):
+    - FirebaseDatabase (~> 7.2.0)
+  - FirebaseAuth (7.2.0):
     - FirebaseCore (~> 7.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 7.0)
     - GoogleUtilities/Environment (~> 7.0)
     - GTMSessionFetcher/Core (~> 1.4)
-  - FirebaseCore (7.1.0):
+  - FirebaseCore (7.2.0):
     - FirebaseCoreDiagnostics (~> 7.0)
     - GoogleUtilities/Environment (~> 7.0)
     - GoogleUtilities/Logger (~> 7.0)
-  - FirebaseCoreDiagnostics (7.1.0):
+  - FirebaseCoreDiagnostics (7.2.0):
     - GoogleDataTransport (~> 8.0)
     - GoogleUtilities/Environment (~> 7.0)
     - GoogleUtilities/Logger (~> 7.0)
     - nanopb (~> 2.30906.0)
-  - FirebaseDatabase (7.1.0):
+  - FirebaseDatabase (7.2.0):
     - FirebaseCore (~> 7.0)
     - leveldb-library (~> 1.22)
   - FirebaseUI/Database (9.0.0):
@@ -73,11 +73,11 @@ SPEC REPOS:
     - PromisesObjC
 
 SPEC CHECKSUMS:
-  Firebase: 78e8dd2e39d653de6270432ad84fe8b59f7bf4e8
-  FirebaseAuth: f82c2cfcc1c107bb0a97735cdbce4eb2a601f710
-  FirebaseCore: 20046127eef0fcb8fa25df7fc12f7b97d4e48611
-  FirebaseCoreDiagnostics: 872cdb9b749b23346dddd5c1014d1babd2257de3
-  FirebaseDatabase: bf02ea57590aaab4e72b9b12b412a4c881ee81e2
+  Firebase: 456eeacc158d8c58586b7871619a81bb9f27d4ae
+  FirebaseAuth: e6a214cc897d2eab7635b1e5dd6b4298fd1e776b
+  FirebaseCore: c959e8a598f83125c01c1700d9161b236ab3833c
+  FirebaseCoreDiagnostics: 2d508e12e77e9691ca67d1669b91ee80f0985b29
+  FirebaseDatabase: efb4d986413f55f7d9a05e621bd86ca1589e6ca7
   FirebaseUI: f0677a1cc235f6da602cbd5c9b5fbbd24544a6b3
   GoogleDataTransport: e4085e6762f36a6141738f46b0153473ce57fb18
   GoogleUtilities: 3dc4ff0d5e4840e2fa8eef0889620e8c33d4218c

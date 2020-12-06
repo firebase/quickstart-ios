@@ -6,5 +6,7 @@
         <string>Hi, I'm a label</string>
         <key>bottomLabelKey</key>
         <string>Today only, buy one get one free!</string>
+        <key>unsupported</key>
+        <false/>
     </dict>
 </plist>

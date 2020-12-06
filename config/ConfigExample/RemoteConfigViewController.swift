@@ -22,6 +22,7 @@ class RemoteConfigViewController: UIViewController {
   private let topLabelKey = "topLabelKey"
   private let recipeKey = "recipeKey"
   private let bottomLabelKey = "bottomLabelKey"
+  private let unsupportedKey = "unsupported"
 
   override func loadView() {
     view = RemoteConfigView()
@@ -80,6 +81,18 @@ class RemoteConfigViewController: UIViewController {
   /// Fetches and activates remote config values
   @objc
   private func fetchAndActivateRemoteConfig() {
+    // Must update GoogleService-Info.plist to match your personal firebase dashboard
+    // In the firebase dashboard, create a user property called AppVersion
+    // In remote config, have the following parameter defined:
+    //
+    //   Name: unsupported
+    //      Condition: user property AppVersion contains regex ^2\.1\. -> true
+    //      default -> false
+    //
+    // Issue: "2.10.0.0" returns true even though the regex does not match. true should only be returned
+    // for "2.1.(anything)". The period is not being respected. The regex is valid RE2.
+    Analytics.setUserProperty("2.10.0.0", forName: "AppVersion")
+    
     remoteConfig.fetchAndActivate { status, error in
       guard error == nil else { return self.displayError(error) }
       print("Remote config successfully fetched & activated!")
@@ -94,8 +107,19 @@ class RemoteConfigViewController: UIViewController {
     remoteConfigView.topLabel.text = remoteConfig["topLabelKey"].stringValue
     updateJSONView()
     remoteConfigView.bottomLabel.text = remoteConfig["bottomLabelKey"].stringValue
+    
+    displayUnsupported()
   }
 
+  func displayUnsupported() {
+    DispatchQueue.main.async {
+      let alert = UIAlertController(title: "Config Value for \"unsupported\"",
+                                    message: self.remoteConfig[self.unsupportedKey].boolValue ? "TRUE" : "FALSE",
+                                    preferredStyle: .alert)
+      alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+      self.present(alert, animated: true, completion: nil)
+    }
+  }
   // MARK: - Private Helpers
 
   private func configureNavigationBar() {

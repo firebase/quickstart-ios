@@ -1,0 +1,41 @@
+# This is a basic workflow to help you get started with Actions
+
+name: build
+
+# Controls when the action will run. 
+on:
+  # Triggers the workflow on push or pull request events but only for the master branch
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    name: build
+    runs-on: macOS-latest
+    strategy:
+        matrix:
+          swift-suffix: ['']
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+      - name: Build
+        run: |
+          cd firestore
+          gem install xcpretty
+          gem install bundler:1.17.3
+          bundle install
+          bundle exec pod install --repo-update
+          ../scripts/install_prereqs/firestore.sh
+          cd -
+          export SAMPLE=Firestore
+          ./scripts/test.sh
+        env:
+          SWIFT_SUFFIX: ${{ matrix.swift-suffix }}

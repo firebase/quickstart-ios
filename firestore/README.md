@@ -1,9 +1,9 @@
 # Friendly Eats
 ## Introduction
-Friendly Eats is a restaurant recommendation app built on Cloud Firestore.
+Friendly Eats is a restaurant recommendation app built on Firestore.
 For more information about Firestore visit [the docs][firestore-docs].
 ## Setup
-  * [Set up your iOS app for Cloud Firestore][setup-ios]
+  * [Set up your iOS app for Firestore][setup-ios]
   * In the Authentication tab of the Firebase console go to the
     [Sign-in Method][auth-providers] page and enable 'Email/Password'.
     * This app uses [FirebaseUI][firebaseui] for authentication.
@@ -49,7 +49,7 @@ in logcat that look like this:
 Error fetching snapshot results: Error Domain=io.grpc Code=9 "The query requires an index. You can create it here: https://console.firebase.google.com/project/testapp-5d356/database/firestore/indexes?create_index=..." UserInfo={NSLocalizedDescription=The query requires an index. You can create it here: https://console.firebase.google.com/project/testapp-5d356/database/firestore/indexes?create_index=...}
 ```
 This is because indexes are required for most compound queries in
-Cloud Firestore. Opening the link from the error message will
+Firestore. Opening the link from the error message will
 automatically open the index creation UI in the Firebase console
 with the correct parameters filled in.
 

@@ -147,7 +147,7 @@ class ViewController: UIViewController, UITableViewDataSource {
 
   let data = [
     ("Getting Started with Firebase", "An Introduction to Firebase"),
-    ("Google Cloud Firestore", "Powerful Querying and Automatic Scaling"),
+    ("Google Firestore", "Powerful Querying and Automatic Scaling"),
     ("Analytics", "Simple App Insights"),
     ("Remote Config", "Parameterize App Behavior")
   ]

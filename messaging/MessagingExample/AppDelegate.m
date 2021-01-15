@@ -65,7 +65,6 @@ NSString *const kGCMMessageIDKey = @"gcm.message_id";
   return YES;
 }
 
-// [START receive_message]
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
   // If you are receiving a notification message while your app is in the background,
   // this callback will not be fired till the user taps on the notification launching the application.
@@ -83,6 +82,7 @@ NSString *const kGCMMessageIDKey = @"gcm.message_id";
   NSLog(@"%@", userInfo);
 }
 
+// [START receive_message]
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
     fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
   // If you are receiving a notification message while your app is in the background,

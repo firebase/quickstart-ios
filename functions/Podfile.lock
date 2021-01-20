@@ -93,9 +93,9 @@ PODS:
   - GTMSessionFetcher/Core (1.5.0)
   - GTMSessionFetcher/Full (1.5.0):
     - GTMSessionFetcher/Core (= 1.5.0)
-  - MaterialComponents/AnimationTiming (119.5.0)
-  - MaterialComponents/Availability (119.5.0)
-  - MaterialComponents/Buttons (119.5.0):
+  - MaterialComponents/AnimationTiming (120.0.0)
+  - MaterialComponents/Availability (120.0.0)
+  - MaterialComponents/Buttons (120.0.0):
     - MaterialComponents/Elevation
     - MaterialComponents/Ink
     - MaterialComponents/private/Math
@@ -107,7 +107,7 @@ PODS:
     - MaterialComponents/Typography
     - MDFInternationalization
     - MDFTextAccessibility
-  - MaterialComponents/CollectionCells (119.5.0):
+  - MaterialComponents/CollectionCells (120.0.0):
     - MaterialComponents/CollectionLayoutAttributes
     - MaterialComponents/Ink
     - MaterialComponents/Palettes
@@ -121,8 +121,8 @@ PODS:
     - MaterialComponents/Ripple
     - MaterialComponents/Typography
     - MDFInternationalization
-  - MaterialComponents/CollectionLayoutAttributes (119.5.0)
-  - MaterialComponents/Collections (119.5.0):
+  - MaterialComponents/CollectionLayoutAttributes (120.0.0)
+  - MaterialComponents/Collections (120.0.0):
     - MaterialComponents/Availability
     - MaterialComponents/CollectionCells
     - MaterialComponents/CollectionLayoutAttributes
@@ -132,48 +132,48 @@ PODS:
     - MaterialComponents/ShadowElevations
     - MaterialComponents/ShadowLayer
     - MaterialComponents/Typography
-  - MaterialComponents/Elevation (119.5.0):
+  - MaterialComponents/Elevation (120.0.0):
     - MaterialComponents/Availability
     - MaterialComponents/private/Color
     - MaterialComponents/private/Math
-  - MaterialComponents/Ink (119.5.0):
+  - MaterialComponents/Ink (120.0.0):
     - MaterialComponents/Availability
     - MaterialComponents/private/Color
     - MaterialComponents/private/Math
-  - MaterialComponents/Palettes (119.5.0)
-  - MaterialComponents/private/Application (119.5.0)
-  - MaterialComponents/private/Color (119.5.0):
+  - MaterialComponents/Palettes (120.0.0)
+  - MaterialComponents/private/Application (120.0.0)
+  - MaterialComponents/private/Color (120.0.0):
     - MaterialComponents/Availability
-  - MaterialComponents/private/Icons/Base (119.5.0)
-  - MaterialComponents/private/Icons/ic_check (119.5.0):
+  - MaterialComponents/private/Icons/Base (120.0.0)
+  - MaterialComponents/private/Icons/ic_check (120.0.0):
     - MaterialComponents/private/Icons/Base
-  - MaterialComponents/private/Icons/ic_check_circle (119.5.0):
+  - MaterialComponents/private/Icons/ic_check_circle (120.0.0):
     - MaterialComponents/private/Icons/Base
-  - MaterialComponents/private/Icons/ic_chevron_right (119.5.0):
+  - MaterialComponents/private/Icons/ic_chevron_right (120.0.0):
     - MaterialComponents/private/Icons/Base
-  - MaterialComponents/private/Icons/ic_info (119.5.0):
+  - MaterialComponents/private/Icons/ic_info (120.0.0):
     - MaterialComponents/private/Icons/Base
-  - MaterialComponents/private/Icons/ic_radio_button_unchecked (119.5.0):
+  - MaterialComponents/private/Icons/ic_radio_button_unchecked (120.0.0):
     - MaterialComponents/private/Icons/Base
-  - MaterialComponents/private/Icons/ic_reorder (119.5.0):
+  - MaterialComponents/private/Icons/ic_reorder (120.0.0):
     - MaterialComponents/private/Icons/Base
-  - MaterialComponents/private/Math (119.5.0)
-  - MaterialComponents/Ripple (119.5.0):
+  - MaterialComponents/private/Math (120.0.0)
+  - MaterialComponents/Ripple (120.0.0):
     - MaterialComponents/AnimationTiming
     - MaterialComponents/Availability
     - MaterialComponents/private/Color
     - MaterialComponents/private/Math
-  - MaterialComponents/ShadowElevations (119.5.0)
-  - MaterialComponents/ShadowLayer (119.5.0):
+  - MaterialComponents/ShadowElevations (120.0.0)
+  - MaterialComponents/ShadowLayer (120.0.0):
     - MaterialComponents/ShadowElevations
-  - MaterialComponents/ShapeLibrary (119.5.0):
+  - MaterialComponents/ShapeLibrary (120.0.0):
     - MaterialComponents/private/Math
     - MaterialComponents/Shapes
-  - MaterialComponents/Shapes (119.5.0):
+  - MaterialComponents/Shapes (120.0.0):
     - MaterialComponents/private/Color
     - MaterialComponents/private/Math
     - MaterialComponents/ShadowLayer
-  - MaterialComponents/TextFields (119.5.0):
+  - MaterialComponents/TextFields (120.0.0):
     - MaterialComponents/AnimationTiming
     - MaterialComponents/Buttons
     - MaterialComponents/Elevation
@@ -181,7 +181,7 @@ PODS:
     - MaterialComponents/private/Math
     - MaterialComponents/Typography
     - MDFInternationalization
-  - MaterialComponents/Typography (119.5.0):
+  - MaterialComponents/Typography (120.0.0):
     - MaterialComponents/private/Application
     - MaterialComponents/private/Math
     - MDFTextAccessibility
@@ -243,7 +243,7 @@ SPEC CHECKSUMS:
   GoogleUtilities: d866834472f1324d080496bc67ab3ce5d0d46027
   GTMAppAuth: 197a8dabfea5d665224aa00d17f164fc2248dab9
   GTMSessionFetcher: b3503b20a988c4e20cc189aa798fd18220133f52
-  MaterialComponents: 2cdc12c16528ed7e6f1d5bd6d6927c47f9f4e90f
+  MaterialComponents: 1f521dc333679daf0a397fe9dafe1e26ae13da78
   MDFInternationalization: 010097556d6b09d2c4ea38e0820ea6d37be6a314
   MDFTextAccessibility: 85c09a1bd9c321f494348e632a25063bcda35a53
   nanopb: 59221d7f958fb711001e6a449489542d92ae113e

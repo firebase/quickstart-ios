@@ -48,10 +48,10 @@ PODS:
     - GoogleUtilities/Environment (~> 7.0)
     - GoogleUtilities/UserDefaults (~> 7.0)
     - PromisesObjC (~> 1.2)
-  - FirebaseUI/Auth (9.0.0):
+  - FirebaseUI/Auth (10.0.1):
     - Firebase/Auth
     - GoogleUtilities/UserDefaults
-  - FirebaseUI/Google (9.0.0):
+  - FirebaseUI/Google (10.0.1):
     - FirebaseUI/Auth
     - GoogleSignIn (~> 5.0)
   - GoogleAppMeasurement (7.4.0):
@@ -236,7 +236,7 @@ SPEC CHECKSUMS:
   FirebaseCoreDiagnostics: 3770093ac4f2be4590fa03cfa1d3a6e5602d4557
   FirebaseFunctions: ab9df1b7091b14af71798d70b87147aeeaff78ba
   FirebaseInstallations: 30646fc9a61c6f4ee3cd7a8b7231721842b40c95
-  FirebaseUI: f0677a1cc235f6da602cbd5c9b5fbbd24544a6b3
+  FirebaseUI: c93b7b76034bce07c90d9c53068bd4d25712bbb3
   GoogleAppMeasurement: 688d7f00e2894d9e13823ed9a028b13b993bc277
   GoogleDataTransport: 1024b1a4dfbd7a0e92cb20d7e0a6f1fb66b449a4
   GoogleSignIn: 7137d297ddc022a7e0aa4619c86d72c909fa7213

@@ -53,7 +53,7 @@
         NSObject *details = error.userInfo[FIRFunctionsErrorDetailsKey];
       }
       // [START_EXCLUDE]
-      NSLog(@"%@", error.localizedDescription);
+      NSLog(@"%@", error);
       return;
       // [END_EXCLUDE]
     }

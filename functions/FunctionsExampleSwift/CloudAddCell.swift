@@ -42,7 +42,7 @@ class CloudAddCell: MDCCollectionViewCell {
           let details = error.userInfo[FunctionsErrorDetailsKey]
         }
         // [START_EXCLUDE]
-        print(error.localizedDescription)
+        print(error)
         return
         // [END_EXCLUDE]
       }

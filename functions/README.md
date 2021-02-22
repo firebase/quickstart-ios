@@ -4,7 +4,7 @@ Firebase Functions Quickstart
 Introduction
 ------------
 
-This quickstart demontstrates **Callable Functions** which are HTTPS Cloud Functions
+This quickstart demonstrates **Callable Functions** which are HTTPS Cloud Functions
 that can be invoked directly from your mobile application.
 
 - [Read more about callable functions](https://firebase.google.com/docs/functions/callable)

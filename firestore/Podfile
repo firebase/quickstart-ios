@@ -15,3 +15,15 @@ target 'FirestoreExample' do
     inherit! :search_paths
   end
 end
+
+target 'FirestoreSwiftUIExample' do
+  use_frameworks!
+
+  pod 'Firebase/Analytics'
+  pod 'Firebase/Auth'
+  # pod 'FirebaseUI/Auth'
+  # pod 'FirebaseUI/Email'
+  pod 'Firebase/Firestore'
+  pod 'FirebaseFirestoreSwift', "~> 7.0-beta"
+  pod 'SDWebImage'
+end

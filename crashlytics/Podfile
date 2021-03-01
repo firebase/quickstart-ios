@@ -1,4 +1,8 @@
 # CrashlyticsExample
+
+source 'https://github.com/firebase/SpecsDev.git'
+source 'https://cdn.cocoapods.org/'
+
 use_frameworks!
 platform :ios, '10.0'
 

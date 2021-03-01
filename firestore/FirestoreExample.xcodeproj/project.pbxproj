@@ -27,6 +27,7 @@
 		8E4C62D325E9CFE0001678A1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4C62D225E9CFE0001678A1 /* ContentView.swift */; };
 		8E4C62D525E9CFE1001678A1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E4C62D425E9CFE1001678A1 /* Assets.xcassets */; };
 		8E4C62D825E9CFE1001678A1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E4C62D725E9CFE1001678A1 /* Preview Assets.xcassets */; };
+		8E4C62E725E9D191001678A1 /* RestaurantItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4C62E625E9D191001678A1 /* RestaurantItemView.swift */; };
 		928F7382D38D4F9DB48A15EF /* Pods_FirestoreExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 541C1C9953818121C760549F /* Pods_FirestoreExample.framework */; };
 		DE8564AE23AFBF8000611383 /* FirestoreUITest.m in Sources */ = {isa = PBXBuildFile; fileRef = DE8564AD23AFBF8000611383 /* FirestoreUITest.m */; };
 		DE8564B423AFBFA700611383 /* FIREGSignInHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DE8564B123AFBFA700611383 /* FIREGSignInHelper.m */; };
@@ -83,6 +84,7 @@
 		8E4C62D425E9CFE1001678A1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8E4C62D725E9CFE1001678A1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		8E4C62D925E9CFE1001678A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8E4C62E625E9D191001678A1 /* RestaurantItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantItemView.swift; sourceTree = "<group>"; };
 		D3859CC2659F6A304C12A137 /* Pods-FirestoreExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FirestoreExample.release.xcconfig"; path = "Target Support Files/Pods-FirestoreExample/Pods-FirestoreExample.release.xcconfig"; sourceTree = "<group>"; };
 		DE8564AC23AFBF8000611383 /* FirestoreExampleUITests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FirestoreExampleUITests-Bridging-Header.h"; sourceTree = "<group>"; };
 		DE8564AD23AFBF8000611383 /* FirestoreUITest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirestoreUITest.m; sourceTree = "<group>"; };
@@ -207,8 +209,8 @@
 		8E4C62CF25E9CFE0001678A1 /* FirestoreSwiftUIExample */ = {
 			isa = PBXGroup;
 			children = (
+				8E4C62E125E9D137001678A1 /* Views */,
 				8E4C62D025E9CFE0001678A1 /* FirestoreSwiftUIExampleApp.swift */,
-				8E4C62D225E9CFE0001678A1 /* ContentView.swift */,
 				8E4C62D425E9CFE1001678A1 /* Assets.xcassets */,
 				8E4C62D925E9CFE1001678A1 /* Info.plist */,
 				8E4C62D625E9CFE1001678A1 /* Preview Content */,
@@ -222,6 +224,15 @@
 				8E4C62D725E9CFE1001678A1 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		8E4C62E125E9D137001678A1 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8E4C62D225E9CFE0001678A1 /* ContentView.swift */,
+				8E4C62E625E9D191001678A1 /* RestaurantItemView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		DE8564AF23AFBFA700611383 /* TestUtils */ = {
@@ -573,6 +584,7 @@
 			files = (
 				8E4C62D325E9CFE0001678A1 /* ContentView.swift in Sources */,
 				8E4C62D125E9CFE0001678A1 /* FirestoreSwiftUIExampleApp.swift in Sources */,
+				8E4C62E725E9D191001678A1 /* RestaurantItemView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

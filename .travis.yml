@@ -38,8 +38,6 @@ matrix:
     env: SAMPLE=InAppMessaging
   - podfile: inappmessaging/Podfile
     env: SAMPLE=Messaging
-  - podfile: mlvision/Podfile
-    env: SAMPLE=MLVision
   - podfile: performance/Podfile
     env: SAMPLE=Performance
   - podfile: storage/Podfile

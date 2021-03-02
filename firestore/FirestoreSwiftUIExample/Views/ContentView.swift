@@ -11,15 +11,19 @@ import Firebase
 
 struct ContentView: View {
     let db = Firestore.firestore()
+    @ObservedObject var restaurantListViewModel = RestaurantListViewModel()
 
     var body: some View {
         NavigationView {
-            List(/*@START_MENU_TOKEN@*/0 ..< 5/*@END_MENU_TOKEN@*/) { item in
+            List(restaurantListViewModel.restaurants) { restaurant in
                 NavigationLink(destination: RestaurantDetailView()) {
-                    RestaurantItemView()
+                    RestaurantItemView(restaurant: restaurant)
                 }
             }
             .navigationBarTitle("Friendly Eats", displayMode: .inline)
+            .onAppear() {
+                self.restaurantListViewModel.fetchData()
+            }
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button("Populate") {
@@ -29,7 +33,7 @@ struct ContentView: View {
 
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Filter") {
-                        print("filtering")
+                        print(restaurantListViewModel.restaurants.count)
                     }
                 }
             }
@@ -115,6 +119,6 @@ struct RestaurantDetailView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView(restaurantListViewModel: RestaurantListViewModel())
     }
 }

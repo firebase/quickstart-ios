@@ -9,11 +9,13 @@
 import SwiftUI
 
 struct RestaurantItemView: View {
+    var restaurant: Restaurant
+
     var body: some View {
         HStack {
             Image(systemName: "circle")
             VStack(alignment: .leading) {
-                Text("Restaurant Name")
+                Text(restaurant.name)
                 Text("Star Placeholder")
                 Spacer()
                 Text("Type and location")
@@ -27,6 +29,7 @@ struct RestaurantItemView: View {
 
 struct RestaurantItemView_Previews: PreviewProvider {
     static var previews: some View {
-        RestaurantItemView()
+        let data = Restaurant(id: .init(), name: "test123", category: "test123", city: "test123", price: 0, ratingCount: 0, averageRating: 0, photo: Restaurant.imageURL(forName: "test"))
+        RestaurantItemView(restaurant: data)
     }
 }

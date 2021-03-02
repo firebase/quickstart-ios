@@ -9,7 +9,8 @@
 import Firebase
 import FirebaseFirestoreSwift
 
-struct Restaurant: Codable {
+struct Restaurant: Identifiable, Codable {
+  var id: String = UUID().uuidString
 
   var name: String
   var category: String // Could become an enum

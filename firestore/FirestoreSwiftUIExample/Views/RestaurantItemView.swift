@@ -7,29 +7,38 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct RestaurantItemView: View {
     var restaurant: Restaurant
 
     var body: some View {
         HStack {
-            Image(systemName: "circle")
+            WebImage(url: restaurant.photo)
+                .resizable()
+                .placeholder(Image(systemName: "photo"))
+                .aspectRatio(1, contentMode: .fill)
+                .frame(width: 100, height: 100, alignment: .leading)
             VStack(alignment: .leading) {
                 Text(restaurant.name)
                 Text("Star Placeholder")
                 Spacer()
-                Text("Type and location")
+                HStack {
+                    Text(restaurant.category)
+                    Text("•")
+                    Text(restaurant.city)
+                }
             }
             Spacer()
             Text("$$$")
         }
-        .padding([.leading, .bottom, .trailing])
+        .padding([.bottom, .trailing])
     }
 }
 
 struct RestaurantItemView_Previews: PreviewProvider {
     static var previews: some View {
-        let data = Restaurant(id: .init(), name: "test123", category: "test123", city: "test123", price: 0, ratingCount: 0, averageRating: 0, photo: Restaurant.imageURL(forName: "test"))
+        let data = Restaurant(id: .init(), name: "Pizza Place", category: "Pizza", city: "Austin", price: 0, ratingCount: 0, averageRating: 0, photo: Restaurant.imageURL(forName: "Place Place"))
         RestaurantItemView(restaurant: data)
     }
 }

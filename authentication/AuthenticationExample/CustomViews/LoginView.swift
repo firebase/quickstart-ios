@@ -16,8 +16,16 @@ import UIKit
 
 /// Login View presented when peforming Email & Password Login Flow
 class LoginView: UIView {
-  var emailTextField: UITextField!
-  var passwordTextField: UITextField!
+  var emailTextField: UITextField! {
+    didSet {
+      emailTextField.textContentType = .emailAddress
+    }
+  }
+  var passwordTextField: UITextField! {
+    didSet {
+      passwordTextField.textContentType = .password
+    }
+  }
 
   var emailTopConstraint: NSLayoutConstraint!
   var passwordTopConstraint: NSLayoutConstraint!

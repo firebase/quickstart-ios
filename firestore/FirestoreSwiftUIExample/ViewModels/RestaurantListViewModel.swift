@@ -2,9 +2,6 @@
 //  RestaurantListViewModel.swift
 //  FirestoreSwiftUIExample
 //
-//  Created by Rachel Collins on 3/2/21.
-//  Copyright © 2021 Firebase. All rights reserved.
-//
 
 import Combine
 import Firebase

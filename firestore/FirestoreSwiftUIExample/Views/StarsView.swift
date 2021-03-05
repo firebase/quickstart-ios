@@ -2,9 +2,6 @@
 //  StarsView.swift
 //  FirestoreSwiftUIExample
 //
-//  Created by Rachel Collins on 3/3/21.
-//  Copyright © 2021 Firebase. All rights reserved.
-//
 
 import SwiftUI
 

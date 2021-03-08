@@ -33,6 +33,9 @@
 		8E4C635725EDD58F001678A1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8E4C635625EDD58F001678A1 /* GoogleService-Info.plist */; };
 		8E4C637825EEF4CA001678A1 /* RestaurantListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4C637725EEF4CA001678A1 /* RestaurantListViewModel.swift */; };
 		8E4C63B225F05E76001678A1 /* StarsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4C63B125F05E76001678A1 /* StarsView.swift */; };
+		8E4C63D825F6D641001678A1 /* Firestore+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4C63D725F6D641001678A1 /* Firestore+Extension.swift */; };
+		8E4C63DE25F6D879001678A1 /* ImageThumbnailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4C63DD25F6D879001678A1 /* ImageThumbnailView.swift */; };
+		8E4C63E425F6D8C8001678A1 /* PriceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4C63E325F6D8C8001678A1 /* PriceView.swift */; };
 		928F7382D38D4F9DB48A15EF /* Pods_FirestoreExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 541C1C9953818121C760549F /* Pods_FirestoreExample.framework */; };
 		DE8564AE23AFBF8000611383 /* FirestoreUITest.m in Sources */ = {isa = PBXBuildFile; fileRef = DE8564AD23AFBF8000611383 /* FirestoreUITest.m */; };
 		DE8564B423AFBFA700611383 /* FIREGSignInHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DE8564B123AFBFA700611383 /* FIREGSignInHelper.m */; };
@@ -96,6 +99,9 @@
 		8E4C635625EDD58F001678A1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../FolderForGoogleService-Info/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8E4C637725EEF4CA001678A1 /* RestaurantListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantListViewModel.swift; sourceTree = "<group>"; };
 		8E4C63B125F05E76001678A1 /* StarsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarsView.swift; sourceTree = "<group>"; };
+		8E4C63D725F6D641001678A1 /* Firestore+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Firestore+Extension.swift"; sourceTree = "<group>"; };
+		8E4C63DD25F6D879001678A1 /* ImageThumbnailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageThumbnailView.swift; sourceTree = "<group>"; };
+		8E4C63E325F6D8C8001678A1 /* PriceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceView.swift; sourceTree = "<group>"; };
 		B1197C1340BA7906456ECA9D /* Pods_FirestoreSwiftUIExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FirestoreSwiftUIExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3859CC2659F6A304C12A137 /* Pods-FirestoreExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FirestoreExample.release.xcconfig"; path = "Target Support Files/Pods-FirestoreExample/Pods-FirestoreExample.release.xcconfig"; sourceTree = "<group>"; };
 		DE8564AC23AFBF8000611383 /* FirestoreExampleUITests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FirestoreExampleUITests-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -232,6 +238,7 @@
 				8E4C62D925E9CFE1001678A1 /* Info.plist */,
 				8E4C635625EDD58F001678A1 /* GoogleService-Info.plist */,
 				8E4C62D625E9CFE1001678A1 /* Preview Content */,
+				8E4C63D725F6D641001678A1 /* Firestore+Extension.swift */,
 			);
 			path = FirestoreSwiftUIExample;
 			sourceTree = "<group>";
@@ -250,6 +257,8 @@
 				8E4C62D225E9CFE0001678A1 /* ContentView.swift */,
 				8E4C62E625E9D191001678A1 /* RestaurantItemView.swift */,
 				8E4C63B125F05E76001678A1 /* StarsView.swift */,
+				8E4C63DD25F6D879001678A1 /* ImageThumbnailView.swift */,
+				8E4C63E325F6D8C8001678A1 /* PriceView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -700,7 +709,10 @@
 				8E4C637825EEF4CA001678A1 /* RestaurantListViewModel.swift in Sources */,
 				8E4C62D125E9CFE0001678A1 /* FirestoreSwiftUIExampleApp.swift in Sources */,
 				8E4C63B225F05E76001678A1 /* StarsView.swift in Sources */,
+				8E4C63E425F6D8C8001678A1 /* PriceView.swift in Sources */,
+				8E4C63DE25F6D879001678A1 /* ImageThumbnailView.swift in Sources */,
 				8E4C62E725E9D191001678A1 /* RestaurantItemView.swift in Sources */,
+				8E4C63D825F6D641001678A1 /* Firestore+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

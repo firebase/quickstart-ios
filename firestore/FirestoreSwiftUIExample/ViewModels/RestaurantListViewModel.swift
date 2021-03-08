@@ -8,7 +8,7 @@ import Firebase
 
 class RestaurantListViewModel: ObservableObject {
 
-  @Published var restaurants: [Restaurant] = []
+  @Published var restaurants = [Restaurant]()
   private var db = Firestore.firestore()
 
   func fetchData() {
@@ -19,8 +19,17 @@ class RestaurantListViewModel: ObservableObject {
       }
 
       self.restaurants = querySnapshot?.documents.compactMap { document in
-        try? document.data(as: Restaurant.self)
+        do {
+          return try document.data(as: Restaurant.self)
+        } catch let error {
+          print(error)
+          return nil
+        }
       } ?? []
     }
+  }
+
+  func populate() {
+    db.populate()
   }
 }

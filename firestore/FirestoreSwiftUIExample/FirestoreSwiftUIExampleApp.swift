@@ -9,13 +9,13 @@ import Firebase
 @main
 struct FirestoreSwiftUIExampleApp: App {
 
-    init() {
-        FirebaseApp.configure()
-    }
+  init() {
+    FirebaseApp.configure()
+  }
 
-    var body: some Scene {
-        WindowGroup {
-            ContentView()
-        }
+  var body: some Scene {
+    WindowGroup {
+      ContentView()
     }
+  }
 }

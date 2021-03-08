@@ -88,7 +88,7 @@ extension Restaurant {
   static func imageURL(forName name: String) -> URL {
     let number = (abs(name.hashValue) % 22) + 1
     let URLString =
-        "https://storage.googleapis.com/firestorequickstarts.appspot.com/food_\(number).png"
+      "https://storage.googleapis.com/firestorequickstarts.appspot.com/food_\(number).png"
     return URL(string: URLString)!
   }
 

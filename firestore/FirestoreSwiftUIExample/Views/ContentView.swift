@@ -18,7 +18,10 @@ struct ContentView: View {
       }
       .navigationBarTitle("Friendly Eats", displayMode: .inline)
       .onAppear() {
-        self.restaurantListViewModel.fetchData()
+        restaurantListViewModel.subscribe()
+      }
+      .onDisappear() {
+        restaurantListViewModel.unsubscribe()
       }
       .toolbar {
         ToolbarItem(placement: .navigationBarLeading) {

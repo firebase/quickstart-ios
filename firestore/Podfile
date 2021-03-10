@@ -21,8 +21,6 @@ target 'FirestoreSwiftUIExample' do
 
   pod 'Firebase/Analytics'
   pod 'Firebase/Auth'
-  # pod 'FirebaseUI/Auth'
-  # pod 'FirebaseUI/Email'
   pod 'Firebase/Firestore'
   pod 'FirebaseFirestoreSwift', "~> 7.0-beta"
   pod 'SDWebImageSwiftUI'

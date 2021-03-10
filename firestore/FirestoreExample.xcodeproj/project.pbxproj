@@ -23,8 +23,9 @@
 		8DF1E3151EE72C4600192CDE /* LocalCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF1E3141EE72C4600192CDE /* LocalCollection.swift */; };
 		8DF77E1A1EEB45E500CB2330 /* RestaurantDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF77E191EEB45E500CB2330 /* RestaurantDetailViewController.swift */; };
 		8DF77E1C1EEB645100CB2330 /* StarsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF77E1B1EEB645100CB2330 /* StarsView.swift */; };
+		8E1E43B125F961EF00BC64D3 /* Restaurant+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E1E43B025F961EF00BC64D3 /* Restaurant+Extension.swift */; };
 		8E4C62D125E9CFE0001678A1 /* FirestoreSwiftUIExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4C62D025E9CFE0001678A1 /* FirestoreSwiftUIExampleApp.swift */; };
-		8E4C62D325E9CFE0001678A1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4C62D225E9CFE0001678A1 /* ContentView.swift */; };
+		8E4C62D325E9CFE0001678A1 /* RestaurantListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4C62D225E9CFE0001678A1 /* RestaurantListView.swift */; };
 		8E4C62D525E9CFE1001678A1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E4C62D425E9CFE1001678A1 /* Assets.xcassets */; };
 		8E4C62D825E9CFE1001678A1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E4C62D725E9CFE1001678A1 /* Preview Assets.xcassets */; };
 		8E4C62E725E9D191001678A1 /* RestaurantItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4C62E625E9D191001678A1 /* RestaurantItemView.swift */; };
@@ -85,9 +86,10 @@
 		8DF1E3141EE72C4600192CDE /* LocalCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalCollection.swift; sourceTree = "<group>"; };
 		8DF77E191EEB45E500CB2330 /* RestaurantDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantDetailViewController.swift; sourceTree = "<group>"; };
 		8DF77E1B1EEB645100CB2330 /* StarsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StarsView.swift; sourceTree = "<group>"; };
+		8E1E43B025F961EF00BC64D3 /* Restaurant+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Restaurant+Extension.swift"; sourceTree = "<group>"; };
 		8E4C62CE25E9CFE0001678A1 /* FirestoreSwiftUIExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FirestoreSwiftUIExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E4C62D025E9CFE0001678A1 /* FirestoreSwiftUIExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreSwiftUIExampleApp.swift; sourceTree = "<group>"; };
-		8E4C62D225E9CFE0001678A1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		8E4C62D225E9CFE0001678A1 /* RestaurantListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantListView.swift; sourceTree = "<group>"; };
 		8E4C62D425E9CFE1001678A1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8E4C62D725E9CFE1001678A1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		8E4C62D925E9CFE1001678A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -222,9 +224,19 @@
 			path = FirestoreExampleTests;
 			sourceTree = "<group>";
 		};
+		8E1E43AB25F9604B00BC64D3 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				8E4C63D725F6D641001678A1 /* Firestore+Extension.swift */,
+				8E1E43B025F961EF00BC64D3 /* Restaurant+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		8E4C62CF25E9CFE0001678A1 /* FirestoreSwiftUIExample */ = {
 			isa = PBXGroup;
 			children = (
+				8E1E43AB25F9604B00BC64D3 /* Extensions */,
 				8E4C637625EEF4B6001678A1 /* ViewModels */,
 				8E4C634725EDB762001678A1 /* Model */,
 				8E4C62E125E9D137001678A1 /* Views */,
@@ -232,7 +244,6 @@
 				8E4C62D425E9CFE1001678A1 /* Assets.xcassets */,
 				8E4C62D925E9CFE1001678A1 /* Info.plist */,
 				8E4C62D625E9CFE1001678A1 /* Preview Content */,
-				8E4C63D725F6D641001678A1 /* Firestore+Extension.swift */,
 			);
 			path = FirestoreSwiftUIExample;
 			sourceTree = "<group>";
@@ -248,7 +259,7 @@
 		8E4C62E125E9D137001678A1 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				8E4C62D225E9CFE0001678A1 /* ContentView.swift */,
+				8E4C62D225E9CFE0001678A1 /* RestaurantListView.swift */,
 				8E4C62E625E9D191001678A1 /* RestaurantItemView.swift */,
 				8E4C63B125F05E76001678A1 /* StarsView.swift */,
 				8E4C63DD25F6D879001678A1 /* ImageThumbnailView.swift */,
@@ -696,7 +707,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8E4C62D325E9CFE0001678A1 /* ContentView.swift in Sources */,
+				8E1E43B125F961EF00BC64D3 /* Restaurant+Extension.swift in Sources */,
+				8E4C62D325E9CFE0001678A1 /* RestaurantListView.swift in Sources */,
 				8E4C634925EDB793001678A1 /* Restaurant.swift in Sources */,
 				8E4C637825EEF4CA001678A1 /* RestaurantListViewModel.swift in Sources */,
 				8E4C62D125E9CFE0001678A1 /* FirestoreSwiftUIExampleApp.swift in Sources */,

@@ -73,10 +73,12 @@ NSString *const kGCMMessageIDKey = @"gcm.message_id";
   // With swizzling disabled you must let Messaging know about the message, for Analytics
   // [[FIRMessaging messaging] appDidReceiveMessage:userInfo];
 
+  // [START_EXCLUDE]
   // Print message ID.
   if (userInfo[kGCMMessageIDKey]) {
     NSLog(@"Message ID: %@", userInfo[kGCMMessageIDKey]);
   }
+  // [END_EXCLUDE]
 
   // Print full message.
   NSLog(@"%@", userInfo);
@@ -92,10 +94,12 @@ NSString *const kGCMMessageIDKey = @"gcm.message_id";
   // With swizzling disabled you must let Messaging know about the message, for Analytics
   // [[FIRMessaging messaging] appDidReceiveMessage:userInfo];
 
+  // [START_EXCLUDE]
   // Print message ID.
   if (userInfo[kGCMMessageIDKey]) {
     NSLog(@"Message ID: %@", userInfo[kGCMMessageIDKey]);
   }
+  // [END_EXCLUDE]
 
   // Print full message.
   NSLog(@"%@", userInfo);
@@ -115,10 +119,12 @@ NSString *const kGCMMessageIDKey = @"gcm.message_id";
   // With swizzling disabled you must let Messaging know about the message, for Analytics
   // [[FIRMessaging messaging] appDidReceiveMessage:userInfo];
 
+  // [START_EXCLUDE]
   // Print message ID.
   if (userInfo[kGCMMessageIDKey]) {
     NSLog(@"Message ID: %@", userInfo[kGCMMessageIDKey]);
   }
+  // [END_EXCLUDE]
 
   // Print full message.
   NSLog(@"%@", userInfo);

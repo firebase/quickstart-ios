@@ -22,6 +22,7 @@ import FirebaseFirestoreSwift
 
 struct Restaurant: Identifiable, Codable {
   var id: String = UUID().uuidString
+  var reference: DocumentReference?
 
   var name: String
   var category: String // Could become an enum
@@ -32,6 +33,7 @@ struct Restaurant: Identifiable, Codable {
   var photo: URL
 
   enum CodingKeys: String, CodingKey {
+    case reference
     case name
     case category
     case city
@@ -39,21 +41,5 @@ struct Restaurant: Identifiable, Codable {
     case ratingCount = "numRatings"
     case averageRating = "avgRating"
     case photo
-  }
-}
-
-struct Review: Codable {
-  var rating: Int // Can also be enum
-  var userID: String
-  var username: String
-  var text: String
-  var date: Timestamp
-
-  enum CodingKeys: String, CodingKey {
-    case rating
-    case userID = "userId"
-    case username = "userName"
-    case text
-    case date
   }
 }

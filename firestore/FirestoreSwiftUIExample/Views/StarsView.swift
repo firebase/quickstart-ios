@@ -21,6 +21,8 @@ import SwiftUI
 
 struct StarsView: View {
   var rating: Int
+  var color: Color
+  var outlineColor: Color
 
   var body: some View {
     HStack {
@@ -31,18 +33,18 @@ struct StarsView: View {
       }
     }
   }
-
+  
   func getStar(num: Int, rating: Int) -> Image {
     num > rating ? Image(systemName: "star") : Image(systemName: "star.fill")
   }
 
   func getStarColor(num: Int, rating: Int) -> Color {
-    num > rating ? Color.gray : Color.yellow
+    return num > rating ? outlineColor : color
   }
 }
 
 struct StarsView_Previews: PreviewProvider {
   static var previews: some View {
-    StarsView(rating: 3)
+    StarsView(rating: 3, color: Color.purple, outlineColor: Color.black)
   }
 }

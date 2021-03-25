@@ -26,38 +26,28 @@ struct RestaurantListView: View {
   var body: some View {
     NavigationView {
       List(restaurantListViewModel.restaurants) { restaurant in
-        NavigationLink(destination: RestaurantDetailView()) {
-          RestaurantItemView(restaurant: restaurant)
-        }
+        RestaurantItemView(restaurant: restaurant)
       }
       .navigationBarTitle("Friendly Eats")
-      .onAppear() {
-        restaurantListViewModel.subscribe()
-      }
-      .onDisappear() {
-        restaurantListViewModel.unsubscribe()
-      }
       .toolbar {
         ToolbarItem(placement: .navigationBarLeading) {
           Button("Populate") {
             restaurantListViewModel.populate()
           }
         }
-
         ToolbarItem(placement: .navigationBarTrailing) {
           Button("Filter") {
             print(restaurantListViewModel.restaurants.count)
           }
         }
       }
+      .onAppear() {
+        restaurantListViewModel.subscribe()
+      }
+      .onDisappear() {
+        restaurantListViewModel.unsubscribe()
+      }
     }
-  }
-}
-
-// Work In Progress: Stub for detailed view of restaurants
-struct RestaurantDetailView: View {
-  var body: some View {
-    Text("Detail View Placeholder")
   }
 }
 

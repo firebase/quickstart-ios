@@ -78,3 +78,16 @@ class PostTableViewCell: UITableViewCell {
     // [END post_stars_transaction]
   }
 }
+
+func incrementStars(forPost postID: String, byUser userID: String) {
+  // [START post_stars_increment]
+  Dictionary updates = [
+    "posts/\(postID)/stars/\(userID)": true,
+    "posts/\(postID)/startCount": ServerValue.increment(1),
+    "user-posts/\(postID)/stars/\(userID)": true,
+    "user-posts/\(postID)/startCount": ServerValue.increment(1)
+  ]
+  Database.database().reference().updateChildValues(updates);
+  // [END post_stars_increment]
+}
+    

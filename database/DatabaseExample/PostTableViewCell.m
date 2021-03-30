@@ -28,6 +28,7 @@
     // We don't know the identifier of this post, so just return.
     return;
   }
+  /*
   self.postRef = [[[[FIRDatabase database] reference] child:@"posts"] child:self.postKey];
   [self incrementStarsForRef:self.postRef];
   [self.postRef observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
@@ -36,6 +37,11 @@
                                  child:@"user-posts"]
                                   child:uid] child:self.postKey];
     [self incrementStarsForRef:ref];
+  }];
+  */
+  [self.postRef observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+    NSString *uid = snapshot.value[@"uid"];
+    [self incrementStarsForPost:self.postKey byUser:uid];
   }];
 }
 
@@ -78,5 +84,16 @@
   }];
   // [END post_stars_transaction]
 }
+
+- (void)incrementStarsForPost:(NSString *)postID byUser: (NSString *) userID {
+  // [START post_stars_increment]
+    NSDictionary *updates = @{[NSString stringWithFormat: @"posts/%@/stars/%@", postID, userID]: @TRUE,
+                              [NSString stringWithFormat: @"posts/%@/starCount", postID]: [FIRServerValue increment: @1],
+                              [NSString stringWithFormat: @"user-posts/%@/stars/%@", postID, userID]: @TRUE,
+                              [NSString stringWithFormat: @"user-posts/%@/starCount", postID]: [FIRServerValue increment: @1]};
+    [[[FIRDatabase database] reference] updateChildValues:updates];
+  // [END post_stars_increment]
+}
+
 
 @end

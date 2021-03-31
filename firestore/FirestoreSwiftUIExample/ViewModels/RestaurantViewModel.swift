@@ -1,5 +1,5 @@
 //
-//  RestaurantListViewModel.swift
+//  RestaurantViewModel.swift
 //  FirestoreSwiftUIExample
 //
 //  Copyright (c) 2021 Google Inc.
@@ -17,13 +17,19 @@
 //  limitations under the License.
 //
 
-import Combine
 import Firebase
+import Combine
 
-class RestaurantListViewModel: ObservableObject {
-  @Published var restaurants = [Restaurant]()
+class RestaurantViewModel: ObservableObject {
+  var restaurant: Restaurant
+
+  @Published var reviews = [Review]()
   private var db = Firestore.firestore()
   private var listener: ListenerRegistration?
+
+  init(restaurant : Restaurant) {
+    self.restaurant = restaurant
+  }
 
   deinit {
     unsubscribe()
@@ -38,29 +44,25 @@ class RestaurantListViewModel: ObservableObject {
 
   func subscribe() {
     if listener == nil {
-      listener = db.collection("restaurants").addSnapshotListener { [weak self] (querySnapshot, error) in
+
+      listener = restaurant.reference!.collection("ratings").addSnapshotListener { [weak self] (querySnapshot, error) in
         guard let documents = querySnapshot?.documents else {
           print("Error fetching documents: \(error!)")
           return
         }
 
         guard let self = self else { return }
-        self.restaurants = documents.compactMap { document in
+        self.reviews = documents.compactMap { document in
           do {
-            var restaurant = try document.data(as: Restaurant.self)
-            restaurant?.reference = document.reference
-            return restaurant
+            return try document.data(as: Review.self)
           } catch let error {
             print(error)
             return nil
           }
         }
 
+        print(self.reviews)
       }
     }
-  }
-
-  func populate() {
-    db.populate()
   }
 }

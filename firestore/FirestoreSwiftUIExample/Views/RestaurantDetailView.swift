@@ -1,5 +1,5 @@
 //
-//  RestaurantView.swift
+//  RestaurantDetailView.swift
 //  FirestoreSwiftUIExample
 //
 //  Copyright (c) 2021 Google Inc.
@@ -18,46 +18,75 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
-struct RestaurantItemView: View {
-  var restaurant: Restaurant
-
+struct RestaurantDetailView: View {
+  @ObservedObject var viewModel: RestaurantViewModel
+  
   var body: some View {
-    NavigationLink(
-      destination: RestaurantDetailView(viewModel: RestaurantViewModel(restaurant: restaurant))) {
-      HStack {
-        RestaurantImageView(imageURL: restaurant.photo, isThumbnail: true)
+    let restaurant = viewModel.restaurant
+    
+    VStack {
+      VStack {
+        Spacer()
+          .frame(height: 100)
         VStack(alignment: .leading) {
           HStack {
             Text(restaurant.name)
+              .font(.title2)
+              .bold()
               .frame(alignment: .leading)
             Spacer()
-            PriceView(price: restaurant.price, color: Color.gray)
+            PriceView(price: restaurant.price, color: Color.white)
           }
           StarsView(
             rating: Int(restaurant.averageRating.rounded()),
-            color: Color.yellow,
-            outlineColor: Color.gray)
-          Spacer()
+            color: Color.white,
+            outlineColor: Color.white)
           HStack {
             Text(restaurant.category)
             Text("•")
             Text(restaurant.city)
           }
-          .foregroundColor(Color.gray)
-          .font(.footnote)
+          .font(.subheadline)
         }
+        .padding()
+        .foregroundColor(Color.white)
+        .background(TransparentRectangleView())
       }
-      .padding([.bottom, .trailing])
+      .background(RestaurantImageView(imageURL: restaurant.photo, isThumbnail: false))
+      List(viewModel.reviews) { review in
+        ReviewView(review: review)
+      }
+    }
+    .navigationBarTitle(restaurant.name, displayMode: .inline)
+    .toolbar {
+      Button("Add") {
+        print("add")
+      }
+    }
+    .onAppear() {
+      viewModel.subscribe()
+    }
+    .onDisappear() {
+      viewModel.unsubscribe()
     }
   }
 }
 
-struct RestaurantItemView_Previews: PreviewProvider {
+struct TransparentRectangleView: View {
+  var body: some View {
+    Rectangle()
+      .foregroundColor(Color.black)
+      .opacity(0.4)
+  }
+}
+
+struct RestaurantDetailView_Previews: PreviewProvider {
   static var previews: some View {
     let restaurant = Restaurant(name: "Pizza Place", category: "Pizza", city: "Austin", price: 2,
                                 ratingCount: 1, averageRating: 4,
                                 photo: Restaurant.imageURL(forName: "Pizza Place"))
-    RestaurantItemView(restaurant: restaurant)
+    RestaurantDetailView(viewModel: RestaurantViewModel(restaurant: restaurant))
   }
 }

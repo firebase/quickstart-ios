@@ -1,5 +1,5 @@
 //
-//  PriceView.swift
+//  ImageThumbnailView.swift
 //  FirestoreSwiftUIExample
 //
 //  Copyright (c) 2021 Google Inc.
@@ -18,23 +18,22 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
-struct PriceView: View {
-  var price: Int
-  var color: Color
+struct RestaurantImageView: View {
+  var imageURL: URL
+  var isThumbnail: Bool
 
   var body: some View {
-    Text(priceString(from: price))
-      .font(.footnote)
-      .foregroundColor(color)
-      .multilineTextAlignment(.trailing)
-  }
-
-  func priceString(from price: Int) -> String {
-    if ![1,2,3].contains(price) {
-      fatalError("price must be between one and three")
+    if (isThumbnail) {
+      WebImage(url: imageURL)
+        .resizable()
+        .aspectRatio(1, contentMode: .fill)
+        .frame(width: 100, height: 100, alignment: .leading)
+    } else {
+      WebImage(url: imageURL)
+        .resizable()
+        .aspectRatio(contentMode: .fill)
     }
-
-    return String(repeating: "$", count: price)
   }
 }

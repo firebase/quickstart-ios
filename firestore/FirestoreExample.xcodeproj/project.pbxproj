@@ -31,8 +31,12 @@
 		8E4C637825EEF4CA001678A1 /* RestaurantListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4C637725EEF4CA001678A1 /* RestaurantListViewModel.swift */; };
 		8E4C63B225F05E76001678A1 /* StarsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4C63B125F05E76001678A1 /* StarsView.swift */; };
 		8E4C63D825F6D641001678A1 /* Firestore+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4C63D725F6D641001678A1 /* Firestore+Extension.swift */; };
-		8E4C63DE25F6D879001678A1 /* ImageThumbnailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4C63DD25F6D879001678A1 /* ImageThumbnailView.swift */; };
 		8E4C63E425F6D8C8001678A1 /* PriceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4C63E325F6D8C8001678A1 /* PriceView.swift */; };
+		8E919E71260D3945007C62C4 /* RestaurantViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E919E70260D3945007C62C4 /* RestaurantViewModel.swift */; };
+		8E919E77260D394C007C62C4 /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E919E76260D394C007C62C4 /* Review.swift */; };
+		8E919E7F260D3956007C62C4 /* RestaurantImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E919E7C260D3956007C62C4 /* RestaurantImageView.swift */; };
+		8E919E80260D3956007C62C4 /* RestaurantDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E919E7D260D3956007C62C4 /* RestaurantDetailView.swift */; };
+		8E919E81260D3956007C62C4 /* ReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E919E7E260D3956007C62C4 /* ReviewView.swift */; };
 		DE8564AE23AFBF8000611383 /* FirestoreUITest.m in Sources */ = {isa = PBXBuildFile; fileRef = DE8564AD23AFBF8000611383 /* FirestoreUITest.m */; };
 		DE8564B423AFBFA700611383 /* FIREGSignInHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DE8564B123AFBFA700611383 /* FIREGSignInHelper.m */; };
 		DE8564B523AFBFA700611383 /* FIREGHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DE8564B223AFBFA700611383 /* FIREGHelper.m */; };
@@ -88,8 +92,12 @@
 		8E4C637725EEF4CA001678A1 /* RestaurantListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantListViewModel.swift; sourceTree = "<group>"; };
 		8E4C63B125F05E76001678A1 /* StarsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarsView.swift; sourceTree = "<group>"; };
 		8E4C63D725F6D641001678A1 /* Firestore+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Firestore+Extension.swift"; sourceTree = "<group>"; };
-		8E4C63DD25F6D879001678A1 /* ImageThumbnailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageThumbnailView.swift; sourceTree = "<group>"; };
 		8E4C63E325F6D8C8001678A1 /* PriceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceView.swift; sourceTree = "<group>"; };
+		8E919E70260D3945007C62C4 /* RestaurantViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantViewModel.swift; sourceTree = "<group>"; };
+		8E919E76260D394C007C62C4 /* Review.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
+		8E919E7C260D3956007C62C4 /* RestaurantImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantImageView.swift; sourceTree = "<group>"; };
+		8E919E7D260D3956007C62C4 /* RestaurantDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantDetailView.swift; sourceTree = "<group>"; };
+		8E919E7E260D3956007C62C4 /* ReviewView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewView.swift; sourceTree = "<group>"; };
 		DE8564AC23AFBF8000611383 /* FirestoreExampleUITests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FirestoreExampleUITests-Bridging-Header.h"; sourceTree = "<group>"; };
 		DE8564AD23AFBF8000611383 /* FirestoreUITest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirestoreUITest.m; sourceTree = "<group>"; };
 		DE8564B023AFBFA700611383 /* FIREGHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FIREGHelper.h; sourceTree = "<group>"; };
@@ -230,9 +238,11 @@
 			isa = PBXGroup;
 			children = (
 				8E4C62D225E9CFE0001678A1 /* RestaurantListView.swift */,
+				8E919E7D260D3956007C62C4 /* RestaurantDetailView.swift */,
+				8E919E7C260D3956007C62C4 /* RestaurantImageView.swift */,
+				8E919E7E260D3956007C62C4 /* ReviewView.swift */,
 				8E4C62E625E9D191001678A1 /* RestaurantItemView.swift */,
 				8E4C63B125F05E76001678A1 /* StarsView.swift */,
-				8E4C63DD25F6D879001678A1 /* ImageThumbnailView.swift */,
 				8E4C63E325F6D8C8001678A1 /* PriceView.swift */,
 			);
 			path = Views;
@@ -242,6 +252,7 @@
 			isa = PBXGroup;
 			children = (
 				8E4C634825EDB793001678A1 /* Restaurant.swift */,
+				8E919E76260D394C007C62C4 /* Review.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -250,6 +261,7 @@
 			isa = PBXGroup;
 			children = (
 				8E4C637725EEF4CA001678A1 /* RestaurantListViewModel.swift */,
+				8E919E70260D3945007C62C4 /* RestaurantViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -473,11 +485,15 @@
 				8E1E43B125F961EF00BC64D3 /* Restaurant+Extension.swift in Sources */,
 				8E4C62D325E9CFE0001678A1 /* RestaurantListView.swift in Sources */,
 				8E4C634925EDB793001678A1 /* Restaurant.swift in Sources */,
+				8E919E80260D3956007C62C4 /* RestaurantDetailView.swift in Sources */,
 				8E4C637825EEF4CA001678A1 /* RestaurantListViewModel.swift in Sources */,
 				8E4C62D125E9CFE0001678A1 /* FirestoreSwiftUIExampleApp.swift in Sources */,
+				8E919E81260D3956007C62C4 /* ReviewView.swift in Sources */,
 				8E4C63B225F05E76001678A1 /* StarsView.swift in Sources */,
+				8E919E77260D394C007C62C4 /* Review.swift in Sources */,
+				8E919E7F260D3956007C62C4 /* RestaurantImageView.swift in Sources */,
 				8E4C63E425F6D8C8001678A1 /* PriceView.swift in Sources */,
-				8E4C63DE25F6D879001678A1 /* ImageThumbnailView.swift in Sources */,
+				8E919E71260D3945007C62C4 /* RestaurantViewModel.swift in Sources */,
 				8E4C62E725E9D191001678A1 /* RestaurantItemView.swift in Sources */,
 				8E4C63D825F6D641001678A1 /* Firestore+Extension.swift in Sources */,
 			);

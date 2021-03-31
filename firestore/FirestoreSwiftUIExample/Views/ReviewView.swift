@@ -1,5 +1,5 @@
 //
-//  ImageThumbnailView.swift
+//  ReviewView.swift
 //  FirestoreSwiftUIExample
 //
 //  Copyright (c) 2021 Google Inc.
@@ -18,16 +18,29 @@
 //
 
 import SwiftUI
-import SDWebImageSwiftUI
+import Firebase
 
-struct ImageThumbnailView: View {
-  var imageURL: URL
+struct ReviewView: View {
+  var review: Review
 
   var body: some View {
-    WebImage(url: imageURL)
-      .resizable()
-      .placeholder(Image(systemName: "photo"))
-      .aspectRatio(1, contentMode: .fill)
-      .frame(width: 100, height: 100, alignment: .leading)
+    VStack(alignment: .leading, spacing: 10) {
+      HStack {
+        Text(review.username)
+          .fontWeight(.bold)
+        Spacer()
+        StarsView(rating: review.rating, color: Color.yellow, outlineColor: Color.gray)
+      }
+      Text(review.text)
+    }
+    .padding()
+  }
+}
+
+struct ReviewView_Previews: PreviewProvider {
+  static var previews: some View {
+    let data = Review(rating: 3, userID: "1234", username: "userName",
+                      text: "Great review!", date: Timestamp())
+    ReviewView(review: data)
   }
 }

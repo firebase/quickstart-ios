@@ -1,5 +1,5 @@
 //
-//  PriceView.swift
+//  Review.swift
 //  FirestoreSwiftUIExample
 //
 //  Copyright (c) 2021 Google Inc.
@@ -17,24 +17,23 @@
 //  limitations under the License.
 //
 
-import SwiftUI
+import Firebase
+import FirebaseFirestoreSwift
 
-struct PriceView: View {
-  var price: Int
-  var color: Color
+struct Review: Identifiable, Codable {
+  var id: String = UUID().uuidString
 
-  var body: some View {
-    Text(priceString(from: price))
-      .font(.footnote)
-      .foregroundColor(color)
-      .multilineTextAlignment(.trailing)
-  }
+  var rating: Int // Can also be enum
+  var userID: String
+  var username: String
+  var text: String
+  var date: Timestamp
 
-  func priceString(from price: Int) -> String {
-    if ![1,2,3].contains(price) {
-      fatalError("price must be between one and three")
-    }
-
-    return String(repeating: "$", count: price)
+  enum CodingKeys: String, CodingKey {
+    case rating
+    case userID = "userId"
+    case username = "userName"
+    case text
+    case date
   }
 }

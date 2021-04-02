@@ -21,7 +21,7 @@ Getting Started
 Support
 -------
 
-- [Stack Overflow](https://stackoverflow.com/questions/tagged/firebase-crash-reporting)
+- [Stack Overflow](https://stackoverflow.com/questions/tagged/google-cloud-functions)
 - [Firebase Support](https://firebase.google.com/support/)
 
 License

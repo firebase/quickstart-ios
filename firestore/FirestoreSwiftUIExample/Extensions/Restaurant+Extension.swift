@@ -20,6 +20,10 @@
 import Firebase
 
 extension Restaurant {
+  var ratingsCollection: CollectionReference? {
+    return reference?.collection("ratings")
+  }
+
   static let cities = [
     "Albuquerque",
     "Arlington",

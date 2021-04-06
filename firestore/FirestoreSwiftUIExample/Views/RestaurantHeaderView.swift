@@ -1,5 +1,5 @@
 //
-//  RestaurantView.swift
+//  RestaurantHeaderView.swift
 //  FirestoreSwiftUIExample
 //
 //  Copyright (c) 2021 Google Inc.
@@ -19,44 +19,46 @@
 
 import SwiftUI
 
-struct RestaurantItemView: View {
+struct RestaurantHeaderView: View {
   var restaurant: Restaurant
 
   var body: some View {
-    NavigationLink(destination: RestaurantDetailView(restaurant: restaurant)) {
-      HStack {
-        RestaurantImageView(imageURL: restaurant.photo, isThumbnail: true)
-        VStack(alignment: .leading) {
-          HStack {
-            Text(restaurant.name)
-              .frame(alignment: .leading)
-            Spacer()
-            PriceView(price: restaurant.price, color: Color.gray)
-          }
-          StarsView(
-            rating: Int(restaurant.averageRating.rounded()),
-            color: Color.yellow,
-            outlineColor: Color.gray)
+    VStack {
+      Spacer()
+        .frame(height: 100)
+      VStack(alignment: .leading) {
+        HStack {
+          Text(restaurant.name)
+            .font(.title2)
+            .bold()
+            .frame(alignment: .leading)
           Spacer()
-          HStack {
-            Text(restaurant.category)
-            Text("•")
-            Text(restaurant.city)
-          }
-          .foregroundColor(Color.gray)
-          .font(.footnote)
+          PriceView(price: restaurant.price, color: Color.white)
         }
+        StarsView(
+          rating: Int(restaurant.averageRating.rounded()),
+          color: Color.white,
+          outlineColor: Color.white)
+        HStack {
+          Text(restaurant.category)
+          Text("•")
+          Text(restaurant.city)
+        }
+        .font(.subheadline)
       }
-      .padding([.bottom, .trailing])
+      .padding()
+      .foregroundColor(Color.white)
+      .background(TransparentRectangleView())
     }
+    .background(RestaurantImageView(imageURL: restaurant.photo, isThumbnail: false))
   }
 }
 
-struct RestaurantItemView_Previews: PreviewProvider {
+struct RestaurantHeaderView_Previews: PreviewProvider {
   static var previews: some View {
     let restaurant = Restaurant(name: "Pizza Place", category: "Pizza", city: "Austin", price: 2,
                                 ratingCount: 1, averageRating: 4,
                                 photo: Restaurant.imageURL(forName: "Pizza Place"))
-    RestaurantItemView(restaurant: restaurant)
+    RestaurantHeaderView(restaurant: restaurant)
   }
 }

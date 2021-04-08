@@ -21,7 +21,7 @@ import Firebase
 class ViewController: UIViewController {
  
   @IBOutlet weak var fcmTokenMessage: UILabel!
-  @IBOutlet weak var instanceIDTokenMessage: UILabel!
+  @IBOutlet weak var remoteFCMTokenMessage: UILabel!
     
   override func viewDidLoad() {
     NotificationCenter.default.addObserver(self, selector: #selector(self.displayFCMToken(notification:)),
@@ -36,12 +36,12 @@ class ViewController: UIViewController {
     self.fcmTokenMessage.text  = "Logged FCM token: \(token ?? "")"
 
     // [START log_iid_reg_token]
-    InstanceID.instanceID().instanceID { (result, error) in
+    Messaging.messaging().token { (token, error) in
       if let error = error {
-        print("Error fetching remote instance ID: \(error)")
+        print("Error fetching remote FCM registration token: \(error)")
       } else if let result = result {
         print("Remote instance ID token: \(result.token)")
-        self.instanceIDTokenMessage.text  = "Remote InstanceID token: \(result.token)"
+        self.remoteFCMTokenMessage.text  = "Remote FCM registration token: \(result.token)"
       }
     }
     // [END log_iid_reg_token]

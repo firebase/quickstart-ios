@@ -76,14 +76,14 @@ static NSString *const logButton = @"Log Token";
 
   // Wait till network call is finished.
   NSPredicate *gone = [NSPredicate predicateWithFormat:@"exists == false"];
-  FIRWaitForPredicateWithTimeout(gone, [_app staticTexts][@"No InstanceID token"], 20);
+  FIRWaitForPredicateWithTimeout(gone, [_app staticTexts][@"No FCM Registration token"], 20);
 
   // Make sure [FIRMessaging messaging].FCMToken returns FCM token.
   XCTAssertTrue(
       [[[[_app staticTexts] elementBoundByIndex:1] label] containsString:@"Logged FCM token"]);
-  // Make sure [FIRInstanceID instanceID] instanceIDWithHandler: returns FCM token.
+  // Make sure [FIRMessaging messaging] tokenWithCompletion: returns FCM token.
   XCTAssertTrue([[[[_app staticTexts] elementBoundByIndex:2] label]
-      containsString:@"Remote InstanceID token"]);
+      containsString:@"FCM registration token"]);
 }
 
 @end

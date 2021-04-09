@@ -21,48 +21,31 @@ import SwiftUI
 import SDWebImageSwiftUI
 
 struct RestaurantDetailView: View {
+  var restaurant: Restaurant
   @ObservedObject var viewModel: RestaurantViewModel
+  @State var showAddReviewView = false
+
+  init(restaurant: Restaurant) {
+    self.restaurant = restaurant
+    viewModel = RestaurantViewModel(restaurant: restaurant)
+  }
   
   var body: some View {
     let restaurant = viewModel.restaurant
     
     VStack {
-      VStack {
-        Spacer()
-          .frame(height: 100)
-        VStack(alignment: .leading) {
-          HStack {
-            Text(restaurant.name)
-              .font(.title2)
-              .bold()
-              .frame(alignment: .leading)
-            Spacer()
-            PriceView(price: restaurant.price, color: Color.white)
-          }
-          StarsView(
-            rating: Int(restaurant.averageRating.rounded()),
-            color: Color.white,
-            outlineColor: Color.white)
-          HStack {
-            Text(restaurant.category)
-            Text("•")
-            Text(restaurant.city)
-          }
-          .font(.subheadline)
-        }
-        .padding()
-        .foregroundColor(Color.white)
-        .background(TransparentRectangleView())
-      }
-      .background(RestaurantImageView(imageURL: restaurant.photo, isThumbnail: false))
+      RestaurantHeaderView(restaurant: restaurant)
       List(viewModel.reviews) { review in
         ReviewView(review: review)
       }
     }
+    .sheet(isPresented: $showAddReviewView) {
+      WriteReviewView(restaurant: restaurant, showAddReviewView: self.$showAddReviewView)
+    }
     .navigationBarTitle(restaurant.name, displayMode: .inline)
     .toolbar {
       Button("Add") {
-        print("add")
+        self.showAddReviewView = true
       }
     }
     .onAppear() {
@@ -87,6 +70,6 @@ struct RestaurantDetailView_Previews: PreviewProvider {
     let restaurant = Restaurant(name: "Pizza Place", category: "Pizza", city: "Austin", price: 2,
                                 ratingCount: 1, averageRating: 4,
                                 photo: Restaurant.imageURL(forName: "Pizza Place"))
-    RestaurantDetailView(viewModel: RestaurantViewModel(restaurant: restaurant))
+    RestaurantDetailView(restaurant: restaurant)
   }
 }

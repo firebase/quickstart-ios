@@ -33,7 +33,7 @@ struct StarsView: View {
       }
     }
   }
-  
+
   func getStar(num: Int, rating: Int) -> Image {
     num > rating ? Image(systemName: "star") : Image(systemName: "star.fill")
   }
@@ -43,8 +43,33 @@ struct StarsView: View {
   }
 }
 
+struct StarsInputView: View {
+  @EnvironmentObject var newReview: NewReview
+
+  var body: some View {
+    HStack {
+      ForEach(1...5, id: \.self) { i in
+        getStar(num: i)
+          .resizable()
+          .frame(width: 50.0, height: 50.0)
+          .foregroundColor(newReview.rating == 0 ? Color.gray : Color.yellow)
+          .onTapGesture { newReview.rating = i }
+      }
+    }
+  }
+
+  func getStar(num: Int) -> Image {
+    if newReview.rating == 0 {
+      return Image(systemName: "star")
+    } else {
+      return num > newReview.rating ? Image(systemName: "star") : Image(systemName: "star.fill")
+    }
+  }
+}
+
 struct StarsView_Previews: PreviewProvider {
   static var previews: some View {
     StarsView(rating: 3, color: Color.purple, outlineColor: Color.black)
+    StarsInputView()
   }
 }

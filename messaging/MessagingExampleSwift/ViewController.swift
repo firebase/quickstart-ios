@@ -41,7 +41,7 @@ class ViewController: UIViewController {
         print("Error fetching remote FCM registration token: \(error)")
       } else if let token = token {
         print("Remote instance ID token: \(token)")
-        self.remoteFCMTokenMessage.text  = "Remote FCM registration token: \( token)"
+        self.remoteFCMTokenMessage.text  = "Remote FCM registration token: \(token)"
       }
     }
     // [END log_iid_reg_token]

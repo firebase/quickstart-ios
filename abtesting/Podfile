@@ -6,9 +6,6 @@ target 'ABTestingExample' do
   pod 'Firebase/Analytics'
   pod 'Firebase/RemoteConfig'
 
-  # FirebaseInstanceID is needed to get a device token for debugging an experiment.
-  pod 'FirebaseInstanceID', :configurations => ['Debug']
-
   target 'ABTestingExampleTests' do
     inherit! :search_paths
     # Pods for testing

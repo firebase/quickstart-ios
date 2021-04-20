@@ -15,6 +15,7 @@
 //
 
 import Firebase
+import FirebaseInstanceID
 import UIKit
 
 enum ColorScheme {

@@ -15,7 +15,6 @@
 //
 
 import Firebase
-import FirebaseInstanceID
 import UIKit
 
 enum ColorScheme {
@@ -55,8 +54,8 @@ class ViewController: UIViewController, UITableViewDataSource {
 
     #if DEBUG
     NotificationCenter.default.addObserver(self,
-                                           selector: #selector(printInstanceIDToken),
-                                           name: .InstanceIDTokenRefresh,
+                                           selector: #selector(printInstallationsID),
+                                           name: .InstallationIDDidChange,
                                            object: nil)
     #endif
   }
@@ -91,13 +90,13 @@ class ViewController: UIViewController, UITableViewDataSource {
     }
   }
 
-  @objc func printInstanceIDToken() {
+  @objc func printInstallationsID() {
     #if DEBUG
-    InstanceID.instanceID().instanceID { (result, error) in
+    Installations.installations().installationID { (identifier, error) in
       if let error = error {
-        print("Error fetching remote instance ID: \(error)")
-      } else if let result = result {
-        print("Remote instance ID token: \(result.token)")
+        print("Error fetching installations ID: \(error)")
+      } else if let identifier = identifier {
+        print("Remote installations ID: \(identifier)")
       }
     }
     #endif

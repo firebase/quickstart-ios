@@ -1,15 +1,29 @@
 # StorageExample
 
 use_frameworks!
-platform :ios, '10.0'
-
-pod 'Firebase/Analytics'
-pod 'Firebase/Auth'
-pod 'Firebase/Storage'
 
 target 'StorageExample' do
+  platform :ios, '10.0'
+
+  pod 'Firebase/Analytics'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Storage'
 end
 target 'StorageExampleSwift' do
+  platform :ios, '10.0'
+
+  pod 'Firebase/Analytics'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Storage'
+  pod 'FirebaseStorageSwift', "~> 7.0-beta"
+end
+target 'StorageExampleSwiftUI' do
+  platform :ios, '13.0'
+
+  pod 'Firebase'
+  pod 'Firebase/Analytics'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Storage'
   pod 'FirebaseStorageSwift', "~> 7.0-beta"
 end
 target 'StorageExampleTests' do

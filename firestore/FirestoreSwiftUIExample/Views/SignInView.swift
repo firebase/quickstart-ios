@@ -1,5 +1,5 @@
 //
-//  FirestoreSwiftUIExampleApp.swift
+//  SignInView.swift
 //  FirestoreSwiftUIExample
 //
 //  Copyright (c) 2021 Google Inc.
@@ -20,15 +20,30 @@
 import SwiftUI
 import Firebase
 
-@main
-struct FirestoreSwiftUIExampleApp: App {
-  init() {
-    FirebaseApp.configure()
-  }
+struct SignInView: View {
+  @State private var isSignedIn = false
 
-  var body: some Scene {
-    WindowGroup {
-      SignInView()
+  var body: some View {
+    NavigationView {
+      VStack {
+        NavigationLink(destination: RestaurantListView().navigationBarHidden(true), isActive: $isSignedIn)
+          { EmptyView() }
+        Button("Sign In Anonymously") {
+          Auth.auth().signInAnonymously() { (authResult, error) in
+            if (error == nil) {
+              self.isSignedIn = true
+            } else {
+              print(error!)
+            }
+          }
+        }
+      }
     }
+  }
+}
+
+struct SignInView_Previews: PreviewProvider {
+  static var previews: some View {
+    SignInView()
   }
 }

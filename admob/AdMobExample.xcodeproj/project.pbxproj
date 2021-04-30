@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -140,7 +140,6 @@
 				10360400224D9A1600E6532E /* AdMobExampleUITests */,
 				1036040E224D9A2900E6532E /* AdMobExampleSwiftUITests */,
 				1036038D224D95D300E6532E /* Products */,
-				583D576FC6131BC336AF9238 /* Pods */,
 				ADB9CFD26D561763ABEF60BF /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -215,13 +214,6 @@
 				10360411224D9A2900E6532E /* Info.plist */,
 			);
 			path = AdMobExampleSwiftUITests;
-			sourceTree = "<group>";
-		};
-		583D576FC6131BC336AF9238 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Pods;
 			sourceTree = "<group>";
 		};
 		ADB9CFD26D561763ABEF60BF /* Frameworks */ = {

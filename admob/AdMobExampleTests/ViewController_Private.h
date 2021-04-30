@@ -22,5 +22,5 @@
 
 @interface ViewController ()
 @property(nonatomic, weak) IBOutlet GADBannerView *bannerView;
-@property(nonatomic, strong) GADInterstitial *interstitial;
+@property(nonatomic, strong) GADInterstitialAd *interstitial;
 @end

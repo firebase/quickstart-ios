@@ -20,6 +20,8 @@
 		103603FA224D97BC00E6532E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10360395224D95D300E6532E /* Main.storyboard */; };
 		10360402224D9A1600E6532E /* AdMobExampleUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 10360401224D9A1600E6532E /* AdMobExampleUITests.m */; };
 		10360410224D9A2900E6532E /* AdMobExampleSwiftUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1036040F224D9A2900E6532E /* AdMobExampleSwiftUITests.swift */; };
+		8D56C7D9263CB3F800A90B75 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D56C7D8263CB3F800A90B75 /* StoreKit.framework */; };
+		8D56C7E0263CB3FF00A90B75 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D56C7D8263CB3F800A90B75 /* StoreKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +79,7 @@
 		1036040D224D9A2900E6532E /* AdMobExampleSwiftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AdMobExampleSwiftUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1036040F224D9A2900E6532E /* AdMobExampleSwiftUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdMobExampleSwiftUITests.swift; sourceTree = "<group>"; };
 		10360411224D9A2900E6532E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8D56C7D8263CB3F800A90B75 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +87,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D56C7D9263CB3F800A90B75 /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,6 +102,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D56C7E0263CB3FF00A90B75 /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -135,6 +140,8 @@
 				10360400224D9A1600E6532E /* AdMobExampleUITests */,
 				1036040E224D9A2900E6532E /* AdMobExampleSwiftUITests */,
 				1036038D224D95D300E6532E /* Products */,
+				583D576FC6131BC336AF9238 /* Pods */,
+				ADB9CFD26D561763ABEF60BF /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -208,6 +215,21 @@
 				10360411224D9A2900E6532E /* Info.plist */,
 			);
 			path = AdMobExampleSwiftUITests;
+			sourceTree = "<group>";
+		};
+		583D576FC6131BC336AF9238 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		ADB9CFD26D561763ABEF60BF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8D56C7D8263CB3F800A90B75 /* StoreKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

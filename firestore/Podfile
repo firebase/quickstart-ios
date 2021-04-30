@@ -8,7 +8,7 @@ target 'FirestoreExample' do
   pod 'FirebaseUI/Auth'
   pod 'FirebaseUI/Email'
   pod 'Firebase/Firestore'
-  pod 'FirebaseFirestoreSwift', "~> 7.0-beta"
+  pod 'FirebaseFirestoreSwift', "> 7.0-beta"
   pod 'SDWebImage'
 
   target 'FirestoreExampleTests' do
@@ -22,6 +22,6 @@ target 'FirestoreSwiftUIExample' do
   pod 'Firebase/Analytics'
   pod 'Firebase/Auth'
   pod 'Firebase/Firestore'
-  pod 'FirebaseFirestoreSwift', "~> 7.0-beta"
+  pod 'FirebaseFirestoreSwift', "> 7.0-beta"
   pod 'SDWebImageSwiftUI'
 end

@@ -104,7 +104,7 @@ DEPENDENCIES:
   - Firebase/Analytics
   - Firebase/Auth
   - Firebase/Storage
-  - FirebaseStorageSwift (~> 7.0-beta)
+  - FirebaseStorageSwift (> 7.0-beta)
 
 SPEC REPOS:
   trunk:
@@ -139,6 +139,6 @@ SPEC CHECKSUMS:
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
 
-PODFILE CHECKSUM: 68e67a7f5b716247bf88b244cb2b3cc55d2e53ec
+PODFILE CHECKSUM: 779e4adf5d334894b075beab24ee72af2adbf4b1
 
 COCOAPODS: 1.10.1

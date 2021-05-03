@@ -53,7 +53,7 @@ class ViewController: UIViewController {
     let error = NSError(domain: NSURLErrorDomain, code: -1001, userInfo: userInfo)
     Crashlytics.crashlytics().record(error: error)
   }
-
+    
   @IBAction func initiateCrash(_ sender: AnyObject) {
     // [START log_and_crash_swift]
     Crashlytics.crashlytics().log("Crash button clicked")

@@ -93,13 +93,13 @@ class ViewController: UIViewController {
     let reachability = try! Reachability()
     NotificationCenter.default.addObserver(self, selector: #selector(reachabilityChanged(note:)), name: .reachabilityChanged, object: reachability)
     do{
-        try reachability.startNotifier()
+      try reachability.startNotifier()
     }catch{
-        print("could not start reachability notifier")
-        }
+      print("could not start reachability notifier")
     }
+  }
     
-    @objc func reachabilityChanged(note: Notification) {
-        Crashlytics.crashlytics().setCustomValue(getNetworkStatus(), forKey: "network_connection")
-    }
+  @objc func reachabilityChanged(note: Notification) {
+    Crashlytics.crashlytics().setCustomValue(getNetworkStatus(), forKey: "network_connection")
+  }
 }

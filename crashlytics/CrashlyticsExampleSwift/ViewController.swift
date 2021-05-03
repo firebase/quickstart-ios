@@ -17,6 +17,7 @@
 import UIKit
 import Firebase
 import FirebaseCrashlytics
+import Reachability
 
 @objc(ViewController)
 class ViewController: UIViewController {
@@ -32,8 +33,16 @@ class ViewController: UIViewController {
 
     Crashlytics.crashlytics().setCustomValue(42, forKey: "MeaningOfLife")
     Crashlytics.crashlytics().setCustomValue("Test value", forKey: "last_UI_action")
+    
+    let customKeysObject = [
+        "locale" : getLocale(),
+        "network_connection": getNetworkStatus(),
+    ] as [String: Any]
+    Crashlytics.crashlytics().setCustomKeysAndValues(customKeysObject)
+    
+    updateAndTrackNetworkStatus()
+    
     Crashlytics.crashlytics().setUserID("123456789")
-
     let userInfo = [
       NSLocalizedDescriptionKey: NSLocalizedString("The request failed.", comment: ""),
       NSLocalizedFailureReasonErrorKey: NSLocalizedString("The response returned a 404.", comment: ""),
@@ -47,8 +56,49 @@ class ViewController: UIViewController {
 
   @IBAction func initiateCrash(_ sender: AnyObject) {
     // [START log_and_crash_swift]
-    Crashlytics.crashlytics().log("Cause Crash button clicked")
+    Crashlytics.crashlytics().log("Crash button clicked")
     fatalError()
     // [END log_and_crash_swift]
   }
+    
+    /**
+     * Retrieve the locale information for the app.
+     */
+    func getLocale() -> String {
+        return Locale.preferredLanguages[0]
+    }
+    
+    /**
+     * Retrieve the network status for the app.
+     */
+    func getNetworkStatus() -> String {
+        let reachability = try! Reachability()
+        switch reachability.connection {
+        case .wifi:
+            return "wifi"
+        case .cellular:
+            return "cellular"
+        case .unavailable:
+            return "unreachable"
+        case .none:
+            return "unknown"
+        }
+    }
+    
+    /**
+     * Add a hook to update nework status going forward.
+     */
+    func updateAndTrackNetworkStatus() {
+        let reachability = try! Reachability()
+        NotificationCenter.default.addObserver(self, selector: #selector(reachabilityChanged(note:)), name: .reachabilityChanged, object: reachability)
+        do{
+          try reachability.startNotifier()
+        }catch{
+          print("could not start reachability notifier")
+        }
+    }
+    
+    @objc func reachabilityChanged(note: Notification) {
+        Crashlytics.crashlytics().setCustomValue(getNetworkStatus(), forKey: "network_connection")
+    }
 }

@@ -35,14 +35,15 @@ class ViewController: UIViewController {
     Crashlytics.crashlytics().setCustomValue("Test value", forKey: "last_UI_action")
     
     let customKeysObject = [
-        "locale" : getLocale(),
-        "network_connection": getNetworkStatus(),
+      "locale" : getLocale(),
+      "network_connection": getNetworkStatus(),
     ] as [String: Any]
     Crashlytics.crashlytics().setCustomKeysAndValues(customKeysObject)
     
     updateAndTrackNetworkStatus()
     
     Crashlytics.crashlytics().setUserID("123456789")
+
     let userInfo = [
       NSLocalizedDescriptionKey: NSLocalizedString("The request failed.", comment: ""),
       NSLocalizedFailureReasonErrorKey: NSLocalizedString("The response returned a 404.", comment: ""),
@@ -53,48 +54,48 @@ class ViewController: UIViewController {
     let error = NSError(domain: NSURLErrorDomain, code: -1001, userInfo: userInfo)
     Crashlytics.crashlytics().record(error: error)
   }
-    
+
   @IBAction func initiateCrash(_ sender: AnyObject) {
     // [START log_and_crash_swift]
-    Crashlytics.crashlytics().log("Crash button clicked")
+    Crashlytics.crashlytics().log("Cause Crash button clicked")
     fatalError()
     // [END log_and_crash_swift]
   }
     
-    /**
-     * Retrieve the locale information for the app.
-     */
-    func getLocale() -> String {
-        return Locale.preferredLanguages[0]
-    }
+  /**
+  * Retrieve the locale information for the app.
+  */
+  func getLocale() -> String {
+    return Locale.preferredLanguages[0]
+  }
     
-    /**
-     * Retrieve the network status for the app.
-     */
-    func getNetworkStatus() -> String {
-        let reachability = try! Reachability()
-        switch reachability.connection {
-        case .wifi:
-            return "wifi"
-        case .cellular:
-            return "cellular"
-        case .unavailable:
-            return "unreachable"
-        case .none:
-            return "unknown"
-        }
+  /**
+  * Retrieve the network status for the app.
+  */
+  func getNetworkStatus() -> String {
+    let reachability = try! Reachability()
+    switch reachability.connection {
+    case .wifi:
+      return "wifi"
+    case .cellular:
+      return "cellular"
+    case .unavailable:
+      return "unreachable"
+    case .none:
+      return "unknown"
     }
+  }
     
-    /**
-     * Add a hook to update nework status going forward.
-     */
-    func updateAndTrackNetworkStatus() {
-        let reachability = try! Reachability()
-        NotificationCenter.default.addObserver(self, selector: #selector(reachabilityChanged(note:)), name: .reachabilityChanged, object: reachability)
-        do{
-          try reachability.startNotifier()
-        }catch{
-          print("could not start reachability notifier")
+  /**
+  * Add a hook to update nework status going forward.
+  */
+  func updateAndTrackNetworkStatus() {
+    let reachability = try! Reachability()
+    NotificationCenter.default.addObserver(self, selector: #selector(reachabilityChanged(note:)), name: .reachabilityChanged, object: reachability)
+    do{
+        try reachability.startNotifier()
+    }catch{
+        print("could not start reachability notifier")
         }
     }
     

@@ -42,7 +42,7 @@ class CommentCell: MDCCollectionViewCell {
         // [END_EXCLUDE]
       }
       // [END function_error]
-      if let text = result?.data as? String {
+      if let text = result?.data["text"] as? String {
         self.resultField.text = text
       }
     }

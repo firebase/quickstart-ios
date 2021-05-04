@@ -21,10 +21,27 @@ import Firebase
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
   var window: UIWindow?
-
+  var didBackground: Bool?
+    
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
     // Initialize Firebase service.
     FirebaseApp.configure()
     return true
+  }
+   
+  /**
+  * Set up a pair of custom keys to track whether the app was in the background or had been backgrounded at some point.
+  */
+  func applicationWillResignActive(_ application: UIApplication) {
+    Crashlytics.crashlytics().setCustomValue(true, forKey: "in_background")
+    didBackground = true
+  }
+
+  func applicationWillEnterForeground(_ application: UIApplication) {
+    Crashlytics.crashlytics().setCustomValue(false, forKey: "in_background")
+    if (didBackground!) {
+      Crashlytics.crashlytics()
+        .setCustomValue(true, forKey: "was_backgrounded")
+    }
   }
 }

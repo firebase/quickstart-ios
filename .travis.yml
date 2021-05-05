@@ -34,6 +34,10 @@ matrix:
     env: SAMPLE=Firestore
   - podfile: functions/Podfile
     env: SAMPLE=Functions
+  - podfile: functions/Podfile
+    env:
+      - SAMPLE=Functions
+      - SWIFT_SUFFIX=Swift
   - podfile: inappmessaging/Podfile
     env: SAMPLE=InAppMessaging
   - podfile: messaging/Podfile

@@ -367,7 +367,7 @@ DEPENDENCIES:
   - Firebase/Analytics
   - Firebase/Auth
   - Firebase/Firestore
-  - FirebaseFirestoreSwift (~> 7.0-beta)
+  - FirebaseFirestoreSwift (> 7.0-beta)
   - FirebaseUI/Auth
   - FirebaseUI/Email
   - SDWebImage
@@ -422,6 +422,6 @@ SPEC CHECKSUMS:
   SDWebImage: a7f831e1a65eb5e285e3fb046a23fcfbf08e696d
   SDWebImageSwiftUI: 8a3923c95108312b03a599ec1498754af55a6819
 
-PODFILE CHECKSUM: c8a4e63f87bca162b8456e15919c9cc677b1a559
+PODFILE CHECKSUM: ebf0bbaba4d701e09ce242d4508da91cab80281b
 
 COCOAPODS: 1.10.1

@@ -1,4 +1,4 @@
-name: Config
+name: Remote Config
 
 # Controls when the action will run. 
 on:
@@ -19,7 +19,7 @@ jobs:
     runs-on: macOS-latest
     strategy:
         matrix:
-          swift-suffix: ['', 'Swift']
+          swift-suffix: ['']
 
     steps:
       - name: Checkout

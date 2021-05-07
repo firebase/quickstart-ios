@@ -19,7 +19,7 @@ jobs:
     runs-on: macOS-latest
     strategy:
         matrix:
-          swift-suffix: ['', 'Swift']
+          swift-suffix: ['']
 
     steps:
       - name: Checkout

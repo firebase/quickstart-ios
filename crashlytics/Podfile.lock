@@ -40,9 +40,11 @@ PODS:
   - nanopb/decode (2.30908.0)
   - nanopb/encode (2.30908.0)
   - PromisesObjC (1.2.12)
+  - ReachabilitySwift (5.0.0)
 
 DEPENDENCIES:
   - Firebase/Crashlytics
+  - ReachabilitySwift
 
 SPEC REPOS:
   trunk:
@@ -55,6 +57,7 @@ SPEC REPOS:
     - GoogleUtilities
     - nanopb
     - PromisesObjC
+    - ReachabilitySwift
 
 SPEC CHECKSUMS:
   Firebase: c121feb35e4126c0b355e3313fa9b487d47319fd
@@ -66,7 +69,8 @@ SPEC CHECKSUMS:
   GoogleUtilities: 284cddc7fffc14ae1907efb6f78ab95c1fccaedc
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
+  ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
 
-PODFILE CHECKSUM: 57f1fcef4fb0c688af3f139511bc875236b5eaa3
+PODFILE CHECKSUM: b78601852d885502ebfaec1c359c1617942a1c55
 
 COCOAPODS: 1.10.1

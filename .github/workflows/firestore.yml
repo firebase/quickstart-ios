@@ -28,14 +28,14 @@ jobs:
         uses: actions/checkout@master
       - name: Build
         run: |
+          export SAMPLE=Firestore
           cd firestore
-          gem install xcpretty
-          gem install bundler:1.17.3
+          gem install bundler
           bundle install
+          gem install xcpretty
           bundle exec pod install --repo-update
           ../scripts/install_prereqs/firestore.sh
           cd -
-          export SAMPLE=Firestore
           ./scripts/test.sh
         env:
           SWIFT_SUFFIX: ${{ matrix.swift-suffix }}

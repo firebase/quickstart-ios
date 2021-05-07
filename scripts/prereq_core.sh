@@ -26,4 +26,9 @@ if [[ -n "${TRAVIS_PULL_REQUEST:-}" ]]; then
     cp ../mock-GoogleService-Info.plist ./GoogleService-Info.plist
     sed -i '' "/<key>BUNDLE_ID</{n;s/id/com.google.firebase.quickstart.${PROJECT}Example/;}" GoogleService-Info.plist
   fi
+else
+  if [[ "$GITHUB_REPOSITORY" == "firebase/quickstart-ios" ]]; then
+    cp ../mock-GoogleService-Info.plist ./GoogleService-Info.plist
+    sed -i '' "/<key>BUNDLE_ID</{n;s/id/com.google.firebase.quickstart.${PROJECT}Example/;}" GoogleService-Info.plist
+  fi
 fi

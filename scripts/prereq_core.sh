@@ -16,18 +16,13 @@
 
 ruby ../scripts/info_script.rb "${PROJECT}"
 
-if [[ -n "${TRAVIS_PULL_REQUEST:-}" ]]; then
+if [[ -n "${GITHUB_WORKFLOW:-}" ]]; then
   . ../scripts/check_secrets.sh
   if [[ "$have_secrets" == true ]]; then
     ../scripts/install_secrets.sh
     cp Secrets/quickstart-ios/"${DIRECTORY}"/GoogleService-Info.plist ./
     cp Secrets/quickstart-ios/TestUtils/FIREGSignInInfo.h ../TestUtils/
   else
-    cp ../mock-GoogleService-Info.plist ./GoogleService-Info.plist
-    sed -i '' "/<key>BUNDLE_ID</{n;s/id/com.google.firebase.quickstart.${PROJECT}Example/;}" GoogleService-Info.plist
-  fi
-else
-  if [[ "$GITHUB_REPOSITORY" == "firebase/quickstart-ios" ]]; then
     cp ../mock-GoogleService-Info.plist ./GoogleService-Info.plist
     sed -i '' "/<key>BUNDLE_ID</{n;s/id/com.google.firebase.quickstart.${PROJECT}Example/;}" GoogleService-Info.plist
   fi

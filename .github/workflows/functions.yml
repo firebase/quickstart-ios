@@ -1,4 +1,4 @@
-name: Firestore
+name: Functions
 
 # Controls when the action will run. 
 on:
@@ -26,14 +26,14 @@ jobs:
         uses: actions/checkout@master
       - name: Build
         run: |
-          cd firestore
+          cd functions
           gem install bundler
           bundle install
           gem install xcpretty
           bundle exec pod install --repo-update
-          ../scripts/install_prereqs/firestore.sh
+          ../scripts/install_prereqs/functions.sh
           cd -
           ./scripts/test.sh
         env:
           SWIFT_SUFFIX: ${{ matrix.swift-suffix }}
-          SAMPLE: Firestore
+          SAMPLE: Functions

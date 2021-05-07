@@ -1,4 +1,4 @@
-name: Firestore
+name: DynamicLinks
 
 # Controls when the action will run. 
 on:
@@ -26,14 +26,14 @@ jobs:
         uses: actions/checkout@master
       - name: Build
         run: |
-          cd firestore
+          cd dynamiclinks
           gem install bundler
           bundle install
           gem install xcpretty
           bundle exec pod install --repo-update
-          ../scripts/install_prereqs/firestore.sh
+          ../scripts/install_prereqs/dynamiclinks.sh
           cd -
           ./scripts/test.sh
         env:
           SWIFT_SUFFIX: ${{ matrix.swift-suffix }}
-          SAMPLE: Firestore
+          SAMPLE: DynamicLinks

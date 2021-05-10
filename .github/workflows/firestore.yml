@@ -5,8 +5,14 @@ on:
   # Triggers the workflow on push or pull request events but only for the master branch
   push:
     branches: [ master ]
+    paths:
+      - '.github/workflows/firestore.yml'
+      - 'firestore/**'
   pull_request:
     branches: [ master ]
+    paths:
+      - '.github/workflows/firestore.yml'
+      - 'firestore/**'
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -17,9 +23,6 @@ jobs:
   build:
     name: build
     runs-on: macOS-latest
-    strategy:
-        matrix:
-          swift-suffix: ['']
 
     steps:
       - name: Checkout
@@ -38,5 +41,5 @@ jobs:
         run: |
           ./scripts/test.sh
         env:
-          SWIFT_SUFFIX: ${{ matrix.swift-suffix }}
+          SWIFT_SUFFIX: ''
           SAMPLE: Firestore

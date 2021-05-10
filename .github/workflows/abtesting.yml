@@ -5,8 +5,14 @@ on:
   # Triggers the workflow on push or pull request events but only for the master branch
   push:
     branches: [ master ]
+    paths:
+      - '.github/workflows/abtesting.yml'
+      - 'abtesting/**'
   pull_request:
     branches: [ master ]
+    paths:
+      - '.github/workflows/abtesting.yml'
+      - 'abtesting/**'
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -16,14 +22,11 @@ jobs:
   build:
     name: build
     runs-on: macOS-latest
-    strategy:
-        matrix:
-          swift-suffix: ['']
 
     steps:
       - name: Checkout
         uses: actions/checkout@master
-      - name: Build
+      - name: Setup
         run: |
           cd abtesting
           gem install bundler
@@ -31,8 +34,12 @@ jobs:
           gem install xcpretty
           bundle exec pod install --repo-update
           ../scripts/install_prereqs/abtesting.sh
-          cd -
+        env:
+          SWIFT_SUFFIX: ''
+          SAMPLE: ABTesting
+      - name: Build Swift
+        run: |
           ./scripts/test.sh
         env:
-          SWIFT_SUFFIX: ${{ matrix.swift-suffix }}
+          SWIFT_SUFFIX: ''
           SAMPLE: ABTesting

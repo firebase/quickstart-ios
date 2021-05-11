@@ -1,0 +1,39 @@
+name: Remote Config
+
+on:
+  push:
+    branches: [ master ]
+    paths:
+      - '.github/workflows/config.yml'
+      - 'config/**'
+  pull_request:
+    branches: [ master ]
+    paths:
+      - '.github/workflows/config.yml'
+      - 'config/**'
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: build
+    runs-on: macOS-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+      - name: Setup
+        run: |
+          cd config
+          gem install bundler
+          bundle install
+          gem install xcpretty
+          bundle exec pod install --repo-update
+          ../scripts/install_prereqs/config.sh
+        env:
+          SAMPLE: Config
+      - name: Build Swift
+        run: ./scripts/test.sh
+        env:
+          SWIFT_SUFFIX: ''
+          SAMPLE: Config

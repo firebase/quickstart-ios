@@ -1,0 +1,46 @@
+name: Installations
+
+on:
+  push:
+    branches: [ master ]
+    paths:
+      - '.github/workflows/installations.yml'
+      - 'installations/**'
+  pull_request:
+    branches: [ master ]
+    paths:
+      - '.github/workflows/installations.yml'
+      - 'installations/**'
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: build
+    runs-on: macOS-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+      - name: Setup
+        run: |
+          cd installations
+          gem install bundler
+          bundle install
+          gem install xcpretty
+          bundle exec pod install --repo-update
+          ../scripts/install_prereqs/installations.sh
+        env:
+          SAMPLE: Installations
+      - name: Build ObjC
+        run: |
+          ./scripts/test.sh
+        env:
+          SWIFT_SUFFIX: ''
+          SAMPLE: Installations
+      - name: Build Swift
+        run: |
+          ./scripts/test.sh
+        env:
+          SWIFT_SUFFIX: 'Swift'
+          SAMPLE: Installations

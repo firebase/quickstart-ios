@@ -1,0 +1,40 @@
+name: Analytics
+
+on:
+  push:
+    branches: [ master ]
+    paths:
+      - '.github/workflows/analytics.yml'
+      - 'analytics/**'
+  pull_request:
+    branches: [ master ]
+    paths:
+      - '.github/workflows/analytics.yml'
+      - 'analytics/**'
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: build
+    runs-on: macOS-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+      - name: Setup
+        run: |
+          cd analytics
+          gem install bundler
+          bundle install
+          gem install xcpretty
+          bundle exec pod install --repo-update
+          ../scripts/install_prereqs/analytics.sh
+        env:
+          SAMPLE: Analytics
+      - name: Build Swift
+        run: |
+          ./scripts/test.sh
+        env:
+          SWIFT_SUFFIX: ''
+          SAMPLE: Analytics

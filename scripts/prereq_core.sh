@@ -16,7 +16,7 @@
 
 ruby ../scripts/info_script.rb "${PROJECT}"
 
-if [[ -n "${TRAVIS_PULL_REQUEST:-}" ]]; then
+if [[ -n "${GITHUB_WORKFLOW:-}" ]]; then
   . ../scripts/check_secrets.sh
   if [[ "$have_secrets" == true ]]; then
     ../scripts/install_secrets.sh

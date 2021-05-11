@@ -43,7 +43,7 @@ else
       -scheme ${SAMPLE}Example${SWIFT_SUFFIX} \
       -sdk iphonesimulator \
       -destination 'platform=iOS Simulator,name=iPhone 11' \
-      build \
+      build test \
       ONLY_ACTIVE_ARCH=YES \
       OTHER_SWIFT_FLAGS=${SWIFT_DEFINES} \
       | xcpretty) || EXIT_STATUS=$?

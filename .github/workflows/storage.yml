@@ -1,0 +1,46 @@
+name: Storage
+
+on:
+  push:
+    branches: [ master ]
+    paths:
+      - '.github/workflows/storage.yml'
+      - 'storage/**'
+  pull_request:
+    branches: [ master ]
+    paths:
+      - '.github/workflows/storage.yml'
+      - 'storage/**'
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: build
+    runs-on: macOS-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+      - name: Setup
+        run: |
+          cd storage
+          gem install bundler
+          bundle install
+          gem install xcpretty
+          bundle exec pod install --repo-update
+          ../scripts/install_prereqs/storage.sh
+        env:
+          SAMPLE: Storage
+      - name: Build ObjC
+        run: |
+          ./scripts/test.sh
+        env:
+          SWIFT_SUFFIX: ''
+          SAMPLE: Storage
+      - name: Build Swift
+        run: |
+          ./scripts/test.sh
+        env:
+          SWIFT_SUFFIX: 'Swift'
+          SAMPLE: Storage

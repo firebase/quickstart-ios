@@ -1,0 +1,47 @@
+name: Functions
+
+on:
+  push:
+    branches: [ master ]
+    paths:
+      - '.github/workflows/functions.yml'
+      - 'analytics/**'
+  pull_request:
+    branches: [ master ]
+    paths:
+      - '.github/workflows/functions.yml'
+      - 'functions/**'
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: build
+    runs-on: macOS-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+      - name: Setup
+        run: |
+          cd functions
+          gem install bundler
+          bundle install
+          gem install xcpretty
+          bundle exec pod install --repo-update
+          ../scripts/install_prereqs/functions.sh
+        env:
+          SWIFT_SUFFIX: ''
+          SAMPLE: Functions
+      - name: Build ObjC
+        run: |
+          ./scripts/test.sh
+        env:
+          SWIFT_SUFFIX: ''
+          SAMPLE: Functions
+      - name: Build Swift
+        run: |
+          ./scripts/test.sh
+        env:
+          SWIFT_SUFFIX: 'Swift'
+          SAMPLE: Functions

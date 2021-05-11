@@ -1,8 +1,6 @@
 name: AdMob
 
-# Controls when the action will run. 
 on:
-  # Triggers the workflow on push or pull request events but only for the master branch
   push:
     branches: [ master ]
     paths:
@@ -14,12 +12,9 @@ on:
       - '.github/workflows/admob.yml'
       - 'admob/**'
 
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
   build:
     name: build
     runs-on: macOS-latest
@@ -36,7 +31,6 @@ jobs:
           bundle exec pod install --repo-update
           ../scripts/install_prereqs/admob.sh
         env:
-          SWIFT_SUFFIX: ''
           SAMPLE: AdMob
       - name: Build ObjC
         run: |

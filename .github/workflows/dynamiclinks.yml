@@ -6,11 +6,15 @@ on:
     paths:
       - '.github/workflows/dynamiclinks.yml'
       - 'dynamiclinks/**'
+      - 'scripts/*'
+      - 'scripts/dynamiclinks.sh'
   pull_request:
     branches: [ master ]
     paths:
       - '.github/workflows/dynamiclinks.yml'
       - 'dynamiclinks/**'
+      - 'scripts/*'
+      - 'scripts/dynamiclinks.sh'
 
   workflow_dispatch:
 

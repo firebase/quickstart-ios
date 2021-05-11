@@ -6,11 +6,15 @@ on:
     paths:
       - '.github/workflows/abtesting.yml'
       - 'abtesting/**'
+      - 'scripts/*'
+      - 'scripts/abtesting.sh'
   pull_request:
     branches: [ master ]
     paths:
       - '.github/workflows/abtesting.yml'
       - 'abtesting/**'
+      - 'scripts/*'
+      - 'scripts/abtesting.sh'
 
   workflow_dispatch:
 

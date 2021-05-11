@@ -6,11 +6,15 @@ on:
     paths:
       - '.github/workflows/firestore.yml'
       - 'firestore/**'
+      - 'scripts/*'
+      - 'scripts/firestore.sh'
   pull_request:
     branches: [ master ]
     paths:
       - '.github/workflows/firestore.yml'
       - 'firestore/**'
+      - 'scripts/*'
+      - 'scripts/firestore.sh'
 
   workflow_dispatch:
 

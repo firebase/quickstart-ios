@@ -6,11 +6,15 @@ on:
     paths:
       - '.github/workflows/database.yml'
       - 'database/**'
+      - 'scripts/*'
+      - 'scripts/database.sh'
   pull_request:
     branches: [ master ]
     paths:
       - '.github/workflows/database.yml'
       - 'database/**'
+      - 'scripts/*'
+      - 'scripts/database.sh'
 
   workflow_dispatch:
 

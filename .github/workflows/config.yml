@@ -37,13 +37,8 @@ jobs:
           ../scripts/install_prereqs/config.sh
         env:
           SAMPLE: Config
-      - name: Build ObjC
-        run: ./scripts/test.sh
-        env:
-          SWIFT_SUFFIX: ''
-          SAMPLE: Config
       - name: Build Swift
         run: ./scripts/test.sh
         env:
-          SWIFT_SUFFIX: 'Swift'
+          SWIFT_SUFFIX: ''
           SAMPLE: Config

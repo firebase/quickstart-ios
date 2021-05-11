@@ -73,29 +73,35 @@ class ViewController: UIViewController {
   * Retrieve the network status for the app.
   */
   func getNetworkStatus() -> String {
-    let reachability = try! Reachability()
+    guard let reachability = try? Reachability() else {
+      return "unknown"
+    }
     switch reachability.connection {
     case .wifi:
       return "wifi"
     case .cellular:
       return "cellular"
     case .unavailable:
-      return "unreachable"
+      return "unavailable"
     case .none:
-      return "unknown"
+      // Duplicate of unavailable.
+      return "unavailable"
     }
   }
     
   /**
-  * Add a hook to update nework status going forward.
+  * Add a hook to update network status going forward.
   */
   func updateAndTrackNetworkStatus() {
-    let reachability = try! Reachability()
-    NotificationCenter.default.addObserver(self, selector: #selector(reachabilityChanged(note:)), name: .reachabilityChanged, object: reachability)
-    do{
+    NotificationCenter.default.addObserver(self,
+                                           selector: #selector(reachabilityChanged(note:)),
+                                           name: .reachabilityChanged,
+                                           object: nil)
+    do {
+      let reachability = try Reachability()
       try reachability.startNotifier()
-    }catch{
-      print("could not start reachability notifier")
+    } catch {
+      print("Could not start reachability notifier: \(error)")
     }
   }
     

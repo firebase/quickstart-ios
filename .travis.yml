@@ -26,6 +26,10 @@ matrix:
     env: SAMPLE=Config
   - podfile: crashlytics/Podfile
     env: SAMPLE=Crashlytics
+  - podfile: crashlytics/Podfile
+    env: 
+      - SAMPLE=Crashlytics
+      - SWIFT_SUFFIX=Swift
   - podfile: database/Podfile
     env: SAMPLE=Database
   - podfile: dynamiclinks/Podfile

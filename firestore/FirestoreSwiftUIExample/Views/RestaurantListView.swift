@@ -22,11 +22,23 @@ import Firebase
 
 struct RestaurantListView: View {
   @ObservedObject var restaurantListViewModel = RestaurantListViewModel()
+  @State var showFilterView = false
+  @State var selectedCategory: String? = nil
+  @State var selectedCity: String? = nil
+  @State var selectedPrice: Int? = nil
+  @State var selectedSortOption: String? = nil
 
   var body: some View {
     NavigationView {
-      List(restaurantListViewModel.restaurants) { restaurant in
-        RestaurantItemView(restaurant: restaurant)
+      VStack {
+        List(restaurantListViewModel.restaurants) { restaurant in
+          RestaurantItemView(restaurant: restaurant)
+        }
+      }
+      .sheet(isPresented: $showFilterView) {
+        FilterView(viewModel: self.restaurantListViewModel, showFilterView: self.$showFilterView,
+                   selectedCategory: self.$selectedCategory, selectedCity: self.$selectedCity,
+                   selectedPrice: self.$selectedPrice, selectedSortOption: self.$selectedSortOption)
       }
       .navigationBarTitle("Friendly Eats")
       .toolbar {
@@ -36,17 +48,40 @@ struct RestaurantListView: View {
           }
         }
         ToolbarItem(placement: .navigationBarTrailing) {
-          Button("Filter") {
-            print(restaurantListViewModel.restaurants.count)
+          Button(getFilterText()) {
+            self.showFilterView = true
           }
         }
       }
       .onAppear() {
-        restaurantListViewModel.subscribe()
+        let query = restaurantListViewModel.query(category: selectedCategory, city: selectedCity,
+                                                  price: selectedPrice,
+                                                  sortOption: selectedSortOption)
+        restaurantListViewModel.subscribe(to: query)
       }
       .onDisappear() {
         restaurantListViewModel.unsubscribe()
       }
+    }
+  }
+
+  func getFilterText() -> String {
+    var numFiltersApplied = 0
+
+    if selectedCategory != nil {
+      numFiltersApplied += 1
+    }
+    if selectedCity != nil {
+      numFiltersApplied += 1
+    }
+    if selectedPrice != nil {
+      numFiltersApplied += 1
+    }
+
+    if numFiltersApplied == 0 {
+      return "Filter"
+    } else {
+      return "Filters (\(numFiltersApplied))"
     }
   }
 }

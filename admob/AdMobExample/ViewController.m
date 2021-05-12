@@ -29,7 +29,7 @@
 static NSString *const kBannerAdUnitID = @"ca-app-pub-3940256099942544/2934735716";
 static NSString *const kInterstitialAdUnitID = @"ca-app-pub-3940256099942544/4411468910";
 
-@interface ViewController ()<GADInterstitialDelegate>
+@interface ViewController () <GADFullScreenContentDelegate>
 
 /**
  * @property
@@ -41,7 +41,7 @@ static NSString *const kInterstitialAdUnitID = @"ca-app-pub-3940256099942544/441
  * @property
  * A UIView subclass that displays ads capable of responding to user touch.
  */
-@property(nonatomic, strong) GADInterstitial *interstitial;
+@property(nonatomic, strong, nullable) GADInterstitialAd *interstitial;
 
 @property (weak, nonatomic) IBOutlet UIButton *interstitialButton;
 @end
@@ -57,39 +57,36 @@ static NSString *const kInterstitialAdUnitID = @"ca-app-pub-3940256099942544/441
   // [END firebase_banner_example]
 
   // [START firebase_interstitial_example]
-  self.interstitial = [self createAndLoadInterstitial];
-  self.interstitialButton.enabled = self.interstitial.isReady;
+  [self createAndLoadInterstitial];
 }
 
-- (GADInterstitial *)createAndLoadInterstitial {
-  GADInterstitial *interstitial = [[GADInterstitial alloc]
-      initWithAdUnitID:kInterstitialAdUnitID];
-  interstitial.delegate = self;
-  [interstitial loadRequest:[GADRequest request]];
-  return interstitial;
+- (void)createAndLoadInterstitial {
+  [GADInterstitialAd loadWithAdUnitID:kInterstitialAdUnitID
+                              request:[GADRequest request]
+                    completionHandler:^(GADInterstitialAd *ad, NSError *error) {
+    if (error != nil) {
+      // For more fine-grained error handling, take a look at the values in GADErrorCode.
+      NSLog(@"Error loading ad: %@", error);
+    }
+    self.interstitial = ad;
+    self.interstitialButton.enabled = YES;
+  }];
 }
 
-- (void)interstitialDidReceiveAd:(GADInterstitial *)ad {
-  self.interstitialButton.enabled = YES;
-}
-
-- (void)interstitialDidDismissScreen:(GADInterstitial *)interstitial {
+- (void)adDidDismissFullScreenContent:(id<GADFullScreenPresentingAd>)ad {
   self.interstitialButton.enabled = NO;
-  self.interstitial = [self createAndLoadInterstitial];
+  [self createAndLoadInterstitial];
+}
+
+- (void)ad:(id<GADFullScreenPresentingAd>)ad
+didFailToPresentFullScreenContentWithError:(NSError *)error {
+  NSLog(@"Error presenting ad: %@", ad);
 }
 
 - (IBAction)didTapInterstitialButton:(id)sender {
-  if (self.interstitial.isReady) {
+  if (self.interstitial != nil) {
     [self.interstitial presentFromRootViewController:self];
   }
-}
-
-#pragma mark - Interstitial delegate
-
-- (void)interstitial:(GADInterstitial *)ad didFailToReceiveAdWithError:(GADRequestError *)error {
-  // Retrying failed interstitial loads is a rudimentary way of handling these errors.
-  // For more fine-grained error handling, take a look at the values in GADErrorCode.
-  self.interstitial = [self createAndLoadInterstitial];
 }
 
 @end

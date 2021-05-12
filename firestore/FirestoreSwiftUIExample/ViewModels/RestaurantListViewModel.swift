@@ -19,11 +19,13 @@
 
 import Combine
 import Firebase
+import SwiftUI
 
 class RestaurantListViewModel: ObservableObject {
   @Published var restaurants = [Restaurant]()
   private var db = Firestore.firestore()
   private var listener: ListenerRegistration?
+  private let baseQuery: Query = Firestore.firestore().collection("restaurants").limit(to: 50)
 
   deinit {
     unsubscribe()
@@ -36,9 +38,9 @@ class RestaurantListViewModel: ObservableObject {
     }
   }
 
-  func subscribe() {
+  func subscribe(to query: Query) {
     if listener == nil {
-      listener = db.collection("restaurants").addSnapshotListener { [weak self] (querySnapshot, error) in
+      listener = query.addSnapshotListener { [weak self] (querySnapshot, error) in
         guard let documents = querySnapshot?.documents else {
           print("Error fetching documents: \(error!)")
           return
@@ -58,6 +60,33 @@ class RestaurantListViewModel: ObservableObject {
 
       }
     }
+  }
+
+  func filter(query: Query) {
+    unsubscribe()
+    subscribe(to: query)
+  }
+
+  func query(category: String?, city: String?, price: Int?, sortOption: String?) -> Query {
+    var filteredQuery = baseQuery
+
+    if let category = category {
+      filteredQuery = filteredQuery.whereField("category", isEqualTo: category)
+    }
+
+    if let city = city {
+      filteredQuery = filteredQuery.whereField("city", isEqualTo: city)
+    }
+
+    if let price = price {
+      filteredQuery = filteredQuery.whereField("price", isEqualTo: price)
+    }
+
+    if let sortOption = sortOption {
+      filteredQuery = filteredQuery.order(by: sortOption)
+    }
+
+    return filteredQuery
   }
 
   func populate() {

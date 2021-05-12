@@ -20,6 +20,7 @@
 // [START firebase_config]
 #import "AppDelegate.h"
 @import Firebase;
+@import GoogleMobileAds;
 
 @interface AppDelegate ()
 

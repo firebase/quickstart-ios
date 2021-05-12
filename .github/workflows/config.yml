@@ -6,11 +6,15 @@ on:
     paths:
       - '.github/workflows/config.yml'
       - 'config/**'
+      - 'scripts/*'
+      - 'scripts/config.sh'
   pull_request:
     branches: [ master ]
     paths:
       - '.github/workflows/config.yml'
       - 'config/**'
+      - 'scripts/*'
+      - 'scripts/config.sh'
 
   workflow_dispatch:
 

@@ -6,11 +6,15 @@ on:
     paths:
       - '.github/workflows/crashlytics.yml'
       - 'crashlytics/**'
+      - 'scripts/*'
+      - 'scripts/crashlytics.sh'
   pull_request:
     branches: [ master ]
     paths:
       - '.github/workflows/crashlytics.yml'
       - 'crashlytics/**'
+      - 'scripts/*'
+      - 'scripts/crashlytics.sh'
 
   workflow_dispatch:
 

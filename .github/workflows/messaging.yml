@@ -6,11 +6,15 @@ on:
     paths:
       - '.github/workflows/messaging.yml'
       - 'messaging/**'
+      - 'scripts/*'
+      - 'scripts/messaging.sh'
   pull_request:
     branches: [ master ]
     paths:
       - '.github/workflows/messaging.yml'
       - 'messaging/**'
+      - 'scripts/*'
+      - 'scripts/messaging.sh'
 
   workflow_dispatch:
 

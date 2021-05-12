@@ -6,11 +6,15 @@ on:
     paths:
       - '.github/workflows/storage.yml'
       - 'storage/**'
+      - 'scripts/*'
+      - 'scripts/storage.sh'
   pull_request:
     branches: [ master ]
     paths:
       - '.github/workflows/storage.yml'
       - 'storage/**'
+      - 'scripts/*'
+      - 'scripts/storage.sh'
 
   workflow_dispatch:
 

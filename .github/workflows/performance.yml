@@ -6,11 +6,15 @@ on:
     paths:
       - '.github/workflows/performance.yml'
       - 'performance/**'
+      - 'scripts/*'
+      - 'scripts/performance.sh'
   pull_request:
     branches: [ master ]
     paths:
       - '.github/workflows/performance.yml'
       - 'performance/**'
+      - 'scripts/*'
+      - 'scripts/performance.sh'
 
   workflow_dispatch:
 

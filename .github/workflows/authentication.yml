@@ -6,11 +6,15 @@ on:
     paths:
       - '.github/workflows/authentication.yml'
       - 'authentication/**'
+      - 'scripts/*'
+      - 'scripts/authentication.sh'
   pull_request:
     branches: [ master ]
     paths:
       - '.github/workflows/authentication.yml'
       - 'authentication/**'
+      - 'scripts/*'
+      - 'scripts/authentication.sh'
 
   workflow_dispatch:
 

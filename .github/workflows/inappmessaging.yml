@@ -6,11 +6,15 @@ on:
     paths:
       - '.github/workflows/inappmessaging.yml'
       - 'inappmessaging/**'
+      - 'scripts/*'
+      - 'scripts/inappmessaging.sh'
   pull_request:
     branches: [ master ]
     paths:
       - '.github/workflows/inappmessaging.yml'
       - 'inappmessaging/**'
+      - 'scripts/*'
+      - 'scripts/inappmessaging.sh'
 
   workflow_dispatch:
 

@@ -6,11 +6,15 @@ on:
     paths:
       - '.github/workflows/installations.yml'
       - 'installations/**'
+      - 'scripts/*'
+      - 'scripts/installations.sh'
   pull_request:
     branches: [ master ]
     paths:
       - '.github/workflows/installations.yml'
       - 'installations/**'
+      - 'scripts/*'
+      - 'scripts/installations.sh'
 
   workflow_dispatch:
 

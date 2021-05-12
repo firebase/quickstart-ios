@@ -18,7 +18,7 @@ ruby ../scripts/info_script.rb "${PROJECT}"
 
 if [[ -n "${GITHUB_WORKFLOW:-}" ]]; then
   . ../scripts/check_secrets.sh
-  if [[ "$have_secrets" == true && -n "${GITHUB_HEAD_REF:-}" ]]; then
+  if [[ "$have_secrets" == true ]]; then
     ../scripts/install_secrets.sh
     cp Secrets/quickstart-ios/"${DIRECTORY}"/GoogleService-Info.plist ./
     cp Secrets/quickstart-ios/TestUtils/FIREGSignInInfo.h ../TestUtils/

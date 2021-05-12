@@ -21,7 +21,7 @@ if [[ ! -z "$GHASECRETSGPGPASSPHRASE1" ]]; then
   # --batch to prevent interactive command
   # --yes to assume "yes" for questions
   gpg --quiet --batch --yes --decrypt --passphrase="$GHASECRETSGPGPASSPHRASE1" \
-  --output ../scripts/Secrets.tar ../scripts/Secrets.tar.gpg
+    --output ../scripts/Secrets.tar ../scripts/Secrets.tar.gpg
 
   tar xvf ../scripts/Secrets.tar
 fi

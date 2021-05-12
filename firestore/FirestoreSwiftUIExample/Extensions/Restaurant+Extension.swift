@@ -79,6 +79,10 @@ extension Restaurant {
     "Mediterranean", "Mexican", "Pizza", "Ramen", "Sushi"
   ]
 
+  static let prices = [1, 2, 3]
+
+  static let sortOptions = ["category", "city", "price", "avgRating"]
+
   static func imageURL(forName name: String) -> URL {
     let number = (abs(name.hashValue) % 22) + 1
     let URLString =
@@ -88,5 +92,13 @@ extension Restaurant {
 
   var imageURL: URL {
     return Restaurant.imageURL(forName: name)
+  }
+
+  static func priceString(from price: Int) -> String {
+    if !Restaurant.prices.contains(price) {
+      fatalError("price must be between one and three")
+    }
+
+    return String(repeating: "$", count: price)
   }
 }

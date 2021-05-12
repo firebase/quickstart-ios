@@ -24,17 +24,9 @@ struct PriceView: View {
   var color: Color
 
   var body: some View {
-    Text(priceString(from: price))
+    Text(Restaurant.priceString(from: price))
       .font(.footnote)
       .foregroundColor(color)
       .multilineTextAlignment(.trailing)
-  }
-
-  func priceString(from price: Int) -> String {
-    if ![1,2,3].contains(price) {
-      fatalError("price must be between one and three")
-    }
-
-    return String(repeating: "$", count: price)
   }
 }

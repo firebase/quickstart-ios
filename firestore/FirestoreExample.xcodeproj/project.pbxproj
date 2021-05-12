@@ -22,6 +22,7 @@
 		8DF77E1A1EEB45E500CB2330 /* RestaurantDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF77E191EEB45E500CB2330 /* RestaurantDetailViewController.swift */; };
 		8DF77E1C1EEB645100CB2330 /* StarsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF77E1B1EEB645100CB2330 /* StarsView.swift */; };
 		8E1E43B125F961EF00BC64D3 /* Restaurant+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E1E43B025F961EF00BC64D3 /* Restaurant+Extension.swift */; };
+		8E3863302640AE0700E1405C /* FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E38632F2640AE0700E1405C /* FilterView.swift */; };
 		8E39DB9326153D25009CC10E /* WriteReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E39DB9226153D25009CC10E /* WriteReviewView.swift */; };
 		8E4C62D125E9CFE0001678A1 /* FirestoreSwiftUIExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4C62D025E9CFE0001678A1 /* FirestoreSwiftUIExampleApp.swift */; };
 		8E4C62D325E9CFE0001678A1 /* RestaurantListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4C62D225E9CFE0001678A1 /* RestaurantListView.swift */; };
@@ -84,6 +85,7 @@
 		8DF77E191EEB45E500CB2330 /* RestaurantDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantDetailViewController.swift; sourceTree = "<group>"; };
 		8DF77E1B1EEB645100CB2330 /* StarsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StarsView.swift; sourceTree = "<group>"; };
 		8E1E43B025F961EF00BC64D3 /* Restaurant+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Restaurant+Extension.swift"; sourceTree = "<group>"; };
+		8E38632F2640AE0700E1405C /* FilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterView.swift; sourceTree = "<group>"; };
 		8E39DB9226153D25009CC10E /* WriteReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteReviewView.swift; sourceTree = "<group>"; };
 		8E4C62CE25E9CFE0001678A1 /* FirestoreSwiftUIExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FirestoreSwiftUIExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E4C62D025E9CFE0001678A1 /* FirestoreSwiftUIExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreSwiftUIExampleApp.swift; sourceTree = "<group>"; };
@@ -253,6 +255,7 @@
 				8E4C63E325F6D8C8001678A1 /* PriceView.swift */,
 				8E39DB9226153D25009CC10E /* WriteReviewView.swift */,
 				8EB1D03E2633838500F8AD8E /* SignInView.swift */,
+				8E38632F2640AE0700E1405C /* FilterView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -495,6 +498,7 @@
 				8E4C62D325E9CFE0001678A1 /* RestaurantListView.swift in Sources */,
 				8E722C0B261CD4210047AA1A /* RestaurantHeaderView.swift in Sources */,
 				8E4C634925EDB793001678A1 /* Restaurant.swift in Sources */,
+				8E3863302640AE0700E1405C /* FilterView.swift in Sources */,
 				8E919E80260D3956007C62C4 /* RestaurantDetailView.swift in Sources */,
 				8E4C637825EEF4CA001678A1 /* RestaurantListViewModel.swift in Sources */,
 				8EB1D03F2633838500F8AD8E /* SignInView.swift in Sources */,

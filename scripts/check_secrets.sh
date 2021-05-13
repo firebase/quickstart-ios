@@ -26,7 +26,7 @@ check_secrets()
     # GitHub Actions: Secrets are available if we're not running on a fork.
     # See https://help.github.com/en/actions/automating-your-workflow-with-github-actions/using-environment-variables
     if [[ -n "${GITHUB_WORKFLOW:-}" ]]; then
-      if [[ -z "$GITHUB_HEAD_REF" ]]; then
+      if [[ "$GITHUB_HEAD_REF" == "firebase/quickstart-ios" ]]; then
         have_secrets=true
       fi
     fi

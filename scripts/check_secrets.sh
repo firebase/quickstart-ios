@@ -27,6 +27,7 @@ check_secrets()
     # See https://help.github.com/en/actions/automating-your-workflow-with-github-actions/using-environment-variables
     if [[ -n "${GITHUB_WORKFLOW:-}" ]]; then
       if [[ "$GITHUB_REPOSITORY" == "firebase/quickstart-ios" ]]; then
+        echo "has secrets"
         have_secrets=true
       fi
     fi

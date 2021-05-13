@@ -24,4 +24,5 @@ if [[ ! -z "$GHASECRETSGPGPASSPHRASE1" ]]; then
     --output ../scripts/Secrets.tar ../scripts/Secrets.tar.gpg
 
   tar xvf ../scripts/Secrets.tar
+  echo "Secrets installed: $(pwd)"
 fi

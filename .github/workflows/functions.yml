@@ -35,8 +35,8 @@ jobs:
           bundle exec pod install --repo-update
           ../scripts/install_prereqs/functions.sh
         env:
-          SWIFT_SUFFIX: ''
           SAMPLE: Functions
+          secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}
       - name: Build ObjC
         run: |
           ./scripts/test.sh

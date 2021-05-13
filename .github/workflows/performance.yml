@@ -36,6 +36,7 @@ jobs:
           ../scripts/install_prereqs/performance.sh
         env:
           SAMPLE: Performance
+          secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}
       - name: Build ObjC
         run: |
           ./scripts/test.sh

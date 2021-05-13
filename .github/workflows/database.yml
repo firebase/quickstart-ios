@@ -36,6 +36,7 @@ jobs:
           ../scripts/install_prereqs/database.sh
         env:
           SAMPLE: Database
+          secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}
       - name: Build ObjC
         run: ./scripts/test.sh
         env:

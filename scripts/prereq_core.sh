@@ -12,8 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Set have_secrets to true or false.
-
 ruby ../scripts/info_script.rb "${PROJECT}"
 
 if [[ -n "${GITHUB_WORKFLOW:-}" ]]; then

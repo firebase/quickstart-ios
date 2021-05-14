@@ -23,12 +23,11 @@ check_secrets()
   if [[ "$have_secrets" != true ]]; then
     have_secrets=false
 
-    # GitHub Actions: Secrets are available if we're not running on a fork.
-    # See https://help.github.com/en/actions/automating-your-workflow-with-github-actions/using-environment-variables
-    if [[ -n "${GITHUB_WORKFLOW:-}" ]]; then
-      if [[ -z "$GITHUB_HEAD_REF" ]]; then
-        have_secrets=true
-      fi
+    # GitHub Actions: Secrets are available if we're not running on a fork
+    # or in a pull request context.
+    # https://help.github.com/en/actions/automating-your-workflow-with-github-actions/using-environment-variables
+    if [[ -n "${secrets_passphrase:-}" ]]; then
+      have_secrets=true
     fi
   fi
 }

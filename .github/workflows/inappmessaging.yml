@@ -36,6 +36,7 @@ jobs:
           ../scripts/install_prereqs/inappmessaging.sh
         env:
           SAMPLE: InAppMessaging
+          secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}
       - name: Build ObjC
         run: |
           ./scripts/test.sh

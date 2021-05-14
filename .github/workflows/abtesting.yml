@@ -35,8 +35,8 @@ jobs:
           bundle exec pod install --repo-update
           ../scripts/install_prereqs/abtesting.sh
         env:
-          SWIFT_SUFFIX: ''
           SAMPLE: ABTesting
+          secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}
       - name: Build Swift
         run: |
           ./scripts/test.sh

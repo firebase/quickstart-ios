@@ -36,6 +36,7 @@ jobs:
           ../scripts/install_prereqs/firestore.sh
         env:
           SAMPLE: Firestore
+          secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}
       - name: Build
         run: |
           ./scripts/test.sh

@@ -17,10 +17,10 @@
 # Secret keys do not work for pull requests from forks. See
 # https://docs.github.com/en/actions/reference/encrypted-secrets#limits-for-secrets
 
-if [[ ! -z "$GHASECRETSGPGPASSPHRASE1" ]]; then
+if [[ ! -z "$secrets_passphrase" ]]; then
   # --batch to prevent interactive command
   # --yes to assume "yes" for questions
-  gpg --quiet --batch --yes --decrypt --passphrase="$GHASECRETSGPGPASSPHRASE1" \
+  gpg --quiet --batch --yes --decrypt --passphrase="$secrets_passphrase" \
     --output ../scripts/Secrets.tar ../scripts/Secrets.tar.gpg
 
   tar xvf ../scripts/Secrets.tar

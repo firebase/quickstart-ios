@@ -36,6 +36,7 @@ jobs:
           ../scripts/install_prereqs/messaging.sh
         env:
           SAMPLE: Messaging
+          secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}
       - name: Build ObjC
         run: |
           ./scripts/test.sh

@@ -21,24 +21,22 @@ To add a sample app to a Firebase project, use the bundleID from the Xcode proje
 Download the generated `GoogleService-Info.plist` file, and copy it to the root
 directory of the sample you wish to run.
 
-- [A/B Testing](abtesting/README.md)
-- [Admob](admob/README.md)
-- [Analytics](analytics/README.md)
-- [Authentication](authentication/README.md)
-- [Config](config/README.md)
-- [Crashlytics](crashlytics/README.md)
-- [Database](database/README.md)
-- [Firestore](firestore/README.md)
-- [Functions](functions/README.md)
-- [Dynamic Links](dynamiclinks/README.md)
-- [Cloud Messaging](messaging/README.md)
-- [Performance](performance/README.md)
-- [Storage](storage/README.md)
+- [A/B Testing](abtesting/README.md) ![build](https://github.com/firebase/quickstart-ios/actions/workflows/abtesting.yml/badge.svg)
+- [Admob](admob/README.md) ![build](https://github.com/firebase/quickstart-ios/actions/workflows/admob.yml/badge.svg)
+- [Analytics](analytics/README.md) ![build](https://github.com/firebase/quickstart-ios/actions/workflows/analytics.yml/badge.svg)
+- [Authentication](authentication/README.md) ![build](https://github.com/firebase/quickstart-ios/actions/workflows/authentication.yml/badge.svg)
+- [Remote Config](config/README.md) ![build](https://github.com/firebase/quickstart-ios/actions/workflows/config.yml/badge.svg)
+- [Crashlytics](crashlytics/README.md) ![build](https://github.com/firebase/quickstart-ios/actions/workflows/crashlytics.yml/badge.svg)
+- [Database](database/README.md) ![build](https://github.com/firebase/quickstart-ios/actions/workflows/database.yml/badge.svg)
+- [Firestore](firestore/README.md) ![build](https://github.com/firebase/quickstart-ios/actions/workflows/firestore.yml/badge.svg)
+- [Functions](functions/README.md) ![build](https://github.com/firebase/quickstart-ios/actions/workflows/functions.yml/badge.svg)
+- [Dynamic Links](dynamiclinks/README.md) ![build](https://github.com/firebase/quickstart-ios/actions/workflows/dynamiclinks.yml/badge.svg)
+- [Cloud Messaging](messaging/README.md) ![build](https://github.com/firebase/quickstart-ios/actions/workflows/messaging.yml/badge.svg)
+- [Performance](performance/README.md) ![build](https://github.com/firebase/quickstart-ios/actions/workflows/performance.yml/badge.svg)
+- [Storage](storage/README.md) ![build](https://github.com/firebase/quickstart-ios/actions/workflows/storage.yml/badge.svg)
 
 ## How to make contributions?
 Please read and follow the steps in the [CONTRIBUTING.md](CONTRIBUTING.md)
 
 ## License
 See [LICENSE](LICENSE)
-
-[![Build Status](https://travis-ci.org/firebase/quickstart-ios.svg?branch=master)](https://travis-ci.org/firebase/quickstart-ios)

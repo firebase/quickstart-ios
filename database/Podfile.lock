@@ -1,27 +1,27 @@
 PODS:
-  - Firebase/Auth (8.0.0):
+  - Firebase/Auth (8.1.0):
     - Firebase/CoreOnly
-    - FirebaseAuth (~> 8.0.0)
-  - Firebase/CoreOnly (8.0.0):
-    - FirebaseCore (= 8.0.0)
-  - Firebase/Database (8.0.0):
+    - FirebaseAuth (~> 8.1.0)
+  - Firebase/CoreOnly (8.1.0):
+    - FirebaseCore (= 8.1.0)
+  - Firebase/Database (8.1.0):
     - Firebase/CoreOnly
-    - FirebaseDatabase (~> 8.0.0)
-  - FirebaseAuth (8.0.0):
+    - FirebaseDatabase (~> 8.1.0)
+  - FirebaseAuth (8.1.0):
     - FirebaseCore (~> 8.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 7.4)
     - GoogleUtilities/Environment (~> 7.4)
     - GTMSessionFetcher/Core (~> 1.5)
-  - FirebaseCore (8.0.0):
+  - FirebaseCore (8.1.0):
     - FirebaseCoreDiagnostics (~> 8.0)
     - GoogleUtilities/Environment (~> 7.4)
     - GoogleUtilities/Logger (~> 7.4)
-  - FirebaseCoreDiagnostics (8.0.0):
+  - FirebaseCoreDiagnostics (8.1.0):
     - GoogleDataTransport (~> 9.0)
     - GoogleUtilities/Environment (~> 7.4)
     - GoogleUtilities/Logger (~> 7.4)
     - nanopb (~> 2.30908.0)
-  - FirebaseDatabase (8.0.0):
+  - FirebaseDatabase (8.1.0):
     - FirebaseCore (~> 8.0)
     - leveldb-library (~> 1.22)
   - FirebaseUI/Database (10.0.2):
@@ -75,11 +75,11 @@ SPEC REPOS:
     - PromisesObjC
 
 SPEC CHECKSUMS:
-  Firebase: 73c3e3b216ec1ecbc54d2ffdd4670c65c749edb1
-  FirebaseAuth: b8cd992fca5b53dc6eec09e873a3f375f000c5a1
-  FirebaseCore: 3f09591d51292843e2a46f18358d60bf4e996255
-  FirebaseCoreDiagnostics: a31d987ba0fe16d59886a5dbadc2f1de871f88c8
-  FirebaseDatabase: 363961e25451425be8b14bb8801a592515ec58f2
+  Firebase: b5956acddaaa53a6c292bec00649fadd18367344
+  FirebaseAuth: e069ff5736fe9d5dcf61f36244bb1b1ce1897d17
+  FirebaseCore: 389c4ce9a7cce4a7e25eb22326b4bee0050557b2
+  FirebaseCoreDiagnostics: 3e249cee3de5c5f9cfd6cc2a19997231286fec11
+  FirebaseDatabase: cc219dac8f37fe80f5838ed5ffd84ce3daa443ad
   FirebaseUI: 59db3d833773f985550897d54ceb811ba37fb9a5
   GoogleDataTransport: 11e3a5f2c190327df1a4a5d7e7ae3d4d5b9c9e4c
   GoogleUtilities: f8a43108b38a68eebe8b3540e1f4f2d28843ce20

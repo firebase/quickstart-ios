@@ -24,7 +24,7 @@ PODS:
     - GoogleUtilities/Environment (~> 7.4)
     - GoogleUtilities/UserDefaults (~> 7.4)
     - PromisesObjC (~> 1.2)
-  - GoogleDataTransport (9.0.0):
+  - GoogleDataTransport (9.0.1):
     - GoogleUtilities/Environment (~> 7.2)
     - nanopb (~> 2.30908.0)
     - PromisesObjC (~> 1.2)
@@ -65,7 +65,7 @@ SPEC CHECKSUMS:
   FirebaseCoreDiagnostics: 3e249cee3de5c5f9cfd6cc2a19997231286fec11
   FirebaseCrashlytics: 1b55b3a718f9e20d59d96db46a4652d95a8ba1d2
   FirebaseInstallations: 7f31798a8198c354eadcb87176d2090b62edc187
-  GoogleDataTransport: 11e3a5f2c190327df1a4a5d7e7ae3d4d5b9c9e4c
+  GoogleDataTransport: 04c3e9a480bbcaa2ec3f5d27f1cdeb6a92f20c8d
   GoogleUtilities: f8a43108b38a68eebe8b3540e1f4f2d28843ce20
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97

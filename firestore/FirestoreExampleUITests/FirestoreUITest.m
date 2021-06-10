@@ -83,9 +83,9 @@ static NSString *const testPassword = @"Test123";
   // Navigate back to main screen.
   NSArray *backButtons = @[ @"Done", @"Friendly Eats" ];
   for (id button in backButtons) {
-    FIRWaitForVisible(_app.buttons[button]);
+    FIRWaitForVisibleWithTimeout(_app.buttons[button], 20);
     [_app.buttons[button] tap];
-    FIRWaitForVisible([[_app tables] firstMatch]);
+    FIRWaitForVisibleWithTimeout([[_app tables] firstMatch], 20);
   }
   [self checkMainScreenIsDisplayed];
 }

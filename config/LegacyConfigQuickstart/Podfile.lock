@@ -1,7 +1,7 @@
 PODS:
-  - Firebase/CoreOnly (8.1.0):
+  - Firebase/CoreOnly (8.1.1):
     - FirebaseCore (= 8.1.0)
-  - Firebase/RemoteConfig (8.1.0):
+  - Firebase/RemoteConfig (8.1.1):
     - Firebase/CoreOnly
     - FirebaseRemoteConfig (~> 8.1.0)
   - FirebaseABTesting (8.1.0):
@@ -61,7 +61,7 @@ SPEC REPOS:
     - PromisesObjC
 
 SPEC CHECKSUMS:
-  Firebase: b5956acddaaa53a6c292bec00649fadd18367344
+  Firebase: 4bb49ae87756034cef870fa3c4006235eb46f475
   FirebaseABTesting: 5b22abfa9a55d5b9cd3d1e500a3ca29f6b1264cb
   FirebaseCore: 389c4ce9a7cce4a7e25eb22326b4bee0050557b2
   FirebaseCoreDiagnostics: 3e249cee3de5c5f9cfd6cc2a19997231286fec11

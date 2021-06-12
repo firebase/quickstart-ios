@@ -1,10 +1,10 @@
 PODS:
-  - Firebase/Auth (8.1.0):
+  - Firebase/Auth (8.1.1):
     - Firebase/CoreOnly
     - FirebaseAuth (~> 8.1.0)
-  - Firebase/CoreOnly (8.1.0):
+  - Firebase/CoreOnly (8.1.1):
     - FirebaseCore (= 8.1.0)
-  - Firebase/Database (8.1.0):
+  - Firebase/Database (8.1.1):
     - Firebase/CoreOnly
     - FirebaseDatabase (~> 8.1.0)
   - FirebaseAuth (8.1.0):
@@ -75,7 +75,7 @@ SPEC REPOS:
     - PromisesObjC
 
 SPEC CHECKSUMS:
-  Firebase: b5956acddaaa53a6c292bec00649fadd18367344
+  Firebase: 4bb49ae87756034cef870fa3c4006235eb46f475
   FirebaseAuth: e069ff5736fe9d5dcf61f36244bb1b1ce1897d17
   FirebaseCore: 389c4ce9a7cce4a7e25eb22326b4bee0050557b2
   FirebaseCoreDiagnostics: 3e249cee3de5c5f9cfd6cc2a19997231286fec11

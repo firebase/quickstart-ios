@@ -34,12 +34,12 @@ class Post: NSObject {
   }
 
   init?(snapshot: DataSnapshot) {
-    guard let dict = snapshot.value as? [String:Any] else { return nil }
+    guard let dict = snapshot.value as? [String: Any] else { return nil }
     guard let uid  = dict["uid"] as? String  else { return nil }
     guard let author = dict["author"]  as? String else { return nil }
     guard let title = dict["title"]  as? String else { return nil }
     guard let body = dict["body"]  as? String else { return nil }
-    guard let starCount = dict["starCount"] else { return nil }
+    let starCount = dict["starCount"] as? Int ?? 0
     
     self.uid = uid
     self.author = author

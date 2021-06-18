@@ -27,7 +27,7 @@ class PostDetailTableViewController: UITableViewController, UITextFieldDelegate 
   var postKey = ""
   var comments: Array<DataSnapshot> = []
   var commentField: UITextField? = nil
-  let post: Post = Post()
+  var post: Post = Post()
   lazy var ref: DatabaseReference = Database.database().reference()
   var postRef: DatabaseReference!
   var commentsRef: DatabaseReference!
@@ -66,9 +66,10 @@ class PostDetailTableViewController: UITableViewController, UITextFieldDelegate 
 
     // [START post_value_event_listener]
     refHandle = postRef.observe(DataEventType.value, with: { (snapshot) in
-      let postDict = snapshot.value as? [String : AnyObject] ?? [:]
       // [START_EXCLUDE]
-      self.post.setValuesForKeys(postDict)
+      if let post = Post(snapshot: snapshot) {
+        self.post = post
+      }
       self.tableView.reloadData()
       self.navigationItem.title = self.post.title
       // [END_EXCLUDE]

@@ -24,9 +24,9 @@ PODS:
   - FirebaseDatabase (8.1.0):
     - FirebaseCore (~> 8.0)
     - leveldb-library (~> 1.22)
-  - FirebaseDatabaseUI (11.0.0):
-    - Firebase/Database (~> 8.0)
-  - FirebaseUI/Database (11.0.2):
+  - FirebaseDatabaseUI (11.0.3):
+    - FirebaseDatabase (~> 8.0)
+  - FirebaseUI/Database (11.0.3):
     - FirebaseDatabaseUI (~> 11.0)
   - GoogleDataTransport (9.0.1):
     - GoogleUtilities/Environment (~> 7.2)
@@ -83,8 +83,8 @@ SPEC CHECKSUMS:
   FirebaseCore: 389c4ce9a7cce4a7e25eb22326b4bee0050557b2
   FirebaseCoreDiagnostics: 3e249cee3de5c5f9cfd6cc2a19997231286fec11
   FirebaseDatabase: cc219dac8f37fe80f5838ed5ffd84ce3daa443ad
-  FirebaseDatabaseUI: 0b304b9fbecd35c2809cd3a99e902d6f26307fba
-  FirebaseUI: 856f01abf223b93c89f19f608cc393434109ee0b
+  FirebaseDatabaseUI: 4db2acaaee3c1a73e0daf31e926a8b7212941607
+  FirebaseUI: d2777b3abcb3fa40ea9eea9e40db5a154df608d3
   GoogleDataTransport: 04c3e9a480bbcaa2ec3f5d27f1cdeb6a92f20c8d
   GoogleUtilities: f8a43108b38a68eebe8b3540e1f4f2d28843ce20
   GTMSessionFetcher: b3503b20a988c4e20cc189aa798fd18220133f52

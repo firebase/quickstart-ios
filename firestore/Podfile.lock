@@ -263,9 +263,8 @@ PODS:
     - GoogleUtilities/AppDelegateSwizzler (~> 7.4)
     - GoogleUtilities/Environment (~> 7.4)
     - GTMSessionFetcher/Core (~> 1.5)
-  - FirebaseAuthUI (11.0.0):
-    - Firebase/Auth (~> 8.0)
-    - FirebaseAuth
+  - FirebaseAuthUI (11.0.3):
+    - FirebaseAuth (~> 8.0)
     - FirebaseCore
     - GoogleUtilities/UserDefaults
   - FirebaseCore (8.1.0):
@@ -301,9 +300,9 @@ PODS:
     - GoogleUtilities/Environment (~> 7.4)
     - GoogleUtilities/UserDefaults (~> 7.4)
     - PromisesObjC (~> 1.2)
-  - FirebaseUI/Auth (11.0.2):
+  - FirebaseUI/Auth (11.0.3):
     - FirebaseAuthUI (~> 11.0)
-  - FirebaseUI/Email (11.0.2):
+  - FirebaseUI/Email (11.0.3):
     - FirebaseEmailAuthUI (~> 11.0)
   - GoogleAppMeasurement (8.1.1):
     - GoogleAppMeasurement/AdIdSupport (= 8.1.1)
@@ -384,8 +383,8 @@ DEPENDENCIES:
   - Firebase/Auth
   - Firebase/Firestore
   - FirebaseFirestoreSwift (> 7.0-beta)
-  - FirebaseUI/Auth
-  - FirebaseUI/Email
+  - FirebaseUI/Auth (~> 11.0)
+  - FirebaseUI/Email (~> 11.0)
   - SDWebImage
   - SDWebImageSwiftUI
 
@@ -422,14 +421,14 @@ SPEC CHECKSUMS:
   Firebase: 4bb49ae87756034cef870fa3c4006235eb46f475
   FirebaseAnalytics: d6dd061b26a04744cb988c66e29697181152b2a3
   FirebaseAuth: e069ff5736fe9d5dcf61f36244bb1b1ce1897d17
-  FirebaseAuthUI: a44ed5d5da7337fd1dfbd9ac4a32ac3217ea8f2c
+  FirebaseAuthUI: 5ae57e5a3ffb821f89491f1b5da9efbdf99ce7cd
   FirebaseCore: 389c4ce9a7cce4a7e25eb22326b4bee0050557b2
   FirebaseCoreDiagnostics: 3e249cee3de5c5f9cfd6cc2a19997231286fec11
   FirebaseEmailAuthUI: 6548e3456fd339e73a8e9b5e7825b29863d8ba00
   FirebaseFirestore: c4be8314e9fa156f44b54025f7a98ecbff6971a6
   FirebaseFirestoreSwift: 9cb079bd3bc33d90e865e004b1b1cacdb4cc79f2
   FirebaseInstallations: 7f31798a8198c354eadcb87176d2090b62edc187
-  FirebaseUI: 856f01abf223b93c89f19f608cc393434109ee0b
+  FirebaseUI: d2777b3abcb3fa40ea9eea9e40db5a154df608d3
   GoogleAppMeasurement: 31c7d7655818784b7dd34bdf6884f75b465d5f6c
   GoogleDataTransport: 04c3e9a480bbcaa2ec3f5d27f1cdeb6a92f20c8d
   GoogleUtilities: f8a43108b38a68eebe8b3540e1f4f2d28843ce20
@@ -442,6 +441,6 @@ SPEC CHECKSUMS:
   SDWebImage: a7f831e1a65eb5e285e3fb046a23fcfbf08e696d
   SDWebImageSwiftUI: 8a3923c95108312b03a599ec1498754af55a6819
 
-PODFILE CHECKSUM: ebf0bbaba4d701e09ce242d4508da91cab80281b
+PODFILE CHECKSUM: 3865d6ef45fc697e78b511e18447647048795893
 
 COCOAPODS: 1.10.1

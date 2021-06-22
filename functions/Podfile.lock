@@ -49,6 +49,10 @@ PODS:
     - GoogleUtilities/AppDelegateSwizzler (~> 7.4)
     - GoogleUtilities/Environment (~> 7.4)
     - GTMSessionFetcher/Core (~> 1.5)
+  - FirebaseAuthUI (11.0.3):
+    - FirebaseAuth (~> 8.0)
+    - FirebaseCore
+    - GoogleUtilities/UserDefaults
   - FirebaseCore (8.1.0):
     - FirebaseCoreDiagnostics (~> 8.0)
     - GoogleUtilities/Environment (~> 7.4)
@@ -61,17 +65,21 @@ PODS:
   - FirebaseFunctions (8.1.0):
     - FirebaseCore (~> 8.0)
     - GTMSessionFetcher/Core (~> 1.5)
+  - FirebaseGoogleAuthUI (11.0.0):
+    - FirebaseAuth (~> 8.0)
+    - FirebaseAuthUI
+    - FirebaseCore
+    - GoogleSignIn (~> 5.0)
+    - GoogleUtilities/UserDefaults
   - FirebaseInstallations (8.1.0):
     - FirebaseCore (~> 8.0)
     - GoogleUtilities/Environment (~> 7.4)
     - GoogleUtilities/UserDefaults (~> 7.4)
     - PromisesObjC (~> 1.2)
-  - FirebaseUI/Auth (10.0.2):
-    - Firebase/Auth (>= 7.2.0)
-    - GoogleUtilities/UserDefaults
-  - FirebaseUI/Google (10.0.2):
-    - FirebaseUI/Auth
-    - GoogleSignIn (~> 5.0)
+  - FirebaseUI/Auth (11.0.3):
+    - FirebaseAuthUI (~> 11.0)
+  - FirebaseUI/Google (11.0.3):
+    - FirebaseGoogleAuthUI (~> 11.0)
   - GoogleAppMeasurement (8.1.1):
     - GoogleAppMeasurement/AdIdSupport (= 8.1.1)
     - GoogleUtilities/AppDelegateSwizzler (~> 7.4)
@@ -224,8 +232,8 @@ DEPENDENCIES:
   - Firebase/Analytics
   - Firebase/Auth
   - Firebase/Functions
-  - FirebaseUI/Auth
-  - FirebaseUI/Google
+  - FirebaseUI/Auth (~> 11.0)
+  - FirebaseUI/Google (~> 11.0)
   - MaterialComponents/Buttons
   - MaterialComponents/Collections
   - MaterialComponents/TextFields
@@ -236,9 +244,11 @@ SPEC REPOS:
     - Firebase
     - FirebaseAnalytics
     - FirebaseAuth
+    - FirebaseAuthUI
     - FirebaseCore
     - FirebaseCoreDiagnostics
     - FirebaseFunctions
+    - FirebaseGoogleAuthUI
     - FirebaseInstallations
     - FirebaseUI
     - GoogleAppMeasurement
@@ -258,11 +268,13 @@ SPEC CHECKSUMS:
   Firebase: 4bb49ae87756034cef870fa3c4006235eb46f475
   FirebaseAnalytics: d6dd061b26a04744cb988c66e29697181152b2a3
   FirebaseAuth: e069ff5736fe9d5dcf61f36244bb1b1ce1897d17
+  FirebaseAuthUI: 5ae57e5a3ffb821f89491f1b5da9efbdf99ce7cd
   FirebaseCore: 389c4ce9a7cce4a7e25eb22326b4bee0050557b2
   FirebaseCoreDiagnostics: 3e249cee3de5c5f9cfd6cc2a19997231286fec11
   FirebaseFunctions: 2cdcb06c0edbceac807eaf52014b8676c8a66d13
+  FirebaseGoogleAuthUI: eea5adfab55c5a9f1789510e342306b7351d7c2f
   FirebaseInstallations: 7f31798a8198c354eadcb87176d2090b62edc187
-  FirebaseUI: 59db3d833773f985550897d54ceb811ba37fb9a5
+  FirebaseUI: d2777b3abcb3fa40ea9eea9e40db5a154df608d3
   GoogleAppMeasurement: 31c7d7655818784b7dd34bdf6884f75b465d5f6c
   GoogleDataTransport: 04c3e9a480bbcaa2ec3f5d27f1cdeb6a92f20c8d
   GoogleSignIn: 7137d297ddc022a7e0aa4619c86d72c909fa7213
@@ -275,6 +287,6 @@ SPEC CHECKSUMS:
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
 
-PODFILE CHECKSUM: d58c0c3e89ee3982aac9a7788a30fba04f2fce19
+PODFILE CHECKSUM: e3e738deeeb60c65a3d20396e0bb15b7dc3591d5
 
 COCOAPODS: 1.10.1

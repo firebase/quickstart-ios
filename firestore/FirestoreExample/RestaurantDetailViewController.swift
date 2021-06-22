@@ -17,7 +17,6 @@
 import UIKit
 import SDWebImage
 import Firebase
-import FirebaseUI
 
 class RestaurantDetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, NewReviewViewControllerDelegate {
 

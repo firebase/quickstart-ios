@@ -16,7 +16,7 @@
 
 import UIKit
 import Firebase
-import FirebaseUI
+import FirebaseDatabaseUI
 
 @objc(PostListViewController)
 class PostListViewController: UIViewController, UITableViewDelegate {

@@ -15,7 +15,8 @@
 //
 
 import Firebase
-import FirebaseUI
+import FirebaseAuthUI
+import FirebaseGoogleAuthUI
 
 private let kFirebaseTermsOfService = URL(string: "https://firebase.google.com/terms/")!
 

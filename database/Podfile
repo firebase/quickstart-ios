@@ -6,7 +6,7 @@ platform :ios, '10.0'
 def firebase_pods
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
-  pod 'FirebaseUI/Database'
+  pod 'FirebaseUI/Database', '~> 11.0'
 end
 
 target 'DatabaseExample' do

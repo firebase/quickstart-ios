@@ -17,7 +17,7 @@
 import UIKit
 
 import Firebase
-import FirebaseUI
+import FirebaseAuthUI
 
 @UIApplicationMain
 // [START signin_delegate]

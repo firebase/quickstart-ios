@@ -28,6 +28,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func application(_ application: UIApplication,
                    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
+    application.registerForRemoteNotifications() // Register notifications BEFORE initializing Firebase, else iOS will not ask user permissions, and notificaitions will not be distribued.
+
+    
     FirebaseApp.configure()
 
     // [START set_messaging_delegate]
@@ -51,7 +54,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       application.registerUserNotificationSettings(settings)
     }
 
-    application.registerForRemoteNotifications()
 
     // [END register_for_notifications]
 

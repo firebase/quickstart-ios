@@ -80,7 +80,6 @@
 		5FDE05581B0DAA090037B82F /* CrashlyticsExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CrashlyticsExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FDE055C1B0DAA090037B82F /* AppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppTests.m; sourceTree = "<group>"; };
 		C723B78C26853A1700AD34CD /* ReachabililtyHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabililtyHelper.swift; sourceTree = "<group>"; };
-		C723B7922685415C00AD34CD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C73C899726845907003E5C2C /* CrashlyticsSwiftUIExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrashlyticsSwiftUIExampleApp.swift; sourceTree = "<group>"; };
 		C73C899826845907003E5C2C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		C73C899926845908003E5C2C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -256,7 +255,6 @@
 			isa = PBXGroup;
 			children = (
 				C73C899726845907003E5C2C /* CrashlyticsSwiftUIExampleApp.swift */,
-				C723B7922685415C00AD34CD /* GoogleService-Info.plist */,
 				C723B78C26853A1700AD34CD /* ReachabililtyHelper.swift */,
 				C73C899826845907003E5C2C /* ContentView.swift */,
 				C73C899926845908003E5C2C /* Assets.xcassets */,

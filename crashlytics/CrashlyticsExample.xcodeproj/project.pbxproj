@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -21,6 +21,15 @@
 		5F99610C1AE0CF4F0034F503 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F9961071AE0CF4F0034F503 /* LaunchScreen.xib */; };
 		5F99610D1AE0CF4F0034F503 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F9961071AE0CF4F0034F503 /* LaunchScreen.xib */; };
 		5FDE055D1B0DAA090037B82F /* AppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FDE055C1B0DAA090037B82F /* AppTests.m */; };
+		C732A2902684656200AA7DEF /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = C732A28F2684656200AA7DEF /* SwiftPackageProductDependency */; };
+		C732A2952684694300AA7DEF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C732A2942684694300AA7DEF /* GoogleService-Info.plist */; };
+		C732A29826846B6D00AA7DEF /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = C732A29726846B6D00AA7DEF /* SwiftPackageProductDependency */; };
+		C73C89A926845908003E5C2C /* CrashlyticsSwiftUIExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73C899726845907003E5C2C /* CrashlyticsSwiftUIExampleApp.swift */; };
+		C73C89AA26845908003E5C2C /* CrashlyticsSwiftUIExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73C899726845907003E5C2C /* CrashlyticsSwiftUIExampleApp.swift */; };
+		C73C89AB26845908003E5C2C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73C899826845907003E5C2C /* ContentView.swift */; };
+		C73C89AC26845908003E5C2C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73C899826845907003E5C2C /* ContentView.swift */; };
+		C73C89AD26845908003E5C2C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C73C899926845908003E5C2C /* Assets.xcassets */; };
+		C73C89AE26845908003E5C2C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C73C899926845908003E5C2C /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +78,15 @@
 		5F9961071AE0CF4F0034F503 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		5FDE05581B0DAA090037B82F /* CrashlyticsExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CrashlyticsExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FDE055C1B0DAA090037B82F /* AppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppTests.m; sourceTree = "<group>"; };
+		C732A2942684694300AA7DEF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		C73C899726845907003E5C2C /* CrashlyticsSwiftUIExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrashlyticsSwiftUIExampleApp.swift; sourceTree = "<group>"; };
+		C73C899826845907003E5C2C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		C73C899926845908003E5C2C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C73C899E26845908003E5C2C /* CrashlyticsSwiftUIExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CrashlyticsSwiftUIExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C73C89A026845908003E5C2C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C73C89A526845908003E5C2C /* CrashlyticsSwiftUIExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CrashlyticsSwiftUIExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C73C89A726845908003E5C2C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C73C89A826845908003E5C2C /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +108,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C732A2902684656200AA7DEF /* BuildFile in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -101,6 +120,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		5FDE05551B0DAA090037B82F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C73C899B26845908003E5C2C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C732A29826846B6D00AA7DEF /* BuildFile in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C73C89A226845908003E5C2C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -136,6 +170,9 @@
 				5FDE05591B0DAA090037B82F /* CrashlyticsExampleTests */,
 				1073472B20315969004A66D1 /* CrashlyticsExampleSwiftUITests */,
 				1073482720333B71004A66D1 /* CrashlyticsExampleUITests */,
+				C73C899626845907003E5C2C /* Shared */,
+				C73C899F26845908003E5C2C /* iOS */,
+				C73C89A626845908003E5C2C /* macOS */,
 				5F5A534D1ADE670C00F81DF0 /* Products */,
 				5F9961041AE0CF4F0034F503 /* Shared */,
 			);
@@ -150,6 +187,8 @@
 				5FDE05581B0DAA090037B82F /* CrashlyticsExampleTests.xctest */,
 				1073472A20315969004A66D1 /* CrashlyticsExampleSwiftUITests.xctest */,
 				1073482620333B71004A66D1 /* CrashlyticsExampleUITests.xctest */,
+				C73C899E26845908003E5C2C /* CrashlyticsSwiftUIExample.app */,
+				C73C89A526845908003E5C2C /* CrashlyticsSwiftUIExample.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -201,6 +240,34 @@
 				5FDE055C1B0DAA090037B82F /* AppTests.m */,
 			);
 			path = CrashlyticsExampleTests;
+			sourceTree = "<group>";
+		};
+		C73C899626845907003E5C2C /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				C73C899726845907003E5C2C /* CrashlyticsSwiftUIExampleApp.swift */,
+				C73C899826845907003E5C2C /* ContentView.swift */,
+				C732A2942684694300AA7DEF /* GoogleService-Info.plist */,
+				C73C899926845908003E5C2C /* Assets.xcassets */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		C73C899F26845908003E5C2C /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				C73C89A026845908003E5C2C /* Info.plist */,
+			);
+			path = iOS;
+			sourceTree = "<group>";
+		};
+		C73C89A626845908003E5C2C /* macOS */ = {
+			isa = PBXGroup;
+			children = (
+				C73C89A726845908003E5C2C /* Info.plist */,
+				C73C89A826845908003E5C2C /* macOS.entitlements */,
+			);
+			path = macOS;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -256,6 +323,9 @@
 			dependencies = (
 			);
 			name = CrashlyticsExample;
+			packageProductDependencies = (
+				C732A28F2684656200AA7DEF /* SwiftPackageProductDependency */,
+			);
 			productName = CrashReporter;
 			productReference = 5F5A534C1ADE670C00F81DF0 /* CrashlyticsExample.app */;
 			productType = "com.apple.product-type.application";
@@ -296,13 +366,51 @@
 			productReference = 5FDE05581B0DAA090037B82F /* CrashlyticsExampleTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		C73C899D26845908003E5C2C /* CrashlyticsSwiftUIExample (iOS) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C73C89B326845908003E5C2C /* Build configuration list for PBXNativeTarget "CrashlyticsSwiftUIExample (iOS)" */;
+			buildPhases = (
+				C73C899A26845908003E5C2C /* Sources */,
+				C73C899B26845908003E5C2C /* Frameworks */,
+				C73C899C26845908003E5C2C /* Resources */,
+				C732A2932684670100AA7DEF /* Run Script */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "CrashlyticsSwiftUIExample (iOS)";
+			packageProductDependencies = (
+				C732A29726846B6D00AA7DEF /* SwiftPackageProductDependency */,
+			);
+			productName = "CrashlyticsSwiftUIExample (iOS)";
+			productReference = C73C899E26845908003E5C2C /* CrashlyticsSwiftUIExample.app */;
+			productType = "com.apple.product-type.application";
+		};
+		C73C89A426845908003E5C2C /* CrashlyticsSwiftUIExample (macOS) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C73C89B426845908003E5C2C /* Build configuration list for PBXNativeTarget "CrashlyticsSwiftUIExample (macOS)" */;
+			buildPhases = (
+				C73C89A126845908003E5C2C /* Sources */,
+				C73C89A226845908003E5C2C /* Frameworks */,
+				C73C89A326845908003E5C2C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "CrashlyticsSwiftUIExample (macOS)";
+			productName = "CrashlyticsSwiftUIExample (macOS)";
+			productReference = C73C89A526845908003E5C2C /* CrashlyticsSwiftUIExample.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		5F5A53441ADE670C00F81DF0 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0920;
+				LastSwiftUpdateCheck = 1250;
 				LastUpgradeCheck = 1110;
 				ORGANIZATIONNAME = "Google Inc.";
 				TargetAttributes = {
@@ -333,6 +441,14 @@
 						ProvisioningStyle = Automatic;
 						TestTargetID = 5F5A534B1ADE670C00F81DF0;
 					};
+					C73C899D26845908003E5C2C = {
+						CreatedOnToolsVersion = 12.5;
+						ProvisioningStyle = Automatic;
+					};
+					C73C89A426845908003E5C2C = {
+						CreatedOnToolsVersion = 12.5;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = 5F5A53471ADE670C00F81DF0 /* Build configuration list for PBXProject "CrashlyticsExample" */;
@@ -345,6 +461,9 @@
 				Base,
 			);
 			mainGroup = 5F5A53431ADE670C00F81DF0;
+			packageReferences = (
+				C732A28E2684656200AA7DEF /* RemoteSwiftPackageReference */,
+			);
 			productRefGroup = 5F5A534D1ADE670C00F81DF0 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -354,6 +473,8 @@
 				5FDE05571B0DAA090037B82F /* CrashlyticsExampleTests */,
 				1073472920315969004A66D1 /* CrashlyticsExampleSwiftUITests */,
 				1073482520333B71004A66D1 /* CrashlyticsExampleUITests */,
+				C73C899D26845908003E5C2C /* CrashlyticsSwiftUIExample (iOS) */,
+				C73C89A426845908003E5C2C /* CrashlyticsSwiftUIExample (macOS) */,
 			);
 		};
 /* End PBXProject section */
@@ -400,6 +521,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C73C899C26845908003E5C2C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C73C89AD26845908003E5C2C /* Assets.xcassets in Resources */,
+				C732A2952684694300AA7DEF /* GoogleService-Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C73C89A326845908003E5C2C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C73C89AE26845908003E5C2C /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -428,6 +566,26 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\n# If installed via CocoaPods, then the \"run\" script will exist there\nif test -f \"${PODS_ROOT}/FirebaseCrashlytics/run\"; then\n  \"${PODS_ROOT}/FirebaseCrashlytics/run\"\n\n# If just the contents of the \"FirebaseCrashlytics\" folder from the\n# zip download was dragged into the Xcode project, check the project root\nelif test -f \"${PROJECT_DIR}/run\"; then\n  \"${PROJECT_DIR}/run\"\n  \n# If the whole \"FirebaseCrashlytics\" folder was dragged in from the\n# zip download, check for it in the root of the project \nelif test -f \"${PROJECT_DIR}/FirebaseCrashlytics/run\"; then\n  \"${PROJECT_DIR}/FirebaseCrashlytics/run\"\n  \n# If we can't find the run script, fail the build so that we\n# know to fix the issue\nelse\n  echo 'error: Could not find path to Crashlytics \"run\" script. Please ensure you have included the Crashlytics \"run\" script in the Xcode project directory, or update the path to the script in the Xcode project \"Build Phases\" > \"Run Script\"'\n  exit 1\nfi\n";
+		};
+		C732A2932684670100AA7DEF /* Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
+				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
+			name = "Run Script";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n${BUILD_DIR%Build/*}SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -472,6 +630,24 @@
 			buildActionMask = 2147483647;
 			files = (
 				5FDE055D1B0DAA090037B82F /* AppTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C73C899A26845908003E5C2C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C73C89AB26845908003E5C2C /* ContentView.swift in Sources */,
+				C73C89A926845908003E5C2C /* CrashlyticsSwiftUIExampleApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C73C89A126845908003E5C2C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C73C89AC26845908003E5C2C /* ContentView.swift in Sources */,
+				C73C89AA26845908003E5C2C /* CrashlyticsSwiftUIExampleApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -521,7 +697,11 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = CrashlyticsExampleSwiftUITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.CrashReportingExampleSwiftUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -548,7 +728,11 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = CrashlyticsExampleSwiftUITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.CrashReportingExampleSwiftUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
@@ -572,7 +756,11 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = CrashlyticsExampleUITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.CrashReportingExampleUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -595,7 +783,11 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = CrashlyticsExampleUITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.CrashReportingExampleUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -703,7 +895,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -719,7 +912,10 @@
 				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/CrashlyticsExample/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.CrashReportingExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -737,7 +933,10 @@
 				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/CrashlyticsExample/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.CrashReportingExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -753,7 +952,10 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "$(SRCROOT)/CrashlyticsExample/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.CrashReportingExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -770,11 +972,15 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "$(SRCROOT)/CrashlyticsExample/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.CrashReportingExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 5.0;
 			};
@@ -801,7 +1007,11 @@
 					CrashReporter,
 				);
 				INFOPLIST_FILE = CrashlyticsExample/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CrashlyticsExample.app/CrashlyticsExample";
@@ -826,10 +1036,149 @@
 					CrashReporter,
 				);
 				INFOPLIST_FILE = CrashlyticsExample/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CrashlyticsExample.app/CrashlyticsExample";
+			};
+			name = Release;
+		};
+		C73C89AF26845908003E5C2C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_PREVIEWS = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = iOS/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "Google-LLC.CrashlyticsSwiftUIExample";
+				PRODUCT_NAME = CrashlyticsSwiftUIExample;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C73C89B026845908003E5C2C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_PREVIEWS = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = iOS/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "Google-LLC.CrashlyticsSwiftUIExample";
+				PRODUCT_NAME = CrashlyticsSwiftUIExample;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C73C89B126845908003E5C2C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_PREVIEWS = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = macOS/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "Google-LLC.CrashlyticsSwiftUIExample";
+				PRODUCT_NAME = CrashlyticsSwiftUIExample;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		C73C89B226845908003E5C2C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_PREVIEWS = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = macOS/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "Google-LLC.CrashlyticsSwiftUIExample";
+				PRODUCT_NAME = CrashlyticsSwiftUIExample;
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -890,7 +1239,49 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		C73C89B326845908003E5C2C /* Build configuration list for PBXNativeTarget "CrashlyticsSwiftUIExample (iOS)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C73C89AF26845908003E5C2C /* Debug */,
+				C73C89B026845908003E5C2C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C73C89B426845908003E5C2C /* Build configuration list for PBXNativeTarget "CrashlyticsSwiftUIExample (macOS)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C73C89B126845908003E5C2C /* Debug */,
+				C73C89B226845908003E5C2C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		C732A28E2684656200AA7DEF /* RemoteSwiftPackageReference */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.2.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C732A28F2684656200AA7DEF /* SwiftPackageProductDependency */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C732A28E2684656200AA7DEF /* RemoteSwiftPackageReference */;
+			productName = FirebaseCrashlytics;
+		};
+		C732A29726846B6D00AA7DEF /* SwiftPackageProductDependency */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C732A28E2684656200AA7DEF /* RemoteSwiftPackageReference */;
+			productName = FirebaseCrashlytics;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 5F5A53441ADE670C00F81DF0 /* Project object */;
 }

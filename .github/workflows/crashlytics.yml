@@ -47,3 +47,15 @@ jobs:
         env:
           SWIFT_SUFFIX: 'Swift'
           SAMPLE: Crashlytics
+      - name: Build SwiftUI
+        run: |
+          cd crashlytics
+          xcodebuild \
+          -project CrashlyticsExample.xcodeproj \
+          -scheme 'CrashlyticsSwiftUIExample (iOS)' \
+          -sdk iphonesimulator \
+          -destination 'platform=iOS Simulator,name=iPhone 11' \
+          build
+        env: 
+          SWIFT_SUFFIX: 'Swift'
+          SAMPLE: Crashlytics

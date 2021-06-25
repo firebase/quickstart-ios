@@ -44,6 +44,7 @@ PODS:
 
 DEPENDENCIES:
   - Firebase/Crashlytics
+  - GoogleUtilities
   - ReachabilitySwift
 
 SPEC REPOS:
@@ -71,6 +72,6 @@ SPEC CHECKSUMS:
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
   ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
 
-PODFILE CHECKSUM: b78601852d885502ebfaec1c359c1617942a1c55
+PODFILE CHECKSUM: 9c1c5efcde57d937d103fd0ac9ed2e0bc7b1c9b6
 
 COCOAPODS: 1.10.1

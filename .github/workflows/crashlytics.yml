@@ -28,7 +28,7 @@ jobs:
         uses: actions/checkout@master
       - name: Setup
         run: |
-          cd crashlytics
+          cd crashlytics/LegacyCrashlyticsQuickstart
           gem install bundler
           bundle install
           gem install xcpretty
@@ -38,12 +38,12 @@ jobs:
           SAMPLE: Crashlytics
           secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}
       - name: Build ObjC
-        run:  ./scripts/test.sh
+        run:  ./scripts/test_legacy.sh
         env:
           SWIFT_SUFFIX: ''
           SAMPLE: Crashlytics
       - name: Build Swift
-        run:  ./scripts/test.sh
+        run:  ./scripts/test_legacy.sh
         env:
           SWIFT_SUFFIX: 'Swift'
           SAMPLE: Crashlytics

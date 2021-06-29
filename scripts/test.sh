@@ -27,7 +27,7 @@ EXIT_STATUS=0
 
 legacy_directory=""
 
-if [[ ! -z "$LEGACY" ]]
+if [[ ! -z "$LEGACY" ]]; then
   legacy_directory="Legacy${SAMPLE}Quickstart/"
   cd $legacy_directory
 fi

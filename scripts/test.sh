@@ -25,6 +25,13 @@ EXIT_STATUS=0
 # Set have_secrets to true or false.
 . ./scripts/check_secrets.sh
 
+legacy_directory=""
+
+if [[ ! -z "$LEGACY" ]]
+  legacy_directory="Legacy${SAMPLE}Quickstart/"
+  cd $legacy_directory
+fi
+
 if [[ "$have_secrets" == true ]]; then
     (xcodebuild \
       -workspace ${SAMPLE}/${SAMPLE}Example.xcworkspace \

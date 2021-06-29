@@ -38,15 +38,17 @@ jobs:
           SAMPLE: Crashlytics
           secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}
       - name: Build ObjC
-        run:  ./scripts/test_legacy.sh
+        run:  ./scripts/test.sh
         env:
           SWIFT_SUFFIX: ''
           SAMPLE: Crashlytics
+          LEGACY: true
       - name: Build Swift
-        run:  ./scripts/test_legacy.sh
+        run:  ./scripts/test.sh
         env:
           SWIFT_SUFFIX: 'Swift'
           SAMPLE: Crashlytics
+          LEGACY: true
       - name: Build SwiftUI
         run: |
           cd crashlytics
@@ -57,5 +59,4 @@ jobs:
           -destination 'platform=iOS Simulator,name=iPhone 11' \
           build
         env: 
-          SWIFT_SUFFIX: 'Swift'
           SAMPLE: Crashlytics

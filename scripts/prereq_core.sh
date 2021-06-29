@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-ruby ../scripts/info_script.rb "${PROJECT}"
+ruby ../scripts/info_script.rb "${PROJECT}" "${LEGACY}"
 
 if [[ -n "${GITHUB_WORKFLOW:-}" ]]; then
   . ../scripts/check_secrets.sh

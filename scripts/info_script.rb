@@ -18,13 +18,14 @@ require 'xcodeproj'
 sample = ARGV[0]
 legacy = ARGV[1]
 project_path = "#{sample}Example.xcodeproj"
+file_name = 'GoogleService-Info.plist'
 unless legacy.nil?
   project_path = "Legacy#{sample}Quickstart/" + project_path
+  file_name = "../" + file_name
 end
 project = Xcodeproj::Project.open(project_path)
 
 # Add a file to the project in the main group
-file_name = 'GoogleService-Info.plist'
 file = project.new_file(file_name)
 
 # Add the file to the all targets
@@ -32,5 +33,5 @@ project.targets.each do |target|
   target.add_file_references([file])
 end
 
-#save project
+# save project
 project.save()

@@ -33,6 +33,7 @@ jobs:
           bundle install
           gem install xcpretty
           bundle exec pod install --repo-update
+          cd ..
           ../scripts/install_prereqs/crashlytics.sh
         env:
           SAMPLE: Crashlytics

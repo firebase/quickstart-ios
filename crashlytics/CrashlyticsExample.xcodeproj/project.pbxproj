@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8D07E3C9268BF6D90002C432 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F9961061AE0CF4F0034F503 /* Images.xcassets */; };
+		8D07E3CC268BF6DB0002C432 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F9961061AE0CF4F0034F503 /* Images.xcassets */; };
+		8D07E3CF268BF6DF0002C432 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F9961071AE0CF4F0034F503 /* LaunchScreen.xib */; };
+		8D07E3D0268BF6DF0002C432 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F9961071AE0CF4F0034F503 /* LaunchScreen.xib */; };
 		8D96F5DE2685440700F1A2B7 /* Reachability in Frameworks */ = {isa = PBXBuildFile; productRef = 8D96F5DD2685440700F1A2B7 /* Reachability */; };
 		8D96F5E62685442800F1A2B7 /* ReachabililtyHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C723B78C26853A1700AD34CD /* ReachabililtyHelper.swift */; };
 		8D96F5EE2685442C00F1A2B7 /* ReachabililtyHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C723B78C26853A1700AD34CD /* ReachabililtyHelper.swift */; };
@@ -204,6 +208,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				C73C89AD26845908003E5C2C /* Assets.xcassets in Resources */,
+				8D07E3CF268BF6DF0002C432 /* LaunchScreen.xib in Resources */,
+				8D07E3C9268BF6D90002C432 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -212,6 +218,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				C73C89AE26845908003E5C2C /* Assets.xcassets in Resources */,
+				8D07E3D0268BF6DF0002C432 /* LaunchScreen.xib in Resources */,
+				8D07E3CC268BF6DB0002C432 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

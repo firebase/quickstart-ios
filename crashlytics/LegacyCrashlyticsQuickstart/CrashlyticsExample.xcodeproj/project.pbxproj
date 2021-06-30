@@ -16,11 +16,11 @@
 		5F5A537E1ADE67D500F81DF0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5A537D1ADE67D500F81DF0 /* AppDelegate.swift */; };
 		5F5A53801ADE67D500F81DF0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5A537F1ADE67D500F81DF0 /* ViewController.swift */; };
 		5F5A539C1ADE69AA00F81DF0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F5A53591ADE670C00F81DF0 /* Main.storyboard */; };
-		5F99610A1AE0CF4F0034F503 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F9961061AE0CF4F0034F503 /* Images.xcassets */; };
-		5F99610B1AE0CF4F0034F503 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F9961061AE0CF4F0034F503 /* Images.xcassets */; };
-		5F99610C1AE0CF4F0034F503 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F9961071AE0CF4F0034F503 /* LaunchScreen.xib */; };
-		5F99610D1AE0CF4F0034F503 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F9961071AE0CF4F0034F503 /* LaunchScreen.xib */; };
 		5FDE055D1B0DAA090037B82F /* AppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FDE055C1B0DAA090037B82F /* AppTests.m */; };
+		8D07E3D5268BF7210002C432 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D07E3D3268BF7210002C432 /* Images.xcassets */; };
+		8D07E3D6268BF7210002C432 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D07E3D4268BF7210002C432 /* LaunchScreen.xib */; };
+		8D07E3D7268BF7250002C432 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D07E3D3268BF7210002C432 /* Images.xcassets */; };
+		8D07E3D8268BF7280002C432 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D07E3D4268BF7210002C432 /* LaunchScreen.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,10 +65,10 @@
 		5F5A53791ADE67D500F81DF0 /* CrashlyticsExampleSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CrashlyticsExampleSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F5A537D1ADE67D500F81DF0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5F5A537F1ADE67D500F81DF0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		5F9961061AE0CF4F0034F503 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		5F9961071AE0CF4F0034F503 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		5FDE05581B0DAA090037B82F /* CrashlyticsExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CrashlyticsExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FDE055C1B0DAA090037B82F /* AppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppTests.m; sourceTree = "<group>"; };
+		8D07E3D3268BF7210002C432 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ../../shared/Images.xcassets; sourceTree = "<group>"; };
+		8D07E3D4268BF7210002C432 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LaunchScreen.xib; path = ../../shared/LaunchScreen.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,8 +189,8 @@
 		5F9961041AE0CF4F0034F503 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				5F9961061AE0CF4F0034F503 /* Images.xcassets */,
-				5F9961071AE0CF4F0034F503 /* LaunchScreen.xib */,
+				8D07E3D3268BF7210002C432 /* Images.xcassets */,
+				8D07E3D4268BF7210002C432 /* LaunchScreen.xib */,
 			);
 			name = Shared;
 			path = ../shared;
@@ -354,8 +354,8 @@
 			);
 			mainGroup = 5F5A53431ADE670C00F81DF0;
 			packageReferences = (
-				C732A28E2684656200AA7DEF /* RemoteSwiftPackageReference */,
-				8D96F5DC2685440700F1A2B7 /* RemoteSwiftPackageReference */,
+				C732A28E2684656200AA7DEF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				8D96F5DC2685440700F1A2B7 /* XCRemoteSwiftPackageReference "Reachability.swift" */,
 			);
 			productRefGroup = 5F5A534D1ADE670C00F81DF0 /* Products */;
 			projectDirPath = "";
@@ -389,9 +389,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5F99610C1AE0CF4F0034F503 /* LaunchScreen.xib in Resources */,
-				5F99610A1AE0CF4F0034F503 /* Images.xcassets in Resources */,
 				5F5A535B1ADE670C00F81DF0 /* Main.storyboard in Resources */,
+				8D07E3D6268BF7210002C432 /* LaunchScreen.xib in Resources */,
+				8D07E3D5268BF7210002C432 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -399,9 +399,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5F99610D1AE0CF4F0034F503 /* LaunchScreen.xib in Resources */,
 				5F5A539C1ADE69AA00F81DF0 /* Main.storyboard in Resources */,
-				5F99610B1AE0CF4F0034F503 /* Images.xcassets in Resources */,
+				8D07E3D8268BF7280002C432 /* LaunchScreen.xib in Resources */,
+				8D07E3D7268BF7250002C432 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -943,7 +943,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		8D96F5DC2685440700F1A2B7 /* RemoteSwiftPackageReference */ = {
+		8D96F5DC2685440700F1A2B7 /* XCRemoteSwiftPackageReference "Reachability.swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ashleymills/Reachability.swift.git";
 			requirement = {
@@ -951,7 +951,7 @@
 				minimumVersion = 5.1.0;
 			};
 		};
-		C732A28E2684656200AA7DEF /* RemoteSwiftPackageReference */ = {
+		C732A28E2684656200AA7DEF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
 			requirement = {

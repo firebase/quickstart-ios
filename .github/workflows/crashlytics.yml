@@ -53,6 +53,7 @@ jobs:
       - name: Build SwiftUI
         run: |
           cd crashlytics
+          ../scripts/install_prereqs/crashlytics.sh
           xcodebuild \
           -project CrashlyticsExample.xcodeproj \
           -scheme 'CrashlyticsSwiftUIExample (iOS)' \

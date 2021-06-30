@@ -38,6 +38,7 @@ jobs:
         env:
           SAMPLE: Crashlytics
           secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}
+          LEGACY: true
       - name: Build ObjC
         run:  ./scripts/test.sh
         env:

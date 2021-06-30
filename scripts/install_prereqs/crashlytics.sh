@@ -14,5 +14,4 @@
 
 DIRECTORY=crashlytics \
 PROJECT=Crashlytics \
-LEGACY=true \
 . ../scripts/prereq_core.sh

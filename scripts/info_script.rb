@@ -23,9 +23,6 @@ unless legacy.nil? || legacy.empty?
   project_path = "Legacy#{sample}Quickstart/" + project_path
   file_name = "../" + file_name
 end
-puts sample
-puts legacy
-puts project_path
 project = Xcodeproj::Project.open(project_path)
 
 # Add a file to the project in the main group

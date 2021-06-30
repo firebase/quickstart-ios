@@ -25,9 +25,15 @@ EXIT_STATUS=0
 # Set have_secrets to true or false.
 . ./scripts/check_secrets.sh
 
+workspace_path="${SAMPLE}/${SAMPLE}Example.xcworkspace"
+
+if [[ ! -z "$LEGACY" ]]; then
+  workspace_path="${SAMPLE}/Legacy${SAMPLE}Quickstart/${SAMPLE}Example.xcworkspace"
+fi
+
 if [[ "$have_secrets" == true ]]; then
     (xcodebuild \
-      -workspace ${SAMPLE}/${SAMPLE}Example.xcworkspace \
+      -workspace "$workspace_path" \
       -scheme ${SAMPLE}Example${SWIFT_SUFFIX} \
       -sdk iphonesimulator \
       -destination 'platform=iOS Simulator,name=iPhone 11' \
@@ -39,7 +45,7 @@ if [[ "$have_secrets" == true ]]; then
 else
     # Skip running tests if GoogleService-Info.plist's weren't decoded.
     (xcodebuild \
-      -workspace ${SAMPLE}/${SAMPLE}Example.xcworkspace \
+      -workspace "$workspace_path" \
       -scheme ${SAMPLE}Example${SWIFT_SUFFIX} \
       -sdk iphonesimulator \
       -destination 'platform=iOS Simulator,name=iPhone 11' \

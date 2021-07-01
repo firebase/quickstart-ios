@@ -62,6 +62,14 @@ class ViewController: UIViewController, UITableViewDataSource {
 
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
+    Installations.installations().authTokenForcingRefresh(true) { (token, error) in
+      if let error = error {
+        print("Error fetching token: \(error)")
+        return
+      }
+      guard let token = token else { return }
+      print("Installation auth token: \(token.authToken)")
+    }
     RemoteConfig.remoteConfig().fetch(withExpirationDuration: 0) { (status, error) in
       if let error = error {
         print("Error fetching config: \(error)")

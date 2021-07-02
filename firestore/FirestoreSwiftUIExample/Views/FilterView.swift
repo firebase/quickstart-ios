@@ -70,7 +70,7 @@ struct FilterView: View {
         })
       }
       .navigationBarTitle("Filter", displayMode: .inline)
-      .navigationBarItems(trailing: Button("Done", action: { filter() } ))
+      .navigationBarItems(trailing: Button("Done", action: { filter() }))
     }
   }
 
@@ -79,6 +79,6 @@ struct FilterView: View {
                                 price: selectedPrice, sortOption: selectedSortOption)
     viewModel.filter(query: query)
 
-    self.showFilterView = false
+    showFilterView = false
   }
 }

@@ -17,9 +17,8 @@
 import UIKit
 import Firebase
 
-@objc(ViewController)  // match the ObjC symbol name inside Storyboard
+@objc(ViewController) // match the ObjC symbol name inside Storyboard
 class ViewController: UIViewController {
-
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
 
@@ -29,8 +28,8 @@ class ViewController: UIViewController {
     Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
       AnalyticsParameterItemID: "id-\(title!)",
       AnalyticsParameterItemName: title!,
-      AnalyticsParameterContentType: "cont"
-      ])
+      AnalyticsParameterContentType: "cont",
+    ])
     // [END custom_event_swift]
   }
 

@@ -38,7 +38,8 @@ struct RestaurantHeaderView: View {
         StarsView(
           rating: Int(restaurant.averageRating.rounded()),
           color: Color.white,
-          outlineColor: Color.white)
+          outlineColor: Color.white
+        )
         HStack {
           Text(restaurant.category)
           Text("•")

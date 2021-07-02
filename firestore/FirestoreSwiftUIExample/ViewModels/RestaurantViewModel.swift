@@ -27,7 +27,7 @@ class RestaurantViewModel: ObservableObject {
   private var db = Firestore.firestore()
   private var listener: ListenerRegistration?
 
-  init(restaurant : Restaurant) {
+  init(restaurant: Restaurant) {
     self.restaurant = restaurant
   }
 
@@ -61,7 +61,7 @@ class RestaurantViewModel: ObservableObject {
 
       transaction.setData([
         "numRatings": ratingCount + 1,
-        "avgRating": newAverage
+        "avgRating": newAverage,
       ], forDocument: restaurantRef, merge: true)
 
       let reviewDocument = self.restaurant.ratingsCollection!.document()
@@ -72,7 +72,7 @@ class RestaurantViewModel: ObservableObject {
       }
 
       return nil
-    }) { (object, error) in
+    }) { object, error in
       if let error = error {
         print("Transaction failed: \(error)")
       }
@@ -89,7 +89,7 @@ class RestaurantViewModel: ObservableObject {
   func subscribe() {
     if listener == nil {
       listener = restaurant.ratingsCollection?.addSnapshotListener {
-        [weak self] (querySnapshot, error) in
+        [weak self] querySnapshot, error in
         guard let documents = querySnapshot?.documents else {
           print("Error fetching documents: \(error!)")
           return
@@ -99,7 +99,7 @@ class RestaurantViewModel: ObservableObject {
         self.reviews = documents.compactMap { document in
           do {
             return try document.data(as: Review.self)
-          } catch let error {
+          } catch {
             print(error)
             return nil
           }
@@ -113,7 +113,7 @@ class RestaurantViewModel: ObservableObject {
       domain: "AppErrorDomain",
       code: -1,
       userInfo: [
-        NSLocalizedDescriptionKey: "Unable to retrieve value from snapshot \(document)"
+        NSLocalizedDescriptionKey: "Unable to retrieve value from snapshot \(document)",
       ]
     )
   }

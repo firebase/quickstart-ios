@@ -79,11 +79,10 @@ extension Firestore {
         }
       }
       batch.updateData(["avgRating": average], forDocument: restaurantRef)
-      batch.commit(completion: { (error) in
+      batch.commit(completion: { error in
         guard let error = error else { return }
         print("Error generating reviews: \(error). Check your Firestore permissions.")
       })
     }
   }
-
 }

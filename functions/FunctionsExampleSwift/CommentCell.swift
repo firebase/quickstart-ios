@@ -19,16 +19,16 @@ import Firebase
 
 @objc(CommentCell)
 class CommentCell: MDCCollectionViewCell {
-  @IBOutlet weak var inputField: MDCTextField!
-  @IBOutlet weak var resultField: UITextField!
-  @IBOutlet weak var button: MDCButton!
+  @IBOutlet var inputField: MDCTextField!
+  @IBOutlet var resultField: UITextField!
+  @IBOutlet var button: MDCButton!
   // [START functions_instance]
   lazy var functions = Functions.functions()
   // [END functions_instance]
 
   @IBAction func didTapAddMessage(_ sender: Any) {
     // [START function_add_message]
-    functions.httpsCallable("addMessage").call(["text": inputField.text]) { (result, error) in
+    functions.httpsCallable("addMessage").call(["text": inputField.text]) { result, error in
       // [START function_error]
       if let error = error as NSError? {
         if error.domain == FunctionsErrorDomain {
@@ -39,7 +39,7 @@ class CommentCell: MDCCollectionViewCell {
         // [START_EXCLUDE]
         print(error)
         return
-        // [END_EXCLUDE]
+          // [END_EXCLUDE]
       }
       // [END function_error]
       if let data = result?.data as? [String: Any], let text = data["text"] as? String {

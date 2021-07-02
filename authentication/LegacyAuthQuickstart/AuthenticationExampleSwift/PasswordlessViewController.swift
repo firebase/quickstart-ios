@@ -19,9 +19,8 @@ import UIKit
 
 @objc(PasswordlessViewController)
 class PasswordlessViewController: UIViewController {
-
-  @IBOutlet weak var emailField: UITextField!
-  @IBOutlet weak var signInButton: UIButton!
+  @IBOutlet var emailField: UITextField!
+  @IBOutlet var signInButton: UIButton!
   var link: String!
 
   override func viewDidLoad() {
@@ -34,14 +33,14 @@ class PasswordlessViewController: UIViewController {
   }
 
   override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-    self.view.endEditing(true)
+    view.endEditing(true)
   }
 
   @IBAction func didTapSignInWithEmailLink(_ sender: AnyObject) {
-    if let email = self.emailField.text {
+    if let email = emailField.text {
       showSpinner {
         // [START signin_emaillink]
-        Auth.auth().signIn(withEmail: email, link: self.link) { (user, error) in
+        Auth.auth().signIn(withEmail: email, link: self.link) { user, error in
           // [START_EXCLUDE]
           self.hideSpinner {
             if let error = error {
@@ -55,12 +54,12 @@ class PasswordlessViewController: UIViewController {
         // [END signin_emaillink]
       }
     } else {
-      self.showMessagePrompt("Email can't be empty")
+      showMessagePrompt("Email can't be empty")
     }
   }
 
   @IBAction func didTapSendSignInLink(_ sender: AnyObject) {
-    if let email = self.emailField.text {
+    if let email = emailField.text {
       showSpinner {
         // [START action_code_settings]
         let actionCodeSettings = ActionCodeSettings()
@@ -72,7 +71,7 @@ class PasswordlessViewController: UIViewController {
                                                  installIfNotAvailable: false, minimumVersion: "12")
         // [END action_code_settings]
         // [START send_signin_link]
-        Auth.auth().sendSignInLink(toEmail:email,
+        Auth.auth().sendSignInLink(toEmail: email,
                                    actionCodeSettings: actionCodeSettings) { error in
           // [START_EXCLUDE]
           self.hideSpinner {
@@ -93,7 +92,7 @@ class PasswordlessViewController: UIViewController {
         // [END send_signin_link]
       }
     } else {
-      self.showMessagePrompt("Email can't be empty")
+      showMessagePrompt("Email can't be empty")
     }
   }
 }

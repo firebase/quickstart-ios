@@ -19,33 +19,31 @@ import Firebase
 
 @objc(SignInViewController)
 class SignInViewController: UIViewController, UITextFieldDelegate {
-
-  @IBOutlet weak var emailField: UITextField!
-  @IBOutlet weak var passwordField: UITextField!
+  @IBOutlet var emailField: UITextField!
+  @IBOutlet var passwordField: UITextField!
   var ref: DatabaseReference!
 
   override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-    self.view.endEditing(true)
+    view.endEditing(true)
   }
 
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
     if Auth.auth().currentUser != nil {
-      self.performSegue(withIdentifier: "signIn", sender: nil)
+      performSegue(withIdentifier: "signIn", sender: nil)
     }
     ref = Database.database().reference()
   }
 
   // Saves user profile information to user database
   func saveUserInfo(_ user: Firebase.User, withUsername username: String) {
-
     // Create a change request
-    self.showSpinner {}
+    showSpinner {}
     let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
     changeRequest?.displayName = username
 
     // Commit profile changes to server
-    changeRequest?.commitChanges() { (error) in
+    changeRequest?.commitChanges { error in
 
       self.hideSpinner {}
 
@@ -59,20 +57,18 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
       // [END basic_write]
       self.performSegue(withIdentifier: "signIn", sender: nil)
     }
-
   }
 
   @IBAction func didTapEmailLogin(_ sender: AnyObject) {
-
-    guard let email = self.emailField.text, let password = self.passwordField.text else {
-      self.showMessagePrompt("email/password can't be empty")
+    guard let email = emailField.text, let password = passwordField.text else {
+      showMessagePrompt("email/password can't be empty")
       return
     }
 
-    self.showSpinner {}
+    showSpinner {}
 
     // Sign user in
-    Auth.auth().signIn(withEmail: email, password: password, completion: { (authResult, error) in
+    Auth.auth().signIn(withEmail: email, password: password, completion: { authResult, error in
 
       self.hideSpinner {}
 
@@ -81,7 +77,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         return
       }
 
-      self.ref.child("users").child(user.uid).observeSingleEvent(of: .value, with: { (snapshot) in
+      self.ref.child("users").child(user.uid).observeSingleEvent(of: .value, with: { snapshot in
 
         // Check if user already exists
         guard !snapshot.exists() else {
@@ -90,7 +86,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         }
 
         // Otherwise, create the new user account
-        self.showTextInputPrompt(withMessage: "Username:") { (userPressedOK, username) in
+        self.showTextInputPrompt(withMessage: "Username:") { userPressedOK, username in
 
           guard let username = username else {
             self.showMessagePrompt("Username can't be empty")
@@ -104,9 +100,8 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
   }
 
   @IBAction func didTapSignUp(_ sender: AnyObject) {
-
-    func getEmail(completion: @escaping (String) -> ()) {
-      self.showTextInputPrompt(withMessage: "Email:") { (userPressedOK, email) in
+    func getEmail(completion: @escaping (String) -> Void) {
+      showTextInputPrompt(withMessage: "Email:") { userPressedOK, email in
         guard let email = email else {
           self.showMessagePrompt("Email can't be empty.")
           return
@@ -115,8 +110,8 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
       }
     }
 
-    func getUsername(completion: @escaping (String) -> ()) {
-      self.showTextInputPrompt(withMessage: "Username:") { (userPressedOK, username) in
+    func getUsername(completion: @escaping (String) -> Void) {
+      showTextInputPrompt(withMessage: "Username:") { userPressedOK, username in
         guard let username = username else {
           self.showMessagePrompt("Username can't be empty.")
           return
@@ -125,9 +120,8 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
       }
     }
 
-    func getPassword(completion: @escaping (String) -> ()) {
-
-      self.showTextInputPrompt(withMessage: "Password:") { (userPressedOK, password) in
+    func getPassword(completion: @escaping (String) -> Void) {
+      showTextInputPrompt(withMessage: "Password:") { userPressedOK, password in
         guard let password = password else {
           self.showMessagePrompt("Password can't be empty.")
           return
@@ -142,24 +136,25 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         getPassword { password in
 
           // Create the user with the provided credentials
-          Auth.auth().createUser(withEmail: email, password: password, completion: { (authResult, error) in
+          Auth.auth()
+            .createUser(withEmail: email, password: password, completion: { authResult, error in
 
-            guard let user = authResult?.user, error == nil else {
-              self.showMessagePrompt(error!.localizedDescription)
-              return
-            }
+              guard let user = authResult?.user, error == nil else {
+                self.showMessagePrompt(error!.localizedDescription)
+                return
+              }
 
-            // Finally, save their profile
-            self.saveUserInfo(user, withUsername: username)
+              // Finally, save their profile
+              self.saveUserInfo(user, withUsername: username)
 
-          })
+            })
         }
       }
     }
-
   }
 
   // MARK: - UITextFieldDelegate protocol methods
+
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
     didTapEmailLogin(textField)
     return true

@@ -36,7 +36,8 @@ struct RestaurantItemView: View {
           StarsView(
             rating: Int(restaurant.averageRating.rounded()),
             color: Color.yellow,
-            outlineColor: Color.gray)
+            outlineColor: Color.gray
+          )
           Spacer()
           HStack {
             Text(restaurant.category)

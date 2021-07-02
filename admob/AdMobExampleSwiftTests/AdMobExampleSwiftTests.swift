@@ -24,18 +24,18 @@ import XCTest
 @testable import AdMobExampleSwift
 
 class AdMobExampleSwiftTests: XCTestCase {
-
   // Important: create a variable for the view controller outside of setup(). Otherwise the variable is not available to the test functions
   var vcToTest: ViewController!
 
   override func setUp() {
     super.setUp()
     let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-    guard let vc = storyboard.instantiateViewController(withIdentifier: "ViewController") as? ViewController else {
+    guard let vc = storyboard
+      .instantiateViewController(withIdentifier: "ViewController") as? ViewController else {
       return
     }
     vcToTest = vc
-    let _ = vcToTest.view
+    _ = vcToTest.view
   }
 
   func testBannerView() {
@@ -45,5 +45,4 @@ class AdMobExampleSwiftTests: XCTestCase {
   func testInterstitial() {
     XCTAssertNotNil(vcToTest.interstitial, "Should create interstitial.")
   }
-
 }

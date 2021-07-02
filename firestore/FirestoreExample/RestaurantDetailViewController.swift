@@ -18,16 +18,20 @@ import UIKit
 import SDWebImage
 import Firebase
 
-class RestaurantDetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, NewReviewViewControllerDelegate {
-
+class RestaurantDetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate,
+  NewReviewViewControllerDelegate {
   var titleImageURL: URL?
   var restaurant: Restaurant?
   var restaurantReference: DocumentReference?
 
   var localCollection: LocalCollection<Review>!
 
-  static func fromStoryboard(_ storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)) -> RestaurantDetailViewController {
-    let controller = storyboard.instantiateViewController(withIdentifier: "RestaurantDetailViewController") as! RestaurantDetailViewController
+  static func fromStoryboard(_ storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil))
+    -> RestaurantDetailViewController {
+    let controller = storyboard
+      .instantiateViewController(
+        withIdentifier: "RestaurantDetailViewController"
+      ) as! RestaurantDetailViewController
     return controller
   }
 
@@ -39,7 +43,7 @@ class RestaurantDetailViewController: UIViewController, UITableViewDataSource, U
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    self.title = restaurant?.name
+    title = restaurant?.name
     navigationController?.navigationBar.tintColor = UIColor.white
 
     backgroundView.image = UIImage(named: "pizza-monster")!
@@ -53,7 +57,7 @@ class RestaurantDetailViewController: UIViewController, UITableViewDataSource, U
     tableView.estimatedRowHeight = 140
 
     let query = restaurantReference!.collection("ratings")
-    localCollection = LocalCollection(query: query) { [unowned self] (changes) in
+    localCollection = LocalCollection(query: query) { [unowned self] changes in
       if self.localCollection.count == 0 {
         self.tableView.backgroundView = self.backgroundView
         return
@@ -100,7 +104,7 @@ class RestaurantDetailViewController: UIViewController, UITableViewDataSource, U
   @IBAction func didTapAddButton(_ sender: Any) {
     let controller = NewReviewViewController.fromStoryboard()
     controller.delegate = self
-    self.navigationController?.pushViewController(controller, animated: true)
+    navigationController?.pushViewController(controller, animated: true)
   }
 
   // MARK: - UITableViewDataSource
@@ -110,7 +114,6 @@ class RestaurantDetailViewController: UIViewController, UITableViewDataSource, U
   }
 
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
     let cell = tableView.dequeueReusableCell(withIdentifier: "ReviewTableViewCell",
                                              for: indexPath) as! ReviewTableViewCell
     let review = localCollection[indexPath.row]
@@ -120,7 +123,8 @@ class RestaurantDetailViewController: UIViewController, UITableViewDataSource, U
 
   // MARK: - NewReviewViewControllerDelegate
 
-  func reviewController(_ controller: NewReviewViewController, didSubmitFormWithReview review: Review) {
+  func reviewController(_ controller: NewReviewViewController,
+                        didSubmitFormWithReview review: Review) {
     guard let reference = restaurantReference else { return }
     let reviewsCollection = reference.collection("ratings")
     let newReviewReference = reviewsCollection.document()
@@ -146,21 +150,22 @@ class RestaurantDetailViewController: UIViewController, UITableViewDataSource, U
         maybeRestaurant = try restaurantSnapshot.data(as: Restaurant.self)
       } catch {
         errorPointer?.pointee = NSError(domain: "FriendlyEatsErrorDomain", code: 0, userInfo: [
-          NSLocalizedDescriptionKey: "Unable to read restaurant at Firestore path: \(reference.path): \(error)"
+          NSLocalizedDescriptionKey: "Unable to read restaurant at Firestore path: \(reference.path): \(error)",
         ])
         return nil
       }
 
       guard let restaurant = maybeRestaurant else {
         errorPointer?.pointee = NSError(domain: "FriendlyEatsErrorDomain", code: 0, userInfo: [
-          NSLocalizedDescriptionKey: "Missing restaurant at Firestore path: \(reference.path)"
+          NSLocalizedDescriptionKey: "Missing restaurant at Firestore path: \(reference.path)",
         ])
         return nil
       }
 
       // Update the restaurant's rating and rating count and post the new review at the
       // same time.
-      let newAverage = (Float(restaurant.ratingCount) * restaurant.averageRating + Float(review.rating))
+      let newAverage = (Float(restaurant.ratingCount) * restaurant
+        .averageRating + Float(review.rating))
         / Float(restaurant.ratingCount + 1)
 
       do {
@@ -171,26 +176,24 @@ class RestaurantDetailViewController: UIViewController, UITableViewDataSource, U
       }
       transaction.updateData([
         "numRatings": restaurant.ratingCount + 1,
-        "avgRating": newAverage
-        ], forDocument: reference)
+        "avgRating": newAverage,
+      ], forDocument: reference)
       return nil
-    }) { (object, error) in
+    }) { object, error in
       if let error = error {
         print(error)
       } else {
         // Pop the review controller on success
-        if self.navigationController?.topViewController?.isKind(of: NewReviewViewController.self) ?? false {
+        if self.navigationController?.topViewController?
+          .isKind(of: NewReviewViewController.self) ?? false {
           self.navigationController?.popViewController(animated: true)
         }
       }
     }
-
   }
-
 }
 
 class RestaurantTitleView: UIView {
-
   @IBOutlet var nameLabel: UILabel!
 
   @IBOutlet var categoryLabel: UILabel!
@@ -208,7 +211,10 @@ class RestaurantTitleView: UIView {
   @IBOutlet var titleImageView: UIImageView! {
     didSet {
       let gradient = CAGradientLayer()
-      gradient.colors = [UIColor(red: 0, green: 0, blue: 0, alpha: 0.6).cgColor, UIColor.clear.cgColor]
+      gradient.colors = [
+        UIColor(red: 0, green: 0, blue: 0, alpha: 0.6).cgColor,
+        UIColor.clear.cgColor,
+      ]
       gradient.locations = [0.0, 1.0]
 
       gradient.startPoint = CGPoint(x: 0, y: 1)
@@ -235,11 +241,9 @@ class RestaurantTitleView: UIView {
     cityLabel.text = restaurant.city
     priceLabel.text = priceString(from: restaurant.price)
   }
-
 }
 
 class ReviewTableViewCell: UITableViewCell {
-
   @IBOutlet var usernameLabel: UILabel!
 
   @IBOutlet var reviewContentsLabel: UILabel!
@@ -251,5 +255,4 @@ class ReviewTableViewCell: UITableViewCell {
     reviewContentsLabel.text = review.text
     starsView.rating = review.rating
   }
-
 }

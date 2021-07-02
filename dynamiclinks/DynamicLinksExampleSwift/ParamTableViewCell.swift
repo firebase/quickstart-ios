@@ -18,8 +18,6 @@ import UIKit
 
 @objc(ParamTableViewCell)
 class ParamTableViewCell: UITableViewCell {
-
-  @IBOutlet weak var paramLabel: UILabel!
-  @IBOutlet weak var paramTextField: UITextField!
-
+  @IBOutlet var paramLabel: UILabel!
+  @IBOutlet var paramTextField: UITextField!
 }

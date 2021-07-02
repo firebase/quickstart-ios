@@ -20,10 +20,10 @@ import Firebase
 struct ContentView: View {
   @ObservedObject var appConfig : AppConfig
   let data: [(title: String, subtitle: String)] = [
-    ("Getting Started with Firebase","An Introduction to Firebase"),
-    ("Google Firestore","Powerful Querying and Automatic Scaling"),
-    ("Analytics","Simple App Insights"),
-    ("Remote Config","Parametrize App Behavior")
+    ("Getting Started with Firebase", "An Introduction to Firebase"),
+    ("Google Firestore", "Powerful Querying and Automatic Scaling"),
+    ("Analytics", "Simple App Insights"),
+    ("Remote Config", "Parameterize App Behavior")
   ]
   var body: some View {
     NavigationView {

@@ -21,7 +21,7 @@ class AppConfig: ObservableObject {
   @Published var colorScheme : ColorScheme
   init() {
     let value = RemoteConfig.remoteConfig()["color_scheme"].stringValue ?? "nil"
-    colorScheme = value == "dark" ? .dark : .light
+    colorScheme = ColorScheme(value)
 #if DEBUG
     NotificationCenter.default.addObserver(self,
                                            selector: #selector(printInstallationAuthToken),
@@ -29,11 +29,11 @@ class AppConfig: ObservableObject {
                                            object: nil)
 #endif
   }
-  deinit {
 #if DEBUG
+  deinit {
     NotificationCenter.default.removeObserver(self)
-#endif
   }
+#endif
   func updateFromRemoteConfig() {
     let remoteConfig = RemoteConfig.remoteConfig()
     remoteConfig.fetch(withExpirationDuration: 0) { (status, error) in
@@ -46,7 +46,7 @@ class AppConfig: ObservableObject {
           if changed {
             print("Remote Config changed to: \(value)")
             DispatchQueue.main.async {
-              self.colorScheme = value == "dark" ? .dark : .light
+              self.colorScheme = ColorScheme(value)
             }
           } else {
             print("Remote Config did not change from: \(value)")
@@ -62,6 +62,37 @@ class AppConfig: ObservableObject {
       } else if let token = token {
         print("Installation auth token: \(token.authToken)")
       }
+    }
+  }
+}
+
+extension ColorScheme {
+  init(_ value: String) {
+    switch value {
+    case "light":
+      self = .light
+    case "dark":
+      self = .dark
+    default:
+      self = .light
+      print("Unknown value, defaulting to ColorScheme.light")
+    }
+  }
+}
+
+extension RemoteConfigFetchStatus {
+  var debugDescription: String {
+    switch self {
+    case .failure:
+      return "failure"
+    case .noFetchYet:
+      return "pending"
+    case .success:
+      return "success"
+    case .throttled:
+      return "throttled"
+    @unknown default:
+      return "unknown"
     }
   }
 }

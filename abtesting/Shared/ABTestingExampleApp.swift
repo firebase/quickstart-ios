@@ -37,20 +37,3 @@ struct ABTestingExampleApp: App {
     }
   }
 }
-
-extension RemoteConfigFetchStatus {
-  var debugDescription: String {
-    switch self {
-    case .failure:
-      return "failure"
-    case .noFetchYet:
-      return "pending"
-    case .success:
-      return "success"
-    case .throttled:
-      return "throttled"
-    @unknown default:
-      return "unknown"
-    }
-  }
-}

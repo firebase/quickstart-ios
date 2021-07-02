@@ -16,7 +16,7 @@ its value in 'Variant A' to `dark`. In the third step, select any goal metric.
 Verify the following two flows:
 
 Test on device: 
-Run the sample and copy the printed remote installations ID or the installation auth token from Xcode's console
+Run the sample and copy the printed installation auth token from Xcode's console
 into the 'Manage test devices' section in Firebase Console (click into details
 in 'Experiment Overview' when experiment is in Draft status).
 

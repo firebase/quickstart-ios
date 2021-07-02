@@ -28,18 +28,33 @@ jobs:
         uses: actions/checkout@master
       - name: Setup
         run: |
-          cd abtesting
+          cd abtesting/LegacyABTestingQuickstart
           gem install bundler
           bundle install
           gem install xcpretty
           bundle exec pod install --repo-update
+          cd ..
           ../scripts/install_prereqs/abtesting.sh
         env:
           SAMPLE: ABTesting
           secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}
+          LEGACY: true
       - name: Build Swift
         run: |
           ./scripts/test.sh
         env:
-          SWIFT_SUFFIX: ''
+          SWIFT_SUFFIX: 'Swift'
+          SAMPLE: ABTesting
+          LEGACY: true
+      - name: Build SwiftUI
+        run: |
+          cd abtesting/ABTestingExample
+          ../../scripts/install_prereqs/abtesting.sh
+          xcodebuild \
+          -project 'ABTestingExample.xcodeproj \
+          -scheme 'ABTestingExample (iOS)' \
+          -sdk iphonesimulator \
+          -destination 'platform=iOS Simulator,name=iPhone 11' \
+          build
+        env:
           SAMPLE: ABTesting

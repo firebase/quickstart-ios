@@ -47,8 +47,8 @@ jobs:
           LEGACY: true
       - name: Build SwiftUI
         run: |
-          cd abtesting/ABTestingExample
-          ../../scripts/install_prereqs/abtesting.sh
+          cd abtesting
+          ../scripts/install_prereqs/abtesting.sh
           xcodebuild \
           -project 'ABTestingExample.xcodeproj \
           -scheme 'ABTestingExample (iOS)' \

@@ -17,8 +17,8 @@
 //  limitations under the License.
 //
 
-import SwiftUI
 import Firebase
+import SwiftUI
 
 struct SignInView: View {
   @State private var isSignedIn = false
@@ -26,11 +26,14 @@ struct SignInView: View {
   var body: some View {
     NavigationView {
       VStack {
-        NavigationLink(destination: RestaurantListView().navigationBarHidden(true), isActive: $isSignedIn)
+        NavigationLink(
+          destination: RestaurantListView().navigationBarHidden(true),
+          isActive: $isSignedIn
+        )
           { EmptyView() }
         Button("Sign In Anonymously") {
-          Auth.auth().signInAnonymously() { (authResult, error) in
-            if (error == nil) {
+          Auth.auth().signInAnonymously { _, error in
+            if error == nil {
               self.isSignedIn = true
             } else {
               print(error!)

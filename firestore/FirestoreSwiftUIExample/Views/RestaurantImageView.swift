@@ -17,15 +17,15 @@
 //  limitations under the License.
 //
 
-import SwiftUI
 import SDWebImageSwiftUI
+import SwiftUI
 
 struct RestaurantImageView: View {
   var imageURL: URL
   var isThumbnail: Bool
 
   var body: some View {
-    if (isThumbnail) {
+    if isThumbnail {
       WebImage(url: imageURL)
         .resizable()
         .aspectRatio(1, contentMode: .fill)

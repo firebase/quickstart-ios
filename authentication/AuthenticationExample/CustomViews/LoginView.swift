@@ -21,6 +21,7 @@ class LoginView: UIView {
       emailTextField.textContentType = .emailAddress
     }
   }
+
   var passwordTextField: UITextField! {
     didSet {
       passwordTextField.textContentType = .password
@@ -153,7 +154,10 @@ class LoginView: UIView {
     createAccountButton.translatesAutoresizingMaskIntoConstraints = false
     NSLayoutConstraint.activate([
       createAccountButton.centerXAnchor.constraint(equalTo: centerXAnchor),
-      createAccountButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 5),
+      createAccountButton.topAnchor.constraint(
+        equalTo: loginButton.bottomAnchor,
+        constant: 5
+      ),
     ])
   }
 

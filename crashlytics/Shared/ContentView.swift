@@ -19,9 +19,9 @@ import SwiftUI
 struct ContentView: View {
   var body: some View {
     NavigationView {
-        Button("Crash", action:  {
-          fatalError()
-        })
+      Button("Crash", action: {
+        fatalError()
+      })
         .font(.largeTitle)
         .padding()
         .background(Color.red)

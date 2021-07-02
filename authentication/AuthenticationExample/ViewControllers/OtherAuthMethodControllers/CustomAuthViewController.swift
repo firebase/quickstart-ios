@@ -12,8 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import UIKit
 import Firebase
+import UIKit
 
 class CustomAuthViewController: OtherAuthViewController {
   override func viewDidLoad() {
@@ -29,11 +29,11 @@ class CustomAuthViewController: OtherAuthViewController {
   // MARK: - Firebase 🔥
 
   private func customAuthLogin(token: String) {
-    Auth.auth().signIn(withCustomToken: token) { result, error in
+    Auth.auth().signIn(withCustomToken: token) { _, error in
       guard error == nil else { return self.displayError(error) }
       self.navigationController?.dismiss(animated: true, completion: {
         self.delegate?.loginDidOccur()
-            })
+      })
     }
   }
 }

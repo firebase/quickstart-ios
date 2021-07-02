@@ -14,8 +14,7 @@
 //  limitations under the License.
 //
 
-import XCTest
 @testable import FirestoreExample
+import XCTest
 
-class FirestoreExampleTests: XCTestCase {
-}
+class FirestoreExampleTests: XCTestCase {}

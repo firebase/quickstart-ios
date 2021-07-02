@@ -12,8 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import UIKit
 import Firebase
+import UIKit
 
 // For Account Linking with Sign in with Google.
 import GoogleSignIn
@@ -43,7 +43,7 @@ class AccountLinkingViewController: UIViewController, DataSourceProviderDelegate
     super.init(nibName: nil, bundle: nil)
   }
 
-  required init?(coder: NSCoder) {
+  required init?(coder _: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
 
@@ -61,7 +61,7 @@ class AccountLinkingViewController: UIViewController, DataSourceProviderDelegate
 
   // MARK: - DataSourceProviderDelegate
 
-  func didSelectRowAt(_ indexPath: IndexPath, on tableView: UITableView) {
+  func didSelectRowAt(_ indexPath: IndexPath, on _: UITableView) {
     let item = dataSourceProvider.item(at: indexPath)
 
     let providerName = item.title!
@@ -112,7 +112,7 @@ class AccountLinkingViewController: UIViewController, DataSourceProviderDelegate
   /// This method will update the UI upon the linking's completion.
   /// - Parameter authCredential: The credential used to link the user with the auth provider.
   private func linkAccount(authCredential: AuthCredential) {
-    user.link(with: authCredential) { result, error in
+    user.link(with: authCredential) { _, error in
       guard error == nil else { return self.displayError(error) }
       self.updateUI()
     }
@@ -122,7 +122,7 @@ class AccountLinkingViewController: UIViewController, DataSourceProviderDelegate
   /// This method will update the UI upon the unlinking's completion.
   /// - Parameter providerID: The string id of the auth provider.
   private func unlinkFromProvider(_ providerID: String) {
-    user.unlink(fromProvider: providerID) { user, error in
+    user.unlink(fromProvider: providerID) { _, error in
       guard error == nil else { return self.displayError(error) }
       print("Unlinked user from auth provider: \(providerID)")
       self.updateUI()
@@ -190,11 +190,12 @@ class AccountLinkingViewController: UIViewController, DataSourceProviderDelegate
 
     // Create a Facebook `LoginManager` instance
     let loginManager = LoginManager()
-    loginManager.logIn(permissions: ["email"], from: self) { [weak self] result, error in
+    loginManager.logIn(permissions: ["email"], from: self) { [weak self] _, error in
       guard let strongSelf = self else { return }
       guard error == nil else { return strongSelf.displayError(error) }
       guard let accessToken = AccessToken.current else { return }
-      let credential = FacebookAuthProvider.credential(withAccessToken: accessToken.tokenString)
+      let credential = FacebookAuthProvider
+        .credential(withAccessToken: accessToken.tokenString)
       strongSelf.linkAccount(authCredential: credential)
     }
   }
@@ -221,7 +222,10 @@ class AccountLinkingViewController: UIViewController, DataSourceProviderDelegate
           guard let verificationID = verificationID else { return }
           strongSelf.presentPhoneLinkAlertController { verificationCode in
             let credential = PhoneAuthProvider.provider()
-              .credential(withVerificationID: verificationID, verificationCode: verificationCode)
+              .credential(
+                withVerificationID: verificationID,
+                verificationCode: verificationCode
+              )
             strongSelf.linkAccount(authCredential: credential)
           }
         }
@@ -277,12 +281,13 @@ class AccountLinkingViewController: UIViewController, DataSourceProviderDelegate
     actionCodeSettings.handleCodeInApp = true
     actionCodeSettings.setIOSBundleID(Bundle.main.bundleIdentifier!)
 
-    Auth.auth().sendSignInLink(toEmail: email, actionCodeSettings: actionCodeSettings) { error in
-      guard error == nil else { return self.displayError(error) }
+    Auth.auth()
+      .sendSignInLink(toEmail: email, actionCodeSettings: actionCodeSettings) { error in
+        guard error == nil else { return self.displayError(error) }
 
-      // Set `email` property as it will be used to complete sign in after opening email link
-      self.email = email
-    }
+        // Set `email` property as it will be used to complete sign in after opening email link
+        self.email = email
+      }
   }
 
   @objc
@@ -403,21 +408,22 @@ extension AccountLinkingViewController: DataSourceProvidable {
       var item = item
       item.hasNestedContent = false
       item.isChecked = userProviderDataContains(item: item)
-      return ["Anonymous Authentication", "Custom Auth System"].contains(item.title) ? nil : item
+      return ["Anonymous Authentication", "Custom Auth System"]
+        .contains(item.title) ? nil : item
     }
     return [section]
   }
 
   private func userProviderDataContains(item: Item) -> Bool {
     guard let authProvider = AuthProvider(rawValue: item.title ?? "") else { return false }
-    return user.providerData.map({$0.providerID}).contains(authProvider.id)
+    return user.providerData.map { $0.providerID }.contains(authProvider.id)
   }
 }
 
 // MARK: - GIDSignInDelegate for Google Sign In
 
 extension AccountLinkingViewController: GIDSignInDelegate {
-  func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+  func sign(_: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
     guard error == nil else { return displayError(error) }
 
     guard let authentication = user.authentication else { return }
@@ -434,7 +440,7 @@ extension AccountLinkingViewController: ASAuthorizationControllerDelegate,
   ASAuthorizationControllerPresentationContextProviding {
   // MARK: ASAuthorizationControllerDelegate
 
-  func authorizationController(controller: ASAuthorizationController,
+  func authorizationController(controller _: ASAuthorizationController,
                                didCompleteWithAuthorization authorization: ASAuthorization) {
     guard let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential
     else {
@@ -443,7 +449,9 @@ extension AccountLinkingViewController: ASAuthorizationControllerDelegate,
     }
 
     guard let nonce = currentNonce else {
-      fatalError("Invalid state: A login callback was received, but no login request was sent.")
+      fatalError(
+        "Invalid state: A login callback was received, but no login request was sent."
+      )
     }
     guard let appleIDToken = appleIDCredential.identityToken else {
       print("Unable to fetch identity token")
@@ -461,7 +469,7 @@ extension AccountLinkingViewController: ASAuthorizationControllerDelegate,
     linkAccount(authCredential: credential)
   }
 
-  func authorizationController(controller: ASAuthorizationController,
+  func authorizationController(controller _: ASAuthorizationController,
                                didCompleteWithError error: Error) {
     // Ensure that you have:
     //  - enabled `Sign in with Apple` on the Firebase console
@@ -471,7 +479,7 @@ extension AccountLinkingViewController: ASAuthorizationControllerDelegate,
 
   // MARK: ASAuthorizationControllerPresentationContextProviding
 
-  func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
+  func presentationAnchor(for _: ASAuthorizationController) -> ASPresentationAnchor {
     return view.window!
   }
 

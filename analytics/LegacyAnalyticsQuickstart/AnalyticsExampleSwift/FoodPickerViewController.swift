@@ -19,15 +19,14 @@
 // https://firebase.google.com/docs/analytics/ios/start
 //
 
-import UIKit
 import Firebase
+import UIKit
 
-@objc(FoodPickerViewController)  // match the ObjC symbol name inside Storyboard
+@objc(FoodPickerViewController) // match the ObjC symbol name inside Storyboard
 class FoodPickerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
-
   let foodStuffs = ["Hot Dogs", "Hamburger", "Pizza"]
 
-  func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+  func pickerView(_: UIPickerView, didSelectRow row: Int, inComponent _: Int) {
     let food = foodStuffs[row]
     UserDefaults.standard.set(food, forKey: "favorite_food")
 
@@ -38,16 +37,15 @@ class FoodPickerViewController: UIViewController, UIPickerViewDelegate, UIPicker
     performSegue(withIdentifier: "goToShareScreen", sender: self)
   }
 
-  func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+  func pickerView(_: UIPickerView, numberOfRowsInComponent _: Int) -> Int {
     return foodStuffs.count
   }
 
-  func numberOfComponents(in pickerView: UIPickerView) -> Int {
+  func numberOfComponents(in _: UIPickerView) -> Int {
     return 1
   }
 
-  func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+  func pickerView(_: UIPickerView, titleForRow row: Int, forComponent _: Int) -> String? {
     return foodStuffs[row]
   }
-
 }

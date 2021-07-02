@@ -12,12 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import SwiftUI
 import Firebase
+import SwiftUI
 
 @main
 struct PasswordlessSwiftUIApp: App {
-  
   /// With the removal of `AppDelegate`, this is one of the ways to now configure Firebase.
   init() {
     FirebaseApp.configure()

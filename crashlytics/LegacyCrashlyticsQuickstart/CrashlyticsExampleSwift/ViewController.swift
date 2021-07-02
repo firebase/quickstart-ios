@@ -14,9 +14,9 @@
 //  limitations under the License.
 //
 
-import UIKit
 import FirebaseCrashlytics
 import Reachability
+import UIKit
 
 @objc(ViewController)
 class ViewController: UIViewController {
@@ -32,45 +32,51 @@ class ViewController: UIViewController {
 
     Crashlytics.crashlytics().setCustomValue(42, forKey: "MeaningOfLife")
     Crashlytics.crashlytics().setCustomValue("Test value", forKey: "last_UI_action")
-    
+
     let customKeysObject = [
-      "locale" : getLocale(),
+      "locale": getLocale(),
       "network_connection": getNetworkStatus(),
     ] as [String: Any]
     Crashlytics.crashlytics().setCustomKeysAndValues(customKeysObject)
-    
+
     updateAndTrackNetworkStatus()
-    
+
     Crashlytics.crashlytics().setUserID("123456789")
 
     let userInfo = [
       NSLocalizedDescriptionKey: NSLocalizedString("The request failed.", comment: ""),
-      NSLocalizedFailureReasonErrorKey: NSLocalizedString("The response returned a 404.", comment: ""),
-      NSLocalizedRecoverySuggestionErrorKey: NSLocalizedString("Does this page exist?", comment:""),
+      NSLocalizedFailureReasonErrorKey: NSLocalizedString(
+        "The response returned a 404.",
+        comment: ""
+      ),
+      NSLocalizedRecoverySuggestionErrorKey: NSLocalizedString(
+        "Does this page exist?",
+        comment: ""
+      ),
       "ProductID": "123456",
-      "UserID": "Jane Smith"
+      "UserID": "Jane Smith",
     ]
     let error = NSError(domain: NSURLErrorDomain, code: -1001, userInfo: userInfo)
     Crashlytics.crashlytics().record(error: error)
   }
 
-  @IBAction func initiateCrash(_ sender: AnyObject) {
+  @IBAction func initiateCrash(_: AnyObject) {
     // [START log_and_crash_swift]
     Crashlytics.crashlytics().log("Cause Crash button clicked")
     fatalError()
     // [END log_and_crash_swift]
   }
-    
+
   /**
-  * Retrieve the locale information for the app.
-  */
+   * Retrieve the locale information for the app.
+   */
   func getLocale() -> String {
     return Locale.preferredLanguages[0]
   }
-    
+
   /**
-  * Retrieve the network status for the app.
-  */
+   * Retrieve the network status for the app.
+   */
   func getNetworkStatus() -> String {
     guard let reachability = try? Reachability() else {
       return "unknown"
@@ -87,10 +93,10 @@ class ViewController: UIViewController {
       return "unavailable"
     }
   }
-    
+
   /**
-  * Add a hook to update network status going forward.
-  */
+   * Add a hook to update network status going forward.
+   */
   func updateAndTrackNetworkStatus() {
     NotificationCenter.default.addObserver(self,
                                            selector: #selector(reachabilityChanged(note:)),
@@ -103,8 +109,8 @@ class ViewController: UIViewController {
       print("Could not start reachability notifier: \(error)")
     }
   }
-    
-  @objc func reachabilityChanged(note: Notification) {
+
+  @objc func reachabilityChanged(note _: Notification) {
     Crashlytics.crashlytics().setCustomValue(getNetworkStatus(), forKey: "network_connection")
   }
 }

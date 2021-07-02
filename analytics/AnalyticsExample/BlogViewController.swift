@@ -12,8 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import UIKit
 import Firebase
+import UIKit
 
 /// The `BlogViewController` demonstrates how to set a custom screen name for analytics tracking.
 class BlogViewController: UIViewController, UITextViewDelegate {
@@ -51,7 +51,8 @@ class BlogViewController: UIViewController, UITextViewDelegate {
   private func setupSubviews() {
     let description = UILabel()
     view.addSubview(description)
-    description.text = "See the code to see how to set custom screen names for analytics tracking."
+    description
+      .text = "See the code to see how to set custom screen names for analytics tracking."
     description.textColor = .secondaryLabel
     description.numberOfLines = 2
     description.frame = CGRect(
@@ -102,7 +103,7 @@ class BlogViewController: UIViewController, UITextViewDelegate {
 
   // MARK: UITextViewDelegate
 
-  func textViewDidBeginEditing(_ textView: UITextView) {
+  func textViewDidBeginEditing(_: UITextView) {
     navigationItem.rightBarButtonItem = doneButton
   }
 }

@@ -18,8 +18,6 @@ import UIKit
 
 @objc(HeaderCell)
 class HeaderCell: UITableViewCell {
-
-  @IBOutlet weak var toggleButton: UIButton!
-  @IBOutlet weak var titleLabel: UILabel!
-
+  @IBOutlet var toggleButton: UIButton!
+  @IBOutlet var titleLabel: UILabel!
 }

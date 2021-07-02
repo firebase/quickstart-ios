@@ -14,12 +14,12 @@
 //  limitations under the License.
 //
 
-import UIKit
 import Firebase
-import FirebaseFirestoreSwift
 import FirebaseAuthUI
 import FirebaseEmailAuthUI
+import FirebaseFirestoreSwift
 import SDWebImage
+import UIKit
 
 func priceString(from price: Int) -> String {
   let priceText: String
@@ -38,7 +38,6 @@ func priceString(from price: Int) -> String {
 }
 
 class RestaurantsTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-
   @IBOutlet var tableView: UITableView!
   @IBOutlet var activeFiltersStackView: UIStackView!
   @IBOutlet var stackViewHeightConstraint: NSLayoutConstraint!
@@ -69,7 +68,7 @@ class RestaurantsTableViewController: UIViewController, UITableViewDataSource, U
 
     // Display data from Firestore, part one
 
-    listener = query.addSnapshotListener { [unowned self] (snapshot, error) in
+    listener = query.addSnapshotListener { [unowned self] snapshot, error in
       guard let snapshot = snapshot else {
         print("Error fetching snapshot results: \(error!)")
         return
@@ -79,14 +78,18 @@ class RestaurantsTableViewController: UIViewController, UITableViewDataSource, U
         do {
           maybeModel = try document.data(as: Restaurant.self)
         } catch {
-          fatalError("Unable to initialize type \(Restaurant.self) with dictionary \(document.data()): \(error)")
+          fatalError(
+            "Unable to initialize type \(Restaurant.self) with dictionary \(document.data()): \(error)"
+          )
         }
 
         if let model = maybeModel {
           return model
         } else {
           // Don't use fatalError here in a real app.
-          fatalError("Missing document of type \(Restaurant.self) at \(document.reference.path)")
+          fatalError(
+            "Missing document of type \(Restaurant.self) at \(document.reference.path)"
+          )
         }
       }
       self.restaurants = models
@@ -110,9 +113,9 @@ class RestaurantsTableViewController: UIViewController, UITableViewDataSource, U
     return Firestore.firestore().collection("restaurants").limit(to: 50)
   }
 
-  lazy private var filters: (navigationController: UINavigationController,
+  private lazy var filters: (navigationController: UINavigationController,
                              filtersController: FiltersViewController) = {
-    return FiltersViewController.fromStoryboard(delegate: self)
+    FiltersViewController.fromStoryboard(delegate: self)
   }()
 
   override func viewDidLoad() {
@@ -125,10 +128,10 @@ class RestaurantsTableViewController: UIViewController, UITableViewDataSource, U
 
     // Blue bar with white color
     navigationController?.navigationBar.barTintColor =
-      UIColor(red: 0x3d/0xff, green: 0x5a/0xff, blue: 0xfe/0xff, alpha: 1.0)
+      UIColor(red: 0x3D / 0xFF, green: 0x5A / 0xFF, blue: 0xFE / 0xFF, alpha: 1.0)
     navigationController?.navigationBar.isTranslucent = false
     navigationController?.navigationBar.titleTextAttributes =
-      [ NSAttributedString.Key.foregroundColor: UIColor.white ]
+      [NSAttributedString.Key.foregroundColor: UIColor.white]
 
     tableView.dataSource = self
     tableView.delegate = self
@@ -136,12 +139,12 @@ class RestaurantsTableViewController: UIViewController, UITableViewDataSource, U
     stackViewHeightConstraint.constant = 0
     activeFiltersStackView.isHidden = true
 
-    self.navigationController?.navigationBar.barStyle = .black
+    navigationController?.navigationBar.barStyle = .black
   }
 
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    self.setNeedsStatusBarAppearanceUpdate()
+    setNeedsStatusBarAppearanceUpdate()
     observeQuery()
   }
 
@@ -160,8 +163,18 @@ class RestaurantsTableViewController: UIViewController, UITableViewDataSource, U
     stopObserving()
   }
 
-  @IBAction func didTapPopulateButton(_ sender: Any) {
-    let words = ["Bar", "Fire", "Grill", "Drive Thru", "Place", "Best", "Spot", "Prime", "Eatin'"]
+  @IBAction func didTapPopulateButton(_: Any) {
+    let words = [
+      "Bar",
+      "Fire",
+      "Grill",
+      "Drive Thru",
+      "Place",
+      "Best",
+      "Spot",
+      "Prime",
+      "Eatin'",
+    ]
 
     let cities = Restaurant.cities
     let categories = Restaurant.categories
@@ -216,19 +229,25 @@ class RestaurantsTableViewController: UIViewController, UITableViewDataSource, U
         }
       }
       batch.updateData(["avgRating": average], forDocument: restaurantRef)
-      batch.commit(completion: { (error) in
+      batch.commit(completion: { error in
         guard let error = error else { return }
         print("Error generating reviews: \(error). Check your Firestore permissions.")
       })
     }
   }
 
-  @IBAction func didTapClearButton(_ sender: Any) {
+  @IBAction func didTapClearButton(_: Any) {
     filters.filtersController.clearFilters()
-    controller(filters.filtersController, didSelectCategory: nil, city: nil, price: nil, sortBy: nil)
+    controller(
+      filters.filtersController,
+      didSelectCategory: nil,
+      city: nil,
+      price: nil,
+      sortBy: nil
+    )
   }
 
-  @IBAction func didTapFilterButton(_ sender: Any) {
+  @IBAction func didTapFilterButton(_: Any) {
     present(filters.navigationController, animated: true, completion: nil)
   }
 
@@ -253,7 +272,7 @@ class RestaurantsTableViewController: UIViewController, UITableViewDataSource, U
     return cell
   }
 
-  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+  func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
     return restaurants.count
   }
 
@@ -265,17 +284,16 @@ class RestaurantsTableViewController: UIViewController, UITableViewDataSource, U
     controller.titleImageURL = restaurants[indexPath.row].photo
     controller.restaurant = restaurants[indexPath.row]
     controller.restaurantReference = documents[indexPath.row].reference
-    self.navigationController?.pushViewController(controller, animated: true)
+    navigationController?.pushViewController(controller, animated: true)
   }
-
 }
 
 extension RestaurantsTableViewController: FiltersViewControllerDelegate {
-
-  func query(withCategory category: String?, city: String?, price: Int?, sortBy: String?) -> Query {
+  func query(withCategory category: String?, city: String?, price: Int?,
+             sortBy: String?) -> Query {
     var filtered = baseQuery()
 
-    if category == nil && city == nil && price == nil && sortBy == nil {
+    if category == nil, city == nil, price == nil, sortBy == nil {
       stackViewHeightConstraint.constant = 0
       activeFiltersStackView.isHidden = true
     } else {
@@ -304,7 +322,7 @@ extension RestaurantsTableViewController: FiltersViewControllerDelegate {
     return filtered
   }
 
-  func controller(_ controller: FiltersViewController,
+  func controller(_: FiltersViewController,
                   didSelectCategory category: String?,
                   city: String?,
                   price: Int?,
@@ -332,14 +350,12 @@ extension RestaurantsTableViewController: FiltersViewControllerDelegate {
       priceFilterLabel.isHidden = true
     }
 
-    self.query = filtered
+    query = filtered
     observeQuery()
   }
-
 }
 
 class RestaurantTableViewCell: UITableViewCell {
-
   @IBOutlet private var thumbnailView: UIImageView!
 
   @IBOutlet private var nameLabel: UILabel!
@@ -353,7 +369,6 @@ class RestaurantTableViewCell: UITableViewCell {
   @IBOutlet private var priceLabel: UILabel!
 
   func populate(restaurant: Restaurant) {
-
     // Displaying data, part two
 
     nameLabel.text = restaurant.name
@@ -370,5 +385,4 @@ class RestaurantTableViewCell: UITableViewCell {
     super.prepareForReuse()
     thumbnailView.sd_cancelCurrentImageLoad()
   }
-
 }

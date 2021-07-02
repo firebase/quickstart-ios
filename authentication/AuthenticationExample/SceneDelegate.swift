@@ -12,8 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import UIKit
 import Firebase
+import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
   var window: UIWindow?
@@ -37,8 +37,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     return tabBarController
   }()
 
-  func scene(_ scene: UIScene, willConnectTo session: UISceneSession,
-             options connectionOptions: UIScene.ConnectionOptions) {
+  func scene(_ scene: UIScene, willConnectTo _: UISceneSession,
+             options _: UIScene.ConnectionOptions) {
     guard let windowScene = (scene as? UIWindowScene) else { return }
 
     configureControllers()
@@ -48,7 +48,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     window?.makeKeyAndVisible()
   }
 
-  func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
+  func scene(_: UIScene, continue userActivity: NSUserActivity) {
     if let incomingURL = userActivity.webpageURL {
       handleIncomingDynamicLink(incomingURL)
     }
@@ -70,7 +70,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         // Post a notification to the PasswordlessViewController to resume authentication
         NotificationCenter.default
-          .post(Notification(name: Notification.Name("PasswordlessEmailNotificationSuccess")))
+          .post(Notification(name: Notification
+              .Name("PasswordlessEmailNotificationSuccess")))
       }
     }
   }

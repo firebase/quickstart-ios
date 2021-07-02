@@ -14,13 +14,18 @@
 //  limitations under the License.
 //
 
-import UIKit
 import Firebase
+import UIKit
 
 class NewReviewViewController: UIViewController, UITextFieldDelegate {
-
-  static func fromStoryboard(_ storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)) -> NewReviewViewController {
-    let controller = storyboard.instantiateViewController(withIdentifier: "NewReviewViewController") as! NewReviewViewController
+  static func fromStoryboard(_ storyboard: UIStoryboard = UIStoryboard(
+    name: "Main",
+    bundle: nil
+  )) -> NewReviewViewController {
+    let controller = storyboard
+      .instantiateViewController(
+        withIdentifier: "NewReviewViewController"
+      ) as! NewReviewViewController
     return controller
   }
 
@@ -36,7 +41,11 @@ class NewReviewViewController: UIViewController, UITextFieldDelegate {
 
   @IBOutlet var reviewTextField: UITextField! {
     didSet {
-      reviewTextField.addTarget(self, action: #selector(textFieldTextDidChange(_:)), for: .editingChanged)
+      reviewTextField.addTarget(
+        self,
+        action: #selector(textFieldTextDidChange(_:)),
+        for: .editingChanged
+      )
     }
   }
 
@@ -46,11 +55,11 @@ class NewReviewViewController: UIViewController, UITextFieldDelegate {
     reviewTextField.delegate = self
   }
 
-  @IBAction func cancelButtonPressed(_ sender: Any) {
-    self.navigationController?.popViewController(animated: true)
+  @IBAction func cancelButtonPressed(_: Any) {
+    navigationController?.popViewController(animated: true)
   }
 
-  @IBAction func doneButtonPressed(_ sender: Any) {
+  @IBAction func doneButtonPressed(_: Any) {
     let review = Review(rating: ratingView.rating!,
                         userID: Auth.auth().currentUser!.uid,
                         username: Auth.auth().currentUser?.displayName ?? "Anonymous",
@@ -59,7 +68,7 @@ class NewReviewViewController: UIViewController, UITextFieldDelegate {
     delegate?.reviewController(self, didSubmitFormWithReview: review)
   }
 
-  @objc func ratingDidChange(_ sender: Any) {
+  @objc func ratingDidChange(_: Any) {
     updateSubmitButton()
   }
 
@@ -72,14 +81,12 @@ class NewReviewViewController: UIViewController, UITextFieldDelegate {
     doneButton.isEnabled = (ratingView.rating != nil && !textFieldIsEmpty())
   }
 
-  @objc func textFieldTextDidChange(_ sender: Any) {
+  @objc func textFieldTextDidChange(_: Any) {
     updateSubmitButton()
   }
-
 }
 
 protocol NewReviewViewControllerDelegate: NSObjectProtocol {
-  func reviewController(_ controller: NewReviewViewController, didSubmitFormWithReview review: Review)
+  func reviewController(_ controller: NewReviewViewController,
+                        didSubmitFormWithReview review: Review)
 }
-
-

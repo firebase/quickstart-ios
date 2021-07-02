@@ -14,19 +14,18 @@
 //  limitations under the License.
 //
 
-import UIKit
 import Firebase
+import UIKit
 
 @objc(PostDetailTableViewController)
 class PostDetailTableViewController: UITableViewController, UITextFieldDelegate {
-
   let kSectionComments = 2
   let kSectionSend = 1
   let kSectionPost = 0
 
   var postKey = ""
-  var comments: Array<DataSnapshot> = []
-  var commentField: UITextField? = nil
+  var comments: [DataSnapshot] = []
+  var commentField: UITextField?
   var post: Post = Post()
   lazy var ref: DatabaseReference = Database.database().reference()
   var postRef: DatabaseReference!
@@ -54,18 +53,24 @@ class PostDetailTableViewController: UITableViewController, UITextFieldDelegate 
     // Listen for new comments in the Firebase database
     commentsRef.observe(.childAdded, with: { (snapshot) -> Void in
       self.comments.append(snapshot)
-      self.tableView.insertRows(at: [IndexPath(row: self.comments.count-1, section: self.kSectionComments)], with: UITableView.RowAnimation.automatic)
+      self.tableView.insertRows(
+        at: [IndexPath(row: self.comments.count - 1, section: self.kSectionComments)],
+        with: UITableView.RowAnimation.automatic
+      )
     })
     // Listen for deleted comments in the Firebase database
     commentsRef.observe(.childRemoved, with: { (snapshot) -> Void in
       let index = self.indexOfMessage(snapshot)
       self.comments.remove(at: index)
-      self.tableView.deleteRows(at: [IndexPath(row: index, section: self.kSectionComments)], with: UITableView.RowAnimation.automatic)
+      self.tableView.deleteRows(
+        at: [IndexPath(row: index, section: self.kSectionComments)],
+        with: UITableView.RowAnimation.automatic
+      )
     })
     // [END child_event_listener]
 
     // [START post_value_event_listener]
-    refHandle = postRef.observe(DataEventType.value, with: { (snapshot) in
+    refHandle = postRef.observe(DataEventType.value, with: { snapshot in
       // [START_EXCLUDE]
       if let post = Post(snapshot: snapshot) {
         self.post = post
@@ -79,7 +84,7 @@ class PostDetailTableViewController: UITableViewController, UITextFieldDelegate 
 
   func indexOfMessage(_ snapshot: DataSnapshot) -> Int {
     var index = 0
-    for  comment in self.comments {
+    for comment in comments {
       if snapshot.key == comment.key {
         return index
       }
@@ -100,11 +105,11 @@ class PostDetailTableViewController: UITableViewController, UITextFieldDelegate 
   }
 
   // UITableViewDataSource protocol methods
-  override func numberOfSections(in tableView: UITableView) -> Int {
+  override func numberOfSections(in _: UITableView) -> Int {
     return 3
   }
 
-  override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+  override func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
     switch section {
     case kSectionPost, kSectionSend:
       return 1
@@ -120,19 +125,21 @@ class PostDetailTableViewController: UITableViewController, UITextFieldDelegate 
     commentField?.isEnabled = false
     sender.isEnabled = false
     if let uid = Auth.auth().currentUser?.uid {
-      Database.database().reference().child("users").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
-        if let commentField = self.commentField, let user = snapshot.value as? [String : AnyObject] {
-          let comment = [
-            "uid": uid,
-            "author": user["username"] as? String ?? "",
-            "text": commentField.text!
-          ]
-          self.commentsRef.childByAutoId().setValue(comment)
-          commentField.text = ""
-          commentField.isEnabled = true
-          sender.isEnabled = true
-        }
-      })
+      Database.database().reference().child("users").child(uid)
+        .observeSingleEvent(of: .value, with: { snapshot in
+          if let commentField = self.commentField,
+            let user = snapshot.value as? [String: AnyObject] {
+            let comment = [
+              "uid": uid,
+              "author": user["username"] as? String ?? "",
+              "text": commentField.text!,
+            ]
+            self.commentsRef.childByAutoId().setValue(comment)
+            commentField.text = ""
+            commentField.isEnabled = true
+            sender.isEnabled = true
+          }
+        })
     }
   }
 
@@ -147,7 +154,8 @@ class PostDetailTableViewController: UITableViewController, UITextFieldDelegate 
         guard let postcell = cell as? PostTableViewCell else {
           break
         }
-        let imageName = post.stars == nil || post.stars![uid] == nil ? "ic_star_border" : "ic_star"
+        let imageName = post.stars == nil || post
+          .stars![uid] == nil ? "ic_star_border" : "ic_star"
         postcell.authorLabel.text = post.author
         postcell.postTitle.text = post.title
         postcell.postBody.text = post.body
@@ -159,7 +167,7 @@ class PostDetailTableViewController: UITableViewController, UITextFieldDelegate 
       }
     case kSectionComments:
       cell = tableView.dequeueReusableCell(withIdentifier: "comment", for: indexPath)
-      let commentDict = comments[indexPath.row].value as? [String : AnyObject]
+      let commentDict = comments[indexPath.row].value as? [String: AnyObject]
       if let text = cell.textLabel, let detail = cell.detailTextLabel,
         let author = commentDict?["author"], let commentText = commentDict?["text"] {
         detail.text = String(describing: author)
@@ -168,12 +176,11 @@ class PostDetailTableViewController: UITableViewController, UITextFieldDelegate 
     default: // kSectionSend
       cell = tableView.dequeueReusableCell(withIdentifier: "send", for: indexPath)
       commentField = cell.viewWithTag(7) as? UITextField
-      break
     }
     return cell
   }
 
-  override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+  override func tableView(_: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     if indexPath.section == kSectionPost {
       return 160
     }

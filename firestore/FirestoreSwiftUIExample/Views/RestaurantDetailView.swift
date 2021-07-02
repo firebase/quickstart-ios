@@ -17,8 +17,8 @@
 //  limitations under the License.
 //
 
-import SwiftUI
 import SDWebImageSwiftUI
+import SwiftUI
 
 struct RestaurantDetailView: View {
   var restaurant: Restaurant
@@ -29,10 +29,10 @@ struct RestaurantDetailView: View {
     self.restaurant = restaurant
     viewModel = RestaurantViewModel(restaurant: restaurant)
   }
-  
+
   var body: some View {
     let restaurant = viewModel.restaurant
-    
+
     VStack {
       RestaurantHeaderView(restaurant: restaurant)
       List(viewModel.reviews) { review in
@@ -48,10 +48,10 @@ struct RestaurantDetailView: View {
         self.showAddReviewView = true
       }
     }
-    .onAppear() {
+    .onAppear {
       viewModel.subscribe()
     }
-    .onDisappear() {
+    .onDisappear {
       viewModel.unsubscribe()
     }
   }
@@ -67,9 +67,15 @@ struct TransparentRectangleView: View {
 
 struct RestaurantDetailView_Previews: PreviewProvider {
   static var previews: some View {
-    let restaurant = Restaurant(name: "Pizza Place", category: "Pizza", city: "Austin", price: 2,
-                                ratingCount: 1, averageRating: 4,
-                                photo: Restaurant.imageURL(forName: "Pizza Place"))
+    let restaurant = Restaurant(
+      name: "Pizza Place",
+      category: "Pizza",
+      city: "Austin",
+      price: 2,
+      ratingCount: 1,
+      averageRating: 4,
+      photo: Restaurant.imageURL(forName: "Pizza Place")
+    )
     RestaurantDetailView(restaurant: restaurant)
   }
 }

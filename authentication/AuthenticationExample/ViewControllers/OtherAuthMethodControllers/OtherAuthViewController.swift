@@ -92,7 +92,8 @@ class OtherAuthViewController: UIViewController {
     textField.translatesAutoresizingMaskIntoConstraints = false
     view.addSubview(textField)
     textField.leadingAnchor
-      .constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 15).isActive = true
+      .constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 15)
+      .isActive = true
     textField.trailingAnchor.constraint(
       equalTo: view.safeAreaLayoutGuide.trailingAnchor,
       constant: -15
@@ -118,7 +119,10 @@ class OtherAuthViewController: UIViewController {
     view.addSubview(label)
     NSLayoutConstraint.activate([
       label.topAnchor.constraint(equalTo: textField.bottomAnchor, constant: 5),
-      label.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 15),
+      label.leadingAnchor.constraint(
+        equalTo: view.safeAreaLayoutGuide.leadingAnchor,
+        constant: 15
+      ),
       label.trailingAnchor.constraint(
         equalTo: view.safeAreaLayoutGuide.trailingAnchor,
         constant: -15

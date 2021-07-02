@@ -12,8 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import UIKit
 import Firebase
+import UIKit
 
 class PhoneAuthViewController: OtherAuthViewController {
   override func viewDidLoad() {
@@ -37,18 +37,21 @@ class PhoneAuthViewController: OtherAuthViewController {
         guard let verificationID = verificationID else { return }
         self.presentPhoneAuthController { verificationCode in
           let credential = PhoneAuthProvider.provider()
-            .credential(withVerificationID: verificationID, verificationCode: verificationCode)
+            .credential(
+              withVerificationID: verificationID,
+              verificationCode: verificationCode
+            )
           self.signin(with: credential)
         }
       }
   }
 
   private func signin(with credential: PhoneAuthCredential) {
-    Auth.auth().signIn(with: credential) { result, error in
+    Auth.auth().signIn(with: credential) { _, error in
       guard error == nil else { return self.displayError(error) }
       self.navigationController?.dismiss(animated: true, completion: {
         self.delegate?.loginDidOccur()
-            })
+      })
     }
   }
 

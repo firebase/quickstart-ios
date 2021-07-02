@@ -17,8 +17,8 @@
 //  limitations under the License.
 //
 
-import SwiftUI
 import Firebase
+import SwiftUI
 
 struct ReviewView: View {
   var review: Review

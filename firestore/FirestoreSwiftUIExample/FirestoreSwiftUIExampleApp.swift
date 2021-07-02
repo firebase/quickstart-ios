@@ -17,8 +17,8 @@
 //  limitations under the License.
 //
 
-import SwiftUI
 import Firebase
+import SwiftUI
 
 @main
 struct FirestoreSwiftUIExampleApp: App {

@@ -26,12 +26,12 @@ enum AuthProvider: String {
   case emailPassword = "password"
   case passwordless = "emailLink"
   case phoneNumber = "phone"
-  case anonymous = "anonymous"
-  case custom = "custom"
-  
+  case anonymous
+  case custom
+
   /// More intuitively named getter for `rawValue`.
-  var id: String { self.rawValue }
-  
+  var id: String { rawValue }
+
   /// The UI friendly name of the `AuthProvider`. Used for display.
   var name: String {
     switch self {
@@ -61,7 +61,7 @@ enum AuthProvider: String {
       return "Custom Auth System"
     }
   }
-  
+
   /// Failable initializer to create an `AuthProvider` from it's corresponding `name` value.
   /// - Parameter rawValue: String value representing `AuthProvider`'s name or type.
   init?(rawValue: String) {

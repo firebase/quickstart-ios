@@ -14,12 +14,11 @@
 // limitations under the License.
 //
 
-import Foundation
 import Firebase
+import Foundation
 import Reachability
 
 class ReachabililtyHelper: NSObject {
-
   /**
    * Retrieve the locale information for the app.
    */
@@ -63,7 +62,7 @@ class ReachabililtyHelper: NSObject {
     }
   }
 
-  @objc func reachabilityChanged(note: Notification) {
+  @objc func reachabilityChanged(note _: Notification) {
     Crashlytics.crashlytics().setCustomValue(getNetworkStatus(), forKey: "network_connection")
   }
 }

@@ -41,7 +41,7 @@ protocol DataSourceProviderDelegate: AnyObject {
 
 extension DataSourceProviderDelegate {
   /// Provide default implementation to prevent a required implementation when conforming to this protocol
-  func tableViewDidScroll(_ tableView: UITableView) {}
+  func tableViewDidScroll(_: UITableView) {}
 }
 
 /// Models a type that can be used for the datasource in a DataSourceProvider

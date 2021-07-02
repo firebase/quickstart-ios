@@ -50,22 +50,22 @@ class DataSourceProvider<DataSource: DataSourceProvidable>: NSObject, UITableVie
     return sections.count
   }
 
-  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+  func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
     return sections[section].items.count
   }
 
-  func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+  func tableView(_: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
     return sections[section].headerDescription?.isEmpty ?? true ? 20 : 40
   }
 
-  func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+  func tableView(_: UITableView, viewForHeaderInSection section: Int) -> UIView? {
     var label = UILabel()
     let section = sections[section]
     config(&label, for: section)
     return label
   }
 
-  func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+  func tableView(_: UITableView, titleForFooterInSection section: Int) -> String? {
     return sections[section].footerDescription
   }
 

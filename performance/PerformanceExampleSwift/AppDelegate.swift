@@ -14,21 +14,20 @@
 //  limitations under the License.
 //
 
-import UIKit
 import Firebase
+import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
   var window: UIWindow?
 
-  func application(_ application: UIApplication,
-      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+  func application(_: UIApplication,
+                   didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?)
+    -> Bool {
     // [START firebase_configure]
     // Use Firebase library to configure APIs
     FirebaseApp.configure()
     // [END firebase_configure]
     return true
   }
-
 }

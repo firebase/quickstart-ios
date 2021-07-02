@@ -12,8 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import UIKit
 import Firebase
+import UIKit
 
 class LoginController: UIViewController {
   weak var delegate: LoginDelegate?
@@ -63,14 +63,14 @@ class LoginController: UIViewController {
   // MARK: - Firebase 🔥
 
   private func login(with email: String, password: String) {
-    Auth.auth().signIn(withEmail: email, password: password) { result, error in
+    Auth.auth().signIn(withEmail: email, password: password) { _, error in
       guard error == nil else { return self.displayError(error) }
       self.delegate?.loginDidOccur()
     }
   }
 
   private func createUser(email: String, password: String) {
-    Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
+    Auth.auth().createUser(withEmail: email, password: password) { _, error in
       guard error == nil else { return self.displayError(error) }
       self.delegate?.loginDidOccur()
     }

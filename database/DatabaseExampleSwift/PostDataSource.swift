@@ -14,27 +14,28 @@
 //  limitations under the License.
 //
 
-import UIKit
 import FirebaseDatabaseUI
+import UIKit
 
 class PostDataSource: FUITableViewDataSource {
-
-  override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+  override func tableView(_: UITableView, canEditRowAt _: IndexPath) -> Bool {
     return true
   }
 
-  override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+  override func tableView(_: UITableView,
+                          commit editingStyle: UITableViewCell.EditingStyle,
+                          forRowAt indexPath: IndexPath) {
     if editingStyle == .delete {
       snapshot(at: indexPath.row).ref.removeValue()
     }
   }
 
-  override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    if self.count != 0 {
+  override func tableView(_ tableView: UITableView, numberOfRowsInSection _: Int) -> Int {
+    if count != 0 {
       tableView.separatorStyle = .singleLine
       tableView.backgroundView = nil
     }
-    return Int(self.count)
+    return Int(count)
   }
 
   override func numberOfSections(in tableView: UITableView) -> Int {

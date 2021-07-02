@@ -12,8 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import SwiftUI
 import Firebase
+import SwiftUI
 
 /// Main view where user can login in using Email Link Authentication.
 struct ContentView: View {
@@ -77,14 +77,15 @@ struct ContentView: View {
     actionCodeSettings.handleCodeInApp = true
     actionCodeSettings.setIOSBundleID(Bundle.main.bundleIdentifier!)
 
-    Auth.auth().sendSignInLink(toEmail: email, actionCodeSettings: actionCodeSettings) { error in
-      if let error = error {
-        alertItem = AlertItem(
-          title: "The sign in link could not be sent.",
-          message: error.localizedDescription
-        )
+    Auth.auth()
+      .sendSignInLink(toEmail: email, actionCodeSettings: actionCodeSettings) { error in
+        if let error = error {
+          alertItem = AlertItem(
+            title: "The sign in link could not be sent.",
+            message: error.localizedDescription
+          )
+        }
       }
-    }
   }
 
   private func passwordlessSignIn(email: String, link: String,

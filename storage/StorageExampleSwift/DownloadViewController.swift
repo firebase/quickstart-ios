@@ -14,15 +14,14 @@
 //  limitations under the License.
 //
 
-import UIKit
 import Firebase
 import FirebaseStorageSwift
+import UIKit
 
 @objc(DownloadViewController)
 class DownloadViewController: UIViewController {
-
-  @IBOutlet weak var imageView: UIImageView!
-  @IBOutlet weak var statusTextView: UITextView!
+  @IBOutlet var imageView: UIImageView!
+  @IBOutlet var statusTextView: UITextView!
   var storageRef: StorageReference!
 
   override func viewDidLoad() {
@@ -33,7 +32,8 @@ class DownloadViewController: UIViewController {
     let documentsDirectory = paths[0]
     let filePath = "file:\(documentsDirectory)/myimage.jpg"
     guard let fileURL = URL(string: filePath) else { return }
-    guard let storagePath = UserDefaults.standard.object(forKey: "storagePath") as? String else {
+    guard let storagePath = UserDefaults.standard.object(forKey: "storagePath") as? String
+    else {
       return
     }
 

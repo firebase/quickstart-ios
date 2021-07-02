@@ -14,17 +14,16 @@
 //  limitations under the License.
 //
 
-import UIKit
 import Firebase
+import UIKit
 
 /**
-* PatternTabBarController exists as a subclass of UITabBarConttroller that
-* supports a 'share' action. This will trigger a custom event to Analytics and
-* display a dialog.
-*/
-@objc(PatternTabBarController)  // match the ObjC symbol name inside Storyboard
+ * PatternTabBarController exists as a subclass of UITabBarConttroller that
+ * supports a 'share' action. This will trigger a custom event to Analytics and
+ * display a dialog.
+ */
+@objc(PatternTabBarController) // match the ObjC symbol name inside Storyboard
 class PatternTabBarController: UITabBarController {
-
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
     if getUserFavoriteFood() == nil {
@@ -32,30 +31,31 @@ class PatternTabBarController: UITabBarController {
     }
   }
 
-  @IBAction func didTapShare(_ sender: AnyObject) {
-    let name = "Pattern~\(self.selectedViewController!.title!)",
-        text = "I'd love you to hear about\(name)"
+  @IBAction func didTapShare(_: AnyObject) {
+    let name = "Pattern~\(selectedViewController!.title!)",
+      text = "I'd love you to hear about\(name)"
 
     // [START custom_event_swift]
     Analytics.logEvent("share_image", parameters: [
       "name": name as NSObject,
-      "full_text": text as NSObject
-      ])
+      "full_text": text as NSObject,
+    ])
     // [END custom_event_swift]
 
-    let title = "Share: \(self.selectedViewController!.title!)",
-        message = "Share event sent to Analytics; actual share not implemented in this quickstart",
-		alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+    let title = "Share: \(selectedViewController!.title!)",
+      message =
+      "Share event sent to Analytics; actual share not implemented in this quickstart",
+      alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
     alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
     present(alert, animated: true, completion: nil)
   }
 
-  @IBAction func unwindToHome(_ segue: UIStoryboardSegue?) {
-    if let nc = self.navigationController {
+  @IBAction func unwindToHome(_: UIStoryboardSegue?) {
+    if let nc = navigationController {
       nc.dismiss(animated: true, completion: nil)
     }
   }
-  
+
   func getUserFavoriteFood() -> String? {
     return UserDefaults.standard.string(forKey: "favorite_food")
   }
@@ -63,5 +63,4 @@ class PatternTabBarController: UITabBarController {
   func askForFavoriteFood() {
     performSegue(withIdentifier: "pickFavoriteFood", sender: self)
   }
-
 }

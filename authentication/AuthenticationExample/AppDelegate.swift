@@ -12,9 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import UIKit
-import Firebase
 import FBSDKCoreKit
+import Firebase
+import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -26,31 +26,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     FirebaseApp.configure()
 
     ApplicationDelegate.shared.application(
-        application,
-        didFinishLaunchingWithOptions: launchOptions
+      application,
+      didFinishLaunchingWithOptions: launchOptions
     )
 
     return true
   }
 
-  func application(
-      _ app: UIApplication,
-      open url: URL,
-      options: [UIApplication.OpenURLOptionsKey : Any] = [:]
-  ) -> Bool {
-      ApplicationDelegate.shared.application(
-          app,
-          open: url,
-          sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String,
-          annotation: options[UIApplication.OpenURLOptionsKey.annotation]
-      )
+  func application(_ app: UIApplication,
+                   open url: URL,
+                   options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
+    ApplicationDelegate.shared.application(
+      app,
+      open: url,
+      sourceApplication: options[UIApplication.OpenURLOptionsKey
+        .sourceApplication] as? String,
+      annotation: options[UIApplication.OpenURLOptionsKey.annotation]
+    )
   }
 
   // MARK: UISceneSession Lifecycle
 
-  func application(_ application: UIApplication,
+  func application(_: UIApplication,
                    configurationForConnecting connectingSceneSession: UISceneSession,
-                   options: UIScene.ConnectionOptions) -> UISceneConfiguration {
+                   options _: UIScene.ConnectionOptions) -> UISceneConfiguration {
     // Called when a new scene session is being created.
     // Use this method to select a configuration to create the new scene with.
     return UISceneConfiguration(

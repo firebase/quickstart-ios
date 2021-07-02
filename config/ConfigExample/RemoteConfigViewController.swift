@@ -12,8 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import UIKit
 import Firebase
+import UIKit
 
 class RemoteConfigViewController: UIViewController {
   private var remoteConfig: RemoteConfig!
@@ -60,7 +60,7 @@ class RemoteConfigViewController: UIViewController {
 
   /// Fetches remote config values from the server
   private func fetchRemoteConfig() {
-    remoteConfig.fetch { status, error in
+    remoteConfig.fetch { _, error in
       guard error == nil else { return self.displayError(error) }
       print("Remote config successfully fetched!")
     }
@@ -68,7 +68,7 @@ class RemoteConfigViewController: UIViewController {
 
   /// Activates remote config values, making them available to use in your app
   private func activateRemoteConfig() {
-    remoteConfig.activate { success, error in
+    remoteConfig.activate { _, error in
       guard error == nil else { return self.displayError(error) }
       print("Remote config successfully activated!")
       DispatchQueue.main.async {
@@ -80,7 +80,7 @@ class RemoteConfigViewController: UIViewController {
   /// Fetches and activates remote config values
   @objc
   private func fetchAndActivateRemoteConfig() {
-    remoteConfig.fetchAndActivate { status, error in
+    remoteConfig.fetchAndActivate { _, error in
       guard error == nil else { return self.displayError(error) }
       print("Remote config successfully fetched & activated!")
       DispatchQueue.main.async {
@@ -120,7 +120,7 @@ class RemoteConfigViewController: UIViewController {
     displayedJSON.forEach { label in
       UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
         label.alpha = 0
-            }) { _ in
+      }) { _ in
         label.removeFromSuperview()
       }
     }
@@ -136,7 +136,8 @@ class RemoteConfigViewController: UIViewController {
       "serving_size",
       "notes",
     ]
-    guard let recipeDictionary = remoteConfig[recipeKey].jsonValue as? [String: Any] else { return }
+    guard let recipeDictionary = remoteConfig[recipeKey].jsonValue as? [String: Any]
+    else { return }
 
     keys.enumerated().forEach { index, key in
       guard var value = recipeDictionary[key] else { return }
@@ -187,7 +188,7 @@ class RemoteConfigViewController: UIViewController {
   private func animateFadeIn(for view: UIView, duration: TimeInterval) {
     UIView.animate(withDuration: duration, delay: 0, options: .curveEaseIn, animations: {
       view.alpha = 1
-        })
+    })
   }
 }
 

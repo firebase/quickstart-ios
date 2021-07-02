@@ -25,29 +25,33 @@ class MainViewController: MDCCollectionViewController, UITextFieldDelegate {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    self.styler.cellStyle = .card
-    self.styler.cellLayoutType = .list
+    styler.cellStyle = .card
+    styler.cellLayoutType = .list
   }
 
-  override func collectionView(_ collectionView: UICollectionView, cellHeightAt indexPath: IndexPath) -> CGFloat {
+  override func collectionView(_: UICollectionView,
+                               cellHeightAt indexPath: IndexPath) -> CGFloat {
     if indexPath.section == 0 {
       return 181
     }
     return 230
   }
 
-  override func numberOfSections(in collectionView: UICollectionView) -> Int {
+  override func numberOfSections(in _: UICollectionView) -> Int {
     return 2
   }
 
-  override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+  override func collectionView(_: UICollectionView, numberOfItemsInSection _: Int) -> Int {
     return 1
   }
 
   override func collectionView(_ collectionView: UICollectionView,
                                cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     if indexPath.section == 0 {
-      let addCell = collectionView.dequeueReusableCell(withReuseIdentifier: "add", for: indexPath) as! CloudAddCell
+      let addCell = collectionView.dequeueReusableCell(
+        withReuseIdentifier: "add",
+        for: indexPath
+      ) as! CloudAddCell
       addCell.number1Field.delegate = self
       controller1 = MDCTextInputControllerUnderline(textInput: addCell.number1Field)
       addCell.number2Field.delegate = self
@@ -57,7 +61,10 @@ class MainViewController: MDCCollectionViewController, UITextFieldDelegate {
       addCell.button.setElevation(ShadowElevation.raisedButtonPressed, for: .highlighted)
       return addCell
     } else {
-      let commentCell = collectionView.dequeueReusableCell(withReuseIdentifier: "message", for: indexPath) as! CommentCell
+      let commentCell = collectionView.dequeueReusableCell(
+        withReuseIdentifier: "message",
+        for: indexPath
+      ) as! CommentCell
       commentCell.inputField.delegate = self
       controller3 = MDCTextInputControllerUnderline(textInput: commentCell.inputField)
 
@@ -67,4 +74,3 @@ class MainViewController: MDCCollectionViewController, UITextFieldDelegate {
     }
   }
 }
- 

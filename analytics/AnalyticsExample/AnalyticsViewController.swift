@@ -12,8 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import UIKit
 import Firebase
+import UIKit
 
 class AnalyticsViewController: UIViewController {
   private lazy var analyticsView = AnalyticsView(frame: view.frame)
@@ -47,13 +47,15 @@ class AnalyticsViewController: UIViewController {
   @objc
   private func preferredTemperatureFeelDidChange(_ control: UISegmentedControl) {
     let temperatureFeelPreference = control.titleForSegment(at: control.selectedSegmentIndex)!
-    Analytics.logEvent("hot_or_cold_switch", parameters: ["value": temperatureFeelPreference]) // 🔥
+    Analytics
+      .logEvent("hot_or_cold_switch", parameters: ["value": temperatureFeelPreference]) // 🔥
   }
 
   @objc
   private func preferredConditionsDidChange(_ control: UISegmentedControl) {
     let conditionsPreference = control.titleForSegment(at: control.selectedSegmentIndex)!
-    Analytics.logEvent("rainy_or_sunny_switch", parameters: ["value": conditionsPreference]) // 🔥
+    Analytics
+      .logEvent("rainy_or_sunny_switch", parameters: ["value": conditionsPreference]) // 🔥
   }
 
   @objc

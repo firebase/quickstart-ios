@@ -43,7 +43,6 @@ jobs:
         run: |
           ./scripts/test.sh
         env:
-          SWIFT_SUFFIX: 'Swift'
           SAMPLE: ABTesting
           LEGACY: true
       - name: Build SwiftUI

@@ -22,6 +22,8 @@
 # problems that would otherwise arise from the default of installing in
 # /usr/local.
 
+set -euo pipefail
+
 export MINT_PATH=Mint
 
 system=$(uname -s)

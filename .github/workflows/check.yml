@@ -27,4 +27,4 @@ jobs:
       run: mint bootstrap
 
     - name: Check
-      run:  scripts/style.sh --test-only
+      run:  scripts/style.sh test-only

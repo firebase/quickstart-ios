@@ -18,6 +18,7 @@
 		4125B7F8268E319D00232B67 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 4125B7F7268E319D00232B67 /* FirebaseAnalytics */; };
 		4125B7FA268E319D00232B67 /* FirebaseInstallations in Frameworks */ = {isa = PBXBuildFile; productRef = 4125B7F9268E319D00232B67 /* FirebaseInstallations */; };
 		4125B7FC268E319D00232B67 /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = 4125B7FB268E319D00232B67 /* FirebaseRemoteConfig */; };
+		4125B84E268E7EF000232B67 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4125B84D268E7EF000232B67 /* AppConfig.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,7 @@
 		4125B7DC268E2E7C00232B67 /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4125B7E0268E2E7C00232B67 /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
 		4125B848268E507100232B67 /* ABTestingExample--iOS--Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "ABTestingExample--iOS--Info.plist"; sourceTree = "<group>"; };
+		4125B84D268E7EF000232B67 /* AppConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +103,7 @@
 			children = (
 				4125B7C0268E2E7A00232B67 /* ABTestingExampleApp.swift */,
 				4125B7C1268E2E7A00232B67 /* ContentView.swift */,
+				4125B84D268E7EF000232B67 /* AppConfig.swift */,
 				4125B7C2268E2E7C00232B67 /* Assets.xcassets */,
 			);
 			path = Shared;
@@ -299,6 +302,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4125B84E268E7EF000232B67 /* AppConfig.swift in Sources */,
 				4125B7E4268E2E7C00232B67 /* ContentView.swift in Sources */,
 				4125B7E2268E2E7C00232B67 /* ABTestingExampleApp.swift in Sources */,
 			);

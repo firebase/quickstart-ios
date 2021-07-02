@@ -18,38 +18,34 @@ import SwiftUI
 import Firebase
 
 struct ContentView: View {
+  @ObservedObject var appConfig : AppConfig
+  let data: [(title: String, subtitle: String)] = [
+    ("Getting Started with Firebase","An Introduction to Firebase"),
+    ("Google Firestore","Powerful Querying and Automatic Scaling"),
+    ("Analytics","Simple App Insights"),
+    ("Remote Config","Parametrize App Behavior")
+  ]
   var body: some View {
     NavigationView {
-      List {
+      List(data, id: \.title) { item in
         VStack(alignment: .leading) {
-          Text("Getting Started with Firebase")
-          Text("An Introduction to Firebase")
-            .font(.subheadline)
-        }
-        VStack(alignment: .leading) {
-          Text("Google Firestore")
-          Text("Powerful Querying and Automatic Scaling")
-            .font(.subheadline)
-        }
-        VStack(alignment: .leading) {
-          Text("Analytics")
-          Text("Simple App Insights")
-            .font(.subheadline)
-        }
-        VStack(alignment: .leading) {
-          Text("Remote Config")
-          Text("Parametrize App Behavior")
+          Text(item.title)
+          Text(item.subtitle)
             .font(.subheadline)
         }
       }
       .navigationTitle("Firenotes")
       .navigationBarTitleDisplayMode(.inline)
     }
+    .preferredColorScheme(appConfig.colorScheme)
+    .onAppear {
+      appConfig.updateFromRemoteConfig()
+    }
   }
 }
 
 struct ContentView_Previews: PreviewProvider {
   static var previews: some View {
-    ContentView()
+    ContentView(appConfig: AppConfig())
   }
 }

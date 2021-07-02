@@ -19,12 +19,38 @@ import Firebase
 
 @main
 struct ABTestingExampleApp: App {
+  var appConfig : AppConfig
   init() {
     FirebaseApp.configure()
+    let remoteConfig = RemoteConfig.remoteConfig()
+#if DEBUG
+    let devSettings = RemoteConfigSettings()
+    devSettings.minimumFetchInterval = 0
+    remoteConfig.configSettings = devSettings
+#endif
+    remoteConfig.setDefaults(["color_scheme": "light" as NSObject])
+    appConfig = AppConfig()
   }
   var body: some Scene {
     WindowGroup {
-      ContentView()
+      ContentView(appConfig: appConfig)
+    }
+  }
+}
+
+extension RemoteConfigFetchStatus {
+  var debugDescription: String {
+    switch self {
+    case .failure:
+      return "failure"
+    case .noFetchYet:
+      return "pending"
+    case .success:
+      return "success"
+    case .throttled:
+      return "throttled"
+    @unknown default:
+      return "unknown"
     }
   }
 }

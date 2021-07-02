@@ -20,14 +20,13 @@ import Firebase
 class AppDelegate: UIResponder, UIApplicationDelegate {
   var window: UIWindow?
 
-  func application(_: UIApplication,
-                   didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?)
-    -> Bool {
+  func application(_ application: UIApplication,
+                   didFinishLaunchingWithOptions launchOptions: [UIApplication
+                     .LaunchOptionsKey: Any]?) -> Bool {
     // Uncomment the following line to disable In-App Messaging auto-startup.
     // InAppMessaging.inAppMessaging().automaticDataCollectionEnabled = false
 
-    FirebaseOptions.defaultOptions()?
-      .deepLinkURLScheme = "com.google.InAppMessagingExampleSwiftiOS"
+    FirebaseOptions.defaultOptions()?.deepLinkURLScheme = "com.google.InAppMessagingExampleSwiftiOS"
     FirebaseApp.configure()
     return true
   }
@@ -41,10 +40,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                        annotation: options[.annotation] as Any)
   }
 
-  func application(_: UIApplication,
+  func application(_ application: UIApplication,
                    open url: URL,
-                   sourceApplication _: String?,
-                   annotation _: Any) -> Bool {
+                   sourceApplication: String?,
+                   annotation: Any) -> Bool {
     let dynamicLink = DynamicLinks.dynamicLinks().dynamicLink(fromCustomSchemeURL: url)
 
     if dynamicLink != nil {

@@ -78,14 +78,14 @@ class FiltersViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     }
   }
 
-  @IBAction func didTapDoneButton(_: Any) {
+  @IBAction func didTapDoneButton(_ sender: Any) {
     let price = priceTextField.text.flatMap { self.price(from: $0) }
     delegate?.controller(self, didSelectCategory: categoryTextField.text,
                          city: cityTextField.text, price: price, sortBy: sortByTextField.text)
     navigationController?.dismiss(animated: true, completion: nil)
   }
 
-  @IBAction func didTapCancelButton(_: Any) {
+  @IBAction func didTapCancelButton(_ sender: Any) {
     navigationController?.dismiss(animated: true, completion: nil)
   }
 
@@ -131,11 +131,11 @@ class FiltersViewController: UIViewController, UIPickerViewDataSource, UIPickerV
 
   // MARK: UIPickerViewDataSource
 
-  func numberOfComponents(in _: UIPickerView) -> Int {
+  func numberOfComponents(in pickerView: UIPickerView) -> Int {
     return 1
   }
 
-  func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent _: Int) -> Int {
+  func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
     switch pickerView {
     case sortByPickerView:
       return sortByOptions.count
@@ -153,8 +153,7 @@ class FiltersViewController: UIViewController, UIPickerViewDataSource, UIPickerV
 
   // MARK: - UIPickerViewDelegate
 
-  func pickerView(_ pickerView: UIPickerView, titleForRow row: Int,
-                  forComponent _: Int) -> String? {
+  func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent: Int) -> String? {
     switch pickerView {
     case sortByPickerView:
       return sortByOptions[row]
@@ -170,7 +169,7 @@ class FiltersViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     }
   }
 
-  func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent _: Int) {
+  func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
     switch pickerView {
     case sortByPickerView:
       sortByTextField.text = sortByOptions[row]

@@ -14,8 +14,8 @@
 //  limitations under the License.
 //
 
-import Firebase
 import MaterialComponents
+import Firebase
 
 @objc(CloudAddCell)
 class CloudAddCell: MDCCollectionViewCell {
@@ -27,7 +27,7 @@ class CloudAddCell: MDCCollectionViewCell {
   lazy var functions = Functions.functions()
   // [END functions_instance]
 
-  @IBAction func didTapAdd(_: Any) {
+  @IBAction func didTapAdd(_ sender: Any) {
     // [START function_add_numbers]
     let data = ["firstNumber": Int(number1Field.text!),
                 "secondNumber": Int(number2Field.text!)]

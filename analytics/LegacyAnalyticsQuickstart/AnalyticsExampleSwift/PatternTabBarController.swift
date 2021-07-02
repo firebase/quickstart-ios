@@ -14,8 +14,8 @@
 //  limitations under the License.
 //
 
-import Firebase
 import UIKit
+import Firebase
 
 /**
  * PatternTabBarController exists as a subclass of UITabBarConttroller that
@@ -31,7 +31,7 @@ class PatternTabBarController: UITabBarController {
     }
   }
 
-  @IBAction func didTapShare(_: AnyObject) {
+  @IBAction func didTapShare(_ sender: AnyObject) {
     let name = "Pattern~\(selectedViewController!.title!)",
       text = "I'd love you to hear about\(name)"
 
@@ -43,14 +43,13 @@ class PatternTabBarController: UITabBarController {
     // [END custom_event_swift]
 
     let title = "Share: \(selectedViewController!.title!)",
-      message =
-      "Share event sent to Analytics; actual share not implemented in this quickstart",
+      message = "Share event sent to Analytics; actual share not implemented in this quickstart",
       alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
     alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
     present(alert, animated: true, completion: nil)
   }
 
-  @IBAction func unwindToHome(_: UIStoryboardSegue?) {
+  @IBAction func unwindToHome(_ segue: UIStoryboardSegue?) {
     if let nc = navigationController {
       nc.dismiss(animated: true, completion: nil)
     }

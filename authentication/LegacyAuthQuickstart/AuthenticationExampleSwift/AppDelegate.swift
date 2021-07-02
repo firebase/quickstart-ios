@@ -16,12 +16,14 @@
 
 import UIKit
 
-// [END google_import]
-import FBSDKCoreKit
 // [START auth_import]
 import Firebase
+// [END auth_import]
+
 // [START google_import]
 import GoogleSignIn
+// [END google_import]
+import FBSDKCoreKit
 
 @UIApplicationMain
 // [START signin_delegate]
@@ -52,8 +54,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
 
   // [START new_delegate]
   @available(iOS 9.0, *)
-  func application(_ application: UIApplication,
-                   open url: URL,
+  func application(_ application: UIApplication, open url: URL,
                    options: [UIApplication.OpenURLOptionsKey: Any])
     -> Bool {
     // [END new_delegate]
@@ -68,9 +69,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
   // [END new_options]
 
   // [START old_delegate]
-  func application(_ application: UIApplication,
-                   open url: URL,
-                   sourceApplication: String?,
+  func application(_ application: UIApplication, open url: URL, sourceApplication: String?,
                    annotation: Any) -> Bool {
     // [END old_delegate]
     if handlePasswordlessSignIn(withURL: url) {
@@ -88,9 +87,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
 
   // [END old_options]
 
-  func application(_: UIApplication,
-                   continue userActivity: NSUserActivity,
-                   restorationHandler _: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
+  func application(_ application: UIApplication, continue userActivity: NSUserActivity,
+                   restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
     return userActivity.webpageURL.flatMap(handlePasswordlessSignIn)!
   }
 
@@ -110,7 +108,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
   }
 
   // [START headless_google_auth]
-  func sign(_: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error?) {
+  func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error?) {
     // [START_EXCLUDE]
     guard let controller = GIDSignIn.sharedInstance()
       .presentingViewController as? MainViewController else { return }

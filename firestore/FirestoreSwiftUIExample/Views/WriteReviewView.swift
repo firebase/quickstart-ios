@@ -17,8 +17,8 @@
 //  limitations under the License.
 //
 
-import Firebase
 import SwiftUI
+import Firebase
 
 struct WriteReviewView: View {
   var restaurant: Restaurant
@@ -37,8 +37,7 @@ struct WriteReviewView: View {
         addReview()
         self.showAddReviewView = false
       })
-        .disabled(newReview.rating == 0 || text == Constants.placeholderText || text
-          .isEmpty)
+        .disabled(newReview.rating == 0 || text == Constants.placeholderText || text.isEmpty)
         .padding()
         .font(.title2)
     }

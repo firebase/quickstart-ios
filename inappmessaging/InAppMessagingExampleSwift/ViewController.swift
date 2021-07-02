@@ -19,7 +19,7 @@ import Firebase
 class ViewController: UIViewController {
   @IBOutlet var textField: UITextField!
 
-  @IBAction func triggerEvent(_: Any) {
+  @IBAction func triggerEvent(_ sender: Any) {
     if let text = textField.text {
       Analytics.logEvent(text, parameters: nil)
     }

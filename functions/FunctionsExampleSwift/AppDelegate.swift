@@ -26,9 +26,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   var window: UIWindow?
 
-  func application(_: UIApplication,
-                   didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?)
-    -> Bool {
+  func application(_ application: UIApplication,
+                   didFinishLaunchingWithOptions launchOptions: [
+                     UIApplication.LaunchOptionsKey: Any
+                   ]?) -> Bool {
     // [START firebase_configure]
     // Use Firebase library to configure APIs
     FirebaseApp.configure()
@@ -40,25 +41,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   }
 
   @available(iOS 9.0, *)
-  func application(_: UIApplication,
-                   open url: URL,
+  func application(_ app: UIApplication, open url: URL,
                    options: [UIApplication.OpenURLOptionsKey: Any]) -> Bool {
     guard let sourceApplication =
-      options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String
-    else {
+      options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String else {
       return false
     }
     return handleOpenUrl(url, sourceApplication: sourceApplication)
   }
 
   @available(iOS 8.0, *)
-  func application(_: UIApplication, open url: URL, sourceApplication: String?,
-                   annotation _: Any) -> Bool {
+  func application(_ application: UIApplication, open url: URL, sourceApplication: String?,
+                   annotation: Any) -> Bool {
     return handleOpenUrl(url, sourceApplication: sourceApplication)
   }
 
   func handleOpenUrl(_ url: URL, sourceApplication: String?) -> Bool {
-    return FUIAuth.defaultAuthUI()?
-      .handleOpen(url, sourceApplication: sourceApplication) ?? false
+    return FUIAuth.defaultAuthUI()?.handleOpen(url, sourceApplication: sourceApplication) ?? false
   }
 }

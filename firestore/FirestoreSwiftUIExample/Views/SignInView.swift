@@ -17,8 +17,8 @@
 //  limitations under the License.
 //
 
-import Firebase
 import SwiftUI
+import Firebase
 
 struct SignInView: View {
   @State private var isSignedIn = false
@@ -32,7 +32,7 @@ struct SignInView: View {
         )
           { EmptyView() }
         Button("Sign In Anonymously") {
-          Auth.auth().signInAnonymously { _, error in
+          Auth.auth().signInAnonymously { authResult, error in
             if error == nil {
               self.isSignedIn = true
             } else {

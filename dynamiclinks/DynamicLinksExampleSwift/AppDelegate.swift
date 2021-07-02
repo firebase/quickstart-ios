@@ -14,9 +14,9 @@
 //  limitations under the License.
 //
 
+import UIKit
 // [START import]
 import Firebase
-import UIKit
 // [END import]
 
 @UIApplicationMain
@@ -25,9 +25,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   let customURLScheme = "dlscheme"
 
   // [START didfinishlaunching]
-  func application(_: UIApplication,
-                   didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?)
-    -> Bool {
+  func application(_ application: UIApplication,
+                   didFinishLaunchingWithOptions launchOptions: [UIApplication
+                     .LaunchOptionsKey: Any]?) -> Bool {
     // Set deepLinkURLScheme to the custom URL scheme you defined in your
     // Xcode project.
     FirebaseOptions.defaultOptions()?.deepLinkURLScheme = customURLScheme
@@ -40,8 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   // [START openurl]
   @available(iOS 9.0, *)
-  func application(_ app: UIApplication,
-                   open url: URL,
+  func application(_ app: UIApplication, open url: URL,
                    options: [UIApplication.OpenURLOptionsKey: Any]) -> Bool {
     return application(app, open: url,
                        sourceApplication: options[UIApplication.OpenURLOptionsKey
@@ -49,10 +48,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                        annotation: "")
   }
 
-  func application(_: UIApplication,
-                   open url: URL,
-                   sourceApplication _: String?,
-                   annotation _: Any) -> Bool {
+  func application(_ application: UIApplication, open url: URL, sourceApplication: String?,
+                   annotation: Any) -> Bool {
     if let dynamicLink = DynamicLinks.dynamicLinks().dynamicLink(fromCustomSchemeURL: url) {
       // Handle the deep link. For example, show the deep-linked content or
       // apply a promotional offer to the user's account.
@@ -72,10 +69,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   // [END openurl]
 
   // [START continueuseractivity]
-  func application(_: UIApplication, continue userActivity: NSUserActivity,
-                   restorationHandler _: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
+  func application(_ application: UIApplication, continue userActivity: NSUserActivity,
+                   restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
     let handled = DynamicLinks.dynamicLinks()
-      .handleUniversalLink(userActivity.webpageURL!) { dynamiclink, _ in
+      .handleUniversalLink(userActivity.webpageURL!) { dynamiclink, error in
         // [START_EXCLUDE]
         if let dynamiclink = dynamiclink {
           self.handleDynamicLink(dynamiclink)

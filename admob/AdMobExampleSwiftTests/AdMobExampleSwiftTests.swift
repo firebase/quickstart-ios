@@ -31,8 +31,7 @@ class AdMobExampleSwiftTests: XCTestCase {
     super.setUp()
     let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
     guard let vc = storyboard
-      .instantiateViewController(withIdentifier: "ViewController") as? ViewController
-    else {
+      .instantiateViewController(withIdentifier: "ViewController") as? ViewController else {
       return
     }
     vcToTest = vc

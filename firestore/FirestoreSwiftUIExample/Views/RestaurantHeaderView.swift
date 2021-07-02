@@ -57,15 +57,9 @@ struct RestaurantHeaderView: View {
 
 struct RestaurantHeaderView_Previews: PreviewProvider {
   static var previews: some View {
-    let restaurant = Restaurant(
-      name: "Pizza Place",
-      category: "Pizza",
-      city: "Austin",
-      price: 2,
-      ratingCount: 1,
-      averageRating: 4,
-      photo: Restaurant.imageURL(forName: "Pizza Place")
-    )
+    let restaurant = Restaurant(name: "Pizza Place", category: "Pizza", city: "Austin", price: 2,
+                                ratingCount: 1, averageRating: 4,
+                                photo: Restaurant.imageURL(forName: "Pizza Place"))
     RestaurantHeaderView(restaurant: restaurant)
   }
 }

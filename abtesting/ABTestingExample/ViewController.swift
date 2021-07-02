@@ -84,7 +84,7 @@ class ViewController: UIViewController, UITableViewDataSource {
   }
 
   func setAppearance() {
-    RemoteConfig.remoteConfig().activate { _, _ in
+    RemoteConfig.remoteConfig().activate { activated, error in
       let configValue = RemoteConfig.remoteConfig()["color_scheme"]
       print("Config value: \(configValue.stringValue ?? "null")")
       DispatchQueue.main.async {
@@ -158,15 +158,12 @@ class ViewController: UIViewController, UITableViewDataSource {
     ("Remote Config", "Parameterize App Behavior"),
   ]
 
-  func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return data.count
   }
 
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(
-      withIdentifier: "GenericSubtitleCell",
-      for: indexPath
-    )
+    let cell = tableView.dequeueReusableCell(withIdentifier: "GenericSubtitleCell", for: indexPath)
     cell.textLabel?.text = data[indexPath.row].0
     cell.detailTextLabel?.text = data[indexPath.row].1
     cell.detailTextLabel?.alpha = 0.8

@@ -24,15 +24,15 @@ import Firebase
 class CustomTokenViewController: UIViewController {
   @IBOutlet var tokenField: UITextView!
 
-  override func touchesBegan(_: Set<UITouch>, with _: UIEvent?) {
+  override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
     view.endEditing(true)
   }
 
-  @IBAction func didTapCustomTokenLogin(_: AnyObject) {
+  @IBAction func didTapCustomTokenLogin(_ sender: AnyObject) {
     let customToken = tokenField.text
     showSpinner {
       // [START signinwithcustomtoken]
-      Auth.auth().signIn(withCustomToken: customToken ?? "") { _, error in
+      Auth.auth().signIn(withCustomToken: customToken ?? "") { user, error in
         // [START_EXCLUDE]
         self.hideSpinner {
           if let error = error {

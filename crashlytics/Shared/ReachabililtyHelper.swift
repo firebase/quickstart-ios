@@ -14,8 +14,8 @@
 // limitations under the License.
 //
 
-import Firebase
 import Foundation
+import Firebase
 import Reachability
 
 class ReachabililtyHelper: NSObject {
@@ -62,7 +62,7 @@ class ReachabililtyHelper: NSObject {
     }
   }
 
-  @objc func reachabilityChanged(note _: Notification) {
+  @objc func reachabilityChanged(note: Notification) {
     Crashlytics.crashlytics().setCustomValue(getNetworkStatus(), forKey: "network_connection")
   }
 }

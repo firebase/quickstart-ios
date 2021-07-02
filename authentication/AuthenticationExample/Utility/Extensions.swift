@@ -12,8 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Firebase
 import UIKit
+import Firebase
 
 // MARK: - Extending a `Firebase User` to conform to `DataSourceProvidable`
 
@@ -21,11 +21,7 @@ extension User: DataSourceProvidable {
   private var infoSection: Section {
     let items = [Item(title: providerID, detailTitle: "Provider ID"),
                  Item(title: uid, detailTitle: "UUID"),
-                 Item(
-                   title: displayName ?? "––",
-                   detailTitle: "Display Name",
-                   isEditable: true
-                 ),
+                 Item(title: displayName ?? "––", detailTitle: "Display Name", isEditable: true),
                  Item(
                    title: photoURL?.absoluteString ?? "––",
                    detailTitle: "Photo URL",
@@ -46,10 +42,7 @@ extension User: DataSourceProvidable {
 
   private var otherSection: Section {
     let otherRows = [Item(title: isAnonymous ? "Yes" : "No", detailTitle: "Is User Anonymous?"),
-                     Item(
-                       title: isEmailVerified ? "Yes" : "No",
-                       detailTitle: "Is Email Verified?"
-                     )]
+                     Item(title: isEmailVerified ? "Yes" : "No", detailTitle: "Is Email Verified?")]
     return Section(headerDescription: "Other", items: otherRows)
   }
 

@@ -17,17 +17,17 @@
 //  AdMobExampleSwift
 //
 
-import Firebase
-import GoogleMobileAds
 // [START firebase_config]
 import UIKit
+import Firebase
+import GoogleMobileAds
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
   var window: UIWindow?
 
-  internal func application(_: UIApplication,
-                            didFinishLaunchingWithOptions _: [UIApplication
+  internal func application(_ application: UIApplication,
+                            didFinishLaunchingWithOptions launchOptions: [UIApplication
                               .LaunchOptionsKey: Any]?) -> Bool {
     // Use Firebase library to configure APIs
     FirebaseApp.configure()

@@ -12,8 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@testable import AuthenticationExample
 import XCTest
+@testable import AuthenticationExample
 
 class AuthenticationExampleTests: XCTestCase {
   override func setUp() {

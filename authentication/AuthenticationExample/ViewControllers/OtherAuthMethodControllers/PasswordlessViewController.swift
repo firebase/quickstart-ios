@@ -12,8 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Firebase
 import UIKit
+import Firebase
 
 class PasswordlessViewController: OtherAuthViewController {
   private var email: String!
@@ -41,13 +41,12 @@ class PasswordlessViewController: OtherAuthViewController {
     actionCodeSettings.handleCodeInApp = true
     actionCodeSettings.setIOSBundleID(Bundle.main.bundleIdentifier!)
 
-    Auth.auth()
-      .sendSignInLink(toEmail: email, actionCodeSettings: actionCodeSettings) { error in
-        guard error == nil else { return self.displayError(error) }
+    Auth.auth().sendSignInLink(toEmail: email, actionCodeSettings: actionCodeSettings) { error in
+      guard error == nil else { return self.displayError(error) }
 
-        // Set `email` property as it will be used to complete sign in after opening email link
-        self.email = email
-      }
+      // Set `email` property as it will be used to complete sign in after opening email link
+      self.email = email
+    }
   }
 
   @objc
@@ -55,7 +54,7 @@ class PasswordlessViewController: OtherAuthViewController {
     // Retrieve link that we stored in user defaults in `SceneDelegate`.
     guard let link = UserDefaults.standard.value(forKey: "Link") as? String else { return }
 
-    Auth.auth().signIn(withEmail: email, link: link) { _, error in
+    Auth.auth().signIn(withEmail: email, link: link) { result, error in
       guard error == nil else { return self.displayError(error) }
 
       guard let currentUser = Auth.auth().currentUser else { return }

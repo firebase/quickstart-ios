@@ -14,8 +14,8 @@
 //  limitations under the License.
 //
 
-import Firebase
 import UIKit
+import Firebase
 
 @objc(SignInViewController)
 class SignInViewController: UIViewController, UITextFieldDelegate {
@@ -23,7 +23,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
   @IBOutlet var passwordField: UITextField!
   var ref: DatabaseReference!
 
-  override func touchesBegan(_: Set<UITouch>, with _: UIEvent?) {
+  override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
     view.endEditing(true)
   }
 
@@ -59,7 +59,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     }
   }
 
-  @IBAction func didTapEmailLogin(_: AnyObject) {
+  @IBAction func didTapEmailLogin(_ sender: AnyObject) {
     guard let email = emailField.text, let password = passwordField.text else {
       showMessagePrompt("email/password can't be empty")
       return
@@ -77,32 +77,31 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         return
       }
 
-      self.ref.child("users").child(user.uid)
-        .observeSingleEvent(of: .value, with: { snapshot in
+      self.ref.child("users").child(user.uid).observeSingleEvent(of: .value, with: { snapshot in
 
-          // Check if user already exists
-          guard !snapshot.exists() else {
-            self.performSegue(withIdentifier: "signIn", sender: nil)
+        // Check if user already exists
+        guard !snapshot.exists() else {
+          self.performSegue(withIdentifier: "signIn", sender: nil)
+          return
+        }
+
+        // Otherwise, create the new user account
+        self.showTextInputPrompt(withMessage: "Username:") { userPressedOK, username in
+
+          guard let username = username else {
+            self.showMessagePrompt("Username can't be empty")
             return
           }
 
-          // Otherwise, create the new user account
-          self.showTextInputPrompt(withMessage: "Username:") { _, username in
-
-            guard let username = username else {
-              self.showMessagePrompt("Username can't be empty")
-              return
-            }
-
-            self.saveUserInfo(user, withUsername: username)
-          }
-        }) // End of observeSingleEvent
+          self.saveUserInfo(user, withUsername: username)
+        }
+      }) // End of observeSingleEvent
     }) // End of signIn
   }
 
-  @IBAction func didTapSignUp(_: AnyObject) {
+  @IBAction func didTapSignUp(_ sender: AnyObject) {
     func getEmail(completion: @escaping (String) -> Void) {
-      showTextInputPrompt(withMessage: "Email:") { _, email in
+      showTextInputPrompt(withMessage: "Email:") { userPressedOK, email in
         guard let email = email else {
           self.showMessagePrompt("Email can't be empty.")
           return
@@ -112,7 +111,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     }
 
     func getUsername(completion: @escaping (String) -> Void) {
-      showTextInputPrompt(withMessage: "Username:") { _, username in
+      showTextInputPrompt(withMessage: "Username:") { userPressedOK, username in
         guard let username = username else {
           self.showMessagePrompt("Username can't be empty.")
           return
@@ -122,7 +121,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     }
 
     func getPassword(completion: @escaping (String) -> Void) {
-      showTextInputPrompt(withMessage: "Password:") { _, password in
+      showTextInputPrompt(withMessage: "Password:") { userPressedOK, password in
         guard let password = password else {
           self.showMessagePrompt("Password can't be empty.")
           return
@@ -138,18 +137,17 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
 
           // Create the user with the provided credentials
           Auth.auth()
-            .createUser(withEmail: email, password: password,
-                        completion: { authResult, error in
+            .createUser(withEmail: email, password: password, completion: { authResult, error in
 
-                          guard let user = authResult?.user, error == nil else {
-                            self.showMessagePrompt(error!.localizedDescription)
-                            return
-                          }
+              guard let user = authResult?.user, error == nil else {
+                self.showMessagePrompt(error!.localizedDescription)
+                return
+              }
 
-                          // Finally, save their profile
-                          self.saveUserInfo(user, withUsername: username)
+              // Finally, save their profile
+              self.saveUserInfo(user, withUsername: username)
 
-                        })
+            })
         }
       }
     }

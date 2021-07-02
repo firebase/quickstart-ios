@@ -21,17 +21,7 @@ import Firebase
 
 extension Firestore {
   func populate() {
-    let words = [
-      "Bar",
-      "Fire",
-      "Grill",
-      "Drive Thru",
-      "Place",
-      "Best",
-      "Spot",
-      "Prime",
-      "Eatin'",
-    ]
+    let words = ["Bar", "Fire", "Grill", "Drive Thru", "Place", "Best", "Spot", "Prime", "Eatin'"]
 
     let cities = Restaurant.cities
     let categories = Restaurant.categories

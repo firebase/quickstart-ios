@@ -62,8 +62,7 @@ struct StarsInputView: View {
     if newReview.rating == 0 {
       return Image(systemName: "star")
     } else {
-      return num > newReview
-        .rating ? Image(systemName: "star") : Image(systemName: "star.fill")
+      return num > newReview.rating ? Image(systemName: "star") : Image(systemName: "star.fill")
     }
   }
 }

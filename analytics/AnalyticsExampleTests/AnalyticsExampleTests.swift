@@ -12,8 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@testable import AnalyticsExample
 import XCTest
+@testable import AnalyticsExample
 
 class AnalyticsExampleTests: XCTestCase {
   override func setUp() {

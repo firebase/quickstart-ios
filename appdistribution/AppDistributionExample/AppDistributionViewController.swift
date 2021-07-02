@@ -12,8 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Firebase
 import UIKit
+import Firebase
 
 class AppDistributionViewController: UIViewController {
   override func viewDidLoad() {
@@ -23,8 +23,8 @@ class AppDistributionViewController: UIViewController {
 
   // MARK: - Firebase 🔥
 
-  override func viewDidAppear(_: Bool) {
-    AppDistribution.appDistribution().checkForUpdate { release, _ in
+  override func viewDidAppear(_ animated: Bool) {
+    AppDistribution.appDistribution().checkForUpdate { release, error in
       guard let release = release else {
         print("No release found")
         return
@@ -35,11 +35,11 @@ class AppDistributionViewController: UIViewController {
       let uialert = UIAlertController(title: title, message: message, preferredStyle: .alert)
 
       uialert.addAction(UIAlertAction(title: "Update", style: UIAlertAction.Style.default) {
-        _ in
+        alert in
         UIApplication.shared.open(release.downloadURL)
       })
       uialert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel) {
-        _ in
+        alert in
       })
 
       // self should be a UIViewController.

@@ -14,8 +14,8 @@
 //  limitations under the License.
 //
 
-import Firebase
 import UIKit
+import Firebase
 
 @objc(ViewController)
 class ViewController: UIViewController {
@@ -31,7 +31,7 @@ class ViewController: UIViewController {
     )
   }
 
-  @IBAction func handleLogTokenTouch(_: UIButton) {
+  @IBAction func handleLogTokenTouch(_ sender: UIButton) {
     // [START log_fcm_reg_token]
     let token = Messaging.messaging().fcmToken
     print("FCM token: \(token ?? "")")
@@ -50,9 +50,9 @@ class ViewController: UIViewController {
     // [END log_iid_reg_token]
   }
 
-  @IBAction func handleSubscribeTouch(_: UIButton) {
+  @IBAction func handleSubscribeTouch(_ sender: UIButton) {
     // [START subscribe_topic]
-    Messaging.messaging().subscribe(toTopic: "weather") { _ in
+    Messaging.messaging().subscribe(toTopic: "weather") { error in
       print("Subscribed to weather topic")
     }
     // [END subscribe_topic]

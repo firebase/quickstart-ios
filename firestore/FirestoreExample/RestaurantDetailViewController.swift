@@ -14,9 +14,9 @@
 //  limitations under the License.
 //
 
-import Firebase
-import SDWebImage
 import UIKit
+import SDWebImage
+import Firebase
 
 class RestaurantDetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate,
   NewReviewViewControllerDelegate {
@@ -26,10 +26,8 @@ class RestaurantDetailViewController: UIViewController, UITableViewDataSource, U
 
   var localCollection: LocalCollection<Review>!
 
-  static func fromStoryboard(_ storyboard: UIStoryboard = UIStoryboard(
-    name: "Main",
-    bundle: nil
-  )) -> RestaurantDetailViewController {
+  static func fromStoryboard(_ storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil))
+    -> RestaurantDetailViewController {
     let controller = storyboard
       .instantiateViewController(
         withIdentifier: "RestaurantDetailViewController"
@@ -103,7 +101,7 @@ class RestaurantDetailViewController: UIViewController, UITableViewDataSource, U
     }
   }
 
-  @IBAction func didTapAddButton(_: Any) {
+  @IBAction func didTapAddButton(_ sender: Any) {
     let controller = NewReviewViewController.fromStoryboard()
     controller.delegate = self
     navigationController?.pushViewController(controller, animated: true)
@@ -111,7 +109,7 @@ class RestaurantDetailViewController: UIViewController, UITableViewDataSource, U
 
   // MARK: - UITableViewDataSource
 
-  func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return localCollection.count
   }
 
@@ -125,7 +123,8 @@ class RestaurantDetailViewController: UIViewController, UITableViewDataSource, U
 
   // MARK: - NewReviewViewControllerDelegate
 
-  func reviewController(_: NewReviewViewController, didSubmitFormWithReview review: Review) {
+  func reviewController(_ controller: NewReviewViewController,
+                        didSubmitFormWithReview review: Review) {
     guard let reference = restaurantReference else { return }
     let reviewsCollection = reference.collection("ratings")
     let newReviewReference = reviewsCollection.document()
@@ -150,24 +149,16 @@ class RestaurantDetailViewController: UIViewController, UITableViewDataSource, U
       do {
         maybeRestaurant = try restaurantSnapshot.data(as: Restaurant.self)
       } catch {
-        errorPointer?.pointee = NSError(
-          domain: "FriendlyEatsErrorDomain",
-          code: 0,
-          userInfo: [
-            NSLocalizedDescriptionKey: "Unable to read restaurant at Firestore path: \(reference.path): \(error)",
-          ]
-        )
+        errorPointer?.pointee = NSError(domain: "FriendlyEatsErrorDomain", code: 0, userInfo: [
+          NSLocalizedDescriptionKey: "Unable to read restaurant at Firestore path: \(reference.path): \(error)",
+        ])
         return nil
       }
 
       guard let restaurant = maybeRestaurant else {
-        errorPointer?.pointee = NSError(
-          domain: "FriendlyEatsErrorDomain",
-          code: 0,
-          userInfo: [
-            NSLocalizedDescriptionKey: "Missing restaurant at Firestore path: \(reference.path)",
-          ]
-        )
+        errorPointer?.pointee = NSError(domain: "FriendlyEatsErrorDomain", code: 0, userInfo: [
+          NSLocalizedDescriptionKey: "Missing restaurant at Firestore path: \(reference.path)",
+        ])
         return nil
       }
 
@@ -188,7 +179,7 @@ class RestaurantDetailViewController: UIViewController, UITableViewDataSource, U
         "avgRating": newAverage,
       ], forDocument: reference)
       return nil
-    }) { _, error in
+    }) { object, error in
       if let error = error {
         print(error)
       } else {

@@ -14,8 +14,8 @@
 //  limitations under the License.
 //
 
-import Firebase
 import UIKit
+import Firebase
 
 @objc(NewPostViewController)
 class NewPostViewController: UIViewController, UITextFieldDelegate {
@@ -47,7 +47,7 @@ class NewPostViewController: UIViewController, UITextFieldDelegate {
     titleTextField.inputAccessoryView = doneBar
   }
 
-  @IBAction func didTapShare(_: AnyObject) {
+  @IBAction func didTapShare(_ sender: AnyObject) {
     // [START single_value_read]
     let userID = Auth.auth().currentUser?.uid
     ref.child("users").child(userID!).observeSingleEvent(of: .value, with: { snapshot in

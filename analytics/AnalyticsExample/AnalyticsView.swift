@@ -62,7 +62,7 @@ final class AnalyticsView: UIScrollView {
     setupSubviews()
   }
 
-  required init?(coder _: NSCoder) {
+  required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
 
@@ -109,10 +109,7 @@ final class AnalyticsView: UIScrollView {
     // MARK: - Preferred Temperature Units (°C or °F) UISegmentedControl
 
     /// Static `UILabel` associated with `preferredTemperatureFeelPicker`.
-    let unitsLabel = buildLabel(
-      text: "Preferred Temperature Units:",
-      textColor: .secondaryLabel
-    )
+    let unitsLabel = buildLabel(text: "Preferred Temperature Units:", textColor: .secondaryLabel)
     addSubview(unitsLabel)
     unitsLabel.frame = CGRect(
       x: xOrigin, y: seasonImageView.frame.maxY + padding(.element),
@@ -202,17 +199,13 @@ final class AnalyticsView: UIScrollView {
     )
     addSubview(sliderTemperatureLabel)
     sliderTemperatureLabel.frame = CGRect(
-      x: frame.width - 65, y: preferredConditionsPickerLabel.frame.maxY + 10, width: 50,
-      height: 30
+      x: frame.width - 65, y: preferredConditionsPickerLabel.frame.maxY + 10, width: 50, height: 30
     )
 
     /// A `UISlider` representing a user's preferred temperature.
     addSubview(temperatureSlider)
     temperatureSlider.frame = CGRect(
-      origin: CGPoint(
-        x: xOrigin,
-        y: preferredTemperatureLabel.frame.maxY + padding(.section)
-      ),
+      origin: CGPoint(x: xOrigin, y: preferredTemperatureLabel.frame.maxY + padding(.section)),
       size: CGSize(width: insetWidth, height: 20)
     )
 

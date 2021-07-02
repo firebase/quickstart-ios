@@ -17,8 +17,8 @@
 //  limitations under the License.
 //
 
-import Firebase
 import SwiftUI
+import Firebase
 
 struct RestaurantListView: View {
   @ObservedObject var restaurantListViewModel = RestaurantListViewModel()
@@ -36,14 +36,9 @@ struct RestaurantListView: View {
         }
       }
       .sheet(isPresented: $showFilterView) {
-        FilterView(
-          viewModel: self.restaurantListViewModel,
-          showFilterView: self.$showFilterView,
-          selectedCategory: self.$selectedCategory,
-          selectedCity: self.$selectedCity,
-          selectedPrice: self.$selectedPrice,
-          selectedSortOption: self.$selectedSortOption
-        )
+        FilterView(viewModel: self.restaurantListViewModel, showFilterView: self.$showFilterView,
+                   selectedCategory: self.$selectedCategory, selectedCity: self.$selectedCity,
+                   selectedPrice: self.$selectedPrice, selectedSortOption: self.$selectedSortOption)
       }
       .navigationBarTitle("Friendly Eats")
       .toolbar {
@@ -59,12 +54,9 @@ struct RestaurantListView: View {
         }
       }
       .onAppear {
-        let query = restaurantListViewModel.query(
-          category: selectedCategory,
-          city: selectedCity,
-          price: selectedPrice,
-          sortOption: selectedSortOption
-        )
+        let query = restaurantListViewModel.query(category: selectedCategory, city: selectedCity,
+                                                  price: selectedPrice,
+                                                  sortOption: selectedSortOption)
         restaurantListViewModel.subscribe(to: query)
       }
       .onDisappear {

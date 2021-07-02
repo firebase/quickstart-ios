@@ -32,15 +32,15 @@ class PasswordlessViewController: UIViewController {
     }
   }
 
-  override func touchesBegan(_: Set<UITouch>, with _: UIEvent?) {
+  override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
     view.endEditing(true)
   }
 
-  @IBAction func didTapSignInWithEmailLink(_: AnyObject) {
+  @IBAction func didTapSignInWithEmailLink(_ sender: AnyObject) {
     if let email = emailField.text {
       showSpinner {
         // [START signin_emaillink]
-        Auth.auth().signIn(withEmail: email, link: self.link) { _, error in
+        Auth.auth().signIn(withEmail: email, link: self.link) { user, error in
           // [START_EXCLUDE]
           self.hideSpinner {
             if let error = error {
@@ -58,7 +58,7 @@ class PasswordlessViewController: UIViewController {
     }
   }
 
-  @IBAction func didTapSendSignInLink(_: AnyObject) {
+  @IBAction func didTapSendSignInLink(_ sender: AnyObject) {
     if let email = emailField.text {
       showSpinner {
         // [START action_code_settings]
@@ -68,8 +68,7 @@ class PasswordlessViewController: UIViewController {
         actionCodeSettings.handleCodeInApp = true
         actionCodeSettings.setIOSBundleID(Bundle.main.bundleIdentifier!)
         actionCodeSettings.setAndroidPackageName("com.example.android",
-                                                 installIfNotAvailable: false,
-                                                 minimumVersion: "12")
+                                                 installIfNotAvailable: false, minimumVersion: "12")
         // [END action_code_settings]
         // [START send_signin_link]
         Auth.auth().sendSignInLink(toEmail: email,

@@ -14,8 +14,8 @@
 //  limitations under the License.
 //
 
-import Firebase
 import UIKit
+import Firebase
 
 @objc(MyPostsViewController)
 class MyPostsViewController: PostListViewController {

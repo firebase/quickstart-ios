@@ -12,8 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Firebase
 import UIKit
+import Firebase
 
 class UserViewController: UIViewController, DataSourceProviderDelegate {
   var dataSourceProvider: DataSourceProvider<User>!
@@ -34,7 +34,7 @@ class UserViewController: UIViewController, DataSourceProviderDelegate {
     self.user = user
   }
 
-  required init?(coder _: NSCoder) {
+  required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
 
@@ -61,7 +61,7 @@ class UserViewController: UIViewController, DataSourceProviderDelegate {
     adjustUserImageAlpha(tableView.contentOffset.y)
   }
 
-  func didSelectRowAt(_ indexPath: IndexPath, on _: UITableView) {
+  func didSelectRowAt(_ indexPath: IndexPath, on tableView: UITableView) {
     let item = dataSourceProvider.item(at: indexPath)
 
     let actionName = item.isEditable ? item.detailTitle! : item.title!
@@ -191,10 +191,7 @@ class UserViewController: UIViewController, DataSourceProviderDelegate {
   private func updateUserImage() {
     guard let photoURL = user?.photoURL else {
       let defaultImage = UIImage(systemName: "person.circle.fill")
-      userImage.image = defaultImage?.withTintColor(
-        .secondaryLabel,
-        renderingMode: .alwaysOriginal
-      )
+      userImage.image = defaultImage?.withTintColor(.secondaryLabel, renderingMode: .alwaysOriginal)
       return
     }
     userImage.setImage(from: photoURL)
@@ -235,8 +232,7 @@ class UserViewController: UIViewController, DataSourceProviderDelegate {
       saveHandler(text)
     }
 
-    editController
-      .addAction(UIAlertAction(title: "Save", style: .default, handler: saveHandler))
+    editController.addAction(UIAlertAction(title: "Save", style: .default, handler: saveHandler))
     editController.addAction(UIAlertAction(title: "Cancel", style: .cancel))
     present(editController, animated: true, completion: nil)
   }

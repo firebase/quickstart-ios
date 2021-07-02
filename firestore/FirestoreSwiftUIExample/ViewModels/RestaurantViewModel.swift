@@ -17,8 +17,8 @@
 //  limitations under the License.
 //
 
-import Combine
 import Firebase
+import Combine
 
 class RestaurantViewModel: ObservableObject {
   var restaurant: Restaurant
@@ -72,7 +72,7 @@ class RestaurantViewModel: ObservableObject {
       }
 
       return nil
-    }) { _, error in
+    }) { object, error in
       if let error = error {
         print("Transaction failed: \(error)")
       }

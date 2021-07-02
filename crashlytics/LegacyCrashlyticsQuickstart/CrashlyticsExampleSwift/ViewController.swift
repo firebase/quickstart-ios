@@ -14,9 +14,9 @@
 //  limitations under the License.
 //
 
+import UIKit
 import FirebaseCrashlytics
 import Reachability
-import UIKit
 
 @objc(ViewController)
 class ViewController: UIViewController {
@@ -60,7 +60,7 @@ class ViewController: UIViewController {
     Crashlytics.crashlytics().record(error: error)
   }
 
-  @IBAction func initiateCrash(_: AnyObject) {
+  @IBAction func initiateCrash(_ sender: AnyObject) {
     // [START log_and_crash_swift]
     Crashlytics.crashlytics().log("Cause Crash button clicked")
     fatalError()
@@ -110,7 +110,7 @@ class ViewController: UIViewController {
     }
   }
 
-  @objc func reachabilityChanged(note _: Notification) {
+  @objc func reachabilityChanged(note: Notification) {
     Crashlytics.crashlytics().setCustomValue(getNetworkStatus(), forKey: "network_connection")
   }
 }

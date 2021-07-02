@@ -56,8 +56,7 @@ class RemoteConfigView: UIView {
     let labelText = "%@ Use JSON to configure complex entities"
     let symbolName = "arrow.down.doc.fill"
     let attributedText = NSMutableAttributedString(text: labelText, textColor: .secondaryLabel,
-                                                   symbol: symbolName,
-                                                   symbolColor: .systemOrange)
+                                                   symbol: symbolName, symbolColor: .systemOrange)
     attributedText.setColorForText(text: "JSON", color: .systemOrange)
     return attributedText
   }
@@ -97,15 +96,9 @@ class RemoteConfigView: UIView {
 
     NSLayoutConstraint.activate([
       label.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 15),
-      label.leadingAnchor.constraint(
-        equalTo: safeAreaLayoutGuide.leadingAnchor,
-        constant: 15
-      ),
+      label.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 15),
       topLabel.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 10),
-      topLabel.leadingAnchor.constraint(
-        equalTo: safeAreaLayoutGuide.leadingAnchor,
-        constant: 15
-      ),
+      topLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 15),
       topLabel.trailingAnchor.constraint(
         equalTo: safeAreaLayoutGuide.trailingAnchor,
         constant: -15
@@ -129,22 +122,13 @@ class RemoteConfigView: UIView {
 
     NSLayoutConstraint.activate([
       label.bottomAnchor.constraint(equalTo: jsonView.topAnchor, constant: -10),
-      label.leadingAnchor.constraint(
-        equalTo: safeAreaLayoutGuide.leadingAnchor,
-        constant: 15
-      ),
-      jsonView.leadingAnchor.constraint(
-        equalTo: safeAreaLayoutGuide.leadingAnchor,
-        constant: 15
-      ),
+      label.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 15),
+      jsonView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 15),
       jsonView.trailingAnchor.constraint(
         equalTo: safeAreaLayoutGuide.trailingAnchor,
         constant: -15
       ),
-      jsonView.centerYAnchor.constraint(
-        equalTo: safeAreaLayoutGuide.centerYAnchor,
-        constant: -30
-      ),
+      jsonView.centerYAnchor.constraint(equalTo: safeAreaLayoutGuide.centerYAnchor, constant: -30),
       jsonView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.37),
     ])
   }
@@ -163,10 +147,7 @@ class RemoteConfigView: UIView {
 
     NSLayoutConstraint.activate([
       label.topAnchor.constraint(equalTo: jsonView.bottomAnchor, constant: 30),
-      label.leadingAnchor.constraint(
-        equalTo: safeAreaLayoutGuide.leadingAnchor,
-        constant: 15
-      ),
+      label.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 15),
       bottomLabel.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 10),
       bottomLabel.leadingAnchor.constraint(
         equalTo: safeAreaLayoutGuide.leadingAnchor,

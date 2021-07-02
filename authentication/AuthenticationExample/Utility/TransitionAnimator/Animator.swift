@@ -27,7 +27,7 @@ class Animator: NSObject, UIViewControllerAnimatedTransitioning {
     transitionDirection = direction
   }
 
-  func transitionDuration(using _: UIViewControllerContextTransitioning?)
+  func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?)
     -> TimeInterval {
     return transitionDuration as TimeInterval
   }
@@ -36,14 +36,12 @@ class Animator: NSObject, UIViewControllerAnimatedTransitioning {
     let container = transitionContext.containerView
 
     guard let fromView = transitionContext.view(forKey: .from),
-      let toView = transitionContext.view(forKey: .to)
-    else {
+      let toView = transitionContext.view(forKey: .to) else {
       transitionContext.completeTransition(false)
       return
     }
 
-    let translation: CGFloat = transitionDirection == .right ? container.frame
-      .width : -container
+    let translation: CGFloat = transitionDirection == .right ? container.frame.width : -container
       .frame.width
     let toViewStartFrame = container.frame
       .applying(CGAffineTransform(translationX: translation, y: 0))

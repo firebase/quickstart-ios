@@ -14,8 +14,8 @@
 //  limitations under the License.
 //
 
-import Firebase
 import UIKit
+import Firebase
 
 @objc(PostTableViewCell)
 class PostTableViewCell: UITableViewCell {
@@ -28,7 +28,7 @@ class PostTableViewCell: UITableViewCell {
   var postKey: String?
   var postRef: DatabaseReference!
 
-  @IBAction func didTapStarButton(_: AnyObject) {
+  @IBAction func didTapStarButton(_ sender: AnyObject) {
     if let postKey = postKey {
       postRef = Database.database().reference().child("posts").child(postKey)
       incrementStars(forRef: postRef)
@@ -71,7 +71,7 @@ class PostTableViewCell: UITableViewCell {
         return TransactionResult.success(withValue: currentData)
       }
       return TransactionResult.success(withValue: currentData)
-    }) { error, _, _ in
+    }) { error, committed, snapshot in
       if let error = error {
         print(error.localizedDescription)
       }

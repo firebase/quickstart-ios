@@ -14,8 +14,8 @@
 //  limitations under the License.
 //
 
-import Firebase
 import MaterialComponents
+import Firebase
 
 @objc(CommentCell)
 class CommentCell: MDCCollectionViewCell {
@@ -26,7 +26,7 @@ class CommentCell: MDCCollectionViewCell {
   lazy var functions = Functions.functions()
   // [END functions_instance]
 
-  @IBAction func didTapAddMessage(_: Any) {
+  @IBAction func didTapAddMessage(_ sender: Any) {
     // [START function_add_message]
     functions.httpsCallable("addMessage").call(["text": inputField.text]) { result, error in
       // [START function_error]

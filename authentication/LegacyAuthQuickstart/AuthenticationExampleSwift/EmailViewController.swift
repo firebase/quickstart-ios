@@ -23,18 +23,18 @@ class EmailViewController: UIViewController {
   @IBOutlet var emailField: UITextField!
   @IBOutlet var passwordField: UITextField!
 
-  override func touchesBegan(_: Set<UITouch>, with _: UIEvent?) {
+  override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
     view.endEditing(true)
   }
 
-  @IBAction func didTapEmailLogin(_: AnyObject) {
+  @IBAction func didTapEmailLogin(_ sender: AnyObject) {
     guard let email = emailField.text, let password = passwordField.text else {
       showMessagePrompt("email/password can't be empty")
       return
     }
     showSpinner {
       // [START headless_email_auth]
-      Auth.auth().signIn(withEmail: email, password: password) { [weak self] _, error in
+      Auth.auth().signIn(withEmail: email, password: password) { [weak self] authResult, error in
         guard let strongSelf = self else { return }
         // [START_EXCLUDE]
         strongSelf.hideSpinner {
@@ -43,9 +43,7 @@ class EmailViewController: UIViewController {
             if authError.code == AuthErrorCode.secondFactorRequired.rawValue {
               // The user is a multi-factor user. Second factor challenge is required.
               let resolver = authError
-                .userInfo[
-                  AuthErrorUserInfoMultiFactorResolverKey
-                ] as! MultiFactorResolver
+                .userInfo[AuthErrorUserInfoMultiFactorResolverKey] as! MultiFactorResolver
               var displayNameString = ""
               for tmpFactorInfo in resolver.hints {
                 displayNameString += tmpFactorInfo.displayName ?? ""
@@ -53,7 +51,7 @@ class EmailViewController: UIViewController {
               }
               self!.showTextInputPrompt(
                 withMessage: "Select factor to sign in\n\(displayNameString)",
-                completionBlock: { _, displayName in
+                completionBlock: { userPressedOK, displayName in
                   var selectedHint: PhoneMultiFactorInfo?
                   for tmpFactorInfo in resolver.hints {
                     if displayName == tmpFactorInfo.displayName {
@@ -65,27 +63,23 @@ class EmailViewController: UIViewController {
                                        multiFactorSession: resolver
                                          .session) { verificationID, error in
                       if error != nil {
-                        print(
-                          "Multi factor start sign in failed. Error: \(error.debugDescription)"
-                        )
+                        print("Multi factor start sign in failed. Error: \(error.debugDescription)")
                       } else {
                         self!.showTextInputPrompt(
                           withMessage: "Verification code for \(selectedHint?.displayName ?? "")",
-                          completionBlock: { _, verificationCode in
-                            let credential: PhoneAuthCredential? = PhoneAuthProvider
-                              .provider()
+                          completionBlock: { userPressedOK, verificationCode in
+                            let credential: PhoneAuthCredential? = PhoneAuthProvider.provider()
                               .credential(withVerificationID: verificationID!,
                                           verificationCode: verificationCode!)
-                            let assertion: MultiFactorAssertion? =
-                              PhoneMultiFactorGenerator.assertion(with: credential!)
-                            resolver.resolveSignIn(with: assertion!) { _, error in
+                            let assertion: MultiFactorAssertion? = PhoneMultiFactorGenerator
+                              .assertion(with: credential!)
+                            resolver.resolveSignIn(with: assertion!) { authResult, error in
                               if error != nil {
                                 print(
                                   "Multi factor finanlize sign in failed. Error: \(error.debugDescription)"
                                 )
                               } else {
-                                strongSelf.navigationController?
-                                  .popViewController(animated: true)
+                                strongSelf.navigationController?.popViewController(animated: true)
                               }
                             }
                           }
@@ -110,8 +104,8 @@ class EmailViewController: UIViewController {
   /** @fn requestPasswordReset
    @brief Requests a "password reset" email be sent.
    */
-  @IBAction func didRequestPasswordReset(_: AnyObject) {
-    showTextInputPrompt(withMessage: "Email:") { [weak self] _, email in
+  @IBAction func didRequestPasswordReset(_ sender: AnyObject) {
+    showTextInputPrompt(withMessage: "Email:") { [weak self] userPressedOK, email in
       guard let strongSelf = self, let email = email else {
         return
       }
@@ -137,8 +131,8 @@ class EmailViewController: UIViewController {
    @brief Prompts the user for an email address, calls @c FIRAuth.getProvidersForEmail:callback:
    and displays the result.
    */
-  @IBAction func didGetProvidersForEmail(_: AnyObject) {
-    showTextInputPrompt(withMessage: "Email:") { [weak self] _, email in
+  @IBAction func didGetProvidersForEmail(_ sender: AnyObject) {
+    showTextInputPrompt(withMessage: "Email:") { [weak self] userPressedOK, email in
       guard let strongSelf = self else { return }
       guard let email = email else {
         strongSelf.showMessagePrompt("email can't be empty")
@@ -162,33 +156,32 @@ class EmailViewController: UIViewController {
     }
   }
 
-  @IBAction func didCreateAccount(_: AnyObject) {
-    showTextInputPrompt(withMessage: "Email:") { [weak self] _, email in
+  @IBAction func didCreateAccount(_ sender: AnyObject) {
+    showTextInputPrompt(withMessage: "Email:") { [weak self] userPressedOK, email in
       guard let strongSelf = self else { return }
       guard let email = email else {
         strongSelf.showMessagePrompt("email can't be empty")
         return
       }
-      strongSelf.showTextInputPrompt(withMessage: "Password:") { _, password in
+      strongSelf.showTextInputPrompt(withMessage: "Password:") { userPressedOK, password in
         guard let password = password else {
           strongSelf.showMessagePrompt("password can't be empty")
           return
         }
         strongSelf.showSpinner {
           // [START create_user]
-          Auth.auth()
-            .createUser(withEmail: email, password: password) { authResult, error in
-              // [START_EXCLUDE]
-              strongSelf.hideSpinner {
-                guard let user = authResult?.user, error == nil else {
-                  strongSelf.showMessagePrompt(error!.localizedDescription)
-                  return
-                }
-                print("\(user.email!) created")
-                strongSelf.navigationController?.popViewController(animated: true)
+          Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
+            // [START_EXCLUDE]
+            strongSelf.hideSpinner {
+              guard let user = authResult?.user, error == nil else {
+                strongSelf.showMessagePrompt(error!.localizedDescription)
+                return
               }
-              // [END_EXCLUDE]
+              print("\(user.email!) created")
+              strongSelf.navigationController?.popViewController(animated: true)
             }
+            // [END_EXCLUDE]
+          }
           // [END create_user]
         }
       }

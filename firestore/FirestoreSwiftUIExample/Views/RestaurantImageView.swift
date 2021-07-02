@@ -17,8 +17,8 @@
 //  limitations under the License.
 //
 
-import SDWebImageSwiftUI
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct RestaurantImageView: View {
   var imageURL: URL

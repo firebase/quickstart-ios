@@ -12,8 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Firebase
 import UIKit
+import Firebase
 
 class RemoteConfigViewController: UIViewController {
   private var remoteConfig: RemoteConfig!
@@ -60,7 +60,7 @@ class RemoteConfigViewController: UIViewController {
 
   /// Fetches remote config values from the server
   private func fetchRemoteConfig() {
-    remoteConfig.fetch { _, error in
+    remoteConfig.fetch { status, error in
       guard error == nil else { return self.displayError(error) }
       print("Remote config successfully fetched!")
     }
@@ -68,7 +68,7 @@ class RemoteConfigViewController: UIViewController {
 
   /// Activates remote config values, making them available to use in your app
   private func activateRemoteConfig() {
-    remoteConfig.activate { _, error in
+    remoteConfig.activate { success, error in
       guard error == nil else { return self.displayError(error) }
       print("Remote config successfully activated!")
       DispatchQueue.main.async {
@@ -80,7 +80,7 @@ class RemoteConfigViewController: UIViewController {
   /// Fetches and activates remote config values
   @objc
   private func fetchAndActivateRemoteConfig() {
-    remoteConfig.fetchAndActivate { _, error in
+    remoteConfig.fetchAndActivate { status, error in
       guard error == nil else { return self.displayError(error) }
       print("Remote config successfully fetched & activated!")
       DispatchQueue.main.async {
@@ -136,8 +136,7 @@ class RemoteConfigViewController: UIViewController {
       "serving_size",
       "notes",
     ]
-    guard let recipeDictionary = remoteConfig[recipeKey].jsonValue as? [String: Any]
-    else { return }
+    guard let recipeDictionary = remoteConfig[recipeKey].jsonValue as? [String: Any] else { return }
 
     keys.enumerated().forEach { index, key in
       guard var value = recipeDictionary[key] else { return }

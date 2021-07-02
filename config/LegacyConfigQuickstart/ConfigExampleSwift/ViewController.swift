@@ -14,8 +14,8 @@
 //  limitations under the License.
 //
 
-import Firebase
 import UIKit
+import Firebase
 
 @objc(ViewController)
 class ViewController: UIViewController {
@@ -60,7 +60,7 @@ class ViewController: UIViewController {
     remoteConfig.fetch { (status, error) -> Void in
       if status == .success {
         print("Config fetched!")
-        self.remoteConfig.activate { _, _ in
+        self.remoteConfig.activate { changed, error in
           // ...
         }
       } else {
@@ -85,7 +85,7 @@ class ViewController: UIViewController {
 
   // Display welcome message in all caps if welcome_message_caps is set to true. Otherwise
   // display welcome message as fetched from welcome_message.
-  @IBAction func handleFetchTouch(_: AnyObject) {
+  @IBAction func handleFetchTouch(_ sender: AnyObject) {
     fetchConfig()
   }
 }

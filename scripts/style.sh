@@ -35,6 +35,8 @@ function join() {
 
 # Rules to disable in swiftformat:
 swift_disable=(
+    # sortedImports moves comments that are hooks for the docs
+  sortedImports
   # Too many of our swift files have simplistic examples. While technically
   # it's correct to remove the unused argument labels, it makes our examples
   # look wrong.

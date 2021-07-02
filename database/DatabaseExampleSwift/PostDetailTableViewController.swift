@@ -14,8 +14,8 @@
 //  limitations under the License.
 //
 
-import Firebase
 import UIKit
+import Firebase
 
 @objc(PostDetailTableViewController)
 class PostDetailTableViewController: UITableViewController, UITextFieldDelegate {
@@ -105,11 +105,11 @@ class PostDetailTableViewController: UITableViewController, UITextFieldDelegate 
   }
 
   // UITableViewDataSource protocol methods
-  override func numberOfSections(in _: UITableView) -> Int {
+  override func numberOfSections(in tableView: UITableView) -> Int {
     return 3
   }
 
-  override func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
+  override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     switch section {
     case kSectionPost, kSectionSend:
       return 1
@@ -154,8 +154,7 @@ class PostDetailTableViewController: UITableViewController, UITextFieldDelegate 
         guard let postcell = cell as? PostTableViewCell else {
           break
         }
-        let imageName = post.stars == nil || post
-          .stars![uid] == nil ? "ic_star_border" : "ic_star"
+        let imageName = post.stars == nil || post.stars![uid] == nil ? "ic_star_border" : "ic_star"
         postcell.authorLabel.text = post.author
         postcell.postTitle.text = post.title
         postcell.postBody.text = post.body
@@ -180,7 +179,8 @@ class PostDetailTableViewController: UITableViewController, UITextFieldDelegate 
     return cell
   }
 
-  override func tableView(_: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+  override func tableView(_ tableView: UITableView,
+                          heightForRowAt indexPath: IndexPath) -> CGFloat {
     if indexPath.section == kSectionPost {
       return 160
     }

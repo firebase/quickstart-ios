@@ -12,8 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Firebase
 import UIKit
+import Firebase
 
 // For Sign in with Google
 import GoogleSignIn
@@ -42,7 +42,7 @@ class AuthViewController: UIViewController, DataSourceProviderDelegate {
 
   // MARK: - DataSourceProviderDelegate
 
-  func didSelectRowAt(_ indexPath: IndexPath, on _: UITableView) {
+  func didSelectRowAt(_ indexPath: IndexPath, on tableView: UITableView) {
     let item = dataSourceProvider.item(at: indexPath)
 
     let providerName = item.isEditable ? item.detailTitle! : item.title!
@@ -118,11 +118,10 @@ class AuthViewController: UIViewController, DataSourceProviderDelegate {
 
     // Create a Facebook `LoginManager` instance
     let loginManager = LoginManager()
-    loginManager.logIn(permissions: ["email"], from: self) { _, error in
+    loginManager.logIn(permissions: ["email"], from: self) { result, error in
       guard error == nil else { return self.displayError(error) }
       guard let accessToken = AccessToken.current else { return }
-      let credential = FacebookAuthProvider
-        .credential(withAccessToken: accessToken.tokenString)
+      let credential = FacebookAuthProvider.credential(withAccessToken: accessToken.tokenString)
       self.signin(with: credential)
     }
   }
@@ -156,13 +155,12 @@ class AuthViewController: UIViewController, DataSourceProviderDelegate {
   private func performPhoneNumberLoginFlow() {
     let phoneAuthViewController = PhoneAuthViewController()
     phoneAuthViewController.delegate = self
-    let navPhoneAuthController =
-      UINavigationController(rootViewController: phoneAuthViewController)
+    let navPhoneAuthController = UINavigationController(rootViewController: phoneAuthViewController)
     navigationController?.present(navPhoneAuthController, animated: true)
   }
 
   private func performAnonymousLoginFlow() {
-    Auth.auth().signInAnonymously { _, error in
+    Auth.auth().signInAnonymously { result, error in
       guard error == nil else { return self.displayError(error) }
       self.transitionToUserViewController()
     }
@@ -171,13 +169,12 @@ class AuthViewController: UIViewController, DataSourceProviderDelegate {
   private func performCustomAuthLoginFlow() {
     let customAuthController = CustomAuthViewController()
     customAuthController.delegate = self
-    let navCustomAuthController =
-      UINavigationController(rootViewController: customAuthController)
+    let navCustomAuthController = UINavigationController(rootViewController: customAuthController)
     navigationController?.present(navCustomAuthController, animated: true)
   }
 
   private func signin(with credential: AuthCredential) {
-    Auth.auth().signIn(with: credential) { _, error in
+    Auth.auth().signIn(with: credential) { result, error in
       guard error == nil else { return self.displayError(error) }
       self.transitionToUserViewController()
     }
@@ -187,10 +184,7 @@ class AuthViewController: UIViewController, DataSourceProviderDelegate {
 
   private func configureDataSourceProvider() {
     let tableView = view as! UITableView
-    dataSourceProvider = DataSourceProvider(
-      dataSource: AuthProvider.sections,
-      tableView: tableView
-    )
+    dataSourceProvider = DataSourceProvider(dataSource: AuthProvider.sections, tableView: tableView)
     dataSourceProvider.delegate = self
   }
 
@@ -211,14 +205,14 @@ class AuthViewController: UIViewController, DataSourceProviderDelegate {
 // MARK: - GIDSignInDelegate for Google Sign In
 
 extension AuthViewController: GIDSignInDelegate {
-  func sign(_: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+  func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
     guard error == nil else { return displayError(error) }
 
     guard let authentication = user.authentication else { return }
     let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken,
                                                    accessToken: authentication.accessToken)
 
-    Auth.auth().signIn(with: credential) { _, error in
+    Auth.auth().signIn(with: credential) { result, error in
       guard error == nil else { return self.displayError(error) }
 
       // At this point, our user is signed in
@@ -242,7 +236,7 @@ extension AuthViewController: ASAuthorizationControllerDelegate,
   ASAuthorizationControllerPresentationContextProviding {
   // MARK: ASAuthorizationControllerDelegate
 
-  func authorizationController(controller _: ASAuthorizationController,
+  func authorizationController(controller: ASAuthorizationController,
                                didCompleteWithAuthorization authorization: ASAuthorization) {
     guard let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential
     else {
@@ -251,9 +245,7 @@ extension AuthViewController: ASAuthorizationControllerDelegate,
     }
 
     guard let nonce = currentNonce else {
-      fatalError(
-        "Invalid state: A login callback was received, but no login request was sent."
-      )
+      fatalError("Invalid state: A login callback was received, but no login request was sent.")
     }
     guard let appleIDToken = appleIDCredential.identityToken else {
       print("Unable to fetch identity token")
@@ -268,7 +260,7 @@ extension AuthViewController: ASAuthorizationControllerDelegate,
                                               idToken: idTokenString,
                                               rawNonce: nonce)
 
-    Auth.auth().signIn(with: credential) { _, error in
+    Auth.auth().signIn(with: credential) { result, error in
       // Error. If error.code == .MissingOrInvalidNonce, make sure
       // you're sending the SHA256-hashed nonce as a hex string with
       // your request to Apple.
@@ -280,7 +272,7 @@ extension AuthViewController: ASAuthorizationControllerDelegate,
     }
   }
 
-  func authorizationController(controller _: ASAuthorizationController,
+  func authorizationController(controller: ASAuthorizationController,
                                didCompleteWithError error: Error) {
     // Ensure that you have:
     //  - enabled `Sign in with Apple` on the Firebase console
@@ -290,7 +282,7 @@ extension AuthViewController: ASAuthorizationControllerDelegate,
 
   // MARK: ASAuthorizationControllerPresentationContextProviding
 
-  func presentationAnchor(for _: ASAuthorizationController) -> ASPresentationAnchor {
+  func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
     return view.window!
   }
 

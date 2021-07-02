@@ -25,8 +25,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   let gcmMessageIDKey = "gcm.message_id"
 
   func application(_ application: UIApplication,
-                   didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?)
-    -> Bool {
+                   didFinishLaunchingWithOptions launchOptions: [UIApplication
+                     .LaunchOptionsKey: Any]?) -> Bool {
     FirebaseApp.configure()
 
     // [START set_messaging_delegate]
@@ -58,7 +58,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     return true
   }
 
-  func application(_: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
+  func application(_ application: UIApplication,
+                   didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
     // If you are receiving a notification message while your app is in the background,
     // this callback will not be fired till the user taps on the notification launching the application.
     // TODO: Handle data of notification
@@ -76,7 +77,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   }
 
   // [START receive_message]
-  func application(_: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
+  func application(_ application: UIApplication,
+                   didReceiveRemoteNotification userInfo: [AnyHashable: Any],
                    fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult)
                      -> Void) {
     // If you are receiving a notification message while your app is in the background,
@@ -99,7 +101,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   // [END receive_message]
 
-  func application(_: UIApplication,
+  func application(_ application: UIApplication,
                    didFailToRegisterForRemoteNotificationsWithError error: Error) {
     print("Unable to register for remote notifications: \(error.localizedDescription)")
   }
@@ -107,7 +109,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   // This function is added here only for debugging purposes, and can be removed if swizzling is enabled.
   // If swizzling is disabled then this function must be implemented so that the APNs token can be paired to
   // the FCM registration token.
-  func application(_: UIApplication,
+  func application(_ application: UIApplication,
                    didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
     print("APNs token retrieved: \(deviceToken)")
 
@@ -120,7 +122,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 @available(iOS 10, *)
 extension AppDelegate: UNUserNotificationCenterDelegate {
   // Receive displayed notifications for iOS 10 devices.
-  func userNotificationCenter(_: UNUserNotificationCenter,
+  func userNotificationCenter(_ center: UNUserNotificationCenter,
                               willPresent notification: UNNotification,
                               withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions)
                                 -> Void) {
@@ -143,7 +145,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     completionHandler([[.alert, .sound]])
   }
 
-  func userNotificationCenter(_: UNUserNotificationCenter,
+  func userNotificationCenter(_ center: UNUserNotificationCenter,
                               didReceive response: UNNotificationResponse,
                               withCompletionHandler completionHandler: @escaping () -> Void) {
     let userInfo = response.notification.request.content.userInfo
@@ -169,7 +171,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
 
 extension AppDelegate: MessagingDelegate {
   // [START refresh_token]
-  func messaging(_: Messaging, didReceiveRegistrationToken fcmToken: String?) {
+  func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
     print("Firebase registration token: \(String(describing: fcmToken))")
 
     let dataDict: [String: String] = ["token": fcmToken ?? ""]

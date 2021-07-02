@@ -14,7 +14,7 @@
 //  limitations under the License.
 //
 
-@testable import ABTestingExample
 import XCTest
+@testable import ABTestingExample
 
 class ABTestingExampleTests: XCTestCase {}

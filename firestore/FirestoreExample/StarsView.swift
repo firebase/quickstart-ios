@@ -167,7 +167,7 @@ class RatingView: UIControl {
   }
 
   @available(*, unavailable)
-  required convenience init?(coder _: NSCoder) {
+  required convenience init?(coder aDecoder: NSCoder) {
     // coder is ignored.
     self.init(frame: CGRect(x: 0, y: 0, width: 270, height: 50))
     translatesAutoresizingMaskIntoConstraints = false
@@ -344,7 +344,7 @@ class ImmutableStarsView: UIView {
   }
 
   @available(*, unavailable)
-  required convenience init?(coder _: NSCoder) {
+  required convenience init?(coder aDecoder: NSCoder) {
     // coder is ignored.
     self.init(frame: CGRect(x: 0, y: 0, width: 270, height: 50))
     translatesAutoresizingMaskIntoConstraints = false

@@ -14,9 +14,9 @@
 //  limitations under the License.
 //
 
+import UIKit
 import Firebase
 import FirebaseDatabaseUI
-import UIKit
 
 @objc(PostListViewController)
 class PostListViewController: UIViewController, UITableViewDelegate {
@@ -71,11 +71,11 @@ class PostListViewController: UIViewController, UITableViewDelegate {
     tableView.reloadData()
   }
 
-  func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     performSegue(withIdentifier: "detail", sender: indexPath)
   }
 
-  func tableView(_: UITableView, heightForRowAt _: IndexPath) -> CGFloat {
+  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     return 150
   }
 
@@ -90,8 +90,7 @@ class PostListViewController: UIViewController, UITableViewDelegate {
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     guard let indexPath: IndexPath = sender as? IndexPath else { return }
     guard let detail: PostDetailTableViewController = segue
-      .destination as? PostDetailTableViewController
-    else {
+      .destination as? PostDetailTableViewController else {
       return
     }
     if let dataSource = dataSource {

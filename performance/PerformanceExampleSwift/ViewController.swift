@@ -14,10 +14,10 @@
 //  limitations under the License.
 //
 
-import AVFoundation
-import AVKit
-import Firebase
 import UIKit
+import Firebase
+import AVKit
+import AVFoundation
 
 @objc(ViewController)
 class ViewController: UIViewController {

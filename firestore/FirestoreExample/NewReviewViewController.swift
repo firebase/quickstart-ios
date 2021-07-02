@@ -14,14 +14,12 @@
 //  limitations under the License.
 //
 
-import Firebase
 import UIKit
+import Firebase
 
 class NewReviewViewController: UIViewController, UITextFieldDelegate {
-  static func fromStoryboard(_ storyboard: UIStoryboard = UIStoryboard(
-    name: "Main",
-    bundle: nil
-  )) -> NewReviewViewController {
+  static func fromStoryboard(_ storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil))
+    -> NewReviewViewController {
     let controller = storyboard
       .instantiateViewController(
         withIdentifier: "NewReviewViewController"
@@ -55,11 +53,11 @@ class NewReviewViewController: UIViewController, UITextFieldDelegate {
     reviewTextField.delegate = self
   }
 
-  @IBAction func cancelButtonPressed(_: Any) {
+  @IBAction func cancelButtonPressed(_ sender: Any) {
     navigationController?.popViewController(animated: true)
   }
 
-  @IBAction func doneButtonPressed(_: Any) {
+  @IBAction func doneButtonPressed(_ sender: Any) {
     let review = Review(rating: ratingView.rating!,
                         userID: Auth.auth().currentUser!.uid,
                         username: Auth.auth().currentUser?.displayName ?? "Anonymous",
@@ -68,7 +66,7 @@ class NewReviewViewController: UIViewController, UITextFieldDelegate {
     delegate?.reviewController(self, didSubmitFormWithReview: review)
   }
 
-  @objc func ratingDidChange(_: Any) {
+  @objc func ratingDidChange(_ sender: Any) {
     updateSubmitButton()
   }
 
@@ -81,7 +79,7 @@ class NewReviewViewController: UIViewController, UITextFieldDelegate {
     doneButton.isEnabled = (ratingView.rating != nil && !textFieldIsEmpty())
   }
 
-  @objc func textFieldTextDidChange(_: Any) {
+  @objc func textFieldTextDidChange(_ sender: Any) {
     updateSubmitButton()
   }
 }

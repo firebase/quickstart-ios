@@ -29,7 +29,7 @@ class MainViewController: MDCCollectionViewController, UITextFieldDelegate {
     styler.cellLayoutType = .list
   }
 
-  override func collectionView(_: UICollectionView,
+  override func collectionView(_ collectionView: UICollectionView,
                                cellHeightAt indexPath: IndexPath) -> CGFloat {
     if indexPath.section == 0 {
       return 181
@@ -37,11 +37,12 @@ class MainViewController: MDCCollectionViewController, UITextFieldDelegate {
     return 230
   }
 
-  override func numberOfSections(in _: UICollectionView) -> Int {
+  override func numberOfSections(in collectionView: UICollectionView) -> Int {
     return 2
   }
 
-  override func collectionView(_: UICollectionView, numberOfItemsInSection _: Int) -> Int {
+  override func collectionView(_ collectionView: UICollectionView,
+                               numberOfItemsInSection section: Int) -> Int {
     return 1
   }
 

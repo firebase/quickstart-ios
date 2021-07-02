@@ -21,12 +21,12 @@ import UIKit
 
 import Security
 
-import FBSDKCoreKit
-import FBSDKLoginKit
 // [START usermanagement_view_import]
 import Firebase
 // [END usermanagement_view_import]
 import GoogleSignIn
+import FBSDKCoreKit
+import FBSDKLoginKit
 
 private var isMFAEnabled = false
 
@@ -125,27 +125,27 @@ class MainViewController: UITableViewController {
       var action: UIAlertAction
       switch provider {
       case .authEmail:
-        action = UIAlertAction(title: "Email", style: .default) { _ in
+        action = UIAlertAction(title: "Email", style: .default) { UIAlertAction in
           self.performSegue(withIdentifier: "email", sender: nil)
         }
       case .authEmailMFA:
-        action = UIAlertAction(title: "Email with MFA", style: .default) { _ in
+        action = UIAlertAction(title: "Email with MFA", style: .default) { UIAlertAction in
           isMFAEnabled = true
           self.performSegue(withIdentifier: "email", sender: nil)
         }
       case .authPasswordless:
-        action = UIAlertAction(title: "Passwordless", style: .default) { _ in
+        action = UIAlertAction(title: "Passwordless", style: .default) { UIAlertAction in
           self.performSegue(withIdentifier: "passwordless", sender: nil)
         }
       case .authCustom:
-        action = UIAlertAction(title: "Custom", style: .default) { _ in
+        action = UIAlertAction(title: "Custom", style: .default) { UIAlertAction in
           self.performSegue(withIdentifier: "customToken", sender: nil)
         }
       case .authAnonymous:
-        action = UIAlertAction(title: "Anonymous", style: .default) { _ in
+        action = UIAlertAction(title: "Anonymous", style: .default) { UIAlertAction in
           self.showSpinner {
             // [START firebase_auth_anonymous]
-            Auth.auth().signInAnonymously { _, error in
+            Auth.auth().signInAnonymously { authResult, error in
               // [START_EXCLUDE]
               self.hideSpinner {
                 if let error = error {
@@ -160,42 +160,38 @@ class MainViewController: UITableViewController {
         }
       case .authApple:
         if #available(iOS 13, *) {
-          action = UIAlertAction(title: "Apple", style: .default) { _ in
+          action = UIAlertAction(title: "Apple", style: .default) { UIAlertAction in
             self.startSignInWithAppleFlow()
           }
         } else {
           continue
         }
       case .authFacebook:
-        action = UIAlertAction(title: "Facebook", style: .default) { _ in
+        action = UIAlertAction(title: "Facebook", style: .default) { UIAlertAction in
           let loginManager = LoginManager()
-          loginManager.logIn(
-            permissions: ["email"],
-            from: self,
-            handler: { result, error in
-              if let error = error {
-                self.showMessagePrompt(error.localizedDescription)
-              } else if result!.isCancelled {
-                print("FBLogin cancelled")
-              } else {
-                // [START headless_facebook_auth]
-                let credential = FacebookAuthProvider
-                  .credential(withAccessToken: AccessToken.current!.tokenString)
-                // [END headless_facebook_auth]
-                self.firebaseLogin(credential)
-              }
+          loginManager.logIn(permissions: ["email"], from: self, handler: { result, error in
+            if let error = error {
+              self.showMessagePrompt(error.localizedDescription)
+            } else if result!.isCancelled {
+              print("FBLogin cancelled")
+            } else {
+              // [START headless_facebook_auth]
+              let credential = FacebookAuthProvider
+                .credential(withAccessToken: AccessToken.current!.tokenString)
+              // [END headless_facebook_auth]
+              self.firebaseLogin(credential)
             }
-          )
+          })
         }
       case .authGoogle:
-        action = UIAlertAction(title: "Google", style: .default) { _ in
+        action = UIAlertAction(title: "Google", style: .default) { UIAlertAction in
           // [START setup_gid_uidelegate]
           GIDSignIn.sharedInstance()?.presentingViewController = self
           GIDSignIn.sharedInstance().signIn()
           // [END setup_gid_uidelegate]
         }
       case .authTwitter:
-        action = UIAlertAction(title: "Twitter", style: .default) { _ in
+        action = UIAlertAction(title: "Twitter", style: .default) { UIAlertAction in
           // [START firebase_auth_twitter]
           self.twitterProvider?.getCredentialWith(_: nil) { credential, error in
             self.showSpinner {
@@ -206,7 +202,7 @@ class MainViewController: UITableViewController {
                 }
               }
               if let credential = credential {
-                Auth.auth().signIn(with: credential) { _, error in
+                Auth.auth().signIn(with: credential) { result, error in
                   self.hideSpinner {
                     if let error = error {
                       self.showMessagePrompt(error.localizedDescription)
@@ -220,7 +216,7 @@ class MainViewController: UITableViewController {
           // [END firebase_auth_twitter]
         }
       case .authGitHub:
-        action = UIAlertAction(title: "GitHub", style: .default) { _ in
+        action = UIAlertAction(title: "GitHub", style: .default) { UIAlertAction in
           // [START firebase_auth_github]
           self.gitHubProvider?.getCredentialWith(_: nil) { credential, error in
             self.showSpinner {
@@ -231,7 +227,7 @@ class MainViewController: UITableViewController {
                 }
               }
               if let credential = credential {
-                Auth.auth().signIn(with: credential) { _, error in
+                Auth.auth().signIn(with: credential) { result, error in
                   self.hideSpinner {
                     if let error = error {
                       self.showMessagePrompt(error.localizedDescription)
@@ -245,14 +241,13 @@ class MainViewController: UITableViewController {
           // [END firebase_auth_github]
         }
       case .authPhone:
-        action = UIAlertAction(title: "Phone", style: .default) { _ in
-          self.showTextInputPrompt(withMessage: "Phone Number:") { _, userInput in
+        action = UIAlertAction(title: "Phone", style: .default) { UIAlertAction in
+          self.showTextInputPrompt(withMessage: "Phone Number:") { userPressedOK, userInput in
             if let phoneNumber = userInput {
               self.showSpinner {
                 // [START phone_auth]
                 PhoneAuthProvider.provider()
-                  .verifyPhoneNumber(phoneNumber,
-                                     uiDelegate: nil) { verificationID, error in
+                  .verifyPhoneNumber(phoneNumber, uiDelegate: nil) { verificationID, error in
                     // [START_EXCLUDE silent]
                     self.hideSpinner {
                       // [END_EXCLUDE]
@@ -264,21 +259,17 @@ class MainViewController: UITableViewController {
                       // [START_EXCLUDE]
                       guard let verificationID = verificationID else { return }
                       self
-                        .showTextInputPrompt(withMessage: "Verification Code:") { _, verificationCode in
+                        .showTextInputPrompt(withMessage: "Verification Code:") { userPressedOK, verificationCode in
                           if let verificationCode = verificationCode {
                             // [START get_phone_cred]
-                            let credential = PhoneAuthProvider.provider()
-                              .credential(
-                                withVerificationID: verificationID,
-                                verificationCode: verificationCode
-                              )
+                            let credential = PhoneAuthProvider.provider().credential(
+                              withVerificationID: verificationID,
+                              verificationCode: verificationCode
+                            )
                             // [END get_phone_cred]
                             self.firebaseLogin(credential)
                           } else {
-                            self
-                              .showMessagePrompt(
-                                "verification code can't be empty"
-                              )
+                            self.showMessagePrompt("verification code can't be empty")
                           }
                         }
                     }
@@ -292,7 +283,7 @@ class MainViewController: UITableViewController {
           }
         }
       case .authGameCenter:
-        action = UIAlertAction(title: "Game Center", style: .default) { _ in
+        action = UIAlertAction(title: "Game Center", style: .default) { UIAlertAction in
           // [START firebase_auth_gamecenter]
           GameCenterAuthProvider.getCredential { credential, error in
             self.showSpinner {
@@ -303,7 +294,7 @@ class MainViewController: UITableViewController {
                 }
               }
               if let credential = credential {
-                Auth.auth().signIn(with: credential) { _, error in
+                Auth.auth().signIn(with: credential) { result, error in
                   self.hideSpinner {
                     if let error = error {
                       self.showMessagePrompt(error.localizedDescription)
@@ -317,7 +308,7 @@ class MainViewController: UITableViewController {
           // [END firebase_auth_gamecenter]
         }
       case .authMicrosoft:
-        action = UIAlertAction(title: "Microsoft", style: .default) { _ in
+        action = UIAlertAction(title: "Microsoft", style: .default) { UIAlertAction in
           // [START firebase_auth_microsoft]
           self.microsoftProvider?.getCredentialWith(_: nil) { credential, error in
             self.showSpinner {
@@ -328,7 +319,7 @@ class MainViewController: UITableViewController {
                 }
               }
               if let credential = credential {
-                Auth.auth().signIn(with: credential) { _, error in
+                Auth.auth().signIn(with: credential) { result, error in
                   self.hideSpinner {
                     if let error = error {
                       self.showMessagePrompt(error.localizedDescription)
@@ -349,7 +340,7 @@ class MainViewController: UITableViewController {
     present(picker, animated: true, completion: nil)
   }
 
-  @IBAction func didTapSignIn(_: AnyObject) {
+  @IBAction func didTapSignIn(_ sender: AnyObject) {
     showAuthPicker([
       AuthProvider.authEmail,
       AuthProvider.authAnonymous,
@@ -366,7 +357,7 @@ class MainViewController: UITableViewController {
     ])
   }
 
-  @IBAction func didTapLink(_: AnyObject) {
+  @IBAction func didTapLink(_ sender: AnyObject) {
     var providers = Set([
       AuthProvider.authGoogle,
       AuthProvider.authFacebook,
@@ -406,7 +397,7 @@ class MainViewController: UITableViewController {
     showSpinner {
       if let user = Auth.auth().currentUser {
         // [START link_credential]
-        user.link(with: credential) { _, error in
+        user.link(with: credential) { authResult, error in
           // [START_EXCLUDE]
           self.hideSpinner {
             if let error = error {
@@ -420,19 +411,16 @@ class MainViewController: UITableViewController {
         // [END link_credential]
       } else {
         // [START signin_credential]
-        Auth.auth().signIn(with: credential) { _, error in
+        Auth.auth().signIn(with: credential) { authResult, error in
           // [START_EXCLUDE silent]
           self.hideSpinner {
             // [END_EXCLUDE]
             if let error = error {
               let authError = error as NSError
-              if isMFAEnabled,
-                authError.code == AuthErrorCode.secondFactorRequired.rawValue {
+              if isMFAEnabled, authError.code == AuthErrorCode.secondFactorRequired.rawValue {
                 // The user is a multi-factor user. Second factor challenge is required.
                 let resolver = authError
-                  .userInfo[
-                    AuthErrorUserInfoMultiFactorResolverKey
-                  ] as! MultiFactorResolver
+                  .userInfo[AuthErrorUserInfoMultiFactorResolverKey] as! MultiFactorResolver
                 var displayNameString = ""
                 for tmpFactorInfo in resolver.hints {
                   displayNameString += tmpFactorInfo.displayName ?? ""
@@ -440,7 +428,7 @@ class MainViewController: UITableViewController {
                 }
                 self.showTextInputPrompt(
                   withMessage: "Select factor to sign in\n\(displayNameString)",
-                  completionBlock: { _, displayName in
+                  completionBlock: { userPressedOK, displayName in
                     var selectedHint: PhoneMultiFactorInfo?
                     for tmpFactorInfo in resolver.hints {
                       if displayName == tmpFactorInfo.displayName {
@@ -458,25 +446,21 @@ class MainViewController: UITableViewController {
                         } else {
                           self.showTextInputPrompt(
                             withMessage: "Verification code for \(selectedHint?.displayName ?? "")",
-                            completionBlock: { _, verificationCode in
-                              let credential: PhoneAuthCredential? =
-                                PhoneAuthProvider.provider()
-                                  .credential(withVerificationID: verificationID!,
-                                              verificationCode: verificationCode!)
-                              let assertion: MultiFactorAssertion? =
-                                PhoneMultiFactorGenerator
-                                  .assertion(with: credential!)
-                              resolver
-                                .resolveSignIn(with: assertion!) { _, error in
-                                  if error != nil {
-                                    print(
-                                      "Multi factor finanlize sign in failed. Error: \(error.debugDescription)"
-                                    )
-                                  } else {
-                                    self.navigationController?
-                                      .popViewController(animated: true)
-                                  }
+                            completionBlock: { userPressedOK, verificationCode in
+                              let credential: PhoneAuthCredential? = PhoneAuthProvider.provider()
+                                .credential(withVerificationID: verificationID!,
+                                            verificationCode: verificationCode!)
+                              let assertion: MultiFactorAssertion? = PhoneMultiFactorGenerator
+                                .assertion(with: credential!)
+                              resolver.resolveSignIn(with: assertion!) { authResult, error in
+                                if error != nil {
+                                  print(
+                                    "Multi factor finanlize sign in failed. Error: \(error.debugDescription)"
+                                  )
+                                } else {
+                                  self.navigationController?.popViewController(animated: true)
                                 }
+                              }
                             }
                           )
                         }
@@ -506,7 +490,7 @@ class MainViewController: UITableViewController {
     }
   }
 
-  @IBAction func didTapSignOut(_: AnyObject) {
+  @IBAction func didTapSignOut(_ sender: AnyObject) {
     // [START signout]
     let firebaseAuth = Auth.auth()
     do {
@@ -520,7 +504,7 @@ class MainViewController: UITableViewController {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     // [START auth_listener]
-    handle = Auth.auth().addStateDidChangeListener { _, user in
+    handle = Auth.auth().addStateDidChangeListener { auth, user in
       // [START_EXCLUDE]
       self.setTitleDisplay(user)
       self.tableView.reloadData()
@@ -561,7 +545,7 @@ class MainViewController: UITableViewController {
     }
   }
 
-  override func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
+  override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     switch section {
     case kSectionSignIn:
       return 1
@@ -674,14 +658,15 @@ class MainViewController: UITableViewController {
     return cell!
   }
 
-  override func tableView(_: UITableView,
-                          titleForDeleteConfirmationButtonForRowAt _: IndexPath) -> String? {
+  override func tableView(_ tableView: UITableView,
+                          titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath)
+    -> String? {
     return "Unlink"
   }
 
-  override func tableView(_: UITableView,
-                          editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle
-  {
+  override func tableView(_ tableView: UITableView,
+                          editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell
+    .EditingStyle {
     if indexPath.section == kSectionProviders {
       return .delete
     }
@@ -696,7 +681,7 @@ class MainViewController: UITableViewController {
       let providerID = Auth.auth().currentUser?.providerData[indexPath.row].providerID
       showSpinner {
         // [START unlink_provider]
-        Auth.auth().currentUser?.unlink(fromProvider: providerID!) { _, error in
+        Auth.auth().currentUser?.unlink(fromProvider: providerID!) { user, error in
           // [START_EXCLUDE]
           self.hideSpinner {
             if let error = error {
@@ -712,14 +697,15 @@ class MainViewController: UITableViewController {
     }
   }
 
-  override func tableView(_: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+  override func tableView(_ tableView: UITableView,
+                          heightForRowAt indexPath: IndexPath) -> CGFloat {
     if indexPath.section == kSectionUser {
       return 200
     }
     return 44
   }
 
-  override func numberOfSections(in _: UITableView) -> Int {
+  override func numberOfSections(in tableView: UITableView) -> Int {
     if isMFAEnabled {
       return 5
     } else {
@@ -727,12 +713,12 @@ class MainViewController: UITableViewController {
     }
   }
 
-  @IBAction func didMultiFactorEnroll(_: Any) {
+  @IBAction func didMultiFactorEnroll(_ sender: Any) {
     let user = Auth.auth().currentUser
     if user == nil {
       print("Please sign in first.")
     } else {
-      showTextInputPrompt(withMessage: "Phone Number") { _, phoneNumber in
+      showTextInputPrompt(withMessage: "Phone Number") { userPressedOK, phoneNumber in
         user?.multiFactor.getSessionWithCompletion { session, error in
           PhoneAuthProvider.provider().verifyPhoneNumber(
             phoneNumber!,
@@ -744,15 +730,14 @@ class MainViewController: UITableViewController {
               } else {
                 self.showTextInputPrompt(
                   withMessage: "Verification code",
-                  completionBlock: { _, verificationCode in
+                  completionBlock: { userPressedOK, verificationCode in
                     let credential = PhoneAuthProvider.provider()
                       .credential(withVerificationID: verificationID!,
                                   verificationCode: verificationCode!)
-                    let assertion = PhoneMultiFactorGenerator
-                      .assertion(with: credential)
+                    let assertion = PhoneMultiFactorGenerator.assertion(with: credential)
                     self.showTextInputPrompt(
                       withMessage: "Display name",
-                      completionBlock: { _, displayName in
+                      completionBlock: { userPressedOK, displayName in
                         user?.multiFactor.enroll(
                           with: assertion,
                           displayName: displayName,
@@ -780,16 +765,15 @@ class MainViewController: UITableViewController {
     }
   }
 
-  @IBAction func didMultiFactorUnenroll(_: Any) {
+  @IBAction func didMultiFactorUnenroll(_ sender: Any) {
     var displayNameString = ""
     for tmpFactorInfo in Auth.auth().currentUser!.multiFactor.enrolledFactors {
       displayNameString += tmpFactorInfo.displayName ?? " "
       displayNameString += " "
     }
-    showTextInputPrompt(withMessage: "Multifactor Unenroll \(displayNameString)") { _, displayName in
+    showTextInputPrompt(withMessage: "Multifactor Unenroll \(displayNameString)") { userPressedOK, displayName in
       var factorInfo: MultiFactorInfo?
-      for tmpFactorInfo: MultiFactorInfo in Auth.auth().currentUser!.multiFactor
-        .enrolledFactors {
+      for tmpFactorInfo: MultiFactorInfo in Auth.auth().currentUser!.multiFactor.enrolledFactors {
         if displayName == tmpFactorInfo.displayName {
           factorInfo = tmpFactorInfo
         }
@@ -805,10 +789,10 @@ class MainViewController: UITableViewController {
     }
   }
 
-  @IBAction func didTokenRefresh(_: AnyObject) {
+  @IBAction func didTokenRefresh(_ sender: AnyObject) {
     let action: AuthTokenCallback = { token, error in
       let okAction = UIAlertAction(title: self.kOKButtonText, style: .default) {
-        _ in print(self.kOKButtonText)
+        action in print(self.kOKButtonText)
       }
       if let error = error {
         let alertController = UIAlertController(title: self.kTokenRefreshErrorAlertTitle,
@@ -835,8 +819,8 @@ class MainViewController: UITableViewController {
   /** @fn setDisplayName
    @brief Changes the display name of the current user.
    */
-  @IBAction func didSetDisplayName(_: AnyObject) {
-    showTextInputPrompt(withMessage: "Display Name:") { _, userInput in
+  @IBAction func didSetDisplayName(_ sender: AnyObject) {
+    showTextInputPrompt(withMessage: "Display Name:") { userPressedOK, userInput in
       if let displayName = userInput {
         self.showSpinner {
           // [START profile_change]
@@ -864,7 +848,7 @@ class MainViewController: UITableViewController {
   /** @fn requestVerifyEmail
    @brief Requests a "verify email" email be sent.
    */
-  @IBAction func didRequestVerifyEmail(_: AnyObject) {
+  @IBAction func didRequestVerifyEmail(_ sender: AnyObject) {
     showSpinner {
       // [START send_verification_email]
       Auth.auth().currentUser?.sendEmailVerification { error in
@@ -885,18 +869,15 @@ class MainViewController: UITableViewController {
   /** @fn changeEmail
    @brief Changes the email address of the current user.
    */
-  @IBAction func didChangeEmail(_: AnyObject) {
-    showTextInputPrompt(withMessage: "Email Address:") { _, userInput in
+  @IBAction func didChangeEmail(_ sender: AnyObject) {
+    showTextInputPrompt(withMessage: "Email Address:") { userPressedOK, userInput in
       if let email = userInput {
         self.showSpinner {
           // [START change_email]
           Auth.auth().currentUser?.updateEmail(to: email) { error in
             // [START_EXCLUDE]
             self.hideSpinner {
-              self.showTypicalUIForUserUpdateResults(
-                withTitle: self.kChangeEmailText,
-                error: error
-              )
+              self.showTypicalUIForUserUpdateResults(withTitle: self.kChangeEmailText, error: error)
             }
             // [END_EXCLUDE]
           }
@@ -911,8 +892,8 @@ class MainViewController: UITableViewController {
   /** @fn changePassword
    @brief Changes the password of the current user.
    */
-  @IBAction func didChangePassword(_: AnyObject) {
-    showTextInputPrompt(withMessage: "New Password:") { _, userInput in
+  @IBAction func didChangePassword(_ sender: AnyObject) {
+    showTextInputPrompt(withMessage: "New Password:") { userPressedOK, userInput in
       if let password = userInput {
         self.showSpinner {
           // [START change_password]
@@ -937,8 +918,8 @@ class MainViewController: UITableViewController {
   /** @fn updatePhoneNumber
    @brief Updates the phone number of the current user.
    */
-  @IBAction func didUpdatePhoneNumber(_: AnyObject) {
-    showTextInputPrompt(withMessage: "New Phone Number:") { _, userInput in
+  @IBAction func didUpdatePhoneNumber(_ sender: AnyObject) {
+    showTextInputPrompt(withMessage: "New Phone Number:") { userPressedOK, userInput in
       if let phoneNumber = userInput {
         self.showSpinner {
           // [START update_phone]
@@ -952,23 +933,22 @@ class MainViewController: UITableViewController {
                 }
                 guard let verificationID = verificationID else { return }
                 self
-                  .showTextInputPrompt(withMessage: "Verification Code:") { _, userInput in
+                  .showTextInputPrompt(withMessage: "Verification Code:") { userPressedOK, userInput in
                     if let verificationCode = userInput {
                       self.showSpinner {
                         // [END_EXCLUDE]
                         let credential = PhoneAuthProvider.provider()
                           .credential(withVerificationID: verificationID,
                                       verificationCode: verificationCode)
-                        Auth.auth().currentUser?
-                          .updatePhoneNumber(credential) { error in
-                            // [END update_phone]
-                            self.hideSpinner {
-                              self.showTypicalUIForUserUpdateResults(
-                                withTitle: self.kUpdatePhoneNumberText,
-                                error: error
-                              )
-                            }
+                        Auth.auth().currentUser?.updatePhoneNumber(credential) { error in
+                          // [END update_phone]
+                          self.hideSpinner {
+                            self.showTypicalUIForUserUpdateResults(
+                              withTitle: self.kUpdatePhoneNumberText,
+                              error: error
+                            )
                           }
+                        }
                       }
                     } else {
                       self.showMessagePrompt("verification code can't be empty")
@@ -994,7 +974,7 @@ class MainViewController: UITableViewController {
     if let error = error {
       let message = "\(error.localizedDescription)"
       let okAction = UIAlertAction(title: kOKButtonText, style: .default) {
-        _ in print(self.kOKButtonText)
+        action in print(self.kOKButtonText)
       }
       let alertController = UIAlertController(title: resultsTitle,
                                               message: message, preferredStyle: .alert)
@@ -1074,13 +1054,11 @@ class MainViewController: UITableViewController {
 
 @available(iOS 13.0, *)
 extension MainViewController: ASAuthorizationControllerDelegate {
-  func authorizationController(controller _: ASAuthorizationController,
+  func authorizationController(controller: ASAuthorizationController,
                                didCompleteWithAuthorization authorization: ASAuthorization) {
     if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
       guard let nonce = currentNonce else {
-        fatalError(
-          "Invalid state: A login callback was received, but no login request was sent."
-        )
+        fatalError("Invalid state: A login callback was received, but no login request was sent.")
       }
 
       guard let appleIDToken = appleIDCredential.identityToken else {
@@ -1088,9 +1066,7 @@ extension MainViewController: ASAuthorizationControllerDelegate {
         return
       }
       guard let idTokenString = String(data: appleIDToken, encoding: .utf8) else {
-        print(
-          "Unable to serialize token string from data: \(appleIDToken.debugDescription)"
-        )
+        print("Unable to serialize token string from data: \(appleIDToken.debugDescription)")
         return
       }
       // Initialize a Firebase credential.
@@ -1102,7 +1078,7 @@ extension MainViewController: ASAuthorizationControllerDelegate {
     }
   }
 
-  func authorizationController(controller _: ASAuthorizationController,
+  func authorizationController(controller: ASAuthorizationController,
                                didCompleteWithError error: Error) {
     // Handle error.
     print("Sign in with Apple errored: \(error)")
@@ -1111,7 +1087,7 @@ extension MainViewController: ASAuthorizationControllerDelegate {
 
 @available(iOS 13.0, *)
 extension MainViewController: ASAuthorizationControllerPresentationContextProviding {
-  func presentationAnchor(for _: ASAuthorizationController) -> ASPresentationAnchor {
+  func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
     return view.window!
   }
 }

@@ -12,8 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@testable import AppDistributionExample
 import XCTest
+@testable import AppDistributionExample
 
 class AppDistributionExampleTests: XCTestCase {
   override func setUp() {

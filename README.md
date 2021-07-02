@@ -21,6 +21,21 @@ To add a sample app to a Firebase project, use the bundleID from the Xcode proje
 Download the generated `GoogleService-Info.plist` file, and copy it to the root
 directory of the sample you wish to run.
 
+### Code Formatting
+
+To ensure that the code is formatted consistently, run the script
+[./scripts/style.sh](https://github.com/firebase/quickstart-ios/blob/master/scripts/style.sh)
+before creating a PR.
+
+GitHub Actions will verify that any code changes are done in a style compliant
+way. Install `mint` and `swiftformat`:
+
+```console
+brew install mint
+mint bootstrap
+./scripts/style.sh
+```
+
 - [A/B Testing](abtesting/README.md) ![build](https://github.com/firebase/quickstart-ios/actions/workflows/abtesting.yml/badge.svg)
 - [Admob](admob/README.md) ![build](https://github.com/firebase/quickstart-ios/actions/workflows/admob.yml/badge.svg)
 - [Analytics](analytics/README.md) ![build](https://github.com/firebase/quickstart-ios/actions/workflows/analytics.yml/badge.svg)

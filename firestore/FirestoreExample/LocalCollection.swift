@@ -66,9 +66,7 @@ final class LocalCollection<T: Codable> {
         do {
           maybeModel = try document.data(as: T.self)
         } catch {
-          fatalError(
-            "Unable to initialize type \(T.self) from data \(document.data()): \(error)"
-          )
+          fatalError("Unable to initialize type \(T.self) from data \(document.data()): \(error)")
         }
 
         if let model = maybeModel {

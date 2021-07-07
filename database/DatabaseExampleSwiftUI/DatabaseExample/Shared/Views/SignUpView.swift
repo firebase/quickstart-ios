@@ -1,5 +1,5 @@
 //
-//  Copyright (c) 2015 Google Inc.
+//  Copyright (c) 2021 Google Inc.
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -18,7 +18,7 @@ import SwiftUI
 
 struct SignUpView: View {
 
-  @ObservedObject var user: UserManager
+  @ObservedObject var user: UserViewModel
   @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
   var screenWidth = UIScreen.main.bounds.width
   var screenHeight = UIScreen.main.bounds.height
@@ -26,7 +26,7 @@ struct SignUpView: View {
   var body: some View {
     VStack {
       // Sign up title
-      Text("SIGN UP")
+      Text("Sign up".uppercased())
         .font(.title)
 
       Spacer()
@@ -68,7 +68,7 @@ struct SignUpView: View {
 
       // Sign up button
       Button(action: user.signUp) {
-        Text("SIGN UP")
+        Text("Sign up".uppercased())
           .foregroundColor(.white)
           .font(.title2)
           .bold()
@@ -87,7 +87,7 @@ struct SignUpView: View {
         Button(action: {
           self.presentationMode.wrappedValue.dismiss()
         }) {
-          Text("LOGIN")
+          Text("Login".uppercased())
             .bold()
         }
       }
@@ -96,7 +96,7 @@ struct SignUpView: View {
       }
     }
     .alert(isPresented: $user.alert, content: {
-      Alert(title: Text("Message"), message: Text(user.alertMsg), dismissButton: .destructive(Text("Ok")))
+      Alert(title: Text("Message"), message: Text(user.alertMessage), dismissButton: .destructive(Text("Ok")))
     })
     .navigationBarHidden(true)
   }

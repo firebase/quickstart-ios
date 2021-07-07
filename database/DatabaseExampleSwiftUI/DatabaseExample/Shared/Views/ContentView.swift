@@ -1,5 +1,5 @@
 //
-//  Copyright (c) 2015 Google Inc.
+//  Copyright (c) 2021 Google Inc.
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -19,8 +19,8 @@ import Firebase
 
 struct ContentView: View {
 
-  @AppStorage("log_status") var status = false
-  @StateObject var user = UserManager()
+  @AppStorage("isSignedIn") var isSignedIn = false
+  @StateObject var user = UserViewModel()
   @State private var selection: Tab = .recentPosts
 
   enum Tab {
@@ -30,7 +30,7 @@ struct ContentView: View {
   }
 
   var body: some View {
-    if status {
+    if isSignedIn {
       TabView(selection: $selection) {
         RecentPostsView()
           .tabItem {
@@ -49,8 +49,7 @@ struct ContentView: View {
           .tag(Tab.topPosts)
       }
       .accentColor(Color(.systemTeal))
-    }
-    else {
+    } else {
       LoginView(user: user)
     }
   }

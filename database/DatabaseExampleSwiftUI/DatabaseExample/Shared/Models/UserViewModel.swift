@@ -1,5 +1,5 @@
 //
-//  Copyright (c) 2015 Google Inc.
+//  Copyright (c) 2021 Google Inc.
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -17,23 +17,27 @@
 import SwiftUI
 import Firebase
 
-class UserManager: ObservableObject {
+class UserViewModel: ObservableObject {
 
-  @AppStorage("log_status") var status = false
+  @AppStorage("isSignedIn") var isSignedIn = false
 
   @Published var email = ""
   @Published var password = ""
-  @Published var alertMsg = ""
+  @Published var alertMessage = ""
   @Published var isLoading = false
   @Published var alert = false
+
+  func showAlertMessage() {
+    self.alertMessage = "Email or password cannot be empty."
+    self.alert.toggle()
+    return
+  }
 
   func login() {
 
     // check if all fields are inputted correctly
-    if email == "" || password == "" {
-      self.alertMsg = "Email or password cannot be empty."
-      self.alert.toggle()
-      return
+    if email.isEmpty || password.isEmpty {
+      showAlertMessage()
     }
 
     // begin loading animation
@@ -46,12 +50,12 @@ class UserManager: ObservableObject {
       withAnimation {
         self.isLoading.toggle()
       }
-      if err != nil {
-        self.alertMsg = err!.localizedDescription
+      if let err = err {
+        self.alertMessage = err.localizedDescription
         self.alert.toggle()
       }
       else {
-        self.status = true
+        self.isSignedIn = true
       }
     }
   }
@@ -59,10 +63,8 @@ class UserManager: ObservableObject {
   func signUp() {
 
     // check if all fields are inputted correctly
-    if email == "" || password == "" {
-      self.alertMsg = "Email or password cannot be empty."
-      self.alert.toggle()
-      return
+    if email.isEmpty || password.isEmpty {
+      showAlertMessage()
     }
 
     // begin loading animation
@@ -72,31 +74,32 @@ class UserManager: ObservableObject {
 
     // sign up with email and password
     Auth.auth().createUser(withEmail: email, password: password) { (result, err) in
-      withAnimation{
+      withAnimation {
         self.isLoading.toggle()
       }
-      if err != nil {
-        self.alertMsg = err!.localizedDescription
+      if let err = err {
+        self.alertMessage = err.localizedDescription
         self.alert.toggle()
       }
       else {
         self.login()
       }
     }
-
-    // login after creating user
-    self.login()
   }
 
   func logout() {
-    try! Auth.auth().signOut()
-    withAnimation {
-      self.status = false
+    do {
+      try Auth.auth().signOut()
+        withAnimation {
+          self.isSignedIn = false
+        }
+        email = ""
+        password = ""
+    } catch {
+      NSLog("Error signing out.")
     }
-    email = ""
-    password = ""
   }
 
 }
 
-let user = UserManager()
+let user = UserViewModel()

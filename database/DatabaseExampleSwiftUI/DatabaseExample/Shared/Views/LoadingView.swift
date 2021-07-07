@@ -1,5 +1,5 @@
 //
-//  Copyright (c) 2015 Google Inc.
+//  Copyright (c) 2021 Google Inc.
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -17,14 +17,14 @@
 import SwiftUI
 
 struct LoadingView: View {
-  @State var animation = false
+  @State var animating = false
   var body: some View {
     VStack {
       Circle()
         .trim(from: 0, to: 0.7)
         .stroke(Color(.systemTeal), lineWidth: 8)
         .frame(width: 75, height: 75)
-        .rotationEffect(.init(degrees: animation ? 360 : 0))
+        .rotationEffect(.init(degrees: animating ? 360 : 0))
         .padding()
     }
     .background(Color.white)
@@ -33,7 +33,7 @@ struct LoadingView: View {
     .background(Color.black.opacity(0.4).ignoresSafeArea(.all, edges: .all))
     .onAppear(perform: {
       withAnimation(Animation.linear(duration: 1)) {
-        animation.toggle()
+        animating.toggle()
       }
     })
   }

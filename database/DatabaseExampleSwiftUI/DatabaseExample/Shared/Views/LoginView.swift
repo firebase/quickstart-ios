@@ -1,5 +1,5 @@
 //
-//  Copyright (c) 2015 Google Inc.
+//  Copyright (c) 2021 Google Inc.
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -19,7 +19,7 @@ import Firebase
 
 struct LoginView: View {
 
-  @ObservedObject var user: UserManager
+  @ObservedObject var user: UserViewModel
   var screenWidth = UIScreen.main.bounds.width
   var screenHeight = UIScreen.main.bounds.height
 
@@ -28,7 +28,7 @@ struct LoginView: View {
       VStack {
 
         // Login title
-        Text("LOGIN")
+        Text("Login".uppercased())
           .font(.title)
 
         Spacer()
@@ -69,7 +69,7 @@ struct LoginView: View {
 
         // Login button
         Button(action: user.login) {
-          Text("LOGIN")
+          Text("Login".uppercased())
             .foregroundColor(.white)
             .font(.title2)
             .bold()
@@ -86,7 +86,7 @@ struct LoginView: View {
         HStack {
           Text("Don't have an account?")
           NavigationLink(destination: SignUpView(user: user)) {
-            Text("SIGN UP")
+            Text("Sign up".uppercased())
               .bold()
           }
         }
@@ -97,7 +97,7 @@ struct LoginView: View {
       }
     }
     .alert(isPresented: $user.alert, content: {
-      Alert(title: Text("Message"), message: Text(user.alertMsg), dismissButton: .destructive(Text("OK")))
+      Alert(title: Text("Message"), message: Text(user.alertMessage), dismissButton: .destructive(Text("OK")))
     })
   }
 }

@@ -1,5 +1,5 @@
 //
-//  Copyright (c) 2015 Google Inc.
+//  Copyright (c) 2021 Google Inc.
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -22,7 +22,7 @@ struct Post {
   var author: String
   var title: String
   var body: String
-  var starCount: AnyObject?
+  var starCount: Int
   var stars: Dictionary<String, Bool>?
 
   init(uid: String, author: String, title: String, body: String) {
@@ -30,7 +30,7 @@ struct Post {
     self.author = author
     self.title = title
     self.body = body
-    self.starCount = 0 as AnyObject?
+    self.starCount = 0
   }
 
   init?(snapshot: DataSnapshot) {
@@ -45,7 +45,7 @@ struct Post {
     self.author = author
     self.title = title
     self.body = body
-    self.starCount = starCount as AnyObject?
+    self.starCount = starCount
   }
 
   init() {

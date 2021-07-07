@@ -24,8 +24,8 @@
 		C7C6B5B4268DAC1800546A57 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C6B5B2268DAC1800546A57 /* Comment.swift */; };
 		C7F60CF2268E352F002F68AB /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F60CF1268E352F002F68AB /* SignUpView.swift */; };
 		C7F60CF3268E352F002F68AB /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F60CF1268E352F002F68AB /* SignUpView.swift */; };
-		C7F60CF6268EBEDE002F68AB /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F60CF5268EBEDE002F68AB /* UserManager.swift */; };
-		C7F60CF7268EBEDE002F68AB /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F60CF5268EBEDE002F68AB /* UserManager.swift */; };
+		C7F60CF6268EBEDE002F68AB /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F60CF5268EBEDE002F68AB /* UserViewModel.swift */; };
+		C7F60CF7268EBEDE002F68AB /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F60CF5268EBEDE002F68AB /* UserViewModel.swift */; };
 		C7F60CF9268EDFC5002F68AB /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F60CF8268EDFC5002F68AB /* LoadingView.swift */; };
 		C7F60CFA268EDFC5002F68AB /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F60CF8268EDFC5002F68AB /* LoadingView.swift */; };
 		C7F60CFC268EE316002F68AB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F60CFB268EE316002F68AB /* ContentView.swift */; };
@@ -51,7 +51,7 @@
 		C7C6B5AF268DAC1200546A57 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		C7C6B5B2268DAC1800546A57 /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		C7F60CF1268E352F002F68AB /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
-		C7F60CF5268EBEDE002F68AB /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
+		C7F60CF5268EBEDE002F68AB /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		C7F60CF8268EDFC5002F68AB /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		C7F60CFB268EE316002F68AB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		C7F60CFE268F2AD1002F68AB /* RecentPostsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentPostsView.swift; sourceTree = "<group>"; };
@@ -147,7 +147,7 @@
 				C7C6B5AC268DABFC00546A57 /* Post.swift */,
 				C7C6B5AF268DAC1200546A57 /* User.swift */,
 				C7C6B5B2268DAC1800546A57 /* Comment.swift */,
-				C7F60CF5268EBEDE002F68AB /* UserManager.swift */,
+				C7F60CF5268EBEDE002F68AB /* UserViewModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -262,7 +262,7 @@
 				C7F60CFF268F2AD1002F68AB /* RecentPostsView.swift in Sources */,
 				C7C6B5B0268DAC1200546A57 /* User.swift in Sources */,
 				C7F60D05268F2B1B002F68AB /* TopPostsView.swift in Sources */,
-				C7F60CF6268EBEDE002F68AB /* UserManager.swift in Sources */,
+				C7F60CF6268EBEDE002F68AB /* UserViewModel.swift in Sources */,
 				C7C6B5AD268DABFC00546A57 /* Post.swift in Sources */,
 				C7C6B589268C8C9C00546A57 /* LoginView.swift in Sources */,
 				C7F60CFC268EE316002F68AB /* ContentView.swift in Sources */,
@@ -281,7 +281,7 @@
 				C7F60D00268F2AD1002F68AB /* RecentPostsView.swift in Sources */,
 				C7C6B5B1268DAC1200546A57 /* User.swift in Sources */,
 				C7F60D06268F2B1B002F68AB /* TopPostsView.swift in Sources */,
-				C7F60CF7268EBEDE002F68AB /* UserManager.swift in Sources */,
+				C7F60CF7268EBEDE002F68AB /* UserViewModel.swift in Sources */,
 				C7C6B5AE268DABFC00546A57 /* Post.swift in Sources */,
 				C7C6B58A268C8C9C00546A57 /* LoginView.swift in Sources */,
 				C7F60CFD268EE316002F68AB /* ContentView.swift in Sources */,

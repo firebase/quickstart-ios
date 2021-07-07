@@ -24,6 +24,7 @@ struct ContentView: View {
     ("Google Firestore", "Powerful Querying and Automatic Scaling"),
     ("Analytics", "Simple App Insights"),
     ("Remote Config", "Parameterize App Behavior"),
+    ("A/B Testing", "Optimize App Experience through Experiments"),
   ]
   var body: some View {
     NavigationView {

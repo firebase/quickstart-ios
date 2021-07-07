@@ -92,8 +92,8 @@
 			children = (
 				4125B848268E507100232B67 /* ABTestingExample--iOS--Info.plist */,
 				4125B7BF268E2E7A00232B67 /* Shared */,
-				4125B7D5268E2E7C00232B67 /* Tests iOS */,
-				4125B7DF268E2E7C00232B67 /* Tests macOS */,
+				4125B7D5268E2E7C00232B67 /* Tests_iOS */,
+				4125B7DF268E2E7C00232B67 /* Tests_macOS */,
 				4125B7C8268E2E7C00232B67 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -120,20 +120,20 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		4125B7D5268E2E7C00232B67 /* Tests iOS */ = {
+		4125B7D5268E2E7C00232B67 /* Tests_iOS */ = {
 			isa = PBXGroup;
 			children = (
 				4125B7D6268E2E7C00232B67 /* Tests_iOS.swift */,
 			);
-			path = "Tests iOS";
+			path = Tests_iOS;
 			sourceTree = "<group>";
 		};
-		4125B7DF268E2E7C00232B67 /* Tests macOS */ = {
+		4125B7DF268E2E7C00232B67 /* Tests_macOS */ = {
 			isa = PBXGroup;
 			children = (
 				4125B7E0268E2E7C00232B67 /* Tests_macOS.swift */,
 			);
-			path = "Tests macOS";
+			path = Tests_macOS;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

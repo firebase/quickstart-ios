@@ -15,7 +15,6 @@
 //
 
 import UIKit
-import Firebase
 import FirebaseCrashlytics
 import Reachability
 

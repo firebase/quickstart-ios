@@ -26,24 +26,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     FirebaseApp.configure()
 
     ApplicationDelegate.shared.application(
-        application,
-        didFinishLaunchingWithOptions: launchOptions
+      application,
+      didFinishLaunchingWithOptions: launchOptions
     )
 
     return true
   }
 
-  func application(
-      _ app: UIApplication,
-      open url: URL,
-      options: [UIApplication.OpenURLOptionsKey : Any] = [:]
-  ) -> Bool {
-      ApplicationDelegate.shared.application(
-          app,
-          open: url,
-          sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String,
-          annotation: options[UIApplication.OpenURLOptionsKey.annotation]
-      )
+  func application(_ app: UIApplication,
+                   open url: URL,
+                   options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
+    ApplicationDelegate.shared.application(
+      app,
+      open: url,
+      sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String,
+      annotation: options[UIApplication.OpenURLOptionsKey.annotation]
+    )
   }
 
   // MARK: UISceneSession Lifecycle

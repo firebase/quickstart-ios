@@ -48,7 +48,7 @@ class PhoneAuthViewController: OtherAuthViewController {
       guard error == nil else { return self.displayError(error) }
       self.navigationController?.dismiss(animated: true, completion: {
         self.delegate?.loginDidOccur()
-            })
+      })
     }
   }
 

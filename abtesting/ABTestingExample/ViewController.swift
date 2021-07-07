@@ -38,7 +38,6 @@ extension RemoteConfigFetchStatus {
 }
 
 class ViewController: UIViewController, UITableViewDataSource {
-
   @IBOutlet var tableView: UITableView!
 
   var colorScheme: ColorScheme = .light {
@@ -49,20 +48,28 @@ class ViewController: UIViewController, UITableViewDataSource {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    self.tableView.dataSource = self
-    self.tableView.tableFooterView = UIView()
+    tableView.dataSource = self
+    tableView.tableFooterView = UIView()
 
     #if DEBUG
-    NotificationCenter.default.addObserver(self,
-                                           selector: #selector(printInstallationsID),
-                                           name: .InstallationIDDidChange,
-                                           object: nil)
+      NotificationCenter.default.addObserver(self,
+                                             selector: #selector(printInstallationsID),
+                                             name: .InstallationIDDidChange,
+                                             object: nil)
     #endif
   }
 
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    RemoteConfig.remoteConfig().fetch(withExpirationDuration: 0) { (status, error) in
+    Installations.installations().authTokenForcingRefresh(true) { token, error in
+      if let error = error {
+        print("Error fetching token: \(error)")
+        return
+      }
+      guard let token = token else { return }
+      print("Installation auth token: \(token.authToken)")
+    }
+    RemoteConfig.remoteConfig().fetch(withExpirationDuration: 0) { status, error in
       if let error = error {
         print("Error fetching config: \(error)")
       }
@@ -77,7 +84,7 @@ class ViewController: UIViewController, UITableViewDataSource {
   }
 
   func setAppearance() {
-    RemoteConfig.remoteConfig().activate() { activated, error in
+    RemoteConfig.remoteConfig().activate { activated, error in
       let configValue = RemoteConfig.remoteConfig()["color_scheme"]
       print("Config value: \(configValue.stringValue ?? "null")")
       DispatchQueue.main.async {
@@ -92,13 +99,13 @@ class ViewController: UIViewController, UITableViewDataSource {
 
   @objc func printInstallationsID() {
     #if DEBUG
-    Installations.installations().installationID { (identifier, error) in
-      if let error = error {
-        print("Error fetching installations ID: \(error)")
-      } else if let identifier = identifier {
-        print("Remote installations ID: \(identifier)")
+      Installations.installations().installationID { identifier, error in
+        if let error = error {
+          print("Error fetching installations ID: \(error)")
+        } else if let identifier = identifier {
+          print("Remote installations ID: \(identifier)")
+        }
       }
-    }
     #endif
   }
 
@@ -110,12 +117,11 @@ class ViewController: UIViewController, UITableViewDataSource {
 
   func switchToColorScheme(_ scheme: ColorScheme) {
     switch scheme {
-
     case .light:
       navigationController?.navigationBar.barTintColor = ViewController.lightColors.primary
-      navigationController?.navigationBar.barStyle = .`default`
+      navigationController?.navigationBar.barStyle = .default
       navigationController?.navigationBar.titleTextAttributes = [
-        NSAttributedString.Key.foregroundColor: UIColor.black
+        NSAttributedString.Key.foregroundColor: UIColor.black,
       ]
       tableView.separatorColor = .gray
       tableView.backgroundColor = UIColor(red: 0.94, green: 0.94, blue: 0.94, alpha: 1)
@@ -124,7 +130,7 @@ class ViewController: UIViewController, UITableViewDataSource {
       navigationController?.navigationBar.barTintColor = ViewController.darkColors.primary
       navigationController?.navigationBar.barStyle = .black
       navigationController?.navigationBar.titleTextAttributes = [
-        NSAttributedString.Key.foregroundColor: UIColor.white
+        NSAttributedString.Key.foregroundColor: UIColor.white,
       ]
       tableView.separatorColor = .lightGray
       tableView.backgroundColor = ViewController.darkColors.secondary
@@ -134,13 +140,13 @@ class ViewController: UIViewController, UITableViewDataSource {
   }
 
   static let darkColors = (
-    primary: UIColor(red: 0x61 / 0xff, green: 0x61 / 0xff, blue: 0x61 / 0xff, alpha: 1),
-    secondary: UIColor(red: 0x42 / 0xff, green: 0x42 / 0xff, blue: 0x42 / 0xff, alpha: 1)
+    primary: UIColor(red: 0x61 / 0xFF, green: 0x61 / 0xFF, blue: 0x61 / 0xFF, alpha: 1),
+    secondary: UIColor(red: 0x42 / 0xFF, green: 0x42 / 0xFF, blue: 0x42 / 0xFF, alpha: 1)
   )
 
   static let lightColors = (
-    primary: UIColor(red: 0xff / 0xff, green: 0xc1 / 0xff, blue: 0x07 / 0xff, alpha: 1),
-    secondary: UIColor(red: 0xff / 0xff, green: 0xc1 / 0xff, blue: 0x07 / 0xff, alpha: 1)
+    primary: UIColor(red: 0xFF / 0xFF, green: 0xC1 / 0xFF, blue: 0x07 / 0xFF, alpha: 1),
+    secondary: UIColor(red: 0xFF / 0xFF, green: 0xC1 / 0xFF, blue: 0x07 / 0xFF, alpha: 1)
   )
 
   // MARK: - UITableViewDataSource
@@ -149,7 +155,7 @@ class ViewController: UIViewController, UITableViewDataSource {
     ("Getting Started with Firebase", "An Introduction to Firebase"),
     ("Google Firestore", "Powerful Querying and Automatic Scaling"),
     ("Analytics", "Simple App Insights"),
-    ("Remote Config", "Parameterize App Behavior")
+    ("Remote Config", "Parameterize App Behavior"),
   ]
 
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -175,5 +181,4 @@ class ViewController: UIViewController, UITableViewDataSource {
 
     return cell
   }
-
 }

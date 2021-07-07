@@ -19,29 +19,32 @@ import Firebase
 
 @objc(ViewController)
 class ViewController: UIViewController {
- 
-  @IBOutlet weak var fcmTokenMessage: UILabel!
-  @IBOutlet weak var remoteFCMTokenMessage: UILabel!
-    
+  @IBOutlet var fcmTokenMessage: UILabel!
+  @IBOutlet var remoteFCMTokenMessage: UILabel!
+
   override func viewDidLoad() {
-    NotificationCenter.default.addObserver(self, selector: #selector(self.displayFCMToken(notification:)),
-                                           name: Notification.Name("FCMToken"), object: nil)
+    NotificationCenter.default.addObserver(
+      self,
+      selector: #selector(displayFCMToken(notification:)),
+      name: Notification.Name("FCMToken"),
+      object: nil
+    )
   }
-    
+
   @IBAction func handleLogTokenTouch(_ sender: UIButton) {
     // [START log_fcm_reg_token]
     let token = Messaging.messaging().fcmToken
     print("FCM token: \(token ?? "")")
     // [END log_fcm_reg_token]
-    self.fcmTokenMessage.text  = "Logged FCM token: \(token ?? "")"
+    fcmTokenMessage.text = "Logged FCM token: \(token ?? "")"
 
     // [START log_iid_reg_token]
-    Messaging.messaging().token { (token, error) in
+    Messaging.messaging().token { token, error in
       if let error = error {
         print("Error fetching remote FCM registration token: \(error)")
       } else if let token = token {
         print("Remote instance ID token: \(token)")
-        self.remoteFCMTokenMessage.text  = "Remote FCM registration token: \(token)"
+        self.remoteFCMTokenMessage.text = "Remote FCM registration token: \(token)"
       }
     }
     // [END log_iid_reg_token]
@@ -55,10 +58,10 @@ class ViewController: UIViewController {
     // [END subscribe_topic]
   }
 
-  @objc func displayFCMToken(notification: NSNotification){
-    guard let userInfo = notification.userInfo else {return}
+  @objc func displayFCMToken(notification: NSNotification) {
+    guard let userInfo = notification.userInfo else { return }
     if let fcmToken = userInfo["token"] as? String {
-      self.fcmTokenMessage.text = "Received FCM token: \(fcmToken)"
+      fcmTokenMessage.text = "Received FCM token: \(fcmToken)"
     }
   }
 }

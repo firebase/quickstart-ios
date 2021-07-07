@@ -26,11 +26,14 @@ struct SignInView: View {
   var body: some View {
     NavigationView {
       VStack {
-        NavigationLink(destination: RestaurantListView().navigationBarHidden(true), isActive: $isSignedIn)
+        NavigationLink(
+          destination: RestaurantListView().navigationBarHidden(true),
+          isActive: $isSignedIn
+        )
           { EmptyView() }
         Button("Sign In Anonymously") {
-          Auth.auth().signInAnonymously() { (authResult, error) in
-            if (error == nil) {
+          Auth.auth().signInAnonymously { authResult, error in
+            if error == nil {
               self.isSignedIn = true
             } else {
               print(error!)

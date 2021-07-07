@@ -15,33 +15,32 @@
 import XCTest
 
 class AppDistributionExampleUITests: XCTestCase {
+  var app: XCUIApplication!
 
-    var app: XCUIApplication!
+  override func setUp() {
+    super.setUp()
 
-    override func setUp() {
-        super.setUp()
-        
-        continueAfterFailure = false
-        
-        app = XCUIApplication()
-        app.launch()
-    }
-    
-    override func tearDown() {
-        super.tearDown()
-    }
-    
-    func testConfigStartup() {
-        // Verify that Config Example app launched successfully
-        XCTAssertTrue(app.navigationBars["Firebase App Distribution"].exists)
-    }
+    continueAfterFailure = false
 
-    func testLaunchPerformance() throws {
-        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, *) {
-            // This measures how long it takes to launch your application.
-            measure(metrics: [XCTOSSignpostMetric.applicationLaunch]) {
-                XCUIApplication().launch()
-            }
-        }
+    app = XCUIApplication()
+    app.launch()
+  }
+
+  override func tearDown() {
+    super.tearDown()
+  }
+
+  func testConfigStartup() {
+    // Verify that Config Example app launched successfully
+    XCTAssertTrue(app.navigationBars["Firebase App Distribution"].exists)
+  }
+
+  func testLaunchPerformance() throws {
+    if #available(macOS 10.15, iOS 13.0, tvOS 13.0, *) {
+      // This measures how long it takes to launch your application.
+      measure(metrics: [XCTOSSignpostMetric.applicationLaunch]) {
+        XCUIApplication().launch()
+      }
     }
+  }
 }

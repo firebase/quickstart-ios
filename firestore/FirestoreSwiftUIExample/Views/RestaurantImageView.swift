@@ -25,7 +25,7 @@ struct RestaurantImageView: View {
   var isThumbnail: Bool
 
   var body: some View {
-    if (isThumbnail) {
+    if isThumbnail {
       WebImage(url: imageURL)
         .resizable()
         .aspectRatio(1, contentMode: .fill)

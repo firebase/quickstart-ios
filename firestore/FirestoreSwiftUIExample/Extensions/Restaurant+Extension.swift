@@ -71,12 +71,12 @@ extension Restaurant {
     "Tucson",
     "Tulsa",
     "Virginia Beach",
-    "Washington"
+    "Washington",
   ]
 
   static let categories = [
     "Brunch", "Burgers", "Coffee", "Deli", "Dim Sum", "Indian", "Italian",
-    "Mediterranean", "Mexican", "Pizza", "Ramen", "Sushi"
+    "Mediterranean", "Mexican", "Pizza", "Ramen", "Sushi",
   ]
 
   static let prices = [1, 2, 3]

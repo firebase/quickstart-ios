@@ -17,5 +17,4 @@
 import XCTest
 @testable import ABTestingExample
 
-class ABTestingExampleTests: XCTestCase {
-}
+class ABTestingExampleTests: XCTestCase {}

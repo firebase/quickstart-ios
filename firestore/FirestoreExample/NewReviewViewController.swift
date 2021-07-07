@@ -18,9 +18,12 @@ import UIKit
 import Firebase
 
 class NewReviewViewController: UIViewController, UITextFieldDelegate {
-
-  static func fromStoryboard(_ storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)) -> NewReviewViewController {
-    let controller = storyboard.instantiateViewController(withIdentifier: "NewReviewViewController") as! NewReviewViewController
+  static func fromStoryboard(_ storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil))
+    -> NewReviewViewController {
+    let controller = storyboard
+      .instantiateViewController(
+        withIdentifier: "NewReviewViewController"
+      ) as! NewReviewViewController
     return controller
   }
 
@@ -36,7 +39,11 @@ class NewReviewViewController: UIViewController, UITextFieldDelegate {
 
   @IBOutlet var reviewTextField: UITextField! {
     didSet {
-      reviewTextField.addTarget(self, action: #selector(textFieldTextDidChange(_:)), for: .editingChanged)
+      reviewTextField.addTarget(
+        self,
+        action: #selector(textFieldTextDidChange(_:)),
+        for: .editingChanged
+      )
     }
   }
 
@@ -47,7 +54,7 @@ class NewReviewViewController: UIViewController, UITextFieldDelegate {
   }
 
   @IBAction func cancelButtonPressed(_ sender: Any) {
-    self.navigationController?.popViewController(animated: true)
+    navigationController?.popViewController(animated: true)
   }
 
   @IBAction func doneButtonPressed(_ sender: Any) {
@@ -75,11 +82,9 @@ class NewReviewViewController: UIViewController, UITextFieldDelegate {
   @objc func textFieldTextDidChange(_ sender: Any) {
     updateSubmitButton()
   }
-
 }
 
 protocol NewReviewViewControllerDelegate: NSObjectProtocol {
-  func reviewController(_ controller: NewReviewViewController, didSubmitFormWithReview review: Review)
+  func reviewController(_ controller: NewReviewViewController,
+                        didSubmitFormWithReview review: Review)
 }
-
-

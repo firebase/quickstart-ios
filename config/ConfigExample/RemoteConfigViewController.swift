@@ -120,7 +120,7 @@ class RemoteConfigViewController: UIViewController {
     displayedJSON.forEach { label in
       UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
         label.alpha = 0
-            }) { _ in
+      }) { _ in
         label.removeFromSuperview()
       }
     }
@@ -187,7 +187,7 @@ class RemoteConfigViewController: UIViewController {
   private func animateFadeIn(for view: UIView, duration: TimeInterval) {
     UIView.animate(withDuration: duration, delay: 0, options: .curveEaseIn, animations: {
       view.alpha = 1
-        })
+    })
   }
 }
 

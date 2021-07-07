@@ -20,9 +20,8 @@ import FirebaseStorageSwift
 
 @objc(DownloadViewController)
 class DownloadViewController: UIViewController {
-
-  @IBOutlet weak var imageView: UIImageView!
-  @IBOutlet weak var statusTextView: UITextView!
+  @IBOutlet var imageView: UIImageView!
+  @IBOutlet var statusTextView: UITextView!
   var storageRef: StorageReference!
 
   override func viewDidLoad() {

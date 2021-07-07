@@ -28,28 +28,33 @@ jobs:
         uses: actions/checkout@master
       - name: Setup
         run: |
-          cd crashlytics
+          cd crashlytics/LegacyCrashlyticsQuickstart
           gem install bundler
           bundle install
           gem install xcpretty
           bundle exec pod install --repo-update
+          cd ..
           ../scripts/install_prereqs/crashlytics.sh
         env:
           SAMPLE: Crashlytics
           secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}
+          LEGACY: true
       - name: Build ObjC
         run:  ./scripts/test.sh
         env:
           SWIFT_SUFFIX: ''
           SAMPLE: Crashlytics
+          LEGACY: true
       - name: Build Swift
         run:  ./scripts/test.sh
         env:
           SWIFT_SUFFIX: 'Swift'
           SAMPLE: Crashlytics
+          LEGACY: true
       - name: Build SwiftUI
         run: |
           cd crashlytics
+          ../scripts/install_prereqs/crashlytics.sh
           xcodebuild \
           -project CrashlyticsExample.xcodeproj \
           -scheme 'CrashlyticsSwiftUIExample (iOS)' \
@@ -57,5 +62,4 @@ jobs:
           -destination 'platform=iOS Simulator,name=iPhone 11' \
           build
         env: 
-          SWIFT_SUFFIX: 'Swift'
           SAMPLE: Crashlytics

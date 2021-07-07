@@ -410,7 +410,7 @@ extension AccountLinkingViewController: DataSourceProvidable {
 
   private func userProviderDataContains(item: Item) -> Bool {
     guard let authProvider = AuthProvider(rawValue: item.title ?? "") else { return false }
-    return user.providerData.map({$0.providerID}).contains(authProvider.id)
+    return user.providerData.map { $0.providerID }.contains(authProvider.id)
   }
 }
 

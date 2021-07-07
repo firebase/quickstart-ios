@@ -26,7 +26,7 @@ class ViewController: UIViewController {
 
   private var log: String = "" {
     didSet {
-      logTextView?.text = log;
+      logTextView?.text = log
     }
   }
 
@@ -45,41 +45,44 @@ class ViewController: UIViewController {
 
   @IBAction func getInstallationButtonPressed() {
     log(message: "Call Installations.installationID()")
-    installations.installationID { [weak self] (installationID, error) in
+    installations.installationID { [weak self] installationID, error in
       self?.log(message: """
-        Installations.installationID() result:
-        installationID = \(String(describing: installationID))
-        error = \(String(describing: error))
-        """)
+      Installations.installationID() result:
+      installationID = \(String(describing: installationID))
+      error = \(String(describing: error))
+      """)
     }
   }
 
   @IBAction func getAuthTokenButtonPressed() {
     log(message: "Call Installations.authToken()")
-    installations.authToken { [weak self] (authToken, error) in
+    installations.authToken { [weak self] authToken, error in
       self?.log(message: """
-        Installations.authToken() result:
-        authToken.authToken = \(String(describing: authToken?.authToken))
-        authToken.expirationDate = \(String(describing: authToken?.expirationDate))
-        error = \(String(describing: error))
-        """)
+      Installations.authToken() result:
+      authToken.authToken = \(String(describing: authToken?.authToken))
+      authToken.expirationDate = \(String(describing: authToken?.expirationDate))
+      error = \(String(describing: error))
+      """)
     }
   }
 
   @IBAction func deleteInstallationButtonPressed() {
     log(message: "Call Installations.delete()")
-    installations.delete { [weak self] (error) in
+    installations.delete { [weak self] error in
       self?.log(message: """
-        Installations.delete() result:
-        \(error != nil ? String(describing: error) : "SUCCESS")
-        """)
+      Installations.delete() result:
+      \(error != nil ? String(describing: error) : "SUCCESS")
+      """)
     }
   }
 
   // MARK: Installation update notifications
+
   private func subscribeForInstallationsUpdateNotifications() {
     NotificationCenter.default.addObserver(self,
-                                           selector: #selector(installationUpdateNotificationReceived),
+                                           selector: #selector(
+                                             installationUpdateNotificationReceived
+                                           ),
                                            name: Notification.Name.InstallationIDDidChange,
                                            object: nil)
   }
@@ -93,4 +96,3 @@ class ViewController: UIViewController {
     log = logMessage + log
   }
 }
-

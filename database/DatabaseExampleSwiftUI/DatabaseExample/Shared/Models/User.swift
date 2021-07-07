@@ -24,6 +24,6 @@ struct User {
   }
 
   init() {
-    self.init(username:  "")
+    self.init(username: "")
   }
 }

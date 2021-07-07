@@ -17,7 +17,6 @@
 import SwiftUI
 
 struct SignUpView: View {
-
   @ObservedObject var user: UserViewModel
   @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
   var screenWidth = UIScreen.main.bounds.width
@@ -45,9 +44,11 @@ struct SignUpView: View {
           .autocapitalization(UITextAutocapitalizationType.none)
       }
       .padding(0.02 * screenHeight)
-      .frame(width: screenWidth * 0.8, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+      .frame(
+        width: screenWidth * 0.8,
+        alignment: /*@START_MENU_TOKEN@*/ .center/*@END_MENU_TOKEN@*/
+      )
       .background(RoundedRectangle(cornerRadius: 10).fill(Color(.systemGray5)))
-
 
       // Password textfield
       HStack {
@@ -96,7 +97,11 @@ struct SignUpView: View {
       }
     }
     .alert(isPresented: $user.alert, content: {
-      Alert(title: Text("Message"), message: Text(user.alertMessage), dismissButton: .destructive(Text("Ok")))
+      Alert(
+        title: Text("Message"),
+        message: Text(user.alertMessage),
+        dismissButton: .destructive(Text("Ok"))
+      )
     })
     .navigationBarHidden(true)
   }

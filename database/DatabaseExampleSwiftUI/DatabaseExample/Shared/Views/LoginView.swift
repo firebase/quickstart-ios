@@ -18,7 +18,6 @@ import SwiftUI
 import Firebase
 
 struct LoginView: View {
-
   @ObservedObject var user: UserViewModel
   var screenWidth = UIScreen.main.bounds.width
   var screenHeight = UIScreen.main.bounds.height
@@ -26,7 +25,6 @@ struct LoginView: View {
   var body: some View {
     NavigationView {
       VStack {
-
         // Login title
         Text("Login".uppercased())
           .font(.title)
@@ -47,7 +45,10 @@ struct LoginView: View {
             .autocapitalization(UITextAutocapitalizationType.none)
         }
         .padding(0.02 * screenHeight)
-        .frame(width: screenWidth * 0.8, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+        .frame(
+          width: screenWidth * 0.8,
+          alignment: /*@START_MENU_TOKEN@*/ .center/*@END_MENU_TOKEN@*/
+        )
         .background(RoundedRectangle(cornerRadius: 10).fill(Color(.systemGray5)))
 
         // Password textfield
@@ -97,7 +98,11 @@ struct LoginView: View {
       }
     }
     .alert(isPresented: $user.alert, content: {
-      Alert(title: Text("Message"), message: Text(user.alertMessage), dismissButton: .destructive(Text("OK")))
+      Alert(
+        title: Text("Message"),
+        message: Text(user.alertMessage),
+        dismissButton: .destructive(Text("OK"))
+      )
     })
   }
 }

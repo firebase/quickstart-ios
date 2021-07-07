@@ -18,7 +18,6 @@ import SwiftUI
 import Firebase
 
 class UserViewModel: ObservableObject {
-
   @AppStorage("isSignedIn") var isSignedIn = false
 
   @Published var email = ""
@@ -28,13 +27,12 @@ class UserViewModel: ObservableObject {
   @Published var alert = false
 
   func showAlertMessage() {
-    self.alertMessage = "Email or password cannot be empty."
-    self.alert.toggle()
+    alertMessage = "Email or password cannot be empty."
+    alert.toggle()
     return
   }
 
   func login() {
-
     // check if all fields are inputted correctly
     if email.isEmpty || password.isEmpty {
       showAlertMessage()
@@ -46,22 +44,20 @@ class UserViewModel: ObservableObject {
     }
 
     // sign in with email and password
-    Auth.auth().signIn(withEmail: email, password: password) { (result, err) in
+    Auth.auth().signIn(withEmail: email, password: password) { result, err in
       withAnimation {
         self.isLoading.toggle()
       }
       if let err = err {
         self.alertMessage = err.localizedDescription
         self.alert.toggle()
-      }
-      else {
+      } else {
         self.isSignedIn = true
       }
     }
   }
 
   func signUp() {
-
     // check if all fields are inputted correctly
     if email.isEmpty || password.isEmpty {
       showAlertMessage()
@@ -73,15 +69,14 @@ class UserViewModel: ObservableObject {
     }
 
     // sign up with email and password
-    Auth.auth().createUser(withEmail: email, password: password) { (result, err) in
+    Auth.auth().createUser(withEmail: email, password: password) { result, err in
       withAnimation {
         self.isLoading.toggle()
       }
       if let err = err {
         self.alertMessage = err.localizedDescription
         self.alert.toggle()
-      }
-      else {
+      } else {
         self.login()
       }
     }
@@ -90,16 +85,15 @@ class UserViewModel: ObservableObject {
   func logout() {
     do {
       try Auth.auth().signOut()
-        withAnimation {
-          self.isSignedIn = false
-        }
-        email = ""
-        password = ""
+      withAnimation {
+        self.isSignedIn = false
+      }
+      email = ""
+      password = ""
     } catch {
       NSLog("Error signing out.")
     }
   }
-
 }
 
 let user = UserViewModel()

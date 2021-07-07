@@ -23,22 +23,22 @@ struct Post {
   var title: String
   var body: String
   var starCount: Int
-  var stars: Dictionary<String, Bool>?
+  var stars: [String: Bool]?
 
   init(uid: String, author: String, title: String, body: String) {
     self.uid = uid
     self.author = author
     self.title = title
     self.body = body
-    self.starCount = 0
+    starCount = 0
   }
 
   init?(snapshot: DataSnapshot) {
     guard let dict = snapshot.value as? [String: Any] else { return nil }
-    guard let uid  = dict["uid"] as? String  else { return nil }
-    guard let author = dict["author"]  as? String else { return nil }
-    guard let title = dict["title"]  as? String else { return nil }
-    guard let body = dict["body"]  as? String else { return nil }
+    guard let uid = dict["uid"] as? String else { return nil }
+    guard let author = dict["author"] as? String else { return nil }
+    guard let title = dict["title"] as? String else { return nil }
+    guard let body = dict["body"] as? String else { return nil }
     let starCount = dict["starCount"] as? Int ?? 0
 
     self.uid = uid
@@ -49,6 +49,6 @@ struct Post {
   }
 
   init() {
-    self.init(uid: "", author: "", title: "", body:  "")
+    self.init(uid: "", author: "", title: "", body: "")
   }
 }

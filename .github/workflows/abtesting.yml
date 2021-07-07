@@ -50,7 +50,7 @@ jobs:
           cd abtesting
           ../scripts/install_prereqs/abtesting.sh
           xcodebuild \
-          -project 'ABTestingExample.xcodeproj \
+          -project 'ABTestingExample.xcodeproj' \
           -scheme 'ABTestingExample (iOS)' \
           -sdk iphonesimulator \
           -destination 'platform=iOS Simulator,name=iPhone 11' \

@@ -18,25 +18,26 @@ import SwiftUI
 import Firebase
 
 class AppConfig: ObservableObject {
-  @Published var colorScheme : ColorScheme
+  @Published var colorScheme: ColorScheme
   init() {
     let value = RemoteConfig.remoteConfig()["color_scheme"].stringValue ?? "nil"
     colorScheme = ColorScheme(value)
-#if DEBUG
-    NotificationCenter.default.addObserver(self,
-                                           selector: #selector(printInstallationAuthToken),
-                                           name: .InstallationIDDidChange,
-                                           object: nil)
-#endif
+    #if DEBUG
+      NotificationCenter.default.addObserver(self,
+                                             selector: #selector(printInstallationAuthToken),
+                                             name: .InstallationIDDidChange,
+                                             object: nil)
+    #endif
   }
-#if DEBUG
-  deinit {
-    NotificationCenter.default.removeObserver(self)
-  }
-#endif
+
+  #if DEBUG
+    deinit {
+      NotificationCenter.default.removeObserver(self)
+    }
+  #endif
   func updateFromRemoteConfig() {
     let remoteConfig = RemoteConfig.remoteConfig()
-    remoteConfig.fetch(withExpirationDuration: 0) { (status, error) in
+    remoteConfig.fetch(withExpirationDuration: 0) { status, error in
       print("Config fetch completed with status: \(status.debugDescription)")
       if let error = error {
         print("Error fetching config: \(error)")
@@ -55,8 +56,9 @@ class AppConfig: ObservableObject {
       }
     }
   }
+
   @objc func printInstallationAuthToken() {
-    Installations.installations().authTokenForcingRefresh(true) { (token, error) in
+    Installations.installations().authTokenForcingRefresh(true) { token, error in
       if let error = error {
         print("Error fetching token: \(error)")
       } else if let token = token {

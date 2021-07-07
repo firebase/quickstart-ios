@@ -19,18 +19,19 @@ import Firebase
 
 @main
 struct ABTestingExampleApp: App {
-  var appConfig : AppConfig
+  var appConfig: AppConfig
   init() {
     FirebaseApp.configure()
     let remoteConfig = RemoteConfig.remoteConfig()
-#if DEBUG
-    let devSettings = RemoteConfigSettings()
-    devSettings.minimumFetchInterval = 0
-    remoteConfig.configSettings = devSettings
-#endif
+    #if DEBUG
+      let devSettings = RemoteConfigSettings()
+      devSettings.minimumFetchInterval = 0
+      remoteConfig.configSettings = devSettings
+    #endif
     remoteConfig.setDefaults(["color_scheme": "light" as NSObject])
     appConfig = AppConfig()
   }
+
   var body: some Scene {
     WindowGroup {
       ContentView(appConfig: appConfig)

@@ -18,7 +18,9 @@ import UIKit
 import Firebase
 
 //
+
 // MARK: - Section Data Structure
+
 //
 struct Section {
   var name: ParamTypes
@@ -60,7 +62,7 @@ enum Params: String {
 
 enum ParamTypes: String {
   case googleAnalytics = "Google Analytics"
-  case iOS = "iOS"
+  case iOS
   case iTunes = "iTunes Connect Analytics"
   case android = "Android"
   case social = "Social Meta Tag"
@@ -68,11 +70,12 @@ enum ParamTypes: String {
 }
 
 //
+
 // MARK: - View Controller
+
 //
 @objc(ViewController)
 class ViewController: UITableViewController {
-
   static let DOMAIN_URI_PREFIX = "YOUR_DOMAIN_URI_PREFIX"
 
   var sections = [Section]()
@@ -91,7 +94,7 @@ class ViewController: UITableViewController {
       Section(name: .iTunes, items: [.affiliateToken, .campaignToken, .providerToken]),
       Section(name: .android, items: [.packageName, .androidFallbackURL, .minimumVersion]),
       Section(name: .social, items: [.title, .descriptionText, .imageURL]),
-      Section(name: .other, items: [.otherFallbackURL])
+      Section(name: .other, items: [.otherFallbackURL]),
     ]
   }
 
@@ -107,12 +110,16 @@ class ViewController: UITableViewController {
     }
 
     guard let link = URL(string: linkString) else { return }
-    guard let components = DynamicLinkComponents(link: link, domainURIPrefix: ViewController.DOMAIN_URI_PREFIX) else { return }
+    guard let components = DynamicLinkComponents(
+      link: link,
+      domainURIPrefix: ViewController.DOMAIN_URI_PREFIX
+    ) else { return }
 
     // analytics params
     let analyticsParams = DynamicLinkGoogleAnalyticsParameters(
-        source: dictionary[.source]?.text ?? "", medium: dictionary[.medium]?.text ?? "",
-        campaign: dictionary[.campaign]?.text ?? "")
+      source: dictionary[.source]?.text ?? "", medium: dictionary[.medium]?.text ?? "",
+      campaign: dictionary[.campaign]?.text ?? ""
+    )
     analyticsParams.term = dictionary[.term]?.text
     analyticsParams.content = dictionary[.content]?.text
     components.analyticsParameters = analyticsParams
@@ -140,7 +147,7 @@ class ViewController: UITableViewController {
       // Android params
       let androidParams = DynamicLinkAndroidParameters(packageName: packageName)
       androidParams.fallbackURL = dictionary[.androidFallbackURL]?.text.flatMap(URL.init)
-      androidParams.minimumVersion = dictionary[.minimumVersion]?.text.flatMap {Int($0)} ?? 0
+      androidParams.minimumVersion = dictionary[.minimumVersion]?.text.flatMap { Int($0) } ?? 0
       components.androidParameters = androidParams
     }
 
@@ -170,7 +177,7 @@ class ViewController: UITableViewController {
     // [END shortLinkOptions]
 
     // [START shortenLink]
-    components.shorten { (shortURL, warnings, error) in
+    components.shorten { shortURL, warnings, error in
       // Handle shortURL.
       if let error = error {
         print(error.localizedDescription)
@@ -187,15 +194,17 @@ class ViewController: UITableViewController {
 }
 
 //
-// MARK: - View Controller DataSource and Delegate
-//
-extension ViewController : UIGestureRecognizerDelegate {
 
+// MARK: - View Controller DataSource and Delegate
+
+//
+extension ViewController: UIGestureRecognizerDelegate {
   override func numberOfSections(in tableView: UITableView) -> Int {
     return 3
   }
 
-  override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+  override func tableView(_ tableView: UITableView,
+                          titleForHeaderInSection section: Int) -> String? {
     switch section {
     case 0: return "Components"
     case 1: return "Optional Parameters"
@@ -204,7 +213,8 @@ extension ViewController : UIGestureRecognizerDelegate {
     }
   }
 
-  override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+  override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView,
+                          forSection section: Int) {
     if section == 2 {
       view.subviews[0].backgroundColor = .yellow
       let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(buildFDLLink))
@@ -233,10 +243,14 @@ extension ViewController : UIGestureRecognizerDelegate {
   }
 
   // Cell
-  override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+  override func tableView(_ tableView: UITableView,
+                          cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     switch indexPath.section {
     case 0:
-      let cell = tableView.dequeueReusableCell(withIdentifier: "param", for: indexPath) as! ParamTableViewCell
+      let cell = tableView.dequeueReusableCell(
+        withIdentifier: "param",
+        for: indexPath
+      ) as! ParamTableViewCell
       cell.paramLabel.text = Params.link.rawValue
       dictionary[.link] = cell.paramTextField
       return cell
@@ -256,14 +270,24 @@ extension ViewController : UIGestureRecognizerDelegate {
       let row = getRowIndex(indexPath.row)
 
       if row == 0 {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "header", for: indexPath) as! HeaderCell
+        let cell = tableView.dequeueReusableCell(
+          withIdentifier: "header",
+          for: indexPath
+        ) as! HeaderCell
         cell.titleLabel.text = sections[section].name.rawValue
         cell.toggleButton.tag = section
         cell.toggleButton.setTitle(sections[section].collapsed ? "+" : "-", for: .normal)
-        cell.toggleButton.addTarget(self, action: #selector(ViewController.toggleCollapse), for: .touchUpInside)
+        cell.toggleButton.addTarget(
+          self,
+          action: #selector(ViewController.toggleCollapse),
+          for: .touchUpInside
+        )
         return cell
       } else {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "param", for: indexPath) as! ParamTableViewCell
+        let cell = tableView.dequeueReusableCell(
+          withIdentifier: "param",
+          for: indexPath
+        ) as! ParamTableViewCell
         cell.paramLabel.text = sections[section].items[row - 1].rawValue
         if cell.paramLabel.text! == Params.bundleID.rawValue {
           cell.paramTextField.text = Bundle.main.bundleIdentifier
@@ -279,7 +303,8 @@ extension ViewController : UIGestureRecognizerDelegate {
     }
   }
 
-  override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+  override func tableView(_ tableView: UITableView,
+                          heightForRowAt indexPath: IndexPath) -> CGFloat {
     switch indexPath.section {
     case 0: return 80.0
     case 2: return 44.0
@@ -318,7 +343,9 @@ extension ViewController : UIGestureRecognizerDelegate {
   }
 
   //
+
   // MARK: - Event Handlers
+
   //
   @objc func toggleCollapse(sender: UIButton) {
     let section = sender.tag
@@ -340,12 +367,14 @@ extension ViewController : UIGestureRecognizerDelegate {
   }
 
   //
+
   // MARK: - Helper Functions
+
   //
   func getSectionIndex(_ row: NSInteger) -> Int {
     let indices = getHeaderIndices()
 
-    for i in 0..<indices.count {
+    for i in 0 ..< indices.count {
       if i == indices.count - 1 || row < indices[i + 1] {
         return i
       }
@@ -358,7 +387,7 @@ extension ViewController : UIGestureRecognizerDelegate {
     var index = row
     let indices = getHeaderIndices()
 
-    for i in 0..<indices.count {
+    for i in 0 ..< indices.count {
       if i == indices.count - 1 || row < indices[i + 1] {
         index -= indices[i]
         break
@@ -379,5 +408,4 @@ extension ViewController : UIGestureRecognizerDelegate {
 
     return indices
   }
-
 }

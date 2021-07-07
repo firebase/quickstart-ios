@@ -19,7 +19,6 @@ import Firebase
 
 @main
 struct CrashlyticsSwiftUIExampleApp: App {
-
   let reachabilityHelper = ReachabililtyHelper()
 
   init() {
@@ -30,7 +29,7 @@ struct CrashlyticsSwiftUIExampleApp: App {
     Crashlytics.crashlytics().setCustomValue("Test value", forKey: "last_UI_action")
 
     let customKeysObject = [
-      "locale" : reachabilityHelper.getLocale(),
+      "locale": reachabilityHelper.getLocale(),
       "network_connection": reachabilityHelper.getNetworkStatus(),
     ] as [String: Any]
     Crashlytics.crashlytics().setCustomKeysAndValues(customKeysObject)
@@ -39,14 +38,19 @@ struct CrashlyticsSwiftUIExampleApp: App {
 
     let userInfo = [
       NSLocalizedDescriptionKey: NSLocalizedString("The request failed.", comment: ""),
-      NSLocalizedFailureReasonErrorKey: NSLocalizedString("The response returned a 404.", comment: ""),
-      NSLocalizedRecoverySuggestionErrorKey: NSLocalizedString("Does this page exist?", comment:""),
+      NSLocalizedFailureReasonErrorKey: NSLocalizedString(
+        "The response returned a 404.",
+        comment: ""
+      ),
+      NSLocalizedRecoverySuggestionErrorKey: NSLocalizedString(
+        "Does this page exist?",
+        comment: ""
+      ),
       "ProductID": "123456",
-      "UserID": "Jane Smith"
+      "UserID": "Jane Smith",
     ]
     let error = NSError(domain: NSURLErrorDomain, code: -1001, userInfo: userInfo)
     Crashlytics.crashlytics().record(error: error)
-
   }
 
   var body: some Scene {

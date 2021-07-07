@@ -40,7 +40,7 @@ class RestaurantListViewModel: ObservableObject {
 
   func subscribe(to query: Query) {
     if listener == nil {
-      listener = query.addSnapshotListener { [weak self] (querySnapshot, error) in
+      listener = query.addSnapshotListener { [weak self] querySnapshot, error in
         guard let documents = querySnapshot?.documents else {
           print("Error fetching documents: \(error!)")
           return
@@ -52,12 +52,11 @@ class RestaurantListViewModel: ObservableObject {
             var restaurant = try document.data(as: Restaurant.self)
             restaurant?.reference = document.reference
             return restaurant
-          } catch let error {
+          } catch {
             print(error)
             return nil
           }
         }
-
       }
     }
   }

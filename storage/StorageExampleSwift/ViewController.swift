@@ -21,11 +21,10 @@ import FirebaseStorageSwift
 
 @objc(ViewController)
 class ViewController: UIViewController,
-                      UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-
-  @IBOutlet weak var takePicButton: UIButton!
-  @IBOutlet weak var downloadPicButton: UIButton!
-  @IBOutlet weak var urlTextView: UITextField!
+  UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+  @IBOutlet var takePicButton: UIButton!
+  @IBOutlet var downloadPicButton: UIButton!
+  @IBOutlet var urlTextView: UITextField!
 
   // [START configurestorage]
   lazy var storage = Storage.storage()
@@ -38,7 +37,7 @@ class ViewController: UIViewController,
     // Using Cloud Storage for Firebase requires the user be authenticated. Here we are using
     // anonymous authentication.
     if Auth.auth().currentUser == nil {
-      Auth.auth().signInAnonymously(completion: { (authResult, error) in
+      Auth.auth().signInAnonymously(completion: { authResult, error in
         if let error = error {
           self.urlTextView.text = error.localizedDescription
           self.takePicButton.isEnabled = false
@@ -62,22 +61,26 @@ class ViewController: UIViewController,
       picker.sourceType = .photoLibrary
     }
 
-    present(picker, animated: true, completion:nil)
+    present(picker, animated: true, completion: nil)
   }
 
   func imagePickerController(_ picker: UIImagePickerController,
-    didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-// Local variable inserted by Swift 4.2 migrator.
-let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
+                             didFinishPickingMediaWithInfo info: [
+                               UIImagePickerController.InfoKey: Any
+                             ]) {
+    // Local variable inserted by Swift 4.2 migrator.
+    let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
 
-      picker.dismiss(animated: true, completion:nil)
+    picker.dismiss(animated: true, completion: nil)
 
     urlTextView.text = "Beginning Upload"
     // if it's a photo from the library, not an image from the camera
-    if let referenceUrl = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.referenceURL)] as? URL {
+    if let referenceUrl =
+      info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey
+          .referenceURL)] as? URL {
       let assets = PHAsset.fetchAssets(withALAssetURLs: [referenceUrl], options: nil)
       let asset = assets.firstObject
-      asset?.requestContentEditingInput(with: nil, completionHandler: { (contentEditingInput, info) in
+      asset?.requestContentEditingInput(with: nil, completionHandler: { contentEditingInput, info in
         let imageFile = contentEditingInput?.fullSizeImageURL
         let filePath = Auth.auth().currentUser!.uid +
           "/\(Int(Date.timeIntervalSinceReferenceDate * 1000))/\(imageFile!.lastPathComponent)"
@@ -95,13 +98,15 @@ let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
         // [END uploadimage]
       })
     } else {
-      guard let image = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.originalImage)] as? UIImage else { return }
+      guard let image =
+        info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey
+            .originalImage)] as? UIImage else { return }
       guard let imageData = image.jpegData(compressionQuality: 0.8) else { return }
       let imagePath = Auth.auth().currentUser!.uid +
         "/\(Int(Date.timeIntervalSinceReferenceDate * 1000)).jpg"
       let metadata = StorageMetadata()
       metadata.contentType = "image/jpeg"
-      let storageRef = self.storage.reference(withPath: imagePath)
+      let storageRef = storage.reference(withPath: imagePath)
       storageRef.putData(imageData, metadata: metadata) { result in
         switch result {
         case .success:
@@ -131,16 +136,18 @@ let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
   }
 
   func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-    picker.dismiss(animated: true, completion:nil)
+    picker.dismiss(animated: true, completion: nil)
   }
 }
 
 // Helper function inserted by Swift 4.2 migrator.
-fileprivate func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
-	return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
+private func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [UIImagePickerController
+    .InfoKey: Any]) -> [String: Any] {
+  return Dictionary(uniqueKeysWithValues: input.map { key, value in (key.rawValue, value) })
 }
 
 // Helper function inserted by Swift 4.2 migrator.
-fileprivate func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController.InfoKey) -> String {
-	return input.rawValue
+private func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController
+  .InfoKey) -> String {
+  return input.rawValue
 }

@@ -17,7 +17,6 @@
 import UIKit
 
 class RatingView: UIControl {
-
   var highlightedColor: CGColor = Constants.highlightedColorOrange
 
   var rating: Int? {
@@ -138,19 +137,20 @@ class RatingView: UIControl {
 
     let outerRadius: CGFloat = 18
     let outerPoints = stride(from: CGFloat.pi / -5, to: .pi * 2, by: 2 * .pi / 5).map {
-      return CGPoint(x: outerRadius * sin($0) + 25,
-                     y: outerRadius * cos($0) + 25)
+      CGPoint(x: outerRadius * sin($0) + 25,
+              y: outerRadius * cos($0) + 25)
     }
 
     let innerRadius: CGFloat = 6
     let innerPoints = stride(from: 0, to: .pi * 2, by: 2 * .pi / 5).map {
-      return CGPoint(x: innerRadius * sin($0) + 25,
-                     y: innerRadius * cos($0) + 25)
+      CGPoint(x: innerRadius * sin($0) + 25,
+              y: innerRadius * cos($0) + 25)
     }
 
-    let points = zip(outerPoints, innerPoints).reduce([CGPoint]()) { (aggregate, pair) -> [CGPoint] in
-      return aggregate + [pair.0, pair.1]
-    }
+    let points = zip(outerPoints, innerPoints)
+      .reduce([CGPoint]()) { (aggregate, pair) -> [CGPoint] in
+        aggregate + [pair.0, pair.1]
+      }
 
     mutablePath.move(to: points[0])
     points.forEach {
@@ -170,12 +170,17 @@ class RatingView: UIControl {
   required convenience init?(coder aDecoder: NSCoder) {
     // coder is ignored.
     self.init(frame: CGRect(x: 0, y: 0, width: 270, height: 50))
-    self.translatesAutoresizingMaskIntoConstraints = false
+    translatesAutoresizingMaskIntoConstraints = false
   }
 
   private enum Constants {
     static let unhighlightedColor = UIColor.gray.cgColor
-    static let highlightedColorOrange = UIColor(red: 255 / 255, green: 179 / 255, blue: 0 / 255, alpha: 1).cgColor
+    static let highlightedColorOrange = UIColor(
+      red: 255 / 255,
+      green: 179 / 255,
+      blue: 0 / 255,
+      alpha: 1
+    ).cgColor
   }
 
   // MARK: Rating View Accessibility
@@ -188,9 +193,15 @@ class RatingView: UIControl {
   override var accessibilityValue: String? {
     get {
       if let rating = rating {
-        return NSLocalizedString("\(rating) out of 5", comment: "Format string for indicating a variable amount of stars out of five")
+        return NSLocalizedString(
+          "\(rating) out of 5",
+          comment: "Format string for indicating a variable amount of stars out of five"
+        )
       }
-      return NSLocalizedString("No rating", comment: "Read by VoiceOver to vision-impaired users indicating a rating that hasn't been filled out yet")
+      return NSLocalizedString(
+        "No rating",
+        comment: "Read by VoiceOver to vision-impaired users indicating a rating that hasn't been filled out yet"
+      )
     }
     set {}
   }
@@ -207,17 +218,16 @@ class RatingView: UIControl {
   }
 
   override func accessibilityDecrement() {
-    guard let rating = rating else { return } // Doesn't make sense to decrement no rating and get 1.
+    guard let rating = rating
+    else { return } // Doesn't make sense to decrement no rating and get 1.
     let currentRatingIndex = rating - 1
     let highlightedIndex = clamp(currentRatingIndex - 1)
     self.rating = highlightedIndex + 1
   }
-  
 }
 
 // This class is absolutely not immutable, but it's also not user-interactive.
 class ImmutableStarsView: UIView {
-
   override var intrinsicContentSize: CGSize {
     get { return CGSize(width: 100, height: 20) }
     set {}
@@ -260,7 +270,7 @@ class ImmutableStarsView: UIView {
       clearAll()
       return
     }
-    let index = self.clamp(anyIndex)
+    let index = clamp(anyIndex)
     // Highlight everything up to and including the star at the index.
     (0 ... index).forEach {
       let star = starLayers[$0]
@@ -304,19 +314,20 @@ class ImmutableStarsView: UIView {
 
     let outerRadius: CGFloat = 9
     let outerPoints = stride(from: CGFloat.pi / -5, to: .pi * 2, by: 2 * .pi / 5).map {
-      return CGPoint(x: outerRadius * sin($0) + 9,
-                     y: outerRadius * cos($0) + 9)
+      CGPoint(x: outerRadius * sin($0) + 9,
+              y: outerRadius * cos($0) + 9)
     }
 
     let innerRadius: CGFloat = 4
     let innerPoints = stride(from: 0, to: .pi * 2, by: 2 * .pi / 5).map {
-      return CGPoint(x: innerRadius * sin($0) + 9,
-                     y: innerRadius * cos($0) + 9)
+      CGPoint(x: innerRadius * sin($0) + 9,
+              y: innerRadius * cos($0) + 9)
     }
 
-    let points = zip(outerPoints, innerPoints).reduce([CGPoint]()) { (aggregate, pair) -> [CGPoint] in
-      return aggregate + [pair.0, pair.1]
-    }
+    let points = zip(outerPoints, innerPoints)
+      .reduce([CGPoint]()) { (aggregate, pair) -> [CGPoint] in
+        aggregate + [pair.0, pair.1]
+      }
 
     mutablePath.move(to: points[0])
     points.forEach {
@@ -336,12 +347,16 @@ class ImmutableStarsView: UIView {
   required convenience init?(coder aDecoder: NSCoder) {
     // coder is ignored.
     self.init(frame: CGRect(x: 0, y: 0, width: 270, height: 50))
-    self.translatesAutoresizingMaskIntoConstraints = false
+    translatesAutoresizingMaskIntoConstraints = false
   }
 
   private enum Constants {
     static let unhighlightedColor = UIColor.gray.cgColor
-    static let highlightedColorOrange = UIColor(red: 255 / 255, green: 179 / 255, blue: 0 / 255, alpha: 1).cgColor
+    static let highlightedColorOrange = UIColor(
+      red: 255 / 255,
+      green: 179 / 255,
+      blue: 0 / 255,
+      alpha: 1
+    ).cgColor
   }
-
 }

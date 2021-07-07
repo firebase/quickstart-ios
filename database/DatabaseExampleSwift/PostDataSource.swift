@@ -18,23 +18,24 @@ import UIKit
 import FirebaseDatabaseUI
 
 class PostDataSource: FUITableViewDataSource {
-
   override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
     return true
   }
 
-  override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+  override func tableView(_ tableView: UITableView,
+                          commit editingStyle: UITableViewCell.EditingStyle,
+                          forRowAt indexPath: IndexPath) {
     if editingStyle == .delete {
       snapshot(at: indexPath.row).ref.removeValue()
     }
   }
 
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    if self.count != 0 {
+    if count != 0 {
       tableView.separatorStyle = .singleLine
       tableView.backgroundView = nil
     }
-    return Int(self.count)
+    return Int(count)
   }
 
   override func numberOfSections(in tableView: UITableView) -> Int {

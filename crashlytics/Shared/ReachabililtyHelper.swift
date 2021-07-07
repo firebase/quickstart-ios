@@ -19,7 +19,6 @@ import Firebase
 import Reachability
 
 class ReachabililtyHelper: NSObject {
-
   /**
    * Retrieve the locale information for the app.
    */

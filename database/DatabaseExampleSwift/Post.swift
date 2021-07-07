@@ -23,24 +23,24 @@ class Post: NSObject {
   var title: String
   var body: String
   var starCount: AnyObject?
-  var stars: Dictionary<String, Bool>?
+  var stars: [String: Bool]?
 
   init(uid: String, author: String, title: String, body: String) {
     self.uid = uid
     self.author = author
     self.title = title
     self.body = body
-    self.starCount = 0 as AnyObject?
+    starCount = 0 as AnyObject?
   }
 
   init?(snapshot: DataSnapshot) {
     guard let dict = snapshot.value as? [String: Any] else { return nil }
-    guard let uid  = dict["uid"] as? String  else { return nil }
-    guard let author = dict["author"]  as? String else { return nil }
-    guard let title = dict["title"]  as? String else { return nil }
-    guard let body = dict["body"]  as? String else { return nil }
+    guard let uid = dict["uid"] as? String else { return nil }
+    guard let author = dict["author"] as? String else { return nil }
+    guard let title = dict["title"] as? String else { return nil }
+    guard let body = dict["body"] as? String else { return nil }
     let starCount = dict["starCount"] as? Int ?? 0
-    
+
     self.uid = uid
     self.author = author
     self.title = title
@@ -48,7 +48,7 @@ class Post: NSObject {
     self.starCount = starCount as AnyObject?
   }
 
-  convenience override init() {
-    self.init(uid: "", author: "", title: "", body:  "")
+  override convenience init() {
+    self.init(uid: "", author: "", title: "", body: "")
   }
 }

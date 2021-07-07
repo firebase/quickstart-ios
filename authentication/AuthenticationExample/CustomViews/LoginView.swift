@@ -21,6 +21,7 @@ class LoginView: UIView {
       emailTextField.textContentType = .emailAddress
     }
   }
+
   var passwordTextField: UITextField! {
     didSet {
       passwordTextField.textContentType = .password

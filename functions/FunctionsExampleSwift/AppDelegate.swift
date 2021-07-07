@@ -22,37 +22,41 @@ import FirebaseAuthUI
 @UIApplicationMain
 // [START signin_delegate]
 class AppDelegate: UIResponder, UIApplicationDelegate {
-// [END signin_delegate]
+  // [END signin_delegate]
 
   var window: UIWindow?
 
-  func application(_ application: UIApplication, didFinishLaunchingWithOptions
-      launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+  func application(_ application: UIApplication,
+                   didFinishLaunchingWithOptions launchOptions: [
+                     UIApplication.LaunchOptionsKey: Any
+                   ]?) -> Bool {
     // [START firebase_configure]
     // Use Firebase library to configure APIs
     FirebaseApp.configure()
     // [END firebase_configure]
     if Auth.auth().currentUser == nil {
-      self.window?.rootViewController = SignInViewController()
+      window?.rootViewController = SignInViewController()
     }
     return true
   }
 
   @available(iOS 9.0, *)
-  func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any]) -> Bool {
-    guard let sourceApplication = options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String else {
+  func application(_ app: UIApplication, open url: URL,
+                   options: [UIApplication.OpenURLOptionsKey: Any]) -> Bool {
+    guard let sourceApplication =
+      options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String else {
       return false
     }
-    return self.handleOpenUrl(url, sourceApplication: sourceApplication)
+    return handleOpenUrl(url, sourceApplication: sourceApplication)
   }
 
   @available(iOS 8.0, *)
-  func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
-    return self.handleOpenUrl(url, sourceApplication: sourceApplication)
+  func application(_ application: UIApplication, open url: URL, sourceApplication: String?,
+                   annotation: Any) -> Bool {
+    return handleOpenUrl(url, sourceApplication: sourceApplication)
   }
 
   func handleOpenUrl(_ url: URL, sourceApplication: String?) -> Bool {
     return FUIAuth.defaultAuthUI()?.handleOpen(url, sourceApplication: sourceApplication) ?? false
   }
-
 }

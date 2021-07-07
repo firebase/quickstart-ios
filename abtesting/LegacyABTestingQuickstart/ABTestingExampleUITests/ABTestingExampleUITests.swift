@@ -15,19 +15,17 @@
 import XCTest
 
 class ABTestingExampleUITests: XCTestCase {
-        
-    override func setUp() {
-        super.setUp()
-        XCUIApplication().launch()
-    }
-    
-    override func tearDown() {
-        super.tearDown()
-    }
-    
-    func testExample() {
-      XCTAssertTrue(XCUIApplication().navigationBars["Firenotes"].exists,
-                      "Firenotes is missing from the navigation bar")
-    }
-    
+  override func setUp() {
+    super.setUp()
+    XCUIApplication().launch()
+  }
+
+  override func tearDown() {
+    super.tearDown()
+  }
+
+  func testExample() {
+    XCTAssertTrue(XCUIApplication().navigationBars["Firenotes"].exists,
+                  "Firenotes is missing from the navigation bar")
+  }
 }

@@ -26,7 +26,7 @@ struct StarsView: View {
 
   var body: some View {
     HStack {
-      ForEach(1...5, id: \.self) { i in
+      ForEach(1 ... 5, id: \.self) { i in
         getStar(num: i, rating: rating)
           .frame(width: 12, height: 20)
           .foregroundColor(getStarColor(num: i, rating: rating))
@@ -48,7 +48,7 @@ struct StarsInputView: View {
 
   var body: some View {
     HStack {
-      ForEach(1...5, id: \.self) { i in
+      ForEach(1 ... 5, id: \.self) { i in
         getStar(num: i)
           .resizable()
           .frame(width: 50.0, height: 50.0)

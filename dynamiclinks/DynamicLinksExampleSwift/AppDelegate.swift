@@ -21,31 +21,35 @@ import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
   var window: UIWindow?
   let customURLScheme = "dlscheme"
 
   // [START didfinishlaunching]
   func application(_ application: UIApplication,
-                   didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+                   didFinishLaunchingWithOptions launchOptions: [UIApplication
+                     .LaunchOptionsKey: Any]?) -> Bool {
     // Set deepLinkURLScheme to the custom URL scheme you defined in your
     // Xcode project.
-    FirebaseOptions.defaultOptions()?.deepLinkURLScheme = self.customURLScheme
+    FirebaseOptions.defaultOptions()?.deepLinkURLScheme = customURLScheme
     FirebaseApp.configure()
 
     return true
   }
+
   // [END didfinishlaunching]
 
   // [START openurl]
   @available(iOS 9.0, *)
-  func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any]) -> Bool {
+  func application(_ app: UIApplication, open url: URL,
+                   options: [UIApplication.OpenURLOptionsKey: Any]) -> Bool {
     return application(app, open: url,
-                       sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String,
+                       sourceApplication: options[UIApplication.OpenURLOptionsKey
+                         .sourceApplication] as? String,
                        annotation: "")
   }
 
-  func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+  func application(_ application: UIApplication, open url: URL, sourceApplication: String?,
+                   annotation: Any) -> Bool {
     if let dynamicLink = DynamicLinks.dynamicLinks().dynamicLink(fromCustomSchemeURL: url) {
       // Handle the deep link. For example, show the deep-linked content or
       // apply a promotional offer to the user's account.
@@ -61,28 +65,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // [END_EXCLUDE]
     return false
   }
+
   // [END openurl]
 
   // [START continueuseractivity]
   func application(_ application: UIApplication, continue userActivity: NSUserActivity,
                    restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
-    let handled = DynamicLinks.dynamicLinks().handleUniversalLink(userActivity.webpageURL!) { (dynamiclink, error) in
-      // [START_EXCLUDE]
-      if let dynamiclink = dynamiclink {
-        self.handleDynamicLink(dynamiclink)
+    let handled = DynamicLinks.dynamicLinks()
+      .handleUniversalLink(userActivity.webpageURL!) { dynamiclink, error in
+        // [START_EXCLUDE]
+        if let dynamiclink = dynamiclink {
+          self.handleDynamicLink(dynamiclink)
+        }
+        // [END_EXCLUDE]
       }
-      // [END_EXCLUDE]
-    }
 
     // [START_EXCLUDE silent]
     if !handled {
       // Show the deep link URL from userActivity.
-      let message = "continueUserActivity webPageURL:\n\(userActivity.webpageURL?.absoluteString ?? "")"
+      let message =
+        "continueUserActivity webPageURL:\n\(userActivity.webpageURL?.absoluteString ?? "")"
       showDeepLinkAlertView(withMessage: message)
     }
     // [END_EXCLUDE]
     return handled
   }
+
   // [END continueuseractivity]
 
   func handleDynamicLink(_ dynamicLink: DynamicLink) {
@@ -93,15 +101,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       matchConfidence = "Strong"
     }
     let message = "App URL: \(dynamicLink.url?.absoluteString ?? "")\n" +
-        "Match Confidence: \(matchConfidence)\nMinimum App Version: \(dynamicLink.minimumAppVersion ?? "")"
+      "Match Confidence: \(matchConfidence)\nMinimum App Version: \(dynamicLink.minimumAppVersion ?? "")"
     showDeepLinkAlertView(withMessage: message)
   }
 
   func showDeepLinkAlertView(withMessage message: String) {
     let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-    let alertController = UIAlertController(title: "Deep-link Data", message: message, preferredStyle: .alert)
+    let alertController = UIAlertController(
+      title: "Deep-link Data",
+      message: message,
+      preferredStyle: .alert
+    )
     alertController.addAction(okAction)
-    self.window?.rootViewController?.present(alertController, animated: true, completion: nil)
+    window?.rootViewController?.present(alertController, animated: true, completion: nil)
   }
-
 }

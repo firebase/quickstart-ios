@@ -17,5 +17,4 @@
 import FirebaseAuthUI
 
 @objc(FAuthPickerViewController)
-class FAuthPickerViewController: FUIAuthPickerViewController {
-}
+class FAuthPickerViewController: FUIAuthPickerViewController {}

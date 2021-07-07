@@ -29,10 +29,10 @@ struct RestaurantDetailView: View {
     self.restaurant = restaurant
     viewModel = RestaurantViewModel(restaurant: restaurant)
   }
-  
+
   var body: some View {
     let restaurant = viewModel.restaurant
-    
+
     VStack {
       RestaurantHeaderView(restaurant: restaurant)
       List(viewModel.reviews) { review in
@@ -48,10 +48,10 @@ struct RestaurantDetailView: View {
         self.showAddReviewView = true
       }
     }
-    .onAppear() {
+    .onAppear {
       viewModel.subscribe()
     }
-    .onDisappear() {
+    .onDisappear {
       viewModel.unsubscribe()
     }
   }

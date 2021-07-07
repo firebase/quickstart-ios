@@ -17,5 +17,4 @@
 import XCTest
 @testable import FirestoreExample
 
-class FirestoreExampleTests: XCTestCase {
-}
+class FirestoreExampleTests: XCTestCase {}

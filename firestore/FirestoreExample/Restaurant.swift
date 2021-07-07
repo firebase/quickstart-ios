@@ -18,7 +18,6 @@ import Firebase
 import FirebaseFirestoreSwift
 
 struct Restaurant: Codable {
-
   var name: String
   var category: String // Could become an enum
   var city: String
@@ -36,11 +35,9 @@ struct Restaurant: Codable {
     case averageRating = "avgRating"
     case photo
   }
-
 }
 
 extension Restaurant {
-
   static let cities = [
     "Albuquerque",
     "Arlington",
@@ -88,29 +85,27 @@ extension Restaurant {
     "Tucson",
     "Tulsa",
     "Virginia Beach",
-    "Washington"
+    "Washington",
   ]
 
   static let categories = [
     "Brunch", "Burgers", "Coffee", "Deli", "Dim Sum", "Indian", "Italian",
-    "Mediterranean", "Mexican", "Pizza", "Ramen", "Sushi"
+    "Mediterranean", "Mexican", "Pizza", "Ramen", "Sushi",
   ]
 
   static func imageURL(forName name: String) -> URL {
     let number = (abs(name.hashValue) % 22) + 1
     let URLString =
-        "https://storage.googleapis.com/firestorequickstarts.appspot.com/food_\(number).png"
+      "https://storage.googleapis.com/firestorequickstarts.appspot.com/food_\(number).png"
     return URL(string: URLString)!
   }
 
   var imageURL: URL {
     return Restaurant.imageURL(forName: name)
   }
-
 }
 
 struct Review: Codable {
-
   var rating: Int // Can also be enum
   var userID: String
   var username: String

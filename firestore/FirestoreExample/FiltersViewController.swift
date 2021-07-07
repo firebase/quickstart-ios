@@ -17,14 +17,13 @@
 import UIKit
 
 class FiltersViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
-
   weak var delegate: FiltersViewControllerDelegate?
 
   static func fromStoryboard(delegate: FiltersViewControllerDelegate? = nil) ->
-      (navigationController: UINavigationController, filtersController: FiltersViewController) {
+    (navigationController: UINavigationController, filtersController: FiltersViewController) {
     let navController = UIStoryboard(name: "Main", bundle: nil)
-        .instantiateViewController(withIdentifier: "FiltersViewController")
-        as! UINavigationController
+      .instantiateViewController(withIdentifier: "FiltersViewController")
+      as! UINavigationController
     let controller = navController.viewControllers[0] as! FiltersViewController
     controller.delegate = delegate
     return (navigationController: navController, filtersController: controller)
@@ -35,16 +34,19 @@ class FiltersViewController: UIViewController, UIPickerViewDataSource, UIPickerV
       categoryTextField.inputView = categoryPickerView
     }
   }
+
   @IBOutlet var cityTextField: UITextField! {
     didSet {
       cityTextField.inputView = cityPickerView
     }
   }
+
   @IBOutlet var priceTextField: UITextField! {
     didSet {
       priceTextField.inputView = pricePickerView
     }
   }
+
   @IBOutlet var sortByTextField: UITextField! {
     didSet {
       sortByTextField.inputView = sortByPickerView
@@ -56,10 +58,10 @@ class FiltersViewController: UIViewController, UIPickerViewDataSource, UIPickerV
 
     // Blue bar with white color
     navigationController?.navigationBar.barTintColor =
-      UIColor(red: 0x3d/0xff, green: 0x5a/0xff, blue: 0xfe/0xff, alpha: 1.0)
+      UIColor(red: 0x3D / 0xFF, green: 0x5A / 0xFF, blue: 0xFE / 0xFF, alpha: 1.0)
     navigationController?.navigationBar.isTranslucent = false
     navigationController?.navigationBar.titleTextAttributes =
-      [ NSAttributedString.Key.foregroundColor: UIColor.white ]
+      [NSAttributedString.Key.foregroundColor: UIColor.white]
   }
 
   private func price(from string: String) -> Int? {
@@ -182,13 +184,10 @@ class FiltersViewController: UIViewController, UIPickerViewDataSource, UIPickerV
       fatalError("Unhandled picker view: \(pickerView)")
     }
   }
-
 }
 
 protocol FiltersViewControllerDelegate: NSObjectProtocol {
-
   func controller(_ controller: FiltersViewController,
                   didSelectCategory category: String?,
                   city: String?, price: Int?, sortBy: String?)
-
 }

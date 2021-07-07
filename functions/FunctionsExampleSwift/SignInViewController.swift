@@ -22,12 +22,12 @@ private let kFirebaseTermsOfService = URL(string: "https://firebase.google.com/t
 
 @objc(SignInViewController)
 class SignInViewController: UIViewController, FUIAuthDelegate {
-
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
     if Auth.auth().currentUser != nil {
       let appDelegate = UIApplication.shared.delegate as? AppDelegate
-      appDelegate?.window?.rootViewController = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateInitialViewController()
+      appDelegate?.window?.rootViewController = UIStoryboard(name: "Main", bundle: Bundle.main)
+        .instantiateInitialViewController()
       dismiss(animated: true, completion: nil)
       return
     }
@@ -42,11 +42,12 @@ class SignInViewController: UIViewController, FUIAuthDelegate {
 
   func authUI(_ authUI: FUIAuth, didSignInWith authDataResult: AuthDataResult?, error: Error?) {
     switch error {
-    case .some(let error as NSError) where UInt(error.code) == FUIAuthErrorCode.userCancelledSignIn.rawValue:
+    case let .some(error as NSError)
+      where UInt(error.code) == FUIAuthErrorCode.userCancelledSignIn.rawValue:
       print("User cancelled sign-in")
-    case .some(let error as NSError) where error.userInfo[NSUnderlyingErrorKey] != nil:
+    case let .some(error as NSError) where error.userInfo[NSUnderlyingErrorKey] != nil:
       print("Login error: \(error.userInfo[NSUnderlyingErrorKey]!)")
-    case .some(let error):
+    case let .some(error):
       print("Login error: \(error.localizedDescription)")
     case .none:
       if let user = authDataResult?.user {
@@ -56,12 +57,17 @@ class SignInViewController: UIViewController, FUIAuthDelegate {
   }
 
   func authPickerViewController(forAuthUI authUI: FUIAuth) -> FUIAuthPickerViewController {
-    return FAuthPickerViewController(nibName: "FAuthPickerViewController", bundle: Bundle.main, authUI: authUI)
+    return FAuthPickerViewController(
+      nibName: "FAuthPickerViewController",
+      bundle: Bundle.main,
+      authUI: authUI
+    )
   }
 
   func signed(in user: User) {
     let appDelegate = UIApplication.shared.delegate as? AppDelegate
-    appDelegate?.window?.rootViewController = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateInitialViewController()
+    appDelegate?.window?.rootViewController = UIStoryboard(name: "Main", bundle: Bundle.main)
+      .instantiateInitialViewController()
     dismiss(animated: true, completion: nil)
   }
 }

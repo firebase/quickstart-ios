@@ -33,9 +33,9 @@ let kInterstitialAdUnitID = "ca-app-pub-3940256099942544/4411468910"
 // Makes ViewController available to Objc classes.
 @objc(ViewController)
 class ViewController: UIViewController, GADFullScreenContentDelegate {
-  @IBOutlet weak var bannerView: GADBannerView!
+  @IBOutlet var bannerView: GADBannerView!
   var interstitial: GADInterstitialAd?
-  @IBOutlet weak var interstitialButton: UIButton!
+  @IBOutlet var interstitialButton: UIButton!
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -52,7 +52,8 @@ class ViewController: UIViewController, GADFullScreenContentDelegate {
   func createAndLoadInterstitial() {
     GADInterstitialAd.load(
       withAdUnitID: kInterstitialAdUnitID,
-      request: GADRequest()) { (ad, error) in
+      request: GADRequest()
+    ) { ad, error in
       if let error = error {
         // For more fine-grained error handling, take a look at the values in GADErrorCode.
         print("Error loading ad: \(error)")
@@ -67,13 +68,14 @@ class ViewController: UIViewController, GADFullScreenContentDelegate {
     createAndLoadInterstitial()
   }
 
-  func ad(_ ad: GADFullScreenPresentingAd, didFailToPresentFullScreenContentWithError error: Error) {
+  func ad(_ ad: GADFullScreenPresentingAd,
+          didFailToPresentFullScreenContentWithError error: Error) {
     print("Error presenting ad: \(error)")
   }
 
   @IBAction func didTapInterstitialButton(_ sender: AnyObject) {
-    self.interstitial?.present(fromRootViewController: self)
+    interstitial?.present(fromRootViewController: self)
   }
-
 }
+
 // [END firebase_interstitial_example]

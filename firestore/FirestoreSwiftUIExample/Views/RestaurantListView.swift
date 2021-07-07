@@ -53,13 +53,13 @@ struct RestaurantListView: View {
           }
         }
       }
-      .onAppear() {
+      .onAppear {
         let query = restaurantListViewModel.query(category: selectedCategory, city: selectedCity,
                                                   price: selectedPrice,
                                                   sortOption: selectedSortOption)
         restaurantListViewModel.subscribe(to: query)
       }
-      .onDisappear() {
+      .onDisappear {
         restaurantListViewModel.unsubscribe()
       }
     }

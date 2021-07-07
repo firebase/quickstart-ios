@@ -3,7 +3,7 @@ A/B Testing
 
 Firebase A/B Testing leverages Remote Config to automatically trial new app
 behaviors and exports the experiment results into Firebase Analytics. This
-sample demonstrates using an A/B test to test mutiple color schemes within
+sample demonstrates using an A/B test to test multiple color schemes within
 an app.
 
 ## Quickstart Setup

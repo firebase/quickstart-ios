@@ -18,7 +18,9 @@ Verify the following two flows:
 Test on device: 
 Run the sample and copy the printed installation auth token from Xcode's console
 into the 'Manage test devices' section in Firebase Console (click into details
-in 'Experiment Overview' when experiment is in Draft status).
+in 'Experiment Overview' when experiment is in Draft status). After making changes
+to the A/B test device configuration on the Firebase Console, tap the Refresh
+button to update the UI.
 
 Published experiment:
 Run the experiment at a high percentage and reinstall the app until your app

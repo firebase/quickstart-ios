@@ -44,6 +44,11 @@ class Tests_iOS: XCTestCase {
       app.navigationBars["Firenotes"].exists,
       "Firenotes is missing from the navigation bar"
     )
+
+    XCTAssertTrue(app.buttons["Refresh"].exists, "Refresh button does not exist.")
+    XCTAssertTrue(app.buttons["Refresh"].isEnabled, "Refresh button is not enabled.")
+    XCTAssertTrue(app.buttons["Refresh"].isHittable, "Refresh button is missing from view.")
+
     let texts = [
       "Getting Started with Firebase", "An Introduction to Firebase",
       "Google Firestore", "Powerful Querying and Automatic Scaling",

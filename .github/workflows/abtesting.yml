@@ -45,7 +45,7 @@ jobs:
         env:
           SAMPLE: ABTesting
           LEGACY: true
-      - name: Build SwiftUI
+      - name: Build and Test SwiftUI
         run: |
           cd abtesting
           ../scripts/install_prereqs/abtesting.sh
@@ -54,6 +54,7 @@ jobs:
           -scheme 'ABTestingExample (iOS)' \
           -sdk iphonesimulator \
           -destination 'platform=iOS Simulator,name=iPhone 11' \
-          build
+          test \
+          | xcpretty
         env:
           SAMPLE: ABTesting

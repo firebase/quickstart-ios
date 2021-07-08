@@ -33,13 +33,27 @@ class Tests_iOS: XCTestCase {
     // the class.
   }
 
-  func testExample() throws {
+  func testStaticUI() throws {
     // UI tests must launch the application that they test.
     let app = XCUIApplication()
     app.launch()
 
     // Use recording to get started writing UI tests.
     // Use XCTAssert and related functions to verify your tests produce the correct results.
+    XCTAssertTrue(
+      app.navigationBars["Firenotes"].exists,
+      "Firenotes is missing from the navigation bar"
+    )
+    let texts = [
+      "Getting Started with Firebase", "An Introduction to Firebase",
+      "Google Firestore", "Powerful Querying and Automatic Scaling",
+      "Analytics", "Simple App Insights",
+      "Remote Config", "Parameterize App Behavior",
+      "A/B Testing", "Optimize App Experience through Experiments",
+    ]
+    for text in texts {
+      XCTAssertTrue(app.staticTexts[text].isHittable, "Text '\(text)' is missing from view.")
+    }
   }
 
   func testLaunchPerformance() throws {

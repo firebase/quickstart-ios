@@ -47,3 +47,15 @@ jobs:
         env:
           SWIFT_SUFFIX: 'Swift'
           SAMPLE: Database
+      - name: Build SwiftUI
+        run: |
+          cd database/DatabaseExampleSwiftUI/DatabaseExample/
+          ../../../scripts/install_prereqs/database.sh
+          xcodebuild \
+          -project DatabaseExample.xcodeproj \
+          -scheme 'DatabaseExample (iOS)' \
+          -sdk iphonesimulator \
+          -destination 'platform=iOS Simulator,name=iPhone 11' \
+          build
+        env: 
+          SAMPLE: Database

@@ -49,8 +49,9 @@ jobs:
           SAMPLE: Database
       - name: Build SwiftUI
         run: |
-          cd database/DatabaseExampleSwiftUI/DatabaseExample/
-          ../../../scripts/install_prereqs/database.sh
+          cd database
+          ../scripts/install_prereqs/database.sh
+          cd DatabaseExampleSwiftUI/DatabaseExample/
           xcodebuild \
           -project DatabaseExample.xcodeproj \
           -scheme 'DatabaseExample (iOS)' \

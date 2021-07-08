@@ -54,6 +54,7 @@ jobs:
           -scheme 'ABTestingExample (iOS)' \
           -sdk iphonesimulator \
           -destination 'platform=iOS Simulator,name=iPhone 11' \
-          test
+          test \
+          | xcpretty
         env:
           SAMPLE: ABTesting

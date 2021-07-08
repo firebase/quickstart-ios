@@ -45,7 +45,7 @@ jobs:
         env:
           SAMPLE: ABTesting
           LEGACY: true
-      - name: Build SwiftUI
+      - name: Build and Test SwiftUI
         run: |
           cd abtesting
           ../scripts/install_prereqs/abtesting.sh

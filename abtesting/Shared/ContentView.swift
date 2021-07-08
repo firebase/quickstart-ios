@@ -28,12 +28,18 @@ struct ContentView: View {
   ]
   var body: some View {
     NavigationView {
-      List(data, id: \.title) { item in
-        VStack(alignment: .leading) {
-          Text(item.title)
-          Text(item.subtitle)
-            .font(.subheadline)
+      VStack {
+        List(data, id: \.title) { item in
+          VStack(alignment: .leading) {
+            Text(item.title)
+            Text(item.subtitle)
+              .font(.subheadline)
+          }
         }
+        Button("Refresh") {
+          appConfig.updateFromRemoteConfig()
+        }
+        Spacer()
       }
       .navigationTitle("Firenotes")
       .navigationBarTitleDisplayMode(.inline)

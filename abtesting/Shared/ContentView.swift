@@ -29,24 +29,30 @@ struct ContentView: View {
   var body: some View {
     NavigationView {
       VStack {
-        List(data, id: \.title) { item in
-          VStack(alignment: .leading) {
-            Text(item.title)
-            Text(item.subtitle)
-              .font(.subheadline)
+        if #available(iOS 15, *) {
+          BasicList(data: data).refreshable {
+            appConfig.updateFromRemoteConfig()
           }
-        }
-        Button("Refresh") {
-          appConfig.updateFromRemoteConfig()
-        }
+        } else { BasicList(data: data) }
+        Button("Refresh") { appConfig.updateFromRemoteConfig() }
         Spacer()
       }
       .navigationTitle("Firenotes")
       .navigationBarTitleDisplayMode(.inline)
     }
     .preferredColorScheme(appConfig.colorScheme)
-    .onAppear {
-      appConfig.updateFromRemoteConfig()
+    .onAppear { appConfig.updateFromRemoteConfig() }
+  }
+}
+
+struct BasicList: View {
+  let data: [(title: String, subtitle: String)]
+  var body: some View {
+    List(data, id: \.title) { item in
+      VStack(alignment: .leading) {
+        Text(item.title)
+        Text(item.subtitle).font(.subheadline)
+      }
     }
   }
 }

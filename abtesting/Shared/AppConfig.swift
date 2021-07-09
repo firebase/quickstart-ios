@@ -57,6 +57,31 @@ class AppConfig: ObservableObject {
     }
   }
 
+  @available(iOS 15, *)
+  func updateFromRemoteConfigAsync() async {
+    let remoteConfig = RemoteConfig.remoteConfig()
+    do {
+      let status = try await remoteConfig.fetch(withExpirationDuration: 0)
+      print("Config fetch completed with status: \(status.debugDescription)")
+      do {
+        let changed = try await remoteConfig.activate()
+        let value = remoteConfig["color_scheme"].stringValue ?? "nil"
+        if changed {
+          print("Remote Config changed to: \(value)")
+          DispatchQueue.main.async {
+            self.colorScheme = ColorScheme(value)
+          }
+        } else {
+          print("Remote Config did not change from: \(value)")
+        }
+      } catch {
+        print("Error activating config: \(error)")
+      }
+    } catch {
+      print("Error fetching config: \(error)")
+    }
+  }
+
   @objc func printInstallationAuthToken() {
     Installations.installations().authTokenForcingRefresh(true) { token, error in
       if let error = error {

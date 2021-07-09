@@ -31,7 +31,7 @@ struct ContentView: View {
       VStack {
         if #available(iOS 15, *) {
           BasicList(data: data).refreshable {
-            appConfig.updateFromRemoteConfig()
+            await appConfig.updateFromRemoteConfigAsync()
           }
         } else { BasicList(data: data) }
         Button("Refresh") { appConfig.updateFromRemoteConfig() }

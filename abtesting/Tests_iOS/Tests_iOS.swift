@@ -15,6 +15,7 @@
 //
 
 import XCTest
+import CoreGraphics
 
 class Tests_iOS: XCTestCase {
   override func setUpWithError() throws {
@@ -58,6 +59,21 @@ class Tests_iOS: XCTestCase {
     ]
     for text in texts {
       XCTAssertTrue(app.staticTexts[text].isHittable, "Text '\(text)' is missing from view.")
+    }
+  }
+
+  func testDynamicUI() throws {
+    let app = XCUIApplication()
+    app.launch()
+
+    app.buttons["Refresh"].tap()
+
+    if #available(iOS 15, *) {
+      let top = app.staticTexts["Getting Started with Firebase"]
+        .coordinate(withNormalizedOffset: CGVector())
+      let bottom = app.staticTexts["A/B Testing"]
+        .coordinate(withNormalizedOffset: CGVector(dx: 0, dy: 3))
+      top.press(forDuration: 0, thenDragTo: bottom)
     }
   }
 

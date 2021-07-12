@@ -18,14 +18,15 @@ import Foundation
 import Firebase
 
 struct Post: Identifiable {
-  var id = UUID()
+  var id: String
   var uid: String
   var author: String
   var title: String
   var body: String
   var starCount: Int
 
-  init(uid: String, author: String, title: String, body: String) {
+  init(id: String, uid: String, author: String, title: String, body: String) {
+    self.id = id
     self.uid = uid
     self.author = author
     self.title = title
@@ -34,12 +35,14 @@ struct Post: Identifiable {
   }
 
   init?(dict: [String: Any]) {
+    guard let id = dict["id"] as? String else { return nil }
     guard let uid = dict["uid"] as? String else { return nil }
     guard let author = dict["author"] as? String else { return nil }
     guard let title = dict["title"] as? String else { return nil }
     guard let body = dict["body"] as? String else { return nil }
     let starCount = dict["starCount"] as? Int ?? 0
 
+    self.id = id
     self.uid = uid
     self.author = author
     self.title = title
@@ -48,6 +51,6 @@ struct Post: Identifiable {
   }
 
   init() {
-    self.init(uid: "", author: "", title: "", body: "")
+    self.init(id: "", uid: "", author: "", title: "", body: "")
   }
 }

@@ -120,7 +120,8 @@ class UserViewModel: ObservableObject {
 
     let userID = Auth.auth().currentUser?.uid
     guard let key = postRef.childByAutoId().key else { return }
-    let post = ["uid": userID,
+    let post = ["id": key,
+                "uid": userID,
                 "author": Auth.auth().currentUser?.email,
                 "title": title,
                 "body": body]

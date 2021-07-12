@@ -14,32 +14,31 @@
 //  limitations under the License.
 //
 
-import UIKit
+import Foundation
 import Firebase
 
-struct Post {
+struct Post: Identifiable {
+  var id = UUID()
   var uid: String
   var author: String
   var title: String
   var body: String
   var starCount: Int
-  var stars: [String: Bool]?
 
   init(uid: String, author: String, title: String, body: String) {
     self.uid = uid
     self.author = author
     self.title = title
     self.body = body
-    starCount = 0
+    self.starCount = 0
   }
 
-  init?(snapshot: DataSnapshot) {
-    guard let dict = snapshot.value as? [String: Any] else { return nil }
+  init?(dict: [String: Any]) {
     guard let uid = dict["uid"] as? String else { return nil }
-    guard let author = dict["author"] as? String else { return nil }
     guard let title = dict["title"] as? String else { return nil }
     guard let body = dict["body"] as? String else { return nil }
     let starCount = dict["starCount"] as? Int ?? 0
+    let author = dict["author"] as? String ?? "default author"
 
     self.uid = uid
     self.author = author

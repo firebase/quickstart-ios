@@ -29,11 +29,15 @@ struct ContentView: View {
   var body: some View {
     NavigationView {
       VStack {
-        if #available(iOS 15, *) {
-          BasicList(data: data).refreshable {
-            await appConfig.updateFromRemoteConfigAsync()
-          }
-        } else { BasicList(data: data) }
+        #if swift(>=5.5)
+          if #available(iOS 15, *) {
+            BasicList(data: data).refreshable {
+              await appConfig.updateFromRemoteConfigAsync()
+            }
+          } else { BasicList(data: data) }
+        #else
+          BasicList(data: data)
+        #endif
         Button("Refresh") { appConfig.updateFromRemoteConfig() }
         Spacer()
       }

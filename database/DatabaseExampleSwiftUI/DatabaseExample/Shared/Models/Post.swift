@@ -30,15 +30,15 @@ struct Post: Identifiable {
     self.author = author
     self.title = title
     self.body = body
-    self.starCount = 0
+    starCount = 0
   }
 
   init?(dict: [String: Any]) {
     guard let uid = dict["uid"] as? String else { return nil }
+    guard let author = dict["author"] as? String else { return nil }
     guard let title = dict["title"] as? String else { return nil }
     guard let body = dict["body"] as? String else { return nil }
     let starCount = dict["starCount"] as? Int ?? 0
-    let author = dict["author"] as? String ?? "default author"
 
     self.uid = uid
     self.author = author

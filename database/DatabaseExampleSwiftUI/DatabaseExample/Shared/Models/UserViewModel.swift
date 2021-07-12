@@ -44,7 +44,7 @@ class UserViewModel: ObservableObject {
   func login() {
     // check if all fields are inputted correctly
     if email.isEmpty || password.isEmpty {
-      showAlertMessage(message: "Email or password cannot be empty.")
+      showAlertMessage(message: "Neither email nor password can be empty.")
       return
     }
 
@@ -70,7 +70,7 @@ class UserViewModel: ObservableObject {
   func signUp() {
     // check if all fields are inputted correctly
     if email.isEmpty || password.isEmpty {
-      showAlertMessage(message: "Email or password cannot be empty.")
+      showAlertMessage(message: "Neither email nor password can be empty.")
       return
     }
 
@@ -109,7 +109,7 @@ class UserViewModel: ObservableObject {
   func post(title: String, body: String) {
     // check if both title and body are completed
     if title.isEmpty || body.isEmpty {
-      showAlertMessage(message: "Title or body cannot be empty.")
+      showAlertMessage(message: "Neither title nor body can be empty.")
       return
     }
 

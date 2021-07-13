@@ -136,10 +136,13 @@ class UserViewModel: ObservableObject {
   }
 
   func fetchPosts() {
-    posts.removeAll()
+    // read data by listening for value events
     refHandle = postRef.observe(DataEventType.value, with: { snapshot in
+      // retrieved data is of type dictionary of dictionary
       guard let value = snapshot.value as? [String: [String: Any]] else { return }
+      // sort dictionary by keys (most to least recent)
       let sortedValues = value.sorted (by: { $0.key > $1.key })
+      // store content of sorted dictionary into "posts" variable
       self.posts = sortedValues.compactMap { Post(dict: $1) }
     })
   }

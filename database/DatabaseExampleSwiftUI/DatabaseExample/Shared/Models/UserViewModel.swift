@@ -26,6 +26,7 @@ class UserViewModel: ObservableObject {
   @Published var isLoading = false
   @Published var alert = false
   @Published var posts: [Post] = []
+  @Published var myPosts: [Post] = []
   private lazy var ref: DatabaseReference = {
     Database.database().reference()
   }()
@@ -34,7 +35,15 @@ class UserViewModel: ObservableObject {
     Database.database().reference().child("posts")
   }()
 
+  private lazy var userPostRef: DatabaseReference = {
+    Database.database().reference().child("user-posts").child(getuid())
+  }()
+
   var refHandle: DatabaseHandle?
+
+  func getuid() -> String {
+    return Auth.auth().currentUser!.uid
+  }
 
   func showAlertMessage(message: String) {
     alertMessage = message
@@ -118,7 +127,7 @@ class UserViewModel: ObservableObject {
       self.isLoading.toggle()
     }
 
-    let userID = Auth.auth().currentUser?.uid
+    let userID = getuid()
     guard let key = postRef.childByAutoId().key else { return }
     let post = ["id": key,
                 "uid": userID,
@@ -144,6 +153,18 @@ class UserViewModel: ObservableObject {
       let sortedValues = value.sorted (by: { $0.key > $1.key })
       // store content of sorted dictionary into "posts" variable
       self.posts = sortedValues.compactMap { Post(dict: $1) }
+    })
+  }
+
+  func fetchMyPosts() {
+    // read data by listening for value events
+    refHandle = userPostRef.observe(DataEventType.value, with: { snapshot in
+      // retrieved data is of type dictionary of dictionary
+      guard let value = snapshot.value as? [String: [String: Any]] else { return }
+      // sort dictionary by keys (most to least recent)
+      let sortedValues = value.sorted (by: { $0.key > $1.key })
+      // store content of sorted dictionary into "posts" variable
+      self.myPosts = sortedValues.compactMap { Post(dict: $1) }
     })
   }
 }

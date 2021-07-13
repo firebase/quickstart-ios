@@ -36,7 +36,7 @@ struct ContentView: View {
             Label("Recent", systemImage: "arrow.counterclockwise")
           }
           .tag(Tab.recentPosts)
-        MyPostsView()
+        MyPostsView(user: user)
           .tabItem {
             Label("My Posts", systemImage: "person.fill")
           }

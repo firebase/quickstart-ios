@@ -65,7 +65,7 @@ class AppConfig: ObservableObject {
         let newValue = remoteConfig["color_scheme"].stringValue ?? "nil"
         if newValue != oldValue {
           print("Remote Config changed to: \(newValue)")
-          self.colorScheme = ColorScheme(newValue)
+          colorScheme = ColorScheme(newValue)
         } else {
           print("Remote Config did not change from: \(oldValue)")
         }

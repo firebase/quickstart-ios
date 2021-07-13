@@ -19,6 +19,7 @@ import Firebase
 
 class AppConfig: ObservableObject {
   @Published var colorScheme: ColorScheme
+
   init() {
     let value = RemoteConfig.remoteConfig()["color_scheme"].stringValue ?? "nil"
     colorScheme = ColorScheme(value)
@@ -31,55 +32,45 @@ class AppConfig: ObservableObject {
   }
 
   #if DEBUG
-    deinit {
-      NotificationCenter.default.removeObserver(self)
-    }
+    deinit { NotificationCenter.default.removeObserver(self) }
   #endif
+
   func updateFromRemoteConfig() {
     let remoteConfig = RemoteConfig.remoteConfig()
-    remoteConfig.fetch(withExpirationDuration: 0) { status, error in
-      print("Config fetch completed with status: \(status.debugDescription)")
+    let oldValue = remoteConfig["color_scheme"].stringValue ?? "nil"
+    remoteConfig.fetchAndActivate { status, error in
+      print("Fetch-and-activate completed with status: \(status.debugDescription)")
       if let error = error {
-        print("Error fetching config: \(error)")
+        print("Error fetching and activating config: \(error)")
       } else {
-        remoteConfig.activate { changed, error in
-          let value = remoteConfig["color_scheme"].stringValue ?? "nil"
-          if changed {
-            print("Remote Config changed to: \(value)")
-            DispatchQueue.main.async {
-              self.colorScheme = ColorScheme(value)
-            }
-          } else {
-            print("Remote Config did not change from: \(value)")
-          }
+        let newValue = remoteConfig["color_scheme"].stringValue ?? "nil"
+        if newValue != oldValue {
+          print("Remote Config changed to: \(newValue)")
+          DispatchQueue.main.async { self.colorScheme = ColorScheme(newValue) }
+        } else {
+          print("Remote Config did not change from: \(oldValue)")
         }
       }
     }
   }
 
   #if swift(>=5.5)
-    @available(iOS 15, *)
+    @MainActor @available(iOS 15, *)
     func updateFromRemoteConfigAsync() async {
       let remoteConfig = RemoteConfig.remoteConfig()
+      let oldValue = remoteConfig["color_scheme"].stringValue ?? "nil"
       do {
-        let status = try await remoteConfig.fetch(withExpirationDuration: 0)
-        print("Config fetch completed with status: \(status.debugDescription)")
-        do {
-          let changed = try await remoteConfig.activate()
-          let value = remoteConfig["color_scheme"].stringValue ?? "nil"
-          if changed {
-            print("Remote Config changed to: \(value)")
-            DispatchQueue.main.async {
-              self.colorScheme = ColorScheme(value)
-            }
-          } else {
-            print("Remote Config did not change from: \(value)")
-          }
-        } catch {
-          print("Error activating config: \(error)")
+        let status = try await remoteConfig.fetchAndActivate()
+        print("Fetch-and-activate completed with status: \(status.debugDescription)")
+        let newValue = remoteConfig["color_scheme"].stringValue ?? "nil"
+        if newValue != oldValue {
+          print("Remote Config changed to: \(newValue)")
+          colorScheme = ColorScheme(newValue)
+        } else {
+          print("Remote Config did not change from: \(oldValue)")
         }
       } catch {
-        print("Error fetching config: \(error)")
+        print("Error fetching and activating activating config: \(error)")
       }
     }
   #endif
@@ -109,17 +100,15 @@ extension ColorScheme {
   }
 }
 
-extension RemoteConfigFetchStatus {
+extension RemoteConfigFetchAndActivateStatus {
   var debugDescription: String {
     switch self {
-    case .failure:
-      return "failure"
-    case .noFetchYet:
-      return "pending"
-    case .success:
-      return "success"
-    case .throttled:
-      return "throttled"
+    case .error:
+      return "error"
+    case .successFetchedFromRemote:
+      return "successFetchedFromRemote"
+    case .successUsingPreFetchedData:
+      return "successUsingPreFetchedData"
     @unknown default:
       return "unknown"
     }

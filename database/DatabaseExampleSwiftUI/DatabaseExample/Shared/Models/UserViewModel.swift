@@ -139,7 +139,8 @@ class UserViewModel: ObservableObject {
     posts.removeAll()
     refHandle = postRef.observe(DataEventType.value, with: { snapshot in
       guard let value = snapshot.value as? [String: [String: Any]] else { return }
-      self.posts = value.compactMap { Post(dict: $1) }
+      let sortedValues = value.sorted (by: { $0.key > $1.key })
+      self.posts = sortedValues.compactMap { Post(dict: $1) }
     })
   }
 }

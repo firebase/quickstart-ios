@@ -150,7 +150,7 @@ class UserViewModel: ObservableObject {
       // retrieved data is of type dictionary of dictionary
       guard let value = snapshot.value as? [String: [String: Any]] else { return }
       // sort dictionary by keys (most to least recent)
-      let sortedValues = value.sorted (by: { $0.key > $1.key })
+      let sortedValues = value.sorted(by: { $0.key > $1.key })
       // store content of sorted dictionary into "posts" variable
       self.posts = sortedValues.compactMap { Post(dict: $1) }
     })
@@ -162,7 +162,7 @@ class UserViewModel: ObservableObject {
       // retrieved data is of type dictionary of dictionary
       guard let value = snapshot.value as? [String: [String: Any]] else { return }
       // sort dictionary by keys (most to least recent)
-      let sortedValues = value.sorted (by: { $0.key > $1.key })
+      let sortedValues = value.sorted(by: { $0.key > $1.key })
       // store content of sorted dictionary into "posts" variable
       self.myPosts = sortedValues.compactMap { Post(dict: $1) }
     })

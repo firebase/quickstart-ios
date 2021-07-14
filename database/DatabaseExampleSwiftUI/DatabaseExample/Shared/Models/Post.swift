@@ -35,7 +35,6 @@ struct Post: Identifiable {
   }
 
   init?(id: String, dict: [String: Any]) {
-    guard let id = dict["id"] as? String else { return nil }
     guard let uid = dict["uid"] as? String else { return nil }
     guard let author = dict["author"] as? String else { return nil }
     guard let title = dict["title"] as? String else { return nil }

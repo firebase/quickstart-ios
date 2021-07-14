@@ -36,7 +36,7 @@ class UserViewModel: ObservableObject {
   }()
 
   private lazy var userPostRef: DatabaseReference = {
-    Database.database().reference().child("user-posts").child(getuid())
+    Database.database().reference().child("user-posts")
   }()
 
   private var refHandle: DatabaseHandle?
@@ -157,7 +157,7 @@ class UserViewModel: ObservableObject {
 
   func fetchMyPosts() {
     // read data by listening for value events
-    refHandle = userPostRef.observe(DataEventType.value, with: { snapshot in
+    refHandle = userPostRef.child(getuid()).observe(DataEventType.value, with: { snapshot in
       // retrieved data is of type dictionary of dictionary
       guard let value = snapshot.value as? [String: [String: Any]] else { return }
       // sort dictionary by keys (most to least recent)

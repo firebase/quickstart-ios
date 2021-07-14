@@ -20,11 +20,26 @@ struct PostDetailView: View {
   var post: Post
   var body: some View {
     VStack {
-      Text(post.id)
-      Text(post.author)
-      Text(post.title)
-      Text(post.body)
-      Text("\(post.starCount)")
+      VStack(alignment: .leading) {
+        HStack(spacing: 1) {
+          Image(systemName: "person.fill")
+          Text(post.author)
+          Spacer()
+          Image(systemName: "star")
+          Text("\(post.starCount)")
+        }
+        Text(post.title)
+          .font(.system(size: 27))
+          .bold()
+        Text(post.body)
+      }
     }
+  }
+}
+
+struct PostDetailView_Previews: PreviewProvider {
+  static var examplePost = Post(id: "postID", uid: "userID", author: "userEmail", title: "postTitle", body: "postBody")
+  static var previews: some View {
+    PostDetailView(post: examplePost)
   }
 }

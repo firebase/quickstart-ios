@@ -50,7 +50,7 @@ jobs:
       - name: Build SwiftUI
         run: |
           cd database
-          ../scripts/install_prereqs/database.sh
+          ../scripts/install_prereqs/database.sh --build-only
           cd DatabaseExampleSwiftUI/DatabaseExample/
           xcodebuild \
           -project DatabaseExample.xcodeproj \

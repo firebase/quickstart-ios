@@ -16,7 +16,7 @@ ruby ../scripts/info_script.rb "${PROJECT}" "${LEGACY}"
 
 if [[ -n "${GITHUB_WORKFLOW:-}" ]]; then
   . ../scripts/check_secrets.sh
-  if [[ "$have_secrets" == true ]]; then
+  if [[ "$have_secrets" == true && "$IMPORT_DUMMY_PLIST" != true ]]; then
     ../scripts/install_secrets.sh
     cp Secrets/quickstart-ios/"${DIRECTORY}"/GoogleService-Info.plist ./
     cp Secrets/quickstart-ios/TestUtils/FIREGSignInInfo.h ../TestUtils/

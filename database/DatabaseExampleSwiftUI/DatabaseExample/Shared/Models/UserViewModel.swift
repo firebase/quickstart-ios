@@ -39,7 +39,7 @@ class UserViewModel: ObservableObject {
     Database.database().reference().child("user-posts").child(getuid())
   }()
 
-  var refHandle: DatabaseHandle?
+  private var refHandle: DatabaseHandle?
 
   func getuid() -> String {
     return Auth.auth().currentUser!.uid
@@ -129,8 +129,7 @@ class UserViewModel: ObservableObject {
 
     let userID = getuid()
     guard let key = postRef.childByAutoId().key else { return }
-    let post = ["id": key,
-                "uid": userID,
+    let post = ["uid": userID,
                 "author": Auth.auth().currentUser?.email,
                 "title": title,
                 "body": body]
@@ -152,7 +151,7 @@ class UserViewModel: ObservableObject {
       // sort dictionary by keys (most to least recent)
       let sortedValues = value.sorted(by: { $0.key > $1.key })
       // store content of sorted dictionary into "posts" variable
-      self.posts = sortedValues.compactMap { Post(dict: $1) }
+      self.posts = sortedValues.compactMap { Post(id: $0, dict: $1) }
     })
   }
 
@@ -164,7 +163,7 @@ class UserViewModel: ObservableObject {
       // sort dictionary by keys (most to least recent)
       let sortedValues = value.sorted(by: { $0.key > $1.key })
       // store content of sorted dictionary into "posts" variable
-      self.myPosts = sortedValues.compactMap { Post(dict: $1) }
+      self.myPosts = sortedValues.compactMap { Post(id: $0, dict: $1) }
     })
   }
 }

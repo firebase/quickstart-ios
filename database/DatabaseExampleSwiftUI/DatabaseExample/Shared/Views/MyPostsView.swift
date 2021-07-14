@@ -24,21 +24,7 @@ struct MyPostsView: View {
     NavigationView {
       List {
         ForEach(user.myPosts) { post in
-          VStack {
-            VStack(alignment: .leading) {
-              HStack(spacing: 1) {
-                Image(systemName: "person.fill")
-                Text(post.author)
-                Spacer()
-                Image(systemName: "star")
-                Text("\(post.starCount)")
-              }
-              Text(post.title)
-                .font(.system(size: 27))
-                .bold()
-              Text(post.body)
-            }
-          }
+          PostCellView(post: post)
         }
       }
       .onAppear {

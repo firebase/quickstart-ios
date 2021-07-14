@@ -35,11 +35,6 @@
   [FIRApp configure];
   // [END firebase_configure]
 
-  // [START setup_gidsignin]
-  [GIDSignIn sharedInstance].clientID = [FIRApp defaultApp].options.clientID;
-  [GIDSignIn sharedInstance].delegate = self;
-  // [END setup_gidsignin]
-
   [[FBSDKApplicationDelegate sharedInstance] application:application
                            didFinishLaunchingWithOptions:launchOptions];
   return YES;
@@ -98,30 +93,5 @@
   }
   return NO;
 }
-
-// [START headless_google_auth]
-- (void)signIn:(GIDSignIn *)signIn
-didSignInForUser:(GIDGoogleUser *)user
-     withError:(NSError *)error {
-  // [START_EXCLUDE]
-  MainViewController *controller = (MainViewController*) [GIDSignIn sharedInstance].presentingViewController;
-  // [END_EXCLUDE]
-  if (error == nil) {
-    // [START google_credential]
-    GIDAuthentication *authentication = user.authentication;
-    FIRAuthCredential *credential =
-    [FIRGoogleAuthProvider credentialWithIDToken:authentication.idToken
-                                     accessToken:authentication.accessToken];
-    // [END google_credential]
-    // [START_EXCLUDE]
-    [controller firebaseLoginWithCredential:credential];
-    // [END_EXCLUDE]
-  } else {
-    // [START_EXCLUDE]
-    [controller showMessagePrompt:error.localizedDescription];
-    // [END_EXCLUDE]
-  }
-}
-// [END headless_google_auth]
 
 @end

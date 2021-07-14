@@ -185,10 +185,7 @@ class MainViewController: UITableViewController {
         }
       case .authGoogle:
         action = UIAlertAction(title: "Google", style: .default) { UIAlertAction in
-          // [START setup_gid_uidelegate]
-          GIDSignIn.sharedInstance()?.presentingViewController = self
-          GIDSignIn.sharedInstance().signIn()
-          // [END setup_gid_uidelegate]
+          self.startSignInWithGoogleFlow()
         }
       case .authTwitter:
         action = UIAlertAction(title: "Twitter", style: .default) { UIAlertAction in
@@ -983,6 +980,44 @@ class MainViewController: UITableViewController {
       return
     }
     tableView.reloadData()
+  }
+
+  // MARK: - Sign in with Google
+
+  func startSignInWithGoogleFlow() {
+    // [START headless_google_auth]
+    guard let clientID = FirebaseApp.app()?.options.clientID else { return }
+
+    // Create Google Sign In configuration object.
+    let config = GIDConfiguration(clientID: clientID)
+
+    // Start the sign in flow!
+    GIDSignIn.sharedInstance.signIn(with: config, presenting: self) { [unowned self] user, error in
+
+      if let error = error {
+        // [START_EXCLUDE]
+        self.showMessagePrompt(error.localizedDescription)
+        // [END_EXCLUDE]
+        return
+      }
+
+      // [START google_credential]
+      guard
+        let authentication = user?.authentication,
+        let idToken = authentication.idToken
+      else {
+        return
+      }
+
+      let credential = GoogleAuthProvider.credential(withIDToken: idToken,
+                                                     accessToken: authentication.accessToken)
+      // [END google_credential]
+
+      // [START_EXCLUDE]
+      self.firebaseLogin(credential)
+      // [END_EXCLUDE]
+    }
+    // [END headless_google_auth]
   }
 
   // MARK: - Sign in with Apple

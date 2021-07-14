@@ -27,7 +27,7 @@ import FBSDKCoreKit
 
 @UIApplicationMain
 // [START signin_delegate]
-class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate {
   // [END signin_delegate]
 
   var window: UIWindow?
@@ -40,11 +40,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     // Use Firebase library to configure APIs
     FirebaseApp.configure()
     // [END firebase_configure]
-
-    // [START setup_gidsignin]
-    GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
-    GIDSignIn.sharedInstance().delegate = self
-    // [END setup_gidsignin]
 
     ApplicationDelegate.shared.application(application,
                                            didFinishLaunchingWithOptions: launchOptions)
@@ -75,7 +70,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     if handlePasswordlessSignIn(withURL: url) {
       return true
     }
-    if GIDSignIn.sharedInstance().handle(url) {
+    if GIDSignIn.sharedInstance.handle(url) {
       return true
     }
     return ApplicationDelegate.shared.application(application,
@@ -106,29 +101,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     }
     return false
   }
-
-  // [START headless_google_auth]
-  func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error?) {
-    // [START_EXCLUDE]
-    guard let controller = GIDSignIn.sharedInstance()
-      .presentingViewController as? MainViewController else { return }
-    // [END_EXCLUDE]
-    if let error = error {
-      // [START_EXCLUDE]
-      controller.showMessagePrompt(error.localizedDescription)
-      // [END_EXCLUDE]
-      return
-    }
-
-    // [START google_credential]
-    guard let authentication = user.authentication else { return }
-    let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken,
-                                                   accessToken: authentication.accessToken)
-    // [END google_credential]
-    // [START_EXCLUDE]
-    controller.firebaseLogin(credential)
-    // [END_EXCLUDE]
-  }
-
-  // [END headless_google_auth]
 }

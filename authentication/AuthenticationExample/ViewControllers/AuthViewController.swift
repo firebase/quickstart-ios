@@ -85,13 +85,41 @@ class AuthViewController: UIViewController, DataSourceProviderDelegate {
   // MARK: - Firebase 🔥
 
   private func performGoogleSignInFlow() {
-    // Configure the Google Sign In instance
-    GIDSignIn.sharedInstance().clientID = FirebaseApp.app()!.options.clientID
-    GIDSignIn.sharedInstance().delegate = self
+    guard let clientID = FirebaseApp.app()?.options.clientID else { return }
+
+    // Create Google Sign In configuration object.
+    let config = GIDConfiguration(clientID: clientID)
 
     // Start the sign in flow!
-    GIDSignIn.sharedInstance()?.presentingViewController = self
-    GIDSignIn.sharedInstance().signIn()
+    GIDSignIn.sharedInstance.signIn(with: config, presenting: self) { [unowned self] user, error in
+
+      guard error == nil else { return displayError(error) }
+
+      guard
+        let authentication = user?.authentication,
+        let idToken = authentication.idToken
+      else {
+        let error = NSError(
+          domain: "GIDSignInError",
+          code: -1,
+          userInfo: [
+            NSLocalizedDescriptionKey: "Unexpected sign in result: required authentication data is missing.",
+          ]
+        )
+        return displayError(error)
+      }
+
+      let credential = GoogleAuthProvider.credential(withIDToken: idToken,
+                                                     accessToken: authentication.accessToken)
+
+      Auth.auth().signIn(with: credential) { result, error in
+        guard error == nil else { return self.displayError(error) }
+
+        // At this point, our user is signed in
+        // so we advance to the User View Controller
+        self.transitionToUserViewController()
+      }
+    }
   }
 
   // For Sign in with Apple
@@ -199,26 +227,6 @@ class AuthViewController: UIViewController, DataSourceProviderDelegate {
   private func transitionToUserViewController() {
     // UserViewController is at index 1 in the tabBarController.viewControllers array
     tabBarController?.transitionToViewController(atIndex: 1)
-  }
-}
-
-// MARK: - GIDSignInDelegate for Google Sign In
-
-extension AuthViewController: GIDSignInDelegate {
-  func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
-    guard error == nil else { return displayError(error) }
-
-    guard let authentication = user.authentication else { return }
-    let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken,
-                                                   accessToken: authentication.accessToken)
-
-    Auth.auth().signIn(with: credential) { result, error in
-      guard error == nil else { return self.displayError(error) }
-
-      // At this point, our user is signed in
-      // so we advance to the User View Controller
-      self.transitionToUserViewController()
-    }
   }
 }
 

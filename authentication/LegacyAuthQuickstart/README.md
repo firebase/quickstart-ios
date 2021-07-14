@@ -77,7 +77,7 @@ a paid service. If you are only using Firebase Authentication this sample will n
   - Select the **Auth** panel and then click the **Sign In Method** tab.
   - Click **Twitter** and turn on the **Enable** switch, then click **Save**.
   - Enter your Twitter **API Key** and **App Secret** and click **Save**.
-  - Make sure your Firebase OAuth redirect URI (e.g. my-app-12345.firebaseapp.com/__/auth/handler) is set as your  
+  - Make sure your Firebase OAuth redirect URI (e.g. my-app-12345.firebaseapp.com/__/auth/handler) is set as your
     Authorization callback URL in your app's settings page on your [Twitter app's config](https://apps.twitter.com).
 - Run the app on your device or simulator.
     - Select **Sign In** and select Twitter to begin.

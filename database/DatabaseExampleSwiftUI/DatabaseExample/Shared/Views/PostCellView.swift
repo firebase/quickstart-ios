@@ -44,10 +44,16 @@ struct PostCellView: View {
 }
 
 struct PostCellView_Previews: PreviewProvider {
-  static var examplePost = Post(id: "postID", uid: "userID", author: "userEmail", title: "postTitle", body: "postBody")
+  static var examplePost = Post(
+    id: "postID",
+    uid: "userID",
+    author: "userEmail",
+    title: "postTitle",
+    body: "postBody"
+  )
   static var previews: some View {
     List {
-      ForEach(0..<10) { post in
+      ForEach(0 ..< 10) { post in
         PostCellView(post: examplePost)
       }
     }

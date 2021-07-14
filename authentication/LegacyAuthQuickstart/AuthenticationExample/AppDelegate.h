@@ -19,7 +19,7 @@
 @import GoogleSignIn;
 
 // [START signin_delegate]
-@interface AppDelegate : UIResponder<UIApplicationDelegate, GIDSignInDelegate>
+@interface AppDelegate : UIResponder<UIApplicationDelegate>
 // [END signin_delegate]
 
 @property(nonatomic, strong) UIWindow *window;

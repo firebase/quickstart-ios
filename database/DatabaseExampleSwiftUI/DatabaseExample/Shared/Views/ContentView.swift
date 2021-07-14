@@ -18,7 +18,7 @@ import SwiftUI
 import Firebase
 
 struct ContentView: View {
-  @AppStorage("isSignedIn") var isSignedIn = false
+  @AppStorage("isSignedIn") var isSignedIn = true
   @StateObject var user = UserViewModel()
   @State private var selection: Tab = .recentPosts
 
@@ -31,12 +31,12 @@ struct ContentView: View {
   var body: some View {
     if isSignedIn {
       TabView(selection: $selection) {
-        RecentPostsView()
+        RecentPostsView(user: user)
           .tabItem {
             Label("Recent", systemImage: "arrow.counterclockwise")
           }
           .tag(Tab.recentPosts)
-        MyPostsView()
+        MyPostsView(user: user)
           .tabItem {
             Label("My Posts", systemImage: "person.fill")
           }

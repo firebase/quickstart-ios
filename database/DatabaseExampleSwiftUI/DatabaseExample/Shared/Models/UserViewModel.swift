@@ -25,17 +25,36 @@ class UserViewModel: ObservableObject {
   @Published var alertMessage = ""
   @Published var isLoading = false
   @Published var alert = false
+  @Published var posts: [Post] = []
+  @Published var myPosts: [Post] = []
+  private lazy var ref: DatabaseReference = {
+    Database.database().reference()
+  }()
 
-  func showAlertMessage() {
-    alertMessage = "Email or password cannot be empty."
+  private lazy var postRef: DatabaseReference = {
+    Database.database().reference().child("posts")
+  }()
+
+  private lazy var userPostRef: DatabaseReference = {
+    Database.database().reference().child("user-posts")
+  }()
+
+  private var refHandle: DatabaseHandle?
+
+  func getuid() -> String {
+    return Auth.auth().currentUser!.uid
+  }
+
+  func showAlertMessage(message: String) {
+    alertMessage = message
     alert.toggle()
-    return
   }
 
   func login() {
     // check if all fields are inputted correctly
     if email.isEmpty || password.isEmpty {
-      showAlertMessage()
+      showAlertMessage(message: "Neither email nor password can be empty.")
+      return
     }
 
     // begin loading animation
@@ -60,7 +79,8 @@ class UserViewModel: ObservableObject {
   func signUp() {
     // check if all fields are inputted correctly
     if email.isEmpty || password.isEmpty {
-      showAlertMessage()
+      showAlertMessage(message: "Neither email nor password can be empty.")
+      return
     }
 
     // begin loading animation
@@ -93,6 +113,58 @@ class UserViewModel: ObservableObject {
     } catch {
       NSLog("Error signing out.")
     }
+  }
+
+  func post(title: String, body: String) {
+    // check if both title and body are completed
+    if title.isEmpty || body.isEmpty {
+      showAlertMessage(message: "Neither title nor body can be empty.")
+      return
+    }
+
+    // begin loading animation
+    withAnimation {
+      self.isLoading.toggle()
+    }
+
+    let userID = getuid()
+    guard let key = postRef.childByAutoId().key else { return }
+    let post = ["uid": userID,
+                "author": Auth.auth().currentUser?.email,
+                "title": title,
+                "body": body]
+    let childUpdates = ["/posts/\(key)": post,
+                        "/user-posts/\(String(describing: userID))/\(key)/": post]
+    ref.updateChildValues(childUpdates)
+
+    // end loading animation
+    withAnimation {
+      self.isLoading.toggle()
+    }
+  }
+
+  func fetchPosts() {
+    // read data by listening for value events
+    refHandle = postRef.observe(DataEventType.value, with: { snapshot in
+      // retrieved data is of type dictionary of dictionary
+      guard let value = snapshot.value as? [String: [String: Any]] else { return }
+      // sort dictionary by keys (most to least recent)
+      let sortedValues = value.sorted(by: { $0.key > $1.key })
+      // store content of sorted dictionary into "posts" variable
+      self.posts = sortedValues.compactMap { Post(id: $0, dict: $1) }
+    })
+  }
+
+  func fetchMyPosts() {
+    // read data by listening for value events
+    refHandle = userPostRef.child(getuid()).observe(DataEventType.value, with: { snapshot in
+      // retrieved data is of type dictionary of dictionary
+      guard let value = snapshot.value as? [String: [String: Any]] else { return }
+      // sort dictionary by keys (most to least recent)
+      let sortedValues = value.sorted(by: { $0.key > $1.key })
+      // store content of sorted dictionary into "posts" variable
+      self.myPosts = sortedValues.compactMap { Post(id: $0, dict: $1) }
+    })
   }
 }
 

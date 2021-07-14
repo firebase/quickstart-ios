@@ -17,22 +17,38 @@ import SwiftUI
 import Firebase
 
 struct RecentPostsView: View {
+  @ObservedObject var user: UserViewModel
+
   var body: some View {
     NavigationView {
-      VStack(spacing: 25) {
-        Text("Logged in as \(Auth.auth().currentUser?.email ?? "")")
-        Button(action: user.logout, label: {
-          Text("Logout")
-            .fontWeight(.bold)
-        })
+      List {
+        ForEach(user.posts) { post in
+          PostCellView(post: post)
+        }
+      }
+      .onAppear {
+        user.fetchPosts()
       }
       .navigationBarTitle("Recents")
+      .navigationBarItems(leading:
+        Button(action: {
+          user.logout()
+        }) {
+          HStack {
+            Image(systemName: "chevron.left")
+            Text("Logout")
+          }
+        },
+        trailing:
+        NavigationLink(destination: NewPostsView(user: user)) {
+          Image(systemName: "plus")
+        })
     }
   }
 }
 
 struct RecentPostsView_Previews: PreviewProvider {
   static var previews: some View {
-    RecentPostsView()
+    RecentPostsView(user: user)
   }
 }

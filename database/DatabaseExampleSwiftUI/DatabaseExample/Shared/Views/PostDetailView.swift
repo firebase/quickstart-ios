@@ -15,41 +15,37 @@
 //
 
 import SwiftUI
-import Firebase
 
-struct MyPostsView: View {
-  @ObservedObject var user: UserViewModel
-
+struct PostDetailView: View {
+  var post: Post
   var body: some View {
-    NavigationView {
-      List {
-        ForEach(user.myPosts) { post in
-          PostCellView(post: post)
+    VStack {
+      VStack(alignment: .leading) {
+        HStack(spacing: 1) {
+          Image(systemName: "person.fill")
+          Text(post.author)
+          Spacer()
+          Image(systemName: "star")
+          Text("\(post.starCount)")
         }
+        Text(post.title)
+          .font(.system(size: 27))
+          .bold()
+        Text(post.body)
       }
-      .onAppear {
-        user.fetchMyPosts()
-      }
-      .navigationBarTitle("My Posts")
-      .navigationBarItems(leading:
-        Button(action: {
-          user.logout()
-        }) {
-          HStack {
-            Image(systemName: "chevron.left")
-            Text("Logout")
-          }
-        },
-        trailing:
-        NavigationLink(destination: NewPostsView(user: user)) {
-          Image(systemName: "plus")
-        })
     }
   }
 }
 
-struct MyPostsView_Previews: PreviewProvider {
+struct PostDetailView_Previews: PreviewProvider {
+  static var examplePost = Post(
+    id: "postID",
+    uid: "userID",
+    author: "userEmail",
+    title: "postTitle",
+    body: "postBody"
+  )
   static var previews: some View {
-    MyPostsView(user: user)
+    PostDetailView(post: examplePost)
   }
 }

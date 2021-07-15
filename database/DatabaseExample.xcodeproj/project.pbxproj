@@ -273,13 +273,6 @@
 			name = ViewControllers;
 			sourceTree = "<group>";
 		};
-		244A75058F265EBB9D457A95 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 		5F5A53431ADE670C00F81DF0 = {
 			isa = PBXGroup;
 			children = (
@@ -291,7 +284,6 @@
 				1073483520333B8C004A66D1 /* DatabaseExampleUITests */,
 				5F5A534D1ADE670C00F81DF0 /* Products */,
 				5F9961041AE0CF4F0034F503 /* Shared */,
-				244A75058F265EBB9D457A95 /* Pods */,
 				F644C72A588FB44DD666857B /* GoogleService-Info.plist */,
 			);
 			sourceTree = "<group>";

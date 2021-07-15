@@ -12,19 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-while test $# -gt 0; do
-  case "$1" in
-    --build-only)
-      export BUILD_ONLY=true
-      shift
-      ;;
-    *)
-      break
-      ;;
-  esac
-done
-
-IMPORT_DUMMY_PLIST=$BUILD_ONLY \
 DIRECTORY=database \
 PROJECT=Database \
 . ../scripts/prereq_core.sh

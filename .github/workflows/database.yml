@@ -33,7 +33,6 @@ jobs:
           bundle install
           gem install xcpretty
           bundle exec pod install --repo-update
-          ../scripts/install_prereqs/database.sh
         env:
           SAMPLE: Database
           secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}

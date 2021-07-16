@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		16F8E38C3F42EB1FE8184C90 /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = 45ED9095BE4BD5109A65B35F /* GoogleService-Info.plist */; };
+		3623B61971137623FD028C44 /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = 45ED9095BE4BD5109A65B35F /* GoogleService-Info.plist */; };
+		72904828160EC19516620EF7 /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = 45ED9095BE4BD5109A65B35F /* GoogleService-Info.plist */; };
 		EA062D6024A13966006714D3 /* RemoteConfigView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA062D5F24A13966006714D3 /* RemoteConfigView.swift */; };
 		EA20B48A2497CC9D00B5E581 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA20B4892497CC9D00B5E581 /* AppDelegate.swift */; };
 		EA20B48C2497CC9D00B5E581 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA20B48B2497CC9D00B5E581 /* SceneDelegate.swift */; };
@@ -39,6 +42,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		45ED9095BE4BD5109A65B35F /* GoogleService-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EA062D5F24A13966006714D3 /* RemoteConfigView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteConfigView.swift; sourceTree = "<group>"; };
 		EA20B4862497CC9D00B5E581 /* ConfigExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ConfigExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA20B4892497CC9D00B5E581 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -101,6 +105,7 @@
 				EA20B49F2497CC9F00B5E581 /* ConfigExampleTests */,
 				EA20B4AA2497CC9F00B5E581 /* ConfigExampleUITests */,
 				EA20B4872497CC9D00B5E581 /* Products */,
+				45ED9095BE4BD5109A65B35F /* GoogleService-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -286,6 +291,7 @@
 				EA20B48A2497CC9D00B5E581 /* AppDelegate.swift in Sources */,
 				EA062D6024A13966006714D3 /* RemoteConfigView.swift in Sources */,
 				EA20B48C2497CC9D00B5E581 /* SceneDelegate.swift in Sources */,
+				3623B61971137623FD028C44 /* GoogleService-Info.plist in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -294,6 +300,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA20B4A12497CC9F00B5E581 /* ConfigExampleTests.swift in Sources */,
+				16F8E38C3F42EB1FE8184C90 /* GoogleService-Info.plist in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -302,6 +309,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA20B4AC2497CC9F00B5E581 /* ConfigExampleUITests.swift in Sources */,
+				72904828160EC19516620EF7 /* GoogleService-Info.plist in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

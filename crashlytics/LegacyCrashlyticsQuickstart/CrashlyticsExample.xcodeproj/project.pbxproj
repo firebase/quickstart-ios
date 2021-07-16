@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0DDAE1A41098B006303515E2 /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = A635694C8BE79DC67214731F /* GoogleService-Info.plist */; };
 		1073472D20315969004A66D1 /* CrashReportingExampleSwiftUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1073472C20315969004A66D1 /* CrashReportingExampleSwiftUITests.swift */; };
 		1073482920333B71004A66D1 /* CrashReportingExampleUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1073482820333B71004A66D1 /* CrashReportingExampleUITests.m */; };
 		5F5A53521ADE670C00F81DF0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5A53511ADE670C00F81DF0 /* main.m */; };
@@ -17,10 +18,14 @@
 		5F5A53801ADE67D500F81DF0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5A537F1ADE67D500F81DF0 /* ViewController.swift */; };
 		5F5A539C1ADE69AA00F81DF0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F5A53591ADE670C00F81DF0 /* Main.storyboard */; };
 		5FDE055D1B0DAA090037B82F /* AppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FDE055C1B0DAA090037B82F /* AppTests.m */; };
+		7FD4CBFA51EAB8A25764BF8B /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = A635694C8BE79DC67214731F /* GoogleService-Info.plist */; };
+		85F2A78F84665B33B5E340A6 /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = A635694C8BE79DC67214731F /* GoogleService-Info.plist */; };
 		8D07E3D5268BF7210002C432 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D07E3D3268BF7210002C432 /* Images.xcassets */; };
 		8D07E3D6268BF7210002C432 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D07E3D4268BF7210002C432 /* LaunchScreen.xib */; };
 		8D07E3D7268BF7250002C432 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D07E3D3268BF7210002C432 /* Images.xcassets */; };
 		8D07E3D8268BF7280002C432 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D07E3D4268BF7210002C432 /* LaunchScreen.xib */; };
+		A65DFC68874CB909A594C72A /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = A635694C8BE79DC67214731F /* GoogleService-Info.plist */; };
+		FAC4F6426F15EB440B635B88 /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = A635694C8BE79DC67214731F /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +74,7 @@
 		5FDE055C1B0DAA090037B82F /* AppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppTests.m; sourceTree = "<group>"; };
 		8D07E3D3268BF7210002C432 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ../../shared/Images.xcassets; sourceTree = "<group>"; };
 		8D07E3D4268BF7210002C432 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LaunchScreen.xib; path = ../../shared/LaunchScreen.xib; sourceTree = "<group>"; };
+		A635694C8BE79DC67214731F /* GoogleService-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +145,7 @@
 				5F5A534D1ADE670C00F81DF0 /* Products */,
 				5F9961041AE0CF4F0034F503 /* Shared */,
 				71EF67FCA020EBD17372A579 /* Pods */,
+				A635694C8BE79DC67214731F /* GoogleService-Info.plist */,
 			);
 			sourceTree = "<group>";
 			wrapsLines = 0;
@@ -445,6 +452,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1073472D20315969004A66D1 /* CrashReportingExampleSwiftUITests.swift in Sources */,
+				FAC4F6426F15EB440B635B88 /* GoogleService-Info.plist in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -453,6 +461,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1073482920333B71004A66D1 /* CrashReportingExampleUITests.m in Sources */,
+				85F2A78F84665B33B5E340A6 /* GoogleService-Info.plist in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -463,6 +472,7 @@
 				5F5A53581ADE670C00F81DF0 /* ViewController.m in Sources */,
 				5F5A53551ADE670C00F81DF0 /* AppDelegate.m in Sources */,
 				5F5A53521ADE670C00F81DF0 /* main.m in Sources */,
+				A65DFC68874CB909A594C72A /* GoogleService-Info.plist in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -472,6 +482,7 @@
 			files = (
 				5F5A53801ADE67D500F81DF0 /* ViewController.swift in Sources */,
 				5F5A537E1ADE67D500F81DF0 /* AppDelegate.swift in Sources */,
+				0DDAE1A41098B006303515E2 /* GoogleService-Info.plist in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -480,6 +491,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5FDE055D1B0DAA090037B82F /* AppTests.m in Sources */,
+				7FD4CBFA51EAB8A25764BF8B /* GoogleService-Info.plist in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,14 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1C9177A529BF382E0B10F21A /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = 09DB1C43785994E8D625721E /* GoogleService-Info.plist */; };
+		86AC3FDA0C3B45EB493D8912 /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = 09DB1C43785994E8D625721E /* GoogleService-Info.plist */; };
 		8D07E3C9268BF6D90002C432 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F9961061AE0CF4F0034F503 /* Images.xcassets */; };
 		8D07E3CC268BF6DB0002C432 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F9961061AE0CF4F0034F503 /* Images.xcassets */; };
 		8D07E3CF268BF6DF0002C432 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F9961071AE0CF4F0034F503 /* LaunchScreen.xib */; };
 		8D07E3D0268BF6DF0002C432 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F9961071AE0CF4F0034F503 /* LaunchScreen.xib */; };
-		8D96F5DE2685440700F1A2B7 /* Reachability in Frameworks */ = {isa = PBXBuildFile; productRef = 8D96F5DD2685440700F1A2B7 /* Reachability */; };
+		8D96F5DE2685440700F1A2B7 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 8D96F5DD2685440700F1A2B7 /* SwiftPackageProductDependency */; };
 		8D96F5E62685442800F1A2B7 /* ReachabililtyHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C723B78C26853A1700AD34CD /* ReachabililtyHelper.swift */; };
 		8D96F5EE2685442C00F1A2B7 /* ReachabililtyHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C723B78C26853A1700AD34CD /* ReachabililtyHelper.swift */; };
-		C732A29826846B6D00AA7DEF /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = C732A29726846B6D00AA7DEF /* FirebaseCrashlytics */; };
+		C732A29826846B6D00AA7DEF /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = C732A29726846B6D00AA7DEF /* SwiftPackageProductDependency */; };
 		C73C89A926845908003E5C2C /* CrashlyticsSwiftUIExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73C899726845907003E5C2C /* CrashlyticsSwiftUIExampleApp.swift */; };
 		C73C89AA26845908003E5C2C /* CrashlyticsSwiftUIExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73C899726845907003E5C2C /* CrashlyticsSwiftUIExampleApp.swift */; };
 		C73C89AB26845908003E5C2C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73C899826845907003E5C2C /* ContentView.swift */; };
@@ -24,6 +26,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		09DB1C43785994E8D625721E /* GoogleService-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5F9961061AE0CF4F0034F503 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		5F9961071AE0CF4F0034F503 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		C723B78C26853A1700AD34CD /* ReachabililtyHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabililtyHelper.swift; sourceTree = "<group>"; };
@@ -42,8 +45,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C732A29826846B6D00AA7DEF /* FirebaseCrashlytics in Frameworks */,
-				8D96F5DE2685440700F1A2B7 /* Reachability in Frameworks */,
+				C732A29826846B6D00AA7DEF /* BuildFile in Frameworks */,
+				8D96F5DE2685440700F1A2B7 /* BuildFile in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +68,7 @@
 				C73C89A626845908003E5C2C /* macOS */,
 				5F5A534D1ADE670C00F81DF0 /* Products */,
 				5F9961041AE0CF4F0034F503 /* Shared */,
+				09DB1C43785994E8D625721E /* GoogleService-Info.plist */,
 			);
 			sourceTree = "<group>";
 			wrapsLines = 0;
@@ -134,8 +138,8 @@
 			);
 			name = "CrashlyticsSwiftUIExample (iOS)";
 			packageProductDependencies = (
-				C732A29726846B6D00AA7DEF /* FirebaseCrashlytics */,
-				8D96F5DD2685440700F1A2B7 /* Reachability */,
+				C732A29726846B6D00AA7DEF /* SwiftPackageProductDependency */,
+				8D96F5DD2685440700F1A2B7 /* SwiftPackageProductDependency */,
 			);
 			productName = "CrashlyticsSwiftUIExample (iOS)";
 			productReference = C73C899E26845908003E5C2C /* CrashlyticsSwiftUIExample.app */;
@@ -189,8 +193,8 @@
 			);
 			mainGroup = 5F5A53431ADE670C00F81DF0;
 			packageReferences = (
-				C732A28E2684656200AA7DEF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
-				8D96F5DC2685440700F1A2B7 /* XCRemoteSwiftPackageReference "Reachability.swift" */,
+				C732A28E2684656200AA7DEF /* RemoteSwiftPackageReference */,
+				8D96F5DC2685440700F1A2B7 /* RemoteSwiftPackageReference */,
 			);
 			productRefGroup = 5F5A534D1ADE670C00F81DF0 /* Products */;
 			projectDirPath = "";
@@ -256,6 +260,7 @@
 				8D96F5E62685442800F1A2B7 /* ReachabililtyHelper.swift in Sources */,
 				C73C89AB26845908003E5C2C /* ContentView.swift in Sources */,
 				C73C89A926845908003E5C2C /* CrashlyticsSwiftUIExampleApp.swift in Sources */,
+				86AC3FDA0C3B45EB493D8912 /* GoogleService-Info.plist in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,6 +271,7 @@
 				8D96F5EE2685442C00F1A2B7 /* ReachabililtyHelper.swift in Sources */,
 				C73C89AC26845908003E5C2C /* ContentView.swift in Sources */,
 				C73C89AA26845908003E5C2C /* CrashlyticsSwiftUIExampleApp.swift in Sources */,
+				1C9177A529BF382E0B10F21A /* GoogleService-Info.plist in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -547,7 +553,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		8D96F5DC2685440700F1A2B7 /* XCRemoteSwiftPackageReference "Reachability.swift" */ = {
+		8D96F5DC2685440700F1A2B7 /* RemoteSwiftPackageReference */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ashleymills/Reachability.swift.git";
 			requirement = {
@@ -555,7 +561,7 @@
 				minimumVersion = 5.1.0;
 			};
 		};
-		C732A28E2684656200AA7DEF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+		C732A28E2684656200AA7DEF /* RemoteSwiftPackageReference */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
 			requirement = {
@@ -566,14 +572,14 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		8D96F5DD2685440700F1A2B7 /* Reachability */ = {
+		8D96F5DD2685440700F1A2B7 /* SwiftPackageProductDependency */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 8D96F5DC2685440700F1A2B7 /* XCRemoteSwiftPackageReference "Reachability.swift" */;
+			package = 8D96F5DC2685440700F1A2B7 /* RemoteSwiftPackageReference */;
 			productName = Reachability;
 		};
-		C732A29726846B6D00AA7DEF /* FirebaseCrashlytics */ = {
+		C732A29726846B6D00AA7DEF /* SwiftPackageProductDependency */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = C732A28E2684656200AA7DEF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = C732A28E2684656200AA7DEF /* RemoteSwiftPackageReference */;
 			productName = FirebaseCrashlytics;
 		};
 /* End XCSwiftPackageProductDependency section */

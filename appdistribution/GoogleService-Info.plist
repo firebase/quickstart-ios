@@ -9,7 +9,7 @@
 	<key>API_KEY</key>
 	<string>AIzaSyAzlj4APqi5S58nFtE52Da0fYBOHA2MhaY</string>
 	<key>BUNDLE_ID</key>
-	<string>id</string>
+	<string>com.google.firebase.quickstart.AppdistributionExample</string>
 	<key>CLIENT_ID</key>
 	<string>123456789000-hjugbg6ud799v4c49dim8ce2usclthar.apps.googleusercontent.com</string>
 	<key>DATABASE_URL</key>

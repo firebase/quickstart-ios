@@ -41,10 +41,6 @@ class UserViewModel: ObservableObject {
 
   private var refHandle: DatabaseHandle?
 
-  func getuid() -> String {
-    return Auth.auth().currentUser!.uid
-  }
-
   func showAlertMessage(message: String) {
     alertMessage = message
     alert.toggle()
@@ -111,7 +107,7 @@ class UserViewModel: ObservableObject {
       email = ""
       password = ""
     } catch {
-      NSLog("Error signing out.")
+      print("Error signing out.")
     }
   }
 
@@ -127,7 +123,7 @@ class UserViewModel: ObservableObject {
       self.isLoading.toggle()
     }
 
-    let userID = getuid()
+    let userID = Auth.auth().currentUser?.uid
     guard let key = postRef.childByAutoId().key else { return }
     let post = ["uid": userID,
                 "author": Auth.auth().currentUser?.email,
@@ -156,8 +152,9 @@ class UserViewModel: ObservableObject {
   }
 
   func fetchMyPosts() {
+    let userID = Auth.auth().currentUser?.uid
     // read data by listening for value events
-    refHandle = userPostRef.child(getuid()).observe(DataEventType.value, with: { snapshot in
+    refHandle = userPostRef.child("\(String(describing: userID))").observe(DataEventType.value, with: { snapshot in
       // retrieved data is of type dictionary of dictionary
       guard let value = snapshot.value as? [String: [String: Any]] else { return }
       // sort dictionary by keys (most to least recent)

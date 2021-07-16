@@ -22,8 +22,8 @@ struct RecentPostsView: View {
   var body: some View {
     NavigationView {
       List {
-        ForEach(user.posts) { post in
-          PostCellView(post: post)
+        ForEach(user.posts.indices, id: \.self) { index in
+          PostCell(post: $user.posts[index])
         }
       }
       .onAppear {

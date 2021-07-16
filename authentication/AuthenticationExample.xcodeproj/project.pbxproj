@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		12C7ED8E63F022BFC0C9A464 /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = C2C7004B227F29AB44671FF5 /* GoogleService-Info.plist */; };
+		3A4EFD856DCB21AE4251CAB4 /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = C2C7004B227F29AB44671FF5 /* GoogleService-Info.plist */; };
+		BB3A5023DF8668B9AB12DBEA /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = C2C7004B227F29AB44671FF5 /* GoogleService-Info.plist */; };
 		EA02F68524A000E00079D000 /* UserActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA02F68424A000E00079D000 /* UserActions.swift */; };
 		EA02F68D24A063E90079D000 /* LoginDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA02F68C24A063E90079D000 /* LoginDelegate.swift */; };
 		EA062D5D24A0FEB6006714D3 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = EA062D5C24A0FEB6006714D3 /* README.md */; };
@@ -53,6 +56,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C2C7004B227F29AB44671FF5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EA02F68424A000E00079D000 /* UserActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserActions.swift; sourceTree = "<group>"; };
 		EA02F68C24A063E90079D000 /* LoginDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginDelegate.swift; sourceTree = "<group>"; };
 		EA062D5C24A0FEB6006714D3 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
@@ -199,6 +203,7 @@
 				EAE4CBE524855E3E00245E92 /* AuthenticationExampleUITests */,
 				EAE4CBC224855E3A00245E92 /* Products */,
 				CE54897B57069002714B8FA5 /* Pods */,
+				C2C7004B227F29AB44671FF5 /* GoogleService-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -327,7 +332,7 @@
 					};
 				};
 			};
-			buildConfigurationList = EAE4CBBC24855E3A00245E92 /* Build configuration list for PBXProject "AuthenticationExample" */;
+			buildConfigurationList = EAE4CBBC24855E3A00245E92 /* Build configuration list for PBXProject "authenticationExample" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -400,6 +405,7 @@
 				EAE08EB524CF5D09006FA3A5 /* AccountLinkingViewController.swift in Sources */,
 				EA527CAC24A0EE9600ADB9A2 /* LoginView.swift in Sources */,
 				EAEBCE0F2489FFDE00FCEA92 /* Extensions.swift in Sources */,
+				BB3A5023DF8668B9AB12DBEA /* GoogleService-Info.plist in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -408,6 +414,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EAE4CBDC24855E3E00245E92 /* AuthenticationExampleTests.swift in Sources */,
+				3A4EFD856DCB21AE4251CAB4 /* GoogleService-Info.plist in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -416,6 +423,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EAE4CBE724855E3E00245E92 /* AuthenticationExampleUITests.swift in Sources */,
+				12C7ED8E63F022BFC0C9A464 /* GoogleService-Info.plist in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -680,7 +688,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		EAE4CBBC24855E3A00245E92 /* Build configuration list for PBXProject "AuthenticationExample" */ = {
+		EAE4CBBC24855E3A00245E92 /* Build configuration list for PBXProject "authenticationExample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EAE4CBE924855E3E00245E92 /* Debug */,

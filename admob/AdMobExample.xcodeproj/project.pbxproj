@@ -20,8 +20,14 @@
 		103603FA224D97BC00E6532E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10360395224D95D300E6532E /* Main.storyboard */; };
 		10360402224D9A1600E6532E /* AdMobExampleUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 10360401224D9A1600E6532E /* AdMobExampleUITests.m */; };
 		10360410224D9A2900E6532E /* AdMobExampleSwiftUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1036040F224D9A2900E6532E /* AdMobExampleSwiftUITests.swift */; };
+		815BE57DCF4B58D3C3B08982 /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = 9ABC3D18FD3A3D30224E1033 /* GoogleService-Info.plist */; };
+		84C2817B608F2894C2D279E3 /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = 9ABC3D18FD3A3D30224E1033 /* GoogleService-Info.plist */; };
+		859AADA36FC215904CF2453F /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = 9ABC3D18FD3A3D30224E1033 /* GoogleService-Info.plist */; };
 		8D56C7D9263CB3F800A90B75 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D56C7D8263CB3F800A90B75 /* StoreKit.framework */; };
 		8D56C7E0263CB3FF00A90B75 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D56C7D8263CB3F800A90B75 /* StoreKit.framework */; };
+		9BCC1F3388C681BC8C48D5E7 /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = 9ABC3D18FD3A3D30224E1033 /* GoogleService-Info.plist */; };
+		DCF37F92C80D30DBF16102D8 /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = 9ABC3D18FD3A3D30224E1033 /* GoogleService-Info.plist */; };
+		EFA10883A6107016132F38B6 /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = 9ABC3D18FD3A3D30224E1033 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +86,7 @@
 		1036040F224D9A2900E6532E /* AdMobExampleSwiftUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdMobExampleSwiftUITests.swift; sourceTree = "<group>"; };
 		10360411224D9A2900E6532E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D56C7D8263CB3F800A90B75 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		9ABC3D18FD3A3D30224E1033 /* GoogleService-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +148,7 @@
 				1036040E224D9A2900E6532E /* AdMobExampleSwiftUITests */,
 				1036038D224D95D300E6532E /* Products */,
 				ADB9CFD26D561763ABEF60BF /* Frameworks */,
+				9ABC3D18FD3A3D30224E1033 /* GoogleService-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -370,7 +378,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 10360387224D95D300E6532E /* Build configuration list for PBXProject "AdMobExample" */;
+			buildConfigurationList = 10360387224D95D300E6532E /* Build configuration list for PBXProject "admobExample" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -450,6 +458,7 @@
 				10360394224D95D300E6532E /* ViewController.m in Sources */,
 				1036039F224D95D400E6532E /* main.m in Sources */,
 				10360391224D95D300E6532E /* AppDelegate.m in Sources */,
+				815BE57DCF4B58D3C3B08982 /* GoogleService-Info.plist in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -458,6 +467,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				103603A9224D95D400E6532E /* AdMobExampleTests.m in Sources */,
+				DCF37F92C80D30DBF16102D8 /* GoogleService-Info.plist in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -467,6 +477,7 @@
 			files = (
 				103603CA224D95F800E6532E /* ViewController.swift in Sources */,
 				103603C8224D95F800E6532E /* AppDelegate.swift in Sources */,
+				9BCC1F3388C681BC8C48D5E7 /* GoogleService-Info.plist in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -475,6 +486,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				103603DD224D95F900E6532E /* AdMobExampleSwiftTests.swift in Sources */,
+				84C2817B608F2894C2D279E3 /* GoogleService-Info.plist in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -483,6 +495,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				10360402224D9A1600E6532E /* AdMobExampleUITests.m in Sources */,
+				859AADA36FC215904CF2453F /* GoogleService-Info.plist in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -491,6 +504,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				10360410224D9A2900E6532E /* AdMobExampleSwiftUITests.swift in Sources */,
+				EFA10883A6107016132F38B6 /* GoogleService-Info.plist in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -871,7 +885,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		10360387224D95D300E6532E /* Build configuration list for PBXProject "AdMobExample" */ = {
+		10360387224D95D300E6532E /* Build configuration list for PBXProject "admobExample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				103603B6224D95D400E6532E /* Debug */,

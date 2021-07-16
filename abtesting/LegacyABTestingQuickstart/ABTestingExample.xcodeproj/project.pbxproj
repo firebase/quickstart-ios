@@ -8,12 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		10B92C9F202E3603008DBD68 /* ABTestingExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B92C9E202E3603008DBD68 /* ABTestingExampleUITests.swift */; };
+		29E0D31D0ECE9DE41F33C00A /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = EBCA43177E99956B67580EEC /* GoogleService-Info.plist */; };
 		8DFFBF9E1F9E6C5200C3483E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFFBF9D1F9E6C5200C3483E /* AppDelegate.swift */; };
 		8DFFBFA01F9E6C5200C3483E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFFBF9F1F9E6C5200C3483E /* ViewController.swift */; };
 		8DFFBFA31F9E6C5200C3483E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8DFFBFA11F9E6C5200C3483E /* Main.storyboard */; };
 		8DFFBFA51F9E6C5200C3483E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8DFFBFA41F9E6C5200C3483E /* Assets.xcassets */; };
 		8DFFBFA81F9E6C5200C3483E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8DFFBFA61F9E6C5200C3483E /* LaunchScreen.storyboard */; };
 		8DFFBFB31F9E6C5200C3483E /* ABTestingExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFFBFB21F9E6C5200C3483E /* ABTestingExampleTests.swift */; };
+		9014CF21F4720D01EBB1E21A /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = EBCA43177E99956B67580EEC /* GoogleService-Info.plist */; };
+		C2B56E8E65745789367E0646 /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = EBCA43177E99956B67580EEC /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +50,7 @@
 		8DFFBFAE1F9E6C5200C3483E /* ABTestingExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ABTestingExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DFFBFB21F9E6C5200C3483E /* ABTestingExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ABTestingExampleTests.swift; sourceTree = "<group>"; };
 		8DFFBFB41F9E6C5200C3483E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EBCA43177E99956B67580EEC /* GoogleService-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +94,7 @@
 				8DFFBFB11F9E6C5200C3483E /* ABTestingExampleTests */,
 				10B92C9D202E3603008DBD68 /* ABTestingExampleUITests */,
 				8DFFBF9B1F9E6C5200C3483E /* Products */,
+				EBCA43177E99956B67580EEC /* GoogleService-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -210,7 +215,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 8DFFBF951F9E6C5200C3483E /* Build configuration list for PBXProject "ABTestingExample" */;
+			buildConfigurationList = 8DFFBF951F9E6C5200C3483E /* Build configuration list for PBXProject "abtestingExample" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -263,6 +268,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				10B92C9F202E3603008DBD68 /* ABTestingExampleUITests.swift in Sources */,
+				9014CF21F4720D01EBB1E21A /* GoogleService-Info.plist in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,6 +278,7 @@
 			files = (
 				8DFFBFA01F9E6C5200C3483E /* ViewController.swift in Sources */,
 				8DFFBF9E1F9E6C5200C3483E /* AppDelegate.swift in Sources */,
+				C2B56E8E65745789367E0646 /* GoogleService-Info.plist in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,6 +287,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8DFFBFB31F9E6C5200C3483E /* ABTestingExampleTests.swift in Sources */,
+				29E0D31D0ECE9DE41F33C00A /* GoogleService-Info.plist in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -549,7 +557,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8DFFBF951F9E6C5200C3483E /* Build configuration list for PBXProject "ABTestingExample" */ = {
+		8DFFBF951F9E6C5200C3483E /* Build configuration list for PBXProject "abtestingExample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8DFFBFB51F9E6C5200C3483E /* Debug */,

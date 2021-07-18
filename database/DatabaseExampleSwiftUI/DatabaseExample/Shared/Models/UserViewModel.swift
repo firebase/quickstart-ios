@@ -25,8 +25,8 @@ class UserViewModel: ObservableObject {
   @Published var alertMessage = ""
   @Published var isLoading = false
   @Published var alert = false
-  @Published var posts: [Post] = []
-  @Published var myPosts: [Post] = []
+  @Published var posts: [PostViewModel] = []
+  @Published var myPosts: [PostViewModel] = []
   private lazy var ref: DatabaseReference = {
     Database.database().reference()
   }()
@@ -147,7 +147,7 @@ class UserViewModel: ObservableObject {
       // sort dictionary by keys (most to least recent)
       let sortedValues = value.sorted(by: { $0.key > $1.key })
       // store content of sorted dictionary into "posts" variable
-      self.posts = sortedValues.compactMap { Post(id: $0, dict: $1) }
+      self.posts = sortedValues.compactMap { PostViewModel(id: $0, dict: $1) }
     })
   }
 
@@ -160,7 +160,7 @@ class UserViewModel: ObservableObject {
       // sort dictionary by keys (most to least recent)
       let sortedValues = value.sorted(by: { $0.key > $1.key })
       // store content of sorted dictionary into "posts" variable
-      self.myPosts = sortedValues.compactMap { Post(id: $0, dict: $1) }
+      self.myPosts = sortedValues.compactMap { PostViewModel(id: $0, dict: $1) }
     })
   }
 }

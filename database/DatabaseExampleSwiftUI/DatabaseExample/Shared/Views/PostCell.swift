@@ -18,13 +18,10 @@ import SwiftUI
 import Firebase
 
 struct PostCell: View {
-  @Binding var post: Post
-  @State var isStarred: Bool
+  @StateObject var post: PostViewModel
 
-  init(post: Binding<Post>) {
-    // TODO: initialize variable post and isStarred
-    self.post = post.wrappedValue
-    self.isStarred = post.starDictionary["\(post.uid)"].wrappedValue ?? false
+  func didTapStarButton(currentUID: String) {
+    post.didTapStarButton()
   }
 
   var body: some View {
@@ -35,10 +32,10 @@ struct PostCell: View {
             Image(systemName: "person.fill")
             Text(post.author)
             Spacer()
-            Image(systemName: isStarred ? "star.fill" : "star")
+            let currentUID = post.getCurrentUserID()
+            Image(systemName: post.userIDsStarredBy["\(currentUID)"] ?? false ? "star.fill" : "star")
               .onTapGesture {
-                isStarred.toggle()
-                post.didTapStarButton(isStarred: isStarred)
+                didTapStarButton(currentUID: currentUID)
               }
             Text("\(post.starCount)")
           }
@@ -53,7 +50,7 @@ struct PostCell: View {
 }
 
 struct PostCell_Previews: PreviewProvider {
-  static var examplePost = Post(
+  static var examplePost = PostViewModel(
     id: "postID",
     uid: "userID",
     author: "userEmail",
@@ -61,10 +58,6 @@ struct PostCell_Previews: PreviewProvider {
     body: "postBody"
   )
   static var previews: some View {
-    List {
-      ForEach(0 ..< 10) { post in
-        PostCell(post: Binding.constant(examplePost))
-      }
-    }
+    PostCell(post: examplePost)
   }
 }

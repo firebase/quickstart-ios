@@ -23,8 +23,8 @@ struct MyPostsView: View {
   var body: some View {
     NavigationView {
       List {
-        ForEach(user.myPosts.indices, id: \.self) { index in
-          PostCell(post: $user.posts[index])
+        ForEach(user.myPosts) { post in
+          PostCell(post: post)
         }
       }
       .onAppear {

@@ -157,11 +157,7 @@ class UserViewModel: ObservableObject {
       // sort dictionary by keys (most to least recent)
       let sortedValues = value.sorted(by: { $0.key > $1.key })
       // store content of sorted dictionary into "posts" variable
-      if tabOpened == "recentPosts" {
-        self.posts = sortedValues.compactMap { PostViewModel(id: $0, dict: $1) }
-      } else if tabOpened == "myPosts" {
-        self.myPosts = sortedValues.compactMap { PostViewModel(id: $0, dict: $1) }
-      }
+      self.posts = sortedValues.compactMap { PostViewModel(id: $0, dict: $1) }
     })
   }
 }

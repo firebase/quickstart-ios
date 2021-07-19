@@ -23,7 +23,7 @@ struct MyPostsView: View {
   var body: some View {
     NavigationView {
       List {
-        ForEach(user.myPosts) { post in
+        ForEach(user.posts) { post in
           PostCell(post: post)
         }
       }

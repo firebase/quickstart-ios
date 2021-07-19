@@ -25,10 +25,7 @@ class PostViewModel: ObservableObject, Identifiable {
   @Published var body: String
   @Published var starCount: Int
   @Published var userIDsStarredBy: [String: Bool]
-
-  private lazy var ref: DatabaseReference = {
-    Database.database().reference()
-  }()
+  var postRef: DatabaseReference!
 
   init(id: String, uid: String, author: String, title: String, body: String) {
     self.id = id
@@ -36,8 +33,8 @@ class PostViewModel: ObservableObject, Identifiable {
     self.author = author
     self.title = title
     self.body = body
-    self.starCount = 0
-    self.userIDsStarredBy = [:]
+    starCount = 0
+    userIDsStarredBy = [:]
   }
 
   init?(id: String, dict: [String: Any]) {
@@ -45,6 +42,7 @@ class PostViewModel: ObservableObject, Identifiable {
     guard let author = dict["author"] as? String else { return nil }
     guard let title = dict["title"] as? String else { return nil }
     guard let body = dict["body"] as? String else { return nil }
+    let userIDsStarredBy = dict["userIDsStarredBy"] as? [String: Bool] ?? [:]
     let starCount = dict["starCount"] as? Int ?? 0
 
     self.id = id
@@ -53,24 +51,75 @@ class PostViewModel: ObservableObject, Identifiable {
     self.title = title
     self.body = body
     self.starCount = starCount
-    self.userIDsStarredBy = [:]
+    self.userIDsStarredBy = userIDsStarredBy
   }
 
-  func getCurrentUserID() -> String {
-    guard let currentUserID = Auth.auth().currentUser?.uid else { return "" }
-    return currentUserID
+  func isStarred() -> Bool {
+    if let uid = Auth.auth().currentUser?.uid {
+      print("first section ", userIDsStarredBy[uid] ?? false)
+      return userIDsStarredBy[uid] ?? false
+    }
+    print("second section false")
+    return false
   }
 
   func didTapStarButton() {
-
-    let currentUserID = self.getCurrentUserID()
-    let isStarred = userIDsStarredBy["\(currentUserID)"] ?? false
-    if isStarred {
-      // TODO: add current user to the post.starDictionary
-      userIDsStarredBy.removeValue(forKey: uid)
-    } else {
-      // TODO: remove current user from the post.starDictionary
-      userIDsStarredBy[uid] = true
+    // updating local values
+    if let uid = Auth.auth().currentUser?.uid {
+      if let _ = userIDsStarredBy[uid] {
+        starCount -= 1
+        userIDsStarredBy.removeValue(forKey: uid)
+      } else {
+        starCount += 1
+        userIDsStarredBy[uid] = true
+      }
     }
+
+    // updating firebase values
+    postRef = Database.database().reference().child("posts").child(id)
+    incrementStars(forRef: postRef)
+    postRef.observeSingleEvent(of: .value, with: { snapshot in
+      guard let value = snapshot.value as? [String: Any] else { return }
+      if let uid = value["uid"] as? String {
+        let userPostRef = Database.database().reference()
+          .child("user-posts")
+          .child(uid)
+          .child(self.id)
+        self.incrementStars(forRef: userPostRef)
+      }
+    })
+  }
+
+  func incrementStars(forRef ref: DatabaseReference) {
+    // [START post_stars_transaction]
+    ref.runTransactionBlock({ (currentData: MutableData) -> TransactionResult in
+      if var post = currentData.value as? [String: AnyObject],
+        let uid = Auth.auth().currentUser?.uid {
+        var userIDsStarredBy: [String: Bool]
+        userIDsStarredBy = post["userIDsStarredBy"] as? [String: Bool] ?? [:]
+        var starCount = post["starCount"] as? Int ?? 0
+        if let _ = userIDsStarredBy[uid] {
+          // Unstar the post and remove self from stars
+          starCount -= 1
+          userIDsStarredBy.removeValue(forKey: uid)
+        } else {
+          // Star the post and add self to stars
+          starCount += 1
+          userIDsStarredBy[uid] = true
+        }
+        post["starCount"] = starCount as AnyObject?
+        post["userIDsStarredBy"] = userIDsStarredBy as AnyObject?
+
+        // Set value and report transaction success
+        currentData.value = post
+        return TransactionResult.success(withValue: currentData)
+      }
+      return TransactionResult.success(withValue: currentData)
+    }) { error, committed, snapshot in
+      if let error = error {
+        print(error.localizedDescription)
+      }
+    }
+    // [END post_stars_transaction]
   }
 }

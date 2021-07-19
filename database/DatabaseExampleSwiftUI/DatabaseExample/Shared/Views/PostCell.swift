@@ -20,10 +20,6 @@ import Firebase
 struct PostCell: View {
   @StateObject var post: PostViewModel
 
-  func didTapStarButton(currentUID: String) {
-    post.didTapStarButton()
-  }
-
   var body: some View {
     NavigationLink(destination: PostDetailView(post: post)) {
       VStack {
@@ -32,10 +28,9 @@ struct PostCell: View {
             Image(systemName: "person.fill")
             Text(post.author)
             Spacer()
-            let currentUID = post.getCurrentUserID()
-            Image(systemName: post.userIDsStarredBy["\(currentUID)"] ?? false ? "star.fill" : "star")
+            Image(systemName: post.isStarred() ? "star.fill" : "star")
               .onTapGesture {
-                didTapStarButton(currentUID: currentUID)
+                post.didTapStarButton()
               }
             Text("\(post.starCount)")
           }

@@ -27,7 +27,7 @@ struct RecentPostsView: View {
         }
       }
       .onAppear {
-        user.fetchPosts()
+        user.getPosts(tabOpened: "recentPosts")
       }
       .navigationBarTitle("Recents")
       .navigationBarItems(leading:

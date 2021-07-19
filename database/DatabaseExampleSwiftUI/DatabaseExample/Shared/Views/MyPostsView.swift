@@ -28,7 +28,7 @@ struct MyPostsView: View {
         }
       }
       .onAppear {
-        user.fetchMyPosts()
+        user.getPosts(tabOpened: "myPosts")
       }
       .navigationBarTitle("My Posts")
       .navigationBarItems(leading:

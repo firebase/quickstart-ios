@@ -31,14 +31,6 @@ class UserViewModel: ObservableObject {
     Database.database().reference()
   }()
 
-  private lazy var postRef: DatabaseReference = {
-    Database.database().reference().child("posts")
-  }()
-
-  private lazy var userPostRef: DatabaseReference = {
-    Database.database().reference().child("user-posts")
-  }()
-
   private var refHandle: DatabaseHandle?
 
   func showAlertMessage(message: String) {
@@ -123,15 +115,17 @@ class UserViewModel: ObservableObject {
       self.isLoading.toggle()
     }
 
-    let userID = Auth.auth().currentUser?.uid
-    guard let key = postRef.childByAutoId().key else { return }
-    let post = ["uid": userID,
-                "author": Auth.auth().currentUser?.email,
-                "title": title,
-                "body": body]
-    let childUpdates = ["/posts/\(key)": post,
-                        "/user-posts/\(String(describing: userID))/\(key)/": post]
-    ref.updateChildValues(childUpdates)
+    if let userID = Auth.auth().currentUser?.uid {
+      let postListRef = ref.child("posts")
+      guard let key = postListRef.childByAutoId().key else { return }
+      let post = ["uid": userID,
+                  "author": Auth.auth().currentUser?.email,
+                  "title": title,
+                  "body": body]
+      let childUpdates = ["/posts/\(key)": post,
+                          "/user-posts/\(userID)/\(key)/": post]
+      ref.updateChildValues(childUpdates)
+    }
 
     // end loading animation
     withAnimation {
@@ -139,30 +133,36 @@ class UserViewModel: ObservableObject {
     }
   }
 
-  func fetchPosts() {
+  func getPosts(tabOpened: String) {
+    if tabOpened == "recentPosts" {
+      let postListRef = ref.child("posts")
+      fetchPosts(forRef: postListRef, tabOpened: tabOpened)
+    } else if tabOpened == "myPosts" {
+      if let userID = Auth.auth().currentUser?.uid {
+        let userPostListRef = Database.database().reference()
+          .child("user-posts")
+          .child(userID)
+        fetchPosts(forRef: userPostListRef, tabOpened: tabOpened)
+      } else {
+        print("error: fetch myPosts was not successful")
+      }
+    }
+  }
+
+  func fetchPosts(forRef ref: DatabaseReference, tabOpened: String) {
     // read data by listening for value events
-    refHandle = postRef.observe(DataEventType.value, with: { snapshot in
+    refHandle = ref.observe(DataEventType.value, with: { snapshot in
       // retrieved data is of type dictionary of dictionary
       guard let value = snapshot.value as? [String: [String: Any]] else { return }
       // sort dictionary by keys (most to least recent)
       let sortedValues = value.sorted(by: { $0.key > $1.key })
       // store content of sorted dictionary into "posts" variable
-      self.posts = sortedValues.compactMap { PostViewModel(id: $0, dict: $1) }
-    })
-  }
-
-  func fetchMyPosts() {
-    let userID = Auth.auth().currentUser?.uid
-    // read data by listening for value events
-    refHandle = userPostRef.child("\(String(describing: userID))")
-      .observe(DataEventType.value, with: { snapshot in
-        // retrieved data is of type dictionary of dictionary
-        guard let value = snapshot.value as? [String: [String: Any]] else { return }
-        // sort dictionary by keys (most to least recent)
-        let sortedValues = value.sorted(by: { $0.key > $1.key })
-        // store content of sorted dictionary into "posts" variable
+      if tabOpened == "recentPosts" {
+        self.posts = sortedValues.compactMap { PostViewModel(id: $0, dict: $1) }
+      } else if tabOpened == "myPosts" {
         self.myPosts = sortedValues.compactMap { PostViewModel(id: $0, dict: $1) }
-      })
+      }
+    })
   }
 }
 

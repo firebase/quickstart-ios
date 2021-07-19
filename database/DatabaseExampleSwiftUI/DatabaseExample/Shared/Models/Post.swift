@@ -32,8 +32,8 @@ struct Post: Identifiable {
     self.author = author
     self.title = title
     self.body = body
-    self.starCount = 0
-    self.starDictionary = [:]
+    starCount = 0
+    starDictionary = [:]
   }
 
   init?(id: String, dict: [String: Any]) {
@@ -49,7 +49,7 @@ struct Post: Identifiable {
     self.title = title
     self.body = body
     self.starCount = starCount
-    self.starDictionary = [:]
+    starDictionary = [:]
   }
 
   init() {

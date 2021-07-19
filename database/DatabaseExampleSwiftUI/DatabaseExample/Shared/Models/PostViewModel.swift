@@ -56,10 +56,8 @@ class PostViewModel: ObservableObject, Identifiable {
 
   func isStarred() -> Bool {
     if let uid = Auth.auth().currentUser?.uid {
-      print("first section ", userIDsStarredBy[uid] ?? false)
       return userIDsStarredBy[uid] ?? false
     }
-    print("second section false")
     return false
   }
 

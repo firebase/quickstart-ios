@@ -15,10 +15,11 @@
 //
 
 import SwiftUI
+import Firebase
 
-struct PostCellView: View {
-  @State private var isStarred = false
-  var post: Post
+struct PostCell: View {
+  @StateObject var post: PostViewModel
+
   var body: some View {
     NavigationLink(destination: PostDetailView(post: post)) {
       VStack {
@@ -27,9 +28,9 @@ struct PostCellView: View {
             Image(systemName: "person.fill")
             Text(post.author)
             Spacer()
-            Image(systemName: isStarred ? "star.fill" : "star")
+            Image(systemName: post.isStarred ? "star.fill" : "star")
               .onTapGesture {
-                isStarred.toggle()
+                post.didTapStarButton()
               }
             Text("\(post.starCount)")
           }
@@ -43,8 +44,8 @@ struct PostCellView: View {
   }
 }
 
-struct PostCellView_Previews: PreviewProvider {
-  static var examplePost = Post(
+struct PostCell_Previews: PreviewProvider {
+  static var examplePost = PostViewModel(
     id: "postID",
     uid: "userID",
     author: "userEmail",
@@ -52,10 +53,6 @@ struct PostCellView_Previews: PreviewProvider {
     body: "postBody"
   )
   static var previews: some View {
-    List {
-      ForEach(0 ..< 10) { post in
-        PostCellView(post: examplePost)
-      }
-    }
+    PostCell(post: examplePost)
   }
 }

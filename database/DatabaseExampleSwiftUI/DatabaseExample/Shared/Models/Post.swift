@@ -24,6 +24,7 @@ struct Post: Identifiable {
   var title: String
   var body: String
   var starCount: Int
+  var starDictionary: [String: Bool]
 
   init(id: String, uid: String, author: String, title: String, body: String) {
     self.id = id
@@ -32,6 +33,7 @@ struct Post: Identifiable {
     self.title = title
     self.body = body
     starCount = 0
+    starDictionary = [:]
   }
 
   init?(id: String, dict: [String: Any]) {
@@ -47,9 +49,33 @@ struct Post: Identifiable {
     self.title = title
     self.body = body
     self.starCount = starCount
+    starDictionary = [:]
   }
 
   init() {
     self.init(id: "", uid: "", author: "", title: "", body: "")
+  }
+
+  mutating func didTapStarButton(isStarred: Bool) {
+    let ref: DatabaseReference = {
+      Database.database().reference()
+    }()
+    if isStarred {
+      // add current user to the post.starDictionary
+      starDictionary[uid] = true
+      ref.child("/posts/\(id)/starDictionary").setValue(starDictionary)
+      ref.child("/user-posts/\(uid)/\(id)/starDictionary").setValue(starDictionary)
+      // increment starCount on current post
+      ref.child("/posts/\(id)/starCount").setValue(starCount + 1)
+      ref.child("/user-posts/\(uid)/\(id)/starCount").setValue(starCount + 1)
+    } else {
+      // remove current user from the post.starDictionary
+      starDictionary.removeValue(forKey: uid)
+      ref.child("/posts/\(id)/starDictionary").setValue(starDictionary)
+      ref.child("/user-posts/\(uid)/\(id)/starDictionary").setValue(starDictionary)
+      // decrement starCount on current post
+      ref.child("/posts/\(id)/starCount").setValue(starCount - 1)
+      ref.child("/user-posts/\(uid)/\(id)/starCount").setValue(starCount - 1)
+    }
   }
 }

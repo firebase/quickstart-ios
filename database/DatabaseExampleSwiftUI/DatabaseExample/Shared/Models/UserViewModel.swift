@@ -25,24 +25,16 @@ class UserViewModel: ObservableObject {
   @Published var alertMessage = ""
   @Published var isLoading = false
   @Published var alert = false
-  @Published var posts: [Post] = []
-  @Published var myPosts: [Post] = []
+  @Published var posts: [PostViewModel] = []
+  @Published var myPosts: [PostViewModel] = []
   private lazy var ref: DatabaseReference = {
     Database.database().reference()
   }()
 
-  private lazy var postRef: DatabaseReference = {
-    Database.database().reference().child("posts")
-  }()
-
-  private lazy var userPostRef: DatabaseReference = {
-    Database.database().reference().child("user-posts")
-  }()
-
   private var refHandle: DatabaseHandle?
 
-  func getuid() -> String {
-    return Auth.auth().currentUser!.uid
+  enum Tab: String {
+    case recentPosts, myPosts, topPosts
   }
 
   func showAlertMessage(message: String) {
@@ -111,11 +103,11 @@ class UserViewModel: ObservableObject {
       email = ""
       password = ""
     } catch {
-      NSLog("Error signing out.")
+      print("Error signing out.")
     }
   }
 
-  func post(title: String, body: String) {
+  func didTapPostButton(title: String, body: String) {
     // check if both title and body are completed
     if title.isEmpty || body.isEmpty {
       showAlertMessage(message: "Neither title nor body can be empty.")
@@ -127,15 +119,17 @@ class UserViewModel: ObservableObject {
       self.isLoading.toggle()
     }
 
-    let userID = getuid()
-    guard let key = postRef.childByAutoId().key else { return }
-    let post = ["uid": userID,
-                "author": Auth.auth().currentUser?.email,
-                "title": title,
-                "body": body]
-    let childUpdates = ["/posts/\(key)": post,
-                        "/user-posts/\(String(describing: userID))/\(key)/": post]
-    ref.updateChildValues(childUpdates)
+    if let userID = Auth.auth().currentUser?.uid {
+      let postListRef = ref.child("posts")
+      guard let key = postListRef.childByAutoId().key else { return }
+      let post = ["uid": userID,
+                  "author": Auth.auth().currentUser?.email,
+                  "title": title,
+                  "body": body]
+      let childUpdates = ["/posts/\(key)": post,
+                          "/user-posts/\(userID)/\(key)/": post]
+      ref.updateChildValues(childUpdates)
+    }
 
     // end loading animation
     withAnimation {
@@ -143,27 +137,31 @@ class UserViewModel: ObservableObject {
     }
   }
 
-  func fetchPosts() {
-    // read data by listening for value events
-    refHandle = postRef.observe(DataEventType.value, with: { snapshot in
-      // retrieved data is of type dictionary of dictionary
-      guard let value = snapshot.value as? [String: [String: Any]] else { return }
-      // sort dictionary by keys (most to least recent)
-      let sortedValues = value.sorted(by: { $0.key > $1.key })
-      // store content of sorted dictionary into "posts" variable
-      self.posts = sortedValues.compactMap { Post(id: $0, dict: $1) }
-    })
+  func getPosts(tabOpened: String) {
+    if tabOpened == Tab.recentPosts.rawValue {
+      let postListRef = ref.child("posts")
+      fetchPosts(forRef: postListRef, tabOpened: tabOpened)
+    } else if tabOpened == Tab.myPosts.rawValue {
+      if let userID = Auth.auth().currentUser?.uid {
+        let userPostListRef = Database.database().reference()
+          .child("user-posts")
+          .child(userID)
+        fetchPosts(forRef: userPostListRef, tabOpened: tabOpened)
+      } else {
+        print("error: fetch myPosts was not successful")
+      }
+    }
   }
 
-  func fetchMyPosts() {
+  func fetchPosts(forRef ref: DatabaseReference, tabOpened: String) {
     // read data by listening for value events
-    refHandle = userPostRef.child(getuid()).observe(DataEventType.value, with: { snapshot in
+    refHandle = ref.observe(DataEventType.value, with: { snapshot in
       // retrieved data is of type dictionary of dictionary
       guard let value = snapshot.value as? [String: [String: Any]] else { return }
       // sort dictionary by keys (most to least recent)
       let sortedValues = value.sorted(by: { $0.key > $1.key })
       // store content of sorted dictionary into "posts" variable
-      self.myPosts = sortedValues.compactMap { Post(id: $0, dict: $1) }
+      self.posts = sortedValues.compactMap { PostViewModel(id: $0, dict: $1) }
     })
   }
 }

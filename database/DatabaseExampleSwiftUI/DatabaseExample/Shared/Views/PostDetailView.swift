@@ -17,7 +17,7 @@
 import SwiftUI
 
 struct PostDetailView: View {
-  var post: Post
+  var post: PostViewModel
   var body: some View {
     VStack {
       VStack(alignment: .leading) {
@@ -38,7 +38,7 @@ struct PostDetailView: View {
 }
 
 struct PostDetailView_Previews: PreviewProvider {
-  static var examplePost = Post(
+  static var examplePost = PostViewModel(
     id: "postID",
     uid: "userID",
     author: "userEmail",

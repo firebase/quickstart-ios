@@ -19,16 +19,17 @@ import Firebase
 
 struct MyPostsView: View {
   @ObservedObject var user: UserViewModel
+  let tabOpened: String = "myPosts"
 
   var body: some View {
     NavigationView {
       List {
-        ForEach(user.myPosts) { post in
-          PostCellView(post: post)
+        ForEach(user.posts) { post in
+          PostCell(post: post)
         }
       }
       .onAppear {
-        user.fetchMyPosts()
+        user.getPosts(tabOpened: tabOpened)
       }
       .navigationBarTitle("My Posts")
       .navigationBarItems(leading:

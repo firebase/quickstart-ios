@@ -32,6 +32,7 @@ class PostViewModel: ObservableObject, Identifiable {
     }
     return false
   }
+
   private var refHandle: DatabaseHandle?
 
   init(id: String, uid: String, author: String, title: String, body: String) {

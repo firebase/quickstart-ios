@@ -164,7 +164,8 @@ class UserViewModel: ObservableObject {
         // store content of sorted dictionary into "posts" variable
         self.posts = sortedValues.compactMap { PostViewModel(id: $0, dict: $1) }
       } else if tabOpened == Tab.topPosts.rawValue {
-        let sortedValues = value.sorted(by: { $0.value["starCount"] as? Int ?? 0 > $1.value["starCount"] as? Int ?? 0})
+        let sortedValues = value
+          .sorted(by: { $0.value["starCount"] as? Int ?? 0 > $1.value["starCount"] as? Int ?? 0 })
         self.posts = sortedValues.compactMap { PostViewModel(id: $0, dict: $1) }
       }
     })

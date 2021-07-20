@@ -18,8 +18,8 @@ You can add multiple sample apps to the same Firebase project.
 There's no need to create separate projects for each app.
 
 To add a sample app to a Firebase project, use the bundleID from the Xcode project.
-Download the generated `GoogleService-Info.plist` file, and copy it to the root
-directory of the sample you wish to run.
+Download the generated `GoogleService-Info.plist` file, and replace the existing plist
+to the root directory of the sample you wish to run.
 
 ### Code Formatting
 

@@ -26,7 +26,6 @@ class UserViewModel: ObservableObject {
   @Published var isLoading = false
   @Published var alert = false
   @Published var posts: [PostViewModel] = []
-  @Published var myPosts: [PostViewModel] = []
   private lazy var ref: DatabaseReference = {
     Database.database().reference()
   }()
@@ -141,7 +140,7 @@ class UserViewModel: ObservableObject {
     if tabOpened == Tab.recentPosts.rawValue {
       let postListRef = ref.child("posts")
       fetchPosts(forRef: postListRef, tabOpened: tabOpened)
-    } else if tabOpened == Tab.myPosts.rawValue {
+    } else if tabOpened == Tab.myPosts.rawValue || tabOpened == Tab.topPosts.rawValue {
       if let userID = Auth.auth().currentUser?.uid {
         let userPostListRef = Database.database().reference()
           .child("user-posts")
@@ -158,10 +157,16 @@ class UserViewModel: ObservableObject {
     refHandle = ref.observe(DataEventType.value, with: { snapshot in
       // retrieved data is of type dictionary of dictionary
       guard let value = snapshot.value as? [String: [String: Any]] else { return }
-      // sort dictionary by keys (most to least recent)
-      let sortedValues = value.sorted(by: { $0.key > $1.key })
-      // store content of sorted dictionary into "posts" variable
-      self.posts = sortedValues.compactMap { PostViewModel(id: $0, dict: $1) }
+
+      if tabOpened == Tab.recentPosts.rawValue || tabOpened == Tab.myPosts.rawValue {
+        // sort dictionary by keys (most to least recent)
+        let sortedValues = value.sorted(by: { $0.key > $1.key })
+        // store content of sorted dictionary into "posts" variable
+        self.posts = sortedValues.compactMap { PostViewModel(id: $0, dict: $1) }
+      } else if tabOpened == Tab.topPosts.rawValue {
+        let sortedValues = value.sorted(by: { $0.value["starCount"] as? Int ?? 0 > $1.value["starCount"] as? Int ?? 0})
+        self.posts = sortedValues.compactMap { PostViewModel(id: $0, dict: $1) }
+      }
     })
   }
 }

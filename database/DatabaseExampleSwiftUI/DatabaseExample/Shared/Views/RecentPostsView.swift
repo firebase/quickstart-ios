@@ -17,7 +17,7 @@ import SwiftUI
 import Firebase
 
 struct RecentPostsView: View {
-  @ObservedObject var user: UserViewModel
+  @StateObject var user = UserViewModel()
   let tabOpened: String = "recentPosts"
 
   var body: some View {

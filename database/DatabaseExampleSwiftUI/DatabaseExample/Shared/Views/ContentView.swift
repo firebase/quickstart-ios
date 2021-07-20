@@ -19,7 +19,6 @@ import Firebase
 
 struct ContentView: View {
   @AppStorage("isSignedIn") var isSignedIn = true
-  @StateObject var user = UserViewModel()
   @State private var selection: Tab = .recentPosts
 
   enum Tab {
@@ -31,12 +30,12 @@ struct ContentView: View {
   var body: some View {
     if isSignedIn {
       TabView(selection: $selection) {
-        RecentPostsView(user: user)
+        RecentPostsView()
           .tabItem {
             Label("Recent", systemImage: "arrow.counterclockwise")
           }
           .tag(Tab.recentPosts)
-        MyPostsView(user: user)
+        MyPostsView()
           .tabItem {
             Label("My Posts", systemImage: "person.fill")
           }
@@ -49,7 +48,7 @@ struct ContentView: View {
       }
       .accentColor(Color(.systemTeal))
     } else {
-      LoginView(user: user)
+      LoginView()
     }
   }
 }

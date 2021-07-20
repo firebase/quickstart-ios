@@ -26,6 +26,12 @@ class PostViewModel: ObservableObject, Identifiable {
   @Published var starCount: Int
   @Published var userIDsStarredBy: [String: Bool]
   var postRef: DatabaseReference!
+  var isStarred: Bool {
+    if let uid = Auth.auth().currentUser?.uid {
+      return userIDsStarredBy[uid] ?? false
+    }
+    return false
+  }
 
   init(id: String, uid: String, author: String, title: String, body: String) {
     self.id = id
@@ -52,13 +58,6 @@ class PostViewModel: ObservableObject, Identifiable {
     self.body = body
     self.starCount = starCount
     self.userIDsStarredBy = userIDsStarredBy
-  }
-
-  func isStarred() -> Bool {
-    if let uid = Auth.auth().currentUser?.uid {
-      return userIDsStarredBy[uid] ?? false
-    }
-    return false
   }
 
   func didTapStarButton() {
@@ -89,7 +88,6 @@ class PostViewModel: ObservableObject, Identifiable {
   }
 
   func incrementStars(forRef ref: DatabaseReference) {
-    // [START post_stars_transaction]
     ref.runTransactionBlock({ (currentData: MutableData) -> TransactionResult in
       if var post = currentData.value as? [String: AnyObject],
         let uid = Auth.auth().currentUser?.uid {
@@ -118,6 +116,5 @@ class PostViewModel: ObservableObject, Identifiable {
         print(error.localizedDescription)
       }
     }
-    // [END post_stars_transaction]
   }
 }

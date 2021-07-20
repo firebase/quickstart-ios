@@ -18,6 +18,7 @@ import Firebase
 
 struct RecentPostsView: View {
   @ObservedObject var user: UserViewModel
+  let tabOpened: String = "recentPosts"
 
   var body: some View {
     NavigationView {
@@ -27,7 +28,7 @@ struct RecentPostsView: View {
         }
       }
       .onAppear {
-        user.getPosts(tabOpened: "recentPosts")
+        user.getPosts(tabOpened: tabOpened)
       }
       .navigationBarTitle("Recents")
       .navigationBarItems(leading:

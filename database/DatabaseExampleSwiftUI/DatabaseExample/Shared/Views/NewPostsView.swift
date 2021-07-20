@@ -52,7 +52,7 @@ struct NewPostsView: View {
     .navigationTitle("New Post")
     .navigationBarItems(trailing:
       Button(action: {
-        user.post(
+        user.didTapPostButton(
           title: newPostTitle,
           body: newPostBody
         )

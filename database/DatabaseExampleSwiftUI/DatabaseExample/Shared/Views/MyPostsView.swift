@@ -19,6 +19,7 @@ import Firebase
 
 struct MyPostsView: View {
   @ObservedObject var user: UserViewModel
+  let tabOpened: String = "myPosts"
 
   var body: some View {
     NavigationView {
@@ -28,7 +29,7 @@ struct MyPostsView: View {
         }
       }
       .onAppear {
-        user.getPosts(tabOpened: "myPosts")
+        user.getPosts(tabOpened: tabOpened)
       }
       .navigationBarTitle("My Posts")
       .navigationBarItems(leading:

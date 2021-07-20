@@ -33,6 +33,10 @@ class UserViewModel: ObservableObject {
 
   private var refHandle: DatabaseHandle?
 
+  enum Tab: String {
+    case recentPosts, myPosts, topPosts
+  }
+
   func showAlertMessage(message: String) {
     alertMessage = message
     alert.toggle()
@@ -103,7 +107,7 @@ class UserViewModel: ObservableObject {
     }
   }
 
-  func post(title: String, body: String) {
+  func didTapPostButton(title: String, body: String) {
     // check if both title and body are completed
     if title.isEmpty || body.isEmpty {
       showAlertMessage(message: "Neither title nor body can be empty.")
@@ -134,10 +138,10 @@ class UserViewModel: ObservableObject {
   }
 
   func getPosts(tabOpened: String) {
-    if tabOpened == "recentPosts" {
+    if tabOpened == Tab.recentPosts.rawValue {
       let postListRef = ref.child("posts")
       fetchPosts(forRef: postListRef, tabOpened: tabOpened)
-    } else if tabOpened == "myPosts" {
+    } else if tabOpened == Tab.myPosts.rawValue {
       if let userID = Auth.auth().currentUser?.uid {
         let userPostListRef = Database.database().reference()
           .child("user-posts")

@@ -28,7 +28,7 @@ struct PostCell: View {
             Image(systemName: "person.fill")
             Text(post.author)
             Spacer()
-            Image(systemName: post.isStarred() ? "star.fill" : "star")
+            Image(systemName: post.isStarred ? "star.fill" : "star")
               .onTapGesture {
                 post.didTapStarButton()
               }

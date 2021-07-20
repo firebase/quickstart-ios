@@ -416,7 +416,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 5F5A53471ADE670C00F81DF0 /* Build configuration list for PBXProject "functionsExample" */;
+			buildConfigurationList = 5F5A53471ADE670C00F81DF0 /* Build configuration list for PBXProject "FunctionsExample" */;
 			compatibilityVersion = "Xcode 6.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -953,7 +953,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5F5A53471ADE670C00F81DF0 /* Build configuration list for PBXProject "functionsExample" */ = {
+		5F5A53471ADE670C00F81DF0 /* Build configuration list for PBXProject "FunctionsExample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5F5A536D1ADE670C00F81DF0 /* Debug */,

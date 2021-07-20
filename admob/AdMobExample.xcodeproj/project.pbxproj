@@ -378,7 +378,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 10360387224D95D300E6532E /* Build configuration list for PBXProject "admobExample" */;
+			buildConfigurationList = 10360387224D95D300E6532E /* Build configuration list for PBXProject "AdMobExample" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -885,7 +885,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		10360387224D95D300E6532E /* Build configuration list for PBXProject "admobExample" */ = {
+		10360387224D95D300E6532E /* Build configuration list for PBXProject "AdMobExample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				103603B6224D95D400E6532E /* Debug */,

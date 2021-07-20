@@ -137,10 +137,11 @@ class UserViewModel: ObservableObject {
   }
 
   func getPosts(tabOpened: String) {
-    if tabOpened == Tab.recentPosts.rawValue {
+    switch tabOpened {
+    case Tab.recentPosts.rawValue:
       let postListRef = ref.child("posts")
       fetchPosts(forRef: postListRef, tabOpened: tabOpened)
-    } else if tabOpened == Tab.myPosts.rawValue || tabOpened == Tab.topPosts.rawValue {
+    case Tab.myPosts.rawValue, Tab.topPosts.rawValue:
       if let userID = Auth.auth().currentUser?.uid {
         let userPostListRef = Database.database().reference()
           .child("user-posts")
@@ -149,6 +150,8 @@ class UserViewModel: ObservableObject {
       } else {
         print("error: fetch myPosts was not successful")
       }
+    default:
+      return
     }
   }
 
@@ -158,17 +161,24 @@ class UserViewModel: ObservableObject {
       // retrieved data is of type dictionary of dictionary
       guard let value = snapshot.value as? [String: [String: Any]] else { return }
 
-      if tabOpened == Tab.recentPosts.rawValue || tabOpened == Tab.myPosts.rawValue {
+      switch tabOpened {
+      case Tab.recentPosts.rawValue, Tab.myPosts.rawValue:
         // sort dictionary by keys (most to least recent)
         let sortedValues = value.sorted(by: { $0.key > $1.key })
         // store content of sorted dictionary into "posts" variable
         self.posts = sortedValues.compactMap { PostViewModel(id: $0, dict: $1) }
-      } else if tabOpened == Tab.topPosts.rawValue {
+      case Tab.topPosts.rawValue:
         let sortedValues = value
           .sorted(by: { $0.value["starCount"] as? Int ?? 0 > $1.value["starCount"] as? Int ?? 0 })
         self.posts = sortedValues.compactMap { PostViewModel(id: $0, dict: $1) }
+      default:
+        return
       }
     })
+  }
+
+  func removeRefHandles() {
+    ref.removeAllObservers()
   }
 }
 

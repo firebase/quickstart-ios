@@ -76,13 +76,11 @@ class PostViewModel: ObservableObject, Identifiable {
         self.incrementStars(forRef: userPostRef)
       }
     })
-
-    // updating local values
-    updateStars(forRef: postRef)
   }
 
-  func updateStars(forRef ref: DatabaseReference) {
-    refHandle = ref.observe(DataEventType.value, with: { snapshot in
+  func updateStars() {
+    postRef = Database.database().reference().child("posts").child(id)
+    refHandle = postRef.observe(DataEventType.value, with: { snapshot in
       guard let post = snapshot.value as? [String: AnyObject] else { return }
       self.starCount = post["starCount"] as? Int ?? 0
       self.userIDsStarredBy = post["userIDsStarredBy"] as? [String: Bool] ?? [:]
@@ -117,6 +115,12 @@ class PostViewModel: ObservableObject, Identifiable {
       if let error = error {
         print(error.localizedDescription)
       }
+    }
+  }
+
+  func removeRefHandles() {
+    if let refHandle = refHandle {
+      postRef.removeObserver(withHandle: refHandle)
     }
   }
 }

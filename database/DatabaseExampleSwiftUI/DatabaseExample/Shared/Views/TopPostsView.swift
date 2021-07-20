@@ -31,6 +31,9 @@ struct TopPostsView: View {
       .onAppear {
         user.getPosts(tabOpened: tabOpened)
       }
+      .onDisappear {
+        user.removeRefHandles()
+      }
       .navigationBarTitle("My Top Posts")
       .navigationBarItems(leading:
         Button(action: {

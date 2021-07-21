@@ -28,17 +28,28 @@ struct NewPostsView: View {
   var body: some View {
     VStack {
       TextField("Add a title", text: $newPostTitle)
-        .padding()
-        .font(.title)
+        .font(.largeTitle)
+        .frame(
+          width: screenWidth * 0.88,
+          height: screenHeight * 0.08,
+          alignment: .leading
+        )
+        .textFieldStyle(RoundedBorderTextFieldStyle())
       ZStack {
         if newPostBody.isEmpty {
           TextEditor(text: $placeholderText)
             .foregroundColor(.gray)
-            .padding()
+            .frame(
+              width: screenWidth * 0.88,
+              alignment: .leading
+            )
             .disabled(/*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
         }
         TextEditor(text: $newPostBody)
-          .padding()
+          .frame(
+            width: screenWidth * 0.88,
+            alignment: .leading
+          )
           .opacity(self.newPostBody.isEmpty ? 0.25 : 1)
       }
     }

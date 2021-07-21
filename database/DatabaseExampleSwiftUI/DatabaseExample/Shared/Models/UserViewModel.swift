@@ -136,12 +136,12 @@ class UserViewModel: ObservableObject {
     }
   }
 
-  func getPosts(tabOpened: String) {
+  func getPosts(tabOpened: Tab) {
     switch tabOpened {
-    case Tab.recentPosts.rawValue:
+    case .recentPosts:
       let postListRef = ref.child("posts")
       fetchPosts(forRef: postListRef, tabOpened: tabOpened)
-    case Tab.myPosts.rawValue, Tab.topPosts.rawValue:
+    case .myPosts, .topPosts:
       if let userID = Auth.auth().currentUser?.uid {
         let userPostListRef = Database.database().reference()
           .child("user-posts")
@@ -150,29 +150,25 @@ class UserViewModel: ObservableObject {
       } else {
         print("error: fetch myPosts was not successful")
       }
-    default:
-      return
     }
   }
 
-  func fetchPosts(forRef ref: DatabaseReference, tabOpened: String) {
+  func fetchPosts(forRef ref: DatabaseReference, tabOpened: Tab) {
     // read data by listening for value events
     refHandle = ref.observe(DataEventType.value, with: { snapshot in
       // retrieved data is of type dictionary of dictionary
       guard let value = snapshot.value as? [String: [String: Any]] else { return }
 
       switch tabOpened {
-      case Tab.recentPosts.rawValue, Tab.myPosts.rawValue:
+      case .recentPosts, .myPosts:
         // sort dictionary by keys (most to least recent)
         let sortedValues = value.sorted(by: { $0.key > $1.key })
         // store content of sorted dictionary into "posts" variable
         self.posts = sortedValues.compactMap { PostViewModel(id: $0, dict: $1) }
-      case Tab.topPosts.rawValue:
+      case .topPosts:
         let sortedValues = value
           .sorted(by: { $0.value["starCount"] as? Int ?? 0 > $1.value["starCount"] as? Int ?? 0 })
         self.posts = sortedValues.compactMap { PostViewModel(id: $0, dict: $1) }
-      default:
-        return
       }
     })
   }

@@ -19,7 +19,6 @@ import Firebase
 
 struct TopPostsView: View {
   @StateObject var user = UserViewModel()
-  let tabOpened: String = "topPosts"
 
   var body: some View {
     NavigationView {
@@ -29,7 +28,7 @@ struct TopPostsView: View {
         }
       }
       .onAppear {
-        user.getPosts(tabOpened: tabOpened)
+        user.getPosts(tabOpened: UserViewModel.Tab.topPosts)
       }
       .onDisappear {
         user.onViewDisappear()

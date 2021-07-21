@@ -19,7 +19,6 @@ import Firebase
 
 struct MyPostsView: View {
   @StateObject var user = UserViewModel()
-  let tabOpened: String = "myPosts"
 
   var body: some View {
     NavigationView {
@@ -29,7 +28,7 @@ struct MyPostsView: View {
         }
       }
       .onAppear {
-        user.getPosts(tabOpened: tabOpened)
+        user.getPosts(tabOpened: UserViewModel.Tab.myPosts)
       }
       .onDisappear {
         user.onViewDisappear()

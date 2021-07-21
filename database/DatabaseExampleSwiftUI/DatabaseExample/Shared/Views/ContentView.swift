@@ -30,17 +30,17 @@ struct ContentView: View {
   var body: some View {
     if isSignedIn {
       TabView(selection: $selection) {
-        RecentPostsView()
+        PostsView(title: "Recents", tabOpened: UserViewModel.Tab.recentPosts)
           .tabItem {
-            Label("Recent", systemImage: "arrow.counterclockwise")
+            Label("Recents", systemImage: "arrow.counterclockwise")
           }
           .tag(Tab.recentPosts)
-        MyPostsView()
+        PostsView(title: "My Posts", tabOpened: UserViewModel.Tab.myPosts)
           .tabItem {
             Label("My Posts", systemImage: "person.fill")
           }
           .tag(Tab.myPosts)
-        TopPostsView()
+        PostsView(title: "My Top Posts", tabOpened: UserViewModel.Tab.topPosts)
           .tabItem {
             Label("My Top Posts", systemImage: "star.fill")
           }

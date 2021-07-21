@@ -18,7 +18,7 @@ import SwiftUI
 import Firebase
 
 struct LoginView: View {
-  @ObservedObject var user: UserViewModel
+  @StateObject var user = UserViewModel()
   var screenWidth = UIScreen.main.bounds.width
   var screenHeight = UIScreen.main.bounds.height
 

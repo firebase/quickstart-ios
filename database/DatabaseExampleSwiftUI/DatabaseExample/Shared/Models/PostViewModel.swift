@@ -33,6 +33,8 @@ class PostViewModel: ObservableObject, Identifiable {
     return false
   }
 
+  private var refHandle: DatabaseHandle?
+
   init(id: String, uid: String, author: String, title: String, body: String) {
     self.id = id
     self.uid = uid
@@ -61,17 +63,6 @@ class PostViewModel: ObservableObject, Identifiable {
   }
 
   func didTapStarButton() {
-    // updating local values
-    if let uid = Auth.auth().currentUser?.uid {
-      if let _ = userIDsStarredBy[uid] {
-        starCount -= 1
-        userIDsStarredBy.removeValue(forKey: uid)
-      } else {
-        starCount += 1
-        userIDsStarredBy[uid] = true
-      }
-    }
-
     // updating firebase values
     postRef = Database.database().reference().child("posts").child(id)
     incrementStars(forRef: postRef)
@@ -84,6 +75,15 @@ class PostViewModel: ObservableObject, Identifiable {
           .child(self.id)
         self.incrementStars(forRef: userPostRef)
       }
+    })
+  }
+
+  func updateStars() {
+    postRef = Database.database().reference().child("posts").child(id)
+    refHandle = postRef.observe(DataEventType.value, with: { snapshot in
+      guard let post = snapshot.value as? [String: AnyObject] else { return }
+      self.starCount = post["starCount"] as? Int ?? 0
+      self.userIDsStarredBy = post["userIDsStarredBy"] as? [String: Bool] ?? [:]
     })
   }
 
@@ -115,6 +115,12 @@ class PostViewModel: ObservableObject, Identifiable {
       if let error = error {
         print(error.localizedDescription)
       }
+    }
+  }
+
+  func onViewDisappear() {
+    if let refHandle = refHandle {
+      postRef.removeObserver(withHandle: refHandle)
     }
   }
 }

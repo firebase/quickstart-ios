@@ -18,16 +18,35 @@ import SwiftUI
 import Firebase
 
 struct TopPostsView: View {
+  @StateObject var user = UserViewModel()
+
   var body: some View {
     NavigationView {
-      VStack(spacing: 25) {
-        Text("Logged in as \(Auth.auth().currentUser?.email ?? "")")
-        Button(action: user.logout, label: {
-          Text("Logout")
-            .fontWeight(.bold)
-        })
+      List {
+        ForEach(user.posts) { post in
+          PostCell(post: post)
+        }
       }
-      .navigationTitle("My Top Posts")
+      .onAppear {
+        user.getPosts(tabOpened: UserViewModel.Tab.topPosts)
+      }
+      .onDisappear {
+        user.onViewDisappear()
+      }
+      .navigationBarTitle("My Top Posts")
+      .navigationBarItems(leading:
+        Button(action: {
+          user.logout()
+        }) {
+          HStack {
+            Image(systemName: "chevron.left")
+            Text("Logout")
+          }
+        },
+        trailing:
+        NavigationLink(destination: NewPostsView(user: user)) {
+          Image(systemName: "plus")
+        })
     }
   }
 }

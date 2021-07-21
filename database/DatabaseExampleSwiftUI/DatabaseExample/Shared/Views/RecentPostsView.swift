@@ -17,8 +17,7 @@ import SwiftUI
 import Firebase
 
 struct RecentPostsView: View {
-  @ObservedObject var user: UserViewModel
-  let tabOpened: String = "recentPosts"
+  @StateObject var user = UserViewModel()
 
   var body: some View {
     NavigationView {
@@ -28,7 +27,10 @@ struct RecentPostsView: View {
         }
       }
       .onAppear {
-        user.getPosts(tabOpened: tabOpened)
+        user.getPosts(tabOpened: UserViewModel.Tab.recentPosts)
+      }
+      .onDisappear {
+        user.onViewDisappear()
       }
       .navigationBarTitle("Recents")
       .navigationBarItems(leading:

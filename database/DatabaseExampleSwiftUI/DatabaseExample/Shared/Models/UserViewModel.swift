@@ -26,7 +26,6 @@ class UserViewModel: ObservableObject {
   @Published var isLoading = false
   @Published var alert = false
   @Published var posts: [PostViewModel] = []
-  @Published var myPosts: [PostViewModel] = []
   private lazy var ref: DatabaseReference = {
     Database.database().reference()
   }()
@@ -137,11 +136,12 @@ class UserViewModel: ObservableObject {
     }
   }
 
-  func getPosts(tabOpened: String) {
-    if tabOpened == Tab.recentPosts.rawValue {
+  func getPosts(tabOpened: Tab) {
+    switch tabOpened {
+    case .recentPosts:
       let postListRef = ref.child("posts")
       fetchPosts(forRef: postListRef, tabOpened: tabOpened)
-    } else if tabOpened == Tab.myPosts.rawValue {
+    case .myPosts, .topPosts:
       if let userID = Auth.auth().currentUser?.uid {
         let userPostListRef = Database.database().reference()
           .child("user-posts")
@@ -153,16 +153,28 @@ class UserViewModel: ObservableObject {
     }
   }
 
-  func fetchPosts(forRef ref: DatabaseReference, tabOpened: String) {
+  func fetchPosts(forRef ref: DatabaseReference, tabOpened: Tab) {
     // read data by listening for value events
     refHandle = ref.observe(DataEventType.value, with: { snapshot in
       // retrieved data is of type dictionary of dictionary
       guard let value = snapshot.value as? [String: [String: Any]] else { return }
-      // sort dictionary by keys (most to least recent)
-      let sortedValues = value.sorted(by: { $0.key > $1.key })
-      // store content of sorted dictionary into "posts" variable
-      self.posts = sortedValues.compactMap { PostViewModel(id: $0, dict: $1) }
+
+      switch tabOpened {
+      case .recentPosts, .myPosts:
+        // sort dictionary by keys (most to least recent)
+        let sortedValues = value.sorted(by: { $0.key > $1.key })
+        // store content of sorted dictionary into "posts" variable
+        self.posts = sortedValues.compactMap { PostViewModel(id: $0, dict: $1) }
+      case .topPosts:
+        let sortedValues = value
+          .sorted(by: { $0.value["starCount"] as? Int ?? 0 > $1.value["starCount"] as? Int ?? 0 })
+        self.posts = sortedValues.compactMap { PostViewModel(id: $0, dict: $1) }
+      }
     })
+  }
+
+  func onViewDisappear() {
+    ref.removeAllObservers()
   }
 }
 

@@ -40,6 +40,12 @@ struct PostCell: View {
           Text(post.body)
         }
       }
+      .onAppear {
+        post.updateStars()
+      }
+      .onDisappear {
+        post.onViewDisappear()
+      }
     }
   }
 }

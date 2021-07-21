@@ -118,7 +118,7 @@ class PostViewModel: ObservableObject, Identifiable {
     }
   }
 
-  func removeRefHandles() {
+  func onViewDisappear() {
     if let refHandle = refHandle {
       postRef.removeObserver(withHandle: refHandle)
     }

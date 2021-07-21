@@ -177,7 +177,7 @@ class UserViewModel: ObservableObject {
     })
   }
 
-  func removeRefHandles() {
+  func onViewDisappear() {
     ref.removeAllObservers()
   }
 }

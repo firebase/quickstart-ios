@@ -44,7 +44,7 @@ struct PostCell: View {
         post.updateStars()
       }
       .onDisappear {
-        post.removeRefHandles()
+        post.onViewDisappear()
       }
     }
   }

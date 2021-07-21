@@ -32,7 +32,7 @@ struct TopPostsView: View {
         user.getPosts(tabOpened: tabOpened)
       }
       .onDisappear {
-        user.removeRefHandles()
+        user.onViewDisappear()
       }
       .navigationBarTitle("My Top Posts")
       .navigationBarItems(leading:

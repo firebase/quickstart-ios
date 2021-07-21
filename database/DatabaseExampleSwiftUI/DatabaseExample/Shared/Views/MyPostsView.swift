@@ -32,7 +32,7 @@ struct MyPostsView: View {
         user.getPosts(tabOpened: tabOpened)
       }
       .onDisappear {
-        user.removeRefHandles()
+        user.onViewDisappear()
       }
       .navigationBarTitle("My Posts")
       .navigationBarItems(leading:

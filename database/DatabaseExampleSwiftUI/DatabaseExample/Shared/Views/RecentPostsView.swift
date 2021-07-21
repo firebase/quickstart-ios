@@ -31,7 +31,7 @@ struct RecentPostsView: View {
         user.getPosts(tabOpened: tabOpened)
       }
       .onDisappear {
-        user.removeRefHandles()
+        user.onViewDisappear()
       }
       .navigationBarTitle("Recents")
       .navigationBarItems(leading:

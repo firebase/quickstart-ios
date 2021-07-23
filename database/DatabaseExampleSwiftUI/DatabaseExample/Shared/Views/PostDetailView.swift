@@ -17,7 +17,10 @@
 import SwiftUI
 
 struct PostDetailView: View {
-  var post: PostViewModel
+  @StateObject var post: PostViewModel
+  @State private var comment: String = ""
+  var screenWidth = UIScreen.main.bounds.width
+
   var body: some View {
     VStack {
       VStack(alignment: .leading) {
@@ -33,7 +36,48 @@ struct PostDetailView: View {
           .bold()
         Text(post.body)
       }
+      .padding()
+      .background(RoundedRectangle(cornerRadius: 10).fill(Color(.systemGray6)))
+      List {
+        ForEach(post.comments) { comment in
+          VStack(alignment: .leading) {
+            HStack(spacing: 1) {
+              Image(systemName: "person")
+              Text(comment.author)
+            }
+            Text(comment.text)
+              .font(.body)
+          }
+          .padding()
+        }
+      }
+      HStack {
+        TextField("Comment", text: $comment)
+          .padding()
+          .background(RoundedRectangle(cornerRadius: 10).fill(Color(.systemGray5)))
+        Button(action: {
+          post.didTapSendButton(commentField: comment)
+        }) {
+          Text("Send")
+        }
+      }
+      .frame(
+        width: screenWidth * 0.85,
+        alignment: .center
+      )
+      Spacer()
+        .frame(idealHeight: 10)
+        .fixedSize()
     }
+    .padding()
+    .frame(
+      width: screenWidth * 0.9,
+      alignment: .center
+    )
+    .onAppear {
+      post.fetchComments()
+    }
+    .navigationBarTitle(post.title)
   }
 }
 

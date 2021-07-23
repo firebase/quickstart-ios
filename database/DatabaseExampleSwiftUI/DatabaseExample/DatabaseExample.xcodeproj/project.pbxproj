@@ -27,8 +27,8 @@
 		C7C6B597268C8D7800546A57 /* FirebaseDatabaseSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = C7C6B596268C8D7800546A57 /* FirebaseDatabaseSwift-Beta */; };
 		C7C6B599268C8D7800546A57 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = C7C6B598268C8D7800546A57 /* FirebaseAuth */; };
 		C7C6B59B268C8D7800546A57 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = C7C6B59A268C8D7800546A57 /* FirebaseDatabase */; };
-		C7C6B5B3268DAC1800546A57 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C6B5B2268DAC1800546A57 /* Comment.swift */; };
-		C7C6B5B4268DAC1800546A57 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C6B5B2268DAC1800546A57 /* Comment.swift */; };
+		C7C6B5B3268DAC1800546A57 /* CommentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C6B5B2268DAC1800546A57 /* CommentViewModel.swift */; };
+		C7C6B5B4268DAC1800546A57 /* CommentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C6B5B2268DAC1800546A57 /* CommentViewModel.swift */; };
 		C7F60CF2268E352F002F68AB /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F60CF1268E352F002F68AB /* SignUpView.swift */; };
 		C7F60CF3268E352F002F68AB /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F60CF1268E352F002F68AB /* SignUpView.swift */; };
 		C7F60CF6268EBEDE002F68AB /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F60CF5268EBEDE002F68AB /* UserViewModel.swift */; };
@@ -54,7 +54,7 @@
 		C7C6B583268C8C9C00546A57 /* DatabaseExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DatabaseExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7C6B585268C8C9C00546A57 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C7C6B586268C8C9C00546A57 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
-		C7C6B5B2268DAC1800546A57 /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		C7C6B5B2268DAC1800546A57 /* CommentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentViewModel.swift; sourceTree = "<group>"; };
 		C7F60CF1268E352F002F68AB /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		C7F60CF5268EBEDE002F68AB /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		C7F60CF8268EDFC5002F68AB /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
@@ -148,7 +148,7 @@
 		C7C6B5A5268CED2600546A57 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				C7C6B5B2268DAC1800546A57 /* Comment.swift */,
+				C7C6B5B2268DAC1800546A57 /* CommentViewModel.swift */,
 				C7F60CF5268EBEDE002F68AB /* UserViewModel.swift */,
 				C79D1AC226A4114600B6A169 /* PostViewModel.swift */,
 			);
@@ -263,7 +263,7 @@
 			files = (
 				C79D1AC326A4114600B6A169 /* PostViewModel.swift in Sources */,
 				C799B611269E1E3B00A43C40 /* PostCell.swift in Sources */,
-				C7C6B5B3268DAC1800546A57 /* Comment.swift in Sources */,
+				C7C6B5B3268DAC1800546A57 /* CommentViewModel.swift in Sources */,
 				C7F60CF6268EBEDE002F68AB /* UserViewModel.swift in Sources */,
 				C7C6B589268C8C9C00546A57 /* LoginView.swift in Sources */,
 				C79D1AED26A8D9A300B6A169 /* PostsView.swift in Sources */,
@@ -282,7 +282,7 @@
 			files = (
 				C79D1AC426A4114600B6A169 /* PostViewModel.swift in Sources */,
 				C799B612269E1E3B00A43C40 /* PostCell.swift in Sources */,
-				C7C6B5B4268DAC1800546A57 /* Comment.swift in Sources */,
+				C7C6B5B4268DAC1800546A57 /* CommentViewModel.swift in Sources */,
 				C7F60CF7268EBEDE002F68AB /* UserViewModel.swift in Sources */,
 				C7C6B58A268C8C9C00546A57 /* LoginView.swift in Sources */,
 				C79D1AEE26A8D9A300B6A169 /* PostsView.swift in Sources */,

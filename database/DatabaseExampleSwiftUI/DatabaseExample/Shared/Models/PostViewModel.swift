@@ -25,7 +25,9 @@ class PostViewModel: ObservableObject, Identifiable {
   @Published var body: String
   @Published var starCount: Int
   @Published var userIDsStarredBy: [String: Bool]
+  @Published var comments: [CommentViewModel] = []
   var postRef: DatabaseReference!
+  var commentRef: DatabaseReference!
   var isStarred: Bool {
     if let uid = Auth.auth().currentUser?.uid {
       return userIDsStarredBy[uid] ?? false
@@ -60,6 +62,27 @@ class PostViewModel: ObservableObject, Identifiable {
     self.body = body
     self.starCount = starCount
     self.userIDsStarredBy = userIDsStarredBy
+  }
+
+  func didTapSendButton(commentField: String) {
+    if let userID = Auth.auth().currentUser?.uid,
+      let userEmail = Auth.auth().currentUser?.email {
+      commentRef = Database.database().reference().child("post-comments").child(id)
+      guard let key = commentRef.childByAutoId().key else { return }
+      let comment = ["uid": userID,
+                     "author": userEmail,
+                     "text": commentField]
+      commentRef.child(key).setValue(comment)
+    }
+  }
+
+  func fetchComments() {
+    commentRef = Database.database().reference().child("post-comments").child(id)
+    refHandle = commentRef.observe(DataEventType.value, with: { snapshot in
+      guard let comments = snapshot.value as? [String: [String: Any]] else { return }
+      let sortedComments = comments.sorted(by: { $0.key > $1.key })
+      self.comments = sortedComments.compactMap { CommentViewModel(id: $0, dict: $1) }
+    })
   }
 
   func didTapStarButton() {

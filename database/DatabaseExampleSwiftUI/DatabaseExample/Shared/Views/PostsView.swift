@@ -58,4 +58,3 @@ struct PostsView_Previews: PreviewProvider {
     PostsView(title: "Recents", tabOpened: UserViewModel.Tab.recentPosts)
   }
 }
-

@@ -57,6 +57,8 @@ struct PostDetailView: View {
           .background(RoundedRectangle(cornerRadius: 10).fill(Color(.systemGray5)))
         Button(action: {
           post.didTapSendButton(commentField: comment)
+          comment = ""
+          hideKeyboard()
         }) {
           Text("Send")
         }
@@ -80,6 +82,14 @@ struct PostDetailView: View {
     .navigationBarTitle(post.title)
   }
 }
+
+#if canImport(UIKit)
+extension View {
+    func hideKeyboard() {
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+    }
+}
+#endif
 
 struct PostDetailView_Previews: PreviewProvider {
   static var examplePost = PostViewModel(

@@ -25,7 +25,7 @@ class PostViewModel: ObservableObject, Identifiable {
   @Published var body: String
   @Published var starCount: Int
   @Published var userIDsStarredBy: [String: Bool]
-  @Published var comments: [CommentViewModel] = []
+  @Published var comments: [Comment] = []
   var postRef: DatabaseReference!
   var commentRef: DatabaseReference!
   var isStarred: Bool {
@@ -81,7 +81,7 @@ class PostViewModel: ObservableObject, Identifiable {
     refHandle = commentRef.observe(DataEventType.value, with: { snapshot in
       guard let comments = snapshot.value as? [String: [String: Any]] else { return }
       let sortedComments = comments.sorted(by: { $0.key > $1.key })
-      self.comments = sortedComments.compactMap { CommentViewModel(id: $0, dict: $1) }
+      self.comments = sortedComments.compactMap { Comment(id: $0, dict: $1) }
     })
   }
 

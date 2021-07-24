@@ -35,7 +35,7 @@ struct PostsView: View {
       .onDisappear {
         user.onViewDisappear()
       }
-      .navigationBarTitle("My Posts")
+      .navigationBarTitle(title)
       .navigationBarItems(leading:
         Button(action: {
           user.logout()

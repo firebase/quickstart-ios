@@ -17,7 +17,7 @@
 import SwiftUI
 import Firebase
 
-class CommentViewModel: ObservableObject, Identifiable {
+struct Comment: Identifiable {
   var id: String
   var uid: String
   var author: String

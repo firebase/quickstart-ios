@@ -134,10 +134,10 @@ class UserViewModel: ObservableObject {
 
   func getPosts(postsType: ContentView.Tab) {
     switch postsType {
-    case ContentView.Tab.recentPosts:
+    case .recentPosts:
       let postListRef = ref.child("posts")
       fetchPosts(forRef: postListRef, postsType: postsType)
-    case ContentView.Tab.myPosts, ContentView.Tab.topPosts:
+    case .myPosts, .topPosts:
       if let userID = Auth.auth().currentUser?.uid {
         let userPostListRef = Database.database().reference()
           .child("user-posts")
@@ -156,12 +156,12 @@ class UserViewModel: ObservableObject {
       guard let value = snapshot.value as? [String: [String: Any]] else { return }
 
       switch postsType {
-      case ContentView.Tab.recentPosts, ContentView.Tab.myPosts:
+      case .recentPosts, .myPosts:
         // sort dictionary by keys (most to least recent)
         let sortedValues = value.sorted(by: { $0.key > $1.key })
         // store content of sorted dictionary into "posts" variable
         self.posts = sortedValues.compactMap { PostViewModel(id: $0, dict: $1) }
-      case ContentView.Tab.topPosts:
+      case .topPosts:
         let sortedValues = value
           .sorted(by: { $0.value["starCount"] as? Int ?? 0 > $1.value["starCount"] as? Int ?? 0 })
         self.posts = sortedValues.compactMap { PostViewModel(id: $0, dict: $1) }

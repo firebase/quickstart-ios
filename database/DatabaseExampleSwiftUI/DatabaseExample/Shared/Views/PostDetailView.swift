@@ -58,7 +58,9 @@ struct PostDetailView: View {
         Button(action: {
           post.didTapSendButton(commentField: comment)
           comment = ""
-          hideKeyboard()
+          #if canImport(UIKit)
+            hideKeyboard()
+          #endif
         }) {
           Text("Send")
         }

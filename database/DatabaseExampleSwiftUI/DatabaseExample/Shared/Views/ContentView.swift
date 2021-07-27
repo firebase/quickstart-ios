@@ -19,7 +19,7 @@ import Firebase
 
 struct ContentView: View {
   @AppStorage("isSignedIn") var isSignedIn = true
-  @State private var selection: UserViewModel.PostListType = .recentPosts
+  @State private var selection: PostsType = .recentPosts
 
   var body: some View {
     if isSignedIn {

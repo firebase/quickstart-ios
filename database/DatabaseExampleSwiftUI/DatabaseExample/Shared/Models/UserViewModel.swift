@@ -32,10 +32,6 @@ class UserViewModel: ObservableObject {
 
   private var refHandle: DatabaseHandle?
 
-  enum Tab: String {
-    case recentPosts, myPosts, topPosts
-  }
-
   func showAlertMessage(message: String) {
     alertMessage = message
     alert.toggle()
@@ -136,36 +132,36 @@ class UserViewModel: ObservableObject {
     }
   }
 
-  func getPosts(tabOpened: Tab) {
-    switch tabOpened {
-    case .recentPosts:
+  func getPosts(postsType: ContentView.Tab) {
+    switch postsType {
+    case ContentView.Tab.recentPosts:
       let postListRef = ref.child("posts")
-      fetchPosts(forRef: postListRef, tabOpened: tabOpened)
-    case .myPosts, .topPosts:
+      fetchPosts(forRef: postListRef, postsType: postsType)
+    case ContentView.Tab.myPosts, ContentView.Tab.topPosts:
       if let userID = Auth.auth().currentUser?.uid {
         let userPostListRef = Database.database().reference()
           .child("user-posts")
           .child(userID)
-        fetchPosts(forRef: userPostListRef, tabOpened: tabOpened)
+        fetchPosts(forRef: userPostListRef, postsType: postsType)
       } else {
         print("error: fetch myPosts was not successful")
       }
     }
   }
 
-  func fetchPosts(forRef ref: DatabaseReference, tabOpened: Tab) {
+  func fetchPosts(forRef ref: DatabaseReference, postsType: ContentView.Tab) {
     // read data by listening for value events
     refHandle = ref.observe(DataEventType.value, with: { snapshot in
       // retrieved data is of type dictionary of dictionary
       guard let value = snapshot.value as? [String: [String: Any]] else { return }
 
-      switch tabOpened {
-      case .recentPosts, .myPosts:
+      switch postsType {
+      case ContentView.Tab.recentPosts, ContentView.Tab.myPosts:
         // sort dictionary by keys (most to least recent)
         let sortedValues = value.sorted(by: { $0.key > $1.key })
         // store content of sorted dictionary into "posts" variable
         self.posts = sortedValues.compactMap { PostViewModel(id: $0, dict: $1) }
-      case .topPosts:
+      case ContentView.Tab.topPosts:
         let sortedValues = value
           .sorted(by: { $0.value["starCount"] as? Int ?? 0 > $1.value["starCount"] as? Int ?? 0 })
         self.posts = sortedValues.compactMap { PostViewModel(id: $0, dict: $1) }

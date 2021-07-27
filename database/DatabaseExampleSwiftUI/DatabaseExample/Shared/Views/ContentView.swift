@@ -22,25 +22,23 @@ struct ContentView: View {
   @State private var selection: Tab = .recentPosts
 
   enum Tab {
-    case recentPosts
-    case myPosts
-    case topPosts
+    case recentPosts, myPosts, topPosts
   }
 
   var body: some View {
     if isSignedIn {
       TabView(selection: $selection) {
-        PostsView(title: "Recents", tabOpened: UserViewModel.Tab.recentPosts)
+        PostsView(title: "Recents", postsType: Tab.recentPosts)
           .tabItem {
             Label("Recents", systemImage: "arrow.counterclockwise")
           }
           .tag(Tab.recentPosts)
-        PostsView(title: "My Posts", tabOpened: UserViewModel.Tab.myPosts)
+        PostsView(title: "My Posts", postsType: Tab.myPosts)
           .tabItem {
             Label("My Posts", systemImage: "person.fill")
           }
           .tag(Tab.myPosts)
-        PostsView(title: "My Top Posts", tabOpened: UserViewModel.Tab.topPosts)
+        PostsView(title: "My Top Posts", postsType: Tab.topPosts)
           .tabItem {
             Label("My Top Posts", systemImage: "star.fill")
           }

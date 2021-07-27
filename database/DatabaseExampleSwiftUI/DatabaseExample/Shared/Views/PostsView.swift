@@ -20,7 +20,7 @@ import Firebase
 struct PostsView: View {
   @StateObject var user = UserViewModel()
   var title: String
-  var tabOpened: UserViewModel.Tab
+  var postsType: ContentView.Tab
 
   var body: some View {
     NavigationView {
@@ -30,7 +30,7 @@ struct PostsView: View {
         }
       }
       .onAppear {
-        user.getPosts(tabOpened: tabOpened)
+        user.getPosts(postsType: postsType)
       }
       .onDisappear {
         user.onViewDisappear()
@@ -55,6 +55,6 @@ struct PostsView: View {
 
 struct PostsView_Previews: PreviewProvider {
   static var previews: some View {
-    PostsView(title: "Recents", tabOpened: UserViewModel.Tab.recentPosts)
+    PostsView(title: "Recents", postsType: ContentView.Tab.recentPosts)
   }
 }

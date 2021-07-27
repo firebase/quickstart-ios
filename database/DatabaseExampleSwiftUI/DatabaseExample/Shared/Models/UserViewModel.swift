@@ -30,6 +30,10 @@ class UserViewModel: ObservableObject {
     Database.database().reference()
   }()
 
+  enum PostListType {
+    case recentPosts, myPosts, topPosts
+  }
+
   private var refHandle: DatabaseHandle?
 
   func showAlertMessage(message: String) {
@@ -132,7 +136,7 @@ class UserViewModel: ObservableObject {
     }
   }
 
-  func getPosts(postsType: ContentView.Tab) {
+  func getPosts(postsType: PostListType) {
     switch postsType {
     case .recentPosts:
       let postListRef = ref.child("posts")
@@ -149,7 +153,7 @@ class UserViewModel: ObservableObject {
     }
   }
 
-  func fetchPosts(forRef ref: DatabaseReference, postsType: ContentView.Tab) {
+  func fetchPosts(forRef ref: DatabaseReference, postsType: PostListType) {
     // read data by listening for value events
     refHandle = ref.observe(DataEventType.value, with: { snapshot in
       // retrieved data is of type dictionary of dictionary

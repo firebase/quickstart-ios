@@ -19,14 +19,11 @@ import SwiftUI
 struct ContentView: View {
   var body: some View {
     NavigationView {
-      Button("Crash", action: {
+      Button(action: {
         fatalError()
-      })
-        .font(.largeTitle)
-        .padding()
-        .background(Color.red)
-        .foregroundColor(.white)
-        .clipShape(Capsule())
+      }) {
+        Text("Crash")
+      }
         .navigationTitle("Crashlytics Example")
     }
   }

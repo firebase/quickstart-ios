@@ -9,13 +9,21 @@
 /* Begin PBXBuildFile section */
 		4102056426A631F5004B24B3 /* PerformanceExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4102055626A631F4004B24B3 /* PerformanceExampleApp.swift */; };
 		4102056526A631F5004B24B3 /* PerformanceExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4102055626A631F4004B24B3 /* PerformanceExampleApp.swift */; };
-		4102056626A631F5004B24B3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4102055726A631F4004B24B3 /* ContentView.swift */; };
-		4102056726A631F5004B24B3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4102055726A631F4004B24B3 /* ContentView.swift */; };
+		4102056626A631F5004B24B3 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4102055726A631F4004B24B3 /* MainView.swift */; };
+		4102056726A631F5004B24B3 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4102055726A631F4004B24B3 /* MainView.swift */; };
 		4102056826A631F5004B24B3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4102055826A631F5004B24B3 /* Assets.xcassets */; };
 		4102056926A631F5004B24B3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4102055826A631F5004B24B3 /* Assets.xcassets */; };
 		4102057926A63210004B24B3 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4102057826A63210004B24B3 /* Tests_iOS.swift */; };
+		41BFA1EA26B1D36C0013EB90 /* PerformanceExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4102055626A631F4004B24B3 /* PerformanceExampleApp.swift */; };
+		41BFA1EB26B1D3700013EB90 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4102055726A631F4004B24B3 /* MainView.swift */; };
+		41BFA1EC26B1D3730013EB90 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4102055826A631F5004B24B3 /* Assets.xcassets */; };
+		41BFA1F026B1D8B80013EB90 /* Process.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41BFA1EF26B1D8B80013EB90 /* Process.swift */; };
+		41BFA1F126B1D8B80013EB90 /* Process.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41BFA1EF26B1D8B80013EB90 /* Process.swift */; };
+		41BFA1F226B1D8B80013EB90 /* Process.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41BFA1EF26B1D8B80013EB90 /* Process.swift */; };
+		41BFA1F326B1D8B80013EB90 /* Process.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41BFA1EF26B1D8B80013EB90 /* Process.swift */; };
 		6E9473C63E29D87FF03EFACD /* Pods_PerformanceExample__iOS_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0471D4F122E3126D52343DB /* Pods_PerformanceExample__iOS_.framework */; };
 		7FFDA3D1C7A56EF3161ED9FB /* Pods_PerformanceExample__macOS_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8546FD27D2248462CF59E8D7 /* Pods_PerformanceExample__macOS_.framework */; };
+		82736115056B2A52418D0FFC /* Pods_PerformanceExample__tvOS_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDAB1ADF68BE07D6B732E47E /* Pods_PerformanceExample__tvOS_.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,17 +39,22 @@
 /* Begin PBXFileReference section */
 		02F1B63385395A472F8341B1 /* Pods-PerformanceExample (macOS).debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PerformanceExample (macOS).debug.xcconfig"; path = "Target Support Files/Pods-PerformanceExample (macOS)/Pods-PerformanceExample (macOS).debug.xcconfig"; sourceTree = "<group>"; };
 		0BEB65BC776EBACFD6C9B462 /* Pods-PerformanceExample (iOS).debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PerformanceExample (iOS).debug.xcconfig"; path = "Target Support Files/Pods-PerformanceExample (iOS)/Pods-PerformanceExample (iOS).debug.xcconfig"; sourceTree = "<group>"; };
+		2D0CBB9B5DA2E1B4128D3D85 /* Pods-PerformanceExample (tvOS).debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PerformanceExample (tvOS).debug.xcconfig"; path = "Target Support Files/Pods-PerformanceExample (tvOS)/Pods-PerformanceExample (tvOS).debug.xcconfig"; sourceTree = "<group>"; };
 		4102055626A631F4004B24B3 /* PerformanceExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceExampleApp.swift; sourceTree = "<group>"; };
-		4102055726A631F4004B24B3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		4102055726A631F4004B24B3 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		4102055826A631F5004B24B3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4102055D26A631F5004B24B3 /* PerformanceExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PerformanceExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4102056326A631F5004B24B3 /* PerformanceExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PerformanceExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4102057626A63210004B24B3 /* Tests_iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests_iOS.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4102057826A63210004B24B3 /* Tests_iOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_iOS.swift; sourceTree = "<group>"; };
+		410FF76926B1CEB500CA084F /* PerformanceExample (tvOS).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PerformanceExample (tvOS).app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		41BFA1EF26B1D8B80013EB90 /* Process.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Process.swift; sourceTree = "<group>"; };
 		44D9E103BD6CB4273AB192E5 /* Pods-PerformanceExample (iOS).release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PerformanceExample (iOS).release.xcconfig"; path = "Target Support Files/Pods-PerformanceExample (iOS)/Pods-PerformanceExample (iOS).release.xcconfig"; sourceTree = "<group>"; };
 		8546FD27D2248462CF59E8D7 /* Pods_PerformanceExample__macOS_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PerformanceExample__macOS_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A282C2B61E20F471B6AA7062 /* Pods-PerformanceExample (macOS).release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PerformanceExample (macOS).release.xcconfig"; path = "Target Support Files/Pods-PerformanceExample (macOS)/Pods-PerformanceExample (macOS).release.xcconfig"; sourceTree = "<group>"; };
+		DDAB1ADF68BE07D6B732E47E /* Pods_PerformanceExample__tvOS_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PerformanceExample__tvOS_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0471D4F122E3126D52343DB /* Pods_PerformanceExample__iOS_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PerformanceExample__iOS_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F9BBCF10FA1D1D53ABD132D2 /* Pods-PerformanceExample (tvOS).release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PerformanceExample (tvOS).release.xcconfig"; path = "Target Support Files/Pods-PerformanceExample (tvOS)/Pods-PerformanceExample (tvOS).release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +81,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		410FF76626B1CEB500CA084F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				82736115056B2A52418D0FFC /* Pods_PerformanceExample__tvOS_.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -86,7 +107,8 @@
 			isa = PBXGroup;
 			children = (
 				4102055626A631F4004B24B3 /* PerformanceExampleApp.swift */,
-				4102055726A631F4004B24B3 /* ContentView.swift */,
+				4102055726A631F4004B24B3 /* MainView.swift */,
+				41BFA1EF26B1D8B80013EB90 /* Process.swift */,
 				4102055826A631F5004B24B3 /* Assets.xcassets */,
 			);
 			path = Shared;
@@ -98,6 +120,7 @@
 				4102055D26A631F5004B24B3 /* PerformanceExample.app */,
 				4102056326A631F5004B24B3 /* PerformanceExample.app */,
 				4102057626A63210004B24B3 /* Tests_iOS.xctest */,
+				410FF76926B1CEB500CA084F /* PerformanceExample (tvOS).app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -115,6 +138,7 @@
 			children = (
 				F0471D4F122E3126D52343DB /* Pods_PerformanceExample__iOS_.framework */,
 				8546FD27D2248462CF59E8D7 /* Pods_PerformanceExample__macOS_.framework */,
+				DDAB1ADF68BE07D6B732E47E /* Pods_PerformanceExample__tvOS_.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -126,6 +150,8 @@
 				44D9E103BD6CB4273AB192E5 /* Pods-PerformanceExample (iOS).release.xcconfig */,
 				02F1B63385395A472F8341B1 /* Pods-PerformanceExample (macOS).debug.xcconfig */,
 				A282C2B61E20F471B6AA7062 /* Pods-PerformanceExample (macOS).release.xcconfig */,
+				2D0CBB9B5DA2E1B4128D3D85 /* Pods-PerformanceExample (tvOS).debug.xcconfig */,
+				F9BBCF10FA1D1D53ABD132D2 /* Pods-PerformanceExample (tvOS).release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -188,6 +214,25 @@
 			productReference = 4102057626A63210004B24B3 /* Tests_iOS.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		410FF76826B1CEB500CA084F /* PerformanceExample (tvOS) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 410FF77626B1CEB800CA084F /* Build configuration list for PBXNativeTarget "PerformanceExample (tvOS)" */;
+			buildPhases = (
+				4C8D4117F22A3C1427B65275 /* [CP] Check Pods Manifest.lock */,
+				410FF76526B1CEB500CA084F /* Sources */,
+				410FF76626B1CEB500CA084F /* Frameworks */,
+				410FF76726B1CEB500CA084F /* Resources */,
+				8B6BBD04DC7C6BBC4880C173 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "PerformanceExample (tvOS)";
+			productName = PerformanceExample;
+			productReference = 410FF76926B1CEB500CA084F /* PerformanceExample (tvOS).app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -208,6 +253,9 @@
 						CreatedOnToolsVersion = 13.0;
 						TestTargetID = 4102055C26A631F5004B24B3;
 					};
+					410FF76826B1CEB500CA084F = {
+						CreatedOnToolsVersion = 13.0;
+					};
 				};
 			};
 			buildConfigurationList = 4102055426A631F4004B24B3 /* Build configuration list for PBXProject "PerformanceExample" */;
@@ -226,6 +274,7 @@
 				4102055C26A631F5004B24B3 /* PerformanceExample (iOS) */,
 				4102056226A631F5004B24B3 /* PerformanceExample (macOS) */,
 				4102057526A63210004B24B3 /* Tests_iOS */,
+				410FF76826B1CEB500CA084F /* PerformanceExample (tvOS) */,
 			);
 		};
 /* End PBXProject section */
@@ -254,9 +303,39 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		410FF76726B1CEB500CA084F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				41BFA1EC26B1D3730013EB90 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		4C8D4117F22A3C1427B65275 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PerformanceExample (tvOS)-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		6770640F04AE9397BF739367 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -277,6 +356,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8B6BBD04DC7C6BBC4880C173 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PerformanceExample (tvOS)/Pods-PerformanceExample (tvOS)-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PerformanceExample (tvOS)/Pods-PerformanceExample (tvOS)-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PerformanceExample (tvOS)/Pods-PerformanceExample (tvOS)-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		99251B2148707FA38155599A /* [CP] Check Pods Manifest.lock */ = {
@@ -325,8 +421,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4102056626A631F5004B24B3 /* ContentView.swift in Sources */,
+				4102056626A631F5004B24B3 /* MainView.swift in Sources */,
 				4102056426A631F5004B24B3 /* PerformanceExampleApp.swift in Sources */,
+				41BFA1F026B1D8B80013EB90 /* Process.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -334,8 +431,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4102056726A631F5004B24B3 /* ContentView.swift in Sources */,
+				4102056726A631F5004B24B3 /* MainView.swift in Sources */,
 				4102056526A631F5004B24B3 /* PerformanceExampleApp.swift in Sources */,
+				41BFA1F126B1D8B80013EB90 /* Process.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -344,6 +442,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				4102057926A63210004B24B3 /* Tests_iOS.swift in Sources */,
+				41BFA1F226B1D8B80013EB90 /* Process.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		410FF76526B1CEB500CA084F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				41BFA1EB26B1D3700013EB90 /* MainView.swift in Sources */,
+				41BFA1EA26B1D36C0013EB90 /* PerformanceExampleApp.swift in Sources */,
+				41BFA1F326B1D8B80013EB90 /* Process.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -633,6 +742,73 @@
 			};
 			name = Release;
 		};
+		410FF77426B1CEB800CA084F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2D0CBB9B5DA2E1B4128D3D85 /* Pods-PerformanceExample (tvOS).debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = tvOS;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "PerformanceExample--tvOS--Info.plist";
+				INFOPLIST_KEY_CFBundleExecutable = "PerformanceExample (tvOS)";
+				INFOPLIST_KEY_CFBundleName = "PerformanceExample (tvOS)";
+				INFOPLIST_KEY_CFBundleVersion = 1;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Automatic;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.firebase.PerformanceExample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 15.0;
+			};
+			name = Debug;
+		};
+		410FF77526B1CEB800CA084F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F9BBCF10FA1D1D53ABD132D2 /* Pods-PerformanceExample (tvOS).release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = tvOS;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "PerformanceExample--tvOS--Info.plist";
+				INFOPLIST_KEY_CFBundleExecutable = "PerformanceExample (tvOS)";
+				INFOPLIST_KEY_CFBundleName = "PerformanceExample (tvOS)";
+				INFOPLIST_KEY_CFBundleVersion = 1;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Automatic;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.firebase.PerformanceExample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 15.0;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -668,6 +844,15 @@
 			buildConfigurations = (
 				4102057D26A63210004B24B3 /* Debug */,
 				4102057E26A63210004B24B3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		410FF77626B1CEB800CA084F /* Build configuration list for PBXNativeTarget "PerformanceExample (tvOS)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				410FF77426B1CEB800CA084F /* Debug */,
+				410FF77526B1CEB800CA084F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

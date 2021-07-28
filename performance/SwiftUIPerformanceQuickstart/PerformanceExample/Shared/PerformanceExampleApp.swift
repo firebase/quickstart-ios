@@ -16,6 +16,7 @@
 
 import SwiftUI
 import Firebase
+import FirebasePerformance
 
 @main
 struct PerformanceExampleApp: App {
@@ -25,7 +26,7 @@ struct PerformanceExampleApp: App {
 
   var body: some Scene {
     WindowGroup {
-      ContentView()
+      MainView(image: Image(systemName: "star"))
     }
   }
 }

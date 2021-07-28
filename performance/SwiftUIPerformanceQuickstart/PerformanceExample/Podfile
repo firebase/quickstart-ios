@@ -17,3 +17,12 @@ target 'PerformanceExample (macOS)' do
   # Pods for PerformanceExample (macOS)
 
 end
+
+target 'PerformanceExample (tvOS)' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for PerformanceExample (tvOS)
+  pod 'Firebase/Performance'
+
+end

@@ -24,7 +24,7 @@ struct ContentView: View {
       }) {
         Text("Crash")
       }
-        .navigationTitle("Crashlytics Example")
+      .navigationTitle("Crashlytics Example")
     }
   }
 }

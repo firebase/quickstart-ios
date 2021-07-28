@@ -150,9 +150,10 @@ class RemoteConfigViewController: UIViewController {
 
       guard let stringValue = value as? String else { return }
 
-      var formattedKey = key.capitalized
-      formattedKey = formattedKey.replacingOccurrences(of: "_", with: " ")
-      formattedKey.append(": ")
+      let formattedKey = key
+        .capitalized
+        .replacingOccurrences(of: "_", with: " ")
+        .appending(": ")
 
       let attributedKey = NSAttributedString(
         string: formattedKey,

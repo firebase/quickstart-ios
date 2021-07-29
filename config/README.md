@@ -20,7 +20,9 @@ Getting started
 1. [Add Firebase to your iOS Project](https://firebase.google.com/docs/ios/setup).
 2. [Create a Remote Config project for the quickstart sample](https://firebase.google.com/docs/remote-config/ios#create_a_product_name_project_for_the_quickstart_sample),
    defining the parameter values and parameter keys used by the sample.
-3. Run the sample on an iOS device or emulator.
+3. Run the sample on a supported device or simulator. Like Remote Config, this
+ quickstart supports iOS and macOS (via MacCatalyst). Deploy to a supported
+ scheme by choosing a destination in Xcode (`control` + `shift` + `0`).
 4. Change one or more parameter values in the Firebase Console (the value of
   `topLabelKey`, `recipeKey`, and/or `bottomLabelKey`). This is discussed in detail in the next section!
 5. Tap **Fetch & Activate Config** in the app to fetch new parameter values and see

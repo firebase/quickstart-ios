@@ -26,7 +26,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     window?.makeKeyAndVisible()
 
     #if targetEnvironment(macCatalyst)
-    windowScene.sizeRestrictions?.minimumSize = CGSize(width: 500, height: 615)
+      windowScene.sizeRestrictions?.minimumSize = CGSize(width: 500, height: 615)
     #endif  // targetEnvironment(macCatalyst)
   }
 }

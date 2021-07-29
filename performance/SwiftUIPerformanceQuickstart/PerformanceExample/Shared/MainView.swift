@@ -18,6 +18,7 @@ import SwiftUI
 
 struct ImageView: View {
   @ObservedObject var process: Process
+
   var body: some View {
     VStack {
       if let image = process.image {
@@ -25,27 +26,39 @@ struct ImageView: View {
       } else {
         Image(systemName: "questionmark.square").padding(.bottom)
       }
-      Button("Modify Image") { process.modifyImage() }
+      Button("Modify Image") {
+        if #available(iOS 15, tvOS 15, *) {
+          async { await process.modifyImageAsync() }
+        } else {
+          process.modifyImage()
+        }
+      }
     }
   }
 }
 
 struct MainView: View {
   @StateObject var process = Process()
-  let actions = ["Download", "Modify", "Upload"]
 
   var body: some View {
     NavigationView {
-      HStack {
-        Spacer()
-        List(actions, id: \.description) { action in
-          NavigationLink("\(action) Image", destination: ImageView(process: process))
-        }
-        .navigationTitle("Performance")
-        .toolbar {
-          ToolbarItem(placement: .principal) { process.status.view }
-        }
-        Spacer()
+      List(ProcessAction.allCases, id: \.rawValue) { action in
+        NavigationLink(
+          "\(action.rawValue) Image",
+          destination: ImageView(process: process).onAppear {
+            if process.status == .idle {
+              if #available(iOS 15, tvOS 15, *) {
+                Task { await process.downloadImageAsync() }
+              } else {
+                process.downloadImage()
+              }
+            }
+          }
+        )
+      }
+      .navigationTitle("Performance")
+      .toolbar {
+        ToolbarItem(placement: .principal) { process.status.view }
       }
     }
   }

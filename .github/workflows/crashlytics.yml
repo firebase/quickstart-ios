@@ -9,7 +9,6 @@ on:
       - 'scripts/*'
       - 'scripts/crashlytics.sh'
   pull_request:
-    branches: [ master ]
     paths:
       - '.github/workflows/crashlytics.yml'
       - 'crashlytics/**'

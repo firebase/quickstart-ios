@@ -16,4 +16,37 @@
 
 import SwiftUI
 
-class Process: ObservableObject {}
+class Process: ObservableObject {
+  @Published var status: ProcessStatus = .idle
+  @Published var image: Image?
+
+  func updateStatus(status newStatus: ProcessStatus) {}
+
+  func downloadImage() {}
+  func modifyImage() {}
+  func uploadImage() {}
+}
+
+enum ProcessStatus {
+  case idle, running, failure, success
+
+  var view: some View {
+    let innerView: Text
+
+    switch self {
+    case .idle:
+      innerView = Text("⏸ Idle")
+    case .running:
+      innerView = Text("Running")
+    case .failure:
+      innerView = Text("❌ Failure")
+    case .success:
+      innerView = Text("✅ Success")
+    }
+
+    return HStack {
+      if self == .running { ProgressView().padding(.trailing, 1.0) }
+      innerView
+    }
+  }
+}

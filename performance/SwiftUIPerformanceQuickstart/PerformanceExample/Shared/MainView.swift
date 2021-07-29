@@ -16,32 +16,34 @@
 
 import SwiftUI
 
-struct EmptyView: View {
+struct ImageView: View {
+  @ObservedObject var process: Process
   var body: some View {
-    Text("Hello, World!")
+    VStack {
+      if let image = process.image {
+        image.padding(.bottom)
+      } else {
+        Image(systemName: "questionmark.square").padding(.bottom)
+      }
+      Button("Modify Image") { process.modifyImage() }
+    }
   }
 }
 
 struct MainView: View {
   @StateObject var process = Process()
-  @State var image: Image
+  let actions = ["Download", "Modify", "Upload"]
+
   var body: some View {
     NavigationView {
       HStack {
         Spacer()
-        List {
-          NavigationLink("Download Image", destination: EmptyView())
-          NavigationLink("Modify Image", destination: EmptyView())
-          NavigationLink("Upload Image", destination: EmptyView())
+        List(actions, id: \.description) { action in
+          NavigationLink("\(action) Image", destination: ImageView(process: process))
         }
         .navigationTitle("Performance")
         .toolbar {
-          ToolbarItem(placement: .principal) {
-            HStack {
-              ProgressView()
-              Text("  Running")
-            }
-          }
+          ToolbarItem(placement: .principal) { process.status.view }
         }
         Spacer()
       }
@@ -50,7 +52,9 @@ struct MainView: View {
 }
 
 struct MainView_Previews: PreviewProvider {
+  @StateObject static var process = Process()
   static var previews: some View {
-    MainView(image: Image(systemName: "star"))
+    MainView()
+    ImageView(process: process)
   }
 }

@@ -25,7 +25,7 @@ struct PerformanceExampleApp: App {
 
   var body: some Scene {
     WindowGroup {
-      MainView(image: Image(systemName: "star"))
+      MainView()
     }
   }
 }

@@ -61,6 +61,7 @@
 		EA20B4BB2499191700B5E581 /* sugar_cookies.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = sugar_cookies.json; sourceTree = "<group>"; };
 		EA20B4C4249959E300B5E581 /* peanut_butter_and_jelly.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = peanut_butter_and_jelly.json; sourceTree = "<group>"; };
 		EABC75EA24AA185900D53A19 /* RemoteConfigDefaults.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = RemoteConfigDefaults.plist; sourceTree = "<group>"; };
+		EAE7A95326B1DE640098ED49 /* ConfigExample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ConfigExample.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +123,7 @@
 		EA20B4882497CC9D00B5E581 /* ConfigExample */ = {
 			isa = PBXGroup;
 			children = (
+				EAE7A95326B1DE640098ED49 /* ConfigExample.entitlements */,
 				EA20B4892497CC9D00B5E581 /* AppDelegate.swift */,
 				EA20B48B2497CC9D00B5E581 /* SceneDelegate.swift */,
 				EA20B48D2497CC9D00B5E581 /* RemoteConfigViewController.swift */,
@@ -458,18 +460,22 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = ConfigExample/ConfigExample.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = ConfigExample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.ConfigExample;
 				PRODUCT_NAME = ConfigExample;
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2,6";
 			};
 			name = Debug;
 		};
@@ -477,18 +483,22 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = ConfigExample/ConfigExample.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = ConfigExample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.ConfigExample;
 				PRODUCT_NAME = ConfigExample;
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2,6";
 			};
 			name = Release;
 		};

@@ -6,7 +6,6 @@ target 'ConfigExample' do
   use_frameworks!
 
   # Pods for ConfigExample
-  pod 'Firebase/Analytics'
   pod 'Firebase/RemoteConfig'
 
   target 'ConfigExampleTests' do

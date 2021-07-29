@@ -71,6 +71,7 @@ jobs:
           -project CrashlyticsExample.xcodeproj \
           -scheme 'CrashlyticsSwiftUIExample' \
           -sdk appletvsimulator \
+          -destination "platform=tvOS Simulator,name=Apple TV" \
           build
         env:
           SAMPLE: Crashlytics

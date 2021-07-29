@@ -66,11 +66,11 @@ jobs:
         run: |
           cd crashlytics
           ../scripts/install_prereqs/crashlytics.sh
+          xcrun simctl list
           xcodebuild \
           -project CrashlyticsExample.xcodeproj \
           -scheme 'CrashlyticsSwiftUIExample' \
           -sdk appletvsimulator \
-          -destination "platform=tvOS Simulator,name=Any tvOS Simulator Device" \
           build
         env:
           SAMPLE: Crashlytics

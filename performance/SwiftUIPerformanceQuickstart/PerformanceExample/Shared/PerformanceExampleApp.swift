@@ -16,7 +16,6 @@
 
 import SwiftUI
 import Firebase
-import FirebasePerformance
 
 @main
 struct PerformanceExampleApp: App {

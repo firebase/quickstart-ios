@@ -23,6 +23,7 @@ target 'PerformanceExample (tvOS)' do
   use_frameworks!
 
   # Pods for PerformanceExample (tvOS)
-  pod 'Firebase/Performance'
+  pod 'Firebase'
+  pod 'FirebasePerformance'
 
 end

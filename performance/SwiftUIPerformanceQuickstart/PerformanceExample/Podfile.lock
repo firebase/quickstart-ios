@@ -1,4 +1,9 @@
 PODS:
+  - Firebase (8.4.0):
+    - Firebase/Core (= 8.4.0)
+  - Firebase/Core (8.4.0):
+    - Firebase/CoreOnly
+    - FirebaseAnalytics (~> 8.4.0)
   - Firebase/CoreOnly (8.4.0):
     - FirebaseCore (= 8.4.0)
   - Firebase/Performance (8.4.0):
@@ -58,7 +63,9 @@ PODS:
   - Protobuf (3.17.0)
 
 DEPENDENCIES:
+  - Firebase
   - Firebase/Performance
+  - FirebasePerformance
 
 SPEC REPOS:
   trunk:
@@ -89,6 +96,6 @@ SPEC CHECKSUMS:
   PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58
   Protobuf: 7327d4444215b5f18e560a97f879ff5503c4581c
 
-PODFILE CHECKSUM: 348c2f83f0deefbc121c890291d35d64ba1beb61
+PODFILE CHECKSUM: 4adbf5fd124d656237128e0c8755c42c2f063b26
 
 COCOAPODS: 1.10.1

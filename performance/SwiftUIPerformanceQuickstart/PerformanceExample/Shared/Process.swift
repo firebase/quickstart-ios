@@ -31,22 +31,18 @@ enum ProcessStatus {
   case idle, running, failure, success
 
   var view: some View {
-    let innerView: Text
-
-    switch self {
-    case .idle:
-      innerView = Text("⏸ Idle")
-    case .running:
-      innerView = Text("Running")
-    case .failure:
-      innerView = Text("❌ Failure")
-    case .success:
-      innerView = Text("✅ Success")
-    }
-
-    return HStack {
-      if self == .running { ProgressView().padding(.trailing, 1.0) }
-      innerView
+    HStack {
+      switch self {
+      case .idle:
+        Text("⏸ Idle")
+      case .running:
+        ProgressView().padding(.trailing, 1.0)
+        Text("Running")
+      case .failure:
+        Text("❌ Failure")
+      case .success:
+        Text("✅ Success")
+      }
     }
   }
 }

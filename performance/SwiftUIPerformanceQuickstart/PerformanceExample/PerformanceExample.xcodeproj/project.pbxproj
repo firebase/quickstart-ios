@@ -19,7 +19,6 @@
 		41BFA1EC26B1D3730013EB90 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4102055826A631F5004B24B3 /* Assets.xcassets */; };
 		41BFA1F026B1D8B80013EB90 /* Process.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41BFA1EF26B1D8B80013EB90 /* Process.swift */; };
 		41BFA1F126B1D8B80013EB90 /* Process.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41BFA1EF26B1D8B80013EB90 /* Process.swift */; };
-		41BFA1F226B1D8B80013EB90 /* Process.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41BFA1EF26B1D8B80013EB90 /* Process.swift */; };
 		41BFA1F326B1D8B80013EB90 /* Process.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41BFA1EF26B1D8B80013EB90 /* Process.swift */; };
 		41BFA20E26B241720013EB90 /* PerformanceExample--tvOS--Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 41BFA20D26B241720013EB90 /* PerformanceExample--tvOS--Info.plist */; };
 		6E9473C63E29D87FF03EFACD /* Pods_PerformanceExample__iOS_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0471D4F122E3126D52343DB /* Pods_PerformanceExample__iOS_.framework */; };
@@ -446,7 +445,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				4102057926A63210004B24B3 /* Tests_iOS.swift in Sources */,
-				41BFA1F226B1D8B80013EB90 /* Process.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

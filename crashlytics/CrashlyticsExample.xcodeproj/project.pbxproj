@@ -16,14 +16,6 @@
 		8D96F5DE2685440700F1A2B7 /* Reachability in Frameworks */ = {isa = PBXBuildFile; productRef = 8D96F5DD2685440700F1A2B7 /* Reachability */; };
 		8D96F5E62685442800F1A2B7 /* ReachabililtyHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C723B78C26853A1700AD34CD /* ReachabililtyHelper.swift */; };
 		8D96F5EE2685442C00F1A2B7 /* ReachabililtyHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C723B78C26853A1700AD34CD /* ReachabililtyHelper.swift */; };
-		C730A36826B1FDD200A29E81 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C730A36726B1FDD200A29E81 /* Assets.xcassets */; };
-		C730A36B26B1FDD200A29E81 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C730A36A26B1FDD200A29E81 /* Preview Assets.xcassets */; };
-		C730A37026B1FDF600A29E81 /* ReachabililtyHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C723B78C26853A1700AD34CD /* ReachabililtyHelper.swift */; };
-		C730A37126B1FDF600A29E81 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73C899826845907003E5C2C /* ContentView.swift */; };
-		C730A37226B1FDF600A29E81 /* CrashlyticsSwiftUIExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73C899726845907003E5C2C /* CrashlyticsSwiftUIExampleApp.swift */; };
-		C730A37526B1FE5400A29E81 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = C730A37426B1FE5400A29E81 /* FirebaseCrashlytics */; };
-		C730A37726B1FE5400A29E81 /* Reachability in Frameworks */ = {isa = PBXBuildFile; productRef = C730A37626B1FE5400A29E81 /* Reachability */; };
-		C730A37826B1FE6400A29E81 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 09DB1C43785994E8D625721E /* GoogleService-Info.plist */; };
 		C732A29826846B6D00AA7DEF /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = C732A29726846B6D00AA7DEF /* FirebaseCrashlytics */; };
 		C73C89A926845908003E5C2C /* CrashlyticsSwiftUIExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73C899726845907003E5C2C /* CrashlyticsSwiftUIExampleApp.swift */; };
 		C73C89AA26845908003E5C2C /* CrashlyticsSwiftUIExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73C899726845907003E5C2C /* CrashlyticsSwiftUIExampleApp.swift */; };
@@ -31,6 +23,8 @@
 		C73C89AC26845908003E5C2C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73C899826845907003E5C2C /* ContentView.swift */; };
 		C73C89AD26845908003E5C2C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C73C899926845908003E5C2C /* Assets.xcassets */; };
 		C73C89AE26845908003E5C2C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C73C899926845908003E5C2C /* Assets.xcassets */; };
+		C74C554726B377F20043B835 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C74C554626B377F20043B835 /* Assets.xcassets */; };
+		C74C554A26B377F20043B835 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C74C554926B377F20043B835 /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,10 +32,6 @@
 		5F9961061AE0CF4F0034F503 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		5F9961071AE0CF4F0034F503 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		C723B78C26853A1700AD34CD /* ReachabililtyHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabililtyHelper.swift; sourceTree = "<group>"; };
-		C730A36126B1FDCF00A29E81 /* CrashlyticsSwiftUIExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CrashlyticsSwiftUIExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		C730A36726B1FDD200A29E81 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		C730A36A26B1FDD200A29E81 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		C730A36C26B1FDD200A29E81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C73C899726845907003E5C2C /* CrashlyticsSwiftUIExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrashlyticsSwiftUIExampleApp.swift; sourceTree = "<group>"; };
 		C73C899826845907003E5C2C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		C73C899926845908003E5C2C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -50,18 +40,13 @@
 		C73C89A526845908003E5C2C /* CrashlyticsSwiftUIExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CrashlyticsSwiftUIExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C73C89A726845908003E5C2C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C73C89A826845908003E5C2C /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
+		C74C554026B377EF0043B835 /* CrashlyticsSwiftUIExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CrashlyticsSwiftUIExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C74C554626B377F20043B835 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C74C554926B377F20043B835 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		C74C554B26B377F20043B835 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		C730A35E26B1FDCF00A29E81 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C730A37526B1FE5400A29E81 /* FirebaseCrashlytics in Frameworks */,
-				C730A37726B1FE5400A29E81 /* Reachability in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		C73C899B26845908003E5C2C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -78,6 +63,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C74C553D26B377EF0043B835 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -87,7 +79,7 @@
 				C73C899626845907003E5C2C /* Shared */,
 				C73C899F26845908003E5C2C /* iOS */,
 				C73C89A626845908003E5C2C /* macOS */,
-				C730A36226B1FDCF00A29E81 /* CrashlyticsSwiftUIExample */,
+				C74C554126B377EF0043B835 /* CrashlyticsSwiftUIExample */,
 				5F5A534D1ADE670C00F81DF0 /* Products */,
 				5F9961041AE0CF4F0034F503 /* Shared */,
 				09DB1C43785994E8D625721E /* GoogleService-Info.plist */,
@@ -101,7 +93,7 @@
 			children = (
 				C73C899E26845908003E5C2C /* CrashlyticsSwiftUIExample.app */,
 				C73C89A526845908003E5C2C /* CrashlyticsSwiftUIExample.app */,
-				C730A36126B1FDCF00A29E81 /* CrashlyticsSwiftUIExample.app */,
+				C74C554026B377EF0043B835 /* CrashlyticsSwiftUIExample.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -114,24 +106,6 @@
 			);
 			name = Shared;
 			path = ../shared;
-			sourceTree = "<group>";
-		};
-		C730A36226B1FDCF00A29E81 /* CrashlyticsSwiftUIExample */ = {
-			isa = PBXGroup;
-			children = (
-				C730A36726B1FDD200A29E81 /* Assets.xcassets */,
-				C730A36C26B1FDD200A29E81 /* Info.plist */,
-				C730A36926B1FDD200A29E81 /* Preview Content */,
-			);
-			path = CrashlyticsSwiftUIExample;
-			sourceTree = "<group>";
-		};
-		C730A36926B1FDD200A29E81 /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				C730A36A26B1FDD200A29E81 /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 		C730A37326B1FE5400A29E81 /* Frameworks */ = {
@@ -169,30 +143,27 @@
 			path = macOS;
 			sourceTree = "<group>";
 		};
+		C74C554126B377EF0043B835 /* CrashlyticsSwiftUIExample */ = {
+			isa = PBXGroup;
+			children = (
+				C74C554626B377F20043B835 /* Assets.xcassets */,
+				C74C554B26B377F20043B835 /* Info.plist */,
+				C74C554826B377F20043B835 /* Preview Content */,
+			);
+			path = CrashlyticsSwiftUIExample;
+			sourceTree = "<group>";
+		};
+		C74C554826B377F20043B835 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				C74C554926B377F20043B835 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		C730A36026B1FDCF00A29E81 /* CrashlyticsSwiftUIExample */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = C730A36F26B1FDD200A29E81 /* Build configuration list for PBXNativeTarget "CrashlyticsSwiftUIExample" */;
-			buildPhases = (
-				C730A35D26B1FDCF00A29E81 /* Sources */,
-				C730A35E26B1FDCF00A29E81 /* Frameworks */,
-				C730A35F26B1FDCF00A29E81 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = CrashlyticsSwiftUIExample;
-			packageProductDependencies = (
-				C730A37426B1FE5400A29E81 /* FirebaseCrashlytics */,
-				C730A37626B1FE5400A29E81 /* Reachability */,
-			);
-			productName = CrashlyticsSwiftUIExample;
-			productReference = C730A36126B1FDCF00A29E81 /* CrashlyticsSwiftUIExample.app */;
-			productType = "com.apple.product-type.application";
-		};
 		C73C899D26845908003E5C2C /* CrashlyticsSwiftUIExample (iOS) */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = C73C89B326845908003E5C2C /* Build configuration list for PBXNativeTarget "CrashlyticsSwiftUIExample (iOS)" */;
@@ -232,6 +203,23 @@
 			productReference = C73C89A526845908003E5C2C /* CrashlyticsSwiftUIExample.app */;
 			productType = "com.apple.product-type.application";
 		};
+		C74C553F26B377EF0043B835 /* CrashlyticsSwiftUIExample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C74C554C26B377F20043B835 /* Build configuration list for PBXNativeTarget "CrashlyticsSwiftUIExample" */;
+			buildPhases = (
+				C74C553C26B377EF0043B835 /* Sources */,
+				C74C553D26B377EF0043B835 /* Frameworks */,
+				C74C553E26B377EF0043B835 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CrashlyticsSwiftUIExample;
+			productName = CrashlyticsSwiftUIExample;
+			productReference = C74C554026B377EF0043B835 /* CrashlyticsSwiftUIExample.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -242,9 +230,6 @@
 				LastUpgradeCheck = 1110;
 				ORGANIZATIONNAME = "Google Inc.";
 				TargetAttributes = {
-					C730A36026B1FDCF00A29E81 = {
-						CreatedOnToolsVersion = 12.5;
-					};
 					C73C899D26845908003E5C2C = {
 						CreatedOnToolsVersion = 12.5;
 						ProvisioningStyle = Automatic;
@@ -252,6 +237,9 @@
 					C73C89A426845908003E5C2C = {
 						CreatedOnToolsVersion = 12.5;
 						ProvisioningStyle = Automatic;
+					};
+					C74C553F26B377EF0043B835 = {
+						CreatedOnToolsVersion = 12.5;
 					};
 				};
 			};
@@ -275,22 +263,12 @@
 			targets = (
 				C73C899D26845908003E5C2C /* CrashlyticsSwiftUIExample (iOS) */,
 				C73C89A426845908003E5C2C /* CrashlyticsSwiftUIExample (macOS) */,
-				C730A36026B1FDCF00A29E81 /* CrashlyticsSwiftUIExample */,
+				C74C553F26B377EF0043B835 /* CrashlyticsSwiftUIExample */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		C730A35F26B1FDCF00A29E81 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C730A36B26B1FDD200A29E81 /* Preview Assets.xcassets in Resources */,
-				C730A36826B1FDD200A29E81 /* Assets.xcassets in Resources */,
-				C730A37826B1FE6400A29E81 /* GoogleService-Info.plist in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		C73C899C26845908003E5C2C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -308,6 +286,15 @@
 				C73C89AE26845908003E5C2C /* Assets.xcassets in Resources */,
 				8D07E3D0268BF6DF0002C432 /* LaunchScreen.xib in Resources */,
 				8D07E3CC268BF6DB0002C432 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C74C553E26B377EF0043B835 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C74C554A26B377F20043B835 /* Preview Assets.xcassets in Resources */,
+				C74C554726B377F20043B835 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -337,16 +324,6 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		C730A35D26B1FDCF00A29E81 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C730A37126B1FDF600A29E81 /* ContentView.swift in Sources */,
-				C730A37226B1FDF600A29E81 /* CrashlyticsSwiftUIExampleApp.swift in Sources */,
-				C730A37026B1FDF600A29E81 /* ReachabililtyHelper.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		C73C899A26845908003E5C2C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -366,6 +343,13 @@
 				C73C89AC26845908003E5C2C /* ContentView.swift in Sources */,
 				C73C89AA26845908003E5C2C /* CrashlyticsSwiftUIExampleApp.swift in Sources */,
 				1C9177A529BF382E0B10F21A /* GoogleService-Info.plist in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C74C553C26B377EF0043B835 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -476,74 +460,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		C730A36D26B1FDD200A29E81 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_STYLE = Automatic;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_ASSET_PATHS = "\"CrashlyticsSwiftUIExample/Preview Content\"";
-				ENABLE_PREVIEWS = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = CrashlyticsSwiftUIExample/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "Google-LLC.CrashlyticsSwiftUIExample";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = appletvos;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 14.5;
-			};
-			name = Debug;
-		};
-		C730A36E26B1FDD200A29E81 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_STYLE = Automatic;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_ASSET_PATHS = "\"CrashlyticsSwiftUIExample/Preview Content\"";
-				ENABLE_PREVIEWS = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = CrashlyticsSwiftUIExample/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "Google-LLC.CrashlyticsSwiftUIExample";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = appletvos;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 14.5;
 			};
 			name = Release;
 		};
@@ -682,6 +598,74 @@
 			};
 			name = Release;
 		};
+		C74C554D26B377F20043B835 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_ASSET_PATHS = "\"CrashlyticsSwiftUIExample/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = CrashlyticsSwiftUIExample/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "Google-LLC.CrashlyticsSwiftUIExample";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 14.5;
+			};
+			name = Debug;
+		};
+		C74C554E26B377F20043B835 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_ASSET_PATHS = "\"CrashlyticsSwiftUIExample/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = CrashlyticsSwiftUIExample/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "Google-LLC.CrashlyticsSwiftUIExample";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 14.5;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -690,15 +674,6 @@
 			buildConfigurations = (
 				5F5A536D1ADE670C00F81DF0 /* Debug */,
 				5F5A536E1ADE670C00F81DF0 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		C730A36F26B1FDD200A29E81 /* Build configuration list for PBXNativeTarget "CrashlyticsSwiftUIExample" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				C730A36D26B1FDD200A29E81 /* Debug */,
-				C730A36E26B1FDD200A29E81 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -717,6 +692,15 @@
 			buildConfigurations = (
 				C73C89B126845908003E5C2C /* Debug */,
 				C73C89B226845908003E5C2C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C74C554C26B377F20043B835 /* Build configuration list for PBXNativeTarget "CrashlyticsSwiftUIExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C74C554D26B377F20043B835 /* Debug */,
+				C74C554E26B377F20043B835 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -744,16 +728,6 @@
 
 /* Begin XCSwiftPackageProductDependency section */
 		8D96F5DD2685440700F1A2B7 /* Reachability */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8D96F5DC2685440700F1A2B7 /* XCRemoteSwiftPackageReference "Reachability.swift" */;
-			productName = Reachability;
-		};
-		C730A37426B1FE5400A29E81 /* FirebaseCrashlytics */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C732A28E2684656200AA7DEF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseCrashlytics;
-		};
-		C730A37626B1FE5400A29E81 /* Reachability */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 8D96F5DC2685440700F1A2B7 /* XCRemoteSwiftPackageReference "Reachability.swift" */;
 			productName = Reachability;

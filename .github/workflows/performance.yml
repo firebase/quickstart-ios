@@ -53,6 +53,8 @@ jobs:
         run: |
           set -io pipefail
           EXIT_STATUS=0
+          cd SwiftUIPerformanceQuickstart/PerformanceExample
+          bundle exec pod install --repo-update
           (xcodebuild \
             -workspace "$workspace_path" \
             -scheme "${SAMPLE}Example${SWIFT_SUFFIX}" \
@@ -65,4 +67,4 @@ jobs:
         env:
           SWIFT_SUFFIX: ' (iOS)'
           SAMPLE: Performance
-          workspace_path: SwiftUIPerformanceQuickstart/PerformanceExample/PerformanceExample.xcworkspace
+          workspace_path: PerformanceExample.xcworkspace

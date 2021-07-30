@@ -6,7 +6,18 @@ target 'PerformanceExample (iOS)' do
   use_frameworks!
 
   # Pods for PerformanceExample (iOS)
-  pod 'Firebase/Performance'
+  pod 'Firebase'
+  pod 'FirebasePerformance'
+
+end
+
+target 'Tests_iOS' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for PerformanceExample (iOS)
+  pod 'Firebase'
+  pod 'FirebasePerformance'
 
 end
 

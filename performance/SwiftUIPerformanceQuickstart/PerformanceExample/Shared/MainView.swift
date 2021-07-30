@@ -46,7 +46,6 @@ struct ImageView: View {
         if process.action != .download { Text("No image found!") }
       }
     }
-    .navigationTitle("Performance")
     .toolbar {
       ToolbarItem(placement: .principal) { process.status.view }
     }

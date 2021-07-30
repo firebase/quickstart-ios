@@ -26,11 +26,11 @@ class Process: ObservableObject {
   let precision: Float = 0.7
   let trace = Performance.sharedInstance().trace(name: "Classification")
   let site = "https://firebase.google.com/downloads/brand-guidelines/PNG/logo-logomark.png"
-#if os(tvOS)
-  let platform = "tvOS"
-#elseif os(iOS)
-  let platform = "iOS"
-#endif
+  #if os(tvOS)
+    let platform = "tvOS"
+  #elseif os(iOS)
+    let platform = "iOS"
+  #endif
 
   init() {
     trace?.setValue("\(precision)", forAttribute: "precision")

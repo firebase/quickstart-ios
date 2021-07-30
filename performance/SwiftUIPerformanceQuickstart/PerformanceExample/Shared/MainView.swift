@@ -20,33 +20,35 @@ struct ImageView: View {
   @ObservedObject var process: Process
 
   var body: some View {
-    NavigationView {
-      VStack {
-        if let uiImage = process.image {
-          Image(uiImage: uiImage).padding(.bottom)
-          if process.action == .classify {
-            if process.categories.isEmpty {
-              Button("Classify Image") {
-                if #available(iOS 15, tvOS 15, *) {
-                  #if swift(>=5.5)
-                    Task { await process.classifyImageAsync() }
-                  #endif
-                } else {
-                  process.classifyImage()
-                }
-              }
-            } else {
-              Text("Categories found:")
-              List(process.categories, id: \.category) { category, confidence in
-                Text("\(category): \(confidence)")
+    VStack {
+      if let uiImage = process.image {
+        Image(uiImage: uiImage).padding(.bottom)
+        if process.action == .classify {
+          if process.categories.isEmpty {
+            Button("Classify Image") {
+              if #available(iOS 15, tvOS 15, *) {
+                #if swift(>=5.5)
+                  Task { await process.classifyImageAsync() }
+                #endif
+              } else {
+                process.classifyImage()
               }
             }
+          } else {
+            Text("Categories found:")
+            List(process.categories, id: \.category) { category, confidence in
+              Text("\(category): \(confidence)")
+            }
           }
-        } else {
-          Image(systemName: "questionmark.square").padding(.bottom)
-          if process.action != .download { Text("No image found!") }
         }
+      } else {
+        Image(systemName: "questionmark.square").padding(.bottom)
+        if process.action != .download { Text("No image found!") }
       }
+    }
+    .navigationTitle("Performance")
+    .toolbar {
+      ToolbarItem(placement: .principal) { process.status.view }
     }
   }
 }

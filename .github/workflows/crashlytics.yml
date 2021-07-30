@@ -51,7 +51,7 @@ jobs:
           SWIFT_SUFFIX: 'Swift'
           SAMPLE: Crashlytics
           LEGACY: true
-      - name: Build SwiftUI
+      - name: Build SwiftUI (iOS)
         run: |
           cd crashlytics
           ../scripts/install_prereqs/crashlytics.sh
@@ -62,4 +62,15 @@ jobs:
           -destination 'platform=iOS Simulator,name=iPhone 11' \
           build
         env: 
+          SAMPLE: Crashlytics
+      - name: Build SwiftUI (tvOS)
+        run: |
+          cd crashlytics
+          ../scripts/install_prereqs/crashlytics.sh
+          xcodebuild \
+          -project CrashlyticsExample.xcodeproj \
+          -scheme 'CrashlyticsSwiftUIExample' \
+          -sdk appletvsimulator \
+          build
+        env:
           SAMPLE: Crashlytics

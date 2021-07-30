@@ -61,7 +61,7 @@ jobs:
             build \
             test \
             | xcpretty) || EXIT_STATUS=$?
-          exit EXIT_STATUS
+          exit $EXIT_STATUS
         env:
           SWIFT_SUFFIX: ' (iOS)'
           SAMPLE: Performance

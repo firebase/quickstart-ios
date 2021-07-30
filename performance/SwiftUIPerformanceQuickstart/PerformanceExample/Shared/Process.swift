@@ -15,6 +15,7 @@
 //
 
 import SwiftUI
+import FirebasePerformance
 import Vision
 
 class Process: ObservableObject {
@@ -22,6 +23,19 @@ class Process: ObservableObject {
   @Published var action: ProcessAction?
   @Published var image: UIImage?
   var categories: [(category: String, confidence: VNConfidence)] = []
+  let precision: Float = 0.7
+  let trace = Performance.sharedInstance().trace(name: "Classification")
+  let site = "https://firebase.google.com/downloads/brand-guidelines/PNG/logo-logomark.png"
+#if os(tvOS)
+  let platform = "tvOS"
+#elseif os(iOS)
+  let platform = "iOS"
+#endif
+
+  init() {
+    trace?.setValue("\(precision)", forAttribute: "precision")
+    trace?.setValue(platform, forAttribute: "platform")
+  }
 
   #if swift(>=5.5)
     @MainActor @available(iOS 15, tvOS 15,*) func updateStatusAsync(to newStatus: ProcessStatus) {
@@ -39,9 +53,7 @@ class Process: ObservableObject {
     @available(iOS 15, tvOS 15, *) func downloadImageAsync() async {
       await updateStatusAsync(to: .running)
 
-      guard let url =
-        URL(string: "https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d9" +
-          "7cb2bf43f3647f489796c80c33899ecd29b91ae5303388/firebase/images/lockup.png")
+      guard let url = URL(string: site)
       else {
         await updateStatusAsync(to: .failure)
         print("Failure obtaining URL.")
@@ -84,7 +96,9 @@ class Process: ObservableObject {
       let handler = VNImageRequestHandler(ciImage: ciImage, options: [:])
       let request = VNClassifyImageRequest()
       await updateStatusAsync(to: .running)
+      trace?.start()
       try? handler.perform([request])
+      trace?.stop()
 
       guard let observations = request.results else {
         print("Failed to obtain classification results.")
@@ -93,7 +107,7 @@ class Process: ObservableObject {
       }
 
       categories = observations
-        .filter { $0.hasMinimumRecall(0.01, forPrecision: 0.9) }
+        .filter { $0.hasMinimumRecall(0.01, forPrecision: precision) }
         .map { ($0.identifier, $0.confidence) }
 
       await updateStatusAsync(to: .success)
@@ -116,9 +130,7 @@ class Process: ObservableObject {
 
   func downloadImage() {
     updateStatus(to: .running)
-    guard let url =
-      URL(string: "https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d9" +
-        "7cb2bf43f3647f489796c80c33899ecd29b91ae5303388/firebase/images/lockup.png")
+    guard let url = URL(string: site)
     else {
       updateStatus(to: .failure)
       print("Failure obtaining URL.")
@@ -158,7 +170,9 @@ class Process: ObservableObject {
     let handler = VNImageRequestHandler(ciImage: ciImage, options: [:])
     let request = VNClassifyImageRequest()
     updateStatus(to: .running)
+    trace?.start()
     try? handler.perform([request])
+    trace?.stop()
 
     guard let observations = request.results else {
       print("Failed to obtain classification results.")
@@ -167,7 +181,7 @@ class Process: ObservableObject {
     }
 
     categories = observations
-      .filter { $0.hasMinimumRecall(0.01, forPrecision: 0.9) }
+      .filter { $0.hasMinimumRecall(0.01, forPrecision: precision) }
       .map { ($0.identifier, $0.confidence) }
 
     updateStatus(to: .success)

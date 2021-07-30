@@ -55,7 +55,7 @@ jobs:
           EXIT_STATUS=0
           (xcodebuild \
             -workspace "$workspace_path" \
-            -scheme ${SAMPLE}Example${SWIFT_SUFFIX} \
+            -scheme "${SAMPLE}Example${SWIFT_SUFFIX}" \
             -sdk iphonesimulator \
             -destination 'platform=iOS Simulator,name=iPhone 11' \
             build \

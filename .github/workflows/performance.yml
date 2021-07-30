@@ -49,3 +49,20 @@ jobs:
         env:
           SWIFT_SUFFIX: 'Swift'
           SAMPLE: Performance
+      - name: Build SwiftUI
+        run: |
+          set -io pipefail
+          EXIT_STATUS=0
+          (xcodebuild \
+            -workspace "$workspace_path" \
+            -scheme ${SAMPLE}Example${SWIFT_SUFFIX} \
+            -sdk iphonesimulator \
+            -destination 'platform=iOS Simulator,name=iPhone 11' \
+            build \
+            test \
+            | xcpretty) || EXIT_STATUS=$?
+          exit EXIT_STATUS
+        env:
+          SWIFT_SUFFIX: ' (iOS)'
+          SAMPLE: Performance
+          workspace_path: SwiftUIPerformanceQuickstart/PerformanceExample/PerformanceExample.xcworkspace

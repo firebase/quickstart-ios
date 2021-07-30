@@ -53,7 +53,7 @@ jobs:
         run: |
           set -io pipefail
           EXIT_STATUS=0
-          cd SwiftUIPerformanceQuickstart/PerformanceExample
+          cd performance/SwiftUIPerformanceQuickstart/PerformanceExample
           bundle exec pod install --repo-update
           (xcodebuild \
             -workspace "$workspace_path" \

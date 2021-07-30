@@ -21,17 +21,27 @@ struct ImageView: View {
 
   var body: some View {
     VStack {
-      if let image = process.image {
-        image.padding(.bottom)
+      if let uiImage = process.image {
+        Image(uiImage: uiImage).padding(.bottom)
+        if process.action == .classify {
+          if process.categories.isEmpty {
+            Button("Classify Image") {
+              if #available(iOS 15, tvOS 15, *) {
+                Task { await process.classifyImageAsync() }
+              } else {
+                process.classifyImage()
+              }
+            }
+          } else {
+            Text("Categories found:")
+            List(process.categories, id: \.category) { category, confidence in
+              Text("\(category): \(confidence)")
+            }
+          }
+        }
       } else {
         Image(systemName: "questionmark.square").padding(.bottom)
-      }
-      Button("Modify Image") {
-        if #available(iOS 15, tvOS 15, *) {
-          async { await process.modifyImageAsync() }
-        } else {
-          process.modifyImage()
-        }
+        if process.action != .download { Text("No image found!") }
       }
     }
   }
@@ -46,7 +56,12 @@ struct MainView: View {
         NavigationLink(
           "\(action.rawValue) Image",
           destination: ImageView(process: process).onAppear {
-            if process.status == .idle {
+            if #available(iOS 15, tvOS 15, *) {
+              process.updateActionAsync(to: action)
+            } else {
+              process.updateAction(to: action)
+            }
+            if action == .download, process.status == .idle {
               if #available(iOS 15, tvOS 15, *) {
                 Task { await process.downloadImageAsync() }
               } else {

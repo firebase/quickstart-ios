@@ -15,21 +15,25 @@
 //
 
 import SwiftUI
+import Vision
 
 class Process: ObservableObject {
   @Published var status: ProcessStatus = .idle
   @Published var action: ProcessAction?
-  @Published var image: Image?
+  @Published var image: UIImage?
+  var categories: [(category: String, confidence: VNConfidence)] = []
 
   #if swift(>=5.5)
-    @MainActor @available(
-      iOS 15,
-      tvOS 15,
-      *
-    ) func updateStatusAsync(to newStatus: ProcessStatus) { status = newStatus }
+    @MainActor @available(iOS 15, tvOS 15,*) func updateStatusAsync(to newStatus: ProcessStatus) {
+      status = newStatus
+    }
 
-    @MainActor @available(iOS 15, tvOS 15, *) func updateImageAsync(to newImage: Image?) {
+    @MainActor @available(iOS 15, tvOS 15, *) func updateImageAsync(to newImage: UIImage?) {
       image = newImage
+    }
+
+    @MainActor @available(iOS 15, tvOS 15, *) func updateActionAsync(to newAction: ProcessAction?) {
+      action = newAction
     }
 
     @available(iOS 15, tvOS 15, *) func downloadImageAsync() async {
@@ -62,7 +66,7 @@ class Process: ObservableObject {
         }
 
         await updateStatusAsync(to: .success)
-        await updateImageAsync(to: Image(uiImage: image))
+        await updateImageAsync(to: image)
 
       } catch {
         print("Error downloading image: \(error).")
@@ -70,14 +74,29 @@ class Process: ObservableObject {
       }
     }
 
-    @available(iOS 15, tvOS 15, *) func modifyImageAsync() async {
-      switch status {
-      case .idle, .running:
+    @available(iOS 15, tvOS 15, *) func classifyImageAsync() async {
+      guard let uiImage = image, let ciImage = CIImage(image: uiImage) else {
+        print("Could not convert image into correct format.")
+        await updateStatusAsync(to: .failure)
         return
-      case .failure, .success:
-        await updateStatusAsync(to: .idle)
-        await updateImageAsync(to: nil)
       }
+
+      let handler = VNImageRequestHandler(ciImage: ciImage, options: [:])
+      let request = VNClassifyImageRequest()
+      await updateStatusAsync(to: .running)
+      try? handler.perform([request])
+
+      guard let observations = request.results else {
+        print("Failed to obtain classification results.")
+        await updateStatusAsync(to: .failure)
+        return
+      }
+
+      categories = observations
+        .filter { $0.hasMinimumRecall(0.01, forPrecision: 0.9) }
+        .map { ($0.identifier, $0.confidence) }
+
+      await updateStatusAsync(to: .success)
     }
 
     @available(iOS 15, tvOS 15, *) func uploadImageAsync() async {}
@@ -87,8 +106,12 @@ class Process: ObservableObject {
     DispatchQueue.main.async { self.status = newStatus }
   }
 
-  func updateImage(to newImage: Image?) {
+  func updateImage(to newImage: UIImage?) {
     DispatchQueue.main.async { self.image = newImage }
+  }
+
+  func updateAction(to newAction: ProcessAction?) {
+    DispatchQueue.main.async { self.action = newAction }
   }
 
   func downloadImage() {
@@ -120,19 +143,34 @@ class Process: ObservableObject {
         return
       }
       self?.updateStatus(to: .success)
-      self?.updateImage(to: Image(uiImage: image))
+      self?.updateImage(to: image)
     }
     download.resume()
   }
 
-  func modifyImage() {
-    switch status {
-    case .idle, .running:
+  func classifyImage() {
+    guard let uiImage = image, let ciImage = CIImage(image: uiImage) else {
+      print("Could not convert image into correct format.")
+      updateStatus(to: .failure)
       return
-    case .failure, .success:
-      updateStatus(to: .idle)
-      updateImage(to: nil)
     }
+
+    let handler = VNImageRequestHandler(ciImage: ciImage, options: [:])
+    let request = VNClassifyImageRequest()
+    updateStatus(to: .running)
+    try? handler.perform([request])
+
+    guard let observations = request.results else {
+      print("Failed to obtain classification results.")
+      updateStatus(to: .failure)
+      return
+    }
+
+    categories = observations
+      .filter { $0.hasMinimumRecall(0.01, forPrecision: 0.9) }
+      .map { ($0.identifier, $0.confidence) }
+
+    updateStatus(to: .success)
   }
 
   func uploadImage() {}
@@ -160,6 +198,6 @@ enum ProcessStatus {
 
 enum ProcessAction: String, CaseIterable {
   case download = "Download"
-  case modify = "Modify"
+  case classify = "Classify"
   case upload = "Upload"
 }

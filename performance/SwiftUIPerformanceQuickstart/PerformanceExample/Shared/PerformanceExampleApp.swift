@@ -19,9 +19,7 @@ import Firebase
 
 @main
 struct PerformanceExampleApp: App {
-  init() {
-    FirebaseApp.configure()
-  }
+  init() { FirebaseApp.configure() }
 
   var body: some Scene {
     WindowGroup {

@@ -100,7 +100,7 @@ class Process: ObservableObject {
       try? handler.perform([request])
       trace?.stop()
 
-      guard let observations = request.results else {
+      guard let observations = request.results as? [VNClassificationObservation] else {
         print("Failed to obtain classification results.")
         await updateStatusAsync(to: .failure)
         return
@@ -174,7 +174,7 @@ class Process: ObservableObject {
     try? handler.perform([request])
     trace?.stop()
 
-    guard let observations = request.results else {
+    guard let observations = request.results as? [VNClassificationObservation] else {
       print("Failed to obtain classification results.")
       updateStatus(to: .failure)
       return

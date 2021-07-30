@@ -39,30 +39,30 @@ jobs:
           SAMPLE: Crashlytics
           secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}
           LEGACY: true
-#       - name: Build ObjC
-#         run:  ./scripts/test.sh
-#         env:
-#           SWIFT_SUFFIX: ''
-#           SAMPLE: Crashlytics
-#           LEGACY: true
-#       - name: Build Swift
-#         run:  ./scripts/test.sh
-#         env:
-#           SWIFT_SUFFIX: 'Swift'
-#           SAMPLE: Crashlytics
-#           LEGACY: true
-#       - name: Build SwiftUI (iOS)
-#         run: |
-#           cd crashlytics
-#           ../scripts/install_prereqs/crashlytics.sh
-#           xcodebuild \
-#           -project CrashlyticsExample.xcodeproj \
-#           -scheme 'CrashlyticsSwiftUIExample (iOS)' \
-#           -sdk iphonesimulator \
-#           -destination 'platform=iOS Simulator,name=iPhone 11' \
-#           build
-#         env: 
-#           SAMPLE: Crashlytics
+      - name: Build ObjC
+        run:  ./scripts/test.sh
+        env:
+          SWIFT_SUFFIX: ''
+          SAMPLE: Crashlytics
+          LEGACY: true
+      - name: Build Swift
+        run:  ./scripts/test.sh
+        env:
+          SWIFT_SUFFIX: 'Swift'
+          SAMPLE: Crashlytics
+          LEGACY: true
+      - name: Build SwiftUI (iOS)
+        run: |
+          cd crashlytics
+          ../scripts/install_prereqs/crashlytics.sh
+          xcodebuild \
+          -project CrashlyticsExample.xcodeproj \
+          -scheme 'CrashlyticsSwiftUIExample (iOS)' \
+          -sdk iphonesimulator \
+          -destination 'platform=iOS Simulator,name=iPhone 11' \
+          build
+        env: 
+          SAMPLE: Crashlytics
       - name: Build SwiftUI (tvOS)
         run: |
           cd crashlytics

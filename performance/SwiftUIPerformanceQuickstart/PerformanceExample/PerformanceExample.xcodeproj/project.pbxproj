@@ -7,19 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		24915A6559ED885AD8F77783 /* Pods_PerformanceExample__macOS_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D55A1E10B000A694483FD5F /* Pods_PerformanceExample__macOS_.framework */; };
 		4102056426A631F5004B24B3 /* PerformanceExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4102055626A631F4004B24B3 /* PerformanceExampleApp.swift */; };
-		4102056526A631F5004B24B3 /* PerformanceExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4102055626A631F4004B24B3 /* PerformanceExampleApp.swift */; };
 		4102056626A631F5004B24B3 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4102055726A631F4004B24B3 /* MainView.swift */; };
-		4102056726A631F5004B24B3 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4102055726A631F4004B24B3 /* MainView.swift */; };
 		4102056826A631F5004B24B3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4102055826A631F5004B24B3 /* Assets.xcassets */; };
-		4102056926A631F5004B24B3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4102055826A631F5004B24B3 /* Assets.xcassets */; };
 		4102057926A63210004B24B3 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4102057826A63210004B24B3 /* Tests_iOS.swift */; };
 		41BFA1EA26B1D36C0013EB90 /* PerformanceExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4102055626A631F4004B24B3 /* PerformanceExampleApp.swift */; };
 		41BFA1EB26B1D3700013EB90 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4102055726A631F4004B24B3 /* MainView.swift */; };
 		41BFA1EC26B1D3730013EB90 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4102055826A631F5004B24B3 /* Assets.xcassets */; };
 		41BFA1F026B1D8B80013EB90 /* Process.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41BFA1EF26B1D8B80013EB90 /* Process.swift */; };
-		41BFA1F126B1D8B80013EB90 /* Process.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41BFA1EF26B1D8B80013EB90 /* Process.swift */; };
 		41BFA1F326B1D8B80013EB90 /* Process.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41BFA1EF26B1D8B80013EB90 /* Process.swift */; };
 		5A81EBDA3528749141B3873C /* Pods_PerformanceExample__iOS_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4171CE0A02526CAA1C76922 /* Pods_PerformanceExample__iOS_.framework */; };
 		62EF508442D77FC8E18D3D05 /* Pods_PerformanceExample__tvOS_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5881298C295F336EB049ADBE /* Pods_PerformanceExample__tvOS_.framework */; };
@@ -44,7 +39,6 @@
 		4102055726A631F4004B24B3 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		4102055826A631F5004B24B3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4102055D26A631F5004B24B3 /* PerformanceExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PerformanceExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		4102056326A631F5004B24B3 /* PerformanceExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PerformanceExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4102057626A63210004B24B3 /* Tests_iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests_iOS.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4102057826A63210004B24B3 /* Tests_iOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_iOS.swift; sourceTree = "<group>"; };
 		410FF76926B1CEB500CA084F /* PerformanceExample (tvOS).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PerformanceExample (tvOS).app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -67,14 +61,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5A81EBDA3528749141B3873C /* Pods_PerformanceExample__iOS_.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		4102056026A631F5004B24B3 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				24915A6559ED885AD8F77783 /* Pods_PerformanceExample__macOS_.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -124,7 +110,6 @@
 			isa = PBXGroup;
 			children = (
 				4102055D26A631F5004B24B3 /* PerformanceExample.app */,
-				4102056326A631F5004B24B3 /* PerformanceExample.app */,
 				4102057626A63210004B24B3 /* Tests_iOS.xctest */,
 				410FF76926B1CEB500CA084F /* PerformanceExample (tvOS).app */,
 			);
@@ -187,24 +172,6 @@
 			productReference = 4102055D26A631F5004B24B3 /* PerformanceExample.app */;
 			productType = "com.apple.product-type.application";
 		};
-		4102056226A631F5004B24B3 /* PerformanceExample (macOS) */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 4102056F26A631F5004B24B3 /* Build configuration list for PBXNativeTarget "PerformanceExample (macOS)" */;
-			buildPhases = (
-				2407E5EB27B2AC4F67C25C48 /* [CP] Check Pods Manifest.lock */,
-				4102055F26A631F5004B24B3 /* Sources */,
-				4102056026A631F5004B24B3 /* Frameworks */,
-				4102056126A631F5004B24B3 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "PerformanceExample (macOS)";
-			productName = "PerformanceExample (macOS)";
-			productReference = 4102056326A631F5004B24B3 /* PerformanceExample.app */;
-			productType = "com.apple.product-type.application";
-		};
 		4102057526A63210004B24B3 /* Tests_iOS */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4102057C26A63210004B24B3 /* Build configuration list for PBXNativeTarget "Tests_iOS" */;
@@ -257,9 +224,6 @@
 					4102055C26A631F5004B24B3 = {
 						CreatedOnToolsVersion = 13.0;
 					};
-					4102056226A631F5004B24B3 = {
-						CreatedOnToolsVersion = 13.0;
-					};
 					4102057526A63210004B24B3 = {
 						CreatedOnToolsVersion = 13.0;
 						TestTargetID = 4102055C26A631F5004B24B3;
@@ -283,7 +247,6 @@
 			projectRoot = "";
 			targets = (
 				4102055C26A631F5004B24B3 /* PerformanceExample (iOS) */,
-				4102056226A631F5004B24B3 /* PerformanceExample (macOS) */,
 				4102057526A63210004B24B3 /* Tests_iOS */,
 				410FF76826B1CEB500CA084F /* PerformanceExample (tvOS) */,
 			);
@@ -296,14 +259,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				4102056826A631F5004B24B3 /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		4102056126A631F5004B24B3 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				4102056926A631F5004B24B3 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -325,28 +280,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		2407E5EB27B2AC4F67C25C48 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-PerformanceExample (macOS)-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 		44925F3DDDCEC941F4541976 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -474,16 +407,6 @@
 				4102056626A631F5004B24B3 /* MainView.swift in Sources */,
 				4102056426A631F5004B24B3 /* PerformanceExampleApp.swift in Sources */,
 				41BFA1F026B1D8B80013EB90 /* Process.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		4102055F26A631F5004B24B3 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				4102056726A631F5004B24B3 /* MainView.swift in Sources */,
-				4102056526A631F5004B24B3 /* PerformanceExampleApp.swift in Sources */,
-				41BFA1F126B1D8B80013EB90 /* Process.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -688,62 +611,6 @@
 			};
 			name = Release;
 		};
-		4102057026A631F5004B24B3 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4C03CFAA8345A64A059D79D5 /* Pods-PerformanceExample (macOS).debug.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				ENABLE_APP_SANDBOX = YES;
-				ENABLE_PREVIEWS = YES;
-				ENABLE_USER_SELECTED_FILES = readonly;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.firebase.PerformanceExample;
-				PRODUCT_NAME = PerformanceExample;
-				SDKROOT = macosx;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-			};
-			name = Debug;
-		};
-		4102057126A631F5004B24B3 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 233B733A2305DECD74470597 /* Pods-PerformanceExample (macOS).release.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				ENABLE_APP_SANDBOX = YES;
-				ENABLE_PREVIEWS = YES;
-				ENABLE_USER_SELECTED_FILES = readonly;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.firebase.PerformanceExample;
-				PRODUCT_NAME = PerformanceExample;
-				SDKROOT = macosx;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-			};
-			name = Release;
-		};
 		4102057D26A63210004B24B3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 736A3DDFEAAD94BC4B41394D /* Pods-Tests_iOS.debug.xcconfig */;
@@ -822,7 +689,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 15.0;
+				TVOS_DEPLOYMENT_TARGET = 14.0;
 			};
 			name = Debug;
 		};
@@ -855,7 +722,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 15.0;
+				TVOS_DEPLOYMENT_TARGET = 14.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -877,15 +744,6 @@
 			buildConfigurations = (
 				4102056D26A631F5004B24B3 /* Debug */,
 				4102056E26A631F5004B24B3 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		4102056F26A631F5004B24B3 /* Build configuration list for PBXNativeTarget "PerformanceExample (macOS)" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				4102057026A631F5004B24B3 /* Debug */,
-				4102057126A631F5004B24B3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

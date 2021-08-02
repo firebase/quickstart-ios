@@ -26,16 +26,17 @@ class PostViewModel: ObservableObject, Identifiable {
   @Published var starCount: Int
   @Published var userIDsStarredBy: [String: Bool]
   @Published var comments: [Comment] = []
-  var postRef: DatabaseReference!
-  var commentRef: DatabaseReference!
+
+  // setup instance of FIRDatabaseReference for reading and writing data
+  private var ref = Database.root
+  private var refHandle: DatabaseHandle?
+
   var isStarred: Bool {
-    if let uid = Auth.auth().currentUser?.uid {
+    if let uid = getCurrentUserID() {
       return userIDsStarredBy[uid] ?? false
     }
     return false
   }
-
-  private var refHandle: DatabaseHandle?
 
   init(id: String, uid: String, author: String, title: String, body: String) {
     self.id = id
@@ -64,20 +65,26 @@ class PostViewModel: ObservableObject, Identifiable {
     self.userIDsStarredBy = userIDsStarredBy
   }
 
+  func getCurrentUserID() -> String? {
+    return Auth.auth().currentUser?.uid
+  }
+
   func didTapSendButton(commentField: String) {
-    if let userID = Auth.auth().currentUser?.uid,
+    if let userID = getCurrentUserID(),
       let userEmail = Auth.auth().currentUser?.email {
-      commentRef = Database.database().reference().child("post-comments").child(id)
+      let commentRef = ref.child("post-comments").child(id)
       guard let key = commentRef.childByAutoId().key else { return }
       let comment = ["uid": userID,
                      "author": userEmail,
                      "text": commentField]
       commentRef.child(key).setValue(comment)
+    } else {
+      print("Error sending comments.")
     }
   }
 
   func fetchComments() {
-    commentRef = Database.database().reference().child("post-comments").child(id)
+    let commentRef = ref.child("post-comments").child(id)
     refHandle = commentRef.observe(DataEventType.value, with: { snapshot in
       guard let comments = snapshot.value as? [String: [String: Any]] else { return }
       let sortedComments = comments.sorted(by: { $0.key > $1.key })
@@ -87,30 +94,30 @@ class PostViewModel: ObservableObject, Identifiable {
 
   func didTapStarButton() {
     // updating firebase values
-    postRef = Database.database().reference().child("posts").child(id)
-    incrementStars(forRef: postRef)
-    postRef.observeSingleEvent(of: .value, with: { snapshot in
+    let postListRef = ref.child("posts").child(id)
+    incrementStars(for: postListRef)
+    postListRef.observeSingleEvent(of: .value, with: { snapshot in
       guard let value = snapshot.value as? [String: Any] else { return }
       if let uid = value["uid"] as? String {
         let userPostRef = Database.database().reference()
           .child("user-posts")
           .child(uid)
           .child(self.id)
-        self.incrementStars(forRef: userPostRef)
+        self.incrementStars(for: userPostRef)
       }
     })
   }
 
   func updateStars() {
-    postRef = Database.database().reference().child("posts").child(id)
-    refHandle = postRef.observe(DataEventType.value, with: { snapshot in
+    let postListRef = ref.child("posts").child(id)
+    refHandle = postListRef.observe(DataEventType.value, with: { snapshot in
       guard let post = snapshot.value as? [String: AnyObject] else { return }
       self.starCount = post["starCount"] as? Int ?? 0
       self.userIDsStarredBy = post["userIDsStarredBy"] as? [String: Bool] ?? [:]
     })
   }
 
-  func incrementStars(forRef ref: DatabaseReference) {
+  func incrementStars(for ref: DatabaseReference) {
     ref.runTransactionBlock({ (currentData: MutableData) -> TransactionResult in
       if var post = currentData.value as? [String: AnyObject],
         let uid = Auth.auth().currentUser?.uid {
@@ -141,9 +148,10 @@ class PostViewModel: ObservableObject, Identifiable {
     }
   }
 
+  // remove handlers when current view disappears
   func onViewDisappear() {
     if let refHandle = refHandle {
-      postRef.removeObserver(withHandle: refHandle)
+      ref.removeAllObservers()
     }
   }
 }

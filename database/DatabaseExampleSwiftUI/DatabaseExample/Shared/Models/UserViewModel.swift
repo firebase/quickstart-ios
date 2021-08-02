@@ -22,14 +22,13 @@ class UserViewModel: ObservableObject {
 
   @Published var email = ""
   @Published var password = ""
-  @Published var alertMessage = ""
   @Published var isLoading = false
   @Published var alert = false
+  @Published var alertMessage = ""
   @Published var posts: [PostViewModel] = []
-  private lazy var ref: DatabaseReference = {
-    Database.database().reference()
-  }()
 
+  // setup instance of FIRDatabaseReference for reading and writing data
+  private var ref = Database.root
   private var refHandle: DatabaseHandle?
 
   func showAlertMessage(message: String) {
@@ -100,77 +99,6 @@ class UserViewModel: ObservableObject {
     } catch {
       print("Error signing out.")
     }
-  }
-
-  func didTapPostButton(title: String, body: String) {
-    // check if both title and body are completed
-    if title.isEmpty || body.isEmpty {
-      showAlertMessage(message: "Neither title nor body can be empty.")
-      return
-    }
-
-    // begin loading animation
-    withAnimation {
-      self.isLoading.toggle()
-    }
-
-    if let userID = Auth.auth().currentUser?.uid {
-      let postListRef = ref.child("posts")
-      guard let key = postListRef.childByAutoId().key else { return }
-      let post = ["uid": userID,
-                  "author": Auth.auth().currentUser?.email,
-                  "title": title,
-                  "body": body]
-      let childUpdates = ["/posts/\(key)": post,
-                          "/user-posts/\(userID)/\(key)/": post]
-      ref.updateChildValues(childUpdates)
-    }
-
-    // end loading animation
-    withAnimation {
-      self.isLoading.toggle()
-    }
-  }
-
-  func getPosts(postsType: PostsType) {
-    switch postsType {
-    case .recentPosts:
-      let postListRef = ref.child("posts")
-      fetchPosts(forRef: postListRef, postsType: postsType)
-    case .myPosts, .topPosts:
-      if let userID = Auth.auth().currentUser?.uid {
-        let userPostListRef = Database.database().reference()
-          .child("user-posts")
-          .child(userID)
-        fetchPosts(forRef: userPostListRef, postsType: postsType)
-      } else {
-        print("error: fetch myPosts was not successful")
-      }
-    }
-  }
-
-  func fetchPosts(forRef ref: DatabaseReference, postsType: PostsType) {
-    // read data by listening for value events
-    refHandle = ref.observe(DataEventType.value, with: { snapshot in
-      // retrieved data is of type dictionary of dictionary
-      guard let value = snapshot.value as? [String: [String: Any]] else { return }
-
-      switch postsType {
-      case .recentPosts, .myPosts:
-        // sort dictionary by keys (most to least recent)
-        let sortedValues = value.sorted(by: { $0.key > $1.key })
-        // store content of sorted dictionary into "posts" variable
-        self.posts = sortedValues.compactMap { PostViewModel(id: $0, dict: $1) }
-      case .topPosts:
-        let sortedValues = value
-          .sorted(by: { $0.value["starCount"] as? Int ?? 0 > $1.value["starCount"] as? Int ?? 0 })
-        self.posts = sortedValues.compactMap { PostViewModel(id: $0, dict: $1) }
-      }
-    })
-  }
-
-  func onViewDisappear() {
-    ref.removeAllObservers()
   }
 }
 

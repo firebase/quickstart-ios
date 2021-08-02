@@ -17,12 +17,13 @@
 import SwiftUI
 
 struct PostDetailView: View {
-  @StateObject var post: PostViewModel
+  @ObservedObject var post: PostViewModel
   @State private var comment: String = ""
   var screenWidth = UIScreen.main.bounds.width
 
   var body: some View {
     VStack {
+      // post card displaying post details
       VStack(alignment: .leading) {
         HStack(spacing: 1) {
           Image(systemName: "person.fill")
@@ -38,6 +39,7 @@ struct PostDetailView: View {
       }
       .padding()
       .background(RoundedRectangle(cornerRadius: 10).fill(Color(.systemGray6)))
+      // comments for the particular post
       List {
         ForEach(post.comments) { comment in
           VStack(alignment: .leading) {
@@ -51,6 +53,7 @@ struct PostDetailView: View {
           .padding()
         }
       }
+      // textfield for user entering comments
       HStack {
         TextField("Comment", text: $comment)
           .padding()

@@ -18,6 +18,7 @@ import SwiftUI
 import Firebase
 
 struct PostsView: View {
+  @StateObject var postList = PostListViewModel()
   @StateObject var user = UserViewModel()
   var title: String
   var postsType: PostsType
@@ -25,15 +26,15 @@ struct PostsView: View {
   var body: some View {
     NavigationView {
       List {
-        ForEach(user.posts) { post in
+        ForEach(postList.posts) { post in
           PostCell(post: post)
         }
       }
       .onAppear {
-        user.getPosts(postsType: postsType)
+        postList.getPosts(postsType: postsType)
       }
       .onDisappear {
-        user.onViewDisappear()
+        postList.onViewDisappear()
       }
       .navigationBarTitle(title)
       .navigationBarItems(leading:
@@ -46,7 +47,7 @@ struct PostsView: View {
           }
         },
         trailing:
-        NavigationLink(destination: NewPostsView(user: user)) {
+        NavigationLink(destination: NewPostsView(postList: postList)) {
           Image(systemName: "plus")
         })
     }

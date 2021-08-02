@@ -74,7 +74,7 @@ jobs:
           (xcodebuild \
             -workspace "$workspace_path" \
             -scheme "${SAMPLE}Example${SWIFT_SUFFIX}" \
-            -sdk appletvsimulator
+            -sdk appletvsimulator \
             -destination 'platform=tvOS Simulator,name=Apple TV' \
             build \
             test \

@@ -11,6 +11,7 @@
 		4102056626A631F5004B24B3 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4102055726A631F4004B24B3 /* MainView.swift */; };
 		4102056826A631F5004B24B3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4102055826A631F5004B24B3 /* Assets.xcassets */; };
 		4102057926A63210004B24B3 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4102057826A63210004B24B3 /* Tests_iOS.swift */; };
+		414C55A726B87EFB00114089 /* Tests_tvOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 414C55A626B87EFB00114089 /* Tests_tvOS.swift */; };
 		419AADCE26B86A94005C4817 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 419AADCD26B86A94005C4817 /* GoogleService-Info.plist */; };
 		419AADCF26B86A94005C4817 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 419AADCD26B86A94005C4817 /* GoogleService-Info.plist */; };
 		41BFA1EA26B1D36C0013EB90 /* PerformanceExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4102055626A631F4004B24B3 /* PerformanceExampleApp.swift */; };
@@ -31,6 +32,13 @@
 			remoteGlobalIDString = 4102055C26A631F5004B24B3;
 			remoteInfo = "PerformanceExample (iOS)";
 		};
+		414C55A826B87EFB00114089 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4102055126A631F4004B24B3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 410FF76826B1CEB500CA084F;
+			remoteInfo = "PerformanceExample (tvOS)";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +53,8 @@
 		4102057826A63210004B24B3 /* Tests_iOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_iOS.swift; sourceTree = "<group>"; };
 		410FF76926B1CEB500CA084F /* PerformanceExample (tvOS).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PerformanceExample (tvOS).app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		413CB73826B4AE8200E995E2 /* PerformanceExample--tvOS--Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "PerformanceExample--tvOS--Info.plist"; sourceTree = "<group>"; };
+		414C55A426B87EFB00114089 /* Tests_tvOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests_tvOS.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		414C55A626B87EFB00114089 /* Tests_tvOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_tvOS.swift; sourceTree = "<group>"; };
 		419AADCD26B86A94005C4817 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		41BFA1EF26B1D8B80013EB90 /* Process.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Process.swift; sourceTree = "<group>"; };
 		5F14B775639DBCA5BC5D112A /* Pods-PerformanceExample (tvOS).release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PerformanceExample (tvOS).release.xcconfig"; path = "Target Support Files/Pods-PerformanceExample (tvOS)/Pods-PerformanceExample (tvOS).release.xcconfig"; sourceTree = "<group>"; };
@@ -80,6 +90,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		414C55A126B87EFB00114089 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -90,6 +107,7 @@
 				413CB73826B4AE8200E995E2 /* PerformanceExample--tvOS--Info.plist */,
 				4102055526A631F4004B24B3 /* Shared */,
 				4102057726A63210004B24B3 /* Tests_iOS */,
+				414C55A526B87EFB00114089 /* Tests_tvOS */,
 				4102055E26A631F5004B24B3 /* Products */,
 				CF3281DC37F16927E92A3A24 /* Pods */,
 				F65F68A56CB7827F8A20E259 /* Frameworks */,
@@ -113,6 +131,7 @@
 				4102055D26A631F5004B24B3 /* PerformanceExample.app */,
 				4102057626A63210004B24B3 /* Tests_iOS.xctest */,
 				410FF76926B1CEB500CA084F /* PerformanceExample (tvOS).app */,
+				414C55A426B87EFB00114089 /* Tests_tvOS.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -123,6 +142,14 @@
 				4102057826A63210004B24B3 /* Tests_iOS.swift */,
 			);
 			path = Tests_iOS;
+			sourceTree = "<group>";
+		};
+		414C55A526B87EFB00114089 /* Tests_tvOS */ = {
+			isa = PBXGroup;
+			children = (
+				414C55A626B87EFB00114089 /* Tests_tvOS.swift */,
+			);
+			path = Tests_tvOS;
 			sourceTree = "<group>";
 		};
 		CF3281DC37F16927E92A3A24 /* Pods */ = {
@@ -209,6 +236,24 @@
 			productReference = 410FF76926B1CEB500CA084F /* PerformanceExample (tvOS).app */;
 			productType = "com.apple.product-type.application";
 		};
+		414C55A326B87EFB00114089 /* Tests_tvOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 414C55AC26B87EFB00114089 /* Build configuration list for PBXNativeTarget "Tests_tvOS" */;
+			buildPhases = (
+				414C55A026B87EFB00114089 /* Sources */,
+				414C55A126B87EFB00114089 /* Frameworks */,
+				414C55A226B87EFB00114089 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				414C55A926B87EFB00114089 /* PBXTargetDependency */,
+			);
+			name = Tests_tvOS;
+			productName = Tests_tvOS;
+			productReference = 414C55A426B87EFB00114089 /* Tests_tvOS.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -229,6 +274,10 @@
 					410FF76826B1CEB500CA084F = {
 						CreatedOnToolsVersion = 13.0;
 					};
+					414C55A326B87EFB00114089 = {
+						CreatedOnToolsVersion = 13.0;
+						TestTargetID = 410FF76826B1CEB500CA084F;
+					};
 				};
 			};
 			buildConfigurationList = 4102055426A631F4004B24B3 /* Build configuration list for PBXProject "PerformanceExample" */;
@@ -247,6 +296,7 @@
 				4102055C26A631F5004B24B3 /* PerformanceExample (iOS) */,
 				4102057526A63210004B24B3 /* Tests_iOS */,
 				410FF76826B1CEB500CA084F /* PerformanceExample (tvOS) */,
+				414C55A326B87EFB00114089 /* Tests_tvOS */,
 			);
 		};
 /* End PBXProject section */
@@ -274,6 +324,13 @@
 			files = (
 				41BFA1EC26B1D3730013EB90 /* Assets.xcassets in Resources */,
 				419AADCF26B86A94005C4817 /* GoogleService-Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		414C55A226B87EFB00114089 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -428,6 +485,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		414C55A026B87EFB00114089 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				414C55A726B87EFB00114089 /* Tests_tvOS.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -435,6 +500,11 @@
 			isa = PBXTargetDependency;
 			target = 4102055C26A631F5004B24B3 /* PerformanceExample (iOS) */;
 			targetProxy = 4102057A26A63210004B24B3 /* PBXContainerItemProxy */;
+		};
+		414C55A926B87EFB00114089 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 410FF76826B1CEB500CA084F /* PerformanceExample (tvOS) */;
+			targetProxy = 414C55A826B87EFB00114089 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -727,6 +797,55 @@
 			};
 			name = Release;
 		};
+		414C55AA26B87EFB00114089 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.firebase.Tests-tvOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TEST_TARGET_NAME = "PerformanceExample (tvOS)";
+				TVOS_DEPLOYMENT_TARGET = 15.0;
+			};
+			name = Debug;
+		};
+		414C55AB26B87EFB00114089 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.firebase.Tests-tvOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TEST_TARGET_NAME = "PerformanceExample (tvOS)";
+				TVOS_DEPLOYMENT_TARGET = 15.0;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -762,6 +881,15 @@
 			buildConfigurations = (
 				410FF77426B1CEB800CA084F /* Debug */,
 				410FF77526B1CEB800CA084F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		414C55AC26B87EFB00114089 /* Build configuration list for PBXNativeTarget "Tests_tvOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				414C55AA26B87EFB00114089 /* Debug */,
+				414C55AB26B87EFB00114089 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

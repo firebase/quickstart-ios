@@ -18,7 +18,6 @@ import SwiftUI
 import Firebase
 
 class PostListViewModel: ObservableObject {
-
   @Published var isLoading = false
   @Published var alert = false
   @Published var alertMessage = ""

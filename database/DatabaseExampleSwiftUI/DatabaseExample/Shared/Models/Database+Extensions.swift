@@ -18,6 +18,6 @@ import Firebase
 
 extension Database {
   class var root: DatabaseReference {
-    return self.database().reference()
+    return database().reference()
   }
 }

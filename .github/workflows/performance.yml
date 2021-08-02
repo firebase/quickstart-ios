@@ -54,14 +54,14 @@ jobs:
           set -io pipefail
           cd performance/SwiftUIPerformanceQuickstart/PerformanceExample
           bundle exec pod install --repo-update
-          (xcodebuild \
-            -workspace "$workspace_path" \
-            -scheme "${SAMPLE}Example${SWIFT_SUFFIX}" \
-            -sdk iphonesimulator \
-            -destination 'platform=iOS Simulator,name=iPhone 11' \
-            build \
-            test \
-            | xcpretty) || EXIT_STATUS=$?
+          xcodebuild \
+           -workspace "$workspace_path" \
+           -scheme "${SAMPLE}Example${SWIFT_SUFFIX}" \
+           -sdk iphonesimulator \
+           -destination 'platform=iOS Simulator,name=iPhone 11' \
+           build \
+           test \
+           | xcpretty
         env:
           SWIFT_SUFFIX: ' (iOS)'
           SAMPLE: Performance
@@ -71,14 +71,14 @@ jobs:
           set -io pipefail
           cd performance/SwiftUIPerformanceQuickstart/PerformanceExample
           bundle exec pod install --repo-update
-          (xcodebuild \
-            -workspace "$workspace_path" \
-            -scheme "${SAMPLE}Example${SWIFT_SUFFIX}" \
-            -sdk appletvsimulator \
-            -destination 'platform=tvOS Simulator,name=Apple TV' \
-            build \
-            test \
-            | xcpretty) || EXIT_STATUS=$?
+          xcodebuild \
+           -workspace "$workspace_path" \
+           -scheme "${SAMPLE}Example${SWIFT_SUFFIX}" \
+           -sdk appletvsimulator \
+           -destination 'platform=tvOS Simulator,name=Apple TV' \
+           build \
+           test \
+           | xcpretty
         env:
           SWIFT_SUFFIX: ' (tvOS)'
           SAMPLE: Performance

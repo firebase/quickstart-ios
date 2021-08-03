@@ -148,10 +148,10 @@ class PostViewModel: ObservableObject, Identifiable {
     }
   }
 
-  // remove handlers when current view disappears
+  // remove all handlers when current view disappears
   func onViewDisappear() {
-    if let refHandle = refHandle {
-      ref.removeAllObservers()
-    }
+    ref.child("posts").child(id).removeAllObservers()
+    ref.child("post-comments").child(id).removeAllObservers()
+    ref.removeAllObservers()
   }
 }

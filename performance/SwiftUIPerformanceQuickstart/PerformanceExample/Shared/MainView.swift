@@ -16,7 +16,7 @@
 
 import SwiftUI
 
-struct ImageView: View {
+struct ImageClassifierView: View {
   @ObservedObject var process: Process
 
   var body: some View {
@@ -24,26 +24,35 @@ struct ImageView: View {
       if let uiImage = process.image {
         Image(uiImage: uiImage).padding(.bottom)
         if process.action == .classify {
-          if process.categories.isEmpty {
+          if let categories = process.categories {
+            if categories.isEmpty {
+              Text("No categories found with a recall precision of \(process.precision)!")
+            } else {
+              Text("Categories found:")
+              List(categories, id: \.category) { category, confidence in
+                Text("\(category): \(confidence)")
+              }
+            }
+          } else {
             Button("Classify Image") {
               if #available(iOS 15, tvOS 15, *) {
                 #if swift(>=5.5)
                   Task { await process.classifyImageAsync() }
+                #else
+                  process.classifyImage()
                 #endif
               } else {
                 process.classifyImage()
               }
             }
-          } else {
-            Text("Categories found:")
-            List(process.categories, id: \.category) { category, confidence in
-              Text("\(category): \(confidence)")
-            }
           }
         }
       } else {
         Image(systemName: "questionmark.square").padding(.bottom)
-        if process.action != .download { Text("No image found!") }
+        if process.action != .download {
+          Text("No image found!\nPlease download an image first.")
+            .multilineTextAlignment(.center)
+        }
       }
     }
     .toolbar {
@@ -60,7 +69,7 @@ struct MainView: View {
       List(ProcessAction.allCases, id: \.rawValue) { action in
         NavigationLink(
           "\(action.rawValue) Image",
-          destination: ImageView(process: process).onAppear {
+          destination: ImageClassifierView(process: process).onAppear {
             if #available(iOS 15, tvOS 15, *) {
               #if swift(>=5.5)
                 process.updateActionAsync(to: action)
@@ -92,6 +101,6 @@ struct MainView_Previews: PreviewProvider {
   @StateObject static var process = Process()
   static var previews: some View {
     MainView()
-    ImageView(process: process)
+    ImageClassifierView(process: process)
   }
 }

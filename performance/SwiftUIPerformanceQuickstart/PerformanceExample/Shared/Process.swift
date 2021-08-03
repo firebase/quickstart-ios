@@ -22,20 +22,9 @@ class Process: ObservableObject {
   @Published var status: ProcessStatus = .idle
   @Published var action: ProcessAction?
   @Published var image: UIImage?
-  var categories: [(category: String, confidence: VNConfidence)] = []
-  let precision: Float = 0.7
-  let trace = Performance.sharedInstance().trace(name: "Classification")
+  var categories: [(category: String, confidence: VNConfidence)]?
+  let precision: Float = 0.4
   let site = "https://firebase.google.com/downloads/brand-guidelines/PNG/logo-logomark.png"
-  #if os(tvOS)
-    let platform = "tvOS"
-  #elseif os(iOS)
-    let platform = "iOS"
-  #endif
-
-  init() {
-    trace?.setValue("\(precision)", forAttribute: "precision")
-    trace?.setValue(platform, forAttribute: "platform")
-  }
 
   #if swift(>=5.5)
     @MainActor @available(iOS 15, tvOS 15,*) func updateStatusAsync(to newStatus: ProcessStatus) {
@@ -53,8 +42,7 @@ class Process: ObservableObject {
     @available(iOS 15, tvOS 15, *) func downloadImageAsync() async {
       await updateStatusAsync(to: .running)
 
-      guard let url = URL(string: site)
-      else {
+      guard let url = URL(string: site) else {
         await updateStatusAsync(to: .failure)
         print("Failure obtaining URL.")
         return
@@ -96,6 +84,7 @@ class Process: ObservableObject {
       let handler = VNImageRequestHandler(ciImage: ciImage, options: [:])
       let request = VNClassifyImageRequest()
       await updateStatusAsync(to: .running)
+      let trace = makeTrace()
       trace?.start()
       try? handler.perform([request])
       trace?.stop()
@@ -170,6 +159,7 @@ class Process: ObservableObject {
     let handler = VNImageRequestHandler(ciImage: ciImage, options: [:])
     let request = VNClassifyImageRequest()
     updateStatus(to: .running)
+    let trace = makeTrace()
     trace?.start()
     try? handler.perform([request])
     trace?.stop()
@@ -188,6 +178,18 @@ class Process: ObservableObject {
   }
 
   func uploadImage() {}
+
+  func makeTrace(called name: String = "Classification") -> Trace? {
+    #if os(tvOS)
+      let platform = "tvOS"
+    #elseif os(iOS)
+      let platform = "iOS"
+    #endif
+    let trace = Performance.sharedInstance().trace(name: name)
+    trace?.setValue("\(precision)", forAttribute: "precision")
+    trace?.setValue(platform, forAttribute: "platform")
+    return trace
+  }
 }
 
 enum ProcessStatus {

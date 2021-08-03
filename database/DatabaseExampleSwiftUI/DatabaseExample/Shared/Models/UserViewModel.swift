@@ -19,14 +19,12 @@ import Firebase
 
 class UserViewModel: ObservableObject {
   @AppStorage("isSignedIn") var isSignedIn = false
-
   @Published var email = ""
   @Published var password = ""
-  @Published var isLoading = false
   @Published var alert = false
   @Published var alertMessage = ""
 
-  func showAlertMessage(message: String) {
+  private func showAlertMessage(message: String) {
     alertMessage = message
     alert.toggle()
   }
@@ -37,17 +35,8 @@ class UserViewModel: ObservableObject {
       showAlertMessage(message: "Neither email nor password can be empty.")
       return
     }
-
-    // begin loading animation
-    withAnimation {
-      self.isLoading.toggle()
-    }
-
     // sign in with email and password
     Auth.auth().signIn(withEmail: email, password: password) { result, err in
-      withAnimation {
-        self.isLoading.toggle()
-      }
       if let err = err {
         self.alertMessage = err.localizedDescription
         self.alert.toggle()
@@ -63,17 +52,8 @@ class UserViewModel: ObservableObject {
       showAlertMessage(message: "Neither email nor password can be empty.")
       return
     }
-
-    // begin loading animation
-    withAnimation {
-      self.isLoading.toggle()
-    }
-
     // sign up with email and password
     Auth.auth().createUser(withEmail: email, password: password) { result, err in
-      withAnimation {
-        self.isLoading.toggle()
-      }
       if let err = err {
         self.alertMessage = err.localizedDescription
         self.alert.toggle()
@@ -86,9 +66,7 @@ class UserViewModel: ObservableObject {
   func logout() {
     do {
       try Auth.auth().signOut()
-      withAnimation {
-        self.isSignedIn = false
-      }
+      self.isSignedIn = false
       email = ""
       password = ""
     } catch {

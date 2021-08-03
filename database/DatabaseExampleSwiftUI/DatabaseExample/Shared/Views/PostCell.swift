@@ -41,7 +41,7 @@ struct PostCell: View {
         }
       }
       .onAppear {
-        post.updateStars()
+        post.onViewAppear()
       }
       .onDisappear {
         post.onViewDisappear()

@@ -14,7 +14,7 @@
 //  limitations under the License.
 //
 
-import SwiftUI
+import Combine
 import Firebase
 
 class PostViewModel: ObservableObject, Identifiable {
@@ -24,19 +24,17 @@ class PostViewModel: ObservableObject, Identifiable {
   @Published var title: String
   @Published var body: String
   @Published var starCount: Int
-  @Published var userIDsStarredBy: [String: Bool]
   @Published var comments: [Comment] = []
+  @Published var isStarred: Bool = false
+  private var userIDsStarredBy: [String: Bool] {
+    didSet {
+      refreshIsStarred()
+    }
+  }
 
   // setup instance of FIRDatabaseReference for reading and writing data
   private var ref = Database.root
   private var refHandle: DatabaseHandle?
-
-  var isStarred: Bool {
-    if let uid = getCurrentUserID() {
-      return userIDsStarredBy[uid] ?? false
-    }
-    return false
-  }
 
   init(id: String, uid: String, author: String, title: String, body: String) {
     self.id = id
@@ -46,6 +44,7 @@ class PostViewModel: ObservableObject, Identifiable {
     self.body = body
     starCount = 0
     userIDsStarredBy = [:]
+    refreshIsStarred()
   }
 
   init?(id: String, dict: [String: Any]) {
@@ -63,9 +62,19 @@ class PostViewModel: ObservableObject, Identifiable {
     self.body = body
     self.starCount = starCount
     self.userIDsStarredBy = userIDsStarredBy
+    refreshIsStarred()
   }
 
-  func getCurrentUserID() -> String? {
+  private func refreshIsStarred() {
+    self.isStarred = {
+      if let uid = getCurrentUserID() {
+        return userIDsStarredBy[uid] ?? false
+      }
+      return false
+    }()
+  }
+
+  private func getCurrentUserID() -> String? {
     return Auth.auth().currentUser?.uid
   }
 
@@ -108,7 +117,7 @@ class PostViewModel: ObservableObject, Identifiable {
     })
   }
 
-  func updateStars() {
+  private func updateStars() {
     let postListRef = ref.child("posts").child(id)
     refHandle = postListRef.observe(DataEventType.value, with: { snapshot in
       guard let post = snapshot.value as? [String: AnyObject] else { return }
@@ -117,7 +126,7 @@ class PostViewModel: ObservableObject, Identifiable {
     })
   }
 
-  func incrementStars(for ref: DatabaseReference) {
+  private func incrementStars(for ref: DatabaseReference) {
     ref.runTransactionBlock({ (currentData: MutableData) -> TransactionResult in
       if var post = currentData.value as? [String: AnyObject],
         let uid = Auth.auth().currentUser?.uid {
@@ -148,10 +157,20 @@ class PostViewModel: ObservableObject, Identifiable {
     }
   }
 
+  func onViewAppear() {
+    updateStars()
+  }
+
   // remove all handlers when current view disappears
   func onViewDisappear() {
-    ref.child("posts").child(id).removeAllObservers()
-    ref.child("post-comments").child(id).removeAllObservers()
-    ref.removeAllObservers()
+    if let refHandle = refHandle {
+      ref.child("posts").child(id).removeObserver(withHandle: refHandle)
+    }
+  }
+
+  func onDetailViewDisappear() {
+    if let refHandle = refHandle {
+      ref.child("post-comments").child(id).removeObserver(withHandle: refHandle)
+    }
   }
 }

@@ -14,11 +14,10 @@
 //  limitations under the License.
 //
 
-import SwiftUI
+import Combine
 import Firebase
 
 class PostListViewModel: ObservableObject {
-  @Published var isLoading = false
   @Published var alert = false
   @Published var alertMessage = ""
   @Published var posts: [PostViewModel] = []
@@ -28,12 +27,12 @@ class PostListViewModel: ObservableObject {
   private var refHandle: DatabaseHandle?
 
   // function called when error occurs
-  func showAlertMessage(message: String) {
+  private func showAlertMessage(message: String) {
     alertMessage = message
     alert.toggle()
   }
 
-  func getCurrentUserID() -> String? {
+  private func getCurrentUserID() -> String? {
     return Auth.auth().currentUser?.uid
   }
 
@@ -43,11 +42,6 @@ class PostListViewModel: ObservableObject {
     if title.isEmpty || body.isEmpty {
       showAlertMessage(message: "Neither title nor body can be empty.")
       return
-    }
-
-    // begin loading animation
-    withAnimation {
-      self.isLoading.toggle()
     }
 
     if let userID = getCurrentUserID() {
@@ -60,11 +54,6 @@ class PostListViewModel: ObservableObject {
       let childUpdates = ["/posts/\(key)": post,
                           "/user-posts/\(String(describing: userID))/\(key)/": post]
       ref.updateChildValues(childUpdates)
-    }
-
-    // end loading animation
-    withAnimation {
-      self.isLoading.toggle()
     }
   }
 
@@ -85,7 +74,7 @@ class PostListViewModel: ObservableObject {
     }
   }
 
-  func fetchPosts(from ref: DatabaseReference, for postsType: PostsType) {
+  private func fetchPosts(from ref: DatabaseReference, for postsType: PostsType) {
     // read data by listening for value events
     refHandle = ref.observe(DataEventType.value, with: { snapshot in
       // retrieved data is of type dictionary of dictionary

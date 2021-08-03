@@ -84,6 +84,9 @@ struct PostDetailView: View {
     .onAppear {
       post.fetchComments()
     }
+    .onDisappear {
+      post.onDetailViewDisappear()
+    }
     .navigationBarTitle(post.title)
   }
 }

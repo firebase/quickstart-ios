@@ -25,11 +25,6 @@ class UserViewModel: ObservableObject {
   @Published var isLoading = false
   @Published var alert = false
   @Published var alertMessage = ""
-  @Published var posts: [PostViewModel] = []
-
-  // setup instance of FIRDatabaseReference for reading and writing data
-  private var ref = Database.root
-  private var refHandle: DatabaseHandle?
 
   func showAlertMessage(message: String) {
     alertMessage = message

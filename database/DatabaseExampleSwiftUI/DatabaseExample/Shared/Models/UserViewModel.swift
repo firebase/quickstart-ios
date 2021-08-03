@@ -66,7 +66,7 @@ class UserViewModel: ObservableObject {
   func logout() {
     do {
       try Auth.auth().signOut()
-      self.isSignedIn = false
+      isSignedIn = false
       email = ""
       password = ""
     } catch {

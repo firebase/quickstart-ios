@@ -66,7 +66,7 @@ class PostViewModel: ObservableObject, Identifiable {
   }
 
   private func refreshIsStarred() {
-    self.isStarred = {
+    isStarred = {
       if let uid = getCurrentUserID() {
         return userIDsStarredBy[uid] ?? false
       }

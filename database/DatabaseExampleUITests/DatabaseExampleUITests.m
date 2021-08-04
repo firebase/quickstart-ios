@@ -250,11 +250,10 @@ static NSString *const testPassword = @"8261108117";
   [self assertIsLoggedOut];
 }
 
-- (void)deleteMessageWithText:(NSString *)label {
-  FIRWaitForVisible(_app.staticTexts[label]);
-
+- (void)deleteMessageWithLabel:(XCUIElement *)messageLabel {
+  FIRWaitForVisible(messageLabel);
   // Perform left swipe in order to remove this item.
-  [[_app staticTexts][label] swipeLeft];
+  [messageLabel swipeLeft];
   XCUIElement *deleteButton = [_app buttons][@"Delete"];
   FIRWaitForVisible(deleteButton);
   [deleteButton tap];
@@ -262,14 +261,17 @@ static NSString *const testPassword = @"8261108117";
 
 - (void)deleteAllMessages {
   NSPredicate *messagePredicate =
-      [NSPredicate predicateWithFormat:@"(label BEGINSWITH[c] %@)", @"My test message"];
-  NSArray<XCUIElement *> *messages =
-      [[[_app staticTexts] containingPredicate:messagePredicate] allElementsBoundByIndex];
-  NSArray<NSString *> *labels = [messages valueForKey:@"label"];
+  [NSPredicate predicateWithFormat:@"(label BEGINSWITH[c] %@)", @"My test message"];
 
-  // Iterate over all messages and delete them all.
-  for (NSString *label in labels) {
-    [self deleteMessageWithText:label];
+  // Some message cells may be off screen so swipe to remove won't work. Query a label for the first
+  // message after each message removed to make sure the message is on screen.
+  XCUIElement *messageLabel = [[[[_app staticTexts] containingPredicate:messagePredicate]
+                                  allElementsBoundByIndex] firstObject];
+  while (messageLabel != nil) {
+    [self deleteMessageWithLabel:messageLabel];
+    messageLabel =
+    [[[[_app staticTexts] containingPredicate:messagePredicate]
+        allElementsBoundByIndex] firstObject];
   }
 }
 

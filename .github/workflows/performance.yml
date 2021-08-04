@@ -49,3 +49,67 @@ jobs:
         env:
           SWIFT_SUFFIX: 'Swift'
           SAMPLE: Performance
+      - name: Build and Test SwiftUI iOS
+        run: |
+          set -io pipefail
+          EXIT_STATUS=0
+          source scripts/check_secrets.sh
+          cd performance/SwiftUIPerformanceQuickstart/PerformanceExample
+          bundle exec pod install --repo-update
+          if [[ "$have_secrets" == true ]]; then
+            (xcodebuild \
+              -workspace "$workspace_path" \
+              -scheme "${SAMPLE}Example${SWIFT_SUFFIX}" \
+              -sdk iphonesimulator \
+              -destination 'platform=iOS Simulator,name=iPhone 11' \
+              build \
+              test \
+              | xcpretty) || EXIT_STATUS=$?
+          else
+            (xcodebuild \
+              -workspace "$workspace_path" \
+              -scheme "${SAMPLE}Example${SWIFT_SUFFIX}" \
+              -sdk iphonesimulator \
+              -destination 'platform=iOS Simulator,name=iPhone 11' \
+              build \
+              | xcpretty) || EXIT_STATUS=$?
+            echo "Missing secrets: tests did not run."
+          fi
+          exit $EXIT_STATUS
+        env:
+          SWIFT_SUFFIX: ' (iOS)'
+          SAMPLE: Performance
+          workspace_path: PerformanceExample.xcworkspace
+          secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}
+      - name: Build and Test SwiftUI tvOS
+        run: |
+          set -io pipefail
+          EXIT_STATUS=0
+          source scripts/check_secrets.sh
+          cd performance/SwiftUIPerformanceQuickstart/PerformanceExample
+          bundle exec pod install --repo-update
+          if [[ "$have_secrets" == true ]]; then
+            (xcodebuild \
+              -workspace "$workspace_path" \
+              -scheme "${SAMPLE}Example${SWIFT_SUFFIX}" \
+              -sdk appletvsimulator \
+              -destination 'platform=tvOS Simulator,name=Apple TV' \
+              build \
+              test \
+              | xcpretty) || EXIT_STATUS=$?
+          else
+            (xcodebuild \
+              -workspace "$workspace_path" \
+              -scheme "${SAMPLE}Example${SWIFT_SUFFIX}" \
+              -sdk appletvsimulator \
+              -destination 'platform=tvOS Simulator,name=Apple TV' \
+              build \
+              | xcpretty) || EXIT_STATUS=$?
+              echo "Missing secrets: tests did not run."
+          fi
+          exit $EXIT_STATUS
+        env:
+          SWIFT_SUFFIX: ' (tvOS)'
+          SAMPLE: Performance
+          workspace_path: PerformanceExample.xcworkspace
+          secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}

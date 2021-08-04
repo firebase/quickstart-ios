@@ -1,0 +1,16 @@
+use_frameworks!
+
+pod 'Firebase'
+pod 'FirebasePerformance'
+
+target 'PerformanceExample (iOS)' do
+  target 'Tests_iOS' do
+    inherit! :search_paths
+  end
+end
+
+target 'PerformanceExample (tvOS)' do
+  target 'Tests_tvOS' do
+    inherit! :search_paths
+  end
+end

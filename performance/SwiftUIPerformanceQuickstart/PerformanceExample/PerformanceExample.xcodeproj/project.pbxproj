@@ -94,7 +94,6 @@
 				4102057726A63210004B24B3 /* Tests_iOS */,
 				414C55A526B87EFB00114089 /* Tests_tvOS */,
 				4102055E26A631F5004B24B3 /* Products */,
-				CF3281DC37F16927E92A3A24 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -134,13 +133,6 @@
 				414C55A626B87EFB00114089 /* Tests_tvOS.swift */,
 			);
 			path = Tests_tvOS;
-			sourceTree = "<group>";
-		};
-		CF3281DC37F16927E92A3A24 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

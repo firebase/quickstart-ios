@@ -184,6 +184,8 @@ class Process: ObservableObject {
       let platform = "tvOS"
     #elseif os(iOS)
       let platform = "iOS"
+    #else
+      fatalError("Unsupported platform.")
     #endif
     let trace = Performance.sharedInstance().trace(name: name)
     trace?.setValue("\(precision)", forAttribute: "precision")

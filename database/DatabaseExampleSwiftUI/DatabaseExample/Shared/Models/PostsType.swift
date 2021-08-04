@@ -14,29 +14,6 @@
 //  limitations under the License.
 //
 
-import Firebase
-
-struct Comment: Identifiable {
-  var id: String
-  var uid: String
-  var author: String
-  var text: String
-
-  init(id: String, uid: String, author: String, text: String) {
-    self.id = id
-    self.uid = uid
-    self.author = author
-    self.text = text
-  }
-
-  init?(id: String, dict: [String: Any]) {
-    guard let uid = dict["uid"] as? String else { return nil }
-    guard let author = dict["author"] as? String else { return nil }
-    guard let text = dict["text"] as? String else { return nil }
-
-    self.id = id
-    self.uid = uid
-    self.author = author
-    self.text = text
-  }
+enum PostsType {
+  case recentPosts, myPosts, topPosts
 }

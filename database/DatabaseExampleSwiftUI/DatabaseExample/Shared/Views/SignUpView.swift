@@ -92,9 +92,6 @@ struct SignUpView: View {
             .bold()
         }
       }
-      if user.isLoading {
-        LoadingView()
-      }
     }
     .alert(isPresented: $user.alert, content: {
       Alert(

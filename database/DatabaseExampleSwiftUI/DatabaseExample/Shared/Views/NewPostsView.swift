@@ -17,7 +17,7 @@
 import SwiftUI
 
 struct NewPostsView: View {
-  @ObservedObject var user = UserViewModel()
+  @ObservedObject var postList = PostListViewModel()
   @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
   @State private var newPostTitle: String = ""
   @State private var newPostBody: String = ""
@@ -53,17 +53,17 @@ struct NewPostsView: View {
           .opacity(self.newPostBody.isEmpty ? 0.25 : 1)
       }
     }
-    .alert(isPresented: $user.alert, content: {
+    .alert(isPresented: $postList.alert, content: {
       Alert(
         title: Text("Message"),
-        message: Text(user.alertMessage),
+        message: Text(postList.alertMessage),
         dismissButton: .destructive(Text("Ok"))
       )
     })
     .navigationTitle("New Post")
     .navigationBarItems(trailing:
       Button(action: {
-        user.didTapPostButton(
+        postList.didTapPostButton(
           title: newPostTitle,
           body: newPostBody
         )

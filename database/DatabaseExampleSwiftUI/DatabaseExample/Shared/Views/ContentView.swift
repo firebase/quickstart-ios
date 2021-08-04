@@ -19,32 +19,23 @@ import Firebase
 
 struct ContentView: View {
   @AppStorage("isSignedIn") var isSignedIn = true
-  @State private var selection: Tab = .recentPosts
-
-  enum Tab {
-    case recentPosts
-    case myPosts
-    case topPosts
-  }
+  @State private var selection: PostsType = .recentPosts
 
   var body: some View {
     if isSignedIn {
       TabView(selection: $selection) {
-        RecentPostsView()
+        PostsView(title: "Recents", postsType: .recentPosts)
           .tabItem {
-            Label("Recent", systemImage: "arrow.counterclockwise")
+            Label("Recents", systemImage: "arrow.counterclockwise")
           }
-          .tag(Tab.recentPosts)
-        MyPostsView()
+        PostsView(title: "My Posts", postsType: .myPosts)
           .tabItem {
             Label("My Posts", systemImage: "person.fill")
           }
-          .tag(Tab.myPosts)
-        TopPostsView()
+        PostsView(title: "My Top Posts", postsType: .topPosts)
           .tabItem {
             Label("My Top Posts", systemImage: "star.fill")
           }
-          .tag(Tab.topPosts)
       }
       .accentColor(Color(.systemTeal))
     } else {

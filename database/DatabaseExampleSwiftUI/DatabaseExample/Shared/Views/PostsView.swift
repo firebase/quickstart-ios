@@ -17,23 +17,26 @@
 import SwiftUI
 import Firebase
 
-struct MyPostsView: View {
+struct PostsView: View {
+  @StateObject var postList = PostListViewModel()
   @StateObject var user = UserViewModel()
+  var title: String
+  var postsType: PostsType
 
   var body: some View {
     NavigationView {
       List {
-        ForEach(user.posts) { post in
+        ForEach(postList.posts) { post in
           PostCell(post: post)
         }
       }
       .onAppear {
-        user.getPosts(tabOpened: UserViewModel.Tab.myPosts)
+        postList.getPosts(postsType: postsType)
       }
       .onDisappear {
-        user.onViewDisappear()
+        postList.onViewDisappear()
       }
-      .navigationBarTitle("My Posts")
+      .navigationBarTitle(title)
       .navigationBarItems(leading:
         Button(action: {
           user.logout()
@@ -44,15 +47,15 @@ struct MyPostsView: View {
           }
         },
         trailing:
-        NavigationLink(destination: NewPostsView(user: user)) {
+        NavigationLink(destination: NewPostsView(postList: postList)) {
           Image(systemName: "plus")
         })
     }
   }
 }
 
-struct MyPostsView_Previews: PreviewProvider {
+struct PostsView_Previews: PreviewProvider {
   static var previews: some View {
-    MyPostsView(user: user)
+    PostsView(title: "Recents", postsType: PostsType.recentPosts)
   }
 }

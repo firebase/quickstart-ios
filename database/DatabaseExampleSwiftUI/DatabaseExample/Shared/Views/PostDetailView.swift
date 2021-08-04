@@ -17,9 +17,13 @@
 import SwiftUI
 
 struct PostDetailView: View {
-  var post: PostViewModel
+  @ObservedObject var post: PostViewModel
+  @State private var comment: String = ""
+  var screenWidth = UIScreen.main.bounds.width
+
   var body: some View {
     VStack {
+      // post card displaying post details
       VStack(alignment: .leading) {
         HStack(spacing: 1) {
           Image(systemName: "person.fill")
@@ -33,9 +37,72 @@ struct PostDetailView: View {
           .bold()
         Text(post.body)
       }
+      .padding()
+      .background(RoundedRectangle(cornerRadius: 10).fill(Color(.systemGray6)))
+      // comments for the particular post
+      List {
+        ForEach(post.comments) { comment in
+          VStack(alignment: .leading) {
+            HStack(spacing: 1) {
+              Image(systemName: "person")
+              Text(comment.author)
+            }
+            Text(comment.text)
+              .font(.body)
+          }
+          .padding()
+        }
+      }
+      // textfield for user entering comments
+      HStack {
+        TextField("Comment", text: $comment)
+          .padding()
+          .background(RoundedRectangle(cornerRadius: 10).fill(Color(.systemGray5)))
+        Button(action: {
+          post.didTapSendButton(commentField: comment)
+          comment = ""
+          #if canImport(UIKit)
+            hideKeyboard()
+          #endif
+        }) {
+          Text("Send")
+        }
+      }
+      .frame(
+        width: screenWidth * 0.85,
+        alignment: .center
+      )
+      Spacer()
+        .frame(idealHeight: 10)
+        .fixedSize()
     }
+    .padding()
+    .frame(
+      width: screenWidth * 0.9,
+      alignment: .center
+    )
+    .onAppear {
+      post.fetchComments()
+    }
+    .onDisappear {
+      post.onDetailViewDisappear()
+    }
+    .navigationBarTitle(post.title)
   }
 }
+
+#if canImport(UIKit)
+  extension View {
+    func hideKeyboard() {
+      UIApplication.shared.sendAction(
+        #selector(UIResponder.resignFirstResponder),
+        to: nil,
+        from: nil,
+        for: nil
+      )
+    }
+  }
+#endif
 
 struct PostDetailView_Previews: PreviewProvider {
   static var examplePost = PostViewModel(

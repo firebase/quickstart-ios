@@ -93,9 +93,6 @@ struct LoginView: View {
         }
       }
       .navigationBarHidden(true)
-      if user.isLoading {
-        LoadingView()
-      }
     }
     .alert(isPresented: $user.alert, content: {
       Alert(

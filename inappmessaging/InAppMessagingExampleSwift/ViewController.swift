@@ -14,7 +14,10 @@
 //  limitations under the License.
 //
 
+import UIKit
+
 import Firebase
+import FirebaseAnalytics
 
 class ViewController: UIViewController {
   @IBOutlet var textField: UITextField!

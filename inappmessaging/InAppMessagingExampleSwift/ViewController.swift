@@ -17,7 +17,6 @@
 import UIKit
 
 import Firebase
-import FirebaseAnalytics
 
 class ViewController: UIViewController {
   @IBOutlet var textField: UITextField!

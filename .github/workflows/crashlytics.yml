@@ -74,3 +74,14 @@ jobs:
           build
         env:
           SAMPLE: Crashlytics
+      - name: Build SwiftUI (macOS)
+        run: |
+          cd crashlytics
+          ../scripts/install_prereqs/crashlytics.sh
+          xcodebuild \
+          -project CrashlyticsExample.xcodeproj \
+          -scheme 'CrashlyticsSwiftUIExample (macOS)' \
+          -sdk macosx \
+          build
+        env:
+          SAMPLE: Crashlytics

@@ -31,8 +31,6 @@
 		C745942D26BDF32400153AE3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C745942C26BDF32400153AE3 /* GoogleService-Info.plist */; };
 		C745942E26BDF32400153AE3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C745942C26BDF32400153AE3 /* GoogleService-Info.plist */; };
 		C745942F26BDF32400153AE3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C745942C26BDF32400153AE3 /* GoogleService-Info.plist */; };
-		C745943326BDF39800153AE3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C745943226BDF39800153AE3 /* GoogleService-Info.plist */; };
-		C745943426BDF39800153AE3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C745943226BDF39800153AE3 /* GoogleService-Info.plist */; };
 		C74C554726B377F20043B835 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C74C554626B377F20043B835 /* Assets.xcassets */; };
 		C74C554A26B377F20043B835 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C74C554926B377F20043B835 /* Preview Assets.xcassets */; };
 		C77AC00326BB151000BDE919 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = C77AC00226BB151000BDE919 /* FirebaseCrashlytics */; };
@@ -110,7 +108,6 @@
 		C745941826BDDD6300153AE3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C745941926BDDD6300153AE3 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
 		C745942C26BDF32400153AE3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/crashlytics plist/GoogleService-Info.plist"; sourceTree = "<group>"; };
-		C745943226BDF39800153AE3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C745943526BDF91B00153AE3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C74C554026B377EF0043B835 /* CrashlyticsSwiftUIExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CrashlyticsSwiftUIExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C74C554626B377F20043B835 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -233,7 +230,6 @@
 		C745940826BDDD6200153AE3 /* CrashlyticsSwiftUIExample (watchOS) Extension */ = {
 			isa = PBXGroup;
 			children = (
-				C745943226BDF39800153AE3 /* GoogleService-Info.plist */,
 				C745940D26BDDD6200153AE3 /* NotificationController.swift */,
 				C745940F26BDDD6200153AE3 /* NotificationView.swift */,
 				C745941126BDDD6200153AE3 /* ComplicationController.swift */,
@@ -458,7 +454,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C74593FE26BDDD6100153AE3 /* Assets.xcassets in Resources */,
-				C745943326BDF39800153AE3 /* GoogleService-Info.plist in Resources */,
 				C79FD3A526C209E600FE0261 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -469,7 +464,6 @@
 			files = (
 				C745941726BDDD6300153AE3 /* Preview Assets.xcassets in Resources */,
 				C79FD3A626C209E600FE0261 /* GoogleService-Info.plist in Resources */,
-				C745943426BDF39800153AE3 /* GoogleService-Info.plist in Resources */,
 				C745941426BDDD6300153AE3 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

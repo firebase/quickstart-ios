@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1C9177A529BF382E0B10F21A /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = 09DB1C43785994E8D625721E /* GoogleService-Info.plist */; };
-		86AC3FDA0C3B45EB493D8912 /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = 09DB1C43785994E8D625721E /* GoogleService-Info.plist */; };
 		8D96F5DE2685440700F1A2B7 /* Reachability in Frameworks */ = {isa = PBXBuildFile; productRef = 8D96F5DD2685440700F1A2B7 /* Reachability */; };
 		8D96F5E62685442800F1A2B7 /* ReachabililtyHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C723B78C26853A1700AD34CD /* ReachabililtyHelper.swift */; };
 		8D96F5EE2685442C00F1A2B7 /* ReachabililtyHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C723B78C26853A1700AD34CD /* ReachabililtyHelper.swift */; };
@@ -19,9 +17,24 @@
 		C73C89AC26845908003E5C2C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73C899826845907003E5C2C /* ContentView.swift */; };
 		C73C89AD26845908003E5C2C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C73C899926845908003E5C2C /* Assets.xcassets */; };
 		C73C89AE26845908003E5C2C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C73C899926845908003E5C2C /* Assets.xcassets */; };
+		C74593FE26BDDD6100153AE3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C74593FD26BDDD6100153AE3 /* Assets.xcassets */; };
+		C745940526BDDD6200153AE3 /* CrashlyticsSwiftUIExample (watchOS) Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C745940426BDDD6200153AE3 /* CrashlyticsSwiftUIExample (watchOS) Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		C745940E26BDDD6200153AE3 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C745940D26BDDD6200153AE3 /* NotificationController.swift */; };
+		C745941026BDDD6200153AE3 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C745940F26BDDD6200153AE3 /* NotificationView.swift */; };
+		C745941226BDDD6200153AE3 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C745941126BDDD6200153AE3 /* ComplicationController.swift */; };
+		C745941426BDDD6300153AE3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C745941326BDDD6300153AE3 /* Assets.xcassets */; };
+		C745941726BDDD6300153AE3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C745941626BDDD6300153AE3 /* Preview Assets.xcassets */; };
+		C745941C26BDDD6300153AE3 /* CrashlyticsSwiftUIExample (watchOS).app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = C74593FB26BDDD5F00153AE3 /* CrashlyticsSwiftUIExample (watchOS).app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		C745942626BDDDA500153AE3 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = C745942526BDDDA500153AE3 /* FirebaseCrashlytics */; };
+		C745942726BDDDEF00153AE3 /* CrashlyticsSwiftUIExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73C899726845907003E5C2C /* CrashlyticsSwiftUIExampleApp.swift */; };
+		C745942826BDDDF500153AE3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73C899826845907003E5C2C /* ContentView.swift */; };
+		C745942D26BDF32400153AE3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C745942C26BDF32400153AE3 /* GoogleService-Info.plist */; };
+		C745942E26BDF32400153AE3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C745942C26BDF32400153AE3 /* GoogleService-Info.plist */; };
+		C745942F26BDF32400153AE3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C745942C26BDF32400153AE3 /* GoogleService-Info.plist */; };
+		C745943326BDF39800153AE3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C745943226BDF39800153AE3 /* GoogleService-Info.plist */; };
+		C745943426BDF39800153AE3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C745943226BDF39800153AE3 /* GoogleService-Info.plist */; };
 		C74C554726B377F20043B835 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C74C554626B377F20043B835 /* Assets.xcassets */; };
 		C74C554A26B377F20043B835 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C74C554926B377F20043B835 /* Preview Assets.xcassets */; };
-		C77AC00126BB14FE00BDE919 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 09DB1C43785994E8D625721E /* GoogleService-Info.plist */; };
 		C77AC00326BB151000BDE919 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = C77AC00226BB151000BDE919 /* FirebaseCrashlytics */; };
 		C77AC00526BB151000BDE919 /* Reachability in Frameworks */ = {isa = PBXBuildFile; productRef = C77AC00426BB151000BDE919 /* Reachability */; };
 		C77AC00626BB16C200BDE919 /* CrashlyticsSwiftUIExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73C899726845907003E5C2C /* CrashlyticsSwiftUIExampleApp.swift */; };
@@ -29,10 +42,53 @@
 		C77AC00826BB16CA00BDE919 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73C899826845907003E5C2C /* ContentView.swift */; };
 		C77AC00A26BB16E300BDE919 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = C77AC00926BB16E300BDE919 /* FirebaseCrashlytics */; };
 		C77AC00C26BB16E300BDE919 /* Reachability in Frameworks */ = {isa = PBXBuildFile; productRef = C77AC00B26BB16E300BDE919 /* Reachability */; };
+		C79FD3A526C209E600FE0261 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C745942C26BDF32400153AE3 /* GoogleService-Info.plist */; };
+		C79FD3A626C209E600FE0261 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C745942C26BDF32400153AE3 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		C745940626BDDD6200153AE3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5F5A53441ADE670C00F81DF0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C745940326BDDD6200153AE3;
+			remoteInfo = "CrashlyticsSwiftUIExample (watchOS) Extension";
+		};
+		C745941A26BDDD6300153AE3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5F5A53441ADE670C00F81DF0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C74593FA26BDDD5F00153AE3;
+			remoteInfo = "CrashlyticsSwiftUIExample (watchOS)";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		C745941D26BDDD6300153AE3 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				C745941C26BDDD6300153AE3 /* CrashlyticsSwiftUIExample (watchOS).app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C745942026BDDD6300153AE3 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				C745940526BDDD6200153AE3 /* CrashlyticsSwiftUIExample (watchOS) Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		09DB1C43785994E8D625721E /* GoogleService-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C723B78C26853A1700AD34CD /* ReachabililtyHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabililtyHelper.swift; sourceTree = "<group>"; };
 		C73C899726845907003E5C2C /* CrashlyticsSwiftUIExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrashlyticsSwiftUIExampleApp.swift; sourceTree = "<group>"; };
 		C73C899826845907003E5C2C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -42,6 +98,20 @@
 		C73C89A526845908003E5C2C /* CrashlyticsSwiftUIExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CrashlyticsSwiftUIExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C73C89A726845908003E5C2C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C73C89A826845908003E5C2C /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
+		C74593FB26BDDD5F00153AE3 /* CrashlyticsSwiftUIExample (watchOS).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CrashlyticsSwiftUIExample (watchOS).app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C74593FD26BDDD6100153AE3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C74593FF26BDDD6100153AE3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C745940426BDDD6200153AE3 /* CrashlyticsSwiftUIExample (watchOS) Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "CrashlyticsSwiftUIExample (watchOS) Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C745940D26BDDD6200153AE3 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
+		C745940F26BDDD6200153AE3 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
+		C745941126BDDD6200153AE3 /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
+		C745941326BDDD6300153AE3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C745941626BDDD6300153AE3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		C745941826BDDD6300153AE3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C745941926BDDD6300153AE3 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		C745942C26BDF32400153AE3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/crashlytics plist/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		C745943226BDF39800153AE3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		C745943526BDF91B00153AE3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C74C554026B377EF0043B835 /* CrashlyticsSwiftUIExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CrashlyticsSwiftUIExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C74C554626B377F20043B835 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C74C554926B377F20043B835 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -67,6 +137,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C745940126BDDD6200153AE3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C745942626BDDDA500153AE3 /* FirebaseCrashlytics in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C74C553D26B377EF0043B835 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -82,12 +160,14 @@
 		5F5A53431ADE670C00F81DF0 = {
 			isa = PBXGroup;
 			children = (
+				C745942C26BDF32400153AE3 /* GoogleService-Info.plist */,
 				C73C899626845907003E5C2C /* Shared */,
 				C73C899F26845908003E5C2C /* iOS */,
 				C73C89A626845908003E5C2C /* macOS */,
 				C74C554126B377EF0043B835 /* CrashlyticsSwiftUIExample */,
+				C74593FC26BDDD5F00153AE3 /* CrashlyticsSwiftUIExample (watchOS) */,
+				C745940826BDDD6200153AE3 /* CrashlyticsSwiftUIExample (watchOS) Extension */,
 				5F5A534D1ADE670C00F81DF0 /* Products */,
-				09DB1C43785994E8D625721E /* GoogleService-Info.plist */,
 				C730A37326B1FE5400A29E81 /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -99,6 +179,8 @@
 				C73C899E26845908003E5C2C /* CrashlyticsSwiftUIExample.app */,
 				C73C89A526845908003E5C2C /* CrashlyticsSwiftUIExample.app */,
 				C74C554026B377EF0043B835 /* CrashlyticsSwiftUIExample.app */,
+				C74593FB26BDDD5F00153AE3 /* CrashlyticsSwiftUIExample (watchOS).app */,
+				C745940426BDDD6200153AE3 /* CrashlyticsSwiftUIExample (watchOS) Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -113,6 +195,7 @@
 		C73C899626845907003E5C2C /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				C745943526BDF91B00153AE3 /* GoogleService-Info.plist */,
 				C73C899726845907003E5C2C /* CrashlyticsSwiftUIExampleApp.swift */,
 				C723B78C26853A1700AD34CD /* ReachabililtyHelper.swift */,
 				C73C899826845907003E5C2C /* ContentView.swift */,
@@ -136,6 +219,38 @@
 				C73C89A826845908003E5C2C /* macOS.entitlements */,
 			);
 			path = macOS;
+			sourceTree = "<group>";
+		};
+		C74593FC26BDDD5F00153AE3 /* CrashlyticsSwiftUIExample (watchOS) */ = {
+			isa = PBXGroup;
+			children = (
+				C74593FD26BDDD6100153AE3 /* Assets.xcassets */,
+				C74593FF26BDDD6100153AE3 /* Info.plist */,
+			);
+			path = "CrashlyticsSwiftUIExample (watchOS)";
+			sourceTree = "<group>";
+		};
+		C745940826BDDD6200153AE3 /* CrashlyticsSwiftUIExample (watchOS) Extension */ = {
+			isa = PBXGroup;
+			children = (
+				C745943226BDF39800153AE3 /* GoogleService-Info.plist */,
+				C745940D26BDDD6200153AE3 /* NotificationController.swift */,
+				C745940F26BDDD6200153AE3 /* NotificationView.swift */,
+				C745941126BDDD6200153AE3 /* ComplicationController.swift */,
+				C745941326BDDD6300153AE3 /* Assets.xcassets */,
+				C745941826BDDD6300153AE3 /* Info.plist */,
+				C745941926BDDD6300153AE3 /* PushNotificationPayload.apns */,
+				C745941526BDDD6300153AE3 /* Preview Content */,
+			);
+			path = "CrashlyticsSwiftUIExample (watchOS) Extension";
+			sourceTree = "<group>";
+		};
+		C745941526BDDD6300153AE3 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				C745941626BDDD6300153AE3 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 		C74C554126B377EF0043B835 /* CrashlyticsSwiftUIExample */ = {
@@ -167,10 +282,12 @@
 				C73C899B26845908003E5C2C /* Frameworks */,
 				C73C899C26845908003E5C2C /* Resources */,
 				C732A2932684670100AA7DEF /* Run Script */,
+				C745941D26BDDD6300153AE3 /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				C745941B26BDDD6300153AE3 /* PBXTargetDependency */,
 			);
 			name = "CrashlyticsSwiftUIExample (iOS)";
 			packageProductDependencies = (
@@ -188,6 +305,7 @@
 				C73C89A126845908003E5C2C /* Sources */,
 				C73C89A226845908003E5C2C /* Frameworks */,
 				C73C89A326845908003E5C2C /* Resources */,
+				C79FD3A026C1FA4400FE0261 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -201,6 +319,43 @@
 			productName = "CrashlyticsSwiftUIExample (macOS)";
 			productReference = C73C89A526845908003E5C2C /* CrashlyticsSwiftUIExample.app */;
 			productType = "com.apple.product-type.application";
+		};
+		C74593FA26BDDD5F00153AE3 /* CrashlyticsSwiftUIExample (watchOS) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C745942426BDDD6300153AE3 /* Build configuration list for PBXNativeTarget "CrashlyticsSwiftUIExample (watchOS)" */;
+			buildPhases = (
+				C74593F926BDDD5F00153AE3 /* Resources */,
+				C745942026BDDD6300153AE3 /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C745940726BDDD6200153AE3 /* PBXTargetDependency */,
+			);
+			name = "CrashlyticsSwiftUIExample (watchOS)";
+			productName = "CrashlyticsSwiftUIExample (watchOS)";
+			productReference = C74593FB26BDDD5F00153AE3 /* CrashlyticsSwiftUIExample (watchOS).app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		C745940326BDDD6200153AE3 /* CrashlyticsSwiftUIExample (watchOS) Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C745942326BDDD6300153AE3 /* Build configuration list for PBXNativeTarget "CrashlyticsSwiftUIExample (watchOS) Extension" */;
+			buildPhases = (
+				C745940026BDDD6200153AE3 /* Sources */,
+				C745940126BDDD6200153AE3 /* Frameworks */,
+				C745940226BDDD6200153AE3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "CrashlyticsSwiftUIExample (watchOS) Extension";
+			packageProductDependencies = (
+				C745942526BDDDA500153AE3 /* FirebaseCrashlytics */,
+			);
+			productName = "CrashlyticsSwiftUIExample (watchOS) Extension";
+			productReference = C745940426BDDD6200153AE3 /* CrashlyticsSwiftUIExample (watchOS) Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
 		};
 		C74C553F26B377EF0043B835 /* CrashlyticsSwiftUIExample */ = {
 			isa = PBXNativeTarget;
@@ -241,6 +396,12 @@
 						CreatedOnToolsVersion = 12.5;
 						ProvisioningStyle = Automatic;
 					};
+					C74593FA26BDDD5F00153AE3 = {
+						CreatedOnToolsVersion = 12.5;
+					};
+					C745940326BDDD6200153AE3 = {
+						CreatedOnToolsVersion = 12.5;
+					};
 					C74C553F26B377EF0043B835 = {
 						CreatedOnToolsVersion = 12.5;
 					};
@@ -267,6 +428,8 @@
 				C73C899D26845908003E5C2C /* CrashlyticsSwiftUIExample (iOS) */,
 				C73C89A426845908003E5C2C /* CrashlyticsSwiftUIExample (macOS) */,
 				C74C553F26B377EF0043B835 /* CrashlyticsSwiftUIExample */,
+				C74593FA26BDDD5F00153AE3 /* CrashlyticsSwiftUIExample (watchOS) */,
+				C745940326BDDD6200153AE3 /* CrashlyticsSwiftUIExample (watchOS) Extension */,
 			);
 		};
 /* End PBXProject section */
@@ -277,6 +440,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C73C89AD26845908003E5C2C /* Assets.xcassets in Resources */,
+				C745942D26BDF32400153AE3 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -285,6 +449,28 @@
 			buildActionMask = 2147483647;
 			files = (
 				C73C89AE26845908003E5C2C /* Assets.xcassets in Resources */,
+				C745942E26BDF32400153AE3 /* GoogleService-Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C74593F926BDDD5F00153AE3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C74593FE26BDDD6100153AE3 /* Assets.xcassets in Resources */,
+				C745943326BDF39800153AE3 /* GoogleService-Info.plist in Resources */,
+				C79FD3A526C209E600FE0261 /* GoogleService-Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C745940226BDDD6200153AE3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C745941726BDDD6300153AE3 /* Preview Assets.xcassets in Resources */,
+				C79FD3A626C209E600FE0261 /* GoogleService-Info.plist in Resources */,
+				C745943426BDF39800153AE3 /* GoogleService-Info.plist in Resources */,
+				C745941426BDDD6300153AE3 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -293,8 +479,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				C74C554A26B377F20043B835 /* Preview Assets.xcassets in Resources */,
+				C745942F26BDF32400153AE3 /* GoogleService-Info.plist in Resources */,
 				C74C554726B377F20043B835 /* Assets.xcassets in Resources */,
-				C77AC00126BB14FE00BDE919 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -321,6 +507,25 @@
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n${BUILD_DIR%Build/*}SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run\n";
 		};
+		C79FD3A026C1FA4400FE0261 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
+				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n{BUILD_DIR%Build/*}SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -331,7 +536,6 @@
 				8D96F5E62685442800F1A2B7 /* ReachabililtyHelper.swift in Sources */,
 				C73C89AB26845908003E5C2C /* ContentView.swift in Sources */,
 				C73C89A926845908003E5C2C /* CrashlyticsSwiftUIExampleApp.swift in Sources */,
-				86AC3FDA0C3B45EB493D8912 /* GoogleService-Info.plist in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -342,7 +546,18 @@
 				8D96F5EE2685442C00F1A2B7 /* ReachabililtyHelper.swift in Sources */,
 				C73C89AC26845908003E5C2C /* ContentView.swift in Sources */,
 				C73C89AA26845908003E5C2C /* CrashlyticsSwiftUIExampleApp.swift in Sources */,
-				1C9177A529BF382E0B10F21A /* GoogleService-Info.plist in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C745940026BDDD6200153AE3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C745940E26BDDD6200153AE3 /* NotificationController.swift in Sources */,
+				C745942826BDDDF500153AE3 /* ContentView.swift in Sources */,
+				C745941226BDDD6200153AE3 /* ComplicationController.swift in Sources */,
+				C745942726BDDDEF00153AE3 /* CrashlyticsSwiftUIExampleApp.swift in Sources */,
+				C745941026BDDD6200153AE3 /* NotificationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -357,6 +572,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C745940726BDDD6200153AE3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C745940326BDDD6200153AE3 /* CrashlyticsSwiftUIExample (watchOS) Extension */;
+			targetProxy = C745940626BDDD6200153AE3 /* PBXContainerItemProxy */;
+		};
+		C745941B26BDDD6300153AE3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C74593FA26BDDD5F00153AE3 /* CrashlyticsSwiftUIExample (watchOS) */;
+			targetProxy = C745941A26BDDD6300153AE3 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		5F5A536D1ADE670C00F81DF0 /* Debug */ = {
@@ -490,6 +718,7 @@
 				);
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = "Google-LLC.CrashlyticsSwiftUIExample";
 				PRODUCT_NAME = CrashlyticsSwiftUIExample;
 				SDKROOT = iphoneos;
@@ -524,6 +753,7 @@
 					"@executable_path/Frameworks",
 				);
 				MTL_FAST_MATH = YES;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = "Google-LLC.CrashlyticsSwiftUIExample";
 				PRODUCT_NAME = CrashlyticsSwiftUIExample;
 				SDKROOT = iphoneos;
@@ -548,7 +778,7 @@
 				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_PREVIEWS = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = macOS/Info.plist;
@@ -559,6 +789,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = "Google-LLC.CrashlyticsSwiftUIExample";
 				PRODUCT_NAME = CrashlyticsSwiftUIExample;
 				SDKROOT = macosx;
@@ -594,10 +825,147 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MTL_FAST_MATH = YES;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = "Google-LLC.CrashlyticsSwiftUIExample";
 				PRODUCT_NAME = CrashlyticsSwiftUIExample;
 				SDKROOT = macosx;
 				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		C745941E26BDDD6300153AE3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				IBSC_MODULE = CrashlyticsSwiftUIExample__watchOS__Extension;
+				INFOPLIST_FILE = "CrashlyticsSwiftUIExample (watchOS)/Info.plist";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = "Google-LLC.CrashlyticsSwiftUIExample.watchkitapp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 7.4;
+			};
+			name = Debug;
+		};
+		C745941F26BDDD6300153AE3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				IBSC_MODULE = CrashlyticsSwiftUIExample__watchOS__Extension;
+				INFOPLIST_FILE = "CrashlyticsSwiftUIExample (watchOS)/Info.plist";
+				MTL_FAST_MATH = YES;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = "Google-LLC.CrashlyticsSwiftUIExample.watchkitapp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 7.4;
+			};
+			name = Release;
+		};
+		C745942126BDDD6300153AE3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_ASSET_PATHS = "\"CrashlyticsSwiftUIExample (watchOS) Extension/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "CrashlyticsSwiftUIExample (watchOS) Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = "Google-LLC.CrashlyticsSwiftUIExample.watchkitapp.watchkitextension";
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 7.4;
+			};
+			name = Debug;
+		};
+		C745942226BDDD6300153AE3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_ASSET_PATHS = "\"CrashlyticsSwiftUIExample (watchOS) Extension/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "CrashlyticsSwiftUIExample (watchOS) Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MTL_FAST_MATH = YES;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = "Google-LLC.CrashlyticsSwiftUIExample.watchkitapp.watchkitextension";
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 7.4;
 			};
 			name = Release;
 		};
@@ -614,7 +982,7 @@
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_STYLE = Automatic;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_ASSET_PATHS = "\"CrashlyticsSwiftUIExample/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -625,6 +993,7 @@
 				);
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = "Google-LLC.CrashlyticsSwiftUIExample";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
@@ -660,6 +1029,7 @@
 					"@executable_path/Frameworks",
 				);
 				MTL_FAST_MATH = YES;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = "Google-LLC.CrashlyticsSwiftUIExample";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
@@ -695,6 +1065,24 @@
 			buildConfigurations = (
 				C73C89B126845908003E5C2C /* Debug */,
 				C73C89B226845908003E5C2C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C745942326BDDD6300153AE3 /* Build configuration list for PBXNativeTarget "CrashlyticsSwiftUIExample (watchOS) Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C745942126BDDD6300153AE3 /* Debug */,
+				C745942226BDDD6300153AE3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C745942426BDDD6300153AE3 /* Build configuration list for PBXNativeTarget "CrashlyticsSwiftUIExample (watchOS)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C745941E26BDDD6300153AE3 /* Debug */,
+				C745941F26BDDD6300153AE3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -736,6 +1124,11 @@
 			productName = Reachability;
 		};
 		C732A29726846B6D00AA7DEF /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C732A28E2684656200AA7DEF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCrashlytics;
+		};
+		C745942526BDDDA500153AE3 /* FirebaseCrashlytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = C732A28E2684656200AA7DEF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseCrashlytics;

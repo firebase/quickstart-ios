@@ -108,7 +108,6 @@
 		C745941826BDDD6300153AE3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C745941926BDDD6300153AE3 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
 		C745942C26BDF32400153AE3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/crashlytics plist/GoogleService-Info.plist"; sourceTree = "<group>"; };
-		C745943526BDF91B00153AE3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C74C554026B377EF0043B835 /* CrashlyticsSwiftUIExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CrashlyticsSwiftUIExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C74C554626B377F20043B835 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C74C554926B377F20043B835 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -192,7 +191,6 @@
 		C73C899626845907003E5C2C /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				C745943526BDF91B00153AE3 /* GoogleService-Info.plist */,
 				C73C899726845907003E5C2C /* CrashlyticsSwiftUIExampleApp.swift */,
 				C723B78C26853A1700AD34CD /* ReachabililtyHelper.swift */,
 				C73C899826845907003E5C2C /* ContentView.swift */,

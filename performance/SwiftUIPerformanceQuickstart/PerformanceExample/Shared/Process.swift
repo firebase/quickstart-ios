@@ -217,5 +217,6 @@ enum ProcessStatus {
 enum ProcessAction: String, CaseIterable {
   case download = "Download"
   case classify = "Classify"
+  // TODO: implement upload functionality
 //  case upload = "Upload"
 }

@@ -23,7 +23,7 @@ class Process: ObservableObject {
   @Published var action: ProcessAction?
   @Published var image: UIImage?
   var categories: [(category: String, confidence: VNConfidence)]?
-  let precision: Float = 0.4
+  let precision: Float = 0.2
   let site = "https://firebase.google.com/downloads/brand-guidelines/PNG/logo-logomark.png"
 
   #if swift(>=5.5)
@@ -217,5 +217,6 @@ enum ProcessStatus {
 enum ProcessAction: String, CaseIterable {
   case download = "Download"
   case classify = "Classify"
-  case upload = "Upload"
+  // TODO: implement upload functionality
+//  case upload = "Upload"
 }

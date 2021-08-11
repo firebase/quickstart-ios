@@ -10,8 +10,8 @@
 		4102056426A631F5004B24B3 /* PerformanceExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4102055626A631F4004B24B3 /* PerformanceExampleApp.swift */; };
 		4102056626A631F5004B24B3 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4102055726A631F4004B24B3 /* MainView.swift */; };
 		4102056826A631F5004B24B3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4102055826A631F5004B24B3 /* Assets.xcassets */; };
-		4102057926A63210004B24B3 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4102057826A63210004B24B3 /* Tests_iOS.swift */; };
-		414C55A726B87EFB00114089 /* Tests_tvOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 414C55A626B87EFB00114089 /* Tests_tvOS.swift */; };
+		419700ED26C30DA500F186C3 /* UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419700EC26C30DA500F186C3 /* UITests.swift */; };
+		419700EE26C30DA500F186C3 /* UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419700EC26C30DA500F186C3 /* UITests.swift */; };
 		419AADCE26B86A94005C4817 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 419AADCD26B86A94005C4817 /* GoogleService-Info.plist */; };
 		419AADCF26B86A94005C4817 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 419AADCD26B86A94005C4817 /* GoogleService-Info.plist */; };
 		41BFA1EA26B1D36C0013EB90 /* PerformanceExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4102055626A631F4004B24B3 /* PerformanceExampleApp.swift */; };
@@ -44,11 +44,10 @@
 		4102055826A631F5004B24B3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4102055D26A631F5004B24B3 /* PerformanceExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PerformanceExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4102057626A63210004B24B3 /* Tests_iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests_iOS.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		4102057826A63210004B24B3 /* Tests_iOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_iOS.swift; sourceTree = "<group>"; };
 		410FF76926B1CEB500CA084F /* PerformanceExample (tvOS).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PerformanceExample (tvOS).app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		413CB73826B4AE8200E995E2 /* PerformanceExample--tvOS--Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "PerformanceExample--tvOS--Info.plist"; sourceTree = "<group>"; };
 		414C55A426B87EFB00114089 /* Tests_tvOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests_tvOS.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		414C55A626B87EFB00114089 /* Tests_tvOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_tvOS.swift; sourceTree = "<group>"; };
+		419700EC26C30DA500F186C3 /* UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITests.swift; sourceTree = "<group>"; };
 		419AADCD26B86A94005C4817 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		41BFA1EF26B1D8B80013EB90 /* Process.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Process.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -91,8 +90,6 @@
 				419AADCD26B86A94005C4817 /* GoogleService-Info.plist */,
 				413CB73826B4AE8200E995E2 /* PerformanceExample--tvOS--Info.plist */,
 				4102055526A631F4004B24B3 /* Shared */,
-				4102057726A63210004B24B3 /* Tests_iOS */,
-				414C55A526B87EFB00114089 /* Tests_tvOS */,
 				4102055E26A631F5004B24B3 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -103,6 +100,7 @@
 				4102055626A631F4004B24B3 /* PerformanceExampleApp.swift */,
 				4102055726A631F4004B24B3 /* MainView.swift */,
 				41BFA1EF26B1D8B80013EB90 /* Process.swift */,
+				419700EC26C30DA500F186C3 /* UITests.swift */,
 				4102055826A631F5004B24B3 /* Assets.xcassets */,
 			);
 			path = Shared;
@@ -223,6 +221,7 @@
 					};
 					4102057526A63210004B24B3 = {
 						CreatedOnToolsVersion = 13.0;
+						LastSwiftMigration = 1300;
 						TestTargetID = 4102055C26A631F5004B24B3;
 					};
 					410FF76826B1CEB500CA084F = {
@@ -230,6 +229,7 @@
 					};
 					414C55A326B87EFB00114089 = {
 						CreatedOnToolsVersion = 13.0;
+						LastSwiftMigration = 1300;
 						TestTargetID = 410FF76826B1CEB500CA084F;
 					};
 				};
@@ -305,7 +305,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4102057926A63210004B24B3 /* Tests_iOS.swift in Sources */,
+				419700ED26C30DA500F186C3 /* UITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -323,7 +323,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				414C55A726B87EFB00114089 /* Tests_tvOS.swift in Sources */,
+				419700EE26C30DA500F186C3 /* UITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -516,6 +516,7 @@
 		4102057D26A63210004B24B3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -530,6 +531,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = "PerformanceExample (iOS)";
@@ -539,6 +541,7 @@
 		4102057E26A63210004B24B3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -629,6 +632,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -642,6 +646,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TEST_TARGET_NAME = "PerformanceExample (tvOS)";
@@ -653,6 +658,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;

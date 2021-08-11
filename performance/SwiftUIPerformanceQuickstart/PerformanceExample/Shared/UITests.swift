@@ -21,7 +21,7 @@ class UITests: XCTestCase {
 
   override func setUpWithError() throws {
     #if !os(iOS) && !os(tvOS)
-    throw Error("Unsupported platform.")
+      throw Error("Unsupported platform.")
     #endif
 
     continueAfterFailure = false
@@ -50,43 +50,43 @@ class UITests: XCTestCase {
 
   func checkStatus(_ status: String, timeout: TimeInterval = 1) throws {
     #if os(iOS)
-    try checkText(status, timeout: timeout)
+      try checkText(status, timeout: timeout)
     #endif
   }
 
   func goBack(timeout: TimeInterval = 1) throws {
     #if os(iOS)
-    XCTAssert(app.buttons["Performance"].isHittable, "Reached invalid state.")
-    app.buttons["Performance"].tap()
+      XCTAssert(app.buttons["Performance"].isHittable, "Reached invalid state.")
+      app.buttons["Performance"].tap()
     #else
-    XCUIRemote.shared.press(.menu)
-    XCTAssert(app.navigationBars["Performance"].waitForExistence(timeout: timeout), "Timeout.")
+      XCUIRemote.shared.press(.menu)
+      XCTAssert(app.navigationBars["Performance"].waitForExistence(timeout: timeout), "Timeout.")
     #endif
   }
 
   func classify(image: Bool = false) throws {
     #if os(iOS)
-    XCTAssert(app.buttons["Classify Image"].isHittable, "Reached invalid state.")
-    app.buttons["Classify Image"].tap()
+      XCTAssert(app.buttons["Classify Image"].isHittable, "Reached invalid state.")
+      app.buttons["Classify Image"].tap()
     #else
-    if !image {
-      XCUIRemote.shared.press(.down)
-      sleep(1)
-      XCTAssert(app.cells["Classify Image"].hasFocus, "Reached invalid state.")
-    }
-    XCUIRemote.shared.press(.select)
+      if !image {
+        XCUIRemote.shared.press(.down)
+        sleep(1)
+        XCTAssert(app.cells["Classify Image"].hasFocus, "Reached invalid state.")
+      }
+      XCUIRemote.shared.press(.select)
     #endif
   }
 
   func download(timeout: TimeInterval = 10) throws {
     #if os(iOS)
-    XCTAssert(app.buttons["Download Image"].isHittable, "Reached invalid state.")
-    app.buttons["Download Image"].tap()
+      XCTAssert(app.buttons["Download Image"].isHittable, "Reached invalid state.")
+      app.buttons["Download Image"].tap()
     #else
-    XCUIRemote.shared.press(.up)
-    sleep(1)
-    XCTAssert(app.cells["Download Image"].hasFocus, "Reached invalid state.")
-    XCUIRemote.shared.press(.select)
+      XCUIRemote.shared.press(.up)
+      sleep(1)
+      XCTAssert(app.cells["Download Image"].hasFocus, "Reached invalid state.")
+      XCUIRemote.shared.press(.select)
     #endif
 
     XCTAssert(app.images.firstMatch.waitForExistence(timeout: timeout), "Failed to retrieve image.")

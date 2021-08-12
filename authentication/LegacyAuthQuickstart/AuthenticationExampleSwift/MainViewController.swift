@@ -1088,8 +1088,8 @@ class MainViewController: UITableViewController {
 
     return hashString
   }
+  // [END sha_256]
 }
-// [END sha_256]
 
 @available(iOS 13.0, *)
 extension MainViewController: ASAuthorizationControllerDelegate {

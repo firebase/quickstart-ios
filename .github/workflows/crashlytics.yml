@@ -59,7 +59,10 @@ jobs:
           -project CrashlyticsExample.xcodeproj \
           -scheme 'CrashlyticsSwiftUIExample (iOS)' \
           -destination 'platform=iOS Simulator,name=iPhone 11' \
-          build
+          build \
+          CODE_SIGN_IDENTITY="" \
+          CODE_SIGNING_REQUIRED=NO \
+          CODE_SIGNING_ALLOWED=NO
         env: 
           SAMPLE: Crashlytics
       - name: Build SwiftUI (tvOS)

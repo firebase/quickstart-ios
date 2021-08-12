@@ -83,13 +83,18 @@ a paid service. If you are only using Firebase Authentication this sample will n
     - Select **Sign In** and select Twitter to begin.
 
 ### Custom Authentication Setup
-- Go to the [Google Developers Console](https://console.developers.google.com/project) and navigate to your project:
+- In the [Firebase Console](https://console.firebase.google.com/), navigate to **Project settings**:
+    - Navigate to the **Service accounts** tab.
+    - Locate the section **All service account**, and click on the `X service accounts` link. This will take you to the Google Cloud Console.    
+- In the [Google Cloud Console](https://console.cloud.google.com):
+    - Make sure the right Firebase project is selected.
     - From the left "hamburger" menu navigate to the **API Manager** tab.
     - Click on the **Credentials** item in the left column.
     - Click **New credentials** and select **Service account key**. Select **New service account**,
     pick any name, and select **JSON** as the key type. Then click **Create**.
     - You should now have a new JSON file for your service account in your Downloads directory.
-- Open the file `web/auth.html` in your computer's web browser.
+- In the `quickstart-ios/authentication/LegacyAuthQuickstart/web` directory:
+    - Open the file `auth.html` in your computer's web browser.
     - Click **Choose File** and upload the JSON file you just downloaded.
     - Enter any User ID and click **Generate**.
     - Copy the token link displayed.

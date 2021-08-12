@@ -58,7 +58,6 @@ jobs:
           xcodebuild \
           -project CrashlyticsExample.xcodeproj \
           -scheme 'CrashlyticsSwiftUIExample (iOS)' \
-          -sdk iphonesimulator \
           -destination 'platform=iOS Simulator,name=iPhone 11' \
           build
         env: 
@@ -82,6 +81,17 @@ jobs:
           -project CrashlyticsExample.xcodeproj \
           -scheme 'CrashlyticsSwiftUIExample (macOS)' \
           -sdk macosx \
+          build
+        env:
+          SAMPLE: Crashlytics
+      - name: Build SwiftUI (watchOS)
+        run: |
+          cd crashlytics
+          ../scripts/install_prereqs/crashlytics.sh
+          xcodebuild \
+          -project CrashlyticsExample.xcodeproj \
+          -scheme 'CrashlyticsSwiftUIExample (watchOS)' \
+          -sdk watchos \
           build
         env:
           SAMPLE: Crashlytics

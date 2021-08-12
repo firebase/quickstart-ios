@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import UIKit
-import Firebase
+import FirebaseAnalytics
 
 class AnalyticsViewController: UIViewController {
   private lazy var analyticsView = AnalyticsView(frame: view.frame)

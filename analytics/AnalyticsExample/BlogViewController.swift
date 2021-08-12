@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import UIKit
-import Firebase
+import FirebaseAnalytics
 
 /// The `BlogViewController` demonstrates how to set a custom screen name for analytics tracking.
 class BlogViewController: UIViewController, UITextViewDelegate {

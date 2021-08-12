@@ -13,9 +13,16 @@
 // limitations under the License.
 
 import UIKit
-import Firebase
+import FirebaseCore
+import GoogleMulticastAppDelegate
 
 @UIApplicationMain
+class MyMulticastDelegate: MulticastAppDelegate {
+  override init() {
+    super.init(appDelegate: AppDelegate())
+  }
+}
+
 class AppDelegate: UIResponder, UIApplicationDelegate {
   func application(_ application: UIApplication,
                    didFinishLaunchingWithOptions launchOptions: [UIApplication

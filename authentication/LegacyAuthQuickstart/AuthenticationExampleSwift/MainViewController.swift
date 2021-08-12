@@ -1040,6 +1040,7 @@ class MainViewController: UITableViewController {
     authorizationController.performRequests()
   }
 
+  // [START random_nonce]
   // Adapted from https://auth0.com/docs/api-auth/tutorials/nonce#generate-a-cryptographically-random-nonce
   private func randomNonceString(length: Int = 32) -> String {
     precondition(length > 0)
@@ -1074,7 +1075,9 @@ class MainViewController: UITableViewController {
 
     return result
   }
+  // [END random_nonce]
 
+  // [START sha_256]
   @available(iOS 13, *)
   private func sha256(_ input: String) -> String {
     let inputData = Data(input.utf8)
@@ -1086,6 +1089,7 @@ class MainViewController: UITableViewController {
     return hashString
   }
 }
+// [END sha_256]
 
 @available(iOS 13.0, *)
 extension MainViewController: ASAuthorizationControllerDelegate {

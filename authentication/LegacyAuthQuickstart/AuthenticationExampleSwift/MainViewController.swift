@@ -1075,6 +1075,7 @@ class MainViewController: UITableViewController {
 
     return result
   }
+
   // [END random_nonce]
 
   // [START sha_256]
@@ -1088,6 +1089,7 @@ class MainViewController: UITableViewController {
 
     return hashString
   }
+
   // [END sha_256]
 }
 

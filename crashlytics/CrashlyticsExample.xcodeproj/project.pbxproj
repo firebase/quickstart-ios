@@ -40,8 +40,8 @@
 		C77AC00826BB16CA00BDE919 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73C899826845907003E5C2C /* ContentView.swift */; };
 		C77AC00A26BB16E300BDE919 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = C77AC00926BB16E300BDE919 /* FirebaseCrashlytics */; };
 		C77AC00C26BB16E300BDE919 /* Reachability in Frameworks */ = {isa = PBXBuildFile; productRef = C77AC00B26BB16E300BDE919 /* Reachability */; };
-		C79FD3A526C209E600FE0261 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C745942C26BDF32400153AE3 /* GoogleService-Info.plist */; };
-		C79FD3A626C209E600FE0261 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C745942C26BDF32400153AE3 /* GoogleService-Info.plist */; };
+		C79FD3B326C6E75000FE0261 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C79FD3B226C6E75000FE0261 /* GoogleService-Info.plist */; };
+		C79FD3B426C6E75000FE0261 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C79FD3B226C6E75000FE0261 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -112,6 +112,7 @@
 		C74C554626B377F20043B835 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C74C554926B377F20043B835 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		C74C554B26B377F20043B835 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C79FD3B226C6E75000FE0261 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -228,6 +229,7 @@
 		C745940826BDDD6200153AE3 /* CrashlyticsSwiftUIExample_(watchOS)_Extension */ = {
 			isa = PBXGroup;
 			children = (
+				C79FD3B226C6E75000FE0261 /* GoogleService-Info.plist */,
 				C745940D26BDDD6200153AE3 /* NotificationController.swift */,
 				C745940F26BDDD6200153AE3 /* NotificationView.swift */,
 				C745941126BDDD6200153AE3 /* ComplicationController.swift */,
@@ -452,7 +454,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C74593FE26BDDD6100153AE3 /* Assets.xcassets in Resources */,
-				C79FD3A526C209E600FE0261 /* GoogleService-Info.plist in Resources */,
+				C79FD3B326C6E75000FE0261 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -461,7 +463,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C745941726BDDD6300153AE3 /* Preview Assets.xcassets in Resources */,
-				C79FD3A626C209E600FE0261 /* GoogleService-Info.plist in Resources */,
+				C79FD3B426C6E75000FE0261 /* GoogleService-Info.plist in Resources */,
 				C745941426BDDD6300153AE3 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

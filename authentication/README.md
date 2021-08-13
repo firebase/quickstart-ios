@@ -291,8 +291,11 @@ Firebase Auth can manage authentication for use cases that utilize a custom auth
 After your server returns the token, pass that into  Firebase Auth's `signIn(withCustomtoken: String)` method to complete the authentication process. In the quickstart, you can demo signing in with tokens you generate. See `CustomAuthViewController.swift` for more info.
 
 If you wish to setup a custom auth system. The below steps can help in its configuration.
-
-**Go to the [Google Developers Console](https://console.developers.google.com/project) and create a project**:
+- In the [Firebase Console](https://console.firebase.google.com/), navigate to **Project settings**:
+    - Navigate to the **Service accounts** tab.
+    - Locate the section **All service account**, and click on the `X service accounts` link. This will take you to the Google Cloud Console.
+- In the [Google Cloud Console](https://console.cloud.google.com):
+    - Make sure the right Firebase project is selected.
     - From the left "hamburger" menu navigate to the **API Manager** tab.
     - Click on the **Credentials** item in the left column.
     - Click **New credentials** and select **Service account key**. Select **New service account**,

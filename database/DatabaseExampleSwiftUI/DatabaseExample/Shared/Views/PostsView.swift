@@ -20,9 +20,11 @@ import Firebase
 struct PostsView: View {
   @StateObject var postList = PostListViewModel()
   @StateObject var user = UserViewModel()
+  @State private var newPostsViewPresented = false
   var title: String
   var postsType: PostsType
 
+  #if os(iOS)
   var body: some View {
     NavigationView {
       List {
@@ -36,7 +38,7 @@ struct PostsView: View {
       .onDisappear {
         postList.onViewDisappear()
       }
-      .navigationBarTitle(title)
+      .navigationTitle(title)
       .navigationBarItems(leading:
         Button(action: {
           user.logout()
@@ -52,6 +54,40 @@ struct PostsView: View {
         })
     }
   }
+  #elseif os(macOS)
+  var body: some View {
+    NavigationView {
+      VStack {
+        Button(action: {
+          user.logout()
+        }) {
+          HStack {
+            Image(systemName: "chevron.left")
+            Text("Logout")
+          }
+        }
+        Button("New Post") {
+          newPostsViewPresented = true
+        }
+        .sheet(isPresented: $newPostsViewPresented) {
+                    NewPostsView(isPresented: $newPostsViewPresented)
+                }
+      }
+      List {
+        ForEach(postList.posts) { post in
+          PostCell(post: post)
+        }
+      }
+      .onAppear {
+        postList.getPosts(postsType: postsType)
+      }
+      .onDisappear {
+        postList.onViewDisappear()
+      }
+      .navigationTitle(title)
+    }
+  }
+  #endif
 }
 
 struct PostsView_Previews: PreviewProvider {

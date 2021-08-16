@@ -22,9 +22,12 @@ struct NewPostsView: View {
   @State private var newPostTitle: String = ""
   @State private var newPostBody: String = ""
   @State private var placeholderText: String = "Say something..."
+  #if os(iOS)
   var screenWidth = UIScreen.main.bounds.width
   var screenHeight = UIScreen.main.bounds.height
+  #endif
 
+  #if os(iOS)
   var body: some View {
     VStack {
       TextField("Add a title", text: $newPostTitle)
@@ -72,10 +75,38 @@ struct NewPostsView: View {
         Text("Post")
       })
   }
+  #elseif os(macOS)
+  @Binding var isPresented: Bool
+  var body: some View {
+    VStack {
+      TextField("Add a title", text: $newPostTitle)
+        .font(.largeTitle)
+        .padding(10)
+      TextEditor(text: $newPostBody)
+      Button(action: {
+        postList.didTapPostButton(
+          title: newPostTitle,
+          body: newPostBody
+        )
+        isPresented = false
+      }) {
+        Text("Post")
+      }
+    }
+    .frame(width: 600, height: 400, alignment: .center)
+    .alert(isPresented: $postList.alert, content: {
+      Alert(
+        title: Text("Message"),
+        message: Text(postList.alertMessage),
+        dismissButton: .destructive(Text("Ok"))
+      )
+    })
+  }
+  #endif
 }
 
 struct NewPostsView_Previews: PreviewProvider {
   static var previews: some View {
-    NewPostsView()
+    NewPostsView(isPresented: .constant(true))
   }
 }

@@ -19,8 +19,11 @@ import SwiftUI
 struct PostDetailView: View {
   @ObservedObject var post: PostViewModel
   @State private var comment: String = ""
+  #if os(iOS)
   var screenWidth = UIScreen.main.bounds.width
+  #endif
 
+  #if os(iOS)
   var body: some View {
     VStack {
       // post card displaying post details
@@ -87,8 +90,78 @@ struct PostDetailView: View {
     .onDisappear {
       post.onDetailViewDisappear()
     }
-    .navigationBarTitle(post.title)
+    .navigationTitle(post.title)
   }
+
+  #elseif os(macOS)
+  var body: some View {
+    VStack {
+      // post card displaying post details
+      VStack(alignment: .leading) {
+        HStack(spacing: 1) {
+          Image(systemName: "person.fill")
+          Text(post.author)
+          Spacer()
+          Image(systemName: "star")
+          Text("\(post.starCount)")
+        }
+        Text(post.title)
+          .font(.system(size: 27))
+          .bold()
+        Text(post.body)
+      }
+      .padding()
+      // comments for the particular post
+      List {
+        ForEach(post.comments) { comment in
+          VStack(alignment: .leading) {
+            HStack(spacing: 1) {
+              Image(systemName: "person")
+              Text(comment.author)
+            }
+            Text(comment.text)
+              .font(.body)
+          }
+          .padding()
+        }
+      }
+      .frame(width: 620, height: 300, alignment: .leading)
+      // textfield for user entering comments
+      HStack {
+        TextField("Comment", text: $comment)
+          .padding()
+        Button(action: {
+          post.didTapSendButton(commentField: comment)
+          comment = ""
+          #if canImport(UIKit)
+            hideKeyboard()
+          #endif
+        }) {
+          Text("Send")
+        }
+      }
+      .frame(
+        width: 650,
+        alignment: .center
+      )
+      Spacer()
+        .frame(idealHeight: 10)
+        .fixedSize()
+    }
+    .padding()
+    .frame(
+      width: 700,
+      alignment: .center
+    )
+    .onAppear {
+      post.fetchComments()
+    }
+    .onDisappear {
+      post.onDetailViewDisappear()
+    }
+    .navigationTitle(post.title)
+  }
+  #endif
 }
 
 #if canImport(UIKit)

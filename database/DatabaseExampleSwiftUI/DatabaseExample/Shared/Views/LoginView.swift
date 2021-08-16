@@ -19,9 +19,12 @@ import Firebase
 
 struct LoginView: View {
   @StateObject var user = UserViewModel()
-  var screenWidth = UIScreen.main.bounds.width
-  var screenHeight = UIScreen.main.bounds.height
+  #if os(iOS)
+  let screenWidth = UIScreen.main.bounds.width
+  let screenHeight = UIScreen.main.bounds.height
+  #endif
 
+  #if os(iOS)
   var body: some View {
     NavigationView {
       VStack {
@@ -102,6 +105,79 @@ struct LoginView: View {
       )
     })
   }
+  #elseif os(macOS)
+  @State private var signUpViewPresented = false
+  var body: some View {
+      VStack {
+        // Login title
+        Text("Login".uppercased())
+          .font(.title)
+          .padding(20)
+
+        Spacer()
+
+        // Email textfield
+        HStack {
+          Image("user-icon")
+            .resizable()
+            .scaledToFit()
+            .frame(width: 30.0, height: 30.0)
+            .opacity(0.5)
+          TextField("Email", text: $user.email)
+        }
+        .padding(20)
+        .frame(
+          width: 300,
+          alignment: .center
+        )
+
+        // Password textfield
+        HStack {
+          Image("lock-icon")
+            .resizable()
+            .scaledToFit()
+            .frame(width: 30.0, height: 30.0)
+            .opacity(0.5)
+          SecureField("Password", text: $user.password)
+        }
+        .padding(20)
+        .frame(
+          width: 300,
+          alignment: .center
+        )
+
+        Spacer()
+
+        // Login button
+        Button(action: user.login) {
+          Text("Login".uppercased())
+            .font(.title2)
+            .bold()
+        }
+
+        Spacer()
+
+        // Navigation text
+        HStack {
+          Text("Don't have an account?")
+          Button("Sign up".uppercased()) {
+            signUpViewPresented = true
+          }
+          .sheet(isPresented: $signUpViewPresented) {
+            SignUpView(user: user, isPresented: $signUpViewPresented)
+          }
+        }
+        .padding(20)
+      }
+    .alert(isPresented: $user.alert, content: {
+      Alert(
+        title: Text("Message"),
+        message: Text(user.alertMessage),
+        dismissButton: .destructive(Text("OK"))
+      )
+    })
+  }
+  #endif
 }
 
 struct LoginView_Previews: PreviewProvider {

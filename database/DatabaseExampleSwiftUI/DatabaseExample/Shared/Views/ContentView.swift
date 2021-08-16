@@ -18,7 +18,7 @@ import SwiftUI
 import Firebase
 
 struct ContentView: View {
-  @AppStorage("isSignedIn") var isSignedIn = true
+  @AppStorage("isSignedIn") var isSignedIn = false
   @State private var selection: PostsType = .recentPosts
 
   var body: some View {

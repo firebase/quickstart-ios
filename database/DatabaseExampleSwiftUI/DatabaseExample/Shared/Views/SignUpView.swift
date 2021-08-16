@@ -19,9 +19,12 @@ import SwiftUI
 struct SignUpView: View {
   @ObservedObject var user: UserViewModel
   @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+  #if os(iOS)
   var screenWidth = UIScreen.main.bounds.width
   var screenHeight = UIScreen.main.bounds.height
+  #endif
 
+  #if os(iOS)
   var body: some View {
     VStack {
       // Sign up title
@@ -102,11 +105,83 @@ struct SignUpView: View {
     })
     .navigationBarHidden(true)
   }
+  #elseif os(macOS)
+  @Binding var isPresented: Bool
+  var body: some View {
+      VStack {
+        // Sign up title
+        Text("Sign up".uppercased())
+          .font(.title)
+
+        Spacer()
+
+        // Email textfield
+        HStack {
+          Image("user-icon")
+            .resizable()
+            .scaledToFit()
+            .frame(width: 30.0, height: 30.0)
+            .opacity(0.5)
+          TextField("Email", text: $user.email)
+        }
+        padding(20)
+          .frame(
+            width: 300,
+            alignment: .center
+          )
+
+        // Password textfield
+        HStack {
+          Image("lock-icon")
+            .resizable()
+            .scaledToFit()
+            .frame(width: 30.0, height: 30.0)
+            .opacity(0.5)
+          SecureField("Password", text: $user.password)
+        }
+        padding(20)
+          .frame(
+            width: 300,
+            alignment: .center
+          )
+        Spacer()
+
+        // Sign up button
+        Button(action: user.signUp) {
+          Text("Sign up".uppercased())
+            .foregroundColor(.white)
+            .font(.title2)
+            .bold()
+        }
+
+        Spacer()
+
+        // Navigation text
+        HStack {
+          Text("Already have an account?")
+          Button(action: {
+            isPresented = false
+          }) {
+            Text("Login".uppercased())
+              .bold()
+          }
+        }
+      }
+    .alert(isPresented: $user.alert, content: {
+      Alert(
+        title: Text("Message"),
+        message: Text(user.alertMessage),
+        dismissButton: .destructive(Text("Ok"))
+      )
+    })
+  }
+  #endif
 }
 
+#if os(iOS)
 struct SignUpView_Previews: PreviewProvider {
   static var previews: some View {
     SignUpView(user: user)
-      .preferredColorScheme(.light)
   }
 }
+#endif

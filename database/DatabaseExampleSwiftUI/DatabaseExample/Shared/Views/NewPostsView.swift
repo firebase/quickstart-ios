@@ -106,8 +106,10 @@ struct NewPostsView: View {
   #endif
 }
 
+#if os(iOS)
 struct NewPostsView_Previews: PreviewProvider {
   static var previews: some View {
-    NewPostsView(isPresented: .constant(true))
+    NewPostsView()
   }
 }
+#endif

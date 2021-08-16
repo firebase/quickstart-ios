@@ -20,94 +20,95 @@ import Firebase
 struct LoginView: View {
   @StateObject var user = UserViewModel()
   #if os(iOS)
-  let screenWidth = UIScreen.main.bounds.width
-  let screenHeight = UIScreen.main.bounds.height
+    let screenWidth = UIScreen.main.bounds.width
+    let screenHeight = UIScreen.main.bounds.height
   #endif
 
   #if os(iOS)
-  var body: some View {
-    NavigationView {
-      VStack {
-        // Login title
-        Text("Login".uppercased())
-          .font(.title)
-
-        Spacer()
-          .frame(idealHeight: 0.1 * screenHeight)
-          .fixedSize()
-
-        // Email textfield
-        HStack {
-          Image("user-icon")
-            .resizable()
-            .scaledToFit()
-            .frame(width: 30.0, height: 30.0)
-            .opacity(0.5)
-          TextField("Email", text: $user.email)
-            .keyboardType(.emailAddress)
-            .autocapitalization(UITextAutocapitalizationType.none)
-        }
-        .padding(0.02 * screenHeight)
-        .frame(
-          width: screenWidth * 0.8,
-          alignment: /*@START_MENU_TOKEN@*/ .center/*@END_MENU_TOKEN@*/
-        )
-        .background(RoundedRectangle(cornerRadius: 10).fill(Color(.systemGray5)))
-
-        // Password textfield
-        HStack {
-          Image("lock-icon")
-            .resizable()
-            .scaledToFit()
-            .frame(width: 30.0, height: 30.0)
-            .opacity(0.5)
-          SecureField("Password", text: $user.password)
-        }
-        .padding(0.02 * screenHeight)
-        .frame(width: screenWidth * 0.8, alignment: .center)
-        .background(RoundedRectangle(cornerRadius: 10).fill(Color(.systemGray5)))
-
-        Spacer()
-          .frame(idealHeight: 0.05 * screenHeight)
-          .fixedSize()
-
-        // Login button
-        Button(action: user.login) {
+    var body: some View {
+      NavigationView {
+        VStack {
+          // Login title
           Text("Login".uppercased())
-            .foregroundColor(.white)
-            .font(.title2)
-            .bold()
-        }
-        .padding(0.025 * screenHeight)
-        .frame(width: screenWidth * 0.8, alignment: .center)
-        .background(Capsule().fill(Color(.systemTeal)))
+            .font(.title)
 
-        Spacer()
-          .frame(idealHeight: 0.05 * screenHeight)
-          .fixedSize()
+          Spacer()
+            .frame(idealHeight: 0.1 * screenHeight)
+            .fixedSize()
 
-        // Navigation text
-        HStack {
-          Text("Don't have an account?")
-          NavigationLink(destination: SignUpView(user: user)) {
-            Text("Sign up".uppercased())
+          // Email textfield
+          HStack {
+            Image("user-icon")
+              .resizable()
+              .scaledToFit()
+              .frame(width: 30.0, height: 30.0)
+              .opacity(0.5)
+            TextField("Email", text: $user.email)
+              .keyboardType(.emailAddress)
+              .autocapitalization(UITextAutocapitalizationType.none)
+          }
+          .padding(0.02 * screenHeight)
+          .frame(
+            width: screenWidth * 0.8,
+            alignment: /*@START_MENU_TOKEN@*/ .center/*@END_MENU_TOKEN@*/
+          )
+          .background(RoundedRectangle(cornerRadius: 10).fill(Color(.systemGray5)))
+
+          // Password textfield
+          HStack {
+            Image("lock-icon")
+              .resizable()
+              .scaledToFit()
+              .frame(width: 30.0, height: 30.0)
+              .opacity(0.5)
+            SecureField("Password", text: $user.password)
+          }
+          .padding(0.02 * screenHeight)
+          .frame(width: screenWidth * 0.8, alignment: .center)
+          .background(RoundedRectangle(cornerRadius: 10).fill(Color(.systemGray5)))
+
+          Spacer()
+            .frame(idealHeight: 0.05 * screenHeight)
+            .fixedSize()
+
+          // Login button
+          Button(action: user.login) {
+            Text("Login".uppercased())
+              .foregroundColor(.white)
+              .font(.title2)
               .bold()
           }
+          .padding(0.025 * screenHeight)
+          .frame(width: screenWidth * 0.8, alignment: .center)
+          .background(Capsule().fill(Color(.systemTeal)))
+
+          Spacer()
+            .frame(idealHeight: 0.05 * screenHeight)
+            .fixedSize()
+
+          // Navigation text
+          HStack {
+            Text("Don't have an account?")
+            NavigationLink(destination: SignUpView(user: user)) {
+              Text("Sign up".uppercased())
+                .bold()
+            }
+          }
         }
+        .navigationBarHidden(true)
       }
-      .navigationBarHidden(true)
+      .alert(isPresented: $user.alert, content: {
+        Alert(
+          title: Text("Message"),
+          message: Text(user.alertMessage),
+          dismissButton: .destructive(Text("OK"))
+        )
+      })
     }
-    .alert(isPresented: $user.alert, content: {
-      Alert(
-        title: Text("Message"),
-        message: Text(user.alertMessage),
-        dismissButton: .destructive(Text("OK"))
-      )
-    })
-  }
+
   #elseif os(macOS)
-  @State private var signUpViewPresented = false
-  var body: some View {
+    @State private var signUpViewPresented = false
+    var body: some View {
       VStack {
         // Login title
         Text("Login".uppercased())
@@ -169,14 +170,14 @@ struct LoginView: View {
         }
         .padding(20)
       }
-    .alert(isPresented: $user.alert, content: {
-      Alert(
-        title: Text("Message"),
-        message: Text(user.alertMessage),
-        dismissButton: .destructive(Text("OK"))
-      )
-    })
-  }
+      .alert(isPresented: $user.alert, content: {
+        Alert(
+          title: Text("Message"),
+          message: Text(user.alertMessage),
+          dismissButton: .destructive(Text("OK"))
+        )
+      })
+    }
   #endif
 }
 

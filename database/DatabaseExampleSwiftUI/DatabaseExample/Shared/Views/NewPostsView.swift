@@ -23,85 +23,86 @@ struct NewPostsView: View {
   @State private var newPostBody: String = ""
   @State private var placeholderText: String = "Say something..."
   #if os(iOS)
-  var screenWidth = UIScreen.main.bounds.width
-  var screenHeight = UIScreen.main.bounds.height
+    var screenWidth = UIScreen.main.bounds.width
+    var screenHeight = UIScreen.main.bounds.height
   #endif
 
   #if os(iOS)
-  var body: some View {
-    VStack {
-      TextField("Add a title", text: $newPostTitle)
-        .font(.largeTitle)
-        .frame(
-          width: screenWidth * 0.88,
-          height: screenHeight * 0.08,
-          alignment: .leading
-        )
-        .textFieldStyle(RoundedBorderTextFieldStyle())
-      ZStack {
-        if newPostBody.isEmpty {
-          TextEditor(text: $placeholderText)
-            .foregroundColor(.gray)
+    var body: some View {
+      VStack {
+        TextField("Add a title", text: $newPostTitle)
+          .font(.largeTitle)
+          .frame(
+            width: screenWidth * 0.88,
+            height: screenHeight * 0.08,
+            alignment: .leading
+          )
+          .textFieldStyle(RoundedBorderTextFieldStyle())
+        ZStack {
+          if newPostBody.isEmpty {
+            TextEditor(text: $placeholderText)
+              .foregroundColor(.gray)
+              .frame(
+                width: screenWidth * 0.88,
+                alignment: .leading
+              )
+              .disabled(/*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
+          }
+          TextEditor(text: $newPostBody)
             .frame(
               width: screenWidth * 0.88,
               alignment: .leading
             )
-            .disabled(/*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
+            .opacity(self.newPostBody.isEmpty ? 0.25 : 1)
         }
-        TextEditor(text: $newPostBody)
-          .frame(
-            width: screenWidth * 0.88,
-            alignment: .leading
-          )
-          .opacity(self.newPostBody.isEmpty ? 0.25 : 1)
       }
-    }
-    .alert(isPresented: $postList.alert, content: {
-      Alert(
-        title: Text("Message"),
-        message: Text(postList.alertMessage),
-        dismissButton: .destructive(Text("Ok"))
-      )
-    })
-    .navigationTitle("New Post")
-    .navigationBarItems(trailing:
-      Button(action: {
-        postList.didTapPostButton(
-          title: newPostTitle,
-          body: newPostBody
+      .alert(isPresented: $postList.alert, content: {
+        Alert(
+          title: Text("Message"),
+          message: Text(postList.alertMessage),
+          dismissButton: .destructive(Text("Ok"))
         )
-        self.presentationMode.wrappedValue.dismiss()
-      }) {
-        Text("Post")
       })
-  }
-  #elseif os(macOS)
-  @Binding var isPresented: Bool
-  var body: some View {
-    VStack {
-      TextField("Add a title", text: $newPostTitle)
-        .font(.largeTitle)
-        .padding(10)
-      TextEditor(text: $newPostBody)
-      Button(action: {
-        postList.didTapPostButton(
-          title: newPostTitle,
-          body: newPostBody
-        )
-        isPresented = false
-      }) {
-        Text("Post")
-      }
+      .navigationTitle("New Post")
+      .navigationBarItems(trailing:
+        Button(action: {
+          postList.didTapPostButton(
+            title: newPostTitle,
+            body: newPostBody
+          )
+          self.presentationMode.wrappedValue.dismiss()
+        }) {
+          Text("Post")
+        })
     }
-    .frame(width: 600, height: 400, alignment: .center)
-    .alert(isPresented: $postList.alert, content: {
-      Alert(
-        title: Text("Message"),
-        message: Text(postList.alertMessage),
-        dismissButton: .destructive(Text("Ok"))
-      )
-    })
-  }
+
+  #elseif os(macOS)
+    @Binding var isPresented: Bool
+    var body: some View {
+      VStack {
+        TextField("Add a title", text: $newPostTitle)
+          .font(.largeTitle)
+          .padding(10)
+        TextEditor(text: $newPostBody)
+        Button(action: {
+          postList.didTapPostButton(
+            title: newPostTitle,
+            body: newPostBody
+          )
+          isPresented = false
+        }) {
+          Text("Post")
+        }
+      }
+      .frame(width: 600, height: 400, alignment: .center)
+      .alert(isPresented: $postList.alert, content: {
+        Alert(
+          title: Text("Message"),
+          message: Text(postList.alertMessage),
+          dismissButton: .destructive(Text("Ok"))
+        )
+      })
+    }
   #endif
 }
 

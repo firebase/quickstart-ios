@@ -18,6 +18,9 @@ import XCTest
 
 class UITests: XCTestCase {
   var app: XCUIApplication = XCUIApplication()
+  lazy var download: PerformanceFunction = .download(self)
+  lazy var classify: PerformanceFunction = .classify(self)
+  lazy var upload: PerformanceFunction = .upload(self)
 
   override func setUpWithError() throws {
     #if !os(iOS) && !os(tvOS)
@@ -33,12 +36,19 @@ class UITests: XCTestCase {
     app.terminate()
   }
 
-  func checkButtons(_ functions: [String], timeout: TimeInterval = 1) throws {
+  func checkMainView() throws {
+    XCTAssert(app.navigationBars["Performance"].exists, "Missing navigation title.")
+    XCTAssert(app.navigationBars["Performance"].isHittable, "Navigation title not in view.")
+  }
+
+  func checkButtons(_ candidates: [PerformanceFunction]? = nil, timeout: TimeInterval = 1) throws {
+    let functions: [PerformanceFunction] = candidates ?? [download, classify, upload]
     for function in functions {
-      let button = app.buttons["\(function) Image"]
-      XCTAssert(button.waitForExistence(timeout: timeout), "Missing \(function) button.")
-      XCTAssert(button.isEnabled, "\(function) button not enabled.")
-      XCTAssert(button.isHittable, "\(function) button not in view.")
+      let button = function.button
+      let name = function.name
+      XCTAssert(button.waitForExistence(timeout: timeout), "Missing \(name) button.")
+      XCTAssert(button.isEnabled, "\(name) button not enabled.")
+      XCTAssert(button.isHittable, "\(name) button not in view.")
     }
   }
 
@@ -48,9 +58,9 @@ class UITests: XCTestCase {
     XCTAssert(element.isHittable, "Text '\(text)' not in view.")
   }
 
-  func checkStatus(_ status: String, timeout: TimeInterval = 1) throws {
+  func checkStatus(_ status: ProcessStatus, timeout: TimeInterval = 1) throws {
     #if os(iOS)
-      try checkText(status, timeout: timeout)
+      try checkText(status.rawValue, timeout: timeout)
     #endif
   }
 
@@ -64,139 +74,116 @@ class UITests: XCTestCase {
     #endif
   }
 
+  func download(image: Bool = false) throws {
+    #if os(iOS)
+      XCTAssert(download.button.isHittable, "Reached invalid state.")
+      download.button.tap()
+    #else
+      if !image {
+        XCUIRemote.shared.press(.up)
+        XCUIRemote.shared.press(.up)
+        sleep(1)
+        XCTAssert(download.cell.hasFocus, "Reached invalid state.")
+      }
+      XCUIRemote.shared.press(.select)
+    #endif
+  }
+
   func classify(image: Bool = false) throws {
     #if os(iOS)
-      XCTAssert(app.buttons["Classify Image"].isHittable, "Reached invalid state.")
-      app.buttons["Classify Image"].tap()
+      XCTAssert(classify.button.isHittable, "Reached invalid state.")
+      classify.button.tap()
     #else
       if !image {
         XCUIRemote.shared.press(.down)
         XCUIRemote.shared.press(.down)
         XCUIRemote.shared.press(.up)
         sleep(1)
-        XCTAssert(app.cells["Classify Image"].hasFocus, "Reached invalid state.")
+        XCTAssert(classify.cell.hasFocus, "Reached invalid state.")
       }
       XCUIRemote.shared.press(.select)
     #endif
   }
 
-  func download(image: Bool = false, timeout: TimeInterval = 10) throws {
+  func upload(image: Bool = false) throws {
     #if os(iOS)
-      XCTAssert(app.buttons["Download Image"].isHittable, "Reached invalid state.")
-      app.buttons["Download Image"].tap()
+      XCTAssert(upload.button.isHittable, "Reached invalid state.")
+      upload.button.tap()
     #else
       if !image {
-        XCUIRemote.shared.press(.up)
-        XCUIRemote.shared.press(.up)
+        XCUIRemote.shared.press(.down)
+        XCUIRemote.shared.press(.down)
         sleep(1)
-        XCTAssert(app.cells["Download Image"].hasFocus, "Reached invalid state.")
+        XCTAssert(upload.cell.hasFocus, "Reached invalid state.")
       }
       XCUIRemote.shared.press(.select)
     #endif
-    if image {
-      XCTAssert(app.images.firstMatch.waitForExistence(timeout: timeout),
-                "Failed to retrieve image.")
-    }
   }
 
-  func upload(image: Bool = false, timeout: TimeInterval = 10) throws {
-    #if os(iOS)
-      XCTAssert(app.buttons["Upload Image"].isHittable, "Reached invalid state.")
-      app.buttons["Upload Image"].tap()
-    #else
-      if !image {
-        XCUIRemote.shared.press(.down)
-        XCUIRemote.shared.press(.down)
-        sleep(1)
-        XCTAssert(app.cells["Upload Image"].hasFocus, "Reached invalid state.")
-      }
-      XCUIRemote.shared.press(.select)
-    #endif
+  func checkEmptyView(function: PerformanceFunction) throws {
+    try checkStatus(.idle)
+    try checkButtons()
+    try function.applyToImage(false)
+    try checkText("No image found!\nPlease download an image first.")
+    try checkStatus(.idle)
+    try goBack()
+  }
+
+  func checkFunctionality(function: PerformanceFunction, startingStatus: ProcessStatus = .success,
+                          timeout: TimeInterval = 10) throws {
+    try checkStatus(startingStatus)
+    try checkButtons()
+    try function.applyToImage(false)
+    try checkButtons([function])
+    try function.applyToImage(true)
+    try checkText(function.endText, timeout: timeout)
+    try checkStatus(.success)
+    try goBack()
+  }
+
+  func checkDoneView(function: PerformanceFunction) throws {
+    try checkStatus(.success)
+    try checkButtons()
+    try function.applyToImage(false)
+    try checkText(function.endText)
+    try checkStatus(.success)
+    try goBack()
+  }
+
+  func testDownloadView() throws {
+    try checkMainView()
+    try checkEmptyView(function: download)
+    try checkFunctionality(function: download, startingStatus: .idle)
+  }
+
+  func testClassifyView() throws {
+    try checkMainView()
+    try checkEmptyView(function: classify)
+    try checkFunctionality(function: download, startingStatus: .idle)
+    try checkFunctionality(function: classify)
+  }
+
+  func testUploadView() throws {
+    try checkMainView()
+    try checkEmptyView(function: upload)
+    try checkFunctionality(function: download, startingStatus: .idle)
+    try checkFunctionality(function: upload)
   }
 
   func testAllViews() throws {
-    let buttons = ["Download", "Classify", "Upload"]
+    try checkMainView()
 
-    XCTAssert(app.navigationBars["Performance"].exists, "Missing navigation title.")
-    XCTAssert(app.navigationBars["Performance"].isHittable, "Navigation title not in view.")
+    try checkEmptyView(function: download)
+    try checkEmptyView(function: classify)
+    try checkEmptyView(function: upload)
 
-    // Download - Empty
-    try checkStatus("⏸ Idle")
-    try checkButtons(buttons)
-    try download()
-    try checkText("No image found!\nPlease download an image first.")
-    try checkStatus("⏸ Idle")
-    try goBack()
+    try checkFunctionality(function: download, startingStatus: .idle)
+    try checkFunctionality(function: classify)
+    try checkFunctionality(function: upload)
 
-    // Classify - Empty
-    try checkStatus("⏸ Idle")
-    try checkButtons(buttons)
-    try classify()
-    try checkText("No image found!\nPlease download an image first.")
-    try checkStatus("⏸ Idle")
-    try goBack()
-
-    // Upload - Empty
-    try checkStatus("⏸ Idle")
-    try checkButtons(buttons)
-    try upload()
-    try checkText("No image found!\nPlease download an image first.")
-    try checkStatus("⏸ Idle")
-    try goBack()
-
-    // Download - Image
-    try checkStatus("⏸ Idle")
-    try checkButtons(buttons)
-    try download()
-    try checkButtons(["Download"])
-    try download(image: true)
-    try checkText("Image downloaded successfully!", timeout: 10)
-    try checkStatus("✅ Success")
-    try goBack()
-
-    // Classify - Image
-    try checkStatus("✅ Success")
-    try checkButtons(buttons)
-    try classify()
-    try checkButtons(["Classify"])
-    try classify(image: true)
-    try checkText("Categories found:", timeout: 10)
-    try checkStatus("✅ Success")
-    try goBack()
-
-    // Upload - Image
-    try checkStatus("✅ Success")
-    try checkButtons(buttons)
-    try upload()
-    try checkButtons(["Upload"])
-    try upload(image: true)
-    try checkText("Image uploaded successfully!", timeout: 10)
-    try checkStatus("✅ Success")
-    try goBack()
-
-    // Download - Done
-    try checkStatus("✅ Success")
-    try checkButtons(buttons)
-    try download()
-    try checkText("Image downloaded successfully!")
-    try checkStatus("✅ Success")
-    try goBack()
-
-    // Classify - Done
-    try checkStatus("✅ Success")
-    try checkButtons(buttons)
-    try classify()
-    try checkText("Categories found:")
-    try checkStatus("✅ Success")
-    try goBack()
-
-    // Upload - Done
-    try checkStatus("✅ Success")
-    try checkButtons(buttons)
-    try upload()
-    try checkText("Image uploaded successfully!")
-    try checkStatus("✅ Success")
-    try goBack()
+    try checkDoneView(function: download)
+    try checkDoneView(function: classify)
+    try checkDoneView(function: upload)
   }
 
   func testLaunchPerformance() throws {
@@ -207,4 +194,72 @@ class UITests: XCTestCase {
       }
     }
   }
+}
+
+enum PerformanceFunction {
+  case download(UITests)
+  case classify(UITests)
+  case upload(UITests)
+
+  var name: String {
+    switch self {
+    case .download:
+      return "Download"
+    case .classify:
+      return "Classify"
+    case .upload:
+      return "Upload"
+    }
+  }
+
+  var button: XCUIElement {
+    switch self {
+    case let .download(test):
+      return test.app.buttons["Download Image"]
+    case let .classify(test):
+      return test.app.buttons["Classify Image"]
+    case let .upload(test):
+      return test.app.buttons["Upload Image"]
+    }
+  }
+
+  var cell: XCUIElement {
+    switch self {
+    case let .download(test):
+      return test.app.cells["Download Image"]
+    case let .classify(test):
+      return test.app.cells["Classify Image"]
+    case let .upload(test):
+      return test.app.cells["Upload Image"]
+    }
+  }
+
+  var endText: String {
+    switch self {
+    case .download:
+      return "Image downloaded successfully!"
+    case .classify:
+      return "Categories found:"
+    case .upload:
+      return "Image uploaded successfully!"
+    }
+  }
+
+  var applyToImage: (Bool) throws -> Void {
+    switch self {
+    case let .download(test):
+      return test.download
+    case let .classify(test):
+      return test.classify
+    case let .upload(test):
+      return test.upload
+    }
+  }
+}
+
+enum ProcessStatus: String {
+  case idle = "⏸ Idle"
+  case running = "Running"
+  case failure = "❌ Failure"
+  case success = "✅ Success"
 }

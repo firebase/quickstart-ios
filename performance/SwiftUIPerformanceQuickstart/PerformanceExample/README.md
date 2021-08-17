@@ -15,7 +15,7 @@ Introduction
 Getting Started
 ---------------
 
-- [Add Firebase to your iOS Project](https://firebase.google.com/docs/ios/setup).
+- [Add Firebase to your iOS / tvOS Project](https://firebase.google.com/docs/ios/setup).
 - [Create a default Cloud Storage bucket](https://firebase.google.com/docs/storage/ios/start#create-default-bucket).
 - [Replace your Rules](https://firebase.google.com/docs/storage/security/get-started#access_your_rules) with the following:
 ```
@@ -28,7 +28,7 @@ service firebase.storage {
   }
 }
 ```
-- Run the sample on your iOS device or simulator.
+- Run the sample on your iOS / tvOS device or simulator.
 
 
 Support

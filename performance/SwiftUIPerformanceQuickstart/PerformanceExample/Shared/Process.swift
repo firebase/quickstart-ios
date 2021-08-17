@@ -117,14 +117,14 @@ class Process: ObservableObject {
         if let error = error {
           print("Error: \(error).")
           Task { [weak self] in
-            await self?.updateStatusAsync(to: .failure)
+            await self?.updateStatusAsync(to: .failure, upload: true)
           }
           return
         }
         if metadata == nil {
           print("Did not receive metadata.")
           Task { [weak self] in
-            await self?.updateStatusAsync(to: .failure)
+            await self?.updateStatusAsync(to: .failure, upload: true)
           }
           return
         }
@@ -221,12 +221,12 @@ class Process: ObservableObject {
     reference.putData(jpg, metadata: metadata) { [weak self] metadata, error in
       if let error = error {
         print("Error: \(error).")
-        self?.updateStatus(to: .failure)
+        self?.updateStatus(to: .failure, upload: true)
         return
       }
       if metadata == nil {
         print("Did not receive metadata.")
-        self?.updateStatus(to: .failure)
+        self?.updateStatus(to: .failure, upload: true)
         return
       }
       self?.updateStatus(to: .success, upload: true)

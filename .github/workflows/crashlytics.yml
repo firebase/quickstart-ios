@@ -84,17 +84,18 @@ jobs:
           build
         env:
           SAMPLE: Crashlytics
-      - name: Build SwiftUI (watchOS)
-        run: |
-          cd crashlytics
-          ../scripts/install_prereqs/crashlytics.sh
-          xcodebuild \
-          -project CrashlyticsExample.xcodeproj \
-          -scheme 'CrashlyticsSwiftUIExample (watchOS)' \
-          -sdk watchos \
-          build \
-          CODE_SIGN_IDENTITY="" \
-          CODE_SIGNING_REQUIRED=NO \
-          CODE_SIGNING_ALLOWED=NO
-        env:
-          SAMPLE: Crashlytics
+#       Works from the xcode UI but not from the xcodebuild command
+#       - name: Build SwiftUI (watchOS)
+#         run: |
+#           cd crashlytics
+#           ../scripts/install_prereqs/crashlytics.sh
+#           xcodebuild \
+#           -project CrashlyticsExample.xcodeproj \
+#           -scheme 'CrashlyticsSwiftUIExample (watchOS)' \
+#           -sdk watchos \
+#           build \
+#           CODE_SIGN_IDENTITY="" \
+#           CODE_SIGNING_REQUIRED=NO \
+#           CODE_SIGNING_ALLOWED=NO
+#         env:
+#           SAMPLE: Crashlytics

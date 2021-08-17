@@ -23,7 +23,7 @@ rules_version = '2';
 service firebase.storage {
   match /b/{bucket}/o {
     match /image.jpg {
-      allow create: if request.resource.contentType.matches('image/jpeg')
+      allow create: if request.resource.contentType == 'image/jpeg'
     }
   }
 }

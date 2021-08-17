@@ -21,7 +21,6 @@ import Vision
 
 class Process: ObservableObject {
   @Published var status: ProcessStatus = .idle
-  @Published var action: ProcessAction?
   @Published var image: UIImage?
   var uploadSucceeded = false
   var categories: [(category: String, confidence: VNConfidence)]?
@@ -37,10 +36,6 @@ class Process: ObservableObject {
 
     @MainActor @available(iOS 15, tvOS 15, *) func updateImageAsync(to newImage: UIImage?) {
       image = newImage
-    }
-
-    @MainActor @available(iOS 15, tvOS 15, *) func updateActionAsync(to newAction: ProcessAction?) {
-      action = newAction
     }
 
     @available(iOS 15, tvOS 15, *) func downloadImageAsync() async {
@@ -121,8 +116,8 @@ class Process: ObservableObject {
       reference.putData(jpg, metadata: metadata) { metadata, error in
         if let error = error {
           print("Error: \(error).")
-          Task { [weak self] in await
-            self?.updateStatusAsync(to: .failure)
+          Task { [weak self] in
+            await self?.updateStatusAsync(to: .failure)
           }
           return
         }
@@ -133,8 +128,8 @@ class Process: ObservableObject {
           }
           return
         }
-        Task.detached { @MainActor [weak self] in
-          self?.updateStatusAsync(to: .success, upload: true)
+        Task { [weak self] in
+          await self?.updateStatusAsync(to: .success, upload: true)
         }
       }
     }
@@ -149,10 +144,6 @@ class Process: ObservableObject {
 
   func updateImage(to newImage: UIImage?) {
     DispatchQueue.main.async { self.image = newImage }
-  }
-
-  func updateAction(to newAction: ProcessAction?) {
-    DispatchQueue.main.async { self.action = newAction }
   }
 
   func downloadImage() {
@@ -275,10 +266,4 @@ enum ProcessStatus {
       }
     }
   }
-}
-
-enum ProcessAction: String {
-  case download = "Download"
-  case classify = "Classify"
-  case upload = "Upload"
 }

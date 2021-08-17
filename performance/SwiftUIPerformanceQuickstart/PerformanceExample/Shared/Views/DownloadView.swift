@@ -46,17 +46,6 @@ struct DownloadView: View {
     .toolbar {
       ToolbarItem(placement: .principal) { process.status.view }
     }
-    .onAppear {
-      if #available(iOS 15, tvOS 15, *) {
-        #if swift(>=5.5)
-          process.updateActionAsync(to: .classify)
-        #else
-          process.updateAction(to: .classify)
-        #endif
-      } else {
-        process.updateAction(to: .classify)
-      }
-    }
   }
 }
 

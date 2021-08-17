@@ -96,7 +96,6 @@ class UITests: XCTestCase {
     if image {
       XCTAssert(app.images.firstMatch.waitForExistence(timeout: timeout),
                 "Failed to retrieve image.")
-      try checkText("Image downloaded successfully!")
     }
   }
 
@@ -113,7 +112,6 @@ class UITests: XCTestCase {
       }
       XCUIRemote.shared.press(.select)
     #endif
-    if image { try checkText("Image uploaded successfully!") }
   }
 
   func testAllViews() throws {
@@ -152,7 +150,7 @@ class UITests: XCTestCase {
     try download()
     try checkButtons(["Download"])
     try download(image: true)
-    try checkText("Image downloaded successfully!", timeout: 5)
+    try checkText("Image downloaded successfully!", timeout: 10)
     try checkStatus("✅ Success")
     try goBack()
 
@@ -162,7 +160,7 @@ class UITests: XCTestCase {
     try classify()
     try checkButtons(["Classify"])
     try classify(image: true)
-    try checkText("Categories found:", timeout: 5)
+    try checkText("Categories found:", timeout: 10)
     try checkStatus("✅ Success")
     try goBack()
 
@@ -172,7 +170,7 @@ class UITests: XCTestCase {
     try upload()
     try checkButtons(["Upload"])
     try upload(image: true)
-    try checkText("Image uploaded successfully!", timeout: 5)
+    try checkText("Image uploaded successfully!", timeout: 10)
     try checkStatus("✅ Success")
     try goBack()
 

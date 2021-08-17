@@ -47,16 +47,6 @@ struct UploadView: View {
     .toolbar {
       ToolbarItem(placement: .principal) { process.status.view }
     }
-    .onAppear {
-      if #available(iOS 15, tvOS 15, *) {
-        #if swift(>=5.5)
-          process.updateActionAsync(to: .upload)
-        #endif
-        process.updateAction(to: .upload)
-      } else {
-        process.updateAction(to: .upload)
-      }
-    }
   }
 }
 

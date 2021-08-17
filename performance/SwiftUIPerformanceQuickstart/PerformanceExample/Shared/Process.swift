@@ -105,7 +105,7 @@ class Process: ObservableObject {
     @available(iOS 15, tvOS 15, *) func uploadImageAsync(compressionQuality: CGFloat = 0.5) async {
       guard let jpg = image?.jpegData(compressionQuality: compressionQuality) else {
         print("Could not convert image into correct format.")
-        await updateStatusAsync(to: .failure)
+        await updateStatusAsync(to: .failure, updateUploadStatus: true)
         return
       }
 
@@ -120,7 +120,7 @@ class Process: ObservableObject {
         await updateStatusAsync(to: .success, updateUploadStatus: true)
       } catch {
         print("Error uploading image: \(error).")
-        await updateStatusAsync(to: .failure)
+        await updateStatusAsync(to: .failure, updateUploadStatus: true)
       }
     }
   #endif
@@ -199,7 +199,7 @@ class Process: ObservableObject {
   func uploadImage(compressionQuality: CGFloat = 0.5) {
     guard let jpg = image?.jpegData(compressionQuality: compressionQuality) else {
       print("Could not convert image into correct format.")
-      updateStatus(to: .failure)
+      updateStatus(to: .failure, updateUploadStatus: true)
       return
     }
 
@@ -210,7 +210,8 @@ class Process: ObservableObject {
 
     reference.putData(jpg, metadata: metadata) { [weak self] result in
       switch result {
-      case .success:
+      case let .success(response):
+        print("Upload response metadata: \(response)")
         self?.updateStatus(to: .success, updateUploadStatus: true)
       case let .failure(error):
         print("Error uploading image: \(error).")

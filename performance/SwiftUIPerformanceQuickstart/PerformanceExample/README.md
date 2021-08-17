@@ -4,8 +4,8 @@ Firebase Performance Monitoring Quickstart
 # Firebase Performance Monitoring
 
 Firebase Performance Monitoring is a free mobile app performance analytics service. It
-provides detailed information about the performance of your apps automatically,
-but works at its best with Timers set by you.
+provides detailed information about the performance of your apps (app start, network requests, screen performance) automatically,
+while also allowing you to measure the performance of any piece of code in your apps.
 
 Introduction
 ------------

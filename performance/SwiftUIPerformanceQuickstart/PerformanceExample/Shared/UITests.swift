@@ -71,6 +71,8 @@ class UITests: XCTestCase {
     #else
       if !image {
         XCUIRemote.shared.press(.down)
+        XCUIRemote.shared.press(.down)
+        XCUIRemote.shared.press(.up)
         sleep(1)
         XCTAssert(app.cells["Classify Image"].hasFocus, "Reached invalid state.")
       }
@@ -78,25 +80,55 @@ class UITests: XCTestCase {
     #endif
   }
 
-  func download(timeout: TimeInterval = 10) throws {
+  func download(image: Bool = false, timeout: TimeInterval = 10) throws {
     #if os(iOS)
       XCTAssert(app.buttons["Download Image"].isHittable, "Reached invalid state.")
       app.buttons["Download Image"].tap()
     #else
-      XCUIRemote.shared.press(.up)
-      sleep(1)
-      XCTAssert(app.cells["Download Image"].hasFocus, "Reached invalid state.")
+      if !image {
+        XCUIRemote.shared.press(.up)
+        XCUIRemote.shared.press(.up)
+        sleep(1)
+        XCTAssert(app.cells["Download Image"].hasFocus, "Reached invalid state.")
+      }
       XCUIRemote.shared.press(.select)
     #endif
+    if image {
+      XCTAssert(app.images.firstMatch.waitForExistence(timeout: timeout),
+                "Failed to retrieve image.")
+      try checkText("Image downloaded successfully!")
+    }
+  }
 
-    XCTAssert(app.images.firstMatch.waitForExistence(timeout: timeout), "Failed to retrieve image.")
+  func upload(image: Bool = false, timeout: TimeInterval = 10) throws {
+    #if os(iOS)
+      XCTAssert(app.buttons["Upload Image"].isHittable, "Reached invalid state.")
+      app.buttons["Upload Image"].tap()
+    #else
+      if !image {
+        XCUIRemote.shared.press(.down)
+        XCUIRemote.shared.press(.down)
+        sleep(1)
+        XCTAssert(app.cells["Upload Image"].hasFocus, "Reached invalid state.")
+      }
+      XCUIRemote.shared.press(.select)
+    #endif
+    if image { try checkText("Image uploaded successfully!") }
   }
 
   func testAllViews() throws {
-    let buttons = ["Download", "Classify"]
+    let buttons = ["Download", "Classify", "Upload"]
 
     XCTAssert(app.navigationBars["Performance"].exists, "Missing navigation title.")
     XCTAssert(app.navigationBars["Performance"].isHittable, "Navigation title not in view.")
+
+    // Download - Empty
+    try checkStatus("⏸ Idle")
+    try checkButtons(buttons)
+    try download()
+    try checkText("No image found!\nPlease download an image first.")
+    try checkStatus("⏸ Idle")
+    try goBack()
 
     // Classify - Empty
     try checkStatus("⏸ Idle")
@@ -106,10 +138,21 @@ class UITests: XCTestCase {
     try checkStatus("⏸ Idle")
     try goBack()
 
-    // Download - Image
-    try checkButtons(buttons)
+    // Upload - Empty
     try checkStatus("⏸ Idle")
+    try checkButtons(buttons)
+    try upload()
+    try checkText("No image found!\nPlease download an image first.")
+    try checkStatus("⏸ Idle")
+    try goBack()
+
+    // Download - Image
+    try checkStatus("⏸ Idle")
+    try checkButtons(buttons)
     try download()
+    try checkButtons(["Download"])
+    try download(image: true)
+    try checkText("Image downloaded successfully!", timeout: 5)
     try checkStatus("✅ Success")
     try goBack()
 
@@ -123,10 +166,21 @@ class UITests: XCTestCase {
     try checkStatus("✅ Success")
     try goBack()
 
+    // Upload - Image
+    try checkStatus("✅ Success")
+    try checkButtons(buttons)
+    try upload()
+    try checkButtons(["Upload"])
+    try upload(image: true)
+    try checkText("Image uploaded successfully!", timeout: 5)
+    try checkStatus("✅ Success")
+    try goBack()
+
     // Download - Done
     try checkStatus("✅ Success")
     try checkButtons(buttons)
     try download()
+    try checkText("Image downloaded successfully!")
     try checkStatus("✅ Success")
     try goBack()
 
@@ -135,6 +189,14 @@ class UITests: XCTestCase {
     try checkButtons(buttons)
     try classify()
     try checkText("Categories found:")
+    try checkStatus("✅ Success")
+    try goBack()
+
+    // Upload - Done
+    try checkStatus("✅ Success")
+    try checkButtons(buttons)
+    try upload()
+    try checkText("Image uploaded successfully!")
     try checkStatus("✅ Success")
     try goBack()
   }

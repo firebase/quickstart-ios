@@ -19,7 +19,9 @@ import Firebase
 
 @main
 struct CrashlyticsSwiftUIExampleApp: App {
-  let reachabilityHelper = ReachabililtyHelper()
+  #if !os(watchOS)
+    let reachabilityHelper = ReachabililtyHelper()
+  #endif
 
   init() {
     FirebaseApp.configure()
@@ -28,12 +30,14 @@ struct CrashlyticsSwiftUIExampleApp: App {
     Crashlytics.crashlytics().setCustomValue(42, forKey: "MeaningOfLife")
     Crashlytics.crashlytics().setCustomValue("Test value", forKey: "last_UI_action")
 
-    let customKeysObject = [
-      "locale": reachabilityHelper.getLocale(),
-      "network_connection": reachabilityHelper.getNetworkStatus(),
-    ] as [String: Any]
-    Crashlytics.crashlytics().setCustomKeysAndValues(customKeysObject)
-    reachabilityHelper.updateAndTrackNetworkStatus()
+    #if !os(watchOS)
+      let customKeysObject = [
+        "locale": reachabilityHelper.getLocale(),
+        "network_connection": reachabilityHelper.getNetworkStatus(),
+      ] as [String: Any]
+      Crashlytics.crashlytics().setCustomKeysAndValues(customKeysObject)
+      reachabilityHelper.updateAndTrackNetworkStatus()
+    #endif
     Crashlytics.crashlytics().setUserID("123456789")
 
     let userInfo = [

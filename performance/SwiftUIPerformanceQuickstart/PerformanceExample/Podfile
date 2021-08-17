@@ -2,6 +2,7 @@ use_frameworks!
 
 pod 'Firebase'
 pod 'FirebasePerformance'
+pod 'FirebaseStorage'
 
 target 'PerformanceExample (iOS)' do
   target 'Tests_iOS' do

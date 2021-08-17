@@ -3,6 +3,7 @@ use_frameworks!
 pod 'Firebase'
 pod 'FirebasePerformance'
 pod 'FirebaseStorage'
+pod 'FirebaseStorageSwift', '> 8.0-beta'
 
 target 'PerformanceExample (iOS)' do
   target 'Tests_iOS' do

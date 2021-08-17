@@ -17,6 +17,7 @@
 import SwiftUI
 import FirebasePerformance
 import FirebaseStorage
+import FirebaseStorageSwift
 import Vision
 
 class Process: ObservableObject {
@@ -29,9 +30,9 @@ class Process: ObservableObject {
 
   #if swift(>=5.5)
     @MainActor @available(iOS 15, tvOS 15,*)
-    func updateStatusAsync(to newStatus: ProcessStatus, upload: Bool = false) {
+    func updateStatusAsync(to newStatus: ProcessStatus, updateUploadStatus: Bool = false) {
       status = newStatus
-      if upload { uploadSucceeded = newStatus == .success }
+      if updateUploadStatus { uploadSucceeded = newStatus == .success }
     }
 
     @MainActor @available(iOS 15, tvOS 15, *) func updateImageAsync(to newImage: UIImage?) {
@@ -101,8 +102,8 @@ class Process: ObservableObject {
       await updateStatusAsync(to: .success)
     }
 
-    @available(iOS 15, tvOS 15, *) func uploadImageAsync(quality: CGFloat = 0.5) async {
-      guard let jpg = image?.jpegData(compressionQuality: quality) else {
+    @available(iOS 15, tvOS 15, *) func uploadImageAsync(compressionQuality: CGFloat = 0.5) async {
+      guard let jpg = image?.jpegData(compressionQuality: compressionQuality) else {
         print("Could not convert image into correct format.")
         await updateStatusAsync(to: .failure)
         return
@@ -113,32 +114,21 @@ class Process: ObservableObject {
       let reference = Storage.storage().reference().child("image.jpg")
       await updateStatusAsync(to: .running)
 
-      reference.putData(jpg, metadata: metadata) { metadata, error in
-        if let error = error {
-          print("Error: \(error).")
-          Task { [weak self] in
-            await self?.updateStatusAsync(to: .failure, upload: true)
-          }
-          return
-        }
-        if metadata == nil {
-          print("Did not receive metadata.")
-          Task { [weak self] in
-            await self?.updateStatusAsync(to: .failure, upload: true)
-          }
-          return
-        }
-        Task { [weak self] in
-          await self?.updateStatusAsync(to: .success, upload: true)
-        }
+      do {
+        let response = try await reference.putDataAsync(jpg, metadata: metadata)
+        print("Upload response metadata: \(response)")
+        await updateStatusAsync(to: .success, updateUploadStatus: true)
+      } catch {
+        print("Error uploading image: \(error).")
+        await updateStatusAsync(to: .failure)
       }
     }
   #endif
 
-  func updateStatus(to newStatus: ProcessStatus, upload: Bool = false) {
+  func updateStatus(to newStatus: ProcessStatus, updateUploadStatus: Bool = false) {
     DispatchQueue.main.async {
       self.status = newStatus
-      if upload { self.uploadSucceeded = newStatus == .success }
+      if updateUploadStatus { self.uploadSucceeded = newStatus == .success }
     }
   }
 
@@ -206,8 +196,8 @@ class Process: ObservableObject {
     updateStatus(to: .success)
   }
 
-  func uploadImage(quality: CGFloat = 0.5) {
-    guard let jpg = image?.jpegData(compressionQuality: quality) else {
+  func uploadImage(compressionQuality: CGFloat = 0.5) {
+    guard let jpg = image?.jpegData(compressionQuality: compressionQuality) else {
       print("Could not convert image into correct format.")
       updateStatus(to: .failure)
       return
@@ -218,18 +208,14 @@ class Process: ObservableObject {
     let reference = Storage.storage().reference().child("image.jpg")
     updateStatus(to: .running)
 
-    reference.putData(jpg, metadata: metadata) { [weak self] metadata, error in
-      if let error = error {
-        print("Error: \(error).")
-        self?.updateStatus(to: .failure, upload: true)
-        return
+    reference.putData(jpg, metadata: metadata) { [weak self] result in
+      switch result {
+      case .success:
+        self?.updateStatus(to: .success, updateUploadStatus: true)
+      case let .failure(error):
+        print("Error uploading image: \(error).")
+        self?.updateStatus(to: .failure, updateUploadStatus: true)
       }
-      if metadata == nil {
-        print("Did not receive metadata.")
-        self?.updateStatus(to: .failure, upload: true)
-        return
-      }
-      self?.updateStatus(to: .success, upload: true)
     }
   }
 

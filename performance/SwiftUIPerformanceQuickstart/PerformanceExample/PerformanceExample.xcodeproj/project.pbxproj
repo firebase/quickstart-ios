@@ -54,6 +54,7 @@
 		41292E9926CB623B00747458 /* UploadView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UploadView.swift; path = Shared/Views/UploadView.swift; sourceTree = "<group>"; };
 		41292E9A26CB623B00747458 /* ClassifyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ClassifyView.swift; path = Shared/Views/ClassifyView.swift; sourceTree = "<group>"; };
 		41292E9B26CB623B00747458 /* DownloadView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DownloadView.swift; path = Shared/Views/DownloadView.swift; sourceTree = "<group>"; };
+		41292EA526CB63B300747458 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		413CB73826B4AE8200E995E2 /* PerformanceExample--tvOS--Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "PerformanceExample--tvOS--Info.plist"; sourceTree = "<group>"; };
 		414C55A426B87EFB00114089 /* Tests_tvOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests_tvOS.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		419700EC26C30DA500F186C3 /* UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITests.swift; sourceTree = "<group>"; };
@@ -96,6 +97,7 @@
 		4102055026A631F4004B24B3 = {
 			isa = PBXGroup;
 			children = (
+				41292EA526CB63B300747458 /* README.md */,
 				419AADCD26B86A94005C4817 /* GoogleService-Info.plist */,
 				413CB73826B4AE8200E995E2 /* PerformanceExample--tvOS--Info.plist */,
 				4102055526A631F4004B24B3 /* Shared */,

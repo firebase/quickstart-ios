@@ -21,6 +21,8 @@
 set -euo pipefail
 
 # Set have_secrets to true or false.
+have_secrets=false
+
 . ./scripts/check_secrets.sh
 
 if [[ "$have_secrets" == true ]]; then

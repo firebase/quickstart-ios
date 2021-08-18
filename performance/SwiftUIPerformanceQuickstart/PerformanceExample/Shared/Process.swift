@@ -16,27 +16,27 @@
 
 import SwiftUI
 import FirebasePerformance
+import FirebaseStorage
+import FirebaseStorageSwift
 import Vision
 
 class Process: ObservableObject {
   @Published var status: ProcessStatus = .idle
-  @Published var action: ProcessAction?
   @Published var image: UIImage?
+  var uploadSucceeded = false
   var categories: [(category: String, confidence: VNConfidence)]?
   let precision: Float = 0.2
   let site = "https://firebase.google.com/downloads/brand-guidelines/PNG/logo-logomark.png"
 
   #if swift(>=5.5)
-    @MainActor @available(iOS 15, tvOS 15,*) func updateStatusAsync(to newStatus: ProcessStatus) {
+    @MainActor @available(iOS 15, tvOS 15,*)
+    func updateStatusAsync(to newStatus: ProcessStatus, updateUploadStatus: Bool = false) {
       status = newStatus
+      if updateUploadStatus { uploadSucceeded = newStatus == .success }
     }
 
     @MainActor @available(iOS 15, tvOS 15, *) func updateImageAsync(to newImage: UIImage?) {
       image = newImage
-    }
-
-    @MainActor @available(iOS 15, tvOS 15, *) func updateActionAsync(to newAction: ProcessAction?) {
-      action = newAction
     }
 
     @available(iOS 15, tvOS 15, *) func downloadImageAsync() async {
@@ -102,19 +102,38 @@ class Process: ObservableObject {
       await updateStatusAsync(to: .success)
     }
 
-    @available(iOS 15, tvOS 15, *) func uploadImageAsync() async {}
+    @available(iOS 15, tvOS 15, *) func uploadImageAsync(compressionQuality: CGFloat = 0.5) async {
+      guard let jpg = image?.jpegData(compressionQuality: compressionQuality) else {
+        print("Could not convert image into correct format.")
+        await updateStatusAsync(to: .failure, updateUploadStatus: true)
+        return
+      }
+
+      let metadata = StorageMetadata()
+      metadata.contentType = "image/jpeg"
+      let reference = Storage.storage().reference().child("image.jpg")
+      await updateStatusAsync(to: .running)
+
+      do {
+        let response = try await reference.putDataAsync(jpg, metadata: metadata)
+        print("Upload response metadata: \(response)")
+        await updateStatusAsync(to: .success, updateUploadStatus: true)
+      } catch {
+        print("Error uploading image: \(error).")
+        await updateStatusAsync(to: .failure, updateUploadStatus: true)
+      }
+    }
   #endif
 
-  func updateStatus(to newStatus: ProcessStatus) {
-    DispatchQueue.main.async { self.status = newStatus }
+  func updateStatus(to newStatus: ProcessStatus, updateUploadStatus: Bool = false) {
+    DispatchQueue.main.async {
+      self.status = newStatus
+      if updateUploadStatus { self.uploadSucceeded = newStatus == .success }
+    }
   }
 
   func updateImage(to newImage: UIImage?) {
     DispatchQueue.main.async { self.image = newImage }
-  }
-
-  func updateAction(to newAction: ProcessAction?) {
-    DispatchQueue.main.async { self.action = newAction }
   }
 
   func downloadImage() {
@@ -177,7 +196,29 @@ class Process: ObservableObject {
     updateStatus(to: .success)
   }
 
-  func uploadImage() {}
+  func uploadImage(compressionQuality: CGFloat = 0.5) {
+    guard let jpg = image?.jpegData(compressionQuality: compressionQuality) else {
+      print("Could not convert image into correct format.")
+      updateStatus(to: .failure, updateUploadStatus: true)
+      return
+    }
+
+    let metadata = StorageMetadata()
+    metadata.contentType = "image/jpeg"
+    let reference = Storage.storage().reference().child("image.jpg")
+    updateStatus(to: .running)
+
+    reference.putData(jpg, metadata: metadata) { [weak self] result in
+      switch result {
+      case let .success(response):
+        print("Upload response metadata: \(response)")
+        self?.updateStatus(to: .success, updateUploadStatus: true)
+      case let .failure(error):
+        print("Error uploading image: \(error).")
+        self?.updateStatus(to: .failure, updateUploadStatus: true)
+      }
+    }
+  }
 
   func makeTrace(called name: String = "Classification") -> Trace? {
     #if os(tvOS)
@@ -212,11 +253,4 @@ enum ProcessStatus {
       }
     }
   }
-}
-
-enum ProcessAction: String, CaseIterable {
-  case download = "Download"
-  case classify = "Classify"
-  // TODO: implement upload functionality
-//  case upload = "Upload"
 }

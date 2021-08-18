@@ -3,19 +3,25 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 55;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		4102056426A631F5004B24B3 /* PerformanceExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4102055626A631F4004B24B3 /* PerformanceExampleApp.swift */; };
-		4102056626A631F5004B24B3 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4102055726A631F4004B24B3 /* MainView.swift */; };
 		4102056826A631F5004B24B3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4102055826A631F5004B24B3 /* Assets.xcassets */; };
+		41292E9C26CB623B00747458 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41292E9826CB623B00747458 /* MainView.swift */; };
+		41292E9D26CB623B00747458 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41292E9826CB623B00747458 /* MainView.swift */; };
+		41292E9E26CB623B00747458 /* UploadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41292E9926CB623B00747458 /* UploadView.swift */; };
+		41292E9F26CB623B00747458 /* UploadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41292E9926CB623B00747458 /* UploadView.swift */; };
+		41292EA026CB623B00747458 /* ClassifyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41292E9A26CB623B00747458 /* ClassifyView.swift */; };
+		41292EA126CB623B00747458 /* ClassifyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41292E9A26CB623B00747458 /* ClassifyView.swift */; };
+		41292EA226CB623B00747458 /* DownloadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41292E9B26CB623B00747458 /* DownloadView.swift */; };
+		41292EA326CB623B00747458 /* DownloadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41292E9B26CB623B00747458 /* DownloadView.swift */; };
 		419700ED26C30DA500F186C3 /* UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419700EC26C30DA500F186C3 /* UITests.swift */; };
 		419700EE26C30DA500F186C3 /* UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419700EC26C30DA500F186C3 /* UITests.swift */; };
 		419AADCE26B86A94005C4817 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 419AADCD26B86A94005C4817 /* GoogleService-Info.plist */; };
 		419AADCF26B86A94005C4817 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 419AADCD26B86A94005C4817 /* GoogleService-Info.plist */; };
 		41BFA1EA26B1D36C0013EB90 /* PerformanceExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4102055626A631F4004B24B3 /* PerformanceExampleApp.swift */; };
-		41BFA1EB26B1D3700013EB90 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4102055726A631F4004B24B3 /* MainView.swift */; };
 		41BFA1EC26B1D3730013EB90 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4102055826A631F5004B24B3 /* Assets.xcassets */; };
 		41BFA1F026B1D8B80013EB90 /* Process.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41BFA1EF26B1D8B80013EB90 /* Process.swift */; };
 		41BFA1F326B1D8B80013EB90 /* Process.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41BFA1EF26B1D8B80013EB90 /* Process.swift */; };
@@ -40,11 +46,15 @@
 
 /* Begin PBXFileReference section */
 		4102055626A631F4004B24B3 /* PerformanceExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceExampleApp.swift; sourceTree = "<group>"; };
-		4102055726A631F4004B24B3 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		4102055826A631F5004B24B3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4102055D26A631F5004B24B3 /* PerformanceExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PerformanceExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4102057626A63210004B24B3 /* Tests_iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests_iOS.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		410FF76926B1CEB500CA084F /* PerformanceExample (tvOS).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PerformanceExample (tvOS).app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		41292E9826CB623B00747458 /* MainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainView.swift; path = Shared/Views/MainView.swift; sourceTree = "<group>"; };
+		41292E9926CB623B00747458 /* UploadView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UploadView.swift; path = Shared/Views/UploadView.swift; sourceTree = "<group>"; };
+		41292E9A26CB623B00747458 /* ClassifyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ClassifyView.swift; path = Shared/Views/ClassifyView.swift; sourceTree = "<group>"; };
+		41292E9B26CB623B00747458 /* DownloadView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DownloadView.swift; path = Shared/Views/DownloadView.swift; sourceTree = "<group>"; };
+		41292EA526CB63B300747458 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		413CB73826B4AE8200E995E2 /* PerformanceExample--tvOS--Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "PerformanceExample--tvOS--Info.plist"; sourceTree = "<group>"; };
 		414C55A426B87EFB00114089 /* Tests_tvOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests_tvOS.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		419700EC26C30DA500F186C3 /* UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITests.swift; sourceTree = "<group>"; };
@@ -87,6 +97,7 @@
 		4102055026A631F4004B24B3 = {
 			isa = PBXGroup;
 			children = (
+				41292EA526CB63B300747458 /* README.md */,
 				419AADCD26B86A94005C4817 /* GoogleService-Info.plist */,
 				413CB73826B4AE8200E995E2 /* PerformanceExample--tvOS--Info.plist */,
 				4102055526A631F4004B24B3 /* Shared */,
@@ -97,8 +108,8 @@
 		4102055526A631F4004B24B3 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				41292EA426CB624000747458 /* Views */,
 				4102055626A631F4004B24B3 /* PerformanceExampleApp.swift */,
-				4102055726A631F4004B24B3 /* MainView.swift */,
 				41BFA1EF26B1D8B80013EB90 /* Process.swift */,
 				419700EC26C30DA500F186C3 /* UITests.swift */,
 				4102055826A631F5004B24B3 /* Assets.xcassets */,
@@ -117,20 +128,16 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		4102057726A63210004B24B3 /* Tests_iOS */ = {
+		41292EA426CB624000747458 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				4102057826A63210004B24B3 /* Tests_iOS.swift */,
+				41292E9A26CB623B00747458 /* ClassifyView.swift */,
+				41292E9B26CB623B00747458 /* DownloadView.swift */,
+				41292E9826CB623B00747458 /* MainView.swift */,
+				41292E9926CB623B00747458 /* UploadView.swift */,
 			);
-			path = Tests_iOS;
-			sourceTree = "<group>";
-		};
-		414C55A526B87EFB00114089 /* Tests_tvOS */ = {
-			isa = PBXGroup;
-			children = (
-				414C55A626B87EFB00114089 /* Tests_tvOS.swift */,
-			);
-			path = Tests_tvOS;
+			name = Views;
+			path = ..;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -295,7 +302,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4102056626A631F5004B24B3 /* MainView.swift in Sources */,
+				41292E9E26CB623B00747458 /* UploadView.swift in Sources */,
+				41292EA026CB623B00747458 /* ClassifyView.swift in Sources */,
+				41292E9C26CB623B00747458 /* MainView.swift in Sources */,
+				41292EA226CB623B00747458 /* DownloadView.swift in Sources */,
 				4102056426A631F5004B24B3 /* PerformanceExampleApp.swift in Sources */,
 				41BFA1F026B1D8B80013EB90 /* Process.swift in Sources */,
 			);
@@ -313,7 +323,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				41BFA1EB26B1D3700013EB90 /* MainView.swift in Sources */,
+				41292E9F26CB623B00747458 /* UploadView.swift in Sources */,
+				41292EA126CB623B00747458 /* ClassifyView.swift in Sources */,
+				41292E9D26CB623B00747458 /* MainView.swift in Sources */,
+				41292EA326CB623B00747458 /* DownloadView.swift in Sources */,
 				41BFA1EA26B1D36C0013EB90 /* PerformanceExampleApp.swift in Sources */,
 				41BFA1F326B1D8B80013EB90 /* Process.swift in Sources */,
 			);

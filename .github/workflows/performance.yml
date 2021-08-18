@@ -54,62 +54,62 @@ jobs:
           set -io pipefail
           EXIT_STATUS=0
           source scripts/check_secrets.sh
-          cd performance/SwiftUIPerformanceQuickstart/PerformanceExample
-          bundle exec pod install --repo-update
           if [[ "$have_secrets" == true ]]; then
             (xcodebuild \
-              -workspace "$workspace_path" \
-              -scheme "${SAMPLE}Example${SWIFT_SUFFIX}" \
-              -sdk iphonesimulator \
-              -destination 'platform=iOS Simulator,name=iPhone 11' \
+              -project "${DIR}/${SAMPLE}Example.xcodeproj" \
+              -scheme "${SAMPLE}Example (${OS})" \
+              -sdk "${SDK}simulator" \
+              -destination "platform=${OS} Simulator,name=${DEVICE}" \
               build \
               test \
               | xcpretty) || EXIT_STATUS=$?
           else
             (xcodebuild \
-              -workspace "$workspace_path" \
-              -scheme "${SAMPLE}Example${SWIFT_SUFFIX}" \
-              -sdk iphonesimulator \
-              -destination 'platform=iOS Simulator,name=iPhone 11' \
+              -project "${DIR}/${SAMPLE}Example.xcodeproj" \
+              -scheme "${SAMPLE}Example (${OS})" \
+              -sdk "${SDK}simulator" \
+              -destination "platform=${OS} Simulator,name=${DEVICE}" \
               build \
               | xcpretty) || EXIT_STATUS=$?
             echo "Missing secrets: tests did not run."
           fi
           exit $EXIT_STATUS
         env:
-          SWIFT_SUFFIX: ' (iOS)'
           SAMPLE: Performance
-          workspace_path: PerformanceExample.xcworkspace
+          DIR: performance/SwiftUIPerformanceQuickstart/PerformanceExample
+          OS: iOS
+          SDK: iphone
+          DEVICE: iPhone 11
           secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}
       - name: Build and Test SwiftUI tvOS
         run: |
           set -io pipefail
           EXIT_STATUS=0
           source scripts/check_secrets.sh
-          cd performance/SwiftUIPerformanceQuickstart/PerformanceExample
-          bundle exec pod install --repo-update
           if [[ "$have_secrets" == true ]]; then
             (xcodebuild \
-              -workspace "$workspace_path" \
-              -scheme "${SAMPLE}Example${SWIFT_SUFFIX}" \
-              -sdk appletvsimulator \
-              -destination 'platform=tvOS Simulator,name=Apple TV' \
+              -project "${DIR}/${SAMPLE}Example.xcodeproj" \
+              -scheme "${SAMPLE}Example (${OS})" \
+              -sdk "${SDK}simulator" \
+              -destination "platform=${OS} Simulator,name=${DEVICE}" \
               build \
               test \
               | xcpretty) || EXIT_STATUS=$?
           else
             (xcodebuild \
-              -workspace "$workspace_path" \
-              -scheme "${SAMPLE}Example${SWIFT_SUFFIX}" \
-              -sdk appletvsimulator \
-              -destination 'platform=tvOS Simulator,name=Apple TV' \
+              -project "${DIR}/${SAMPLE}Example.xcodeproj" \
+              -scheme "${SAMPLE}Example (${OS})" \
+              -sdk "${SDK}simulator" \
+              -destination "platform=${OS} Simulator,name=${DEVICE}" \
               build \
               | xcpretty) || EXIT_STATUS=$?
-              echo "Missing secrets: tests did not run."
+            echo "Missing secrets: tests did not run."
           fi
           exit $EXIT_STATUS
         env:
-          SWIFT_SUFFIX: ' (tvOS)'
           SAMPLE: Performance
-          workspace_path: PerformanceExample.xcworkspace
+          DIR: performance/SwiftUIPerformanceQuickstart/PerformanceExample
+          OS: tvOS
+          SDK: appletv
+          DEVICE: Apple TV
           secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}

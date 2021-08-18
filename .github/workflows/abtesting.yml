@@ -47,15 +47,12 @@ jobs:
           LEGACY: true
       - name: Build and Test SwiftUI
         run: |
-          cd abtesting
-          ../scripts/install_prereqs/abtesting.sh
-          xcodebuild \
-          -project 'ABTestingExample.xcodeproj' \
-          -scheme 'ABTestingExample (iOS)' \
-          -sdk iphonesimulator \
-          -destination 'platform=iOS Simulator,name=iPhone 11' \
-          build \
-          test \
-          | xcpretty
+          ./scripts/test_spm.sh
         env:
           SAMPLE: ABTesting
+          DIR: abtesting
+          OS: iOS
+          PLATFORM: iphone
+          DEVICE: iPhone 11
+          SWIFT_DEFINES: ""
+          secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}

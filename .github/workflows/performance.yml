@@ -51,67 +51,21 @@ jobs:
           SAMPLE: Performance
       - name: Build and Test SwiftUI iOS
         run: |
-          set -io pipefail
-          EXIT_STATUS=0
-          source scripts/check_secrets.sh
-          cd performance/SwiftUIPerformanceQuickstart/PerformanceExample
-          if [[ "$have_secrets" == true ]]; then
-            (xcodebuild \
-              -project "$PATH" \
-              -scheme "${SAMPLE}Example (${OS})" \
-              -sdk "${SDK}simulator" \
-              -destination "platform=${OS} Simulator,name=${DEVICE}" \
-              build \
-              test \
-              | xcpretty) || EXIT_STATUS=$?
-          else
-            (xcodebuild \
-              -project "$PATH" \
-              -scheme "${SAMPLE}Example (${OS})" \
-              -sdk "${SDK}simulator" \
-              -destination "platform=${OS} Simulator,name=${DEVICE}" \
-              build \
-              | xcpretty) || EXIT_STATUS=$?
-            echo "Missing secrets: tests did not run."
-          fi
-          exit $EXIT_STATUS
+          ./scripts/test_spm.sh
         env:
           SAMPLE: Performance
-          PATH: PerformanceExample.xcodeproj
+          PATH: performance/SwiftUIPerformanceQuickstart/PerformanceExample
           OS: iOS
-          SDK: iphone
+          PLATFORM: iphone
           DEVICE: iPhone 11
           secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}
       - name: Build and Test SwiftUI tvOS
         run: |
-          set -io pipefail
-          EXIT_STATUS=0
-          source scripts/check_secrets.sh
-          cd performance/SwiftUIPerformanceQuickstart/PerformanceExample
-          if [[ "$have_secrets" == true ]]; then
-            (xcodebuild \
-              -project "$PATH" \
-              -scheme "${SAMPLE}Example (${OS})" \
-              -sdk "${SDK}simulator" \
-              -destination "platform=${OS} Simulator,name=${DEVICE}" \
-              build \
-              test \
-              | xcpretty) || EXIT_STATUS=$?
-          else
-            (xcodebuild \
-              -project "$PATH" \
-              -scheme "${SAMPLE}Example (${OS})" \
-              -sdk "${SDK}simulator" \
-              -destination "platform=${OS} Simulator,name=${DEVICE}" \
-              build \
-              | xcpretty) || EXIT_STATUS=$?
-            echo "Missing secrets: tests did not run."
-          fi
-          exit $EXIT_STATUS
+          ./scripts/test_spm.sh
         env:
           SAMPLE: Performance
-          PATH: PerformanceExample.xcodeproj
+          PATH: performance/SwiftUIPerformanceQuickstart/PerformanceExample
           OS: tvOS
-          SDK: appletv
+          PLATFORM: appletv
           DEVICE: Apple TV
           secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}

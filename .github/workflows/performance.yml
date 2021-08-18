@@ -53,11 +53,10 @@ jobs:
         run: |
           set -io pipefail
           EXIT_STATUS=0
-          source scripts/check_secrets.sh
-          cd performance/SwiftUIPerformanceQuickstart/PerformanceExample
+          ./scripts/check_secrets.sh
           if [[ "$have_secrets" == true ]]; then
             (xcodebuild \
-              -project "$PATH" \
+              -project "${DIR}/${SAMPLE}Example.xcodeproj" \
               -scheme "${SAMPLE}Example (${OS})" \
               -sdk "${SDK}simulator" \
               -destination "platform=${OS} Simulator,name=${DEVICE}" \
@@ -66,7 +65,7 @@ jobs:
               | xcpretty) || EXIT_STATUS=$?
           else
             (xcodebuild \
-              -project "$PATH" \
+              -project "${DIR}/${SAMPLE}Example.xcodeproj" \
               -scheme "${SAMPLE}Example (${OS})" \
               -sdk "${SDK}simulator" \
               -destination "platform=${OS} Simulator,name=${DEVICE}" \
@@ -77,7 +76,7 @@ jobs:
           exit $EXIT_STATUS
         env:
           SAMPLE: Performance
-          PATH: PerformanceExample.xcodeproj
+          DIR: performance/SwiftUIPerformanceQuickstart/PerformanceExample
           OS: iOS
           SDK: iphone
           DEVICE: iPhone 11
@@ -87,10 +86,9 @@ jobs:
           set -io pipefail
           EXIT_STATUS=0
           source scripts/check_secrets.sh
-          cd performance/SwiftUIPerformanceQuickstart/PerformanceExample
           if [[ "$have_secrets" == true ]]; then
             (xcodebuild \
-              -project "$PATH" \
+              -project "${DIR}/${SAMPLE}Example.xcodeproj" \
               -scheme "${SAMPLE}Example (${OS})" \
               -sdk "${SDK}simulator" \
               -destination "platform=${OS} Simulator,name=${DEVICE}" \
@@ -99,7 +97,7 @@ jobs:
               | xcpretty) || EXIT_STATUS=$?
           else
             (xcodebuild \
-              -project "$PATH" \
+              -project "${DIR}/${SAMPLE}Example.xcodeproj" \
               -scheme "${SAMPLE}Example (${OS})" \
               -sdk "${SDK}simulator" \
               -destination "platform=${OS} Simulator,name=${DEVICE}" \
@@ -110,7 +108,7 @@ jobs:
           exit $EXIT_STATUS
         env:
           SAMPLE: Performance
-          PATH: PerformanceExample.xcodeproj
+          DIR: performance/SwiftUIPerformanceQuickstart/PerformanceExample
           OS: tvOS
           SDK: appletv
           DEVICE: Apple TV

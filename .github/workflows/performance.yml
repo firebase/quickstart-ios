@@ -53,7 +53,7 @@ jobs:
         run: |
           set -io pipefail
           EXIT_STATUS=0
-          ./scripts/check_secrets.sh
+          source scripts/check_secrets.sh
           if [[ "$have_secrets" == true ]]; then
             (xcodebuild \
               -project "${DIR}/${SAMPLE}Example.xcodeproj" \

@@ -25,7 +25,7 @@ set -euo pipefail
 
 if [[ "$have_secrets" == true ]]; then
     xcodebuild \
-     -project "${PROJ_PATH}/${SAMPLE}Example.xcodeproj" \
+     -project "${DIR}/${SAMPLE}Example.xcodeproj" \
      -scheme "${SAMPLE}Example (${OS})" \
      -sdk "${PLATFORM}simulator" \
      -destination "platform=${OS} Simulator,name=${DEVICE}" \
@@ -37,7 +37,7 @@ if [[ "$have_secrets" == true ]]; then
 else
     # Skip running tests if GoogleService-Info.plist's weren't decoded.
     xcodebuild \
-     -project "${PROJ_PATH}/${SAMPLE}Example.xcodeproj" \
+     -project "${DIR}/${SAMPLE}Example.xcodeproj" \
      -scheme "${SAMPLE}Example (${OS})" \
      -sdk "${PLATFORM}simulator" \
      -destination "platform=${OS} Simulator,name=${DEVICE}" \

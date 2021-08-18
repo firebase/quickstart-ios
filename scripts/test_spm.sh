@@ -20,34 +20,30 @@
 
 set -euo pipefail
 
-EXIT_STATUS=0
-
 # Set have_secrets to true or false.
 . ./scripts/check_secrets.sh
 
 if [[ "$have_secrets" == true ]]; then
-    (xcodebuild \
-      -project "${PROJ_PATH}/${SAMPLE}Example.xcodeproj" \
-      -scheme "${SAMPLE}Example (${OS})" \
-      -sdk "${PLATFORM}simulator" \
-      -destination "platform=${OS} Simulator,name=${DEVICE}" \
-      build \
-      test \
-      ONLY_ACTIVE_ARCH=YES \
-      OTHER_SWIFT_FLAGS=${SWIFT_DEFINES} \
-      | xcpretty) || EXIT_STATUS=$?
+    xcodebuild \
+     -project "${PROJ_PATH}/${SAMPLE}Example.xcodeproj" \
+     -scheme "${SAMPLE}Example (${OS})" \
+     -sdk "${PLATFORM}simulator" \
+     -destination "platform=${OS} Simulator,name=${DEVICE}" \
+     build \
+     test \
+     ONLY_ACTIVE_ARCH=YES \
+     OTHER_SWIFT_FLAGS=${SWIFT_DEFINES} \
+     | xcpretty
 else
     # Skip running tests if GoogleService-Info.plist's weren't decoded.
-    (xcodebuild \
-      -project "${PROJ_PATH}/${SAMPLE}Example.xcodeproj" \
-      -scheme "${SAMPLE}Example (${OS})" \
-      -sdk "${PLATFORM}simulator" \
-      -destination "platform=${OS} Simulator,name=${DEVICE}" \
-      build \
-      ONLY_ACTIVE_ARCH=YES \
-      OTHER_SWIFT_FLAGS=${SWIFT_DEFINES} \
-      | xcpretty) || EXIT_STATUS=$?
+    xcodebuild \
+     -project "${PROJ_PATH}/${SAMPLE}Example.xcodeproj" \
+     -scheme "${SAMPLE}Example (${OS})" \
+     -sdk "${PLATFORM}simulator" \
+     -destination "platform=${OS} Simulator,name=${DEVICE}" \
+     build \
+     ONLY_ACTIVE_ARCH=YES \
+     OTHER_SWIFT_FLAGS=${SWIFT_DEFINES} \
+     | xcpretty
     echo "Missing secrets: tests did not run."
 fi
-
-  exit $EXIT_STATUS

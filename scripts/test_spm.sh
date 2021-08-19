@@ -18,8 +18,6 @@
 # Build the quickstart. If we're running on the main repo (not a fork), we
 # also run the tests along with the decoded GoogleService-Info.plist files.
 
-xcodebuild -showdestinations && exit 1
-
 set -euo pipefail
 
 # Check Xcode version when testing watchOS
@@ -54,7 +52,7 @@ else
 fi
 
 if [[ "$TEST" == true && "$have_secrets" == true ]]; then
-    xcodebuild \
+    xcodebuild -showdestinations \
      -project "$PROJECT" \
      -scheme "$SCHEME" \
      -destination "$DESTINATION" \
@@ -65,10 +63,10 @@ if [[ "$TEST" == true && "$have_secrets" == true ]]; then
      CODE_SIGNING_REQUIRED=NO \
      CODE_SIGNING_ALLOWED=NO \
      OTHER_SWIFT_FLAGS=${SWIFT_DEFINES} \
-     | xcpretty
+     | cat && exit 1
 else
     # Skip running tests if disabled or GoogleService-Info.plist's weren't decoded.
-    xcodebuild \
+    xcodebuild -showdestinations \
      -project "$PROJECT" \
      -scheme "$SCHEME" \
      -destination "$DESTINATION" \
@@ -78,7 +76,7 @@ else
      CODE_SIGNING_REQUIRED=NO \
      CODE_SIGNING_ALLOWED=NO \
      OTHER_SWIFT_FLAGS=${SWIFT_DEFINES} \
-     | xcpretty
+     | cat && exit 1
     if [[ "$TEST" == true ]]; then
         echo "Missing secrets: tests did not run."
     fi

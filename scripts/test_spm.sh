@@ -18,6 +18,8 @@
 # Build the quickstart. If we're running on the main repo (not a fork), we
 # also run the tests along with the decoded GoogleService-Info.plist files.
 
+xcodebuild -showdestinations && exit 1
+
 set -euo pipefail
 
 # Check Xcode version when testing watchOS

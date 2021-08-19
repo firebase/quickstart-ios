@@ -20,7 +20,7 @@
 
 set -euo pipefail
 
-if [[ "$have_secrets" == true ]]; then
+if [[ "$TEST" == true && "$have_secrets" == true ]]; then
     xcodebuild \
      -project "${DIR}/${SAMPLE}Example.xcodeproj" \
      -scheme "${SAMPLE}Example (${OS})" \

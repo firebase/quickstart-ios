@@ -62,6 +62,7 @@ jobs:
           PLATFORM: iphone
           DEVICE: iPhone 11
           SWIFT_DEFINES: ""
+          TEST: true
           secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}
       - name: Build and Test SwiftUI tvOS
         run: |
@@ -76,4 +77,5 @@ jobs:
           PLATFORM: appletv
           DEVICE: Apple TV
           SWIFT_DEFINES: ""
+          TEST: true
           secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}

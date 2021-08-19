@@ -59,4 +59,5 @@ jobs:
           PLATFORM: iphone
           DEVICE: iPhone 11
           SWIFT_DEFINES: ""
+          TEST: false
           secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}

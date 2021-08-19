@@ -21,7 +21,7 @@
 set -euo pipefail
 
 # Check Xcode version when testing watchOS
-if [[ "$TEST" == true ]]; then
+if [[ "$TEST" == true && "$OS" == watchOS ]]; then
     version="$(xcode-select -p)"
     if [[ "$version" != "/Applications/Xcode_13.0.app" && \
           "$version" != "/Applications/Xcode_12.5.1.app" && \

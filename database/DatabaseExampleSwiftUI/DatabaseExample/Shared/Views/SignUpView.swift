@@ -18,9 +18,7 @@ import SwiftUI
 
 struct SignUpView: View {
   @ObservedObject var user: UserViewModel
-  @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-  var screenWidth = UIScreen.main.bounds.width
-  var screenHeight = UIScreen.main.bounds.height
+  @Binding var isPresented: Bool
 
   var body: some View {
     VStack {
@@ -29,29 +27,37 @@ struct SignUpView: View {
         .font(.title)
 
       Spacer()
-        .frame(idealHeight: 0.1 * screenHeight)
+        .frame(idealHeight: 0.1 * SGConvenience.screenHeight)
         .fixedSize()
 
       // Email textfield
-      HStack {
+      let emailInputField = HStack {
         Image("user-icon")
           .resizable()
           .scaledToFit()
           .frame(width: 30.0, height: 30.0)
           .opacity(0.5)
-        TextField("Email", text: $user.email)
-          .keyboardType(.emailAddress)
-          .autocapitalization(UITextAutocapitalizationType.none)
+        let emailTextField = TextField("Email", text: $user.email)
+        #if os(iOS)
+          emailTextField
+            .keyboardType(.emailAddress)
+            .autocapitalization(UITextAutocapitalizationType.none)
+        #elseif os(macOS)
+          emailTextField
+        #endif
       }
-      .padding(0.02 * screenHeight)
-      .frame(
-        width: screenWidth * 0.8,
-        alignment: /*@START_MENU_TOKEN@*/ .center/*@END_MENU_TOKEN@*/
-      )
-      .background(RoundedRectangle(cornerRadius: 10).fill(Color(.systemGray5)))
+      .padding(0.02 * SGConvenience.screenHeight)
+
+      #if os(iOS)
+        emailInputField
+          .background(RoundedRectangle(cornerRadius: 10).fill(Color(.systemGray5)))
+          .frame(width: SGConvenience.screenWidth * 0.8)
+      #elseif os(macOS)
+        emailInputField
+      #endif
 
       // Password textfield
-      HStack {
+      let passwordInputField = HStack {
         Image("lock-icon")
           .resizable()
           .scaledToFit()
@@ -59,12 +65,18 @@ struct SignUpView: View {
           .opacity(0.5)
         SecureField("Password", text: $user.password)
       }
-      .padding(0.02 * screenHeight)
-      .frame(width: screenWidth * 0.8, alignment: .center)
-      .background(RoundedRectangle(cornerRadius: 10).fill(Color(.systemGray5)))
+      .padding(0.02 * SGConvenience.screenHeight)
+
+      #if os(iOS)
+        passwordInputField
+          .background(RoundedRectangle(cornerRadius: 10).fill(Color(.systemGray5)))
+          .frame(width: SGConvenience.screenWidth * 0.8)
+      #elseif os(macOS)
+        passwordInputField
+      #endif
 
       Spacer()
-        .frame(idealHeight: 0.05 * screenHeight)
+        .frame(idealHeight: 0.05 * SGConvenience.screenHeight)
         .fixedSize()
 
       // Sign up button
@@ -74,23 +86,24 @@ struct SignUpView: View {
           .font(.title2)
           .bold()
       }
-      .padding(0.025 * screenHeight)
-      .frame(width: screenWidth * 0.8, alignment: .center)
+      .buttonStyle(BorderlessButtonStyle())
+      .padding(0.025 * SGConvenience.screenHeight)
       .background(Capsule().fill(Color(.systemTeal)))
 
       Spacer()
-        .frame(idealHeight: 0.05 * screenHeight)
+        .frame(idealHeight: 0.05 * SGConvenience.screenHeight)
         .fixedSize()
 
       // Navigation text
       HStack {
         Text("Already have an account?")
         Button(action: {
-          self.presentationMode.wrappedValue.dismiss()
+          isPresented = false
         }) {
           Text("Login".uppercased())
             .bold()
         }
+        .buttonStyle(BorderlessButtonStyle())
       }
     }
     .alert(isPresented: $user.alert, content: {
@@ -100,13 +113,12 @@ struct SignUpView: View {
         dismissButton: .destructive(Text("Ok"))
       )
     })
-    .navigationBarHidden(true)
   }
 }
 
 struct SignUpView_Previews: PreviewProvider {
   static var previews: some View {
-    SignUpView(user: user)
+    SignUpView(user: user, isPresented: .constant(false))
       .preferredColorScheme(.light)
   }
 }

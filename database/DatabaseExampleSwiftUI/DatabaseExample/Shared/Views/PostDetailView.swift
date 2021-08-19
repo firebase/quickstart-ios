@@ -19,10 +19,9 @@ import SwiftUI
 struct PostDetailView: View {
   @ObservedObject var post: PostViewModel
   @State private var comment: String = ""
-  var screenWidth = UIScreen.main.bounds.width
 
   var body: some View {
-    VStack {
+    let postDetailView = VStack {
       // post card displaying post details
       VStack(alignment: .leading) {
         HStack(spacing: 1) {
@@ -38,7 +37,7 @@ struct PostDetailView: View {
         Text(post.body)
       }
       .padding()
-      .background(RoundedRectangle(cornerRadius: 10).fill(Color(.systemGray6)))
+      .background(RoundedRectangle(cornerRadius: 10).fill(Color(red: 229, green: 229, blue: 234)))
       // comments for the particular post
       List {
         ForEach(post.comments) { comment in
@@ -54,10 +53,11 @@ struct PostDetailView: View {
         }
       }
       // textfield for user entering comments
-      HStack {
+      let commentInput = HStack {
         TextField("Comment", text: $comment)
           .padding()
-          .background(RoundedRectangle(cornerRadius: 10).fill(Color(.systemGray5)))
+          .background(RoundedRectangle(cornerRadius: 10)
+            .fill(Color(red: 229, green: 229, blue: 234)))
         Button(action: {
           post.didTapSendButton(commentField: comment)
           comment = ""
@@ -68,26 +68,47 @@ struct PostDetailView: View {
           Text("Send")
         }
       }
-      .frame(
-        width: screenWidth * 0.85,
-        alignment: .center
-      )
+
+      #if os(iOS)
+        commentInput
+          .frame(
+            width: SGConvenience.screenWidth * 0.85,
+            alignment: .center
+          )
+      #elseif os(macOS)
+        commentInput
+          .frame(
+            width: 400,
+            alignment: .center
+          )
+      #endif
+
       Spacer()
         .frame(idealHeight: 10)
         .fixedSize()
     }
     .padding()
-    .frame(
-      width: screenWidth * 0.9,
-      alignment: .center
-    )
     .onAppear {
       post.fetchComments()
     }
     .onDisappear {
       post.onDetailViewDisappear()
     }
-    .navigationBarTitle(post.title)
+    .navigationTitle(post.title)
+
+    #if os(iOS)
+      postDetailView
+        .frame(
+          width: SGConvenience.screenWidth * 0.9,
+          alignment: .center
+        )
+    #elseif os(macOS)
+      postDetailView
+        .frame(
+          width: 400,
+          alignment: .center
+        )
+    #endif
   }
 }
 

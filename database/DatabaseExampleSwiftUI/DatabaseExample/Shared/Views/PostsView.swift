@@ -20,6 +20,7 @@ import Firebase
 struct PostsView: View {
   @StateObject var postList = PostListViewModel()
   @StateObject var user = UserViewModel()
+  @State private var newPostsViewPresented = false
   var title: String
   var postsType: PostsType
 
@@ -36,20 +37,48 @@ struct PostsView: View {
       .onDisappear {
         postList.onViewDisappear()
       }
-      .navigationBarTitle(title)
-      .navigationBarItems(leading:
-        Button(action: {
-          user.logout()
-        }) {
-          HStack {
-            Image(systemName: "chevron.left")
-            Text("Logout")
+      .navigationTitle(title)
+      .toolbar {
+        #if os(iOS)
+          ToolbarItemGroup(placement: .navigationBarLeading) {
+            Button(action: {
+              user.logout()
+            }) {
+              HStack {
+                Image(systemName: "chevron.left")
+                Text("Logout")
+              }
+            }
           }
-        },
-        trailing:
-        NavigationLink(destination: NewPostsView(postList: postList)) {
-          Image(systemName: "plus")
-        })
+          ToolbarItemGroup(placement: .navigationBarTrailing) {
+            Button(action: {
+              newPostsViewPresented = true
+            }) {
+              Image(systemName: "plus")
+            }
+            .sheet(isPresented: $newPostsViewPresented) {
+              NewPostsView(postList: postList, isPresented: $newPostsViewPresented)
+            }
+          }
+        #elseif os(macOS)
+          Button(action: {
+            user.logout()
+          }) {
+            HStack {
+              Image(systemName: "chevron.left")
+              Text("Logout")
+            }
+          }
+          Button(action: {
+            newPostsViewPresented = true
+          }) {
+            Image(systemName: "plus")
+          }
+          .sheet(isPresented: $newPostsViewPresented) {
+            NewPostsView(postList: postList, isPresented: $newPostsViewPresented)
+          }
+        #endif
+      }
     }
   }
 }

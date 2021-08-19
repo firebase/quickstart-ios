@@ -35,11 +35,7 @@ fi
 PROJECT="${DIR}/${SAMPLE}Example.xcodeproj"
 
 # Set scheme
-if [[ "$SAMPLE" == Crashlytics ]]; then
-    SCHEME="CrashlyticsSwiftUIExample (${OS})"
-else
-    SCHEME="${SAMPLE}Example (${OS})"
-fi
+SCHEME="${SAMPLE}Example (${OS})"
 
 # Set destination
 if [[ "$OS" == iOS ]]; then

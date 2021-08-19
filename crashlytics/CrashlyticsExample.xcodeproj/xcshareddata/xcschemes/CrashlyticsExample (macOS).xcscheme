@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1250"
-   version = "2.0">
+   LastUpgradeVersion = "1300"
+   version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
       buildImplicitDependencies = "YES">
@@ -14,23 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "C74593FA26BDDD5F00153AE3"
-               BuildableName = "CrashlyticsSwiftUIExample_(watchOS).app"
-               BlueprintName = "CrashlyticsSwiftUIExample_(watchOS)"
-               ReferencedContainer = "container:CrashlyticsExample.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "C73C899D26845908003E5C2C"
+               BlueprintIdentifier = "C73C89A426845908003E5C2C"
                BuildableName = "CrashlyticsSwiftUIExample.app"
-               BlueprintName = "CrashlyticsSwiftUIExample (iOS)"
+               BlueprintName = "CrashlyticsSwiftUIExample (macOS)"
                ReferencedContainer = "container:CrashlyticsExample.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -53,16 +39,14 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
-      allowLocationSimulation = "YES"
-      launchAutomaticallySubstyle = "8"
-      notificationPayloadFile = "CrashlyticsSwiftUIExample_(watchOS)_Extension/PushNotificationPayload.apns">
+      allowLocationSimulation = "YES">
       <BuildableProductRunnable
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "C74593FA26BDDD5F00153AE3"
-            BuildableName = "CrashlyticsSwiftUIExample_(watchOS).app"
-            BlueprintName = "CrashlyticsSwiftUIExample_(watchOS)"
+            BlueprintIdentifier = "C73C89A426845908003E5C2C"
+            BuildableName = "CrashlyticsSwiftUIExample.app"
+            BlueprintName = "CrashlyticsSwiftUIExample (macOS)"
             ReferencedContainer = "container:CrashlyticsExample.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -72,16 +56,14 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
-      debugDocumentVersioning = "YES"
-      launchAutomaticallySubstyle = "8"
-      notificationPayloadFile = "CrashlyticsSwiftUIExample_(watchOS)_Extension/PushNotificationPayload.apns">
+      debugDocumentVersioning = "YES">
       <BuildableProductRunnable
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "C74593FA26BDDD5F00153AE3"
-            BuildableName = "CrashlyticsSwiftUIExample_(watchOS).app"
-            BlueprintName = "CrashlyticsSwiftUIExample_(watchOS)"
+            BlueprintIdentifier = "C73C89A426845908003E5C2C"
+            BuildableName = "CrashlyticsSwiftUIExample.app"
+            BlueprintName = "CrashlyticsSwiftUIExample (macOS)"
             ReferencedContainer = "container:CrashlyticsExample.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

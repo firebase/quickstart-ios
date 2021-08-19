@@ -20,32 +20,72 @@
 
 set -euo pipefail
 
-# Set have_secrets to true or false.
-have_secrets=false
+# Get Xcode version
+system=$(uname -s)
+case "$system" in
+  Darwin)
+    xcode_version=$(xcodebuild -version | head -n 1)
+    xcode_version="${xcode_version/Xcode /}"
+    xcode_major="${xcode_version/.*/}"
+    ;;
+  *)
+    xcode_major="0"
+    ;;
+esac
 
-. ./scripts/check_secrets.sh
+# Check Xcode version when testing watchOS
+if [[ "$TEST" == true && \
+      "$OS" == watchOS && \
+      "$xcode_major" -lt 13 && \
+      "$xcode_version" != "12.5.1" && \
+      "$xcode_version" != "12.5" ]]; then
+    echo "Xcode version does not yet supporting testing on watchOS"
+    exit 1
+fi
 
-if [[ "$have_secrets" == true ]]; then
-    xcodebuild \
-     -project "${DIR}/${SAMPLE}Example.xcodeproj" \
-     -scheme "${SAMPLE}Example (${OS})" \
-     -sdk "${PLATFORM}simulator" \
-     -destination "platform=${OS} Simulator,name=${DEVICE}" \
-     build \
-     test \
-     ONLY_ACTIVE_ARCH=YES \
-     OTHER_SWIFT_FLAGS=${SWIFT_DEFINES} \
-     | xcpretty
+# Initialize flags
+flags=()
+
+# Set project
+PROJECT="${DIR}/${SAMPLE}Example.xcodeproj"
+
+# Set scheme
+SCHEME="${SAMPLE}Example (${OS})"
+
+# Set destination
+if [[ "$OS" == iOS ]]; then
+    DESTINATION="platform=iOS Simulator,name=${DEVICE}"
+    flags+=( -destination "$DESTINATION" )
+elif [[ "$OS" == tvOS ]]; then
+    DESTINATION="platform=tvOS Simulator,name=${DEVICE}"
+    flags+=( -destination "$DESTINATION" )
+elif [[ "$OS" == macOS ]]; then
+    DESTINATION="platform=macos"
+    flags+=( -destination "$DESTINATION" )
+elif [[ "$OS" == watchOS ]]; then
+    DESTINATION="platform=watchOS Simulator,name=${DEVICE}"
 else
-    # Skip running tests if GoogleService-Info.plist's weren't decoded.
-    xcodebuild \
-     -project "${DIR}/${SAMPLE}Example.xcodeproj" \
-     -scheme "${SAMPLE}Example (${OS})" \
-     -sdk "${PLATFORM}simulator" \
-     -destination "platform=${OS} Simulator,name=${DEVICE}" \
-     build \
-     ONLY_ACTIVE_ARCH=YES \
-     OTHER_SWIFT_FLAGS=${SWIFT_DEFINES} \
-     | xcpretty
-    echo "Missing secrets: tests did not run."
+    echo "Unsupported OS: ${OS}"
+    exit 1
+fi
+
+flags+=(
+    ONLY_ACTIVE_ARCH=YES
+    CODE_SIGNING_REQUIRED=NO
+    CODE_SIGNING_ALLOWED=NO
+    OTHER_SWIFT_FLAGS=${SWIFT_DEFINES}
+)
+
+function xcb() {
+    echo xcodebuild "$@"
+    xcodebuild "$@" | xcpretty
+}
+
+if [[ "$TEST" == true && "$have_secrets" == true ]]; then
+    xcb -project "$PROJECT" -scheme "$SCHEME" "${flags[@]}" build test
+else
+    xcb -project "$PROJECT" -scheme "$SCHEME" "${flags[@]}" build
+    if [[ "$TEST" == true ]]; then
+        echo "Missing secrets: tests did not run."
+    fi
 fi

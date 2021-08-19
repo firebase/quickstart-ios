@@ -47,12 +47,15 @@ jobs:
           LEGACY: true
       - name: Build and Test SwiftUI
         run: |
-          ./scripts/test_spm.sh
+          cd scripts
+          source install_prereqs/abtesting.sh
+          cd ..
+          source scripts/test_spm.sh
         env:
           SAMPLE: ABTesting
           DIR: abtesting
           OS: iOS
-          PLATFORM: iphone
           DEVICE: iPhone 11
           SWIFT_DEFINES: ""
+          TEST: true
           secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}

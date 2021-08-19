@@ -53,49 +53,53 @@ jobs:
           LEGACY: true
       - name: Build SwiftUI (iOS)
         run: |
-          cd crashlytics
-          ../scripts/install_prereqs/crashlytics.sh
-          xcodebuild \
-          -project CrashlyticsExample.xcodeproj \
-          -scheme 'CrashlyticsSwiftUIExample (iOS)' \
-          -destination 'platform=iOS Simulator,name=iPhone 11' \
-          build
+          cd scripts
+          source install_prereqs/crashlytics.sh
+          cd ..
+          source scripts/test_spm.sh
         env: 
           SAMPLE: Crashlytics
+          DIR: crashlytics
+          OS: iOS
+          DEVICE: iPhone 11
+          SWIFT_DEFINES: ""
+          TEST: false
       - name: Build SwiftUI (tvOS)
         run: |
-          cd crashlytics
-          ../scripts/install_prereqs/crashlytics.sh
-          xcodebuild \
-          -project CrashlyticsExample.xcodeproj \
-          -scheme 'CrashlyticsSwiftUIExample' \
-          -sdk appletvsimulator \
-          build
-        env:
+          cd scripts
+          source install_prereqs/crashlytics.sh
+          cd ..
+          source scripts/test_spm.sh
+        env: 
           SAMPLE: Crashlytics
+          DIR: crashlytics
+          OS: tvOS
+          DEVICE: Apple TV
+          SWIFT_DEFINES: ""
+          TEST: false
       - name: Build SwiftUI (macOS)
         run: |
-          cd crashlytics
-          ../scripts/install_prereqs/crashlytics.sh
-          xcodebuild \
-          -project CrashlyticsExample.xcodeproj \
-          -scheme 'CrashlyticsSwiftUIExample (macOS)' \
-          -sdk macosx \
-          build
+          cd scripts
+          source install_prereqs/crashlytics.sh
+          cd ..
+          source scripts/test_spm.sh
+        env: 
+          SAMPLE: Crashlytics
+          DIR: crashlytics
+          OS: macOS
+          DEVICE: localhost
+          SWIFT_DEFINES: ""
+          TEST: false
+      - name: Build SwiftUI (watchOS)
+        run: |
+          cd scripts
+          source install_prereqs/crashlytics.sh
+          cd ..
+          source scripts/test_spm.sh
         env:
           SAMPLE: Crashlytics
-#       Works from the xcode UI but not from the xcodebuild command
-#       - name: Build SwiftUI (watchOS)
-#         run: |
-#           cd crashlytics
-#           ../scripts/install_prereqs/crashlytics.sh
-#           xcodebuild \
-#           -project CrashlyticsExample.xcodeproj \
-#           -scheme 'CrashlyticsSwiftUIExample (watchOS)' \
-#           -sdk watchos \
-#           build \
-#           CODE_SIGN_IDENTITY="" \
-#           CODE_SIGNING_REQUIRED=NO \
-#           CODE_SIGNING_ALLOWED=NO
-#         env:
-#           SAMPLE: Crashlytics
+          DIR: crashlytics
+          OS: watchOS
+          DEVICE: Apple Watch Series 5 - 44mm
+          SWIFT_DEFINES: ""
+          TEST: false

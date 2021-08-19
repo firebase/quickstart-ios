@@ -31,6 +31,9 @@ if [[ "$TEST" == true && "$OS" == watchOS ]]; then
     fi
 fi
 
+# Initialize flags
+flags=()
+
 # Set project
 PROJECT="${DIR}/${SAMPLE}Example.xcodeproj"
 
@@ -40,43 +43,38 @@ SCHEME="${SAMPLE}Example (${OS})"
 # Set destination
 if [[ "$OS" == iOS ]]; then
     DESTINATION="platform=iOS Simulator,name=${DEVICE}"
+    flags+=( -destination "$DESTINATION" )
 elif [[ "$OS" == tvOS ]]; then
     DESTINATION="platform=tvOS Simulator,name=${DEVICE}"
-elif [[ "$OS" == watchOS ]]; then
-    DESTINATION="platform=watchOS Simulator,name=${DEVICE}"
+    flags+=( -destination "$DESTINATION" )
 elif [[ "$OS" == macOS ]]; then
     DESTINATION="platform=macos"
+    flags+=( -destination "$DESTINATION" )
+elif [[ "$OS" == watchOS ]]; then
+    DESTINATION="platform=watchOS Simulator,name=${DEVICE}"
 else
     echo "Unsupported OS: ${OS}"
     exit 1
 fi
 
+flags+=(
+    ONLY_ACTIVE_ARCH=YES
+    CODE_SIGNING_REQUIRED=NO
+    CODE_SIGNING_ALLOWED=NO
+    OTHER_SWIFT_FLAGS=${SWIFT_DEFINES}
+)
+
+function xcb() {
+    echo xcodebuild "$@"
+    xcodebuild "$@" | xcpretty
+}
+
+# xcodebuild -project "$PROJECT" -scheme "$SCHEME" -showdestinations
+
 if [[ "$TEST" == true && "$have_secrets" == true ]]; then
-    xcodebuild -showdestinations \
-     -project "$PROJECT" \
-     -scheme "$SCHEME" \
-     -destination "$DESTINATION" \
-     build \
-     test \
-     ONLY_ACTIVE_ARCH=YES \
-     CODE_SIGN_IDENTITY="" \
-     CODE_SIGNING_REQUIRED=NO \
-     CODE_SIGNING_ALLOWED=NO \
-     OTHER_SWIFT_FLAGS=${SWIFT_DEFINES} \
-     | cat && exit 1
+    xcb -project "$PROJECT" -scheme "$SCHEME" "${flags[@]}" build test
 else
-    # Skip running tests if disabled or GoogleService-Info.plist's weren't decoded.
-    xcodebuild -showdestinations \
-     -project "$PROJECT" \
-     -scheme "$SCHEME" \
-     -destination "$DESTINATION" \
-     build \
-     ONLY_ACTIVE_ARCH=YES \
-     CODE_SIGN_IDENTITY="" \
-     CODE_SIGNING_REQUIRED=NO \
-     CODE_SIGNING_ALLOWED=NO \
-     OTHER_SWIFT_FLAGS=${SWIFT_DEFINES} \
-     | cat && exit 1
+    xcb -project "$PROJECT" -scheme "$SCHEME" "${flags[@]}" build
     if [[ "$TEST" == true ]]; then
         echo "Missing secrets: tests did not run."
     fi

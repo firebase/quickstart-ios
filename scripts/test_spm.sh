@@ -20,15 +20,27 @@
 
 set -euo pipefail
 
+# Get Xcode version
+system=$(uname -s)
+case "$system" in
+  Darwin)
+    xcode_version=$(xcodebuild -version | head -n 1)
+    xcode_version="${xcode_version/Xcode /}"
+    xcode_major="${xcode_version/.*/}"
+    ;;
+  *)
+    xcode_major="0"
+    ;;
+esac
+
 # Check Xcode version when testing watchOS
-if [[ "$TEST" == true && "$OS" == watchOS ]]; then
-    version="$(xcode-select -p)"
-    if [[ "$version" != "/Applications/Xcode_13.0.app" && \
-          "$version" != "/Applications/Xcode_12.5.1.app" && \
-          "$version" != "/Applications/Xcode_12.5.app" ]]; then
-        echo "Xcode version does not yet supporting testing on watchOS"
-        exit 1
-    fi
+if [[ "$TEST" == true && \
+      "$OS" == watchOS && \
+      "$xcode_major" -lt 13 && \
+      "$xcode_version" != "12.5.1" && \
+      "$xcode_version" != "12.5" ]]; then
+    echo "Xcode version does not yet supporting testing on watchOS"
+    exit 1
 fi
 
 # Initialize flags
@@ -68,8 +80,6 @@ function xcb() {
     echo xcodebuild "$@"
     xcodebuild "$@" | xcpretty
 }
-
-# xcodebuild -project "$PROJECT" -scheme "$SCHEME" -showdestinations
 
 if [[ "$TEST" == true && "$have_secrets" == true ]]; then
     xcb -project "$PROJECT" -scheme "$SCHEME" "${flags[@]}" build test

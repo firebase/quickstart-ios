@@ -20,27 +20,72 @@
 
 set -euo pipefail
 
+# Check Xcode version when testing watchOS
+if [[ "$TEST" == true ]]; then
+    version="$(xcode-select -p)"
+    if [[ "$version" != "/Applications/Xcode_13.0.app" && \
+          "$version" != "/Applications/Xcode_12.5.1.app" && \
+          "$version" != "/Applications/Xcode_12.5.app" ]]; then
+        echo "Xcode version does not yet supporting testing on watchOS"
+        exit 1
+    fi
+fi
+
+# Set project
+PROJECT="${DIR}/${SAMPLE}Example.xcodeproj"
+
+# Set scheme
+if [[ "$SAMPLE" == Crashlytics ]]; then
+    if [[ "$OS" == tvOS ]]; then
+        SCHEME="CrashlyticsSwiftUIExample"
+    else
+        SCHEME="CrashlyticsSwiftUIExample (${OS})"
+    fi
+else
+    SCHEME="${SAMPLE}Example (${OS})"
+fi
+
+# Set destination
+if [[ "$OS" == iOS ]]; then
+    DESTINATION="platform=iOS Simulator,name=${DEVICE}"
+elif [[ "$OS" == tvOS ]]; then
+    DESTINATION="platform=tvOS Simulator,name=${DEVICE}"
+elif [[ "$OS" == watchOS ]]; then
+    DESTINATION="platform=watchOS Simulator,name=${DEVICE}"
+elif [[ "$OS" == macOS ]]; then
+    DESTINATION="platform=macos"
+else
+    echo "Unsupported OS: ${OS}"
+    exit 1
+fi
+
 if [[ "$TEST" == true && "$have_secrets" == true ]]; then
     xcodebuild \
-     -project "${DIR}/${SAMPLE}Example.xcodeproj" \
-     -scheme "${SAMPLE}Example (${OS})" \
-     -sdk "${PLATFORM}simulator" \
-     -destination "platform=${OS} Simulator,name=${DEVICE}" \
+     -project "$PROJECT" \
+     -scheme "$SCHEME" \
+     -destination "$DESTINATION" \
      build \
      test \
      ONLY_ACTIVE_ARCH=YES \
+     CODE_SIGN_IDENTITY="" \
+     CODE_SIGNING_REQUIRED=NO \
+     CODE_SIGNING_ALLOWED=NO \
      OTHER_SWIFT_FLAGS=${SWIFT_DEFINES} \
      | xcpretty
 else
-    # Skip running tests if GoogleService-Info.plist's weren't decoded.
+    # Skip running tests if disabled or GoogleService-Info.plist's weren't decoded.
     xcodebuild \
-     -project "${DIR}/${SAMPLE}Example.xcodeproj" \
-     -scheme "${SAMPLE}Example (${OS})" \
-     -sdk "${PLATFORM}simulator" \
-     -destination "platform=${OS} Simulator,name=${DEVICE}" \
+     -project "$PROJECT" \
+     -scheme "$SCHEME" \
+     -destination "$DESTINATION" \
      build \
      ONLY_ACTIVE_ARCH=YES \
+     CODE_SIGN_IDENTITY="" \
+     CODE_SIGNING_REQUIRED=NO \
+     CODE_SIGNING_ALLOWED=NO \
      OTHER_SWIFT_FLAGS=${SWIFT_DEFINES} \
      | xcpretty
-    echo "Missing secrets: tests did not run."
+    if [[ "$TEST" == true ]]; then
+        echo "Missing secrets: tests did not run."
+    fi
 fi

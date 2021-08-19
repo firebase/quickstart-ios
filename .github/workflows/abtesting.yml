@@ -55,7 +55,6 @@ jobs:
           SAMPLE: ABTesting
           DIR: abtesting
           OS: iOS
-          PLATFORM: iphone
           DEVICE: iPhone 11
           SWIFT_DEFINES: ""
           TEST: true

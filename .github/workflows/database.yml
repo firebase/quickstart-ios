@@ -56,7 +56,6 @@ jobs:
           SAMPLE: Database
           DIR: database/DatabaseExampleSwiftUI/DatabaseExample
           OS: iOS
-          PLATFORM: iphone
           DEVICE: iPhone 11
           SWIFT_DEFINES: ""
           TEST: false

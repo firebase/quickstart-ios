@@ -51,7 +51,8 @@ jobs:
           SAMPLE: Performance
       - name: Build and Test SwiftUI iOS
         run: |
-          ./scripts/test_spm.sh
+          source scripts/install_prereqs/performance.sh
+          source scripts/test_spm.sh
         env:
           SAMPLE: Performance
           DIR: performance/SwiftUIPerformanceQuickstart/PerformanceExample

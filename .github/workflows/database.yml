@@ -48,7 +48,8 @@ jobs:
           SAMPLE: Database
       - name: Build SwiftUI
         run: |
-          ./scripts/test_spm.sh
+          source scripts/install_prereqs/database.sh
+          source scripts/test_spm.sh
         env: 
           SAMPLE: Database
           DIR: database/DatabaseExampleSwiftUI/DatabaseExample

@@ -36,11 +36,7 @@ PROJECT="${DIR}/${SAMPLE}Example.xcodeproj"
 
 # Set scheme
 if [[ "$SAMPLE" == Crashlytics ]]; then
-    if [[ "$OS" == tvOS ]]; then
-        SCHEME="CrashlyticsSwiftUIExample"
-    else
-        SCHEME="CrashlyticsSwiftUIExample (${OS})"
-    fi
+    SCHEME="CrashlyticsSwiftUIExample (${OS})"
 else
     SCHEME="${SAMPLE}Example (${OS})"
 fi

@@ -90,17 +90,16 @@ jobs:
           DEVICE: localhost
           SWIFT_DEFINES: ""
           TEST: false
-#       Works from the xcode UI but not from the xcodebuild command
-#       - name: Build SwiftUI (watchOS)
-#         run: |
-#           cd scripts
-#           source install_prereqs/crashlytics.sh
-#           cd ..
-#           source scripts/test_spm.sh
-#         env:
-#           SAMPLE: Crashlytics
-#           DIR: crashlytics
-#           OS: watchOS
-#           DEVICE: Apple Watch Series 5 - 44mm
-#           SWIFT_DEFINES: ""
-#           TEST: false
+      - name: Build SwiftUI (watchOS)
+        run: |
+          cd scripts
+          source install_prereqs/crashlytics.sh
+          cd ..
+          source scripts/test_spm.sh
+        env:
+          SAMPLE: Crashlytics
+          DIR: crashlytics
+          OS: watchOS
+          DEVICE: Apple Watch Series 5 - 44mm
+          SWIFT_DEFINES: ""
+          TEST: false

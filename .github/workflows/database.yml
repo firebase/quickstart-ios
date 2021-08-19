@@ -48,14 +48,12 @@ jobs:
           SAMPLE: Database
       - name: Build SwiftUI
         run: |
-          cd database
-          ../scripts/install_prereqs/database.sh
-          cd DatabaseExampleSwiftUI/DatabaseExample/
-          xcodebuild \
-          -project DatabaseExample.xcodeproj \
-          -scheme 'DatabaseExample (iOS)' \
-          -sdk iphonesimulator \
-          -destination 'platform=iOS Simulator,name=iPhone 11' \
-          build
+          ./scripts/test_spm.sh
         env: 
           SAMPLE: Database
+          DIR: database/DatabaseExampleSwiftUI/DatabaseExample
+          OS: iOS
+          PLATFORM: iphone
+          DEVICE: iPhone 11
+          SWIFT_DEFINES: ""
+          secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}

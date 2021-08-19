@@ -18,7 +18,6 @@
 # Build the quickstart. If we're running on the main repo (not a fork), we
 # also run the tests along with the decoded GoogleService-Info.plist files.
 
-exit 1
 set -eo pipefail
 
 EXIT_STATUS=0

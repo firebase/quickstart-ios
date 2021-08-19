@@ -51,7 +51,9 @@ jobs:
           SAMPLE: Performance
       - name: Build and Test SwiftUI iOS
         run: |
-          source scripts/install_prereqs/performance.sh
+          cd scripts
+          source install_prereqs/abtesting.sh
+          cd ..
           source scripts/test_spm.sh
         env:
           SAMPLE: Performance
@@ -63,7 +65,10 @@ jobs:
           secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}
       - name: Build and Test SwiftUI tvOS
         run: |
-          ./scripts/test_spm.sh
+          cd scripts
+          source install_prereqs/abtesting.sh
+          cd ..
+          source scripts/test_spm.sh
         env:
           SAMPLE: Performance
           DIR: performance/SwiftUIPerformanceQuickstart/PerformanceExample

@@ -20,6 +20,8 @@ struct ClassifyView: View {
   @ObservedObject var process: Process
   var body: some View {
     VStack {
+      process.status.view
+      Spacer()
       if let uiImage = process.image {
         Image(uiImage: uiImage).padding(.bottom)
         if let categories = process.categories {
@@ -51,9 +53,7 @@ struct ClassifyView: View {
         Text("No image found!\nPlease download an image first.")
           .multilineTextAlignment(.center)
       }
-    }
-    .toolbar {
-      ToolbarItem(placement: .principal) { process.status.view }
+    Spacer()
     }
   }
 }

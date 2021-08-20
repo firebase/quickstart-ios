@@ -20,6 +20,8 @@ struct DownloadView: View {
   @ObservedObject var process: Process
   var body: some View {
     VStack {
+      process.status.view
+      Spacer()
       if let uiImage = process.image {
         Image(uiImage: uiImage).padding(.bottom)
         Text("Image downloaded successfully!")
@@ -42,9 +44,7 @@ struct DownloadView: View {
           }
         }
       }
-    }
-    .toolbar {
-      ToolbarItem(placement: .principal) { process.status.view }
+      Spacer()
     }
   }
 }

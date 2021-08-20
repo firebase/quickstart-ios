@@ -35,7 +35,7 @@ struct ClassifyView: View {
           }
         } else {
           Button("Classify Image") {
-            if process.status != .running {
+            if !process.isRunning {
               if #available(iOS 15, tvOS 15, *) {
                 #if swift(>=5.5)
                   Task { await process.classifyImageAsync() }
@@ -47,7 +47,7 @@ struct ClassifyView: View {
               }
             }
           }
-          .disabled(process.status == .running)
+          .disabled(process.isRunning)
         }
       } else {
         Image(systemName: "questionmark.square").padding(.bottom)

@@ -29,7 +29,7 @@ struct SaliencyMapView: View {
         } else {
           Image(uiImage: image).padding(.bottom)
           Button("Generate Saliency Map") {
-            if process.status != .running {
+            if !process.isRunning {
               if #available(iOS 15, tvOS 15, *) {
                 #if swift(>=5.5)
                   Task { await process.generateSaliencyMapAsync() }
@@ -41,7 +41,7 @@ struct SaliencyMapView: View {
               }
             }
           }
-          .disabled(process.status == .running)
+          .disabled(process.isRunning)
         }
       } else {
         Image(systemName: "questionmark.square").padding(.bottom)

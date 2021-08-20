@@ -20,15 +20,15 @@ struct MainView: View {
   @StateObject var process = Process()
   var body: some View {
     NavigationView {
-      List {
-        NavigationLink("Download Image", destination: DownloadView(process: process))
-        NavigationLink("Classify Image", destination: ClassifyView(process: process))
-        NavigationLink("Upload Image", destination: UploadView(process: process))
+      VStack {
+        process.status.view
+        List {
+          NavigationLink("Download Image", destination: DownloadView(process: process))
+          NavigationLink("Classify Image", destination: ClassifyView(process: process))
+          NavigationLink("Upload Image", destination: UploadView(process: process))
+        }
       }
       .navigationTitle("Performance")
-      .toolbar {
-        ToolbarItem(placement: .principal) { process.status.view }
-      }
     }
   }
 }

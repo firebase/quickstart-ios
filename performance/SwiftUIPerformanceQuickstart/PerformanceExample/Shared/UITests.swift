@@ -59,9 +59,7 @@ class UITests: XCTestCase {
   }
 
   func checkStatus(_ status: ProcessStatus, timeout: TimeInterval = 1) throws {
-    #if os(iOS)
-      try checkText(status.rawValue, timeout: timeout)
-    #endif
+    try checkText(status.rawValue, timeout: timeout)
   }
 
   func goBack(timeout: TimeInterval = 1) throws {

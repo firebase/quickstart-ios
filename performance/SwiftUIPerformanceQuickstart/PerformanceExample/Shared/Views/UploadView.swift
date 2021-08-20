@@ -20,6 +20,8 @@ struct UploadView: View {
   @ObservedObject var process: Process
   var body: some View {
     VStack {
+      process.status.view
+      Spacer()
       if let uiImage = process.image {
         Image(uiImage: uiImage).padding(.bottom)
         if process.uploadSucceeded {
@@ -37,15 +39,14 @@ struct UploadView: View {
               }
             }
           }
+          .disabled(process.status == .running)
         }
       } else {
         Image(systemName: "questionmark.square").padding(.bottom)
         Text("No image found!\nPlease download an image first.")
           .multilineTextAlignment(.center)
       }
-    }
-    .toolbar {
-      ToolbarItem(placement: .principal) { process.status.view }
+      Spacer()
     }
   }
 }

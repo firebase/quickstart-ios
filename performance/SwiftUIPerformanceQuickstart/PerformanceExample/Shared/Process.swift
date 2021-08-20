@@ -361,32 +361,3 @@ class Process: ObservableObject {
   }
 }
 
-enum ProcessTask: String {
-  case download = "Download"
-  case classify = "Classification"
-  case saliencyMap = "Saliency Map"
-  case upload = "Upload"
-}
-
-enum ProcessStatus: Equatable {
-  case idle
-  case running(ProcessTask)
-  case failure(ProcessTask)
-  case success(ProcessTask)
-
-  var view: some View {
-    HStack {
-      switch self {
-      case .idle:
-        Text("⏸ Idle")
-      case let .running(task):
-        ProgressView()
-        Text("\(task.rawValue) Running")
-      case let .failure(task):
-        Text("❌ \(task.rawValue) Failure")
-      case let .success(task):
-        Text("✅ \(task.rawValue) Success")
-      }
-    }
-  }
-}

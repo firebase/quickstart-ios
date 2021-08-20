@@ -20,6 +20,7 @@ class UITests: XCTestCase {
   var app: XCUIApplication = XCUIApplication()
   lazy var download: PerformanceFunction = .download(self)
   lazy var classify: PerformanceFunction = .classify(self)
+  lazy var saliencyMap: PerformanceFunction = .saliencyMap(self)
   lazy var upload: PerformanceFunction = .upload(self)
 
   override func setUpWithError() throws {
@@ -42,7 +43,7 @@ class UITests: XCTestCase {
   }
 
   func checkButtons(_ candidates: [PerformanceFunction]? = nil, timeout: TimeInterval = 1) throws {
-    let functions: [PerformanceFunction] = candidates ?? [download, classify, upload]
+    let functions: [PerformanceFunction] = candidates ?? [download, classify, saliencyMap, upload]
     for function in functions {
       let button = function.button
       let name = function.name
@@ -74,12 +75,13 @@ class UITests: XCTestCase {
     #endif
   }
 
-  func download(image: Bool = false) throws {
+  func download(run: Bool = false) throws {
     #if os(iOS)
       XCTAssert(download.button.isHittable, "Reached invalid state.")
       download.button.tap()
     #else
-      if !image {
+      if !run {
+        XCUIRemote.shared.press(.up)
         XCUIRemote.shared.press(.up)
         XCUIRemote.shared.press(.up)
         sleep(1)
@@ -89,15 +91,16 @@ class UITests: XCTestCase {
     #endif
   }
 
-  func classify(image: Bool = false) throws {
+  func classify(run: Bool = false) throws {
     #if os(iOS)
       XCTAssert(classify.button.isHittable, "Reached invalid state.")
       classify.button.tap()
     #else
-      if !image {
-        XCUIRemote.shared.press(.down)
-        XCUIRemote.shared.press(.down)
+      if !run {
         XCUIRemote.shared.press(.up)
+        XCUIRemote.shared.press(.up)
+        XCUIRemote.shared.press(.up)
+        XCUIRemote.shared.press(.down)
         sleep(1)
         XCTAssert(classify.cell.hasFocus, "Reached invalid state.")
       }
@@ -105,12 +108,30 @@ class UITests: XCTestCase {
     #endif
   }
 
-  func upload(image: Bool = false) throws {
+  func saliencyMap(run: Bool = false) throws {
+    #if os(iOS)
+      XCTAssert(saliencyMap.button.isHittable, "Reached invalid state.")
+      saliencyMap.button.tap()
+    #else
+      if !run {
+        XCUIRemote.shared.press(.down)
+        XCUIRemote.shared.press(.down)
+        XCUIRemote.shared.press(.down)
+        XCUIRemote.shared.press(.up)
+        sleep(1)
+        XCTAssert(saliencyMap.cell.hasFocus, "Reached invalid state.")
+      }
+      XCUIRemote.shared.press(.select)
+    #endif
+  }
+
+  func upload(run: Bool = false) throws {
     #if os(iOS)
       XCTAssert(upload.button.isHittable, "Reached invalid state.")
       upload.button.tap()
     #else
-      if !image {
+      if !run {
+        XCUIRemote.shared.press(.down)
         XCUIRemote.shared.press(.down)
         XCUIRemote.shared.press(.down)
         sleep(1)
@@ -123,8 +144,8 @@ class UITests: XCTestCase {
   func checkEmptyView(function: PerformanceFunction) throws {
     try checkStatus(.idle)
     try checkButtons()
-    try function.applyToImage(false)
-    try checkText("No image found!\nPlease download an image first.")
+    try function.run(false)
+    try checkText(function.emptyText)
     try checkStatus(.idle)
     try goBack()
   }
@@ -133,9 +154,9 @@ class UITests: XCTestCase {
                           timeout: TimeInterval = 10) throws {
     try checkStatus(startingStatus)
     try checkButtons()
-    try function.applyToImage(false)
+    try function.run(false)
     try checkButtons([function])
-    try function.applyToImage(true)
+    try function.run(true)
     try checkText(function.endText, timeout: timeout)
     try checkStatus(.success)
     try goBack()
@@ -144,7 +165,7 @@ class UITests: XCTestCase {
   func checkDoneView(function: PerformanceFunction) throws {
     try checkStatus(.success)
     try checkButtons()
-    try function.applyToImage(false)
+    try function.run(false)
     try checkText(function.endText)
     try checkStatus(.success)
     try goBack()
@@ -163,10 +184,18 @@ class UITests: XCTestCase {
     try checkFunctionality(function: classify)
   }
 
+  func testSaliencyMapView() throws {
+    try checkMainView()
+    try checkEmptyView(function: saliencyMap)
+    try checkFunctionality(function: download, startingStatus: .idle)
+    try checkFunctionality(function: saliencyMap)
+  }
+
   func testUploadView() throws {
     try checkMainView()
     try checkEmptyView(function: upload)
     try checkFunctionality(function: download, startingStatus: .idle)
+    try checkFunctionality(function: saliencyMap)
     try checkFunctionality(function: upload)
   }
 
@@ -175,14 +204,17 @@ class UITests: XCTestCase {
 
     try checkEmptyView(function: download)
     try checkEmptyView(function: classify)
+    try checkEmptyView(function: saliencyMap)
     try checkEmptyView(function: upload)
 
     try checkFunctionality(function: download, startingStatus: .idle)
     try checkFunctionality(function: classify)
+    try checkFunctionality(function: saliencyMap)
     try checkFunctionality(function: upload)
 
     try checkDoneView(function: download)
     try checkDoneView(function: classify)
+    try checkDoneView(function: saliencyMap)
     try checkDoneView(function: upload)
   }
 
@@ -199,6 +231,7 @@ class UITests: XCTestCase {
 enum PerformanceFunction {
   case download(UITests)
   case classify(UITests)
+  case saliencyMap(UITests)
   case upload(UITests)
 
   var name: String {
@@ -207,6 +240,8 @@ enum PerformanceFunction {
       return "Download"
     case .classify:
       return "Classify"
+    case .saliencyMap:
+      return "Saliency Map"
     case .upload:
       return "Upload"
     }
@@ -218,8 +253,10 @@ enum PerformanceFunction {
       return test.app.buttons["Download Image"]
     case let .classify(test):
       return test.app.buttons["Classify Image"]
+    case let .saliencyMap(test):
+      return test.app.buttons["Generate Saliency Map"]
     case let .upload(test):
-      return test.app.buttons["Upload Image"]
+      return test.app.buttons["Upload Saliency Map"]
     }
   }
 
@@ -229,8 +266,10 @@ enum PerformanceFunction {
       return test.app.cells["Download Image"]
     case let .classify(test):
       return test.app.cells["Classify Image"]
+    case let .saliencyMap(test):
+      return test.app.cells["Generate Saliency Map"]
     case let .upload(test):
-      return test.app.cells["Upload Image"]
+      return test.app.cells["Upload Saliency Map"]
     }
   }
 
@@ -240,17 +279,30 @@ enum PerformanceFunction {
       return "Image downloaded successfully!"
     case .classify:
       return "Categories found:"
+    case .saliencyMap:
+      return "Saliency map generated successfully!"
     case .upload:
-      return "Image uploaded successfully!"
+      return "Saliency map uploaded successfully!"
     }
   }
 
-  var applyToImage: (Bool) throws -> Void {
+  var emptyText: String {
+    switch self {
+    case .download, .classify, .saliencyMap:
+      return "No image found!\nPlease download an image first."
+    case .upload:
+      return "No saliency map found!\nPlease download an image and generate a saliency map first."
+    }
+  }
+
+  var run: (Bool) throws -> Void {
     switch self {
     case let .download(test):
       return test.download
     case let .classify(test):
       return test.classify
+    case let .saliencyMap(test):
+      return test.saliencyMap
     case let .upload(test):
       return test.upload
     }

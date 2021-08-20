@@ -54,7 +54,7 @@ struct ClassifyView: View {
         Text("No image found!\nPlease download an image first.")
           .multilineTextAlignment(.center)
       }
-    Spacer()
+      Spacer()
     }
   }
 }

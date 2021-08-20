@@ -20,6 +20,10 @@
 
 set -euo pipefail
 
+# Set have_secrets to true or false.
+have_secrets=false
+source scripts/check_secrets.sh
+
 # Get Xcode version
 system=$(uname -s)
 case "$system" in

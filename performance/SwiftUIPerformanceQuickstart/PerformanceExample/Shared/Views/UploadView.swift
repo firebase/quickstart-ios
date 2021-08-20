@@ -30,8 +30,9 @@ struct UploadView: View {
               if #available(iOS 15, tvOS 15, *) {
                 #if swift(>=5.5)
                   Task { await process.uploadImageAsync() }
+                #else
+                  process.uploadImage()
                 #endif
-                process.uploadImage()
               } else {
                 process.uploadImage()
               }

@@ -46,10 +46,10 @@ class UITests: XCTestCase {
     let functions: [PerformanceFunction] = candidates ?? [download, classify, saliencyMap, upload]
     for function in functions {
       let button = function.button
-      let name = function.name
-      XCTAssert(button.waitForExistence(timeout: timeout), "Missing \(name) button.")
-      XCTAssert(button.isEnabled, "\(name) button not enabled.")
-      XCTAssert(button.isHittable, "\(name) button not in view.")
+      let task = function.task
+      XCTAssert(button.waitForExistence(timeout: timeout), "Missing \(task) button.")
+      XCTAssert(button.isEnabled, "\(task) button not enabled.")
+      XCTAssert(button.isHittable, "\(task) button not in view.")
     }
   }
 
@@ -60,7 +60,7 @@ class UITests: XCTestCase {
   }
 
   func checkStatus(_ status: ProcessStatus, timeout: TimeInterval = 1) throws {
-    try checkText(status.rawValue, timeout: timeout)
+    try checkText(status.text, timeout: timeout)
   }
 
   func goBack(timeout: TimeInterval = 1) throws {
@@ -148,7 +148,7 @@ class UITests: XCTestCase {
     try goBack()
   }
 
-  func checkFunctionality(function: PerformanceFunction, startingStatus: ProcessStatus = .success,
+  func checkFunctionality(function: PerformanceFunction, startingStatus: ProcessStatus,
                           timeout: TimeInterval = 10) throws {
     try checkStatus(startingStatus)
     try checkButtons()
@@ -156,16 +156,16 @@ class UITests: XCTestCase {
     try checkButtons([function])
     try function.run(true)
     try checkText(function.endText, timeout: timeout)
-    try checkStatus(.success)
+    try checkStatus(.success(function.task))
     try goBack()
   }
 
-  func checkDoneView(function: PerformanceFunction) throws {
-    try checkStatus(.success)
+  func checkDoneView(function: PerformanceFunction, lastTask: ProcessTask) throws {
+    try checkStatus(.success(lastTask))
     try checkButtons()
     try function.run(false)
     try checkText(function.endText)
-    try checkStatus(.success)
+    try checkStatus(.success(lastTask))
     try goBack()
   }
 
@@ -179,22 +179,22 @@ class UITests: XCTestCase {
     try checkMainView()
     try checkEmptyView(function: classify)
     try checkFunctionality(function: download, startingStatus: .idle)
-    try checkFunctionality(function: classify)
+    try checkFunctionality(function: classify, startingStatus: .success(.download))
   }
 
   func testSaliencyMapView() throws {
     try checkMainView()
     try checkEmptyView(function: saliencyMap)
     try checkFunctionality(function: download, startingStatus: .idle)
-    try checkFunctionality(function: saliencyMap)
+    try checkFunctionality(function: saliencyMap, startingStatus: .success(.download))
   }
 
   func testUploadView() throws {
     try checkMainView()
     try checkEmptyView(function: upload)
     try checkFunctionality(function: download, startingStatus: .idle)
-    try checkFunctionality(function: saliencyMap)
-    try checkFunctionality(function: upload)
+    try checkFunctionality(function: saliencyMap, startingStatus: .success(.download))
+    try checkFunctionality(function: upload, startingStatus: .success(.saliencyMap))
   }
 
   func testAllViews() throws {
@@ -206,14 +206,14 @@ class UITests: XCTestCase {
     try checkEmptyView(function: upload)
 
     try checkFunctionality(function: download, startingStatus: .idle)
-    try checkFunctionality(function: classify)
-    try checkFunctionality(function: saliencyMap)
-    try checkFunctionality(function: upload)
+    try checkFunctionality(function: classify, startingStatus: .success(.download))
+    try checkFunctionality(function: saliencyMap, startingStatus: .success(.classify))
+    try checkFunctionality(function: upload, startingStatus: .success(.saliencyMap))
 
-    try checkDoneView(function: download)
-    try checkDoneView(function: classify)
-    try checkDoneView(function: saliencyMap)
-    try checkDoneView(function: upload)
+    try checkDoneView(function: download, lastTask: .upload)
+    try checkDoneView(function: classify, lastTask: .upload)
+    try checkDoneView(function: saliencyMap, lastTask: .upload)
+    try checkDoneView(function: upload, lastTask: .upload)
   }
 
   func testLaunchPerformance() throws {
@@ -232,16 +232,16 @@ enum PerformanceFunction {
   case saliencyMap(UITests)
   case upload(UITests)
 
-  var name: String {
+  var task: ProcessTask {
     switch self {
     case .download:
-      return "Download"
+      return .download
     case .classify:
-      return "Classify"
+      return .classify
     case .saliencyMap:
-      return "Saliency Map"
+      return .saliencyMap
     case .upload:
-      return "Upload"
+      return .upload
     }
   }
 
@@ -305,11 +305,4 @@ enum PerformanceFunction {
       return test.upload
     }
   }
-}
-
-enum ProcessStatus: String {
-  case idle = "⏸ Idle"
-  case running = "Running"
-  case failure = "❌ Failure"
-  case success = "✅ Success"
 }

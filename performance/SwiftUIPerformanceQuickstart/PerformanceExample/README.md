@@ -9,8 +9,18 @@ while also allowing you to measure the performance of any piece of code in your 
 
 Introduction
 ------------
+The app is centered around image tasks: download, classify, saliency map, and upload. Downloading
+and uploading images is a common task that many developers will want to do, and classifying the
+image and generating a saliency map are tasks that might be more popular now with the success of
+computer vision algorithms. Network requests are automatically traced by Performance Monitoring,
+while custom traces are used to measure the classification task.
+
+The typical usage flow consists of downloading the image, classifying the image, generating the
+saliency map, and lastly uploading the saliency map. The status of the task (idle, running, success,
+failure) is displayed for the user’s convenience.
 
 - [Read more about Firebase Performance Monitoring](https://firebase.google.com/docs/perf-mon/)
+- [Read more about Vision](https://developer.apple.com/documentation/vision)
 
 Getting Started
 ---------------

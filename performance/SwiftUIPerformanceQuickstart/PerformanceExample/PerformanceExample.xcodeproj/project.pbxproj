@@ -31,6 +31,8 @@
 		41BFA1EC26B1D3730013EB90 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4102055826A631F5004B24B3 /* Assets.xcassets */; };
 		41BFA1F026B1D8B80013EB90 /* Process.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41BFA1EF26B1D8B80013EB90 /* Process.swift */; };
 		41BFA1F326B1D8B80013EB90 /* Process.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41BFA1EF26B1D8B80013EB90 /* Process.swift */; };
+		41C3EC0D26D0100F009DCA8B /* SaliencyMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C3EC0C26D0100F009DCA8B /* SaliencyMapView.swift */; };
+		41C3EC0E26D0100F009DCA8B /* SaliencyMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C3EC0C26D0100F009DCA8B /* SaliencyMapView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +68,7 @@
 		419700EC26C30DA500F186C3 /* UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITests.swift; sourceTree = "<group>"; };
 		419AADCD26B86A94005C4817 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		41BFA1EF26B1D8B80013EB90 /* Process.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Process.swift; sourceTree = "<group>"; };
+		41C3EC0C26D0100F009DCA8B /* SaliencyMapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SaliencyMapView.swift; path = Shared/Views/SaliencyMapView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				41292E9A26CB623B00747458 /* ClassifyView.swift */,
+				41C3EC0C26D0100F009DCA8B /* SaliencyMapView.swift */,
 				41292E9B26CB623B00747458 /* DownloadView.swift */,
 				41292E9826CB623B00747458 /* MainView.swift */,
 				41292E9926CB623B00747458 /* UploadView.swift */,
@@ -337,6 +341,7 @@
 			files = (
 				41292E9E26CB623B00747458 /* UploadView.swift in Sources */,
 				41292EA026CB623B00747458 /* ClassifyView.swift in Sources */,
+				41C3EC0D26D0100F009DCA8B /* SaliencyMapView.swift in Sources */,
 				41292E9C26CB623B00747458 /* MainView.swift in Sources */,
 				41292EA226CB623B00747458 /* DownloadView.swift in Sources */,
 				4102056426A631F5004B24B3 /* PerformanceExampleApp.swift in Sources */,
@@ -358,6 +363,7 @@
 			files = (
 				41292E9F26CB623B00747458 /* UploadView.swift in Sources */,
 				41292EA126CB623B00747458 /* ClassifyView.swift in Sources */,
+				41C3EC0E26D0100F009DCA8B /* SaliencyMapView.swift in Sources */,
 				41292E9D26CB623B00747458 /* MainView.swift in Sources */,
 				41292EA326CB623B00747458 /* DownloadView.swift in Sources */,
 				41BFA1EA26B1D36C0013EB90 /* PerformanceExampleApp.swift in Sources */,

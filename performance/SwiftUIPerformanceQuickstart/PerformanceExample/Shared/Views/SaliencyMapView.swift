@@ -16,44 +16,46 @@
 
 import SwiftUI
 
-struct UploadView: View {
+struct SaliencyMapView: View {
   @ObservedObject var process: Process
   var body: some View {
     VStack {
-      if let saliencyMap = process.saliencyMap {
-        Image(uiImage: saliencyMap).padding(.bottom)
-        if process.uploadSucceeded {
-          Text("Saliency map uploaded successfully!")
+      process.status.view
+      Spacer()
+      if let image = process.image {
+        if let saliencyMap = process.saliencyMap {
+          Image(uiImage: saliencyMap).padding(.bottom)
+          Text("Saliency map generated successfully!")
         } else {
-          Button("Upload Saliency Map") {
+          Image(uiImage: image).padding(.bottom)
+          Button("Generate Saliency Map") {
             if process.status != .running {
               if #available(iOS 15, tvOS 15, *) {
                 #if swift(>=5.5)
-                  Task { await process.uploadSaliencyMapAsync() }
+                  Task { await process.generateSaliencyMapAsync() }
                 #else
-                  process.uploadSaliencyMap()
+                  process.generateSaliencyMap()
                 #endif
               } else {
-                process.uploadSaliencyMap()
+                process.generateSaliencyMap()
               }
             }
           }
+          .disabled(process.status == .running)
         }
       } else {
         Image(systemName: "questionmark.square").padding(.bottom)
-        Text("No saliency map found!\nPlease download an image and generate a saliency map first.")
+        Text("No image found!\nPlease download an image first.")
           .multilineTextAlignment(.center)
       }
-    }
-    .toolbar {
-      ToolbarItem(placement: .principal) { process.status.view }
+      Spacer()
     }
   }
 }
 
-struct UploadView_Previews: PreviewProvider {
+struct SaliencyMapView_Previews: PreviewProvider {
   @StateObject static var process = Process()
   static var previews: some View {
-    UploadView(process: process)
+    SaliencyMapView(process: process)
   }
 }

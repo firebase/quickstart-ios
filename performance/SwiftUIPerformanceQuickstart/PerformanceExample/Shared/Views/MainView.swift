@@ -23,7 +23,8 @@ struct MainView: View {
       List {
         NavigationLink("Download Image", destination: DownloadView(process: process))
         NavigationLink("Classify Image", destination: ClassifyView(process: process))
-        NavigationLink("Upload Image", destination: UploadView(process: process))
+        NavigationLink("Generate Saliency Map", destination: SaliencyMapView(process: process))
+        NavigationLink("Upload Saliency Map", destination: UploadView(process: process))
       }
       .navigationTitle("Performance")
       .toolbar {

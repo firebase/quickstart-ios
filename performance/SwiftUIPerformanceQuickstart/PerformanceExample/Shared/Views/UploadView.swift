@@ -39,6 +39,7 @@ struct UploadView: View {
               }
             }
           }
+          .disabled(process.status == .running)
         }
       } else {
         Image(systemName: "questionmark.square").padding(.bottom)

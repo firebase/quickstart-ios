@@ -43,6 +43,7 @@ struct DownloadView: View {
             }
           }
         }
+        .disabled(process.status == .running)
       }
       Spacer()
     }

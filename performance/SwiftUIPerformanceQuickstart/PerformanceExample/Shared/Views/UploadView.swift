@@ -20,6 +20,8 @@ struct UploadView: View {
   @ObservedObject var process: Process
   var body: some View {
     VStack {
+      process.status.view
+      Spacer()
       if let saliencyMap = process.saliencyMap {
         Image(uiImage: saliencyMap).padding(.bottom)
         if process.uploadSucceeded {
@@ -38,15 +40,14 @@ struct UploadView: View {
               }
             }
           }
+          .disabled(process.status == .running)
         }
       } else {
         Image(systemName: "questionmark.square").padding(.bottom)
         Text("No saliency map found!\nPlease download an image and generate a saliency map first.")
           .multilineTextAlignment(.center)
       }
-    }
-    .toolbar {
-      ToolbarItem(placement: .principal) { process.status.view }
+      Spacer()
     }
   }
 }

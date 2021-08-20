@@ -35,6 +35,7 @@ class Process: ObservableObject {
       return false
     }
   }
+
   let precision: Float = 0.2
   let site = "https://firebase.google.com/downloads/brand-guidelines/PNG/logo-logomark.png"
 
@@ -69,14 +70,14 @@ class Process: ObservableObject {
         guard let httpResponse = response as? HTTPURLResponse,
           (200 ... 299).contains(httpResponse.statusCode) else {
           print("Did not receive acceptable response: \(response)")
-            await updateStatusAsync(to: .failure(.download))
+          await updateStatusAsync(to: .failure(.download))
           return
         }
 
         guard let mimeType = httpResponse.mimeType, mimeType == "image/png",
           let image = UIImage(data: data) else {
           print("Could not create image from downloaded data.")
-            await updateStatusAsync(to: .failure(.download))
+          await updateStatusAsync(to: .failure(.download))
           return
         }
 
@@ -226,13 +227,13 @@ class Process: ObservableObject {
       guard let httpResponse = response as? HTTPURLResponse,
         (200 ... 299).contains(httpResponse.statusCode) else {
         print("Did not receive acceptable response: \(String(describing: response))")
-          self?.updateStatus(to: .failure(.download))
+        self?.updateStatus(to: .failure(.download))
         return
       }
       guard let mimeType = httpResponse.mimeType, mimeType == "image/png", let data = data,
         let image = UIImage(data: data) else {
         print("Something went wrong.")
-          self?.updateStatus(to: .failure(.download))
+        self?.updateStatus(to: .failure(.download))
         return
       }
       self?.updateStatus(to: .success(.download))
@@ -360,4 +361,3 @@ class Process: ObservableObject {
     return trace
   }
 }
-

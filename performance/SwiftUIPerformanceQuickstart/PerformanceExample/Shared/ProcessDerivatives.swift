@@ -33,11 +33,11 @@ enum ProcessStatus: Equatable {
     switch self {
     case .idle:
       return "⏸ Idle"
-    case .running(let task):
+    case let .running(task):
       return "\(task.rawValue) Running"
-    case .failure(let task):
+    case let .failure(task):
       return "❌ \(task.rawValue) Failure"
-    case .success(let task):
+    case let .success(task):
       return "✅ \(task.rawValue) Success"
     }
   }

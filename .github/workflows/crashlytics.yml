@@ -18,11 +18,20 @@ on:
 
   workflow_dispatch:
 
-jobs:
-  build:
-    name: build
-    runs-on: macOS-latest
+env:
+  SAMPLE: Crashlytics
+  secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}
 
+jobs:
+  cocoapods:
+    name: cocoapods
+    runs-on: macOS-latest
+    env:
+      SPM: false
+      LEGACY: true
+      OS: iOS
+      DEVICE: iPhone 11
+      TEST: true
     steps:
       - name: Checkout
         uses: actions/checkout@master
@@ -35,68 +44,37 @@ jobs:
           bundle exec pod install --repo-update
           cd ..
           ../scripts/install_prereqs/crashlytics.sh
-        env:
-          SAMPLE: Crashlytics
-          secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}
-          LEGACY: true
       - name: Build ObjC
         run: ./scripts/test.sh
         env:
-          SAMPLE: Crashlytics
-          SPM: false
-          LEGACY: true
           SWIFT_SUFFIX: ""
-          OS: iOS
-          DEVICE: iPhone 11
-          TEST: true
-          secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}
       - name: Build Swift
         run: ./scripts/test.sh
         env:
-          SAMPLE: Crashlytics
-          SPM: false
-          LEGACY: true
           SWIFT_SUFFIX: Swift
-          OS: iOS
-          DEVICE: iPhone 11
-          TEST: true
-          secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}
+  spm:
+    name: spm
+    runs-on: macOS-11
+    env:
+      SPM: true
+      DIR: crashlytics
+      TEST: false
       - name: Build SwiftUI (iOS)
         run: ./scripts/test.sh
         env:
-          SAMPLE: Crashlytics
-          SPM: true
-          DIR: crashlytics
           OS: iOS
-          DEVICE: iPhone 11
-          TEST: false
-          secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}
+          DEVICE: iPhone 12
       - name: Build SwiftUI (tvOS)
         run: ./scripts/test.sh
         env:
-          SAMPLE: Crashlytics
-          SPM: true
-          DIR: crashlytics
           OS: tvOS
-          DEVICE: Apple TV
-          TEST: false
-          secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}
+          DEVICE: Apple TV 4K (at 1080p) (2nd generation)
       - name: Build SwiftUI (macOS)
         run: ./scripts/test.sh
         env:
-          SAMPLE: Crashlytics
-          SPM: true
-          DIR: crashlytics
           OS: macOS
-          TEST: false
-          secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}
       - name: Build SwiftUI (watchOS)
         run: ./scripts/test.sh
         env:
-          SAMPLE: Crashlytics
-          SPM: true
-          DIR: crashlytics
           OS: watchOS
           DEVICE: Apple Watch Series 5 - 44mm
-          TEST: false
-          secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}

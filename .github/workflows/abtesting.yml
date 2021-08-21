@@ -60,3 +60,25 @@ jobs:
           DEVICE: iPhone 11
           TEST: true
           secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}
+  spm:
+    name: build&test
+    runs-on: macOS-11
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+      - name: Setup
+        run: |
+          gem install xcpretty
+          cd scripts
+          ../install_prereqs/abtesting.sh
+      - name: Build and Test SwiftUI
+        run: ./scripts/test.sh
+        env:
+          SAMPLE: ABTesting
+          SPM: true
+          DIR: abtesting
+          OS: iOS
+          DEVICE: iPhone 12
+          TEST: true
+          secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}

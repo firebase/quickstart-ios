@@ -24,7 +24,7 @@ env:
 
 jobs:
   cocoapods:
-    name: build & test
+    name: cocoapods
     runs-on: macOS-latest
     env:
       SPM: false
@@ -52,7 +52,7 @@ jobs:
         env:
           SWIFT_SUFFIX: Swift
   spm:
-    name: build & test
+    name: spm
     runs-on: macOS 11
     env:
       SPM: true

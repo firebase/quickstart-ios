@@ -40,8 +40,7 @@ jobs:
       - name: Build Swift
         run: ./scripts/test.sh
         env:
-          SAMPLE: Analytics
-          DIR: abtesting
+          SAMPLE: Authentication
           SPM: false
           LEGACY: false
           SWIFT_SUFFIX: ""

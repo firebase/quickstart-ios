@@ -18,11 +18,20 @@ on:
 
   workflow_dispatch:
 
-jobs:
-  build:
-    name: build
-    runs-on: macOS-latest
+env:
+  SAMPLE: Performance
+  secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}
 
+jobs:
+  cocoapods:
+    name: build & test
+    runs-on: macOS-latest
+    env:
+      SPM: false
+      LEGACY: false
+      OS: iOS
+      DEVICE: iPhone 11
+      TEST: true
     steps:
       - name: Checkout
         uses: actions/checkout@master
@@ -34,55 +43,21 @@ jobs:
           gem install xcpretty
           bundle exec pod install --repo-update
           ../scripts/install_prereqs/performance.sh
-        env:
-          SAMPLE: Performance
-          secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}
       - name: Build ObjC
         run: ./scripts/test.sh
         env:
-          SAMPLE: Performance
-          SPM: false
-          LEGACY: false
           SWIFT_SUFFIX: ""
-          OS: iOS
-          DEVICE: iPhone 11
-          TEST: true
-          secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}
       - name: Build Swift
         run: ./scripts/test.sh
         env:
-          SAMPLE: Performance
-          SPM: false
-          LEGACY: false
           SWIFT_SUFFIX: Swift
-          OS: iOS
-          DEVICE: iPhone 11
-          TEST: true
-          secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}
-      - name: Build and Test SwiftUI iOS
-        run: ./scripts/test.sh
-        env:
-          SAMPLE: Performance
-          SPM: true
-          DIR: performance/SwiftUIPerformanceQuickstart/PerformanceExample
-          OS: iOS
-          DEVICE: iPhone 11
-          TEST: true
-          secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}
-      - name: Build and Test SwiftUI tvOS
-        run: ./scripts/test.sh
-        env:
-          SAMPLE: Performance
-          SPM: true
-          DIR: performance/SwiftUIPerformanceQuickstart/PerformanceExample
-          OS: tvOS
-          DEVICE: Apple TV
-          TEST: true
-          secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}
   spm:
-    name: build spm
+    name: build & test
     runs-on: macOS 11
-
+    env:
+      SPM: true
+      DIR: performance/SwiftUIPerformanceQuickstart/PerformanceExample
+      TEST: true
     steps:
       - name: Checkout
         uses: actions/checkout@master
@@ -91,26 +66,13 @@ jobs:
           gem install xcpretty
           cd scripts
           ./install_prereqs/performance.sh
-        env:
-          SAMPLE: Performance
-          secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}
       - name: Build and Test SwiftUI iOS
         run: ./scripts/test.sh
         env:
-          SAMPLE: Performance
-          SPM: true
-          DIR: performance/SwiftUIPerformanceQuickstart/PerformanceExample
           OS: iOS
           DEVICE: iPhone 12 Pro
-          TEST: true
-          secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}
       - name: Build and Test SwiftUI tvOS
         run: ./scripts/test.sh
         env:
-          SAMPLE: Performance
-          SPM: true
-          DIR: performance/SwiftUIPerformanceQuickstart/PerformanceExample
           OS: tvOS
           DEVICE: Apple TV 4K (at 1080p) (2nd generation)
-          TEST: true
-          secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}

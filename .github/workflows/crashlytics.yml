@@ -42,64 +42,57 @@ jobs:
       - name: Build ObjC
         run:  ./scripts/test.sh
         env:
-          SWIFT_SUFFIX: ''
           SAMPLE: Crashlytics
+          DIR: crashlytics/LegacyCrashlyticsQuickstart
+          SPM: false
           LEGACY: true
+          SWIFT_SUFFIX: ""
+          OS: iOS
+          DEVICE: iPhone 11
+          TEST: true
       - name: Build Swift
         run:  ./scripts/test.sh
         env:
-          SWIFT_SUFFIX: 'Swift'
           SAMPLE: Crashlytics
+          DIR: crashlytics/LegacyCrashlyticsQuickstart
+          SPM: false
           LEGACY: true
-      - name: Build SwiftUI (iOS)
-        run: |
-          cd scripts
-          source install_prereqs/crashlytics.sh
-          cd ..
-          source scripts/test_spm.sh
-        env: 
-          SAMPLE: Crashlytics
-          DIR: crashlytics
+          SWIFT_SUFFIX: Swift
           OS: iOS
           DEVICE: iPhone 11
-          SWIFT_DEFINES: ""
-          TEST: false
-      - name: Build SwiftUI (tvOS)
-        run: |
-          cd scripts
-          source install_prereqs/crashlytics.sh
-          cd ..
-          source scripts/test_spm.sh
-        env: 
-          SAMPLE: Crashlytics
-          DIR: crashlytics
-          OS: tvOS
-          DEVICE: Apple TV
-          SWIFT_DEFINES: ""
-          TEST: false
-      - name: Build SwiftUI (macOS)
-        run: |
-          cd scripts
-          source install_prereqs/crashlytics.sh
-          cd ..
-          source scripts/test_spm.sh
-        env: 
-          SAMPLE: Crashlytics
-          DIR: crashlytics
-          OS: macOS
-          DEVICE: localhost
-          SWIFT_DEFINES: ""
-          TEST: false
-      - name: Build SwiftUI (watchOS)
-        run: |
-          cd scripts
-          source install_prereqs/crashlytics.sh
-          cd ..
-          source scripts/test_spm.sh
+          TEST: true
+      - name: Build SwiftUI (iOS)
+        run:  ./scripts/test.sh
         env:
           SAMPLE: Crashlytics
           DIR: crashlytics
+          SPM: true
+          OS: iOS
+          DEVICE: iPhone 11
+          TEST: false
+      - name: Build SwiftUI (tvOS)
+        run:  ./scripts/test.sh
+        env:
+          SAMPLE: Crashlytics
+          DIR: crashlytics
+          SPM: true
+          OS: tvOS
+          DEVICE: Apple TV
+          TEST: false
+      - name: Build SwiftUI (macOS)
+        run:  ./scripts/test.sh
+        env:
+          SAMPLE: Crashlytics
+          DIR: crashlytics
+          SPM: true
+          OS: macOS
+          TEST: false
+      - name: Build SwiftUI (watchOS)
+        run:  ./scripts/test.sh
+        env:
+          SAMPLE: Crashlytics
+          DIR: crashlytics
+          SPM: true
           OS: watchOS
           DEVICE: Apple Watch Series 5 - 44mm
-          SWIFT_DEFINES: ""
           TEST: false

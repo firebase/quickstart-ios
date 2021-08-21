@@ -12,8 +12,8 @@ Introduction
 The app is centered around image tasks: download, classify, saliency map, and upload. Downloading
 and uploading images is a common developer task. Classifying the image and generating a saliency map
 are tasks that might be more popular now with the success of computer vision algorithms. Classifying
-the image consists of providing categories to which the image belongs, while generating a saliency
-map consists of producing a map that identifies the parts of an image most likely to draw attention.
+the image consists of providing categories to which the image belongs. A saliency map identifies the
+parts of an image most likely to draw attention.
 
 Network requests are automatically traced by Performance Monitoring, while custom traces are used to
 measure the classification task.

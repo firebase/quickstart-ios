@@ -43,7 +43,6 @@ jobs:
           gem install xcpretty
           bundle exec pod install --repo-update
           ../scripts/install_prereqs/analytics.sh
-        env:
       - name: Build Swift
         run: ./scripts/test.sh
         env:

@@ -95,7 +95,6 @@ fi
 
 if [[ "$OS" == catalyst ]];then
     flags+=(
-        -sdk macosx11
         ARCHS=x86_64
         VALID_ARCHS=x86_64
         SUPPORTS_MACCATALYST=YES

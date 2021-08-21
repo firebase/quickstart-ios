@@ -38,8 +38,13 @@ jobs:
           SAMPLE: Firestore
           secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}
       - name: Build
-        run: |
-          ./scripts/test.sh
+        run: ./scripts/test.sh
         env:
-          SWIFT_SUFFIX: ''
           SAMPLE: Firestore
+          DIR: firestore
+          SPM: false
+          LEGACY: false
+          SWIFT_SUFFIX: ""
+          OS: iOS
+          DEVICE: iPhone 11
+          TEST: true

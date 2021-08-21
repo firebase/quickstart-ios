@@ -59,6 +59,7 @@ jobs:
       SPM: true
       DIR: crashlytics
       TEST: false
+    steps:
       - name: Build SwiftUI (iOS)
         run: ./scripts/test.sh
         env:

@@ -40,5 +40,11 @@ jobs:
       - name: Build Swift
         run: ./scripts/test.sh
         env:
-          SWIFT_SUFFIX: ''
-          SAMPLE: Authentication
+          SAMPLE: Analytics
+          DIR: abtesting
+          SPM: false
+          LEGACY: false
+          SWIFT_SUFFIX: ""
+          OS: iOS
+          DEVICE: iPhone 11
+          TEST: true

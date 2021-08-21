@@ -22,28 +22,29 @@ struct UploadView: View {
     VStack {
       process.status.view
       Spacer()
-      if let uiImage = process.image {
-        Image(uiImage: uiImage).padding(.bottom)
+      if let saliencyMap = process.saliencyMap {
+        Image(uiImage: saliencyMap).padding(.bottom)
         if process.uploadSucceeded {
-          Text("Image uploaded successfully!")
+          Text("Saliency map uploaded successfully!")
         } else {
-          Button("Upload Image") {
-            if process.status != .running {
+          Button("Upload Saliency Map") {
+            if !process.isRunning {
               if #available(iOS 15, tvOS 15, *) {
                 #if swift(>=5.5)
-                  Task { await process.uploadImageAsync() }
+                  Task { await process.uploadSaliencyMapAsync() }
+                #else
+                  process.uploadSaliencyMap()
                 #endif
-                process.uploadImage()
               } else {
-                process.uploadImage()
+                process.uploadSaliencyMap()
               }
             }
           }
-          .disabled(process.status == .running)
+          .disabled(process.isRunning)
         }
       } else {
         Image(systemName: "questionmark.square").padding(.bottom)
-        Text("No image found!\nPlease download an image first.")
+        Text("No saliency map found!\nPlease download an image and generate a saliency map first.")
           .multilineTextAlignment(.center)
       }
       Spacer()

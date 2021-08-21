@@ -9,8 +9,23 @@ while also allowing you to measure the performance of any piece of code in your 
 
 Introduction
 ------------
+The app is centered around image tasks: download, classify, saliency map, and upload. Downloading
+and uploading images is a common developer task. Classifying the image and generating a saliency map
+are tasks that might be more popular now with the success of computer vision algorithms. Classifying
+the image consists of providing categories to which the image belongs. A saliency map identifies the
+parts of an image most likely to draw attention.
+
+Network requests are automatically traced by Performance Monitoring, while custom traces are used to
+measure the classification task.
+
+The typical usage flow consists of downloading the image, classifying the image, generating the
+saliency map, and lastly uploading the saliency map. The status of the task (idle, running, success,
+failure) is displayed for the user’s convenience.
 
 - [Read more about Firebase Performance Monitoring](https://firebase.google.com/docs/perf-mon/)
+- [Read more about Vision](https://developer.apple.com/documentation/vision)
+  - [See code samples for classifying images](https://developer.apple.com/documentation/vision/classifying_images_for_categorization_and_search)
+  - [See code samples for saliency maps](https://developer.apple.com/documentation/vision/highlighting_areas_of_interest_in_an_image_using_saliency)
 
 Getting Started
 ---------------
@@ -22,7 +37,7 @@ Getting Started
 rules_version = '2';
 service firebase.storage {
   match /b/{bucket}/o {
-    match /image.jpg {
+    match /saliency_map.jpg {
       allow create: if request.resource.contentType == 'image/jpeg'
     }
   }

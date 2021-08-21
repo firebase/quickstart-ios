@@ -31,7 +31,7 @@ struct DownloadView: View {
           .multilineTextAlignment(.center)
           .padding(.bottom)
         Button("Download Image") {
-          if process.status != .running {
+          if !process.isRunning {
             if #available(iOS 15, tvOS 15, *) {
               #if swift(>=5.5)
                 Task { await process.downloadImageAsync() }
@@ -43,7 +43,7 @@ struct DownloadView: View {
             }
           }
         }
-        .disabled(process.status == .running)
+        .disabled(process.isRunning)
       }
       Spacer()
     }

@@ -16,34 +16,28 @@
 
 import SwiftUI
 
-struct ClassifyView: View {
+struct SaliencyMapView: View {
   @ObservedObject var process: Process
   var body: some View {
     VStack {
       process.status.view
       Spacer()
-      if let uiImage = process.image {
-        Image(uiImage: uiImage).padding(.bottom)
-        if let categories = process.categories {
-          if categories.isEmpty {
-            Text("No categories found with a recall precision of \(process.precision)!")
-          } else {
-            Text("Categories found:")
-            List(categories, id: \.category) { category, confidence in
-              Text("\(category): \(confidence)")
-            }
-          }
+      if let image = process.image {
+        if let saliencyMap = process.saliencyMap {
+          Image(uiImage: saliencyMap).padding(.bottom)
+          Text("Saliency map generated successfully!")
         } else {
-          Button("Classify Image") {
+          Image(uiImage: image).padding(.bottom)
+          Button("Generate Saliency Map") {
             if !process.isRunning {
               if #available(iOS 15, tvOS 15, *) {
                 #if swift(>=5.5)
-                  Task { await process.classifyImageAsync() }
+                  Task { await process.generateSaliencyMapAsync() }
                 #else
-                  process.classifyImage()
+                  process.generateSaliencyMap()
                 #endif
               } else {
-                process.classifyImage()
+                process.generateSaliencyMap()
               }
             }
           }
@@ -59,9 +53,9 @@ struct ClassifyView: View {
   }
 }
 
-struct ClassifyView_Previews: PreviewProvider {
+struct SaliencyMapView_Previews: PreviewProvider {
   @StateObject static var process = Process()
   static var previews: some View {
-    ClassifyView(process: process)
+    SaliencyMapView(process: process)
   }
 }

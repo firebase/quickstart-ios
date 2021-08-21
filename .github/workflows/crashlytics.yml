@@ -60,6 +60,13 @@ jobs:
       DIR: crashlytics
       TEST: false
     steps:
+      - name: Checkout
+        uses: actions/checkout@master
+      - name: Setup
+        run: |
+          gem install xcpretty
+          cd scripts
+          ./install_prereqs/crashlytics.sh
       - name: Build SwiftUI (iOS)
         run: ./scripts/test.sh
         env:

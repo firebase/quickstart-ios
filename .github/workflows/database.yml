@@ -59,6 +59,13 @@ jobs:
       DIR: database/DatabaseExampleSwiftUI/DatabaseExample
       TEST: false
     steps:
+      - name: Checkout
+        uses: actions/checkout@master
+      - name: Setup
+        run: |
+          gem install xcpretty
+          cd scripts
+          ./install_prereqs/database.sh
       - name: Build SwiftUI
         run: ./scripts/test.sh
         env:

@@ -88,8 +88,20 @@ else
 fi
 
 # Add extra flags
+if [[ "$SAMPLE" == Config && "$OS" == macOS ]];then
+    flags+=(
+        -configuration Debug
+        ARCHS=x86_64
+        VALID_ARCHS=x86_64
+        ONLY_ACTIVE_ARCH=NO
+        SUPPORTS_MACCATALYST=YES
+        SUPPORTS_UIKITFORMAC=YES
+    )
+else
+    flags+=( ONLY_ACTIVE_ARCH=YES )
+fi
+
 flags+=(
-    ONLY_ACTIVE_ARCH=YES
     CODE_SIGNING_REQUIRED=NO
     CODE_SIGNING_ALLOWED=NO
     build

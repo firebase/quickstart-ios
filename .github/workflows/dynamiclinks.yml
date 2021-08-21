@@ -38,14 +38,25 @@ jobs:
           SAMPLE: DynamicLinks
           secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}
       - name: Build ObjC
-        run: |
-          ./scripts/test.sh
+        run: ./scripts/test.sh
         env:
-          SWIFT_SUFFIX: ''
           SAMPLE: DynamicLinks
+          DIR: dynamiclinks
+          SPM: false
+          LEGACY: false
+          SWIFT_SUFFIX: ""
+          OS: iOS
+          DEVICE: iPhone 11
+          TEST: true
       - name: Build Swift
         run: |
           ./scripts/test.sh
         env:
-          SWIFT_SUFFIX: 'Swift'
           SAMPLE: DynamicLinks
+          DIR: dynamiclinks
+          SPM: false
+          LEGACY: false
+          SWIFT_SUFFIX: Swift
+          OS: iOS
+          DEVICE: iPhone 11
+          TEST: true

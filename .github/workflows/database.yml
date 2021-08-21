@@ -33,30 +33,39 @@ jobs:
           bundle install
           gem install xcpretty
           bundle exec pod install --repo-update
+          ../scripts/install_prereqs/database.sh
         env:
           SAMPLE: Database
           secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}
       - name: Build ObjC
         run: ./scripts/test.sh
         env:
-          SWIFT_SUFFIX: ''
           SAMPLE: Database
+          DIR: database
+          SPM: false
+          LEGACY: false
+          SWIFT_SUFFIX: ""
+          OS: iOS
+          DEVICE: iPhone 11
+          TEST: true
       - name: Build Swift
         run: ./scripts/test.sh
         env:
-          SWIFT_SUFFIX: 'Swift'
           SAMPLE: Database
-      - name: Build SwiftUI
-        run: |
-          cd scripts
-          source install_prereqs/database.sh
-          cd ..
-          source scripts/test_spm.sh
-        env: 
-          SAMPLE: Database
-          DIR: database/DatabaseExampleSwiftUI/DatabaseExample
+          DIR: database
+          SPM: false
+          LEGACY: false
+          SWIFT_SUFFIX: Swift
           OS: iOS
           DEVICE: iPhone 11
-          SWIFT_DEFINES: ""
+          TEST: true
+      - name: Build SwiftUI
+        run: ./scripts/test.sh
+        env:
+          SAMPLE: Database
+          DIR: database/DatabaseExampleSwiftUI/DatabaseExample
+          SPM: true
+          OS: iOS
+          DEVICE: iPhone 11
           TEST: false
           secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}

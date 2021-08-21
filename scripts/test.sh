@@ -52,17 +52,23 @@ flags=()
 
 # Set project / workspace
 if [[ "$SPM" == true ]];then
-    PROJECT="${DIR}/${SAMPLE}Example.xcodeproj"
+    flags+=( -project "${DIR}/${SAMPLE}Example.xcodeproj" )
 else
     if [[ "$LEGACY" == true ]]; then
         WORKSPACE="${SAMPLE}/Legacy${SAMPLE}Quickstart/${SAMPLE}Example.xcworkspace"
     else
         WORKSPACE="${SAMPLE}/${SAMPLE}Example.xcworkspace"
     fi
+    flags+=( -workspace "$WORKSPACE" )
 fi
 
 # Set scheme
-SCHEME="${SAMPLE}Example (${OS})"
+if [[ "$SPM" == true ]];then
+    SCHEME="${SAMPLE}Example (${OS})"
+else
+    SCHEME="${SAMPLE}Example${SWIFT_SUFFIX}"
+fi
+flags+=( -scheme "$SCHEME" )
 
 # Set destination
 if [[ "$OS" == iOS ]]; then
@@ -81,23 +87,27 @@ else
     exit 1
 fi
 
+# Add extra flags
 flags+=(
     ONLY_ACTIVE_ARCH=YES
     CODE_SIGNING_REQUIRED=NO
     CODE_SIGNING_ALLOWED=NO
-    OTHER_SWIFT_FLAGS=${SWIFT_DEFINES}
+    build
 )
+
+# Check whether to test on top of building
+message=""
+if [[ "$TEST" == true && "$have_secrets" == true ]]; then
+    flags+=( test )
+elif [[ "$TEST" == true ]]; then
+    message="Missing secrets: tests did not run."
+fi
 
 function xcb() {
     echo xcodebuild "$@"
     xcodebuild "$@" | xcpretty
 }
 
-if [[ "$TEST" == true && "$have_secrets" == true ]]; then
-    xcb -project "$PROJECT" -scheme "$SCHEME" "${flags[@]}" build test
-else
-    xcb -project "$PROJECT" -scheme "$SCHEME" "${flags[@]}" build
-    if [[ "$TEST" == true ]]; then
-        echo "Missing secrets: tests did not run."
-    fi
-fi
+# Run xcodebuild
+xcb "${flags[@]}"
+echo "$message"

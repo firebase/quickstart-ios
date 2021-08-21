@@ -38,8 +38,7 @@ jobs:
           SAMPLE: Analytics
           secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}
       - name: Build Swift
-        run: |
-          ./scripts/test.sh
+        run: ./scripts/test.sh
         env:
           SAMPLE: Analytics
           DIR: abtesting

@@ -40,7 +40,7 @@ jobs:
           secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}
           LEGACY: true
       - name: Build ObjC
-        run:  ./scripts/test.sh
+        run: ./scripts/test.sh
         env:
           SAMPLE: Crashlytics
           DIR: crashlytics/LegacyCrashlyticsQuickstart
@@ -51,7 +51,7 @@ jobs:
           DEVICE: iPhone 11
           TEST: true
       - name: Build Swift
-        run:  ./scripts/test.sh
+        run: ./scripts/test.sh
         env:
           SAMPLE: Crashlytics
           DIR: crashlytics/LegacyCrashlyticsQuickstart
@@ -62,7 +62,7 @@ jobs:
           DEVICE: iPhone 11
           TEST: true
       - name: Build SwiftUI (iOS)
-        run:  ./scripts/test.sh
+        run: ./scripts/test.sh
         env:
           SAMPLE: Crashlytics
           DIR: crashlytics
@@ -71,7 +71,7 @@ jobs:
           DEVICE: iPhone 11
           TEST: false
       - name: Build SwiftUI (tvOS)
-        run:  ./scripts/test.sh
+        run: ./scripts/test.sh
         env:
           SAMPLE: Crashlytics
           DIR: crashlytics
@@ -80,7 +80,7 @@ jobs:
           DEVICE: Apple TV
           TEST: false
       - name: Build SwiftUI (macOS)
-        run:  ./scripts/test.sh
+        run: ./scripts/test.sh
         env:
           SAMPLE: Crashlytics
           DIR: crashlytics
@@ -88,7 +88,7 @@ jobs:
           OS: macOS
           TEST: false
       - name: Build SwiftUI (watchOS)
-        run:  ./scripts/test.sh
+        run: ./scripts/test.sh
         env:
           SAMPLE: Crashlytics
           DIR: crashlytics

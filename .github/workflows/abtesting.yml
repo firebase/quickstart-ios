@@ -40,8 +40,7 @@ jobs:
           secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}
           LEGACY: true
       - name: Build Swift
-        run: |
-          ./scripts/test.sh
+        run: ./scripts/test.sh
         env:
           SAMPLE: ABTesting
           DIR: abtesting
@@ -52,8 +51,7 @@ jobs:
           DEVICE: iPhone 11
           TEST: true
       - name: Build and Test SwiftUI
-        run: |
-          ./scripts/test.sh
+        run: ./scripts/test.sh
         env:
           SAMPLE: ABTesting
           SPM: true

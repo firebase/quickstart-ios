@@ -49,6 +49,7 @@ jobs:
           OS: iOS
           DEVICE: iPhone 11
           TEST: true
+          secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}
       - name: Build Swift
         run: ./scripts/test.sh
         env:
@@ -59,6 +60,7 @@ jobs:
           OS: iOS
           DEVICE: iPhone 11
           TEST: true
+          secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}
       - name: Build SwiftUI (iOS)
         run: ./scripts/test.sh
         env:
@@ -68,6 +70,7 @@ jobs:
           OS: iOS
           DEVICE: iPhone 11
           TEST: false
+          secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}
       - name: Build SwiftUI (tvOS)
         run: ./scripts/test.sh
         env:
@@ -77,6 +80,7 @@ jobs:
           OS: tvOS
           DEVICE: Apple TV
           TEST: false
+          secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}
       - name: Build SwiftUI (macOS)
         run: ./scripts/test.sh
         env:
@@ -85,6 +89,7 @@ jobs:
           DIR: crashlytics
           OS: macOS
           TEST: false
+          secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}
       - name: Build SwiftUI (watchOS)
         run: ./scripts/test.sh
         env:
@@ -94,3 +99,4 @@ jobs:
           OS: watchOS
           DEVICE: Apple Watch Series 5 - 44mm
           TEST: false
+          secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}

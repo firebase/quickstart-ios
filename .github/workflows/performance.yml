@@ -47,6 +47,7 @@ jobs:
           OS: iOS
           DEVICE: iPhone 11
           TEST: true
+          secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}
       - name: Build Swift
         run: ./scripts/test.sh
         env:
@@ -57,6 +58,7 @@ jobs:
           OS: iOS
           DEVICE: iPhone 11
           TEST: true
+          secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}
       - name: Build and Test SwiftUI iOS
         run: ./scripts/test.sh
         env:

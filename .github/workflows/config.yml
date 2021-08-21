@@ -18,11 +18,19 @@ on:
 
   workflow_dispatch:
 
-jobs:
-  build:
-    name: build
-    runs-on: macOS-latest
+env:
+  SAMPLE: Config
+  secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}
 
+jobs:
+  cocoapods:
+    name: cocoapods
+    runs-on: macOS-latest
+    env:
+      SPM: false
+      LEGACY: false
+      SWIFT_SUFFIX: ""
+      TEST: true
     steps:
       - name: Checkout
         uses: actions/checkout@master
@@ -34,27 +42,12 @@ jobs:
           gem install xcpretty
           bundle exec pod install --repo-update
           ../scripts/install_prereqs/config.sh
-        env:
-          SAMPLE: Config
-          secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}
       - name: Build Swift
         run: ./scripts/test.sh
         env:
-          SAMPLE: Config
-          SPM: false
-          LEGACY: false
-          SWIFT_SUFFIX: ""
           OS: iOS
           DEVICE: iPhone 11
-          TEST: true
-          secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}
       - name: Build Catalyst
         run: ./scripts/test.sh
         env:
-          SAMPLE: Config
-          SPM: false
-          LEGACY: false
-          SWIFT_SUFFIX: ""
           OS: catalyst
-          TEST: true
-          secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}

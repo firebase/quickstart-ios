@@ -114,6 +114,8 @@ if [[ "$TEST" == true && "$have_secrets" == true ]]; then
     flags+=( test )
 elif [[ "$TEST" == true ]]; then
     message="Missing secrets: tests did not run."
+else
+    message="Tests did not run."
 fi
 
 function xcb() {

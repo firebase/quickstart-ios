@@ -61,7 +61,7 @@ jobs:
           TEST: true
           secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}
   spm:
-    name: build&test
+    name: build spm
     runs-on: macOS-11
 
     steps:
@@ -71,7 +71,7 @@ jobs:
         run: |
           gem install xcpretty
           cd scripts
-          ../install_prereqs/abtesting.sh
+          ./install_prereqs/abtesting.sh
       - name: Build and Test SwiftUI
         run: ./scripts/test.sh
         env:

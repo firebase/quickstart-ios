@@ -53,7 +53,7 @@ jobs:
           SWIFT_SUFFIX: Swift
   spm:
     name: spm
-    runs-on: macOS 11
+    runs-on: macOS-11
     env:
       SPM: true
       DIR: performance/SwiftUIPerformanceQuickstart/PerformanceExample

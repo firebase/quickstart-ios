@@ -41,7 +41,6 @@ jobs:
         run: ./scripts/test.sh
         env:
           SAMPLE: Performance
-          DIR: performance
           SPM: false
           LEGACY: false
           SWIFT_SUFFIX: ""
@@ -52,7 +51,6 @@ jobs:
         run: ./scripts/test.sh
         env:
           SAMPLE: Performance
-          DIR: performance
           SPM: false
           LEGACY: false
           SWIFT_SUFFIX: Swift
@@ -63,8 +61,8 @@ jobs:
         run: ./scripts/test.sh
         env:
           SAMPLE: Performance
-          DIR: performance/SwiftUIPerformanceQuickstart/PerformanceExample
           SPM: true
+          DIR: performance/SwiftUIPerformanceQuickstart/PerformanceExample
           OS: iOS
           DEVICE: iPhone 11
           TEST: true
@@ -73,8 +71,8 @@ jobs:
         run: ./scripts/test.sh
         env:
           SAMPLE: Performance
-          DIR: performance/SwiftUIPerformanceQuickstart/PerformanceExample
           SPM: true
+          DIR: performance/SwiftUIPerformanceQuickstart/PerformanceExample
           OS: tvOS
           DEVICE: Apple TV
           TEST: true

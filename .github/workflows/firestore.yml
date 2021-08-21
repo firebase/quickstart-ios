@@ -41,7 +41,6 @@ jobs:
         run: ./scripts/test.sh
         env:
           SAMPLE: Firestore
-          DIR: firestore
           SPM: false
           LEGACY: false
           SWIFT_SUFFIX: ""

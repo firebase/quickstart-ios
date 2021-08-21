@@ -43,7 +43,6 @@ jobs:
         run: ./scripts/test.sh
         env:
           SAMPLE: Crashlytics
-          DIR: crashlytics/LegacyCrashlyticsQuickstart
           SPM: false
           LEGACY: true
           SWIFT_SUFFIX: ""
@@ -54,7 +53,6 @@ jobs:
         run: ./scripts/test.sh
         env:
           SAMPLE: Crashlytics
-          DIR: crashlytics/LegacyCrashlyticsQuickstart
           SPM: false
           LEGACY: true
           SWIFT_SUFFIX: Swift
@@ -65,8 +63,8 @@ jobs:
         run: ./scripts/test.sh
         env:
           SAMPLE: Crashlytics
-          DIR: crashlytics
           SPM: true
+          DIR: crashlytics
           OS: iOS
           DEVICE: iPhone 11
           TEST: false
@@ -74,8 +72,8 @@ jobs:
         run: ./scripts/test.sh
         env:
           SAMPLE: Crashlytics
-          DIR: crashlytics
           SPM: true
+          DIR: crashlytics
           OS: tvOS
           DEVICE: Apple TV
           TEST: false
@@ -83,16 +81,16 @@ jobs:
         run: ./scripts/test.sh
         env:
           SAMPLE: Crashlytics
-          DIR: crashlytics
           SPM: true
+          DIR: crashlytics
           OS: macOS
           TEST: false
       - name: Build SwiftUI (watchOS)
         run: ./scripts/test.sh
         env:
           SAMPLE: Crashlytics
-          DIR: crashlytics
           SPM: true
+          DIR: crashlytics
           OS: watchOS
           DEVICE: Apple Watch Series 5 - 44mm
           TEST: false

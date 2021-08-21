@@ -43,7 +43,6 @@ jobs:
         run: ./scripts/test.sh
         env:
           SAMPLE: ABTesting
-          DIR: abtesting
           SPM: false
           LEGACY: true
           SWIFT_SUFFIX: ""

@@ -79,3 +79,38 @@ jobs:
           DEVICE: Apple TV
           TEST: true
           secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}
+  spm:
+    name: build spm
+    runs-on: macOS 11
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+      - name: Setup
+        run: |
+          gem install xcpretty
+          cd scripts
+          ./install_prereqs/performance.sh
+        env:
+          SAMPLE: Performance
+          secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}
+      - name: Build and Test SwiftUI iOS
+        run: ./scripts/test.sh
+        env:
+          SAMPLE: Performance
+          SPM: true
+          DIR: performance/SwiftUIPerformanceQuickstart/PerformanceExample
+          OS: iOS
+          DEVICE: iPhone 12 Pro
+          TEST: true
+          secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}
+      - name: Build and Test SwiftUI tvOS
+        run: ./scripts/test.sh
+        env:
+          SAMPLE: Performance
+          SPM: true
+          DIR: performance/SwiftUIPerformanceQuickstart/PerformanceExample
+          OS: tvOS
+          DEVICE: Apple TV 4K (at 1080p) (2nd generation)
+          TEST: true
+          secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}

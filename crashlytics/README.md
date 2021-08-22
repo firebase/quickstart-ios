@@ -37,9 +37,23 @@ $ open CrashlyticsExample.xcodeproj
      `Shared` folder.
 - Now you should be able to build and run the Firebase project!
 
-### Crashlytics Example App Visualization
+### Crashlytics Example App Visualizations
 
+iOS
 
+<img src="./Images/crashlytics_ios.png" alt="iOS Screenshot" width=200>
+
+macOS
+
+<img src="./Images/crashlytics_macos.png" alt="iOS Screenshot" width=400>
+
+tvOS
+
+<img src="./Images/crashlytics_tvos.png" alt="iOS Screenshot" width=400>
+
+watchOS
+
+<img src="./Images/crashlytics_watchos.png" alt="iOS Screenshot" width=200>
 
 ### Trigger a crash in Crashlytics quickstart app
 1. Click `Build and then run the current scheme` in Xcode to build your app on a device or

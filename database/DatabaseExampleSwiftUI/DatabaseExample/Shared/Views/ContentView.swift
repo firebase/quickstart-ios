@@ -19,11 +19,16 @@ import Firebase
 
 struct ContentView: View {
   @AppStorage("isSignedIn") var isSignedIn = true
-  @State private var selection: PostsType = .recentPosts
+
+  // define variables for creating a new post for macOS
+  #if os(macOS)
+    @StateObject var postList = PostListViewModel()
+    @State private var newPostsViewPresented = false
+  #endif
 
   var body: some View {
     if isSignedIn {
-      TabView(selection: $selection) {
+      let tabView = TabView {
         PostsView(title: "Recents", postsType: .recentPosts)
           .tabItem {
             Label("Recents", systemImage: "arrow.counterclockwise")
@@ -38,6 +43,30 @@ struct ContentView: View {
           }
       }
       .accentColor(Color(.systemTeal))
+      #if os(iOS)
+        tabView
+      #elseif os(macOS)
+        tabView
+          .toolbar {
+            Button(action: {
+              user.logout()
+            }) {
+              HStack {
+                Image(systemName: "chevron.left")
+                Text("Logout")
+              }
+            }
+            Spacer()
+            Button(action: {
+              newPostsViewPresented = true
+            }) {
+              Image(systemName: "plus")
+            }
+            .sheet(isPresented: $newPostsViewPresented) {
+              NewPostsView(postList: postList, isPresented: $newPostsViewPresented)
+            }
+          }
+      #endif
     } else {
       LoginView()
     }

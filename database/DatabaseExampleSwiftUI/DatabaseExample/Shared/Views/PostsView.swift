@@ -20,12 +20,18 @@ import Firebase
 struct PostsView: View {
   @StateObject var postList = PostListViewModel()
   @StateObject var user = UserViewModel()
+
+  // define variables for creating a new post for iOS
+  #if os(iOS)
+    @State private var newPostsViewPresented = false
+  #endif
+
   var title: String
   var postsType: PostsType
 
   var body: some View {
     NavigationView {
-      List {
+      let postListView = List {
         ForEach(postList.posts) { post in
           PostCell(post: post)
         }
@@ -36,20 +42,34 @@ struct PostsView: View {
       .onDisappear {
         postList.onViewDisappear()
       }
-      .navigationBarTitle(title)
-      .navigationBarItems(leading:
-        Button(action: {
-          user.logout()
-        }) {
-          HStack {
-            Image(systemName: "chevron.left")
-            Text("Logout")
+      .navigationTitle(title)
+      #if os(iOS)
+        postListView
+          .toolbar {
+            ToolbarItemGroup(placement: .navigationBarLeading) {
+              Button(action: {
+                user.logout()
+              }) {
+                HStack {
+                  Image(systemName: "chevron.left")
+                  Text("Logout")
+                }
+              }
+            }
+            ToolbarItemGroup(placement: .navigationBarTrailing) {
+              Button(action: {
+                newPostsViewPresented = true
+              }) {
+                Image(systemName: "plus")
+              }
+              .sheet(isPresented: $newPostsViewPresented) {
+                NewPostsView(postList: postList, isPresented: $newPostsViewPresented)
+              }
+            }
           }
-        },
-        trailing:
-        NavigationLink(destination: NewPostsView(postList: postList)) {
-          Image(systemName: "plus")
-        })
+      #elseif os(macOS)
+        postListView
+      #endif
     }
   }
 }

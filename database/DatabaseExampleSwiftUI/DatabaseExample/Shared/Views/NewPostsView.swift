@@ -18,40 +18,48 @@ import SwiftUI
 
 struct NewPostsView: View {
   @ObservedObject var postList = PostListViewModel()
-  @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+  @Binding var isPresented: Bool
   @State private var newPostTitle: String = ""
   @State private var newPostBody: String = ""
-  @State private var placeholderText: String = "Say something..."
-  var screenWidth = UIScreen.main.bounds.width
-  var screenHeight = UIScreen.main.bounds.height
 
   var body: some View {
-    VStack {
-      TextField("Add a title", text: $newPostTitle)
-        .font(.largeTitle)
-        .frame(
-          width: screenWidth * 0.88,
-          height: screenHeight * 0.08,
-          alignment: .leading
+    HStack {
+      Spacer()
+      Button(action: {
+        isPresented = false
+        postList.didTapPostButton(
+          title: newPostTitle,
+          body: newPostBody
         )
+      }) {
+        Text("Post")
+      }
+    }
+    .padding(20)
+    VStack {
+      let postTitleInput = TextField("Add a title", text: $newPostTitle)
+        .font(.largeTitle)
         .textFieldStyle(RoundedBorderTextFieldStyle())
-      ZStack {
-        if newPostBody.isEmpty {
-          TextEditor(text: $placeholderText)
-            .foregroundColor(.gray)
-            .frame(
-              width: screenWidth * 0.88,
-              alignment: .leading
-            )
-            .disabled(/*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
-        }
-        TextEditor(text: $newPostBody)
+      let postBodyInput = TextEditor(text: $newPostBody)
+
+      #if os(iOS)
+        postTitleInput
           .frame(
-            width: screenWidth * 0.88,
+            width: ScreenDimensions.width * 0.88,
+            height: ScreenDimensions.height * 0.08,
             alignment: .leading
           )
-          .opacity(self.newPostBody.isEmpty ? 0.25 : 1)
-      }
+        postBodyInput
+          .frame(
+            width: ScreenDimensions.width * 0.88,
+            alignment: .leading
+          )
+      #elseif os(macOS)
+        postTitleInput
+          .frame(minWidth: 300)
+        postBodyInput
+          .frame(minWidth: 300, minHeight: 300)
+      #endif
     }
     .alert(isPresented: $postList.alert, content: {
       Alert(
@@ -61,21 +69,11 @@ struct NewPostsView: View {
       )
     })
     .navigationTitle("New Post")
-    .navigationBarItems(trailing:
-      Button(action: {
-        postList.didTapPostButton(
-          title: newPostTitle,
-          body: newPostBody
-        )
-        self.presentationMode.wrappedValue.dismiss()
-      }) {
-        Text("Post")
-      })
   }
 }
 
 struct NewPostsView_Previews: PreviewProvider {
   static var previews: some View {
-    NewPostsView()
+    NewPostsView(isPresented: .constant(true))
   }
 }

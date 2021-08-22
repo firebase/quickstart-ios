@@ -20,13 +20,18 @@ import Firebase
 struct PostsView: View {
   @StateObject var postList = PostListViewModel()
   @StateObject var user = UserViewModel()
-  @State private var newPostsViewPresented = false
+
+  // define variables for creating a new post for iOS
+  #if os(iOS)
+    @State private var newPostsViewPresented = false
+  #endif
+
   var title: String
   var postsType: PostsType
 
   var body: some View {
     NavigationView {
-      List {
+      let postListView = List {
         ForEach(postList.posts) { post in
           PostCell(post: post)
         }
@@ -38,47 +43,33 @@ struct PostsView: View {
         postList.onViewDisappear()
       }
       .navigationTitle(title)
-      .toolbar {
-        #if os(iOS)
-          ToolbarItemGroup(placement: .navigationBarLeading) {
-            Button(action: {
-              user.logout()
-            }) {
-              HStack {
-                Image(systemName: "chevron.left")
-                Text("Logout")
+      #if os(iOS)
+        postListView
+          .toolbar {
+            ToolbarItemGroup(placement: .navigationBarLeading) {
+              Button(action: {
+                user.logout()
+              }) {
+                HStack {
+                  Image(systemName: "chevron.left")
+                  Text("Logout")
+                }
+              }
+            }
+            ToolbarItemGroup(placement: .navigationBarTrailing) {
+              Button(action: {
+                newPostsViewPresented = true
+              }) {
+                Image(systemName: "plus")
+              }
+              .sheet(isPresented: $newPostsViewPresented) {
+                NewPostsView(postList: postList, isPresented: $newPostsViewPresented)
               }
             }
           }
-          ToolbarItemGroup(placement: .navigationBarTrailing) {
-            Button(action: {
-              newPostsViewPresented = true
-            }) {
-              Image(systemName: "plus")
-            }
-            .sheet(isPresented: $newPostsViewPresented) {
-              NewPostsView(postList: postList, isPresented: $newPostsViewPresented)
-            }
-          }
-        #elseif os(macOS)
-          Button(action: {
-            user.logout()
-          }) {
-            HStack {
-              Image(systemName: "chevron.left")
-              Text("Logout")
-            }
-          }
-          Button(action: {
-            newPostsViewPresented = true
-          }) {
-            Image(systemName: "plus")
-          }
-          .sheet(isPresented: $newPostsViewPresented) {
-            NewPostsView(postList: postList, isPresented: $newPostsViewPresented)
-          }
-        #endif
-      }
+      #elseif os(macOS)
+        postListView
+      #endif
     }
   }
 }

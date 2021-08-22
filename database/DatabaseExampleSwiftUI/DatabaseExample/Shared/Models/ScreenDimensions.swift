@@ -16,12 +16,12 @@
 
 import SwiftUI
 
-class SGConvenience {
+class ScreenDimensions {
   #if os(iOS)
-    static var screenWidth: CGFloat = UIScreen.main.bounds.size.width
-    static var screenHeight: CGFloat = UIScreen.main.bounds.size.height
+    static var width: CGFloat = UIScreen.main.bounds.size.width
+    static var height: CGFloat = UIScreen.main.bounds.size.height
   #elseif os(macOS)
-    static var screenWidth: CGFloat = NSScreen.main?.visibleFrame.size.width ?? 0
-    static var screenHeight: CGFloat = NSScreen.main?.visibleFrame.size.height ?? 0
+    static var width: CGFloat = NSScreen.main?.visibleFrame.size.width ?? 0
+    static var height: CGFloat = NSScreen.main?.visibleFrame.size.height ?? 0
   #endif
 }

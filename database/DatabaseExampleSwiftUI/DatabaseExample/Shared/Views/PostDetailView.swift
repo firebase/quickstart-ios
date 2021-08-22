@@ -72,7 +72,7 @@ struct PostDetailView: View {
       #if os(iOS)
         commentInput
           .frame(
-            width: SGConvenience.screenWidth * 0.85,
+            width: ScreenDimensions.width * 0.85,
             alignment: .center
           )
       #elseif os(macOS)
@@ -99,7 +99,7 @@ struct PostDetailView: View {
     #if os(iOS)
       postDetailView
         .frame(
-          width: SGConvenience.screenWidth * 0.9,
+          width: ScreenDimensions.width * 0.9,
           alignment: .center
         )
     #elseif os(macOS)

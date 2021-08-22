@@ -18,8 +18,8 @@
 		C77ABFAF26B8A7FF00BDE919 /* Database+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77ABFAD26B8A7FF00BDE919 /* Database+Extensions.swift */; };
 		C796F29826CCDCEF0076C5F5 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = C796F29726CCDCEF0076C5F5 /* FirebaseAuth */; };
 		C796F29A26CCDCF50076C5F5 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = C796F29926CCDCF50076C5F5 /* FirebaseDatabase */; };
-		C796F29C26CCE3DA0076C5F5 /* SGConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = C796F29B26CCE3DA0076C5F5 /* SGConvenience.swift */; };
-		C796F29D26CCE3DA0076C5F5 /* SGConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = C796F29B26CCE3DA0076C5F5 /* SGConvenience.swift */; };
+		C796F29C26CCE3DA0076C5F5 /* ScreenDimensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C796F29B26CCE3DA0076C5F5 /* ScreenDimensions.swift */; };
+		C796F29D26CCE3DA0076C5F5 /* ScreenDimensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C796F29B26CCE3DA0076C5F5 /* ScreenDimensions.swift */; };
 		C796F29E26CCE9DE0076C5F5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B9029EF026A10B1500C92F12 /* GoogleService-Info.plist */; };
 		C799B60E269E1CEF00A43C40 /* PostDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C799B60D269E1CEF00A43C40 /* PostDetailView.swift */; };
 		C799B60F269E1CEF00A43C40 /* PostDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C799B60D269E1CEF00A43C40 /* PostDetailView.swift */; };
@@ -54,7 +54,7 @@
 		C730A31E26B0998A00A29E81 /* PostsType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsType.swift; sourceTree = "<group>"; };
 		C77ABFAA26B8992600BDE919 /* PostListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostListViewModel.swift; sourceTree = "<group>"; };
 		C77ABFAD26B8A7FF00BDE919 /* Database+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Database+Extensions.swift"; sourceTree = "<group>"; };
-		C796F29B26CCE3DA0076C5F5 /* SGConvenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SGConvenience.swift; sourceTree = "<group>"; };
+		C796F29B26CCE3DA0076C5F5 /* ScreenDimensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenDimensions.swift; sourceTree = "<group>"; };
 		C799B60D269E1CEF00A43C40 /* PostDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailView.swift; sourceTree = "<group>"; };
 		C799B610269E1E3B00A43C40 /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
 		C79D1AC226A4114600B6A169 /* PostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewModel.swift; sourceTree = "<group>"; };
@@ -175,7 +175,7 @@
 				C730A31E26B0998A00A29E81 /* PostsType.swift */,
 				C77ABFAA26B8992600BDE919 /* PostListViewModel.swift */,
 				C77ABFAD26B8A7FF00BDE919 /* Database+Extensions.swift */,
-				C796F29B26CCE3DA0076C5F5 /* SGConvenience.swift */,
+				C796F29B26CCE3DA0076C5F5 /* ScreenDimensions.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -296,7 +296,7 @@
 				C799B611269E1E3B00A43C40 /* PostCell.swift in Sources */,
 				C7C6B5B3268DAC1800546A57 /* Comment.swift in Sources */,
 				C7F60CF6268EBEDE002F68AB /* UserViewModel.swift in Sources */,
-				C796F29C26CCE3DA0076C5F5 /* SGConvenience.swift in Sources */,
+				C796F29C26CCE3DA0076C5F5 /* ScreenDimensions.swift in Sources */,
 				C7C6B589268C8C9C00546A57 /* LoginView.swift in Sources */,
 				C79D1AED26A8D9A300B6A169 /* PostsView.swift in Sources */,
 				C77ABFAE26B8A7FF00BDE919 /* Database+Extensions.swift in Sources */,
@@ -318,7 +318,7 @@
 				C799B612269E1E3B00A43C40 /* PostCell.swift in Sources */,
 				C7C6B5B4268DAC1800546A57 /* Comment.swift in Sources */,
 				C7F60CF7268EBEDE002F68AB /* UserViewModel.swift in Sources */,
-				C796F29D26CCE3DA0076C5F5 /* SGConvenience.swift in Sources */,
+				C796F29D26CCE3DA0076C5F5 /* ScreenDimensions.swift in Sources */,
 				C7C6B58A268C8C9C00546A57 /* LoginView.swift in Sources */,
 				C79D1AEE26A8D9A300B6A169 /* PostsView.swift in Sources */,
 				C77ABFAF26B8A7FF00BDE919 /* Database+Extensions.swift in Sources */,

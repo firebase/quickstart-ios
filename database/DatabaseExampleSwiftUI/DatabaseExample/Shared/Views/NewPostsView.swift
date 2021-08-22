@@ -45,13 +45,13 @@ struct NewPostsView: View {
       #if os(iOS)
         postTitleInput
           .frame(
-            width: SGConvenience.screenWidth * 0.88,
-            height: SGConvenience.screenHeight * 0.08,
+            width: ScreenDimensions.width * 0.88,
+            height: ScreenDimensions.height * 0.08,
             alignment: .leading
           )
         postBodyInput
           .frame(
-            width: SGConvenience.screenWidth * 0.88,
+            width: ScreenDimensions.width * 0.88,
             alignment: .leading
           )
       #elseif os(macOS)

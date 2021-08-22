@@ -27,7 +27,7 @@ struct SignUpView: View {
         .font(.title)
 
       Spacer()
-        .frame(idealHeight: 0.1 * SGConvenience.screenHeight)
+        .frame(idealHeight: 0.1 * ScreenDimensions.height)
         .fixedSize()
 
       // Email textfield
@@ -46,12 +46,12 @@ struct SignUpView: View {
           emailTextField
         #endif
       }
-      .padding(0.02 * SGConvenience.screenHeight)
+      .padding(0.02 * ScreenDimensions.height)
 
       #if os(iOS)
         emailInputField
           .background(RoundedRectangle(cornerRadius: 10).fill(Color(.systemGray5)))
-          .frame(width: SGConvenience.screenWidth * 0.8)
+          .frame(width: ScreenDimensions.width * 0.8)
       #elseif os(macOS)
         emailInputField
       #endif
@@ -65,18 +65,18 @@ struct SignUpView: View {
           .opacity(0.5)
         SecureField("Password", text: $user.password)
       }
-      .padding(0.02 * SGConvenience.screenHeight)
+      .padding(0.02 * ScreenDimensions.height)
 
       #if os(iOS)
         passwordInputField
           .background(RoundedRectangle(cornerRadius: 10).fill(Color(.systemGray5)))
-          .frame(width: SGConvenience.screenWidth * 0.8)
+          .frame(width: ScreenDimensions.width * 0.8)
       #elseif os(macOS)
         passwordInputField
       #endif
 
       Spacer()
-        .frame(idealHeight: 0.05 * SGConvenience.screenHeight)
+        .frame(idealHeight: 0.05 * ScreenDimensions.height)
         .fixedSize()
 
       // Sign up button
@@ -87,11 +87,11 @@ struct SignUpView: View {
           .bold()
       }
       .buttonStyle(BorderlessButtonStyle())
-      .padding(0.025 * SGConvenience.screenHeight)
+      .padding(0.025 * ScreenDimensions.height)
       .background(Capsule().fill(Color(.systemTeal)))
 
       Spacer()
-        .frame(idealHeight: 0.05 * SGConvenience.screenHeight)
+        .frame(idealHeight: 0.05 * ScreenDimensions.height)
         .fixedSize()
 
       // Navigation text

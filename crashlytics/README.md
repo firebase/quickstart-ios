@@ -22,6 +22,7 @@ $ git clone https://github.com/firebase/quickstart-ios.git
 $ cd crashlytics/
 $ open CrashlyticsExample.xcodeproj
 ```
+- Go to the menu bar's File > Swift Packages > Update to Latest Package Versions
 
 ### Connecting to the Firebase Console 
 - To have a functional application, you will need to connect the Crashlytics quickstart example with
@@ -35,6 +36,10 @@ $ open CrashlyticsExample.xcodeproj
   4. Drag the downloaded `GoogleService-Info.plist` into the opened quickstart app under the
      `Shared` folder.
 - Now you should be able to build and run the Firebase project!
+
+### Crashlytics Example App Visualization
+
+
 
 ### Trigger a crash in Crashlytics quickstart app
 1. Click `Build and then run the current scheme` in Xcode to build your app on a device or

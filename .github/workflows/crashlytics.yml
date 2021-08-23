@@ -65,7 +65,7 @@ jobs:
       - name: Setup
         run: |
           gem install xcpretty
-          cd scripts
+          cd crashlytics
           ./install_prereqs/crashlytics.sh
       - name: Build SwiftUI (iOS)
         run: ./scripts/test.sh

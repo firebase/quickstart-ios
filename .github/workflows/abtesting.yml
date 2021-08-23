@@ -61,7 +61,7 @@ jobs:
       - name: Setup
         run: |
           gem install xcpretty
-          cd scripts
+          cd abtesting
           ./install_prereqs/abtesting.sh
       - name: Build and Test SwiftUI
         run: ./scripts/test.sh

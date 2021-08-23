@@ -65,7 +65,7 @@ jobs:
         run: |
           gem install xcpretty
           cd database
-          ./install_prereqs/database.sh
+          ../scripts/install_prereqs/database.sh
       - name: Build SwiftUI
         run: ./scripts/test.sh
         env:

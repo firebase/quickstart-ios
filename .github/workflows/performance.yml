@@ -65,7 +65,7 @@ jobs:
         run: |
           gem install xcpretty
           cd performance
-          ./install_prereqs/performance.sh
+          ../scripts/install_prereqs/performance.sh
       - name: Build and Test SwiftUI iOS
         run: ./scripts/test.sh
         env:

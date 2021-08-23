@@ -18,11 +18,20 @@ on:
 
   workflow_dispatch:
 
-jobs:
-  build:
-    name: build
-    runs-on: macOS-latest
+env:
+  SAMPLE: Crashlytics
+  secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}
 
+jobs:
+  cocoapods:
+    name: cocoapods
+    runs-on: macOS-latest
+    env:
+      SPM: false
+      LEGACY: true
+      OS: iOS
+      DEVICE: iPhone 11
+      TEST: true
     steps:
       - name: Checkout
         uses: actions/checkout@master
@@ -35,71 +44,45 @@ jobs:
           bundle exec pod install --repo-update
           cd ..
           ../scripts/install_prereqs/crashlytics.sh
-        env:
-          SAMPLE: Crashlytics
-          secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}
-          LEGACY: true
       - name: Build ObjC
-        run:  ./scripts/test.sh
+        run: ./scripts/test.sh
         env:
-          SWIFT_SUFFIX: ''
-          SAMPLE: Crashlytics
-          LEGACY: true
+          SWIFT_SUFFIX: ""
       - name: Build Swift
-        run:  ./scripts/test.sh
+        run: ./scripts/test.sh
         env:
-          SWIFT_SUFFIX: 'Swift'
-          SAMPLE: Crashlytics
-          LEGACY: true
+          SWIFT_SUFFIX: Swift
+  spm:
+    name: spm
+    runs-on: macOS-11
+    env:
+      SPM: true
+      DIR: crashlytics
+      TEST: false
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+      - name: Setup
+        run: |
+          gem install xcpretty
+          cd crashlytics
+          ../scripts/install_prereqs/crashlytics.sh
       - name: Build SwiftUI (iOS)
-        run: |
-          cd scripts
-          source install_prereqs/crashlytics.sh
-          cd ..
-          source scripts/test_spm.sh
-        env: 
-          SAMPLE: Crashlytics
-          DIR: crashlytics
-          OS: iOS
-          DEVICE: iPhone 11
-          SWIFT_DEFINES: ""
-          TEST: false
-      - name: Build SwiftUI (tvOS)
-        run: |
-          cd scripts
-          source install_prereqs/crashlytics.sh
-          cd ..
-          source scripts/test_spm.sh
-        env: 
-          SAMPLE: Crashlytics
-          DIR: crashlytics
-          OS: tvOS
-          DEVICE: Apple TV
-          SWIFT_DEFINES: ""
-          TEST: false
-      - name: Build SwiftUI (macOS)
-        run: |
-          cd scripts
-          source install_prereqs/crashlytics.sh
-          cd ..
-          source scripts/test_spm.sh
-        env: 
-          SAMPLE: Crashlytics
-          DIR: crashlytics
-          OS: macOS
-          DEVICE: localhost
-          SWIFT_DEFINES: ""
-          TEST: false
-      - name: Build SwiftUI (watchOS)
-        run: |
-          cd scripts
-          source install_prereqs/crashlytics.sh
-          cd ..
-          source scripts/test_spm.sh
+        run: ./scripts/test.sh
         env:
-          SAMPLE: Crashlytics
-          DIR: crashlytics
+          OS: iOS
+          DEVICE: iPhone 12
+      - name: Build SwiftUI (tvOS)
+        run: ./scripts/test.sh
+        env:
+          OS: tvOS
+          DEVICE: Apple TV 4K (at 1080p) (2nd generation)
+      - name: Build SwiftUI (macOS)
+        run: ./scripts/test.sh
+        env:
+          OS: macOS
+      - name: Build SwiftUI (watchOS)
+        run: ./scripts/test.sh
+        env:
           OS: watchOS
           DEVICE: Apple Watch Series 5 - 44mm
-          SWIFT_DEFINES: ""
-          TEST: false

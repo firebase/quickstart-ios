@@ -18,11 +18,20 @@ on:
 
   workflow_dispatch:
 
-jobs:
-  build:
-    name: build
-    runs-on: macOS-latest
+env:
+  SAMPLE: Database
+  secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}
 
+jobs:
+  cocoapods:
+    name: cocoapods
+    runs-on: macOS-latest
+    env:
+      SPM: false
+      LEGACY: false
+      OS: iOS
+      DEVICE: iPhone 11
+      TEST: false
     steps:
       - name: Checkout
         uses: actions/checkout@master
@@ -33,30 +42,32 @@ jobs:
           bundle install
           gem install xcpretty
           bundle exec pod install --repo-update
-        env:
-          SAMPLE: Database
-          secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}
+          ../scripts/install_prereqs/database.sh
       - name: Build ObjC
         run: ./scripts/test.sh
         env:
-          SWIFT_SUFFIX: ''
-          SAMPLE: Database
+          SWIFT_SUFFIX: ""
       - name: Build Swift
         run: ./scripts/test.sh
         env:
-          SWIFT_SUFFIX: 'Swift'
-          SAMPLE: Database
-      - name: Build SwiftUI
+          SWIFT_SUFFIX: Swift
+  spm:
+    name: spm
+    runs-on: macOS-11
+    env:
+      SPM: true
+      DIR: database/DatabaseExampleSwiftUI/DatabaseExample
+      TEST: false
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+      - name: Setup
         run: |
-          cd scripts
-          source install_prereqs/database.sh
-          cd ..
-          source scripts/test_spm.sh
-        env: 
-          SAMPLE: Database
-          DIR: database/DatabaseExampleSwiftUI/DatabaseExample
+          gem install xcpretty
+          cd database
+          ../scripts/install_prereqs/database.sh
+      - name: Build SwiftUI
+        run: ./scripts/test.sh
+        env:
           OS: iOS
           DEVICE: iPhone 11
-          SWIFT_DEFINES: ""
-          TEST: false
-          secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}

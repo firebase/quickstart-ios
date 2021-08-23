@@ -18,11 +18,17 @@ on:
 
   workflow_dispatch:
 
-jobs:
-  build:
-    name: build
-    runs-on: macOS-latest
+env:
+  secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}
+  SAMPLE: ABTesting
 
+jobs:
+  cocoapods:
+    name: cocoapods
+    runs-on: macOS-latest
+    env:
+      SPM: false
+      TEST: true
     steps:
       - name: Checkout
         uses: actions/checkout@master
@@ -35,27 +41,30 @@ jobs:
           bundle exec pod install --repo-update
           cd ..
           ../scripts/install_prereqs/abtesting.sh
-        env:
-          SAMPLE: ABTesting
-          secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}
-          LEGACY: true
       - name: Build Swift
-        run: |
-          ./scripts/test.sh
+        run: ./scripts/test.sh
         env:
-          SAMPLE: ABTesting
           LEGACY: true
-      - name: Build and Test SwiftUI
-        run: |
-          cd scripts
-          source install_prereqs/abtesting.sh
-          cd ..
-          source scripts/test_spm.sh
-        env:
-          SAMPLE: ABTesting
-          DIR: abtesting
+          SWIFT_SUFFIX: ""
           OS: iOS
           DEVICE: iPhone 11
-          SWIFT_DEFINES: ""
-          TEST: true
-          secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}
+  spm:
+    name: spm
+    runs-on: macOS-11
+    env:
+      SPM: true
+      DIR: abtesting
+      TEST: true
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+      - name: Setup
+        run: |
+          gem install xcpretty
+          cd abtesting
+          ../scripts/install_prereqs/abtesting.sh
+      - name: Build and Test SwiftUI
+        run: ./scripts/test.sh
+        env:
+          OS: iOS
+          DEVICE: iPhone 12

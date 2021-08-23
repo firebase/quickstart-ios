@@ -18,11 +18,19 @@ on:
 
   workflow_dispatch:
 
-jobs:
-  build:
-    name: build
-    runs-on: macOS-latest
+env:
+  SAMPLE: Config
+  secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}
 
+jobs:
+  cocoapods:
+    name: cocoapods
+    runs-on: macOS-latest
+    env:
+      SPM: false
+      LEGACY: false
+      SWIFT_SUFFIX: ""
+      TEST: true
     steps:
       - name: Checkout
         uses: actions/checkout@master
@@ -34,29 +42,12 @@ jobs:
           gem install xcpretty
           bundle exec pod install --repo-update
           ../scripts/install_prereqs/config.sh
-        env:
-          SAMPLE: Config
-          secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}
       - name: Build Swift
         run: ./scripts/test.sh
         env:
-          SWIFT_SUFFIX: ''
-          SAMPLE: Config
+          OS: iOS
+          DEVICE: iPhone 11
       - name: Build Catalyst
-        run: |
-          cd config
-          ../scripts/install_prereqs/config.sh
-          pod install
-          xcodebuild \
-          -configuration Debug \
-          -workspace ConfigExample.xcworkspace \
-          -scheme ConfigExample \
-          -sdk macosx \
-          ARCHS=x86_64 VALID_ARCHS=x86_64 ONLY_ACTIVE_ARCH=NO \
-          SUPPORTS_MACCATALYST=YES SUPPORTS_UIKITFORMAC=YES \
-          CODE_SIGN_IDENTITY=- CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO \
-          build \
-          | xcpretty
+        run: ./scripts/test.sh
         env:
-          SAMPLE: Config
-          secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}
+          OS: catalyst

@@ -18,11 +18,20 @@ on:
 
   workflow_dispatch:
 
-jobs:
-  build:
-    name: build
-    runs-on: macOS-latest
+env:
+  SAMPLE: Performance
+  secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}
 
+jobs:
+  cocoapods:
+    name: cocoapods
+    runs-on: macOS-latest
+    env:
+      SPM: false
+      LEGACY: false
+      OS: iOS
+      DEVICE: iPhone 11
+      TEST: true
     steps:
       - name: Checkout
         uses: actions/checkout@master
@@ -34,46 +43,36 @@ jobs:
           gem install xcpretty
           bundle exec pod install --repo-update
           ../scripts/install_prereqs/performance.sh
-        env:
-          SAMPLE: Performance
-          secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}
       - name: Build ObjC
-        run: |
-          ./scripts/test.sh
+        run: ./scripts/test.sh
         env:
-          SWIFT_SUFFIX: ''
-          SAMPLE: Performance
+          SWIFT_SUFFIX: ""
       - name: Build Swift
-        run: |
-          ./scripts/test.sh
+        run: ./scripts/test.sh
         env:
-          SWIFT_SUFFIX: 'Swift'
-          SAMPLE: Performance
+          SWIFT_SUFFIX: Swift
+  spm:
+    name: spm
+    runs-on: macOS-11
+    env:
+      SPM: true
+      DIR: performance/SwiftUIPerformanceQuickstart/PerformanceExample
+      TEST: true
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+      - name: Setup
+        run: |
+          gem install xcpretty
+          cd performance
+          ../scripts/install_prereqs/performance.sh
       - name: Build and Test SwiftUI iOS
-        run: |
-          cd scripts
-          source install_prereqs/abtesting.sh
-          cd ..
-          source scripts/test_spm.sh
+        run: ./scripts/test.sh
         env:
-          SAMPLE: Performance
-          DIR: performance/SwiftUIPerformanceQuickstart/PerformanceExample
           OS: iOS
-          DEVICE: iPhone 11
-          SWIFT_DEFINES: ""
-          TEST: true
-          secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}
+          DEVICE: iPhone 12 Pro
       - name: Build and Test SwiftUI tvOS
-        run: |
-          cd scripts
-          source install_prereqs/abtesting.sh
-          cd ..
-          source scripts/test_spm.sh
+        run: ./scripts/test.sh
         env:
-          SAMPLE: Performance
-          DIR: performance/SwiftUIPerformanceQuickstart/PerformanceExample
           OS: tvOS
-          DEVICE: Apple TV
-          SWIFT_DEFINES: ""
-          TEST: true
-          secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}
+          DEVICE: Apple TV 4K (at 1080p) (2nd generation)

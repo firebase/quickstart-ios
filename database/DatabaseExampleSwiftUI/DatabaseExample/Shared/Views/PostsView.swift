@@ -43,7 +43,7 @@ struct PostsView: View {
         postList.onViewDisappear()
       }
       .navigationTitle(title)
-      #if os(iOS)  || os(tvOS)
+      #if os(iOS) || os(tvOS)
         postListView
           .toolbar {
             ToolbarItemGroup(placement: .navigationBarLeading) {

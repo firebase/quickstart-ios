@@ -17,7 +17,7 @@
 import SwiftUI
 
 class ScreenDimensions {
-  #if os(iOS)
+  #if os(iOS) || os(tvOS)
     static var width: CGFloat = UIScreen.main.bounds.size.width
     static var height: CGFloat = UIScreen.main.bounds.size.height
   #elseif os(macOS)

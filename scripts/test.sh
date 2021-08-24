@@ -85,7 +85,7 @@ fi
 if [[ "$SPM" == true ]];then
     SCHEME="${SAMPLE}Example (${OS})"
 else
-    SCHEME="${SAMPLE}Example${SWIFT_SUFFIX}"
+    SCHEME="${SAMPLE}Example${SWIFT_SUFFIX:-}"
 fi
 flags+=( -scheme "$SCHEME" )
 

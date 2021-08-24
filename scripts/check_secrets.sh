@@ -20,7 +20,7 @@
 
 check_secrets()
 {
-  if [[ "$have_secrets" != true ]]; then
+  if [[ "${have_secrets:-}" != true ]]; then
     have_secrets=false
 
     # GitHub Actions: Secrets are available if we're not running on a fork

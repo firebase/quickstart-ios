@@ -20,8 +20,27 @@
 
 set -euo pipefail
 
+# Set default parameters
+if [[ -z "${SPM:-}" ]]; then
+    SPM=false
+    echo "Defaulting to SPM=$SPM"
+    if [[ -z "${LEGACY:-}" ]]; then
+        LEGACY=false
+        echo "Defaulting to LEGACY=$LEGACY"
+    fi
+fi
+if [[ -z "${OS:-}" ]]; then
+    OS=iOS
+    DEVICE="iPhone 11"
+    echo "Defaulting to OS=$OS"
+    echo "Defaulting to DEVICE=$DEVICE"
+fi
+if [[ -z "${TEST:-}" ]]; then
+    TEST=true
+    echo "Defaulting to TEST=$TEST"
+fi
+
 # Set have_secrets to true or false.
-have_secrets=false
 source scripts/check_secrets.sh
 
 # Get Xcode version

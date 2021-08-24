@@ -21,7 +21,7 @@ struct ContentView: View {
   @AppStorage("isSignedIn") var isSignedIn = true
 
   // define variables for creating a new post for macOS
-  #if os(macOS)
+  #if os(macOS) || os(tvOS)
     @StateObject var postList = PostListViewModel()
     @State private var newPostsViewPresented = false
   #endif
@@ -43,7 +43,8 @@ struct ContentView: View {
           }
       }
       .accentColor(Color(.systemTeal))
-      #if os(iOS)
+
+      #if os(iOS) || os(tvOS)
         tabView
       #elseif os(macOS)
         tabView

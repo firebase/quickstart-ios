@@ -43,7 +43,7 @@ struct LoginView: View {
           emailTextField
             .keyboardType(.emailAddress)
             .autocapitalization(UITextAutocapitalizationType.none)
-        #elseif os(macOS)
+        #elseif os(macOS) || os(tvOS)
           emailTextField
         #endif
       }
@@ -53,7 +53,7 @@ struct LoginView: View {
         emailInputField
           .background(RoundedRectangle(cornerRadius: 10).fill(Color(.systemGray5)))
           .frame(width: ScreenDimensions.width * 0.8)
-      #elseif os(macOS)
+      #elseif os(macOS) || os(tvOS)
         emailInputField
       #endif
 
@@ -72,7 +72,7 @@ struct LoginView: View {
         passwordInputField
           .background(RoundedRectangle(cornerRadius: 10).fill(Color(.systemGray5)))
           .frame(width: ScreenDimensions.width * 0.8)
-      #elseif os(macOS)
+      #elseif os(macOS) || os(tvOS)
         passwordInputField
       #endif
 
@@ -81,15 +81,21 @@ struct LoginView: View {
         .fixedSize()
 
       // Login button
-      Button(action: user.login) {
+      let loginButton = Button(action: user.login) {
         Text("Login".uppercased())
           .foregroundColor(.white)
           .font(.title2)
           .bold()
       }
-      .buttonStyle(BorderlessButtonStyle())
       .padding(0.025 * ScreenDimensions.height)
       .background(Capsule().fill(Color(.systemTeal)))
+
+      #if os(iOS) || os(macOS)
+        loginButton
+          .buttonStyle(BorderlessButtonStyle())
+      #elseif os(tvOS)
+        loginButton
+      #endif
 
       Spacer()
         .frame(idealHeight: 0.05 * ScreenDimensions.height)
@@ -98,16 +104,21 @@ struct LoginView: View {
       // Navigation text
       HStack {
         Text("Don't have an account?")
-        Button(action: {
+        let signUpButton = Button(action: {
           signUpViewPresented = true
         }) {
           Text("Sign up".uppercased())
             .bold()
         }
-        .buttonStyle(BorderlessButtonStyle())
         .sheet(isPresented: $signUpViewPresented) {
           SignUpView(user: user, isPresented: $signUpViewPresented)
         }
+        #if os(iOS) || os(macOS)
+          signUpButton
+            .buttonStyle(BorderlessButtonStyle())
+        #elseif os(tvOS)
+          signUpButton
+        #endif
       }
     }
     .alert(isPresented: $user.alert, content: {

@@ -28,10 +28,15 @@ struct PostCell: View {
             Image(systemName: "person.fill")
             Text(post.author)
             Spacer()
-            Image(systemName: post.isStarred ? "star.fill" : "star")
-              .onTapGesture {
-                post.didTapStarButton()
-              }
+            let starButton = Image(systemName: post.isStarred ? "star.fill" : "star")
+            #if os(iOS) || os(macOS)
+              starButton
+                .onTapGesture {
+                  post.didTapStarButton()
+                }
+            #elseif os(tvOS)
+              starButton
+            #endif
             Text("\(post.starCount)")
           }
           Text(post.title)

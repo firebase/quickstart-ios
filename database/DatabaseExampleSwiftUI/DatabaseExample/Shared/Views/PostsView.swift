@@ -22,7 +22,7 @@ struct PostsView: View {
   @StateObject var user = UserViewModel()
 
   // define variables for creating a new post for iOS
-  #if os(iOS)
+  #if os(iOS) || os(tvOS)
     @State private var newPostsViewPresented = false
   #endif
 
@@ -43,7 +43,7 @@ struct PostsView: View {
         postList.onViewDisappear()
       }
       .navigationTitle(title)
-      #if os(iOS)
+      #if os(iOS) || os(tvOS)
         postListView
           .toolbar {
             ToolbarItemGroup(placement: .navigationBarLeading) {

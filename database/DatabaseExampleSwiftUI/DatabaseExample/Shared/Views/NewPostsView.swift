@@ -24,6 +24,11 @@ struct NewPostsView: View {
 
   var body: some View {
     HStack {
+      Button(action: {
+        isPresented = false
+      }) {
+        Image(systemName: "chevron.left")
+      }
       Spacer()
       Button(action: {
         isPresented = false
@@ -37,26 +42,39 @@ struct NewPostsView: View {
     }
     .padding(20)
     VStack {
+      // post title
       let postTitleInput = TextField("Add a title", text: $newPostTitle)
         .font(.largeTitle)
-        .textFieldStyle(RoundedBorderTextFieldStyle())
-      let postBodyInput = TextEditor(text: $newPostBody)
+        .padding()
 
-      #if os(iOS)
+      #if os(iOS) || os(tvOS)
         postTitleInput
           .frame(
             width: ScreenDimensions.width * 0.88,
             height: ScreenDimensions.height * 0.08,
             alignment: .leading
           )
+      #elseif os(macOS)
+        postTitleInput
+          .frame(minWidth: 400)
+      #endif
+
+      // post body
+      #if os(iOS) || os(macOS)
+        let postBodyInput = TextEditor(text: $newPostBody)
+          .padding()
+      #elseif os(tvOS)
+        let postBodyInput = TextField("Say something...", text: $newPostBody)
+          .padding()
+      #endif
+
+      #if os(iOS) || os(tvOS)
         postBodyInput
           .frame(
             width: ScreenDimensions.width * 0.88,
             alignment: .leading
           )
       #elseif os(macOS)
-        postTitleInput
-          .frame(minWidth: 300)
         postBodyInput
           .frame(minWidth: 300, minHeight: 300)
       #endif

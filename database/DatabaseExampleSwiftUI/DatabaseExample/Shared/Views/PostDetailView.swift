@@ -37,7 +37,6 @@ struct PostDetailView: View {
         Text(post.body)
       }
       .padding()
-      .background(RoundedRectangle(cornerRadius: 10).fill(Color(red: 229, green: 229, blue: 234)))
       // comments for the particular post
       List {
         ForEach(post.comments) { comment in
@@ -56,8 +55,6 @@ struct PostDetailView: View {
       let commentInput = HStack {
         TextField("Comment", text: $comment)
           .padding()
-          .background(RoundedRectangle(cornerRadius: 10)
-            .fill(Color(red: 229, green: 229, blue: 234)))
         Button(action: {
           post.didTapSendButton(commentField: comment)
           comment = ""
@@ -69,7 +66,7 @@ struct PostDetailView: View {
         }
       }
 
-      #if os(iOS)
+      #if os(iOS) || os(tvOS)
         commentInput
           .frame(
             width: ScreenDimensions.width * 0.85,
@@ -102,7 +99,7 @@ struct PostDetailView: View {
           width: ScreenDimensions.width * 0.9,
           alignment: .center
         )
-    #elseif os(macOS)
+    #elseif os(macOS) || os(tvOS)
       postDetailView
         .frame(
           width: 400,

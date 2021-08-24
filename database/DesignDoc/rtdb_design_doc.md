@@ -4,7 +4,7 @@ Guide to understanding Firebase Realtime Database SwiftUI Quickstart sample
 
 ## Data Flow Chart
 
-![Data Flow Chart](./data-flow-chart.png)
+![Data Flow Chart](./Images/data-flow-chart.png)
 
 ## Database Structure
 
@@ -13,7 +13,7 @@ Guide to understanding Firebase Realtime Database SwiftUI Quickstart sample
   following structure: [“author”, “body”, “starCount”, “title”, “uid”, “userIDsStarredBy”]
 - post-ids are generalized as posts are created, sorting them would yield a list of posts from most
   to least recent.
-- Example: ![posts database structure](./posts.png)
+- Example: ![posts database structure](./Images/posts.png)
 
 ### Post-comments
 - A list of posts identified by a unique key (post-id), each post is composed of a list of comments
@@ -21,9 +21,9 @@ Guide to understanding Firebase Realtime Database SwiftUI Quickstart sample
   “text”, “uid”].
 - Comment-ids are generalized as comments are sent, sorting them would yield a list of comments from
   most to least recent.
-- Example: ![post-commments database structure](./post-comments.png)
+- Example: ![post-commments database structure](./Images/post-comments.png)
 
 ### User-posts
 - A list of posts organized by “uid” (user-ids) that are unique to each user.
 - Since the posts are grouped by users, it is easy to fetch and sort posts from a single user.
-- Example: ![user-posts database structure](./user-posts.png)
+- Example: ![user-posts database structure](./Images/user-posts.png)

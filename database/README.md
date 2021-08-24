@@ -24,12 +24,14 @@ $ git clone https://github.com/firebase/quickstart-ios.git
 $ cd database/DatabaseExampleSwiftUI/DatabaseExample
 $ open DatabaseExample.xcodeproj
 ```
+- Once the `.xcodeproj` is opened, update to the latest Swift Package Versions: go to the menu bar,
+  click on File > Swift Packages > Update to Latest Package Versions 
 
 ### Connecting to the Firebase Console 
 
 - To have a functional application, you will need to connect the Crashlytics quickstart example with
   the [Firebase Console](https://console.firebase.google.com).
-- For an in depth explanation, you can read more about [adding Firebase to your iOS
+- For an in-depth explanation, you can read more about [adding Firebase to your iOS
   Project](https://firebase.google.com/docs/ios/setup). Below is a summary of the main steps:
   1. Visit the [Firebase Console](https://console.firebase.google.com) 
   2. Add an iOS app to the project. Make sure the `Bundle Identifier` you set for this iOS App
@@ -43,7 +45,7 @@ Documentation
 -------------
 
 To learn more about the structure of the SwiftUI Realtime Database quickstart app, check out the
-documentation [here](./DesignDoc/DesignDoc.md).
+documentation [here](./DesignDoc/rtdb_design_doc.md).
 
 Support
 -------

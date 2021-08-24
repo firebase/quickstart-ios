@@ -66,8 +66,17 @@ jobs:
           gem install xcpretty
           cd database
           ../scripts/install_prereqs/database.sh
-      - name: Build SwiftUI
+      - name: Build SwiftUI (iOS)
         run: ./scripts/test.sh
         env:
           OS: iOS
           DEVICE: iPhone 11
+      - name: Build SwiftUI (macOS)
+        run: ./scripts/test.sh
+        env:
+          OS: macOS
+      - name: Build SwiftUI (tvOS)
+        run: ./scripts/test.sh
+        env:
+          OS: tvOS
+          DEVICE: Apple TV 4K (at 1080p) (2nd generation)

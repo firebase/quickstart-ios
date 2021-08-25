@@ -32,6 +32,7 @@ struct ClassifyView: View {
             List(categories, id: \.category) { category, confidence in
               Text("\(category): \(confidence)")
             }
+            .listStyle(PlainListStyle.plain)
           }
         } else {
           Button("Classify Image") {

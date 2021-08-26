@@ -44,6 +44,7 @@ struct ContentView: View {
       .navigationTitle("Firenotes")
       .navigationBarTitleDisplayMode(.inline)
     }
+    .navigationViewStyle(.stack)
     .preferredColorScheme(appConfig.colorScheme)
     .onAppear { appConfig.updateFromRemoteConfig() }
   }

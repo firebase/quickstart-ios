@@ -44,7 +44,7 @@ struct ContentView: View {
       .navigationTitle("Firenotes")
       .navigationBarTitleDisplayMode(.inline)
     }
-    .navigationViewStyle(StackNavigationViewStyle.stack)
+    .navigationViewStyle(StackNavigationViewStyle())
     .preferredColorScheme(appConfig.colorScheme)
     .onAppear { appConfig.updateFromRemoteConfig() }
   }
@@ -59,7 +59,7 @@ struct BasicList: View {
         Text(item.subtitle).font(.subheadline)
       }
     }
-    .listStyle(InsetGroupedListStyle.insetGrouped)
+    .listStyle(InsetGroupedListStyle())
   }
 }
 

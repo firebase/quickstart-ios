@@ -10,7 +10,7 @@ Guide to understanding Firebase Realtime Database SwiftUI Quickstart sample
 
 ### Posts
 - A list of posts identified by a unique key (post-id), and each post contains a dictionary with the
-  following structure: [“author”, “body”, “starCount”, “title”, “uid”, “userIDsStarredBy”]
+  following structure: `[“author”, “body”, “starCount”, “title”, “uid”, “userIDsStarredBy”]`
 - post-ids are generalized as posts are created, sorting them would yield a list of posts from most
   to least recent.
 - Example: ![posts database structure](./Images/posts.png)

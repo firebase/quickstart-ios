@@ -1,13 +1,12 @@
 Firebase Database Quickstart
 =============================
 
-This Firebase quickstart showcase how Firebase Realtime Database (RTDB) can store and sync data with
-Firebase's NoSQL cloud database. Data is synced across all clients in realtime, and remains
+This Firebase quickstart showcases how Firebase Realtime Database (RTDB) can store and sync data. Data is synced across all clients in realtime, and remains
 available when the app goes offline. You can read more about Firebase Realtime Database
 [here](https://firebase.google.com/docs/database/)!
 
 To view the SwiftUI quickstart, view the
-[`DatabaseExampleSwiftUI`](https://github.com/firebase/quickstart-ios/tree/master/database/DatabaseExampleSwiftUI/DatabaseExample) 
+[`DatabaseExampleSwiftUI/DatabaseExample`](https://github.com/firebase/quickstart-ios/tree/master/database/DatabaseExampleSwiftUI/DatabaseExample) 
 directory.
 
 Getting Started

@@ -59,6 +59,7 @@ struct BasicList: View {
         Text(item.subtitle).font(.subheadline)
       }
     }
+    .listStyle(InsetGroupedListStyle.insetGrouped)
   }
 }
 

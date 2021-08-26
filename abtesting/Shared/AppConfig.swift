@@ -55,7 +55,7 @@ class AppConfig: ObservableObject {
   }
 
   #if swift(>=5.5)
-    @MainActor @available(iOS 15, *)
+    @available(iOS 15, *)
     func updateFromRemoteConfigAsync() async {
       let remoteConfig = RemoteConfig.remoteConfig()
       let oldValue = remoteConfig["color_scheme"].stringValue ?? "nil"
@@ -65,7 +65,7 @@ class AppConfig: ObservableObject {
         let newValue = remoteConfig["color_scheme"].stringValue ?? "nil"
         if newValue != oldValue {
           print("Remote Config changed to: \(newValue)")
-          colorScheme = ColorScheme(newValue)
+          Task.detached { @MainActor in self.colorScheme = ColorScheme(newValue) }
         } else {
           print("Remote Config did not change from: \(oldValue)")
         }

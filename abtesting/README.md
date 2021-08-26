@@ -6,6 +6,8 @@ behaviors and exports the experiment results into Firebase Analytics. This
 sample demonstrates using an A/B test to test multiple color schemes within
 an app.
 
+To view the older Objective-C and Swift quickstarts, view the [LegacyABTestingQuickstart](./LegacyABTestingQuickstart) directory.
+
 ## Create Experiment
 
 In Firebase Console's A/B Testing section, click the `Create experiment` button

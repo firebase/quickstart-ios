@@ -46,6 +46,7 @@ struct UploadView: View {
         Image(systemName: "questionmark.square").padding(.bottom)
         Text("No saliency map found!\nPlease download an image and generate a saliency map first.")
           .multilineTextAlignment(.center)
+          .padding(.horizontal)
       }
       Spacer()
     }

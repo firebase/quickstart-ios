@@ -105,7 +105,7 @@ class Process: ObservableObject {
       try? handler.perform([request])
       trace?.stop()
 
-      guard let observations = request.results as? [VNClassificationObservation] else {
+      guard let observations = request.results else {
         print("Failed to obtain classification results.")
         await updateStatusAsync(to: .failure(.classify))
         return
@@ -133,7 +133,7 @@ class Process: ObservableObject {
       try? handler.perform([request])
       trace?.stop()
 
-      guard let observation = request.results?.first as? VNSaliencyImageObservation else {
+      guard let observation = request.results?.first else {
         print("Failed to generate saliency map.")
         await updateStatusAsync(to: .failure(.saliencyMap))
         return
@@ -257,11 +257,19 @@ class Process: ObservableObject {
     try? handler.perform([request])
     trace?.stop()
 
-    guard let observations = request.results as? [VNClassificationObservation] else {
-      print("Failed to obtain classification results.")
-      updateStatus(to: .failure(.classify))
-      return
-    }
+    #if swift(>=5.5)
+      guard let observations = request.results else {
+        print("Failed to obtain classification results.")
+        updateStatus(to: .failure(.classify))
+        return
+      }
+    #else
+      guard let observations = request.results as? [VNClassificationObservation] else {
+        print("Failed to obtain classification results.")
+        updateStatus(to: .failure(.classify))
+        return
+      }
+    #endif
 
     categories = observations
       .filter { $0.hasMinimumRecall(0.01, forPrecision: precision) }
@@ -285,11 +293,19 @@ class Process: ObservableObject {
     try? handler.perform([request])
     trace?.stop()
 
-    guard let observation = request.results?.first as? VNSaliencyImageObservation else {
-      print("Failed to generate saliency map.")
-      updateStatus(to: .failure(.saliencyMap))
-      return
-    }
+    #if swift(>=5.5)
+      guard let observation = request.results?.first else {
+        print("Failed to generate saliency map.")
+        updateStatus(to: .failure(.saliencyMap))
+        return
+      }
+    #else
+      guard let observation = request.results?.first as? VNSaliencyImageObservation else {
+        print("Failed to generate saliency map.")
+        updateStatus(to: .failure(.saliencyMap))
+        return
+      }
+    #endif
 
     let inputImage = CIImage(cvPixelBuffer: observation.pixelBuffer)
     let scale = Double(ciImage.extent.height) / Double(inputImage.extent.height)

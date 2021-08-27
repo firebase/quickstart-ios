@@ -11,7 +11,6 @@
 		4125B7D7268E2E7C00232B67 /* UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4125B7D6268E2E7C00232B67 /* UITests.swift */; };
 		4125B7E2268E2E7C00232B67 /* ABTestingExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4125B7C0268E2E7A00232B67 /* ABTestingExampleApp.swift */; };
 		4125B7E4268E2E7C00232B67 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4125B7C1268E2E7A00232B67 /* ContentView.swift */; };
-		4125B7E6268E2E7C00232B67 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4125B7C2268E2E7C00232B67 /* Assets.xcassets */; };
 		4125B7FA268E319D00232B67 /* FirebaseInstallations in Frameworks */ = {isa = PBXBuildFile; productRef = 4125B7F9268E319D00232B67 /* FirebaseInstallations */; };
 		4125B7FC268E319D00232B67 /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = 4125B7FB268E319D00232B67 /* FirebaseRemoteConfig */; };
 		4125B84E268E7EF000232B67 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4125B84D268E7EF000232B67 /* AppConfig.swift */; };
@@ -47,7 +46,6 @@
 /* Begin PBXFileReference section */
 		4125B7C0268E2E7A00232B67 /* ABTestingExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ABTestingExampleApp.swift; sourceTree = "<group>"; };
 		4125B7C1268E2E7A00232B67 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		4125B7C2268E2E7C00232B67 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4125B7C7268E2E7C00232B67 /* ABTestingExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ABTestingExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4125B7D2268E2E7C00232B67 /* Tests (iOS).xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests (iOS).xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4125B7D6268E2E7C00232B67 /* UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITests.swift; sourceTree = "<group>"; };
@@ -113,7 +111,6 @@
 				4125B7C1268E2E7A00232B67 /* ContentView.swift */,
 				4125B84D268E7EF000232B67 /* AppConfig.swift */,
 				4125B7D6268E2E7C00232B67 /* UITests.swift */,
-				4125B7C2268E2E7C00232B67 /* Assets.xcassets */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -273,7 +270,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4125B7E6268E2E7C00232B67 /* Assets.xcassets in Resources */,
+				B58DA86066D02ECF1088F391 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

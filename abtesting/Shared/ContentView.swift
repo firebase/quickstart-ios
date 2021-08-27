@@ -19,6 +19,22 @@ import Firebase
 
 struct ContentView: View {
   @ObservedObject var appConfig: AppConfig
+  var body: some View {
+    #if !os(macOS)
+    NavigationView { FirebaseList(appConfig: appConfig) }
+    .preferredColorScheme(appConfig.colorScheme)
+    .onAppear { appConfig.updateFromRemoteConfig() }
+    .navigationViewStyle(StackNavigationViewStyle())
+    #else
+    FirebaseList(appConfig: appConfig)
+    .preferredColorScheme(appConfig.colorScheme)
+    .onAppear { appConfig.updateFromRemoteConfig() }
+    #endif
+  }
+}
+
+struct FirebaseList: View {
+  @ObservedObject var appConfig: AppConfig
   let data: [(title: String, subtitle: String)] = [
     ("Getting Started with Firebase", "An Introduction to Firebase"),
     ("Google Firestore", "Powerful Querying and Automatic Scaling"),
@@ -27,10 +43,9 @@ struct ContentView: View {
     ("A/B Testing", "Optimize App Experience through Experiments"),
   ]
   var body: some View {
-    NavigationView {
-      VStack {
+    VStack {
         #if swift(>=5.5)
-          if #available(iOS 15, tvOS 15, *) {
+          if #available(iOS 15, tvOS 15, macOS 12, *) {
             BasicList(data: data).refreshable {
               await appConfig.updateFromRemoteConfigAsync()
             }
@@ -42,10 +57,6 @@ struct ContentView: View {
         Spacer()
       }
       .navigationTitle("Firenotes")
-    }
-    .navigationViewStyle(StackNavigationViewStyle())
-    .preferredColorScheme(appConfig.colorScheme)
-    .onAppear { appConfig.updateFromRemoteConfig() }
   }
 }
 

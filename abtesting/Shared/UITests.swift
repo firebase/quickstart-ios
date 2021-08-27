@@ -21,7 +21,7 @@ class UITests: XCTestCase {
   override func setUpWithError() throws {
     // Put setup code here. This method is called before the invocation of each test method in
     // the class.
-    #if !(os(iOS) || os(tvOS))
+    #if !(os(iOS) || os(tvOS) || os(macOS))
       fatalError("Unsupported platform.")
     #endif
 
@@ -44,10 +44,13 @@ class UITests: XCTestCase {
 
     // Use recording to get started writing UI tests.
     // Use XCTAssert and related functions to verify your tests produce the correct results.
-    XCTAssertTrue(
-      app.navigationBars["Firenotes"].exists,
-      "Firenotes is missing from the navigation bar"
-    )
+    #if !os(macOS)
+    XCTAssertTrue(app.navigationBars["Firenotes"].exists,
+                  "Firenotes is missing from the navigation bar")
+    #else
+    XCTAssert(app.windows.firstMatch.staticTexts["Firenotes"].exists,
+              "Firenotes is missing from window")
+    #endif
 
     XCTAssertTrue(app.buttons["Refresh"].exists, "Refresh button does not exist.")
     XCTAssertTrue(app.buttons["Refresh"].isEnabled, "Refresh button is not enabled.")
@@ -73,6 +76,8 @@ class UITests: XCTestCase {
       app.buttons["Refresh"].tap()
     #elseif os(tvOS)
       XCUIRemote.shared.press(.select)
+    #elseif os(macOS)
+      app.buttons["Refresh"].click()
     #endif
 
     #if os(iOS) && swift(>=5.5)

@@ -21,7 +21,7 @@ class UITests: XCTestCase {
   override func setUpWithError() throws {
     // Put setup code here. This method is called before the invocation of each test method in
     // the class.
-    #if !(os(iOS) || os(tvOS) || os(macOS))
+    #if !(os(iOS) || os(tvOS) || os(macOS) || os(watchOS))
       fatalError("Unsupported platform.")
     #endif
 
@@ -56,6 +56,10 @@ class UITests: XCTestCase {
     XCTAssertTrue(app.buttons["Refresh"].isEnabled, "Refresh button is not enabled.")
     XCTAssertTrue(app.buttons["Refresh"].isHittable, "Refresh button is missing from view.")
 
+    #if os(watchOS)
+    return
+    #endif
+
     let texts = [
       "Getting Started with Firebase", "An Introduction to Firebase",
       "Google Firestore", "Powerful Querying and Automatic Scaling",
@@ -72,7 +76,7 @@ class UITests: XCTestCase {
     let app = XCUIApplication()
     app.launch()
 
-    #if os(iOS)
+    #if os(iOS) || os(watchOS)
       app.buttons["Refresh"].tap()
     #elseif os(tvOS)
       XCUIRemote.shared.press(.select)

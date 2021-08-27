@@ -45,11 +45,11 @@ class UITests: XCTestCase {
     // Use recording to get started writing UI tests.
     // Use XCTAssert and related functions to verify your tests produce the correct results.
     #if !os(macOS)
-    XCTAssertTrue(app.navigationBars["Firenotes"].exists,
-                  "Firenotes is missing from the navigation bar")
+      XCTAssertTrue(app.navigationBars["Firenotes"].exists,
+                    "Firenotes is missing from the navigation bar")
     #else
-    XCTAssert(app.windows.firstMatch.staticTexts["Firenotes"].exists,
-              "Firenotes is missing from window")
+      XCTAssert(app.windows.firstMatch.staticTexts["Firenotes"].exists,
+                "Firenotes is missing from window")
     #endif
 
     XCTAssertTrue(app.buttons["Refresh"].exists, "Refresh button does not exist.")

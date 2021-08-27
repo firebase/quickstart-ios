@@ -30,7 +30,7 @@ struct ContentView: View {
     NavigationView {
       VStack {
         #if swift(>=5.5)
-          if #available(iOS 15, *) {
+          if #available(iOS 15, tvOS 15, *) {
             BasicList(data: data).refreshable {
               await appConfig.updateFromRemoteConfigAsync()
             }
@@ -42,7 +42,6 @@ struct ContentView: View {
         Spacer()
       }
       .navigationTitle("Firenotes")
-      .navigationBarTitleDisplayMode(.inline)
     }
     .navigationViewStyle(StackNavigationViewStyle())
     .preferredColorScheme(appConfig.colorScheme)
@@ -59,7 +58,7 @@ struct BasicList: View {
         Text(item.subtitle).font(.subheadline)
       }
     }
-    .listStyle(InsetGroupedListStyle())
+    .listStyle(PlainListStyle())
   }
 }
 

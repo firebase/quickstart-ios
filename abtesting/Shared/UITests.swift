@@ -21,6 +21,9 @@ class UITests: XCTestCase {
   override func setUpWithError() throws {
     // Put setup code here. This method is called before the invocation of each test method in
     // the class.
+    #if !(os(iOS) || os(tvOS))
+      fatalError("Unsupported platform.")
+    #endif
 
     // In UI tests it is usually best to stop immediately when a failure occurs.
     continueAfterFailure = false
@@ -66,15 +69,21 @@ class UITests: XCTestCase {
     let app = XCUIApplication()
     app.launch()
 
-    app.buttons["Refresh"].tap()
+    #if os(iOS)
+      app.buttons["Refresh"].tap()
+    #elseif os(tvOS)
+      XCUIRemote.shared.press(.select)
+    #endif
 
-    if #available(iOS 15, *) {
-      let top = app.staticTexts["Getting Started with Firebase"]
-        .coordinate(withNormalizedOffset: CGVector())
-      let bottom = app.staticTexts["A/B Testing"]
-        .coordinate(withNormalizedOffset: CGVector(dx: 0, dy: 3))
-      top.press(forDuration: 0, thenDragTo: bottom)
-    }
+    #if os(iOS) && swift(>=5.5)
+      if #available(iOS 15, *) {
+        let top = app.staticTexts["Getting Started with Firebase"]
+          .coordinate(withNormalizedOffset: CGVector())
+        let bottom = app.staticTexts["A/B Testing"]
+          .coordinate(withNormalizedOffset: CGVector(dx: 0, dy: 3))
+        top.press(forDuration: 0, thenDragTo: bottom)
+      }
+    #endif
   }
 
   func testLaunchPerformance() throws {

@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "4122C02B26D91ECC0076CB53"
+               BlueprintIdentifier = "41C69F7D26D9513C00C934F1"
                BuildableName = "ABTestingExample (watchOS).app"
                BlueprintName = "ABTestingExample (watchOS)"
                ReferencedContainer = "container:ABTestingExample.xcodeproj">
@@ -42,7 +42,7 @@
             buildForAnalyzing = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "4122C05A26D921A70076CB53"
+               BlueprintIdentifier = "41C69FBE26D956F900C934F1"
                BuildableName = "Tests (watchOS).xctest"
                BlueprintName = "Tests (watchOS)"
                ReferencedContainer = "container:ABTestingExample.xcodeproj">
@@ -60,16 +60,11 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "4122C05A26D921A70076CB53"
+               BlueprintIdentifier = "41C69FBE26D956F900C934F1"
                BuildableName = "Tests (watchOS).xctest"
                BlueprintName = "Tests (watchOS)"
                ReferencedContainer = "container:ABTestingExample.xcodeproj">
             </BuildableReference>
-            <SkippedTests>
-               <Test
-                  Identifier = "UITests/testLaunchPerformance()">
-               </Test>
-            </SkippedTests>
          </TestableReference>
       </Testables>
    </TestAction>
@@ -88,7 +83,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "4122C02B26D91ECC0076CB53"
+            BlueprintIdentifier = "41C69F7D26D9513C00C934F1"
             BuildableName = "ABTestingExample (watchOS).app"
             BlueprintName = "ABTestingExample (watchOS)"
             ReferencedContainer = "container:ABTestingExample.xcodeproj">
@@ -105,7 +100,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "4122C02B26D91ECC0076CB53"
+            BlueprintIdentifier = "41C69F7D26D9513C00C934F1"
             BuildableName = "ABTestingExample (watchOS).app"
             BlueprintName = "ABTestingExample (watchOS)"
             ReferencedContainer = "container:ABTestingExample.xcodeproj">

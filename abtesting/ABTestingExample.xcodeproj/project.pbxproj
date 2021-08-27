@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4122C03526D91ED00076CB53 /* ABTestingExample (watchOS) Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 4122C03426D91ED00076CB53 /* ABTestingExample (watchOS) Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		4122C04726D91ED20076CB53 /* ABTestingExample (watchOS).app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 4122C02C26D91ECC0076CB53 /* ABTestingExample (watchOS).app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		4122C04F26D91F120076CB53 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8052DFC0B0123902D171FEAB /* GoogleService-Info.plist */; };
+		4122C05126D91F1B0076CB53 /* FirebaseInstallations in Frameworks */ = {isa = PBXBuildFile; productRef = 4122C05026D91F1B0076CB53 /* FirebaseInstallations */; };
+		4122C05326D91F1B0076CB53 /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = 4122C05226D91F1B0076CB53 /* FirebaseRemoteConfig */; };
+		4122C05426D91F250076CB53 /* ABTestingExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4125B7C0268E2E7A00232B67 /* ABTestingExampleApp.swift */; };
+		4122C05526D91F250076CB53 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4125B7C1268E2E7A00232B67 /* ContentView.swift */; };
+		4122C05626D91F250076CB53 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4125B84D268E7EF000232B67 /* AppConfig.swift */; };
 		4125B7D7268E2E7C00232B67 /* UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4125B7D6268E2E7C00232B67 /* UITests.swift */; };
 		4125B7E2268E2E7C00232B67 /* ABTestingExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4125B7C0268E2E7A00232B67 /* ABTestingExampleApp.swift */; };
 		4125B7E4268E2E7C00232B67 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4125B7C1268E2E7A00232B67 /* ContentView.swift */; };
@@ -32,6 +40,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		4122C03626D91ED00076CB53 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4125B7BB268E2E7A00232B67 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4122C03326D91ED00076CB53;
+			remoteInfo = "ABTestingExample (watchOS) Extension";
+		};
+		4122C04526D91ED20076CB53 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4125B7BB268E2E7A00232B67 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4122C02B26D91ECC0076CB53;
+			remoteInfo = "ABTestingExample (watchOS)";
+		};
 		4125B7D3268E2E7C00232B67 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 4125B7BB268E2E7A00232B67 /* Project object */;
@@ -55,7 +77,35 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		4122C01326D9175E0076CB53 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				4122C04726D91ED20076CB53 /* ABTestingExample (watchOS).app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4122C04B26D91ED20076CB53 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				4122C03526D91ED00076CB53 /* ABTestingExample (watchOS) Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		4122C02C26D91ECC0076CB53 /* ABTestingExample (watchOS).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ABTestingExample (watchOS).app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4122C03426D91ED00076CB53 /* ABTestingExample (watchOS) Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "ABTestingExample (watchOS) Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4122C04426D91ED20076CB53 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4125B7C0268E2E7A00232B67 /* ABTestingExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ABTestingExampleApp.swift; sourceTree = "<group>"; };
 		4125B7C1268E2E7A00232B67 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		4125B7C7268E2E7C00232B67 /* ABTestingExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ABTestingExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -71,6 +121,15 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		4122C03126D91ED00076CB53 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4122C05126D91F1B0076CB53 /* FirebaseInstallations in Frameworks */,
+				4122C05326D91F1B0076CB53 /* FirebaseRemoteConfig in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4125B7C4268E2E7C00232B67 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -127,6 +186,7 @@
 			isa = PBXGroup;
 			children = (
 				415FC24F26D8F43100AB8835 /* ABTestingExample (macOS).entitlements */,
+				4122C04426D91ED20076CB53 /* Info.plist */,
 				4125B7BF268E2E7A00232B67 /* Shared */,
 				4125B7C8268E2E7C00232B67 /* Products */,
 				8052DFC0B0123902D171FEAB /* GoogleService-Info.plist */,
@@ -154,6 +214,8 @@
 				4174273A26D89E1B00966D7D /* Tests (tvOS).xctest */,
 				415FC22026D8E87100AB8835 /* ABTestingExample (macOS).app */,
 				415FC23226D8E8B400AB8835 /* Tests (macOS).xctest */,
+				4122C02C26D91ECC0076CB53 /* ABTestingExample (watchOS).app */,
+				4122C03426D91ED00076CB53 /* ABTestingExample (watchOS) Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -168,6 +230,44 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		4122C02B26D91ECC0076CB53 /* ABTestingExample (watchOS) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4122C04C26D91ED20076CB53 /* Build configuration list for PBXNativeTarget "ABTestingExample (watchOS)" */;
+			buildPhases = (
+				4122C02A26D91ECC0076CB53 /* Resources */,
+				4122C04B26D91ED20076CB53 /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4122C03726D91ED00076CB53 /* PBXTargetDependency */,
+			);
+			name = "ABTestingExample (watchOS)";
+			productName = "ABTestingExample (watchOS)";
+			productReference = 4122C02C26D91ECC0076CB53 /* ABTestingExample (watchOS).app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		4122C03326D91ED00076CB53 /* ABTestingExample (watchOS) Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4122C04826D91ED20076CB53 /* Build configuration list for PBXNativeTarget "ABTestingExample (watchOS) Extension" */;
+			buildPhases = (
+				4122C03026D91ED00076CB53 /* Sources */,
+				4122C03126D91ED00076CB53 /* Frameworks */,
+				4122C03226D91ED00076CB53 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "ABTestingExample (watchOS) Extension";
+			packageProductDependencies = (
+				4122C05026D91F1B0076CB53 /* FirebaseInstallations */,
+				4122C05226D91F1B0076CB53 /* FirebaseRemoteConfig */,
+			);
+			productName = "ABTestingExample (watchOS) Extension";
+			productReference = 4122C03426D91ED00076CB53 /* ABTestingExample (watchOS) Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
+		};
 		4125B7C6268E2E7C00232B67 /* ABTestingExample (iOS) */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4125B7EA268E2E7C00232B67 /* Build configuration list for PBXNativeTarget "ABTestingExample (iOS)" */;
@@ -175,10 +275,12 @@
 				4125B7C3268E2E7C00232B67 /* Sources */,
 				4125B7C4268E2E7C00232B67 /* Frameworks */,
 				4125B7C5268E2E7C00232B67 /* Resources */,
+				4122C01326D9175E0076CB53 /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				4122C04626D91ED20076CB53 /* PBXTargetDependency */,
 			);
 			name = "ABTestingExample (iOS)";
 			packageProductDependencies = (
@@ -296,6 +398,12 @@
 				LastSwiftUpdateCheck = 1300;
 				LastUpgradeCheck = 1300;
 				TargetAttributes = {
+					4122C02B26D91ECC0076CB53 = {
+						CreatedOnToolsVersion = 13.0;
+					};
+					4122C03326D91ED00076CB53 = {
+						CreatedOnToolsVersion = 13.0;
+					};
 					4125B7C6268E2E7C00232B67 = {
 						CreatedOnToolsVersion = 13.0;
 					};
@@ -341,11 +449,28 @@
 				4174273926D89E1B00966D7D /* Tests (tvOS) */,
 				415FC21F26D8E87100AB8835 /* ABTestingExample (macOS) */,
 				415FC23126D8E8B400AB8835 /* Tests (macOS) */,
+				4122C02B26D91ECC0076CB53 /* ABTestingExample (watchOS) */,
+				4122C03326D91ED00076CB53 /* ABTestingExample (watchOS) Extension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		4122C02A26D91ECC0076CB53 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4122C03226D91ED00076CB53 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4122C04F26D91F120076CB53 /* GoogleService-Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4125B7C5268E2E7C00232B67 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -394,6 +519,16 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		4122C03026D91ED00076CB53 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4122C05426D91F250076CB53 /* ABTestingExampleApp.swift in Sources */,
+				4122C05526D91F250076CB53 /* ContentView.swift in Sources */,
+				4122C05626D91F250076CB53 /* AppConfig.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4125B7C3268E2E7C00232B67 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -451,6 +586,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		4122C03726D91ED00076CB53 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4122C03326D91ED00076CB53 /* ABTestingExample (watchOS) Extension */;
+			targetProxy = 4122C03626D91ED00076CB53 /* PBXContainerItemProxy */;
+		};
+		4122C04626D91ED20076CB53 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4122C02B26D91ECC0076CB53 /* ABTestingExample (watchOS) */;
+			targetProxy = 4122C04526D91ED20076CB53 /* PBXContainerItemProxy */;
+		};
 		4125B7D4268E2E7C00232B67 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 4125B7C6268E2E7C00232B67 /* ABTestingExample (iOS) */;
@@ -469,6 +614,120 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		4122C04926D91ED20076CB53 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "ABTestingExample (watchOS) Extension";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.firebase.ABTestingExample.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
+			};
+			name = Debug;
+		};
+		4122C04A26D91ED20076CB53 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "ABTestingExample (watchOS) Extension";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.firebase.ABTestingExample.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
+			};
+			name = Release;
+		};
+		4122C04D26D91ED20076CB53 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IBSC_MODULE = ABTestingExample__watchOS__Extension;
+				INFOPLIST_KEY_CFBundleDisplayName = "ABTestingExample (watchOS)";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.firebase.ABTestingExample;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.firebase.ABTestingExample.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
+			};
+			name = Debug;
+		};
+		4122C04E26D91ED20076CB53 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IBSC_MODULE = ABTestingExample__watchOS__Extension;
+				INFOPLIST_KEY_CFBundleDisplayName = "ABTestingExample (watchOS)";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.firebase.ABTestingExample;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.firebase.ABTestingExample.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
+			};
+			name = Release;
+		};
 		4125B7E8268E2E7C00232B67 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -911,6 +1170,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		4122C04826D91ED20076CB53 /* Build configuration list for PBXNativeTarget "ABTestingExample (watchOS) Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4122C04926D91ED20076CB53 /* Debug */,
+				4122C04A26D91ED20076CB53 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4122C04C26D91ED20076CB53 /* Build configuration list for PBXNativeTarget "ABTestingExample (watchOS)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4122C04D26D91ED20076CB53 /* Debug */,
+				4122C04E26D91ED20076CB53 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		4125B7BE268E2E7A00232B67 /* Build configuration list for PBXProject "ABTestingExample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -988,6 +1265,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		4122C05026D91F1B0076CB53 /* FirebaseInstallations */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4125B7F6268E319D00232B67 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseInstallations;
+		};
+		4122C05226D91F1B0076CB53 /* FirebaseRemoteConfig */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4125B7F6268E319D00232B67 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseRemoteConfig;
+		};
 		4125B7F9268E319D00232B67 /* FirebaseInstallations */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 4125B7F6268E319D00232B67 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

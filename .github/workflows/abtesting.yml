@@ -73,3 +73,7 @@ jobs:
         env:
           OS: tvOS
           DEVICE: Apple TV 4K (at 1080p) (2nd generation)
+      - name: Build and Test SwiftUI (macOS)
+        run: ./scripts/test.sh
+        env:
+          OS: macOS

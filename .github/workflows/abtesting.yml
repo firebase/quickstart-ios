@@ -63,8 +63,13 @@ jobs:
           gem install xcpretty
           cd abtesting
           ../scripts/install_prereqs/abtesting.sh
-      - name: Build and Test SwiftUI
+      - name: Build and Test SwiftUI (iOS)
         run: ./scripts/test.sh
         env:
           OS: iOS
           DEVICE: iPhone 12
+      - name: Build and Test SwiftUI (tvOS)
+        run: ./scripts/test.sh
+        env:
+          OS: tvOS
+          DEVICE: Apple TV 4K (at 1080p) (2nd generation)

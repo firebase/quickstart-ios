@@ -57,7 +57,7 @@ class UITests: XCTestCase {
     XCTAssertTrue(app.buttons["Refresh"].isHittable, "Refresh button is missing from view.")
 
     #if os(watchOS)
-    return
+      return
     #endif
 
     let texts = [

@@ -8,6 +8,8 @@ on:
       - 'performance/**'
       - 'scripts/*'
       - 'scripts/performance.sh'
+      - '!performance/SwiftUIPerformanceQuickstart/PerformanceExample/*.md'
+      - '!performance/SwiftUIPerformanceQuickstart/PerformanceExample/Design/**'
   pull_request:
     branches: [ master ]
     paths:
@@ -15,6 +17,8 @@ on:
       - 'performance/**'
       - 'scripts/*'
       - 'scripts/performance.sh'
+      - '!performance/SwiftUIPerformanceQuickstart/PerformanceExample/*.md'
+      - '!performance/SwiftUIPerformanceQuickstart/PerformanceExample/Design/**'
 
   workflow_dispatch:
 

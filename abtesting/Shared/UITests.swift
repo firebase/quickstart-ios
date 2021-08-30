@@ -56,17 +56,17 @@ class UITests: XCTestCase {
     XCTAssertTrue(app.buttons["Refresh"].isEnabled, "Refresh button is not enabled.")
     XCTAssertTrue(app.buttons["Refresh"].isHittable, "Refresh button is missing from view.")
 
-    #if os(watchOS)
-      return
+    #if !os(watchOS)
+      let texts = [
+        "Getting Started with Firebase", "An Introduction to Firebase",
+        "Google Firestore", "Powerful Querying and Automatic Scaling",
+        "Analytics", "Simple App Insights",
+        "Remote Config", "Parameterize App Behavior",
+        "A/B Testing", "Optimize App Experience through Experiments",
+      ]
+    #else
+      let texts = ["Getting Started with Firebase", "An Introduction to Firebase"]
     #endif
-
-    let texts = [
-      "Getting Started with Firebase", "An Introduction to Firebase",
-      "Google Firestore", "Powerful Querying and Automatic Scaling",
-      "Analytics", "Simple App Insights",
-      "Remote Config", "Parameterize App Behavior",
-      "A/B Testing", "Optimize App Experience through Experiments",
-    ]
     for text in texts {
       XCTAssertTrue(app.staticTexts[text].isHittable, "Text '\(text)' is missing from view.")
     }

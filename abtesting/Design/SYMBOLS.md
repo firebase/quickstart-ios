@@ -26,26 +26,26 @@
         - [data](#data-1)
         - [body](#body-2)
 
-## ABTestingExampleApp
+## `ABTestingExampleApp`
 ```swift
 @main
 struct ABTestingExampleApp: App
 ```
 main point of entry into app
 
-### appConfig
+### `appConfig`
 ```swift
 var appConfig: AppConfig
 ```
 stores the AppConfig instance
 
-### init
+### `init`
 ```swift
 init()
 ```
 configures the FirebaseApp, configures RemoteConfig, and initializes AppConfig instance
 
-### body
+### `body`
 ```swift
 var body: some Scene
 ```
@@ -53,39 +53,39 @@ returns a `WindowGroup` containing a `ContentView` with appConfig passed in
 
 ## AppConfig
 
-### AppConfig
+### `AppConfig`
 ```swift
 class AppConfig: ObservableObject
 ```
 handles communication with RemoteConfig and updating the UI
 
-#### colorScheme
+#### `colorScheme`
 ```swift
 @Published var colorScheme: ColorScheme
 ```
 stores the color scheme for the app
 
-#### init
+#### `init`
 ```swift
 init()
 ```
 updates app's color scheme from RemoteConfig and adds observer to print installation auth token if 
 it changes
 
-#### deinit
+#### `deinit`
 ```swift
 deinit
 ```
 removes installation auth token change observer
 
-#### updateFromRemoteConfig
+#### `updateFromRemoteConfig`
 ```swift
 func updateFromRemoteConfig()
 ```
 retrieves color scheme from RemoteConfig and updates app's color scheme on the main thread if it 
 has changed
 
-#### updateFromRemoteConfigAsync
+#### `updateFromRemoteConfigAsync`
 ```swift
 @available(iOS 15, *)
 func updateFromRemoteConfigAsync() async
@@ -93,31 +93,31 @@ func updateFromRemoteConfigAsync() async
 retrieves color scheme from RemoteConfig asynchronously and updates app's color scheme on the main 
 thread if it has changed
 
-#### printInstallationAuthToken
+#### `printInstallationAuthToken`
 ```swift
 @objc func printInstallationAuthToken()
 ```
 prints installation auth token
 
-### ColorScheme
+### `ColorScheme`
 ```swift
 extension ColorScheme
 ```
 extends ColorScheme to deal with String initializer
 
-#### init
+#### `init`
 ```swift
 init(_ value: String)
 ```
 returns the corresponding ColorScheme, defaulting to light otherwise
 
-### RemoteConfigFetchAndActivateStatus
+### `RemoteConfigFetchAndActivateStatus`
 ```swift
 extension RemoteConfigFetchAndActivateStatus
 ```
 extends RemoteConfigFetchAndActivateStatus with debug description
 
-#### debugDescription
+#### `debugDescription`
 ```swift
 var debugDescription: String { get }
 ```
@@ -125,25 +125,25 @@ prints String representation of status
 
 ## ContentView
 
-### ContentView
+### `ContentView`
 ```swift
 struct ContentView: View
 ```
 main content view
 
-#### appConfig
+#### `appConfig`
 ```swift
 @ObservedObject var appConfig: AppConfig
 ```
 stores app's AppConfig instance
 
-#### data
+#### `data`
 ```swift
 let data: [(title: String, subtitle: String)]
 ```
 stores title-subtitle String pairings of some Firebase products
 
-#### body
+#### `body`
 ```swift
 var body: some View { get }
 ```
@@ -152,19 +152,19 @@ returns `VStack` of a `BasicList` consisting of some Firebase products on top of
 refreshed by pulling down on the list on iOS 15, with a navigation title of "Firenotes" and 
 preferred color scheme of appConfig's color scheme
 
-### BasicList
+### `BasicList`
 ```swift
 struct BasicList: View
 ```
 view for a basic list of title-subtitle String pairings
 
-#### data
+#### `data`
 ```swift
 let data: [(title: String, subtitle: String)]
 ```
 stores array of title-subtitle String pairings
 
-#### body
+#### `body`
 ```swift
 var body: some View { get }
 ```

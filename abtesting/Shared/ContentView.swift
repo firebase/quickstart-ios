@@ -19,6 +19,22 @@ import Firebase
 
 struct ContentView: View {
   @ObservedObject var appConfig: AppConfig
+  var body: some View {
+    #if !os(macOS)
+      NavigationView { FirebaseList(appConfig: appConfig) }
+        .preferredColorScheme(appConfig.colorScheme)
+        .onAppear { appConfig.updateFromRemoteConfig() }
+        .navigationViewStyle(StackNavigationViewStyle())
+    #else
+      FirebaseList(appConfig: appConfig)
+        .preferredColorScheme(appConfig.colorScheme)
+        .onAppear { appConfig.updateFromRemoteConfig() }
+    #endif
+  }
+}
+
+struct FirebaseList: View {
+  @ObservedObject var appConfig: AppConfig
   let data: [(title: String, subtitle: String)] = [
     ("Getting Started with Firebase", "An Introduction to Firebase"),
     ("Google Firestore", "Powerful Querying and Automatic Scaling"),
@@ -27,26 +43,23 @@ struct ContentView: View {
     ("A/B Testing", "Optimize App Experience through Experiments"),
   ]
   var body: some View {
-    NavigationView {
-      VStack {
-        #if swift(>=5.5)
-          if #available(iOS 15, *) {
-            BasicList(data: data).refreshable {
+    VStack {
+      #if swift(>=5.5)
+        if #available(iOS 15, tvOS 15, macOS 12, watchOS 8, *) {
+          BasicList(data: data)
+            .foregroundColor(appConfig.colorScheme == .dark ? .orange : .primary)
+            .refreshable {
               await appConfig.updateFromRemoteConfigAsync()
             }
-          } else { BasicList(data: data) }
-        #else
-          BasicList(data: data)
-        #endif
-        Button("Refresh") { appConfig.updateFromRemoteConfig() }
-        Spacer()
-      }
-      .navigationTitle("Firenotes")
-      .navigationBarTitleDisplayMode(.inline)
+        } else { BasicList(data: data) }
+      #else
+        BasicList(data: data)
+          .foregroundColor(appConfig.colorScheme == .dark ? .orange : .primary)
+      #endif
+      Button("Refresh") { appConfig.updateFromRemoteConfig() }
+      Spacer()
     }
-    .navigationViewStyle(StackNavigationViewStyle())
-    .preferredColorScheme(appConfig.colorScheme)
-    .onAppear { appConfig.updateFromRemoteConfig() }
+    .navigationTitle("Firenotes")
   }
 }
 
@@ -59,7 +72,7 @@ struct BasicList: View {
         Text(item.subtitle).font(.subheadline)
       }
     }
-    .listStyle(InsetGroupedListStyle())
+    .listStyle(PlainListStyle())
   }
 }
 

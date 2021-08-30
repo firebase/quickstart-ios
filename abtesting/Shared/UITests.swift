@@ -21,6 +21,9 @@ class UITests: XCTestCase {
   override func setUpWithError() throws {
     // Put setup code here. This method is called before the invocation of each test method in
     // the class.
+    #if !(os(iOS) || os(tvOS) || os(macOS) || os(watchOS))
+      fatalError("Unsupported platform.")
+    #endif
 
     // In UI tests it is usually best to stop immediately when a failure occurs.
     continueAfterFailure = false
@@ -41,22 +44,29 @@ class UITests: XCTestCase {
 
     // Use recording to get started writing UI tests.
     // Use XCTAssert and related functions to verify your tests produce the correct results.
-    XCTAssertTrue(
-      app.navigationBars["Firenotes"].exists,
-      "Firenotes is missing from the navigation bar"
-    )
+    #if !os(macOS)
+      XCTAssertTrue(app.navigationBars["Firenotes"].exists,
+                    "Firenotes is missing from the navigation bar")
+    #else
+      XCTAssert(app.windows.firstMatch.staticTexts["Firenotes"].exists,
+                "Firenotes is missing from window")
+    #endif
 
     XCTAssertTrue(app.buttons["Refresh"].exists, "Refresh button does not exist.")
     XCTAssertTrue(app.buttons["Refresh"].isEnabled, "Refresh button is not enabled.")
     XCTAssertTrue(app.buttons["Refresh"].isHittable, "Refresh button is missing from view.")
 
-    let texts = [
-      "Getting Started with Firebase", "An Introduction to Firebase",
-      "Google Firestore", "Powerful Querying and Automatic Scaling",
-      "Analytics", "Simple App Insights",
-      "Remote Config", "Parameterize App Behavior",
-      "A/B Testing", "Optimize App Experience through Experiments",
-    ]
+    #if !os(watchOS)
+      let texts = [
+        "Getting Started with Firebase", "An Introduction to Firebase",
+        "Google Firestore", "Powerful Querying and Automatic Scaling",
+        "Analytics", "Simple App Insights",
+        "Remote Config", "Parameterize App Behavior",
+        "A/B Testing", "Optimize App Experience through Experiments",
+      ]
+    #else
+      let texts = ["Getting Started with Firebase", "An Introduction to Firebase"]
+    #endif
     for text in texts {
       XCTAssertTrue(app.staticTexts[text].isHittable, "Text '\(text)' is missing from view.")
     }
@@ -66,15 +76,23 @@ class UITests: XCTestCase {
     let app = XCUIApplication()
     app.launch()
 
-    app.buttons["Refresh"].tap()
+    #if os(iOS) || os(watchOS)
+      app.buttons["Refresh"].tap()
+    #elseif os(tvOS)
+      XCUIRemote.shared.press(.select)
+    #elseif os(macOS)
+      app.buttons["Refresh"].click()
+    #endif
 
-    if #available(iOS 15, *) {
-      let top = app.staticTexts["Getting Started with Firebase"]
-        .coordinate(withNormalizedOffset: CGVector())
-      let bottom = app.staticTexts["A/B Testing"]
-        .coordinate(withNormalizedOffset: CGVector(dx: 0, dy: 3))
-      top.press(forDuration: 0, thenDragTo: bottom)
-    }
+    #if os(iOS) && swift(>=5.5)
+      if #available(iOS 15, *) {
+        let top = app.staticTexts["Getting Started with Firebase"]
+          .coordinate(withNormalizedOffset: CGVector())
+        let bottom = app.staticTexts["A/B Testing"]
+          .coordinate(withNormalizedOffset: CGVector(dx: 0, dy: 3))
+        top.press(forDuration: 0, thenDragTo: bottom)
+      }
+    #endif
   }
 
   func testLaunchPerformance() throws {

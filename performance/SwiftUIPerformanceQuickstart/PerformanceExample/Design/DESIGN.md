@@ -17,8 +17,8 @@ Quickstart](..), an iOS / tvOS app that demonstrates the use of
 version of the Quickstart is meant to show use of Firebase products (Performance Monitoring and 
 [Storage](https://firebase.google.com/products/storage)) alongside the latest Apple technologies 
 ([SwiftUI](#ios--tvos), [shared cross-platform code](#ios--tvos), 
-[async / await](#swift-55--ios--tvos-15), Swift Package Manager, Vision) developers might want to 
-use.
+[async / await](#swift-55--ios--tvos-15), [Swift Package Manager](#ios--tvos), [Vision](#vision)) 
+developers might want to use.
 
 # Design
 

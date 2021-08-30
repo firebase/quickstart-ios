@@ -36,7 +36,7 @@
 ### ClassifyView | SaliencyMapView - Not Ready
 ![ClassifyView | SaliencyMapView - Not Ready](Media/iOS/ClassifyView%20%7C%20SaliencyMapView%20-%20Not%20Ready.png)
 ### UploadView - Not Ready
-![UploadView - Not Ready](Media/iOS/UploadView%20-%20Not-Ready.png)
+![UploadView - Not Ready](Media/iOS/UploadView%20-%20Not%20Ready.png)
 ### DownloadView - Ready
 ![DownloadView - Ready](Media/iOS/DownloadView%20-%20Ready.png)
 ### DownloadView - Success
@@ -52,7 +52,7 @@
 ### UploadView - Ready
 ![UploadView - Ready](Media/iOS/UploadView%20-%20Ready.png)
 ### UploadView - Running
-![UploadView - Running](Media/iOS/UploadView%20-%20running.png)
+![UploadView - Running](Media/iOS/UploadView%20-%20Running.png)
 ### UploadView - Success
 ![UploadView - Success](Media/iOS/UploadView%20-%20Success.png)
 ### MainView - Success
@@ -63,7 +63,7 @@
 ### ClassifyView | SaliencyMapView - Not Ready
 ![ClassifyView | SaliencyMapView - Not Ready](Media/tvOS/ClassifyView%20%7C%20SaliencyMapView%20-%20Not%20Ready.png)
 ### UploadView - Not Ready
-![UploadView - Not Ready](Media/tvOS/UploadView%20-%20Not-Ready.png)
+![UploadView - Not Ready](Media/tvOS/UploadView%20-%20Not%20Ready.png)
 ### DownloadView - Ready
 ![DownloadView - Ready](Media/tvOS/DownloadView%20-%20Ready.png)
 ### DownloadView - Success
@@ -79,7 +79,7 @@
 ### UploadView - Ready
 ![UploadView - Ready](Media/tvOS/UploadView%20-%20Ready.png)
 ### UploadView - Running
-![UploadView - Running](Media/tvOS/UploadView%20-%20running.png)
+![UploadView - Running](Media/tvOS/UploadView%20-%20Running.png)
 ### UploadView - Success
 ![UploadView - Success](Media/tvOS/UploadView%20-%20Success.png)
 ### MainView - Success

@@ -13,6 +13,7 @@
 		4125B7FA268E319D00232B67 /* FirebaseInstallations in Frameworks */ = {isa = PBXBuildFile; productRef = 4125B7F9268E319D00232B67 /* FirebaseInstallations */; };
 		4125B7FC268E319D00232B67 /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = 4125B7FB268E319D00232B67 /* FirebaseRemoteConfig */; };
 		4125B84E268E7EF000232B67 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4125B84D268E7EF000232B67 /* AppConfig.swift */; };
+		413248D526DCC82000117A38 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8052DFC0B0123902D171FEAB /* GoogleService-Info.plist */; };
 		415FC23D26D8E8BC00AB8835 /* UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4125B7D6268E2E7C00232B67 /* UITests.swift */; };
 		415FC23E26D8E8C200AB8835 /* ABTestingExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4125B7C0268E2E7A00232B67 /* ABTestingExampleApp.swift */; };
 		415FC23F26D8E8C500AB8835 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4125B7C1268E2E7A00232B67 /* ContentView.swift */; };
@@ -187,9 +188,9 @@
 				41C69F8226D9514000C934F1 /* ABTestingExample (watchOS) Info.plist */,
 				41C69F9726D9514100C934F1 /* ABTestingExample (watchOS) Extension Info.plist */,
 				41C69FC326D956F900C934F1 /* Tests (watchOS) Info.plist */,
+				8052DFC0B0123902D171FEAB /* GoogleService-Info.plist */,
 				4125B7BF268E2E7A00232B67 /* Shared */,
 				4125B7C8268E2E7C00232B67 /* Products */,
-				8052DFC0B0123902D171FEAB /* GoogleService-Info.plist */,
 				4174273126D89DC300966D7D /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -534,6 +535,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				413248D526DCC82000117A38 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -683,6 +685,9 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_ALLOWED = YES;
+				"CODE_SIGNING_ALLOWED[sdk=macosx*]" = NO;
+				CODE_SIGNING_REQUIRED = NO;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -701,6 +706,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -746,6 +752,9 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_ALLOWED = YES;
+				"CODE_SIGNING_ALLOWED[sdk=macosx*]" = NO;
+				CODE_SIGNING_REQUIRED = NO;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -758,6 +767,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
@@ -777,7 +787,6 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleExecutable = ABTestingExample;
 				INFOPLIST_KEY_CFBundleName = ABTestingExample;
 				INFOPLIST_KEY_CFBundleVersion = 1;
@@ -808,7 +817,6 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleExecutable = ABTestingExample;
 				INFOPLIST_KEY_CFBundleName = ABTestingExample;
 				INFOPLIST_KEY_CFBundleVersion = 1;
@@ -838,7 +846,6 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -861,7 +868,6 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -893,7 +899,6 @@
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
-				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -922,7 +927,6 @@
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
-				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -995,7 +999,6 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "";
 				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UIUserInterfaceStyle = Automatic;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1022,7 +1025,6 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "";
 				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UIUserInterfaceStyle = Automatic;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1092,7 +1094,6 @@
 		41C69F9C26D9514100C934F1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "";
 				ENABLE_PREVIEWS = YES;
@@ -1102,7 +1103,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = .watchkitapp.watchkitextension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.firebase.ABTestingExample.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -1115,7 +1116,6 @@
 		41C69F9D26D9514100C934F1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "";
 				ENABLE_PREVIEWS = YES;
@@ -1125,7 +1125,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = .watchkitapp.watchkitextension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.firebase.ABTestingExample.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -1144,7 +1144,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				IBSC_MODULE = ABTestingExample__watchOS__Extension;
 				INFOPLIST_FILE = "ABTestingExample (watchOS) Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = .watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.firebase.ABTestingExample.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -1162,7 +1162,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				IBSC_MODULE = ABTestingExample__watchOS__Extension;
 				INFOPLIST_FILE = "ABTestingExample (watchOS) Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = .watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.firebase.ABTestingExample.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;

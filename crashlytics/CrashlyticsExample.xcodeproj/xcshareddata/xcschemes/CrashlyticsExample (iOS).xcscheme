@@ -37,6 +37,11 @@
                BlueprintName = "UITests_iOS"
                ReferencedContainer = "container:CrashlyticsExample.xcodeproj">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "UITests/testLaunchPerformance()">
+               </Test>
+            </SkippedTests>
          </TestableReference>
       </Testables>
    </TestAction>

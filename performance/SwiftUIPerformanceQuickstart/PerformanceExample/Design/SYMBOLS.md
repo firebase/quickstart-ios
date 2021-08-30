@@ -35,20 +35,20 @@
         - [text](#text)
         - [view](#view)
 - [MainView](#mainview)
-    - [process](#process)
-    - [body](#body)
-- [DownloadView](#downloadview)
     - [process](#process-1)
     - [body](#body-1)
-- [ClassifyView](#classifyview)
+- [DownloadView](#downloadview)
     - [process](#process-2)
     - [body](#body-2)
-- [SaliencyMapView](#saliencymapview)
+- [ClassifyView](#classifyview)
     - [process](#process-3)
     - [body](#body-3)
-- [UploadView](#uploadview)
+- [SaliencyMapView](#saliencymapview)
     - [process](#process-4)
     - [body](#body-4)
+- [UploadView](#uploadview)
+    - [process](#process-5)
+    - [body](#body-5)
 
 ## PerformanceExampleApp
 ```swift
@@ -288,7 +288,7 @@ returns the MainView process status on top of a list of links to each of the ima
 a navigation title of “Performance”
 
 ## DownloadView
-```
+```swift
 struct DownloadView: View
 ```
 view for download task

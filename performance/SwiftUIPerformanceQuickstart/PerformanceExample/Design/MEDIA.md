@@ -3,7 +3,7 @@
 ## Table of Contents
 - [iOS](#ios)
     - [MainView - Ready](#mainview---ready)
-    - [ClassifyView | SaliencyMapView - Not Ready](#classifyview---saliencymapview---not-ready)
+    - [ClassifyView | SaliencyMapView - Not Ready](#classifyview--saliencymapview---not-ready)
     - [UploadView - Not Ready](#uploadview---not-ready)
     - [DownloadView - Ready](#downloadview---ready)
     - [DownloadView - Success](#downloadview---success)
@@ -16,8 +16,8 @@
     - [UploadView - Success](#uploadview---success)
     - [MainView - Success](#mainview---success)
 - [tvOS](#tvos)
-    - [MainView - Ready](Design/MEDIA.md#mainview---ready-1)
-    - [ClassifyView | SaliencyMapView - Not Ready](#classifyview---saliencymapview---not-ready-1)
+    - [MainView - Ready](#mainview---ready-1)
+    - [ClassifyView | SaliencyMapView - Not Ready](#classifyview--saliencymapview---not-ready-1)
     - [UploadView - Not Ready](#uploadview---not-ready-1)
     - [DownloadView - Ready](#downloadview---ready-1)
     - [DownloadView - Success](#downloadview---success-1)
@@ -32,55 +32,55 @@
 
 ## iOS
 ### MainView - Ready
-![MainView - Ready.png](Screenshots/iOS/MainView---Ready.png)
+![MainView - Ready.png](Media/iOS/MainView%20-%20Ready.png)
 ### ClassifyView | SaliencyMapView - Not Ready
-![ClassifyView | SaliencyMapView - Not Ready](Screenshots/iOS/ClassifyView---SaliencyMapView---Not-Ready.png)
+![ClassifyView | SaliencyMapView - Not Ready](Media/iOS/ClassifyView%20%7C%20SaliencyMapView%20-%20Not%20Ready.png)
 ### UploadView - Not Ready
-![UploadView - Not Ready](Screenshots/iOS/UploadView---Not-Ready.png)
+![UploadView - Not Ready](Media/iOS/UploadView%20-%20Not-Ready.png)
 ### DownloadView - Ready
-![DownloadView - Ready](Screenshots/iOS/DownloadView---Ready.png)
+![DownloadView - Ready](Media/iOS/DownloadView%20-%20Ready.png)
 ### DownloadView - Success
-![DownloadView - Success](Screenshots/iOS/DownloadView---Success.png)
+![DownloadView - Success](Media/iOS/DownloadView%20-%20Success.png)
 ### ClassifyView - Ready
-![ClassifyView - Ready](Screenshots/iOS/ClassifyView---Ready.png)
+![ClassifyView - Ready](Media/iOS/ClassifyView%20-%20Ready.png)
 ### ClassifyView - Success
-![ClassifyView - Success](Screenshots/iOS/ClassifyView---Success.png)
+![ClassifyView - Success](Media/iOS/ClassifyView%20-%20Success.png)
 ### SaliencyMapView - Ready
-![SaliencyMapView - Ready](Screenshots/iOS/SaliencyMapView---Ready.png)
+![SaliencyMapView - Ready](Media/iOS/SaliencyMapView%20-%20Ready.png)
 ### SaliencyMapView - Success
-![SaliencyMapView - Success](Screenshots/iOS/SaliencyMapView---Success.png)
+![SaliencyMapView - Success](Media/iOS/SaliencyMapView%20-%20Success.png)
 ### UploadView - Ready
-![UploadView - Ready](Screenshots/iOS/UploadView---Ready.png)
+![UploadView - Ready](Media/iOS/UploadView%20-%20Ready.png)
 ### UploadView - Running
-![UploadView - Running](Screenshots/iOS/UploadView---running.png)
+![UploadView - Running](Media/iOS/UploadView%20-%20running.png)
 ### UploadView - Success
-![UploadView - Success](Screenshots/iOS/UploadView---Success.png)
+![UploadView - Success](Media/iOS/UploadView%20-%20Success.png)
 ### MainView - Success
-![MainView - Success](Screenshots/iOS/MainView---Success.png)
+![MainView - Success](Media/iOS/MainView%20-%20Success.png)
 ## tvOS
 ### MainView - Ready
-![MainView - Ready.png](Screenshots/tvOS/MainView---Ready.png)
+![MainView - Ready.png](Media/tvOS/MainView%20-%20Ready.png)
 ### ClassifyView | SaliencyMapView - Not Ready
-![ClassifyView | SaliencyMapView - Not Ready](Screenshots/tvOS/ClassifyView---SaliencyMapView---Not-Ready.png)
+![ClassifyView | SaliencyMapView - Not Ready](Media/tvOS/ClassifyView%20%7C%20SaliencyMapView%20-%20Not%20Ready.png)
 ### UploadView - Not Ready
-![UploadView - Not Ready](Screenshots/tvOS/UploadView---Not-Ready.png)
+![UploadView - Not Ready](Media/tvOS/UploadView%20-%20Not-Ready.png)
 ### DownloadView - Ready
-![DownloadView - Ready](Screenshots/tvOS/DownloadView---Ready.png)
+![DownloadView - Ready](Media/tvOS/DownloadView%20-%20Ready.png)
 ### DownloadView - Success
-![DownloadView - Success](Screenshots/tvOS/DownloadView---Success.png)
+![DownloadView - Success](Media/tvOS/DownloadView%20-%20Success.png)
 ### ClassifyView - Ready
-![ClassifyView - Ready](Screenshots/tvOS/ClassifyView---Ready.png)
+![ClassifyView - Ready](Media/tvOS/ClassifyView%20-%20Ready.png)
 ### ClassifyView - Success
-![ClassifyView - Success](Screenshots/tvOS/ClassifyView---Success.png)
+![ClassifyView - Success](Media/tvOS/ClassifyView%20-%20Success.png)
 ### SaliencyMapView - Ready
-![SaliencyMapView - Ready](Screenshots/tvOS/SaliencyMapView---Ready.png)
+![SaliencyMapView - Ready](Media/tvOS/SaliencyMapView%20-%20Ready.png)
 ### SaliencyMapView - Success
-![SaliencyMapView - Success](Screenshots/tvOS/SaliencyMapView---Success.png)
+![SaliencyMapView - Success](Media/tvOS/SaliencyMapView%20-%20Success.png)
 ### UploadView - Ready
-![UploadView - Ready](Screenshots/tvOS/UploadView---Ready.png)
+![UploadView - Ready](Media/tvOS/UploadView%20-%20Ready.png)
 ### UploadView - Running
-![UploadView - Running](Screenshots/tvOS/UploadView---running.png)
+![UploadView - Running](Media/tvOS/UploadView%20-%20running.png)
 ### UploadView - Success
-![UploadView - Success](Screenshots/tvOS/UploadView---Success.png)
+![UploadView - Success](Media/tvOS/UploadView%20-%20Success.png)
 ### MainView - Success
-![MainView - Success](Screenshots/tvOS/MainView---Success.png)
+![MainView - Success](Media/tvOS/MainView%20-%20Success.png)

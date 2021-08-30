@@ -4,11 +4,11 @@
 - [Context](#context)
 - [Design](#design)
     - [Image Application](#image-application)
-    - [Process / Process Derivatives](#process-process-derivatives)
+    - [Process / Process Derivatives](#process--process-derivatives)
     - [Vision](#vision)
-    - [FirebaseStorage / FirebaseStorageSwift](#firebasestorage-firebasestorageswift)
-    - [iOS & tvOS](#ios-tvos)
-    - [Swift 5.5 & iOS / tvOS 15](#swift-55-ios-tvos-15)
+    - [FirebaseStorage / FirebaseStorageSwift](#firebasestorage--firebasestorageswift)
+    - [iOS & tvOS](#ios--tvos)
+    - [Swift 5.5 & iOS / tvOS 15](#swift-55--ios--tvos-15)
 
 # Context
 This document presents the design for the SwiftUI version of the [Firebase Performance Monitoring 
@@ -16,8 +16,8 @@ Quickstart](..), an iOS / tvOS app that demonstrates the use of
 [Firebase Performance Monitoring](https://firebase.google.com/products/performance). This SwiftUI 
 version of the Quickstart is meant to show use of Firebase products (Performance Monitoring and 
 [Storage](https://firebase.google.com/products/storage)) alongside the latest Apple technologies 
-([SwiftUI](#ios-tvos), [shared cross-platform code](#ios-tvos), 
-[async / await](#swift-55-ios-tvos-15), Swift Package Manager, Vision) developers might want to 
+([SwiftUI](#ios--tvos), [shared cross-platform code](#ios--tvos), 
+[async / await](#swift-55--ios--tvos-15), Swift Package Manager, Vision) developers might want to 
 use.
 
 # Design
@@ -43,7 +43,7 @@ random numbers, sleep operations, or more complex tasks like Fourier Transforms 
  represent common tasks developers might include in their applications even if the other proposed 
  solutions would actually be processes that run for longer.
 
-## [`Process`](SYMBOLS.md#process) / [`Process Derivatives`](SYMBOLS.md#process-derivatives)
+## [`Process`](SYMBOLS.md#process) / [`Process Derivatives`](SYMBOLS.md#processderivatives)
 To handle the image tasks, a class `Process` and associated enums 
 [`ProcessStatus`](SYMBOLS.md#processstatus) and [`ProcessTask`](SYMBOLS.md#processtask) provide the
  main logic for performing the various image tasks when available and reporting the status for each

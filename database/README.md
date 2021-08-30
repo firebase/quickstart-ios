@@ -1,9 +1,9 @@
 Firebase Database Quickstart
 =============================
 
-This Firebase quickstart showcases how Firebase Realtime Database (RTDB) can store and sync data. Data is synced across all clients in realtime, and remains
-available when the app goes offline. You can read more about Firebase Realtime Database
-[here](https://firebase.google.com/docs/database/)!
+This Firebase quickstart showcases how Firebase Realtime Database (RTDB) can store and sync data.
+Data is synced across all clients in realtime, and remains available when the app goes offline. You
+can read more about Firebase Realtime Database [here](https://firebase.google.com/docs/database/)!
 
 To view the SwiftUI quickstart, view the
 [`DatabaseExampleSwiftUI/DatabaseExample`](https://github.com/firebase/quickstart-ios/tree/master/database/DatabaseExampleSwiftUI/DatabaseExample) 
@@ -40,11 +40,16 @@ $ open DatabaseExample.xcodeproj
      `Shared` folder.
 - Now you should be able to build and run the Firebase project!
 
+### Navigation Bar Issue on tvOS
+When using earlier versions of xcode (12.5 or below) there is a bug where SwiftUI toolbar disappears
+after navigation on tvOS. This issue is resolved when using the latest version of xcode (13.5 or
+above).
+
 Documentation
 -------------
 
 To learn more about the structure of the SwiftUI Realtime Database quickstart app, check out the
-documentation [here](./DesignDoc/rtdb_design_doc.md).
+documentation [here](./OUTLINE.md).
 
 Support
 -------

@@ -35,18 +35,6 @@ class UITests: XCTestCase {
     XCTAssertTrue(app.buttons["Crash"].isHittable, "Crash button is missing from the view.")
   }
 
-  func testDynamicUI() throws {
-    let app = XCUIApplication()
-    app.launch()
-    #if os(iOS) || os(watchOS)
-      app.buttons["Crash"].tap()
-    #elseif os(macOS)
-      app.buttons["Crash"].click()
-    #elseif os(tvOS)
-      XCUIRemote.shared.press(.select)
-    #endif
-  }
-
   func testLaunchPerformance() throws {
     if #available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 7.0, *) {
       // This measures how long it takes to launch your application.

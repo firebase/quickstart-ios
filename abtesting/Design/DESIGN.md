@@ -13,7 +13,7 @@ This document presents the design for the SwiftUI version of the
 the Quickstart is meant to show use of Firebase products (A/B Testing, 
 [Remote Config](#further-reading), [Installations](#further-reading)) alongside the latest Apple 
 technologies ([SwiftUI](https://developer.apple.com/documentation/SwiftUI), 
-[async / await](#swift-55--ios-15), [Swift Package Manager](https://swift.org/package-manager) 
+[async / await](#swift-55--ios-15), [Swift Package Manager](https://swift.org/package-manager)) 
 developers might want to use.
 
 ## Design
@@ -26,9 +26,9 @@ Firebase Console, enrolling the test device in the experiment, launching the app
 device into / out of the experiment, and refreshing using the button or, if available, the 
 pull-to-refresh functionality.
 
-### [`AppConfig`](SYMBOLS.md#appconfig)
+### [`AppConfig`](SYMBOLS.md#appconfig-1)
 To handle app state and communication with RemoteConfig, the class 
-[`AppConfig`](SYMBOLS.md#appconfig) provides the main logic for reacting to changes to the 
+[`AppConfig`](SYMBOLS.md#appconfig-1) provides the main logic for reacting to changes to the 
 installation auth token, fetching the color scheme from RemoteConfig, and updating the UI with any 
 changes while also handling error management.
 
@@ -41,6 +41,6 @@ The app contains a conditional compilation block which checks for the availabili
   with earlier versions of Swift.
 
 ### Further Reading
-- [Read more about Firebase A/B Testing](https://firebase.google.com/docs/ab-testing)
-- [Read more about Firebase Remote Config](https://firebase.google.com/docs/remote-config)
-- [Read more about Firebase Installations](https://firebase.google.com/docs/projects/manage-installations)
+- [Learn more about Firebase A/B Testing](https://firebase.google.com/docs/ab-testing)
+- [Learn more about Firebase Remote Config](https://firebase.google.com/docs/remote-config)
+- [Learn more about Firebase Installations](https://firebase.google.com/docs/projects/manage-installations)

@@ -15,7 +15,7 @@ gaining adoption within the Apple dev community.
 ## Design
 
 ### Overview
-The Crashlytics Quickstart sample app is a lightweight toy app that developers can use as a
+The Crashlytics Quickstart sample app is a lightweight app that developers can use as a
 reference Crashlytics implementation. Each crash is triggered by the crash button, and will generate
 a customized crash report to the Firebase Console. Apart from the default crash information (device,
 operating system, time of crash), the crash report contains custom keys and logs (userID, location,

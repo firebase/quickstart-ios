@@ -57,7 +57,7 @@ jobs:
     env:
       SPM: true
       DIR: database/DatabaseExampleSwiftUI/DatabaseExample
-      TEST: true
+      TEST: false
     steps:
       - name: Checkout
         uses: actions/checkout@master

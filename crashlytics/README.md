@@ -1,5 +1,5 @@
 Firebase Crashlytics Quickstart
-=============================
+===============================
 
 The Firebase Crashlytics iOS quickstart demonstrates how to report crashes and log events leading up
 to those crashes. You can read more about Firebase Crashlytics
@@ -14,7 +14,7 @@ Getting Started
 
 ### Clone and open Crashlytics quickstart project
 
-- Clone the quickstart repo and `cd` into the `crashlytics` directory
+- Clone the quickstart repo and `cd` into the `crashlytics` directory.
 - Open file `CrashlyticsExample.xcodeproj` project using Xcode.
 
 ```bash
@@ -22,11 +22,13 @@ $ git clone https://github.com/firebase/quickstart-ios.git
 $ cd crashlytics/
 $ open CrashlyticsExample.xcodeproj
 ```
+- Once the `.xcodeproj` is opened, update to the latest Swift Package Versions: go to the menu bar,
+  click on File > Swift Packages > Update to Latest Package Versions. 
 
 ### Connecting to the Firebase Console 
 - To have a functional application, you will need to connect the Crashlytics quickstart example with
   the [Firebase Console](https://console.firebase.google.com).
-- For an in depth explanation, you can read more about [adding Firebase to your iOS
+- For an in-depth explanation, you can read more about [adding Firebase to your iOS
   Project](https://firebase.google.com/docs/ios/setup). Below is a summary of the main steps:
   1. Visit the [Firebase Console](https://console.firebase.google.com) 
   2. Add an iOS app to the project. Make sure the `Bundle Identifier` you set for this iOS App
@@ -48,6 +50,12 @@ $ open CrashlyticsExample.xcodeproj
 
 For details on how to test out Crashlytics, read [Test your Crashlytics
 implementation](https://firebase.google.com/docs/crashlytics/test-implementation?hl=hu&platform=ios)
+
+Documentation
+-------------
+
+To learn more about the structure of the SwiftUI Realtime Database quickstart app, check out the
+documentation [here](./DesignDoc/crashlytics_design_doc.md).
 
 Support
 -------

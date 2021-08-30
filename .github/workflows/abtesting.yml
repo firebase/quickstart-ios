@@ -81,4 +81,5 @@ jobs:
         run: ./scripts/test.sh
         env:
           OS: watchOS
+          DEVICE: Apple Watch Series 5 - 44m
           TEST: false

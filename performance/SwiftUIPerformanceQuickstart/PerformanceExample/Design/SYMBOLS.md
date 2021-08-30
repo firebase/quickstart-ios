@@ -50,127 +50,132 @@
     - [process](#process-5)
     - [body](#body-5)
 
-## PerformanceExampleApp
+## `PerformanceExampleApp`
 ```swift
 @main
 struct PerformanceExampleApp: App
 ```
 main point of entry into app
 
-### init
+### `init`
 ```swift
 init()
 ```
 configures the FirebaseApp
 
-### body
+### `body`
 ```swift
 var body: some Scene
 ```
 returns a WindowGroup containing a MainView
 
-## Process
+## `Process`
 ```swift
 class Process: ObservableObject
 ```
 handles requests for running different processes
 
-### status
+### `status`
 ```swift
 @Published var status: ProcessStatus
 ```
 publishes the status of the current process
 
-### image
+### `image`
 ```swift
 @Published var image: UIImage?
 ```
 stores the downloaded image
 
-### saliencyMap
+### `saliencyMap`
 ```swift
 @Published var saliencyMap: UIImage?
 ```
 stores the generated saliency map
 
-### uploadSucceeded
+### `uploadSucceeded`
 ```swift
 var uploadSucceeded : Bool
 ```
 indicates the status of the upload task
 
-### categories
+### `categories`
 ```swift
 var categories: [(category: String, confidence: VNConfidence)]?
 ```
 stores the results of the classification task
 
-### context
+### `context`
 ```swift
 lazy var context: CIContext { get set }
 ```
 stores the CIContext used to generate the saliency map, initializing it when it needs to
 
-### isRunning
+### `isRunning`
 ```swift
 var isRunning: Bool { get }
 ```
 returns whether a process is currently running
 
-### precision
+### `precision`
 ```swift
 let precision: Float
 ```
 stores the precision used for the classification task
 
-### site
+### `site`
 ```swift
 let site : String
 ```
 stores the site from which to download the image
 
-### updateStatusAsync
+### `updateStatusAsync`
 ```swift
 @MainActor @available(iOS 15, tvOS 15,*)
 func updateStatusAsync(to newStatus: ProcessStatus, updateUploadStatus: Bool = false)
 ```
 updates the Process status asynchronously, possibly updating the status of the upload task
 
-### updateImageAsync
+### `updateImageAsync`
 ```swift
-@MainActor @available(iOS 15, tvOS 15, *) func updateImageAsync(to newImage: UIImage?)
+@MainActor @available(iOS 15, tvOS 15, *)
+func updateImageAsync(to newImage: UIImage?)
 ```
 updates the Process image asynchronously
 
-### updateSaliencyMapAsync
+### `updateSaliencyMapAsync`
 ```swift
-@MainActor @available(iOS 15, tvOS 15, *) func updateSaliencyMapAsync(to newSaliencyMap: UIImage?)
+@MainActor @available(iOS 15, tvOS 15, *)
+func updateSaliencyMapAsync(to newSaliencyMap: UIImage?)
 ```
 updates the Process saliency map asynchronously
 
-### downloadImageAsync
+### `downloadImageAsync`
 ```swift
-@available(iOS 15, tvOS 15, *) func downloadImageAsync() async
+@available(iOS 15, tvOS 15, *)
+func downloadImageAsync() async
 ```
 attempts to download the image from the Process site asynchronously and set it as the new Process 
 image, updating the Process status accordingly
 
-### classifyImageAsync
+### `classifyImageAsync`
 ```swift
-@available(iOS 15, tvOS 15, *) func classifyImageAsync() async
+@available(iOS 15, tvOS 15, *)
+func classifyImageAsync() async
 ```
 attempts to classify the Process image asynchronously and update the Process categories with the 
 results, measuring the classification task with a custom code trace and updating the Process status
  accordingly
 
-### generateSaliencyMapAsync
+### `generateSaliencyMapAsync`
 ```swift
-@available(iOS 15, tvOS 15, *) func generateSaliencyMapAsync() async
+@available(iOS 15, tvOS 15, *)
+func generateSaliencyMapAsync() async
 ```
 attempts to generate the Process saliency map asynchronously, measuring the task with a custom code
  trace and updating the Process status accordingly
 
-### uploadSaliencyMapAsync
+### `uploadSaliencyMapAsync`
 ```swift
 @available(iOS 15, tvOS 15, *)
 func uploadSaliencyMapAsync(compressionQuality: CGFloat = 0.5) async
@@ -178,32 +183,32 @@ func uploadSaliencyMapAsync(compressionQuality: CGFloat = 0.5) async
 attempts to upload the Process saliency map asynchronously as `saliency_map.jpg` using 
 compressionQuality, updating the Process status accordingly
 
-### updateStatus
+### `updateStatus`
 ```swift
 func updateStatus(to newStatus: ProcessStatus, updateUploadStatus: Bool = false)
 ```
 updates the Process status on the main thread, possibly updating the status of the upload task
 
-### updateImage
+### `updateImage`
 ```swift
 func updateImage(to newImage: UIImage?)
 ```
 updates the Process image on the main thread
 
-### updateSaliencyMap
+### `updateSaliencyMap`
 ```swift
 func updateSaliencyMap(to newSaliencyMap: UIImage?)
 ```
 updates the Process saliency map on the main thread
 
-### downloadImage
+### `downloadImage`
 ```swift
 func downloadImage()
 ```
 attempts to download the image from the Process site and set it as the new Process image, updating 
 the Process status accordingly
 
-### classifyImage
+### `classifyImage`
 ```swift
 func classifyImage()
 ```
@@ -211,21 +216,21 @@ attempts to classify the Process image and update the Process categories with th
 measuring the classification task with a custom code trace and updating the Process status 
 accordingly
 
-### generateSaliencyMap
+### `generateSaliencyMap`
 ```swift
 ​​func generateSaliencyMap()
 ```
 attempts to generate the Process saliency map, measuring the task with a custom code trace and 
 updating the Process status accordingly
 
-### uploadSaliencyMap
+### `uploadSaliencyMap`
 ```swift
 func uploadSaliencyMap(compressionQuality: CGFloat = 0.5)
 ```
 attempts to upload the Process saliency map as 'saliency_map.jpg’ using compressionQuality, 
 updating the Process status accordingly
 
-### makeTrace
+### `makeTrace`
 ```swift
 func makeTrace(called name: String) -> Trace?
 ```
@@ -234,7 +239,7 @@ precision and “platform” to one of “iOS” or “tvOS”
 
 ## ProcessDerivatives
 
-### ProcessTask
+### `ProcessTask`
 ```swift
 enum ProcessTask: String {
   case download = "Download"
@@ -245,41 +250,45 @@ enum ProcessTask: String {
 ```
 tracks the different process tasks
 
-### ProcessStatus
+### `ProcessStatus`
 ```swift
 enum ProcessStatus: Equatable {
   case idle
   case running(ProcessTask)
   case failure(ProcessTask)
   case success(ProcessTask)
+    .
+    .
+    .
+}
 ```
 tracks the different states of a process
 
-#### text
+#### `text`
 ```swift
 var text: String { get }
 ```
 returns String representation of status
 
-#### view
+#### `view`
 ```swift
 var view: some View
 ```
 returns the corresponding `View` wrapped by `HStack`
 
-## MainView
+## `MainView`
 ```swift
 struct MainView: View
 ```
 main menu
 
-### process
+### `process`
 ```swift
 @StateObject var process = Process()
 ```
 initializes a new Process to handle the image tasks
 
-### body
+### `body`
 ```swift
 var body: some View { get }
 ```
@@ -287,19 +296,19 @@ returns the MainView process status on top of a list of links to each of the ima
 (DownloadView, ClassifyView, SaliencyMapView, or UploadView) passing in the MainView process, with 
 a navigation title of “Performance”
 
-## DownloadView
+## `DownloadView`
 ```swift
 struct DownloadView: View
 ```
 view for download task
 
-### process
+### `process`
 ```swift
 @ObservedObject var process: Process
 ```
 stores the MainView process
 
-### body
+### `body`
 ```swift
 var body: some View { get }
 ```
@@ -307,19 +316,19 @@ returns the downloaded process image with a confirmation message, otherwise retu
 image with a message asking the user to download the image using the download button, with the 
 process status shown on top
 
-## ClassifyView
+## `ClassifyView`
 ```swift
 struct ClassifyView: View
 ```
 view for classification task
 
-### process
+### `process`
 ```swift
 @ObservedObject var process: Process
 ```
 stores the MainView process
 
-### body
+### `body`
 ```swift
 var body: some View { get }
 ```
@@ -328,19 +337,19 @@ returns the classified process image with the list of categories found (if any) 
  otherwise returns a placeholder image with a message asking the user to download the image, with 
  the process status shown on top
 
-## SaliencyMapView
+## `SaliencyMapView`
 ```swift
 struct SaliencyMapView: View
 ```
 view for saliency map task
 
-### process
+### `process`
 ```swift
 @ObservedObject var process: Process
 ```
 stores the MainView process
 
-### body
+### `body`
 ```swift
 var body: some View { get }
 ```
@@ -349,19 +358,19 @@ returns the generated saliency map process image with a confirmation message, ot
  placeholder image with a message asking the user to download the image, with the process status 
  shown on top
 
-## UploadView
+## `UploadView`
 ```swift
 struct UploadView: View
 ```
 view for upload task
 
-### process
+### `process`
 ```swift
 @ObservedObject var process: Process
 ```
 stores the MainView process
 
-### body
+### `body`
 ```swift
 var body: some View { get }
 ```

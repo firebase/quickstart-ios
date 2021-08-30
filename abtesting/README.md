@@ -1,5 +1,6 @@
-A/B Testing
-========
+# Firebase A/B Testing Quickstart
+
+## Firebase A/B Testing
 
 Firebase A/B Testing leverages Remote Config to automatically trial new app behaviors and exports 
 the experiment results into Firebase Analytics. This sample demonstrates using an A/B test to test 
@@ -10,6 +11,12 @@ references.
 
 To view the older Objective-C and Swift quickstarts, view the 
 [LegacyABTestingQuickstart](LegacyABTestingQuickstart) directory.
+
+## Getting Started
+
+- [Add Firebase to your iOS Project](https://firebase.google.com/docs/ios/setup)
+- [Create Firebase Remote Config Experiment with A/B Testing](https://firebase.google.com/docs/ab-testing/abtest-config)
+- Run the sample on your iOS device or simulator.
 
 ## Create Experiment
 
@@ -36,3 +43,23 @@ Xcode's console into the text field, select 'Variant A' from the 'Variant' drop-
 
 Make sure the experiment is running at a high percentage and reinstall the app until your app 
 instance is in the A/B test by chance.
+
+## Support
+
+- [Firebase Support](https://firebase.google.com/support/)
+
+## License
+
+Copyright 2021 Google LLC
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.

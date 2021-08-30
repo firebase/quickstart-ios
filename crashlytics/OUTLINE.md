@@ -24,9 +24,9 @@ data to their own crashes.
 
 ### Reachability
 There are many reasons behind a crash, and developers are challenged to understand the root cause
-behind the crash in order to apply the proper fix. To help developers get a better understanding on
-getting different types of information from the crash can help them understand the crash better. One
-of which is to have the information about a device’s network configuration settings.
+behind the crash in order to apply the proper fix. Thus, receiving different types of information
+from the crash can help developers to understand the crash. Reachability gives information about a
+device’s network configuration settings.
 [Reachability.swift](https://github.com/ashleymills/Reachability.swift) uses the [System
 Configuration](https://developer.apple.com/documentation/systemconfiguration) framework to monitor
 the network state of a device. It is a replacement for [Apple's

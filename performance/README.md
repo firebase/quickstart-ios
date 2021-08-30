@@ -7,6 +7,8 @@ Firebase Performance Monitoring is a free mobile app performance analytics servi
 provides detailed information about the performance of your apps automatically,
 but works at its best with Timers set by you.
 
+To view the SwiftUI quickstart, view the [SwiftUIPerformanceQuickstart](SwiftUIPerformanceQuickstart/PerformanceExample) directory.
+
 Introduction
 ------------
 

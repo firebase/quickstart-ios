@@ -8,6 +8,8 @@ on:
       - 'abtesting/**'
       - 'scripts/*'
       - 'scripts/abtesting.sh'
+      - '!abtesting/*.md'
+      - '!abtesting/Design/**'
   pull_request:
     branches: [ master ]
     paths:
@@ -15,6 +17,8 @@ on:
       - 'abtesting/**'
       - 'scripts/*'
       - 'scripts/abtesting.sh'
+      - '!abtesting/*.md'
+      - '!abtesting/Design/**'
 
   workflow_dispatch:
 

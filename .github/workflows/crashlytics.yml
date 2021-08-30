@@ -58,7 +58,7 @@ jobs:
     env:
       SPM: true
       DIR: crashlytics
-      TEST: false
+      TEST: true
     steps:
       - name: Checkout
         uses: actions/checkout@master

@@ -93,13 +93,13 @@ struct PostDetailView: View {
     }
     .navigationTitle(post.title)
 
-    #if os(iOS)
+    #if os(iOS) || os(tvOS)
       postDetailView
         .frame(
           width: ScreenDimensions.width * 0.9,
           alignment: .center
         )
-    #elseif os(macOS) || os(tvOS)
+    #elseif os(macOS)
       postDetailView
         .frame(
           width: 400,

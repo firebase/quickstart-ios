@@ -31,7 +31,7 @@ jobs:
       LEGACY: false
       OS: iOS
       DEVICE: iPhone 11
-      TEST: true
+      TEST: false
     steps:
       - name: Checkout
         uses: actions/checkout@master
@@ -57,7 +57,7 @@ jobs:
     env:
       SPM: true
       DIR: database/DatabaseExampleSwiftUI/DatabaseExample
-      TEST: false
+      TEST: true
     steps:
       - name: Checkout
         uses: actions/checkout@master

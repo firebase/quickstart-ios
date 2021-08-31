@@ -46,11 +46,22 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "C726B81826D84D51000991C1"
-               BuildableName = "UITests_iOS.xctest"
-               BlueprintName = "UITests_iOS"
+               BlueprintIdentifier = "C7E7BA7626DDF34C00EC8D24"
+               BuildableName = "UITests_watchOS.xctest"
+               BlueprintName = "UITests_watchOS"
                ReferencedContainer = "container:CrashlyticsExample.xcodeproj">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "UITests/testLaunchPerformance()">
+               </Test>
+               <Test
+                  Identifier = "UITests_watchOS/testLaunchPerformance()">
+               </Test>
+               <Test
+                  Identifier = "UITests_watchOSLaunchTests/testLaunch()">
+               </Test>
+            </SkippedTests>
          </TestableReference>
       </Testables>
    </TestAction>
@@ -65,8 +76,10 @@
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES"
       notificationPayloadFile = "CrashlyticsSwiftUIExample_(watchOS)_Extension/PushNotificationPayload.apns">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <RemoteRunnable
+         runnableDebuggingMode = "2"
+         BundleIdentifier = "com.apple.Carousel"
+         RemotePath = "/CrashlyticsSwiftUIExample">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C74593FA26BDDD5F00153AE3"
@@ -74,7 +87,7 @@
             BlueprintName = "CrashlyticsSwiftUIExample_(watchOS)"
             ReferencedContainer = "container:CrashlyticsExample.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </RemoteRunnable>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -82,8 +95,10 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <RemoteRunnable
+         runnableDebuggingMode = "2"
+         BundleIdentifier = "com.apple.Carousel"
+         RemotePath = "/CrashlyticsSwiftUIExample">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C74593FA26BDDD5F00153AE3"
@@ -91,7 +106,16 @@
             BlueprintName = "CrashlyticsSwiftUIExample_(watchOS)"
             ReferencedContainer = "container:CrashlyticsExample.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </RemoteRunnable>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "C74593FA26BDDD5F00153AE3"
+            BuildableName = "CrashlyticsSwiftUIExample_(watchOS).app"
+            BlueprintName = "CrashlyticsSwiftUIExample_(watchOS)"
+            ReferencedContainer = "container:CrashlyticsExample.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

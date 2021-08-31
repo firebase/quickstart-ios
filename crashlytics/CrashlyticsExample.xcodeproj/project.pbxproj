@@ -38,11 +38,12 @@
 		C77AC00826BB16CA00BDE919 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73C899826845907003E5C2C /* ContentView.swift */; };
 		C77AC00A26BB16E300BDE919 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = C77AC00926BB16E300BDE919 /* FirebaseCrashlytics */; };
 		C77AC00C26BB16E300BDE919 /* Reachability in Frameworks */ = {isa = PBXBuildFile; productRef = C77AC00B26BB16E300BDE919 /* Reachability */; };
-		C79FD3B326C6E75000FE0261 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C79FD3B226C6E75000FE0261 /* GoogleService-Info.plist */; };
-		C79FD3B426C6E75000FE0261 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C79FD3B226C6E75000FE0261 /* GoogleService-Info.plist */; };
 		C79FD3BA26C728D800FE0261 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C79FD3B926C728D800FE0261 /* GoogleService-Info.plist */; };
 		C79FD3BB26C728D800FE0261 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C79FD3B926C728D800FE0261 /* GoogleService-Info.plist */; };
 		C79FD3BC26C728D800FE0261 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C79FD3B926C728D800FE0261 /* GoogleService-Info.plist */; };
+		C7E7BA8226DDF40C00EC8D24 /* UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C726B81B26D84D51000991C1 /* UITests.swift */; };
+		C7E7BA8526DDF54400EC8D24 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C79FD3B226C6E75000FE0261 /* GoogleService-Info.plist */; };
+		C7E7BA8626DDF54400EC8D24 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C79FD3B226C6E75000FE0261 /* GoogleService-Info.plist */; };
 		C7F8A32126D95D0000F5D9FE /* UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C726B81B26D84D51000991C1 /* UITests.swift */; };
 		C7F8A33F26D95DBF00F5D9FE /* UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C726B81B26D84D51000991C1 /* UITests.swift */; };
 /* End PBXBuildFile section */
@@ -68,6 +69,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = C74593FA26BDDD5F00153AE3;
 			remoteInfo = "CrashlyticsSwiftUIExample (watchOS)";
+		};
+		C7E7BA7D26DDF34C00EC8D24 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5F5A53441ADE670C00F81DF0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C74593FA26BDDD5F00153AE3;
+			remoteInfo = "CrashlyticsSwiftUIExample_(watchOS)";
 		};
 		C7F8A31C26D95CF700F5D9FE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -139,6 +147,7 @@
 		C74C554B26B377F20043B835 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C79FD3B226C6E75000FE0261 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C79FD3B926C728D800FE0261 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		C7E7BA7726DDF34C00EC8D24 /* UITests_watchOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UITests_watchOS.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7F8A31726D95CF700F5D9FE /* UITests_macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UITests_macOS.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7F8A33526D95D3600F5D9FE /* UITests_tvOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UITests_tvOS.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7F8A34026D9612A00F5D9FE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -187,6 +196,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C7E7BA7426DDF34C00EC8D24 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C7F8A31426D95CF700F5D9FE /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -232,6 +248,7 @@
 				C726B81926D84D51000991C1 /* UITests_iOS.xctest */,
 				C7F8A31726D95CF700F5D9FE /* UITests_macOS.xctest */,
 				C7F8A33526D95D3600F5D9FE /* UITests_tvOS.xctest */,
+				C7E7BA7726DDF34C00EC8D24 /* UITests_watchOS.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -446,6 +463,24 @@
 			productReference = C74C554026B377EF0043B835 /* CrashlyticsSwiftUIExample.app */;
 			productType = "com.apple.product-type.application";
 		};
+		C7E7BA7626DDF34C00EC8D24 /* UITests_watchOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C7E7BA7F26DDF34C00EC8D24 /* Build configuration list for PBXNativeTarget "UITests_watchOS" */;
+			buildPhases = (
+				C7E7BA7326DDF34C00EC8D24 /* Sources */,
+				C7E7BA7426DDF34C00EC8D24 /* Frameworks */,
+				C7E7BA7526DDF34C00EC8D24 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C7E7BA7E26DDF34C00EC8D24 /* PBXTargetDependency */,
+			);
+			name = UITests_watchOS;
+			productName = UITests_watchOS;
+			productReference = C7E7BA7726DDF34C00EC8D24 /* UITests_watchOS.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		C7F8A31626D95CF700F5D9FE /* UITests_macOS */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = C7F8A32026D95CF700F5D9FE /* Build configuration list for PBXNativeTarget "UITests_macOS" */;
@@ -488,7 +523,7 @@
 		5F5A53441ADE670C00F81DF0 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1250;
+				LastSwiftUpdateCheck = 1300;
 				LastUpgradeCheck = 1110;
 				ORGANIZATIONNAME = "Google Inc.";
 				TargetAttributes = {
@@ -512,6 +547,10 @@
 					};
 					C74C553F26B377EF0043B835 = {
 						CreatedOnToolsVersion = 12.5;
+					};
+					C7E7BA7626DDF34C00EC8D24 = {
+						CreatedOnToolsVersion = 13.0;
+						TestTargetID = C74593FA26BDDD5F00153AE3;
 					};
 					C7F8A31626D95CF700F5D9FE = {
 						CreatedOnToolsVersion = 12.5;
@@ -549,6 +588,7 @@
 				C726B81826D84D51000991C1 /* UITests_iOS */,
 				C7F8A31626D95CF700F5D9FE /* UITests_macOS */,
 				C7F8A33426D95D3600F5D9FE /* UITests_tvOS */,
+				C7E7BA7626DDF34C00EC8D24 /* UITests_watchOS */,
 			);
 		};
 /* End PBXProject section */
@@ -584,7 +624,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C74593FE26BDDD6100153AE3 /* Assets.xcassets in Resources */,
-				C79FD3B326C6E75000FE0261 /* GoogleService-Info.plist in Resources */,
+				C7E7BA8526DDF54400EC8D24 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -593,8 +633,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				C745941726BDDD6300153AE3 /* Preview Assets.xcassets in Resources */,
-				C79FD3B426C6E75000FE0261 /* GoogleService-Info.plist in Resources */,
 				C745941426BDDD6300153AE3 /* Assets.xcassets in Resources */,
+				C7E7BA8626DDF54400EC8D24 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -605,6 +645,13 @@
 				C74C554A26B377F20043B835 /* Preview Assets.xcassets in Resources */,
 				C79FD3BC26C728D800FE0261 /* GoogleService-Info.plist in Resources */,
 				C74C554726B377F20043B835 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C7E7BA7526DDF34C00EC8D24 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -698,6 +745,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C7E7BA7326DDF34C00EC8D24 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C7E7BA8226DDF40C00EC8D24 /* UITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C7F8A31326D95CF700F5D9FE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -731,6 +786,11 @@
 			isa = PBXTargetDependency;
 			target = C74593FA26BDDD5F00153AE3 /* CrashlyticsSwiftUIExample_(watchOS) */;
 			targetProxy = C745941A26BDDD6300153AE3 /* PBXContainerItemProxy */;
+		};
+		C7E7BA7E26DDF34C00EC8D24 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C74593FA26BDDD5F00153AE3 /* CrashlyticsSwiftUIExample_(watchOS) */;
+			targetProxy = C7E7BA7D26DDF34C00EC8D24 /* PBXContainerItemProxy */;
 		};
 		C7F8A31D26D95CF700F5D9FE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1259,6 +1319,76 @@
 			};
 			name = Release;
 		};
+		C7E7BA8026DDF34C00EC8D24 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "Google-LLC.UITests-watchOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_TARGET_NAME = "CrashlyticsSwiftUIExample_(watchOS)";
+				WATCHOS_DEPLOYMENT_TARGET = 7.4;
+			};
+			name = Debug;
+		};
+		C7E7BA8126DDF34C00EC8D24 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "Google-LLC.UITests-watchOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_TARGET_NAME = "CrashlyticsSwiftUIExample_(watchOS)";
+				WATCHOS_DEPLOYMENT_TARGET = 7.4;
+			};
+			name = Release;
+		};
 		C7F8A31E26D95CF700F5D9FE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1449,6 +1579,15 @@
 			buildConfigurations = (
 				C74C554D26B377F20043B835 /* Debug */,
 				C74C554E26B377F20043B835 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C7E7BA7F26DDF34C00EC8D24 /* Build configuration list for PBXNativeTarget "UITests_watchOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C7E7BA8026DDF34C00EC8D24 /* Debug */,
+				C7E7BA8126DDF34C00EC8D24 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

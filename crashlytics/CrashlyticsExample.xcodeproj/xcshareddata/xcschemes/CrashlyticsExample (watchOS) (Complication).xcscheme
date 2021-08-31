@@ -42,6 +42,16 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "C726B81826D84D51000991C1"
+               BuildableName = "UITests_iOS.xctest"
+               BlueprintName = "UITests_iOS"
+               ReferencedContainer = "container:CrashlyticsExample.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
@@ -55,10 +65,8 @@
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES"
       launchAutomaticallySubstyle = "32">
-      <RemoteRunnable
-         runnableDebuggingMode = "2"
-         BundleIdentifier = "com.apple.Carousel"
-         RemotePath = "/CrashlyticsSwiftUIExample">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C74593FA26BDDD5F00153AE3"
@@ -66,7 +74,7 @@
             BlueprintName = "CrashlyticsSwiftUIExample_(watchOS)"
             ReferencedContainer = "container:CrashlyticsExample.xcodeproj">
          </BuildableReference>
-      </RemoteRunnable>
+      </BuildableProductRunnable>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -75,10 +83,8 @@
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES"
       launchAutomaticallySubstyle = "32">
-      <RemoteRunnable
-         runnableDebuggingMode = "2"
-         BundleIdentifier = "com.apple.Carousel"
-         RemotePath = "/CrashlyticsSwiftUIExample">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C74593FA26BDDD5F00153AE3"
@@ -86,16 +92,7 @@
             BlueprintName = "CrashlyticsSwiftUIExample_(watchOS)"
             ReferencedContainer = "container:CrashlyticsExample.xcodeproj">
          </BuildableReference>
-      </RemoteRunnable>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "C74593FA26BDDD5F00153AE3"
-            BuildableName = "CrashlyticsSwiftUIExample_(watchOS).app"
-            BlueprintName = "CrashlyticsSwiftUIExample_(watchOS)"
-            ReferencedContainer = "container:CrashlyticsExample.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

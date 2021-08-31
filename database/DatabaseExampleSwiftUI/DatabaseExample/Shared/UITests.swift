@@ -17,7 +17,6 @@
 import XCTest
 
 class UITests: XCTestCase {
-
   let app: XCUIApplication = XCUIApplication()
 
   override func setUpWithError() throws {
@@ -66,14 +65,14 @@ class UITests: XCTestCase {
   func testStaticSignUpView() throws {
     let view = "SignUpView"
     #if os(iOS)
-    app.buttons["Sign up".uppercased()].tap()
+      app.buttons["Sign up".uppercased()].tap()
     #elseif os(macOS)
-    app.buttons["Sign up".uppercased()].click()
+      app.buttons["Sign up".uppercased()].click()
     #elseif os(tvOS)
-    XCUIRemote.shared.press(.down)
-    XCUIRemote.shared.press(.down)
-    XCUIRemote.shared.press(.down)
-    XCUIRemote.shared.press(.select)
+      XCUIRemote.shared.press(.down)
+      XCUIRemote.shared.press(.down)
+      XCUIRemote.shared.press(.down)
+      XCUIRemote.shared.press(.select)
     #endif
     try checkText("Sign up".uppercased(), view)
     try checkTextFields("Email", view)
@@ -92,4 +91,3 @@ class UITests: XCTestCase {
     }
   }
 }
-

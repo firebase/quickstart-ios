@@ -67,22 +67,23 @@ jobs:
           gem install xcpretty
           cd crashlytics
           ../scripts/install_prereqs/crashlytics.sh
-      - name: Build SwiftUI (iOS)
+      - name: Build and Test SwiftUI (iOS)
         run: ./scripts/test.sh
         env:
           OS: iOS
           DEVICE: iPhone 12
-      - name: Build SwiftUI (tvOS)
+      - name: Build and Test SwiftUI (tvOS)
         run: ./scripts/test.sh
         env:
           OS: tvOS
           DEVICE: Apple TV 4K (at 1080p) (2nd generation)
-      - name: Build SwiftUI (macOS)
+      - name: Build and Test SwiftUI (macOS)
         run: ./scripts/test.sh
         env:
           OS: macOS
-      - name: Build SwiftUI (watchOS)
+      - name: Build and Test SwiftUI (watchOS)
         run: ./scripts/test.sh
         env:
           OS: watchOS
           DEVICE: Apple Watch Series 5 - 44mm
+          TEST: false

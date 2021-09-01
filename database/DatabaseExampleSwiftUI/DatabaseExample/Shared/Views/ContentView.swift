@@ -18,7 +18,7 @@ import SwiftUI
 import Firebase
 
 struct ContentView: View {
-  @AppStorage("isSignedIn") var isSignedIn = true
+  @AppStorage("isSignedIn") var isSignedIn = false
 
   // define variables for creating a new post for macOS
   #if os(macOS) || os(tvOS)

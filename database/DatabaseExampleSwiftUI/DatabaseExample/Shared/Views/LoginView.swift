@@ -22,7 +22,7 @@ struct LoginView: View {
   @State private var signUpViewPresented = false
 
   var body: some View {
-    VStack {
+    let loginView = VStack {
       // Login title
       Text("Login".uppercased())
         .font(.title)
@@ -128,6 +128,12 @@ struct LoginView: View {
         dismissButton: .destructive(Text("OK"))
       )
     })
+    #if os(iOS) || os(tvOS)
+      loginView
+    #elseif os(macOS)
+      loginView
+        .frame(minWidth: 400, minHeight: 700)
+    #endif
   }
 }
 

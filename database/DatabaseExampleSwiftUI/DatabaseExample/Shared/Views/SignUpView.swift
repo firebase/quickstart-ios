@@ -21,7 +21,7 @@ struct SignUpView: View {
   @Binding var isPresented: Bool
 
   var body: some View {
-    VStack {
+    let signUpView = VStack {
       // Sign up title
       Text("Sign up".uppercased())
         .font(.title)
@@ -125,6 +125,12 @@ struct SignUpView: View {
         dismissButton: .destructive(Text("Ok"))
       )
     })
+    #if os(iOS) || os(tvOS)
+      signUpView
+    #elseif os(macOS)
+      signUpView
+        .frame(minWidth: 400, minHeight: 700)
+    #endif
   }
 }
 

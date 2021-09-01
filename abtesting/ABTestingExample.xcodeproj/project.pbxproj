@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 53;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -47,6 +47,13 @@
 			remoteGlobalIDString = 4125B7C6268E2E7C00232B67;
 			remoteInfo = "ABTestingExample (iOS)";
 		};
+		41394CE726DF75D200C54DAE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4125B7BB268E2E7A00232B67 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 41C69F7D26D9513C00C934F1;
+			remoteInfo = "ABTestingExample (watchOS)";
+		};
 		415FC23826D8E8B400AB8835 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 4125B7BB268E2E7A00232B67 /* Project object */;
@@ -67,13 +74,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 41C69F8626D9514000C934F1;
 			remoteInfo = "ABTestingExample (watchOS) Extension";
-		};
-		41C69FC426D956F900C934F1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4125B7BB268E2E7A00232B67 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 41C69F7D26D9513C00C934F1;
-			remoteInfo = "ABTestingExample (watchOS)";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -98,17 +98,17 @@
 		4125B7D2268E2E7C00232B67 /* Tests (iOS).xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests (iOS).xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4125B7D6268E2E7C00232B67 /* UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITests.swift; sourceTree = "<group>"; };
 		4125B84D268E7EF000232B67 /* AppConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
+		41394CE626DF5E3F00C54DAE /* ABTestingExample (iOS) Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ABTestingExample (iOS) Info.plist"; sourceTree = "<group>"; };
+		41394CE926DF765A00C54DAE /* ABTestingExample (watchOS) Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ABTestingExample (watchOS) Info.plist"; sourceTree = "<group>"; };
 		415FC22026D8E87100AB8835 /* ABTestingExample (macOS).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ABTestingExample (macOS).app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		415FC23226D8E8B400AB8835 /* Tests (macOS).xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests (macOS).xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		415FC24F26D8F43100AB8835 /* ABTestingExample (macOS).entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "ABTestingExample (macOS).entitlements"; sourceTree = "<group>"; };
 		4174272326D89C7E00966D7D /* ABTestingExample (tvOS).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ABTestingExample (tvOS).app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4174273A26D89E1B00966D7D /* Tests (tvOS).xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests (tvOS).xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		41C69F7E26D9513C00C934F1 /* ABTestingExample (watchOS).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ABTestingExample (watchOS).app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		41C69F8226D9514000C934F1 /* ABTestingExample (watchOS) Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ABTestingExample (watchOS) Info.plist"; sourceTree = "<group>"; };
 		41C69F8726D9514000C934F1 /* ABTestingExample (watchOS) Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "ABTestingExample (watchOS) Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		41C69F9726D9514100C934F1 /* ABTestingExample (watchOS) Extension Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ABTestingExample (watchOS) Extension Info.plist"; sourceTree = "<group>"; };
 		41C69FBF26D956F900C934F1 /* Tests (watchOS).xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests (watchOS).xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		41C69FC326D956F900C934F1 /* Tests (watchOS) Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests (watchOS) Info.plist"; sourceTree = "<group>"; };
 		8052DFC0B0123902D171FEAB /* GoogleService-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -184,10 +184,10 @@
 		4125B7BA268E2E7A00232B67 = {
 			isa = PBXGroup;
 			children = (
+				41394CE926DF765A00C54DAE /* ABTestingExample (watchOS) Info.plist */,
+				41394CE626DF5E3F00C54DAE /* ABTestingExample (iOS) Info.plist */,
 				415FC24F26D8F43100AB8835 /* ABTestingExample (macOS).entitlements */,
-				41C69F8226D9514000C934F1 /* ABTestingExample (watchOS) Info.plist */,
 				41C69F9726D9514100C934F1 /* ABTestingExample (watchOS) Extension Info.plist */,
-				41C69FC326D956F900C934F1 /* Tests (watchOS) Info.plist */,
 				8052DFC0B0123902D171FEAB /* GoogleService-Info.plist */,
 				4125B7BF268E2E7A00232B67 /* Shared */,
 				4125B7C8268E2E7C00232B67 /* Products */,
@@ -399,7 +399,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				41C69FC526D956F900C934F1 /* PBXTargetDependency */,
+				41394CE826DF75D200C54DAE /* PBXTargetDependency */,
 			);
 			name = "Tests (watchOS)";
 			productName = "Tests (watchOS)";
@@ -629,6 +629,11 @@
 			target = 4125B7C6268E2E7C00232B67 /* ABTestingExample (iOS) */;
 			targetProxy = 4125B7D3268E2E7C00232B67 /* PBXContainerItemProxy */;
 		};
+		41394CE826DF75D200C54DAE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 41C69F7D26D9513C00C934F1 /* ABTestingExample (watchOS) */;
+			targetProxy = 41394CE726DF75D200C54DAE /* PBXContainerItemProxy */;
+		};
 		415FC23926D8E8B400AB8835 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 415FC21F26D8E87100AB8835 /* ABTestingExample (macOS) */;
@@ -643,11 +648,6 @@
 			isa = PBXTargetDependency;
 			target = 41C69F8626D9514000C934F1 /* ABTestingExample (watchOS) Extension */;
 			targetProxy = 41C69F8926D9514000C934F1 /* PBXContainerItemProxy */;
-		};
-		41C69FC526D956F900C934F1 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 41C69F7D26D9513C00C934F1 /* ABTestingExample (watchOS) */;
-			targetProxy = 41C69FC426D956F900C934F1 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -713,6 +713,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TVOS_DEPLOYMENT_TARGET = 14.0;
 				WATCHOS_DEPLOYMENT_TARGET = 7.0;
@@ -773,6 +774,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				TVOS_DEPLOYMENT_TARGET = 14.0;
 				WATCHOS_DEPLOYMENT_TARGET = 7.0;
@@ -782,19 +784,13 @@
 		4125B7EB268E2E7C00232B67 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "ABTestingExample (iOS) Info.plist";
 				INFOPLIST_KEY_CFBundleExecutable = ABTestingExample;
 				INFOPLIST_KEY_CFBundleName = ABTestingExample;
 				INFOPLIST_KEY_CFBundleVersion = 1;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -803,7 +799,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.firebase.ABTestingExample;
 				PRODUCT_NAME = ABTestingExample;
 				SDKROOT = iphoneos;
-				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -812,19 +807,13 @@
 		4125B7EC268E2E7C00232B67 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "ABTestingExample (iOS) Info.plist";
 				INFOPLIST_KEY_CFBundleExecutable = ABTestingExample;
 				INFOPLIST_KEY_CFBundleName = ABTestingExample;
 				INFOPLIST_KEY_CFBundleVersion = 1;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -833,7 +822,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.firebase.ABTestingExample;
 				PRODUCT_NAME = ABTestingExample;
 				SDKROOT = iphoneos;
-				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -888,7 +876,6 @@
 		415FC22B26D8E87500AB8835 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_ENTITLEMENTS = "ABTestingExample (macOS).entitlements";
 				CODE_SIGN_IDENTITY = "-";
@@ -898,8 +885,6 @@
 				DEVELOPMENT_ASSET_PATHS = "";
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_PREVIEWS = YES;
-				ENABLE_USER_SELECTED_FILES = readonly;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -908,7 +893,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.firebase.ABTestingExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -916,7 +900,6 @@
 		415FC22C26D8E87500AB8835 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_ENTITLEMENTS = "ABTestingExample (macOS).entitlements";
 				CODE_SIGN_IDENTITY = "-";
@@ -926,8 +909,6 @@
 				DEVELOPMENT_ASSET_PATHS = "";
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_PREVIEWS = YES;
-				ENABLE_USER_SELECTED_FILES = readonly;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -936,7 +917,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.firebase.ABTestingExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
@@ -946,10 +926,11 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_ENTITLEMENTS = "ABTestingExample (macOS).entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
+				ENABLE_APP_SANDBOX = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -970,10 +951,11 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_ENTITLEMENTS = "ABTestingExample (macOS).entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
+				ENABLE_APP_SANDBOX = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -992,15 +974,11 @@
 		4174272E26D89C8100966D7D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "";
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UIUserInterfaceStyle = Automatic;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1009,7 +987,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.firebase.ABTestingExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
-				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 3;
 			};
@@ -1018,15 +995,11 @@
 		4174272F26D89C8100966D7D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "";
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UIUserInterfaceStyle = Automatic;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1035,7 +1008,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.firebase.ABTestingExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
-				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				VALIDATE_PRODUCT = YES;
@@ -1049,7 +1021,6 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1073,7 +1044,6 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1140,7 +1110,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				IBSC_MODULE = ABTestingExample__watchOS__Extension;
 				INFOPLIST_FILE = "ABTestingExample (watchOS) Info.plist";
@@ -1158,7 +1127,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				IBSC_MODULE = ABTestingExample__watchOS__Extension;
 				INFOPLIST_FILE = "ABTestingExample (watchOS) Info.plist";
@@ -1177,7 +1145,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = "Tests (watchOS) Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1186,6 +1153,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.firebase.Tests--watchOS-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				TEST_TARGET_NAME = "ABTestingExample (watchOS)";
@@ -1196,7 +1164,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = "Tests (watchOS) Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1205,6 +1172,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.firebase.Tests--watchOS-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				TEST_TARGET_NAME = "ABTestingExample (watchOS)";

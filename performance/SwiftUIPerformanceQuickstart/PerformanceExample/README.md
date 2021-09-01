@@ -27,6 +27,7 @@ service firebase.storage {
 ```
 **Warning:** *these rules do not follow security best practices and are only intended for demonstration purposes. Please read more on why these rules are not secure [here](https://firebase.google.com/docs/rules/insecure-rules#open_access).*
 - Run the sample on your iOS / tvOS device or simulator.
+  - If your build fails due to package errors, try resetting package caches (File > Swift Packages > Reset Package Caches).
 
 
 ## Support

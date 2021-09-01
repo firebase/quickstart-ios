@@ -3,7 +3,7 @@
 ## Table of Contents
 - [iOS](#ios)
     - [MainView - Ready](#mainview---ready)
-    - [ClassifyView | SaliencyMapView - Not Ready](#classifyview--saliencymapview---not-ready)
+    - [ClassifyView & SaliencyMapView - Not Ready](#classifyview--saliencymapview---not-ready)
     - [UploadView - Not Ready](#uploadview---not-ready)
     - [DownloadView - Ready](#downloadview---ready)
     - [DownloadView - Success](#downloadview---success)
@@ -17,7 +17,7 @@
     - [MainView - Success](#mainview---success)
 - [tvOS](#tvos)
     - [MainView - Ready](#mainview---ready-1)
-    - [ClassifyView | SaliencyMapView - Not Ready](#classifyview--saliencymapview---not-ready-1)
+    - [ClassifyView & SaliencyMapView - Not Ready](#classifyview--saliencymapview---not-ready-1)
     - [UploadView - Not Ready](#uploadview---not-ready-1)
     - [DownloadView - Ready](#downloadview---ready-1)
     - [DownloadView - Success](#downloadview---success-1)
@@ -33,8 +33,8 @@
 ## iOS
 ### MainView - Ready
 ![MainView - Ready.png](Media/iOS/MainView%20-%20Ready.png)
-### ClassifyView | SaliencyMapView - Not Ready
-![ClassifyView | SaliencyMapView - Not Ready](Media/iOS/ClassifyView%20%7C%20SaliencyMapView%20-%20Not%20Ready.png)
+### ClassifyView & SaliencyMapView - Not Ready
+![ClassifyView & SaliencyMapView - Not Ready](Media/iOS/ClassifyView%20&%20SaliencyMapView%20-%20Not%20Ready.png)
 ### UploadView - Not Ready
 ![UploadView - Not Ready](Media/iOS/UploadView%20-%20Not%20Ready.png)
 ### DownloadView - Ready
@@ -60,8 +60,8 @@
 ## tvOS
 ### MainView - Ready
 ![MainView - Ready.png](Media/tvOS/MainView%20-%20Ready.png)
-### ClassifyView | SaliencyMapView - Not Ready
-![ClassifyView | SaliencyMapView - Not Ready](Media/tvOS/ClassifyView%20%7C%20SaliencyMapView%20-%20Not%20Ready.png)
+### ClassifyView & SaliencyMapView - Not Ready
+![ClassifyView & SaliencyMapView - Not Ready](Media/tvOS/ClassifyView%20&%20SaliencyMapView%20-%20Not%20Ready.png)
 ### UploadView - Not Ready
 ![UploadView - Not Ready](Media/tvOS/UploadView%20-%20Not%20Ready.png)
 ### DownloadView - Ready

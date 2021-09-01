@@ -17,6 +17,7 @@ To view the older Objective-C and Swift quickstarts, view the
 - [Add Firebase to your iOS Project](https://firebase.google.com/docs/ios/setup)
 - [Create Firebase Remote Config Experiment with A/B Testing](https://firebase.google.com/docs/ab-testing/abtest-config)
 - Run the sample on your iOS device or simulator.
+    - If your build fails due to package errors, try resetting package caches (File > Swift Packages > Reset Package Caches).
 
 ## Create Experiment
 

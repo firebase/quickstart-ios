@@ -60,14 +60,14 @@
 		4102055626A631F4004B24B3 /* PerformanceExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceExampleApp.swift; sourceTree = "<group>"; };
 		4102055826A631F5004B24B3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4102055D26A631F5004B24B3 /* PerformanceExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PerformanceExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		4102057626A63210004B24B3 /* Tests_iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests_iOS.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4102057626A63210004B24B3 /* Tests iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		410FF76926B1CEB500CA084F /* PerformanceExample (tvOS).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PerformanceExample (tvOS).app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		41292E9826CB623B00747458 /* MainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainView.swift; path = Shared/Views/MainView.swift; sourceTree = "<group>"; };
 		41292E9926CB623B00747458 /* UploadView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UploadView.swift; path = Shared/Views/UploadView.swift; sourceTree = "<group>"; };
 		41292E9A26CB623B00747458 /* ClassifyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ClassifyView.swift; path = Shared/Views/ClassifyView.swift; sourceTree = "<group>"; };
 		41292E9B26CB623B00747458 /* DownloadView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DownloadView.swift; path = Shared/Views/DownloadView.swift; sourceTree = "<group>"; };
 		41292EA526CB63B300747458 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		414C55A426B87EFB00114089 /* Tests_tvOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests_tvOS.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		414C55A426B87EFB00114089 /* Tests tvOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests tvOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		419700EC26C30DA500F186C3 /* UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITests.swift; sourceTree = "<group>"; };
 		419AADCD26B86A94005C4817 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		41BFA1EF26B1D8B80013EB90 /* Process.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Process.swift; sourceTree = "<group>"; };
@@ -143,9 +143,9 @@
 			isa = PBXGroup;
 			children = (
 				4102055D26A631F5004B24B3 /* PerformanceExample.app */,
-				4102057626A63210004B24B3 /* Tests_iOS.xctest */,
+				4102057626A63210004B24B3 /* Tests iOS.xctest */,
 				410FF76926B1CEB500CA084F /* PerformanceExample (tvOS).app */,
-				414C55A426B87EFB00114089 /* Tests_tvOS.xctest */,
+				414C55A426B87EFB00114089 /* Tests tvOS.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -195,9 +195,9 @@
 			productReference = 4102055D26A631F5004B24B3 /* PerformanceExample.app */;
 			productType = "com.apple.product-type.application";
 		};
-		4102057526A63210004B24B3 /* Tests_iOS */ = {
+		4102057526A63210004B24B3 /* Tests iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4102057C26A63210004B24B3 /* Build configuration list for PBXNativeTarget "Tests_iOS" */;
+			buildConfigurationList = 4102057C26A63210004B24B3 /* Build configuration list for PBXNativeTarget "Tests iOS" */;
 			buildPhases = (
 				4102057226A63210004B24B3 /* Sources */,
 				4102057326A63210004B24B3 /* Frameworks */,
@@ -208,9 +208,9 @@
 			dependencies = (
 				4102057B26A63210004B24B3 /* PBXTargetDependency */,
 			);
-			name = Tests_iOS;
+			name = "Tests iOS";
 			productName = Tests_iOS;
-			productReference = 4102057626A63210004B24B3 /* Tests_iOS.xctest */;
+			productReference = 4102057626A63210004B24B3 /* Tests iOS.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 		410FF76826B1CEB500CA084F /* PerformanceExample (tvOS) */ = {
@@ -235,9 +235,9 @@
 			productReference = 410FF76926B1CEB500CA084F /* PerformanceExample (tvOS).app */;
 			productType = "com.apple.product-type.application";
 		};
-		414C55A326B87EFB00114089 /* Tests_tvOS */ = {
+		414C55A326B87EFB00114089 /* Tests tvOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 414C55AC26B87EFB00114089 /* Build configuration list for PBXNativeTarget "Tests_tvOS" */;
+			buildConfigurationList = 414C55AC26B87EFB00114089 /* Build configuration list for PBXNativeTarget "Tests tvOS" */;
 			buildPhases = (
 				414C55A026B87EFB00114089 /* Sources */,
 				414C55A126B87EFB00114089 /* Frameworks */,
@@ -248,9 +248,9 @@
 			dependencies = (
 				414C55A926B87EFB00114089 /* PBXTargetDependency */,
 			);
-			name = Tests_tvOS;
+			name = "Tests tvOS";
 			productName = Tests_tvOS;
-			productReference = 414C55A426B87EFB00114089 /* Tests_tvOS.xctest */;
+			productReference = 414C55A426B87EFB00114089 /* Tests tvOS.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -298,9 +298,9 @@
 			projectRoot = "";
 			targets = (
 				4102055C26A631F5004B24B3 /* PerformanceExample (iOS) */,
-				4102057526A63210004B24B3 /* Tests_iOS */,
+				4102057526A63210004B24B3 /* Tests iOS */,
 				410FF76826B1CEB500CA084F /* PerformanceExample (tvOS) */,
-				414C55A326B87EFB00114089 /* Tests_tvOS */,
+				414C55A326B87EFB00114089 /* Tests tvOS */,
 			);
 		};
 /* End PBXProject section */
@@ -749,7 +749,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4102057C26A63210004B24B3 /* Build configuration list for PBXNativeTarget "Tests_iOS" */ = {
+		4102057C26A63210004B24B3 /* Build configuration list for PBXNativeTarget "Tests iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4102057D26A63210004B24B3 /* Debug */,
@@ -767,7 +767,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		414C55AC26B87EFB00114089 /* Build configuration list for PBXNativeTarget "Tests_tvOS" */ = {
+		414C55AC26B87EFB00114089 /* Build configuration list for PBXNativeTarget "Tests tvOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				414C55AA26B87EFB00114089 /* Debug */,

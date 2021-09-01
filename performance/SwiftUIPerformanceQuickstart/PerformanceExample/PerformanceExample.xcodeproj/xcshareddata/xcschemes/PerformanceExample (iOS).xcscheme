@@ -37,6 +37,11 @@
                BlueprintName = "Tests iOS"
                ReferencedContainer = "container:PerformanceExample.xcodeproj">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "UITests/testLaunchPerformance()">
+               </Test>
+            </SkippedTests>
          </TestableReference>
       </Testables>
    </TestAction>

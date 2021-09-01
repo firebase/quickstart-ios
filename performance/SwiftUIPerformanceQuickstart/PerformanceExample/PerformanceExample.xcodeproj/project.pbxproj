@@ -3,12 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 55;
+	objectVersion = 53;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		4102056426A631F5004B24B3 /* PerformanceExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4102055626A631F4004B24B3 /* PerformanceExampleApp.swift */; };
-		4102056826A631F5004B24B3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4102055826A631F5004B24B3 /* Assets.xcassets */; };
 		41292E9C26CB623B00747458 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41292E9826CB623B00747458 /* MainView.swift */; };
 		41292E9D26CB623B00747458 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41292E9826CB623B00747458 /* MainView.swift */; };
 		41292E9E26CB623B00747458 /* UploadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41292E9926CB623B00747458 /* UploadView.swift */; };
@@ -28,7 +27,6 @@
 		419AADCE26B86A94005C4817 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 419AADCD26B86A94005C4817 /* GoogleService-Info.plist */; };
 		419AADCF26B86A94005C4817 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 419AADCD26B86A94005C4817 /* GoogleService-Info.plist */; };
 		41BFA1EA26B1D36C0013EB90 /* PerformanceExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4102055626A631F4004B24B3 /* PerformanceExampleApp.swift */; };
-		41BFA1EC26B1D3730013EB90 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4102055826A631F5004B24B3 /* Assets.xcassets */; };
 		41BFA1F026B1D8B80013EB90 /* Process.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41BFA1EF26B1D8B80013EB90 /* Process.swift */; };
 		41BFA1F326B1D8B80013EB90 /* Process.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41BFA1EF26B1D8B80013EB90 /* Process.swift */; };
 		41C3EC0D26D0100F009DCA8B /* SaliencyMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C3EC0C26D0100F009DCA8B /* SaliencyMapView.swift */; };
@@ -58,22 +56,21 @@
 
 /* Begin PBXFileReference section */
 		4102055626A631F4004B24B3 /* PerformanceExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceExampleApp.swift; sourceTree = "<group>"; };
-		4102055826A631F5004B24B3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4102055D26A631F5004B24B3 /* PerformanceExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PerformanceExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		4102057626A63210004B24B3 /* Tests_iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests_iOS.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4102057626A63210004B24B3 /* Tests iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		410FF76926B1CEB500CA084F /* PerformanceExample (tvOS).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PerformanceExample (tvOS).app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		41292E9826CB623B00747458 /* MainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainView.swift; path = Shared/Views/MainView.swift; sourceTree = "<group>"; };
 		41292E9926CB623B00747458 /* UploadView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UploadView.swift; path = Shared/Views/UploadView.swift; sourceTree = "<group>"; };
 		41292E9A26CB623B00747458 /* ClassifyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ClassifyView.swift; path = Shared/Views/ClassifyView.swift; sourceTree = "<group>"; };
 		41292E9B26CB623B00747458 /* DownloadView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DownloadView.swift; path = Shared/Views/DownloadView.swift; sourceTree = "<group>"; };
 		41292EA526CB63B300747458 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		413CB73826B4AE8200E995E2 /* PerformanceExample--tvOS--Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "PerformanceExample--tvOS--Info.plist"; sourceTree = "<group>"; };
-		414C55A426B87EFB00114089 /* Tests_tvOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests_tvOS.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		414C55A426B87EFB00114089 /* Tests tvOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests tvOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		419700EC26C30DA500F186C3 /* UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITests.swift; sourceTree = "<group>"; };
 		419AADCD26B86A94005C4817 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		41BFA1EF26B1D8B80013EB90 /* Process.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Process.swift; sourceTree = "<group>"; };
 		41C3EC0C26D0100F009DCA8B /* SaliencyMapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SaliencyMapView.swift; path = Shared/Views/SaliencyMapView.swift; sourceTree = "<group>"; };
 		41C3EC1126D05538009DCA8B /* ProcessDerivatives.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessDerivatives.swift; sourceTree = "<group>"; };
+		41E4794526DF482500DB6471 /* PerformanceExample (iOS) Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "PerformanceExample (iOS) Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,9 +114,9 @@
 		4102055026A631F4004B24B3 = {
 			isa = PBXGroup;
 			children = (
+				41E4794526DF482500DB6471 /* PerformanceExample (iOS) Info.plist */,
 				41292EA526CB63B300747458 /* README.md */,
 				419AADCD26B86A94005C4817 /* GoogleService-Info.plist */,
-				413CB73826B4AE8200E995E2 /* PerformanceExample--tvOS--Info.plist */,
 				4102055526A631F4004B24B3 /* Shared */,
 				4102055E26A631F5004B24B3 /* Products */,
 				4131674C26CD7FB30022392A /* Frameworks */,
@@ -134,7 +131,6 @@
 				41BFA1EF26B1D8B80013EB90 /* Process.swift */,
 				41C3EC1126D05538009DCA8B /* ProcessDerivatives.swift */,
 				419700EC26C30DA500F186C3 /* UITests.swift */,
-				4102055826A631F5004B24B3 /* Assets.xcassets */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -143,9 +139,9 @@
 			isa = PBXGroup;
 			children = (
 				4102055D26A631F5004B24B3 /* PerformanceExample.app */,
-				4102057626A63210004B24B3 /* Tests_iOS.xctest */,
+				4102057626A63210004B24B3 /* Tests iOS.xctest */,
 				410FF76926B1CEB500CA084F /* PerformanceExample (tvOS).app */,
-				414C55A426B87EFB00114089 /* Tests_tvOS.xctest */,
+				414C55A426B87EFB00114089 /* Tests tvOS.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -195,9 +191,9 @@
 			productReference = 4102055D26A631F5004B24B3 /* PerformanceExample.app */;
 			productType = "com.apple.product-type.application";
 		};
-		4102057526A63210004B24B3 /* Tests_iOS */ = {
+		4102057526A63210004B24B3 /* Tests iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4102057C26A63210004B24B3 /* Build configuration list for PBXNativeTarget "Tests_iOS" */;
+			buildConfigurationList = 4102057C26A63210004B24B3 /* Build configuration list for PBXNativeTarget "Tests iOS" */;
 			buildPhases = (
 				4102057226A63210004B24B3 /* Sources */,
 				4102057326A63210004B24B3 /* Frameworks */,
@@ -208,9 +204,9 @@
 			dependencies = (
 				4102057B26A63210004B24B3 /* PBXTargetDependency */,
 			);
-			name = Tests_iOS;
+			name = "Tests iOS";
 			productName = Tests_iOS;
-			productReference = 4102057626A63210004B24B3 /* Tests_iOS.xctest */;
+			productReference = 4102057626A63210004B24B3 /* Tests iOS.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 		410FF76826B1CEB500CA084F /* PerformanceExample (tvOS) */ = {
@@ -235,9 +231,9 @@
 			productReference = 410FF76926B1CEB500CA084F /* PerformanceExample (tvOS).app */;
 			productType = "com.apple.product-type.application";
 		};
-		414C55A326B87EFB00114089 /* Tests_tvOS */ = {
+		414C55A326B87EFB00114089 /* Tests tvOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 414C55AC26B87EFB00114089 /* Build configuration list for PBXNativeTarget "Tests_tvOS" */;
+			buildConfigurationList = 414C55AC26B87EFB00114089 /* Build configuration list for PBXNativeTarget "Tests tvOS" */;
 			buildPhases = (
 				414C55A026B87EFB00114089 /* Sources */,
 				414C55A126B87EFB00114089 /* Frameworks */,
@@ -248,9 +244,9 @@
 			dependencies = (
 				414C55A926B87EFB00114089 /* PBXTargetDependency */,
 			);
-			name = Tests_tvOS;
+			name = "Tests tvOS";
 			productName = Tests_tvOS;
-			productReference = 414C55A426B87EFB00114089 /* Tests_tvOS.xctest */;
+			productReference = 414C55A426B87EFB00114089 /* Tests tvOS.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -282,7 +278,7 @@
 				};
 			};
 			buildConfigurationList = 4102055426A631F4004B24B3 /* Build configuration list for PBXProject "PerformanceExample" */;
-			compatibilityVersion = "Xcode 13.0";
+			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -298,9 +294,9 @@
 			projectRoot = "";
 			targets = (
 				4102055C26A631F5004B24B3 /* PerformanceExample (iOS) */,
-				4102057526A63210004B24B3 /* Tests_iOS */,
+				4102057526A63210004B24B3 /* Tests iOS */,
 				410FF76826B1CEB500CA084F /* PerformanceExample (tvOS) */,
-				414C55A326B87EFB00114089 /* Tests_tvOS */,
+				414C55A326B87EFB00114089 /* Tests tvOS */,
 			);
 		};
 /* End PBXProject section */
@@ -310,7 +306,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4102056826A631F5004B24B3 /* Assets.xcassets in Resources */,
 				419AADCE26B86A94005C4817 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -326,7 +321,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				41BFA1EC26B1D3730013EB90 /* Assets.xcassets in Resources */,
 				419AADCF26B86A94005C4817 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -456,10 +450,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -509,9 +505,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 			};
 			name = Release;
@@ -519,17 +517,10 @@
 		4102056D26A631F5004B24B3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_FILE = "PerformanceExample (iOS) Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -539,7 +530,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.firebase.PerformanceExample;
 				PRODUCT_NAME = PerformanceExample;
 				SDKROOT = iphoneos;
-				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -548,17 +538,10 @@
 		4102056E26A631F5004B24B3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_FILE = "PerformanceExample (iOS) Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -568,7 +551,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.firebase.PerformanceExample;
 				PRODUCT_NAME = PerformanceExample;
 				SDKROOT = iphoneos;
-				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -581,7 +563,6 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -606,7 +587,6 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -628,20 +608,13 @@
 		410FF77426B1CEB800CA084F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = tvOS;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "";
 				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "PerformanceExample--tvOS--Info.plist";
 				INFOPLIST_KEY_CFBundleExecutable = "PerformanceExample (tvOS)";
 				INFOPLIST_KEY_CFBundleName = "PerformanceExample (tvOS)";
 				INFOPLIST_KEY_CFBundleVersion = 1;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UIUserInterfaceStyle = Automatic;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -650,7 +623,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.firebase.PerformanceExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
-				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 14.0;
@@ -660,20 +632,13 @@
 		410FF77526B1CEB800CA084F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = tvOS;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "";
 				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "PerformanceExample--tvOS--Info.plist";
 				INFOPLIST_KEY_CFBundleExecutable = "PerformanceExample (tvOS)";
 				INFOPLIST_KEY_CFBundleName = "PerformanceExample (tvOS)";
 				INFOPLIST_KEY_CFBundleVersion = 1;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UIUserInterfaceStyle = Automatic;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -682,7 +647,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.firebase.PerformanceExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
-				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 14.0;
@@ -697,7 +661,6 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -723,7 +686,6 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -763,7 +725,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4102057C26A63210004B24B3 /* Build configuration list for PBXNativeTarget "Tests_iOS" */ = {
+		4102057C26A63210004B24B3 /* Build configuration list for PBXNativeTarget "Tests iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4102057D26A63210004B24B3 /* Debug */,
@@ -781,7 +743,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		414C55AC26B87EFB00114089 /* Build configuration list for PBXNativeTarget "Tests_tvOS" */ = {
+		414C55AC26B87EFB00114089 /* Build configuration list for PBXNativeTarget "Tests tvOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				414C55AA26B87EFB00114089 /* Debug */,

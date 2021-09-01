@@ -33,10 +33,15 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "414C55A326B87EFB00114089"
-               BuildableName = "Tests_tvOS.xctest"
-               BlueprintName = "Tests_tvOS"
+               BuildableName = "Tests tvOS.xctest"
+               BlueprintName = "Tests tvOS"
                ReferencedContainer = "container:PerformanceExample.xcodeproj">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "UITests/testLaunchPerformance()">
+               </Test>
+            </SkippedTests>
          </TestableReference>
       </Testables>
    </TestAction>

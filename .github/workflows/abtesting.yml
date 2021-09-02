@@ -74,6 +74,7 @@ jobs:
           - os: watchOS
             test: true
     env:
+      SAMPLE: abtesting
       SPM: true
       DIR: abtesting
       OS: ${{ matrix.os }}
@@ -86,8 +87,8 @@ jobs:
         run: |
           sudo xcode-select -s "/Applications/Xcode_${XCODE_VERSION}.app/Contents/Developer"
           gem install xcpretty
-          cd abtesting
-          ../scripts/install_prereqs/abtesting.sh
+          cd $SAMPLE
+          ../scripts/install_prereqs/${SAMPLE}.sh
         env:
           XCODE_VERSION: ${{ matrix.xcode }}
       - name: Build and Test SwiftUI (${{ matrix.os }})

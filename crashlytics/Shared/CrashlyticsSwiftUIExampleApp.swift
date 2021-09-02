@@ -60,8 +60,8 @@ struct CrashlyticsSwiftUIExampleApp: App {
   init() {
     FirebaseApp.configure()
     Crashlytics.crashlytics().log("App loaded")
-    self.setCustomValues()
-    self.setUserInfo()
+    setCustomValues()
+    setUserInfo()
   }
 
   var body: some Scene {

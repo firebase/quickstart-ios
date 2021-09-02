@@ -20,14 +20,14 @@ import Firebase
 struct ContentView: View {
   private var crashlyticsReference = Crashlytics.crashlytics()
 
-#if swift(>=5.5)
-  @available(iOS 15, tvOS 15, macOS 12, watchOS 8, *) func checkForUnsentReportsAsync() async {
-    let reportFound = await crashlyticsReference.checkForUnsentReports()
-    if reportFound {
-      crashlyticsReference.sendUnsentReports()
+  #if swift(>=5.5)
+    @available(iOS 15, tvOS 15, macOS 12, watchOS 8, *) func checkForUnsentReportsAsync() async {
+      let reportFound = await crashlyticsReference.checkForUnsentReports()
+      if reportFound {
+        crashlyticsReference.sendUnsentReports()
+      }
     }
-  }
-#endif
+  #endif
 
   func checkForUnsentReports() {
     crashlyticsReference.checkForUnsentReports { reportFound in
@@ -47,11 +47,11 @@ struct ContentView: View {
       .navigationTitle("Crashlytics Example")
       .onAppear {
         if #available(iOS 15, tvOS 15, macOS 12, watchOS 8, *) {
-            #if swift(>=5.5)
-              Task { await self.checkForUnsentReportsAsync() }
-            #else
-              self.checkForUnsentReports()
-            #endif
+          #if swift(>=5.5)
+            Task { await self.checkForUnsentReportsAsync() }
+          #else
+            self.checkForUnsentReports()
+          #endif
         } else {
           self.checkForUnsentReports()
         }

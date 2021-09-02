@@ -66,6 +66,15 @@ jobs:
             device: Apple TV 4K (at 1080p) (2nd generation)
           - os: macOS
             device: localhost
+            test: false
+            xcode: "12.5"
+          - os: macOS
+            device: localhost
+            test: false
+            xcode: "13.0"
+        exclude:
+          - os: macOS
+            test: true
     env:
       SETUP: database
       SPM: true

@@ -21,6 +21,13 @@
 		415FC24126D8E90B00AB8835 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8052DFC0B0123902D171FEAB /* GoogleService-Info.plist */; };
 		415FC24326D8E92200AB8835 /* FirebaseInstallations in Frameworks */ = {isa = PBXBuildFile; productRef = 415FC24226D8E92200AB8835 /* FirebaseInstallations */; };
 		415FC24526D8E92200AB8835 /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = 415FC24426D8E92200AB8835 /* FirebaseRemoteConfig */; };
+		41689EC126E027DE0053A241 /* ABTestingExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4125B7C0268E2E7A00232B67 /* ABTestingExampleApp.swift */; };
+		41689EC226E027DE0053A241 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4125B7C1268E2E7A00232B67 /* ContentView.swift */; };
+		41689EC326E027DE0053A241 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4125B84D268E7EF000232B67 /* AppConfig.swift */; };
+		41689EC726E027E80053A241 /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = 41689EC626E027E80053A241 /* FirebaseRemoteConfig */; };
+		41689EC826E027F30053A241 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8052DFC0B0123902D171FEAB /* GoogleService-Info.plist */; };
+		41689ECA26E068AA0053A241 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41689EC926E068A90053A241 /* CoreTelephony.framework */; };
+		41689EDC26E070390053A241 /* UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4125B7D6268E2E7C00232B67 /* UITests.swift */; };
 		4174273326D89DC300966D7D /* FirebaseInstallations in Frameworks */ = {isa = PBXBuildFile; productRef = 4174273226D89DC300966D7D /* FirebaseInstallations */; };
 		4174273526D89DC300966D7D /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = 4174273426D89DC300966D7D /* FirebaseRemoteConfig */; };
 		4174274526D89E6200966D7D /* UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4125B7D6268E2E7C00232B67 /* UITests.swift */; };
@@ -60,6 +67,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 415FC21F26D8E87100AB8835;
 			remoteInfo = "ABTestingExample (macOS)";
+		};
+		41689ED726E070040053A241 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4125B7BB268E2E7A00232B67 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 41689EB226E027630053A241;
+			remoteInfo = "ABTestingExample (catalyst)";
 		};
 		4174274026D89E1B00966D7D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -103,6 +117,9 @@
 		415FC22026D8E87100AB8835 /* ABTestingExample (macOS).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ABTestingExample (macOS).app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		415FC23226D8E8B400AB8835 /* Tests (macOS).xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests (macOS).xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		415FC24F26D8F43100AB8835 /* ABTestingExample (macOS).entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "ABTestingExample (macOS).entitlements"; sourceTree = "<group>"; };
+		41689EB326E027630053A241 /* ABTestingExample (catalyst).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ABTestingExample (catalyst).app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		41689EC926E068A90053A241 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		41689ED126E070040053A241 /* Tests (catalyst).xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests (catalyst).xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4174272326D89C7E00966D7D /* ABTestingExample (tvOS).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ABTestingExample (tvOS).app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4174273A26D89E1B00966D7D /* Tests (tvOS).xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests (tvOS).xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		41C69F7E26D9513C00C934F1 /* ABTestingExample (watchOS).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ABTestingExample (watchOS).app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -140,6 +157,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		415FC22F26D8E8B400AB8835 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		41689EB026E027630053A241 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				41689ECA26E068AA0053A241 /* CoreTelephony.framework in Frameworks */,
+				41689EC726E027E80053A241 /* FirebaseRemoteConfig in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		41689ECE26E070040053A241 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -218,6 +251,8 @@
 				41C69F7E26D9513C00C934F1 /* ABTestingExample (watchOS).app */,
 				41C69F8726D9514000C934F1 /* ABTestingExample (watchOS) Extension.appex */,
 				41C69FBF26D956F900C934F1 /* Tests (watchOS).xctest */,
+				41689EB326E027630053A241 /* ABTestingExample (catalyst).app */,
+				41689ED126E070040053A241 /* Tests (catalyst).xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -225,6 +260,7 @@
 		4174273126D89DC300966D7D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				41689EC926E068A90053A241 /* CoreTelephony.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -309,6 +345,44 @@
 			name = "Tests (macOS)";
 			productName = "Tests (macOS)";
 			productReference = 415FC23226D8E8B400AB8835 /* Tests (macOS).xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		41689EB226E027630053A241 /* ABTestingExample (catalyst) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 41689EBE26E027680053A241 /* Build configuration list for PBXNativeTarget "ABTestingExample (catalyst)" */;
+			buildPhases = (
+				41689EAF26E027630053A241 /* Sources */,
+				41689EB026E027630053A241 /* Frameworks */,
+				41689EB126E027630053A241 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "ABTestingExample (catalyst)";
+			packageProductDependencies = (
+				41689EC626E027E80053A241 /* FirebaseRemoteConfig */,
+			);
+			productName = "ABTestingExample (catalyst)";
+			productReference = 41689EB326E027630053A241 /* ABTestingExample (catalyst).app */;
+			productType = "com.apple.product-type.application";
+		};
+		41689ED026E070040053A241 /* Tests (catalyst) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 41689ED926E070040053A241 /* Build configuration list for PBXNativeTarget "Tests (catalyst)" */;
+			buildPhases = (
+				41689ECD26E070040053A241 /* Sources */,
+				41689ECE26E070040053A241 /* Frameworks */,
+				41689ECF26E070040053A241 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				41689ED826E070040053A241 /* PBXTargetDependency */,
+			);
+			name = "Tests (catalyst)";
+			productName = "Tests (catalyst)";
+			productReference = 41689ED126E070040053A241 /* Tests (catalyst).xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 		4174272226D89C7E00966D7D /* ABTestingExample (tvOS) */ = {
@@ -413,7 +487,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1250;
+				LastSwiftUpdateCheck = 1300;
 				LastUpgradeCheck = 1300;
 				TargetAttributes = {
 					4125B7C6268E2E7C00232B67 = {
@@ -429,6 +503,13 @@
 					415FC23126D8E8B400AB8835 = {
 						CreatedOnToolsVersion = 13.0;
 						TestTargetID = 415FC21F26D8E87100AB8835;
+					};
+					41689EB226E027630053A241 = {
+						CreatedOnToolsVersion = 13.0;
+					};
+					41689ED026E070040053A241 = {
+						CreatedOnToolsVersion = 13.0;
+						TestTargetID = 41689EB226E027630053A241;
 					};
 					4174272226D89C7E00966D7D = {
 						CreatedOnToolsVersion = 13.0;
@@ -474,6 +555,8 @@
 				41C69F7D26D9513C00C934F1 /* ABTestingExample (watchOS) */,
 				41C69F8626D9514000C934F1 /* ABTestingExample (watchOS) Extension */,
 				41C69FBE26D956F900C934F1 /* Tests (watchOS) */,
+				41689EB226E027630053A241 /* ABTestingExample (catalyst) */,
+				41689ED026E070040053A241 /* Tests (catalyst) */,
 			);
 		};
 /* End PBXProject section */
@@ -503,6 +586,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		415FC23026D8E8B400AB8835 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		41689EB126E027630053A241 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				41689EC826E027F30053A241 /* GoogleService-Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		41689ECF26E070040053A241 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -585,6 +683,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		41689EAF26E027630053A241 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				41689EC126E027DE0053A241 /* ABTestingExampleApp.swift in Sources */,
+				41689EC226E027DE0053A241 /* ContentView.swift in Sources */,
+				41689EC326E027DE0053A241 /* AppConfig.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		41689ECD26E070040053A241 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				41689EDC26E070390053A241 /* UITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4174271F26D89C7E00966D7D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -638,6 +754,11 @@
 			isa = PBXTargetDependency;
 			target = 415FC21F26D8E87100AB8835 /* ABTestingExample (macOS) */;
 			targetProxy = 415FC23826D8E8B400AB8835 /* PBXContainerItemProxy */;
+		};
+		41689ED826E070040053A241 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 41689EB226E027630053A241 /* ABTestingExample (catalyst) */;
+			targetProxy = 41689ED726E070040053A241 /* PBXContainerItemProxy */;
 		};
 		4174274126D89E1B00966D7D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -971,6 +1092,116 @@
 			};
 			name = Release;
 		};
+		41689EBF26E027680053A241 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGNING_ALLOWED = YES;
+				CODE_SIGN_ENTITLEMENTS = "ABTestingExample (macOS).entitlements";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.firebase.ABTestingExample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTS_MACCATALYST = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		41689EC026E027680053A241 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGNING_ALLOWED = YES;
+				CODE_SIGN_ENTITLEMENTS = "ABTestingExample (macOS).entitlements";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.firebase.ABTestingExample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTS_MACCATALYST = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		41689EDA26E070040053A241 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.firebase.Tests--catalyst-";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "2,6";
+				TEST_TARGET_NAME = "ABTestingExample (catalyst)";
+			};
+			name = Debug;
+		};
+		41689EDB26E070040053A241 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.firebase.Tests--catalyst-";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "2,6";
+				TEST_TARGET_NAME = "ABTestingExample (catalyst)";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 		4174272E26D89C8100966D7D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1228,6 +1459,24 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		41689EBE26E027680053A241 /* Build configuration list for PBXNativeTarget "ABTestingExample (catalyst)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				41689EBF26E027680053A241 /* Debug */,
+				41689EC026E027680053A241 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		41689ED926E070040053A241 /* Build configuration list for PBXNativeTarget "Tests (catalyst)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				41689EDA26E070040053A241 /* Debug */,
+				41689EDB26E070040053A241 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		4174273026D89C8100966D7D /* Build configuration list for PBXNativeTarget "ABTestingExample (tvOS)" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1303,6 +1552,11 @@
 			productName = FirebaseInstallations;
 		};
 		415FC24426D8E92200AB8835 /* FirebaseRemoteConfig */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4125B7F6268E319D00232B67 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseRemoteConfig;
+		};
+		41689EC626E027E80053A241 /* FirebaseRemoteConfig */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 4125B7F6268E319D00232B67 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseRemoteConfig;

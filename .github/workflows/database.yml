@@ -58,18 +58,16 @@ jobs:
       matrix:
         xcode: ["12.5", "13.0"]
         os: [iOS, tvOS, macOS]
-        test: [true]
         include:
           - os: iOS
             device: iPhone 12
+            test: true
           - os: tvOS
             device: Apple TV 4K (at 1080p) (2nd generation)
+            test: true
           - os: macOS
             device: localhost
-            xcode: "12.5"
-          - os: macOS
-            device: localhost
-            xcode: "13.0"
+            test: true
     env:
       SETUP: database
       SPM: true

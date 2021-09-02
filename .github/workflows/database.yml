@@ -70,9 +70,6 @@ jobs:
           - os: macOS
             device: localhost
             xcode: "13.0"
-        exclude:
-          - os: macOS
-            test: true
     env:
       SETUP: database
       SPM: true

@@ -26,7 +26,6 @@
 		41689EC326E027DE0053A241 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4125B84D268E7EF000232B67 /* AppConfig.swift */; };
 		41689EC726E027E80053A241 /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = 41689EC626E027E80053A241 /* FirebaseRemoteConfig */; };
 		41689EC826E027F30053A241 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8052DFC0B0123902D171FEAB /* GoogleService-Info.plist */; };
-		41689ECA26E068AA0053A241 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41689EC926E068A90053A241 /* CoreTelephony.framework */; };
 		41689EDC26E070390053A241 /* UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4125B7D6268E2E7C00232B67 /* UITests.swift */; };
 		4174273326D89DC300966D7D /* FirebaseInstallations in Frameworks */ = {isa = PBXBuildFile; productRef = 4174273226D89DC300966D7D /* FirebaseInstallations */; };
 		4174273526D89DC300966D7D /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = 4174273426D89DC300966D7D /* FirebaseRemoteConfig */; };
@@ -167,7 +166,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				41689ECA26E068AA0053A241 /* CoreTelephony.framework in Frameworks */,
 				41689EC726E027E80053A241 /* FirebaseRemoteConfig in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

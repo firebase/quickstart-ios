@@ -69,7 +69,7 @@ jobs:
           - os: tvOS
             device: Apple TV 4K (at 1080p) (2nd generation)
     env:
-      SAMPLE: performance
+      SETUP: performance
       SPM: true
       DIR: performance/SwiftUIPerformanceQuickstart/PerformanceExample
       OS: ${{ matrix.os }}
@@ -82,8 +82,8 @@ jobs:
         run: |
           sudo xcode-select -s "/Applications/Xcode_${XCODE_VERSION}.app/Contents/Developer"
           gem install xcpretty
-          cd $SAMPLE
-          ../scripts/install_prereqs/${SAMPLE}.sh
+          cd $SETUP
+          ../scripts/install_prereqs/${SETUP}.sh
         env:
           XCODE_VERSION: ${{ matrix.xcode }}
       - name: Build and Test SwiftUI (${{ matrix.os }})

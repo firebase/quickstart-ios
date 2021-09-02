@@ -57,6 +57,7 @@ jobs:
     runs-on: macOS-11
     strategy:
       matrix:
+        xcode: [12.5, 13.0]
         os: [iOS, tvOS, macOS, watchOS]
         test: [true]
         include:
@@ -83,8 +84,11 @@ jobs:
         uses: actions/checkout@master
       - name: Setup
         run: |
+          sudo xcode-select -s "/Applications/Xcode_${XCODE_VERSION}.app/Contents/Developer"
           gem install xcpretty
           cd abtesting
           ../scripts/install_prereqs/abtesting.sh
+        env:
+          XCODE_VERSION: ${{ matrix.xcode }}
       - name: Build and Test SwiftUI (${{ matrix.os }})
         run: ./scripts/test.sh

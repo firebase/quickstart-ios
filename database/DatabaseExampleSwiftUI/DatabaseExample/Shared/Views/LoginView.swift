@@ -132,7 +132,7 @@ struct LoginView: View {
       loginView
     #elseif os(macOS)
       loginView
-        .frame(minWidth: 400, minHeight: 700)
+      .frame(minWidth: 400, idealWidth: 400, minHeight: 700, idealHeight: 700)
     #endif
   }
 }

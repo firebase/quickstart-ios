@@ -70,6 +70,11 @@ jobs:
           - os: watchOS
             device: Apple Watch Series 5 - 44m
             test: false
+            xcode: "12.5"
+          - os: watchOS
+            device: Apple Watch Series 5 - 44m
+            test: false
+            xcode: "13.0"
         exclude:
           - os: watchOS
             test: true

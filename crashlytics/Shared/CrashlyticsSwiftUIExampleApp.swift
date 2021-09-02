@@ -19,27 +19,12 @@ import Firebase
 
 @main
 struct CrashlyticsSwiftUIExampleApp: App {
+  private var crashlyticsReference = Crashlytics.crashlytics()
   #if !os(watchOS)
     let reachabilityHelper = ReachabililtyHelper()
   #endif
 
-  init() {
-    FirebaseApp.configure()
-    Crashlytics.crashlytics().log("App loaded")
-
-    Crashlytics.crashlytics().setCustomValue(42, forKey: "MeaningOfLife")
-    Crashlytics.crashlytics().setCustomValue("Test value", forKey: "last_UI_action")
-
-    #if !os(watchOS)
-      let customKeysObject = [
-        "locale": reachabilityHelper.getLocale(),
-        "network_connection": reachabilityHelper.getNetworkStatus(),
-      ] as [String: Any]
-      Crashlytics.crashlytics().setCustomKeysAndValues(customKeysObject)
-      reachabilityHelper.updateAndTrackNetworkStatus()
-    #endif
-    Crashlytics.crashlytics().setUserID("123456789")
-
+  func setUserInfo() {
     let userInfo = [
       NSLocalizedDescriptionKey: NSLocalizedString("The request failed.", comment: ""),
       NSLocalizedFailureReasonErrorKey: NSLocalizedString(
@@ -55,6 +40,28 @@ struct CrashlyticsSwiftUIExampleApp: App {
     ]
     let error = NSError(domain: NSURLErrorDomain, code: -1001, userInfo: userInfo)
     Crashlytics.crashlytics().record(error: error)
+  }
+
+  func setCustomValues() {
+    crashlyticsReference.setCustomValue(42, forKey: "MeaningOfLife")
+    crashlyticsReference.setCustomValue("Test value", forKey: "last_UI_action")
+    // Reachability is not compatible with watchOS
+    #if !os(watchOS)
+      let customKeysObject = [
+        "locale": reachabilityHelper.getLocale(),
+        "network_connection": reachabilityHelper.getNetworkStatus(),
+      ] as [String: Any]
+      crashlyticsReference.setCustomKeysAndValues(customKeysObject)
+      reachabilityHelper.updateAndTrackNetworkStatus()
+    #endif
+    Crashlytics.crashlytics().setUserID("123456789")
+  }
+
+  init() {
+    FirebaseApp.configure()
+    Crashlytics.crashlytics().log("App loaded")
+    self.setCustomValues()
+    self.setUserInfo()
   }
 
   var body: some Scene {

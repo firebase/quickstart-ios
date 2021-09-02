@@ -52,31 +52,45 @@ jobs:
         env:
           SWIFT_SUFFIX: Swift
   spm:
-    name: spm
+    name: spm (Xcode ${{ matrix.xcode }} - ${{ matrix.os }})
     runs-on: macOS-11
+    strategy:
+      matrix:
+        xcode: ["12.5", "13.0"]
+        os: [iOS, tvOS, macOS]
+        test: [true]
+        include:
+          - os: iOS
+            device: iPhone 12
+          - os: tvOS
+            device: Apple TV 4K (at 1080p) (2nd generation)
+          - os: macOS
+            device: localhost
+            test: false
+            xcode: "12.5"
+          - os: macOS
+            device: localhost
+            test: false
+            xcode: "13.0"
+        exclude:
+          - os: macOS
+            test: true
     env:
+      SETUP: database
       SPM: true
       DIR: database/DatabaseExampleSwiftUI/DatabaseExample
-      TEST: true
+      OS: ${{ matrix.os }}
+      DEVICE: ${{ matrix.device }}
+      TEST: ${{ matrix.test }}
+      XCODE_VERSION: ${{ matrix.xcode }}
     steps:
       - name: Checkout
         uses: actions/checkout@master
       - name: Setup
         run: |
+          sudo xcode-select -s "/Applications/Xcode_${XCODE_VERSION}.app/Contents/Developer"
           gem install xcpretty
-          cd database
-          ../scripts/install_prereqs/database.sh
-      - name: Build SwiftUI (iOS)
+          cd $SETUP
+          ../scripts/install_prereqs/${SETUP}.sh
+      - name: Build and Test SwiftUI (${{ matrix.os }})
         run: ./scripts/test.sh
-        env:
-          OS: iOS
-          DEVICE: iPhone 11
-      - name: Build SwiftUI (macOS)
-        run: ./scripts/test.sh
-        env:
-          OS: macOS
-      - name: Build SwiftUI (tvOS)
-        run: ./scripts/test.sh
-        env:
-          OS: tvOS
-          DEVICE: Apple TV 4K (at 1080p) (2nd generation)

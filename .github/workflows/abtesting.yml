@@ -58,7 +58,7 @@ jobs:
     strategy:
       matrix:
         os: [iOS, tvOS, macOS, watchOS]
-        test: true
+        test: [true]
         include:
           - os: iOS
             device: iPhone 12

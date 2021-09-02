@@ -53,7 +53,7 @@ jobs:
           OS: iOS
           DEVICE: iPhone 11
   spm:
-    name: spm (${{ matrix.os }})
+    name: spm (Xcode ${{ matrix.xcode }} - ${{ matrix.os }})
     runs-on: macOS-11
     strategy:
       matrix:

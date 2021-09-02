@@ -69,6 +69,9 @@ jobs:
           - os: watchOS
             device: Apple Watch Series 5 - 44m
             test: false
+        exclude:
+          - os: watchOS
+            test: true
     env:
       SPM: true
       DIR: abtesting

@@ -85,6 +85,7 @@ jobs:
       OS: ${{ matrix.os }}
       DEVICE: ${{ matrix.device }}
       TEST: ${{ matrix.test }}
+      XCODE_VERSION: ${{ matrix.xcode }}
     steps:
       - name: Checkout
         uses: actions/checkout@master
@@ -94,7 +95,5 @@ jobs:
           gem install xcpretty
           cd $SETUP
           ../scripts/install_prereqs/${SETUP}.sh
-        env:
-          XCODE_VERSION: ${{ matrix.xcode }}
       - name: Build and Test SwiftUI (${{ matrix.os }})
         run: ./scripts/test.sh

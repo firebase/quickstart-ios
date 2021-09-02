@@ -51,7 +51,10 @@ struct FirebaseList: View {
             .refreshable {
               await appConfig.updateFromRemoteConfigAsync()
             }
-        } else { BasicList(data: data) }
+        } else {
+          BasicList(data: data)
+            .foregroundColor(appConfig.colorScheme == .dark ? .orange : .primary)
+        }
       #else
         BasicList(data: data)
           .foregroundColor(appConfig.colorScheme == .dark ? .orange : .primary)

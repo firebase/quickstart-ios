@@ -58,7 +58,7 @@ jobs:
     strategy:
       matrix:
         xcode: ["12.5", "13.0"]
-        os: [iOS, tvOS, macOS, watchOS]
+        os: [iOS, tvOS, macOS, watchOS, catalyst]
         include:
           - os: iOS
             device: iPhone 12
@@ -72,6 +72,9 @@ jobs:
           - os: watchOS
             device: Apple Watch Series 5 - 44m
             test: false
+          - os: catalyst
+            device: localhost
+            test: true
     env:
       SETUP: abtesting
       SPM: true

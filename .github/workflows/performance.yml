@@ -56,12 +56,23 @@ jobs:
         env:
           SWIFT_SUFFIX: Swift
   spm:
-    name: spm
+    name: spm (${{ matrix.os }})
     runs-on: macOS-11
+    strategy:
+      matrix:
+        os: [iOS, tvOS]
+        test: [true]
+        include:
+          - os: iOS
+            device: iPhone 12
+          - os: tvOS
+            device: Apple TV 4K (at 1080p) (2nd generation)
     env:
       SPM: true
       DIR: performance/SwiftUIPerformanceQuickstart/PerformanceExample
-      TEST: true
+      OS: ${{ matrix.os }}
+      DEVICE: ${{ matrix.device }}
+      TEST: ${{ matrix.test }}
     steps:
       - name: Checkout
         uses: actions/checkout@master
@@ -70,13 +81,5 @@ jobs:
           gem install xcpretty
           cd performance
           ../scripts/install_prereqs/performance.sh
-      - name: Build and Test SwiftUI iOS
+      - name: Build and Test SwiftUI (${{ matrix.os }})
         run: ./scripts/test.sh
-        env:
-          OS: iOS
-          DEVICE: iPhone 12 Pro
-      - name: Build and Test SwiftUI tvOS
-        run: ./scripts/test.sh
-        env:
-          OS: tvOS
-          DEVICE: Apple TV 4K (at 1080p) (2nd generation)

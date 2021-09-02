@@ -53,12 +53,31 @@ jobs:
           OS: iOS
           DEVICE: iPhone 11
   spm:
-    name: spm
+    name: spm (${{ matrix.os }})
     runs-on: macOS-11
+    strategy:
+      matrix:
+        os: [iOS, tvOS, macOS, watchOS]
+        test: [true]
+        include:
+          - os: iOS
+            device: iPhone 12
+          - os: tvOS
+            device: Apple TV 4K (at 1080p) (2nd generation)
+          - os: macOS
+            device: localhost
+          - os: watchOS
+            device: Apple Watch Series 5 - 44m
+            test: false
+        exclude:
+          - os: watchOS
+            test: true
     env:
       SPM: true
       DIR: abtesting
-      TEST: true
+      OS: ${{ matrix.os }}
+      DEVICE: ${{ matrix.device }}
+      TEST: ${{ matrix.test }}
     steps:
       - name: Checkout
         uses: actions/checkout@master
@@ -67,23 +86,5 @@ jobs:
           gem install xcpretty
           cd abtesting
           ../scripts/install_prereqs/abtesting.sh
-      - name: Build and Test SwiftUI (iOS)
+      - name: Build and Test SwiftUI (${{ matrix.os }})
         run: ./scripts/test.sh
-        env:
-          OS: iOS
-          DEVICE: iPhone 12
-      - name: Build and Test SwiftUI (tvOS)
-        run: ./scripts/test.sh
-        env:
-          OS: tvOS
-          DEVICE: Apple TV 4K (at 1080p) (2nd generation)
-      - name: Build and Test SwiftUI (macOS)
-        run: ./scripts/test.sh
-        env:
-          OS: macOS
-      - name: Build and Test SwiftUI (watchOS)
-        run: ./scripts/test.sh
-        env:
-          OS: watchOS
-          DEVICE: Apple Watch Series 5 - 44m
-          TEST: false

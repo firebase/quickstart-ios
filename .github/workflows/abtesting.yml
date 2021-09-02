@@ -59,25 +59,19 @@ jobs:
       matrix:
         xcode: ["12.5", "13.0"]
         os: [iOS, tvOS, macOS, watchOS]
-        test: [true]
         include:
           - os: iOS
             device: iPhone 12
+            test: true
           - os: tvOS
             device: Apple TV 4K (at 1080p) (2nd generation)
+            test: true
           - os: macOS
             device: localhost
-          - os: watchOS
-            device: Apple Watch Series 5 - 44m
-            test: false
-            xcode: "12.5"
-          - os: watchOS
-            device: Apple Watch Series 5 - 44m
-            test: false
-            xcode: "13.0"
-        exclude:
-          - os: watchOS
             test: true
+          - os: watchOS
+            device: Apple Watch Series 5 - 44m
+            test: false
     env:
       SETUP: abtesting
       SPM: true

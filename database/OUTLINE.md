@@ -70,7 +70,7 @@ into private `var ref = Database.root`
 To have a better understanding of how each file interacts with each other, below is a flow chart
 describing how the views interact with each other. 
 
-![Data Flow Chart](./Design/Images/data-flow-chart.png)
+![Data Flow Chart](./Design/Images/data-structure/data-flow-chart.png)
 
 ## Database Structure
 
@@ -80,7 +80,7 @@ describing how the views interact with each other.
   following structure: `[“author”, “body”, “starCount”, “title”, “uid”, “userIDsStarredBy”]`
 - The unique keys (post-ids) are generalized as posts are created, sorting them would yield a list
   of posts from most to least recent.
-- Example: ![posts database structure](./Design/Images/posts.png)
+- Example: ![posts database structure](./Design/Images/data-structure/posts.png)
 
 ### Comments on each post
 - The `post-comments` category organizes every comment on each post. It starts with a dictionary of
@@ -89,10 +89,10 @@ describing how the views interact with each other.
   “text”, “uid”]`.
 - Comment-ids are generalized as comments are sent, sorting them would yield a list of comments from
   most to least recent.
-- Example: ![post-commments database structure](./Design/Images/post-comments.png)
+- Example: ![post-commments database structure](./Design/Images/data-structure/post-comments.png)
 
 ### Posts grouped by users
 - The `user-posts` category is a list of posts organized by “uid” (user-ids) that are unique to each
   user.
 - Since the posts are grouped by users, it is easy to fetch and sort posts from a single user.
-- Example: ![user-posts database structure](./Design/Images/user-posts.png)
+- Example: ![user-posts database structure](./Design/Images/data-structure/user-posts.png)

@@ -2,6 +2,7 @@
 
 ## Table of Contents
 - [iOS](#ios)
+    - [Animation](#animation)
     - [MainView - Ready](#mainview---ready)
     - [ClassifyView & SaliencyMapView - Not Ready](#classifyview--saliencymapview---not-ready)
     - [UploadView - Not Ready](#uploadview---not-ready)
@@ -16,6 +17,7 @@
     - [UploadView - Success](#uploadview---success)
     - [MainView - Success](#mainview---success)
 - [tvOS](#tvos)
+    - [Animation](#animation-1)
     - [MainView - Ready](#mainview---ready-1)
     - [ClassifyView & SaliencyMapView - Not Ready](#classifyview--saliencymapview---not-ready-1)
     - [UploadView - Not Ready](#uploadview---not-ready-1)
@@ -31,6 +33,8 @@
     - [MainView - Success](#mainview---success-1)
 
 ## iOS
+### Animation
+![Performance.gif](Media/iOS/Performance.gif)
 ### MainView - Ready
 ![MainView - Ready.png](Media/iOS/MainView%20-%20Ready.png)
 ### ClassifyView & SaliencyMapView - Not Ready
@@ -58,6 +62,8 @@
 ### MainView - Success
 ![MainView - Success](Media/iOS/MainView%20-%20Success.png)
 ## tvOS
+### Animation
+![Performance.gif](Media/tvOS/Performance.gif)
 ### MainView - Ready
 ![MainView - Ready.png](Media/tvOS/MainView%20-%20Ready.png)
 ### ClassifyView & SaliencyMapView - Not Ready

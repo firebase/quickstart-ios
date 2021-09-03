@@ -23,7 +23,7 @@ class AppConfig: ObservableObject {
   init() {
     let value = RemoteConfig.remoteConfig()["color_scheme"].stringValue ?? "nil"
     colorScheme = ColorScheme(value)
-    #if DEBUG
+    #if !targetEnvironment(macCatalyst) && DEBUG
       NotificationCenter.default.addObserver(self,
                                              selector: #selector(printInstallationAuthToken),
                                              name: .InstallationIDDidChange,
@@ -31,7 +31,7 @@ class AppConfig: ObservableObject {
     #endif
   }
 
-  #if DEBUG
+  #if !targetEnvironment(macCatalyst) && DEBUG
     deinit { NotificationCenter.default.removeObserver(self) }
   #endif
 
@@ -74,16 +74,17 @@ class AppConfig: ObservableObject {
       }
     }
   #endif
-
-  @objc func printInstallationAuthToken() {
-    Installations.installations().authTokenForcingRefresh(true) { token, error in
-      if let error = error {
-        print("Error fetching token: \(error)")
-      } else if let token = token {
-        print("Installation auth token: \(token.authToken)")
+  #if !targetEnvironment(macCatalyst)
+    @objc func printInstallationAuthToken() {
+      Installations.installations().authTokenForcingRefresh(true) { token, error in
+        if let error = error {
+          print("Error fetching token: \(error)")
+        } else if let token = token {
+          print("Installation auth token: \(token.authToken)")
+        }
       }
     }
-  }
+  #endif
 }
 
 extension ColorScheme {

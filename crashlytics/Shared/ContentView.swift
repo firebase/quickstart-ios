@@ -17,6 +17,19 @@
 import SwiftUI
 import Firebase
 
+struct CrashButtonView: View {
+  var body: some View {
+    NavigationView {
+      Button(action: {
+        fatalError()
+      }) {
+        Text("Crash")
+      }
+      .navigationTitle("Crashlytics Example")
+    }
+  }
+}
+
 struct ContentView: View {
   private var crashlyticsReference = Crashlytics.crashlytics()
 
@@ -38,24 +51,23 @@ struct ContentView: View {
   }
 
   var body: some View {
-    NavigationView {
-      Button(action: {
-        fatalError()
-      }) {
-        Text("Crash")
-      }
-      .navigationTitle("Crashlytics Example")
-      .onAppear {
-        if #available(iOS 15, tvOS 15, macOS 12, watchOS 8, *) {
-          #if swift(>=5.5)
-            Task { await self.checkForUnsentReportsAsync() }
-          #else
+    if #available(iOS 15, tvOS 15, macOS 12, watchOS 8, *) {
+      #if swift(>=5.5)
+        CrashButtonView()
+          .task {
+            await self.checkForUnsentReportsAsync()
+          }
+      #else
+        CrashButtonView()
+          .onAppear {
             self.checkForUnsentReports()
-          #endif
-        } else {
+          }
+      #endif
+    } else {
+      CrashButtonView()
+        .onAppear {
           self.checkForUnsentReports()
         }
-      }
     }
   }
 }

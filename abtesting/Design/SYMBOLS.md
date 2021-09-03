@@ -20,11 +20,14 @@
 - [ContentView](#contentview)
     - [ContentView](#contentview-1)
         - [appConfig](#appconfig-3)
-        - [data](#data)
         - [body](#body-1)
+    - [FirebaseList](#firebaselist)
+        - [appConfig](#appconfig-4)
+        - [data](#data)
+        - [body](#body-2)
     - [BasicList](#basiclist)
         - [data](#data-1)
-        - [body](#body-2)
+        - [body](#body-3)
 
 ## `ABTestingExampleApp`
 ```swift
@@ -70,13 +73,13 @@ stores the color scheme for the app
 init()
 ```
 updates app's color scheme from RemoteConfig and adds observer to print installation auth token if 
-it changes
+it changes on platforms other than Mac Catalyst
 
 #### `deinit`
 ```swift
 deinit
 ```
-removes installation auth token change observer
+removes installation auth token change observer on platforms other than Mac Catalyst
 
 #### `updateFromRemoteConfig`
 ```swift
@@ -87,7 +90,7 @@ has changed
 
 #### `updateFromRemoteConfigAsync`
 ```swift
-@available(iOS 15, *)
+@available(iOS 15, tvOS 15, macOS 12, watchOS 8, *)
 func updateFromRemoteConfigAsync() async
 ```
 retrieves color scheme from RemoteConfig asynchronously and updates app's color scheme on the main 
@@ -97,7 +100,7 @@ thread if it has changed
 ```swift
 @objc func printInstallationAuthToken()
 ```
-prints installation auth token
+prints installation auth token on platforms other than Mac Catalyst 
 
 ### `ColorScheme`
 ```swift
@@ -137,20 +140,39 @@ main content view
 ```
 stores app's AppConfig instance
 
+#### `body`
+```swift
+var body: some View { get }
+```
+returns a `FirebaseList` wrapped with `NavigationView` when not on macOS
+
+### `FirebaseList`
+```swift
+struct FirebaseList: View
+```
+multi-platform view for a `BasicList` populated with Firebase data
+
+#### `appConfig`
+```swift
+@ObservedObject var appConfig: AppConfig
+```
+stores app's AppConfig instance
+
 #### `data`
 ```swift
 let data: [(title: String, subtitle: String)]
 ```
-stores title-subtitle String pairings of some Firebase products
+stores array of title-subtitle String pairings specific to Firebase
 
 #### `body`
 ```swift
 var body: some View { get }
 ```
-returns `VStack` of a `BasicList` consisting of some Firebase products on top of a "Refresh" 
+returns `VStack` containing a `BasicList` populated with the Firebase data on top of a "Refresh" 
 `Button`, which updates appConfig's color scheme from Remote Config and is done asynchronously if 
-refreshed by pulling down on the list on iOS 15, with a navigation title of "Firenotes" and 
-preferred color scheme of appConfig's color scheme
+refreshed by pulling down on the list on iOS 15, with a navigation title of "Firenotes", preferred 
+color scheme of appConfig's color scheme, and foreground color corresponding to appConfig's color 
+scheme (orange for dark color scheme, primary for light color scheme)
 
 ### `BasicList`
 ```swift

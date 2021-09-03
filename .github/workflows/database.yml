@@ -67,7 +67,7 @@ jobs:
             test: true
           - os: macOS
             device: localhost
-            test: false
+            test: false # flaky macOS UITest: UITests.testStaticSignUpView() sometimes fails
     env:
       SETUP: database
       SPM: true

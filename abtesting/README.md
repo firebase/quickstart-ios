@@ -23,7 +23,9 @@ To view the older Objective-C and Swift quickstarts, view the
     - On macOS, running the sample can prompt you for your password to allow Keychain access, 
     which will enable Installations to work properly and thus allow you to follow the instructions
     of the [Test on Device](#test-on-device) section. Otherwise, refer to the [Published Experiment
-    ](#published-experiment) section below.
+    ](#published-experiment) section below. This prompt appears because the project is signed to 
+    run locally, but if you use a proper Signing Certificate then your end users should not see 
+    that prompt.
     - On Mac Catalyst, Firebase Installations is not installed, so you won't be able to manage it 
     as a test device. Instead, refer to the [Published Experiment](#published-experiment) section 
     below.

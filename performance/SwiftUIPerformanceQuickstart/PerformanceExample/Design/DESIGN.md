@@ -7,8 +7,8 @@
     - [Process / Process Derivatives](#process--process-derivatives)
     - [Vision](#vision)
     - [FirebaseStorage / FirebaseStorageSwift](#firebasestorage--firebasestorageswift)
-    - [iOS & tvOS](#ios--tvos)
-    - [Swift 5.5 & iOS / tvOS 15](#swift-55--ios--tvos-15)
+    - [Multi-platform](#multi-platform)
+    - [Conditional Compilation](#conditional-compilation)
 
 # Context
 This document presents the design for the SwiftUI version of the [Firebase Performance Monitoring 
@@ -16,8 +16,8 @@ Quickstart](..), an iOS / tvOS app that demonstrates the use of
 [Firebase Performance Monitoring](https://firebase.google.com/products/performance). This SwiftUI 
 version of the Quickstart is meant to show use of Firebase products (Performance Monitoring and 
 [Storage](https://firebase.google.com/products/storage)) alongside the latest Apple technologies 
-([SwiftUI](#ios--tvos), [shared cross-platform code](#ios--tvos), 
-[async / await](#swift-55--ios--tvos-15), [Swift Package Manager](#ios--tvos), [Vision](#vision)) 
+([SwiftUI](#multi-platform), [shared cross-platform code](#multi-platform), 
+[async / await](#conditional-compilation), [Swift Package Manager](#multi-platform), [Vision](#vision)) 
 developers might want to use.
 
 # Design
@@ -79,7 +79,7 @@ the same time, Storage provides
 asynchronous code
 ](https://developer.apple.com/documentation/swift/result/writing_failable_asynchronous_apis) such 
 as that used for Storage upload completion handlers.
-## iOS & tvOS
+## Multi-platform
 This Quickstart supports both iOS and tvOS platforms. Thanks to 
 [SwiftUI](https://developer.apple.com/documentation/SwiftUI), all code can be shared across the two
  platforms; the only code difference between the two platforms is very intentional: the value 
@@ -87,7 +87,7 @@ This Quickstart supports both iOS and tvOS platforms. Thanks to
  application. [Swift Package Manager](https://swift.org/package-manager) makes the integration of 
  Firebase products more streamlined and aligned with up-and-coming best practices for third-party 
  libraries.
-## Swift 5.5 & iOS / tvOS 15
+## Conditional Compilation
 Scattered throughout the application are conditional compilation blocks which check for the 
 availability of Swift 5.5 and house availability conditions which check for the availability of iOS
  15 or tvOS 15. These allow the application to showcase the latest Apple technologies such as 

@@ -41,8 +41,8 @@ View can be implemented with SwiftUI syntax
 - `SignUpView.swift`
 
 ViewModel connects the model and view together and performs network requests to write and fetch
-posts. They conform to the `ObservableObject` protocol and publish its property using the `@Published`
-property wrapper. This is the “binder” part of MVVM.
+posts. They conform to the `ObservableObject` protocol and publish its property using the
+`@Published` property wrapper. This is the “binder” part of MVVM.
 - `PostListViewModel.swift`
 - `PostViewModel.swift`
 - `UserViewModel.swift`
@@ -67,17 +67,19 @@ ref = DatabaseReference.database().reference()
 into private `var ref = Database.root`
 
 ## Data Flow Chart
-To have a better understanding of how each file interacts with each other, below is a flow chart describing how the views interact with each other.
+To have a better understanding of how each file interacts with each other, below is a flow chart
+describing how the views interact with each other. 
 
 ![Data Flow Chart](./Design/Images/data-flow-chart.png)
 
 ## Database Structure
 
 ### All posts
-- The `posts` category contains every post made in history. It is organized as a dictionary identified by a unique key (post-id), and each post contains a dictionary with the
+- The `posts` category contains every post made in history. It is organized as a dictionary
+  identified by a unique key (post-id), and each post contains a dictionary with the 
   following structure: `[“author”, “body”, “starCount”, “title”, “uid”, “userIDsStarredBy”]`
-- The unique keys (post-ids) are generalized as posts are created, sorting them would yield a list of posts from most
-  to least recent.
+- The unique keys (post-ids) are generalized as posts are created, sorting them would yield a list
+  of posts from most to least recent.
 - Example: ![posts database structure](./Design/Images/posts.png)
 
 ### Comments on each post

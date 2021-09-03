@@ -541,6 +541,7 @@
 					};
 					C74593FA26BDDD5F00153AE3 = {
 						CreatedOnToolsVersion = 12.5;
+						LastSwiftMigration = 1300;
 					};
 					C745940326BDDD6200153AE3 = {
 						CreatedOnToolsVersion = 12.5;
@@ -1122,6 +1123,7 @@
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
@@ -1131,6 +1133,11 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				IBSC_MODULE = CrashlyticsSwiftUIExample__watchOS__Extension;
 				INFOPLIST_FILE = "CrashlyticsSwiftUIExample_(watchOS)/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				OTHER_LDFLAGS = "-ObjC";
@@ -1155,6 +1162,7 @@
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
@@ -1165,6 +1173,11 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				IBSC_MODULE = CrashlyticsSwiftUIExample__watchOS__Extension;
 				INFOPLIST_FILE = "CrashlyticsSwiftUIExample_(watchOS)/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				MTL_FAST_MATH = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = "Google-LLC.CrashlyticsSwiftUIExample.watchkitapp";

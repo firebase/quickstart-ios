@@ -144,8 +144,7 @@ stores app's AppConfig instance
 ```swift
 var body: some View { get }
 ```
-returns a `FirebaseList` with preferred color scheme of appConfig's color scheme which is updated 
-when view appears, wrapped with `NavigationView` when not on macOS
+returns a `FirebaseList` wrapped with `NavigationView` when not on macOS
 
 ### `FirebaseList`
 ```swift
@@ -171,9 +170,9 @@ var body: some View { get }
 ```
 returns `VStack` containing a `BasicList` populated with the Firebase data on top of a "Refresh" 
 `Button`, which updates appConfig's color scheme from Remote Config and is done asynchronously if 
-refreshed by pulling down on the list on iOS 15, with a navigation title of "Firenotes" and 
-foreground color corresponding to appConfig's color scheme (orange for dark color scheme, primary 
-for light color scheme)
+refreshed by pulling down on the list on iOS 15, with a navigation title of "Firenotes", preferred 
+color scheme of appConfig's color scheme, and foreground color corresponding to appConfig's color 
+scheme (orange for dark color scheme, primary for light color scheme)
 
 ### `BasicList`
 ```swift

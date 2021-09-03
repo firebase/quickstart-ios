@@ -20,6 +20,10 @@ To view the older Objective-C and Swift quickstarts, view the
 - Run the sample on your device or simulator.
     - If your build fails due to package errors, try resetting package caches (File > Swift 
     Packages > Reset Package Caches).
+    - On macOS, running the sample can prompt you for your password to allow Keychain access, 
+    which will enable Installations to work properly and thus allow you to follow the instructions
+    of the [Test on Device](#test-on-device) section. Otherwise, refer to the [Published Experiment
+    ](#published-experiment) section below.
     - On Mac Catalyst, Firebase Installations is not installed, so you won't be able to manage it 
     as a test device. Instead, refer to the [Published Experiment](#published-experiment) section 
     below.

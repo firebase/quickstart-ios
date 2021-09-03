@@ -22,13 +22,9 @@ struct ContentView: View {
   var body: some View {
     #if !os(macOS)
       NavigationView { FirebaseList(appConfig: appConfig) }
-        .preferredColorScheme(appConfig.colorScheme)
-        .onAppear { appConfig.updateFromRemoteConfig() }
         .navigationViewStyle(StackNavigationViewStyle())
     #else
       FirebaseList(appConfig: appConfig)
-        .preferredColorScheme(appConfig.colorScheme)
-        .onAppear { appConfig.updateFromRemoteConfig() }
     #endif
   }
 }
@@ -47,17 +43,21 @@ struct FirebaseList: View {
       #if swift(>=5.5)
         if #available(iOS 15, tvOS 15, macOS 12, watchOS 8, *) {
           BasicList(data: data)
+            .preferredColorScheme(appConfig.colorScheme)
             .foregroundColor(appConfig.colorScheme == .dark ? .orange : .primary)
-            .refreshable {
-              await appConfig.updateFromRemoteConfigAsync()
-            }
+            .task { await appConfig.updateFromRemoteConfigAsync() }
+            .refreshable { await appConfig.updateFromRemoteConfigAsync() }
         } else {
           BasicList(data: data)
+            .preferredColorScheme(appConfig.colorScheme)
             .foregroundColor(appConfig.colorScheme == .dark ? .orange : .primary)
+            .onAppear { appConfig.updateFromRemoteConfig() }
         }
       #else
         BasicList(data: data)
+          .preferredColorScheme(appConfig.colorScheme)
           .foregroundColor(appConfig.colorScheme == .dark ? .orange : .primary)
+          .onAppear { appConfig.updateFromRemoteConfig() }
       #endif
       Button("Refresh") { appConfig.updateFromRemoteConfig() }
       Spacer()

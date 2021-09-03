@@ -50,8 +50,10 @@ above).
 Documentation
 -------------
 
-To learn more about the structure of the SwiftUI Realtime Database quickstart app, check out the
+- To learn more about the structure of the SwiftUI Realtime Database quickstart app, check out the
 documentation [here](./OUTLINE.md).
+- For demos and screenshots of the Quickstart from multiple Apple platforms, check out the
+  documentation [here](./MEDIA.md)
 
 Support
 -------

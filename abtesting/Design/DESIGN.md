@@ -4,7 +4,8 @@
 - [Context](#context)
 - [Design](#design)
     - [AppConfig](#appconfig)
-    - [Swift 5.5 & iOS 15](#swift-55--ios-15)
+    - [Multi-platform](#multi-platform)
+    - [Conditional Compilation](#conditional-compilation)
 
 ## Context
 This document presents the design for the SwiftUI version of the 
@@ -13,7 +14,7 @@ This document presents the design for the SwiftUI version of the
 the Quickstart is meant to show use of Firebase products (A/B Testing, 
 [Remote Config](#further-reading), [Installations](#further-reading)) alongside the latest Apple 
 technologies ([SwiftUI](https://developer.apple.com/documentation/SwiftUI), 
-[async / await](#swift-55--ios-15), [Swift Package Manager](https://swift.org/package-manager)) 
+[Swift Concurrency](#conditional-compilation), [Swift Package Manager](https://swift.org/package-manager)) 
 developers might want to use.
 
 ## Design
@@ -32,7 +33,15 @@ To handle app state and communication with RemoteConfig, the class
 installation auth token, fetching the color scheme from RemoteConfig, and updating the UI with any 
 changes while also handling error management.
 
-### Swift 5.5 & iOS 15
+### Multi-platform
+This Quickstart supports the iOS, tvOS, macOS, watchOS, and Mac Catalyst platforms. Thanks to 
+[SwiftUI](https://developer.apple.com/documentation/SwiftUI), all code can be shared across the 
+platforms; the only code difference between the platforms is very intentional: the withholding of 
+`NavigationView` on macOS and the absence of Firebase Installations on Mac Catalyst. [Swift Package 
+Manager](https://swift.org/package-manager/) makes the integration of Firebase products more 
+streamlined and aligned with up-and-coming best practices for third-party libraries.
+
+### Conditional Compilation
 The app contains a conditional compilation block which checks for the availability of Swift 5.5 and
  houses an availability condition which checks for the availability of iOS 15. This allows the app 
  to showcase the latest Apple technologies such as [Swift Concurrency

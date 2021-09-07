@@ -14,21 +14,18 @@
 //  limitations under the License.
 //
 
-import SwiftUI
+import Foundation
 import Firebase
 
-@main
-struct DatabaseExampleApp: App {
-  init() {
-    // Set an instance of `MyAppCheckProviderFactory` as an App Check provider factory before
-    // configuring Firebase.
-    AppCheck.setAppCheckProviderFactory(MyAppCheckProviderFactory())
-    FirebaseApp.configure()
-  }
-
-  var body: some Scene {
-    WindowGroup {
-      ContentView()
-    }
+class MyAppCheckProviderFactory: NSObject, AppCheckProviderFactory {
+  func createProvider(with app: FirebaseApp) -> AppCheckProvider? {
+    #if targetEnvironment(simulator)
+      // App Attest is not available on simulators.
+      // Use a debug provider.
+      return AppCheckDebugProvider(app: app)
+    #else
+      // Use App Attest provider on real devices.
+      return AppAttestProvider(app: app)
+    #endif
   }
 }

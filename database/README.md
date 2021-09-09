@@ -39,7 +39,7 @@ $ open DatabaseExample.xcodeproj
   4. Drag the downloaded `GoogleService-Info.plist` into the opened quickstart app under the
      `Shared` folder.
 - [Create a Database](https://firebase.google.com/docs/database/ios/start#create_a_database) and
-  update the rules to [database rules](./DatabaseExampleRules.json).
+  update the rules to [database rules](./DatabaseExampleRules.md).
 - Now you should be able to build and run the Firebase project!
 
 ### Navigation Bar Issue on tvOS

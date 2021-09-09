@@ -12,7 +12,7 @@ directory.
 Getting Started
 ---------------
 
-### Clone and open Crashlytics quickstart project
+### Clone and open Database quickstart project
 
 - Clone the quickstart repo and `cd` into the `database/DatabaseExampleSwiftUI/DatabaseExample`
   directory.
@@ -28,7 +28,7 @@ $ open DatabaseExample.xcodeproj
 
 ### Connecting to the Firebase Console 
 
-- To have a functional application, you will need to connect the Crashlytics quickstart example with
+- To have a functional application, you will need to connect the Database quickstart example with
   the [Firebase Console](https://console.firebase.google.com).
 - For an in-depth explanation, you can read more about [adding Firebase to your iOS
   Project](https://firebase.google.com/docs/ios/setup). Below is a summary of the main steps:
@@ -39,7 +39,7 @@ $ open DatabaseExample.xcodeproj
   4. Drag the downloaded `GoogleService-Info.plist` into the opened quickstart app under the
      `Shared` folder.
 - [Create a Database](https://firebase.google.com/docs/database/ios/start#create_a_database) and
-  update the rules to [database rules](./DatabaseExampleRules.json).
+  update the rules to [database rules](./DatabaseExampleRules.md).
 - Now you should be able to build and run the Firebase project!
 
 ### Navigation Bar Issue on tvOS

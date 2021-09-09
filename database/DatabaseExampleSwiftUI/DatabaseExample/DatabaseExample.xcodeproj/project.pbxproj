@@ -13,7 +13,9 @@
 		9A0FAF3626E7E3A00092BADD /* AppCheckProviderFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0FAF3526E7E3A00092BADD /* AppCheckProviderFactory.swift */; };
 		9A0FAF3726E7E3A00092BADD /* AppCheckProviderFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0FAF3526E7E3A00092BADD /* AppCheckProviderFactory.swift */; };
 		9A0FAF3826E7E3A00092BADD /* AppCheckProviderFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0FAF3526E7E3A00092BADD /* AppCheckProviderFactory.swift */; };
-		B9029EF126A10B1500C92F12 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B9029EF026A10B1500C92F12 /* GoogleService-Info.plist */; };
+		9A0FAF3E26EA90340092BADD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9A0FAF3D26EA90340092BADD /* GoogleService-Info.plist */; };
+		9A0FAF3F26EA90340092BADD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9A0FAF3D26EA90340092BADD /* GoogleService-Info.plist */; };
+		9A0FAF4026EA90340092BADD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9A0FAF3D26EA90340092BADD /* GoogleService-Info.plist */; };
 		C70B63FF2696B29400851A91 /* NewPostsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C70B63FE2696B29400851A91 /* NewPostsView.swift */; };
 		C70B64002696B29400851A91 /* NewPostsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C70B63FE2696B29400851A91 /* NewPostsView.swift */; };
 		C730A31F26B0998A00A29E81 /* PostsType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C730A31E26B0998A00A29E81 /* PostsType.swift */; };
@@ -29,9 +31,7 @@
 		C796F29A26CCDCF50076C5F5 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = C796F29926CCDCF50076C5F5 /* FirebaseDatabase */; };
 		C796F29C26CCE3DA0076C5F5 /* ScreenDimensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C796F29B26CCE3DA0076C5F5 /* ScreenDimensions.swift */; };
 		C796F29D26CCE3DA0076C5F5 /* ScreenDimensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C796F29B26CCE3DA0076C5F5 /* ScreenDimensions.swift */; };
-		C796F29E26CCE9DE0076C5F5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B9029EF026A10B1500C92F12 /* GoogleService-Info.plist */; };
 		C796F2AD26D2281A0076C5F5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C796F2AC26D2281A0076C5F5 /* Preview Assets.xcassets */; };
-		C796F2B226D228380076C5F5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B9029EF026A10B1500C92F12 /* GoogleService-Info.plist */; };
 		C796F2B326D2283B0076C5F5 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C6B5B2268DAC1800546A57 /* Comment.swift */; };
 		C796F2B426D2283E0076C5F5 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F60CF5268EBEDE002F68AB /* UserViewModel.swift */; };
 		C796F2B526D228410076C5F5 /* PostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79D1AC226A4114600B6A169 /* PostViewModel.swift */; };
@@ -103,7 +103,8 @@
 
 /* Begin PBXFileReference section */
 		9A0FAF3526E7E3A00092BADD /* AppCheckProviderFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCheckProviderFactory.swift; sourceTree = "<group>"; };
-		B9029EF026A10B1500C92F12 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		9A0FAF3D26EA90340092BADD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		9A0FAF4126EA914D0092BADD /* DatabaseExample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DatabaseExample.entitlements; sourceTree = "<group>"; };
 		C70B63FE2696B29400851A91 /* NewPostsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPostsView.swift; sourceTree = "<group>"; };
 		C730A31E26B0998A00A29E81 /* PostsType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsType.swift; sourceTree = "<group>"; };
 		C7690D8826DE0BD900F30AA6 /* UITests_iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UITests_iOS.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -225,7 +226,8 @@
 		C7C6B56E268C8C9A00546A57 = {
 			isa = PBXGroup;
 			children = (
-				B9029EF026A10B1500C92F12 /* GoogleService-Info.plist */,
+				9A0FAF4126EA914D0092BADD /* DatabaseExample.entitlements */,
+				9A0FAF3D26EA90340092BADD /* GoogleService-Info.plist */,
 				C7C6B573268C8C9A00546A57 /* Shared */,
 				C7C6B57D268C8C9C00546A57 /* iOS */,
 				C7C6B584268C8C9C00546A57 /* macOS */,
@@ -519,7 +521,7 @@
 			files = (
 				C796F2AD26D2281A0076C5F5 /* Preview Assets.xcassets in Resources */,
 				C796F2C626D390010076C5F5 /* Assets.xcassets in Resources */,
-				C796F2B226D228380076C5F5 /* GoogleService-Info.plist in Resources */,
+				9A0FAF4026EA90340092BADD /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -527,8 +529,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A0FAF3E26EA90340092BADD /* GoogleService-Info.plist in Resources */,
 				C7C6B58B268C8C9C00546A57 /* Assets.xcassets in Resources */,
-				B9029EF126A10B1500C92F12 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -536,8 +538,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A0FAF3F26EA90340092BADD /* GoogleService-Info.plist in Resources */,
 				C7C6B58C268C8C9C00546A57 /* Assets.xcassets in Resources */,
-				C796F29E26CCE9DE0076C5F5 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -980,6 +982,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = DatabaseExample.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iOS/Info.plist;

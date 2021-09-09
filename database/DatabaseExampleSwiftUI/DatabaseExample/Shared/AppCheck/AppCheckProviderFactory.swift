@@ -17,7 +17,7 @@
 import Foundation
 import Firebase
 
-class MyAppCheckProviderFactory: NSObject, AppCheckProviderFactory {
+class SimpleAppCheckProviderFactory: NSObject, AppCheckProviderFactory {
   func createProvider(with app: FirebaseApp) -> AppCheckProvider? {
     #if targetEnvironment(simulator)
       // App Attest is not available on simulators.

@@ -22,7 +22,7 @@ struct DatabaseExampleApp: App {
   init() {
     // Set an instance of `MyAppCheckProviderFactory` as an App Check provider factory before
     // configuring Firebase.
-    AppCheck.setAppCheckProviderFactory(SimpleAppCheckProviderFactory())
+    AppCheck.setAppCheckProviderFactory(MyCustomAppCheckProvider.Factory())
     FirebaseApp.configure()
   }
 

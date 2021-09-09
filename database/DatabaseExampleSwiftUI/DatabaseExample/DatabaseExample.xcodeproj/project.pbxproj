@@ -10,9 +10,9 @@
 		9A0FAF2F26E7CFD10092BADD /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = 9A0FAF2E26E7CFD10092BADD /* FirebaseAppCheck */; };
 		9A0FAF3126E7D1310092BADD /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = 9A0FAF3026E7D1310092BADD /* FirebaseAppCheck */; };
 		9A0FAF3326E7D1380092BADD /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = 9A0FAF3226E7D1380092BADD /* FirebaseAppCheck */; };
-		9A0FAF3626E7E3A00092BADD /* AppCheckProviderFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0FAF3526E7E3A00092BADD /* AppCheckProviderFactory.swift */; };
-		9A0FAF3726E7E3A00092BADD /* AppCheckProviderFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0FAF3526E7E3A00092BADD /* AppCheckProviderFactory.swift */; };
-		9A0FAF3826E7E3A00092BADD /* AppCheckProviderFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0FAF3526E7E3A00092BADD /* AppCheckProviderFactory.swift */; };
+		9A0FAF3626E7E3A00092BADD /* SimpleAppCheckProviderFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0FAF3526E7E3A00092BADD /* SimpleAppCheckProviderFactory.swift */; };
+		9A0FAF3726E7E3A00092BADD /* SimpleAppCheckProviderFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0FAF3526E7E3A00092BADD /* SimpleAppCheckProviderFactory.swift */; };
+		9A0FAF3826E7E3A00092BADD /* SimpleAppCheckProviderFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0FAF3526E7E3A00092BADD /* SimpleAppCheckProviderFactory.swift */; };
 		9A0FAF3E26EA90340092BADD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9A0FAF3D26EA90340092BADD /* GoogleService-Info.plist */; };
 		9A0FAF3F26EA90340092BADD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9A0FAF3D26EA90340092BADD /* GoogleService-Info.plist */; };
 		9A0FAF4026EA90340092BADD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9A0FAF3D26EA90340092BADD /* GoogleService-Info.plist */; };
@@ -102,7 +102,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		9A0FAF3526E7E3A00092BADD /* AppCheckProviderFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCheckProviderFactory.swift; sourceTree = "<group>"; };
+		9A0FAF3526E7E3A00092BADD /* SimpleAppCheckProviderFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleAppCheckProviderFactory.swift; sourceTree = "<group>"; };
 		9A0FAF3D26EA90340092BADD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9A0FAF4126EA914D0092BADD /* DatabaseExample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DatabaseExample.entitlements; sourceTree = "<group>"; };
 		C70B63FE2696B29400851A91 /* NewPostsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPostsView.swift; sourceTree = "<group>"; };
@@ -194,7 +194,7 @@
 		9A0FAF3426E7E37E0092BADD /* AppCheck */ = {
 			isa = PBXGroup;
 			children = (
-				9A0FAF3526E7E3A00092BADD /* AppCheckProviderFactory.swift */,
+				9A0FAF3526E7E3A00092BADD /* SimpleAppCheckProviderFactory.swift */,
 			);
 			path = AppCheck;
 			sourceTree = "<group>";
@@ -584,7 +584,7 @@
 				C796F2B926D228490076C5F5 /* NewPostsView.swift in Sources */,
 				C796F2BF26D228490076C5F5 /* Database+Extensions.swift in Sources */,
 				C796F2B326D2283B0076C5F5 /* Comment.swift in Sources */,
-				9A0FAF3826E7E3A00092BADD /* AppCheckProviderFactory.swift in Sources */,
+				9A0FAF3826E7E3A00092BADD /* SimpleAppCheckProviderFactory.swift in Sources */,
 				C796F2C026D228490076C5F5 /* DatabaseExampleApp.swift in Sources */,
 				C796F2B426D2283E0076C5F5 /* UserViewModel.swift in Sources */,
 				C796F2BD26D228490076C5F5 /* LoginView.swift in Sources */,
@@ -607,7 +607,7 @@
 				C79D1AED26A8D9A300B6A169 /* PostsView.swift in Sources */,
 				C77ABFAE26B8A7FF00BDE919 /* Database+Extensions.swift in Sources */,
 				C7F60CFC268EE316002F68AB /* ContentView.swift in Sources */,
-				9A0FAF3626E7E3A00092BADD /* AppCheckProviderFactory.swift in Sources */,
+				9A0FAF3626E7E3A00092BADD /* SimpleAppCheckProviderFactory.swift in Sources */,
 				C799B60E269E1CEF00A43C40 /* PostDetailView.swift in Sources */,
 				C70B63FF2696B29400851A91 /* NewPostsView.swift in Sources */,
 				C7F60CF2268E352F002F68AB /* SignUpView.swift in Sources */,
@@ -630,7 +630,7 @@
 				C79D1AEE26A8D9A300B6A169 /* PostsView.swift in Sources */,
 				C77ABFAF26B8A7FF00BDE919 /* Database+Extensions.swift in Sources */,
 				C7F60CFD268EE316002F68AB /* ContentView.swift in Sources */,
-				9A0FAF3726E7E3A00092BADD /* AppCheckProviderFactory.swift in Sources */,
+				9A0FAF3726E7E3A00092BADD /* SimpleAppCheckProviderFactory.swift in Sources */,
 				C799B60F269E1CEF00A43C40 /* PostDetailView.swift in Sources */,
 				C70B64002696B29400851A91 /* NewPostsView.swift in Sources */,
 				C7F60CF3268E352F002F68AB /* SignUpView.swift in Sources */,

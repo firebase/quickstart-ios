@@ -15,21 +15,25 @@
 //
 
 import Foundation
+import DeviceCheck
+
 import Firebase
 
-
 class MyCustomAppCheckProvider: NSObject, AppCheckProvider {
-  enum ProviderError: Error {
-    case appAttestIsDisabled
-    case appAttestIsUnavailable
-  }
-
-  let appAttestRemoteConfigFlagName = "app-attest-enabled"
-
   let firebaseApp: FirebaseApp
 
   init(firebaseApp: FirebaseApp) {
     self.firebaseApp = firebaseApp
+
+    super.init()
+
+    // Log Analytics event if App Attest is available.
+    logAppAttestAvailability()
+
+    #if DEBUG
+    // Print FIS Auth token for
+    self.printFISToken()
+    #endif
   }
 
   private var _appAttestProvider: AppAttestProvider?
@@ -45,26 +49,74 @@ class MyCustomAppCheckProvider: NSObject, AppCheckProvider {
   func getToken(completion handler: @escaping (AppCheckToken?, Error?) -> Void) {
     // Fetch App Attest flag from remote config.
     let remoteConfig = RemoteConfig.remoteConfig(app:firebaseApp)
+    remoteConfig.fetchAndActivate { remoteConfigStatus, error in
+      // Get App Attest flag value.
+      let appAttestEnabled = remoteConfig[Constants.appAttestRemoteConfigFlagName].boolValue
 
-    let appAttestEnabled = remoteConfig[appAttestRemoteConfigFlagName].boolValue
+      guard appAttestEnabled else {
+        // Skip attestation if App Attest is disabled. Another attestation method like DeviceCheck may be used instead of just skipping.
+        handler(nil, ProviderError.appAttestIsDisabled)
+        return
+      }
 
-    guard appAttestEnabled else {
-      handler(nil, ProviderError.appAttestIsDisabled)
-      return
+      // Try to obtain App Attest provider instance and fail if cannot.
+      guard let appAttestProvider = self.appAttestProvider else {
+        handler(nil, ProviderError.appAttestIsUnavailable)
+        return
+      }
+
+      // If App Attest is enabled for the app instance then forward the Firebase App Check token request to App Attest provider.
+      appAttestProvider.getToken { token, error in
+        // Log an analytics event to track attestation success rate and make a decision if App Attest rollout should proceed.
+        let appAttestEvent = (token != nil && error == nil) ? Constants.appAttestAvailableSuccessEventName : Constants.appAttestAvailableFailureEventName
+        Analytics.logEvent(appAttestEvent, parameters: nil)
+
+        // Pass the result to the handler.
+        handler(token, error)
+      }
     }
-
-    // If App Attest is enabled for the app instance then forward the Firebase App Check token request to App Attest provider.
-    guard let appAttestProvider = self.appAttestProvider else {
-      handler(nil, ProviderError.appAttestIsUnavailable)
-      return
-    }
-
-    appAttestProvider.getToken(completion: handler)
   }
 
+  /// Logs an Analytics event if App Attest is available. It will be used as a trigger for the App Attest rollout A/B testing experiment.
+  private func logAppAttestAvailability() {
+    if DCAppAttestService.shared.isSupported {
+      Analytics.logEvent(Constants.appAttestAvailableEventName, parameters: nil)
+    }
+  }
+
+  /// Retrieves and prints a Firebase Installations Service (FIS) auth token.
+  /// The token can be used to assign a particular A/B testing experiment variant to a test device.
+  private func printFISToken() {
+    Installations.installations(app: firebaseApp).authToken { tokenResult, error in
+      print("FIS auth token: \(String(describing: tokenResult?.authToken))")
+    }
+  }
+
+  // A factory class to connect the custom provider to Firebase App Check.
   class Factory: NSObject, AppCheckProviderFactory {
     func createProvider(with app: FirebaseApp) -> AppCheckProvider? {
       return MyCustomAppCheckProvider(firebaseApp: app)
     }
+  }
+}
+
+extension MyCustomAppCheckProvider {
+  /// The provider errors enum.
+  enum ProviderError: Error {
+    case appAttestIsDisabled
+    case appAttestIsUnavailable
+  }
+
+  /// Constants.
+  enum Constants {
+    /// Remote Config flag name for enabling/disabling App Attest.
+    static let appAttestRemoteConfigFlagName = "AppAttestEnabled"
+
+    /// Analytics event name to log if App Attest is available on the device.
+    static let appAttestAvailableEventName = "AppAttestAvailable"
+    /// Analytics event name to log when App Attest attestation succeeds.
+    static let appAttestAvailableSuccessEventName = "AppAttestSuccess"
+    /// Analytics event name to log when App Attest attestation fails.
+    static let appAttestAvailableFailureEventName = "AppAttestFailure"
   }
 }

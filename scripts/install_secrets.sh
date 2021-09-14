@@ -23,5 +23,6 @@ if [[ ! -z "$secrets_passphrase" ]]; then
   gpg --quiet --batch --yes --decrypt --passphrase="$secrets_passphrase" \
     --output ../scripts/Secrets.tar ../scripts/Secrets.tar.gpg
 
-  tar xvf ../scripts/Secrets.tar
+  # --strip-components=1 so ../scripts/Secrets.tar is unzipped as ./Secrets.tar
+  tar xvf ../scripts/Secrets.tar --strip-components=1
 fi

@@ -16,6 +16,13 @@ if [[ -n "${GITHUB_WORKFLOW:-}" ]]; then
   . ../scripts/check_secrets.sh
   if [[ "$have_secrets" == true ]]; then
     ../scripts/install_secrets.sh
+    echo foo\n\n
+    ls
+    echo bar\n\n
+    ls scripts/
+    echo baz\n\n
+    ls scripts/Secrets/
+    echo \n\n\n
     cp Secrets/quickstart-ios/"${DIRECTORY}"/GoogleService-Info.plist ./
     cp Secrets/quickstart-ios/TestUtils/FIREGSignInInfo.h ../TestUtils/
   fi

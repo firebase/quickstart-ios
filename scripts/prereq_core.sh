@@ -15,7 +15,6 @@
 if [[ -n "${GITHUB_WORKFLOW:-}" ]]; then
   . ../scripts/check_secrets.sh
   if [[ "$have_secrets" == true ]]; then
-    # Installs a Secrets/ directory in the current working directory.
     ../scripts/install_secrets.sh
     cp Secrets/quickstart-ios/"${DIRECTORY}"/GoogleService-Info.plist ./
     cp Secrets/quickstart-ios/TestUtils/FIREGSignInInfo.h ../TestUtils/

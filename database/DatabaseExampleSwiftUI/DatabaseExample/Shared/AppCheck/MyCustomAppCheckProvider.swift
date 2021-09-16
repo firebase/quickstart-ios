@@ -36,15 +36,9 @@ class MyCustomAppCheckProvider: NSObject, AppCheckProvider {
     #endif
   }
 
-  private var _appAttestProvider: AppAttestProvider?
-  private var appAttestProvider: AppAttestProvider? {
-    if let appAttestProvider = _appAttestProvider {
-      return appAttestProvider
-    } else {
-      _appAttestProvider = AppAttestProvider(app: self.firebaseApp)
-      return _appAttestProvider
-    }
-  }
+  private lazy var appAttestProvider: AppAttestProvider? = {
+    return AppAttestProvider(app: self.firebaseApp)
+  }()
 
   func getToken(completion handler: @escaping (AppCheckToken?, Error?) -> Void) {
     // Fetch App Attest flag from remote config.
@@ -64,6 +58,8 @@ class MyCustomAppCheckProvider: NSObject, AppCheckProvider {
         handler(nil, ProviderError.appAttestIsUnavailable)
         return
       }
+
+      appAttestProvider.getToken(completion: handler)
 
       // If App Attest is enabled for the app instance then forward the Firebase App Check token request to App Attest provider.
       appAttestProvider.getToken { token, error in

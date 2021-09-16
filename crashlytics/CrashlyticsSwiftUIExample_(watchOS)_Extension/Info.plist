@@ -27,7 +27,7 @@
 		<key>NSExtensionAttributes</key>
 		<dict>
 			<key>WKAppBundleIdentifier</key>
-			<string>Google-LLC.CrashlyticsSwiftUIExample.watchkitapp</string>
+			<string>com.google.firebase.quickstart.CrashlyticsExample.watchkitapp</string>
 		</dict>
 		<key>NSExtensionPointIdentifier</key>
 		<string>com.apple.watchkit</string>

@@ -1000,7 +1000,7 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = "Google-LLC.CrashlyticsSwiftUIExample";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.google.firebase.quickstart.CrashlyticsExample";
 				PRODUCT_NAME = CrashlyticsSwiftUIExample;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -1035,7 +1035,7 @@
 				);
 				MTL_FAST_MATH = YES;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = "Google-LLC.CrashlyticsSwiftUIExample";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.google.firebase.quickstart.CrashlyticsExample";
 				PRODUCT_NAME = CrashlyticsSwiftUIExample;
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
@@ -1071,7 +1071,7 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = "Google-LLC.CrashlyticsSwiftUIExample";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.google.firebase.quickstart.CrashlyticsExample";
 				PRODUCT_NAME = CrashlyticsSwiftUIExample;
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -1107,7 +1107,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MTL_FAST_MATH = YES;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = "Google-LLC.CrashlyticsSwiftUIExample";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.google.firebase.quickstart.CrashlyticsExample";
 				PRODUCT_NAME = CrashlyticsSwiftUIExample;
 				SDKROOT = macosx;
 				SWIFT_VERSION = 5.0;
@@ -1141,7 +1141,7 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = "Google-LLC.CrashlyticsSwiftUIExample.watchkitapp";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.google.firebase.quickstart.CrashlyticsExample.watchkitapp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -1180,7 +1180,7 @@
 				);
 				MTL_FAST_MATH = YES;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = "Google-LLC.CrashlyticsSwiftUIExample.watchkitapp";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.google.firebase.quickstart.CrashlyticsExample.watchkitapp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -1215,7 +1215,7 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = "Google-LLC.CrashlyticsSwiftUIExample.watchkitapp.watchkitextension";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.google.firebase.quickstart.CrashlyticsExample.watchkitapp.watchkitextension";
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -1252,7 +1252,7 @@
 				);
 				MTL_FAST_MATH = YES;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = "Google-LLC.CrashlyticsSwiftUIExample.watchkitapp.watchkitextension";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.google.firebase.quickstart.CrashlyticsExample.watchkitapp.watchkitextension";
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -1287,7 +1287,7 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = "Google-LLC.CrashlyticsSwiftUIExample";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.google.firebase.quickstart.CrashlyticsExample";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -1323,7 +1323,7 @@
 				);
 				MTL_FAST_MATH = YES;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = "Google-LLC.CrashlyticsSwiftUIExample";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.google.firebase.quickstart.CrashlyticsExample";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				SWIFT_VERSION = 5.0;

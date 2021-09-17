@@ -41,9 +41,9 @@ code can be shared across those platforms.
 One exception is the omission of Reachability.swift on watchOS. Reachability.swift uses Apple’s
 System Configuration framework, which currently does not support watchOS. 
 
-This Quickstart Sample App’s Bundle Identifier is `Google-LLC.CrashlyticsSwiftUIExample` for iOS,
+This Quickstart Sample App’s Bundle Identifier is `com.google.firebase.quickstart.CrashlyticsExample` for iOS,
 macOS, and tvOS targets. But the Bundle Identifier for watchOS target is
-`Google-LLC.CrashlyticsSwiftUIExample.watchkitapp`. This means that to generate and view crash logs
+`com.google.firebase.quickstart.CrashlyticsExample.watchkitapp`. This means that to generate and view crash logs
 onto the Firebase console, a new app in Firebase with the full bundle ID will be needed. 
 
 ## File Structure

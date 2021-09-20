@@ -19,6 +19,15 @@ import DeviceCheck
 
 import Firebase
 
+/// The App Check provider that uses Firebase Remote Config to either forward 
+/// Firebase App Check token request to the standard AppAttestProvider fail 
+/// to skip attestation. The attestation provider also logs Analytics events to
+/// track if App Attest API is available on a device and if attestation 
+/// succeeded or failed. The main motivation to use the custom App Check 
+/// provider is to gradually enable App Attest attestation to avoid throttling
+/// form Apple backend. Another reason is tracking additional metrics with 
+/// Firebase Analytics.
+/// NOTE: This is an example and may require additional optimizations to ensure the best performance in a production app, e.g. you may want to avoid fetching and activating Remote Config as a part of attestation and prefer to do it separately to avoid additional latency of the attestation process.
 class MyCustomAppCheckProvider: NSObject, AppCheckProvider {
   let firebaseApp: FirebaseApp
 
@@ -31,18 +40,18 @@ class MyCustomAppCheckProvider: NSObject, AppCheckProvider {
     logAppAttestAvailability()
 
     #if DEBUG
-    // Print FIS Auth token for
-    self.printFISToken()
+      // Print FIS Auth token for
+      printFISToken()
     #endif
   }
 
   private lazy var appAttestProvider: AppAttestProvider? = {
-    return AppAttestProvider(app: self.firebaseApp)
+    AppAttestProvider(app: self.firebaseApp)
   }()
 
   func getToken(completion handler: @escaping (AppCheckToken?, Error?) -> Void) {
     // Fetch App Attest flag from remote config.
-    let remoteConfig = RemoteConfig.remoteConfig(app:firebaseApp)
+    let remoteConfig = RemoteConfig.remoteConfig(app: firebaseApp)
     remoteConfig.fetchAndActivate { remoteConfigStatus, error in
       // Get App Attest flag value.
       let appAttestEnabled = remoteConfig[Constants.appAttestRemoteConfigFlagName].boolValue
@@ -64,7 +73,8 @@ class MyCustomAppCheckProvider: NSObject, AppCheckProvider {
       // If App Attest is enabled for the app instance then forward the Firebase App Check token request to App Attest provider.
       appAttestProvider.getToken { token, error in
         // Log an analytics event to track attestation success rate and make a decision if App Attest rollout should proceed.
-        let appAttestEvent = (token != nil && error == nil) ? Constants.appAttestAvailableSuccessEventName : Constants.appAttestAvailableFailureEventName
+        let appAttestEvent = (token != nil && error == nil) ? Constants
+          .appAttestAvailableSuccessEventName : Constants.appAttestAvailableFailureEventName
         Analytics.logEvent(appAttestEvent, parameters: nil)
 
         // Pass the result to the handler.

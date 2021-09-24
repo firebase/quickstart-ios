@@ -122,24 +122,36 @@ static const int kSectionPost = 0;
   NSAssert(NO, @"Unexpected section");
   return 0;
 }
+
 - (IBAction)didTapSend:(UIButton *)sender {
   [self textFieldShouldReturn:_commentField];
   _commentField.enabled = NO;
   sender.enabled = NO;
+
+  FIRDatabaseReference *ref = [FIRDatabase database].reference;
+  // [START single_value_get_data]
   NSString *uid = [FIRAuth auth].currentUser.uid;
-  [[[[FIRDatabase database].reference child:@"users"] child:uid]
-   observeSingleEventOfType:FIRDataEventTypeValue
-   withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-      NSDictionary *user = snapshot.value;
-      NSString *username = user[@"username"];
+  NSString *userPath = [NSString stringWithFormat:@"users/%@/username", uid];
+  [[ref child:userPath] getDataWithCompletionBlock:^(NSError * _Nullable error, FIRDataSnapshot * _Nonnull snapshot) {
+    if (error) {
+      NSLog(@"Received an error %@", error);
+      return;
+    }
+    NSString *userName = snapshot.value;
+    // [START_EXCLUDE]
+    dispatch_async(dispatch_get_main_queue(), ^{
+
       NSDictionary *comment = @{@"uid": uid,
-                                @"author": username,
+                                @"author": userName,
                                 @"text": self.commentField.text};
       [[self.commentsRef childByAutoId] setValue:comment];
       self.commentField.text = @"";
       self.commentField.enabled = YES;
       sender.enabled = YES;
+    });
+    // [END_EXCLUDE]
   }];
+  // [END single_value_get_data]
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView

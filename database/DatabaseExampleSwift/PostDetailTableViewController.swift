@@ -125,7 +125,7 @@ class PostDetailTableViewController: UITableViewController, UITextFieldDelegate 
     commentField?.isEnabled = false
     sender.isEnabled = false
     let ref = Database.database().reference();
-    // [START single_value_get]
+    // [START single_value_get_data]
     if let uid = Auth.auth().currentUser?.uid {
       ref.child("users/\(uid)/username").getData(completion:  { [weak self] error, snapshot in
         guard error == nil else {
@@ -150,7 +150,7 @@ class PostDetailTableViewController: UITableViewController, UITextFieldDelegate 
         // [END_EXCLUDE]
       })
     }
-    // [END single_value_get]
+    // [END single_value_get_data]
 
   }
 

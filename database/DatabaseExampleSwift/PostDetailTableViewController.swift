@@ -124,23 +124,34 @@ class PostDetailTableViewController: UITableViewController, UITextFieldDelegate 
     _ = textFieldShouldReturn(commentField!)
     commentField?.isEnabled = false
     sender.isEnabled = false
+    let ref = Database.database().reference();
+    // [START single_value_get]
     if let uid = Auth.auth().currentUser?.uid {
-      Database.database().reference().child("users").child(uid)
-        .observeSingleEvent(of: .value, with: { snapshot in
-          if let commentField = self.commentField,
-            let user = snapshot.value as? [String: AnyObject] {
+      ref.child("users/\(uid)/username").getData(completion:  { [weak self] error, snapshot in
+        guard error == nil else {
+          print(error!.localizedDescription)
+          return;
+        }
+        let userName = snapshot.value as? String ?? "Unknown";
+        // [START_EXCLUDE]
+        if let commentField = self?.commentField {
+          DispatchQueue.main.async {
             let comment = [
               "uid": uid,
-              "author": user["username"] as? String ?? "",
+              "author": userName,
               "text": commentField.text!,
             ]
-            self.commentsRef.childByAutoId().setValue(comment)
+            self?.commentsRef.childByAutoId().setValue(comment)
             commentField.text = ""
             commentField.isEnabled = true
             sender.isEnabled = true
           }
-        })
+        }
+        // [END_EXCLUDE]
+      })
     }
+    // [END single_value_get]
+
   }
 
   override func tableView(_ tableView: UITableView,

@@ -33,7 +33,7 @@ struct CrashButtonView: View {
 struct ContentView: View {
   private var crashlyticsReference = Crashlytics.crashlytics()
 
-  #if swift(>=5.5)
+  #if compiler(>=5.5) && canImport(_Concurrency)
     @available(iOS 15, tvOS 15, macOS 12, watchOS 8, *) func checkForUnsentReportsAsync() async {
       let reportFound = await crashlyticsReference.checkForUnsentReports()
       if reportFound {
@@ -52,7 +52,7 @@ struct ContentView: View {
 
   var body: some View {
     if #available(iOS 15, tvOS 15, macOS 12, watchOS 8, *) {
-      #if swift(>=5.5)
+      #if compiler(>=5.5) && canImport(_Concurrency)
         CrashButtonView()
           .task {
             await self.checkForUnsentReportsAsync()

@@ -101,7 +101,7 @@ class PostViewModel: ObservableObject, Identifiable {
     })
   }
 
-  #if swift(>=5.5)
+  #if compiler(>=5.5) && canImport(_Concurrency)
     @available(iOS 15, tvOS 15, macOS 12, watchOS 8, *)
     func didTapStarButtonAsync() async {
       // updating firebase values

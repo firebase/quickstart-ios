@@ -33,7 +33,7 @@ struct PostCell: View {
               starButton
                 .onTapGesture {
                   if #available(iOS 15, macOS 12, *) {
-                    #if swift(>=5.5)
+                    #if compiler(>=5.5) && canImport(_Concurrency)
                       Task { await
                         post.didTapStarButtonAsync()
                       }

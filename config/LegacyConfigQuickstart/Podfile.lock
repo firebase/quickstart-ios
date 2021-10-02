@@ -1,26 +1,26 @@
 PODS:
-  - Firebase/CoreOnly (8.4.0):
-    - FirebaseCore (= 8.4.0)
-  - Firebase/RemoteConfig (8.4.0):
+  - Firebase/CoreOnly (8.8.0):
+    - FirebaseCore (= 8.8.0)
+  - Firebase/RemoteConfig (8.8.0):
     - Firebase/CoreOnly
-    - FirebaseRemoteConfig (~> 8.4.0)
-  - FirebaseABTesting (8.4.0):
+    - FirebaseRemoteConfig (~> 8.8.0)
+  - FirebaseABTesting (8.8.0):
     - FirebaseCore (~> 8.0)
-  - FirebaseCore (8.4.0):
+  - FirebaseCore (8.8.0):
     - FirebaseCoreDiagnostics (~> 8.0)
     - GoogleUtilities/Environment (~> 7.4)
     - GoogleUtilities/Logger (~> 7.4)
-  - FirebaseCoreDiagnostics (8.4.0):
+  - FirebaseCoreDiagnostics (8.8.0):
     - GoogleDataTransport (~> 9.0)
     - GoogleUtilities/Environment (~> 7.4)
     - GoogleUtilities/Logger (~> 7.4)
     - nanopb (~> 2.30908.0)
-  - FirebaseInstallations (8.4.0):
+  - FirebaseInstallations (8.8.0):
     - FirebaseCore (~> 8.0)
     - GoogleUtilities/Environment (~> 7.4)
     - GoogleUtilities/UserDefaults (~> 7.4)
     - PromisesObjC (< 3.0, >= 1.2)
-  - FirebaseRemoteConfig (8.4.0):
+  - FirebaseRemoteConfig (8.8.0):
     - FirebaseABTesting (~> 8.0)
     - FirebaseCore (~> 8.0)
     - FirebaseInstallations (~> 8.0)
@@ -30,12 +30,12 @@ PODS:
     - GoogleUtilities/Environment (~> 7.2)
     - nanopb (~> 2.30908.0)
     - PromisesObjC (< 3.0, >= 1.2)
-  - GoogleUtilities/Environment (7.5.0):
+  - GoogleUtilities/Environment (7.5.2):
     - PromisesObjC (< 3.0, >= 1.2)
-  - GoogleUtilities/Logger (7.5.0):
+  - GoogleUtilities/Logger (7.5.2):
     - GoogleUtilities/Environment
-  - "GoogleUtilities/NSData+zlib (7.5.0)"
-  - GoogleUtilities/UserDefaults (7.5.0):
+  - "GoogleUtilities/NSData+zlib (7.5.2)"
+  - GoogleUtilities/UserDefaults (7.5.2):
     - GoogleUtilities/Logger
   - nanopb (2.30908.0):
     - nanopb/decode (= 2.30908.0)
@@ -61,17 +61,17 @@ SPEC REPOS:
     - PromisesObjC
 
 SPEC CHECKSUMS:
-  Firebase: 54cdc8bc9c9b3de54f43dab86e62f5a76b47034f
-  FirebaseABTesting: 4cb61aeeb50f60680af1c01fff781dfaf9293916
-  FirebaseCore: 31f389c37ac1ea52454a53d3081f2d7019485a4a
-  FirebaseCoreDiagnostics: cad03be1904b975f845e632f2720c3337da27faf
-  FirebaseInstallations: 1585729afc787877763208c2088ed84221161f77
-  FirebaseRemoteConfig: 0b813f093033c56fe74a91996044a239ab5acb02
+  Firebase: 629510f1a9ddb235f3a7c5c8ceb23ba887f0f814
+  FirebaseABTesting: 981336dd14d84787e33466e4247f77ec2343f8d9
+  FirebaseCore: 98b29e3828f0a53651c363937a7f7d92a19f1ba2
+  FirebaseCoreDiagnostics: fe77f42da6329d6d83d21fd9d621a6b704413bfc
+  FirebaseInstallations: 2563cb18a723ef9c6ef18318a49519b75dce613c
+  FirebaseRemoteConfig: f6365883d7950d784ee97bcdbbf1e442d4fa6119
   GoogleDataTransport: 85fd18ff3019bb85d3f2c551d04c481dedf71fc9
-  GoogleUtilities: eea970f4a389963963bffe8d8fabe43540678b9c
+  GoogleUtilities: 8de2a97a17e15b6b98e38e8770e2d129a57c0040
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58
 
 PODFILE CHECKSUM: 263240221a33adc4c7fec3e3f39fc153bc622ba1
 
-COCOAPODS: 1.10.1
+COCOAPODS: 1.11.2

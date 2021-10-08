@@ -27,7 +27,7 @@ class AnalyticsViewController: UIViewController {
       analyticsView.topAnchor.constraint(equalTo: view.topAnchor),
       analyticsView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
       analyticsView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-      analyticsView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+      analyticsView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
     ])
     configureControls()
   }

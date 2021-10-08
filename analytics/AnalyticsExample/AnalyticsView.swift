@@ -129,7 +129,7 @@ final class AnalyticsView: UIScrollView {
 
     /// Label for the `Log user interactions with events` section.
     logEventsLabel = buildLabel(text: "Log user interactions with events",
-                                    font: .preferredFont(forTextStyle: .title3))
+                                font: .preferredFont(forTextStyle: .title3))
     addSubview(logEventsLabel)
 
     // MARK: - Preferred Temperature Feel (Hot or Cold) UISegmentedControl
@@ -251,7 +251,8 @@ final class AnalyticsView: UIScrollView {
     )
     imageViewBackgroundView.frame = CGRect(
       x: xOrigin, y: seasonPicker.frame.maxY + padding(.pair),
-      width: insetWidth, height: 0.22 * height)
+      width: insetWidth, height: 0.22 * height
+    )
 
     backgroundLabel.sizeToFit()
     backgroundLabel.center = imageViewBackgroundView.center

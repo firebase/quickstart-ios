@@ -77,19 +77,24 @@ a paid service. If you are only using Firebase Authentication this sample will n
   - Select the **Auth** panel and then click the **Sign In Method** tab.
   - Click **Twitter** and turn on the **Enable** switch, then click **Save**.
   - Enter your Twitter **API Key** and **App Secret** and click **Save**.
-  - Make sure your Firebase OAuth redirect URI (e.g. my-app-12345.firebaseapp.com/__/auth/handler) is set as your  
+  - Make sure your Firebase OAuth redirect URI (e.g. my-app-12345.firebaseapp.com/__/auth/handler) is set as your
     Authorization callback URL in your app's settings page on your [Twitter app's config](https://apps.twitter.com).
 - Run the app on your device or simulator.
     - Select **Sign In** and select Twitter to begin.
 
 ### Custom Authentication Setup
-- Go to the [Google Developers Console](https://console.developers.google.com/project) and navigate to your project:
+- In the [Firebase Console](https://console.firebase.google.com/), navigate to **Project settings**:
+    - Navigate to the **Service accounts** tab.
+    - Locate the section **All service account**, and click on the `X service accounts` link. This will take you to the Google Cloud Console.    
+- In the [Google Cloud Console](https://console.cloud.google.com):
+    - Make sure the right Firebase project is selected.
     - From the left "hamburger" menu navigate to the **API Manager** tab.
     - Click on the **Credentials** item in the left column.
     - Click **New credentials** and select **Service account key**. Select **New service account**,
     pick any name, and select **JSON** as the key type. Then click **Create**.
     - You should now have a new JSON file for your service account in your Downloads directory.
-- Open the file `web/auth.html` in your computer's web browser.
+- In the `quickstart-ios/authentication/LegacyAuthQuickstart/web` directory:
+    - Open the file `auth.html` in your computer's web browser.
     - Click **Choose File** and upload the JSON file you just downloaded.
     - Enter any User ID and click **Generate**.
     - Copy the token link displayed.

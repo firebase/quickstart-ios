@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B38EF10647EB2DA5A5D56D1 /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = 43ED466C2F109A2272796CB6 /* GoogleService-Info.plist */; };
 		1036DA002087CA10003253C9 /* FunctionsExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1036D9FF2087CA10003253C9 /* FunctionsExampleTests.m */; };
 		1036DA0E2087CA25003253C9 /* FunctionsExampleUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1036DA0D2087CA25003253C9 /* FunctionsExampleUITests.m */; };
 		1036DA1C2087CA66003253C9 /* FunctionsExampleSwiftUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1036DA1B2087CA66003253C9 /* FunctionsExampleSwiftUITests.swift */; };
@@ -19,6 +20,7 @@
 		10B1CCBF205C51F90067EDB4 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B1CCBE205C51F90067EDB4 /* SignInViewController.swift */; };
 		10B1CCC1205C60890067EDB4 /* CloudAddCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B1CCC0205C60890067EDB4 /* CloudAddCell.swift */; };
 		10B1CCC3205C63370067EDB4 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B1CCC2205C63370067EDB4 /* CommentCell.swift */; };
+		46D64964EDAD308E5F394D61 /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = 43ED466C2F109A2272796CB6 /* GoogleService-Info.plist */; };
 		5F5A53521ADE670C00F81DF0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5A53511ADE670C00F81DF0 /* main.m */; };
 		5F5A53551ADE670C00F81DF0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5A53541ADE670C00F81DF0 /* AppDelegate.m */; };
 		5F5A537E1ADE67D500F81DF0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5A537D1ADE67D500F81DF0 /* AppDelegate.swift */; };
@@ -26,6 +28,9 @@
 		5F99610B1AE0CF4F0034F503 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F9961061AE0CF4F0034F503 /* Images.xcassets */; };
 		5F99610C1AE0CF4F0034F503 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F9961071AE0CF4F0034F503 /* LaunchScreen.xib */; };
 		5F99610D1AE0CF4F0034F503 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F9961071AE0CF4F0034F503 /* LaunchScreen.xib */; };
+		945A2E9F85C854B9E5D77ADF /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = 43ED466C2F109A2272796CB6 /* GoogleService-Info.plist */; };
+		C8CC5DB90E433A1628474CAE /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = 43ED466C2F109A2272796CB6 /* GoogleService-Info.plist */; };
+		D295393A72DB35CE1616AA79 /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = 43ED466C2F109A2272796CB6 /* GoogleService-Info.plist */; };
 		DE43B5D023AEC6980056B15F /* FIREGSignInHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DE43B5CD23AEC6980056B15F /* FIREGSignInHelper.m */; };
 		DE43B5D123AEC6980056B15F /* FIREGHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DE43B5CE23AEC6980056B15F /* FIREGHelper.m */; };
 		EF4857041C752B7700649485 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10B054011C6A3C630061077D /* Main.storyboard */; };
@@ -79,6 +84,7 @@
 		10B1CCBE205C51F90067EDB4 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		10B1CCC0205C60890067EDB4 /* CloudAddCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudAddCell.swift; sourceTree = "<group>"; };
 		10B1CCC2205C63370067EDB4 /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
+		43ED466C2F109A2272796CB6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5F5A534C1ADE670C00F81DF0 /* FunctionsExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FunctionsExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F5A53501ADE670C00F81DF0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5F5A53511ADE670C00F81DF0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -179,6 +185,7 @@
 				DE43B5CB23AEC6980056B15F /* TestUtils */,
 				5F5A534D1ADE670C00F81DF0 /* Products */,
 				5F9961041AE0CF4F0034F503 /* Shared */,
+				43ED466C2F109A2272796CB6 /* GoogleService-Info.plist */,
 			);
 			sourceTree = "<group>";
 			wrapsLines = 0;
@@ -483,6 +490,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1036DA002087CA10003253C9 /* FunctionsExampleTests.m in Sources */,
+				C8CC5DB90E433A1628474CAE /* GoogleService-Info.plist in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -493,6 +501,7 @@
 				1036DA0E2087CA25003253C9 /* FunctionsExampleUITests.m in Sources */,
 				DE43B5D023AEC6980056B15F /* FIREGSignInHelper.m in Sources */,
 				DE43B5D123AEC6980056B15F /* FIREGHelper.m in Sources */,
+				945A2E9F85C854B9E5D77ADF /* GoogleService-Info.plist in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -501,6 +510,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1036DA1C2087CA66003253C9 /* FunctionsExampleSwiftUITests.swift in Sources */,
+				46D64964EDAD308E5F394D61 /* GoogleService-Info.plist in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -515,6 +525,7 @@
 				EF6DB4D41CDD610200319C08 /* CommentCell.m in Sources */,
 				5F5A53551ADE670C00F81DF0 /* AppDelegate.m in Sources */,
 				5F5A53521ADE670C00F81DF0 /* main.m in Sources */,
+				D295393A72DB35CE1616AA79 /* GoogleService-Info.plist in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -528,6 +539,7 @@
 				10B1CCBB205C4D520067EDB4 /* FAuthPickerViewController.swift in Sources */,
 				10B1CCC1205C60890067EDB4 /* CloudAddCell.swift in Sources */,
 				EF6DB4CD1CDD60F700319C08 /* MainViewController.swift in Sources */,
+				0B38EF10647EB2DA5A5D56D1 /* GoogleService-Info.plist in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

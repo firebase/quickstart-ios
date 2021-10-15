@@ -22,9 +22,6 @@ class BlogViewController: UIViewController, UITextViewDelegate {
     configureNavigationBar()
     view.backgroundColor = .systemBackground
     setupSubviews()
-
-    // Firebase 🔥 - Set a custom screen name for analytics tracking.
-    Analytics.setScreenName("blog_view_controller", screenClass: classForCoder.description())
   }
 
   // MARK: - Private Helpers

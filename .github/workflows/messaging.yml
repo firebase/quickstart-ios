@@ -1,0 +1,53 @@
+name: Messaging
+
+on:
+  push:
+    branches: [ master ]
+    paths:
+      - '.github/workflows/messaging.yml'
+      - 'messaging/**'
+      - 'scripts/*'
+      - 'scripts/messaging.sh'
+  pull_request:
+    branches: [ master ]
+    paths:
+      - '.github/workflows/messaging.yml'
+      - 'messaging/**'
+      - 'scripts/*'
+      - 'scripts/messaging.sh'
+
+  workflow_dispatch:
+
+env:
+  SAMPLE: Messaging
+  secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}
+
+jobs:
+  cocoapods:
+    name: cocoapods
+    runs-on: macOS-latest
+    env:
+      SPM: false
+      LEGACY: false
+      OS: iOS
+      DEVICE: iPhone 11
+      TEST: false
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+      - name: Setup
+        run: |
+          cd messaging
+          gem install bundler
+          bundle install
+          gem install xcpretty
+          bundle exec pod install --repo-update
+          ../scripts/install_prereqs/messaging.sh
+      - name: Build ObjC
+        run: ./scripts/test.sh
+        env:
+          SWIFT_SUFFIX: ""
+      - name: Build Swift
+        run: ./scripts/test.sh
+        env:
+          SWIFT_SUFFIX: Swift

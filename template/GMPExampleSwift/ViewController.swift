@@ -18,10 +18,8 @@ import UIKit
 
 @objc(ViewController)
 class ViewController: UIViewController {
-
   override func viewDidLoad() {
     super.viewDidLoad()
     // TODO: Add your initialization code here.
   }
-
 }

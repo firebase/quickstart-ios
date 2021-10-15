@@ -1,18 +1,59 @@
 Firebase Database Quickstart
 =============================
 
-Introduction
-------------
+This Firebase quickstart showcases how Firebase Realtime Database (RTDB) can store and sync data.
+Data is synced across all clients in realtime, and remains available when the app goes offline. You
+can read more about Firebase Realtime Database [here](https://firebase.google.com/docs/database/)!
 
-- [Read more about Firebase Database](https://firebase.google.com/docs/database/)
+To view the SwiftUI quickstart, view the
+[`DatabaseExampleSwiftUI/DatabaseExample`](https://github.com/firebase/quickstart-ios/tree/master/database/DatabaseExampleSwiftUI/DatabaseExample) 
+directory.
 
 Getting Started
 ---------------
 
-- [Add Firebase to your iOS Project](https://firebase.google.com/docs/ios/setup).
-- Run the sample on your iOS device or emulator.
+### Clone and open Database quickstart project
 
-Note: You will need Swift 3.0 to run the Swift version of this quickstart.
+- Clone the quickstart repo and `cd` into the `database/DatabaseExampleSwiftUI/DatabaseExample`
+  directory.
+- Open file `DatabaseExample.xcodeproj` project using Xcode.
+
+```bash
+$ git clone https://github.com/firebase/quickstart-ios.git
+$ cd database/DatabaseExampleSwiftUI/DatabaseExample
+$ open DatabaseExample.xcodeproj
+```
+- Once the `.xcodeproj` is opened, update to the latest Swift Package Versions: go to the menu bar,
+  click on File > Swift Packages > Update to Latest Package Versions 
+
+### Connecting to the Firebase Console 
+
+- To have a functional application, you will need to connect the Database quickstart example with
+  the [Firebase Console](https://console.firebase.google.com).
+- For an in-depth explanation, you can read more about [adding Firebase to your iOS
+  Project](https://firebase.google.com/docs/ios/setup). Below is a summary of the main steps:
+  1. Visit the [Firebase Console](https://console.firebase.google.com) 
+  2. Add an iOS app to the project. Make sure the `Bundle Identifier` you set for this iOS App
+     matches that of the one in this quickstart.
+  3. Download the `GoogleService-Info.plist` when prompted.
+  4. Drag the downloaded `GoogleService-Info.plist` into the opened quickstart app under the
+     `Shared` folder.
+- [Create a Database](https://firebase.google.com/docs/database/ios/start#create_a_database) and
+  update the rules to [database rules](./DatabaseExampleRules.md).
+- Now you should be able to build and run the Firebase project!
+
+### Navigation Bar Issue on tvOS
+When using earlier versions of xcode (12.5 or below) there is a bug where SwiftUI toolbar disappears
+after navigation on tvOS. This issue is resolved when using the latest version of xcode (13.5 or
+above).
+
+Documentation
+-------------
+
+- To learn more about the structure of the SwiftUI Realtime Database quickstart app, check out the
+documentation [here](./OUTLINE.md).
+- For demos and screenshots of the Quickstart from multiple Apple platforms, check out the
+  documentation [here](./MEDIA.md)
 
 Support
 -------
@@ -22,7 +63,7 @@ Support
 License
 -------
 
-Copyright 2015 Google, Inc.
+Copyright 2021 Google, Inc.
 
 Licensed to the Apache Software Foundation (ASF) under one or more contributor
 license agreements.  See the NOTICE file distributed with this work for

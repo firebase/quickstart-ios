@@ -19,12 +19,12 @@ import Firebase
 
 @objc(PostTableViewCell)
 class PostTableViewCell: UITableViewCell {
-  @IBOutlet weak var authorImage: UIImageView!
-  @IBOutlet weak var authorLabel: UILabel!
-  @IBOutlet weak var starButton: UIButton!
-  @IBOutlet weak var numStarsLabel: UILabel!
-  @IBOutlet weak var postTitle: UILabel!
-  @IBOutlet weak var postBody: UITextView!
+  @IBOutlet var authorImage: UIImageView!
+  @IBOutlet var authorLabel: UILabel!
+  @IBOutlet var starButton: UIButton!
+  @IBOutlet var numStarsLabel: UILabel!
+  @IBOutlet var postTitle: UILabel!
+  @IBOutlet var postBody: UITextView!
   var postKey: String?
   var postRef: DatabaseReference!
 
@@ -32,7 +32,7 @@ class PostTableViewCell: UITableViewCell {
     if let postKey = postKey {
       postRef = Database.database().reference().child("posts").child(postKey)
       incrementStars(forRef: postRef)
-      postRef.observeSingleEvent(of: .value, with: { (snapshot) in
+      postRef.observeSingleEvent(of: .value, with: { snapshot in
         let value = snapshot.value as? NSDictionary
         if let uid = value?["uid"] as? String {
           let userPostRef = Database.database().reference()
@@ -48,9 +48,10 @@ class PostTableViewCell: UITableViewCell {
   func incrementStars(forRef ref: DatabaseReference) {
     // [START post_stars_transaction]
     ref.runTransactionBlock({ (currentData: MutableData) -> TransactionResult in
-      if var post = currentData.value as? [String : AnyObject], let uid = Auth.auth().currentUser?.uid {
-        var stars: Dictionary<String, Bool>
-        stars = post["stars"] as? [String : Bool] ?? [:]
+      if var post = currentData.value as? [String: AnyObject],
+        let uid = Auth.auth().currentUser?.uid {
+        var stars: [String: Bool]
+        stars = post["stars"] as? [String: Bool] ?? [:]
         var starCount = post["starCount"] as? Int ?? 0
         if let _ = stars[uid] {
           // Unstar the post and remove self from stars
@@ -70,7 +71,7 @@ class PostTableViewCell: UITableViewCell {
         return TransactionResult.success(withValue: currentData)
       }
       return TransactionResult.success(withValue: currentData)
-    }) { (error, committed, snapshot) in
+    }) { error, committed, snapshot in
       if let error = error {
         print(error.localizedDescription)
       }

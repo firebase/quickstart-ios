@@ -20,17 +20,16 @@ import Firebase
 
 @objc(EmailViewController)
 class EmailViewController: UIViewController {
-
-  @IBOutlet weak var emailField: UITextField!
-  @IBOutlet weak var passwordField: UITextField!
+  @IBOutlet var emailField: UITextField!
+  @IBOutlet var passwordField: UITextField!
 
   override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-    self.view.endEditing(true)
+    view.endEditing(true)
   }
 
   @IBAction func didTapEmailLogin(_ sender: AnyObject) {
-    guard let email = self.emailField.text, let password = self.passwordField.text else {
-      self.showMessagePrompt("email/password can't be empty")
+    guard let email = emailField.text, let password = passwordField.text else {
+      showMessagePrompt("email/password can't be empty")
       return
     }
     showSpinner {
@@ -41,39 +40,54 @@ class EmailViewController: UIViewController {
         strongSelf.hideSpinner {
           if let error = error {
             let authError = error as NSError
-            if (authError.code == AuthErrorCode.secondFactorRequired.rawValue) {
+            if authError.code == AuthErrorCode.secondFactorRequired.rawValue {
               // The user is a multi-factor user. Second factor challenge is required.
-              let resolver = authError.userInfo[AuthErrorUserInfoMultiFactorResolverKey] as! MultiFactorResolver
+              let resolver = authError
+                .userInfo[AuthErrorUserInfoMultiFactorResolverKey] as! MultiFactorResolver
               var displayNameString = ""
-              for tmpFactorInfo in (resolver.hints) {
+              for tmpFactorInfo in resolver.hints {
                 displayNameString += tmpFactorInfo.displayName ?? ""
                 displayNameString += " "
               }
-              self!.showTextInputPrompt(withMessage: "Select factor to sign in\n\(displayNameString)", completionBlock: { userPressedOK, displayName in
-                var selectedHint: PhoneMultiFactorInfo?
-                for tmpFactorInfo in resolver.hints {
-                  if (displayName == tmpFactorInfo.displayName) {
-                    selectedHint = tmpFactorInfo as? PhoneMultiFactorInfo
+              self!.showTextInputPrompt(
+                withMessage: "Select factor to sign in\n\(displayNameString)",
+                completionBlock: { userPressedOK, displayName in
+                  var selectedHint: PhoneMultiFactorInfo?
+                  for tmpFactorInfo in resolver.hints {
+                    if displayName == tmpFactorInfo.displayName {
+                      selectedHint = tmpFactorInfo as? PhoneMultiFactorInfo
+                    }
                   }
-                }
-                PhoneAuthProvider.provider().verifyPhoneNumber(with: selectedHint!, uiDelegate: nil, multiFactorSession: resolver.session) { verificationID, error in
-                  if error != nil {
-                    print("Multi factor start sign in failed. Error: \(error.debugDescription)")
-                  } else {
-                    self!.showTextInputPrompt(withMessage: "Verification code for \(selectedHint?.displayName ?? "")", completionBlock: { userPressedOK, verificationCode in
-                      let credential: PhoneAuthCredential? = PhoneAuthProvider.provider().credential(withVerificationID: verificationID!, verificationCode: verificationCode!)
-                      let assertion: MultiFactorAssertion? = PhoneMultiFactorGenerator.assertion(with: credential!)
-                      resolver.resolveSignIn(with: assertion!) { authResult, error in
-                        if error != nil {
-                          print("Multi factor finanlize sign in failed. Error: \(error.debugDescription)")
-                        } else {
-                          strongSelf.navigationController?.popViewController(animated: true)
-                        }
+                  PhoneAuthProvider.provider()
+                    .verifyPhoneNumber(with: selectedHint!, uiDelegate: nil,
+                                       multiFactorSession: resolver
+                                         .session) { verificationID, error in
+                      if error != nil {
+                        print("Multi factor start sign in failed. Error: \(error.debugDescription)")
+                      } else {
+                        self!.showTextInputPrompt(
+                          withMessage: "Verification code for \(selectedHint?.displayName ?? "")",
+                          completionBlock: { userPressedOK, verificationCode in
+                            let credential: PhoneAuthCredential? = PhoneAuthProvider.provider()
+                              .credential(withVerificationID: verificationID!,
+                                          verificationCode: verificationCode!)
+                            let assertion: MultiFactorAssertion? = PhoneMultiFactorGenerator
+                              .assertion(with: credential!)
+                            resolver.resolveSignIn(with: assertion!) { authResult, error in
+                              if error != nil {
+                                print(
+                                  "Multi factor finanlize sign in failed. Error: \(error.debugDescription)"
+                                )
+                              } else {
+                                strongSelf.navigationController?.popViewController(animated: true)
+                              }
+                            }
+                          }
+                        )
                       }
-                    })
-                  }
+                    }
                 }
-              })
+              )
             } else {
               strongSelf.showMessagePrompt(error.localizedDescription)
               return
@@ -143,7 +157,7 @@ class EmailViewController: UIViewController {
   }
 
   @IBAction func didCreateAccount(_ sender: AnyObject) {
-    showTextInputPrompt(withMessage: "Email:") {  [weak self] userPressedOK, email in
+    showTextInputPrompt(withMessage: "Email:") { [weak self] userPressedOK, email in
       guard let strongSelf = self else { return }
       guard let email = email else {
         strongSelf.showMessagePrompt("email can't be empty")
@@ -173,5 +187,4 @@ class EmailViewController: UIViewController {
       }
     }
   }
-
 }

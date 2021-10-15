@@ -1,0 +1,30 @@
+name: check
+
+on:
+  pull_request:
+  push:
+    branches: master
+
+jobs:
+  check:
+    runs-on: macos-latest
+    env:
+      MINT_PATH: ${{ github.workspace }}/mint
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Cache Mint packages
+      uses: actions/cache@v1
+      with:
+        path: ${{ env.MINT_PATH }}
+        key: ${{ runner.os }}-mint-${{ hashFiles('**/Mintfile') }}
+        restore-keys: ${{ runner.os }}-mint-
+
+    - name: Install mint
+      run:  brew install mint
+
+    - name: Bootstrap mint with swiftformat
+      run: mint bootstrap
+
+    - name: Check
+      run:  scripts/style.sh test-only

@@ -1,0 +1,53 @@
+name: DynamicLinks
+
+on:
+  push:
+    branches: [ master ]
+    paths:
+      - '.github/workflows/dynamiclinks.yml'
+      - 'dynamiclinks/**'
+      - 'scripts/*'
+      - 'scripts/dynamiclinks.sh'
+  pull_request:
+    branches: [ master ]
+    paths:
+      - '.github/workflows/dynamiclinks.yml'
+      - 'dynamiclinks/**'
+      - 'scripts/*'
+      - 'scripts/dynamiclinks.sh'
+
+  workflow_dispatch:
+
+env:
+  SAMPLE: DynamicLinks
+  secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}
+
+jobs:
+  cocoapods:
+    name: cocoapods
+    runs-on: macOS-latest
+    env:
+      SPM: false
+      LEGACY: false
+      OS: iOS
+      DEVICE: iPhone 11
+      TEST: true
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+      - name: Setup
+        run: |
+          cd dynamiclinks
+          gem install bundler
+          bundle install
+          gem install xcpretty
+          bundle exec pod install --repo-update
+          ../scripts/install_prereqs/dynamiclinks.sh
+      - name: Build ObjC
+        run: ./scripts/test.sh
+        env:
+          SWIFT_SUFFIX: ""
+      - name: Build Swift
+        run: ./scripts/test.sh
+        env:
+          SWIFT_SUFFIX: Swift

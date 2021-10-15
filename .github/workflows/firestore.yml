@@ -1,0 +1,49 @@
+name: Firestore
+
+on:
+  push:
+    branches: [ master ]
+    paths:
+      - '.github/workflows/firestore.yml'
+      - 'firestore/**'
+      - 'scripts/*'
+      - 'scripts/firestore.sh'
+  pull_request:
+    branches: [ master ]
+    paths:
+      - '.github/workflows/firestore.yml'
+      - 'firestore/**'
+      - 'scripts/*'
+      - 'scripts/firestore.sh'
+
+  workflow_dispatch:
+
+env:
+  SAMPLE: Firestore
+  secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}
+
+jobs:
+  cocoapods:
+    name: cocoapods
+    runs-on: macOS-latest
+    env:
+      SPM: false
+      LEGACY: false
+      OS: iOS
+      DEVICE: iPhone 11
+      TEST: false
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+      - name: Setup
+        run: |
+          cd firestore
+          gem install bundler
+          bundle install
+          gem install xcpretty
+          bundle exec pod install --repo-update
+          ../scripts/install_prereqs/firestore.sh
+      - name: Build
+        run: ./scripts/test.sh
+        env:
+          SWIFT_SUFFIX: ""

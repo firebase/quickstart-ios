@@ -19,14 +19,13 @@ import Firebase
 
 @objc(ViewController)
 class ViewController: UIViewController {
-
   let welcomeMessageConfigKey = "welcome_message"
   let welcomeMessageCapsConfigKey = "welcome_message_caps"
   let loadingPhraseConfigKey = "loading_phrase"
 
   var remoteConfig: RemoteConfig!
-  @IBOutlet weak var welcomeLabel: UILabel!
-  @IBOutlet weak var fetchButton: UIButton!
+  @IBOutlet var welcomeLabel: UILabel!
+  @IBOutlet var fetchButton: UIButton!
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -58,10 +57,10 @@ class ViewController: UIViewController {
     welcomeLabel.text = remoteConfig[loadingPhraseConfigKey].stringValue
 
     // [START fetch_config_with_callback]
-    remoteConfig.fetch() { (status, error) -> Void in
+    remoteConfig.fetch { (status, error) -> Void in
       if status == .success {
         print("Config fetched!")
-        self.remoteConfig.activate() { (changed, error) in
+        self.remoteConfig.activate { changed, error in
           // ...
         }
       } else {

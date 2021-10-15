@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		107347C720315A61004A66D1 /* PerformanceExampleSwiftUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107347C620315A61004A66D1 /* PerformanceExampleSwiftUITests.swift */; };
 		1073486F20333C0C004A66D1 /* PerformanceExampleUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1073486E20333C0C004A66D1 /* PerformanceExampleUITests.m */; };
+		3AC4EE8864CD2D8B6ADE0A2D /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = 664D51F1D2849F1D6A5F39A3 /* GoogleService-Info.plist */; };
 		5F5A53521ADE670C00F81DF0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5A53511ADE670C00F81DF0 /* main.m */; };
 		5F5A53551ADE670C00F81DF0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5A53541ADE670C00F81DF0 /* AppDelegate.m */; };
 		5F5A53581ADE670C00F81DF0 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5A53571ADE670C00F81DF0 /* ViewController.m */; };
@@ -21,6 +22,10 @@
 		5F99610C1AE0CF4F0034F503 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F9961071AE0CF4F0034F503 /* LaunchScreen.xib */; };
 		5F99610D1AE0CF4F0034F503 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F9961071AE0CF4F0034F503 /* LaunchScreen.xib */; };
 		5FDE055D1B0DAA090037B82F /* AppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FDE055C1B0DAA090037B82F /* AppTests.m */; };
+		72597C97199D485A8666B65A /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = 664D51F1D2849F1D6A5F39A3 /* GoogleService-Info.plist */; };
+		7FBD5A73CBE80CA855DA8E22 /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = 664D51F1D2849F1D6A5F39A3 /* GoogleService-Info.plist */; };
+		A4ADF9F8B0B185014DA28C21 /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = 664D51F1D2849F1D6A5F39A3 /* GoogleService-Info.plist */; };
+		B3E22BC95F7192FC5242CC68 /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = 664D51F1D2849F1D6A5F39A3 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +74,7 @@
 		5F9961071AE0CF4F0034F503 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		5FDE05581B0DAA090037B82F /* PerformanceExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PerformanceExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FDE055C1B0DAA090037B82F /* AppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppTests.m; sourceTree = "<group>"; };
+		664D51F1D2849F1D6A5F39A3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +144,7 @@
 				1073486D20333C0C004A66D1 /* PerformanceExampleUITests */,
 				5F5A534D1ADE670C00F81DF0 /* Products */,
 				5F9961041AE0CF4F0034F503 /* Shared */,
+				664D51F1D2849F1D6A5F39A3 /* GoogleService-Info.plist */,
 			);
 			sourceTree = "<group>";
 			wrapsLines = 0;
@@ -405,6 +412,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				107347C720315A61004A66D1 /* PerformanceExampleSwiftUITests.swift in Sources */,
+				3AC4EE8864CD2D8B6ADE0A2D /* GoogleService-Info.plist in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -413,6 +421,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1073486F20333C0C004A66D1 /* PerformanceExampleUITests.m in Sources */,
+				72597C97199D485A8666B65A /* GoogleService-Info.plist in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -423,6 +432,7 @@
 				5F5A53581ADE670C00F81DF0 /* ViewController.m in Sources */,
 				5F5A53551ADE670C00F81DF0 /* AppDelegate.m in Sources */,
 				5F5A53521ADE670C00F81DF0 /* main.m in Sources */,
+				A4ADF9F8B0B185014DA28C21 /* GoogleService-Info.plist in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -432,6 +442,7 @@
 			files = (
 				5F5A53801ADE67D500F81DF0 /* ViewController.swift in Sources */,
 				5F5A537E1ADE67D500F81DF0 /* AppDelegate.swift in Sources */,
+				B3E22BC95F7192FC5242CC68 /* GoogleService-Info.plist in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -440,6 +451,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5FDE055D1B0DAA090037B82F /* AppTests.m in Sources */,
+				7FBD5A73CBE80CA855DA8E22 /* GoogleService-Info.plist in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -22,9 +22,8 @@
 import UIKit
 import Firebase
 
-@objc(FoodPickerViewController)  // match the ObjC symbol name inside Storyboard
+@objc(FoodPickerViewController) // match the ObjC symbol name inside Storyboard
 class FoodPickerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
-
   let foodStuffs = ["Hot Dogs", "Hamburger", "Pizza"]
 
   func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
@@ -46,8 +45,8 @@ class FoodPickerViewController: UIViewController, UIPickerViewDelegate, UIPicker
     return 1
   }
 
-  func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+  func pickerView(_ pickerView: UIPickerView, titleForRow row: Int,
+                  forComponent component: Int) -> String? {
     return foodStuffs[row]
   }
-
 }

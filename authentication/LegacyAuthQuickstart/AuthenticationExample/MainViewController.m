@@ -102,6 +102,8 @@ static BOOL isMFAEnabled = NO;
 
 - (void)startSignInWithAppleFlow API_AVAILABLE(ios(13.0));
 
+- (void)startSignInWithGoogleFlow;
+
 @end
 
 @implementation MainViewController {
@@ -344,10 +346,7 @@ static BOOL isMFAEnabled = NO;
         action = [UIAlertAction actionWithTitle:@"Google"
                                           style:UIAlertActionStyleDefault
                                         handler:^(UIAlertAction * _Nonnull action) {
-          // [START setup_gid_uidelegate]
-          [GIDSignIn sharedInstance].presentingViewController = self;
-          [[GIDSignIn sharedInstance] signIn];
-          // [END setup_gid_uidelegate]
+          [self startSignInWithGoogleFlow];
         }];
       }
         break;
@@ -1067,6 +1066,8 @@ static BOOL isMFAEnabled = NO;
   [authorizationController performRequests];
 }
 
+// [START random_nonce]
+// Adapted from https://auth0.com/docs/api-auth/tutorials/nonce#generate-a-cryptographically-random-nonce
 - (NSString *)randomNonce:(NSInteger)length {
   NSAssert(length > 0, @"Expected nonce to have positive length");
   NSString *characterSet = @"0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._";
@@ -1098,7 +1099,9 @@ static BOOL isMFAEnabled = NO;
 
   return [result copy];
 }
+// [END random_nonce]
 
+// [START sha_256]
 - (NSString *)stringBySha256HashingString:(NSString *)input {
   const char *string = [input UTF8String];
   unsigned char result[CC_SHA256_DIGEST_LENGTH];
@@ -1110,6 +1113,7 @@ static BOOL isMFAEnabled = NO;
   }
   return hashed;
 }
+// [END sha_256]
 
 - (void)authorizationController:(ASAuthorizationController *)controller
    didCompleteWithAuthorization:(ASAuthorization *)authorization API_AVAILABLE(ios(13.0)) {
@@ -1154,6 +1158,37 @@ static BOOL isMFAEnabled = NO;
 
 - (NSString *)currentNonce {
   return [_currentNonce copy];
+}
+
+#pragma mark - Sign in with Google
+
+- (void)startSignInWithGoogleFlow {
+  // [START headless_google_auth]
+  GIDConfiguration *config = [[GIDConfiguration alloc] initWithClientID:[FIRApp defaultApp].options.clientID];
+
+  __weak __auto_type weakSelf = self;
+  [GIDSignIn.sharedInstance signInWithConfiguration:config presentingViewController:self callback:^(GIDGoogleUser * _Nullable user, NSError * _Nullable error) {
+    __auto_type strongSelf = weakSelf;
+    if (strongSelf == nil) { return; }
+
+    if (error == nil) {
+      // [START google_credential]
+      GIDAuthentication *authentication = user.authentication;
+      FIRAuthCredential *credential =
+      [FIRGoogleAuthProvider credentialWithIDToken:authentication.idToken
+                                       accessToken:authentication.accessToken];
+      // [END google_credential]
+      // [START_EXCLUDE]
+      [strongSelf firebaseLoginWithCredential:credential];
+      // [END_EXCLUDE]
+    } else {
+      // [START_EXCLUDE]
+      [strongSelf showMessagePrompt:error.localizedDescription];
+      // [END_EXCLUDE]
+    }
+  }];
+
+  // [END headless_google_auth]
 }
 
 @end

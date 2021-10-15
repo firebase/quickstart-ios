@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D96FE8F5661BCC40ADE48D3 /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = AF38C66CDB0155B6F2BDE0FD /* GoogleService-Info.plist */; };
+		7AB7C66CB639531B714014CA /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = AF38C66CDB0155B6F2BDE0FD /* GoogleService-Info.plist */; };
 		9A0A6EE922CE55B2004CF0FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0A6EE822CE55B2004CF0FF /* AppDelegate.swift */; };
 		9A0A6EEB22CE55B2004CF0FF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0A6EEA22CE55B2004CF0FF /* ViewController.swift */; };
 		9A0A6EEE22CE55B2004CF0FF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A0A6EEC22CE55B2004CF0FF /* Main.storyboard */; };
@@ -20,6 +22,8 @@
 		9A5908C423AD479B000CD3B9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A5908BC23AD479B000CD3B9 /* Images.xcassets */; };
 		9A76AE3122E20A0C0024E473 /* InstallationsExampleSwiftTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A76AE3022E20A0C0024E473 /* InstallationsExampleSwiftTests.m */; };
 		9A76AE3F22E20A240024E473 /* InstallationsExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A76AE3E22E20A240024E473 /* InstallationsExampleTests.m */; };
+		B2B6F60F66458C91106FE457 /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = AF38C66CDB0155B6F2BDE0FD /* GoogleService-Info.plist */; };
+		C2A411F73C146DCCE70EBE07 /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = AF38C66CDB0155B6F2BDE0FD /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +65,7 @@
 		9A76AE3C22E20A240024E473 /* InstallationsExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InstallationsExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A76AE3E22E20A240024E473 /* InstallationsExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InstallationsExampleTests.m; sourceTree = "<group>"; };
 		9A76AE4022E20A240024E473 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AF38C66CDB0155B6F2BDE0FD /* GoogleService-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +110,7 @@
 				9A76AE3D22E20A240024E473 /* InstallationsExampleTests */,
 				9A0A6EE622CE55B2004CF0FF /* Products */,
 				F47D9EFBA47214D7699A8C26 /* Pods */,
+				AF38C66CDB0155B6F2BDE0FD /* GoogleService-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -344,6 +350,7 @@
 			files = (
 				9A0A6EEB22CE55B2004CF0FF /* ViewController.swift in Sources */,
 				9A0A6EE922CE55B2004CF0FF /* AppDelegate.swift in Sources */,
+				B2B6F60F66458C91106FE457 /* GoogleService-Info.plist in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -354,6 +361,7 @@
 				9A44BF8422CE73980039A7EE /* main.m in Sources */,
 				9A44BF8122CE73980039A7EE /* ViewController.m in Sources */,
 				9A44BF8522CE73980039A7EE /* AppDelegate.m in Sources */,
+				7AB7C66CB639531B714014CA /* GoogleService-Info.plist in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -362,6 +370,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A76AE3122E20A0C0024E473 /* InstallationsExampleSwiftTests.m in Sources */,
+				1D96FE8F5661BCC40ADE48D3 /* GoogleService-Info.plist in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -370,6 +379,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A76AE3F22E20A240024E473 /* InstallationsExampleTests.m in Sources */,
+				C2A411F73C146DCCE70EBE07 /* GoogleService-Info.plist in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

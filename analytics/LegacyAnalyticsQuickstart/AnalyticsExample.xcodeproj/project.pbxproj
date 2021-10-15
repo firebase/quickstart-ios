@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		107346D920315877004A66D1 /* AnalyticsExampleSwiftUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107346D820315877004A66D1 /* AnalyticsExampleSwiftUITests.swift */; };
 		107347FF20333AD6004A66D1 /* AnalyticsExampleUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 107347FE20333AD6004A66D1 /* AnalyticsExampleUITests.m */; };
+		15D22729762E9C62A1777AEF /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = B719D0274FAE0575DEFC2BC2 /* GoogleService-Info.plist */; };
+		37C41742C3050BBAA05AEB2F /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = B719D0274FAE0575DEFC2BC2 /* GoogleService-Info.plist */; };
+		4109F1E5F3ED7CC121BC3AEC /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = B719D0274FAE0575DEFC2BC2 /* GoogleService-Info.plist */; };
 		5F3B16801AFC453200860007 /* CircleImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F3B167F1AFC453200860007 /* CircleImageView.m */; };
 		5F3B16811AFC453200860007 /* CircleImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F3B167F1AFC453200860007 /* CircleImageView.m */; };
 		5F5A53521ADE670C00F81DF0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5A53511ADE670C00F81DF0 /* main.m */; };
@@ -26,6 +29,8 @@
 		5FC04A811AF1DF8300F787CA /* PatternTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC04A801AF1DF8300F787CA /* PatternTabBarController.swift */; };
 		5FC7AD8E1B0D446A004E3100 /* LogWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5FC7AD8D1B0D446A004E3100 /* LogWrapper.mm */; };
 		5FDE05641B0DAD5C0037B82F /* AppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FDE05631B0DAD5C0037B82F /* AppTests.m */; };
+		AD7774A577C995CEC721FBA9 /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = B719D0274FAE0575DEFC2BC2 /* GoogleService-Info.plist */; };
+		E735D5D1655322FCC076AC05 /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = B719D0274FAE0575DEFC2BC2 /* GoogleService-Info.plist */; };
 		EF01600C1BD07C1F00F8DA01 /* AnalyticsImages.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF01600B1BD07C1F00F8DA01 /* AnalyticsImages.xcassets */; };
 		EF01600D1BD07C1F00F8DA01 /* AnalyticsImages.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF01600B1BD07C1F00F8DA01 /* AnalyticsImages.xcassets */; };
 		EFB6C1B61C6524F4007CCA78 /* FoodPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB6C1B51C6524F4007CCA78 /* FoodPickerViewController.m */; };
@@ -85,6 +90,7 @@
 		5FC7AD8D1B0D446A004E3100 /* LogWrapper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LogWrapper.mm; sourceTree = "<group>"; };
 		5FC7AD8F1B0D44B9004E3100 /* LogWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogWrapper.h; sourceTree = "<group>"; };
 		5FDE05631B0DAD5C0037B82F /* AppTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppTests.m; sourceTree = "<group>"; };
+		B719D0274FAE0575DEFC2BC2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EF01600B1BD07C1F00F8DA01 /* AnalyticsImages.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = AnalyticsImages.xcassets; sourceTree = "<group>"; };
 		EFB6C1B41C6524F4007CCA78 /* FoodPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FoodPickerViewController.h; sourceTree = "<group>"; };
 		EFB6C1B51C6524F4007CCA78 /* FoodPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FoodPickerViewController.m; sourceTree = "<group>"; };
@@ -159,6 +165,7 @@
 				5F5A534D1ADE670C00F81DF0 /* Products */,
 				5F9961041AE0CF4F0034F503 /* Shared */,
 				5FC29E541AE9255700668C8D /* Images */,
+				B719D0274FAE0575DEFC2BC2 /* GoogleService-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -445,6 +452,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				107346D920315877004A66D1 /* AnalyticsExampleSwiftUITests.swift in Sources */,
+				15D22729762E9C62A1777AEF /* GoogleService-Info.plist in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -453,6 +461,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				107347FF20333AD6004A66D1 /* AnalyticsExampleUITests.m in Sources */,
+				4109F1E5F3ED7CC121BC3AEC /* GoogleService-Info.plist in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -466,6 +475,7 @@
 				5F3B16801AFC453200860007 /* CircleImageView.m in Sources */,
 				EFB6C1B61C6524F4007CCA78 /* FoodPickerViewController.m in Sources */,
 				5F5A53521ADE670C00F81DF0 /* main.m in Sources */,
+				37C41742C3050BBAA05AEB2F /* GoogleService-Info.plist in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -478,6 +488,7 @@
 				5F5A53801ADE67D500F81DF0 /* ViewController.swift in Sources */,
 				EFB6C1BA1C656D38007CCA78 /* FoodPickerViewController.swift in Sources */,
 				5F5A537E1ADE67D500F81DF0 /* AppDelegate.swift in Sources */,
+				AD7774A577C995CEC721FBA9 /* GoogleService-Info.plist in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -487,6 +498,7 @@
 			files = (
 				5FC7AD8E1B0D446A004E3100 /* LogWrapper.mm in Sources */,
 				5FDE05641B0DAD5C0037B82F /* AppTests.m in Sources */,
+				E735D5D1655322FCC076AC05 /* GoogleService-Info.plist in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

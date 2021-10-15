@@ -20,6 +20,7 @@
 // [START firebase_banner_example]
 import UIKit
 import Firebase
+import GoogleMobileAds
 
 /**
  * AdMob ad unit IDs are not currently stored inside the google-services.plist file. Developers
@@ -31,51 +32,50 @@ let kInterstitialAdUnitID = "ca-app-pub-3940256099942544/4411468910"
 
 // Makes ViewController available to Objc classes.
 @objc(ViewController)
-class ViewController: UIViewController, GADInterstitialDelegate {
-  @IBOutlet weak var bannerView: GADBannerView!
-  var interstitial: GADInterstitial!
-  @IBOutlet weak var interstitialButton: UIButton!
+class ViewController: UIViewController, GADFullScreenContentDelegate {
+  @IBOutlet var bannerView: GADBannerView!
+  var interstitial: GADInterstitialAd?
+  @IBOutlet var interstitialButton: UIButton!
 
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    self.bannerView.adUnitID = kBannerAdUnitID
-    self.bannerView.rootViewController = self
-    self.bannerView.load(GADRequest())
+    bannerView.adUnitID = kBannerAdUnitID
+    bannerView.rootViewController = self
+    bannerView.load(GADRequest())
     // [END firebase_banner_example]
 
     // [START firebase_interstitial_example]
-    self.interstitial = createAndLoadInterstitial()
-    self.interstitialButton.isEnabled = self.interstitial.isReady
+    createAndLoadInterstitial()
   }
 
-  func createAndLoadInterstitial() -> GADInterstitial {
-    let interstitial =
-        GADInterstitial(adUnitID: kInterstitialAdUnitID)
-    interstitial.delegate = self
-    interstitial.load(GADRequest())
-    return interstitial
-  }
-
-  func interstitialDidReceiveAd(_ ad: GADInterstitial) {
-    self.interstitialButton.isEnabled = true
-  }
-
-  func interstitialDidDismissScreen(_ interstitial: GADInterstitial) {
-    self.interstitialButton.isEnabled = false
-    self.interstitial = createAndLoadInterstitial()
-  }
-
-  @IBAction func didTapInterstitialButton(_ sender: AnyObject) {
-    if self.interstitial.isReady {
-      self.interstitial.present(fromRootViewController: self)
+  func createAndLoadInterstitial() {
+    GADInterstitialAd.load(
+      withAdUnitID: kInterstitialAdUnitID,
+      request: GADRequest()
+    ) { ad, error in
+      if let error = error {
+        // For more fine-grained error handling, take a look at the values in GADErrorCode.
+        print("Error loading ad: \(error)")
+      }
+      self.interstitial = ad
+      self.interstitialButton.isEnabled = true
     }
   }
 
-  func interstitial(_ ad: GADInterstitial, didFailToReceiveAdWithError error: GADRequestError) {
-    // Retrying failed interstitial loads is a rudimentary way of handling these errors.
-    // For more fine-grained error handling, take a look at the values in GADErrorCode.
-    self.interstitial = createAndLoadInterstitial()
+  func adDidDismissFullScreenContent(_ ad: GADFullScreenPresentingAd) {
+    interstitialButton.isEnabled = false
+    createAndLoadInterstitial()
+  }
+
+  func ad(_ ad: GADFullScreenPresentingAd,
+          didFailToPresentFullScreenContentWithError error: Error) {
+    print("Error presenting ad: \(error)")
+  }
+
+  @IBAction func didTapInterstitialButton(_ sender: AnyObject) {
+    interstitial?.present(fromRootViewController: self)
   }
 }
+
 // [END firebase_interstitial_example]

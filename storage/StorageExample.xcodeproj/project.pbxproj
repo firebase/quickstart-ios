@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E988FB754573560EE7A9632 /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = AAD74B757A2D56320A67A247 /* GoogleService-Info.plist */; };
 		107347E320315A84004A66D1 /* StorageExampleSwiftUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107347E220315A84004A66D1 /* StorageExampleSwiftUITests.swift */; };
 		1073487D20333C27004A66D1 /* StorageExampleUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1073487C20333C27004A66D1 /* StorageExampleUITests.m */; };
 		10D187C31C8640E300D0DC91 /* DownloadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10D187C21C8640E300D0DC91 /* DownloadViewController.m */; };
@@ -23,6 +24,10 @@
 		5F99610C1AE0CF4F0034F503 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F9961071AE0CF4F0034F503 /* LaunchScreen.xib */; };
 		5F99610D1AE0CF4F0034F503 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F9961071AE0CF4F0034F503 /* LaunchScreen.xib */; };
 		5FDE055D1B0DAA090037B82F /* AppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FDE055C1B0DAA090037B82F /* AppTests.m */; };
+		994D4F3D2B3F8119AA066ADF /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = AAD74B757A2D56320A67A247 /* GoogleService-Info.plist */; };
+		A0C8867E5822F39F00B12C48 /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = AAD74B757A2D56320A67A247 /* GoogleService-Info.plist */; };
+		A6209E8616E47302D7786FE2 /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = AAD74B757A2D56320A67A247 /* GoogleService-Info.plist */; };
+		C5DD2633A1DC41ACA94074FA /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = AAD74B757A2D56320A67A247 /* GoogleService-Info.plist */; };
 		DE8564A823AECBB800611383 /* FIREGSignInHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DE8564A523AECBB700611383 /* FIREGSignInHelper.m */; };
 		DE8564A923AECBB800611383 /* FIREGHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DE8564A623AECBB700611383 /* FIREGHelper.m */; };
 /* End PBXBuildFile section */
@@ -76,6 +81,7 @@
 		5F9961071AE0CF4F0034F503 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		5FDE05581B0DAA090037B82F /* StorageExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StorageExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FDE055C1B0DAA090037B82F /* AppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppTests.m; sourceTree = "<group>"; };
+		AAD74B757A2D56320A67A247 /* GoogleService-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DE8564A423AECBB700611383 /* FIREGHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FIREGHelper.h; sourceTree = "<group>"; };
 		DE8564A523AECBB700611383 /* FIREGSignInHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FIREGSignInHelper.m; sourceTree = "<group>"; };
 		DE8564A623AECBB700611383 /* FIREGHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FIREGHelper.m; sourceTree = "<group>"; };
@@ -150,6 +156,7 @@
 				DE8564A323AECBB700611383 /* TestUtils */,
 				5F5A534D1ADE670C00F81DF0 /* Products */,
 				5F9961041AE0CF4F0034F503 /* Shared */,
+				AAD74B757A2D56320A67A247 /* GoogleService-Info.plist */,
 			);
 			sourceTree = "<group>";
 			wrapsLines = 0;
@@ -432,6 +439,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				107347E320315A84004A66D1 /* StorageExampleSwiftUITests.swift in Sources */,
+				994D4F3D2B3F8119AA066ADF /* GoogleService-Info.plist in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -442,6 +450,7 @@
 				1073487D20333C27004A66D1 /* StorageExampleUITests.m in Sources */,
 				DE8564A823AECBB800611383 /* FIREGSignInHelper.m in Sources */,
 				DE8564A923AECBB800611383 /* FIREGHelper.m in Sources */,
+				0E988FB754573560EE7A9632 /* GoogleService-Info.plist in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -453,6 +462,7 @@
 				5F5A53551ADE670C00F81DF0 /* AppDelegate.m in Sources */,
 				10D187C31C8640E300D0DC91 /* DownloadViewController.m in Sources */,
 				5F5A53521ADE670C00F81DF0 /* main.m in Sources */,
+				C5DD2633A1DC41ACA94074FA /* GoogleService-Info.plist in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -463,6 +473,7 @@
 				5F5A53801ADE67D500F81DF0 /* ViewController.swift in Sources */,
 				10D187C51C87608900D0DC91 /* DownloadViewController.swift in Sources */,
 				5F5A537E1ADE67D500F81DF0 /* AppDelegate.swift in Sources */,
+				A6209E8616E47302D7786FE2 /* GoogleService-Info.plist in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -471,6 +482,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5FDE055D1B0DAA090037B82F /* AppTests.m in Sources */,
+				A0C8867E5822F39F00B12C48 /* GoogleService-Info.plist in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

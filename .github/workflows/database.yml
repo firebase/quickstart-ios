@@ -1,0 +1,89 @@
+name: Database
+
+on:
+  push:
+    branches: [ master ]
+    paths:
+      - '.github/workflows/database.yml'
+      - 'database/**'
+      - 'scripts/*'
+      - 'scripts/database.sh'
+  pull_request:
+    branches: [ master ]
+    paths:
+      - '.github/workflows/database.yml'
+      - 'database/**'
+      - 'scripts/*'
+      - 'scripts/database.sh'
+
+  workflow_dispatch:
+
+env:
+  SAMPLE: Database
+  secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}
+
+jobs:
+  cocoapods:
+    name: cocoapods
+    runs-on: macOS-latest
+    env:
+      SPM: false
+      LEGACY: false
+      OS: iOS
+      DEVICE: iPhone 11
+      TEST: false
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+      - name: Setup
+        run: |
+          cd database
+          gem install bundler
+          bundle install
+          gem install xcpretty
+          bundle exec pod install --repo-update
+          ../scripts/install_prereqs/database.sh
+      - name: Build ObjC
+        run: ./scripts/test.sh
+        env:
+          SWIFT_SUFFIX: ""
+      - name: Build Swift
+        run: ./scripts/test.sh
+        env:
+          SWIFT_SUFFIX: Swift
+  spm:
+    name: spm (Xcode ${{ matrix.xcode }} - ${{ matrix.os }})
+    runs-on: macOS-11
+    strategy:
+      matrix:
+        xcode: ["12.5", "13.0"]
+        os: [iOS, tvOS, macOS]
+        include:
+          - os: iOS
+            device: iPhone 12
+            test: true
+          - os: tvOS
+            device: Apple TV 4K (at 1080p) (2nd generation)
+            test: true
+          - os: macOS
+            device: localhost
+            test: false # flaky macOS UITest: UITests.testStaticSignUpView() sometimes fails
+    env:
+      SETUP: database
+      SPM: true
+      DIR: database/DatabaseExampleSwiftUI/DatabaseExample
+      OS: ${{ matrix.os }}
+      DEVICE: ${{ matrix.device }}
+      TEST: ${{ matrix.test }}
+      XCODE_VERSION: ${{ matrix.xcode }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+      - name: Setup
+        run: |
+          sudo xcode-select -s "/Applications/Xcode_${XCODE_VERSION}.app/Contents/Developer"
+          gem install xcpretty
+          cd $SETUP
+          ../scripts/install_prereqs/${SETUP}.sh
+      - name: Build and Test SwiftUI (${{ matrix.os }})
+        run: ./scripts/test.sh

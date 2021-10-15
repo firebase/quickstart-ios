@@ -36,15 +36,14 @@
   self.fcmTokenMessage.text = displayToken;
     
   // [START log_iid_reg_token]
-  [[FIRInstanceID instanceID] instanceIDWithHandler:^(FIRInstanceIDResult * _Nullable result,
-                                                      NSError * _Nullable error) {
+ [[FIRMessaging messaging] tokenWithCompletion:^(NSString * _Nullable token, NSError * _Nullable error) {
     if (error != nil) {
-      NSLog(@"Error fetching remote instance ID: %@", error);
+      NSLog(@"Error fetching the remote FCM registration token: %@", error);
     } else {
-      NSLog(@"Remote instance ID token: %@", result.token);
+      NSLog(@"Remote FCM registration token: %@", token);
       NSString* message =
-        [NSString stringWithFormat:@"Remote InstanceID token: %@", result.token];
-      self.instanceIDTokenMessage.text = message;
+        [NSString stringWithFormat:@"FCM registration token: %@", token];
+      self.remoteFCMTokenMessage.text = message;
     }
   }];
   // [END log_iid_reg_token]

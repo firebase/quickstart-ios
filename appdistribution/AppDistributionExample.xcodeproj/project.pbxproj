@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1E5FA399E68EEC6A1CC9D4F9 /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = 7B7A16FC609E3AE1BA2F8E93 /* GoogleService-Info.plist */; };
+		4C5B56DE60EC55CE980B3E35 /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = 7B7A16FC609E3AE1BA2F8E93 /* GoogleService-Info.plist */; };
+		64A8AA8B04202E42604E1B50 /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = 7B7A16FC609E3AE1BA2F8E93 /* GoogleService-Info.plist */; };
 		EA5C0BC624C5D2060010FDF6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA5C0BC524C5D2060010FDF6 /* AppDelegate.swift */; };
 		EA5C0BC824C5D2060010FDF6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA5C0BC724C5D2060010FDF6 /* SceneDelegate.swift */; };
 		EA5C0BCA24C5D2060010FDF6 /* AppDistributionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA5C0BC924C5D2060010FDF6 /* AppDistributionViewController.swift */; };
@@ -34,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7B7A16FC609E3AE1BA2F8E93 /* GoogleService-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EA5C0BC224C5D2060010FDF6 /* AppDistributionExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppDistributionExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA5C0BC524C5D2060010FDF6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EA5C0BC724C5D2060010FDF6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -89,6 +93,7 @@
 				EA5C0BE624C5D2070010FDF6 /* AppDistributionUITests */,
 				EA5C0BC324C5D2060010FDF6 /* Products */,
 				2B283AC81B12C877411DB212 /* Pods */,
+				7B7A16FC609E3AE1BA2F8E93 /* GoogleService-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -265,6 +270,7 @@
 				EA5C0BCA24C5D2060010FDF6 /* AppDistributionViewController.swift in Sources */,
 				EA5C0BC624C5D2060010FDF6 /* AppDelegate.swift in Sources */,
 				EA5C0BC824C5D2060010FDF6 /* SceneDelegate.swift in Sources */,
+				1E5FA399E68EEC6A1CC9D4F9 /* GoogleService-Info.plist in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -273,6 +279,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA5C0BDD24C5D2070010FDF6 /* AppDistributionExampleTests.swift in Sources */,
+				64A8AA8B04202E42604E1B50 /* GoogleService-Info.plist in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -281,6 +288,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA5C0BE824C5D2070010FDF6 /* AppDistributionExampleUITests.swift in Sources */,
+				4C5B56DE60EC55CE980B3E35 /* GoogleService-Info.plist in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

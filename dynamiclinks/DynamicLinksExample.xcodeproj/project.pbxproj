@@ -25,8 +25,13 @@
 		5F99610B1AE0CF4F0034F503 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F9961061AE0CF4F0034F503 /* Images.xcassets */; };
 		5F99610C1AE0CF4F0034F503 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F9961071AE0CF4F0034F503 /* LaunchScreen.xib */; };
 		5F99610D1AE0CF4F0034F503 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F9961071AE0CF4F0034F503 /* LaunchScreen.xib */; };
+		7C3DAFA02B6A41251A02D833 /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = 28663F6E35BEC4B1EC821AA8 /* GoogleService-Info.plist */; };
+		9965E65D0BB7DA370BAA0C23 /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = 28663F6E35BEC4B1EC821AA8 /* GoogleService-Info.plist */; };
+		A1F82AABFFE762C13E065BA6 /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = 28663F6E35BEC4B1EC821AA8 /* GoogleService-Info.plist */; };
 		DE43B5C423AEBA710056B15F /* FIREGHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DE43B5C023AEBA690056B15F /* FIREGHelper.m */; };
 		DE43B5C523AEBA760056B15F /* FIREGSignInHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DE43B5BF23AEBA690056B15F /* FIREGSignInHelper.m */; };
+		E1049B4E536A6CD1D614AFC3 /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = 28663F6E35BEC4B1EC821AA8 /* GoogleService-Info.plist */; };
+		F21EC8F2345FBCB7FD3B4C86 /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = 28663F6E35BEC4B1EC821AA8 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +74,7 @@
 		1073484620333BB3004A66D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		10AF4D461DD3E7660096D192 /* DynamicLinksExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DynamicLinksExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		10AF4D481DD3E7660096D192 /* DynamicLinksExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DynamicLinksExampleTests.m; sourceTree = "<group>"; };
+		28663F6E35BEC4B1EC821AA8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5F5A534C1ADE670C00F81DF0 /* DynamicLinksExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DynamicLinksExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F5A53501ADE670C00F81DF0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5F5A53511ADE670C00F81DF0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -165,6 +171,7 @@
 				DE43B5BD23AEBA690056B15F /* TestUtils */,
 				5F5A534D1ADE670C00F81DF0 /* Products */,
 				5F9961041AE0CF4F0034F503 /* Shared */,
+				28663F6E35BEC4B1EC821AA8 /* GoogleService-Info.plist */,
 			);
 			sourceTree = "<group>";
 			wrapsLines = 0;
@@ -443,6 +450,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				10734765203159BF004A66D1 /* DynamicLinksExampleSwiftUITests.swift in Sources */,
+				F21EC8F2345FBCB7FD3B4C86 /* GoogleService-Info.plist in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -453,6 +461,7 @@
 				1073484520333BB3004A66D1 /* DynamicLinksExampleUITests.m in Sources */,
 				DE43B5C423AEBA710056B15F /* FIREGHelper.m in Sources */,
 				DE43B5C523AEBA760056B15F /* FIREGSignInHelper.m in Sources */,
+				A1F82AABFFE762C13E065BA6 /* GoogleService-Info.plist in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -461,6 +470,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				10AF4D491DD3E7660096D192 /* DynamicLinksExampleTests.m in Sources */,
+				E1049B4E536A6CD1D614AFC3 /* GoogleService-Info.plist in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -473,6 +483,7 @@
 				5F5A53581ADE670C00F81DF0 /* ViewController.m in Sources */,
 				5F5A53551ADE670C00F81DF0 /* AppDelegate.m in Sources */,
 				5F5A53521ADE670C00F81DF0 /* main.m in Sources */,
+				9965E65D0BB7DA370BAA0C23 /* GoogleService-Info.plist in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -484,6 +495,7 @@
 				106C9A341EA54E21009FD392 /* HeaderCell.swift in Sources */,
 				5F5A537E1ADE67D500F81DF0 /* AppDelegate.swift in Sources */,
 				106C9A3B1EA56900009FD392 /* ParamTableViewCell.swift in Sources */,
+				7C3DAFA02B6A41251A02D833 /* GoogleService-Info.plist in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

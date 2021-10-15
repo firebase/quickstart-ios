@@ -135,13 +135,36 @@ class AccountLinkingViewController: UIViewController, DataSourceProviderDelegate
   /// See this class's conformance to `GIDSignInDelegate` below for
   /// context on how the linking is made.
   private func performGoogleAccountLink() {
-    // Configure the Google Sign In instance
-    GIDSignIn.sharedInstance().clientID = FirebaseApp.app()!.options.clientID
-    GIDSignIn.sharedInstance().delegate = self
+    guard let clientID = FirebaseApp.app()?.options.clientID else { return }
+
+    // Create Google Sign In configuration object.
+    let config = GIDConfiguration(clientID: clientID)
 
     // Start the sign in flow!
-    GIDSignIn.sharedInstance()?.presentingViewController = self
-    GIDSignIn.sharedInstance().signIn()
+    GIDSignIn.sharedInstance.signIn(with: config, presenting: self) { [unowned self] user, error in
+
+      guard error == nil else { return displayError(error) }
+
+      guard
+        let authentication = user?.authentication,
+        let idToken = authentication.idToken
+      else {
+        let error = NSError(
+          domain: "GIDSignInError",
+          code: -1,
+          userInfo: [
+            NSLocalizedDescriptionKey: "Unexpected sign in result: required authentication data is missing.",
+          ]
+        )
+        return displayError(error)
+      }
+
+      let credential = GoogleAuthProvider.credential(withIDToken: idToken,
+                                                     accessToken: authentication.accessToken)
+
+      // Rather than use the credential to sign in the user, we will use it to link to the currently signed in user's account.
+      linkAccount(authCredential: credential)
+    }
   }
 
   // MARK: - Sign in with Apple Account Linking 🔥
@@ -410,21 +433,7 @@ extension AccountLinkingViewController: DataSourceProvidable {
 
   private func userProviderDataContains(item: Item) -> Bool {
     guard let authProvider = AuthProvider(rawValue: item.title ?? "") else { return false }
-    return user.providerData.map({$0.providerID}).contains(authProvider.id)
-  }
-}
-
-// MARK: - GIDSignInDelegate for Google Sign In
-
-extension AccountLinkingViewController: GIDSignInDelegate {
-  func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
-    guard error == nil else { return displayError(error) }
-
-    guard let authentication = user.authentication else { return }
-    let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken,
-                                                   accessToken: authentication.accessToken)
-    // Rather than use the credential to sign in the user, we will use it to link to the currently signed in user's account.
-    linkAccount(authCredential: credential)
+    return user.providerData.map { $0.providerID }.contains(authProvider.id)
   }
 }
 

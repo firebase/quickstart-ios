@@ -1,0 +1,93 @@
+name: Crashlytics
+
+on:
+  push:
+    branches: [ master ]
+    paths:
+      - '.github/workflows/crashlytics.yml'
+      - 'crashlytics/**'
+      - 'scripts/*'
+      - 'scripts/crashlytics.sh'
+  pull_request:
+    branches: [ master ]
+    paths:
+      - '.github/workflows/crashlytics.yml'
+      - 'crashlytics/**'
+      - 'scripts/*'
+      - 'scripts/crashlytics.sh'
+
+  workflow_dispatch:
+
+env:
+  SAMPLE: Crashlytics
+  secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}
+
+jobs:
+  cocoapods:
+    name: cocoapods
+    runs-on: macOS-latest
+    env:
+      SPM: false
+      LEGACY: true
+      OS: iOS
+      DEVICE: iPhone 11
+      TEST: true
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+      - name: Setup
+        run: |
+          cd crashlytics/LegacyCrashlyticsQuickstart
+          gem install bundler
+          bundle install
+          gem install xcpretty
+          bundle exec pod install --repo-update
+          cd ..
+          ../scripts/install_prereqs/crashlytics.sh
+      - name: Build ObjC
+        run: ./scripts/test.sh
+        env:
+          SWIFT_SUFFIX: ""
+      - name: Build Swift
+        run: ./scripts/test.sh
+        env:
+          SWIFT_SUFFIX: Swift
+  spm:
+    name: spm (Xcode ${{ matrix.xcode }} - ${{ matrix.os }})
+    runs-on: macOS-11
+    strategy:
+      matrix:
+        xcode: ["12.5", "13.0"]
+        os: [iOS, tvOS, macOS, watchOS]
+        include:
+          - os: iOS
+            device: iPhone 12
+            test: true
+          - os: tvOS
+            device: Apple TV 4K (at 1080p) (2nd generation)
+            test: true
+          - os: macOS
+            device: localhost
+            test: true
+          - os: watchOS
+            device: Apple Watch Series 5 - 44m
+            test: false
+    env:
+      SETUP: crashlytics
+      SPM: true
+      DIR: crashlytics
+      OS: ${{ matrix.os }}
+      DEVICE: ${{ matrix.device }}
+      TEST: ${{ matrix.test }}
+      XCODE_VERSION: ${{ matrix.xcode }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+      - name: Setup
+        run: |
+          sudo xcode-select -s "/Applications/Xcode_${XCODE_VERSION}.app/Contents/Developer"
+          gem install xcpretty
+          cd $SETUP
+          ../scripts/install_prereqs/${SETUP}.sh
+      - name: Build and Test SwiftUI (${{ matrix.os }})
+        run: ./scripts/test.sh

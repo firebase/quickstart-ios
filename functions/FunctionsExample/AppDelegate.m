@@ -18,7 +18,7 @@
 #import "SignInViewController.h"
 
 @import Firebase;
-@import FirebaseUI;
+@import FirebaseAuthUI;
 
 
 @implementation AppDelegate
@@ -37,10 +37,6 @@
 
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
   return [[FUIAuth defaultAuthUI] handleOpenURL:url sourceApplication:options[UIApplicationOpenURLOptionsSourceApplicationKey]];
-}
-
-- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
-  return [[FUIAuth defaultAuthUI] handleOpenURL:url sourceApplication:sourceApplication];
 }
 
 @end

@@ -120,7 +120,7 @@ class RemoteConfigViewController: UIViewController {
     displayedJSON.forEach { label in
       UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
         label.alpha = 0
-            }) { _ in
+      }) { _ in
         label.removeFromSuperview()
       }
     }
@@ -150,9 +150,10 @@ class RemoteConfigViewController: UIViewController {
 
       guard let stringValue = value as? String else { return }
 
-      var formattedKey = key.capitalized
-      formattedKey = formattedKey.replacingOccurrences(of: "_", with: " ")
-      formattedKey.append(": ")
+      let formattedKey = key
+        .capitalized
+        .replacingOccurrences(of: "_", with: " ")
+        .appending(": ")
 
       let attributedKey = NSAttributedString(
         string: formattedKey,
@@ -187,7 +188,7 @@ class RemoteConfigViewController: UIViewController {
   private func animateFadeIn(for view: UIView, duration: TimeInterval) {
     UIView.animate(withDuration: duration, delay: 0, options: .curveEaseIn, animations: {
       view.alpha = 1
-        })
+    })
   }
 }
 

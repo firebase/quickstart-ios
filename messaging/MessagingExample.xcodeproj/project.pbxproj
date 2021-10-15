@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		107347AB20315A3A004A66D1 /* MessagingExampleSwiftUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107347AA20315A3A004A66D1 /* MessagingExampleSwiftUITests.swift */; };
 		1073486120333BF5004A66D1 /* MessagingExampleUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1073486020333BF5004A66D1 /* MessagingExampleUITests.m */; };
+		5B334EAC56E0F5E167C81718 /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = 82E79B6D15A982EAE7B0E31B /* GoogleService-Info.plist */; };
 		5F5A53521ADE670C00F81DF0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5A53511ADE670C00F81DF0 /* main.m */; };
 		5F5A53551ADE670C00F81DF0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5A53541ADE670C00F81DF0 /* AppDelegate.m */; };
 		5F5A53581ADE670C00F81DF0 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5A53571ADE670C00F81DF0 /* ViewController.m */; };
@@ -21,6 +22,10 @@
 		5F99610C1AE0CF4F0034F503 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F9961071AE0CF4F0034F503 /* LaunchScreen.xib */; };
 		5F99610D1AE0CF4F0034F503 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F9961071AE0CF4F0034F503 /* LaunchScreen.xib */; };
 		5FDE055D1B0DAA090037B82F /* AppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FDE055C1B0DAA090037B82F /* AppTests.m */; };
+		978E6F2CAAC2AD673D158985 /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = 82E79B6D15A982EAE7B0E31B /* GoogleService-Info.plist */; };
+		9EC3C1193ECE4B761399CA62 /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = 82E79B6D15A982EAE7B0E31B /* GoogleService-Info.plist */; };
+		A2448B9D9232B1BAEE1CA86B /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = 82E79B6D15A982EAE7B0E31B /* GoogleService-Info.plist */; };
+		D5D4832C57250D09E5864463 /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = 82E79B6D15A982EAE7B0E31B /* GoogleService-Info.plist */; };
 		DEB13BC923AEC9DF0066A6F3 /* FIREGSignInHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DEB13BC623AEC9DF0066A6F3 /* FIREGSignInHelper.m */; };
 		DEB13BCA23AEC9DF0066A6F3 /* FIREGHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DEB13BC723AEC9DF0066A6F3 /* FIREGHelper.m */; };
 /* End PBXBuildFile section */
@@ -73,6 +78,7 @@
 		5F9961071AE0CF4F0034F503 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		5FDE05581B0DAA090037B82F /* MessagingExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MessagingExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FDE055C1B0DAA090037B82F /* AppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppTests.m; sourceTree = "<group>"; };
+		82E79B6D15A982EAE7B0E31B /* GoogleService-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DEB13BC523AEC9DF0066A6F3 /* FIREGHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FIREGHelper.h; sourceTree = "<group>"; };
 		DEB13BC623AEC9DF0066A6F3 /* FIREGSignInHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FIREGSignInHelper.m; sourceTree = "<group>"; };
 		DEB13BC723AEC9DF0066A6F3 /* FIREGHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FIREGHelper.m; sourceTree = "<group>"; };
@@ -148,6 +154,7 @@
 				DEB13BC423AEC9DF0066A6F3 /* TestUtils */,
 				5F5A534D1ADE670C00F81DF0 /* Products */,
 				5F9961041AE0CF4F0034F503 /* Shared */,
+				82E79B6D15A982EAE7B0E31B /* GoogleService-Info.plist */,
 			);
 			sourceTree = "<group>";
 			wrapsLines = 0;
@@ -442,6 +449,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				107347AB20315A3A004A66D1 /* MessagingExampleSwiftUITests.swift in Sources */,
+				978E6F2CAAC2AD673D158985 /* GoogleService-Info.plist in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -452,6 +460,7 @@
 				1073486120333BF5004A66D1 /* MessagingExampleUITests.m in Sources */,
 				DEB13BC923AEC9DF0066A6F3 /* FIREGSignInHelper.m in Sources */,
 				DEB13BCA23AEC9DF0066A6F3 /* FIREGHelper.m in Sources */,
+				9EC3C1193ECE4B761399CA62 /* GoogleService-Info.plist in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -462,6 +471,7 @@
 				5F5A53581ADE670C00F81DF0 /* ViewController.m in Sources */,
 				5F5A53551ADE670C00F81DF0 /* AppDelegate.m in Sources */,
 				5F5A53521ADE670C00F81DF0 /* main.m in Sources */,
+				A2448B9D9232B1BAEE1CA86B /* GoogleService-Info.plist in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -471,6 +481,7 @@
 			files = (
 				5F5A53801ADE67D500F81DF0 /* ViewController.swift in Sources */,
 				5F5A537E1ADE67D500F81DF0 /* AppDelegate.swift in Sources */,
+				5B334EAC56E0F5E167C81718 /* GoogleService-Info.plist in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -479,6 +490,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5FDE055D1B0DAA090037B82F /* AppTests.m in Sources */,
+				D5D4832C57250D09E5864463 /* GoogleService-Info.plist in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

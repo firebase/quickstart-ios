@@ -55,7 +55,7 @@ class Animator: NSObject, UIViewControllerAnimatedTransitioning {
       fromView.frame = fromViewFinalFrame
       toView.frame = container.frame
 
-        }) { _ in
+    }) { _ in
       fromView.removeFromSuperview()
       transitionContext.completeTransition(true)
     }

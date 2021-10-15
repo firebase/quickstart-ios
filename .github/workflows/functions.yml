@@ -1,0 +1,53 @@
+name: Functions
+
+on:
+  push:
+    branches: [ master ]
+    paths:
+      - '.github/workflows/functions.yml'
+      - 'functions/**'
+      - 'scripts/*'
+      - 'scripts/functions.sh'
+  pull_request:
+    branches: [ master ]
+    paths:
+      - '.github/workflows/functions.yml'
+      - 'functions/**'
+      - 'scripts/*'
+      - 'scripts/functions.sh'
+
+  workflow_dispatch:
+
+env:
+  SAMPLE: Functions
+  secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}
+
+jobs:
+  cocoapods:
+    name: cocoapods
+    runs-on: macOS-latest
+    env:
+      SPM: false
+      LEGACY: false
+      OS: iOS
+      DEVICE: iPhone 11
+      TEST: true
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+      - name: Setup
+        run: |
+          cd functions
+          gem install bundler
+          bundle install
+          gem install xcpretty
+          bundle exec pod install --repo-update
+          ../scripts/install_prereqs/functions.sh
+      - name: Build ObjC
+        run: ./scripts/test.sh
+        env:
+          SWIFT_SUFFIX: ""
+      - name: Build Swift
+        run: ./scripts/test.sh
+        env:
+          SWIFT_SUFFIX: Swift

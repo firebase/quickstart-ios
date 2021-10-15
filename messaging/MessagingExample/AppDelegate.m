@@ -65,7 +65,6 @@ NSString *const kGCMMessageIDKey = @"gcm.message_id";
   return YES;
 }
 
-// [START receive_message]
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
   // If you are receiving a notification message while your app is in the background,
   // this callback will not be fired till the user taps on the notification launching the application.
@@ -74,15 +73,18 @@ NSString *const kGCMMessageIDKey = @"gcm.message_id";
   // With swizzling disabled you must let Messaging know about the message, for Analytics
   // [[FIRMessaging messaging] appDidReceiveMessage:userInfo];
 
+  // [START_EXCLUDE]
   // Print message ID.
   if (userInfo[kGCMMessageIDKey]) {
     NSLog(@"Message ID: %@", userInfo[kGCMMessageIDKey]);
   }
+  // [END_EXCLUDE]
 
   // Print full message.
   NSLog(@"%@", userInfo);
 }
 
+// [START receive_message]
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
     fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
   // If you are receiving a notification message while your app is in the background,
@@ -92,10 +94,12 @@ NSString *const kGCMMessageIDKey = @"gcm.message_id";
   // With swizzling disabled you must let Messaging know about the message, for Analytics
   // [[FIRMessaging messaging] appDidReceiveMessage:userInfo];
 
+  // [START_EXCLUDE]
   // Print message ID.
   if (userInfo[kGCMMessageIDKey]) {
     NSLog(@"Message ID: %@", userInfo[kGCMMessageIDKey]);
   }
+  // [END_EXCLUDE]
 
   // Print full message.
   NSLog(@"%@", userInfo);
@@ -115,10 +119,12 @@ NSString *const kGCMMessageIDKey = @"gcm.message_id";
   // With swizzling disabled you must let Messaging know about the message, for Analytics
   // [[FIRMessaging messaging] appDidReceiveMessage:userInfo];
 
+  // [START_EXCLUDE]
   // Print message ID.
   if (userInfo[kGCMMessageIDKey]) {
     NSLog(@"Message ID: %@", userInfo[kGCMMessageIDKey]);
   }
+  // [END_EXCLUDE]
 
   // Print full message.
   NSLog(@"%@", userInfo);

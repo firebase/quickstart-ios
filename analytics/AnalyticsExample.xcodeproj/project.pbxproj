@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D352A4B151EE3318C00CD73 /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = 57EED10E1B9F87FC61F18433 /* GoogleService-Info.plist */; };
+		31353210380688ACB250EFC2 /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = 57EED10E1B9F87FC61F18433 /* GoogleService-Info.plist */; };
+		B997739D8BDCB6547D96EA69 /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = 57EED10E1B9F87FC61F18433 /* GoogleService-Info.plist */; };
 		EA11716F24C6AB3D0085BD17 /* BlogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA11716E24C6AB3D0085BD17 /* BlogViewController.swift */; };
 		EA5C0BC624C5D2060010FDF6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA5C0BC524C5D2060010FDF6 /* AppDelegate.swift */; };
 		EA5C0BC824C5D2060010FDF6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA5C0BC724C5D2060010FDF6 /* SceneDelegate.swift */; };
@@ -36,6 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		57EED10E1B9F87FC61F18433 /* GoogleService-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EA11716E24C6AB3D0085BD17 /* BlogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlogViewController.swift; sourceTree = "<group>"; };
 		EA5C0BC224C5D2060010FDF6 /* AnalyticsExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AnalyticsExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA5C0BC524C5D2060010FDF6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -93,6 +97,7 @@
 				EA5C0BE624C5D2070010FDF6 /* AnalyticsExampleUITests */,
 				EA5C0BC324C5D2060010FDF6 /* Products */,
 				2B283AC81B12C877411DB212 /* Pods */,
+				57EED10E1B9F87FC61F18433 /* GoogleService-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -273,6 +278,7 @@
 				EA11716F24C6AB3D0085BD17 /* BlogViewController.swift in Sources */,
 				EA5C0BC624C5D2060010FDF6 /* AppDelegate.swift in Sources */,
 				EA5C0BC824C5D2060010FDF6 /* SceneDelegate.swift in Sources */,
+				2D352A4B151EE3318C00CD73 /* GoogleService-Info.plist in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -281,6 +287,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA5C0BDD24C5D2070010FDF6 /* AnalyticsExampleTests.swift in Sources */,
+				B997739D8BDCB6547D96EA69 /* GoogleService-Info.plist in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,6 +296,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA5C0BE824C5D2070010FDF6 /* AnalyticsExampleUITests.swift in Sources */,
+				31353210380688ACB250EFC2 /* GoogleService-Info.plist in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -449,7 +457,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = google.firebase.AnalyticsExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};

@@ -1,0 +1,53 @@
+name: Remote Config
+
+on:
+  push:
+    branches: [ master ]
+    paths:
+      - '.github/workflows/config.yml'
+      - 'config/**'
+      - 'scripts/*'
+      - 'scripts/config.sh'
+  pull_request:
+    branches: [ master ]
+    paths:
+      - '.github/workflows/config.yml'
+      - 'config/**'
+      - 'scripts/*'
+      - 'scripts/config.sh'
+
+  workflow_dispatch:
+
+env:
+  SAMPLE: Config
+  secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}
+
+jobs:
+  cocoapods:
+    name: cocoapods
+    runs-on: macOS-latest
+    env:
+      SPM: false
+      LEGACY: false
+      SWIFT_SUFFIX: ""
+      TEST: true
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+      - name: Setup
+        run: |
+          cd config
+          gem install bundler
+          bundle install
+          gem install xcpretty
+          bundle exec pod install --repo-update
+          ../scripts/install_prereqs/config.sh
+      - name: Build Swift
+        run: ./scripts/test.sh
+        env:
+          OS: iOS
+          DEVICE: iPhone 11
+      - name: Build Catalyst
+        run: ./scripts/test.sh
+        env:
+          OS: catalyst

@@ -19,21 +19,19 @@ import Firebase
 
 @objc(CloudAddCell)
 class CloudAddCell: MDCCollectionViewCell {
-  @IBOutlet weak var number1Field: MDCTextField!
-  @IBOutlet weak var number2Field: MDCTextField!
-  @IBOutlet weak var button: MDCButton!
-  @IBOutlet weak private var resultField: UITextField!
+  @IBOutlet var number1Field: MDCTextField!
+  @IBOutlet var number2Field: MDCTextField!
+  @IBOutlet var button: MDCButton!
+  @IBOutlet private var resultField: UITextField!
   // [START functions_instance]
   lazy var functions = Functions.functions()
   // [END functions_instance]
-
-
 
   @IBAction func didTapAdd(_ sender: Any) {
     // [START function_add_numbers]
     let data = ["firstNumber": Int(number1Field.text!),
                 "secondNumber": Int(number2Field.text!)]
-    functions.httpsCallable("addNumbers").call(data) { (result, error) in
+    functions.httpsCallable("addNumbers").call(data) { result, error in
       // [START function_error]
       if let error = error as NSError? {
         if error.domain == FunctionsErrorDomain {
@@ -42,9 +40,9 @@ class CloudAddCell: MDCCollectionViewCell {
           let details = error.userInfo[FunctionsErrorDetailsKey]
         }
         // [START_EXCLUDE]
-        print(error.localizedDescription)
+        print(error)
         return
-        // [END_EXCLUDE]
+          // [END_EXCLUDE]
       }
       // [END function_error]
       if let operationResult = (result?.data as? [String: Any])?["operationResult"] as? Int {

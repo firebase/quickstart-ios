@@ -1,0 +1,14 @@
+platform :ios, '10.0'
+
+target 'ABTestingExample' do
+  use_frameworks!
+
+  pod 'Firebase/Analytics'
+  pod 'Firebase/RemoteConfig'
+
+  target 'ABTestingExampleTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+end

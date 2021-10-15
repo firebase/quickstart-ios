@@ -154,7 +154,7 @@ class UserViewController: UIViewController, DataSourceProviderDelegate {
     user?.updateEmail(to: newEmail, completion: { error in
       guard error == nil else { return self.displayError(error) }
       self.updateUI()
-        })
+    })
   }
 
   public func updatePhotoURL(to newPhotoURL: String) {

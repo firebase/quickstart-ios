@@ -37,6 +37,8 @@
 		10B872C61CDC14C800C7D214 /* MyTopPostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B872C51CDC14C800C7D214 /* MyTopPostsViewController.swift */; };
 		10F2262F1CDBEE7C005205F2 /* SignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10F2262E1CDBEE7C005205F2 /* SignInViewController.m */; };
 		10F226321CDBEE95005205F2 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = 10F226311CDBEE95005205F2 /* Post.m */; };
+		310C987B3EF0599519449023 /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = F644C72A588FB44DD666857B /* GoogleService-Info.plist */; };
+		4022DB8C90CB216288A52649 /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = F644C72A588FB44DD666857B /* GoogleService-Info.plist */; };
 		5F5A53521ADE670C00F81DF0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5A53511ADE670C00F81DF0 /* main.m */; };
 		5F5A53551ADE670C00F81DF0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5A53541ADE670C00F81DF0 /* AppDelegate.m */; };
 		5F5A53581ADE670C00F81DF0 /* NewPostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5A53571ADE670C00F81DF0 /* NewPostViewController.m */; };
@@ -49,8 +51,11 @@
 		5F99610C1AE0CF4F0034F503 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F9961071AE0CF4F0034F503 /* LaunchScreen.xib */; };
 		5F99610D1AE0CF4F0034F503 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F9961071AE0CF4F0034F503 /* LaunchScreen.xib */; };
 		5FDE055D1B0DAA090037B82F /* AppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FDE055C1B0DAA090037B82F /* AppTests.m */; };
+		67FFF4C737099E866B972B36 /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = F644C72A588FB44DD666857B /* GoogleService-Info.plist */; };
+		A18EF550576A3F1E297EFB56 /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = F644C72A588FB44DD666857B /* GoogleService-Info.plist */; };
 		DEC82E5523AD38E4000EA7B1 /* FIREGSignInHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DEC82E5223AD38E4000EA7B1 /* FIREGSignInHelper.m */; };
 		DEC82E5623AD38E4000EA7B1 /* FIREGHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DEC82E5323AD38E4000EA7B1 /* FIREGHelper.m */; };
+		ED9F3B135B98B01518169AD0 /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = F644C72A588FB44DD666857B /* GoogleService-Info.plist */; };
 		EF94DD7B1CE533AC009A635D /* PostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EFDCBD531CE4FCC800F68D48 /* PostTableViewCell.xib */; };
 		EFDCBD541CE4FCC800F68D48 /* PostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EFDCBD531CE4FCC800F68D48 /* PostTableViewCell.xib */; };
 /* End PBXBuildFile section */
@@ -147,6 +152,7 @@
 		DEC82E5423AD38E4000EA7B1 /* FIREGSignInHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FIREGSignInHelper.h; sourceTree = "<group>"; };
 		DED65CF723E9DE6400461312 /* FIREGSignInInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FIREGSignInInfo.h; sourceTree = "<group>"; };
 		EFDCBD531CE4FCC800F68D48 /* PostTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostTableViewCell.xib; sourceTree = "<group>"; };
+		F644C72A588FB44DD666857B /* GoogleService-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -278,6 +284,7 @@
 				1073483520333B8C004A66D1 /* DatabaseExampleUITests */,
 				5F5A534D1ADE670C00F81DF0 /* Products */,
 				5F9961041AE0CF4F0034F503 /* Shared */,
+				F644C72A588FB44DD666857B /* GoogleService-Info.plist */,
 			);
 			sourceTree = "<group>";
 			wrapsLines = 0;
@@ -572,6 +579,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				107347492031598A004A66D1 /* DatabaseExampleSwiftUITests.swift in Sources */,
+				67FFF4C737099E866B972B36 /* GoogleService-Info.plist in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -582,6 +590,7 @@
 				1073483720333B8C004A66D1 /* DatabaseExampleUITests.m in Sources */,
 				DEC82E5523AD38E4000EA7B1 /* FIREGSignInHelper.m in Sources */,
 				DEC82E5623AD38E4000EA7B1 /* FIREGHelper.m in Sources */,
+				A18EF550576A3F1E297EFB56 /* GoogleService-Info.plist in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -605,6 +614,7 @@
 				1073FE0C1CE2742000E2F73F /* TabBarController.m in Sources */,
 				1056D95F1CD829FE0061ED72 /* MyTopPostsViewController.m in Sources */,
 				1056D9581CD81E300061ED72 /* PostTableViewCell.m in Sources */,
+				310C987B3EF0599519449023 /* GoogleService-Info.plist in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -627,6 +637,7 @@
 				10B872AE1CDBFB1F00C7D214 /* MyPostsViewController.swift in Sources */,
 				1073FE101CE2D27700E2F73F /* TabBarController.swift in Sources */,
 				10B872B91CDC056B00C7D214 /* User.swift in Sources */,
+				4022DB8C90CB216288A52649 /* GoogleService-Info.plist in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -635,6 +646,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5FDE055D1B0DAA090037B82F /* AppTests.m in Sources */,
+				ED9F3B135B98B01518169AD0 /* GoogleService-Info.plist in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

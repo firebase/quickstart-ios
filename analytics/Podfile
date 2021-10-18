@@ -1,7 +1,6 @@
-# Uncomment the next line to define a global platform for your project
-# platform :ios, '10.0'
-
 target 'AnalyticsExample' do
+  platform :ios, '13.0'
+
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 
@@ -18,3 +17,35 @@ target 'AnalyticsExample' do
   end
 
 end
+
+target 'AnalyticsExampleMac' do
+  platform :macos, '11.0'
+
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for AnalyticsExampleMacSwiftUI
+  pod 'Firebase/Analytics'
+
+  target 'AnalyticsExampleMacTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+end
+
+
+target 'AnalyticsExampleTV' do
+  platform :tvos, '12.0'
+
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for AnalyticsExampleTV
+  pod 'Firebase/Analytics'
+
+  target 'AnalyticsExampleTVTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+end
+

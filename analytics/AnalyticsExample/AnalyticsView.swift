@@ -184,9 +184,9 @@ final class AnalyticsView: UIScrollView {
     // MARK: - Post Button
 
     // Disable the post button for Catalyst due to some UI issues. To be fixed at a later date.
-#if !targetEnvironment(macCatalyst)
-    addSubview(postButton)
-#endif  // !targetEnvironment(macCatalyst)
+    #if !targetEnvironment(macCatalyst)
+      addSubview(postButton)
+    #endif // !targetEnvironment(macCatalyst)
   }
 
   /// Sets up an image view (and its support views) for diplaying seasons.
@@ -305,14 +305,14 @@ final class AnalyticsView: UIScrollView {
     )
 
     var maxY: CGFloat = temperatureSlider.frame.maxY
-#if !targetEnvironment(macCatalyst)
-    // Post button is disabled on Catalyt for now.
-    postButton.frame = CGRect(
-      x: 15, y: temperatureSlider.frame.maxY + padding(.section),
-      width: insetWidth, height: 45
-    )
-    maxY = postButton.frame.maxY
-#endif  // !targetEnvironment(macCatalyst)
+    #if !targetEnvironment(macCatalyst)
+      // Post button is disabled on Catalyt for now.
+      postButton.frame = CGRect(
+        x: 15, y: temperatureSlider.frame.maxY + padding(.section),
+        width: insetWidth, height: 45
+      )
+      maxY = postButton.frame.maxY
+    #endif // !targetEnvironment(macCatalyst)
 
     // MARK: - Content Size
 

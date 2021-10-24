@@ -62,15 +62,15 @@ struct ContentView: View {
 
   var body: some View {
     // tvOS needs a navigation title to look better.
-#if os(tvOS)
-    NavigationView {
+    #if os(tvOS)
+      NavigationView {
+        allContent
+      }
+    #else
+      // tvOS includes padding by default in the layout, but other platforms don't.
       allContent
-    }
-#else
-    // tvOS includes padding by default in the layout, but other platforms don't.
-    allContent
-      .padding()
-#endif
+        .padding()
+    #endif
   }
 
   private var allContent: some View {
@@ -114,10 +114,10 @@ struct ContentView: View {
             .foregroundColor(.secondary)
 
           Text("""
-            Set user properties when a user
-            selects their favorite season ↑ or
-            preferred temperature units ↓
-            """)
+          Set user properties when a user
+          selects their favorite season ↑ or
+          preferred temperature units ↓
+          """)
             .multilineTextAlignment(.center)
 
           // The selected image, if there is one.
@@ -197,7 +197,8 @@ struct ContentView: View {
         }.pickerStyle(SegmentedPickerStyle())
           .onChange(of: selectedPrecipitationPreference) { newPrecipPreference in
             guard let selection = newPrecipPreference else { return }
-            Analytics.logEvent("rainy_or_sunny_switch", parameters: ["value": selection.rawValue]) // 🔥
+            Analytics
+              .logEvent("rainy_or_sunny_switch", parameters: ["value": selection.rawValue]) // 🔥
           }
       }
     }

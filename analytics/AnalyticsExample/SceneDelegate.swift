@@ -26,8 +26,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     window?.makeKeyAndVisible()
 
     #if targetEnvironment(macCatalyst) || os(macOS)
-    // Make sure all our controls are visible in the window.
-    windowScene.sizeRestrictions?.minimumSize = CGSize(width: 500, height: 800)
+      // Make sure all our controls are visible in the window.
+      windowScene.sizeRestrictions?.minimumSize = CGSize(width: 500, height: 800)
     #endif
   }
 }

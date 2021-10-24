@@ -26,9 +26,9 @@ struct AnalyticsExampleSwiftUIApp: App {
     WindowGroup {
       ContentView()
       #if os(macOS)
-      // Minimum window size for macOS.
+        // Minimum window size for macOS.
         .frame(minWidth: 560, minHeight: 600)
-      #endif  // os(macOS)
+      #endif // os(macOS)
     }
   }
 }

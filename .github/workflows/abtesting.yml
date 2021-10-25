@@ -54,10 +54,9 @@ jobs:
           DEVICE: iPhone 11
   spm:
     name: spm (Xcode ${{ matrix.xcode }} - ${{ matrix.os }})
-    runs-on: macOS-10.15
     strategy:
       matrix:
-        xcode: ["12.5", "13.0"]
+        host_os: [macOS-11, macOS-10.15]
         os: [iOS, tvOS, macOS, watchOS, catalyst]
         include:
           - os: iOS
@@ -75,6 +74,7 @@ jobs:
           - os: catalyst
             device: localhost
             test: true
+    runs-on: ${{ matrix.host_os }}
     env:
       SETUP: abtesting
       SPM: true
@@ -86,9 +86,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@master
+      - name: Xcode 12.5 for macOS-10.5
+        if: matrix.host_os == 'macOS-10.15'
+        run: sudo xcode-select -s "/Applications/Xcode_12.5.app/Contents/Developer"
       - name: Setup
         run: |
-          sudo xcode-select -s "/Applications/Xcode_${XCODE_VERSION}.app/Contents/Developer"
           gem install xcpretty
           cd $SETUP
           ../scripts/install_prereqs/${SETUP}.sh

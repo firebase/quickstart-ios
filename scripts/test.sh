@@ -82,11 +82,14 @@ else
 fi
 
 # Set scheme
-if [[ "$SPM" == true ]];then
-    SCHEME="${SAMPLE}Example (${OS})"
-else
-    SCHEME="${SAMPLE}Example${SWIFT_SUFFIX:-}"
+if [[ -z "${SCHEME:-}" ]]; then
+    if [[ "$SPM" == true ]];then
+        SCHEME="${SAMPLE}Example (${OS})"
+    else
+        SCHEME="${SAMPLE}Example${SWIFT_SUFFIX:-}"
+    fi
 fi
+
 flags+=( -scheme "$SCHEME" )
 
 # Set destination

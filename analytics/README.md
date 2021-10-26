@@ -1,6 +1,6 @@
 # Google Analytics for Firebase Quickstart
 
-This Firebase quickstart is written in Swift and aims to showcase how Firebase
+This Firebase quickstart is written in Swift and showcases how Firebase
 Analytics can provide insight on app usage and user engagement. You can read more
 about Google Analytics for Firebase [here](https://firebase.google.com/docs/analytics)!
 
@@ -26,16 +26,15 @@ for this quickstart and generate a `.xcworkspace` project. Go ahead and
 open the `AnalyticsExample.xcworkspace` project.
 
 ### Terminal commands to clone and open the project!
-```bash
+```terminal
 
-$ git clone https://github.com/firebase/quickstart-ios.git
+git clone https://github.com/firebase/quickstart-ios.git
 
-$ cd analytics/
+cd analytics/
 
-$ pod install --repo-update
+pod install --repo-update
 
-$ open AnalyticsExample.xcworkspace
-
+open AnalyticsExample.xcworkspace
 ```
 
 ## Connecting to the Firebase Console
@@ -57,7 +56,7 @@ same for all platforms.
 
 4. Drag the downloaded `GoogleService-Info.plist` into the opened
 quickstart app. In Xcode, you can also add this file to the project by going
-to `File`-> `Add Files to 'AnalyticsExample'` and selecting the
+to `File` → `Add Files to 'AnalyticsExample'` and selecting the
 downloaded `.plist` file. Be sure to add the `.plist` file to all targets.
 
 5. At this point, you can build and run the quickstart! 🎉

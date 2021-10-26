@@ -70,7 +70,7 @@ struct ContentView: View {
       // tvOS includes padding by default in the layout, but other platforms don't.
       allContent
         .padding()
-    #endif  // os(tvOS)
+    #endif // os(tvOS)
   }
 
   private var allContent: some View {

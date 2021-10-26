@@ -61,6 +61,12 @@ downloaded `.plist` file. Be sure to add the `.plist` file to all targets.
 
 5. At this point, you can build and run the quickstart! 🎉
 
+> When running the quickstart on macOS or macCatalyst, a prompt may be
+> presented that requests keychain access. This occurs because these platforms
+> do not use a sandboxed keychain and instead use the primary keychain. To
+> dismiss the prompt, enter the requested password and select `Always allow`.
+> Note: this prompt can be avoided entirely by signing your application.
+
 ## Interacting with the Quickstart
 
 Google Analytics for Firebase is a great way to

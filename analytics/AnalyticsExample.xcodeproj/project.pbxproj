@@ -14,39 +14,25 @@
 		EA5C0BCF24C5D2070010FDF6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA5C0BCE24C5D2070010FDF6 /* Assets.xcassets */; };
 		EA5C0BD224C5D2070010FDF6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA5C0BD024C5D2070010FDF6 /* LaunchScreen.storyboard */; };
 		EA5C0BDD24C5D2070010FDF6 /* AnalyticsExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA5C0BDC24C5D2070010FDF6 /* AnalyticsExampleTests.swift */; };
-		EA5C0BE824C5D2070010FDF6 /* AnalyticsExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA5C0BE724C5D2070010FDF6 /* AnalyticsExampleUITests.swift */; };
 		EAC4C14F24C68145001111A3 /* AnalyticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC4C14E24C68145001111A3 /* AnalyticsView.swift */; };
 		EDF987592710C674008840FA /* AnalyticsExampleSwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF987582710C674008840FA /* AnalyticsExampleSwiftUIApp.swift */; };
 		EDF9875B2710C674008840FA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF9875A2710C674008840FA /* ContentView.swift */; };
 		EDF987602710C677008840FA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EDF9875F2710C677008840FA /* Preview Assets.xcassets */; };
 		EDF9876A2710C677008840FA /* AnalyticsExampleTVTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF987692710C677008840FA /* AnalyticsExampleTVTests.swift */; };
-		EDF987742710C678008840FA /* AnalyticsExampleTVUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF987732710C678008840FA /* AnalyticsExampleTVUITests.swift */; };
-		EDF987762710C678008840FA /* AnalyticsExampleTVUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF987752710C678008840FA /* AnalyticsExampleTVUITestsLaunchTests.swift */; };
 		EDF987A42715E421008840FA /* AnalyticsExampleMacTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF987A32715E421008840FA /* AnalyticsExampleMacTests.swift */; };
-		EDF987AE2715E421008840FA /* AnalyticsExampleMacUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF987AD2715E421008840FA /* AnalyticsExampleMacUITests.swift */; };
-		EDF987B02715E421008840FA /* AnalyticsExampleMacUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF987AF2715E421008840FA /* AnalyticsExampleMacUITestsLaunchTests.swift */; };
 		EDF987BA2715E44F008840FA /* AnalyticsExampleSwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF987582710C674008840FA /* AnalyticsExampleSwiftUIApp.swift */; };
 		EDF987BB2715E452008840FA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF9875A2710C674008840FA /* ContentView.swift */; };
 		EDF987BE2715E576008840FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA5C0BCE24C5D2070010FDF6 /* Assets.xcassets */; };
 		EDF987BF2715E584008840FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA5C0BCE24C5D2070010FDF6 /* Assets.xcassets */; };
 		EDF987FC2719C791008840FA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EDF987FB2719C791008840FA /* GoogleService-Info.plist */; };
 		EDF987FD2719C791008840FA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EDF987FB2719C791008840FA /* GoogleService-Info.plist */; };
-		EDF987FE2719C791008840FA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EDF987FB2719C791008840FA /* GoogleService-Info.plist */; };
 		EDF987FF2719C791008840FA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EDF987FB2719C791008840FA /* GoogleService-Info.plist */; };
 		EDF988002719C791008840FA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EDF987FB2719C791008840FA /* GoogleService-Info.plist */; };
-		EDF988012719C791008840FA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EDF987FB2719C791008840FA /* GoogleService-Info.plist */; };
 		EDF988022719C791008840FA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EDF987FB2719C791008840FA /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
 		EA5C0BD924C5D2070010FDF6 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = EA5C0BBA24C5D2060010FDF6 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = EA5C0BC124C5D2060010FDF6;
-			remoteInfo = AnalyticsExample;
-		};
-		EA5C0BE424C5D2070010FDF6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = EA5C0BBA24C5D2060010FDF6 /* Project object */;
 			proxyType = 1;
@@ -60,21 +46,7 @@
 			remoteGlobalIDString = EDF987552710C674008840FA;
 			remoteInfo = AnalyticsExampleTV;
 		};
-		EDF987702710C678008840FA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = EA5C0BBA24C5D2060010FDF6 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = EDF987552710C674008840FA;
-			remoteInfo = AnalyticsExampleTV;
-		};
 		EDF987A02715E421008840FA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = EA5C0BBA24C5D2060010FDF6 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = EDF9878E2715E41D008840FA;
-			remoteInfo = AnalyticsExampleMacSwiftUI;
-		};
-		EDF987AA2715E421008840FA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = EA5C0BBA24C5D2060010FDF6 /* Project object */;
 			proxyType = 1;
@@ -95,9 +67,6 @@
 		EA5C0BD824C5D2070010FDF6 /* AnalyticsExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AnalyticsExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA5C0BDC24C5D2070010FDF6 /* AnalyticsExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsExampleTests.swift; sourceTree = "<group>"; };
 		EA5C0BDE24C5D2070010FDF6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EA5C0BE324C5D2070010FDF6 /* AnalyticsExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AnalyticsExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		EA5C0BE724C5D2070010FDF6 /* AnalyticsExampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsExampleUITests.swift; sourceTree = "<group>"; };
-		EA5C0BE924C5D2070010FDF6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EAC4C14E24C68145001111A3 /* AnalyticsView.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = AnalyticsView.swift; sourceTree = "<group>"; };
 		EDF987162710A124008840FA /* AnalyticsExample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AnalyticsExample.entitlements; sourceTree = "<group>"; };
 		EDF987562710C674008840FA /* AnalyticsExampleTV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AnalyticsExampleTV.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -107,16 +76,10 @@
 		EDF9875F2710C677008840FA /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		EDF987652710C677008840FA /* AnalyticsExampleTVTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AnalyticsExampleTVTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDF987692710C677008840FA /* AnalyticsExampleTVTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsExampleTVTests.swift; sourceTree = "<group>"; };
-		EDF9876F2710C677008840FA /* AnalyticsExampleTVUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AnalyticsExampleTVUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		EDF987732710C678008840FA /* AnalyticsExampleTVUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsExampleTVUITests.swift; sourceTree = "<group>"; };
-		EDF987752710C678008840FA /* AnalyticsExampleTVUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsExampleTVUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		EDF9878F2715E41D008840FA /* AnalyticsExampleMac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AnalyticsExampleMac.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDF9879A2715E421008840FA /* AnalyticsExampleMac.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AnalyticsExampleMac.entitlements; sourceTree = "<group>"; };
 		EDF9879F2715E421008840FA /* AnalyticsExampleMacTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AnalyticsExampleMacTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDF987A32715E421008840FA /* AnalyticsExampleMacTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsExampleMacTests.swift; sourceTree = "<group>"; };
-		EDF987A92715E421008840FA /* AnalyticsExampleMacUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AnalyticsExampleMacUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		EDF987AD2715E421008840FA /* AnalyticsExampleMacUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsExampleMacUITests.swift; sourceTree = "<group>"; };
-		EDF987AF2715E421008840FA /* AnalyticsExampleMacUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsExampleMacUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		EDF987FB2719C791008840FA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -129,13 +92,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		EA5C0BD524C5D2070010FDF6 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		EA5C0BE024C5D2070010FDF6 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -156,13 +112,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		EDF9876C2710C677008840FA /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		EDF9878C2715E41D008840FA /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -171,13 +120,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		EDF9879C2715E421008840FA /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		EDF987A62715E421008840FA /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -200,13 +142,10 @@
 				EDF98803271DB1F6008840FA /* Shared */,
 				EA5C0BC424C5D2060010FDF6 /* AnalyticsExample */,
 				EA5C0BDB24C5D2070010FDF6 /* AnalyticsExampleTests */,
-				EA5C0BE624C5D2070010FDF6 /* AnalyticsExampleUITests */,
 				EDF987572710C674008840FA /* AnalyticsExampleSwiftUI */,
 				EDF987682710C677008840FA /* AnalyticsExampleTVTests */,
-				EDF987722710C678008840FA /* AnalyticsExampleTVUITests */,
 				EDF987902715E41D008840FA /* AnalyticsExampleMac */,
 				EDF987A22715E421008840FA /* AnalyticsExampleMacTests */,
-				EDF987AC2715E421008840FA /* AnalyticsExampleMacUITests */,
 				EA5C0BC324C5D2060010FDF6 /* Products */,
 				2B283AC81B12C877411DB212 /* Pods */,
 				EDF987FB2719C791008840FA /* GoogleService-Info.plist */,
@@ -218,13 +157,10 @@
 			children = (
 				EA5C0BC224C5D2060010FDF6 /* AnalyticsExample.app */,
 				EA5C0BD824C5D2070010FDF6 /* AnalyticsExampleTests.xctest */,
-				EA5C0BE324C5D2070010FDF6 /* AnalyticsExampleUITests.xctest */,
 				EDF987562710C674008840FA /* AnalyticsExampleTV.app */,
 				EDF987652710C677008840FA /* AnalyticsExampleTVTests.xctest */,
-				EDF9876F2710C677008840FA /* AnalyticsExampleTVUITests.xctest */,
 				EDF9878F2715E41D008840FA /* AnalyticsExampleMac.app */,
 				EDF9879F2715E421008840FA /* AnalyticsExampleMacTests.xctest */,
-				EDF987A92715E421008840FA /* AnalyticsExampleMacUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -251,15 +187,6 @@
 				EA5C0BDE24C5D2070010FDF6 /* Info.plist */,
 			);
 			path = AnalyticsExampleTests;
-			sourceTree = "<group>";
-		};
-		EA5C0BE624C5D2070010FDF6 /* AnalyticsExampleUITests */ = {
-			isa = PBXGroup;
-			children = (
-				EA5C0BE724C5D2070010FDF6 /* AnalyticsExampleUITests.swift */,
-				EA5C0BE924C5D2070010FDF6 /* Info.plist */,
-			);
-			path = AnalyticsExampleUITests;
 			sourceTree = "<group>";
 		};
 		EDF987572710C674008840FA /* AnalyticsExampleSwiftUI */ = {
@@ -289,15 +216,6 @@
 			path = AnalyticsExampleTVTests;
 			sourceTree = "<group>";
 		};
-		EDF987722710C678008840FA /* AnalyticsExampleTVUITests */ = {
-			isa = PBXGroup;
-			children = (
-				EDF987732710C678008840FA /* AnalyticsExampleTVUITests.swift */,
-				EDF987752710C678008840FA /* AnalyticsExampleTVUITestsLaunchTests.swift */,
-			);
-			path = AnalyticsExampleTVUITests;
-			sourceTree = "<group>";
-		};
 		EDF987902715E41D008840FA /* AnalyticsExampleMac */ = {
 			isa = PBXGroup;
 			children = (
@@ -312,15 +230,6 @@
 				EDF987A32715E421008840FA /* AnalyticsExampleMacTests.swift */,
 			);
 			path = AnalyticsExampleMacTests;
-			sourceTree = "<group>";
-		};
-		EDF987AC2715E421008840FA /* AnalyticsExampleMacUITests */ = {
-			isa = PBXGroup;
-			children = (
-				EDF987AD2715E421008840FA /* AnalyticsExampleMacUITests.swift */,
-				EDF987AF2715E421008840FA /* AnalyticsExampleMacUITestsLaunchTests.swift */,
-			);
-			path = AnalyticsExampleMacUITests;
 			sourceTree = "<group>";
 		};
 		EDF98803271DB1F6008840FA /* Shared */ = {
@@ -369,24 +278,6 @@
 			productReference = EA5C0BD824C5D2070010FDF6 /* AnalyticsExampleTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		EA5C0BE224C5D2070010FDF6 /* AnalyticsExampleUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = EA5C0BF224C5D2070010FDF6 /* Build configuration list for PBXNativeTarget "AnalyticsExampleUITests" */;
-			buildPhases = (
-				EA5C0BDF24C5D2070010FDF6 /* Sources */,
-				EA5C0BE024C5D2070010FDF6 /* Frameworks */,
-				EA5C0BE124C5D2070010FDF6 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				EA5C0BE524C5D2070010FDF6 /* PBXTargetDependency */,
-			);
-			name = AnalyticsExampleUITests;
-			productName = AnalyticsExampleUITests;
-			productReference = EA5C0BE324C5D2070010FDF6 /* AnalyticsExampleUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 		EDF987552710C674008840FA /* AnalyticsExampleTV */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = EDF987772710C678008840FA /* Build configuration list for PBXNativeTarget "AnalyticsExampleTV" */;
@@ -421,24 +312,6 @@
 			productName = AnalyticsExampleTVTests;
 			productReference = EDF987652710C677008840FA /* AnalyticsExampleTVTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		EDF9876E2710C677008840FA /* AnalyticsExampleTVUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = EDF9877D2710C678008840FA /* Build configuration list for PBXNativeTarget "AnalyticsExampleTVUITests" */;
-			buildPhases = (
-				EDF9876B2710C677008840FA /* Sources */,
-				EDF9876C2710C677008840FA /* Frameworks */,
-				EDF9876D2710C677008840FA /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				EDF987712710C678008840FA /* PBXTargetDependency */,
-			);
-			name = AnalyticsExampleTVUITests;
-			productName = AnalyticsExampleTVUITests;
-			productReference = EDF9876F2710C677008840FA /* AnalyticsExampleTVUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 		EDF9878E2715E41D008840FA /* AnalyticsExampleMac */ = {
 			isa = PBXNativeTarget;
@@ -475,24 +348,6 @@
 			productReference = EDF9879F2715E421008840FA /* AnalyticsExampleMacTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		EDF987A82715E421008840FA /* AnalyticsExampleMacUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = EDF987B72715E421008840FA /* Build configuration list for PBXNativeTarget "AnalyticsExampleMacUITests" */;
-			buildPhases = (
-				EDF987A52715E421008840FA /* Sources */,
-				EDF987A62715E421008840FA /* Frameworks */,
-				EDF987A72715E421008840FA /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				EDF987AB2715E421008840FA /* PBXTargetDependency */,
-			);
-			name = AnalyticsExampleMacUITests;
-			productName = AnalyticsExampleMacSwiftUIUITests;
-			productReference = EDF987A92715E421008840FA /* AnalyticsExampleMacUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -509,10 +364,6 @@
 						CreatedOnToolsVersion = 12.0;
 						TestTargetID = EA5C0BC124C5D2060010FDF6;
 					};
-					EA5C0BE224C5D2070010FDF6 = {
-						CreatedOnToolsVersion = 12.0;
-						TestTargetID = EA5C0BC124C5D2060010FDF6;
-					};
 					EDF987552710C674008840FA = {
 						CreatedOnToolsVersion = 13.0;
 					};
@@ -520,18 +371,10 @@
 						CreatedOnToolsVersion = 13.0;
 						TestTargetID = EDF987552710C674008840FA;
 					};
-					EDF9876E2710C677008840FA = {
-						CreatedOnToolsVersion = 13.0;
-						TestTargetID = EDF987552710C674008840FA;
-					};
 					EDF9878E2715E41D008840FA = {
 						CreatedOnToolsVersion = 13.0;
 					};
 					EDF9879E2715E421008840FA = {
-						CreatedOnToolsVersion = 13.0;
-						TestTargetID = EDF9878E2715E41D008840FA;
-					};
-					EDF987A82715E421008840FA = {
 						CreatedOnToolsVersion = 13.0;
 						TestTargetID = EDF9878E2715E41D008840FA;
 					};
@@ -552,13 +395,10 @@
 			targets = (
 				EA5C0BC124C5D2060010FDF6 /* AnalyticsExample */,
 				EA5C0BD724C5D2070010FDF6 /* AnalyticsExampleTests */,
-				EA5C0BE224C5D2070010FDF6 /* AnalyticsExampleUITests */,
 				EDF987552710C674008840FA /* AnalyticsExampleTV */,
 				EDF987642710C677008840FA /* AnalyticsExampleTVTests */,
-				EDF9876E2710C677008840FA /* AnalyticsExampleTVUITests */,
 				EDF9878E2715E41D008840FA /* AnalyticsExampleMac */,
 				EDF9879E2715E421008840FA /* AnalyticsExampleMacTests */,
-				EDF987A82715E421008840FA /* AnalyticsExampleMacUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -582,14 +422,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		EA5C0BE124C5D2070010FDF6 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				EDF987FE2719C791008840FA /* GoogleService-Info.plist in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		EDF987542710C674008840FA /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -608,14 +440,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		EDF9876D2710C677008840FA /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				EDF988012719C791008840FA /* GoogleService-Info.plist in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		EDF9878D2715E41D008840FA /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -626,13 +450,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		EDF9879D2715E421008840FA /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		EDF987A72715E421008840FA /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -662,14 +479,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		EA5C0BDF24C5D2070010FDF6 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				EA5C0BE824C5D2070010FDF6 /* AnalyticsExampleUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		EDF987522710C674008840FA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -684,15 +493,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				EDF9876A2710C677008840FA /* AnalyticsExampleTVTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		EDF9876B2710C677008840FA /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				EDF987762710C678008840FA /* AnalyticsExampleTVUITestsLaunchTests.swift in Sources */,
-				EDF987742710C678008840FA /* AnalyticsExampleTVUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -713,15 +513,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		EDF987A52715E421008840FA /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				EDF987B02715E421008840FA /* AnalyticsExampleMacUITestsLaunchTests.swift in Sources */,
-				EDF987AE2715E421008840FA /* AnalyticsExampleMacUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -730,30 +521,15 @@
 			target = EA5C0BC124C5D2060010FDF6 /* AnalyticsExample */;
 			targetProxy = EA5C0BD924C5D2070010FDF6 /* PBXContainerItemProxy */;
 		};
-		EA5C0BE524C5D2070010FDF6 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = EA5C0BC124C5D2060010FDF6 /* AnalyticsExample */;
-			targetProxy = EA5C0BE424C5D2070010FDF6 /* PBXContainerItemProxy */;
-		};
 		EDF987672710C677008840FA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = EDF987552710C674008840FA /* AnalyticsExampleTV */;
 			targetProxy = EDF987662710C677008840FA /* PBXContainerItemProxy */;
 		};
-		EDF987712710C678008840FA /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = EDF987552710C674008840FA /* AnalyticsExampleTV */;
-			targetProxy = EDF987702710C678008840FA /* PBXContainerItemProxy */;
-		};
 		EDF987A12715E421008840FA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = EDF9878E2715E41D008840FA /* AnalyticsExampleMac */;
 			targetProxy = EDF987A02715E421008840FA /* PBXContainerItemProxy */;
-		};
-		EDF987AB2715E421008840FA /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = EDF9878E2715E41D008840FA /* AnalyticsExampleMac */;
-			targetProxy = EDF987AA2715E421008840FA /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -981,44 +757,6 @@
 			};
 			name = Release;
 		};
-		EA5C0BF324C5D2070010FDF6 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = AnalyticsExampleUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = google.firebase.AnalyticsExampleUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = AnalyticsExample;
-			};
-			name = Debug;
-		};
-		EA5C0BF424C5D2070010FDF6 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = AnalyticsExampleUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = google.firebase.AnalyticsExampleUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = AnalyticsExample;
-			};
-			name = Release;
-		};
 		EDF987782710C678008840FA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1135,61 +873,6 @@
 			};
 			name = Release;
 		};
-		EDF9877E2710C678008840FA /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
-				GENERATE_INFOPLIST_FILE = YES;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
-				PRODUCT_BUNDLE_IDENTIFIER = com.firebase.AnalyticsExampleTVUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SDKROOT = appletvos;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 3;
-				TEST_TARGET_NAME = AnalyticsExampleTV;
-				TVOS_DEPLOYMENT_TARGET = 15.0;
-			};
-			name = Debug;
-		};
-		EDF9877F2710C678008840FA /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
-				GENERATE_INFOPLIST_FILE = YES;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.firebase.AnalyticsExampleTVUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SDKROOT = appletvos;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 3;
-				TEST_TARGET_NAME = AnalyticsExampleTV;
-				TVOS_DEPLOYMENT_TARGET = 15.0;
-			};
-			name = Release;
-		};
 		EDF987B22715E421008840FA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1300,57 +983,6 @@
 			};
 			name = Release;
 		};
-		EDF987B82715E421008840FA /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 11.3;
-				MARKETING_VERSION = 1.0;
-				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
-				PRODUCT_BUNDLE_IDENTIFIER = com.firebase.AnalyticsExampleMacSwiftUIUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TEST_TARGET_NAME = AnalyticsExampleMacSwiftUI;
-			};
-			name = Debug;
-		};
-		EDF987B92715E421008840FA /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 11.3;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.firebase.AnalyticsExampleMacSwiftUIUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TEST_TARGET_NAME = AnalyticsExampleMacSwiftUI;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1381,15 +1013,6 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		EA5C0BF224C5D2070010FDF6 /* Build configuration list for PBXNativeTarget "AnalyticsExampleUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				EA5C0BF324C5D2070010FDF6 /* Debug */,
-				EA5C0BF424C5D2070010FDF6 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		EDF987772710C678008840FA /* Build configuration list for PBXNativeTarget "AnalyticsExampleTV" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1408,15 +1031,6 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		EDF9877D2710C678008840FA /* Build configuration list for PBXNativeTarget "AnalyticsExampleTVUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				EDF9877E2710C678008840FA /* Debug */,
-				EDF9877F2710C678008840FA /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		EDF987B12715E421008840FA /* Build configuration list for PBXNativeTarget "AnalyticsExampleMac" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1431,15 +1045,6 @@
 			buildConfigurations = (
 				EDF987B52715E421008840FA /* Debug */,
 				EDF987B62715E421008840FA /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		EDF987B72715E421008840FA /* Build configuration list for PBXNativeTarget "AnalyticsExampleMacUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				EDF987B82715E421008840FA /* Debug */,
-				EDF987B92715E421008840FA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

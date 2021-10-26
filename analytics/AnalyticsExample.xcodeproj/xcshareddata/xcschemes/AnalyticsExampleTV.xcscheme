@@ -38,16 +38,6 @@
                ReferencedContainer = "container:AnalyticsExample.xcodeproj">
             </BuildableReference>
          </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "EDF9876E2710C677008840FA"
-               BuildableName = "AnalyticsExampleTVUITests.xctest"
-               BlueprintName = "AnalyticsExampleTVUITests"
-               ReferencedContainer = "container:AnalyticsExample.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

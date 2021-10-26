@@ -52,13 +52,13 @@ private enum PrecipitationPreference: String, CaseIterable {
 }
 
 struct ContentView: View {
-  @State private var selectedSeason: Season? = nil
+  @State private var selectedSeason: Season?
 
-  @State private var selectedUnit: UnitOfTemperature? = nil
+  @State private var selectedUnit: UnitOfTemperature?
 
-  @State private var selectedWeatherPreference: WeatherPreference? = nil
+  @State private var selectedWeatherPreference: WeatherPreference?
 
-  @State private var selectedPrecipitationPreference: PrecipitationPreference? = nil
+  @State private var selectedPrecipitationPreference: PrecipitationPreference?
 
   var body: some View {
     // tvOS needs a navigation title to look better.
@@ -70,7 +70,7 @@ struct ContentView: View {
       // tvOS includes padding by default in the layout, but other platforms don't.
       allContent
         .padding()
-    #endif
+    #endif  // os(tvOS)
   }
 
   private var allContent: some View {
@@ -85,7 +85,8 @@ struct ContentView: View {
       weatherProperties
       Divider()
 
-      Text("Log user interactions with events").font(.title2)
+      Text("Log user interactions with events")
+        .font(.title2)
 
       logEventsView
     }.navigationTitle("Firebase Analytics")
@@ -136,6 +137,7 @@ struct ContentView: View {
       HStack {
         Text("Preferred Temperature Units:")
           .foregroundColor(.secondary)
+
         Spacer()
 
         Picker("Preferred Temperature Units", selection: $selectedUnit) {

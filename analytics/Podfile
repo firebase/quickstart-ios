@@ -1,21 +1,17 @@
 source 'https://github.com/firebase/SpecsStaging.git'
 source 'https://cdn.cocoapods.org/'
 
+# Common pods
+pod 'Firebase/Analytics', '~> 8.9'
+
 target 'AnalyticsExample' do
   platform :ios, '13.0'
 
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 
-  # Pods for AnalyticsExample
-  pod 'Firebase/Analytics', '~> 8.9'
-
   target 'AnalyticsExampleTests' do
     inherit! :search_paths
-    # Pods for testing
-  end
-
-  target 'AnalyticsExampleUITests' do
     # Pods for testing
   end
 
@@ -26,9 +22,6 @@ target 'AnalyticsExampleMac' do
 
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
-
-  # Pods for AnalyticsExampleMacSwiftUI
-  pod 'Firebase/Analytics', '~> 8.9'
 
   target 'AnalyticsExampleMacTests' do
     inherit! :search_paths
@@ -43,12 +36,8 @@ target 'AnalyticsExampleTV' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 
-  # Pods for AnalyticsExampleTV
-  pod 'Firebase/Analytics', '~> 8.9'
-
   target 'AnalyticsExampleTVTests' do
     inherit! :search_paths
     # Pods for testing
   end
 end
-

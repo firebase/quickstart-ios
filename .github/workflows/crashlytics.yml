@@ -57,7 +57,7 @@ jobs:
     runs-on: macOS-11
     strategy:
       matrix:
-        xcode: ["12.5", "13.0"]
+        xcode: ["12.5.1", "13.1"]
         os: [iOS, tvOS, macOS, watchOS]
         include:
           - os: iOS

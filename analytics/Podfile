@@ -1,20 +1,43 @@
-# Uncomment the next line to define a global platform for your project
-# platform :ios, '10.0'
+source 'https://github.com/firebase/SpecsStaging.git'
+source 'https://cdn.cocoapods.org/'
+
+# Common pods
+pod 'Firebase/Analytics', '~> 8.9'
 
 target 'AnalyticsExample' do
+  platform :ios, '13.0'
+
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
-
-  # Pods for AnalyticsExample
-  pod 'Firebase/Analytics'
 
   target 'AnalyticsExampleTests' do
     inherit! :search_paths
     # Pods for testing
   end
 
-  target 'AnalyticsExampleUITests' do
+end
+
+target 'AnalyticsExampleMac' do
+  platform :macos, '11.0'
+
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  target 'AnalyticsExampleMacTests' do
+    inherit! :search_paths
     # Pods for testing
   end
+end
 
+
+target 'AnalyticsExampleTV' do
+  platform :tvos, '12.0'
+
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  target 'AnalyticsExampleTVTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
 end

@@ -24,14 +24,29 @@ env:
 
 jobs:
   cocoapods:
-    name: cocoapods
-    runs-on: macOS-latest
+    name: cocoapods - ${{ matrix.os }}
+    runs-on: macOS-11
+    strategy:
+      matrix:
+        os: [iOS, catalyst, tvOS, macOS]
+        include:
+          - os: iOS
+            device: iPhone 12
+          - os: catalyst
+            device: localhost
+          - os: tvOS
+            device: Apple TV 4K (at 1080p) (2nd generation)
+            scheme: AnalyticsExampleTV
+          - os: macOS
+            device: localhost
+            scheme: AnalyticsExampleMac
     env:
       SPM: false
       LEGACY: false
-      OS: iOS
-      DEVICE: iPhone 11
+      OS: ${{ matrix.os }}
+      DEVICE: ${{ matrix.device }}
       TEST: true
+      SCHEME: ${{ matrix.scheme }}
     steps:
       - name: Checkout
         uses: actions/checkout@master
@@ -47,3 +62,5 @@ jobs:
         run: ./scripts/test.sh
         env:
           SWIFT_SUFFIX: ""
+
+  #TODO: Add `spm` job.

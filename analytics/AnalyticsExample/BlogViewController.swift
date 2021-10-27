@@ -23,7 +23,6 @@ protocol BlogViewControllerDelegate {
 
 /// The `BlogViewController` demonstrates how to set a custom screen name for analytics tracking.
 class BlogViewController: UIViewController, UITextViewDelegate {
-
   var delegate: BlogViewControllerDelegate?
 
   override func viewDidLoad() {
@@ -50,19 +49,19 @@ class BlogViewController: UIViewController, UITextViewDelegate {
   }
 
   private var doneButton: UIBarButtonItem {
-#if targetEnvironment(macCatalyst)
-    UIBarButtonItem(
-      barButtonSystemItem: .close,
-      target: self,
-      action: #selector(dismissBlogViewController)
-    )
-#else
-    UIBarButtonItem(
-      barButtonSystemItem: .done,
-      target: self,
-      action: #selector(dismissKeyboardOnTap)
-    )
-#endif // !targetEnvironment(macCatalyst)
+    #if targetEnvironment(macCatalyst)
+      UIBarButtonItem(
+        barButtonSystemItem: .close,
+        target: self,
+        action: #selector(dismissBlogViewController)
+      )
+    #else
+      UIBarButtonItem(
+        barButtonSystemItem: .done,
+        target: self,
+        action: #selector(dismissKeyboardOnTap)
+      )
+    #endif // !targetEnvironment(macCatalyst)
   }
 
   @objc
@@ -108,31 +107,31 @@ class BlogViewController: UIViewController, UITextViewDelegate {
     // Manual frame layout.
 
     #if targetEnvironment(macCatalyst)
-    description.frame = CGRect(
-      x: 17, y: navigationController!.navigationBar.frame.maxY + 50,
-      width: view.frame.width * 0.30, height: 50
-    )
-    button.frame = CGRect(
-      x: 15, y: view.frame.height * 0.68,
-      width: view.frame.width * 0.33, height: 45
-    )
-    textView.frame = CGRect(
-      x: 15, y: description.frame.maxY + 13,
-      width: view.frame.width * 0.33, height: view.frame.height * 0.45
-    )
+      description.frame = CGRect(
+        x: 17, y: navigationController!.navigationBar.frame.maxY + 50,
+        width: view.frame.width * 0.30, height: 50
+      )
+      button.frame = CGRect(
+        x: 15, y: view.frame.height * 0.68,
+        width: view.frame.width * 0.33, height: 45
+      )
+      textView.frame = CGRect(
+        x: 15, y: description.frame.maxY + 13,
+        width: view.frame.width * 0.33, height: view.frame.height * 0.45
+      )
     #else
-    description.frame = CGRect(
-      x: 15, y: navigationController!.navigationBar.frame.maxY,
-      width: view.frame.width - 30, height: 50
-    )
-    button.frame = CGRect(
-      x: 15, y: view.frame.height * 0.83,
-      width: view.frame.width - 30, height: 45
-    )
-    textView.frame = CGRect(
-      x: 15, y: description.frame.maxY + 15,
-      width: view.frame.width - 30, height: view.frame.height * 0.50
-    )
+      description.frame = CGRect(
+        x: 15, y: navigationController!.navigationBar.frame.maxY,
+        width: view.frame.width - 30, height: 50
+      )
+      button.frame = CGRect(
+        x: 15, y: view.frame.height * 0.83,
+        width: view.frame.width - 30, height: 45
+      )
+      textView.frame = CGRect(
+        x: 15, y: description.frame.maxY + 15,
+        width: view.frame.width - 30, height: view.frame.height * 0.50
+      )
     #endif // targetEnvironment(macCatalyst)
   }
 

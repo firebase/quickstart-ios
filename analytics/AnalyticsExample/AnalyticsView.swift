@@ -182,6 +182,7 @@ final class AnalyticsView: UIScrollView {
     addSubview(temperatureSlider)
 
     // MARK: - Post Button
+
     addSubview(postButton)
   }
 

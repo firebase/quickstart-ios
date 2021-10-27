@@ -15,13 +15,30 @@
 import UIKit
 import Firebase
 
+/// Used for view controller dismissal on MacCatalyst.
+@objc
+protocol BlogViewControllerDelegate {
+  func dismiss(animated: Bool)
+}
+
 /// The `BlogViewController` demonstrates how to set a custom screen name for analytics tracking.
 class BlogViewController: UIViewController, UITextViewDelegate {
+
+  var delegate: BlogViewControllerDelegate?
+
   override func viewDidLoad() {
     super.viewDidLoad()
     configureNavigationBar()
     view.backgroundColor = .systemBackground
     setupSubviews()
+
+    // Log the event appearing, adding the appropriate keys and values needed
+    // for screen view events. 🔥
+    let parameters = [
+      AnalyticsParameterScreenName: "BlogViewController",
+      AnalyticsParameterScreenClass: "class",
+    ]
+    Analytics.logEvent(AnalyticsEventScreenView, parameters: parameters)
   }
 
   // MARK: - Private Helpers
@@ -33,11 +50,24 @@ class BlogViewController: UIViewController, UITextViewDelegate {
   }
 
   private var doneButton: UIBarButtonItem {
+#if targetEnvironment(macCatalyst)
+    UIBarButtonItem(
+      barButtonSystemItem: .close,
+      target: self,
+      action: #selector(dismissBlogViewController)
+    )
+#else
     UIBarButtonItem(
       barButtonSystemItem: .done,
       target: self,
       action: #selector(dismissKeyboardOnTap)
     )
+#endif // !targetEnvironment(macCatalyst)
+  }
+
+  @objc
+  func dismissBlogViewController() {
+    delegate?.dismiss(animated: true)
   }
 
   private func configureNavigationBar() {
@@ -54,10 +84,6 @@ class BlogViewController: UIViewController, UITextViewDelegate {
     description.text = "See the code to see how to set custom screen names for analytics tracking."
     description.textColor = .secondaryLabel
     description.numberOfLines = 2
-    description.frame = CGRect(
-      x: 15, y: navigationController!.navigationBar.frame.maxY,
-      width: view.frame.width - 30, height: 50
-    )
 
     let button = UIButton()
     view.addSubview(button)
@@ -69,10 +95,6 @@ class BlogViewController: UIViewController, UITextViewDelegate {
     button.clipsToBounds = true
     button.layer.cornerRadius = 16
     button.backgroundColor = .systemOrange
-    button.frame = CGRect(
-      x: 15, y: view.frame.height * 0.83,
-      width: view.frame.width - 30, height: 45
-    )
 
     let textView = UITextView()
     view.addSubview(textView)
@@ -82,10 +104,36 @@ class BlogViewController: UIViewController, UITextViewDelegate {
     textView.backgroundColor = .secondarySystemFill
     textView.layer.cornerRadius = 16
     textView.delegate = self
+
+    // Manual frame layout.
+
+    #if targetEnvironment(macCatalyst)
+    description.frame = CGRect(
+      x: 17, y: navigationController!.navigationBar.frame.maxY + 50,
+      width: view.frame.width * 0.30, height: 50
+    )
+    button.frame = CGRect(
+      x: 15, y: view.frame.height * 0.68,
+      width: view.frame.width * 0.33, height: 45
+    )
+    textView.frame = CGRect(
+      x: 15, y: description.frame.maxY + 13,
+      width: view.frame.width * 0.33, height: view.frame.height * 0.45
+    )
+    #else
+    description.frame = CGRect(
+      x: 15, y: navigationController!.navigationBar.frame.maxY,
+      width: view.frame.width - 30, height: 50
+    )
+    button.frame = CGRect(
+      x: 15, y: view.frame.height * 0.83,
+      width: view.frame.width - 30, height: 45
+    )
     textView.frame = CGRect(
       x: 15, y: description.frame.maxY + 15,
       width: view.frame.width - 30, height: view.frame.height * 0.50
     )
+    #endif // targetEnvironment(macCatalyst)
   }
 
   @objc

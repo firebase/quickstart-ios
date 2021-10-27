@@ -73,7 +73,9 @@ class AnalyticsViewController: UIViewController {
   @objc
   private func buttonTapped() {
     Analytics.logEvent("blog_button_tapped", parameters: nil) // 🔥
-    let navController = UINavigationController(rootViewController: BlogViewController())
+    let blogViewController = BlogViewController()
+    blogViewController.delegate = self
+    let navController = UINavigationController(rootViewController: blogViewController)
     navigationController?.present(navController, animated: true)
   }
 
@@ -123,5 +125,11 @@ class AnalyticsViewController: UIViewController {
     navigationBar.prefersLargeTitles = true
     navigationBar.titleTextAttributes = [.foregroundColor: UIColor.systemOrange]
     navigationBar.largeTitleTextAttributes = [.foregroundColor: UIColor.systemOrange]
+  }
+}
+
+extension AnalyticsViewController: BlogViewControllerDelegate {
+  func dismiss(animated: Bool) {
+    navigationController?.dismiss(animated: animated, completion: nil)
   }
 }

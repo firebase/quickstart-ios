@@ -92,14 +92,13 @@ DEPENDENCIES:
   - Firebase/Analytics
 
 SPEC REPOS:
-  https://github.com/firebase/SpecsStaging.git:
+  trunk:
     - Firebase
     - FirebaseAnalytics
     - FirebaseCore
     - FirebaseCoreDiagnostics
     - FirebaseInstallations
     - GoogleAppMeasurement
-  trunk:
     - GoogleDataTransport
     - GoogleUtilities
     - nanopb

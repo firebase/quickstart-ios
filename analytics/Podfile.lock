@@ -89,17 +89,16 @@ PODS:
   - PromisesObjC (2.0.0)
 
 DEPENDENCIES:
-  - Firebase/Analytics (~> 8.9)
+  - Firebase/Analytics
 
 SPEC REPOS:
-  https://github.com/firebase/SpecsStaging.git:
+  trunk:
     - Firebase
     - FirebaseAnalytics
     - FirebaseCore
     - FirebaseCoreDiagnostics
     - FirebaseInstallations
     - GoogleAppMeasurement
-  trunk:
     - GoogleDataTransport
     - GoogleUtilities
     - nanopb
@@ -117,6 +116,6 @@ SPEC CHECKSUMS:
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58
 
-PODFILE CHECKSUM: 3ba6550e4c45ffd66700ad869224951dc204c620
+PODFILE CHECKSUM: d24584c46d6fc7d56d4fa7d7e93e414f30f2e2ab
 
 COCOAPODS: 1.11.2

@@ -1,8 +1,5 @@
-source 'https://github.com/firebase/SpecsStaging.git'
-source 'https://cdn.cocoapods.org/'
-
 # Common pods
-pod 'Firebase/Analytics', '~> 8.9'
+pod 'Firebase/Analytics'
 
 target 'AnalyticsExample' do
   platform :ios, '13.0'

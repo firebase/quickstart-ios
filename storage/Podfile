@@ -3,9 +3,8 @@
 use_frameworks!
 platform :ios, '10.0'
 
-pod 'Firebase/Analytics'
-pod 'Firebase/Auth'
-pod 'Firebase/Storage'
+pod 'FirebaseAuth'
+pod 'FirebaseStorage'
 
 target 'StorageExample' do
 end

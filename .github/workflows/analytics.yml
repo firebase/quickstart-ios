@@ -25,10 +25,11 @@ env:
 jobs:
   cocoapods:
     name: cocoapods - ${{ matrix.os }}
-    runs-on: macOS-11
+    runs-on: macOS-latest
     strategy:
       matrix:
         os: [iOS, catalyst, tvOS, macOS]
+        xcode: ["13.0"]
         include:
           - os: iOS
             device: iPhone 12

@@ -1,26 +1,26 @@
 PODS:
-  - Firebase/CoreOnly (8.9.1):
-    - FirebaseCore (= 8.9.1)
-  - Firebase/RemoteConfig (8.9.1):
+  - Firebase/CoreOnly (8.10.0):
+    - FirebaseCore (= 8.10.0)
+  - Firebase/RemoteConfig (8.10.0):
     - Firebase/CoreOnly
-    - FirebaseRemoteConfig (~> 8.9.0)
-  - FirebaseABTesting (8.9.0):
+    - FirebaseRemoteConfig (~> 8.10.0)
+  - FirebaseABTesting (8.10.0):
     - FirebaseCore (~> 8.0)
-  - FirebaseCore (8.9.1):
+  - FirebaseCore (8.10.0):
     - FirebaseCoreDiagnostics (~> 8.0)
     - GoogleUtilities/Environment (~> 7.6)
     - GoogleUtilities/Logger (~> 7.6)
-  - FirebaseCoreDiagnostics (8.9.0):
+  - FirebaseCoreDiagnostics (8.10.0):
     - GoogleDataTransport (~> 9.1)
     - GoogleUtilities/Environment (~> 7.6)
     - GoogleUtilities/Logger (~> 7.6)
     - nanopb (~> 2.30908.0)
-  - FirebaseInstallations (8.9.0):
+  - FirebaseInstallations (8.10.0):
     - FirebaseCore (~> 8.0)
     - GoogleUtilities/Environment (~> 7.6)
     - GoogleUtilities/UserDefaults (~> 7.6)
     - PromisesObjC (< 3.0, >= 1.2)
-  - FirebaseRemoteConfig (8.9.0):
+  - FirebaseRemoteConfig (8.10.0):
     - FirebaseABTesting (~> 8.0)
     - FirebaseCore (~> 8.0)
     - FirebaseInstallations (~> 8.0)
@@ -61,12 +61,12 @@ SPEC REPOS:
     - PromisesObjC
 
 SPEC CHECKSUMS:
-  Firebase: fb5114cd2bf96e2ff7bcb01d0d9a156cf5fd2f07
-  FirebaseABTesting: 9de50b34bf9eb4a07d4edb7af82c14152fd905aa
-  FirebaseCore: c5aab092d9c4b8efea894946166b04c9d9ef0e68
-  FirebaseCoreDiagnostics: 5daa63f1c1409d981a2d5007daa100b36eac6a34
-  FirebaseInstallations: caa7c8e0d3e2345b8829d2fa9ca1b4dfbf2fcc85
-  FirebaseRemoteConfig: a75c1bd44ebd3ed4ad3fa1ff09414a8b133be405
+  Firebase: 44213362f1dcc52555b935dc925ed35ac55f1b20
+  FirebaseABTesting: fc7255f7e96d3cf7a1131fd68636c47e312cef76
+  FirebaseCore: 04186597c095da37d90ff9fd3e53bc61a1ff2440
+  FirebaseCoreDiagnostics: 56fb7216d87e0e6ec2feddefa9d8a392fe8b2c18
+  FirebaseInstallations: 830327b45345ffc859eaa9c17bcd5ae893fd5425
+  FirebaseRemoteConfig: 84d3397887d95587f0ee7a0a3989b2756dc2bbf9
   GoogleDataTransport: 629c20a4d363167143f30ea78320d5a7eb8bd940
   GoogleUtilities: 684ee790a24f73ebb2d1d966e9711c203f2a4237
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96

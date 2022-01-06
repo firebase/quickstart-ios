@@ -1,27 +1,27 @@
 PODS:
-  - Firebase/Auth (8.9.1):
+  - Firebase/Auth (8.10.0):
     - Firebase/CoreOnly
-    - FirebaseAuth (~> 8.9.0)
-  - Firebase/CoreOnly (8.9.1):
-    - FirebaseCore (= 8.9.1)
-  - Firebase/Database (8.9.1):
+    - FirebaseAuth (~> 8.10.0)
+  - Firebase/CoreOnly (8.10.0):
+    - FirebaseCore (= 8.10.0)
+  - Firebase/Database (8.10.0):
     - Firebase/CoreOnly
-    - FirebaseDatabase (~> 8.9.0)
-  - FirebaseAuth (8.9.0):
+    - FirebaseDatabase (~> 8.10.0)
+  - FirebaseAuth (8.10.0):
     - FirebaseCore (~> 8.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 7.6)
     - GoogleUtilities/Environment (~> 7.6)
     - GTMSessionFetcher/Core (~> 1.5)
-  - FirebaseCore (8.9.1):
+  - FirebaseCore (8.10.0):
     - FirebaseCoreDiagnostics (~> 8.0)
     - GoogleUtilities/Environment (~> 7.6)
     - GoogleUtilities/Logger (~> 7.6)
-  - FirebaseCoreDiagnostics (8.9.0):
+  - FirebaseCoreDiagnostics (8.10.0):
     - GoogleDataTransport (~> 9.1)
     - GoogleUtilities/Environment (~> 7.6)
     - GoogleUtilities/Logger (~> 7.6)
     - nanopb (~> 2.30908.0)
-  - FirebaseDatabase (8.9.0):
+  - FirebaseDatabase (8.10.0):
     - FirebaseCore (~> 8.0)
     - leveldb-library (~> 1.22)
   - FirebaseDatabaseUI (11.0.3):
@@ -78,11 +78,11 @@ SPEC REPOS:
     - PromisesObjC
 
 SPEC CHECKSUMS:
-  Firebase: fb5114cd2bf96e2ff7bcb01d0d9a156cf5fd2f07
-  FirebaseAuth: 2b78b2a32c07b3ecfa4970bdf1d3632b8304099b
-  FirebaseCore: c5aab092d9c4b8efea894946166b04c9d9ef0e68
-  FirebaseCoreDiagnostics: 5daa63f1c1409d981a2d5007daa100b36eac6a34
-  FirebaseDatabase: 2236b804cf0cac165b4620669bedf7ee643a2bcc
+  Firebase: 44213362f1dcc52555b935dc925ed35ac55f1b20
+  FirebaseAuth: 59a2d2b933b5b79e18fb1e6ad230c6abdaa73d26
+  FirebaseCore: 04186597c095da37d90ff9fd3e53bc61a1ff2440
+  FirebaseCoreDiagnostics: 56fb7216d87e0e6ec2feddefa9d8a392fe8b2c18
+  FirebaseDatabase: 5f3e83b0a0d8759378fbd5d05661244d14dfbbb0
   FirebaseDatabaseUI: 4db2acaaee3c1a73e0daf31e926a8b7212941607
   FirebaseUI: d2777b3abcb3fa40ea9eea9e40db5a154df608d3
   GoogleDataTransport: 629c20a4d363167143f30ea78320d5a7eb8bd940

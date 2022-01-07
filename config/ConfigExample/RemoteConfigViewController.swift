@@ -14,6 +14,7 @@
 
 import UIKit
 import FirebaseRemoteConfig
+import FirebaseRemoteConfigSwift
 
 class RemoteConfigViewController: UIViewController {
   private var remoteConfig: RemoteConfig!
@@ -21,6 +22,8 @@ class RemoteConfigViewController: UIViewController {
 
   private let topLabelKey = "topLabelKey"
   private let recipeKey = "recipeKey"
+  // The JSON value for typedRecipeKey match recipeKey except ints are Ints instead of String.
+  private let typedRecipeKey = "typedRecipeKey"
   private let bottomLabelKey = "bottomLabelKey"
 
   override func loadView() {
@@ -125,30 +128,34 @@ class RemoteConfigViewController: UIViewController {
       }
     }
 
-    // Specify keys in the order we would like to display the information in
-    let keys = [
-      "recipe_name",
-      "ingredients",
-      "prep_time",
-      "cook_time",
-      "instructions",
-      "yield",
-      "serving_size",
-      "notes",
-    ]
-    guard let recipeDictionary = remoteConfig[recipeKey].jsonValue as? [String: Any] else { return }
+    struct Recipe: Decodable {
+      var recipe_name: String
+      var ingredients: [String]
+      var prep_time: Int
+      var cook_time: Int
+      var instructions: [String]
+      var yield: String
+      var serving_size: Int
+      var notes: String
+    }
 
-    keys.enumerated().forEach { index, key in
-      guard var value = recipeDictionary[key] else { return }
-
+    guard let recipe: Recipe = try? remoteConfig[typedRecipeKey].decoded() else {
+      fatalError("Failed to decode JSON for \(typedRecipeKey)")
+    }
+    let mirror = Mirror(reflecting: recipe)
+    var index = 0
+    for (property, value) in mirror.children {
+      guard let key = property else { continue }
+      var stringValue: String
       if let list = value as? [String] {
-        let joinedValue = list.joined(separator: " • ")
-        value = joinedValue
-      } else if let stringValue = value as? String {
-        value = stringValue
+        stringValue = list.joined(separator: " • ")
+      } else if let intVal = value as? Int {
+        stringValue = String(intVal)
+      } else if let val = value as? String {
+        stringValue = val
+      } else {
+        fatalError("Unrecognized type for \(key)")
       }
-
-      guard let stringValue = value as? String else { return }
 
       let formattedKey = key
         .capitalized
@@ -175,13 +182,14 @@ class RemoteConfigViewController: UIViewController {
       animateFadeIn(for: label, duration: 0.3)
 
       let height = jsonView.frame.height
-      let step = height / CGFloat(keys.count)
-      let offset = height * 0.2 * 1 / CGFloat(keys.count)
+      let step = height / CGFloat(mirror.children.count)
+      let offset = height * 0.2 * 1 / CGFloat(mirror.children.count)
 
       let x: CGFloat = jsonView.frame.width * 0.05
       let y: CGFloat = step * CGFloat(index) + offset
 
       label.frame.origin = CGPoint(x: x, y: y)
+      index += 1
     }
   }
 

@@ -94,9 +94,9 @@ class RemoteConfigViewController: UIViewController {
 
   /// This method applies our remote config values to our UI
   private func updateUI() {
-    remoteConfigView.topLabel.text = remoteConfig["topLabelKey"].stringValue
+    remoteConfigView.topLabel.text = remoteConfig[stringValue: "topLabelKey"]
     updateJSONView()
-    remoteConfigView.bottomLabel.text = remoteConfig["bottomLabelKey"].stringValue
+    remoteConfigView.bottomLabel.text = remoteConfig[stringValue: "bottomLabelKey"]
   }
 
   // MARK: - Private Helpers
@@ -128,7 +128,7 @@ class RemoteConfigViewController: UIViewController {
       }
     }
 
-    struct Recipe: Decodable {
+    struct Recipe: Decodable, CustomStringConvertible {
       var recipe_name: String
       var ingredients: [String]
       var prep_time: Int
@@ -137,30 +137,27 @@ class RemoteConfigViewController: UIViewController {
       var yield: String
       var serving_size: Int
       var notes: String
+
+      var description: String {
+        return "Recipe Name: \(recipe_name)\n" +
+          "Ingredients: \(ingredients)\n" +
+          "Prep Time: \(prep_time)\n" +
+          "Cook Time: \(cook_time)\n" +
+          "Instructions: \(instructions)\n" +
+          "Yield: \(yield)\n" +
+          "Serving Size: \(serving_size)\n" +
+          "Notes: \(notes)"
+      }
     }
 
     guard let recipe: Recipe = try? remoteConfig[typedRecipeKey].decoded() else {
       fatalError("Failed to decode JSON for \(typedRecipeKey)")
     }
-    let mirror = Mirror(reflecting: recipe)
-    var index = 0
-    for (property, value) in mirror.children {
-      guard let key = property else { continue }
-      var stringValue: String
-      if let list = value as? [String] {
-        stringValue = list.joined(separator: " • ")
-      } else if let intVal = value as? Int {
-        stringValue = String(intVal)
-      } else if let val = value as? String {
-        stringValue = val
-      } else {
-        fatalError("Unrecognized type for \(key)")
-      }
-
-      let formattedKey = key
-        .capitalized
-        .replacingOccurrences(of: "_", with: " ")
-        .appending(": ")
+    let lines = recipe.description.split(separator: "\n")
+    for (index, line) in lines.enumerated() {
+      let lineSplit = line.split(separator: ":")
+      let formattedKey = String(lineSplit[0])
+      let stringValue = String(lineSplit[1])
 
       let attributedKey = NSAttributedString(
         string: formattedKey,
@@ -182,14 +179,13 @@ class RemoteConfigViewController: UIViewController {
       animateFadeIn(for: label, duration: 0.3)
 
       let height = jsonView.frame.height
-      let step = height / CGFloat(mirror.children.count)
-      let offset = height * 0.2 * 1 / CGFloat(mirror.children.count)
+      let step = height / CGFloat(lines.count)
+      let offset = height * 0.2 * 1 / CGFloat(lines.count)
 
       let x: CGFloat = jsonView.frame.width * 0.05
       let y: CGFloat = step * CGFloat(index) + offset
 
       label.frame.origin = CGPoint(x: x, y: y)
-      index += 1
     }
   }
 
@@ -204,7 +200,7 @@ extension UIViewController {
   public func displayError(_ error: Error?, from function: StaticString = #function) {
     guard let error = error else { return }
     print("🚨 Error in \(function): \(error.localizedDescription)")
-    let message = "\(error.localizedDescription)\n\n Ocurred in \(function)"
+    let message = "\(error.localizedDescription)\n\n Occurred in \(function)"
     let errorAlertController = UIAlertController(
       title: "Error",
       message: message,

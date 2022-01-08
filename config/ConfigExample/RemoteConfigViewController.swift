@@ -21,8 +21,6 @@ class RemoteConfigViewController: UIViewController {
   private var remoteConfigView: RemoteConfigView { view as! RemoteConfigView }
 
   private let topLabelKey = "topLabelKey"
-  private let recipeKey = "recipeKey"
-  // The JSON value for typedRecipeKey match recipeKey except ints are Ints instead of String.
   private let typedRecipeKey = "typedRecipeKey"
   private let bottomLabelKey = "bottomLabelKey"
 
@@ -51,41 +49,41 @@ class RemoteConfigViewController: UIViewController {
 
   // MARK: - Firebase 🔥
 
+  // Add additional keys that are in the console to see them in the log after fetching the config.
+  struct QSConfig: Codable {
+    let topLabelKey: String
+    let bottomLabelKey: String
+    let freeCount: Int
+  }
+
   /// Initializes defaults from `RemoteConfigDefaults.plist` and sets config's settings to developer mode
   private func setupRemoteConfig() {
     remoteConfig = RemoteConfig.remoteConfig()
-    remoteConfig.setDefaults(fromPlist: "RemoteConfigDefaults")
+    // This is an alternative to remoteConfig.setDefaults(fromPlist: "RemoteConfigDefaults"))
+    try? remoteConfig.setDefaults(from: QSConfig(topLabelKey: "myTopLabel",
+                                                 bottomLabelKey: "Buy one get one free!",
+                                                 freeCount: 4))
 
     let settings = RemoteConfigSettings()
     settings.minimumFetchInterval = 0
     remoteConfig.configSettings = settings
   }
 
-  /// Fetches remote config values from the server
-  private func fetchRemoteConfig() {
-    remoteConfig.fetch { status, error in
-      guard error == nil else { return self.displayError(error) }
-      print("Remote config successfully fetched!")
-    }
-  }
-
-  /// Activates remote config values, making them available to use in your app
-  private func activateRemoteConfig() {
-    remoteConfig.activate { success, error in
-      guard error == nil else { return self.displayError(error) }
-      print("Remote config successfully activated!")
-      DispatchQueue.main.async {
-        self.updateUI()
-      }
-    }
-  }
-
   /// Fetches and activates remote config values
   @objc
   private func fetchAndActivateRemoteConfig() {
-    remoteConfig.fetchAndActivate { status, error in
-      guard error == nil else { return self.displayError(error) }
+    Task.init {
+      guard let _ = try? await remoteConfig.fetchAndActivate() else {
+        print("Failed to fetchAndActivate.")
+        return
+      }
       print("Remote config successfully fetched & activated!")
+      do {
+        let qsConfig: QSConfig = try remoteConfig.decoded()
+        print(qsConfig)
+      } catch {
+        print("Failed to decode config.")
+      }
       DispatchQueue.main.async {
         self.updateUI()
       }
@@ -96,7 +94,16 @@ class RemoteConfigViewController: UIViewController {
   private func updateUI() {
     remoteConfigView.topLabel.text = remoteConfig[stringValue: "topLabelKey"]
     updateJSONView()
-    remoteConfigView.bottomLabel.text = remoteConfig[stringValue: "bottomLabelKey"]
+    var bottomLabel = remoteConfig[stringValue: "bottomLabelKey"]
+    let freeCount = remoteConfig[intValue: "freeCount"]
+    if freeCount > 1, bottomLabel.contains("one") {
+      let formatter = NumberFormatter()
+      formatter.numberStyle = .spellOut
+      if let english = formatter.string(from: NSNumber(value: freeCount)) {
+        bottomLabel = bottomLabel.replacingOccurrences(of: "one free", with: "\(english) free")
+      }
+    }
+    remoteConfigView.bottomLabel.text = bottomLabel
   }
 
   // MARK: - Private Helpers

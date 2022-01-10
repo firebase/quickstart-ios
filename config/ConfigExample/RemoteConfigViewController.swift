@@ -92,18 +92,19 @@ class RemoteConfigViewController: UIViewController {
 
   /// This method applies our remote config values to our UI
   private func updateUI() {
-    remoteConfigView.topLabel.text = remoteConfig[stringValue: "topLabelKey"]
+    remoteConfigView.topLabel.text = remoteConfig[decodedValue: "topLabelKey"]
     updateJSONView()
-    var bottomLabel = remoteConfig[stringValue: "bottomLabelKey"]
-    let freeCount = remoteConfig[intValue: "freeCount"]
-    if freeCount > 1, bottomLabel.contains("one") {
+    if var bottomLabel: String = remoteConfig[decodedValue: "bottomLabelKey"],
+      let freeCount: Int = remoteConfig[decodedValue: "freeCount"],
+      freeCount > 1,
+      bottomLabel.contains("one") {
       let formatter = NumberFormatter()
       formatter.numberStyle = .spellOut
       if let english = formatter.string(from: NSNumber(value: freeCount)) {
         bottomLabel = bottomLabel.replacingOccurrences(of: "one free", with: "\(english) free")
       }
+      remoteConfigView.bottomLabel.text = bottomLabel
     }
-    remoteConfigView.bottomLabel.text = bottomLabel
   }
 
   // MARK: - Private Helpers

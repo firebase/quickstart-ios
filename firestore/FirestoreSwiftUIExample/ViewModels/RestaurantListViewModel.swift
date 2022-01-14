@@ -18,7 +18,7 @@
 //
 
 import Combine
-import Firebase
+import FirebaseFirestore
 import SwiftUI
 
 class RestaurantListViewModel: ObservableObject {

@@ -17,8 +17,7 @@
 //  limitations under the License.
 //
 
-import Firebase
-import FirebaseFirestoreSwift
+import FirebaseFirestore
 
 struct Review: Identifiable, Codable {
   var id: String = UUID().uuidString

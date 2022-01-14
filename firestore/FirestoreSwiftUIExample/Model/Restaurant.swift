@@ -17,7 +17,7 @@
 //  limitations under the License.
 //
 
-import Firebase
+import FirebaseFirestore
 import FirebaseFirestoreSwift
 
 struct Restaurant: Identifiable, Codable {

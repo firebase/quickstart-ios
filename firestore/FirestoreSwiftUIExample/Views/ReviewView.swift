@@ -18,7 +18,7 @@
 //
 
 import SwiftUI
-import Firebase
+import FirebaseFirestore
 
 struct ReviewView: View {
   var review: Review

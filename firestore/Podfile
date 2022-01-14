@@ -3,11 +3,10 @@ platform :ios, '13.0'
 target 'FirestoreExample' do
   use_frameworks!
 
-  pod 'Firebase/Analytics'
-  pod 'Firebase/Auth'
+  pod 'FirebaseAuth'
   pod 'FirebaseUI/Auth', '~> 11.0'
   pod 'FirebaseUI/Email', '~> 11.0'
-  pod 'Firebase/Firestore'
+  pod 'FirebaseFirestore'
   pod 'FirebaseFirestoreSwift', "> 7.0-beta"
   pod 'SDWebImage'
 
@@ -19,9 +18,8 @@ end
 target 'FirestoreSwiftUIExample' do
   use_frameworks!
 
-  pod 'Firebase/Analytics'
-  pod 'Firebase/Auth'
-  pod 'Firebase/Firestore'
+  pod 'FirebaseAuth'
+  pod 'FirebaseFirestore'
   pod 'FirebaseFirestoreSwift', "> 7.0-beta"
   pod 'SDWebImageSwiftUI'
 end

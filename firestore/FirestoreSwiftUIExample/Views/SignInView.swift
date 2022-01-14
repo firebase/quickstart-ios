@@ -18,7 +18,7 @@
 //
 
 import SwiftUI
-import Firebase
+import FirebaseAuth
 
 struct SignInView: View {
   @State private var isSignedIn = false

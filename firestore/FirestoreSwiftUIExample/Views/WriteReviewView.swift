@@ -18,7 +18,8 @@
 //
 
 import SwiftUI
-import Firebase
+import FirebaseAuth
+import FirebaseFirestore
 
 struct WriteReviewView: View {
   var restaurant: Restaurant

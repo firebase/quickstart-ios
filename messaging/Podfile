@@ -3,12 +3,17 @@
 use_frameworks!
 platform :ios, '10.0'
 
-pod 'Firebase/Analytics'
-pod 'Firebase/Messaging'
+def firebase_pods
+  pod 'Firebase/Analytics'
+  pod 'Firebase/Messaging'
+end 
 
 target 'MessagingExample' do
+  firebase_pods
 end
 target 'MessagingExampleSwift' do
+  firebase_pods
 end
+
 target 'MessagingExampleTests' do
 end

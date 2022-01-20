@@ -8,19 +8,17 @@
 import SwiftUI
 
 struct HomeView: View {
-
-    var body: some View {
-
-      VStack{
-        AddNumbers()
-        AddMessage()
-        Spacer()
-      }
+  var body: some View {
+    VStack {
+      AddNumbers()
+      AddMessage()
+      Spacer()
     }
+  }
 }
 
 struct HomeView_Previews: PreviewProvider {
-    static var previews: some View {
-        HomeView()
-    }
+  static var previews: some View {
+    HomeView()
+  }
 }

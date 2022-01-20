@@ -12,11 +12,12 @@ import Firebase
 struct FunctionsExampleApp: App {
   init() {
     FirebaseApp.configure()
+    Functions.functions().useEmulator(withHost: "localhost", port: 5001)
   }
+
   var body: some Scene {
     WindowGroup {
       ContentView()
     }
   }
 }
-

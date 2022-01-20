@@ -13,30 +13,27 @@ struct AddMessage: View {
   @State private var outcome: String = ""
   private var functions = Functions.functions()
   var body: some View {
-
-    ZStack{
+    ZStack {
       BackgroundFrame()
-      VStack{
-        VStack{
+      VStack {
+        VStack {
           Text("Add your message")
           TextField("", text: $comment)
             .background(RoundedRectangle(cornerRadius: 10).fill(Color(.systemGray5)))
             .frame(width: ScreenDimensions.width * 0.8)
           Text(outcome)
         }
-        Button(action: {didTapAddMessage()} ){
+        Button(action: { didTapAddMessage() }) {
           Text("Add Message")
             .padding()
             .foregroundColor(.white)
             .background(Color("Amber400"))
         }
-
       }
     }
   }
 
-  func didTapAddMessage(){
-
+  func didTapAddMessage() {
     // [START function_add_message]
     functions.httpsCallable("addMessage").call(["text": $comment.wrappedValue]) { result, error in
       // [START function_error]
@@ -53,8 +50,7 @@ struct AddMessage: View {
       }
       // [END function_error]
       if let data = result?.data as? [String: Any], let text = data["text"] as? String {
-
-        print( text)
+        print(text)
         self.outcome = text
       }
     }
@@ -67,6 +63,4 @@ struct AddMessage_Previews: PreviewProvider {
   }
 }
 
-struct CommentCell {
-
-}
+struct CommentCell {}

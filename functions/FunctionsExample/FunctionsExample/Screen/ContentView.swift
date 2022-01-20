@@ -9,13 +9,13 @@ import SwiftUI
 import Firebase
 
 struct ContentView: View {
-    var body: some View {
-      HomeView()
-    }
+  var body: some View {
+    HomeView()
+  }
 }
 
 struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
+  static var previews: some View {
+    ContentView()
+  }
 }

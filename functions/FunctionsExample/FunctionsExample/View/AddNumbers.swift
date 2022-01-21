@@ -29,7 +29,7 @@ struct AddNumbers: View {
             .background(RoundedRectangle(cornerRadius: 10).fill(Color(.systemGray5)))
             .frame(width: ScreenDimensions.width * 0.2)
             .keyboardType(.decimalPad)
-        Spacer()
+          Spacer()
         }
         VStack {
           Text("\(outcome)")

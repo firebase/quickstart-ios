@@ -12,7 +12,9 @@ import Firebase
 struct FunctionsExampleApp: App {
   init() {
     FirebaseApp.configure()
+    #if EMULATOR
     Functions.functions().useEmulator(withHost: "localhost", port: 5001)
+    #endif
   }
 
   var body: some Scene {

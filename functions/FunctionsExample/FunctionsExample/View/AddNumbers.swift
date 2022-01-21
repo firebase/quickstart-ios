@@ -17,32 +17,22 @@ struct AddNumbers: View {
     ZStack {
       BackgroundFrame()
       VStack {
+        Text("Add two numbers")
         HStack {
           Spacer()
-          VStack {
-            Text("Num1")
-            #if os(macOS)
-              TextField("", text: $num1).multilineTextAlignment(.center)
-            #else
-              TextField("", text: $num1).multilineTextAlignment(.center)
-                .background(RoundedRectangle(cornerRadius: 10).fill(Color(.systemGray5)))
-                .frame(width: ScreenDimensions.width * 0.2)
-                .keyboardType(.decimalPad)
-            #endif
-          }
-          Spacer()
+          TextField("", text: $num1).multilineTextAlignment(.center)
+            .background(RoundedRectangle(cornerRadius: 10).fill(Color(.systemGray5)))
+            .frame(width: ScreenDimensions.width * 0.2)
+            .keyboardType(.decimalPad)
           Text("+")
-          Spacer()
-          VStack {
-            Text("Num2")
-            TextField("", text: $num2).multilineTextAlignment(.center)
-              .background(RoundedRectangle(cornerRadius: 10).fill(Color(.systemGray5)))
-              .frame(width: ScreenDimensions.width * 0.2)
-              .keyboardType(.decimalPad)
-          }
-          Spacer()
+          TextField("", text: $num2).multilineTextAlignment(.center)
+            .background(RoundedRectangle(cornerRadius: 10).fill(Color(.systemGray5)))
+            .frame(width: ScreenDimensions.width * 0.2)
+            .keyboardType(.decimalPad)
+        Spacer()
         }
-        HStack {
+        VStack {
+          Text("\(outcome)")
           Button(action: {
             didTapCalculate()
           }) {
@@ -51,10 +41,10 @@ struct AddNumbers: View {
               .foregroundColor(.white)
               .background(Color("Amber400"))
           }
-          Text("\(outcome)")
         }
       }
     }
+    .padding()
   }
 
   func didTapCalculate() {

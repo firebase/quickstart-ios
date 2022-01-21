@@ -30,6 +30,7 @@ struct AddMessage: View {
             .background(Color("Amber400"))
         }
       }
+      .padding()
     }
   }
 

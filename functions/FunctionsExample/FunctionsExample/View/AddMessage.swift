@@ -29,7 +29,7 @@ struct AddMessage: View {
         VStack {
           Text("Add your message")
           TextField("", text: $comment)
-            .background(RoundedRectangle(cornerRadius: 10).fill(Color(.systemGray5)))
+            .background(RoundedRectangle(cornerRadius: 16).fill(Color(.systemGray5)))
             .frame(width: ScreenDimensions.width * 0.8)
           Text(outcome)
         }
@@ -39,6 +39,7 @@ struct AddMessage: View {
             .foregroundColor(.white)
             .background(Color("Amber400"))
         }
+        .cornerRadius(16)
       }
       .padding()
     }

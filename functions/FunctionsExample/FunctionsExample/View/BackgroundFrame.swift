@@ -19,7 +19,7 @@ import SwiftUI
 
 struct BackgroundFrame: View {
   var body: some View {
-    RoundedRectangle(cornerRadius: 25)
+    RoundedRectangle(cornerRadius: 16)
       .fill(Color.white)
       .frame(width: ScreenDimensions.width * 0.95, height: 200)
       .shadow(color: Color(.black), radius: 5, x: 3, y: 1)

@@ -31,14 +31,14 @@ struct AddNumbers: View {
         HStack {
           Spacer()
           TextField("", text: $num1).multilineTextAlignment(.center)
-            .background(RoundedRectangle(cornerRadius: 10).fill(Color(.systemGray5)))
+            .background(RoundedRectangle(cornerRadius: 16).fill(Color(.systemGray5)))
             .frame(width: ScreenDimensions.width * 0.2)
             .keyboardType(.decimalPad)
           Text("+")
           TextField("", text: $num2).multilineTextAlignment(.center)
-            .background(RoundedRectangle(cornerRadius: 10).fill(Color(.systemGray5)))
+            .background(RoundedRectangle(cornerRadius: 16).fill(Color(.systemGray5)))
             .frame(width: ScreenDimensions.width * 0.2)
-            .keyboardType(.decimalPad)
+            .keyboardType(.numberPad)
           Spacer()
         }
         VStack {
@@ -51,6 +51,7 @@ struct AddNumbers: View {
               .foregroundColor(.white)
               .background(Color("Amber400"))
           }
+          .cornerRadius(16)
         }
       }
     }

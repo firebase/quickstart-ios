@@ -20,10 +20,13 @@ struct BackgroundFrame<Content: View>: View {
   var title: String
   var description: String
   let content: Content
-  init(title: String, description: String, @ViewBuilder content: () -> Content) {
+  let hitButton: () -> Void
+  init(title: String, description: String, hitButton: @escaping () -> Void,
+       @ViewBuilder content: () -> Content) {
     self.title = title
     self.description = description
     self.content = content()
+    self.hitButton = hitButton
   }
 
   var body: some View {
@@ -39,6 +42,7 @@ struct BackgroundFrame<Content: View>: View {
           .frame(height: 150)
         content
       }
+      CustomStyledButton(title: "Run", action: hitButton)
     }
     .padding()
     .frame(width: ScreenDimensions.width * 0.95)
@@ -47,7 +51,11 @@ struct BackgroundFrame<Content: View>: View {
 
 struct BackgroundFrame_Previews: PreviewProvider {
   static var previews: some View {
-    BackgroundFrame(title: "Function", description: "Function description") {
+    BackgroundFrame(
+      title: "Function",
+      description: "Function description",
+      hitButton: { print("button") }
+    ) {
       Text("Testing View")
     }
   }
@@ -56,4 +64,24 @@ struct BackgroundFrame_Previews: PreviewProvider {
 class ScreenDimensions {
   static var width: CGFloat = UIScreen.main.bounds.size.width
   static var height: CGFloat = UIScreen.main.bounds.size.height
+}
+
+struct CustomStyledButton: View {
+  let title: String
+  let action: () -> Void
+
+  var body: some View {
+    Button(action: action) {
+      /// Embed in an HStack to display a wide button with centered text.
+      HStack {
+        Spacer()
+        Text(title)
+          .padding()
+          .accentColor(.white)
+        Spacer()
+      }
+    }
+    .background(Color.orange)
+    .cornerRadius(16.0)
+  }
 }

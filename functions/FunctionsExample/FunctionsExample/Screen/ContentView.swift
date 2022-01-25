@@ -19,17 +19,17 @@ import Firebase
 
 struct ContentView: View {
   var body: some View {
-    VStack(alignment: .leading) {
-      Image("logo")
-        .resizable()
-        .scaledToFit()
-        .frame(width: ScreenDimensions.width * 0.5)
-        .offset(x: 20, y: 0)
-      VStack {
-        AddNumbers()
-        AddMessage()
-        Spacer()
+    NavigationView {
+      ScrollView {
+        VStack {
+          AddNumbers()
+          AddMessage()
+          Spacer()
+        }
       }
+      .navigationTitle("Firebase Functions")
+      .navigationBarBackButtonHidden(true)
+      .navigationBarTitleDisplayMode(.large)
     }
   }
 }

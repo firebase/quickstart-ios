@@ -24,16 +24,22 @@ struct AddNumbers: View {
   private var functions = Functions.functions()
   var body: some View {
     ZStack {
-      BackgroundFrame(title: "AddNumbers", description: "Add two integers and output the sum.") {
+      BackgroundFrame(
+        title: "AddNumbers",
+        description: "Add two integers and output the sum.",
+        hitButton: didTapCalculate
+      ) {
         VStack {
           HStack {
             Spacer()
-            TextField("", text: $num1).multilineTextAlignment(.center)
+            TextField("", text: $num1, prompt: Text("Num1"))
+              .multilineTextAlignment(.center)
               .background(RoundedRectangle(cornerRadius: 16).fill(Color(.systemGray5)))
               .frame(width: ScreenDimensions.width * 0.2)
               .keyboardType(.numberPad)
             Text("+")
-            TextField("", text: $num2).multilineTextAlignment(.center)
+            TextField("", text: $num2, prompt: Text("Num2"))
+              .multilineTextAlignment(.center)
               .background(RoundedRectangle(cornerRadius: 16).fill(Color(.systemGray5)))
               .frame(width: ScreenDimensions.width * 0.2)
               .keyboardType(.numberPad)
@@ -41,15 +47,6 @@ struct AddNumbers: View {
           }
           VStack {
             Text("\(outcome)")
-            Button(action: {
-              didTapCalculate()
-            }) {
-              Text("Calculate")
-                .padding()
-                .foregroundColor(.white)
-                .background(Color("Amber400"))
-            }
-            .cornerRadius(16)
           }
         }
       }
@@ -67,12 +64,11 @@ struct AddNumbers: View {
             let code = FunctionsErrorCode(rawValue: error.code)
             let message = error.localizedDescription
             let details = error.userInfo[FunctionsErrorDetailsKey]
-            print("Error Code: \(code!)")
-            print("Error Message: \(message)")
-            print("Error Details: \(details!)")
+            self
+              .outcome =
+              "Error Code: \(code!)\nError Message: \(message)\nError Details: \(details ?? "null")"
           }
           print(error)
-
           return
         }
 

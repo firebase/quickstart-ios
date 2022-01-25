@@ -14,7 +14,6 @@
 //  limitations under the License.
 //
 
-
 import SwiftUI
 import Firebase
 
@@ -25,33 +24,33 @@ struct AddNumbers: View {
   private var functions = Functions.functions()
   var body: some View {
     ZStack {
-      BackgroundFrame()
-      VStack {
-        Text("Add two numbers")
-        HStack {
-          Spacer()
-          TextField("", text: $num1).multilineTextAlignment(.center)
-            .background(RoundedRectangle(cornerRadius: 16).fill(Color(.systemGray5)))
-            .frame(width: ScreenDimensions.width * 0.2)
-            .keyboardType(.decimalPad)
-          Text("+")
-          TextField("", text: $num2).multilineTextAlignment(.center)
-            .background(RoundedRectangle(cornerRadius: 16).fill(Color(.systemGray5)))
-            .frame(width: ScreenDimensions.width * 0.2)
-            .keyboardType(.numberPad)
-          Spacer()
-        }
+      BackgroundFrame(title: "AddNumbers", description: "Add two integers and output the sum.") {
         VStack {
-          Text("\(outcome)")
-          Button(action: {
-            didTapCalculate()
-          }) {
-            Text("Calculate")
-              .padding()
-              .foregroundColor(.white)
-              .background(Color("Amber400"))
+          HStack {
+            Spacer()
+            TextField("", text: $num1).multilineTextAlignment(.center)
+              .background(RoundedRectangle(cornerRadius: 16).fill(Color(.systemGray5)))
+              .frame(width: ScreenDimensions.width * 0.2)
+              .keyboardType(.numberPad)
+            Text("+")
+            TextField("", text: $num2).multilineTextAlignment(.center)
+              .background(RoundedRectangle(cornerRadius: 16).fill(Color(.systemGray5)))
+              .frame(width: ScreenDimensions.width * 0.2)
+              .keyboardType(.numberPad)
+            Spacer()
           }
-          .cornerRadius(16)
+          VStack {
+            Text("\(outcome)")
+            Button(action: {
+              didTapCalculate()
+            }) {
+              Text("Calculate")
+                .padding()
+                .foregroundColor(.white)
+                .background(Color("Amber400"))
+            }
+            .cornerRadius(16)
+          }
         }
       }
     }

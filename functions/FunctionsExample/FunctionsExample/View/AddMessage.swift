@@ -14,7 +14,6 @@
 //  limitations under the License.
 //
 
-
 import SwiftUI
 import Firebase
 
@@ -24,24 +23,27 @@ struct AddMessage: View {
   private var functions = Functions.functions()
   var body: some View {
     ZStack {
-      BackgroundFrame()
-      VStack {
+      BackgroundFrame(
+        title: "AddMessage",
+        description: "Capitalize the input message and return it."
+      ) {
         VStack {
-          Text("Add your message")
-          TextField("", text: $comment)
-            .background(RoundedRectangle(cornerRadius: 16).fill(Color(.systemGray5)))
-            .frame(width: ScreenDimensions.width * 0.8)
-          Text(outcome)
+          VStack {
+            TextField("", text: $comment)
+              .background(RoundedRectangle(cornerRadius: 16).fill(Color(.systemGray5)))
+              .frame(width: ScreenDimensions.width * 0.8)
+            Text(outcome)
+          }
+          Button(action: { didTapAddMessage() }) {
+            Text("Add Message")
+              .padding()
+              .foregroundColor(.white)
+              .background(Color("Amber400"))
+          }
+          .cornerRadius(16)
         }
-        Button(action: { didTapAddMessage() }) {
-          Text("Add Message")
-            .padding()
-            .foregroundColor(.white)
-            .background(Color("Amber400"))
-        }
-        .cornerRadius(16)
+        .padding()
       }
-      .padding()
     }
   }
 

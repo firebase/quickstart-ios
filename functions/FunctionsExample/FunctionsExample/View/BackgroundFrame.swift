@@ -14,21 +14,42 @@
 //  limitations under the License.
 //
 
-
 import SwiftUI
 
-struct BackgroundFrame: View {
+struct BackgroundFrame<Content: View>: View {
+  var title: String
+  var description: String
+  let content: Content
+  init(title: String, description: String, @ViewBuilder content: () -> Content) {
+    self.title = title
+    self.description = description
+    self.content = content()
+  }
+
   var body: some View {
-    RoundedRectangle(cornerRadius: 16)
-      .fill(Color.white)
-      .frame(width: ScreenDimensions.width * 0.95, height: 200)
-      .shadow(color: Color(.black), radius: 5, x: 3, y: 1)
+    VStack(alignment: .leading) {
+      Text(title)
+        .fontWeight(.bold)
+        .font(.title3)
+      Text(description)
+        .font(.subheadline)
+      ZStack {
+        RoundedRectangle(cornerRadius: 16)
+          .fill(Color(.secondarySystemBackground))
+          .frame(height: 150)
+        content
+      }
+    }
+    .padding()
+    .frame(width: ScreenDimensions.width * 0.95)
   }
 }
 
 struct BackgroundFrame_Previews: PreviewProvider {
   static var previews: some View {
-    BackgroundFrame()
+    BackgroundFrame(title: "Function", description: "Function description") {
+      Text("Testing View")
+    }
   }
 }
 

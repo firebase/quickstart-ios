@@ -58,12 +58,10 @@ struct AddNumbers: View {
   }
 
   func didTapCalculate() {
-    // [START function_add_message]
     functions.httpsCallable("addNumbers")
       .call(["firstNumber": $num1.wrappedValue,
              "secondNumber": $num2.wrappedValue]) { result, error in
 
-        // [START function_error]
         if let error = error as NSError? {
           if error.domain == FunctionsErrorDomain {
             let code = FunctionsErrorCode(rawValue: error.code)
@@ -73,14 +71,11 @@ struct AddNumbers: View {
             print("Error Message: \(message)")
             print("Error Details: \(details!)")
           }
-          // [START_EXCLUDE]
           print(error)
 
           return
-            // [END_EXCLUDE]
         }
 
-        // [END function_error]
         print("The result is \(result?.data ?? "null")...")
 
         if let operationResult = (result?.data as? [String: Any])?["operationResult"] as? Int {

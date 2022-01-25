@@ -48,21 +48,16 @@ struct AddMessage: View {
   }
 
   func didTapAddMessage() {
-    // [START function_add_message]
     functions.httpsCallable("addMessage").call(["text": $comment.wrappedValue]) { result, error in
-      // [START function_error]
       if let error = error as NSError? {
         if error.domain == FunctionsErrorDomain {
           let code = FunctionsErrorCode(rawValue: error.code)
           let message = error.localizedDescription
           let details = error.userInfo[FunctionsErrorDetailsKey]
         }
-        // [START_EXCLUDE]
         print(error)
         return
-          // [END_EXCLUDE]
       }
-      // [END function_error]
       if let data = result?.data as? [String: Any], let text = data["text"] as? String {
         print(text)
         self.outcome = text

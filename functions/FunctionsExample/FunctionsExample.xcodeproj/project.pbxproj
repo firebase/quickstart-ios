@@ -13,8 +13,8 @@
 		B926023A278F8F0A006F123B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B9260239278F8F0A006F123B /* Preview Assets.xcassets */; };
 		B9260244278F94D1006F123B /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = B9260243278F94D1006F123B /* FirebaseAnalytics */; };
 		B9260246278F94D1006F123B /* FirebaseFunctions in Frameworks */ = {isa = PBXBuildFile; productRef = B9260245278F94D1006F123B /* FirebaseFunctions */; };
-		B926024B278F963C006F123B /* AddMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B926024A278F963C006F123B /* AddMessage.swift */; };
-		B926024D278F96B3006F123B /* AddNumbers.swift in Sources */ = {isa = PBXBuildFile; fileRef = B926024C278F96B3006F123B /* AddNumbers.swift */; };
+		B926024B278F963C006F123B /* CapitalizeMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B926024A278F963C006F123B /* CapitalizeMessageView.swift */; };
+		B926024D278F96B3006F123B /* AddNumbersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B926024C278F96B3006F123B /* AddNumbersView.swift */; };
 		B926024F278F9756006F123B /* BackgroundFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = B926024E278F9756006F123B /* BackgroundFrame.swift */; };
 		B9F406362798F3B700B84D2B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B9F406352798F3B700B84D2B /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
@@ -25,8 +25,8 @@
 		B9260234278F8F08006F123B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		B9260236278F8F0A006F123B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B9260239278F8F0A006F123B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		B926024A278F963C006F123B /* AddMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMessage.swift; sourceTree = "<group>"; };
-		B926024C278F96B3006F123B /* AddNumbers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNumbers.swift; sourceTree = "<group>"; };
+		B926024A278F963C006F123B /* CapitalizeMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapitalizeMessageView.swift; sourceTree = "<group>"; };
+		B926024C278F96B3006F123B /* AddNumbersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNumbersView.swift; sourceTree = "<group>"; };
 		B926024E278F9756006F123B /* BackgroundFrame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundFrame.swift; sourceTree = "<group>"; };
 		B9F406352798F3B700B84D2B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -84,8 +84,8 @@
 		B9260240278F8FC8006F123B /* View */ = {
 			isa = PBXGroup;
 			children = (
-				B926024A278F963C006F123B /* AddMessage.swift */,
-				B926024C278F96B3006F123B /* AddNumbers.swift */,
+				B926024A278F963C006F123B /* CapitalizeMessageView.swift */,
+				B926024C278F96B3006F123B /* AddNumbersView.swift */,
 				B926024E278F9756006F123B /* BackgroundFrame.swift */,
 			);
 			path = View;
@@ -177,8 +177,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B926024D278F96B3006F123B /* AddNumbers.swift in Sources */,
-				B926024B278F963C006F123B /* AddMessage.swift in Sources */,
+				B926024D278F96B3006F123B /* AddNumbersView.swift in Sources */,
+				B926024B278F963C006F123B /* CapitalizeMessageView.swift in Sources */,
 				B926024F278F9756006F123B /* BackgroundFrame.swift in Sources */,
 				B9260235278F8F08006F123B /* ContentView.swift in Sources */,
 				B9260233278F8F08006F123B /* FunctionsExampleApp.swift in Sources */,
@@ -326,7 +326,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				OTHER_SWIFT_FLAGS = "";
+				OTHER_SWIFT_FLAGS = "-D EMULATOR";
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.FunctionsExample.FunctionsExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -357,7 +357,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				OTHER_SWIFT_FLAGS = "";
+				OTHER_SWIFT_FLAGS = "-D EMULATOR";
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.FunctionsExample.FunctionsExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

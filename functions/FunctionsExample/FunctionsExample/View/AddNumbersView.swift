@@ -17,7 +17,7 @@
 import SwiftUI
 import Firebase
 
-struct AddNumbers: View {
+struct AddNumbersView: View {
   @State private var num1: String = ""
   @State private var num2: String = ""
   @State private var outcome: String = ""
@@ -72,10 +72,10 @@ struct AddNumbers: View {
           return
         }
 
-        print("The result is \(result?.data ?? "null")...")
-
         if let operationResult = (result?.data as? [String: Any])?["operationResult"] as? Int {
           self.outcome = String(operationResult)
+        } else {
+          self.outcome = "The return result is invalid."
         }
       }
   }
@@ -83,6 +83,6 @@ struct AddNumbers: View {
 
 struct AddNumbers_Previews: PreviewProvider {
   static var previews: some View {
-    AddNumbers()
+    AddNumbersView()
   }
 }

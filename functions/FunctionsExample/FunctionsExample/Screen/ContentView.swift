@@ -22,8 +22,8 @@ struct ContentView: View {
     NavigationView {
       ScrollView {
         VStack {
-          AddNumbers()
-          AddMessage()
+          AddNumbersView()
+          CapitalizeMessageView()
           Spacer()
         }
       }

@@ -17,7 +17,7 @@
 import SwiftUI
 import Firebase
 
-struct AddMessage: View {
+struct CapitalizeMessageView: View {
   @State private var comment: String = ""
   @State private var outcome: String = ""
   private var functions = Functions.functions()
@@ -29,12 +29,10 @@ struct AddMessage: View {
         hitButton: didTapAddMessage
       ) {
         VStack {
-          VStack {
-            TextField("", text: $comment, prompt: Text("Type message"))
-              .background(RoundedRectangle(cornerRadius: 16).fill(Color(.systemGray5)))
-              .frame(width: ScreenDimensions.width * 0.8)
-            Text(outcome)
-          }
+          TextField("", text: $comment, prompt: Text("Type message"))
+            .background(RoundedRectangle(cornerRadius: 16).fill(Color(.systemGray5)))
+            .frame(width: ScreenDimensions.width * 0.8)
+          Text(outcome)
         }
         .padding()
       }
@@ -64,8 +62,6 @@ struct AddMessage: View {
 
 struct AddMessage_Previews: PreviewProvider {
   static var previews: some View {
-    AddMessage()
+    CapitalizeMessageView()
   }
 }
-
-struct CommentCell {}

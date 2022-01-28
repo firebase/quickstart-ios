@@ -20,13 +20,13 @@ struct BackgroundFrame<Content: View>: View {
   var title: String
   var description: String
   let content: Content
-  let hitButton: () -> Void
+  let buttonAction: () -> Void
   init(title: String, description: String, hitButton: @escaping () -> Void,
        @ViewBuilder content: () -> Content) {
     self.title = title
     self.description = description
     self.content = content()
-    self.hitButton = hitButton
+    self.buttonAction = hitButton
   }
 
   var body: some View {
@@ -42,7 +42,7 @@ struct BackgroundFrame<Content: View>: View {
           .frame(height: 150)
         content
       }
-      CustomStyledButton(title: "Run", action: hitButton)
+      CustomStyledButton(title: "Run", action: buttonAction)
     }
     .padding()
     .frame(width: ScreenDimensions.width * 0.95)

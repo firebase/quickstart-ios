@@ -15,7 +15,7 @@
 //
 
 #import <UIKit/UIKit.h>
-@import Firebase;
+@import FirebaseDatabase;
 
 @interface PostTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *authorImage;

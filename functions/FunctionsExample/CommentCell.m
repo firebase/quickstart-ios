@@ -16,7 +16,7 @@
 
 #import "CommentCell.h"
 
-@import Firebase;
+@import FirebaseFunctions;
 
 @interface CommentCell ()
 @property(weak, nonatomic) IBOutlet MDCTextField *resultField;

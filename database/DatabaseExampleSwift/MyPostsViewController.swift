@@ -15,7 +15,7 @@
 //
 
 import UIKit
-import Firebase
+import FirebaseDatabase
 
 @objc(MyPostsViewController)
 class MyPostsViewController: PostListViewController {

@@ -16,7 +16,8 @@
 
 #import "SignInViewController.h"
 #import "UIViewController+Alerts.h"
-@import Firebase;
+@import FirebaseDatabase;
+@import FirebaseAuth;
 
 @interface SignInViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *emailField;

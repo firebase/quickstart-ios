@@ -17,7 +17,7 @@
 #import "ViewController.h"
 #import "HeaderCell.h"
 #import "ParamTableViewCell.h"
-@import Firebase;
+@import FirebaseDynamicLinks;
 
 static NSString *const Link = @"Link Value";
 static NSString *const Domain = @"App Domain";

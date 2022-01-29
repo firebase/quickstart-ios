@@ -15,7 +15,7 @@
 //
 
 import UIKit
-import Firebase
+import FirebasePerformance
 import AVKit
 import AVFoundation
 

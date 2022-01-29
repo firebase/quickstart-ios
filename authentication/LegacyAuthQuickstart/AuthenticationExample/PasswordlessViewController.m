@@ -17,7 +17,7 @@
 #import "PasswordlessViewController.h"
 #import "UIViewController+Alerts.h"
 
-@import Firebase;
+@import FirebaseAuth;
 
 @interface PasswordlessViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *emailField;

@@ -2,7 +2,7 @@
 use_frameworks!
 platform :ios, '10.0'
 
-pod 'Firebase/RemoteConfig'
+pod 'FirebaseRemoteConfig'
 
 target 'ConfigExample' do
 end

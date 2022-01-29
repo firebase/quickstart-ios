@@ -15,7 +15,7 @@
 //
 
 @import UIKit;
-@import Firebase;
+@import FirebaseDatabase;
 
 @interface NewPostViewController
     : UIViewController

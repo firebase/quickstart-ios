@@ -3,12 +3,12 @@
 use_frameworks!
 platform :ios, '10.0'
 
-pod 'Firebase/Analytics'
-pod 'Firebase/Auth'
+pod 'FirebaseAnalytics'
+pod 'FirebaseAuth'
 pod 'FirebaseUI/Auth', '~> 11.0'
 pod 'FirebaseUI/Google', '~> 11.0'
 # [START functions_pod]
-pod 'Firebase/Functions'
+pod 'FirebaseFunctions'
 # [END functions_pod]
 
 pod 'MaterialComponents/Buttons'

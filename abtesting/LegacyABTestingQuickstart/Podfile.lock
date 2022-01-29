@@ -1,14 +1,4 @@
 PODS:
-  - Firebase/Analytics (8.11.0):
-    - Firebase/Core
-  - Firebase/Core (8.11.0):
-    - Firebase/CoreOnly
-    - FirebaseAnalytics (~> 8.11.0)
-  - Firebase/CoreOnly (8.11.0):
-    - FirebaseCore (= 8.11.0)
-  - Firebase/RemoteConfig (8.11.0):
-    - Firebase/CoreOnly
-    - FirebaseRemoteConfig (~> 8.11.0)
   - FirebaseABTesting (8.11.0):
     - FirebaseCore (~> 8.0)
   - FirebaseAnalytics (8.11.0):
@@ -100,12 +90,11 @@ PODS:
   - PromisesObjC (2.0.0)
 
 DEPENDENCIES:
-  - Firebase/Analytics
-  - Firebase/RemoteConfig
+  - FirebaseAnalytics
+  - FirebaseRemoteConfig
 
 SPEC REPOS:
   trunk:
-    - Firebase
     - FirebaseABTesting
     - FirebaseAnalytics
     - FirebaseCore
@@ -119,7 +108,6 @@ SPEC REPOS:
     - PromisesObjC
 
 SPEC CHECKSUMS:
-  Firebase: 44dd9724c84df18b486639e874f31436eaa9a20c
   FirebaseABTesting: aac00a5472250a45f1462675792030e44df025c7
   FirebaseAnalytics: 4e4b13031034e6561ed3bd1d47b6fdabbd6487c6
   FirebaseCore: 2f4f85b453cc8fea4bb2b37e370007d2bcafe3f0
@@ -132,6 +120,6 @@ SPEC CHECKSUMS:
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58
 
-PODFILE CHECKSUM: 9d286b6a58256f878be1c5518b4cfb36670d6ceb
+PODFILE CHECKSUM: d74f6821631b949722075b787911c70e9fe6d410
 
 COCOAPODS: 1.11.2

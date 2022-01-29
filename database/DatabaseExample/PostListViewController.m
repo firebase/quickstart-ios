@@ -20,7 +20,8 @@
 #import "PostDataSource.h"
 #import "PostDetailTableViewController.h"
 
-@import Firebase;
+@import FirebaseDatabase;
+@import FirebaseAuth;
 
 @implementation PostListViewController
 

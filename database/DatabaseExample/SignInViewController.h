@@ -15,7 +15,7 @@
 //
 
 #import <UIKit/UIKit.h>
-@import Firebase;
+@import FirebaseDatabase;
 
 @interface SignInViewController : UIViewController<UITextFieldDelegate>
 @property (strong, nonatomic) FIRDatabaseReference *ref;

@@ -1,5 +1,5 @@
 # Common pods
-pod 'Firebase/Analytics'
+pod 'FirebaseAnalytics'
 
 target 'AnalyticsExample' do
   platform :ios, '13.0'

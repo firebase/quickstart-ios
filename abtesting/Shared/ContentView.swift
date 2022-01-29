@@ -15,7 +15,6 @@
 //
 
 import SwiftUI
-import Firebase
 
 struct ContentView: View {
   @ObservedObject var appConfig: AppConfig

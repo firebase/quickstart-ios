@@ -4,8 +4,8 @@ use_frameworks!
 platform :ios, '10.0'
 
 def firebase_pods
-  pod 'Firebase/Analytics'
-  pod 'Firebase/Messaging'
+  pod 'FirebaseAnalytics'
+  pod 'FirebaseMessaging'
 end 
 
 target 'MessagingExample' do

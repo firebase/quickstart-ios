@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import SwiftUI
-import Firebase
+import FirebaseCore
 
 /// A SwiftUI app running on macOS and tvOS, demonstrating FirebaseAnalytics usage.
 @main

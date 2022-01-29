@@ -16,7 +16,8 @@
 
 import UIKit
 // [START import]
-import Firebase
+import FirebaseCore
+import FirebaseDynamicLinks
 // [END import]
 
 @UIApplicationMain

@@ -16,7 +16,7 @@
 
 #import "PostDataSource.h"
 
-@import Firebase;
+@import FirebaseDatabase;
 
 @implementation PostDataSource
 

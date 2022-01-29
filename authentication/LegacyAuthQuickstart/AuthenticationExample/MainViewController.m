@@ -23,6 +23,8 @@
 @import AuthenticationServices;
 @import FBSDKCoreKit;
 @import FBSDKLoginKit;
+@import FirebaseCore;
+@import FirebaseAnalytics;
 
 static const int kSectionMultiFactor = 4;
 static const int kSectionToken = 3;

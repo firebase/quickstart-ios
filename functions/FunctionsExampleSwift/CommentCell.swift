@@ -15,7 +15,7 @@
 //
 
 import MaterialComponents
-import Firebase
+import FirebaseFunctions
 
 @objc(CommentCell)
 class CommentCell: MDCCollectionViewCell {

@@ -13,7 +13,8 @@
 // limitations under the License.
 
 import UIKit
-import Firebase
+import FirebaseCore
+import FirebaseAuth
 
 // For Sign in with Google
 import GoogleSignIn

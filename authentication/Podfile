@@ -7,11 +7,11 @@ target 'AuthenticationExample' do
 
   # Pods for AuthenticationExample
   ## Firebase 🔥 Pods
-  pod 'Firebase/Analytics'
-  pod 'Firebase/Auth'
+  pod 'FirebaseAnalytics'
+  pod 'FirebaseAuth'
   
   ### For Email Link/Passwordless Auth
-  pod 'Firebase/DynamicLinks'
+  pod 'FirebaseDynamicLinks'
 
   ## Pod for Sign in with Google
   pod 'GoogleSignIn'

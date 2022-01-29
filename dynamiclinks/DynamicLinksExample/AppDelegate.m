@@ -16,7 +16,8 @@
 
 #import "AppDelegate.h"
 // [START import]
-@import Firebase;
+@import FirebaseCore;
+@import FirebaseDynamicLinks;
 // [END import]
 
 static NSString *const CUSTOM_URL_SCHEME = @"dlscheme";

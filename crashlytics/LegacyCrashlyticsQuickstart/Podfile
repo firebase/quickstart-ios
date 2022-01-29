@@ -3,11 +3,11 @@ use_frameworks!
 platform :ios, '10.0'
 
 target 'CrashlyticsExample'  do
-  pod 'Firebase/Crashlytics'
+  pod 'FirebaseCrashlytics'
   pod 'ReachabilitySwift'
 end
 
 target 'CrashlyticsExampleSwift' do
-  pod 'Firebase/Crashlytics'
+  pod 'FirebaseCrashlytics'
   pod 'ReachabilitySwift'
 end

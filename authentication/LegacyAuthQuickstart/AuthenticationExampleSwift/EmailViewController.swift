@@ -16,7 +16,7 @@
 
 import UIKit
 
-import Firebase
+import FirebaseAuth
 
 @objc(EmailViewController)
 class EmailViewController: UIViewController {

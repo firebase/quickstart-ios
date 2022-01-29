@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import SwiftUI
-import Firebase
+import FirebaseAnalytics
 
 private enum Season: String, CaseIterable {
   case spring = "Spring"

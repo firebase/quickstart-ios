@@ -15,7 +15,7 @@
 //
 
 import SwiftUI
-import Firebase
+import FirebaseCrashlytics
 
 struct CrashButtonView: View {
   var body: some View {

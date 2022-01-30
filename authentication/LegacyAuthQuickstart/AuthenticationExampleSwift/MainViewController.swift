@@ -22,7 +22,7 @@ import UIKit
 import Security
 
 // [START usermanagement_view_import]
-import Firebase
+import FirebaseAuth
 // [END usermanagement_view_import]
 import GoogleSignIn
 import FBSDKCoreKit

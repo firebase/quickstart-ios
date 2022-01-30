@@ -4,19 +4,6 @@ PODS:
     - AppAuth/ExternalUserAgent (= 1.4.0)
   - AppAuth/Core (1.4.0)
   - AppAuth/ExternalUserAgent (1.4.0)
-  - Firebase/Analytics (8.11.0):
-    - Firebase/Core
-  - Firebase/Auth (8.11.0):
-    - Firebase/CoreOnly
-    - FirebaseAuth (~> 8.11.0)
-  - Firebase/Core (8.11.0):
-    - Firebase/CoreOnly
-    - FirebaseAnalytics (~> 8.11.0)
-  - Firebase/CoreOnly (8.11.0):
-    - FirebaseCore (= 8.11.0)
-  - Firebase/Functions (8.11.0):
-    - Firebase/CoreOnly
-    - FirebaseFunctions (~> 8.11.0)
   - FirebaseAnalytics (8.11.0):
     - FirebaseAnalytics/AdIdSupport (= 8.11.0)
     - FirebaseCore (~> 8.0)
@@ -227,9 +214,9 @@ PODS:
   - PromisesObjC (2.0.0)
 
 DEPENDENCIES:
-  - Firebase/Analytics
-  - Firebase/Auth
-  - Firebase/Functions
+  - FirebaseAnalytics
+  - FirebaseAuth
+  - FirebaseFunctions
   - FirebaseUI/Auth (~> 11.0)
   - FirebaseUI/Google (~> 11.0)
   - MaterialComponents/Buttons
@@ -239,7 +226,6 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - AppAuth
-    - Firebase
     - FirebaseAnalytics
     - FirebaseAuth
     - FirebaseAuthUI
@@ -263,7 +249,6 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   AppAuth: 31bcec809a638d7bd2f86ea8a52bd45f6e81e7c7
-  Firebase: 44dd9724c84df18b486639e874f31436eaa9a20c
   FirebaseAnalytics: 4e4b13031034e6561ed3bd1d47b6fdabbd6487c6
   FirebaseAuth: d96d73aba85d192d7a7aa0b86dd6d7f8ec170b4b
   FirebaseAuthUI: 5ae57e5a3ffb821f89491f1b5da9efbdf99ce7cd
@@ -285,6 +270,6 @@ SPEC CHECKSUMS:
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58
 
-PODFILE CHECKSUM: e3e738deeeb60c65a3d20396e0bb15b7dc3591d5
+PODFILE CHECKSUM: f922a92bc8289994e1ddeaca9188dc33cf509b99
 
 COCOAPODS: 1.11.2

@@ -15,7 +15,7 @@
 //
 
 import Foundation
-import Firebase
+import FirebaseCrashlytics
 import Reachability
 
 class ReachabililtyHelper: NSObject {

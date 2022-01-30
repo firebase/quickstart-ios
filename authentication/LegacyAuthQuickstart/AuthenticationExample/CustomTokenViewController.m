@@ -18,7 +18,7 @@
 #import "UIViewController+Alerts.h"
 
 // [START auth_view_import]
-@import Firebase;
+@import FirebaseAuth;
 // [END auth_view_import]
 
 @interface CustomTokenViewController ()

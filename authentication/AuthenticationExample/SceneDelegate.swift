@@ -13,7 +13,8 @@
 // limitations under the License.
 
 import UIKit
-import Firebase
+import FirebaseDynamicLinks
+import FirebaseAuth
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
   var window: UIWindow?

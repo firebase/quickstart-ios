@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import UIKit
-import Firebase
+import FirebaseAppDistribution
 
 class AppDistributionViewController: UIViewController {
   override func viewDidLoad() {

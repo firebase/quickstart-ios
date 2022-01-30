@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import UIKit
-import Firebase
+import FirebaseRemoteConfig
 
 class RemoteConfigViewController: UIViewController {
   private var remoteConfig: RemoteConfig!

@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import UIKit
-import Firebase
+import FirebaseAuth
 
 class LoginController: UIViewController {
   weak var delegate: LoginDelegate?

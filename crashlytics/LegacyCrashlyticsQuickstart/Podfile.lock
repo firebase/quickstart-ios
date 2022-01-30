@@ -1,9 +1,4 @@
 PODS:
-  - Firebase/CoreOnly (8.11.0):
-    - FirebaseCore (= 8.11.0)
-  - Firebase/Crashlytics (8.11.0):
-    - Firebase/CoreOnly
-    - FirebaseCrashlytics (~> 8.11.0)
   - FirebaseCore (8.11.0):
     - FirebaseCoreDiagnostics (~> 8.0)
     - GoogleUtilities/Environment (~> 7.7)
@@ -44,12 +39,11 @@ PODS:
   - ReachabilitySwift (5.0.0)
 
 DEPENDENCIES:
-  - Firebase/Crashlytics
+  - FirebaseCrashlytics
   - ReachabilitySwift
 
 SPEC REPOS:
   trunk:
-    - Firebase
     - FirebaseCore
     - FirebaseCoreDiagnostics
     - FirebaseCrashlytics
@@ -61,7 +55,6 @@ SPEC REPOS:
     - ReachabilitySwift
 
 SPEC CHECKSUMS:
-  Firebase: 44dd9724c84df18b486639e874f31436eaa9a20c
   FirebaseCore: 2f4f85b453cc8fea4bb2b37e370007d2bcafe3f0
   FirebaseCoreDiagnostics: 64d9709d804a6c25bd77841371c1fcfd909d5601
   FirebaseCrashlytics: 62268addefae79601057818156e8bc69d71fee41
@@ -72,6 +65,6 @@ SPEC CHECKSUMS:
   PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58
   ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
 
-PODFILE CHECKSUM: 1383c10af1911b3b5d89a65c379604bce7156080
+PODFILE CHECKSUM: d91612a92d0abb4691fe1343437520fbef1aeefc
 
 COCOAPODS: 1.11.2

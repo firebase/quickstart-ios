@@ -2,9 +2,9 @@
 
 use_frameworks!
 platform :ios, '10.0'
-pod 'Firebase/Analytics'
+pod 'FirebaseAnalytics'
 # [START auth_pod]
-pod 'Firebase/Auth'
+pod 'FirebaseAuth'
 # [END auth_pod]
 
 # These are pods used for the auth providers.

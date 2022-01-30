@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import SwiftUI
-import Firebase
+import FirebaseCore
 
 @main
 struct PasswordlessSwiftUIApp: App {

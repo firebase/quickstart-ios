@@ -14,7 +14,7 @@
 //  limitations under the License.
 //
 
-import Firebase
+import FirebaseCore
 import UIKit
 
 @UIApplicationMain

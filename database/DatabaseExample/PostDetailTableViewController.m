@@ -18,7 +18,8 @@
 #import "PostDetailTableViewController.h"
 #import "PostTableViewCell.h"
 
-@import Firebase;
+@import FirebaseDatabase;
+@import FirebaseAuth;
 
 static const int kSectionComments = 2;
 static const int kSectionSend = 1;

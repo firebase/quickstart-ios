@@ -16,7 +16,7 @@
 
 #import "CloudAddCell.h"
 
-@import Firebase;
+@import FirebaseFunctions;
 
 @interface CloudAddCell ()
 @property (weak, nonatomic) IBOutlet UITextField *resultField;

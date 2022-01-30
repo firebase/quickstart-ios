@@ -15,7 +15,8 @@
 //
 
 import UIKit
-import Firebase
+import FirebaseDatabase
+import FirebaseAuth
 
 @objc(PostTableViewCell)
 class PostTableViewCell: UITableViewCell {

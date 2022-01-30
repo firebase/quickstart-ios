@@ -15,7 +15,8 @@
 //
 
 import SwiftUI
-import Firebase
+import FirebaseRemoteConfig
+import FirebaseInstallations
 
 class AppConfig: ObservableObject {
   @Published var colorScheme: ColorScheme

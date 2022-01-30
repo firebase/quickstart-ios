@@ -17,7 +17,7 @@
 import UIKit
 
 // [START auth_import]
-import Firebase
+import FirebaseCore
 // [END auth_import]
 
 // [START google_import]

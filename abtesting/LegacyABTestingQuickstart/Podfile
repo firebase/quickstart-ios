@@ -3,8 +3,8 @@ platform :ios, '10.0'
 target 'ABTestingExample' do
   use_frameworks!
 
-  pod 'Firebase/Analytics'
-  pod 'Firebase/RemoteConfig'
+  pod 'FirebaseAnalytics'
+  pod 'FirebaseRemoteConfig'
 
   target 'ABTestingExampleTests' do
     inherit! :search_paths

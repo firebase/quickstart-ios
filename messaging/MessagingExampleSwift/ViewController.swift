@@ -15,7 +15,7 @@
 //
 
 import UIKit
-import Firebase
+import FirebaseMessaging
 
 @objc(ViewController)
 class ViewController: UIViewController {

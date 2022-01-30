@@ -20,7 +20,7 @@
 
 #import "ViewController.h"
 
-@import Firebase;
+@import FirebaseAnalytics;
 
 @implementation ViewController
 

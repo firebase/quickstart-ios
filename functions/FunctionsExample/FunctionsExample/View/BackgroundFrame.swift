@@ -36,6 +36,7 @@ struct BackgroundFrame<Content: View>: View {
         .font(.title3)
       Text(description)
         .font(.subheadline)
+        .foregroundColor(Color(UIColor.secondaryLabel))
       ZStack {
         RoundedRectangle(cornerRadius: 16)
           .fill(Color(.secondarySystemBackground))

@@ -22,39 +22,31 @@ struct CapitalizeMessageView: View {
   @State private var outcome: String = ""
   private var functions = Functions.functions()
   var body: some View {
-    ZStack {
-      BackgroundFrame(
-        title: "AddMessage",
-        description: "Capitalize the input message and return it.",
-        hitButton: didTapAddMessage
-      ) {
-        VStack {
-          TextField("", text: $comment, prompt: Text("Type message"))
-            .background(RoundedRectangle(cornerRadius: 16).fill(Color(.systemGray5)))
-            .frame(width: ScreenDimensions.width * 0.8)
-          Text(outcome)
-        }
-        .padding()
+    BackgroundFrame(
+      title: "CapitalizeMessage",
+      description: "Capitalize the input message and return it.",
+      hitButton: didTapAddMessage
+    ) {
+      VStack {
+        TextField("", text: $comment, prompt: Text("Type message"))
+          .background(RoundedRectangle(cornerRadius: 16).fill(Color(.systemGray5)))
+          .frame(width: ScreenDimensions.width * 0.8)
+        Text(outcome)
       }
+      .padding()
     }
   }
 
   func didTapAddMessage() {
-    functions.httpsCallable("addMessage").call(["text": $comment.wrappedValue]) { result, error in
-      if let error = error as NSError? {
-        if error.domain == FunctionsErrorDomain {
-          let code = FunctionsErrorCode(rawValue: error.code)
-          let message = error.localizedDescription
-          let details = error.userInfo[FunctionsErrorDetailsKey]
-          self
-            .outcome =
-            "Error Code: \(code!)\nError Message: \(message)\nError Details: \(details ?? "null")"
+    Task {
+      do {
+        let result = try await functions.httpsCallable("capitalizeMessage")
+          .call(["text": $comment.wrappedValue])
+        if let data = result.data as? [String: Any], let text = data["text"] as? String {
+          self.outcome = text
         }
+      } catch {
         print(error)
-        return
-      }
-      if let data = result?.data as? [String: Any], let text = data["text"] as? String {
-        self.outcome = text
       }
     }
   }

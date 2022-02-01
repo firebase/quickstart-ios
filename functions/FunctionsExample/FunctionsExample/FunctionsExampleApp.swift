@@ -21,6 +21,9 @@ import Firebase
 struct FunctionsExampleApp: App {
   init() {
     FirebaseApp.configure()
+    // Add `-D EMULATOR` to the `Other Swift Flags` under the `Build Settings`
+    // to run on an emulator. Learn more from the README.md under the
+    // `functions` dir of the Quickstart repo.
     #if EMULATOR
       Functions.functions().useEmulator(withHost: "localhost", port: 5001)
     #endif

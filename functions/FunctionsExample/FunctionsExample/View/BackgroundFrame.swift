@@ -26,7 +26,7 @@ struct BackgroundFrame<Content: View>: View {
     self.title = title
     self.description = description
     self.content = content()
-    self.buttonAction = hitButton
+    buttonAction = hitButton
   }
 
   var body: some View {

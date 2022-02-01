@@ -31,6 +31,7 @@ struct ContentView: View {
       .navigationBarBackButtonHidden(true)
       .navigationBarTitleDisplayMode(.large)
     }
+    .navigationViewStyle(StackNavigationViewStyle())
   }
 }
 

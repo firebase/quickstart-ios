@@ -23,31 +23,29 @@ struct AddNumbersView: View {
   @State private var outcome: String = ""
   private var functions = Functions.functions()
   var body: some View {
-    ZStack {
-      BackgroundFrame(
-        title: "AddNumbers",
-        description: "Add two integers and output the sum.",
-        hitButton: didTapCalculate
-      ) {
+    BackgroundFrame(
+      title: "AddNumbers",
+      description: "Add two integers and output the sum.",
+      hitButton: didTapCalculate
+    ) {
+      VStack {
+        HStack {
+          Spacer()
+          TextField("", text: $num1, prompt: Text("Num1"))
+            .multilineTextAlignment(.center)
+            .background(RoundedRectangle(cornerRadius: 16).fill(Color(.systemGray5)))
+            .frame(width: ScreenDimensions.width * 0.2)
+            .keyboardType(.numberPad)
+          Text("+")
+          TextField("", text: $num2, prompt: Text("Num2"))
+            .multilineTextAlignment(.center)
+            .background(RoundedRectangle(cornerRadius: 16).fill(Color(.systemGray5)))
+            .frame(width: ScreenDimensions.width * 0.2)
+            .keyboardType(.numberPad)
+          Spacer()
+        }
         VStack {
-          HStack {
-            Spacer()
-            TextField("", text: $num1, prompt: Text("Num1"))
-              .multilineTextAlignment(.center)
-              .background(RoundedRectangle(cornerRadius: 16).fill(Color(.systemGray5)))
-              .frame(width: ScreenDimensions.width * 0.2)
-              .keyboardType(.numberPad)
-            Text("+")
-            TextField("", text: $num2, prompt: Text("Num2"))
-              .multilineTextAlignment(.center)
-              .background(RoundedRectangle(cornerRadius: 16).fill(Color(.systemGray5)))
-              .frame(width: ScreenDimensions.width * 0.2)
-              .keyboardType(.numberPad)
-            Spacer()
-          }
-          VStack {
-            Text("\(outcome)")
-          }
+          Text("\(outcome)")
         }
       }
     }
@@ -55,29 +53,20 @@ struct AddNumbersView: View {
   }
 
   func didTapCalculate() {
-    functions.httpsCallable("addNumbers")
-      .call(["firstNumber": $num1.wrappedValue,
-             "secondNumber": $num2.wrappedValue]) { result, error in
-
-        if let error = error as NSError? {
-          if error.domain == FunctionsErrorDomain {
-            let code = FunctionsErrorCode(rawValue: error.code)
-            let message = error.localizedDescription
-            let details = error.userInfo[FunctionsErrorDetailsKey]
-            self
-              .outcome =
-              "Error Code: \(code!)\nError Message: \(message)\nError Details: \(details ?? "null")"
-          }
-          print(error)
-          return
-        }
-
-        if let operationResult = (result?.data as? [String: Any])?["operationResult"] as? Int {
+    Task {
+      do {
+        let result = try await functions.httpsCallable("addNumbers")
+          .call(["firstNumber": $num1.wrappedValue,
+                 "secondNumber": $num2.wrappedValue])
+        if let operationResult = (result.data as? [String: Any])?["operationResult"] as? Int {
           self.outcome = String(operationResult)
         } else {
           self.outcome = "The return result is invalid."
         }
+      } catch {
+        print(error)
       }
+    }
   }
 }
 

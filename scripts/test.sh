@@ -18,7 +18,7 @@
 # Build the quickstart. If we're running on the main repo (not a fork), we
 # also run the tests along with the decoded GoogleService-Info.plist files.
 
-set -exuo pipefail
+set -euo pipefail
 
 # Set default parameters
 if [[ -z "${SPM:-}" ]]; then

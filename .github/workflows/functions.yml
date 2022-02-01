@@ -58,11 +58,12 @@ jobs:
     runs-on: macOS-latest
     strategy:
       matrix:
-        # TODO investigate tvOS Xcode 13.1 test failure.
         xcode: ["13.0"]
         os: [iOS]
-        device: iPhone 11
-        test: false
+        include:
+          - os: iOS
+            device: iPhone 11
+            test: false
     env:
       SETUP: functions
       SPM: true

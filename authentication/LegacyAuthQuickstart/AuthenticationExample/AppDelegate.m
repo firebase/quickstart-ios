@@ -18,7 +18,7 @@
 #import "MainViewController.h"
 #import "UIViewController+Alerts.h"
 // [START auth_import]
-@import Firebase;
+@import FirebaseCore;
 // [END auth_import]
 
 // [START google_import]

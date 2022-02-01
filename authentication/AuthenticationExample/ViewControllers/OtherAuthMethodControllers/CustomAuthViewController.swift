@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import UIKit
-import Firebase
+import FirebaseAuth
 
 class CustomAuthViewController: OtherAuthViewController {
   override func viewDidLoad() {

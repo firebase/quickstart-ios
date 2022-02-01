@@ -16,7 +16,9 @@
 
 import UIKit
 
-import Firebase
+import FirebaseCore
+import FirebaseInAppMessaging
+import FirebaseDynamicLinks
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

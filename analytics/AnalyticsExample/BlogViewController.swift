@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import UIKit
-import Firebase
+import FirebaseAnalytics
 
 /// Used for view controller dismissal on MacCatalyst.
 @objc

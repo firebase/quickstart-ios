@@ -17,7 +17,6 @@
 #import "MainViewController.h"
 #import "CloudAddCell.h"
 #import "CommentCell.h"
-@import Firebase;
 @import MaterialComponents;
 
 @interface MainViewController ()

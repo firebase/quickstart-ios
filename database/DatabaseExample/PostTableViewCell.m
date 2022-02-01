@@ -15,7 +15,8 @@
 //
 
 #import "PostTableViewCell.h"
-@import Firebase;
+@import FirebaseDatabase;
+@import FirebaseAuth;
 
 @interface PostTableViewCell ()
   @property (strong, nonatomic) FIRDatabaseReference *postRef;

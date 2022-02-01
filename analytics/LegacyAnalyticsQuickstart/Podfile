@@ -4,7 +4,7 @@ use_frameworks!
 platform :ios, '10.0'
 
 target 'AnalyticsExample' do
-  pod 'Firebase/Analytics'
+  pod 'FirebaseAnalytics'
 
   target 'AnalyticsExampleTests' do
     inherit! :search_paths
@@ -12,5 +12,5 @@ target 'AnalyticsExample' do
 end
 
 target 'AnalyticsExampleSwift' do
-  pod 'Firebase/Analytics'
+  pod 'FirebaseAnalytics'
 end

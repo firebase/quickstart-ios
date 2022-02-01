@@ -17,7 +17,7 @@
 #import <UIKit/UIKit.h>
 
 @import GoogleSignIn;
-@import Firebase;
+@import FirebaseAuth;
 
 // [START signin_controller]
 @interface MainViewController : UITableViewController

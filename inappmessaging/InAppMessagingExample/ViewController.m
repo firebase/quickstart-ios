@@ -14,7 +14,7 @@
 
 #import "ViewController.h"
 
-@import Firebase;
+@import FirebaseAnalytics;
 
 @interface ViewController ()
 @property(weak, nonatomic) IBOutlet UITextField *urlText;

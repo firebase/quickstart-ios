@@ -15,7 +15,8 @@
 //
 
 import UIKit
-import Firebase
+import FirebaseDatabase
+import FirebaseAuth
 
 @objc(SignInViewController)
 class SignInViewController: UIViewController, UITextFieldDelegate {
@@ -36,7 +37,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
   }
 
   // Saves user profile information to user database
-  func saveUserInfo(_ user: Firebase.User, withUsername username: String) {
+  func saveUserInfo(_ user: FirebaseAuth.User, withUsername username: String) {
     // Create a change request
     showSpinner {}
     let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()

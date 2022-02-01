@@ -15,7 +15,8 @@
 //
 
 #import "TabBarController.h"
-@import Firebase;
+@import FirebaseDatabase;
+@import FirebaseAuth;
 
 
 @implementation TabBarController

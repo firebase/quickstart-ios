@@ -15,7 +15,7 @@
 //
 
 import UIKit
-import Firebase
+import FirebaseAnalytics
 
 /**
  * PatternTabBarController exists as a subclass of UITabBarConttroller that

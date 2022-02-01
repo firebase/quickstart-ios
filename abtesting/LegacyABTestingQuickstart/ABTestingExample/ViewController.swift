@@ -14,7 +14,8 @@
 //  limitations under the License.
 //
 
-import Firebase
+import FirebaseRemoteConfig
+import FirebaseInstallations
 import UIKit
 
 enum ColorScheme {

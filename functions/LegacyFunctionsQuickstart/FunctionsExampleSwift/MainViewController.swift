@@ -14,7 +14,6 @@
 //  limitations under the License.
 //
 
-import Firebase
 import MaterialComponents
 
 @objc(MainViewController)

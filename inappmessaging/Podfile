@@ -4,9 +4,9 @@ platform :ios, '10.0'
 use_frameworks!
 
 target 'InAppMessagingExample' do
-  pod 'Firebase/Analytics'
-  pod 'Firebase/InAppMessaging'
-  pod 'Firebase/DynamicLinks'
+  pod 'FirebaseAnalytics'
+  pod 'FirebaseInAppMessaging'
+  pod 'FirebaseDynamicLinks'
 
   target 'InAppMessagingExampleTests' do
   end
@@ -16,9 +16,9 @@ target 'InAppMessagingExample' do
 end
 
 target 'InAppMessagingExampleSwift' do
-  pod 'Firebase/Analytics'
-  pod 'Firebase/InAppMessaging'
-  pod 'Firebase/DynamicLinks'
+  pod 'FirebaseAnalytics'
+  pod 'FirebaseInAppMessaging'
+  pod 'FirebaseDynamicLinks'
 
   target 'InAppMessagingExampleSwiftTests' do
   end

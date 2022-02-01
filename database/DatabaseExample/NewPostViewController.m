@@ -17,7 +17,8 @@
 #import "NewPostViewController.h"
 #import "User.h"
 #import "Post.h"
-@import Firebase;
+@import FirebaseDatabase;
+@import FirebaseAuth;
 
 @interface NewPostViewController () <UITextFieldDelegate>
   @property (weak) IBOutlet UITextView *bodyTextView;

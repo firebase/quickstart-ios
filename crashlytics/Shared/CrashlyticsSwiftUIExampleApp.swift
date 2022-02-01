@@ -15,7 +15,8 @@
 //
 
 import SwiftUI
-import Firebase
+import FirebaseCore
+import FirebaseCrashlytics
 
 @main
 struct CrashlyticsSwiftUIExampleApp: App {

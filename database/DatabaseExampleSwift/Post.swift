@@ -15,7 +15,7 @@
 //
 
 import UIKit
-import Firebase
+import FirebaseDatabase
 
 class Post: NSObject {
   var uid: String

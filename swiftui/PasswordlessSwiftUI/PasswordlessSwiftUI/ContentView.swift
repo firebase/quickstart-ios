@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import SwiftUI
-import Firebase
+import FirebaseAuth
 
 /// Main view where user can login in using Email Link Authentication.
 struct ContentView: View {

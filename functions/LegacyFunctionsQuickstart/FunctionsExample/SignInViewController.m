@@ -18,7 +18,7 @@
 #import "AppDelegate.h"
 #import "FAuthPickerViewController.h"
 
-@import Firebase;
+@import FirebaseAuth;
 @import FirebaseAuthUI;
 @import FirebaseGoogleAuthUI;
 

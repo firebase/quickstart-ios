@@ -19,7 +19,7 @@
 
 // [START firebase_banner_example]
 import UIKit
-import Firebase
+import FirebaseCore
 import GoogleMobileAds
 
 /**

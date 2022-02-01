@@ -15,7 +15,8 @@
 //
 
 import UIKit
-import Firebase
+import FirebaseDatabase
+import FirebaseAuth
 
 @objc(NewPostViewController)
 class NewPostViewController: UIViewController, UITextFieldDelegate {

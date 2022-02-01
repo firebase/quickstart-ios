@@ -6,16 +6,7 @@ target 'PasswordlessSwiftUI' do
   use_frameworks!
 
   # Pods for PasswordlessSwiftUI
-  pod 'Firebase/Auth'
-  pod 'Firebase/DynamicLinks'
-
-  target 'PasswordlessSwiftUITests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
-
-  target 'PasswordlessSwiftUIUITests' do
-    # Pods for testing
-  end
+  pod 'FirebaseAuth'
+  pod 'FirebaseDynamicLinks'
 
 end

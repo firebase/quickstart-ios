@@ -19,7 +19,7 @@
 
 // [START firebase_config]
 import UIKit
-import Firebase
+import FirebaseCore
 import GoogleMobileAds
 
 @UIApplicationMain

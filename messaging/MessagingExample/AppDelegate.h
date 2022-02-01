@@ -15,7 +15,8 @@
 //
 
 @import UIKit;
-@import Firebase;
+
+@protocol FIRMessagingDelegate;
 
 @interface AppDelegate : UIResponder<UIApplicationDelegate, FIRMessagingDelegate>
 

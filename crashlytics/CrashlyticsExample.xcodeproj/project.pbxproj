@@ -232,7 +232,6 @@
 				C74593FC26BDDD5F00153AE3 /* CrashlyticsSwiftUIExample_(watchOS) */,
 				C745940826BDDD6200153AE3 /* CrashlyticsSwiftUIExample_(watchOS)_Extension */,
 				5F5A534D1ADE670C00F81DF0 /* Products */,
-				C730A37326B1FE5400A29E81 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 			wrapsLines = 0;
@@ -251,13 +250,6 @@
 				C7E7BA7726DDF34C00EC8D24 /* UITests_watchOS.xctest */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		C730A37326B1FE5400A29E81 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		C73C899626845907003E5C2C /* Shared */ = {
@@ -574,8 +566,8 @@
 			);
 			mainGroup = 5F5A53431ADE670C00F81DF0;
 			packageReferences = (
-				C732A28E2684656200AA7DEF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
-				8D96F5DC2685440700F1A2B7 /* XCRemoteSwiftPackageReference "Reachability.swift" */,
+				C732A28E2684656200AA7DEF /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */,
+				8D96F5DC2685440700F1A2B7 /* XCRemoteSwiftPackageReference "Reachability.swift.git" */,
 			);
 			productRefGroup = 5F5A534D1ADE670C00F81DF0 /* Products */;
 			projectDirPath = "";
@@ -1000,7 +992,7 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.google.firebase.quickstart.CrashlyticsExample";
+				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.CrashlyticsExample;
 				PRODUCT_NAME = CrashlyticsSwiftUIExample;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -1035,7 +1027,7 @@
 				);
 				MTL_FAST_MATH = YES;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.google.firebase.quickstart.CrashlyticsExample";
+				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.CrashlyticsExample;
 				PRODUCT_NAME = CrashlyticsSwiftUIExample;
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
@@ -1071,7 +1063,7 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.google.firebase.quickstart.CrashlyticsExample";
+				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.CrashlyticsExample;
 				PRODUCT_NAME = CrashlyticsSwiftUIExample;
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -1107,7 +1099,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MTL_FAST_MATH = YES;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.google.firebase.quickstart.CrashlyticsExample";
+				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.CrashlyticsExample;
 				PRODUCT_NAME = CrashlyticsSwiftUIExample;
 				SDKROOT = macosx;
 				SWIFT_VERSION = 5.0;
@@ -1141,7 +1133,7 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.google.firebase.quickstart.CrashlyticsExample.watchkitapp";
+				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.CrashlyticsExample.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -1180,7 +1172,7 @@
 				);
 				MTL_FAST_MATH = YES;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.google.firebase.quickstart.CrashlyticsExample.watchkitapp";
+				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.CrashlyticsExample.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -1215,7 +1207,7 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.google.firebase.quickstart.CrashlyticsExample.watchkitapp.watchkitextension";
+				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.CrashlyticsExample.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -1252,7 +1244,7 @@
 				);
 				MTL_FAST_MATH = YES;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.google.firebase.quickstart.CrashlyticsExample.watchkitapp.watchkitextension";
+				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.CrashlyticsExample.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -1287,7 +1279,7 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.google.firebase.quickstart.CrashlyticsExample";
+				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.CrashlyticsExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -1323,7 +1315,7 @@
 				);
 				MTL_FAST_MATH = YES;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.google.firebase.quickstart.CrashlyticsExample";
+				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.CrashlyticsExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				SWIFT_VERSION = 5.0;
@@ -1628,7 +1620,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		8D96F5DC2685440700F1A2B7 /* XCRemoteSwiftPackageReference "Reachability.swift" */ = {
+		8D96F5DC2685440700F1A2B7 /* XCRemoteSwiftPackageReference "Reachability.swift.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ashleymills/Reachability.swift.git";
 			requirement = {
@@ -1636,7 +1628,7 @@
 				minimumVersion = 5.1.0;
 			};
 		};
-		C732A28E2684656200AA7DEF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+		C732A28E2684656200AA7DEF /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
 			requirement = {
@@ -1649,37 +1641,37 @@
 /* Begin XCSwiftPackageProductDependency section */
 		8D96F5DD2685440700F1A2B7 /* Reachability */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 8D96F5DC2685440700F1A2B7 /* XCRemoteSwiftPackageReference "Reachability.swift" */;
+			package = 8D96F5DC2685440700F1A2B7 /* XCRemoteSwiftPackageReference "Reachability.swift.git" */;
 			productName = Reachability;
 		};
 		C732A29726846B6D00AA7DEF /* FirebaseCrashlytics */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = C732A28E2684656200AA7DEF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = C732A28E2684656200AA7DEF /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */;
 			productName = FirebaseCrashlytics;
 		};
 		C745942526BDDDA500153AE3 /* FirebaseCrashlytics */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = C732A28E2684656200AA7DEF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = C732A28E2684656200AA7DEF /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */;
 			productName = FirebaseCrashlytics;
 		};
 		C77AC00226BB151000BDE919 /* FirebaseCrashlytics */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = C732A28E2684656200AA7DEF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = C732A28E2684656200AA7DEF /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */;
 			productName = FirebaseCrashlytics;
 		};
 		C77AC00426BB151000BDE919 /* Reachability */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 8D96F5DC2685440700F1A2B7 /* XCRemoteSwiftPackageReference "Reachability.swift" */;
+			package = 8D96F5DC2685440700F1A2B7 /* XCRemoteSwiftPackageReference "Reachability.swift.git" */;
 			productName = Reachability;
 		};
 		C77AC00926BB16E300BDE919 /* FirebaseCrashlytics */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = C732A28E2684656200AA7DEF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = C732A28E2684656200AA7DEF /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */;
 			productName = FirebaseCrashlytics;
 		};
 		C77AC00B26BB16E300BDE919 /* Reachability */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 8D96F5DC2685440700F1A2B7 /* XCRemoteSwiftPackageReference "Reachability.swift" */;
+			package = 8D96F5DC2685440700F1A2B7 /* XCRemoteSwiftPackageReference "Reachability.swift.git" */;
 			productName = Reachability;
 		};
 /* End XCSwiftPackageProductDependency section */

@@ -26,7 +26,7 @@ struct AddNumbersView: View {
     BackgroundFrame(
       title: "AddNumbers",
       description: "Add two integers and output the sum.",
-      hitButton: didTapCalculate
+      buttonAction: didTapCalculate
     ) {
       VStack {
         HStack {

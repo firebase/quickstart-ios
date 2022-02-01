@@ -21,12 +21,12 @@ struct BackgroundFrame<Content: View>: View {
   var description: String
   let content: Content
   let buttonAction: () -> Void
-  init(title: String, description: String, hitButton: @escaping () -> Void,
+  init(title: String, description: String, buttonAction: @escaping () -> Void,
        @ViewBuilder content: () -> Content) {
     self.title = title
     self.description = description
     self.content = content()
-    buttonAction = hitButton
+    self.buttonAction = buttonAction
   }
 
   var body: some View {
@@ -54,7 +54,7 @@ struct BackgroundFrame_Previews: PreviewProvider {
     BackgroundFrame(
       title: "Function",
       description: "Function description",
-      hitButton: { print("button") }
+      buttonAction: { print("button") }
     ) {
       Text("Testing View")
     }

@@ -25,7 +25,7 @@ struct CapitalizeMessageView: View {
     BackgroundFrame(
       title: "CapitalizeMessage",
       description: "Capitalize the input message and return it.",
-      hitButton: didTapAddMessage
+      buttonAction: didTapAddMessage
     ) {
       VStack {
         TextField("", text: $comment, prompt: Text("Type message"))

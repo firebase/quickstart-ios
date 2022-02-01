@@ -34,13 +34,13 @@ struct AddNumbersView: View {
           TextField("", text: $num1, prompt: Text("Num1"))
             .multilineTextAlignment(.center)
             .background(RoundedRectangle(cornerRadius: 16).fill(Color(.systemGray5)))
-            .frame(width: ScreenDimensions.width * 0.2)
+            .padding()
             .keyboardType(.numberPad)
-          Text("+")
+          Image(systemName: "plus")
           TextField("", text: $num2, prompt: Text("Num2"))
             .multilineTextAlignment(.center)
             .background(RoundedRectangle(cornerRadius: 16).fill(Color(.systemGray5)))
-            .frame(width: ScreenDimensions.width * 0.2)
+            .padding()
             .keyboardType(.numberPad)
           Spacer()
         }
@@ -49,7 +49,6 @@ struct AddNumbersView: View {
         }
       }
     }
-    .padding()
   }
 
   func didTapCalculate() {

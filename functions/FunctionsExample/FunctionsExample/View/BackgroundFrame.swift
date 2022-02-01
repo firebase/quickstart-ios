@@ -45,7 +45,6 @@ struct BackgroundFrame<Content: View>: View {
       CustomStyledButton(title: "Run", action: buttonAction)
     }
     .padding()
-    .frame(width: ScreenDimensions.width * 0.95)
   }
 }
 
@@ -59,11 +58,6 @@ struct BackgroundFrame_Previews: PreviewProvider {
       Text("Testing View")
     }
   }
-}
-
-class ScreenDimensions {
-  static var width: CGFloat = UIScreen.main.bounds.size.width
-  static var height: CGFloat = UIScreen.main.bounds.size.height
 }
 
 struct CustomStyledButton: View {

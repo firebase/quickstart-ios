@@ -30,7 +30,7 @@ struct CapitalizeMessageView: View {
       VStack {
         TextField("", text: $comment, prompt: Text("Type message"))
           .background(RoundedRectangle(cornerRadius: 16).fill(Color(.systemGray5)))
-          .frame(width: ScreenDimensions.width * 0.8)
+          .padding()
         Text(outcome)
       }
       .padding()

@@ -54,7 +54,6 @@ struct AddNumbersView: View {
   func didTapCalculate() {
     Task {
       do {
-
         let function = functions.httpsCallable(
           "addNumbers",
           requestAs: [String: String].self,
@@ -62,7 +61,7 @@ struct AddNumbersView: View {
         )
         let result = try await function.call([
           "firstNumber": $num1.wrappedValue,
-          "secondNumber": $num2.wrappedValue
+          "secondNumber": $num2.wrappedValue,
         ])
         if let operationResult = (result as? [String: Any])?["operationResult"] as? Int {
           self.outcome = String(operationResult)

@@ -45,7 +45,7 @@ struct AddNumbersView: View {
           Spacer()
         }
         VStack {
-          Text("\(outcome)")
+          Text(outcome)
         }
       }
     }
@@ -54,10 +54,17 @@ struct AddNumbersView: View {
   func didTapCalculate() {
     Task {
       do {
-        let result = try await functions.httpsCallable("addNumbers")
-          .call(["firstNumber": $num1.wrappedValue,
-                 "secondNumber": $num2.wrappedValue])
-        if let operationResult = (result.data as? [String: Any])?["operationResult"] as? Int {
+
+        let function = functions.httpsCallable(
+          "addNumbers",
+          requestAs: [String: String].self,
+          responseAs: [String: Int].self
+        )
+        let result = try await function.call([
+          "firstNumber": $num1.wrappedValue,
+          "secondNumber": $num2.wrappedValue
+        ])
+        if let operationResult = (result as? [String: Any])?["operationResult"] as? Int {
           self.outcome = String(operationResult)
         } else {
           self.outcome = "The return result is invalid."

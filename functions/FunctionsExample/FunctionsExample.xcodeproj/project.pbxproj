@@ -16,6 +16,7 @@
 		B926024B278F963C006F123B /* CapitalizeMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B926024A278F963C006F123B /* CapitalizeMessageView.swift */; };
 		B926024D278F96B3006F123B /* AddNumbersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B926024C278F96B3006F123B /* AddNumbersView.swift */; };
 		B926024F278F9756006F123B /* BackgroundFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = B926024E278F9756006F123B /* BackgroundFrame.swift */; };
+		B9473E3427AAFDCD00C658A6 /* FirebaseFunctionsSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = B9473E3327AAFDCD00C658A6 /* FirebaseFunctionsSwift-Beta */; };
 		B9F406362798F3B700B84D2B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B9F406352798F3B700B84D2B /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
@@ -37,6 +38,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B9260244278F94D1006F123B /* FirebaseAnalytics in Frameworks */,
+				B9473E3427AAFDCD00C658A6 /* FirebaseFunctionsSwift-Beta in Frameworks */,
 				B9260246278F94D1006F123B /* FirebaseFunctions in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -50,6 +52,7 @@
 				B9F406352798F3B700B84D2B /* GoogleService-Info.plist */,
 				B9260231278F8F08006F123B /* FunctionsExample */,
 				B9260230278F8F08006F123B /* Products */,
+				B9473E3227AAFDCD00C658A6 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -99,6 +102,13 @@
 			path = Screen;
 			sourceTree = "<group>";
 		};
+		B9473E3227AAFDCD00C658A6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -118,6 +128,7 @@
 			packageProductDependencies = (
 				B9260243278F94D1006F123B /* FirebaseAnalytics */,
 				B9260245278F94D1006F123B /* FirebaseFunctions */,
+				B9473E3327AAFDCD00C658A6 /* FirebaseFunctionsSwift-Beta */,
 			);
 			productName = FunctionsExample;
 			productReference = B926022F278F8F08006F123B /* FunctionsExample.app */;
@@ -410,6 +421,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = B9260242278F94D1006F123B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFunctions;
+		};
+		B9473E3327AAFDCD00C658A6 /* FirebaseFunctionsSwift-Beta */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B9260242278F94D1006F123B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = "FirebaseFunctionsSwift-Beta";
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -16,6 +16,7 @@
 
 import SwiftUI
 import Firebase
+import FirebaseFunctionsSwift
 
 struct CapitalizeMessageView: View {
   @State private var comment: String = ""
@@ -40,9 +41,13 @@ struct CapitalizeMessageView: View {
   func didTapAddMessage() {
     Task {
       do {
-        let result = try await functions.httpsCallable("capitalizeMessage")
-          .call(["text": $comment.wrappedValue])
-        if let data = result.data as? [String: Any], let text = data["text"] as? String {
+        let function = functions.httpsCallable(
+          "capitalizeMessage",
+          requestAs: [String: String].self,
+          responseAs: [String: String].self
+        )
+        let result = try await function.call(["text": $comment.wrappedValue])
+        if let data = result as? [String: Any], let text = data["text"] as? String {
           self.outcome = text
         }
       } catch {

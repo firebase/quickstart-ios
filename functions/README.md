@@ -15,9 +15,9 @@ Getting Started
 - [Add Firebase to your iOS Project](https://firebase.google.com/docs/ios/setup).
 - [Set up Firebase Functions](https://firebase.google.com/docs/functions/get-started)
 Functions in the docs should be updated, since the functions applied in the
-Quickstart might not be the same as the ones in the example from the doc above.
+quickstart might not be the same as the ones in the example from the doc above.
 
-To get aligned with the Quickstart, the `index.js` could be updated to 
+To align with the quickstart, the `index.js` should be updated to
 ```
 const functions = require('firebase-functions');
 
@@ -33,15 +33,15 @@ exports.capitalizeMessage = functions.https.onRequest((request, response) => {
 });
 ```
 - Run on a local machine
-To let the Quickstart run on a local machine, you can [Emulate execution of your functions](https://firebase.google.com/docs/functions/get-started#emulate-execution-of-your-functions)
+To let the quickstart run on a local machine, you can [Emulate execution of your functions](https://firebase.google.com/docs/functions/get-started#emulate-execution-of-your-functions)
 locally by adding a flag `-D EMULATOR` to the `Other Swift Flags` under the
 `Build Settings`.
 
 - Run in production
 Once functions are [deployed to a production environment](https://firebase.google.com/docs/functions/get-started#deploy-functions-to-a-production-environment),
-the Functions Quickstart can just build and run without additional settings to
+the Functions quickstart can just build and run without additional settings to
 connect to a Firebase project. Remember to remove the `-D EMULATOR` flag if you
-run the Quickstart through an emulator before.
+ran the quickstart through an emulator before.
 
 Support
 -------

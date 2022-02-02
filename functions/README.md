@@ -13,10 +13,35 @@ Getting Started
 ---------------
 
 - [Add Firebase to your iOS Project](https://firebase.google.com/docs/ios/setup).
+- [Set up Firebase Functions](https://firebase.google.com/docs/functions/get-started)
+Functions in the docs should be updated, since the functions applied in the
+quickstart might not be the same as the ones in the example from the doc above.
 
-### Google Sign In Setup
-- In Xcode, [add a custom URL scheme for your reversed client ID](https://developers.google.com/identity/sign-in/ios/start-integrating).
-- You can find this in the `GoogleService-Info.plist`
+To align with the quickstart, the `index.js` should be updated to
+```js
+const functions = require('firebase-functions');
+
+exports.addNumbers = functions.https.onRequest((request, response) => {
+  var first = Number(request.body.data.firstNumber);
+  var second = Number(request.body.data.secondNumber);
+  response.json({ data: {operationResult: first + second} });
+});
+
+exports.capitalizeMessage = functions.https.onRequest((request, response) => {
+  var upText = request.body.data.text;
+  response.json({ data: {text: upText.toUpperCase()} });
+});
+```
+- Run on a local machine
+To let the quickstart run on a local machine, you can [Emulate execution of your functions](https://firebase.google.com/docs/functions/get-started#emulate-execution-of-your-functions)
+locally by adding a flag `-D EMULATOR` to the `Other Swift Flags` under the
+`Build Settings`.
+
+- Run in production
+Once functions are [deployed to a production environment](https://firebase.google.com/docs/functions/get-started#deploy-functions-to-a-production-environment),
+the Functions quickstart can just build and run without additional settings to
+connect to a Firebase project. Remember to remove the `-D EMULATOR` flag if you
+ran the quickstart through an emulator before.
 
 Support
 -------
@@ -27,7 +52,7 @@ Support
 License
 -------
 
-Copyright 2018 Google, Inc.
+Copyright 2022 Google, Inc.
 
 Licensed to the Apache Software Foundation (ASF) under one or more contributor
 license agreements.  See the NOTICE file distributed with this work for

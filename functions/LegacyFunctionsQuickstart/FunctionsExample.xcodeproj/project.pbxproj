@@ -84,7 +84,7 @@
 		10B1CCBE205C51F90067EDB4 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		10B1CCC0205C60890067EDB4 /* CloudAddCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudAddCell.swift; sourceTree = "<group>"; };
 		10B1CCC2205C63370067EDB4 /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
-		43ED466C2F109A2272796CB6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		43ED466C2F109A2272796CB6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5F5A534C1ADE670C00F81DF0 /* FunctionsExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FunctionsExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F5A53501ADE670C00F81DF0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5F5A53511ADE670C00F81DF0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -253,7 +253,7 @@
 				5F9961071AE0CF4F0034F503 /* LaunchScreen.xib */,
 			);
 			name = Shared;
-			path = ../shared;
+			path = ../../shared;
 			sourceTree = "<group>";
 		};
 		DE43B5CB23AEC6980056B15F /* TestUtils */ = {
@@ -266,7 +266,7 @@
 				DED65CF723E9DE6400461312 /* FIREGSignInInfo.h */,
 			);
 			name = TestUtils;
-			path = ../TestUtils;
+			path = ../../TestUtils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -18,7 +18,7 @@ Functions in the docs should be updated, since the functions applied in the
 quickstart might not be the same as the ones in the example from the doc above.
 
 To align with the quickstart, the `index.js` should be updated to
-```
+```js
 const functions = require('firebase-functions');
 
 exports.addNumbers = functions.https.onRequest((request, response) => {

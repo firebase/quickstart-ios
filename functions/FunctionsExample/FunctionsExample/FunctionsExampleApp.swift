@@ -16,6 +16,7 @@
 
 import SwiftUI
 import Firebase
+import FirebaseFunctionsSwift
 
 @main
 struct FunctionsExampleApp: App {

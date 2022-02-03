@@ -7,7 +7,7 @@ target 'AppDistributionExample' do
 
   # Pods for AppDistributionExample
   pod 'FirebaseAnalytics'
-  pod 'FirebaseAppDistribution'
+  pod 'FirebaseAppDistribution', "> 8.11-beta"
 
   target 'AppDistributionExampleTests' do
     inherit! :search_paths

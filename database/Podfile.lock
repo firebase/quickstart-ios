@@ -4,7 +4,7 @@ PODS:
     - GoogleUtilities/AppDelegateSwizzler (~> 7.7)
     - GoogleUtilities/Environment (~> 7.7)
     - GTMSessionFetcher/Core (~> 1.5)
-  - FirebaseCore (8.12.0):
+  - FirebaseCore (8.12.1):
     - FirebaseCoreDiagnostics (~> 8.0)
     - GoogleUtilities/Environment (~> 7.7)
     - GoogleUtilities/Logger (~> 7.7)
@@ -70,7 +70,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   FirebaseAuth: 5250d7bdba35e57cc34ec7ddc525f82b2757f2a0
-  FirebaseCore: 92d5fefad04ef0cecb3d22b968ef5e004cf514d6
+  FirebaseCore: 8138de860a90ca7eec5e324da5788fb0ebf1d93c
   FirebaseCoreDiagnostics: 3b40dfadef5b90433a60ae01f01e90fe87aa76aa
   FirebaseDatabase: f130b3d45b2a7a0b86059734d5bd67353df8d32f
   FirebaseDatabaseUI: 4db2acaaee3c1a73e0daf31e926a8b7212941607

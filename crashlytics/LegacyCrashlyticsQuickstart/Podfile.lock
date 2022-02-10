@@ -1,5 +1,5 @@
 PODS:
-  - FirebaseCore (8.12.0):
+  - FirebaseCore (8.12.1):
     - FirebaseCoreDiagnostics (~> 8.0)
     - GoogleUtilities/Environment (~> 7.7)
     - GoogleUtilities/Logger (~> 7.7)
@@ -55,7 +55,7 @@ SPEC REPOS:
     - ReachabilitySwift
 
 SPEC CHECKSUMS:
-  FirebaseCore: 92d5fefad04ef0cecb3d22b968ef5e004cf514d6
+  FirebaseCore: 8138de860a90ca7eec5e324da5788fb0ebf1d93c
   FirebaseCoreDiagnostics: 3b40dfadef5b90433a60ae01f01e90fe87aa76aa
   FirebaseCrashlytics: 7952ffd988006128325510664b99dc8ca5851dff
   FirebaseInstallations: 25764cf322e77f99449395870a65b2bef88e1545

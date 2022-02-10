@@ -31,7 +31,7 @@ PODS:
     - FirebaseAuth (~> 8.0)
     - FirebaseCore
     - GoogleUtilities/UserDefaults
-  - FirebaseCore (8.12.0):
+  - FirebaseCore (8.12.1):
     - FirebaseCoreDiagnostics (~> 8.0)
     - GoogleUtilities/Environment (~> 7.7)
     - GoogleUtilities/Logger (~> 7.7)
@@ -252,7 +252,7 @@ SPEC CHECKSUMS:
   FirebaseAnalytics: bd10d7706ba8d6e01ea2816f8fe9e9b881cb0918
   FirebaseAuth: 5250d7bdba35e57cc34ec7ddc525f82b2757f2a0
   FirebaseAuthUI: 5ae57e5a3ffb821f89491f1b5da9efbdf99ce7cd
-  FirebaseCore: 92d5fefad04ef0cecb3d22b968ef5e004cf514d6
+  FirebaseCore: 8138de860a90ca7eec5e324da5788fb0ebf1d93c
   FirebaseCoreDiagnostics: 3b40dfadef5b90433a60ae01f01e90fe87aa76aa
   FirebaseFunctions: aead53cdd81ce7371043b79250060546c25f9c7c
   FirebaseGoogleAuthUI: b73b9fad6b1e3f7baeb8189fc7b3a6eb6fa1430d

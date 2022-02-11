@@ -62,8 +62,8 @@ class RemoteConfigViewController: UIViewController {
     // This is an alternative to remoteConfig.setDefaults(fromPlist: "RemoteConfigDefaults"))
     do {
       try remoteConfig.setDefaults(from: QSConfig(topLabelKey: "myTopLabel",
-                                                 bottomLabelKey: "Buy one get one free!",
-                                                      freeCount: 4))
+                                                  bottomLabelKey: "Buy one get one free!",
+                                                  freeCount: 4))
     } catch {
       print("Failed to set Defaults.")
     }

@@ -60,10 +60,13 @@ class RemoteConfigViewController: UIViewController {
   private func setupRemoteConfig() {
     remoteConfig = RemoteConfig.remoteConfig()
     // This is an alternative to remoteConfig.setDefaults(fromPlist: "RemoteConfigDefaults"))
-    try? remoteConfig.setDefaults(from: QSConfig(topLabelKey: "myTopLabel",
+    do {
+      try remoteConfig.setDefaults(from: QSConfig(topLabelKey: "myTopLabel",
                                                  bottomLabelKey: "Buy one get one free!",
-                                                 freeCount: 4))
-
+                                                      freeCount: 4))
+    } catch {
+      print("Failed to set Defaults.")
+    }
     let settings = RemoteConfigSettings()
     settings.minimumFetchInterval = 0
     remoteConfig.configSettings = settings
@@ -72,9 +75,11 @@ class RemoteConfigViewController: UIViewController {
   /// Fetches and activates remote config values
   @objc
   private func fetchAndActivateRemoteConfig() {
-    Task.init {
-      guard let _ = try? await remoteConfig.fetchAndActivate() else {
-        print("Failed to fetchAndActivate.")
+    Task {
+      do {
+        try await remoteConfig.fetchAndActivate()
+      } catch {
+        displayError(error)
         return
       }
       print("Remote config successfully fetched & activated!")
@@ -82,7 +87,8 @@ class RemoteConfigViewController: UIViewController {
         let qsConfig: QSConfig = try remoteConfig.decoded()
         print(qsConfig)
       } catch {
-        print("Failed to decode config.")
+        displayError(error)
+        return
       }
       DispatchQueue.main.async {
         self.updateUI()

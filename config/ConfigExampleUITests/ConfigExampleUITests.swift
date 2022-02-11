@@ -24,6 +24,7 @@ class ConfigExampleUITests: XCTestCase {
 
     app = XCUIApplication()
     app.launch()
+    sleep(1)
   }
 
   override func tearDown() {

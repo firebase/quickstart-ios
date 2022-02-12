@@ -75,19 +75,14 @@ class RemoteConfigViewController: UIViewController {
   /// Fetches and activates remote config values
   @objc
   private func fetchAndActivateRemoteConfig() {
-    Task {
-      do {
-        try await remoteConfig.fetchAndActivate()
-      } catch {
-        displayError(error)
-        return
-      }
+    remoteConfig.fetchAndActivate { status, error in
+      guard error == nil else { return self.displayError(error) }
       print("Remote config successfully fetched & activated!")
       do {
-        let qsConfig: QSConfig = try remoteConfig.decoded()
+        let qsConfig: QSConfig = try self.remoteConfig.decoded()
         print(qsConfig)
       } catch {
-        displayError(error)
+        self.displayError(error)
         return
       }
       DispatchQueue.main.async {

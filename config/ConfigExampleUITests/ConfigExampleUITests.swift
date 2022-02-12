@@ -35,8 +35,7 @@ class ConfigExampleUITests: XCTestCase {
     XCTAssertTrue(app.navigationBars["Firebase Config"].exists)
   }
 
-  // TODO: determine why this fails on GHA with Xcode 13.2.1.
-  func SKIPtestLaunchPerformance() throws {
+  func testLaunchPerformance() throws {
     if #available(macOS 10.15, iOS 13.0, tvOS 13.0, *) {
       // This measures how long it takes to launch your application.
       measure(metrics: [XCTOSSignpostMetric.applicationLaunch]) {

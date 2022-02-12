@@ -14,13 +14,14 @@
 
 import UIKit
 import FirebaseRemoteConfig
+import FirebaseRemoteConfigSwift
 
 class RemoteConfigViewController: UIViewController {
   private var remoteConfig: RemoteConfig!
   private var remoteConfigView: RemoteConfigView { view as! RemoteConfigView }
 
   private let topLabelKey = "topLabelKey"
-  private let recipeKey = "recipeKey"
+  private let typedRecipeKey = "typedRecipeKey"
   private let bottomLabelKey = "bottomLabelKey"
 
   override func loadView() {
@@ -48,33 +49,27 @@ class RemoteConfigViewController: UIViewController {
 
   // MARK: - Firebase 🔥
 
+  // Add additional keys that are in the console to see them in the log after fetching the config.
+  struct QSConfig: Codable {
+    let topLabelKey: String
+    let bottomLabelKey: String
+    let freeCount: Int
+  }
+
   /// Initializes defaults from `RemoteConfigDefaults.plist` and sets config's settings to developer mode
   private func setupRemoteConfig() {
     remoteConfig = RemoteConfig.remoteConfig()
-    remoteConfig.setDefaults(fromPlist: "RemoteConfigDefaults")
-
+    // This is an alternative to remoteConfig.setDefaults(fromPlist: "RemoteConfigDefaults"))
+    do {
+      try remoteConfig.setDefaults(from: QSConfig(topLabelKey: "myTopLabel",
+                                                  bottomLabelKey: "Buy one get one free!",
+                                                  freeCount: 4))
+    } catch {
+      print("Failed to set Defaults.")
+    }
     let settings = RemoteConfigSettings()
     settings.minimumFetchInterval = 0
     remoteConfig.configSettings = settings
-  }
-
-  /// Fetches remote config values from the server
-  private func fetchRemoteConfig() {
-    remoteConfig.fetch { status, error in
-      guard error == nil else { return self.displayError(error) }
-      print("Remote config successfully fetched!")
-    }
-  }
-
-  /// Activates remote config values, making them available to use in your app
-  private func activateRemoteConfig() {
-    remoteConfig.activate { success, error in
-      guard error == nil else { return self.displayError(error) }
-      print("Remote config successfully activated!")
-      DispatchQueue.main.async {
-        self.updateUI()
-      }
-    }
   }
 
   /// Fetches and activates remote config values
@@ -83,6 +78,13 @@ class RemoteConfigViewController: UIViewController {
     remoteConfig.fetchAndActivate { status, error in
       guard error == nil else { return self.displayError(error) }
       print("Remote config successfully fetched & activated!")
+      do {
+        let qsConfig: QSConfig = try self.remoteConfig.decoded()
+        print(qsConfig)
+      } catch {
+        self.displayError(error)
+        return
+      }
       DispatchQueue.main.async {
         self.updateUI()
       }
@@ -91,9 +93,19 @@ class RemoteConfigViewController: UIViewController {
 
   /// This method applies our remote config values to our UI
   private func updateUI() {
-    remoteConfigView.topLabel.text = remoteConfig["topLabelKey"].stringValue
+    remoteConfigView.topLabel.text = remoteConfig[decodedValue: "topLabelKey"]
     updateJSONView()
-    remoteConfigView.bottomLabel.text = remoteConfig["bottomLabelKey"].stringValue
+    if var bottomLabel: String = remoteConfig[decodedValue: "bottomLabelKey"],
+      let freeCount: Int = remoteConfig[decodedValue: "freeCount"],
+      freeCount > 1,
+      bottomLabel.contains("one") {
+      let formatter = NumberFormatter()
+      formatter.numberStyle = .spellOut
+      if let english = formatter.string(from: NSNumber(value: freeCount)) {
+        bottomLabel = bottomLabel.replacingOccurrences(of: "one free", with: "\(english) free")
+      }
+      remoteConfigView.bottomLabel.text = bottomLabel
+    }
   }
 
   // MARK: - Private Helpers
@@ -125,35 +137,36 @@ class RemoteConfigViewController: UIViewController {
       }
     }
 
-    // Specify keys in the order we would like to display the information in
-    let keys = [
-      "recipe_name",
-      "ingredients",
-      "prep_time",
-      "cook_time",
-      "instructions",
-      "yield",
-      "serving_size",
-      "notes",
-    ]
-    guard let recipeDictionary = remoteConfig[recipeKey].jsonValue as? [String: Any] else { return }
+    struct Recipe: Decodable, CustomStringConvertible {
+      var recipe_name: String
+      var ingredients: [String]
+      var prep_time: Int
+      var cook_time: Int
+      var instructions: [String]
+      var yield: String
+      var serving_size: Int
+      var notes: String
 
-    keys.enumerated().forEach { index, key in
-      guard var value = recipeDictionary[key] else { return }
-
-      if let list = value as? [String] {
-        let joinedValue = list.joined(separator: " • ")
-        value = joinedValue
-      } else if let stringValue = value as? String {
-        value = stringValue
+      var description: String {
+        return "Recipe Name: \(recipe_name)\n" +
+          "Ingredients: \(ingredients)\n" +
+          "Prep Time: \(prep_time)\n" +
+          "Cook Time: \(cook_time)\n" +
+          "Instructions: \(instructions)\n" +
+          "Yield: \(yield)\n" +
+          "Serving Size: \(serving_size)\n" +
+          "Notes: \(notes)"
       }
+    }
 
-      guard let stringValue = value as? String else { return }
-
-      let formattedKey = key
-        .capitalized
-        .replacingOccurrences(of: "_", with: " ")
-        .appending(": ")
+    guard let recipe: Recipe = try? remoteConfig[typedRecipeKey].decoded() else {
+      fatalError("Failed to decode JSON for \(typedRecipeKey)")
+    }
+    let lines = recipe.description.split(separator: "\n")
+    for (index, line) in lines.enumerated() {
+      let lineSplit = line.split(separator: ":")
+      let formattedKey = String(lineSplit[0])
+      let stringValue = String(lineSplit[1])
 
       let attributedKey = NSAttributedString(
         string: formattedKey,
@@ -175,8 +188,8 @@ class RemoteConfigViewController: UIViewController {
       animateFadeIn(for: label, duration: 0.3)
 
       let height = jsonView.frame.height
-      let step = height / CGFloat(keys.count)
-      let offset = height * 0.2 * 1 / CGFloat(keys.count)
+      let step = height / CGFloat(lines.count)
+      let offset = height * 0.2 * 1 / CGFloat(lines.count)
 
       let x: CGFloat = jsonView.frame.width * 0.05
       let y: CGFloat = step * CGFloat(index) + offset
@@ -196,7 +209,7 @@ extension UIViewController {
   public func displayError(_ error: Error?, from function: StaticString = #function) {
     guard let error = error else { return }
     print("🚨 Error in \(function): \(error.localizedDescription)")
-    let message = "\(error.localizedDescription)\n\n Ocurred in \(function)"
+    let message = "\(error.localizedDescription)\n\n Occurred in \(function)"
     let errorAlertController = UIAlertController(
       title: "Error",
       message: message,

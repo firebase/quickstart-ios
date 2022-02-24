@@ -142,8 +142,8 @@ class AuthViewController: UIViewController, DataSourceProviderDelegate {
 
   private func performFacebookSignInFlow() {
     // The following config can also be stored in the project's .plist
-    Settings.appID = kFacebookAppID
-    Settings.displayName = "AuthenticationExample"
+    Settings.shared.appID = kFacebookAppID
+    Settings.shared.displayName = "AuthenticationExample"
 
     // Create a Facebook `LoginManager` instance
     let loginManager = LoginManager()

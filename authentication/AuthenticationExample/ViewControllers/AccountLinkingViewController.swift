@@ -209,8 +209,8 @@ class AccountLinkingViewController: UIViewController, DataSourceProviderDelegate
 
   private func performFacebookAccountLink() {
     // The following config can also be stored in the project's .plist
-    Settings.appID = "ENTER APP ID HERE"
-    Settings.displayName = "AuthenticationExample"
+    Settings.shared.appID = "ENTER APP ID HERE"
+    Settings.shared.displayName = "AuthenticationExample"
 
     // Create a Facebook `LoginManager` instance
     let loginManager = LoginManager()

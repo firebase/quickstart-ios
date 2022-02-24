@@ -17,7 +17,7 @@ target 'AuthenticationExample' do
   pod 'GoogleSignIn'
 
   ## Pod for Sign in with Facebook
-  pod 'FBSDKLoginKit'
+  pod 'FBSDKLoginKit', '~> 12.2'
 
   target 'AuthenticationExampleTests' do
     inherit! :search_paths

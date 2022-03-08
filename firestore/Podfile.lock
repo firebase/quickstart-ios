@@ -344,7 +344,7 @@ PODS:
   - BoringSSL-GRPC/Implementation (0.0.7):
     - BoringSSL-GRPC/Interface (= 0.0.7)
   - BoringSSL-GRPC/Interface (0.0.7)
-  - FirebaseAuth (8.12.0):
+  - FirebaseAuth (8.13.0):
     - FirebaseCore (~> 8.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 7.7)
     - GoogleUtilities/Environment (~> 7.7)
@@ -353,11 +353,11 @@ PODS:
     - FirebaseAuth (~> 8.0)
     - FirebaseCore
     - GoogleUtilities/UserDefaults
-  - FirebaseCore (8.12.1):
+  - FirebaseCore (8.13.0):
     - FirebaseCoreDiagnostics (~> 8.0)
     - GoogleUtilities/Environment (~> 7.7)
     - GoogleUtilities/Logger (~> 7.7)
-  - FirebaseCoreDiagnostics (8.12.0):
+  - FirebaseCoreDiagnostics (8.13.0):
     - GoogleDataTransport (~> 9.1)
     - GoogleUtilities/Environment (~> 7.7)
     - GoogleUtilities/Logger (~> 7.7)
@@ -367,7 +367,7 @@ PODS:
     - FirebaseAuthUI
     - FirebaseCore
     - GoogleUtilities/UserDefaults
-  - FirebaseFirestore (8.12.1):
+  - FirebaseFirestore (8.13.0):
     - abseil/algorithm (= 0.20200225.0)
     - abseil/base (= 0.20200225.0)
     - abseil/container/flat_hash_map (= 0.20200225.0)
@@ -380,7 +380,7 @@ PODS:
     - "gRPC-C++ (~> 1.28.0)"
     - leveldb-library (~> 1.22)
     - nanopb (~> 2.30908.0)
-  - FirebaseFirestoreSwift (8.12.1-beta):
+  - FirebaseFirestoreSwift (8.13.0-beta):
     - FirebaseFirestore (~> 8.0)
   - FirebaseUI/Auth (11.0.3):
     - FirebaseAuthUI (~> 11.0)
@@ -439,9 +439,9 @@ PODS:
   - nanopb/decode (2.30908.0)
   - nanopb/encode (2.30908.0)
   - PromisesObjC (2.0.0)
-  - SDWebImage (5.12.3):
-    - SDWebImage/Core (= 5.12.3)
-  - SDWebImage/Core (5.12.3)
+  - SDWebImage (5.12.4):
+    - SDWebImage/Core (= 5.12.4)
+  - SDWebImage/Core (5.12.4)
   - SDWebImageSwiftUI (2.0.2):
     - SDWebImage (~> 5.10)
 
@@ -480,13 +480,13 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   abseil: 6c8eb7892aefa08d929b39f9bb108e5367e3228f
   BoringSSL-GRPC: 8edf627ee524575e2f8d19d56f068b448eea3879
-  FirebaseAuth: 5250d7bdba35e57cc34ec7ddc525f82b2757f2a0
+  FirebaseAuth: ee43cf9474641c673a3a215ac92ab99e5630620c
   FirebaseAuthUI: 5ae57e5a3ffb821f89491f1b5da9efbdf99ce7cd
-  FirebaseCore: 8138de860a90ca7eec5e324da5788fb0ebf1d93c
-  FirebaseCoreDiagnostics: 3b40dfadef5b90433a60ae01f01e90fe87aa76aa
+  FirebaseCore: c7e3fa30492e50ccdeef280bf0d5584af38da3e1
+  FirebaseCoreDiagnostics: c2836d254a8f0bbb4121ff18f2c2ea39d118fd08
   FirebaseEmailAuthUI: 10586bc5b460a2e02172a2ee6d267eca60cbe684
-  FirebaseFirestore: dfeb58916ee3ae0ef2453d4849a683672705920c
-  FirebaseFirestoreSwift: 411c224545336b62180e4d18e750127f51b42fe2
+  FirebaseFirestore: 11d872a1e6f745f5ab52b96a218c60bfc6cbd770
+  FirebaseFirestoreSwift: 36aa2968411b7a7e82c83d1379f91e5cea07b68e
   FirebaseUI: d2777b3abcb3fa40ea9eea9e40db5a154df608d3
   GoogleDataTransport: 629c20a4d363167143f30ea78320d5a7eb8bd940
   GoogleUtilities: e0913149f6b0625b553d70dae12b49fc62914fd1
@@ -496,7 +496,7 @@ SPEC CHECKSUMS:
   leveldb-library: 50c7b45cbd7bf543c81a468fe557a16ae3db8729
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58
-  SDWebImage: 53179a2dba77246efa8a9b85f5c5b21f8f43e38f
+  SDWebImage: 631cf572cc93dfdfe54162e556410a61f1141928
   SDWebImageSwiftUI: 8a3923c95108312b03a599ec1498754af55a6819
 
 PODFILE CHECKSUM: 7f27171f4bd1e7b710af47e95c7f43144050de14

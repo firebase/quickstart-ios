@@ -46,7 +46,7 @@ struct CapitalizeMessageView: View {
           responseAs: [String: String].self
         )
         let result = try await function.call(["text": $comment.wrappedValue])
-        if let data = result as? [String: Any], let text = data["text"] as? String {
+        if let text = result["text"] {
           self.outcome = text
         }
       } catch {

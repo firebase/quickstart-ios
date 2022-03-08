@@ -63,7 +63,7 @@ struct AddNumbersView: View {
           "firstNumber": $num1.wrappedValue,
           "secondNumber": $num2.wrappedValue,
         ])
-        if let operationResult = (result as? [String: Any])?["operationResult"] as? Int {
+        if let operationResult = result["operationResult"] {
           self.outcome = String(operationResult)
         } else {
           self.outcome = "The return result is invalid."

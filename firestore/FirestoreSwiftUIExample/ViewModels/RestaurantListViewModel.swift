@@ -50,7 +50,7 @@ class RestaurantListViewModel: ObservableObject {
         self.restaurants = documents.compactMap { document in
           do {
             var restaurant = try document.data(as: Restaurant.self)
-            restaurant?.reference = document.reference
+            restaurant.reference = document.reference
             return restaurant
           } catch {
             print(error)

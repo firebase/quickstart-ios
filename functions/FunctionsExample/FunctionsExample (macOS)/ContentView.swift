@@ -19,7 +19,6 @@ import Firebase
 
 struct ContentView: View {
   var body: some View {
-    NavigationView {
       ScrollView {
         VStack {
           AddNumbersView()
@@ -28,28 +27,11 @@ struct ContentView: View {
         }
       }
       .navigationTitle("Firebase Functions")
-#if os(iOS)
-
-      .navigationBarBackButtonHidden(true)
-      .navigationBarTitleDisplayMode(.large)
-        #endif
-    }
-#if os(iOS)
-    .navigationViewStyle(StackNavigationViewStyle())
-#endif
-
   }
 }
 
 struct ContentView_Previews: PreviewProvider {
   static var previews: some View {
-    ForEach(
-      ["iPhone SE (2nd generation)", "iPhone 13 Pro Max", "iPad Pro (12.9-inch) (5th generation)"],
-      id: \.self
-    ) { deviceName in
       ContentView()
-        .previewDevice(PreviewDevice(rawValue: deviceName))
-        .previewDisplayName(deviceName)
-    }
   }
 }

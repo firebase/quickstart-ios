@@ -20,6 +20,11 @@ import Firebase
 struct CapitalizeMessageView: View {
   @State private var comment: String = ""
   @State private var outcome: String = ""
+#if os(iOS)
+let roundRetangleFillColor = Color(.systemGray5)
+#elseif os(macOS)
+let roundRetangleFillColor = Color(NSColor.systemGray)
+#endif
   private var functions = Functions.functions()
   var body: some View {
     BackgroundFrame(
@@ -29,7 +34,7 @@ struct CapitalizeMessageView: View {
     ) {
       VStack {
         TextField("", text: $comment, prompt: Text("Type message"))
-          .background(RoundedRectangle(cornerRadius: 16).fill(Color(.systemGray5)))
+          .background(RoundedRectangle(cornerRadius: 16).fill(roundRetangleFillColor))
           .padding()
         Text(outcome)
       }

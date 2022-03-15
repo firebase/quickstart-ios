@@ -19,15 +19,30 @@ import Firebase
 
 struct ContentView: View {
   var body: some View {
-      ScrollView {
-        VStack {
-          AddNumbersView()
-          CapitalizeMessageView()
-          Spacer()
-        }
-      }
-      .navigationTitle("Firebase Functions")
+#if os(iOS)
+    NavigationView {
+        FunctionsView()
+      .navigationBarBackButtonHidden(true)
+      .navigationBarTitleDisplayMode(.large)
+    }
+    .navigationViewStyle(StackNavigationViewStyle())
+#elseif os(macOS)
+      FunctionsView()
+#endif
   }
+}
+
+struct FunctionsView: View{
+    var body: some View{
+        ScrollView {
+          VStack {
+            AddNumbersView()
+            CapitalizeMessageView()
+            Spacer()
+          }
+        }
+        .navigationTitle("Firebase Functions")
+    }
 }
 
 struct ContentView_Previews: PreviewProvider {

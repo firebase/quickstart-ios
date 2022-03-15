@@ -27,7 +27,6 @@ struct BackgroundFrame<Content: View>: View {
     let roundRetangleFillColor = Color(.secondarySystemBackground)
     #elseif os(macOS)
     let textForegroundColor = Color(NSColor.secondaryLabelColor)
-    //TODO: Update the color aligned with ios
     let roundRetangleFillColor = Color(NSColor.systemGray)
     #endif
   init(title: String, description: String, buttonAction: @escaping () -> Void,
@@ -60,13 +59,14 @@ struct BackgroundFrame<Content: View>: View {
 
 struct BackgroundFrame_Previews: PreviewProvider {
   static var previews: some View {
-    BackgroundFrame(
-      title: "Function",
-      description: "Function description",
-      buttonAction: { print("button") }
-    ) {
-      Text("Testing View")
-    }
+      
+          BackgroundFrame(
+            title: "Function",
+            description: "Function description",
+            buttonAction: { print("button") }
+          ) {
+              Text("Testing View")
+          }
   }
 }
 
@@ -85,7 +85,11 @@ struct CustomStyledButton: View {
         Spacer()
       }
     }
+    #if os(iOS)
     .background(RoundedRectangle(cornerRadius: 16.0)
         .fill(Color.orange))
+    #elseif os(macOS)
+    .foregroundColor(/*@START_MENU_TOKEN@*/.orange/*@END_MENU_TOKEN@*/)
+    #endif
   }
 }

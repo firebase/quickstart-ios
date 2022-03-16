@@ -27,7 +27,7 @@ struct AddNumbersView: View {
   #elseif os(macOS)
     let textForegroundColor = Color(NSColor.secondaryLabelColor)
     let roundRectangleFillColor = Color(NSColor.systemGray)
-#elseif os(tvOS)
+  #elseif os(tvOS)
     let textForegroundColor = Color.secondary
     let roundRectangleFillColor = Color.gray
   #endif

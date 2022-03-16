@@ -21,9 +21,9 @@ struct CapitalizeMessageView: View {
   @State private var comment: String = ""
   @State private var outcome: String = ""
   #if os(iOS)
-  let roundRetangleFillColor = Color(.systemGray5)
+    let roundRetangleFillColor = Color(.systemGray5)
   #elseif os(macOS)
-  let roundRetangleFillColor = Color(NSColor.systemGray)
+    let roundRetangleFillColor = Color(NSColor.systemGray)
   #endif
   private var functions = Functions.functions()
   var body: some View {

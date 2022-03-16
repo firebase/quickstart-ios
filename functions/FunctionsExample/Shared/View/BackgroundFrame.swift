@@ -21,14 +21,14 @@ struct BackgroundFrame<Content: View>: View {
   var description: String
   let content: Content
   let buttonAction: () -> Void
-    
-    #if os(iOS)
+
+  #if os(iOS)
     let textForegroundColor = Color(UIColor.secondaryLabel)
     let roundRetangleFillColor = Color(.secondarySystemBackground)
-    #elseif os(macOS)
+  #elseif os(macOS)
     let textForegroundColor = Color(NSColor.secondaryLabelColor)
     let roundRetangleFillColor = Color(NSColor.systemGray)
-    #endif
+  #endif
   init(title: String, description: String, buttonAction: @escaping () -> Void,
        @ViewBuilder content: () -> Content) {
     self.title = title
@@ -59,14 +59,13 @@ struct BackgroundFrame<Content: View>: View {
 
 struct BackgroundFrame_Previews: PreviewProvider {
   static var previews: some View {
-      
-          BackgroundFrame(
-            title: "Function",
-            description: "Function description",
-            buttonAction: { print("button") }
-          ) {
-              Text("Testing View")
-          }
+    BackgroundFrame(
+      title: "Function",
+      description: "Function description",
+      buttonAction: { print("button") }
+    ) {
+      Text("Testing View")
+    }
   }
 }
 
@@ -86,10 +85,10 @@ struct CustomStyledButton: View {
       }
     }
     #if os(iOS)
-    .background(RoundedRectangle(cornerRadius: 16.0)
+      .background(RoundedRectangle(cornerRadius: 16.0)
         .fill(Color.orange))
     #elseif os(macOS)
-    .foregroundColor(/*@START_MENU_TOKEN@*/.orange/*@END_MENU_TOKEN@*/)
+        .foregroundColor(/*@START_MENU_TOKEN@*/ .orange/*@END_MENU_TOKEN@*/)
     #endif
   }
 }

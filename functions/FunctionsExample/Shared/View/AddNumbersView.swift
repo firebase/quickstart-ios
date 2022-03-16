@@ -22,11 +22,11 @@ struct AddNumbersView: View {
   @State private var num2: String = ""
   @State private var outcome: String = ""
   #if os(iOS)
-  let textForegroundColor = Color(UIColor.secondaryLabel)
-  let roundRetangleFillColor = Color(.systemGray5)
+    let textForegroundColor = Color(UIColor.secondaryLabel)
+    let roundRetangleFillColor = Color(.systemGray5)
   #elseif os(macOS)
-  let textForegroundColor = Color(NSColor.secondaryLabelColor)
-  let roundRetangleFillColor = Color(NSColor.systemGray)
+    let textForegroundColor = Color(NSColor.secondaryLabelColor)
+    let roundRetangleFillColor = Color(NSColor.systemGray)
   #endif
   private var functions = Functions.functions()
   var body: some View {
@@ -42,7 +42,7 @@ struct AddNumbersView: View {
             .multilineTextAlignment(.center)
             .background(RoundedRectangle(cornerRadius: 16).fill(roundRetangleFillColor))
             .padding()
-            
+
           #if os(iOS)
             .keyboardType(.numberPad)
           #endif
@@ -51,9 +51,9 @@ struct AddNumbersView: View {
             .multilineTextAlignment(.center)
             .background(RoundedRectangle(cornerRadius: 16).fill(roundRetangleFillColor))
             .padding()
-            #if os(iOS)
+          #if os(iOS)
             .keyboardType(.numberPad)
-            #endif
+          #endif
           Spacer()
         }
         VStack {

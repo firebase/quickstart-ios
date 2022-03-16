@@ -21,6 +21,13 @@ struct AddNumbersView: View {
   @State private var num1: String = ""
   @State private var num2: String = ""
   @State private var outcome: String = ""
+  #if os(iOS)
+    let textForegroundColor = Color(UIColor.secondaryLabel)
+    let roundRectangleFillColor = Color(.systemGray5)
+  #elseif os(macOS)
+    let textForegroundColor = Color(NSColor.secondaryLabelColor)
+    let roundRectangleFillColor = Color(NSColor.systemGray)
+  #endif
   private var functions = Functions.functions()
   var body: some View {
     BackgroundFrame(
@@ -33,15 +40,20 @@ struct AddNumbersView: View {
           Spacer()
           TextField("", text: $num1, prompt: Text("Num1"))
             .multilineTextAlignment(.center)
-            .background(RoundedRectangle(cornerRadius: 16).fill(Color(.systemGray5)))
+            .background(RoundedRectangle(cornerRadius: 16).fill(roundRectangleFillColor))
             .padding()
+
+          #if os(iOS)
             .keyboardType(.numberPad)
+          #endif
           Image(systemName: "plus")
           TextField("", text: $num2, prompt: Text("Num2"))
             .multilineTextAlignment(.center)
-            .background(RoundedRectangle(cornerRadius: 16).fill(Color(.systemGray5)))
+            .background(RoundedRectangle(cornerRadius: 16).fill(roundRectangleFillColor))
             .padding()
+          #if os(iOS)
             .keyboardType(.numberPad)
+          #endif
           Spacer()
         }
         VStack {

@@ -21,6 +21,14 @@ struct BackgroundFrame<Content: View>: View {
   var description: String
   let content: Content
   let buttonAction: () -> Void
+
+  #if os(iOS)
+    let textForegroundColor = Color(UIColor.secondaryLabel)
+    let roundRectangleFillColor = Color(.secondarySystemBackground)
+  #elseif os(macOS)
+    let textForegroundColor = Color(NSColor.secondaryLabelColor)
+    let roundRectangleFillColor = Color(NSColor.systemGray)
+  #endif
   init(title: String, description: String, buttonAction: @escaping () -> Void,
        @ViewBuilder content: () -> Content) {
     self.title = title
@@ -36,10 +44,10 @@ struct BackgroundFrame<Content: View>: View {
         .font(.title3)
       Text(description)
         .font(.subheadline)
-        .foregroundColor(Color(UIColor.secondaryLabel))
+        .foregroundColor(textForegroundColor)
       ZStack {
         RoundedRectangle(cornerRadius: 16)
-          .fill(Color(.secondarySystemBackground))
+          .fill(roundRectangleFillColor)
           .frame(height: 150)
         content
       }
@@ -76,7 +84,11 @@ struct CustomStyledButton: View {
         Spacer()
       }
     }
-    .background(Color.orange)
-    .cornerRadius(16.0)
+    #if os(iOS)
+      .background(RoundedRectangle(cornerRadius: 16.0)
+        .fill(Color.orange))
+    #elseif os(macOS)
+        .foregroundColor(/*@START_MENU_TOKEN@*/ .orange/*@END_MENU_TOKEN@*/)
+    #endif
   }
 }

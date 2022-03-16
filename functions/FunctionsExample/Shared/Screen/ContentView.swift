@@ -19,31 +19,34 @@ import Firebase
 
 struct ContentView: View {
   var body: some View {
-    NavigationView {
-      ScrollView {
-        VStack {
-          AddNumbersView()
-          CapitalizeMessageView()
-          Spacer()
-        }
+    #if os(iOS)
+      NavigationView {
+        FunctionsView()
+          .navigationBarBackButtonHidden(true)
+          .navigationBarTitleDisplayMode(.large)
       }
-      .navigationTitle("Firebase Functions")
-      .navigationBarBackButtonHidden(true)
-      .navigationBarTitleDisplayMode(.large)
+      .navigationViewStyle(StackNavigationViewStyle())
+    #elseif os(macOS)
+      FunctionsView()
+    #endif
+  }
+}
+
+struct FunctionsView: View {
+  var body: some View {
+    ScrollView {
+      VStack {
+        AddNumbersView()
+        CapitalizeMessageView()
+        Spacer()
+      }
     }
-    .navigationViewStyle(StackNavigationViewStyle())
+    .navigationTitle("Firebase Functions")
   }
 }
 
 struct ContentView_Previews: PreviewProvider {
   static var previews: some View {
-    ForEach(
-      ["iPhone SE (2nd generation)", "iPhone 13 Pro Max", "iPad Pro (12.9-inch) (5th generation)"],
-      id: \.self
-    ) { deviceName in
-      ContentView()
-        .previewDevice(PreviewDevice(rawValue: deviceName))
-        .previewDisplayName(deviceName)
-    }
+    ContentView()
   }
 }

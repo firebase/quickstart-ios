@@ -21,9 +21,9 @@ struct CapitalizeMessageView: View {
   @State private var comment: String = ""
   @State private var outcome: String = ""
   #if os(iOS)
-    let roundRetangleFillColor = Color(.systemGray5)
+    let roundRectangleFillColor = Color(.systemGray5)
   #elseif os(macOS)
-    let roundRetangleFillColor = Color(NSColor.systemGray)
+    let roundRectangleFillColor = Color(NSColor.systemGray)
   #endif
   private var functions = Functions.functions()
   var body: some View {
@@ -34,7 +34,7 @@ struct CapitalizeMessageView: View {
     ) {
       VStack {
         TextField("", text: $comment, prompt: Text("Type message"))
-          .background(RoundedRectangle(cornerRadius: 16).fill(roundRetangleFillColor))
+          .background(RoundedRectangle(cornerRadius: 16).fill(roundRectangleFillColor))
           .padding()
         Text(outcome)
       }

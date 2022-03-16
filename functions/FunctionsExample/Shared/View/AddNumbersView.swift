@@ -23,10 +23,10 @@ struct AddNumbersView: View {
   @State private var outcome: String = ""
   #if os(iOS)
     let textForegroundColor = Color(UIColor.secondaryLabel)
-    let roundRetangleFillColor = Color(.systemGray5)
+    let roundRectangleFillColor = Color(.systemGray5)
   #elseif os(macOS)
     let textForegroundColor = Color(NSColor.secondaryLabelColor)
-    let roundRetangleFillColor = Color(NSColor.systemGray)
+    let roundRectangleFillColor = Color(NSColor.systemGray)
   #endif
   private var functions = Functions.functions()
   var body: some View {
@@ -40,7 +40,7 @@ struct AddNumbersView: View {
           Spacer()
           TextField("", text: $num1, prompt: Text("Num1"))
             .multilineTextAlignment(.center)
-            .background(RoundedRectangle(cornerRadius: 16).fill(roundRetangleFillColor))
+            .background(RoundedRectangle(cornerRadius: 16).fill(roundRectangleFillColor))
             .padding()
 
           #if os(iOS)
@@ -49,7 +49,7 @@ struct AddNumbersView: View {
           Image(systemName: "plus")
           TextField("", text: $num2, prompt: Text("Num2"))
             .multilineTextAlignment(.center)
-            .background(RoundedRectangle(cornerRadius: 16).fill(roundRetangleFillColor))
+            .background(RoundedRectangle(cornerRadius: 16).fill(roundRectangleFillColor))
             .padding()
           #if os(iOS)
             .keyboardType(.numberPad)

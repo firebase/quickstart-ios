@@ -78,7 +78,7 @@ struct CustomStyledButton: View {
 
   var body: some View {
     Button(action: action) {
-      /// Embed in an HStack to display a wide button with centered text.
+      // Embed in an HStack to display a wide button with centered text.
       HStack {
         Spacer()
         Text(title)

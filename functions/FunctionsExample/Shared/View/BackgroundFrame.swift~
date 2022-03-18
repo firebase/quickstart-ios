@@ -28,6 +28,9 @@ struct BackgroundFrame<Content: View>: View {
   #elseif os(macOS)
     let textForegroundColor = Color(NSColor.secondaryLabelColor)
     let roundRectangleFillColor = Color(NSColor.systemGray)
+  #elseif os(tvOS)
+    let textForegroundColor = Color.secondary
+    let roundRectangleFillColor = Color.gray
   #endif
   init(title: String, description: String, buttonAction: @escaping () -> Void,
        @ViewBuilder content: () -> Content) {
@@ -47,7 +50,7 @@ struct BackgroundFrame<Content: View>: View {
         .foregroundColor(textForegroundColor)
       ZStack {
         RoundedRectangle(cornerRadius: 16)
-          .fill(roundRetangleFillColor)
+          .fill(roundRectangleFillColor)
           .frame(height: 150)
         content
       }
@@ -84,7 +87,7 @@ struct CustomStyledButton: View {
         Spacer()
       }
     }
-    #if os(iOS)
+    #if os(iOS) || os(tvOS)
       .background(RoundedRectangle(cornerRadius: 16.0)
         .fill(Color.orange))
     #elseif os(macOS)

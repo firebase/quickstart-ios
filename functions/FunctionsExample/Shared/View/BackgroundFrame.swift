@@ -21,9 +21,9 @@ struct BackgroundFrame<Content: View>: View {
   var description: String
   let content: Content
   let buttonAction: () -> Void
-    
-      let textForegroundColor = Utility().textForegroundColor
-      let roundRectangleFillColor = Utility().roundRectangleFillColor
+
+  let textForegroundColor = Utility().textForegroundColor
+  let roundRectangleFillColor = Utility().roundRectangleFillColor
   init(title: String, description: String, buttonAction: @escaping () -> Void,
        @ViewBuilder content: () -> Content) {
     self.title = title

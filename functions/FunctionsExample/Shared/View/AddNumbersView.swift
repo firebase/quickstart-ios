@@ -21,16 +21,8 @@ struct AddNumbersView: View {
   @State private var num1: String = ""
   @State private var num2: String = ""
   @State private var outcome: String = ""
-  #if os(iOS)
-    let textForegroundColor = Color(UIColor.secondaryLabel)
-    let roundRectangleFillColor = Color(.systemGray5)
-  #elseif os(macOS)
-    let textForegroundColor = Color(NSColor.secondaryLabelColor)
-    let roundRectangleFillColor = Color(NSColor.systemGray)
-  #elseif os(tvOS)
-    let textForegroundColor = Color.secondary
-    let roundRectangleFillColor = Color.gray
-  #endif
+    let textForegroundColor = Utility().textForegroundColor
+    let roundRectangleFillColor = Utility().roundRectangleFillColor
   private var functions = Functions.functions()
   var body: some View {
     BackgroundFrame(

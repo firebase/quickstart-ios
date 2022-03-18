@@ -20,13 +20,8 @@ import Firebase
 struct CapitalizeMessageView: View {
   @State private var comment: String = ""
   @State private var outcome: String = ""
-  #if os(iOS)
-    let roundRectangleFillColor = Color(.systemGray5)
-  #elseif os(macOS)
-    let roundRectangleFillColor = Color(NSColor.systemGray)
-  #elseif os(tvOS)
-    let roundRectangleFillColor = Color.gray
-  #endif
+    
+    let roundRectangleFillColor = Utility().roundRectangleFillColor
   private var functions = Functions.functions()
   var body: some View {
     BackgroundFrame(

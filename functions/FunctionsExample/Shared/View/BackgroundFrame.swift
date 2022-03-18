@@ -21,17 +21,9 @@ struct BackgroundFrame<Content: View>: View {
   var description: String
   let content: Content
   let buttonAction: () -> Void
-
-  #if os(iOS)
-    let textForegroundColor = Color(UIColor.secondaryLabel)
-    let roundRectangleFillColor = Color(.secondarySystemBackground)
-  #elseif os(macOS)
-    let textForegroundColor = Color(NSColor.secondaryLabelColor)
-    let roundRectangleFillColor = Color(NSColor.systemGray)
-  #elseif os(tvOS)
-    let textForegroundColor = Color.secondary
-    let roundRectangleFillColor = Color.gray
-  #endif
+    
+      let textForegroundColor = Utility().textForegroundColor
+      let roundRectangleFillColor = Utility().roundRectangleFillColor
   init(title: String, description: String, buttonAction: @escaping () -> Void,
        @ViewBuilder content: () -> Content) {
     self.title = title

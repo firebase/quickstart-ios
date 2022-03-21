@@ -25,9 +25,9 @@
 		B926024B278F963C006F123B /* CapitalizeMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B926024A278F963C006F123B /* CapitalizeMessageView.swift */; };
 		B926024D278F96B3006F123B /* AddNumbersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B926024C278F96B3006F123B /* AddNumbersView.swift */; };
 		B926024F278F9756006F123B /* BackgroundFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = B926024E278F9756006F123B /* BackgroundFrame.swift */; };
-		B978330A27E5448D009EC239 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = B978330927E5448D009EC239 /* Utility.swift */; };
-		B978330B27E5448D009EC239 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = B978330927E5448D009EC239 /* Utility.swift */; };
-		B978330C27E5448D009EC239 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = B978330927E5448D009EC239 /* Utility.swift */; };
+		B978330A27E5448D009EC239 /* ColorConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B978330927E5448D009EC239 /* ColorConstants.swift */; };
+		B978330B27E5448D009EC239 /* ColorConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B978330927E5448D009EC239 /* ColorConstants.swift */; };
+		B978330C27E5448D009EC239 /* ColorConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B978330927E5448D009EC239 /* ColorConstants.swift */; };
 		B978330E27E544D7009EC239 /* FirebaseAnalyticsSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = B978330D27E544D7009EC239 /* FirebaseAnalyticsSwift-Beta */; };
 		B978331027E544D7009EC239 /* FirebaseFunctions in Frameworks */ = {isa = PBXBuildFile; productRef = B978330F27E544D7009EC239 /* FirebaseFunctions */; };
 		B978331227E544D7009EC239 /* FirebaseFunctionsSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = B978331127E544D7009EC239 /* FirebaseFunctionsSwift-Beta */; };
@@ -59,7 +59,7 @@
 		B926024A278F963C006F123B /* CapitalizeMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapitalizeMessageView.swift; sourceTree = "<group>"; };
 		B926024C278F96B3006F123B /* AddNumbersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNumbersView.swift; sourceTree = "<group>"; };
 		B926024E278F9756006F123B /* BackgroundFrame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundFrame.swift; sourceTree = "<group>"; };
-		B978330927E5448D009EC239 /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
+		B978330927E5448D009EC239 /* ColorConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorConstants.swift; sourceTree = "<group>"; };
 		B9A5988F27E2487E003BCFD0 /* FunctionsExample (tvOS).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "FunctionsExample (tvOS).app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9A5989527E2487F003BCFD0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B9A5989827E2487F003BCFD0 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -164,7 +164,7 @@
 				B926024A278F963C006F123B /* CapitalizeMessageView.swift */,
 				B926024C278F96B3006F123B /* AddNumbersView.swift */,
 				B926024E278F9756006F123B /* BackgroundFrame.swift */,
-				B978330927E5448D009EC239 /* Utility.swift */,
+				B978330927E5448D009EC239 /* ColorConstants.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -365,7 +365,7 @@
 			files = (
 				B91E3EC127D8347900CEEDD8 /* AddNumbersView.swift in Sources */,
 				B9F72C1027E00271001C9536 /* ContentView.swift in Sources */,
-				B978330B27E5448D009EC239 /* Utility.swift in Sources */,
+				B978330B27E5448D009EC239 /* ColorConstants.swift in Sources */,
 				B91E3EBD27D8347900CEEDD8 /* BackgroundFrame.swift in Sources */,
 				B91E3EC027D8347900CEEDD8 /* CapitalizeMessageView.swift in Sources */,
 				B91E3EBE27D8347900CEEDD8 /* FunctionsExampleApp.swift in Sources */,
@@ -378,7 +378,7 @@
 			files = (
 				B926024D278F96B3006F123B /* AddNumbersView.swift in Sources */,
 				B926024B278F963C006F123B /* CapitalizeMessageView.swift in Sources */,
-				B978330A27E5448D009EC239 /* Utility.swift in Sources */,
+				B978330A27E5448D009EC239 /* ColorConstants.swift in Sources */,
 				B926024F278F9756006F123B /* BackgroundFrame.swift in Sources */,
 				B9260235278F8F08006F123B /* ContentView.swift in Sources */,
 				B9260233278F8F08006F123B /* FunctionsExampleApp.swift in Sources */,
@@ -391,7 +391,7 @@
 			files = (
 				B9A598A027E24898003BCFD0 /* ContentView.swift in Sources */,
 				B9A598A127E24898003BCFD0 /* CapitalizeMessageView.swift in Sources */,
-				B978330C27E5448D009EC239 /* Utility.swift in Sources */,
+				B978330C27E5448D009EC239 /* ColorConstants.swift in Sources */,
 				B9A5989D27E24898003BCFD0 /* FunctionsExampleApp.swift in Sources */,
 				B9A5989E27E24898003BCFD0 /* AddNumbersView.swift in Sources */,
 				B9A5989F27E24898003BCFD0 /* BackgroundFrame.swift in Sources */,

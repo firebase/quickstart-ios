@@ -21,7 +21,7 @@ struct CapitalizeMessageView: View {
   @State private var comment: String = ""
   @State private var outcome: String = ""
 
-  let roundRectangleFillColor = Utility().roundRectangleFillColor
+  let roundRectangleFillColor = ColorConstants.roundRectangleFillColor
   private var functions = Functions.functions()
   var body: some View {
     BackgroundFrame(

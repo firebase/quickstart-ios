@@ -21,8 +21,8 @@ struct AddNumbersView: View {
   @State private var num1: String = ""
   @State private var num2: String = ""
   @State private var outcome: String = ""
-  let textForegroundColor = Utility().textForegroundColor
-  let roundRectangleFillColor = Utility().roundRectangleFillColor
+  let textForegroundColor = ColorConstants.textForegroundColor
+  let roundRectangleFillColor = ColorConstants.roundRectangleFillColor
   private var functions = Functions.functions()
   var body: some View {
     BackgroundFrame(

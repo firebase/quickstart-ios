@@ -17,15 +17,18 @@
 import Foundation
 import SwiftUI
 
-struct Utility {
+struct ColorConstants {
   #if os(iOS)
-    let textForegroundColor = Color(UIColor.secondaryLabel)
-    let roundRectangleFillColor = Color(.secondarySystemBackground)
+    static let textForegroundColor = Color(UIColor.secondaryLabel)
+    static let roundRectangleFillColor = Color(.systemGray5)
+    static let frameBackgroundColor = Color(.secondarySystemBackground)
   #elseif os(macOS)
-    let textForegroundColor = Color(NSColor.secondaryLabelColor)
-    let roundRectangleFillColor = Color(NSColor.systemGray)
+    static let textForegroundColor = Color(NSColor.secondaryLabelColor)
+    static let roundRectangleFillColor = Color(NSColor.systemGray)
+    static let frameBackgroundColor = Color(NSColor.underPageBackgroundColor)
   #elseif os(tvOS)
-    let textForegroundColor = Color.secondary
-    let roundRectangleFillColor = Color.gray
+    static let textForegroundColor = Color.secondary
+    static let roundRectangleFillColor = Color.gray
+    static let frameBackgroundColor = Color(.gray)
   #endif
 }

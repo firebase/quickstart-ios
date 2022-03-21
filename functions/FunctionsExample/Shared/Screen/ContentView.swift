@@ -26,7 +26,7 @@ struct ContentView: View {
           .navigationBarTitleDisplayMode(.large)
       }
       .navigationViewStyle(StackNavigationViewStyle())
-    #elseif os(macOS)
+    #elseif os(macOS) || os(tvOS)
       FunctionsView()
     #endif
   }

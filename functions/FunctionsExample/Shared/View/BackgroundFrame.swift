@@ -22,13 +22,8 @@ struct BackgroundFrame<Content: View>: View {
   let content: Content
   let buttonAction: () -> Void
 
-  #if os(iOS)
-    let textForegroundColor = Color(UIColor.secondaryLabel)
-    let roundRectangleFillColor = Color(.secondarySystemBackground)
-  #elseif os(macOS)
-    let textForegroundColor = Color(NSColor.secondaryLabelColor)
-    let roundRectangleFillColor = Color(NSColor.systemGray)
-  #endif
+  let textForegroundColor = ColorConstants.textForegroundColor
+  let roundRectangleFillColor = ColorConstants.frameBackgroundColor
   init(title: String, description: String, buttonAction: @escaping () -> Void,
        @ViewBuilder content: () -> Content) {
     self.title = title
@@ -75,7 +70,7 @@ struct CustomStyledButton: View {
 
   var body: some View {
     Button(action: action) {
-      /// Embed in an HStack to display a wide button with centered text.
+      // Embed in an HStack to display a wide button with centered text.
       HStack {
         Spacer()
         Text(title)
@@ -84,7 +79,7 @@ struct CustomStyledButton: View {
         Spacer()
       }
     }
-    #if os(iOS)
+    #if os(iOS) || os(tvOS)
       .background(RoundedRectangle(cornerRadius: 16.0)
         .fill(Color.orange))
     #elseif os(macOS)

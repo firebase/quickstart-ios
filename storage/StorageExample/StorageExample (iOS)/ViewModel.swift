@@ -18,7 +18,7 @@ import Foundation
 import UIKit
 import SwiftUI
 
-class ViewModel: ObservableObject{
+class ViewModel: ObservableObject {
   @Published var image: Image?
   @Published var showingImagePicker = false
   @Published var inputImage: UIImage?

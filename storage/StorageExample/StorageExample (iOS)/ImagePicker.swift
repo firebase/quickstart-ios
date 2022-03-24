@@ -20,25 +20,24 @@ import SwiftUI
 struct ImagePicker: UIViewControllerRepresentable {
   @Binding var image: UIImage?
   var imageURL: URL?
-  
+
   class Coordinator: PHPickerViewControllerDelegate {
-    
     var parent: ImagePicker
-    
-    init(_ parent: ImagePicker){
+
+    init(_ parent: ImagePicker) {
       self.parent = parent
     }
-    
+
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
       picker.dismiss(animated: true)
-      if let sheet = picker.sheetPresentationController{
+      if let sheet = picker.sheetPresentationController {
         sheet.detents = [.medium()]
       }
-      guard let provider = results.first?.itemProvider else {return}
-      if provider.canLoadObject(ofClass: UIImage.self){
-        provider.loadObject(ofClass: UIImage.self){ image, _ in
+      guard let provider = results.first?.itemProvider else { return }
+      if provider.canLoadObject(ofClass: UIImage.self) {
+        provider.loadObject(ofClass: UIImage.self) { image, _ in
           DispatchQueue.main.async {
-          self.parent.image = image as? UIImage
+            self.parent.image = image as? UIImage
           }
         }
         provider.loadFileRepresentation(forTypeIdentifier: UTType.image.identifier) { url, _ in
@@ -48,14 +47,14 @@ struct ImagePicker: UIViewControllerRepresentable {
               try FileManager.default.removeItem(at: destURL)
             }
             try FileManager.default.copyItem(at: url!, to: destURL)
-          } catch (let error) {
+          } catch {
             print("Cannot copy item at \(url!) to \(destURL): \(error)")
           }
         }
       }
     }
-    
   }
+
   func makeUIViewController(context: Context) -> PHPickerViewController {
     var config = PHPickerConfiguration()
     config.filter = .images
@@ -64,12 +63,9 @@ struct ImagePicker: UIViewControllerRepresentable {
 
     return picker
   }
-  
-  func updateUIViewController(_ uiViewController: PHPickerViewController, context: Context) {
-    
-  }
-  
-  
+
+  func updateUIViewController(_ uiViewController: PHPickerViewController, context: Context) {}
+
   func makeCoordinator() -> Coordinator {
     Coordinator(self)
   }

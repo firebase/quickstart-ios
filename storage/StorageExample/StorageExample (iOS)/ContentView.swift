@@ -22,18 +22,19 @@ struct ContentView: View {
   @EnvironmentObject var vm: ViewModel
   @State private var authenticated: Bool = true
   private var storage = Storage.storage()
-  private var imageURL: URL = FileManager.default.temporaryDirectory.appendingPathComponent("tempImage.jpeg")
-  
+  private var imageURL: URL = FileManager.default.temporaryDirectory
+    .appendingPathComponent("tempImage.jpeg")
+
   var body: some View {
-    ZStack{
-      VStack{
-        if let image = vm.image{
+    ZStack {
+      VStack {
+        if let image = vm.image {
           image
             .resizable()
             .scaledToFit()
-            .frame(minWidth: 300,maxHeight: 200)
+            .frame(minWidth: 300, maxHeight: 200)
             .cornerRadius(16)
-          
+
         } else {
           Image(systemName: "photo.fill")
             .resizable()
@@ -42,39 +43,37 @@ struct ContentView: View {
             .frame(width: 300, height: 200, alignment: .top)
             .cornerRadius(16)
             .padding(.horizontal)
-          
         }
-        Button("Photo"){
+        Button("Photo") {
           vm.showingImagePicker = true
         }
         .buttonStyle(OrangeButton())
         .disabled(!authenticated)
         if vm.image != nil {
-          Button("Upload from Data"){
+          Button("Upload from Data") {
             uploadFromData()
           }
           .buttonStyle(OrangeButton())
         }
-        
+
         if let _ = vm.image, FileManager.default.fileExists(atPath: imageURL.path) {
-          Button("Upload from URL"){
+          Button("Upload from URL") {
             uploadFromALocalFile()
           }
           .buttonStyle(OrangeButton())
-          
         }
         if vm.downloadPicButtonEnabled {
-          Button("Download"){
+          Button("Download") {
             download()
           }
           .buttonStyle(OrangeButton())
         }
       }
-      .sheet(isPresented: $vm.showingImagePicker){
+      .sheet(isPresented: $vm.showingImagePicker) {
         ImagePicker(image: $vm.inputImage, imageURL: imageURL)
       }
-      .sheet(isPresented: $vm.downloadDone){
-        if let image = vm.downloadedImage{
+      .sheet(isPresented: $vm.downloadDone) {
+        if let image = vm.downloadedImage {
           image
             .resizable()
             .scaledToFit()
@@ -84,44 +83,42 @@ struct ContentView: View {
       .onChange(of: vm.inputImage) { _ in
         loadImage()
       }
-      .onAppear{
+      .onAppear {
         firebaseAuth()
       }
       .alert("Error", isPresented: $vm.errorFound) {
         Text(vm.errInfo.debugDescription)
-        Button("ok"){}
+        Button("ok") {}
       }
-      .alert("Image was uploaded", isPresented: $vm.fileUploaded){
-        Button("ok"){}
-        Button("Link"){
-          if let url = vm.fileDownloadURL{
+      .alert("Image was uploaded", isPresented: $vm.fileUploaded) {
+        Button("ok") {}
+        Button("Link") {
+          if let url = vm.fileDownloadURL {
             print("downloaded url: \(url)")
             UIApplication.shared.open(url)
           }
         }
       }
-      
+
       if vm.isLoading {
-        
-          LoadingView()
+        LoadingView()
       }
-      
     }
   }
-  
-  func loadImage(){
+
+  func loadImage() {
     guard let inputImage = vm.inputImage else {
       return
     }
     vm.image = Image(uiImage: inputImage)
   }
-  
-  func uploadFromALocalFile(){
+
+  func uploadFromALocalFile() {
     let filePath = Auth.auth().currentUser!.uid +
-    "/\(Int(Date.timeIntervalSinceReferenceDate * 1000))/\(imageURL.lastPathComponent)"
+      "/\(Int(Date.timeIntervalSinceReferenceDate * 1000))/\(imageURL.lastPathComponent)"
     // [START uploadimage]
-    let storageRef = self.storage.reference(withPath: filePath)
-    
+    let storageRef = storage.reference(withPath: filePath)
+
     vm.isLoading = true
     storageRef.putFile(from: imageURL, metadata: nil) { metadata, error in
       guard let _ = metadata else {
@@ -130,23 +127,23 @@ struct ContentView: View {
         vm.errInfo = error
         return
       }
-      
+
       vm.isLoading = false
       // You can also access to download URL after upload.
       fetchDownloadURL(storageRef, storagePath: filePath)
     }
   }
 
-  func uploadFromData(){
+  func uploadFromData() {
     guard let imageData = vm.inputImage?.jpeg else {
       print("The image from url \(imageURL.path) cannot be transferred to data.")
       return
     }
     let filePath = Auth.auth().currentUser!.uid +
-    "/\(Int(Date.timeIntervalSinceReferenceDate * 1000))/fromData/\(imageURL.lastPathComponent)"
+      "/\(Int(Date.timeIntervalSinceReferenceDate * 1000))/fromData/\(imageURL.lastPathComponent)"
     // [START uploadimage]
-    let storageRef = self.storage.reference(withPath: filePath)
-    
+    let storageRef = storage.reference(withPath: filePath)
+
     vm.isLoading = true
     storageRef.putData(imageData, metadata: nil) { metadata, error in
       guard let _ = metadata else {
@@ -158,14 +155,12 @@ struct ContentView: View {
       vm.isLoading = false
       // You can also access to download URL after upload.
       fetchDownloadURL(storageRef, storagePath: filePath)
-      
     }
-    
   }
-  
+
   func fetchDownloadURL(_ storageRef: StorageReference, storagePath: String) {
     storageRef.downloadURL { url, error in
-      
+
       guard let downloadURL = url else {
         print("Error getting download URL: \(error.debugDescription)")
         vm.errorFound = true
@@ -178,27 +173,27 @@ struct ContentView: View {
       vm.downloadPicButtonEnabled = true
       vm.fileUploaded = true
       vm.fileDownloadURL = downloadURL
-      
     }
   }
-  func download(){
+
+  func download() {
     // Create a reference to the file you want to download
     let storageRef = Storage.storage().reference()
-    
+
     let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
     let documentsDirectory = paths[0]
-    print (paths)
+    print(paths)
     let filePath = "file:\(documentsDirectory)/myimage.jpg"
     guard let fileURL = URL(string: filePath) else { return }
     guard let storagePath = UserDefaults.standard.object(forKey: "storagePath") as? String else {
       return
     }
-    
+
     // [START downloadimage]
-    
+
     vm.isLoading = true
     storageRef.child(storagePath).write(toFile: fileURL) { url, error in
-      
+
       if let error = error {
         // Uh-oh, an error occurred!
         vm.errorFound = true
@@ -207,13 +202,12 @@ struct ContentView: View {
         vm.downloadDone = true
         vm.downloadedImage = Image(uiImage: UIImage(contentsOfFile: url!.path)!)
       }
-      
+
       vm.isLoading = false
     }
   }
-  
-  func firebaseAuth(){
-    
+
+  func firebaseAuth() {
     // [START storageauth]
     // Using Cloud Storage for Firebase requires the user be authenticated. Here we are using
     // anonymous authentication.
@@ -233,7 +227,7 @@ struct ContentView: View {
 
 struct OrangeButton: ButtonStyle {
   @Environment(\.isEnabled) private var isEnabled: Bool
-  
+
   func makeBody(configuration: Configuration) -> some View {
     configuration.label
       .padding()
@@ -247,15 +241,14 @@ extension UIImage {
   var jpeg: Data? { jpegData(compressionQuality: 1) }
 }
 
-struct LoadingView: View{
-  
-  var body: some View{
-    ZStack{
+struct LoadingView: View {
+  var body: some View {
+    ZStack {
       Color(.systemBackground)
         .ignoresSafeArea()
         .opacity(0.5)
       ProgressView()
-        .progressViewStyle(CircularProgressViewStyle(tint:.orange))
+        .progressViewStyle(CircularProgressViewStyle(tint: .orange))
         .scaleEffect(3)
     }
   }

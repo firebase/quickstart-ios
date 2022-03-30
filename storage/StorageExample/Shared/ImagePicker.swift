@@ -23,6 +23,7 @@ struct ImagePicker: UIViewControllerRepresentable {
 
   class Coordinator: PHPickerViewControllerDelegate {
     var parent: ImagePicker
+    @EnvironmentObject var viewModel: ViewModel
 
     init(_ parent: ImagePicker) {
       self.parent = parent
@@ -35,20 +36,29 @@ struct ImagePicker: UIViewControllerRepresentable {
       }
       guard let provider = results.first?.itemProvider else { return }
       if provider.canLoadObject(ofClass: UIImage.self) {
-        provider.loadObject(ofClass: UIImage.self) { image, _ in
-          DispatchQueue.main.async {
-            self.parent.image = image as? UIImage
+        Task {
+          do {
+            if let image = try await provider.loadImage() {
+              DispatchQueue.main.async {
+                self.parent.image = image
+              }
+            }
+          } catch {
+            self.viewModel.errInfo = error
+            self.viewModel.errorFound = true
           }
         }
-        provider.loadFileRepresentation(forTypeIdentifier: UTType.image.identifier) { url, _ in
-          let destURL = self.parent.imageURL!
+        Task {
           do {
-            if FileManager.default.fileExists(atPath: destURL.path) {
-              try FileManager.default.removeItem(at: destURL)
-            }
-            try FileManager.default.copyItem(at: url!, to: destURL)
+            let destURL = self.parent.imageURL!
+
+            try await provider.getFileTempURL(
+              forTypeIdentifier: UTType.image.identifier,
+              destURL: destURL
+            )
           } catch {
-            print("Cannot copy item at \(url!) to \(destURL): \(error)")
+            self.viewModel.errInfo = error
+            self.viewModel.errorFound = true
           }
         }
       }
@@ -68,5 +78,47 @@ struct ImagePicker: UIViewControllerRepresentable {
 
   func makeCoordinator() -> Coordinator {
     Coordinator(self)
+  }
+}
+
+extension NSItemProvider {
+  func getFileTempURL(forTypeIdentifier type: String, destURL: URL) async throws {
+    do {
+      return try await withCheckedThrowingContinuation { continuation in
+        self.loadFileRepresentation(forTypeIdentifier: type) { url, error in
+          if let error = error {
+            continuation.resume(throwing: error)
+          } else {
+            do {
+              if FileManager.default.fileExists(atPath: destURL.path) {
+                try FileManager.default.removeItem(at: destURL)
+              }
+              try FileManager.default.copyItem(at: url!, to: destURL)
+              continuation.resume()
+            } catch {
+              print("Cannot copy item at \(url!) to \(destURL): \(error)")
+            }
+          }
+        }
+      }
+    } catch {
+      print("Cannot load file from the image picker.")
+    }
+  }
+
+  func loadImage() async throws -> UIImage? {
+    do {
+      return try await withCheckedThrowingContinuation { continuation in
+        self.loadObject(ofClass: UIImage.self) { image, error in
+          if let error = error {
+            continuation.resume(throwing: error)
+          }
+          continuation.resume(returning: image as? UIImage)
+        }
+      }
+    } catch {
+      print("Image was not properly loaded.")
+      return nil
+    }
   }
 }

@@ -17,9 +17,10 @@
 import SwiftUI
 import FirebaseAuth
 import FirebaseStorage
+import FirebaseStorageSwift
 
 struct ContentView: View {
-  @EnvironmentObject var vm: ViewModel
+  @EnvironmentObject var viewModel: ViewModel
   @State private var authenticated: Bool = true
   private var storage = Storage.storage()
   private var imageURL: URL = FileManager.default.temporaryDirectory
@@ -28,7 +29,7 @@ struct ContentView: View {
   var body: some View {
     ZStack {
       VStack {
-        if let image = vm.image {
+        if let image = viewModel.image {
           image
             .resizable()
             .scaledToFit()
@@ -45,114 +46,115 @@ struct ContentView: View {
             .padding(.horizontal)
         }
         Button("Photo") {
-          vm.showingImagePicker = true
+          viewModel.showingImagePicker = true
         }
         .buttonStyle(OrangeButton())
         .disabled(!authenticated)
-        if vm.image != nil {
+        if viewModel.image != nil {
           Button("Upload from Data") {
             uploadFromData()
           }
           .buttonStyle(OrangeButton())
         }
 
-        if let _ = vm.image, FileManager.default.fileExists(atPath: imageURL.path) {
+        if viewModel.image != nil, FileManager.default.fileExists(atPath: imageURL.path) {
           Button("Upload from URL") {
             uploadFromALocalFile()
           }
           .buttonStyle(OrangeButton())
         }
-        if vm.downloadPicButtonEnabled {
+        if viewModel.downloadPicButtonEnabled {
           Button("Download") {
-            download()
+            Task {
+              await downloadImage()
+            }
           }
           .buttonStyle(OrangeButton())
         }
       }
-      .sheet(isPresented: $vm.showingImagePicker) {
-        ImagePicker(image: $vm.inputImage, imageURL: imageURL)
+      .sheet(isPresented: $viewModel.showingImagePicker) {
+        ImagePicker(image: $viewModel.inputImage, imageURL: imageURL)
       }
-      .sheet(isPresented: $vm.downloadDone) {
-        if let image = vm.downloadedImage {
+      .sheet(isPresented: $viewModel.downloadDone) {
+        if let image = viewModel.downloadedImage {
           image
             .resizable()
             .scaledToFit()
             .frame(minWidth: 0, maxWidth: .infinity)
         }
       }
-      .onChange(of: vm.inputImage) { _ in
+      .onChange(of: viewModel.inputImage) { _ in
         loadImage()
+        viewModel.showingImagePicker = false
       }
-      .onAppear {
-        firebaseAuth()
+      .task {
+        await signInAnonymously()
       }
-      .alert("Error", isPresented: $vm.errorFound) {
-        Text(vm.errInfo.debugDescription)
+      .alert("Error", isPresented: $viewModel.errorFound) {
+        Text(viewModel.errInfo.debugDescription)
         Button("ok") {}
       }
-      .alert("Image was uploaded", isPresented: $vm.fileUploaded) {
+      .alert("Image was uploaded", isPresented: $viewModel.fileUploaded) {
         Button("ok") {}
         Button("Link") {
-          if let url = vm.fileDownloadURL {
+          if let url = viewModel.fileDownloadURL {
             print("downloaded url: \(url)")
             UIApplication.shared.open(url)
           }
         }
       }
 
-      if vm.isLoading {
+      if viewModel.isLoading {
         LoadingView()
       }
     }
   }
 
   func loadImage() {
-    guard let inputImage = vm.inputImage else {
+    guard let inputImage = viewModel.inputImage else {
       return
     }
-    vm.image = Image(uiImage: inputImage)
+    viewModel.image = Image(uiImage: inputImage)
   }
 
   func uploadFromALocalFile() {
     let filePath = Auth.auth().currentUser!.uid +
       "/\(Int(Date.timeIntervalSinceReferenceDate * 1000))/\(imageURL.lastPathComponent)"
-    // [START uploadimage]
     let storageRef = storage.reference(withPath: filePath)
 
-    vm.isLoading = true
+    viewModel.isLoading = true
     storageRef.putFile(from: imageURL, metadata: nil) { metadata, error in
       guard let _ = metadata else {
         // Uh-oh, an error occurred!
-        vm.errorFound = true
-        vm.errInfo = error
+        viewModel.errorFound = true
+        viewModel.errInfo = error
         return
       }
 
-      vm.isLoading = false
+      viewModel.isLoading = false
       // You can also access to download URL after upload.
       fetchDownloadURL(storageRef, storagePath: filePath)
     }
   }
 
   func uploadFromData() {
-    guard let imageData = vm.inputImage?.jpeg else {
+    guard let imageData = viewModel.inputImage?.jpeg else {
       print("The image from url \(imageURL.path) cannot be transferred to data.")
       return
     }
     let filePath = Auth.auth().currentUser!.uid +
       "/\(Int(Date.timeIntervalSinceReferenceDate * 1000))/fromData/\(imageURL.lastPathComponent)"
-    // [START uploadimage]
     let storageRef = storage.reference(withPath: filePath)
 
-    vm.isLoading = true
+    viewModel.isLoading = true
     storageRef.putData(imageData, metadata: nil) { metadata, error in
       guard let _ = metadata else {
         // Uh-oh, an error occurred!
-        vm.errorFound = true
-        vm.errInfo = error
+        viewModel.errorFound = true
+        viewModel.errInfo = error
         return
       }
-      vm.isLoading = false
+      viewModel.isLoading = false
       // You can also access to download URL after upload.
       fetchDownloadURL(storageRef, storagePath: filePath)
     }
@@ -163,20 +165,18 @@ struct ContentView: View {
 
       guard let downloadURL = url else {
         print("Error getting download URL: \(error.debugDescription)")
-        vm.errorFound = true
-        self.vm.errInfo = error
+        viewModel.errorFound = true
+        viewModel.errInfo = error
         return
       }
-      print("download url: \(downloadURL.absoluteString)")
-      UserDefaults.standard.set(storagePath, forKey: "storagePath")
-      UserDefaults.standard.synchronize()
-      vm.downloadPicButtonEnabled = true
-      vm.fileUploaded = true
-      vm.fileDownloadURL = downloadURL
+      viewModel.remoteStoragePath = storagePath
+      viewModel.downloadPicButtonEnabled = true
+      viewModel.fileUploaded = true
+      viewModel.fileDownloadURL = downloadURL
     }
   }
 
-  func download() {
+  func downloadImage() async {
     // Create a reference to the file you want to download
     let storageRef = Storage.storage().reference()
 
@@ -185,42 +185,34 @@ struct ContentView: View {
     print(paths)
     let filePath = "file:\(documentsDirectory)/myimage.jpg"
     guard let fileURL = URL(string: filePath) else { return }
-    guard let storagePath = UserDefaults.standard.object(forKey: "storagePath") as? String else {
+    guard let storagePath = viewModel.remoteStoragePath else {
       return
     }
 
-    // [START downloadimage]
-
-    vm.isLoading = true
-    storageRef.child(storagePath).write(toFile: fileURL) { url, error in
-
-      if let error = error {
-        // Uh-oh, an error occurred!
-        vm.errorFound = true
-        vm.errInfo = error
-      } else {
-        vm.downloadDone = true
-        vm.downloadedImage = Image(uiImage: UIImage(contentsOfFile: url!.path)!)
-      }
-
-      vm.isLoading = false
+    viewModel.isLoading = true
+    do {
+      let imageURL = try await storageRef.child(storagePath).writeAsync(toFile: fileURL)
+      viewModel.downloadDone = true
+      viewModel.downloadedImage = Image(uiImage: UIImage(contentsOfFile: imageURL.path)!)
+    } catch {
+      viewModel.errorFound = true
+      viewModel.errInfo = error
     }
+    viewModel.isLoading = false
   }
 
-  func firebaseAuth() {
-    // [START storageauth]
+  func signInAnonymously() async {
     // Using Cloud Storage for Firebase requires the user be authenticated. Here we are using
     // anonymous authentication.
     if Auth.auth().currentUser == nil {
-      Auth.auth().signInAnonymously(completion: { authResult, error in
-        if let error = error {
-          vm.errorFound = true
-          self.vm.errInfo = error
-          self.authenticated = false
-        } else {
-          self.authenticated = true
-        }
-      })
+      do {
+        try await Auth.auth().signInAnonymously()
+        authenticated = true
+      } catch {
+        viewModel.errorFound = true
+        viewModel.errInfo = error
+        authenticated = false
+      }
     }
   }
 }

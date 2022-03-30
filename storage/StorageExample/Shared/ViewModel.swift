@@ -30,4 +30,5 @@ class ViewModel: ObservableObject {
   @Published var fileUploaded: Bool = false
   @Published var fileDownloadURL: URL?
   @Published var isLoading: Bool = false
+  @Published var remoteStoragePath: String?
 }

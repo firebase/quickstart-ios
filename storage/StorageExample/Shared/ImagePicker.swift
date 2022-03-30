@@ -82,6 +82,11 @@ struct ImagePicker: UIViewControllerRepresentable {
 }
 
 extension NSItemProvider {
+  /// Write a copy of the file's data from a temporary file, which will be deleted when the completion handler returns, to another file, which could be reused after the completion handlers returns.
+  ///
+  /// - Parameters:
+  ///     - forTypeIdendifier: A string that represents the desired UTI.
+  ///     - destURL: The destination URL the temp file will be copied to.
   func getFileTempURL(forTypeIdentifier type: String, destURL: URL) async throws {
     do {
       return try await withCheckedThrowingContinuation { continuation in

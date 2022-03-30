@@ -85,7 +85,6 @@ struct ContentView: View {
       }
       .onChange(of: viewModel.inputImage) { _ in
         loadImage()
-        viewModel.showingImagePicker = false
       }
       .task {
         await signInAnonymously()
@@ -115,6 +114,7 @@ struct ContentView: View {
       return
     }
     viewModel.image = Image(uiImage: inputImage)
+    viewModel.showingImagePicker = false
   }
 
   func uploadFromALocalFile() {
@@ -182,7 +182,6 @@ struct ContentView: View {
 
     let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
     let documentsDirectory = paths[0]
-    print(paths)
     let filePath = "file:\(documentsDirectory)/myimage.jpg"
     guard let fileURL = URL(string: filePath) else { return }
     guard let storagePath = viewModel.remoteStoragePath else {

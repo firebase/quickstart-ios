@@ -15,7 +15,8 @@
 //
 
 import Combine
-import Firebase
+import FirebaseAuth
+import FirebaseDatabase
 
 class PostViewModel: ObservableObject, Identifiable {
   @Published var id: String

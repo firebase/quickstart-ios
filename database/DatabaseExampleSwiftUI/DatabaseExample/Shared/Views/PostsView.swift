@@ -15,7 +15,6 @@
 //
 
 import SwiftUI
-import Firebase
 
 struct PostsView: View {
   @StateObject var postList = PostListViewModel()

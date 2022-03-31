@@ -15,7 +15,7 @@
 //
 
 import SwiftUI
-import Firebase
+import FirebaseAuth
 
 class UserViewModel: ObservableObject {
   @AppStorage("isSignedIn") var isSignedIn = false

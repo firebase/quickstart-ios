@@ -15,7 +15,7 @@
 //
 
 import Foundation
-import Firebase
+import FirebaseDatabase
 
 struct Post: Identifiable {
   var id: String

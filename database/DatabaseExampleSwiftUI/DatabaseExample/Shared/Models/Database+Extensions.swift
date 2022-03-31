@@ -14,7 +14,7 @@
 //  limitations under the License.
 //
 
-import Firebase
+import FirebaseDatabase
 
 extension Database {
   class var root: DatabaseReference {

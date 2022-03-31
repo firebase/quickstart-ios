@@ -15,7 +15,8 @@
 //
 
 import Combine
-import Firebase
+import FirebaseAuth
+import FirebaseDatabase
 
 class PostListViewModel: ObservableObject {
   @Published var alert = false

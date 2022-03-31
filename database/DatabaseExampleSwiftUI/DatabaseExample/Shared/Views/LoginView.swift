@@ -15,7 +15,6 @@
 //
 
 import SwiftUI
-import Firebase
 
 struct LoginView: View {
   @StateObject var user = UserViewModel()

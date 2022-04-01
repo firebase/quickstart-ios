@@ -28,7 +28,7 @@ jobs:
     runs-on: macOS-latest
     env:
       SPM: false
-      LEGACY: false
+      LEGACY: true
       OS: iOS
       DEVICE: iPhone 11
       TEST: true
@@ -37,11 +37,12 @@ jobs:
         uses: actions/checkout@master
       - name: Setup
         run: |
-          cd storage
+          cd storage/LegacyStorageQuickstart
           gem install bundler
           bundle install
           gem install xcpretty
           bundle exec pod install --repo-update
+          cd ..
           ../scripts/install_prereqs/storage.sh
       - name: Build ObjC
         run: ./scripts/test.sh

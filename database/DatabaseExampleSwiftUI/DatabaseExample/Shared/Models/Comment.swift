@@ -14,7 +14,7 @@
 //  limitations under the License.
 //
 
-import Firebase
+import Foundation
 
 struct Comment: Identifiable {
   var id: String

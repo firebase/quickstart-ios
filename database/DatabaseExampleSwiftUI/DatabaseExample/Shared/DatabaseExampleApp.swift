@@ -15,7 +15,7 @@
 //
 
 import SwiftUI
-import Firebase
+import FirebaseCore
 
 @main
 struct DatabaseExampleApp: App {

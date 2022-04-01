@@ -15,7 +15,6 @@
 //
 
 import SwiftUI
-import Firebase
 
 struct PostCell: View {
   @StateObject var post: PostViewModel

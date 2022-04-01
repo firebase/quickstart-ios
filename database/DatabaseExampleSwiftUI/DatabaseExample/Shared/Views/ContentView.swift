@@ -15,7 +15,6 @@
 //
 
 import SwiftUI
-import Firebase
 
 struct ContentView: View {
   @AppStorage("isSignedIn") var isSignedIn = false

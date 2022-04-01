@@ -15,8 +15,7 @@
 //
 
 import SwiftUI
-import Firebase
-import FirebaseFunctionsSwift
+import FirebaseFunctions
 
 @main
 struct FunctionsExampleApp: App {

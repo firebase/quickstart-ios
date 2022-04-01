@@ -15,9 +15,12 @@
 //
 
 import Foundation
-import UIKit
 import SwiftUI
+#if !os(macOS)
+import UIKit
+#endif
 
+@MainActor
 class ViewModel: ObservableObject {
   @Published var image: Image?
   @Published var showingImagePicker = false
@@ -29,6 +32,7 @@ class ViewModel: ObservableObject {
   @Published var errInfo: Error?
   @Published var fileUploaded: Bool = false
   @Published var fileDownloadURL: URL?
+  @Published var fileLocalDownloadURL: URL?
   @Published var isLoading: Bool = false
   @Published var remoteStoragePath: String?
 }

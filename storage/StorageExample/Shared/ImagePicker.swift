@@ -13,22 +13,24 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 //
-
+#if os(iOS)
 import PhotosUI
+#endif
 import SwiftUI
 
+#if os(iOS)
 struct ImagePicker: UIViewControllerRepresentable {
   @Binding var image: UIImage?
   var imageURL: URL?
-
+  
   class Coordinator: PHPickerViewControllerDelegate {
     var parent: ImagePicker
     @EnvironmentObject var viewModel: ViewModel
-
+    
     init(_ parent: ImagePicker) {
       self.parent = parent
     }
-
+    
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
       picker.dismiss(animated: true)
       if let sheet = picker.sheetPresentationController {
@@ -51,7 +53,7 @@ struct ImagePicker: UIViewControllerRepresentable {
         Task {
           do {
             let destURL = self.parent.imageURL!
-
+            
             try await provider.getFileTempURL(
               forTypeIdentifier: UTType.image.identifier,
               destURL: destURL
@@ -64,18 +66,18 @@ struct ImagePicker: UIViewControllerRepresentable {
       }
     }
   }
-
+  
   func makeUIViewController(context: Context) -> PHPickerViewController {
     var config = PHPickerConfiguration()
     config.filter = .images
     let picker = PHPickerViewController(configuration: config)
     picker.delegate = context.coordinator
-
+    
     return picker
   }
-
+  
   func updateUIViewController(_ uiViewController: PHPickerViewController, context: Context) {}
-
+  
   func makeCoordinator() -> Coordinator {
     Coordinator(self)
   }
@@ -112,7 +114,7 @@ extension NSItemProvider {
       print("Cannot load file from the image picker.")
     }
   }
-
+  
   func loadImage() async throws -> UIImage? {
     do {
       return try await withCheckedThrowingContinuation { continuation in
@@ -129,3 +131,77 @@ extension NSItemProvider {
     }
   }
 }
+
+#elseif os(macOS)
+
+struct ImagePicker: View {
+  
+  @Binding var image: NSImage?
+  var imageURL: URL?
+  
+  var body: some View {
+    ZStack {
+      if self.image != nil {
+        Image(nsImage: self.image!)
+          .resizable()
+          .aspectRatio(contentMode: .fit)
+      } else {
+        ZStack{
+            Image(systemName: "photo.fill")
+              .resizable()
+              .scaledToFit()
+              .opacity(0.6)
+              .frame(width: 300, height: 200, alignment: .top)
+              .cornerRadius(16)
+              .padding(.horizontal)
+        Text("Drag and drop image file")
+          .frame(width: 320)
+        }
+      }
+    }
+    .frame(height: 320)
+    .background(Color.black.opacity(0.5))
+    .cornerRadius(8)
+    
+    .onDrop(of: ["public.url","public.file-url"], isTargeted: nil) { (items) -> Bool in
+      if let item = items.first {
+        if let identifier = item.registeredTypeIdentifiers.first {
+          print("onDrop with identifier = \(identifier)")
+          if identifier == "public.url" || identifier == "public.file-url" {
+            item.loadItem(forTypeIdentifier: identifier, options: nil) { (urlData, error) in
+              if let urlData = urlData as? Data {
+                let urll = NSURL(absoluteURLWithDataRepresentation: urlData, relativeTo: nil) as URL
+                DispatchQueue.main.async {
+                  
+                  if let img = NSImage(contentsOf: urll) {
+                    self.image = img
+                  }
+                }
+                if let imageURL = imageURL{
+                do {
+                  
+                    if FileManager.default.fileExists(atPath: imageURL.path) {
+                      try FileManager.default.removeItem(at: imageURL)
+                    }
+                  try FileManager.default.copyItem(at: urll, to: imageURL)
+                  print("Image is copied from \n \(urll) to \(imageURL)")
+                } catch {
+                  
+                  print("Cannot copy item at \(urll) to \(imageURL): \(error)")
+                }
+                }
+              }
+            }
+          }
+        }
+        return true
+      } else {
+        print("item not here")
+        return false
+        
+      }
+    }
+  }
+}
+
+#endif

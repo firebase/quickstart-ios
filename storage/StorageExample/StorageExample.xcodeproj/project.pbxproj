@@ -9,6 +9,15 @@
 /* Begin PBXBuildFile section */
 		B9380F7627E3EEBD00B5C769 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = B9380F7527E3EEBD00B5C769 /* FirebaseAuth */; };
 		B9380F7A27E3FABA00B5C769 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B9380F7927E3FABA00B5C769 /* GoogleService-Info.plist */; };
+		B94D0AC327F5060D00753EEA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B94D0AC227F5060D00753EEA /* Assets.xcassets */; };
+		B94D0AC627F5060D00753EEA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B94D0AC527F5060D00753EEA /* Preview Assets.xcassets */; };
+		B94D0ACB27F506C000753EEA /* StorageExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B983CA1527F21B1D00E4E201 /* StorageExampleApp.swift */; };
+		B94D0ACC27F506C600753EEA /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B983CA1627F21B1D00E4E201 /* ViewModel.swift */; };
+		B94D0ACD27F506CC00753EEA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B983CA1827F21B1D00E4E201 /* ContentView.swift */; };
+		B94D0ACF27F5075900753EEA /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = B94D0ACE27F5075900753EEA /* FirebaseAuth */; };
+		B94D0AD127F5075900753EEA /* FirebaseStorageSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = B94D0AD027F5075900753EEA /* FirebaseStorageSwift-Beta */; };
+		B94D0AD227F5157400753EEA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B9380F7927E3FABA00B5C769 /* GoogleService-Info.plist */; };
+		B94D0AD327F52FBB00753EEA /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B983CA1727F21B1D00E4E201 /* ImagePicker.swift */; };
 		B983CA1927F21B1D00E4E201 /* StorageExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B983CA1527F21B1D00E4E201 /* StorageExampleApp.swift */; };
 		B983CA1A27F21B1D00E4E201 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B983CA1627F21B1D00E4E201 /* ViewModel.swift */; };
 		B983CA1B27F21B1D00E4E201 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B983CA1727F21B1D00E4E201 /* ImagePicker.swift */; };
@@ -20,6 +29,10 @@
 
 /* Begin PBXFileReference section */
 		B9380F7927E3FABA00B5C769 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../GoogleService-Info.plist"; sourceTree = "<group>"; };
+		B94D0ABC27F5060C00753EEA /* StorageExample (macOS).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "StorageExample (macOS).app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B94D0AC227F5060D00753EEA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B94D0AC527F5060D00753EEA /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		B94D0AC727F5060D00753EEA /* StorageExample__macOS_.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = StorageExample__macOS_.entitlements; sourceTree = "<group>"; };
 		B983CA1527F21B1D00E4E201 /* StorageExampleApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorageExampleApp.swift; sourceTree = "<group>"; };
 		B983CA1627F21B1D00E4E201 /* ViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		B983CA1727F21B1D00E4E201 /* ImagePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
@@ -30,6 +43,15 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		B94D0AB927F5060C00753EEA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B94D0ACF27F5075900753EEA /* FirebaseAuth in Frameworks */,
+				B94D0AD127F5075900753EEA /* FirebaseStorageSwift-Beta in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B9A598B727E3D169003BCFD0 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -42,6 +64,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B94D0ABD27F5060C00753EEA /* StorageExample (macOS) */ = {
+			isa = PBXGroup;
+			children = (
+				B94D0AC227F5060D00753EEA /* Assets.xcassets */,
+				B94D0AC727F5060D00753EEA /* StorageExample__macOS_.entitlements */,
+				B94D0AC427F5060D00753EEA /* Preview Content */,
+			);
+			path = "StorageExample (macOS)";
+			sourceTree = "<group>";
+		};
+		B94D0AC427F5060D00753EEA /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				B94D0AC527F5060D00753EEA /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
 		B983CA1427F21B1D00E4E201 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
@@ -59,6 +99,7 @@
 				B9380F7927E3FABA00B5C769 /* GoogleService-Info.plist */,
 				B983CA1427F21B1D00E4E201 /* Shared */,
 				B9A598BC27E3D169003BCFD0 /* StorageExample (iOS) */,
+				B94D0ABD27F5060C00753EEA /* StorageExample (macOS) */,
 				B9A598BB27E3D169003BCFD0 /* Products */,
 				B9CE8D5E27F38915002AB1F6 /* Frameworks */,
 			);
@@ -68,6 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				B9A598BA27E3D169003BCFD0 /* StorageExample (iOS).app */,
+				B94D0ABC27F5060C00753EEA /* StorageExample (macOS).app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -99,6 +141,27 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		B94D0ABB27F5060C00753EEA /* StorageExample (macOS) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B94D0ACA27F5060D00753EEA /* Build configuration list for PBXNativeTarget "StorageExample (macOS)" */;
+			buildPhases = (
+				B94D0AB827F5060C00753EEA /* Sources */,
+				B94D0AB927F5060C00753EEA /* Frameworks */,
+				B94D0ABA27F5060C00753EEA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "StorageExample (macOS)";
+			packageProductDependencies = (
+				B94D0ACE27F5075900753EEA /* FirebaseAuth */,
+				B94D0AD027F5075900753EEA /* FirebaseStorageSwift-Beta */,
+			);
+			productName = "StorageExample (macOS)";
+			productReference = B94D0ABC27F5060C00753EEA /* StorageExample (macOS).app */;
+			productType = "com.apple.product-type.application";
+		};
 		B9A598B927E3D169003BCFD0 /* StorageExample (iOS) */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = B9A598C827E3D16A003BCFD0 /* Build configuration list for PBXNativeTarget "StorageExample (iOS)" */;
@@ -130,6 +193,9 @@
 				LastSwiftUpdateCheck = 1330;
 				LastUpgradeCheck = 1330;
 				TargetAttributes = {
+					B94D0ABB27F5060C00753EEA = {
+						CreatedOnToolsVersion = 13.3;
+					};
 					B9A598B927E3D169003BCFD0 = {
 						CreatedOnToolsVersion = 13.3;
 						LastSwiftMigration = 1330;
@@ -153,11 +219,22 @@
 			projectRoot = "";
 			targets = (
 				B9A598B927E3D169003BCFD0 /* StorageExample (iOS) */,
+				B94D0ABB27F5060C00753EEA /* StorageExample (macOS) */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		B94D0ABA27F5060C00753EEA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B94D0AC627F5060D00753EEA /* Preview Assets.xcassets in Resources */,
+				B94D0AC327F5060D00753EEA /* Assets.xcassets in Resources */,
+				B94D0AD227F5157400753EEA /* GoogleService-Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B9A598B827E3D169003BCFD0 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -171,6 +248,17 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		B94D0AB827F5060C00753EEA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B94D0ACD27F506CC00753EEA /* ContentView.swift in Sources */,
+				B94D0AD327F52FBB00753EEA /* ImagePicker.swift in Sources */,
+				B94D0ACC27F506C600753EEA /* ViewModel.swift in Sources */,
+				B94D0ACB27F506C000753EEA /* StorageExampleApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B9A598B627E3D169003BCFD0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -185,6 +273,60 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		B94D0AC827F5060D00753EEA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "StorageExample (macOS)/StorageExample__macOS_.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"StorageExample (macOS)/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 12.3;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.StorageExample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		B94D0AC927F5060D00753EEA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "StorageExample (macOS)/StorageExample__macOS_.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"StorageExample (macOS)/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 12.3;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.StorageExample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 		B9A598C627E3D16A003BCFD0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -367,6 +509,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		B94D0ACA27F5060D00753EEA /* Build configuration list for PBXNativeTarget "StorageExample (macOS)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B94D0AC827F5060D00753EEA /* Debug */,
+				B94D0AC927F5060D00753EEA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		B9A598B527E3D169003BCFD0 /* Build configuration list for PBXProject "StorageExample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -404,6 +555,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = B9380F7427E3EEBD00B5C769 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAuth;
+		};
+		B94D0ACE27F5075900753EEA /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B9380F7427E3EEBD00B5C769 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		B94D0AD027F5075900753EEA /* FirebaseStorageSwift-Beta */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B9380F7427E3EEBD00B5C769 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = "FirebaseStorageSwift-Beta";
 		};
 		B9CE8D5F27F38915002AB1F6 /* FirebaseStorageSwift-Beta */ = {
 			isa = XCSwiftPackageProductDependency;

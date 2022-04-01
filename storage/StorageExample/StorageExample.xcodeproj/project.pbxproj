@@ -101,7 +101,6 @@
 				B9A598BC27E3D169003BCFD0 /* StorageExample (iOS) */,
 				B94D0ABD27F5060C00753EEA /* StorageExample (macOS) */,
 				B9A598BB27E3D169003BCFD0 /* Products */,
-				B9CE8D5E27F38915002AB1F6 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -129,13 +128,6 @@
 				B9A598C427E3D16A003BCFD0 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		B9CE8D5E27F38915002AB1F6 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

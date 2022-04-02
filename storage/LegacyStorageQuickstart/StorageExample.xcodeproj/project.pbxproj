@@ -25,7 +25,6 @@
 		5FDE055D1B0DAA090037B82F /* AppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FDE055C1B0DAA090037B82F /* AppTests.m */; };
 		833D4495900ED3E4E5E7B700 /* Pods_StorageExampleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B33277AAE076328F8FD3B229 /* Pods_StorageExampleTests.framework */; };
 		9529F3452E5AA2B0709485BB /* Pods_StorageExampleSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D59F5B881B6D4E9FAE2A1F0 /* Pods_StorageExampleSwift.framework */; };
-		B9A598CC27E3D940003BCFD0 /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = B9A598CB27E3D940003BCFD0 /* GoogleService-Info.plist */; };
 		B9A598CD27E3D940003BCFD0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B9A598CB27E3D940003BCFD0 /* GoogleService-Info.plist */; };
 		B9A598CE27E3D940003BCFD0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B9A598CB27E3D940003BCFD0 /* GoogleService-Info.plist */; };
 		B9A598CF27E3D940003BCFD0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B9A598CB27E3D940003BCFD0 /* GoogleService-Info.plist */; };
@@ -683,7 +682,6 @@
 				5F5A53551ADE670C00F81DF0 /* AppDelegate.m in Sources */,
 				10D187C31C8640E300D0DC91 /* DownloadViewController.m in Sources */,
 				5F5A53521ADE670C00F81DF0 /* main.m in Sources */,
-				B9A598CC27E3D940003BCFD0 /* GoogleService-Info.plist in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -28,13 +28,6 @@ project = Xcodeproj::Project.open(project_path)
 # Add a file to the project in the main group
 files = project.new_file(file_name)
 
-# Remove files from the project before add them back. This is to avoid
-# duplicate tasks error caused by xcode, which might try to involve
-# GoogleService-Info twice.
-[files].each{ |file|
-  file.remove_from_project
-}
-
 # Add the file to the all targets
 project.targets.each do |target|
   target.add_file_references([files])

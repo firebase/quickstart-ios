@@ -25,9 +25,6 @@
 		5FDE055D1B0DAA090037B82F /* AppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FDE055C1B0DAA090037B82F /* AppTests.m */; };
 		B9A598CC27E3D940003BCFD0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B9A598CB27E3D940003BCFD0 /* GoogleService-Info.plist */; };
 		B9A598CD27E3D940003BCFD0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B9A598CB27E3D940003BCFD0 /* GoogleService-Info.plist */; };
-		B9A598CE27E3D940003BCFD0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B9A598CB27E3D940003BCFD0 /* GoogleService-Info.plist */; };
-		B9A598CF27E3D940003BCFD0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B9A598CB27E3D940003BCFD0 /* GoogleService-Info.plist */; };
-		B9A598D027E3D940003BCFD0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B9A598CB27E3D940003BCFD0 /* GoogleService-Info.plist */; };
 		DE8564A823AECBB800611383 /* FIREGSignInHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DE8564A523AECBB700611383 /* FIREGSignInHelper.m */; };
 		DE8564A923AECBB800611383 /* FIREGHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DE8564A623AECBB700611383 /* FIREGHelper.m */; };
 /* End PBXBuildFile section */
@@ -394,7 +391,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B9A598CF27E3D940003BCFD0 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -402,7 +398,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B9A598D027E3D940003BCFD0 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -432,7 +427,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B9A598CE27E3D940003BCFD0 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

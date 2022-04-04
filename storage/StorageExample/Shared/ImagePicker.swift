@@ -171,7 +171,7 @@ import SwiftUI
                     absoluteURLWithDataRepresentation: data,
                     relativeTo: nil
                   ) as URL
-                  Task{ @MainActor in
+                  Task { @MainActor in
                     if let image = NSImage(contentsOf: urll) {
                       self.image = image
                     }

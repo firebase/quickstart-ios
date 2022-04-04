@@ -153,29 +153,27 @@ import SwiftUI
               .frame(width: 300, height: 200, alignment: .top)
               .cornerRadius(16)
               .padding(.horizontal)
-            Text("Drag and drop image file")
-              .frame(width: 320)
+            Text("Drag and drop an image file")
+              .frame(width: 300)
           }
         }
       }
       .frame(height: 320)
-      .background(Color.black.opacity(0.5))
-      .cornerRadius(8)
-
+      .background(Color.black.opacity(0.6))
+      .cornerRadius(16)
       .onDrop(of: ["public.url", "public.file-url"], isTargeted: nil) { (items) -> Bool in
         if let item = items.first {
           if let identifier = item.registeredTypeIdentifiers.first {
-            print("onDrop with identifier = \(identifier)")
             if identifier == "public.url" || identifier == "public.file-url" {
               item.loadItem(forTypeIdentifier: identifier, options: nil) { urlData, error in
-                if let urlData = urlData as? Data {
+                if let data = urlData as? Data {
                   let urll = NSURL(
-                    absoluteURLWithDataRepresentation: urlData,
+                    absoluteURLWithDataRepresentation: data,
                     relativeTo: nil
                   ) as URL
-                  DispatchQueue.main.async {
-                    if let img = NSImage(contentsOf: urll) {
-                      self.image = img
+                  Task{ @MainActor in
+                    if let image = NSImage(contentsOf: urll) {
+                      self.image = image
                     }
                   }
                   if let imageURL = imageURL {
@@ -195,7 +193,7 @@ import SwiftUI
           }
           return true
         } else {
-          print("item not here")
+          print("Item not found")
           return false
         }
       }

@@ -106,12 +106,13 @@ import SwiftUI
                 continuation.resume()
               } catch {
                 print("Cannot copy item at \(url!) to \(destURL): \(error)")
+                continuation.resume(throwing: error)
               }
             }
           }
         }
       } catch {
-        print("Cannot load file from the image picker.")
+        print("Cannot load file from the image picker.\(error)")
       }
     }
 
@@ -126,7 +127,7 @@ import SwiftUI
           }
         }
       } catch {
-        print("Image was not properly loaded.")
+        print("Image was not properly loaded.\(error)")
         return nil
       }
     }
@@ -140,8 +141,8 @@ import SwiftUI
 
     var body: some View {
       ZStack {
-        if self.image != nil {
-          Image(nsImage: self.image!)
+        if let image = self.image {
+          Image(nsImage: image)
             .resizable()
             .aspectRatio(contentMode: .fit)
         } else {
@@ -167,12 +168,12 @@ import SwiftUI
             if identifier == "public.url" || identifier == "public.file-url" {
               item.loadItem(forTypeIdentifier: identifier, options: nil) { urlData, error in
                 if let data = urlData as? Data {
-                  let urll = NSURL(
+                  let url = NSURL(
                     absoluteURLWithDataRepresentation: data,
                     relativeTo: nil
                   ) as URL
                   Task { @MainActor in
-                    if let image = NSImage(contentsOf: urll) {
+                    if let image = NSImage(contentsOf: url) {
                       self.image = image
                     }
                   }
@@ -181,10 +182,10 @@ import SwiftUI
                       if FileManager.default.fileExists(atPath: imageURL.path) {
                         try FileManager.default.removeItem(at: imageURL)
                       }
-                      try FileManager.default.copyItem(at: urll, to: imageURL)
-                      print("Image is copied from \n \(urll) to \(imageURL)")
+                      try FileManager.default.copyItem(at: url, to: imageURL)
+                      print("Image is copied from \n \(url) to \(imageURL)")
                     } catch {
-                      print("Cannot copy item at \(urll) to \(imageURL): \(error)")
+                      print("Cannot copy item at \(url) to \(imageURL): \(error)")
                     }
                   }
                 }

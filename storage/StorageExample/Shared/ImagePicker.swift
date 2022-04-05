@@ -84,11 +84,6 @@ import SwiftUI
   }
 
   extension NSItemProvider {
-    enum LoadingItemError: Error {
-      case loadingTempFileError
-      case loadingImageError
-    }
-
     /// Write a copy of the file's data from a temporary file, which will be
     /// deleted when the completion handler returns, to another file, which could
     /// be reused after the completion handlers returns.
@@ -118,7 +113,7 @@ import SwiftUI
         }
       } catch {
         print("Cannot load file from the image picker.")
-        throw LoadingItemError.loadingTempFileError
+        throw error
       }
     }
 
@@ -133,8 +128,8 @@ import SwiftUI
           }
         }
       } catch {
-        print("Image was not properly loaded.\(error)")
-        throw LoadingItemError.loadingImageError
+        print("Image was not properly loaded.")
+        throw error
       }
     }
   }

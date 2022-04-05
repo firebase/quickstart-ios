@@ -240,7 +240,7 @@ struct ContentView: View {
         authenticated = true
       } catch {
         print("Not able to connect: \(error)")
-        DispatchQueue.main.sync {
+        Task { @MainActor in
           viewModel.errorFound = true
           viewModel.errInfo = error
         }

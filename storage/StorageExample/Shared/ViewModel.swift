@@ -24,7 +24,12 @@ import SwiftUI
 class ViewModel: ObservableObject {
   @Published var image: Image?
   @Published var showingImagePicker = false
-  @Published var inputImage: UIImage?
+
+  #if os(iOS)
+    @Published var inputImage: UIImage?
+  #elseif os(macOS)
+    @Published var inputImage: NSImage?
+  #endif
   @Published var downloadPicButtonEnabled: Bool = false
   @Published var downloadDone: Bool = false
   @Published var downloadedImage: Image?

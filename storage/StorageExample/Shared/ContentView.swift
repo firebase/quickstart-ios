@@ -19,10 +19,6 @@ import FirebaseAuth
 import FirebaseStorage
 import FirebaseStorageSwift
 
-#if os(macOS)
-typealias UIImage = NSImage
-typealias UIApplication = NSWorkspace
-#endif
 struct ContentView: View {
   @EnvironmentObject var viewModel: ViewModel
   @State private var authenticated: Bool = true
@@ -131,7 +127,11 @@ struct ContentView: View {
         Button("Link") {
           if let url = viewModel.fileDownloadURL {
             print("downloaded url: \(url)")
-            UIApplication.shared.open(url)
+            #if os(iOS)
+              UIApplication.shared.open(url)
+            #elseif os(macOS)
+              NSWorkspace.shared.open(url)
+            #endif
           }
         }
       }
@@ -147,11 +147,7 @@ struct ContentView: View {
     guard let inputImage = viewModel.inputImage else {
       return
     }
-#if os(iOS)
-    viewModel.image = Image(uiImage: inputImage)
-#elseif os(macOS)
-    viewModel.image = Image(nsImage: inputImage)
-#endif
+    viewModel.image = setImage(fromImage: inputImage)
     viewModel.showingImagePicker = false
   }
   
@@ -231,13 +227,8 @@ struct ContentView: View {
     do {
       let imageURL = try await storageRef.child(storagePath).writeAsync(toFile: fileURL)
       viewModel.downloadDone = true
-#if os(iOS) || os(tvOS)
-      viewModel.downloadedImage = Image(uiImage: UIImage(contentsOfFile: imageURL.path)!)
-#elseif os(macOS)
-      viewModel.downloadedImage = Image(nsImage: UIImage(contentsOfFile: imageURL.path)!)
+      viewModel.downloadedImage = setImage(fromURL: imageURL)
       viewModel.fileLocalDownloadURL = imageURL
-#endif
-      
     } catch {
       viewModel.errorFound = true
       viewModel.errInfo = error
@@ -254,7 +245,7 @@ struct ContentView: View {
         authenticated = true
       } catch {
         print("Not able to connect: \(error)")
-        DispatchQueue.main.sync {
+        Task { @MainActor in
           viewModel.errorFound = true
           viewModel.errInfo = error
         }
@@ -262,6 +253,25 @@ struct ContentView: View {
       }
     }
   }
+
+  #if os(iOS)
+    func setImage(fromImage image: UIImage) -> Image {
+      return Image(uiImage: image)
+    }
+
+    func setImage(fromURL url: URL) -> Image {
+      return setImage(fromImage: UIImage(contentsOfFile: url.path)!)
+    }
+
+  #elseif os(macOS)
+    func setImage(fromImage image: NSImage) -> Image {
+      return Image(nsImage: image)
+    }
+
+    func setImage(fromURL url: URL) -> Image {
+      return setImage(fromImage: NSImage(contentsOfFile: url.path)!)
+    }
+  #endif
 }
 
 struct OrangeButton: ButtonStyle {
@@ -276,21 +286,26 @@ struct OrangeButton: ButtonStyle {
   }
 }
 
-extension UIImage {
-  var jpeg: Data? {
-#if os(iOS) || os(tvOS)
-    jpegData(compressionQuality: 1)
-#elseif os(macOS)
-    let cgImage = self.cgImage(forProposedRect: nil, context: nil, hints: nil)!
-    let bitmapRep = NSBitmapImageRep(cgImage: cgImage)
-    let jpegData = bitmapRep.representation(
-      using: NSBitmapImageRep.FileType.jpeg,
-      properties: [:]
-    )!
-    return jpegData
-#endif
+#if os(iOS)
+  extension UIImage {
+    var jpeg: Data? {
+      jpegData(compressionQuality: 1)
+    }
   }
-}
+
+#elseif os(macOS)
+  extension NSImage {
+    var jpeg: Data? {
+      let cgImage = self.cgImage(forProposedRect: nil, context: nil, hints: nil)!
+      let bitmapRep = NSBitmapImageRep(cgImage: cgImage)
+      return bitmapRep.representation(
+        using: NSBitmapImageRep.FileType.jpeg,
+        properties: [:]
+      )
+    }
+  }
+
+#endif
 
 struct LoadingView: View {
   var body: some View {

@@ -25,42 +25,50 @@ struct ContentView: View {
   private var storage = Storage.storage()
   private var imageURL: URL = FileManager.default.temporaryDirectory
     .appendingPathComponent("tempImage.jpeg")
-  
+
   var body: some View {
     ZStack {
       VStack {
-#if os(iOS)
-        if let image = viewModel.image {
-          image
-            .resizable()
-            .scaledToFit()
-            .frame(minWidth: 300, maxHeight: 200)
-            .cornerRadius(16)
-          
-        } else {
-          Image(systemName: "photo.fill")
-            .resizable()
-            .scaledToFit()
-            .opacity(0.6)
-            .frame(width: 300, height: 200, alignment: .top)
-            .cornerRadius(16)
-            .padding(.horizontal)
-        }
-        Button("Photo") {
-          viewModel.showingImagePicker = true
-        }
-        .buttonStyle(OrangeButton())
-        .disabled(!authenticated)
-#elseif os(macOS)
-        ImagePicker(image: $viewModel.inputImage, imageURL: imageURL)
-#endif
+        #if os(iOS)
+          if let image = viewModel.image {
+            image
+              .resizable()
+              .scaledToFit()
+              .frame(minWidth: 300, maxHeight: 200)
+              .cornerRadius(16)
+
+          } else {
+            Image(systemName: "photo.fill")
+              .resizable()
+              .scaledToFit()
+              .opacity(0.6)
+              .frame(width: 300, height: 200, alignment: .top)
+              .cornerRadius(16)
+              .padding(.horizontal)
+          }
+          Button("Photo") {
+            viewModel.showingImagePicker = true
+          }
+          .buttonStyle(OrangeButton())
+          .disabled(!authenticated)
+        #elseif os(macOS)
+          ImagePicker(image: $viewModel.inputImage, imageURL: imageURL)
+        #elseif os(tvOS)
+          TextField("Upload an Image to Storage and type the path here.",
+                    text: $viewModel.remoteStoragePathForSearch)
+            .onSubmit {
+              let filePath = viewModel.remoteStoragePathForSearch
+              let storageRef = storage.reference(withPath: filePath)
+              fetchDownloadURL(storageRef, storagePath: filePath)
+            }
+        #endif
         if viewModel.image != nil {
           Button("Upload from Data") {
             uploadFromData()
           }
           .buttonStyle(OrangeButton())
         }
-        
+
         if viewModel.image != nil, FileManager.default.fileExists(atPath: imageURL.path) {
           Button("Upload from URL") {
             uploadFromALocalFile()
@@ -76,11 +84,11 @@ struct ContentView: View {
           .buttonStyle(OrangeButton())
         }
       }
-#if os(iOS)
-      .sheet(isPresented: $viewModel.showingImagePicker) {
-        ImagePicker(image: $viewModel.inputImage, imageURL: imageURL)
-      }
-#endif
+      #if os(iOS)
+        .sheet(isPresented: $viewModel.showingImagePicker) {
+          ImagePicker(image: $viewModel.inputImage, imageURL: imageURL)
+        }
+      #endif
       .sheet(isPresented: $viewModel.downloadDone) {
         if let image = viewModel.downloadedImage {
           VStack {
@@ -89,27 +97,23 @@ struct ContentView: View {
               .scaledToFit()
               .frame(minWidth: 0, maxWidth: .infinity)
           }
-#if os(tvOS)
-          .onLongPressGesture(minimumDuration: 0.01, perform: {viewModel.downloadDone = false}){_ in
-            print ("pressed")
-          }
-#else
-          .onTapGesture {
-            viewModel.downloadDone = false
-          }
-#endif
-#if os(macOS)
-          Button {
-            NSWorkspace.shared.selectFile(
-              viewModel.fileLocalDownloadURL!.path,
-              inFileViewerRootedAtPath: ""
-            )
-          } label: {
-            Text("Open in Finder")
-          }
-          .buttonStyle(OrangeButton())
-          
-#endif
+          #if !os(tvOS)
+            .onTapGesture {
+              viewModel.downloadDone = false
+            }
+          #endif
+          #if os(macOS)
+            Button {
+              NSWorkspace.shared.selectFile(
+                viewModel.fileLocalDownloadURL!.path,
+                inFileViewerRootedAtPath: ""
+              )
+            } label: {
+              Text("Open in Finder")
+            }
+            .buttonStyle(OrangeButton())
+
+          #endif
         }
       }
       .onChange(of: viewModel.inputImage) { _ in
@@ -119,8 +123,13 @@ struct ContentView: View {
         await signInAnonymously()
       }
       .alert("Error", isPresented: $viewModel.errorFound) {
-        Text(viewModel.errInfo.debugDescription)
-        Button("ok") {}
+        Button("ok") { viewModel.errorFound = false }
+      } message: {
+        if let errInfo = viewModel.errInfo {
+          Text(errInfo.localizedDescription)
+        } else {
+          Text("No error discription is found.")
+        }
       }
       .alert("Image was uploaded", isPresented: $viewModel.fileUploaded) {
         Button("ok") {}
@@ -135,14 +144,16 @@ struct ContentView: View {
           }
         }
       }
-      
+
       if viewModel.isLoading {
         LoadingView()
       }
     }
-    .frame(width: 300, height: 600)
+    #if os(macOS)
+      .frame(width: 300, height: 600)
+    #endif
   }
-  
+
   func loadImage() {
     guard let inputImage = viewModel.inputImage else {
       return
@@ -150,12 +161,12 @@ struct ContentView: View {
     viewModel.image = setImage(fromImage: inputImage)
     viewModel.showingImagePicker = false
   }
-  
+
   func uploadFromALocalFile() {
     let filePath = Auth.auth().currentUser!.uid +
-    "/\(Int(Date.timeIntervalSinceReferenceDate * 1000))/\(imageURL.lastPathComponent)"
+      "/\(Int(Date.timeIntervalSinceReferenceDate * 1000))/\(imageURL.lastPathComponent)"
     let storageRef = storage.reference(withPath: filePath)
-    
+
     viewModel.isLoading = true
     storageRef.putFile(from: imageURL, metadata: nil) { metadata, error in
       guard let _ = metadata else {
@@ -164,22 +175,22 @@ struct ContentView: View {
         viewModel.errInfo = error
         return
       }
-      
+
       viewModel.isLoading = false
       // You can also access to download URL after upload.
       fetchDownloadURL(storageRef, storagePath: filePath)
     }
   }
-  
+
   func uploadFromData() {
     guard let imageData = viewModel.inputImage?.jpeg else {
       print("The image from url \(imageURL.path) cannot be transferred to data.")
       return
     }
     let filePath = Auth.auth().currentUser!.uid +
-    "/\(Int(Date.timeIntervalSinceReferenceDate * 1000))/fromData/\(imageURL.lastPathComponent)"
+      "/\(Int(Date.timeIntervalSinceReferenceDate * 1000))/fromData/\(imageURL.lastPathComponent)"
     let storageRef = storage.reference(withPath: filePath)
-    
+
     viewModel.isLoading = true
     storageRef.putData(imageData, metadata: nil) { metadata, error in
       guard let _ = metadata else {
@@ -193,10 +204,10 @@ struct ContentView: View {
       fetchDownloadURL(storageRef, storagePath: filePath)
     }
   }
-  
+
   func fetchDownloadURL(_ storageRef: StorageReference, storagePath: String) {
     storageRef.downloadURL { url, error in
-      
+
       guard let downloadURL = url else {
         print("Error getting download URL: \(error.debugDescription)")
         viewModel.errorFound = true
@@ -206,15 +217,18 @@ struct ContentView: View {
       print("download url: \(downloadURL) ")
       viewModel.remoteStoragePath = storagePath
       viewModel.downloadPicButtonEnabled = true
-      viewModel.fileUploaded = true
+      // tvOS Quickstart does not have `Upload` feature.
+      #if !os(tvOS)
+        viewModel.fileUploaded = true
+      #endif
       viewModel.fileDownloadURL = downloadURL
     }
   }
-  
+
   func downloadImage() async {
     // Create a reference to the file you want to download
     let storageRef = Storage.storage().reference()
-    
+
     let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
     let documentsDirectory = paths[0]
     let filePath = "file:\(documentsDirectory)/myimage.jpg"
@@ -222,7 +236,7 @@ struct ContentView: View {
     guard let storagePath = viewModel.remoteStoragePath else {
       return
     }
-    
+
     viewModel.isLoading = true
     do {
       let imageURL = try await storageRef.child(storagePath).writeAsync(toFile: fileURL)
@@ -235,7 +249,7 @@ struct ContentView: View {
     }
     viewModel.isLoading = false
   }
-  
+
   func signInAnonymously() async {
     // Using Cloud Storage for Firebase requires the user be authenticated. Here we are using
     // anonymous authentication.
@@ -254,7 +268,7 @@ struct ContentView: View {
     }
   }
 
-  #if os(iOS)
+  #if os(iOS) || os(tvOS)
     func setImage(fromImage image: UIImage) -> Image {
       return Image(uiImage: image)
     }
@@ -276,17 +290,22 @@ struct ContentView: View {
 
 struct OrangeButton: ButtonStyle {
   @Environment(\.isEnabled) private var isEnabled: Bool
-  
+  @Environment(\.isFocused) var focused: Bool
+
   func makeBody(configuration: Configuration) -> some View {
     configuration.label
       .padding()
       .background(isEnabled ? Color.orange : Color.orange.opacity(0.5))
       .foregroundColor(.white)
       .clipShape(RoundedRectangle(cornerRadius: 16.0))
+    #if os(tvOS)
+      .scaleEffect(focused ? 1.2 : 1)
+      .animation(.easeIn, value: focused)
+    #endif
   }
 }
 
-#if os(iOS)
+#if os(iOS) || os(tvOS)
   extension UIImage {
     var jpeg: Data? {
       jpegData(compressionQuality: 1)

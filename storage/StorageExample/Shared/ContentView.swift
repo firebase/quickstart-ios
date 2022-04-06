@@ -29,27 +29,31 @@ struct ContentView: View {
   var body: some View {
     ZStack {
       VStack {
-        if let image = viewModel.image {
-          image
-            .resizable()
-            .scaledToFit()
-            .frame(minWidth: 300, maxHeight: 200)
-            .cornerRadius(16)
+        #if os(iOS)
+          if let image = viewModel.image {
+            image
+              .resizable()
+              .scaledToFit()
+              .frame(minWidth: 300, maxHeight: 200)
+              .cornerRadius(16)
 
-        } else {
-          Image(systemName: "photo.fill")
-            .resizable()
-            .scaledToFit()
-            .opacity(0.6)
-            .frame(width: 300, height: 200, alignment: .top)
-            .cornerRadius(16)
-            .padding(.horizontal)
-        }
-        Button("Photo") {
-          viewModel.showingImagePicker = true
-        }
-        .buttonStyle(OrangeButton())
-        .disabled(!authenticated)
+          } else {
+            Image(systemName: "photo.fill")
+              .resizable()
+              .scaledToFit()
+              .opacity(0.6)
+              .frame(width: 300, height: 200, alignment: .top)
+              .cornerRadius(16)
+              .padding(.horizontal)
+          }
+          Button("Photo") {
+            viewModel.showingImagePicker = true
+          }
+          .buttonStyle(OrangeButton())
+          .disabled(!authenticated)
+        #elseif os(macOS)
+          ImagePicker(image: $viewModel.inputImage, imageURL: imageURL)
+        #endif
         if viewModel.image != nil {
           Button("Upload from Data") {
             uploadFromData()
@@ -72,15 +76,33 @@ struct ContentView: View {
           .buttonStyle(OrangeButton())
         }
       }
-      .sheet(isPresented: $viewModel.showingImagePicker) {
-        ImagePicker(image: $viewModel.inputImage, imageURL: imageURL)
-      }
+      #if os(iOS)
+        .sheet(isPresented: $viewModel.showingImagePicker) {
+          ImagePicker(image: $viewModel.inputImage, imageURL: imageURL)
+        }
+      #endif
       .sheet(isPresented: $viewModel.downloadDone) {
         if let image = viewModel.downloadedImage {
-          image
-            .resizable()
-            .scaledToFit()
-            .frame(minWidth: 0, maxWidth: .infinity)
+          VStack {
+            image
+              .resizable()
+              .scaledToFit()
+              .frame(minWidth: 0, maxWidth: .infinity)
+          }
+          .onTapGesture {
+            viewModel.downloadDone = false
+          }
+          #if os(macOS)
+            Button {
+              NSWorkspace.shared.selectFile(
+                viewModel.fileLocalDownloadURL!.path,
+                inFileViewerRootedAtPath: ""
+              )
+            } label: {
+              Text("Open in Finder")
+            }
+            .buttonStyle(OrangeButton())
+          #endif
         }
       }
       .onChange(of: viewModel.inputImage) { _ in
@@ -98,7 +120,11 @@ struct ContentView: View {
         Button("Link") {
           if let url = viewModel.fileDownloadURL {
             print("downloaded url: \(url)")
-            UIApplication.shared.open(url)
+            #if os(iOS)
+              UIApplication.shared.open(url)
+            #elseif os(macOS)
+              NSWorkspace.shared.open(url)
+            #endif
           }
         }
       }
@@ -107,13 +133,16 @@ struct ContentView: View {
         LoadingView()
       }
     }
+    #if os(macOS)
+      .frame(width: 300, height: 600)
+    #endif
   }
 
   func loadImage() {
     guard let inputImage = viewModel.inputImage else {
       return
     }
-    viewModel.image = Image(uiImage: inputImage)
+    viewModel.image = setImage(fromImage: inputImage)
     viewModel.showingImagePicker = false
   }
 
@@ -169,6 +198,7 @@ struct ContentView: View {
         viewModel.errInfo = error
         return
       }
+      print("download url: \(downloadURL) ")
       viewModel.remoteStoragePath = storagePath
       viewModel.downloadPicButtonEnabled = true
       viewModel.fileUploaded = true
@@ -192,7 +222,9 @@ struct ContentView: View {
     do {
       let imageURL = try await storageRef.child(storagePath).writeAsync(toFile: fileURL)
       viewModel.downloadDone = true
-      viewModel.downloadedImage = Image(uiImage: UIImage(contentsOfFile: imageURL.path)!)
+      viewModel.downloadedImage = setImage(fromURL: imageURL)
+      viewModel.fileLocalDownloadURL = imageURL
+
     } catch {
       viewModel.errorFound = true
       viewModel.errInfo = error
@@ -208,11 +240,28 @@ struct ContentView: View {
         try await Auth.auth().signInAnonymously()
         authenticated = true
       } catch {
-        viewModel.errorFound = true
-        viewModel.errInfo = error
+        print("Not able to connect: \(error)")
+        Task { @MainActor in
+          viewModel.errorFound = true
+          viewModel.errInfo = error
+        }
         authenticated = false
       }
     }
+  }
+
+  #if os(iOS)
+    func setImage(fromImage image: UIImage) -> Image {
+      return Image(uiImage: image)
+    }
+
+  #elseif os(macOS)
+    func setImage(fromImage image: NSImage) -> Image {
+      return Image(nsImage: image)
+    }
+  #endif
+  func setImage(fromURL url: URL) -> Image {
+    return setImage(fromImage: .init(contentsOfFile: url.path)!)
   }
 }
 
@@ -228,14 +277,30 @@ struct OrangeButton: ButtonStyle {
   }
 }
 
-extension UIImage {
-  var jpeg: Data? { jpegData(compressionQuality: 1) }
-}
+#if os(iOS)
+  extension UIImage {
+    var jpeg: Data? {
+      jpegData(compressionQuality: 1)
+    }
+  }
+
+#elseif os(macOS)
+  extension NSImage {
+    var jpeg: Data? {
+      let cgImage = self.cgImage(forProposedRect: nil, context: nil, hints: nil)!
+      let bitmapRep = NSBitmapImageRep(cgImage: cgImage)
+      return bitmapRep.representation(
+        using: NSBitmapImageRep.FileType.jpeg,
+        properties: [:]
+      )
+    }
+  }
+#endif
 
 struct LoadingView: View {
   var body: some View {
     ZStack {
-      Color(.systemBackground)
+      Color(.gray)
         .ignoresSafeArea()
         .opacity(0.5)
       ProgressView()

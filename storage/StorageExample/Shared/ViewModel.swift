@@ -24,7 +24,6 @@ import SwiftUI
 class ViewModel: ObservableObject {
   @Published var image: Image?
   @Published var showingImagePicker = false
-
   #if os(iOS)
     @Published var inputImage: UIImage?
   #elseif os(macOS)

@@ -112,7 +112,6 @@ struct ContentView: View {
               Text("Open in Finder")
             }
             .buttonStyle(OrangeButton())
-
           #endif
         }
       }
@@ -273,19 +272,14 @@ struct ContentView: View {
       return Image(uiImage: image)
     }
 
-    func setImage(fromURL url: URL) -> Image {
-      return setImage(fromImage: UIImage(contentsOfFile: url.path)!)
-    }
-
   #elseif os(macOS)
     func setImage(fromImage image: NSImage) -> Image {
       return Image(nsImage: image)
     }
-
-    func setImage(fromURL url: URL) -> Image {
-      return setImage(fromImage: NSImage(contentsOfFile: url.path)!)
-    }
   #endif
+  func setImage(fromURL url: URL) -> Image {
+    return setImage(fromImage: .init(contentsOfFile: url.path)!)
+  }
 }
 
 struct OrangeButton: ButtonStyle {
@@ -323,7 +317,6 @@ struct OrangeButton: ButtonStyle {
       )
     }
   }
-
 #endif
 
 struct LoadingView: View {

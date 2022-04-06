@@ -166,29 +166,34 @@ import SwiftUI
       .onDrop(of: ["public.url", "public.file-url"], isTargeted: nil) { (items) -> Bool in
         if let item = items.first {
           if let identifier = item.registeredTypeIdentifiers.first {
-            if identifier == "public.url" || identifier == "public.file-url" {
-              item.loadItem(forTypeIdentifier: identifier, options: nil) { urlData, error in
-                if let data = urlData as? Data {
-                  let url = NSURL(
-                    absoluteURLWithDataRepresentation: data,
-                    relativeTo: nil
-                  ) as URL
-                  Task { @MainActor in
-                    if let image = NSImage(contentsOf: url) {
-                      self.image = image
-                    }
-                  }
-                  if let imageURL = imageURL {
-                    do {
-                      if FileManager.default.fileExists(atPath: imageURL.path) {
-                        try FileManager.default.removeItem(at: imageURL)
+            Task {
+              if identifier == "public.url" || identifier == "public.file-url" {
+                do {
+                  let urlData = try await item.loadItem(forTypeIdentifier: identifier)
+                  if let data = urlData as? Data {
+                    let url = NSURL(
+                      absoluteURLWithDataRepresentation: data,
+                      relativeTo: nil
+                    ) as URL
+                    Task { @MainActor in
+                      if let image = NSImage(contentsOf: url) {
+                        self.image = image
                       }
-                      try FileManager.default.copyItem(at: url, to: imageURL)
-                      print("Image is copied from \n \(url) to \(imageURL)")
-                    } catch {
-                      print("Cannot copy item at \(url) to \(imageURL): \(error)")
+                    }
+                    if let imageURL = imageURL {
+                      do {
+                        if FileManager.default.fileExists(atPath: imageURL.path) {
+                          try FileManager.default.removeItem(at: imageURL)
+                        }
+                        try FileManager.default.copyItem(at: url, to: imageURL)
+                        print("Image is copied from \n \(url) to \(imageURL)")
+                      } catch {
+                        print("Cannot copy item at \(url) to \(imageURL): \(error)")
+                      }
                     }
                   }
+                } catch {
+                  throw error
                 }
               }
             }

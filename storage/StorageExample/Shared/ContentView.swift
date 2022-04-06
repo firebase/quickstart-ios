@@ -134,7 +134,7 @@ struct ContentView: View {
       }
     }
     #if os(macOS)
-    .frame(width: 300, height: 600)
+      .frame(width: 300, height: 600)
     #endif
   }
 
@@ -250,18 +250,19 @@ struct ContentView: View {
     }
   }
 
-#if os(iOS)
-  func setImage(fromImage image: UIImage) -> Image {
-    return Image(uiImage: image)
+  #if os(iOS)
+    func setImage(fromImage image: UIImage) -> Image {
+      return Image(uiImage: image)
+    }
+
+  #elseif os(macOS)
+    func setImage(fromImage image: NSImage) -> Image {
+      return Image(nsImage: image)
+    }
+  #endif
+  func setImage(fromURL url: URL) -> Image {
+    return setImage(fromImage: .init(contentsOfFile: url.path)!)
   }
-#elseif os(macOS)
-  func setImage(fromImage image: NSImage) -> Image {
-    return Image(nsImage: image)
-  }
-#endif
-func setImage(fromURL url: URL) -> Image {
-  return setImage(fromImage: .init(contentsOfFile: url.path)!)
-}
 }
 
 struct OrangeButton: ButtonStyle {

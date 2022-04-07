@@ -1,25 +1,25 @@
 PODS:
-  - FirebaseAuth (8.12.0):
+  - FirebaseAuth (8.14.0):
     - FirebaseCore (~> 8.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 7.7)
     - GoogleUtilities/Environment (~> 7.7)
     - GTMSessionFetcher/Core (~> 1.5)
-  - FirebaseCore (8.12.1):
+  - FirebaseCore (8.14.0):
     - FirebaseCoreDiagnostics (~> 8.0)
     - GoogleUtilities/Environment (~> 7.7)
     - GoogleUtilities/Logger (~> 7.7)
-  - FirebaseCoreDiagnostics (8.12.0):
+  - FirebaseCoreDiagnostics (8.14.0):
     - GoogleDataTransport (~> 9.1)
     - GoogleUtilities/Environment (~> 7.7)
     - GoogleUtilities/Logger (~> 7.7)
     - nanopb (~> 2.30908.0)
-  - FirebaseDatabase (8.12.0):
+  - FirebaseDatabase (8.14.0):
     - FirebaseCore (~> 8.0)
     - leveldb-library (~> 1.22)
-  - FirebaseDatabaseUI (11.0.3):
+  - FirebaseDatabaseUI (12.1.1):
     - FirebaseDatabase (~> 8.0)
-  - FirebaseUI/Database (11.0.3):
-    - FirebaseDatabaseUI (~> 11.0)
+  - FirebaseUI/Database (12.1.1):
+    - FirebaseDatabaseUI (~> 12.0)
   - GoogleDataTransport (9.1.2):
     - GoogleUtilities/Environment (~> 7.2)
     - nanopb (~> 2.30908.0)
@@ -39,19 +39,19 @@ PODS:
   - "GoogleUtilities/NSData+zlib (7.7.0)"
   - GoogleUtilities/Reachability (7.7.0):
     - GoogleUtilities/Logger
-  - GTMSessionFetcher/Core (1.7.0)
+  - GTMSessionFetcher/Core (1.7.1)
   - leveldb-library (1.22.1)
   - nanopb (2.30908.0):
     - nanopb/decode (= 2.30908.0)
     - nanopb/encode (= 2.30908.0)
   - nanopb/decode (2.30908.0)
   - nanopb/encode (2.30908.0)
-  - PromisesObjC (2.0.0)
+  - PromisesObjC (2.1.0)
 
 DEPENDENCIES:
   - FirebaseAuth
   - FirebaseDatabase
-  - FirebaseUI/Database (~> 11.0)
+  - FirebaseUI/Database (~> 12.0)
 
 SPEC REPOS:
   trunk:
@@ -69,19 +69,19 @@ SPEC REPOS:
     - PromisesObjC
 
 SPEC CHECKSUMS:
-  FirebaseAuth: 5250d7bdba35e57cc34ec7ddc525f82b2757f2a0
-  FirebaseCore: 8138de860a90ca7eec5e324da5788fb0ebf1d93c
-  FirebaseCoreDiagnostics: 3b40dfadef5b90433a60ae01f01e90fe87aa76aa
-  FirebaseDatabase: f130b3d45b2a7a0b86059734d5bd67353df8d32f
-  FirebaseDatabaseUI: 4db2acaaee3c1a73e0daf31e926a8b7212941607
-  FirebaseUI: d2777b3abcb3fa40ea9eea9e40db5a154df608d3
+  FirebaseAuth: c5fde343630090253d3af7e2d35697b414b40202
+  FirebaseCore: b84a44ee7ba999e0f9f76d198a9c7f60a797b848
+  FirebaseCoreDiagnostics: fd0c8490f34287229c1d6c103d3a55f81ec85712
+  FirebaseDatabase: 8bfbe7bb8d355f9727507bcf4a2116cb3aabdc5e
+  FirebaseDatabaseUI: 7c7620ad506f829bfd05a3db93a45ae371af33da
+  FirebaseUI: dc90cd9081a0c2dcb94413cfdac3f1b662205c42
   GoogleDataTransport: 629c20a4d363167143f30ea78320d5a7eb8bd940
   GoogleUtilities: e0913149f6b0625b553d70dae12b49fc62914fd1
-  GTMSessionFetcher: 43748f93435c2aa068b1cbe39655aaf600652e91
+  GTMSessionFetcher: 4577a4cc914a5a07c40a8a0ad0acc22080418c2d
   leveldb-library: 50c7b45cbd7bf543c81a468fe557a16ae3db8729
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
-  PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58
+  PromisesObjC: 99b6f43f9e1044bd87a95a60beff28c2c44ddb72
 
-PODFILE CHECKSUM: c3a9dec08fb138778b72ea87821e6ef7b804d891
+PODFILE CHECKSUM: 62a862faf5fbdfbd1a13ef281735919d01af1e9a
 
-COCOAPODS: 1.11.2
+COCOAPODS: 1.11.3

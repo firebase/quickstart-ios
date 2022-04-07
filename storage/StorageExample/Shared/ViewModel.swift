@@ -24,7 +24,7 @@ import SwiftUI
 class ViewModel: ObservableObject {
   @Published var image: Image?
   @Published var showingImagePicker = false
-  #if os(iOS)
+  #if os(iOS) || os(tvOS)
     @Published var inputImage: UIImage?
   #elseif os(macOS)
     @Published var inputImage: NSImage?
@@ -39,4 +39,9 @@ class ViewModel: ObservableObject {
   @Published var fileLocalDownloadURL: URL?
   @Published var isLoading: Bool = false
   @Published var remoteStoragePath: String?
+  #if os(tvOS)
+    // The app for tvOS will check if `remoteStoragePathForSearch` exists to
+    // determine if an image should be downloaded and displayed.
+    @Published var remoteStoragePathForSearch: String = ""
+  #endif
 }

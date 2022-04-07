@@ -53,6 +53,14 @@ struct ContentView: View {
           .disabled(!authenticated)
         #elseif os(macOS)
           ImagePicker(image: $viewModel.inputImage, imageURL: imageURL)
+        #elseif os(tvOS)
+          TextField("Upload an Image to Storage and type the path here.",
+                    text: $viewModel.remoteStoragePathForSearch)
+            .onSubmit {
+              let filePath = viewModel.remoteStoragePathForSearch
+              let storageRef = storage.reference(withPath: filePath)
+              fetchDownloadURL(storageRef, storagePath: filePath)
+            }
         #endif
         if viewModel.image != nil {
           Button("Upload from Data") {
@@ -89,9 +97,11 @@ struct ContentView: View {
               .scaledToFit()
               .frame(minWidth: 0, maxWidth: .infinity)
           }
-          .onTapGesture {
-            viewModel.downloadDone = false
-          }
+          #if !os(tvOS)
+            .onTapGesture {
+              viewModel.downloadDone = false
+            }
+          #endif
           #if os(macOS)
             Button {
               NSWorkspace.shared.selectFile(
@@ -112,8 +122,13 @@ struct ContentView: View {
         await signInAnonymously()
       }
       .alert("Error", isPresented: $viewModel.errorFound) {
-        Text(viewModel.errInfo.debugDescription)
-        Button("ok") {}
+        Button("ok") { viewModel.errorFound = false }
+      } message: {
+        if let errInfo = viewModel.errInfo {
+          Text(errInfo.localizedDescription)
+        } else {
+          Text("No error discription is found.")
+        }
       }
       .alert("Image was uploaded", isPresented: $viewModel.fileUploaded) {
         Button("ok") {}
@@ -201,7 +216,10 @@ struct ContentView: View {
       print("download url: \(downloadURL) ")
       viewModel.remoteStoragePath = storagePath
       viewModel.downloadPicButtonEnabled = true
-      viewModel.fileUploaded = true
+      // tvOS Quickstart does not have `Upload` feature.
+      #if !os(tvOS)
+        viewModel.fileUploaded = true
+      #endif
       viewModel.fileDownloadURL = downloadURL
     }
   }
@@ -224,7 +242,6 @@ struct ContentView: View {
       viewModel.downloadDone = true
       viewModel.downloadedImage = setImage(fromURL: imageURL)
       viewModel.fileLocalDownloadURL = imageURL
-
     } catch {
       viewModel.errorFound = true
       viewModel.errInfo = error
@@ -250,7 +267,7 @@ struct ContentView: View {
     }
   }
 
-  #if os(iOS)
+  #if os(iOS) || os(tvOS)
     func setImage(fromImage image: UIImage) -> Image {
       return Image(uiImage: image)
     }
@@ -267,6 +284,9 @@ struct ContentView: View {
 
 struct OrangeButton: ButtonStyle {
   @Environment(\.isEnabled) private var isEnabled: Bool
+  #if os(tvOS)
+    @Environment(\.isFocused) var focused: Bool
+  #endif
 
   func makeBody(configuration: Configuration) -> some View {
     configuration.label
@@ -274,10 +294,14 @@ struct OrangeButton: ButtonStyle {
       .background(isEnabled ? Color.orange : Color.orange.opacity(0.5))
       .foregroundColor(.white)
       .clipShape(RoundedRectangle(cornerRadius: 16.0))
+    #if os(tvOS)
+      .scaleEffect(focused ? 1.2 : 1)
+      .animation(.easeIn, value: focused)
+    #endif
   }
 }
 
-#if os(iOS)
+#if os(iOS) || os(tvOS)
   extension UIImage {
     var jpeg: Data? {
       jpegData(compressionQuality: 1)

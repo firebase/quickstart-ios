@@ -25,6 +25,15 @@
 		B9A598C227E3D16A003BCFD0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B9A598C127E3D16A003BCFD0 /* Assets.xcassets */; };
 		B9A598C527E3D16A003BCFD0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B9A598C427E3D16A003BCFD0 /* Preview Assets.xcassets */; };
 		B9CE8D6027F38915002AB1F6 /* FirebaseStorageSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = B9CE8D5F27F38915002AB1F6 /* FirebaseStorageSwift-Beta */; };
+		B9EABE2827FB82B300E055FD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B9EABE2727FB82B300E055FD /* Assets.xcassets */; };
+		B9EABE2B27FB82B300E055FD /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B9EABE2A27FB82B300E055FD /* Preview Assets.xcassets */; };
+		B9EABE3127FB82CD00E055FD /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = B9EABE3027FB82CD00E055FD /* FirebaseAuth */; };
+		B9EABE3327FB82D400E055FD /* FirebaseStorageSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = B9EABE3227FB82D400E055FD /* FirebaseStorageSwift-Beta */; };
+		B9EABE3427FB83C900E055FD /* StorageExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B983CA1527F21B1D00E4E201 /* StorageExampleApp.swift */; };
+		B9EABE3527FB83CD00E055FD /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B983CA1627F21B1D00E4E201 /* ViewModel.swift */; };
+		B9EABE3627FB83D100E055FD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B983CA1827F21B1D00E4E201 /* ContentView.swift */; };
+		B9EABE3727FB83D100E055FD /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B983CA1727F21B1D00E4E201 /* ImagePicker.swift */; };
+		B9EABE3827FB9B2700E055FD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B9380F7927E3FABA00B5C769 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +49,9 @@
 		B9A598BA27E3D169003BCFD0 /* StorageExample (iOS).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "StorageExample (iOS).app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9A598C127E3D16A003BCFD0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B9A598C427E3D16A003BCFD0 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		B9EABE2127FB82B200E055FD /* StorageExample (tvOS).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "StorageExample (tvOS).app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B9EABE2727FB82B300E055FD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B9EABE2A27FB82B300E055FD /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +70,15 @@
 			files = (
 				B9380F7627E3EEBD00B5C769 /* FirebaseAuth in Frameworks */,
 				B9CE8D6027F38915002AB1F6 /* FirebaseStorageSwift-Beta in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B9EABE1E27FB82B200E055FD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B9EABE3127FB82CD00E055FD /* FirebaseAuth in Frameworks */,
+				B9EABE3327FB82D400E055FD /* FirebaseStorageSwift-Beta in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -100,7 +121,9 @@
 				B983CA1427F21B1D00E4E201 /* Shared */,
 				B9A598BC27E3D169003BCFD0 /* StorageExample (iOS) */,
 				B94D0ABD27F5060C00753EEA /* StorageExample (macOS) */,
+				B9EABE2227FB82B200E055FD /* StorageExample (tvOS) */,
 				B9A598BB27E3D169003BCFD0 /* Products */,
+				B9EABE2F27FB82CD00E055FD /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -109,6 +132,7 @@
 			children = (
 				B9A598BA27E3D169003BCFD0 /* StorageExample (iOS).app */,
 				B94D0ABC27F5060C00753EEA /* StorageExample (macOS).app */,
+				B9EABE2127FB82B200E055FD /* StorageExample (tvOS).app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -128,6 +152,30 @@
 				B9A598C427E3D16A003BCFD0 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		B9EABE2227FB82B200E055FD /* StorageExample (tvOS) */ = {
+			isa = PBXGroup;
+			children = (
+				B9EABE2727FB82B300E055FD /* Assets.xcassets */,
+				B9EABE2927FB82B300E055FD /* Preview Content */,
+			);
+			path = "StorageExample (tvOS)";
+			sourceTree = "<group>";
+		};
+		B9EABE2927FB82B300E055FD /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				B9EABE2A27FB82B300E055FD /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		B9EABE2F27FB82CD00E055FD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -175,6 +223,27 @@
 			productReference = B9A598BA27E3D169003BCFD0 /* StorageExample (iOS).app */;
 			productType = "com.apple.product-type.application";
 		};
+		B9EABE2027FB82B200E055FD /* StorageExample (tvOS) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B9EABE2E27FB82B300E055FD /* Build configuration list for PBXNativeTarget "StorageExample (tvOS)" */;
+			buildPhases = (
+				B9EABE1D27FB82B200E055FD /* Sources */,
+				B9EABE1E27FB82B200E055FD /* Frameworks */,
+				B9EABE1F27FB82B200E055FD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "StorageExample (tvOS)";
+			packageProductDependencies = (
+				B9EABE3027FB82CD00E055FD /* FirebaseAuth */,
+				B9EABE3227FB82D400E055FD /* FirebaseStorageSwift-Beta */,
+			);
+			productName = "StorageExample (tvOS)";
+			productReference = B9EABE2127FB82B200E055FD /* StorageExample (tvOS).app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -191,6 +260,9 @@
 					B9A598B927E3D169003BCFD0 = {
 						CreatedOnToolsVersion = 13.3;
 						LastSwiftMigration = 1330;
+					};
+					B9EABE2027FB82B200E055FD = {
+						CreatedOnToolsVersion = 13.3;
 					};
 				};
 			};
@@ -212,6 +284,7 @@
 			targets = (
 				B9A598B927E3D169003BCFD0 /* StorageExample (iOS) */,
 				B94D0ABB27F5060C00753EEA /* StorageExample (macOS) */,
+				B9EABE2027FB82B200E055FD /* StorageExample (tvOS) */,
 			);
 		};
 /* End PBXProject section */
@@ -237,6 +310,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B9EABE1F27FB82B200E055FD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B9EABE2B27FB82B300E055FD /* Preview Assets.xcassets in Resources */,
+				B9EABE2827FB82B300E055FD /* Assets.xcassets in Resources */,
+				B9EABE3827FB9B2700E055FD /* GoogleService-Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -259,6 +342,17 @@
 				B983CA1C27F21B1D00E4E201 /* ContentView.swift in Sources */,
 				B983CA1B27F21B1D00E4E201 /* ImagePicker.swift in Sources */,
 				B983CA1A27F21B1D00E4E201 /* ViewModel.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B9EABE1D27FB82B200E055FD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B9EABE3627FB83D100E055FD /* ContentView.swift in Sources */,
+				B9EABE3727FB83D100E055FD /* ImagePicker.swift in Sources */,
+				B9EABE3527FB83CD00E055FD /* ViewModel.swift in Sources */,
+				B9EABE3427FB83C900E055FD /* StorageExampleApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -498,6 +592,62 @@
 			};
 			name = Release;
 		};
+		B9EABE2C27FB82B300E055FD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"StorageExample (tvOS)/Preview Content\"";
+				DEVELOPMENT_TEAM = UBV32XXYKC;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Automatic;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.StorageExample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 15.4;
+			};
+			name = Debug;
+		};
+		B9EABE2D27FB82B300E055FD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"StorageExample (tvOS)/Preview Content\"";
+				DEVELOPMENT_TEAM = UBV32XXYKC;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Automatic;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.StorageExample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 15.4;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -524,6 +674,15 @@
 			buildConfigurations = (
 				B9A598C927E3D16A003BCFD0 /* Debug */,
 				B9A598CA27E3D16A003BCFD0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B9EABE2E27FB82B300E055FD /* Build configuration list for PBXNativeTarget "StorageExample (tvOS)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B9EABE2C27FB82B300E055FD /* Debug */,
+				B9EABE2D27FB82B300E055FD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -559,6 +718,16 @@
 			productName = "FirebaseStorageSwift-Beta";
 		};
 		B9CE8D5F27F38915002AB1F6 /* FirebaseStorageSwift-Beta */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B9380F7427E3EEBD00B5C769 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = "FirebaseStorageSwift-Beta";
+		};
+		B9EABE3027FB82CD00E055FD /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B9380F7427E3EEBD00B5C769 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		B9EABE3227FB82D400E055FD /* FirebaseStorageSwift-Beta */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = B9380F7427E3EEBD00B5C769 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = "FirebaseStorageSwift-Beta";

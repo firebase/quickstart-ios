@@ -284,7 +284,9 @@ struct ContentView: View {
 
 struct OrangeButton: ButtonStyle {
   @Environment(\.isEnabled) private var isEnabled: Bool
-  @Environment(\.isFocused) var focused: Bool
+  #if os(tvOS)
+    @Environment(\.isFocused) var focused: Bool
+  #endif
 
   func makeBody(configuration: Configuration) -> some View {
     configuration.label

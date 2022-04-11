@@ -1,5 +1,7 @@
+#TODO: Delete next two lines on merging back to master.
 source 'https://github.com/firebase/SpecsDev.git'
 source 'https://cdn.cocoapods.org/'
+
 # StorageExample
 
 use_frameworks!

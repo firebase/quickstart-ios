@@ -47,10 +47,10 @@
 
     // [START function_error]
     if (error) {
-      if (error.domain == FIRFunctionsErrorDomain) {
+      if ([error.domain isEqual:@"com.firebase.functions"]) {
         FIRFunctionsErrorCode code = error.code;
         NSString *message = error.localizedDescription;
-        NSObject *details = error.userInfo[FIRFunctionsErrorDetailsKey];
+        NSObject *details = error.userInfo[@"details"];
       }
       // [START_EXCLUDE]
       NSLog(@"%@", error);

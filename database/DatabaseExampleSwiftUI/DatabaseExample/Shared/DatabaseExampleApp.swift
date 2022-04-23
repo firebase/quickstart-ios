@@ -20,6 +20,9 @@ import FirebaseCore
 @main
 struct DatabaseExampleApp: App {
   init() {
+    // Set an instance of `MyAppCheckProviderFactory` as an App Check provider factory before
+    // configuring Firebase.
+    AppCheck.setAppCheckProviderFactory(MyCustomAppCheckProvider.Factory())
     FirebaseApp.configure()
   }
 

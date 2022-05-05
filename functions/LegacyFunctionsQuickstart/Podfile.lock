@@ -28,7 +28,7 @@ PODS:
     - FirebaseCore (~> 9.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 7.7)
     - GoogleUtilities/Environment (~> 7.7)
-    - GTMSessionFetcher/Core (~> 1.5)
+    - GTMSessionFetcher/Core (~> 1.7)
   - FirebaseAuthInterop (9.0.0)
   - FirebaseAuthUI (12.2.0):
     - FirebaseAuth (< 10.0, >= 8.0)
@@ -54,7 +54,7 @@ PODS:
     - FirebaseCoreExtension (~> 9.0)
     - FirebaseMessagingInterop (~> 9.0)
     - FirebaseSharedSwift (~> 9.0)
-    - GTMSessionFetcher/Core (~> 1.5)
+    - GTMSessionFetcher/Core (~> 1.7)
   - FirebaseGoogleAuthUI (12.2.0):
     - FirebaseAuth
     - FirebaseAuthUI
@@ -64,7 +64,7 @@ PODS:
     - FirebaseCore (~> 9.0)
     - GoogleUtilities/Environment (~> 7.7)
     - GoogleUtilities/UserDefaults (~> 7.7)
-    - PromisesObjC (~> 2.0)
+    - PromisesObjC (~> 2.1)
   - FirebaseMessagingInterop (9.0.0)
   - FirebaseSharedSwift (9.0.0)
   - FirebaseUI/Auth (12.2.0):
@@ -121,7 +121,7 @@ PODS:
   - GTMAppAuth (1.2.3):
     - AppAuth/Core (~> 1.4)
     - GTMSessionFetcher/Core (~> 1.5)
-  - GTMSessionFetcher/Core (1.7.1)
+  - GTMSessionFetcher/Core (1.7.2)
   - MaterialComponents/AnimationTiming (124.2.0)
   - MaterialComponents/Availability (124.2.0)
   - MaterialComponents/Buttons (124.2.0):
@@ -227,17 +227,18 @@ PODS:
   - PromisesObjC (2.1.0)
 
 DEPENDENCIES:
-  - FirebaseAnalytics (~> 9.0)
+  - FirebaseAnalytics (= 9.0.0)
   - FirebaseAuth
   - FirebaseFunctions
-  - FirebaseUI/Auth (~> 12.0)
-  - FirebaseUI/Google (~> 12.0)
+  - FirebaseUI/Auth (~> 12.2)
+  - FirebaseUI/Google (~> 12.2)
   - MaterialComponents/Buttons
   - MaterialComponents/Collections
   - MaterialComponents/TextFields
 
 SPEC REPOS:
-  https://github.com/firebase/SpecsStaging.git:
+  trunk:
+    - AppAuth
     - FirebaseAnalytics
     - FirebaseAppCheckInterop
     - FirebaseAuth
@@ -254,8 +255,6 @@ SPEC REPOS:
     - FirebaseSharedSwift
     - FirebaseUI
     - GoogleAppMeasurement
-  trunk:
-    - AppAuth
     - GoogleDataTransport
     - GoogleSignIn
     - GoogleUtilities
@@ -269,33 +268,33 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   AppAuth: 80317d99ac7ff2801a2f18ff86b48cd315ed465d
-  FirebaseAnalytics: 8e5420d7173eadbc8c47b1c1a783efe7c48a7434
+  FirebaseAnalytics: ea4f6f4b604a20b4de4d3c7f7a2cb51d9a989040
   FirebaseAppCheckInterop: 0da214236777e71d8535c5f3b9cb5174f636a9eb
-  FirebaseAuth: 22dd8bacee07e955d153780359fe2d4cbb94822d
+  FirebaseAuth: eae56c13e1161da89be202b1fae3ca60b4b8d689
   FirebaseAuthInterop: eaf74707f31a2a38cc133832d2c6410233569cbf
-  FirebaseAuthUI: 380c33ea31e93197a1fa9f77a89adacac2cadcaa
-  FirebaseCore: 6c77d4b88c60992152509eae56851b7e8a2507dd
+  FirebaseAuthUI: 9381cd32c4efcaf3550f4a95dd176fc73da253ee
+  FirebaseCore: e4c0b5d9727eaee0b43f9ed00baff7500c188d7b
   FirebaseCoreDiagnostics: 54410e5d156bf406a764c2722d9f77d682723b4c
   FirebaseCoreExtension: 9ce1dc5fedca6dad29fe8e2be7ee7786498dc675
   FirebaseCoreInternal: 5b8f4f2e2970a4cb9bd1cf7ada16c8ba69a29530
-  FirebaseFunctions: 84a8bf1d8972b6f93da44da26775c2e98d8bdd89
-  FirebaseGoogleAuthUI: f9a24a1efd1c6207c9492a08d018768bda7d856e
-  FirebaseInstallations: 22a2cd83b7db31a2296ccdcd843c4a00c39417ac
+  FirebaseFunctions: 380bafdaf065e507612e2be1a0f04dfac60560bf
+  FirebaseGoogleAuthUI: 978ae1845a5c9111fdf4c2e05708edb0a224bed3
+  FirebaseInstallations: e693c0dfe404af44afbd553de42498b2ca1ca189
   FirebaseMessagingInterop: f2044030f7cbad96941c5ccb2130ff275443078d
   FirebaseSharedSwift: b0fb7944fbf5292887a050cbb78cf3c62c251f90
-  FirebaseUI: 5fbf5c24e4af32734471d794404fdd65b26afe12
-  GoogleAppMeasurement: fbead2e392d7e1fe93aa88ecad6f62853f7eee54
+  FirebaseUI: 33ee19f70792fae68bee5cbbbf93733baa2cc7fa
+  GoogleAppMeasurement: 2c2792d43ebdea0524adbc90cba9139721f3039b
   GoogleDataTransport: 629c20a4d363167143f30ea78320d5a7eb8bd940
   GoogleSignIn: c90b5bec45e780f54c6a8e1e3c182a86e3dda69d
   GoogleUtilities: e0913149f6b0625b553d70dae12b49fc62914fd1
   GTMAppAuth: 987526d41b07efb1bedda5e936fe0cb718a03113
-  GTMSessionFetcher: 4577a4cc914a5a07c40a8a0ad0acc22080418c2d
+  GTMSessionFetcher: 5595ec75acf5be50814f81e9189490412bad82ba
   MaterialComponents: 1a9b2d9d45b1601ae544de85089adc4c464306d4
   MDFInternationalization: 010097556d6b09d2c4ea38e0820ea6d37be6a314
   MDFTextAccessibility: f4bb4cc2194286651b59a215fdeaa0e05dc90ba5
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   PromisesObjC: 99b6f43f9e1044bd87a95a60beff28c2c44ddb72
 
-PODFILE CHECKSUM: 05880897ed9f1324c0229a3feab56051c203e406
+PODFILE CHECKSUM: 131d89ca9b318666f6fac25d1e03bf4fab9d05c4
 
 COCOAPODS: 1.11.3

@@ -16,7 +16,6 @@
 
 import UIKit
 import FirebaseStorage
-import FirebaseStorageSwift
 
 @objc(DownloadViewController)
 class DownloadViewController: UIViewController {

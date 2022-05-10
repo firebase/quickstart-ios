@@ -696,7 +696,7 @@
 			requirement = {
 				kind = versionRange;
 				maximumVersion = 10.0.0;
-				minimumVersion = 8.0.0;
+				minimumVersion = 9.0.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

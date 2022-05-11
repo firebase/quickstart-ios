@@ -58,7 +58,6 @@
 		C7C6B58A268C8C9C00546A57 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C6B575268C8C9A00546A57 /* LoginView.swift */; };
 		C7C6B58B268C8C9C00546A57 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C7C6B576268C8C9C00546A57 /* Assets.xcassets */; };
 		C7C6B58C268C8C9C00546A57 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C7C6B576268C8C9C00546A57 /* Assets.xcassets */; };
-		C7C6B597268C8D7800546A57 /* FirebaseDatabaseSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = C7C6B596268C8D7800546A57 /* FirebaseDatabaseSwift-Beta */; };
 		C7C6B599268C8D7800546A57 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = C7C6B598268C8D7800546A57 /* FirebaseAuth */; };
 		C7C6B59B268C8D7800546A57 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = C7C6B59A268C8D7800546A57 /* FirebaseDatabase */; };
 		C7C6B5B3268DAC1800546A57 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C6B5B2268DAC1800546A57 /* Comment.swift */; };
@@ -69,6 +68,9 @@
 		C7F60CF7268EBEDE002F68AB /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F60CF5268EBEDE002F68AB /* UserViewModel.swift */; };
 		C7F60CFC268EE316002F68AB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F60CFB268EE316002F68AB /* ContentView.swift */; };
 		C7F60CFD268EE316002F68AB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F60CFB268EE316002F68AB /* ContentView.swift */; };
+		DEDAD221282B281F00DEC2CA /* FirebaseDatabaseSwift in Frameworks */ = {isa = PBXBuildFile; productRef = DEDAD220282B281F00DEC2CA /* FirebaseDatabaseSwift */; };
+		DEDAD223282B282F00DEC2CA /* FirebaseDatabaseSwift in Frameworks */ = {isa = PBXBuildFile; productRef = DEDAD222282B282F00DEC2CA /* FirebaseDatabaseSwift */; };
+		DEDAD225282B283600DEC2CA /* FirebaseDatabaseSwift in Frameworks */ = {isa = PBXBuildFile; productRef = DEDAD224282B283600DEC2CA /* FirebaseDatabaseSwift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -153,6 +155,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DEDAD223282B282F00DEC2CA /* FirebaseDatabaseSwift in Frameworks */,
 				C796F2C526D228F30076C5F5 /* FirebaseDatabase in Frameworks */,
 				C796F2C326D228F30076C5F5 /* FirebaseAuth in Frameworks */,
 			);
@@ -162,8 +165,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DEDAD221282B281F00DEC2CA /* FirebaseDatabaseSwift in Frameworks */,
 				C7C6B59B268C8D7800546A57 /* FirebaseDatabase in Frameworks */,
-				C7C6B597268C8D7800546A57 /* FirebaseDatabaseSwift-Beta in Frameworks */,
 				C7C6B599268C8D7800546A57 /* FirebaseAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -172,6 +175,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DEDAD225282B283600DEC2CA /* FirebaseDatabaseSwift in Frameworks */,
 				C796F29A26CCDCF50076C5F5 /* FirebaseDatabase in Frameworks */,
 				C796F29826CCDCEF0076C5F5 /* FirebaseAuth in Frameworks */,
 			);
@@ -360,6 +364,7 @@
 			packageProductDependencies = (
 				C796F2C226D228F30076C5F5 /* FirebaseAuth */,
 				C796F2C426D228F30076C5F5 /* FirebaseDatabase */,
+				DEDAD222282B282F00DEC2CA /* FirebaseDatabaseSwift */,
 			);
 			productName = tvOSDatabaseExample;
 			productReference = C796F2A326D228180076C5F5 /* DatabaseExample (tvOS).app */;
@@ -379,9 +384,9 @@
 			);
 			name = "DatabaseExample (iOS)";
 			packageProductDependencies = (
-				C7C6B596268C8D7800546A57 /* FirebaseDatabaseSwift-Beta */,
 				C7C6B598268C8D7800546A57 /* FirebaseAuth */,
 				C7C6B59A268C8D7800546A57 /* FirebaseDatabase */,
+				DEDAD220282B281F00DEC2CA /* FirebaseDatabaseSwift */,
 			);
 			productName = "DatabaseExample (iOS)";
 			productReference = C7C6B57B268C8C9C00546A57 /* DatabaseExample.app */;
@@ -403,6 +408,7 @@
 			packageProductDependencies = (
 				C796F29726CCDCEF0076C5F5 /* FirebaseAuth */,
 				C796F29926CCDCF50076C5F5 /* FirebaseDatabase */,
+				DEDAD224282B283600DEC2CA /* FirebaseDatabaseSwift */,
 			);
 			productName = "DatabaseExample (macOS)";
 			productReference = C7C6B583268C8C9C00546A57 /* DatabaseExample.app */;
@@ -1111,7 +1117,7 @@
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 8.2.0;
+				minimumVersion = 9.0.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -1137,11 +1143,6 @@
 			package = C7C6B595268C8D7800546A57 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseDatabase;
 		};
-		C7C6B596268C8D7800546A57 /* FirebaseDatabaseSwift-Beta */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C7C6B595268C8D7800546A57 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = "FirebaseDatabaseSwift-Beta";
-		};
 		C7C6B598268C8D7800546A57 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = C7C6B595268C8D7800546A57 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
@@ -1151,6 +1152,21 @@
 			isa = XCSwiftPackageProductDependency;
 			package = C7C6B595268C8D7800546A57 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseDatabase;
+		};
+		DEDAD220282B281F00DEC2CA /* FirebaseDatabaseSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C7C6B595268C8D7800546A57 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabaseSwift;
+		};
+		DEDAD222282B282F00DEC2CA /* FirebaseDatabaseSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C7C6B595268C8D7800546A57 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabaseSwift;
+		};
+		DEDAD224282B283600DEC2CA /* FirebaseDatabaseSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C7C6B595268C8D7800546A57 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabaseSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

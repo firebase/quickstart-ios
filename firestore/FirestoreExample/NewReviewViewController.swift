@@ -59,8 +59,9 @@ class NewReviewViewController: UIViewController, UITextFieldDelegate {
   }
 
   @IBAction func doneButtonPressed(_ sender: Any) {
+    guard let uid = Auth.auth().currentUser?.uid else { return }
     let review = Review(rating: ratingView.rating!,
-                        userID: Auth.auth().currentUser!.uid,
+                        userID: uid,
                         username: Auth.auth().currentUser?.displayName ?? "Anonymous",
                         text: reviewTextField.text!,
                         date: Timestamp())

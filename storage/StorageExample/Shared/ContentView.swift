@@ -17,7 +17,6 @@
 import SwiftUI
 import FirebaseAuth
 import FirebaseStorage
-import FirebaseStorageSwift
 
 struct ContentView: View {
   @EnvironmentObject var viewModel: ViewModel

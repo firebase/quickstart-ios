@@ -56,31 +56,7 @@ class FiltersViewController: UIViewController, UIPickerViewDataSource, UIPickerV
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    configureNavigationController()
-  }
-
-  // Blue bar with white text color
-  private func configureNavigationController() {
-    guard let navigationBar = navigationController?.navigationBar else {
-      return
-    }
-
-    navigationBar.barTintColor =
-      UIColor(red: 0x3D / 0xFF, green: 0x5A / 0xFF, blue: 0xFE / 0xFF, alpha: 1.0)
-    navigationBar.isTranslucent = false
-    navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-    if #available(iOS 13.0, *) {
-      let navBarAppearance = UINavigationBarAppearance()
-      navBarAppearance.configureWithOpaqueBackground()
-      navBarAppearance.backgroundColor = navigationBar.barTintColor
-      navBarAppearance.titleTextAttributes = navigationBar.titleTextAttributes!
-      navigationBar.standardAppearance = navBarAppearance
-      navigationBar.compactAppearance = navBarAppearance
-      navigationBar.scrollEdgeAppearance = navBarAppearance
-      if #available(iOS 15.0, *) {
-        navigationBar.compactScrollEdgeAppearance = navBarAppearance
-      }
-    }
+    navigationController?.navigationBar.applyFirebaseAppearance()
   }
 
   private func price(from string: String) -> Int? {

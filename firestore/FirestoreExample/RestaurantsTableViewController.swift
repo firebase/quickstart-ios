@@ -124,12 +124,25 @@ class RestaurantsTableViewController: UIViewController, UITableViewDataSource, U
     tableView.backgroundView = backgroundView
     tableView.tableFooterView = UIView()
 
-    // Blue bar with white color
+    // Blue bar with white text color
     navigationController?.navigationBar.barTintColor =
       UIColor(red: 0x3D / 0xFF, green: 0x5A / 0xFF, blue: 0xFE / 0xFF, alpha: 1.0)
     navigationController?.navigationBar.isTranslucent = false
     navigationController?.navigationBar.titleTextAttributes =
       [NSAttributedString.Key.foregroundColor: UIColor.white]
+    if #available(iOS 13.0, *) {
+      let navBarAppearance = UINavigationBarAppearance()
+      navBarAppearance.configureWithOpaqueBackground()
+      navBarAppearance.backgroundColor = navigationController!.navigationBar.barTintColor
+      navBarAppearance.titleTextAttributes =
+        navigationController!.navigationBar.titleTextAttributes!
+      navigationController?.navigationBar.standardAppearance = navBarAppearance
+      navigationController?.navigationBar.compactAppearance = navBarAppearance
+      navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
+      if #available(iOS 15.0, *) {
+        navigationController?.navigationBar.compactScrollEdgeAppearance = navBarAppearance
+      }
+    }
 
     tableView.dataSource = self
     tableView.delegate = self

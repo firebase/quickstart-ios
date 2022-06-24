@@ -92,7 +92,7 @@ PODS:
     - nanopb/encode (= 2.30909.0)
   - nanopb/decode (2.30909.0)
   - nanopb/encode (2.30909.0)
-  - PromisesObjC (2.1.0)
+  - PromisesObjC (2.1.1)
 
 DEPENDENCIES:
   - FirebaseAnalytics
@@ -128,7 +128,7 @@ SPEC CHECKSUMS:
   GoogleDataTransport: 5fffe35792f8b96ec8d6775f5eccd83c998d5a3b
   GoogleUtilities: e0913149f6b0625b553d70dae12b49fc62914fd1
   nanopb: b552cce312b6c8484180ef47159bc0f65a1f0431
-  PromisesObjC: 99b6f43f9e1044bd87a95a60beff28c2c44ddb72
+  PromisesObjC: ab77feca74fa2823e7af4249b8326368e61014cb
 
 PODFILE CHECKSUM: d32f1af6a521f3de4c91c9418e470616fd0e5d72
 

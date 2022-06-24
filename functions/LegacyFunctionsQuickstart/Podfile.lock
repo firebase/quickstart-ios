@@ -224,7 +224,7 @@ PODS:
     - nanopb/encode (= 2.30909.0)
   - nanopb/decode (2.30909.0)
   - nanopb/encode (2.30909.0)
-  - PromisesObjC (2.1.0)
+  - PromisesObjC (2.1.1)
 
 DEPENDENCIES:
   - FirebaseAnalytics
@@ -293,7 +293,7 @@ SPEC CHECKSUMS:
   MDFInternationalization: 010097556d6b09d2c4ea38e0820ea6d37be6a314
   MDFTextAccessibility: f4bb4cc2194286651b59a215fdeaa0e05dc90ba5
   nanopb: b552cce312b6c8484180ef47159bc0f65a1f0431
-  PromisesObjC: 99b6f43f9e1044bd87a95a60beff28c2c44ddb72
+  PromisesObjC: ab77feca74fa2823e7af4249b8326368e61014cb
 
 PODFILE CHECKSUM: d103fd04b4b07888caf3c230e59c5676c1d8b1d0
 

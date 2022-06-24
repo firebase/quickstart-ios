@@ -109,7 +109,7 @@ PODS:
     - nanopb/encode (= 2.30909.0)
   - nanopb/decode (2.30909.0)
   - nanopb/encode (2.30909.0)
-  - PromisesObjC (2.1.0)
+  - PromisesObjC (2.1.1)
 
 DEPENDENCIES:
   - FBSDKLoginKit
@@ -158,7 +158,7 @@ SPEC CHECKSUMS:
   GTMAppAuth: 4d8f864896f3646f0c33baf38a28362f4c601e15
   GTMSessionFetcher: 5595ec75acf5be50814f81e9189490412bad82ba
   nanopb: b552cce312b6c8484180ef47159bc0f65a1f0431
-  PromisesObjC: 99b6f43f9e1044bd87a95a60beff28c2c44ddb72
+  PromisesObjC: ab77feca74fa2823e7af4249b8326368e61014cb
 
 PODFILE CHECKSUM: 7f48ba5732e7b375a2ab3de478b2d53a1a26b48e
 

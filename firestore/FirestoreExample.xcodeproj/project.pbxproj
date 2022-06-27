@@ -10,6 +10,7 @@
 		0F5846D1C922E1CBB0D0B628 /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = 6AA80A371E484FE3095D24C4 /* GoogleService-Info.plist */; };
 		10734773203159E4004A66D1 /* FirestoreExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10734772203159E4004A66D1 /* FirestoreExampleUITests.swift */; };
 		1A8221B8C73DEF29AF54187B /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = 6AA80A371E484FE3095D24C4 /* GoogleService-Info.plist */; };
+		8670CB2C286A218500070BC6 /* UINavigationBar+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8670CB2B286A218500070BC6 /* UINavigationBar+Extension.swift */; };
 		8D004D2D1EE879B5004DEF35 /* FiltersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D004D2C1EE879B5004DEF35 /* FiltersViewController.swift */; };
 		8D5DF7021F7EF3BA00B0D24F /* NewReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5DF7011F7EF3BA00B0D24F /* NewReviewViewController.swift */; };
 		8D9BBC311EE2200900194E9A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9BBC301EE2200900194E9A /* AppDelegate.swift */; };
@@ -72,6 +73,7 @@
 		10734772203159E4004A66D1 /* FirestoreExampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreExampleUITests.swift; sourceTree = "<group>"; };
 		10734774203159E4004A66D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6AA80A371E484FE3095D24C4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		8670CB2B286A218500070BC6 /* UINavigationBar+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationBar+Extension.swift"; sourceTree = "<group>"; };
 		8D004D2C1EE879B5004DEF35 /* FiltersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FiltersViewController.swift; sourceTree = "<group>"; };
 		8D5DF7011F7EF3BA00B0D24F /* NewReviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewReviewViewController.swift; sourceTree = "<group>"; };
 		8D9BBC2D1EE2200900194E9A /* FirestoreExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FirestoreExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -198,6 +200,7 @@
 				8DF77E1B1EEB645100CB2330 /* StarsView.swift */,
 				8DF1E3141EE72C4600192CDE /* LocalCollection.swift */,
 				8DF1E3121EE5CFF900192CDE /* Restaurant.swift */,
+				8670CB2B286A218500070BC6 /* UINavigationBar+Extension.swift */,
 				8D9BBC341EE2200900194E9A /* Main.storyboard */,
 				8D9BBC371EE2200900194E9A /* Assets.xcassets */,
 				8DD9ACD91F7B166900C2DD24 /* pizza-monster.png */,
@@ -481,6 +484,7 @@
 				8D9BBC331EE2200900194E9A /* RestaurantsTableViewController.swift in Sources */,
 				8D9BBC311EE2200900194E9A /* AppDelegate.swift in Sources */,
 				8DF1E3151EE72C4600192CDE /* LocalCollection.swift in Sources */,
+				8670CB2C286A218500070BC6 /* UINavigationBar+Extension.swift in Sources */,
 				8D5DF7021F7EF3BA00B0D24F /* NewReviewViewController.swift in Sources */,
 				8DF1E3131EE5CFF900192CDE /* Restaurant.swift in Sources */,
 				8DF77E1A1EEB45E500CB2330 /* RestaurantDetailViewController.swift in Sources */,

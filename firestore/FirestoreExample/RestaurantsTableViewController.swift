@@ -124,20 +124,13 @@ class RestaurantsTableViewController: UIViewController, UITableViewDataSource, U
     tableView.backgroundView = backgroundView
     tableView.tableFooterView = UIView()
 
-    // Blue bar with white color
-    navigationController?.navigationBar.barTintColor =
-      UIColor(red: 0x3D / 0xFF, green: 0x5A / 0xFF, blue: 0xFE / 0xFF, alpha: 1.0)
-    navigationController?.navigationBar.isTranslucent = false
-    navigationController?.navigationBar.titleTextAttributes =
-      [NSAttributedString.Key.foregroundColor: UIColor.white]
+    navigationController?.navigationBar.applyFirebaseAppearance()
 
     tableView.dataSource = self
     tableView.delegate = self
     query = baseQuery()
     stackViewHeightConstraint.constant = 0
     activeFiltersStackView.isHidden = true
-
-    navigationController?.navigationBar.barStyle = .black
   }
 
   override func viewWillAppear(_ animated: Bool) {

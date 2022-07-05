@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -26,6 +26,21 @@
 		5F99610C1AE0CF4F0034F503 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F9961071AE0CF4F0034F503 /* LaunchScreen.xib */; };
 		5F99610D1AE0CF4F0034F503 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F9961071AE0CF4F0034F503 /* LaunchScreen.xib */; };
 		7C3DAFA02B6A41251A02D833 /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = 28663F6E35BEC4B1EC821AA8 /* GoogleService-Info.plist */; };
+		8602C82D288F627000387485 /* ParameterValueEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867AE1E7288F590C0071D3A9 /* ParameterValueEditorView.swift */; };
+		867AE224288F5BA20071D3A9 /* DynamicLinksExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867AE1E1288F590C0071D3A9 /* DynamicLinksExampleApp.swift */; };
+		867AE225288F5BA60071D3A9 /* LinkCreatorExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867AE1E8288F590C0071D3A9 /* LinkCreatorExample.swift */; };
+		867AE227288F5BB90071D3A9 /* LinkComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867AE1DD288F590C0071D3A9 /* LinkComponent.swift */; };
+		867AE228288F5BB90071D3A9 /* LinkParameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867AE1E0288F590C0071D3A9 /* LinkParameter.swift */; };
+		867AE22A288F5BB90071D3A9 /* LinkParameterState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867AE1DE288F590C0071D3A9 /* LinkParameterState.swift */; };
+		867AE22B288F5BB90071D3A9 /* LinkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867AE1DC288F590C0071D3A9 /* LinkModel.swift */; };
+		867AE22C288F5BC30071D3A9 /* LinkComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867AE1E4288F590C0071D3A9 /* LinkComponentView.swift */; };
+		867AE22D288F5BC30071D3A9 /* LinkConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867AE1E6288F590C0071D3A9 /* LinkConfigurationView.swift */; };
+		867AE232288F5CD90071D3A9 /* FirebaseDynamicLinks in Frameworks */ = {isa = PBXBuildFile; productRef = 867AE231288F5CD90071D3A9 /* FirebaseDynamicLinks */; };
+		867AE237288F5E0D0071D3A9 /* FirebaseDynamicLinks in Frameworks */ = {isa = PBXBuildFile; productRef = 867AE236288F5E0D0071D3A9 /* FirebaseDynamicLinks */; };
+		867AE23F288F60890071D3A9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F9961061AE0CF4F0034F503 /* Images.xcassets */; };
+		867AE240288F608F0071D3A9 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F9961071AE0CF4F0034F503 /* LaunchScreen.xib */; };
+		867AE241288F61090071D3A9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 28663F6E35BEC4B1EC821AA8 /* GoogleService-Info.plist */; };
+		86F0FEFD2890905800E6D0F2 /* LinkCreatorExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F0FEFC2890905800E6D0F2 /* LinkCreatorExampleView.swift */; };
 		9965E65D0BB7DA370BAA0C23 /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = 28663F6E35BEC4B1EC821AA8 /* GoogleService-Info.plist */; };
 		A1F82AABFFE762C13E065BA6 /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = 28663F6E35BEC4B1EC821AA8 /* GoogleService-Info.plist */; };
 		DE43B5C423AEBA710056B15F /* FIREGHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DE43B5C023AEBA690056B15F /* FIREGHelper.m */; };
@@ -88,6 +103,20 @@
 		5F5A537F1ADE67D500F81DF0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		5F9961061AE0CF4F0034F503 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		5F9961071AE0CF4F0034F503 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
+		8602C829288F620600387485 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		867AE1DC288F590C0071D3A9 /* LinkModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkModel.swift; sourceTree = "<group>"; };
+		867AE1DD288F590C0071D3A9 /* LinkComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkComponent.swift; sourceTree = "<group>"; };
+		867AE1DE288F590C0071D3A9 /* LinkParameterState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkParameterState.swift; sourceTree = "<group>"; };
+		867AE1E0288F590C0071D3A9 /* LinkParameter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkParameter.swift; sourceTree = "<group>"; };
+		867AE1E1288F590C0071D3A9 /* DynamicLinksExampleApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicLinksExampleApp.swift; sourceTree = "<group>"; };
+		867AE1E4288F590C0071D3A9 /* LinkComponentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkComponentView.swift; sourceTree = "<group>"; };
+		867AE1E6288F590C0071D3A9 /* LinkConfigurationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkConfigurationView.swift; sourceTree = "<group>"; };
+		867AE1E7288F590C0071D3A9 /* ParameterValueEditorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParameterValueEditorView.swift; sourceTree = "<group>"; };
+		867AE1E8288F590C0071D3A9 /* LinkCreatorExample.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkCreatorExample.swift; sourceTree = "<group>"; };
+		867AE1FA288F5A330071D3A9 /* DynamicLinksSwiftUIExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DynamicLinksSwiftUIExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		867AE23D288F5FFE0071D3A9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		86DEC5452891F97000D9EA7A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		86F0FEFC2890905800E6D0F2 /* LinkCreatorExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkCreatorExampleView.swift; sourceTree = "<group>"; };
 		DE43B5BE23AEBA690056B15F /* FIREGHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FIREGHelper.h; sourceTree = "<group>"; };
 		DE43B5BF23AEBA690056B15F /* FIREGSignInHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FIREGSignInHelper.m; sourceTree = "<group>"; };
 		DE43B5C023AEBA690056B15F /* FIREGHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FIREGHelper.m; sourceTree = "<group>"; };
@@ -121,6 +150,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				867AE232288F5CD90071D3A9 /* FirebaseDynamicLinks in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -128,6 +158,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		867AE1F7288F5A330071D3A9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				867AE237288F5E0D0071D3A9 /* FirebaseDynamicLinks in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -165,13 +203,15 @@
 			children = (
 				5F5A534E1ADE670C00F81DF0 /* DynamicLinksExample */,
 				5F5A537A1ADE67D500F81DF0 /* DynamicLinksExampleSwift */,
+				867AE1D9288F590C0071D3A9 /* DynamicLinksSwiftUIExample */,
 				10AF4D471DD3E7660096D192 /* DynamicLinksExampleTests */,
-				10734763203159BF004A66D1 /* DynamicLinksExampleSwiftUITests */,
 				1073484320333BB3004A66D1 /* DynamicLinksExampleUITests */,
+				10734763203159BF004A66D1 /* DynamicLinksExampleSwiftUITests */,
 				DE43B5BD23AEBA690056B15F /* TestUtils */,
 				5F5A534D1ADE670C00F81DF0 /* Products */,
 				5F9961041AE0CF4F0034F503 /* Shared */,
 				28663F6E35BEC4B1EC821AA8 /* GoogleService-Info.plist */,
+				867AE235288F5E0D0071D3A9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 			wrapsLines = 0;
@@ -184,6 +224,7 @@
 				10AF4D461DD3E7660096D192 /* DynamicLinksExampleTests.xctest */,
 				10734762203159BF004A66D1 /* DynamicLinksExampleSwiftUITests.xctest */,
 				1073484220333BB3004A66D1 /* DynamicLinksExampleUITests.xctest */,
+				867AE1FA288F5A330071D3A9 /* DynamicLinksSwiftUIExample.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -234,6 +275,65 @@
 			);
 			name = Shared;
 			path = ../shared;
+			sourceTree = "<group>";
+		};
+		867AE1D9288F590C0071D3A9 /* DynamicLinksSwiftUIExample */ = {
+			isa = PBXGroup;
+			children = (
+				86DEC5452891F97000D9EA7A /* Info.plist */,
+				867AE1E1288F590C0071D3A9 /* DynamicLinksExampleApp.swift */,
+				867AE1E8288F590C0071D3A9 /* LinkCreatorExample.swift */,
+				86F0FEFC2890905800E6D0F2 /* LinkCreatorExampleView.swift */,
+				867AE1DA288F590C0071D3A9 /* Models */,
+				867AE1E3288F590C0071D3A9 /* Views */,
+				867AE23C288F5FFE0071D3A9 /* Preview Content */,
+			);
+			path = DynamicLinksSwiftUIExample;
+			sourceTree = "<group>";
+		};
+		867AE1DA288F590C0071D3A9 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				867AE1DC288F590C0071D3A9 /* LinkModel.swift */,
+				867AE1DD288F590C0071D3A9 /* LinkComponent.swift */,
+				867AE1E0288F590C0071D3A9 /* LinkParameter.swift */,
+				867AE1DE288F590C0071D3A9 /* LinkParameterState.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		867AE1E3288F590C0071D3A9 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				86F0FEFA28904D1900E6D0F2 /* LinkGeneration */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		867AE235288F5E0D0071D3A9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8602C829288F620600387485 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		867AE23C288F5FFE0071D3A9 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				867AE23D288F5FFE0071D3A9 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		86F0FEFA28904D1900E6D0F2 /* LinkGeneration */ = {
+			isa = PBXGroup;
+			children = (
+				867AE1E6288F590C0071D3A9 /* LinkConfigurationView.swift */,
+				867AE1E4288F590C0071D3A9 /* LinkComponentView.swift */,
+				867AE1E7288F590C0071D3A9 /* ParameterValueEditorView.swift */,
+			);
+			path = LinkGeneration;
 			sourceTree = "<group>";
 		};
 		DE43B5BD23AEBA690056B15F /* TestUtils */ = {
@@ -319,6 +419,9 @@
 			dependencies = (
 			);
 			name = DynamicLinksExample;
+			packageProductDependencies = (
+				867AE231288F5CD90071D3A9 /* FirebaseDynamicLinks */,
+			);
 			productName = DurableLinksExample;
 			productReference = 5F5A534C1ADE670C00F81DF0 /* DynamicLinksExample.app */;
 			productType = "com.apple.product-type.application";
@@ -340,13 +443,33 @@
 			productReference = 5F5A53791ADE67D500F81DF0 /* DynamicLinksExample.app */;
 			productType = "com.apple.product-type.application";
 		};
+		867AE1F9288F5A330071D3A9 /* DynamicLinksSwiftUIExample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 867AE21B288F5A350071D3A9 /* Build configuration list for PBXNativeTarget "DynamicLinksSwiftUIExample" */;
+			buildPhases = (
+				867AE1F6288F5A330071D3A9 /* Sources */,
+				867AE1F7288F5A330071D3A9 /* Frameworks */,
+				867AE1F8288F5A330071D3A9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DynamicLinksSwiftUIExample;
+			packageProductDependencies = (
+				867AE236288F5E0D0071D3A9 /* FirebaseDynamicLinks */,
+			);
+			productName = DynamicLinksSwiftUIExample;
+			productReference = 867AE1FA288F5A330071D3A9 /* DynamicLinksSwiftUIExample.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		5F5A53441ADE670C00F81DF0 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0920;
+				LastSwiftUpdateCheck = 1400;
 				LastUpgradeCheck = 1110;
 				ORGANIZATIONNAME = "Google Inc.";
 				TargetAttributes = {
@@ -376,6 +499,9 @@
 						LastSwiftMigration = 1110;
 						ProvisioningStyle = Automatic;
 					};
+					867AE1F9288F5A330071D3A9 = {
+						CreatedOnToolsVersion = 14.0;
+					};
 				};
 			};
 			buildConfigurationList = 5F5A53471ADE670C00F81DF0 /* Build configuration list for PBXProject "DynamicLinksExample" */;
@@ -387,15 +513,19 @@
 				Base,
 			);
 			mainGroup = 5F5A53431ADE670C00F81DF0;
+			packageReferences = (
+				867AE230288F5CD90071D3A9 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = 5F5A534D1ADE670C00F81DF0 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				5F5A534B1ADE670C00F81DF0 /* DynamicLinksExample */,
 				5F5A53781ADE67D500F81DF0 /* DynamicLinksExampleSwift */,
+				867AE1F9288F5A330071D3A9 /* DynamicLinksSwiftUIExample */,
 				10AF4D451DD3E7660096D192 /* DynamicLinksExampleTests */,
-				10734761203159BF004A66D1 /* DynamicLinksExampleSwiftUITests */,
 				1073484120333BB3004A66D1 /* DynamicLinksExampleUITests */,
+				10734761203159BF004A66D1 /* DynamicLinksExampleSwiftUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -439,6 +569,16 @@
 				5F99610D1AE0CF4F0034F503 /* LaunchScreen.xib in Resources */,
 				5F5A539C1ADE69AA00F81DF0 /* Main.storyboard in Resources */,
 				5F99610B1AE0CF4F0034F503 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		867AE1F8288F5A330071D3A9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				867AE241288F61090071D3A9 /* GoogleService-Info.plist in Resources */,
+				867AE240288F608F0071D3A9 /* LaunchScreen.xib in Resources */,
+				867AE23F288F60890071D3A9 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -499,6 +639,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		867AE1F6288F5A330071D3A9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				867AE22D288F5BC30071D3A9 /* LinkConfigurationView.swift in Sources */,
+				867AE22A288F5BB90071D3A9 /* LinkParameterState.swift in Sources */,
+				8602C82D288F627000387485 /* ParameterValueEditorView.swift in Sources */,
+				867AE22C288F5BC30071D3A9 /* LinkComponentView.swift in Sources */,
+				867AE224288F5BA20071D3A9 /* DynamicLinksExampleApp.swift in Sources */,
+				867AE225288F5BA60071D3A9 /* LinkCreatorExample.swift in Sources */,
+				867AE228288F5BB90071D3A9 /* LinkParameter.swift in Sources */,
+				867AE22B288F5BB90071D3A9 /* LinkModel.swift in Sources */,
+				867AE227288F5BB90071D3A9 /* LinkComponent.swift in Sources */,
+				86F0FEFD2890905800E6D0F2 /* LinkCreatorExampleView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -545,7 +702,11 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = DynamicLinksExampleSwiftUITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.DynamicLinksExampleSwiftUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -571,7 +732,11 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = DynamicLinksExampleSwiftUITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.DynamicLinksExampleSwiftUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
@@ -595,7 +760,11 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = DynamicLinksExampleUITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.DynamicLinksExampleUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -618,7 +787,11 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = DynamicLinksExampleUITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.DynamicLinksExampleUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -638,7 +811,11 @@
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = DynamicLinksExample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.samples.DynamicLinksExampleTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -659,7 +836,11 @@
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = DynamicLinksExample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.samples.DynamicLinksExampleTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -768,7 +949,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -783,10 +965,16 @@
 				CODE_SIGN_ENTITLEMENTS = DynamicLinksExample/DynamicLinksExample.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/DynamicLinksExample/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.DynamicLinksExample;
 				PRODUCT_NAME = DynamicLinksExample;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -803,10 +991,16 @@
 				CODE_SIGN_ENTITLEMENTS = DynamicLinksExample/DynamicLinksExample.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/DynamicLinksExample/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.DynamicLinksExample;
 				PRODUCT_NAME = DynamicLinksExample;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -821,9 +1015,14 @@
 				CODE_SIGN_ENTITLEMENTS = DynamicLinksExample/DynamicLinksExample.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "$(SRCROOT)/DynamicLinksExample/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.DynamicLinksExample;
 				PRODUCT_NAME = DynamicLinksExample;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -839,13 +1038,115 @@
 				CODE_SIGN_ENTITLEMENTS = DynamicLinksExample/DynamicLinksExample.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "$(SRCROOT)/DynamicLinksExample/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.DynamicLinksExample;
 				PRODUCT_NAME = DynamicLinksExample;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		867AE21C288F5A350071D3A9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_ASSET_PATHS = "DynamicLinksSwiftUIExample/Preview\\ Content";
+				DEVELOPMENT_TEAM = 9CVPQ689S5;
+				ENABLE_PREVIEWS = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DynamicLinksSwiftUIExample/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Dynamic Links Quickstart";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.xib;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.DynamicLinksExample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		867AE21D288F5A350071D3A9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_ASSET_PATHS = "DynamicLinksSwiftUIExample/Preview\\ Content";
+				DEVELOPMENT_TEAM = 9CVPQ689S5;
+				ENABLE_PREVIEWS = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DynamicLinksSwiftUIExample/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Dynamic Links Quickstart";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.xib;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.DynamicLinksExample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -906,7 +1207,40 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		867AE21B288F5A350071D3A9 /* Build configuration list for PBXNativeTarget "DynamicLinksSwiftUIExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				867AE21C288F5A350071D3A9 /* Debug */,
+				867AE21D288F5A350071D3A9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		867AE230288F5CD90071D3A9 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		867AE231288F5CD90071D3A9 /* FirebaseDynamicLinks */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 867AE230288F5CD90071D3A9 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDynamicLinks;
+		};
+		867AE236288F5E0D0071D3A9 /* FirebaseDynamicLinks */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 867AE230288F5CD90071D3A9 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDynamicLinks;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 5F5A53441ADE670C00F81DF0 /* Project object */;
 }

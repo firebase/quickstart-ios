@@ -1,6 +1,6 @@
 PODS:
-  - FirebaseAnalytics (9.2.0):
-    - FirebaseAnalytics/AdIdSupport (= 9.2.0)
+  - FirebaseAnalytics (9.3.0):
+    - FirebaseAnalytics/AdIdSupport (= 9.3.0)
     - FirebaseCore (~> 9.0)
     - FirebaseInstallations (~> 9.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 7.7)
@@ -8,28 +8,28 @@ PODS:
     - GoogleUtilities/Network (~> 7.7)
     - "GoogleUtilities/NSData+zlib (~> 7.7)"
     - nanopb (< 2.30910.0, >= 2.30908.0)
-  - FirebaseAnalytics/AdIdSupport (9.2.0):
+  - FirebaseAnalytics/AdIdSupport (9.3.0):
     - FirebaseCore (~> 9.0)
     - FirebaseInstallations (~> 9.0)
-    - GoogleAppMeasurement (= 9.2.0)
+    - GoogleAppMeasurement (= 9.3.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 7.7)
     - GoogleUtilities/MethodSwizzler (~> 7.7)
     - GoogleUtilities/Network (~> 7.7)
     - "GoogleUtilities/NSData+zlib (~> 7.7)"
     - nanopb (< 2.30910.0, >= 2.30908.0)
-  - FirebaseCore (9.2.0):
+  - FirebaseCore (9.3.0):
     - FirebaseCoreDiagnostics (~> 9.0)
     - FirebaseCoreInternal (~> 9.0)
     - GoogleUtilities/Environment (~> 7.7)
     - GoogleUtilities/Logger (~> 7.7)
-  - FirebaseCoreDiagnostics (9.2.0):
+  - FirebaseCoreDiagnostics (9.3.0):
     - GoogleDataTransport (< 10.0.0, >= 9.1.4)
     - GoogleUtilities/Environment (~> 7.7)
     - GoogleUtilities/Logger (~> 7.7)
     - nanopb (< 2.30910.0, >= 2.30908.0)
-  - FirebaseCoreInternal (9.2.0):
+  - FirebaseCoreInternal (9.3.0):
     - "GoogleUtilities/NSData+zlib (~> 7.7)"
-  - FirebaseInstallations (9.2.0):
+  - FirebaseInstallations (9.3.0):
     - FirebaseCore (~> 9.0)
     - GoogleUtilities/Environment (~> 7.7)
     - GoogleUtilities/UserDefaults (~> 7.7)
@@ -43,21 +43,21 @@ PODS:
     - GoogleUtilities/Reachability (~> 7.7)
     - GoogleUtilities/UserDefaults (~> 7.7)
     - nanopb (< 2.30910.0, >= 2.30908.0)
-  - GoogleAppMeasurement (9.2.0):
-    - GoogleAppMeasurement/AdIdSupport (= 9.2.0)
+  - GoogleAppMeasurement (9.3.0):
+    - GoogleAppMeasurement/AdIdSupport (= 9.3.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 7.7)
     - GoogleUtilities/MethodSwizzler (~> 7.7)
     - GoogleUtilities/Network (~> 7.7)
     - "GoogleUtilities/NSData+zlib (~> 7.7)"
     - nanopb (< 2.30910.0, >= 2.30908.0)
-  - GoogleAppMeasurement/AdIdSupport (9.2.0):
-    - GoogleAppMeasurement/WithoutAdIdSupport (= 9.2.0)
+  - GoogleAppMeasurement/AdIdSupport (9.3.0):
+    - GoogleAppMeasurement/WithoutAdIdSupport (= 9.3.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 7.7)
     - GoogleUtilities/MethodSwizzler (~> 7.7)
     - GoogleUtilities/Network (~> 7.7)
     - "GoogleUtilities/NSData+zlib (~> 7.7)"
     - nanopb (< 2.30910.0, >= 2.30908.0)
-  - GoogleAppMeasurement/WithoutAdIdSupport (9.2.0):
+  - GoogleAppMeasurement/WithoutAdIdSupport (9.3.0):
     - GoogleUtilities/AppDelegateSwizzler (~> 7.7)
     - GoogleUtilities/MethodSwizzler (~> 7.7)
     - GoogleUtilities/Network (~> 7.7)
@@ -112,13 +112,13 @@ SPEC REPOS:
     - PromisesObjC
 
 SPEC CHECKSUMS:
-  FirebaseAnalytics: af5a03a8dff7648c7b8486f6a78b1368e0268dd3
-  FirebaseCore: 0e27f2a15d8f7b7ef11e7d93e23b1cbab55d748c
-  FirebaseCoreDiagnostics: ad3f6c68b7c5b63b7cf15b0785d7137f05f32268
-  FirebaseCoreInternal: cb966328b6985dbd6f535e1461291063e1c4a00f
-  FirebaseInstallations: 21186f0ca7849f90f4a3219fa31a5eca2e30f113
+  FirebaseAnalytics: bf46f5163f44097ce2c789de0b3e6f87f1da834a
+  FirebaseCore: c088995ece701a021a48a1348ea0174877de2a6a
+  FirebaseCoreDiagnostics: 060eb57cc56dfaf40b1b1b5874a5c17c41ce79f8
+  FirebaseCoreInternal: 635d1c9a612a6502b6377a0c92af83758076ffff
+  FirebaseInstallations: 54b40022cb06e462740c9f2b9fbe38b5e78a825a
   FirebaseMessaging: 4eaf1b8a7464b2c5e619ad66e9b20ee3e3206b24
-  GoogleAppMeasurement: 7a33224321f975d58c166657260526775d9c6b1a
+  GoogleAppMeasurement: b907bdad775b6975a8108762345b2cfbf1a93c37
   GoogleDataTransport: 5fffe35792f8b96ec8d6775f5eccd83c998d5a3b
   GoogleUtilities: e0913149f6b0625b553d70dae12b49fc62914fd1
   nanopb: b552cce312b6c8484180ef47159bc0f65a1f0431

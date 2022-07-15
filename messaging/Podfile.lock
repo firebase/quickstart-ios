@@ -34,7 +34,7 @@ PODS:
     - GoogleUtilities/Environment (~> 7.7)
     - GoogleUtilities/UserDefaults (~> 7.7)
     - PromisesObjC (~> 2.1)
-  - FirebaseMessaging (9.2.0):
+  - FirebaseMessaging (9.3.0):
     - FirebaseCore (~> 9.0)
     - FirebaseInstallations (~> 9.0)
     - GoogleDataTransport (< 10.0.0, >= 9.1.4)
@@ -117,7 +117,7 @@ SPEC CHECKSUMS:
   FirebaseCoreDiagnostics: 060eb57cc56dfaf40b1b1b5874a5c17c41ce79f8
   FirebaseCoreInternal: 635d1c9a612a6502b6377a0c92af83758076ffff
   FirebaseInstallations: 54b40022cb06e462740c9f2b9fbe38b5e78a825a
-  FirebaseMessaging: 4eaf1b8a7464b2c5e619ad66e9b20ee3e3206b24
+  FirebaseMessaging: 2f6e38b6133059eb796ec224104f09379298a8c3
   GoogleAppMeasurement: b907bdad775b6975a8108762345b2cfbf1a93c37
   GoogleDataTransport: 5fffe35792f8b96ec8d6775f5eccd83c998d5a3b
   GoogleUtilities: e0913149f6b0625b553d70dae12b49fc62914fd1

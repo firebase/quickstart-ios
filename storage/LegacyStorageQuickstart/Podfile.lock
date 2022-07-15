@@ -20,13 +20,13 @@ PODS:
     - FirebaseCore (~> 9.0)
   - FirebaseCoreInternal (9.3.0):
     - "GoogleUtilities/NSData+zlib (~> 7.7)"
-  - FirebaseStorage (9.2.0):
+  - FirebaseStorage (9.3.0):
     - FirebaseAppCheckInterop (~> 9.0)
     - FirebaseAuthInterop (~> 9.0)
     - FirebaseCore (~> 9.0)
     - FirebaseCoreExtension (~> 9.0)
     - FirebaseStorageInternal (~> 9.0)
-  - FirebaseStorageInternal (9.2.0):
+  - FirebaseStorageInternal (9.3.0):
     - FirebaseCore (~> 9.0)
     - GTMSessionFetcher/Core (< 3.0, >= 1.7)
   - GoogleDataTransport (9.1.4):
@@ -85,8 +85,8 @@ SPEC CHECKSUMS:
   FirebaseCoreDiagnostics: 060eb57cc56dfaf40b1b1b5874a5c17c41ce79f8
   FirebaseCoreExtension: 900b065a4970c31ce8de4e966cee910188e3a07b
   FirebaseCoreInternal: 635d1c9a612a6502b6377a0c92af83758076ffff
-  FirebaseStorage: b47b4a04062ab07911063571241c103a8a2a2332
-  FirebaseStorageInternal: 50c963664bc73739b68eb2d8427c91de5168dbcf
+  FirebaseStorage: 1414d27e15fa04f6350ef6602accef0e951c8bca
+  FirebaseStorageInternal: f1a6d64cace780580d2b8ffa0a0c8cf3c376f3f8
   GoogleDataTransport: 5fffe35792f8b96ec8d6775f5eccd83c998d5a3b
   GoogleUtilities: e0913149f6b0625b553d70dae12b49fc62914fd1
   GTMSessionFetcher: 681175626052e03fdde7952f7e9c7a9785719506

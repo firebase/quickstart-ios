@@ -640,7 +640,7 @@ PODS:
     - "gRPC-C++ (~> 1.44.0)"
     - leveldb-library (~> 1.22)
     - nanopb (< 2.30910.0, >= 2.30908.0)
-  - FirebaseFirestoreSwift (9.2.0):
+  - FirebaseFirestoreSwift (9.3.0):
     - FirebaseFirestore (~> 9.0)
   - FirebaseUI/Auth (12.2.0):
     - FirebaseAuthUI (~> 12.0)
@@ -782,7 +782,7 @@ SPEC CHECKSUMS:
   FirebaseCoreInternal: 635d1c9a612a6502b6377a0c92af83758076ffff
   FirebaseEmailAuthUI: 9d6de47961cd1fa9be0003ad3cc4763fdd20560f
   FirebaseFirestore: 5a72aa925528f67469b16a54a6cfc369467197e4
-  FirebaseFirestoreSwift: d7e3e7b587a7b8118b97ddb038852750026ee861
+  FirebaseFirestoreSwift: 427a66f18feaaa26c69cf0d1d5645d827b888ae5
   FirebaseUI: 33ee19f70792fae68bee5cbbbf93733baa2cc7fa
   GoogleDataTransport: 5fffe35792f8b96ec8d6775f5eccd83c998d5a3b
   GoogleUtilities: e0913149f6b0625b553d70dae12b49fc62914fd1

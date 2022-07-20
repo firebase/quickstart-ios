@@ -160,7 +160,8 @@ class RemoteConfigViewController: UIViewController {
     }
 
     guard let recipe: Recipe = try? remoteConfig[typedRecipeKey].decoded() else {
-      fatalError("Failed to decode JSON for \(typedRecipeKey)")
+      print("Failed to decode JSON for \(typedRecipeKey)")
+      return
     }
     let lines = recipe.description.split(separator: "\n")
     for (index, line) in lines.enumerated() {

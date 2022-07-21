@@ -69,7 +69,6 @@ NSString *const kLoadingPhraseConfigKey = @"loading_phrase";
             NSLog(@"Config not fetched");
             NSLog(@"Error %@", error.localizedDescription);
         }
-        [self displayWelcome];
     }];
     // [END fetch_config_with_callback]
 }

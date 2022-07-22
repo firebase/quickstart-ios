@@ -23,7 +23,7 @@ PODS:
     - FirebaseDatabase (< 10.0, >= 8.0)
   - FirebaseUI/Database (12.2.0):
     - FirebaseDatabaseUI (~> 12.0)
-  - GoogleDataTransport (9.1.4):
+  - GoogleDataTransport (9.2.0):
     - GoogleUtilities/Environment (~> 7.7)
     - nanopb (< 2.30910.0, >= 2.30908.0)
     - PromisesObjC (< 3.0, >= 1.2)
@@ -80,7 +80,7 @@ SPEC CHECKSUMS:
   FirebaseDatabase: 92350185966ddd283842aa9ca07e188691f3b8ad
   FirebaseDatabaseUI: 0337a4ccbeaddd81b18f99979e4a510ab1473efa
   FirebaseUI: 33ee19f70792fae68bee5cbbbf93733baa2cc7fa
-  GoogleDataTransport: 5fffe35792f8b96ec8d6775f5eccd83c998d5a3b
+  GoogleDataTransport: 1c8145da7117bd68bbbed00cf304edb6a24de00f
   GoogleUtilities: e0913149f6b0625b553d70dae12b49fc62914fd1
   GTMSessionFetcher: 681175626052e03fdde7952f7e9c7a9785719506
   leveldb-library: 50c7b45cbd7bf543c81a468fe557a16ae3db8729

@@ -57,13 +57,18 @@ NSString *const kLoadingPhraseConfigKey = @"loading_phrase";
         if (status == FIRRemoteConfigFetchStatusSuccess) {
             NSLog(@"Config fetched!");
           [self.remoteConfig activateWithCompletion:^(BOOL changed, NSError * _Nullable error) {
-            // ...
+            if (error != nil) {
+              NSLog(@"Activate error: %@", error.localizedDescription);
+            } else {
+              dispatch_async(dispatch_get_main_queue(), ^{
+                [self displayWelcome];
+              });
+            }
           }];
         } else {
             NSLog(@"Config not fetched");
             NSLog(@"Error %@", error.localizedDescription);
         }
-        [self displayWelcome];
     }];
     // [END fetch_config_with_callback]
 }

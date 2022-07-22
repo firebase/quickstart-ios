@@ -646,7 +646,7 @@ PODS:
     - FirebaseAuthUI (~> 12.0)
   - FirebaseUI/Email (12.2.0):
     - FirebaseEmailAuthUI (~> 12.0)
-  - GoogleDataTransport (9.1.4):
+  - GoogleDataTransport (9.2.0):
     - GoogleUtilities/Environment (~> 7.7)
     - nanopb (< 2.30910.0, >= 2.30908.0)
     - PromisesObjC (< 3.0, >= 1.2)
@@ -784,7 +784,7 @@ SPEC CHECKSUMS:
   FirebaseFirestore: 5a72aa925528f67469b16a54a6cfc369467197e4
   FirebaseFirestoreSwift: 427a66f18feaaa26c69cf0d1d5645d827b888ae5
   FirebaseUI: 33ee19f70792fae68bee5cbbbf93733baa2cc7fa
-  GoogleDataTransport: 5fffe35792f8b96ec8d6775f5eccd83c998d5a3b
+  GoogleDataTransport: 1c8145da7117bd68bbbed00cf304edb6a24de00f
   GoogleUtilities: e0913149f6b0625b553d70dae12b49fc62914fd1
   "gRPC-C++": 9675f953ace2b3de7c506039d77be1f2e77a8db2
   gRPC-Core: 943e491cb0d45598b0b0eb9e910c88080369290b

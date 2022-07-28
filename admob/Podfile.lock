@@ -34,7 +34,7 @@ PODS:
     - GoogleUtilities/Environment (~> 7.7)
     - GoogleUtilities/UserDefaults (~> 7.7)
     - PromisesObjC (~> 2.1)
-  - Google-Mobile-Ads-SDK (9.7.0):
+  - Google-Mobile-Ads-SDK (9.8.0):
     - GoogleAppMeasurement (< 10.0, >= 7.0)
     - GoogleUserMessagingPlatform (>= 1.1)
   - GoogleAppMeasurement (9.3.0):
@@ -113,7 +113,7 @@ SPEC CHECKSUMS:
   FirebaseCoreDiagnostics: 060eb57cc56dfaf40b1b1b5874a5c17c41ce79f8
   FirebaseCoreInternal: 635d1c9a612a6502b6377a0c92af83758076ffff
   FirebaseInstallations: 54b40022cb06e462740c9f2b9fbe38b5e78a825a
-  Google-Mobile-Ads-SDK: 2685d6b3374b26de8a71f535614396e57cf80b13
+  Google-Mobile-Ads-SDK: a6a8fe7ebb1daf345ccdc225a99c1b3074ce0376
   GoogleAppMeasurement: b907bdad775b6975a8108762345b2cfbf1a93c37
   GoogleDataTransport: 1c8145da7117bd68bbbed00cf304edb6a24de00f
   GoogleUserMessagingPlatform: ab890ce5f6620f293a21b6bdd82e416a2c73aeca

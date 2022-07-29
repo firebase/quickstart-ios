@@ -14,7 +14,7 @@
 
 import Foundation
 
-struct LinkParameter: Identifiable, Equatable {
+struct LinkParameter: Identifiable, Equatable, Hashable {
   let id: String
   let name: String
 }

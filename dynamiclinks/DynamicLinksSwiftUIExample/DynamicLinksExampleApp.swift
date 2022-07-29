@@ -29,7 +29,6 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 
 @main
 struct DynamicLinksExampleApp: App {
-  let dynamicLinks = DynamicLinks.dynamicLinks()
   @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
   @StateObject var model = LinkModel()
 

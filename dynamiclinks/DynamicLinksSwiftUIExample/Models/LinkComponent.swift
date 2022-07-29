@@ -18,17 +18,18 @@ struct LinkComponent: Identifiable, Equatable {
   let id: String
   let name: String
   let isRequired: Bool
-  let requiredParameter: [LinkParameter]
-  let optionalParameter: [LinkParameter]
-  var allParameters: [LinkParameter] { requiredParameter + optionalParameter }
+  var isOptional: Bool { !isRequired }
+  let requiredParameters: [LinkParameter]
+  let optionalParameters: [LinkParameter]
+  var allParameters: Set<LinkParameter> { Set(requiredParameters + optionalParameters) }
 
   init(id: String, name: String, isRequired: Bool = false, requiredParameters: [LinkParameter] = [],
        optionalParameters: [LinkParameter] = []) {
     self.id = id
     self.name = name
     self.isRequired = isRequired
-    requiredParameter = requiredParameters
-    optionalParameter = optionalParameters
+    self.requiredParameters = requiredParameters
+    self.optionalParameters = optionalParameters
   }
 }
 
@@ -47,7 +48,7 @@ extension LinkComponent {
     id: "base-dynamic-link",
     name: "Base Dynamic Link",
     isRequired: true,
-    requiredParameters: [LinkParameter.link, LinkParameter.domainURIPrefix]
+    requiredParameters: [.link, .domainURIPrefix]
   )
   static let googleAnalytics = LinkComponent(
     id: "google-analytics",
@@ -60,47 +61,47 @@ extension LinkComponent {
     name: "iOS",
     requiredParameters: [LinkParameter.bundleID],
     optionalParameters: [
-      LinkParameter.iOSFallbackURL,
-      LinkParameter.minimumiOSAppVersion,
-      LinkParameter.customURLScheme,
-      LinkParameter.iPadBundleID,
-      LinkParameter.iPadFallbackURL,
-      LinkParameter.appStoreID,
+      .iOSFallbackURL,
+      .minimumiOSAppVersion,
+      .customURLScheme,
+      .iPadBundleID,
+      .iPadFallbackURL,
+      .appStoreID,
     ]
   )
   static let iTunes = LinkComponent(
     id: "itunes",
     name: "iTunes Connect Analytics",
     optionalParameters: [
-      LinkParameter.iTunesAffiliateToken,
-      LinkParameter.iTunesCampaignToken,
-      LinkParameter.iTunesProviderToken,
+      .iTunesAffiliateToken,
+      .iTunesCampaignToken,
+      .iTunesProviderToken,
     ]
   )
   static let android = LinkComponent(
     id: "android",
     name: "Android",
-    requiredParameters: [LinkParameter.androidPackageName],
-    optionalParameters: [LinkParameter.androidFallbackURL, LinkParameter.minimumAndroidAppVersion]
+    requiredParameters: [.androidPackageName],
+    optionalParameters: [.androidFallbackURL, .minimumAndroidAppVersion]
   )
   static let social = LinkComponent(
     id: "social",
     name: "Social Meta Tags",
-    optionalParameters: [LinkParameter.title, LinkParameter.descriptionText, LinkParameter.imageURL]
+    optionalParameters: [.title, .descriptionText, .imageURL]
   )
   static let otherPlatform = LinkComponent(
     id: "other-platform",
     name: "Other Platforms",
-    optionalParameters: [LinkParameter.otherFallbackURL]
+    optionalParameters: [.otherFallbackURL]
   )
 }
 
 extension LinkComponent {
   static var requiredLinkComponents: [LinkComponent] {
-    LinkComponent.all.filter { $0.isRequired }
+    LinkComponent.all.filter(\.isRequired)
   }
 
   static var optionalLinkComponents: [LinkComponent] {
-    LinkComponent.all.filter { !$0.isRequired }
+    LinkComponent.all.filter(\.isRequired)
   }
 }

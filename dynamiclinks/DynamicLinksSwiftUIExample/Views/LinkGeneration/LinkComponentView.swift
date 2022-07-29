@@ -20,9 +20,9 @@ struct LinkComponentView: View {
 
   var body: some View {
     Form {
-      if !linkComponent.requiredParameter.isEmpty {
+      if !linkComponent.requiredParameters.isEmpty {
         Section(content: {
-          ForEach(linkComponent.requiredParameter) { parameter in
+          ForEach(linkComponent.requiredParameters) { parameter in
             ParameterValueEditorView(
               linkParameter: parameter,
               isRequired: true,
@@ -33,9 +33,9 @@ struct LinkComponentView: View {
           Text("Required Parameters")
         })
       }
-      if !linkComponent.optionalParameter.isEmpty {
+      if !linkComponent.optionalParameters.isEmpty {
         Section(content: {
-          ForEach(linkComponent.optionalParameter) { parameter in
+          ForEach(linkComponent.optionalParameters) { parameter in
             ParameterValueEditorView(
               linkParameter: parameter,
               isRequired: false,

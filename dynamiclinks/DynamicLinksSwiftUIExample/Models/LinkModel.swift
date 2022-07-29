@@ -22,9 +22,9 @@ enum DynamicLinkComponentState {
 
 class LinkModel: ObservableObject {
   static let requiredLinkComponents: [LinkComponent] = LinkComponent.all
-    .filter { $0.isRequired }
+    .filter(\.isRequired)
   static let optionalLinkComponents: [LinkComponent] = LinkComponent.all
-    .filter { !$0.isRequired }
+    .filter(\.isOptional)
 
   let linkParameterValues: [LinkParameter.ID: LinkParameterState] =
     .init(uniqueKeysWithValues: LinkParameter.all
@@ -40,8 +40,8 @@ class LinkModel: ObservableObject {
   func validateComponents() {
     for linkComponent in LinkComponent.requiredLinkComponents {
       var componentState: DynamicLinkComponentState = .valid
-      for linkParameter in linkComponent.requiredParameter {
-        if parameterValue(for: linkParameter.id).value.isEmpty {
+      for linkParameter in linkComponent.requiredParameters {
+        if linkParameterValues.value(parameter: linkParameter) == nil {
           missingParameterIDs.insert(linkParameter.id)
           componentState = .missingRequiredParameters
         } else {
@@ -54,11 +54,11 @@ class LinkModel: ObservableObject {
     for linkComponent in LinkComponent.optionalLinkComponents {
       var componentState: DynamicLinkComponentState = .unspecified
       if linkComponent.allParameters.contains(where: { linkParameter in
-        !parameterValue(for: linkParameter.id).value.isEmpty
+        linkParameterValues.value(parameter: linkParameter) != nil
       }) {
         componentState = .valid
-        for linkParameter in linkComponent.requiredParameter {
-          if parameterValue(for: linkParameter.id).value.isEmpty {
+        for linkParameter in linkComponent.requiredParameters {
+          if linkParameterValues.value(parameter: linkParameter) == nil {
             missingParameterIDs.insert(linkParameter.id)
             componentState = .missingRequiredParameters
           } else {
@@ -83,5 +83,24 @@ class LinkModel: ObservableObject {
       parameterValue.value = newValue
       validateComponents()
     }
+  }
+}
+
+extension Dictionary where Key == LinkParameter.ID, Value == LinkParameterState {
+  func value(id: LinkParameter.ID) -> String? {
+    guard let linkParameterValue = self[id] else {
+      fatalError("Unrecognized link parameter identifier \"\(id)\".")
+    }
+    return linkParameterValue.value.emptyToNil
+  }
+
+  func value(parameter: LinkParameter) -> String? {
+    return value(id: parameter.id)
+  }
+}
+
+private extension String {
+  var emptyToNil: String? {
+    isEmpty ? nil : self
   }
 }

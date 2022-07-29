@@ -28,12 +28,11 @@ struct LinkCreatorExample {
 
   func generateDynamicLinkComponents() throws -> DynamicLinkComponents {
     // general link params
-    guard let linkURL = URL(string: parameterStates[LinkParameter.link.id]?.value ?? "") else {
+    guard let linkURL = parameterStates.value(parameter: .link).flatMap(URL.init) else {
       throw LinkGenerationError.missingLinkTarget
     }
 
-    guard let domainURIPrefix: String = parameterStates[LinkParameter.domainURIPrefix.id]?.value
-    else {
+    guard let domainURIPrefix = parameterStates.value(parameter: .domainURIPrefix) else {
       throw LinkGenerationError.missingDomainURIPrefix
     }
 
@@ -55,78 +54,79 @@ struct LinkCreatorExample {
   }
 
   func generateAnalyticsParameters() -> DynamicLinkGoogleAnalyticsParameters? {
-    guard let source = parameterStates[LinkParameter.source.id]?.value,
-      let medium = parameterStates[LinkParameter.medium.id]?.value,
-      let campaign = parameterStates[LinkParameter.campaign.id]?.value else { return nil }
+    guard let source = parameterStates.value(parameter: .source),
+      let medium = parameterStates.value(parameter: .medium),
+      let campaign = parameterStates.value(parameter: .campaign) else { return nil }
 
     let analyticsParams = DynamicLinkGoogleAnalyticsParameters(
       source: source,
       medium: medium,
       campaign: campaign
     )
-    analyticsParams.term = parameterStates[LinkParameter.term.id]?.value
-    analyticsParams.content = parameterStates[LinkParameter.content.id]?.value
+    analyticsParams.term = parameterStates.value(parameter: .term)
+    analyticsParams.content = parameterStates.value(parameter: .content)
 
     return analyticsParams
   }
 
   func generateiOSParameters() -> DynamicLinkIOSParameters? {
-    guard let bundleID = parameterStates[LinkParameter.bundleID.id]?.value else {
+    guard let bundleID = parameterStates.value(parameter: .bundleID) else {
       return nil
     }
 
     let iOSParams = DynamicLinkIOSParameters(bundleID: bundleID)
-    iOSParams.fallbackURL = parameterStates[LinkParameter.iOSFallbackURL.id]
-      .flatMap { URL(string: $0.value) }
-    iOSParams.minimumAppVersion = parameterStates[LinkParameter.minimumiOSAppVersion.id]?.value
-    iOSParams.customScheme = parameterStates[LinkParameter.customURLScheme.id]?.value
-    iOSParams.iPadBundleID = parameterStates[LinkParameter.iPadBundleID.id]?.value
-    iOSParams.iPadFallbackURL = parameterStates[LinkParameter.iPadFallbackURL.id]
-      .flatMap { URL(string: $0.value) }
-    iOSParams.appStoreID = parameterStates[LinkParameter.appStoreID.id]?.value
+    iOSParams.fallbackURL = parameterStates.value(parameter: .iOSFallbackURL)
+      .flatMap(URL.init)
+    iOSParams.minimumAppVersion = parameterStates.value(parameter: .minimumiOSAppVersion)
+    iOSParams.customScheme = parameterStates.value(parameter: .customURLScheme)
+    iOSParams.iPadBundleID = parameterStates.value(parameter: .iPadBundleID)
+    iOSParams.iPadFallbackURL = parameterStates.value(parameter: .iPadFallbackURL)
+      .flatMap(URL.init)
+    iOSParams.appStoreID = parameterStates.value(parameter: .appStoreID)
 
     return iOSParams
   }
 
   private func generateiTunesConnectParameters() -> DynamicLinkItunesConnectAnalyticsParameters {
     let iTunesConnectParams = DynamicLinkItunesConnectAnalyticsParameters()
-    iTunesConnectParams.affiliateToken = parameterStates[LinkParameter.iTunesAffiliateToken.id]?
-      .value
-    iTunesConnectParams.campaignToken = parameterStates[LinkParameter.iTunesCampaignToken.id]?.value
-    iTunesConnectParams.providerToken = parameterStates[LinkParameter.iTunesProviderToken.id]?.value
+    iTunesConnectParams.affiliateToken = parameterStates.value(parameter: .iTunesAffiliateToken)
+    iTunesConnectParams.campaignToken = parameterStates.value(parameter: .iTunesCampaignToken)
+    iTunesConnectParams.providerToken = parameterStates.value(parameter: .iTunesProviderToken)
 
     return iTunesConnectParams
   }
 
   private func generateAndroidParameters() -> DynamicLinkAndroidParameters? {
-    guard let packageName = parameterStates[LinkParameter.androidPackageName.id]?.value else {
+    guard let packageName = parameterStates.value(parameter: .androidPackageName) else {
       return nil
     }
 
     // Android params
     let androidParams = DynamicLinkAndroidParameters(packageName: packageName)
-    androidParams.fallbackURL = parameterStates[LinkParameter.androidFallbackURL.id]
-      .flatMap { URL(string: $0.value) }
-    androidParams.minimumVersion = parameterStates[LinkParameter.minimumAndroidAppVersion.id]
-      .flatMap { Int($0.value) } ?? 0
+    androidParams.fallbackURL = parameterStates.value(parameter: .androidFallbackURL)
+      .flatMap(URL.init)
+    if let minimumVersion = parameterStates.value(parameter: .minimumAndroidAppVersion)
+      .flatMap(Int.init) {
+      androidParams.minimumVersion = minimumVersion
+    }
 
     return androidParams
   }
 
   private func generateSocialMetaTagParameters() -> DynamicLinkSocialMetaTagParameters {
     let socialParams = DynamicLinkSocialMetaTagParameters()
-    socialParams.title = parameterStates[LinkParameter.title.id]?.value
-    socialParams.descriptionText = parameterStates[LinkParameter.descriptionText.id]?.value
-    socialParams.imageURL = parameterStates[LinkParameter.imageURL.id]
-      .flatMap { URL(string: $0.value) }
+    socialParams.title = parameterStates.value(parameter: .title)
+    socialParams.descriptionText = parameterStates.value(parameter: .descriptionText)
+    socialParams.imageURL = parameterStates.value(parameter: .imageURL)
+      .flatMap(URL.init)
 
     return socialParams
   }
 
   private func generateOtherPlatformParameters() -> DynamicLinkOtherPlatformParameters {
     let otherPlatformParams = DynamicLinkOtherPlatformParameters()
-    otherPlatformParams.fallbackUrl = parameterStates[LinkParameter.otherFallbackURL.id]
-      .flatMap { URL(string: $0.value) }
+    otherPlatformParams.fallbackUrl = parameterStates.value(parameter: .otherFallbackURL)
+      .flatMap(URL.init)
 
     return otherPlatformParams
   }

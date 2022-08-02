@@ -6,14 +6,14 @@
         "eggs",
         "flour"
     ],
-    "prep_time": "15",
-    "cook_time": "10",
+    "prep_time": 15,
+    "cook_time": 10,
     "instructions": [
         "preheat",
         "stir",
         "bake"
     ],
     "yield": "4 dozen",
-    "serving_size": "1",
+    "serving_size": 1,
     "notes": "A favorite for dessert lovers!"
 }

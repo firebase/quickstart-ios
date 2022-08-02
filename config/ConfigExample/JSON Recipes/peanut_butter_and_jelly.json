@@ -5,14 +5,14 @@
         "peanut butter",
         "jelly"
     ],
-    "prep_time": "5",
-    "cook_time": "1",
+    "prep_time": 5,
+    "cook_time": 1,
     "instructions": [
         "spread",
         "combine"
     ],
     "yield": "1 sandwich",
-    "serving_size": "1",
+    "serving_size": 1,
     "notes": "A classic done right!"
 }
 

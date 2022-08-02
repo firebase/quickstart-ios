@@ -6,13 +6,13 @@
         "oil",
         "salt"
     ],
-    "prep_time": "5",
-    "cook_time": "1",
+    "prep_time": 5,
+    "cook_time": 1,
     "instructions": [
         "collect",
         "combine"
     ],
     "yield": "1 salad",
-    "serving_size": "1",
+    "serving_size": 1,
     "notes": "Makes for a healthy lunch!"
 }

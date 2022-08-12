@@ -16,5 +16,5 @@ DIRECTORY=dynamiclinks \
 PROJECT=DynamicLinks \
 . ../scripts/prereq_core.sh
 
-sed -i '' 's#DYNAMIC_LINK_DOMAIN#https://qpf6m.app.goo.gl#' DynamicLinksExample/DynamicLinksExample.entitlements
+sed -i '' 's#DYNAMIC_LINK_DOMAIN#qpf6m.app.goo.gl#' DynamicLinksExample/DynamicLinksExample.entitlements
 sed -i '' 's#YOUR_DOMAIN_URI_PREFIX";#https://qpf6m.app.goo.gl";#' DynamicLinksExample/ViewController.m

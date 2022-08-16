@@ -415,8 +415,6 @@
 			dependencies = (
 			);
 			name = DynamicLinksExample;
-			packageProductDependencies = (
-			);
 			productName = DurableLinksExample;
 			productReference = 5F5A534C1ADE670C00F81DF0 /* DynamicLinksExample.app */;
 			productType = "com.apple.product-type.application";
@@ -451,8 +449,6 @@
 			dependencies = (
 			);
 			name = DynamicLinksSwiftUIExample;
-			packageProductDependencies = (
-			);
 			productName = DynamicLinksSwiftUIExample;
 			productReference = 867AE1FA288F5A330071D3A9 /* DynamicLinksSwiftUIExample.app */;
 			productType = "com.apple.product-type.application";
@@ -508,8 +504,6 @@
 				Base,
 			);
 			mainGroup = 5F5A53431ADE670C00F81DF0;
-			packageReferences = (
-			);
 			productRefGroup = 5F5A534D1ADE670C00F81DF0 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";

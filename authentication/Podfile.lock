@@ -79,7 +79,7 @@ PODS:
     - GoogleUtilities/Environment (~> 7.7)
     - nanopb (< 2.30910.0, >= 2.30908.0)
     - PromisesObjC (< 3.0, >= 1.2)
-  - GoogleSignIn (6.2.2):
+  - GoogleSignIn (6.2.3):
     - AppAuth (~> 1.5)
     - GTMAppAuth (~> 1.3)
     - GTMSessionFetcher/Core (~> 1.1)
@@ -158,7 +158,7 @@ SPEC CHECKSUMS:
   FirebaseInstallations: 61db1054e688d2bdc4e2b3f744c1b086e913b742
   GoogleAppMeasurement: 5d69e04287fc2c10cc43724bfa4bf31fc12c3dff
   GoogleDataTransport: 1c8145da7117bd68bbbed00cf304edb6a24de00f
-  GoogleSignIn: 3c68388ac221f379676e8f1cb115df3aaf73b93f
+  GoogleSignIn: f4d3939cc0d9264d7509c4b9a924a6c987e30b54
   GoogleUtilities: e0913149f6b0625b553d70dae12b49fc62914fd1
   GTMAppAuth: 4d8f864896f3646f0c33baf38a28362f4c601e15
   GTMSessionFetcher: 5595ec75acf5be50814f81e9189490412bad82ba

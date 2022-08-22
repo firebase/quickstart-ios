@@ -29,7 +29,7 @@ jobs:
     strategy:
       matrix:
         os: [iOS, catalyst, tvOS, macOS]
-        xcode: ["13.0"]
+        xcode: ["13.2.1"]
         include:
           - os: iOS
             device: iPhone 12
@@ -48,6 +48,7 @@ jobs:
       DEVICE: ${{ matrix.device }}
       TEST: true
       SCHEME: ${{ matrix.scheme }}
+      DEVELOPER_DIR: /Applications/Xcode_${{ matrix.xcode }}.app/Contents/Developer
     steps:
       - name: Checkout
         uses: actions/checkout@master

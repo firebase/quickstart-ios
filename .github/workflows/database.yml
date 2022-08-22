@@ -57,7 +57,7 @@ jobs:
     strategy:
       matrix:
         # TODO investigate tvOS Xcode 13.1 test failure.
-        xcode: ["13.4.1"]
+        xcode: ["13.2.1"]
         os: [iOS, tvOS, macOS]
         include:
           - os: iOS
@@ -76,7 +76,6 @@ jobs:
       OS: ${{ matrix.os }}
       DEVICE: ${{ matrix.device }}
       TEST: ${{ matrix.test }}
-      XCODE_VERSION: ${{ matrix.xcode }}
       DEVELOPER_DIR: /Applications/Xcode_${{ matrix.xcode }}.app/Contents/Developer
     steps:
       - name: Checkout

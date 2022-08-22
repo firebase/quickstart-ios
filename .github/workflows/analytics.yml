@@ -29,7 +29,7 @@ jobs:
     strategy:
       matrix:
         os: [iOS, catalyst, tvOS, macOS]
-        xcode: ["13.3.1"]
+        xcode: ["13.4.1"]
         include:
           - os: iOS
             device: iPhone 12

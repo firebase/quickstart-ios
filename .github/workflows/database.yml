@@ -1,5 +1,9 @@
 name: Database
 
+concurrency: 
+  group: ${{ github.head_ref }}
+  cancel-in-progress: true
+
 on:
   push:
     branches: [ master ]
@@ -57,7 +61,7 @@ jobs:
     strategy:
       matrix:
         # TODO investigate tvOS Xcode 13.1 test failure.
-        xcode: ["13.3.1", "14.0"]
+        xcode: ["13.3.1"]
         os: [iOS, tvOS, macOS]
         include:
           - os: iOS

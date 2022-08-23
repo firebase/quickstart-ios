@@ -1,9 +1,5 @@
 name: Firestore
 
-concurrency: 
-  group: ${{ github.head_ref }}
-  cancel-in-progress: true
-
 on:
   push:
     branches: [ master ]
@@ -21,6 +17,10 @@ on:
       - 'scripts/firestore.sh'
 
   workflow_dispatch:
+
+concurrency: 
+  group: ${{ github.head_ref }}
+  cancel-in-progress: true
 
 env:
   SAMPLE: Firestore

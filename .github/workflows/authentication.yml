@@ -25,20 +25,21 @@ env:
 jobs:
   cocoapods:
     name: cocoapods
-    runs-on: macos-latest
+    runs-on: macos-12
+    strategy:
+      matrix:
+        xcode: ["13.3.1", "14.0"]
     env:
       SPM: false
       LEGACY: false
       OS: iOS
       DEVICE: iPhone 11
       TEST: false
+      DEVELOPER_DIR: /Applications/Xcode_${{ matrix.xcode }}.app/Contents/Developer
     steps:
       - name: Checkout
         uses: actions/checkout@master
-      # Facebook SDK 12.0.1 requires Xcode 13
-      - name: Xcode 13.2.1
-        env:
-          DEVELOPER_DIR: /Applications/Xcode_13.2.1.app/Contents/Developer
+      - name: Xcode ${{ matrix.xcode }}
       - name: Setup
         run: |
           cd authentication

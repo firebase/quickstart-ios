@@ -29,7 +29,7 @@ env:
 jobs:
   cocoapods:
     name: cocoapods
-    runs-on: macOS-latest
+    runs-on: macos-12
     env:
       SPM: false
       TEST: true
@@ -54,10 +54,10 @@ jobs:
           DEVICE: iPhone 11
   spm:
     name: spm (Xcode ${{ matrix.xcode }} - ${{ matrix.os }})
-    runs-on: macOS-latest
+    runs-on: macos-12
     strategy:
       matrix:
-        xcode: ["13.2.1"]
+        xcode: ["13.3.1", "14.0"]
         os: [iOS, tvOS, macOS, watchOS, catalyst]
         include:
           - os: iOS

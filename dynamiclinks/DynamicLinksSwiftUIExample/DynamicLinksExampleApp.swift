@@ -39,7 +39,9 @@ struct DynamicLinksExampleApp: App {
               print("The URL \(url) is not an FDL Dynamic Link.")
             }
           } else {
-            print("The URL \(url) does not have an FDL Custom Scheme; should be handled as Universal URL.")
+            print(
+              "The URL \(url) does not have an FDL Custom Scheme; should be handled as Universal URL."
+            )
             Task {
               if let dynamicLink: DynamicLink = await handleLink(url) {
                 receivedLinkModel = ReceivedLinkModel(receivedURL: url, dynamicLink: dynamicLink)

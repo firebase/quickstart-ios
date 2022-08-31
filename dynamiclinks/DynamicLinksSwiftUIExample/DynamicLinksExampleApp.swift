@@ -16,6 +16,10 @@ import SwiftUI
 import FirebaseCore
 import FirebaseDynamicLinks
 
+enum UniversalURLError: Error {
+  case notHandledByFDL
+}
+
 @main
 struct DynamicLinksExampleApp: App {
   @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
@@ -43,8 +47,17 @@ struct DynamicLinksExampleApp: App {
               "The URL \(url) does not have an FDL Custom Scheme; should be handled as Universal URL."
             )
             Task {
-              if let dynamicLink: DynamicLink = await handleLink(url) {
-                receivedLinkModel = ReceivedLinkModel(receivedURL: url, dynamicLink: dynamicLink)
+              do {
+                if let dynamicLink: DynamicLink = try await handleLink(url) {
+                  receivedLinkModel = ReceivedLinkModel(
+                    receivedURL: url,
+                    dynamicLink: dynamicLink
+                  )
+                }
+              } catch UniversalURLError.notHandledByFDL {
+                print("FIRDynamicLinks is not handling the link.")
+              } catch {
+                print("FIRDynamicLinks Error: \(error.localizedDescription)")
               }
             }
           }
@@ -53,21 +66,18 @@ struct DynamicLinksExampleApp: App {
     }.handlesExternalEvents(matching: ["*"])
   }
 
-  func handleLink(_ url: URL) async -> DynamicLink? {
-    await withCheckedContinuation { continuation in
-      handleLink(url) { dynamicLink, error in
-        // TODO: Handle error
+  func handleLink(_ url: URL) async throws -> DynamicLink? {
+    try await withCheckedThrowingContinuation { continuation in
+      let handled = DynamicLinks.dynamicLinks().handleUniversalLink(url) { dynamicLink, error in
+        if let error = error {
+          continuation.resume(throwing: error)
+          return
+        }
         continuation.resume(returning: dynamicLink)
       }
-    }
-  }
-
-  func handleLink(_ url: URL, completion: @escaping (DynamicLink?, Error?) -> Void) {
-    guard DynamicLinks.dynamicLinks().handleUniversalLink(url, completion: { dynamicLink, error in
-      completion(dynamicLink, error)
-      return
-    }) else {
-      return
+      if !handled {
+        continuation.resume(throwing: UniversalURLError.notHandledByFDL)
+      }
     }
   }
 }

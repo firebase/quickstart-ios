@@ -16,16 +16,11 @@ import SwiftUI
 import FirebaseCore
 import FirebaseDynamicLinks
 
-enum UniversalURLError: Error {
-  case notHandledByFDL
-}
-
 @main
 struct DynamicLinksExampleApp: App {
   @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
   @StateObject var model = LinkModel()
-  @State var alertPresented: Bool = false
-  @State var alertMessage: String = "URL: empty"
+  @State var receivedLinkModels: [ReceivedLinkModel] = []
   @State var receivedLinkModel: ReceivedLinkModel?
 
   var body: some Scene {
@@ -34,50 +29,59 @@ struct DynamicLinksExampleApp: App {
         LinkConfigurationView()
       }.environmentObject(model)
         .onOpenURL { url in
-          let dynamicLinks = DynamicLinks.dynamicLinks()
-          if dynamicLinks.shouldHandleDynamicLink(fromCustomSchemeURL: url) {
-            print("The URL \(url) has an FDL Custom Scheme; should be handled.")
-            if let dynamicLink = dynamicLinks.dynamicLink(fromCustomSchemeURL: url) {
-              receivedLinkModel = ReceivedLinkModel(receivedURL: url, dynamicLink: dynamicLink)
-            } else {
-              print("The URL \(url) is not an FDL Dynamic Link.")
+          Task {
+            var dynamicLink: DynamicLink?
+            var extractError: Error?
+            do {
+              dynamicLink = try await extractDynamicLink(fromURL: url)
+            } catch {
+              extractError = error
             }
-          } else {
-            print(
-              "The URL \(url) does not have an FDL Custom Scheme; should be handled as Universal URL."
+
+            let model = ReceivedLinkModel(
+              receivedURL: url,
+              dynamicLink: dynamicLink,
+              error: extractError
             )
-            Task {
-              do {
-                if let dynamicLink: DynamicLink = try await handleLink(url) {
-                  receivedLinkModel = ReceivedLinkModel(
-                    receivedURL: url,
-                    dynamicLink: dynamicLink
-                  )
-                }
-              } catch UniversalURLError.notHandledByFDL {
-                print("FIRDynamicLinks is not handling the link.")
-              } catch {
-                print("FIRDynamicLinks Error: \(error.localizedDescription)")
+
+            await MainActor.run {
+              if receivedLinkModel == nil {
+                receivedLinkModel = model
+              } else {
+                receivedLinkModels.append(model)
               }
             }
           }
         }
-        .sheet(item: $receivedLinkModel, content: { LinkReceivedView(receivedLinkModel: $0) })
+        .sheet(item: $receivedLinkModel, onDismiss: {
+          if receivedLinkModels.first != nil {
+            receivedLinkModel = receivedLinkModels.removeFirst()
+          } else {
+            receivedLinkModel = nil
+          }
+        }) { LinkReceivedView(receivedLinkModel: $0) }
     }.handlesExternalEvents(matching: ["*"])
   }
 
-  func handleLink(_ url: URL) async throws -> DynamicLink? {
-    try await withCheckedThrowingContinuation { continuation in
-      let handled = DynamicLinks.dynamicLinks().handleUniversalLink(url) { dynamicLink, error in
-        if let error = error {
-          continuation.resume(throwing: error)
-          return
-        }
-        continuation.resume(returning: dynamicLink)
-      }
-      if !handled {
-        continuation.resume(throwing: UniversalURLError.notHandledByFDL)
-      }
+  func extractDynamicLink(fromURL url: URL) async throws -> DynamicLink {
+    let dynamicLinks = DynamicLinks.dynamicLinks()
+    let longURL: URL = dynamicLinks.matchesShortLinkFormat(url) ? try await dynamicLinks
+      .resolveShortLink(url) : url
+
+    if let dynamicLink = extractDynamicLink(fromCustomSchemeURL: longURL) {
+      return dynamicLink
     }
+
+    return try await DynamicLinks.dynamicLinks().dynamicLink(fromUniversalLink: longURL)
+  }
+
+  func extractDynamicLink(fromCustomSchemeURL url: URL) -> DynamicLink? {
+    guard DynamicLinks.dynamicLinks().shouldHandleDynamicLink(fromCustomSchemeURL: url)
+    else { return nil }
+    guard let dynamicLink = DynamicLinks.dynamicLinks().dynamicLink(fromCustomSchemeURL: url) else {
+      return nil
+    }
+
+    return dynamicLink
   }
 }

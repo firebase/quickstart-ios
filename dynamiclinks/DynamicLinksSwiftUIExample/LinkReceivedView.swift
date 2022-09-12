@@ -55,16 +55,31 @@ struct LinkReceivedView: View {
           }
         }
       }
+      if let error = receivedLinkModel.error {
+        Section(header: Text("Error")) {
+          Text(error.localizedDescription)
+        }
+      }
     }
   }
 }
 
 struct LinkReceivedView_Previews: PreviewProvider {
+  static let linkURL = "https://firebase.google.com"
+
   static var previews: some View {
     LinkReceivedView(receivedLinkModel: ReceivedLinkModel(
-      receivedURL: URL(string: "https://firebase.google.com"),
-      dynamicLink: MutableDynamicLink(url: URL(string: "https://foo.com"), matchType: .unique)
-    ))
+      receivedURL: URL(string: "https://firebase.page.link?link=\(linkURL)"),
+      dynamicLink: MutableDynamicLink(
+        url: URL(string: linkURL),
+        matchType: .unique
+      ), error: nil
+    )).previewDisplayName("Received Dynamic Link")
+
+    LinkReceivedView(receivedLinkModel: ReceivedLinkModel(
+      receivedURL: URL(string: linkURL),
+      dynamicLink: nil, error: DynamicLinkError.previewError
+    )).previewDisplayName("Dynamic Link Error")
   }
 }
 
@@ -73,4 +88,20 @@ private struct MutableDynamicLink: BaseDynamicLink {
   var matchType: DLMatchType = .default
   var utmParametersDictionary: [String: Any] = [:]
   var minimumAppVersion: String? = nil
+}
+
+private enum DynamicLinkError: Error {
+  case previewError
+}
+
+extension DynamicLinkError: LocalizedError {
+  var errorDescription: String? {
+    switch self {
+    case .previewError:
+      return NSLocalizedString(
+        "The received URL is not a Dynamic Link.",
+        comment: "Invalid URL"
+      )
+    }
+  }
 }

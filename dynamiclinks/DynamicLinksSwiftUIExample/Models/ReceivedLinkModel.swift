@@ -26,4 +26,5 @@ struct ReceivedLinkModel: Identifiable {
   let id = UUID()
   let receivedURL: URL?
   let dynamicLink: BaseDynamicLink?
+  let error: Error?
 }

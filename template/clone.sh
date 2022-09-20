@@ -128,7 +128,7 @@ grep $SOURCE -R . && {
 echo "Creating Podfile..."
 echo "# $DEST" > Podfile
 echo "use_frameworks!" >> Podfile
-echo "platform :ios, '10.0'" >> Podfile
+echo "platform :ios, '11.0'" >> Podfile
 if [[ -n "${POD}" ]]; then
   echo "Including pod: $POD"
   echo "pod '$POD'" >> Podfile

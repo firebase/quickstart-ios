@@ -1,5 +1,5 @@
 use_frameworks!
-platform :ios, '10.0'
+platform :ios, '11.0'
 
 pod 'FirebaseAnalytics'
 pod 'Google-Mobile-Ads-SDK', '> 9.0'

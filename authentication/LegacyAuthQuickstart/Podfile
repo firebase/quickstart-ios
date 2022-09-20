@@ -1,7 +1,7 @@
 # AuthenticationExample
 
 use_frameworks!
-platform :ios, '10.0'
+platform :ios, '11.0'
 pod 'FirebaseAnalytics'
 # [START auth_pod]
 pod 'FirebaseAuth'

@@ -735,7 +735,7 @@ PODS:
   - SDWebImage (5.13.3):
     - SDWebImage/Core (= 5.13.3)
   - SDWebImage/Core (5.13.3)
-  - SDWebImageSwiftUI (2.1.0):
+  - SDWebImageSwiftUI (2.2.0):
     - SDWebImage (~> 5.10)
 
 DEPENDENCIES:
@@ -794,7 +794,7 @@ SPEC CHECKSUMS:
   nanopb: b552cce312b6c8484180ef47159bc0f65a1f0431
   PromisesObjC: ab77feca74fa2823e7af4249b8326368e61014cb
   SDWebImage: af5bbffef2cde09f148d826f9733dcde1a9414cd
-  SDWebImageSwiftUI: 76c824afd24d896710e47f240755a31b80e056a0
+  SDWebImageSwiftUI: 28040a64ded0bfabc65664e4143e405fef1ac5ff
 
 PODFILE CHECKSUM: 4dc670c18cc786f253fe074fffb67f14f15586d6
 

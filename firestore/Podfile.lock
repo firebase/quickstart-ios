@@ -607,8 +607,8 @@ PODS:
     - GoogleUtilities/AppDelegateSwizzler (~> 7.7)
     - GoogleUtilities/Environment (~> 7.7)
     - GTMSessionFetcher/Core (< 3.0, >= 1.7)
-  - FirebaseAuthUI (12.2.0):
-    - FirebaseAuth (< 10.0, >= 8.0)
+  - FirebaseAuthUI (12.3.0):
+    - FirebaseAuth (< 11.0, >= 8.0)
     - FirebaseCore
   - FirebaseCore (9.6.0):
     - FirebaseCoreDiagnostics (~> 9.0)
@@ -622,7 +622,7 @@ PODS:
     - nanopb (< 2.30910.0, >= 2.30908.0)
   - FirebaseCoreInternal (9.6.0):
     - "GoogleUtilities/NSData+zlib (~> 7.7)"
-  - FirebaseEmailAuthUI (12.2.0):
+  - FirebaseEmailAuthUI (12.3.0):
     - FirebaseAuth
     - FirebaseAuthUI
     - FirebaseCore
@@ -642,9 +642,9 @@ PODS:
     - nanopb (< 2.30910.0, >= 2.30908.0)
   - FirebaseFirestoreSwift (9.6.0):
     - FirebaseFirestore (~> 9.0)
-  - FirebaseUI/Auth (12.2.0):
+  - FirebaseUI/Auth (12.3.0):
     - FirebaseAuthUI (~> 12.0)
-  - FirebaseUI/Email (12.2.0):
+  - FirebaseUI/Email (12.3.0):
     - FirebaseEmailAuthUI (~> 12.0)
   - GoogleDataTransport (9.2.0):
     - GoogleUtilities/Environment (~> 7.7)
@@ -732,10 +732,10 @@ PODS:
   - nanopb/decode (2.30909.0)
   - nanopb/encode (2.30909.0)
   - PromisesObjC (2.1.1)
-  - SDWebImage (5.13.3):
-    - SDWebImage/Core (= 5.13.3)
-  - SDWebImage/Core (5.13.3)
-  - SDWebImageSwiftUI (2.2.0):
+  - SDWebImage (5.13.4):
+    - SDWebImage/Core (= 5.13.4)
+  - SDWebImage/Core (5.13.4)
+  - SDWebImageSwiftUI (2.2.1):
     - SDWebImage (~> 5.10)
 
 DEPENDENCIES:
@@ -776,14 +776,14 @@ SPEC CHECKSUMS:
   abseil: ebe5b5529fb05d93a8bdb7951607be08b7fa71bc
   BoringSSL-GRPC: 3175b25143e648463a56daeaaa499c6cb86dad33
   FirebaseAuth: e4a5d3c36e778e41141b91cc861103a441d80bcc
-  FirebaseAuthUI: 9381cd32c4efcaf3550f4a95dd176fc73da253ee
+  FirebaseAuthUI: 9fa83d7dd7bad0f0eb20a9682f7e649c98e8f644
   FirebaseCore: 2082fffcd855f95f883c0a1641133eb9bbe76d40
   FirebaseCoreDiagnostics: 99a495094b10a57eeb3ae8efa1665700ad0bdaa6
   FirebaseCoreInternal: bca76517fe1ed381e989f5e7d8abb0da8d85bed3
-  FirebaseEmailAuthUI: 9d6de47961cd1fa9be0003ad3cc4763fdd20560f
+  FirebaseEmailAuthUI: 93c49123133a5ff934e05d15c51462ed0f12ee0a
   FirebaseFirestore: c09ce6d050745a45fb75ebd901005ed3279c3caf
   FirebaseFirestoreSwift: d86a0fef1225c6c1ddfae15b3250700867d63013
-  FirebaseUI: 33ee19f70792fae68bee5cbbbf93733baa2cc7fa
+  FirebaseUI: e9a2dd42f5b593cd8b6e64c11d30ded38f30e48c
   GoogleDataTransport: 1c8145da7117bd68bbbed00cf304edb6a24de00f
   GoogleUtilities: 1d20a6ad97ef46f67bbdec158ce00563a671ebb7
   "gRPC-C++": 9675f953ace2b3de7c506039d77be1f2e77a8db2
@@ -793,8 +793,8 @@ SPEC CHECKSUMS:
   Libuv-gRPC: 55e51798e14ef436ad9bc45d12d43b77b49df378
   nanopb: b552cce312b6c8484180ef47159bc0f65a1f0431
   PromisesObjC: ab77feca74fa2823e7af4249b8326368e61014cb
-  SDWebImage: af5bbffef2cde09f148d826f9733dcde1a9414cd
-  SDWebImageSwiftUI: 28040a64ded0bfabc65664e4143e405fef1ac5ff
+  SDWebImage: e5cc87bf736e60f49592f307bdf9e157189298a3
+  SDWebImageSwiftUI: 2ecf5ab6f574526326b10ecb155e72a88059d0f0
 
 PODFILE CHECKSUM: 4dc670c18cc786f253fe074fffb67f14f15586d6
 

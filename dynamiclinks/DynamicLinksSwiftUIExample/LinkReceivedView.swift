@@ -83,13 +83,6 @@ struct LinkReceivedView_Previews: PreviewProvider {
   }
 }
 
-private struct MutableDynamicLink: BaseDynamicLink {
-  var url: URL? = nil
-  var matchType: DLMatchType = .default
-  var utmParametersDictionary: [String: Any] = [:]
-  var minimumAppVersion: String? = nil
-}
-
 private enum DynamicLinkError: Error {
   case previewError
 }
@@ -98,10 +91,7 @@ extension DynamicLinkError: LocalizedError {
   var errorDescription: String? {
     switch self {
     case .previewError:
-      return NSLocalizedString(
-        "The received URL is not a Dynamic Link.",
-        comment: "Invalid URL"
-      )
+      return "The received URL is not a Dynamic Link."
     }
   }
 }

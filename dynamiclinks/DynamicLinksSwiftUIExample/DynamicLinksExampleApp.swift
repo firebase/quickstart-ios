@@ -13,8 +13,30 @@
 // limitations under the License.
 
 import SwiftUI
+// [START import]
 import FirebaseCore
 import FirebaseDynamicLinks
+// [END import]
+
+class AppDelegate: NSObject, UIApplicationDelegate {
+  let customURLScheme = "dlscheme"
+
+  // [START didfinishlaunching]
+  func application(_ application: UIApplication,
+                   didFinishLaunchingWithOptions launchOptions: [UIApplication
+                     .LaunchOptionsKey: Any]? = nil) -> Bool {
+    // Set deepLinkURLScheme to the custom URL scheme you defined in your
+    // Xcode project.
+    FirebaseOptions.defaultOptions()?.deepLinkURLScheme = customURLScheme
+
+    FirebaseApp.configure()
+    DynamicLinks.performDiagnostics()
+
+    return true
+  }
+
+  // [END didfinishlaunching]
+}
 
 @main
 struct DynamicLinksExampleApp: App {
@@ -28,8 +50,11 @@ struct DynamicLinksExampleApp: App {
       NavigationView {
         LinkConfigurationView()
       }.environmentObject(model)
+        // [START openurl]
         .onOpenURL { url in
           Task {
+            // Handle the deep link. For example, show the deep-linked content or
+            // apply a promotional offer to the user's account.
             var dynamicLink: DynamicLink?
             var extractError: Error?
             do {
@@ -38,6 +63,8 @@ struct DynamicLinksExampleApp: App {
               extractError = error
             }
 
+            // [START_EXCLUDE]
+            // In this sample we just add the link to a list to be shown.
             let model = ReceivedLinkModel(
               receivedURL: url,
               dynamicLink: dynamicLink,
@@ -51,8 +78,12 @@ struct DynamicLinksExampleApp: App {
                 receivedLinkModels.append(model)
               }
             }
+            // [END_EXCLUDE]
           }
         }
+        // [END openurl]
+
+        // Show received links as sheets, displaying them one at a time.
         .sheet(item: $receivedLinkModel, onDismiss: {
           if receivedLinkModels.first != nil {
             receivedLinkModel = receivedLinkModels.removeFirst()

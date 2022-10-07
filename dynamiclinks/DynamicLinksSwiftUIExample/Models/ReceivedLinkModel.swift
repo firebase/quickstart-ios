@@ -15,13 +15,6 @@
 import Foundation
 import FirebaseDynamicLinks
 
-protocol BaseDynamicLink {
-  var url: URL? { get }
-  var matchType: DLMatchType { get }
-  var utmParametersDictionary: [String: Any] { get }
-  var minimumAppVersion: String? { get }
-}
-
 struct ReceivedLinkModel: Identifiable {
   let id = UUID()
   let receivedURL: URL?

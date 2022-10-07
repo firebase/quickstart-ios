@@ -15,7 +15,21 @@
 import Foundation
 import FirebaseDynamicLinks
 
+protocol BaseDynamicLink {
+  var url: URL? { get }
+  var matchType: DLMatchType { get }
+  var utmParametersDictionary: [String: Any] { get }
+  var minimumAppVersion: String? { get }
+}
+
 extension DynamicLink: BaseDynamicLink {}
+
+struct MutableDynamicLink: BaseDynamicLink {
+  var url: URL? = nil
+  var matchType: DLMatchType = .default
+  var utmParametersDictionary: [String: Any] = [:]
+  var minimumAppVersion: String? = nil
+}
 
 extension DLMatchType {
   var name: String {

@@ -26,6 +26,7 @@ struct LinkCreatorExample {
 
   let parameterStates: [LinkParameter.ID: LinkParameterState]
 
+  // [START buildFDLLink]
   func generateDynamicLinkComponents() throws -> DynamicLinkComponents {
     // general link params
     guard let linkURL = parameterStates.value(parameter: .link).flatMap(URL.init) else {
@@ -130,4 +131,6 @@ struct LinkCreatorExample {
 
     return otherPlatformParams
   }
+
+  // [END buildFDLLink]
 }

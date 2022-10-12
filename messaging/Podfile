@@ -1,7 +1,7 @@
 # Firebase Cloud Messaging (FCM)
 
 use_frameworks!
-platform :ios, '10.0'
+platform :ios, '11.0'
 
 def firebase_pods
   pod 'FirebaseAnalytics'

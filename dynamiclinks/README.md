@@ -24,11 +24,12 @@ Getting Started
     - For Universal Links be sure to add your APP ID or TEAM ID to your app when
       connecting. The apple-app-site-association file will be generated and
       hosted automatically.
-    - On as of iOS 9, only Universal Links are considered strong links.
+    - As of iOS 9, only Universal Links are considered strong links.
 - From another application like Safari or Notes, you should be able to select
   your Dynamic Link and be taken to the quickstart app.
 
-Note: You will need Swift 3.0 to run the Swift version of this quickstart.
+Note: You will need a device running iOS 11.0+ for the ObjC and Swift (UIKit)
+versions of the quickstart, or iOS 14.0+ for the Swift (SwiftUI) version.
 
 Screenshots
 -----------

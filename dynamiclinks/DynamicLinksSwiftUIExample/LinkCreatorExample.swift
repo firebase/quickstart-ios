@@ -13,6 +13,7 @@
 // limitations under the License.
 
 import Foundation
+import FirebaseCore
 import FirebaseDynamicLinks
 
 struct LinkCreatorExample {
@@ -28,18 +29,19 @@ struct LinkCreatorExample {
 
   // [START buildFDLLink]
   func generateDynamicLinkComponents() throws -> DynamicLinkComponents {
+    if DynamicLinksExampleApp.domainURIPrefix == "YOUR_DOMAIN_URI_PREFIX" {
+      fatalError("Please update the domainURIPrefix constant in DynamicLinksExampleApp to match" +
+        " the Domain URI Prefix set in the Firebase Console.")
+    }
+
     // general link params
     guard let linkURL = parameterStates.value(parameter: .link).flatMap(URL.init) else {
       throw LinkGenerationError.missingLinkTarget
     }
 
-    guard let domainURIPrefix = parameterStates.value(parameter: .domainURIPrefix) else {
-      throw LinkGenerationError.missingDomainURIPrefix
-    }
-
     guard let components = DynamicLinkComponents(
       link: linkURL,
-      domainURIPrefix: domainURIPrefix
+      domainURIPrefix: DynamicLinksExampleApp.domainURIPrefix
     ) else { throw LinkGenerationError.invalidLinkParameters }
 
     components.analyticsParameters = generateAnalyticsParameters()

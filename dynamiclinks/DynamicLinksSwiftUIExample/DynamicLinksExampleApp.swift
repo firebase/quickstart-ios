@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import UIKit
 import SwiftUI
 // [START import]
 import FirebaseCore
@@ -19,18 +20,19 @@ import FirebaseDynamicLinks
 // [END import]
 
 class AppDelegate: NSObject, UIApplicationDelegate {
+  // The default URL scheme for this example app.
   let customURLScheme = "dlscheme"
 
   // [START didfinishlaunching]
   func application(_ application: UIApplication,
                    didFinishLaunchingWithOptions launchOptions: [UIApplication
                      .LaunchOptionsKey: Any]? = nil) -> Bool {
-    // Set deepLinkURLScheme to the custom URL scheme you defined in your
-    // Xcode project.
-    FirebaseOptions.defaultOptions()?.deepLinkURLScheme = customURLScheme
+    // Set deepLinkURLScheme to the custom URL scheme defined in your Xcode project.
+    if let options = FirebaseOptions.defaultOptions() {
+      options.deepLinkURLScheme = customURLScheme
+    }
 
     FirebaseApp.configure()
-    DynamicLinks.performDiagnostics()
 
     return true
   }
@@ -40,6 +42,8 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 
 @main
 struct DynamicLinksExampleApp: App {
+  static let domainURIPrefix = "YOUR_DOMAIN_URI_PREFIX"
+
   @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
   @StateObject var model = LinkModel()
   @State var receivedLinkModels: [ReceivedLinkModel] = []

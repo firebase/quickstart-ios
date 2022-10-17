@@ -14,6 +14,7 @@ Getting Started
 - Paste your Dynamic Link Domain from Firebase Console to
   - **DynamicLinksExample.entitlements** file
   - **DOMAIN_URI_PREFIX** constant in ViewController.m and ViewController.swift files
+  - **domainURIPrefix** constant in DynamicLinksExampleApp.swift file
 - Run the sample on your iOS device.
 - Create a Dynamic Link 
   - in the App or

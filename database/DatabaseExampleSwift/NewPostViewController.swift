@@ -49,6 +49,16 @@ class NewPostViewController: UIViewController, UITextFieldDelegate {
   }
 
   @IBAction func didTapShare(_ sender: AnyObject) {
+    guard titleTextField.hasText, bodyTextView.hasText else {
+      let alert = UIAlertController(
+        title: nil,
+        message: "Neither title nor body can be empty.",
+        preferredStyle: .alert
+      )
+      alert.addAction(UIAlertAction(title: "OK", style: .default))
+      present(alert, animated: true, completion: nil)
+      return
+    }
     // [START single_value_read]
     let userID = Auth.auth().currentUser?.uid
     ref.child("users").child(userID!).observeSingleEvent(of: .value, with: { snapshot in

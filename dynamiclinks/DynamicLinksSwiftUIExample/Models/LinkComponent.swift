@@ -48,7 +48,7 @@ extension LinkComponent {
     id: "base-dynamic-link",
     name: "Base Dynamic Link",
     isRequired: true,
-    requiredParameters: [.link, .domainURIPrefix]
+    requiredParameters: [.link]
   )
   static let googleAnalytics = LinkComponent(
     id: "google-analytics",

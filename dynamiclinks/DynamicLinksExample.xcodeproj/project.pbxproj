@@ -27,7 +27,6 @@
 		5F99610D1AE0CF4F0034F503 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F9961071AE0CF4F0034F503 /* LaunchScreen.xib */; };
 		7C3DAFA02B6A41251A02D833 /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = 28663F6E35BEC4B1EC821AA8 /* GoogleService-Info.plist */; };
 		8602C82D288F627000387485 /* ParameterValueEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867AE1E7288F590C0071D3A9 /* ParameterValueEditorView.swift */; };
-		866BED2B28A1E30800319011 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866BED2A28A1E30800319011 /* AppDelegate.swift */; };
 		867096AF28A73073000F7C89 /* LinkReceivedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867096AE28A73073000F7C89 /* LinkReceivedView.swift */; };
 		867096B128A73380000F7C89 /* ReceivedLinkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867096B028A73380000F7C89 /* ReceivedLinkModel.swift */; };
 		867AE224288F5BA20071D3A9 /* DynamicLinksExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867AE1E1288F590C0071D3A9 /* DynamicLinksExampleApp.swift */; };
@@ -106,7 +105,6 @@
 		5F9961061AE0CF4F0034F503 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		5F9961071AE0CF4F0034F503 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		8602C829288F620600387485 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
-		866BED2A28A1E30800319011 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		867096AE28A73073000F7C89 /* LinkReceivedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkReceivedView.swift; sourceTree = "<group>"; };
 		867096B028A73380000F7C89 /* ReceivedLinkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceivedLinkModel.swift; sourceTree = "<group>"; };
 		867AE1DC288F590C0071D3A9 /* LinkModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkModel.swift; sourceTree = "<group>"; };
@@ -286,7 +284,6 @@
 			children = (
 				86DEC5452891F97000D9EA7A /* Info.plist */,
 				867AE1E1288F590C0071D3A9 /* DynamicLinksExampleApp.swift */,
-				866BED2A28A1E30800319011 /* AppDelegate.swift */,
 				867AE1E8288F590C0071D3A9 /* LinkCreatorExample.swift */,
 				86F0FEFC2890905800E6D0F2 /* LinkCreatorExampleView.swift */,
 				867096AE28A73073000F7C89 /* LinkReceivedView.swift */,
@@ -643,7 +640,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				866BED2B28A1E30800319011 /* AppDelegate.swift in Sources */,
 				867096B128A73380000F7C89 /* ReceivedLinkModel.swift in Sources */,
 				867096AF28A73073000F7C89 /* LinkReceivedView.swift in Sources */,
 				867AE22D288F5BC30071D3A9 /* LinkConfigurationView.swift in Sources */,
@@ -1034,6 +1030,7 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = DynamicLinksExample/DynamicLinksExample.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -1080,6 +1077,7 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = DynamicLinksExample/DynamicLinksExample.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;

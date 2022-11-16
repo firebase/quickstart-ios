@@ -69,11 +69,12 @@ class UITests: XCTestCase {
     #endif
     for text in texts {
       let element = app.staticTexts[text]
-      if element.waitForExistence(timeout: 1) {
+      // TODO: This if should be removed.
+      #if targetEnvironment(macCatalyst)
+        XCTAssertTrue(element.exists)
+      #else
         XCTAssertTrue(element.isHittable, "Text '\(text)' is missing from view.")
-      } else {
-        XCTFail("Element did not exist: \(text)")
-      }
+      #endif
     }
   }
 

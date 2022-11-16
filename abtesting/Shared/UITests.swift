@@ -68,7 +68,12 @@ class UITests: XCTestCase {
       let texts = ["Getting Started with Firebase", "An Introduction to Firebase"]
     #endif
     for text in texts {
-      XCTAssertTrue(app.staticTexts[text].isHittable, "Text '\(text)' is missing from view.")
+      let element = app.staticTexts[text]
+      if element.waitForExistence(timeout: 1) {
+        XCTAssertTrue(element.isHittable, "Text '\(text)' is missing from view.")
+      } else {
+        XCTFail("Element did not exist: \(text)")
+      }
     }
   }
 

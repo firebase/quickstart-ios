@@ -22,7 +22,6 @@ struct LinkParameter: Identifiable, Equatable, Hashable {
 extension LinkParameter {
   static let all: [LinkParameter] = [
     .link,
-    .domainURIPrefix,
     .title,
     .descriptionText,
     .imageURL,
@@ -48,7 +47,6 @@ extension LinkParameter {
   ]
 
   static let link = LinkParameter(id: "link-target", name: "Link Target")
-  static let domainURIPrefix = LinkParameter(id: "domain-uri-prefix", name: "Domain URI Prefix")
   static let source = LinkParameter(id: "source", name: "Source")
   static let medium = LinkParameter(id: "medium", name: "Medium")
   static let campaign = LinkParameter(id: "campaign", name: "Campaign")

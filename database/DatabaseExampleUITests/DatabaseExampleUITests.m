@@ -163,10 +163,15 @@ static NSString *const testPassword = @"8261108117";
   [_app.buttons[@"Add"] tap];
 
   // Post some unique text.
+  XCUIElement *messageField = [[_app textViews] firstMatch];
   NSString *uniqueMessage = [NSString stringWithFormat:@"My test message %@", timestamp()];
-  XCUIElement *inputField = [[_app textFields] firstMatch];
-  [inputField tap];
-  [inputField typeText:uniqueMessage];
+  [messageField tap];
+  [messageField typeText:uniqueMessage];
+  
+  NSString *uniqueTitle = [NSString stringWithFormat:@"My Test Title %@", timestamp()];
+  XCUIElement *titleField = [[_app textFields] firstMatch];
+  [titleField tap];
+  [titleField typeText:uniqueTitle];
   [[_app buttons][@"Done"] tap];
   [[_app buttons][@"Post"] tap];
 
@@ -189,6 +194,8 @@ static NSString *const testPassword = @"8261108117";
 
   // Make sure posted message is deleted.
   XCUIElement *postedMessage = [_app staticTexts][uniqueMessage];
+  XCTAssertFalse([postedMessage exists]);
+  postedMessage = [_app staticTexts][uniqueTitle];
   XCTAssertFalse([postedMessage exists]);
   [self signOut];
 }
@@ -261,7 +268,7 @@ static NSString *const testPassword = @"8261108117";
 
 - (void)deleteAllMessages {
   NSPredicate *messagePredicate =
-  [NSPredicate predicateWithFormat:@"(label BEGINSWITH[c] %@)", @"My test message"];
+  [NSPredicate predicateWithFormat:@"(label BEGINSWITH[c] %@)", @"My Test Title"];
 
   // Some message cells may be off screen so swipe to remove won't work. Query a label for the first
   // message after each message removed to make sure the message is on screen.

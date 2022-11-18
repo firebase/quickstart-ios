@@ -27,6 +27,8 @@
 		5F99610D1AE0CF4F0034F503 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F9961071AE0CF4F0034F503 /* LaunchScreen.xib */; };
 		7C3DAFA02B6A41251A02D833 /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = 28663F6E35BEC4B1EC821AA8 /* GoogleService-Info.plist */; };
 		8602C82D288F627000387485 /* ParameterValueEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867AE1E7288F590C0071D3A9 /* ParameterValueEditorView.swift */; };
+		867096AF28A73073000F7C89 /* LinkReceivedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867096AE28A73073000F7C89 /* LinkReceivedView.swift */; };
+		867096B128A73380000F7C89 /* ReceivedLinkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867096B028A73380000F7C89 /* ReceivedLinkModel.swift */; };
 		867AE224288F5BA20071D3A9 /* DynamicLinksExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867AE1E1288F590C0071D3A9 /* DynamicLinksExampleApp.swift */; };
 		867AE225288F5BA60071D3A9 /* LinkCreatorExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867AE1E8288F590C0071D3A9 /* LinkCreatorExample.swift */; };
 		867AE227288F5BB90071D3A9 /* LinkComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867AE1DD288F590C0071D3A9 /* LinkComponent.swift */; };
@@ -38,6 +40,7 @@
 		867AE23F288F60890071D3A9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F9961061AE0CF4F0034F503 /* Images.xcassets */; };
 		867AE240288F608F0071D3A9 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F9961071AE0CF4F0034F503 /* LaunchScreen.xib */; };
 		867AE241288F61090071D3A9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 28663F6E35BEC4B1EC821AA8 /* GoogleService-Info.plist */; };
+		86D4F0B228AB147A0035E55F /* DynamicLink+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D4F0B128AB147A0035E55F /* DynamicLink+Extension.swift */; };
 		86F0FEFD2890905800E6D0F2 /* LinkCreatorExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F0FEFC2890905800E6D0F2 /* LinkCreatorExampleView.swift */; };
 		9965E65D0BB7DA370BAA0C23 /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = 28663F6E35BEC4B1EC821AA8 /* GoogleService-Info.plist */; };
 		A1F82AABFFE762C13E065BA6 /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = 28663F6E35BEC4B1EC821AA8 /* GoogleService-Info.plist */; };
@@ -102,6 +105,8 @@
 		5F9961061AE0CF4F0034F503 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		5F9961071AE0CF4F0034F503 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		8602C829288F620600387485 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		867096AE28A73073000F7C89 /* LinkReceivedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkReceivedView.swift; sourceTree = "<group>"; };
+		867096B028A73380000F7C89 /* ReceivedLinkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceivedLinkModel.swift; sourceTree = "<group>"; };
 		867AE1DC288F590C0071D3A9 /* LinkModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkModel.swift; sourceTree = "<group>"; };
 		867AE1DD288F590C0071D3A9 /* LinkComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkComponent.swift; sourceTree = "<group>"; };
 		867AE1DE288F590C0071D3A9 /* LinkParameterState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkParameterState.swift; sourceTree = "<group>"; };
@@ -113,6 +118,7 @@
 		867AE1E8288F590C0071D3A9 /* LinkCreatorExample.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkCreatorExample.swift; sourceTree = "<group>"; };
 		867AE1FA288F5A330071D3A9 /* DynamicLinksSwiftUIExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DynamicLinksSwiftUIExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		867AE23D288F5FFE0071D3A9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		86D4F0B128AB147A0035E55F /* DynamicLink+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DynamicLink+Extension.swift"; sourceTree = "<group>"; };
 		86DEC5452891F97000D9EA7A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		86F0FEFC2890905800E6D0F2 /* LinkCreatorExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkCreatorExampleView.swift; sourceTree = "<group>"; };
 		DE43B5BE23AEBA690056B15F /* FIREGHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FIREGHelper.h; sourceTree = "<group>"; };
@@ -280,6 +286,7 @@
 				867AE1E1288F590C0071D3A9 /* DynamicLinksExampleApp.swift */,
 				867AE1E8288F590C0071D3A9 /* LinkCreatorExample.swift */,
 				86F0FEFC2890905800E6D0F2 /* LinkCreatorExampleView.swift */,
+				867096AE28A73073000F7C89 /* LinkReceivedView.swift */,
 				867AE1DA288F590C0071D3A9 /* Models */,
 				867AE1E3288F590C0071D3A9 /* Views */,
 				867AE23C288F5FFE0071D3A9 /* Preview Content */,
@@ -294,6 +301,8 @@
 				867AE1DD288F590C0071D3A9 /* LinkComponent.swift */,
 				867AE1E0288F590C0071D3A9 /* LinkParameter.swift */,
 				867AE1DE288F590C0071D3A9 /* LinkParameterState.swift */,
+				867096B028A73380000F7C89 /* ReceivedLinkModel.swift */,
+				86D4F0B128AB147A0035E55F /* DynamicLink+Extension.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -461,7 +470,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 1400;
 				LastUpgradeCheck = 1110;
-				ORGANIZATIONNAME = "Google Inc.";
+				ORGANIZATIONNAME = "Google LLC";
 				TargetAttributes = {
 					10734761203159BF004A66D1 = {
 						CreatedOnToolsVersion = 9.2;
@@ -631,6 +640,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				867096B128A73380000F7C89 /* ReceivedLinkModel.swift in Sources */,
+				867096AF28A73073000F7C89 /* LinkReceivedView.swift in Sources */,
 				867AE22D288F5BC30071D3A9 /* LinkConfigurationView.swift in Sources */,
 				867AE22A288F5BB90071D3A9 /* LinkParameterState.swift in Sources */,
 				8602C82D288F627000387485 /* ParameterValueEditorView.swift in Sources */,
@@ -641,6 +652,7 @@
 				867AE22B288F5BB90071D3A9 /* LinkModel.swift in Sources */,
 				867AE227288F5BB90071D3A9 /* LinkComponent.swift in Sources */,
 				86F0FEFD2890905800E6D0F2 /* LinkCreatorExampleView.swift in Sources */,
+				86D4F0B228AB147A0035E55F /* DynamicLink+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -782,7 +794,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = DynamicLinksExample/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.samples.DynamicLinksExampleTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -803,7 +815,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = DynamicLinksExample/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.samples.DynamicLinksExampleTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -860,7 +872,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -910,7 +922,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -926,13 +938,14 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = DynamicLinksExample/DynamicLinksExample.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/DynamicLinksExample/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.DynamicLinksExample;
@@ -949,13 +962,14 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = DynamicLinksExample/DynamicLinksExample.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/DynamicLinksExample/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.DynamicLinksExample;
@@ -1016,6 +1030,7 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = DynamicLinksExample/DynamicLinksExample.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -1062,6 +1077,7 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = DynamicLinksExample/DynamicLinksExample.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;

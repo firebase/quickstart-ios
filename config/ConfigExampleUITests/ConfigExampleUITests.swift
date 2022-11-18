@@ -32,7 +32,7 @@ class ConfigExampleUITests: XCTestCase {
 
   func testConfigStartup() {
     // Verify that Config Example app launched successfully
-    XCTAssertTrue(app.navigationBars["Firebase Config"].exists)
+    XCTAssertTrue(app.navigationBars["Firebase Config"].waitForExistence(timeout: 10))
   }
 
   func testLaunchPerformance() throws {

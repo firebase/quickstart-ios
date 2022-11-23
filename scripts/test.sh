@@ -95,7 +95,7 @@ flags+=( -scheme "$SCHEME" )
 # Set destination
 if [[ "$OS" == iOS ]]; then
     if [[ "$SDK" == iphoneos ]]; then
-        flags+=( -sdk "$SDK" -derivedDataPath "${SAMPLE}-${SCHEME}")
+        flags+=( -sdk "$SDK" -derivedDataPath "${SAMPLE}/BFT-${SCHEME}")
     else
         DESTINATION="platform=iOS Simulator,name=${DEVICE}"
         flags+=( -destination "$DESTINATION" )
@@ -164,6 +164,6 @@ echo "$message"
 
 # Zip build-for-testing into MyTests.zip
 if [[ "$SDK" == iphoneos ]]; then
-    cd ${SAMPLE}-${SCHEME}/Build/Products
+    cd ${SAMPLE}/BFT-${SCHEME}/Build/Products
     zip -r MyTests.zip Debug-iphoneos *.xctestrun
 else

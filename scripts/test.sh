@@ -161,3 +161,9 @@ function xcb() {
 # Run xcodebuild
 xcb "${flags[@]}"
 echo "$message"
+
+# Zip build-for-testing into MyTests.zip
+if [[ "$SDK" == iphoneos ]]; then
+    cd ${SAMPLE}-${SCHEME}/Build/Products
+    zip -r MyTests.zip Debug-iphoneos *.xctestrun
+else

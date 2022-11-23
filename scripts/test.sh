@@ -166,4 +166,5 @@ echo "$message"
 if [[ "$SDK" == iphoneos ]]; then
     cd build-for-testing/${SCHEME}/Build/Products
     zip -r MyTests.zip Debug-iphoneos *.xctestrun
-else
+    echo "build-for-testing/${SCHEME}/Build/Products zipped into MyTests.zip"
+fi

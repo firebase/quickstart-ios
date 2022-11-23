@@ -94,8 +94,12 @@ flags+=( -scheme "$SCHEME" )
 
 # Set destination
 if [[ "$OS" == iOS ]]; then
-    DESTINATION="platform=iOS Simulator,name=${DEVICE}"
-    flags+=( -destination "$DESTINATION" )
+    if [[ "$SDK" == iphoneos ]]; then
+        flags+=( -sdk "$SDK" -derivedDataPath "${SAMPLE}-${SCHEME}")
+    else
+        DESTINATION="platform=iOS Simulator,name=${DEVICE}"
+        flags+=( -destination "$DESTINATION" )
+    fi
 elif [[ "$OS" == tvOS ]]; then
     DESTINATION="platform=tvOS Simulator,name=${DEVICE}"
     flags+=( -destination "$DESTINATION" )
@@ -124,11 +128,20 @@ if [[ "$OS" == catalyst ]];then
     )
 fi
 
-flags+=(
-    CODE_SIGNING_REQUIRED=NO
-    CODE_SIGNING_ALLOWED=NO
-    build
-)
+if [[ "$SDK" == iphoneos ]]; then
+    flags+=(
+        CODE_SIGN_IDENTITY=""
+        CODE_SIGNING_REQUIRED=NO
+        CODE_SIGNING_ALLOWED=NO
+        build-for-testing
+    )
+else
+    flags+=(
+        CODE_SIGNING_REQUIRED=NO
+        CODE_SIGNING_ALLOWED=NO
+        build
+    )
+fi
 
 # Check whether to test on top of building
 message=""

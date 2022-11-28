@@ -21,6 +21,14 @@
 set -euo pipefail
 
 # Set default parameters
+if [[ -z "${SPM:-}" ]]; then
+    SPM=false
+    echo "Defaulting to SPM=$SPM"
+    if [[ -z "${LEGACY:-}" ]]; then
+        LEGACY=false
+        echo "Defaulting to LEGACY=$LEGACY"
+    fi
+fi
 
 # Set have_secrets to true or false.
 source scripts/check_secrets.sh
@@ -42,15 +50,25 @@ esac
 flags=()
 
 # Set project / workspace
-if [[ "$LEGACY" == true ]]; then
-    WORKSPACE="${SAMPLE}/Legacy${SAMPLE}Quickstart/${SAMPLE}Example.xcworkspace"
+if [[ "$SPM" == true ]];then
+    flags+=( -project "${DIR}/${SAMPLE}Example.xcodeproj" )
 else
-    WORKSPACE="${SAMPLE}/${SAMPLE}Example.xcworkspace"
+    if [[ "$LEGACY" == true ]]; then
+        WORKSPACE="${SAMPLE}/Legacy${SAMPLE}Quickstart/${SAMPLE}Example.xcworkspace"
+    else
+        WORKSPACE="${SAMPLE}/${SAMPLE}Example.xcworkspace"
+    fi
+    flags+=( -workspace "$WORKSPACE" )
 fi
-flags+=( -workspace "$WORKSPACE" )
 
 # Set scheme
-SCHEME="${SAMPLE}Example${SWIFT_SUFFIX:-}"
+if [[ -z "${SCHEME:-}" ]]; then
+    if [[ "$SPM" == true ]];then
+        SCHEME="${SAMPLE}Example (${OS})"
+    else
+        SCHEME="${SAMPLE}Example${SWIFT_SUFFIX:-}"
+    fi
+fi
 
 flags+=( -scheme "$SCHEME" )
 

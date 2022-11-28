@@ -42,7 +42,11 @@ esac
 flags=()
 
 # Set project / workspace
-WORKSPACE="${SAMPLE}/Legacy${SAMPLE}Quickstart/${SAMPLE}Example.xcworkspace"
+if [[ "$LEGACY" == true ]]; then
+    WORKSPACE="${SAMPLE}/Legacy${SAMPLE}Quickstart/${SAMPLE}Example.xcworkspace"
+else
+    WORKSPACE="${SAMPLE}/${SAMPLE}Example.xcworkspace"
+fi
 flags+=( -workspace "$WORKSPACE" )
 
 # Set scheme

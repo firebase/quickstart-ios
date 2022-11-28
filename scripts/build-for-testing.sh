@@ -51,7 +51,7 @@ SCHEME="${SAMPLE}Example${SWIFT_SUFFIX:-}"
 flags+=( -scheme "$SCHEME" )
 
 # Set destination & derivedDataPath
-DESTINATION="platform=iOS"
+DESTINATION="platform=iOS,name:Any iOS Device"
 DERIVEDDATAPATH="build-for-testing/${SCHEME}"
 flags+=( -destination "$DESTINATION" -sdk "iphoneos" -derivedDataPath "$DERIVEDDATAPATH")
 

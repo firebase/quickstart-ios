@@ -45,8 +45,6 @@ flags=()
 WORKSPACE="${SAMPLE}/Legacy${SAMPLE}Quickstart/${SAMPLE}Example.xcworkspace"
 flags+=( -workspace "$WORKSPACE" )
 
-Functions/LegacyFunctionsQuickstart/FunctionsExample.xcworkspace
-
 # Set scheme
 SCHEME="${SAMPLE}Example${SWIFT_SUFFIX:-}"
 

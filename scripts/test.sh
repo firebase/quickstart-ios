@@ -94,8 +94,14 @@ flags+=( -scheme "$SCHEME" )
 
 # Set destination
 if [[ "$OS" == iOS ]]; then
-    DESTINATION="platform=iOS Simulator,name=${DEVICE}"
-    flags+=( -destination "$DESTINATION" )
+    if [[ "$SDK" == iphoneos ]]; then
+        DESTINATION="platform=iOS"
+        DERIVEDDATAPATH="build-for-testing/${SCHEME}"
+        flags+=( -destination "$DESTINATION" -sdk "iphoneos" -derivedDataPath "$DERIVEDDATAPATH")
+    else
+        DESTINATION="platform=iOS Simulator,name=${DEVICE}"
+        flags+=( -destination "$DESTINATION" )
+    fi
 elif [[ "$OS" == tvOS ]]; then
     DESTINATION="platform=tvOS Simulator,name=${DEVICE}"
     flags+=( -destination "$DESTINATION" )
@@ -124,11 +130,20 @@ if [[ "$OS" == catalyst ]];then
     )
 fi
 
-flags+=(
-    CODE_SIGNING_REQUIRED=NO
-    CODE_SIGNING_ALLOWED=NO
-    build
-)
+if [[ "$SDK" == iphoneos ]]; then
+    flags+=(
+        CODE_SIGN_IDENTITY=""
+        CODE_SIGNING_REQUIRED=NO
+        CODE_SIGNING_ALLOWED=NO
+        build-for-testing
+    )
+else
+    flags+=(
+        CODE_SIGNING_REQUIRED=NO
+        CODE_SIGNING_ALLOWED=NO
+        build
+    )
+fi
 
 # Check whether to test on top of building
 message=""
@@ -148,3 +163,10 @@ function xcb() {
 # Run xcodebuild
 xcb "${flags[@]}"
 echo "$message"
+
+# Zip build-for-testing into MyTests.zip
+if [[ "$SDK" == iphoneos ]]; then
+    cd build-for-testing/${SCHEME}/Build/Products
+    zip -r MyTests.zip Debug-iphoneos *.xctestrun
+    echo "build-for-testing/${SCHEME}/Build/Products zipped into MyTests.zip"
+fi

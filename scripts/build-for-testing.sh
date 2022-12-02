@@ -16,7 +16,7 @@
 
 
 # This script is modified from test.sh. It's possible it into merge into test.sh
-# This script build the quickstart artifact to run test on Firebase Test Lab. 
+# This script build the quickstart artifacts to run tests on Firebase Test Lab. 
 # If we're running on the main repo (not a fork), we also run the tests along 
 # with the decoded GoogleService-Info.plist files.
 

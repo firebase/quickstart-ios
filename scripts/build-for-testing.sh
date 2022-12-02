@@ -15,8 +15,10 @@
 # limitations under the License.
 
 
-# Build the quickstart. If we're running on the main repo (not a fork), we
-# also run the tests along with the decoded GoogleService-Info.plist files.
+# This script is modified from test.sh. It's possible it into merge into test.sh
+# This script build the quickstart artifact to run test on Firebase Test Lab. 
+# If we're running on the main repo (not a fork), we also run the tests along 
+# with the decoded GoogleService-Info.plist files.
 
 set -euo pipefail
 

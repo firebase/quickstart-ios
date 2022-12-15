@@ -14,7 +14,8 @@ target 'AuthenticationExample' do
   pod 'FirebaseDynamicLinks'
 
   ## Pod for Sign in with Google
-  pod 'GoogleSignIn'
+  #TODO(#1461): Port to GoogleSignIn 7.0
+  pod 'GoogleSignIn', "< 7.0"
 
   ## Pod for Sign in with Facebook
   pod 'FBSDKLoginKit'

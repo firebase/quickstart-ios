@@ -28,7 +28,9 @@ struct FirestoreSwiftUIExampleApp: App {
 
   var body: some Scene {
     WindowGroup {
-      SignInView()
+      NavigationView {
+        FirestoreBlobView()
+      }
     }
   }
 }

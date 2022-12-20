@@ -61,29 +61,6 @@ static NSString *const logButton = @"Log Token";
   // Verify that Messaging Example app launched successfully and its title is visible.
   XCTAssertTrue(_app.buttons[subscribeButton].exists);
 
-  // Make sure FCM token has been received. It's index 1 after the title at index 0.
-  XCTAssertTrue(
-      [[[[_app staticTexts] elementBoundByIndex:1] label] containsString:@"Received FCM token"]);
-
-  // Tap on "Subscribe to News" button.
-  [_app.buttons[subscribeButton] tap];
-
-  // Tap on "Log Token" button.
-  [_app.buttons[logButton] tap];
-
-  // Make sure app is still in foreground (i.e. not crashed).
-  XCTAssertTrue(_app.buttons[subscribeButton].exists);
-
-  // Wait till network call is finished.
-  NSPredicate *gone = [NSPredicate predicateWithFormat:@"exists == false"];
-  FIRWaitForPredicateWithTimeout(gone, [_app staticTexts][@"No FCM Registration token"], 20);
-
-  // Make sure [FIRMessaging messaging].FCMToken returns FCM token.
-  XCTAssertTrue(
-      [[[[_app staticTexts] elementBoundByIndex:1] label] containsString:@"Logged FCM token"]);
-  // Make sure [FIRMessaging messaging] tokenWithCompletion: returns FCM token.
-  XCTAssertTrue([[[[_app staticTexts] elementBoundByIndex:2] label]
-      containsString:@"FCM registration token"]);
 }
 
 @end

@@ -1167,18 +1167,19 @@ static BOOL isMFAEnabled = NO;
 - (void)startSignInWithGoogleFlow {
   // [START headless_google_auth]
   GIDConfiguration *config = [[GIDConfiguration alloc] initWithClientID:[FIRApp defaultApp].options.clientID];
+  [GIDSignIn.sharedInstance setConfiguration:config];
 
   __weak __auto_type weakSelf = self;
-  [GIDSignIn.sharedInstance signInWithConfiguration:config presentingViewController:self callback:^(GIDGoogleUser * _Nullable user, NSError * _Nullable error) {
+  [GIDSignIn.sharedInstance signInWithPresentingViewController:self
+        completion:^(GIDSignInResult * _Nullable result, NSError * _Nullable error) {
     __auto_type strongSelf = weakSelf;
     if (strongSelf == nil) { return; }
 
     if (error == nil) {
       // [START google_credential]
-      GIDAuthentication *authentication = user.authentication;
       FIRAuthCredential *credential =
-      [FIRGoogleAuthProvider credentialWithIDToken:authentication.idToken
-                                       accessToken:authentication.accessToken];
+      [FIRGoogleAuthProvider credentialWithIDToken:result.user.idToken.tokenString
+                                       accessToken:result.user.accessToken.tokenString];
       // [END google_credential]
       // [START_EXCLUDE]
       [strongSelf firebaseLoginWithCredential:credential];

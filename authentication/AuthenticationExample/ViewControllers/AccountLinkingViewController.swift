@@ -139,16 +139,18 @@ class AccountLinkingViewController: UIViewController, DataSourceProviderDelegate
     guard let clientID = FirebaseApp.app()?.options.clientID else { return }
 
     // Create Google Sign In configuration object.
+    // TODO: Move configuration to Info.plist
     let config = GIDConfiguration(clientID: clientID)
+    GIDSignIn.sharedInstance.configuration = config
 
     // Start the sign in flow!
-    GIDSignIn.sharedInstance.signIn(with: config, presenting: self) { [unowned self] user, error in
+    GIDSignIn.sharedInstance.signIn(withPresenting: self) { [unowned self] result, error in
 
       guard error == nil else { return displayError(error) }
 
       guard
-        let authentication = user?.authentication,
-        let idToken = authentication.idToken
+        let user = result?.user,
+        let idToken = user.idToken?.tokenString
       else {
         let error = NSError(
           domain: "GIDSignInError",
@@ -161,7 +163,7 @@ class AccountLinkingViewController: UIViewController, DataSourceProviderDelegate
       }
 
       let credential = GoogleAuthProvider.credential(withIDToken: idToken,
-                                                     accessToken: authentication.accessToken)
+                                                     accessToken: user.accessToken.tokenString)
 
       // Rather than use the credential to sign in the user, we will use it to link to the currently signed in user's account.
       linkAccount(authCredential: credential)

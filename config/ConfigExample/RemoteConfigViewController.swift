@@ -70,6 +70,26 @@ class RemoteConfigViewController: UIViewController {
     let settings = RemoteConfigSettings()
     settings.minimumFetchInterval = 0
     remoteConfig.configSettings = settings
+      
+    remoteConfig.add { RemoteConfigUpdate, Error in
+        guard Error == nil else {
+            DispatchQueue.main.async {
+                self.displayError(Error)
+            }
+            return
+        }
+        self.remoteConfig.activate() { changed, error in
+            guard error == nil else {
+                DispatchQueue.main.async {
+                    self.displayError(error)
+                }
+                return
+            }
+            DispatchQueue.main.async {
+                self.updateUI()
+            }
+        }
+      }
   }
 
   /// Fetches and activates remote config values

@@ -72,12 +72,18 @@ class RemoteConfigViewController: UIViewController {
     remoteConfig.configSettings = settings
       
     remoteConfig.add { RemoteConfigUpdate, Error in
+        NSLog("Received Realtime Signal")
         guard Error == nil else {
             DispatchQueue.main.async {
                 self.displayError(Error)
             }
             return
         }
+        
+        if (RemoteConfigUpdate?.updatedKeys.contains("realtime_rc_changed_params") != nil) {
+            NSLog("Received realtime_rc_changed_params")
+        }
+        
         self.remoteConfig.activate() { changed, error in
             guard error == nil else {
                 DispatchQueue.main.async {

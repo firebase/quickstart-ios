@@ -18,6 +18,7 @@ enum UserAction: String {
   case link = "Link/Unlink Auth Providers"
   case requestVerifyEmail = "Request Verify Email"
   case tokenRefresh = "Token Refresh"
+  case tokenRevoke = "Revoke Token"
   case delete = "Delete"
   case updateEmail = "Email"
   case updatePhotoURL = "Photo URL"

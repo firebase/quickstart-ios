@@ -84,6 +84,11 @@ class UserViewController: UIViewController, DataSourceProviderDelegate {
     case .tokenRefresh:
       refreshCurrentUserIDToken()
 
+    case .tokenRevoke:
+      Task {
+        await revokeUserToken()
+      }
+
     case .delete:
       deleteCurrentUser()
 
@@ -170,10 +175,25 @@ class UserViewController: UIViewController, DataSourceProviderDelegate {
     }
   }
 
+  private func revokeUserToken() async {
+    if let idToken = UserDefaults.standard.string(forKey: "appleIDToken") {
+      do {
+        try await Auth.auth().revokeToken(idToken)
+      }
+      catch {
+        print(error)
+      }
+    }
+  }
+
   public func deleteCurrentUser() {
-    user?.delete { error in
-      guard error == nil else { return self.displayError(error) }
-      self.updateUI()
+    Task {
+      await revokeUserToken()
+
+      user?.delete { error in
+        guard error == nil else { return self.displayError(error) }
+        self.updateUI()
+      }
     }
   }
 

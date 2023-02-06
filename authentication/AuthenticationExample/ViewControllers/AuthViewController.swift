@@ -261,8 +261,17 @@ extension AuthViewController: ASAuthorizationControllerDelegate,
       print("Unable to fetch identity token")
       return
     }
+    guard let appleAuthCode = appleIDCredential.authorizationCode else {
+      print("Unable to fetch authorization code")
+      return
+    }
     guard let idTokenString = String(data: appleIDToken, encoding: .utf8) else {
       print("Unable to serialize token string from data: \(appleIDToken.debugDescription)")
+      return
+    }
+
+    guard let authCodeString = String(data: appleAuthCode, encoding: .utf8) else {
+      print("Unable to serialize auth code string from data: \(appleAuthCode.debugDescription)")
       return
     }
 
@@ -275,6 +284,9 @@ extension AuthViewController: ASAuthorizationControllerDelegate,
       // you're sending the SHA256-hashed nonce as a hex string with
       // your request to Apple.
       guard error == nil else { return self.displayError(error) }
+
+      // store the ID token so we can later revoke it
+      UserDefaults.standard.set(authCodeString, forKey: "appleIDToken")
 
       // At this point, our user is signed in
       // so we advance to the User View Controller

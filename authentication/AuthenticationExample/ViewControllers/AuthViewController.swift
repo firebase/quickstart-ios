@@ -287,7 +287,7 @@ extension AuthViewController: ASAuthorizationControllerDelegate,
     // Ensure that you have:
     //  - enabled `Sign in with Apple` on the Firebase console
     //  - added the `Sign in with Apple` capability for this project
-    print("Sign in with Apple errored: \(error)")
+    print("Sign in with Apple failed: \(error)")
   }
 
   // MARK: ASAuthorizationControllerPresentationContextProviding

@@ -266,9 +266,10 @@ extension AuthViewController: ASAuthorizationControllerDelegate,
       return
     }
 
-    let credential = OAuthProvider.credential(withProviderID: "apple.com",
-                                              idToken: idTokenString,
-                                              rawNonce: nonce)
+    // use this call to create the authentication credential and set the user's full name
+    let credential = OAuthProvider.appleCredential(withIDToken: idTokenString,
+                                                   rawNonce: nonce,
+                                                   fullName: appleIDCredential.fullName)
 
     Auth.auth().signIn(with: credential) { result, error in
       // Error. If error.code == .MissingOrInvalidNonce, make sure

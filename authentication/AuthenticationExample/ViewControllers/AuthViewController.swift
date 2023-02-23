@@ -138,8 +138,10 @@ class AuthViewController: UIViewController, DataSourceProviderDelegate {
     Auth.auth().signIn(with: credential) { result, error in
       // [START_EXCLUDE silent]
       guard error == nil else { return self.displayError(error) }
+      // [END_EXCLUDE]
 
       // At this point, our user is signed in
+      // [START_EXCLUDE silent]
       // so we advance to the User View Controller
       self.transitionToUserViewController()
       // [END_EXCLUDE]

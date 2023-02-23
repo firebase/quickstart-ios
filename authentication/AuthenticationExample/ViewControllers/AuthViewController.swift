@@ -102,12 +102,16 @@ class AuthViewController: UIViewController, DataSourceProviderDelegate {
 
     // Start the sign in flow!
     GIDSignIn.sharedInstance.signIn(withPresenting: self) { [unowned self] result, error in
-      guard error == nil else { return displayError(error) }
+      guard error == nil else {
+        // [START_EXCLUDE]
+        return displayError(error)
+        // [END_EXCLUDE]
+      }
 
-      guard
-        let user = result?.user,
-        let idToken = user.idToken?.tokenString
+      guard let user = result?.user,
+            let idToken = user.idToken?.tokenString
       else {
+        // [START_EXCLUDE]
         let error = NSError(
           domain: "GIDSignInError",
           code: -1,
@@ -116,6 +120,7 @@ class AuthViewController: UIViewController, DataSourceProviderDelegate {
           ]
         )
         return displayError(error)
+        // [END_EXCLUDE]
       }
 
       let credential = GoogleAuthProvider.credential(withIDToken: idToken,
@@ -124,12 +129,10 @@ class AuthViewController: UIViewController, DataSourceProviderDelegate {
       // [START_EXCLUDE]
       // [START signin_google_credential]
       Auth.auth().signIn(with: credential) { result, error in
-        // [START_EXCLUDE]
+        // [START_EXCLUDE silent]
         guard error == nil else { return self.displayError(error) }
-        // [END_EXCLUDE]
 
         // At this point, our user is signed in
-        // [START_EXCLUDE]
         // so we advance to the User View Controller
         self.transitionToUserViewController()
         // [END_EXCLUDE]

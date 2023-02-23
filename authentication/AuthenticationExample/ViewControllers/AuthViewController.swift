@@ -21,7 +21,7 @@ import FirebaseAuth
 // For Sign in with Google
 // [START google_import]
 import GoogleSignIn
-// [START google_import]
+// [END google_import]
 
 // For Sign in with Facebook
 import FBSDKLoginKit

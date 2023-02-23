@@ -127,20 +127,24 @@ class AuthViewController: UIViewController, DataSourceProviderDelegate {
                                                      accessToken: user.accessToken.tokenString)
 
       // [START_EXCLUDE]
-      // [START signin_google_credential]
-      Auth.auth().signIn(with: credential) { result, error in
-        // [START_EXCLUDE silent]
-        guard error == nil else { return self.displayError(error) }
-
-        // At this point, our user is signed in
-        // so we advance to the User View Controller
-        self.transitionToUserViewController()
-        // [END_EXCLUDE]
-      }
-      // [END signin_google_credential]
+      signIn(with: credential)
       // [END_EXCLUDE]
     }
     // [END headless_google_auth]
+  }
+
+  func signIn(with credential: AuthCredential) {
+    // [START signin_google_credential]
+    Auth.auth().signIn(with: credential) { result, error in
+      // [START_EXCLUDE silent]
+      guard error == nil else { return self.displayError(error) }
+
+      // At this point, our user is signed in
+      // so we advance to the User View Controller
+      self.transitionToUserViewController()
+      // [END_EXCLUDE]
+    }
+    // [END signin_google_credential]
   }
 
   // For Sign in with Apple

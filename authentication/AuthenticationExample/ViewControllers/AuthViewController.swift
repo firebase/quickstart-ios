@@ -13,11 +13,15 @@
 // limitations under the License.
 
 import UIKit
+// [START auth_import]
 import FirebaseCore
 import FirebaseAuth
+// [END auth_import]
 
 // For Sign in with Google
+// [START google_import]
 import GoogleSignIn
+// [START google_import]
 
 // For Sign in with Facebook
 import FBSDKLoginKit
@@ -86,10 +90,13 @@ class AuthViewController: UIViewController, DataSourceProviderDelegate {
   // MARK: - Firebase 🔥
 
   private func performGoogleSignInFlow() {
+    // [START headless_google_auth]
     guard let clientID = FirebaseApp.app()?.options.clientID else { return }
 
     // Create Google Sign In configuration object.
+    // [START_EXCLUDE silent]
     // TODO: Move configuration to Info.plist
+    // [END_EXCLUDE]
     let config = GIDConfiguration(clientID: clientID)
     GIDSignIn.sharedInstance.configuration = config
 
@@ -114,14 +121,23 @@ class AuthViewController: UIViewController, DataSourceProviderDelegate {
       let credential = GoogleAuthProvider.credential(withIDToken: idToken,
                                                      accessToken: user.accessToken.tokenString)
 
+      // [START_EXCLUDE]
+      // [START signin_google_credential]
       Auth.auth().signIn(with: credential) { result, error in
+        // [START_EXCLUDE]
         guard error == nil else { return self.displayError(error) }
+        // [END_EXCLUDE]
 
         // At this point, our user is signed in
+        // [START_EXCLUDE]
         // so we advance to the User View Controller
         self.transitionToUserViewController()
+        // [END_EXCLUDE]
       }
+      // [END signin_google_credential]
+      // [END_EXCLUDE]
     }
+    // [END headless_google_auth]
   }
 
   // For Sign in with Apple

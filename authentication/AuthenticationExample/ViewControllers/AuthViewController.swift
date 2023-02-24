@@ -13,11 +13,15 @@
 // limitations under the License.
 
 import UIKit
+// [START auth_import]
 import FirebaseCore
 import FirebaseAuth
+// [END auth_import]
 
 // For Sign in with Google
+// [START google_import]
 import GoogleSignIn
+// [END google_import]
 
 // For Sign in with Facebook
 import FBSDKLoginKit
@@ -86,21 +90,28 @@ class AuthViewController: UIViewController, DataSourceProviderDelegate {
   // MARK: - Firebase 🔥
 
   private func performGoogleSignInFlow() {
+    // [START headless_google_auth]
     guard let clientID = FirebaseApp.app()?.options.clientID else { return }
 
     // Create Google Sign In configuration object.
+    // [START_EXCLUDE silent]
     // TODO: Move configuration to Info.plist
+    // [END_EXCLUDE]
     let config = GIDConfiguration(clientID: clientID)
     GIDSignIn.sharedInstance.configuration = config
 
     // Start the sign in flow!
     GIDSignIn.sharedInstance.signIn(withPresenting: self) { [unowned self] result, error in
-      guard error == nil else { return displayError(error) }
+      guard error == nil else {
+        // [START_EXCLUDE]
+        return displayError(error)
+        // [END_EXCLUDE]
+      }
 
-      guard
-        let user = result?.user,
+      guard let user = result?.user,
         let idToken = user.idToken?.tokenString
       else {
+        // [START_EXCLUDE]
         let error = NSError(
           domain: "GIDSignInError",
           code: -1,
@@ -109,19 +120,33 @@ class AuthViewController: UIViewController, DataSourceProviderDelegate {
           ]
         )
         return displayError(error)
+        // [END_EXCLUDE]
       }
 
       let credential = GoogleAuthProvider.credential(withIDToken: idToken,
                                                      accessToken: user.accessToken.tokenString)
 
-      Auth.auth().signIn(with: credential) { result, error in
-        guard error == nil else { return self.displayError(error) }
-
-        // At this point, our user is signed in
-        // so we advance to the User View Controller
-        self.transitionToUserViewController()
-      }
+      // [START_EXCLUDE]
+      signIn(with: credential)
+      // [END_EXCLUDE]
     }
+    // [END headless_google_auth]
+  }
+
+  func signIn(with credential: AuthCredential) {
+    // [START signin_google_credential]
+    Auth.auth().signIn(with: credential) { result, error in
+      // [START_EXCLUDE silent]
+      guard error == nil else { return self.displayError(error) }
+      // [END_EXCLUDE]
+
+      // At this point, our user is signed in
+      // [START_EXCLUDE silent]
+      // so we advance to the User View Controller
+      self.transitionToUserViewController()
+      // [END_EXCLUDE]
+    }
+    // [END signin_google_credential]
   }
 
   // For Sign in with Apple

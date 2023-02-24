@@ -109,7 +109,7 @@ class AuthViewController: UIViewController, DataSourceProviderDelegate {
       }
 
       guard let user = result?.user,
-            let idToken = user.idToken?.tokenString
+        let idToken = user.idToken?.tokenString
       else {
         // [START_EXCLUDE]
         let error = NSError(

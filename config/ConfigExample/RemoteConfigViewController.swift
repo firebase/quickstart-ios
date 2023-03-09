@@ -71,6 +71,7 @@ class RemoteConfigViewController: UIViewController {
     settings.minimumFetchInterval = 0
     remoteConfig.configSettings = settings
 
+    // [START add_config_update_listener]
     remoteConfig.addOnConfigUpdateListener { configUpdate, error in
       guard error == nil else { return self.displayError(error) }
       self.remoteConfig.activate() { changed, error in
@@ -82,6 +83,7 @@ class RemoteConfigViewController: UIViewController {
         }
       }
     }
+    // [END add_config_update_listener]
   }
 
   /// Fetches and activates remote config values

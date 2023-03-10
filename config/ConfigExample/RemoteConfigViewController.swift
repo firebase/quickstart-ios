@@ -74,10 +74,10 @@ class RemoteConfigViewController: UIViewController {
     // [START add_config_update_listener]
     remoteConfig.addOnConfigUpdateListener { configUpdate, error in
       guard error == nil else { return self.displayError(error) }
+      print("Updated keys: \(configUpdate!.updatedKeys)")
+
       self.remoteConfig.activate() { changed, error in
         guard error == nil else { return self.displayError(error) }
-
-        print("Updated keys: \(configUpdate!.updatedKeys)")
         DispatchQueue.main.async {
           self.updateUI()
         }

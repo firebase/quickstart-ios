@@ -51,13 +51,13 @@ NSString *const kLoadingPhraseConfigKey = @"loading_phrase";
     if (error != nil) {
       NSLog(@"Realtime error %@", error.localizedDescription);
     } else {
+      NSLog(@"Updated keys: %@", configUpdate.updatedKeys);
       __typeof__(self) strongSelf = weakSelf;
       [strongSelf.remoteConfig activateWithCompletion:^(BOOL changed, NSError * _Nullable error) {
         if (error != nil) {
           NSLog(@"Activate error %@", error.localizedDescription);
         }
 
-        NSLog(@"Changed keys: %@", configUpdate.updatedKeys);
         dispatch_async(dispatch_get_main_queue(), ^{
           [strongSelf displayWelcome];
         });

@@ -49,7 +49,7 @@ NSString *const kLoadingPhraseConfigKey = @"loading_phrase";
   __weak __typeof__(self) weakSelf = self;
   [self.remoteConfig addOnConfigUpdateListener:^(FIRRemoteConfigUpdate * _Nonnull configUpdate, NSError * _Nullable error) {
     if (error != nil) {
-      NSLog(@"Realtime error %@", error.localizedDescription);
+      NSLog(@"Error listening for config updates %@", error.localizedDescription);
     } else {
       NSLog(@"Updated keys: %@", configUpdate.updatedKeys);
       __typeof__(self) strongSelf = weakSelf;

@@ -76,7 +76,7 @@ class RemoteConfigViewController: UIViewController {
       guard error == nil else { return self.displayError(error) }
       print("Updated keys: \(configUpdate!.updatedKeys)")
 
-      self.remoteConfig.activate() { changed, error in
+      self.remoteConfig.activate { changed, error in
         guard error == nil else { return self.displayError(error) }
         DispatchQueue.main.async {
           self.updateUI()

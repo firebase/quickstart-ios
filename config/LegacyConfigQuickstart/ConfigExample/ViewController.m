@@ -45,6 +45,27 @@ NSString *const kLoadingPhraseConfigKey = @"loading_phrase";
   [self.remoteConfig setDefaultsFromPlistFileName:@"RemoteConfigDefaults"];
   // [END set_default_values]
 
+  // [START add_config_update_listener]
+  __weak __typeof__(self) weakSelf = self;
+  [self.remoteConfig addOnConfigUpdateListener:^(FIRRemoteConfigUpdate * _Nonnull configUpdate, NSError * _Nullable error) {
+    if (error != nil) {
+      NSLog(@"Error listening for config updates %@", error.localizedDescription);
+    } else {
+      NSLog(@"Updated keys: %@", configUpdate.updatedKeys);
+      __typeof__(self) strongSelf = weakSelf;
+      [strongSelf.remoteConfig activateWithCompletion:^(BOOL changed, NSError * _Nullable error) {
+        if (error != nil) {
+          NSLog(@"Activate error %@", error.localizedDescription);
+        }
+
+        dispatch_async(dispatch_get_main_queue(), ^{
+          [strongSelf displayWelcome];
+        });
+      }];
+    }
+  }];
+  // [END add_config_update_listener]
+
   [self fetchConfig];
   [super viewDidLoad];
 }

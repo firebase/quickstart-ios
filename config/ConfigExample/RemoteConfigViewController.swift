@@ -232,7 +232,7 @@ extension UIViewController {
     )
     errorAlertController.addAction(UIAlertAction(title: "OK", style: .default))
     DispatchQueue.main.async {
-      present(errorAlertController, animated: true, completion: nil)
+      self.present(errorAlertController, animated: true, completion: nil)
     }
   }
 }

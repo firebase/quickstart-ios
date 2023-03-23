@@ -6,8 +6,9 @@ target 'ConfigExample' do
   use_frameworks!
 
   # Pods for ConfigExample
-  pod 'FirebaseRemoteConfig'
-  pod 'FirebaseRemoteConfigSwift', "> 8.12-beta"
+  pod 'FirebaseRemoteConfig', :git => 'https://github.com/firebase/firebase-ios-sdk.git', :branch => 'realtime-rc-merge'
+  pod 'FirebaseRemoteConfigSwift', :git => 'https://github.com/firebase/firebase-ios-sdk.git', :branch => 'realtime-rc-merge'
+  pod 'FirebaseAnalytics'
 
   target 'ConfigExampleTests' do
     inherit! :search_paths

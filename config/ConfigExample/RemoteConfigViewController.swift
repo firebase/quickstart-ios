@@ -231,6 +231,8 @@ extension UIViewController {
       preferredStyle: .alert
     )
     errorAlertController.addAction(UIAlertAction(title: "OK", style: .default))
-    present(errorAlertController, animated: true, completion: nil)
+    DispatchQueue.main.async {
+      present(errorAlertController, animated: true, completion: nil)
+    }
   }
 }

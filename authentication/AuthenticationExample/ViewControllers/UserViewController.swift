@@ -176,7 +176,7 @@ class UserViewController: UIViewController, DataSourceProviderDelegate {
   }
 
   private func revokeUserToken() async {
-    if let idToken = UserDefaults.standard.string(forKey: "appleIDToken") {
+    if let idToken = Auth.auth().currentUser?.refreshToken {
       do {
         try await Auth.auth().revokeToken(idToken)
       }

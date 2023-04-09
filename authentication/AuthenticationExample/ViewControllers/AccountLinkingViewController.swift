@@ -178,7 +178,7 @@ class AccountLinkingViewController: UIViewController, DataSourceProviderDelegate
   /// This method will initate the Sign In with Apple flow.
   /// See this class's conformance to `ASAuthorizationControllerDelegate` below for
   /// context on how the linking is made.
-  private func performAppleAccountLink() throws {
+  private func performAppleAccountLink() {
     do {
       let nonce = try CryptoUtils.randomNonceString()
       currentNonce = nonce

@@ -44,6 +44,7 @@ class AccountLinkingViewController: UIViewController, DataSourceProviderDelegate
     super.init(nibName: nil, bundle: nil)
   }
 
+  @available(*, unavailable)
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
@@ -179,17 +180,22 @@ class AccountLinkingViewController: UIViewController, DataSourceProviderDelegate
   /// See this class's conformance to `ASAuthorizationControllerDelegate` below for
   /// context on how the linking is made.
   private func performAppleAccountLink() {
-    let nonce = randomNonceString()
-    currentNonce = nonce
-    let appleIDProvider = ASAuthorizationAppleIDProvider()
-    let request = appleIDProvider.createRequest()
-    request.requestedScopes = [.fullName, .email]
-    request.nonce = sha256(nonce)
+    do {
+      let nonce = try CryptoUtils.randomNonceString()
+      currentNonce = nonce
+      let appleIDProvider = ASAuthorizationAppleIDProvider()
+      let request = appleIDProvider.createRequest()
+      request.requestedScopes = [.fullName, .email]
+      request.nonce = CryptoUtils.sha256(nonce)
 
-    let authorizationController = ASAuthorizationController(authorizationRequests: [request])
-    authorizationController.delegate = self
-    authorizationController.presentationContextProvider = self
-    authorizationController.performRequests()
+      let authorizationController = ASAuthorizationController(authorizationRequests: [request])
+      authorizationController.delegate = self
+      authorizationController.presentationContextProvider = self
+      authorizationController.performRequests()
+    } catch {
+      // In the unlikely case that nonce generation fails, show error view.
+      displayError(error)
+    }
   }
 
   // MARK: - Twitter, Microsoft, GitHub, Yahoo Account Linking 🔥
@@ -425,7 +431,7 @@ extension AccountLinkingViewController: DataSourceProvidable {
 
   private func buildSections() -> [Section] {
     var section = AuthProvider.authLinkSections.first!
-    section.items = section.items.compactMap { (item) -> Item? in
+    section.items = section.items.compactMap { item -> Item? in
       var item = item
       item.hasNestedContent = false
       item.isChecked = userProviderDataContains(item: item)
@@ -485,52 +491,5 @@ extension AccountLinkingViewController: ASAuthorizationControllerDelegate,
 
   func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
     return view.window!
-  }
-
-  // MARK: Aditional `Sign in with Apple` Helpers
-
-  // Adapted from https://auth0.com/docs/api-auth/tutorials/nonce#generate-a-cryptographically-random-nonce
-  private func randomNonceString(length: Int = 32) -> String {
-    precondition(length > 0)
-    let charset: [Character] =
-      Array("0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._")
-    var result = ""
-    var remainingLength = length
-
-    while remainingLength > 0 {
-      let randoms: [UInt8] = (0 ..< 16).map { _ in
-        var random: UInt8 = 0
-        let errorCode = SecRandomCopyBytes(kSecRandomDefault, 1, &random)
-        if errorCode != errSecSuccess {
-          fatalError(
-            "Unable to generate nonce. SecRandomCopyBytes failed with OSStatus \(errorCode)"
-          )
-        }
-        return random
-      }
-
-      randoms.forEach { random in
-        if remainingLength == 0 {
-          return
-        }
-
-        if random < charset.count {
-          result.append(charset[Int(random)])
-          remainingLength -= 1
-        }
-      }
-    }
-
-    return result
-  }
-
-  private func sha256(_ input: String) -> String {
-    let inputData = Data(input.utf8)
-    let hashedData = SHA256.hash(data: inputData)
-    let hashString = hashedData.compactMap {
-      String(format: "%02x", $0)
-    }.joined()
-
-    return hashString
   }
 }

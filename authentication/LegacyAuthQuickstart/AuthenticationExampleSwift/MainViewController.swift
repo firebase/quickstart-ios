@@ -19,6 +19,7 @@ import CryptoKit
 import GameKit
 import UIKit
 
+import FirebaseCore
 import Security
 
 // [START usermanagement_view_import]
@@ -1056,11 +1057,12 @@ class MainViewController: UITableViewController {
 
     let nonce = randomBytes.map { byte in
       // Pick a random character from the set, wrapping around if needed.
-      return charset[Int(byte) % charset.count]
+      charset[Int(byte) % charset.count]
     }
 
     return String(nonce)
   }
+
   // [END random_nonce]
 
   // [START sha_256]

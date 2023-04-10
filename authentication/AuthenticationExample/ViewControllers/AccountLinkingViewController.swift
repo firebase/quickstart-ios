@@ -44,6 +44,7 @@ class AccountLinkingViewController: UIViewController, DataSourceProviderDelegate
     super.init(nibName: nil, bundle: nil)
   }
 
+  @available(*, unavailable)
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
@@ -193,7 +194,7 @@ class AccountLinkingViewController: UIViewController, DataSourceProviderDelegate
       authorizationController.performRequests()
     } catch {
       // In the unlikely case that nonce generation fails, show error view.
-      self.displayError(error)
+      displayError(error)
     }
   }
 
@@ -430,7 +431,7 @@ extension AccountLinkingViewController: DataSourceProvidable {
 
   private func buildSections() -> [Section] {
     var section = AuthProvider.authLinkSections.first!
-    section.items = section.items.compactMap { (item) -> Item? in
+    section.items = section.items.compactMap { item -> Item? in
       var item = item
       item.hasNestedContent = false
       item.isChecked = userProviderDataContains(item: item)

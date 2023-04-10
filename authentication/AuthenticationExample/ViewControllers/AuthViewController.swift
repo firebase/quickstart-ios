@@ -167,7 +167,7 @@ class AuthViewController: UIViewController, DataSourceProviderDelegate {
       authorizationController.performRequests()
     } catch {
       // In the unlikely case that nonce generation fails, show error view.
-      self.displayError(error)
+      displayError(error)
     }
   }
 

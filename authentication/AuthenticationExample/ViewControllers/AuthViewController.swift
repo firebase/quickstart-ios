@@ -13,11 +13,15 @@
 // limitations under the License.
 
 import UIKit
+// [START auth_import]
 import FirebaseCore
 import FirebaseAuth
+// [END auth_import]
 
 // For Sign in with Google
+// [START google_import]
 import GoogleSignIn
+// [END google_import]
 
 // For Sign in with Facebook
 import FBSDKLoginKit
@@ -86,21 +90,28 @@ class AuthViewController: UIViewController, DataSourceProviderDelegate {
   // MARK: - Firebase 🔥
 
   private func performGoogleSignInFlow() {
+    // [START headless_google_auth]
     guard let clientID = FirebaseApp.app()?.options.clientID else { return }
 
     // Create Google Sign In configuration object.
+    // [START_EXCLUDE silent]
     // TODO: Move configuration to Info.plist
+    // [END_EXCLUDE]
     let config = GIDConfiguration(clientID: clientID)
     GIDSignIn.sharedInstance.configuration = config
 
     // Start the sign in flow!
     GIDSignIn.sharedInstance.signIn(withPresenting: self) { [unowned self] result, error in
-      guard error == nil else { return displayError(error) }
+      guard error == nil else {
+        // [START_EXCLUDE]
+        return displayError(error)
+        // [END_EXCLUDE]
+      }
 
-      guard
-        let user = result?.user,
+      guard let user = result?.user,
         let idToken = user.idToken?.tokenString
       else {
+        // [START_EXCLUDE]
         let error = NSError(
           domain: "GIDSignInError",
           code: -1,
@@ -109,36 +120,55 @@ class AuthViewController: UIViewController, DataSourceProviderDelegate {
           ]
         )
         return displayError(error)
+        // [END_EXCLUDE]
       }
 
       let credential = GoogleAuthProvider.credential(withIDToken: idToken,
                                                      accessToken: user.accessToken.tokenString)
 
-      Auth.auth().signIn(with: credential) { result, error in
-        guard error == nil else { return self.displayError(error) }
-
-        // At this point, our user is signed in
-        // so we advance to the User View Controller
-        self.transitionToUserViewController()
-      }
+      // [START_EXCLUDE]
+      signIn(with: credential)
+      // [END_EXCLUDE]
     }
+    // [END headless_google_auth]
+  }
+
+  func signIn(with credential: AuthCredential) {
+    // [START signin_google_credential]
+    Auth.auth().signIn(with: credential) { result, error in
+      // [START_EXCLUDE silent]
+      guard error == nil else { return self.displayError(error) }
+      // [END_EXCLUDE]
+
+      // At this point, our user is signed in
+      // [START_EXCLUDE silent]
+      // so we advance to the User View Controller
+      self.transitionToUserViewController()
+      // [END_EXCLUDE]
+    }
+    // [END signin_google_credential]
   }
 
   // For Sign in with Apple
   var currentNonce: String?
 
   private func performAppleSignInFlow() {
-    let nonce = randomNonceString()
-    currentNonce = nonce
-    let appleIDProvider = ASAuthorizationAppleIDProvider()
-    let request = appleIDProvider.createRequest()
-    request.requestedScopes = [.fullName, .email]
-    request.nonce = sha256(nonce)
+    do {
+      let nonce = try CryptoUtils.randomNonceString()
+      currentNonce = nonce
+      let appleIDProvider = ASAuthorizationAppleIDProvider()
+      let request = appleIDProvider.createRequest()
+      request.requestedScopes = [.fullName, .email]
+      request.nonce = CryptoUtils.sha256(nonce)
 
-    let authorizationController = ASAuthorizationController(authorizationRequests: [request])
-    authorizationController.delegate = self
-    authorizationController.presentationContextProvider = self
-    authorizationController.performRequests()
+      let authorizationController = ASAuthorizationController(authorizationRequests: [request])
+      authorizationController.delegate = self
+      authorizationController.presentationContextProvider = self
+      authorizationController.performRequests()
+    } catch {
+      // In the unlikely case that nonce generation fails, show error view.
+      displayError(error)
+    }
   }
 
   private func performFacebookSignInFlow() {
@@ -266,9 +296,10 @@ extension AuthViewController: ASAuthorizationControllerDelegate,
       return
     }
 
-    let credential = OAuthProvider.credential(withProviderID: "apple.com",
-                                              idToken: idTokenString,
-                                              rawNonce: nonce)
+    // use this call to create the authentication credential and set the user's full name
+    let credential = OAuthProvider.appleCredential(withIDToken: idTokenString,
+                                                   rawNonce: nonce,
+                                                   fullName: appleIDCredential.fullName)
 
     Auth.auth().signIn(with: credential) { result, error in
       // Error. If error.code == .MissingOrInvalidNonce, make sure
@@ -294,52 +325,5 @@ extension AuthViewController: ASAuthorizationControllerDelegate,
 
   func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
     return view.window!
-  }
-
-  // MARK: Aditional `Sign in with Apple` Helpers
-
-  // Adapted from https://auth0.com/docs/api-auth/tutorials/nonce#generate-a-cryptographically-random-nonce
-  private func randomNonceString(length: Int = 32) -> String {
-    precondition(length > 0)
-    let charset: [Character] =
-      Array("0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._")
-    var result = ""
-    var remainingLength = length
-
-    while remainingLength > 0 {
-      let randoms: [UInt8] = (0 ..< 16).map { _ in
-        var random: UInt8 = 0
-        let errorCode = SecRandomCopyBytes(kSecRandomDefault, 1, &random)
-        if errorCode != errSecSuccess {
-          fatalError(
-            "Unable to generate nonce. SecRandomCopyBytes failed with OSStatus \(errorCode)"
-          )
-        }
-        return random
-      }
-
-      randoms.forEach { random in
-        if remainingLength == 0 {
-          return
-        }
-
-        if random < charset.count {
-          result.append(charset[Int(random)])
-          remainingLength -= 1
-        }
-      }
-    }
-
-    return result
-  }
-
-  private func sha256(_ input: String) -> String {
-    let inputData = Data(input.utf8)
-    let hashedData = SHA256.hash(data: inputData)
-    let hashString = hashedData.compactMap {
-      String(format: "%02x", $0)
-    }.joined()
-
-    return hashString
   }
 }

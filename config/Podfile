@@ -7,7 +7,7 @@ target 'ConfigExample' do
 
   # Pods for ConfigExample
   pod 'FirebaseRemoteConfig'
-  pod 'FirebaseRemoteConfigSwift', "> 8.12-beta"
+  pod 'FirebaseRemoteConfigSwift'
 
   target 'ConfigExampleTests' do
     inherit! :search_paths

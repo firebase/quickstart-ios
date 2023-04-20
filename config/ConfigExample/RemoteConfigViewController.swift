@@ -70,6 +70,20 @@ class RemoteConfigViewController: UIViewController {
     let settings = RemoteConfigSettings()
     settings.minimumFetchInterval = 0
     remoteConfig.configSettings = settings
+
+    // [START add_config_update_listener]
+    remoteConfig.addOnConfigUpdateListener { configUpdate, error in
+      guard error == nil else { return self.displayError(error) }
+      print("Updated keys: \(configUpdate!.updatedKeys)")
+
+      self.remoteConfig.activate { changed, error in
+        guard error == nil else { return self.displayError(error) }
+        DispatchQueue.main.async {
+          self.updateUI()
+        }
+      }
+    }
+    // [END add_config_update_listener]
   }
 
   /// Fetches and activates remote config values
@@ -217,6 +231,8 @@ extension UIViewController {
       preferredStyle: .alert
     )
     errorAlertController.addAction(UIAlertAction(title: "OK", style: .default))
-    present(errorAlertController, animated: true, completion: nil)
+    DispatchQueue.main.async {
+      self.present(errorAlertController, animated: true, completion: nil)
+    }
   }
 }

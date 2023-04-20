@@ -196,8 +196,7 @@ class UserViewController: UIViewController, DataSourceProviderDelegate {
       displayError(error)
     }
   }
-
-  // [end token_revocation_deleteuser]
+  // [END token_revocation_deleteuser]
 
   // MARK: - Private Helpers
 
@@ -307,7 +306,6 @@ extension UserViewController: ASAuthorizationControllerDelegate,
       }
     }
   }
-
   // [END token_revocation]
 
   func authorizationController(controller: ASAuthorizationController,

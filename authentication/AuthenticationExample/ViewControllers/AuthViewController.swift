@@ -317,10 +317,6 @@ extension AuthViewController: ASAuthorizationControllerDelegate,
       // your request to Apple.
       guard error == nil else { return self.displayError(error) }
 
-      if let oauthCredential = result?.credential as? OAuthCredential {
-        print(oauthCredential.accessToken)
-      }
-
       // At this point, our user is signed in
       // so we advance to the User View Controller
       self.transitionToUserViewController()

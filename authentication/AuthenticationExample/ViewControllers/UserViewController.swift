@@ -14,6 +14,8 @@
 
 import UIKit
 import FirebaseAuth
+import AuthenticationServices
+import CryptoKit
 
 class UserViewController: UIViewController, DataSourceProviderDelegate {
   var dataSourceProvider: DataSourceProvider<User>!
@@ -170,12 +172,32 @@ class UserViewController: UIViewController, DataSourceProviderDelegate {
     }
   }
 
-  public func deleteCurrentUser() {
-    user?.delete { error in
-      guard error == nil else { return self.displayError(error) }
-      self.updateUI()
+  // MARK: - Sign in with Apple Token Revocation Flow
+
+  // For Sign in with Apple
+  private var currentNonce: String?
+
+  // [START token_revocation_deleteuser]
+  private func deleteCurrentUser() {
+    do {
+      let nonce = try CryptoUtils.randomNonceString()
+      currentNonce = nonce
+      let appleIDProvider = ASAuthorizationAppleIDProvider()
+      let request = appleIDProvider.createRequest()
+      request.requestedScopes = [.fullName, .email]
+      request.nonce = CryptoUtils.sha256(nonce)
+
+      let authorizationController = ASAuthorizationController(authorizationRequests: [request])
+      authorizationController.delegate = self
+      authorizationController.presentationContextProvider = self
+      authorizationController.performRequests()
+    } catch {
+      // In the unlikely case that nonce generation fails, show error view.
+      displayError(error)
     }
   }
+
+  // [end token_revocation_deleteuser]
 
   // MARK: - Private Helpers
 
@@ -243,5 +265,62 @@ class UserViewController: UIViewController, DataSourceProviderDelegate {
     originalOffset = originalOffset ?? offset
     let verticalOffset = offset - originalOffset!
     userImage.alpha = 1 - (verticalOffset * 0.05)
+  }
+}
+
+// MARK: - Implementing Sign in with Apple for the Token Revocation Flow
+
+extension UserViewController: ASAuthorizationControllerDelegate,
+  ASAuthorizationControllerPresentationContextProviding {
+  // MARK: ASAuthorizationControllerDelegate
+
+  // [START token_revocation]
+  func authorizationController(controller: ASAuthorizationController,
+                               didCompleteWithAuthorization authorization: ASAuthorization) {
+    guard let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential
+    else {
+      print("Unable to retrieve AppleIDCredential")
+      return
+    }
+
+    guard let _ = currentNonce else {
+      fatalError("Invalid state: A login callback was received, but no login request was sent.")
+    }
+
+    guard let appleAuthCode = appleIDCredential.authorizationCode else {
+      print("Unable to fetch authorization code")
+      return
+    }
+
+    guard let authCodeString = String(data: appleAuthCode, encoding: .utf8) else {
+      print("Unable to serialize auth code string from data: \(appleAuthCode.debugDescription)")
+      return
+    }
+
+    Task {
+      do {
+        try await Auth.auth().revokeToken(withAuthorizationCode: authCodeString)
+        try await user?.delete()
+        self.updateUI()
+      } catch {
+        self.displayError(error)
+      }
+    }
+  }
+
+  // [END token_revocation]
+
+  func authorizationController(controller: ASAuthorizationController,
+                               didCompleteWithError error: Error) {
+    // Ensure that you have:
+    //  - enabled `Sign in with Apple` on the Firebase console
+    //  - added the `Sign in with Apple` capability for this project
+    print("Sign in with Apple failed: \(error)")
+  }
+
+  // MARK: ASAuthorizationControllerPresentationContextProviding
+
+  func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
+    return view.window!
   }
 }

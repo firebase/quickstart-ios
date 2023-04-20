@@ -287,12 +287,22 @@ extension AuthViewController: ASAuthorizationControllerDelegate,
     guard let nonce = currentNonce else {
       fatalError("Invalid state: A login callback was received, but no login request was sent.")
     }
+
     guard let appleIDToken = appleIDCredential.identityToken else {
       print("Unable to fetch identity token")
       return
     }
+    guard let appleAuthCode = appleIDCredential.authorizationCode else {
+      print("Unable to fetch authorization code")
+      return
+    }
     guard let idTokenString = String(data: appleIDToken, encoding: .utf8) else {
       print("Unable to serialize token string from data: \(appleIDToken.debugDescription)")
+      return
+    }
+
+    guard let authCodeString = String(data: appleAuthCode, encoding: .utf8) else {
+      print("Unable to serialize auth code string from data: \(appleAuthCode.debugDescription)")
       return
     }
 
@@ -318,7 +328,7 @@ extension AuthViewController: ASAuthorizationControllerDelegate,
     // Ensure that you have:
     //  - enabled `Sign in with Apple` on the Firebase console
     //  - added the `Sign in with Apple` capability for this project
-    print("Sign in with Apple errored: \(error)")
+    print("Sign in with Apple failed: \(error)")
   }
 
   // MARK: ASAuthorizationControllerPresentationContextProviding

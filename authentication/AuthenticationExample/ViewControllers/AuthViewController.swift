@@ -321,9 +321,6 @@ extension AuthViewController: ASAuthorizationControllerDelegate,
         print(oauthCredential.accessToken)
       }
 
-      // store the authCodeString so we can later revoke it
-      UserDefaults.standard.set(authCodeString, forKey: "authCodeString")
-
       // At this point, our user is signed in
       // so we advance to the User View Controller
       self.transitionToUserViewController()

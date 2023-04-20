@@ -196,7 +196,6 @@ class UserViewController: UIViewController, DataSourceProviderDelegate {
     }
   }
 
-
   // MARK: - Private Helpers
 
   private func configureNavigationBar() {
@@ -299,8 +298,7 @@ extension UserViewController: ASAuthorizationControllerDelegate,
         try await Auth.auth().revokeToken(withAuthorizationCode: authCodeString)
         try await user?.delete()
         self.updateUI()
-      }
-      catch {
+      } catch {
         self.displayError(error)
       }
     }
@@ -320,4 +318,3 @@ extension UserViewController: ASAuthorizationControllerDelegate,
     return view.window!
   }
 }
-

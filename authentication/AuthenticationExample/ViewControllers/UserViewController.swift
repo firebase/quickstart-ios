@@ -177,6 +177,7 @@ class UserViewController: UIViewController, DataSourceProviderDelegate {
   // For Sign in with Apple
   private var currentNonce: String?
 
+  // [START token_revocation_deleteuser]
   private func deleteCurrentUser() {
     do {
       let nonce = try CryptoUtils.randomNonceString()
@@ -195,6 +196,7 @@ class UserViewController: UIViewController, DataSourceProviderDelegate {
       displayError(error)
     }
   }
+  // [end token_revocation_deleteuser]
 
   // MARK: - Private Helpers
 
@@ -271,6 +273,7 @@ extension UserViewController: ASAuthorizationControllerDelegate,
   ASAuthorizationControllerPresentationContextProviding {
   // MARK: ASAuthorizationControllerDelegate
 
+  // [START token_revocation]
   func authorizationController(controller: ASAuthorizationController,
                                didCompleteWithAuthorization authorization: ASAuthorization) {
     guard let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential
@@ -303,6 +306,7 @@ extension UserViewController: ASAuthorizationControllerDelegate,
       }
     }
   }
+  // [END token_revocation]
 
   func authorizationController(controller: ASAuthorizationController,
                                didCompleteWithError error: Error) {

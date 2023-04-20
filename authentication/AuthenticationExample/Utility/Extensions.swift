@@ -53,7 +53,6 @@ extension User: DataSourceProvidable {
       Item(title: UserAction.link.rawValue, textColor: .systemBlue, hasNestedContent: true),
       Item(title: UserAction.requestVerifyEmail.rawValue, textColor: .systemBlue),
       Item(title: UserAction.tokenRefresh.rawValue, textColor: .systemBlue),
-      Item(title: UserAction.tokenRevoke.rawValue, textColor: .systemBlue),
       Item(title: UserAction.delete.rawValue, textColor: .systemRed),
     ]
     return Section(headerDescription: "Actions", items: actionsRows)

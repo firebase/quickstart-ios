@@ -24,7 +24,7 @@ Getting started
  quickstart supports iOS and macOS (via MacCatalyst). Deploy to a supported
  platform by choosing a destination in Xcode (`control` + `shift` + `0`).
 4. Change one or more parameter values in the Firebase Console (the value of
-  `topLabelKey`, `recipeKey`, and/or `bottomLabelKey`). This is discussed in detail in the next section!
+  `topLabelKey`, `typedRecipeKey`, and/or `bottomLabelKey`). This is discussed in detail in the next section!
 5. Tap **Fetch & Activate Config** in the app to fetch new parameter values and see
   the resulting change in the app.
 
@@ -35,7 +35,7 @@ When you open the quickstart, you'll notice a label that greets you near the top
 #### Recipe View - Configuring Complex entities using JSON
 Imagine your are building an app where each day, you display a "Recipe of the Day" to your users. Rather than configure lots of individual config keys and values, we can group a recipe's data together in one JSON object. 
 
-In this quickstart, we provide you with a folder of JSON files called [JSON Recipes](https://github.com/firebase/quickstart-ios/tree/master/config/ConfigExample/JSON%20Recipes). Copy one on the recipes and navigate to the Remote Config tab of the Firebase Console. Let's add a parameter for the recipe. For the **Parameter Key**, enter `recipeKey` and for the value, click the **{}** button on the right of the **Default Value** text box. Paste the JSON recipe you copied earlier into this box and click **Save**. To make these changes live so our app can fetch them, click **Publish Changes** in the top right corner of the console.
+In this quickstart, we provide you with a folder of JSON files called [JSON Recipes](https://github.com/firebase/quickstart-ios/tree/master/config/ConfigExample/JSON%20Recipes). Copy one on the recipes and navigate to the Remote Config tab of the Firebase Console. Let's add a parameter for the recipe. For the **Parameter Key**, enter `typedRecipeKey` and for the value, click the **{}** button on the right of the **Default Value** text box. Paste the JSON recipe you copied earlier into this box and click **Save**. To make these changes live so our app can fetch them, click **Publish Changes** in the top right corner of the console.
 
 Now that there is a recipe on to be fetched. Tap **Fetch & Activate Config** and the recipe you entered on the Firebase console will display on the device!
 

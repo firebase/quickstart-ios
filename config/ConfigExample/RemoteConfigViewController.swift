@@ -109,14 +109,15 @@ class RemoteConfigViewController: UIViewController {
   private func updateUI() {
     remoteConfigView.topLabel.text = remoteConfig[decodedValue: "topLabelKey"]
     updateJSONView()
-    if var bottomLabel: String = remoteConfig[decodedValue: "bottomLabelKey"],
-      let freeCount: Int = remoteConfig[decodedValue: "freeCount"],
-      freeCount > 1,
-      bottomLabel.contains("one") {
-      let formatter = NumberFormatter()
-      formatter.numberStyle = .spellOut
-      if let english = formatter.string(from: NSNumber(value: freeCount)) {
-        bottomLabel = bottomLabel.replacingOccurrences(of: "one free", with: "\(english) free")
+    if var bottomLabel: String = remoteConfig[decodedValue: "bottomLabelKey"] {
+      if let freeCount: Int = remoteConfig[decodedValue: "freeCount"],
+        freeCount > 1,
+        bottomLabel.contains("one") {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .spellOut
+        if let english = formatter.string(from: NSNumber(value: freeCount)) {
+          bottomLabel = bottomLabel.replacingOccurrences(of: "one free", with: "\(english) free")
+        }
       }
       remoteConfigView.bottomLabel.text = bottomLabel
     }

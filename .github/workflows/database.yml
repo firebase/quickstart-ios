@@ -57,7 +57,7 @@ jobs:
     strategy:
       matrix:
         # TODO investigate tvOS Xcode 13.1 test failure.
-        xcode: ["13.3.1", "14.0.1"]
+        xcode: ["14.2"]
         os: [iOS, tvOS, macOS]
         include:
           - os: iOS

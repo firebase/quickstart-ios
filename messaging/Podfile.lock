@@ -1,6 +1,6 @@
 PODS:
-  - FirebaseAnalytics (10.12.0):
-    - FirebaseAnalytics/AdIdSupport (= 10.12.0)
+  - FirebaseAnalytics (10.13.0):
+    - FirebaseAnalytics/AdIdSupport (= 10.13.0)
     - FirebaseCore (~> 10.0)
     - FirebaseInstallations (~> 10.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 7.11)
@@ -8,27 +8,27 @@ PODS:
     - GoogleUtilities/Network (~> 7.11)
     - "GoogleUtilities/NSData+zlib (~> 7.11)"
     - nanopb (< 2.30910.0, >= 2.30908.0)
-  - FirebaseAnalytics/AdIdSupport (10.12.0):
+  - FirebaseAnalytics/AdIdSupport (10.13.0):
     - FirebaseCore (~> 10.0)
     - FirebaseInstallations (~> 10.0)
-    - GoogleAppMeasurement (= 10.12.0)
+    - GoogleAppMeasurement (= 10.13.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 7.11)
     - GoogleUtilities/MethodSwizzler (~> 7.11)
     - GoogleUtilities/Network (~> 7.11)
     - "GoogleUtilities/NSData+zlib (~> 7.11)"
     - nanopb (< 2.30910.0, >= 2.30908.0)
-  - FirebaseCore (10.12.0):
+  - FirebaseCore (10.13.0):
     - FirebaseCoreInternal (~> 10.0)
     - GoogleUtilities/Environment (~> 7.8)
     - GoogleUtilities/Logger (~> 7.8)
-  - FirebaseCoreInternal (10.12.0):
+  - FirebaseCoreInternal (10.13.0):
     - "GoogleUtilities/NSData+zlib (~> 7.8)"
-  - FirebaseInstallations (10.12.0):
+  - FirebaseInstallations (10.13.0):
     - FirebaseCore (~> 10.0)
     - GoogleUtilities/Environment (~> 7.8)
     - GoogleUtilities/UserDefaults (~> 7.8)
     - PromisesObjC (~> 2.1)
-  - FirebaseMessaging (10.12.0):
+  - FirebaseMessaging (10.13.0):
     - FirebaseCore (~> 10.0)
     - FirebaseInstallations (~> 10.0)
     - GoogleDataTransport (~> 9.2)
@@ -37,48 +37,48 @@ PODS:
     - GoogleUtilities/Reachability (~> 7.8)
     - GoogleUtilities/UserDefaults (~> 7.8)
     - nanopb (< 2.30910.0, >= 2.30908.0)
-  - GoogleAppMeasurement (10.12.0):
-    - GoogleAppMeasurement/AdIdSupport (= 10.12.0)
+  - GoogleAppMeasurement (10.13.0):
+    - GoogleAppMeasurement/AdIdSupport (= 10.13.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 7.11)
     - GoogleUtilities/MethodSwizzler (~> 7.11)
     - GoogleUtilities/Network (~> 7.11)
     - "GoogleUtilities/NSData+zlib (~> 7.11)"
     - nanopb (< 2.30910.0, >= 2.30908.0)
-  - GoogleAppMeasurement/AdIdSupport (10.12.0):
-    - GoogleAppMeasurement/WithoutAdIdSupport (= 10.12.0)
+  - GoogleAppMeasurement/AdIdSupport (10.13.0):
+    - GoogleAppMeasurement/WithoutAdIdSupport (= 10.13.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 7.11)
     - GoogleUtilities/MethodSwizzler (~> 7.11)
     - GoogleUtilities/Network (~> 7.11)
     - "GoogleUtilities/NSData+zlib (~> 7.11)"
     - nanopb (< 2.30910.0, >= 2.30908.0)
-  - GoogleAppMeasurement/WithoutAdIdSupport (10.12.0):
+  - GoogleAppMeasurement/WithoutAdIdSupport (10.13.0):
     - GoogleUtilities/AppDelegateSwizzler (~> 7.11)
     - GoogleUtilities/MethodSwizzler (~> 7.11)
     - GoogleUtilities/Network (~> 7.11)
     - "GoogleUtilities/NSData+zlib (~> 7.11)"
     - nanopb (< 2.30910.0, >= 2.30908.0)
-  - GoogleDataTransport (9.2.3):
+  - GoogleDataTransport (9.2.5):
     - GoogleUtilities/Environment (~> 7.7)
     - nanopb (< 2.30910.0, >= 2.30908.0)
     - PromisesObjC (< 3.0, >= 1.2)
-  - GoogleUtilities/AppDelegateSwizzler (7.11.4):
+  - GoogleUtilities/AppDelegateSwizzler (7.11.5):
     - GoogleUtilities/Environment
     - GoogleUtilities/Logger
     - GoogleUtilities/Network
-  - GoogleUtilities/Environment (7.11.4):
+  - GoogleUtilities/Environment (7.11.5):
     - PromisesObjC (< 3.0, >= 1.2)
-  - GoogleUtilities/Logger (7.11.4):
+  - GoogleUtilities/Logger (7.11.5):
     - GoogleUtilities/Environment
-  - GoogleUtilities/MethodSwizzler (7.11.4):
+  - GoogleUtilities/MethodSwizzler (7.11.5):
     - GoogleUtilities/Logger
-  - GoogleUtilities/Network (7.11.4):
+  - GoogleUtilities/Network (7.11.5):
     - GoogleUtilities/Logger
     - "GoogleUtilities/NSData+zlib"
     - GoogleUtilities/Reachability
-  - "GoogleUtilities/NSData+zlib (7.11.4)"
-  - GoogleUtilities/Reachability (7.11.4):
+  - "GoogleUtilities/NSData+zlib (7.11.5)"
+  - GoogleUtilities/Reachability (7.11.5):
     - GoogleUtilities/Logger
-  - GoogleUtilities/UserDefaults (7.11.4):
+  - GoogleUtilities/UserDefaults (7.11.5):
     - GoogleUtilities/Logger
   - nanopb (2.30909.0):
     - nanopb/decode (= 2.30909.0)
@@ -105,14 +105,14 @@ SPEC REPOS:
     - PromisesObjC
 
 SPEC CHECKSUMS:
-  FirebaseAnalytics: 0270389efbe3022b54ec4588862dabec3477ee98
-  FirebaseCore: f86a1394906b97ac445ae49c92552a9425831bed
-  FirebaseCoreInternal: 950500ad8a08963657f6d8c67b579740c06d6aa1
-  FirebaseInstallations: 7b99ef103f013624444c614397038219c45f8e63
-  FirebaseMessaging: bb2c4f6422a753038fe137d90ae7c1af57251316
-  GoogleAppMeasurement: 2d800fab85e7848b1e66a6f8ce5bca06c5aad892
-  GoogleDataTransport: f0308f5905a745f94fb91fea9c6cbaf3831cb1bd
-  GoogleUtilities: c63691989bf362ba0505507da00eeb326192e83e
+  FirebaseAnalytics: 9a12e090ead49f8877ed8132ae920e3cbbd2fcd0
+  FirebaseCore: 9948a31ff2c6cf323f9b040068201a95d271b68d
+  FirebaseCoreInternal: b342e37cd4f5b4454ec34308f073420e7920858e
+  FirebaseInstallations: b28af1b9f997f1a799efe818c94695a3728c352f
+  FirebaseMessaging: c2b782a6af3058b6e53ac2a6eaab84c5786200c8
+  GoogleAppMeasurement: 3ae505b44174bcc0775f5c86cecc5826259fbb1e
+  GoogleDataTransport: 54dee9d48d14580407f8f5fbf2f496e92437a2f2
+  GoogleUtilities: 13e2c67ede716b8741c7989e26893d151b2b2084
   nanopb: b552cce312b6c8484180ef47159bc0f65a1f0431
   PromisesObjC: c50d2056b5253dadbd6c2bea79b0674bd5a52fa4
 

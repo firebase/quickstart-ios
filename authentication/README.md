@@ -13,7 +13,7 @@ Firebase Auth offers multiple ways to authenticate users. In this quickstart, we
 
 Ready? Let's get started! 🏎💨
 
-Clone this project and `cd` into the `AuthenticationExample` directory. Run `pod install`. This command will install all of the required cocoapods for this quickstart and generate a `.xcworkspace` project. Go ahead and open the `AuthenticationExample.xcworkspace` project.
+Clone this project and `cd` into the `AuthenticationExample` directory. Run `pod install`. This command will install all of the required CocoaPods for this quickstart and generate a `.xcworkspace` project. Go ahead and open the `AuthenticationExample.xcworkspace` project.
 
 ### Terminal commands to clone and open the project!
 ```bash
@@ -51,7 +51,7 @@ To enable sign in with each of the following identity providers, there are a few
   
 ### Google Sign In
 
-We have already included the **`GoogleSignIn`** cocoapod in the quickstart's `Podfile`. This cocoapod is **required** for **Google Sign In**.
+We have already included the **`GoogleSignIn`** CocoaPod in the quickstart's `Podfile`. This CocoaPod is **required** for **Google Sign In**.
 
 #### Start by going to the [Firebase Console](https://console.firebase.google.com) and navigate to your project:
 
@@ -152,7 +152,7 @@ See the [Getting Started with Yahoo Sign In guide](https://firebase.google.com/d
 
 ### Facebook
 
-We have already included the **`FBSDKLoginKit`** cocoapod in the quickstart's `Podfile`. This cocoapod is **required** for **Sign In with Facebook**.
+We have already included the **`FBSDKLoginKit`** CocoaPod in the quickstart's `Podfile`. This CocoaPod is **required** for **Sign In with Facebook**.
 
 - Go to the [Facebook Developers Site](https://developers.facebook.com) and follow all
   instructions to set up a new iOS app. When asked for a bundle ID, use

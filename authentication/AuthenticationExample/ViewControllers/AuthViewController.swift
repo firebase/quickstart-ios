@@ -301,7 +301,7 @@ extension AuthViewController: ASAuthorizationControllerDelegate,
       return
     }
 
-    guard let authCodeString = String(data: appleAuthCode, encoding: .utf8) else {
+    guard let _ = String(data: appleAuthCode, encoding: .utf8) else {
       print("Unable to serialize auth code string from data: \(appleAuthCode.debugDescription)")
       return
     }

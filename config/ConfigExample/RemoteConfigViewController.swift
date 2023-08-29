@@ -14,7 +14,6 @@
 
 import UIKit
 import FirebaseRemoteConfig
-import FirebaseRemoteConfigSwift
 
 class RemoteConfigViewController: UIViewController {
   private var remoteConfig: RemoteConfig!

@@ -768,9 +768,9 @@ PODS:
   - nanopb/encode (2.30909.0)
   - PromisesObjC (2.3.1)
   - RecaptchaInterop (100.0.0)
-  - SDWebImage (5.17.0):
-    - SDWebImage/Core (= 5.17.0)
-  - SDWebImage/Core (5.17.0)
+  - SDWebImage (5.18.0):
+    - SDWebImage/Core (= 5.18.0)
+  - SDWebImage/Core (5.18.0)
   - SDWebImageSwiftUI (2.2.3):
     - SDWebImage (~> 5.10)
 
@@ -831,7 +831,7 @@ SPEC CHECKSUMS:
   nanopb: b552cce312b6c8484180ef47159bc0f65a1f0431
   PromisesObjC: c50d2056b5253dadbd6c2bea79b0674bd5a52fa4
   RecaptchaInterop: 7d1a4a01a6b2cb1610a47ef3f85f0c411434cb21
-  SDWebImage: 750adf017a315a280c60fde706ab1e552a3ae4e9
+  SDWebImage: 182830bcddc30cde95fbc60dfe4badc3553d94ba
   SDWebImageSwiftUI: 17396b7889f9abc27231caaeb64c537564284aab
 
 PODFILE CHECKSUM: 4dc670c18cc786f253fe074fffb67f14f15586d6

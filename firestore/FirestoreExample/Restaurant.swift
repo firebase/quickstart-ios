@@ -15,7 +15,6 @@
 //
 
 import FirebaseFirestore
-import FirebaseFirestoreSwift
 
 struct Restaurant: Codable {
   var name: String

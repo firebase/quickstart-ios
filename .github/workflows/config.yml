@@ -46,7 +46,7 @@ jobs:
         run: ./scripts/test.sh
         env:
           OS: iOS
-          DEVICE: iPhone 11
+          DEVICE: iPhone 15
       - name: Build Catalyst
         run: ./scripts/test.sh
         env:

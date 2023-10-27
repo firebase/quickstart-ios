@@ -34,7 +34,7 @@ jobs:
       SPM: false
       LEGACY: false
       OS: iOS
-      DEVICE: iPhone 11
+      DEVICE: iPhone 15
       TEST: true
     steps:
       - name: Checkout

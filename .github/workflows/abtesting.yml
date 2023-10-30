@@ -51,7 +51,7 @@ jobs:
           LEGACY: true
           SWIFT_SUFFIX: ""
           OS: iOS
-          DEVICE: iPhone 11
+          DEVICE: iPhone 14
   spm:
     name: spm (Xcode ${{ matrix.xcode }} - ${{ matrix.os }})
     runs-on: macOS-12

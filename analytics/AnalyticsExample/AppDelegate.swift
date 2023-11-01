@@ -17,8 +17,9 @@ import FirebaseCore
 import StoreKit
 import FirebaseAnalytics
 
-extension FirebaseApp : SKPaymentTransactionObserver {
-  public func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
+extension FirebaseApp: SKPaymentTransactionObserver {
+  public func paymentQueue(_ queue: SKPaymentQueue,
+                           updatedTransactions transactions: [SKPaymentTransaction]) {
     // do nothing
   }
 }
@@ -30,15 +31,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                      .LaunchOptionsKey: Any]?) -> Bool {
     FirebaseApp.configure()
     if #available(iOS 14, *) {
+      SKPaymentQueue.default().add(FirebaseApp.app()!)
+      print("\(SKPaymentQueue.default().transactionObservers as [AnyObject])")
 
-                       SKPaymentQueue.default().add(FirebaseApp.app()!)
-                       print("\(SKPaymentQueue.default().transactionObservers as [AnyObject])")
-
-(SKPaymentQueue.default().transactionObservers as [AnyObject]).forEach {
-  print($0)
-}
+      (SKPaymentQueue.default().transactionObservers as [AnyObject]).forEach {
+        print($0)
+      }
     }
-                       print("done")
+    print("done")
     return true
   }
 

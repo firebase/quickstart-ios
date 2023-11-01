@@ -25,7 +25,7 @@ env:
 jobs:
   cocoapods:
     name: cocoapods
-    runs-on: macOS-12
+    runs-on: macOS-13
     env:
       SPM: false
       LEGACY: false

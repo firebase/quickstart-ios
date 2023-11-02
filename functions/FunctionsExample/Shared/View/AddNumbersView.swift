@@ -15,7 +15,7 @@
 //
 
 import SwiftUI
-import FirebaseFunctionsSwift
+import FirebaseFunctions
 
 struct AddNumbersView: View {
   @State private var num1: String = ""

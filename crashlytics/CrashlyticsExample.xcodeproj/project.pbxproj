@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -566,8 +566,8 @@
 			);
 			mainGroup = 5F5A53431ADE670C00F81DF0;
 			packageReferences = (
-				C732A28E2684656200AA7DEF /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */,
-				8D96F5DC2685440700F1A2B7 /* XCRemoteSwiftPackageReference "Reachability.swift.git" */,
+				C732A28E2684656200AA7DEF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				8D96F5DC2685440700F1A2B7 /* XCRemoteSwiftPackageReference "Reachability.swift" */,
 			);
 			productRefGroup = 5F5A534D1ADE670C00F81DF0 /* Products */;
 			projectDirPath = "";
@@ -1620,7 +1620,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		8D96F5DC2685440700F1A2B7 /* XCRemoteSwiftPackageReference "Reachability.swift.git" */ = {
+		8D96F5DC2685440700F1A2B7 /* XCRemoteSwiftPackageReference "Reachability.swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ashleymills/Reachability.swift.git";
 			requirement = {
@@ -1628,12 +1628,12 @@
 				minimumVersion = 5.1.0;
 			};
 		};
-		C732A28E2684656200AA7DEF /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */ = {
+		C732A28E2684656200AA7DEF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 9.0.0;
+				minimumVersion = 10.0.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -1641,37 +1641,37 @@
 /* Begin XCSwiftPackageProductDependency section */
 		8D96F5DD2685440700F1A2B7 /* Reachability */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 8D96F5DC2685440700F1A2B7 /* XCRemoteSwiftPackageReference "Reachability.swift.git" */;
+			package = 8D96F5DC2685440700F1A2B7 /* XCRemoteSwiftPackageReference "Reachability.swift" */;
 			productName = Reachability;
 		};
 		C732A29726846B6D00AA7DEF /* FirebaseCrashlytics */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = C732A28E2684656200AA7DEF /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */;
+			package = C732A28E2684656200AA7DEF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseCrashlytics;
 		};
 		C745942526BDDDA500153AE3 /* FirebaseCrashlytics */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = C732A28E2684656200AA7DEF /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */;
+			package = C732A28E2684656200AA7DEF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseCrashlytics;
 		};
 		C77AC00226BB151000BDE919 /* FirebaseCrashlytics */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = C732A28E2684656200AA7DEF /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */;
+			package = C732A28E2684656200AA7DEF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseCrashlytics;
 		};
 		C77AC00426BB151000BDE919 /* Reachability */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 8D96F5DC2685440700F1A2B7 /* XCRemoteSwiftPackageReference "Reachability.swift.git" */;
+			package = 8D96F5DC2685440700F1A2B7 /* XCRemoteSwiftPackageReference "Reachability.swift" */;
 			productName = Reachability;
 		};
 		C77AC00926BB16E300BDE919 /* FirebaseCrashlytics */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = C732A28E2684656200AA7DEF /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */;
+			package = C732A28E2684656200AA7DEF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseCrashlytics;
 		};
 		C77AC00B26BB16E300BDE919 /* Reachability */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 8D96F5DC2685440700F1A2B7 /* XCRemoteSwiftPackageReference "Reachability.swift.git" */;
+			package = 8D96F5DC2685440700F1A2B7 /* XCRemoteSwiftPackageReference "Reachability.swift" */;
 			productName = Reachability;
 		};
 /* End XCSwiftPackageProductDependency section */

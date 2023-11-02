@@ -42,6 +42,7 @@ jobs:
           gem install xcpretty
           bundle exec pod install --repo-update
           ../scripts/install_prereqs/config.sh
+          xcrun simctl boot "iPhone 14"
       - name: Build Swift
         run: ./scripts/test.sh
         env:

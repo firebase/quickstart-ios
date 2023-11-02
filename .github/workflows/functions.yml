@@ -67,6 +67,9 @@ jobs:
           - os: tvOS
             device: Apple TV 4K (at 1080p) (2nd generation)
             test: true
+          - os: macOS
+            device: localhost
+            test: true
     env:
       SETUP: functions
       SPM: true

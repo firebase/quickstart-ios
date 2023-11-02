@@ -15,7 +15,10 @@
 //
 
 import SwiftUI
-import FirebaseFunctions
+import FirebaseCore
+#if EMULATOR
+  import FirebaseFunctions
+#endif
 
 @main
 struct FunctionsExampleApp: App {

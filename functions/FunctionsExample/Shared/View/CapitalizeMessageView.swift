@@ -15,7 +15,7 @@
 //
 
 import SwiftUI
-import FirebaseFunctionsSwift
+import FirebaseFunctions
 
 struct CapitalizeMessageView: View {
   @State private var comment: String = ""

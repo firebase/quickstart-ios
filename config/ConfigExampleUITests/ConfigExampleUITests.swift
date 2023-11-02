@@ -33,12 +33,12 @@ class ConfigExampleUITests: XCTestCase {
         app.buttons["OK"].tap()
       }
     #else
-    let query = app.buttons.matching(identifier: "OK")
-    if query.count > 0 {
-      for button in query.allElementsBoundByIndex {
-        button.tap()
+      let query = app.buttons.matching(identifier: "OK")
+      if query.count > 0 {
+        for button in query.allElementsBoundByIndex {
+          button.tap()
+        }
       }
-    }
     #endif
     // Verify that Config Example app launched successfully
     XCTAssertTrue(app.navigationBars["Firebase Config"].waitForExistence(timeout: 10))

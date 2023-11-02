@@ -52,3 +52,40 @@ jobs:
         run: ./scripts/test.sh
         env:
           SWIFT_SUFFIX: Swift
+
+  spm:
+    name: spm (Xcode ${{ matrix.xcode }} - ${{ matrix.os }})
+    runs-on: macOS-12
+    strategy:
+      matrix:
+        xcode: ["14.2"]
+        os: [iOS, tvOS, macOS]
+        include:
+          - os: iOS
+            device: iPhone 12
+            test: true
+          - os: tvOS
+            device: Apple TV 4K (at 1080p) (2nd generation)
+            test: true
+          - os: macOS
+            device: localhost
+            test: true
+    env:
+      SETUP: storage
+      SPM: true
+      DIR: storage/StorageExample
+      OS: ${{ matrix.os }}
+      DEVICE: ${{ matrix.device }}
+      TEST: ${{ matrix.test }}
+      XCODE_VERSION: ${{ matrix.xcode }}
+      DEVELOPER_DIR: /Applications/Xcode_${{ matrix.xcode }}.app/Contents/Developer
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+      - name: Setup
+        run: |
+          gem install xcpretty
+          cd $SETUP
+          ../scripts/install_prereqs/${SETUP}.sh
+      - name: Build and Test SwiftUI (${{ matrix.os }})
+        run: ./scripts/test.sh

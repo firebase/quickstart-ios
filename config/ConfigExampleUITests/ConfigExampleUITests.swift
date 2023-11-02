@@ -28,9 +28,11 @@ class ConfigExampleUITests: XCTestCase {
 
   func testConfigStartup() {
     // dismiss dialogue
+    #if !targetEnvironment(macCatalyst)
     if app.buttons["OK"].exists {
       app.buttons["OK"].tap()
     }
+    #endif
     // Verify that Config Example app launched successfully
     XCTAssertTrue(app.navigationBars["Firebase Config"].waitForExistence(timeout: 10))
   }

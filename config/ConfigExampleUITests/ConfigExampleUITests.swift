@@ -35,9 +35,8 @@ class ConfigExampleUITests: XCTestCase {
     #else
       let query = app.buttons.matching(identifier: "OK")
       if query.count > 0 {
-        for button in query.allElementsBoundByIndex {
-          button.tap()
-        }
+        let first = query.element(boundBy: 0)
+        first.tap()
       }
     #endif
     // Verify that Config Example app launched successfully

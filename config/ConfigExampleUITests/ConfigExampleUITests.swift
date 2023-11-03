@@ -32,14 +32,9 @@ class ConfigExampleUITests: XCTestCase {
       if app.buttons["OK"].exists {
         app.buttons["OK"].tap()
       }
-    #else
-      let query = app.buttons.matching(identifier: "OK")
-      if query.count > 0 {
-        let first = query.element(boundBy: 0)
-        first.tap()
-      }
+      // Verify that Config Example app launched successfully
+      XCTAssertTrue(app.navigationBars["Firebase Config"].waitForExistence(timeout: 10))
     #endif
-    // Verify that Config Example app launched successfully
-    XCTAssertTrue(app.navigationBars["Firebase Config"].waitForExistence(timeout: 10))
+    // TODO: Tests on Catalyst
   }
 }

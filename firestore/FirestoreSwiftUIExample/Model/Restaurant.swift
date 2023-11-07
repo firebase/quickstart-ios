@@ -18,7 +18,6 @@
 //
 
 import FirebaseFirestore
-import FirebaseFirestoreSwift
 
 struct Restaurant: Identifiable, Codable {
   var id: String = UUID().uuidString

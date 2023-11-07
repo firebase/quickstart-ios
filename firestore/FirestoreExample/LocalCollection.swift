@@ -15,7 +15,6 @@
 //
 
 import FirebaseFirestore
-import FirebaseFirestoreSwift
 
 final class LocalCollection<T: Codable> {
   private(set) var items: [T]

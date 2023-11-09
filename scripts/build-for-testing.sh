@@ -83,6 +83,7 @@ if [[ "$SAMPLE" == Config ]];then
     flags+=( -configuration Debug )
 fi
 
+# NOTE: Add your code signature details here for running tests in Firebase Test Lab
 flags+=(
     CODE_SIGN_IDENTITY=""
     CODE_SIGNING_REQUIRED=NO

@@ -74,7 +74,7 @@ GEM
     httpclient (2.8.3)
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
-    json (2.7.0)
+    json (2.7.1)
     minitest (5.20.0)
     molinillo (0.8.0)
     mutex_m (0.2.0)

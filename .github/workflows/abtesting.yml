@@ -35,7 +35,7 @@ jobs:
       TEST: true
     steps:
       - name: Checkout
-        uses: actions/checkout@main
+        uses: actions/checkout@master
       - name: Setup
         run: |
           cd abtesting/LegacyABTestingQuickstart

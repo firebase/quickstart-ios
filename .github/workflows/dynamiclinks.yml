@@ -2,14 +2,14 @@ name: DynamicLinks
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
     paths:
       - '.github/workflows/dynamiclinks.yml'
       - 'dynamiclinks/**'
       - 'scripts/*'
       - 'scripts/dynamiclinks.sh'
   pull_request:
-    branches: [ master ]
+    branches: [ main ]
     paths:
       - '.github/workflows/dynamiclinks.yml'
       - 'dynamiclinks/**'
@@ -34,7 +34,7 @@ jobs:
       TEST: true
     steps:
       - name: Checkout
-        uses: actions/checkout@master
+        uses: actions/checkout@main
       - name: Setup
         run: |
           cd dynamiclinks

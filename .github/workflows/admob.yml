@@ -2,14 +2,14 @@ name: AdMob
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
     paths:
       - '.github/workflows/admob.yml'
       - 'admob/**'
       - 'scripts/*'
       - 'scripts/admob.sh'
   pull_request:
-    branches: [ master ]
+    branches: [ main ]
     paths:
       - '.github/workflows/admob.yml'
       - 'admob/**'
@@ -34,7 +34,7 @@ jobs:
       TEST: false
     steps:
       - name: Checkout
-        uses: actions/checkout@master
+        uses: actions/checkout@main
       - name: Setup
         run: |
           cd admob

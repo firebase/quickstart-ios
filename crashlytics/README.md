@@ -6,7 +6,7 @@ to those crashes. You can read more about Firebase Crashlytics
 [here](https://firebase.google.com/docs/crashlytics/)! 
 
 To view the older Objective-C and Swift quickstarts, view the
-[`LegacyCrashlyticsQuickstart`](https://github.com/firebase/quickstart-ios/tree/master/crashlytics/LegacyCrashlyticsQuickstart)
+[`LegacyCrashlyticsQuickstart`](https://github.com/firebase/quickstart-ios/tree/main/crashlytics/LegacyCrashlyticsQuickstart)
 directory.
 
 Getting Started

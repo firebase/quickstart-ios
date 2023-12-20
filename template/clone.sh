@@ -138,7 +138,7 @@ echo "target '${DEST}Swift' do end" >> Podfile
 echo "target '${DEST}Tests' do end" >> Podfile
 
 # Setup pods. This fetches the pods themselves, but they should be ignored by
-# version control anyway via the master .gitignore.
+# version control anyway via the main .gitignore.
 pod install
 
 echo "Done!"

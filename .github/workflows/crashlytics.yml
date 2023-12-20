@@ -2,14 +2,14 @@ name: Crashlytics
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
     paths:
       - '.github/workflows/crashlytics.yml'
       - 'crashlytics/**'
       - 'scripts/*'
       - 'scripts/crashlytics.sh'
   pull_request:
-    branches: [ master ]
+    branches: [ main ]
     paths:
       - '.github/workflows/crashlytics.yml'
       - 'crashlytics/**'
@@ -34,7 +34,7 @@ jobs:
       TEST: true
     steps:
       - name: Checkout
-        uses: actions/checkout@master
+        uses: actions/checkout@main
       - name: Setup
         run: |
           cd crashlytics/LegacyCrashlyticsQuickstart
@@ -82,7 +82,7 @@ jobs:
       DEVELOPER_DIR: /Applications/Xcode_${{ matrix.xcode }}.app/Contents/Developer
     steps:
       - name: Checkout
-        uses: actions/checkout@master
+        uses: actions/checkout@main
       - name: Setup
         run: |
           gem install xcpretty

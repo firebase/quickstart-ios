@@ -2,14 +2,14 @@ name: Remote Config
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
     paths:
       - '.github/workflows/config.yml'
       - 'config/**'
       - 'scripts/*'
       - 'scripts/config.sh'
   pull_request:
-    branches: [ master ]
+    branches: [ main ]
     paths:
       - '.github/workflows/config.yml'
       - 'config/**'
@@ -33,7 +33,7 @@ jobs:
       TEST: true
     steps:
       - name: Checkout
-        uses: actions/checkout@master
+        uses: actions/checkout@main
       - name: Setup
         run: |
           cd config

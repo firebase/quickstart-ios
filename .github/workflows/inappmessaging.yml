@@ -2,14 +2,14 @@ name: InAppMessaging
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
     paths:
       - '.github/workflows/inappmessaging.yml'
       - 'inappmessaging/**'
       - 'scripts/*'
       - 'scripts/inappmessaging.sh'
   pull_request:
-    branches: [ master ]
+    branches: [ main ]
     paths:
       - '.github/workflows/inappmessaging.yml'
       - 'inappmessaging/**'
@@ -34,7 +34,7 @@ jobs:
       TEST: true
     steps:
       - name: Checkout
-        uses: actions/checkout@master
+        uses: actions/checkout@main
       - name: Setup
         run: |
           cd inappmessaging

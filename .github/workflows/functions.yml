@@ -2,14 +2,14 @@ name: Functions
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
     paths:
       - '.github/workflows/functions.yml'
       - 'functions/**'
       - 'scripts/*'
       - 'scripts/functions.sh'
   pull_request:
-    branches: [ master ]
+    branches: [ main ]
     paths:
       - '.github/workflows/functions.yml'
       - 'functions/**'
@@ -34,7 +34,7 @@ jobs:
       TEST: true
     steps:
       - name: Checkout
-        uses: actions/checkout@master
+        uses: actions/checkout@main
       - name: Setup
         run: |
           cd functions/LegacyFunctionsQuickstart
@@ -78,7 +78,7 @@ jobs:
       DEVELOPER_DIR: /Applications/Xcode_${{ matrix.xcode }}.app/Contents/Developer
     steps:
       - name: Checkout
-        uses: actions/checkout@master
+        uses: actions/checkout@main
       - name: Setup
         run: |
           gem install xcpretty

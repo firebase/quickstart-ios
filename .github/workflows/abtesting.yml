@@ -2,7 +2,7 @@ name: A/B Testing
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
     paths:
       - '.github/workflows/abtesting.yml'
       - 'abtesting/**'
@@ -11,7 +11,7 @@ on:
       - '!abtesting/*.md'
       - '!abtesting/Design/**'
   pull_request:
-    branches: [ master ]
+    branches: [ main ]
     paths:
       - '.github/workflows/abtesting.yml'
       - 'abtesting/**'
@@ -35,7 +35,7 @@ jobs:
       TEST: true
     steps:
       - name: Checkout
-        uses: actions/checkout@master
+        uses: actions/checkout@main
       - name: Setup
         run: |
           cd abtesting/LegacyABTestingQuickstart
@@ -85,7 +85,7 @@ jobs:
       DEVELOPER_DIR: /Applications/Xcode_${{ matrix.xcode }}.app/Contents/Developer
     steps:
       - name: Checkout
-        uses: actions/checkout@master
+        uses: actions/checkout@main
       - name: Setup
         run: |
           gem install xcpretty

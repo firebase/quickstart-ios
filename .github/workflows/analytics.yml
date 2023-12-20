@@ -2,14 +2,14 @@ name: Analytics
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
     paths:
       - '.github/workflows/analytics.yml'
       - 'analytics/**'
       - 'scripts/*'
       - 'scripts/analytics.sh'
   pull_request:
-    branches: [ master ]
+    branches: [ main ]
     paths:
       - '.github/workflows/analytics.yml'
       - 'analytics/**'
@@ -51,7 +51,7 @@ jobs:
       DEVELOPER_DIR: /Applications/Xcode_${{ matrix.xcode }}.app/Contents/Developer
     steps:
       - name: Checkout
-        uses: actions/checkout@master
+        uses: actions/checkout@main
       - name: Setup
         run: |
           cd analytics

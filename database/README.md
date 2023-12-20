@@ -6,7 +6,7 @@ Data is synced across all clients in realtime, and remains available when the ap
 can read more about Firebase Realtime Database [here](https://firebase.google.com/docs/database/)!
 
 To view the SwiftUI quickstart, view the
-[`DatabaseExampleSwiftUI/DatabaseExample`](https://github.com/firebase/quickstart-ios/tree/master/database/DatabaseExampleSwiftUI/DatabaseExample) 
+[`DatabaseExampleSwiftUI/DatabaseExample`](https://github.com/firebase/quickstart-ios/tree/main/database/DatabaseExampleSwiftUI/DatabaseExample) 
 directory.
 
 Getting Started

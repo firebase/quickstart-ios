@@ -2,14 +2,14 @@ name: Installations
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
     paths:
       - '.github/workflows/installations.yml'
       - 'installations/**'
       - 'scripts/*'
       - 'scripts/installations.sh'
   pull_request:
-    branches: [ master ]
+    branches: [ main ]
     paths:
       - '.github/workflows/installations.yml'
       - 'installations/**'
@@ -34,7 +34,7 @@ jobs:
       TEST: true
     steps:
       - name: Checkout
-        uses: actions/checkout@master
+        uses: actions/checkout@main
       - name: Setup
         run: |
           cd installations

@@ -14,7 +14,7 @@ Getting Started
 
 - [Add Firebase to your iOS Project](https://firebase.google.com/docs/ios/setup). The package name you'll use is `com.google.firebase.quickstart.StorageExample`.
 - Enable Anonymous auth in the **Auth > SIGN IN METHOD** tab.
-![Alt text](https://github.com/firebase/quickstart-js/blob/master/storage/pics/enable.png?raw=true "Enable auth")
+![Alt text](https://github.com/firebase/quickstart-js/blob/main/storage/pics/enable.png?raw=true "Enable auth")
 - Run the sample on your iOS/macOS/tvOS device or simulator.
 
 

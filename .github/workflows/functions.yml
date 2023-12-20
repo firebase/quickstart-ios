@@ -63,20 +63,16 @@ jobs:
         include:
           - os: iOS
             device: iPhone 12
-            test: true
           - os: tvOS
             device: Apple TV 4K (at 1080p) (2nd generation)
-            test: true
           - os: macOS
             device: localhost
-            test: true
     env:
       SETUP: functions
       SPM: true
       DIR: functions/FunctionsExample
       OS: ${{ matrix.os }}
       DEVICE: ${{ matrix.device }}
-      TEST: ${{ matrix.test }}
       XCODE_VERSION: ${{ matrix.xcode }}
       DEVELOPER_DIR: /Applications/Xcode_${{ matrix.xcode }}.app/Contents/Developer
     steps:

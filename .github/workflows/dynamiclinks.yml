@@ -1,4 +1,4 @@
-name: DynamicLinks
+mainname: DynamicLinks
 
 on:
   push:

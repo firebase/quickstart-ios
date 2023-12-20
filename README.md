@@ -24,7 +24,7 @@ to the root directory of the sample you wish to run.
 ### Code Formatting
 
 To ensure that the code is formatted consistently, run the script
-[./scripts/style.sh](https://github.com/firebase/quickstart-ios/blob/master/scripts/style.sh)
+[./scripts/style.sh](https://github.com/firebase/quickstart-ios/blob/main/scripts/style.sh)
 before creating a PR.
 
 GitHub Actions will verify that any code changes are done in a style compliant

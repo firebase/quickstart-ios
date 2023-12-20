@@ -1,4 +1,4 @@
-name: Crashlytics
+mainname: Crashlytics
 
 on:
   push:

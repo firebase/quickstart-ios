@@ -1,4 +1,4 @@
-Cloud Storage for Firebase Quickstart
+mainCloud Storage for Firebase Quickstart
 =============================
 
 The Cloud Storage for Firebase iOS quickstart demonstrates how to upload data to a Cloud Storage bucket, and retrieve a download URL.

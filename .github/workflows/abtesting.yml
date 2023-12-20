@@ -1,4 +1,4 @@
-name: A/B Testing
+mainname: A/B Testing
 
 on:
   push:

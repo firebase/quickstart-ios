@@ -1,4 +1,4 @@
-name: Installations
+mainname: Installations
 
 on:
   push:

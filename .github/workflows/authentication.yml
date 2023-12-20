@@ -1,4 +1,4 @@
-name: Authentication
+mainname: Authentication
 
 on:
   push:

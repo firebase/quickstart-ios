@@ -1,4 +1,4 @@
-name: Remote Config
+mainname: Remote Config
 
 on:
   push:

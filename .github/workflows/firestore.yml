@@ -1,4 +1,4 @@
-name: Firestore
+mainname: Firestore
 
 on:
   push:

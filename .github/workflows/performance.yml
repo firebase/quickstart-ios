@@ -1,4 +1,4 @@
-name: Performance
+mainname: Performance
 
 on:
   push:

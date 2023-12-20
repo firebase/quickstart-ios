@@ -1,4 +1,4 @@
-Firebase Crashlytics Quickstart
+mainFirebase Crashlytics Quickstart
 ===============================
 
 The Firebase Crashlytics iOS quickstart demonstrates how to report crashes and log events leading up

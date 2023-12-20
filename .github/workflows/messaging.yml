@@ -1,4 +1,4 @@
-name: Messaging
+mainname: Messaging
 
 on:
   push:

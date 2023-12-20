@@ -1,4 +1,4 @@
-Firebase Database Quickstart
+mainFirebase Database Quickstart
 =============================
 
 This Firebase quickstart showcases how Firebase Realtime Database (RTDB) can store and sync data.

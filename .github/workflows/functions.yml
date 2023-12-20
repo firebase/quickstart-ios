@@ -1,4 +1,4 @@
-name: Functions
+mainname: Functions
 
 on:
   push:

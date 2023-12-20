@@ -1,4 +1,4 @@
-Firebase Remote Config Quickstart
+mainFirebase Remote Config Quickstart
 =============================
 
 The Firebase Remote Config iOS quickstart app demonstrates using Remote

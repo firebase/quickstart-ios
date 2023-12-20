@@ -1,4 +1,4 @@
-name: AdMob
+mainname: AdMob
 
 on:
   push:

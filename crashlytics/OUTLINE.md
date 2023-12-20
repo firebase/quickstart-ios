@@ -1,4 +1,4 @@
-Crashlytics Quickstart SwiftUI Outline
+mainCrashlytics Quickstart SwiftUI Outline
 =================================
 Guide to understanding Firebase Crashlytics SwiftUI Quickstart sample.
 

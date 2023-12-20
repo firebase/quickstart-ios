@@ -1,4 +1,4 @@
-
+main
 # Firebase Auth Quickstart
 
   

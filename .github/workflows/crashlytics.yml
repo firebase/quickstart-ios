@@ -2,14 +2,14 @@ name: Crashlytics
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
     paths:
       - '.github/workflows/crashlytics.yml'
       - 'crashlytics/**'
       - 'scripts/*'
       - 'scripts/crashlytics.sh'
   pull_request:
-    branches: [ master ]
+    branches: [ main ]
     paths:
       - '.github/workflows/crashlytics.yml'
       - 'crashlytics/**'

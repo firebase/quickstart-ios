@@ -2,14 +2,14 @@ name: DynamicLinks
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
     paths:
       - '.github/workflows/dynamiclinks.yml'
       - 'dynamiclinks/**'
       - 'scripts/*'
       - 'scripts/dynamiclinks.sh'
   pull_request:
-    branches: [ master ]
+    branches: [ main ]
     paths:
       - '.github/workflows/dynamiclinks.yml'
       - 'dynamiclinks/**'

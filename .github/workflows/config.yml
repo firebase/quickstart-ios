@@ -2,14 +2,14 @@ name: Remote Config
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
     paths:
       - '.github/workflows/config.yml'
       - 'config/**'
       - 'scripts/*'
       - 'scripts/config.sh'
   pull_request:
-    branches: [ master ]
+    branches: [ main ]
     paths:
       - '.github/workflows/config.yml'
       - 'config/**'

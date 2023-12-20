@@ -2,14 +2,14 @@ name: Database
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
     paths:
       - '.github/workflows/database.yml'
       - 'database/**'
       - 'scripts/*'
       - 'scripts/database.sh'
   pull_request:
-    branches: [ master ]
+    branches: [ main ]
     paths:
       - '.github/workflows/database.yml'
       - 'database/**'

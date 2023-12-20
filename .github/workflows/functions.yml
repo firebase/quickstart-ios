@@ -2,14 +2,14 @@ name: Functions
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
     paths:
       - '.github/workflows/functions.yml'
       - 'functions/**'
       - 'scripts/*'
       - 'scripts/functions.sh'
   pull_request:
-    branches: [ master ]
+    branches: [ main ]
     paths:
       - '.github/workflows/functions.yml'
       - 'functions/**'

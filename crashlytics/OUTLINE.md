@@ -6,7 +6,7 @@ Guide to understanding Firebase Crashlytics SwiftUI Quickstart sample.
 
 ## Context
 This document presents the design for the SwiftUI version of the [Firebase Crashlytics
-Quickstart](https://github.com/firebase/quickstart-ios/tree/master/crashlytics), an app that
+Quickstart](https://github.com/firebase/quickstart-ios/tree/main/crashlytics), an app that
 demonstrates the use of [Firebase Crashlytics](https://firebase.google.com/docs/crashlytics). It is
 available on all Apple platforms (iOS, macOS, tvOS, watchOS). This SwiftUI version of the Quickstart
 is made using Apple’s latest frameworks and tools (SwiftUI, Swift Package Manager) that are rapidly

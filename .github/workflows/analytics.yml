@@ -2,14 +2,14 @@ name: Analytics
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
     paths:
       - '.github/workflows/analytics.yml'
       - 'analytics/**'
       - 'scripts/*'
       - 'scripts/analytics.sh'
   pull_request:
-    branches: [ master ]
+    branches: [ main ]
     paths:
       - '.github/workflows/analytics.yml'
       - 'analytics/**'

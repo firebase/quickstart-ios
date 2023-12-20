@@ -2,7 +2,7 @@ name: Performance
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
     paths:
       - '.github/workflows/performance.yml'
       - 'performance/**'
@@ -11,7 +11,7 @@ on:
       - '!performance/SwiftUIPerformanceQuickstart/PerformanceExample/*.md'
       - '!performance/SwiftUIPerformanceQuickstart/PerformanceExample/Design/**'
   pull_request:
-    branches: [ master ]
+    branches: [ main ]
     paths:
       - '.github/workflows/performance.yml'
       - 'performance/**'

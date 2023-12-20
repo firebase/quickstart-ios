@@ -2,14 +2,14 @@ name: Firestore
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
     paths:
       - '.github/workflows/firestore.yml'
       - 'firestore/**'
       - 'scripts/*'
       - 'scripts/firestore.sh'
   pull_request:
-    branches: [ master ]
+    branches: [ main ]
     paths:
       - '.github/workflows/firestore.yml'
       - 'firestore/**'

@@ -2,14 +2,14 @@ name: Storage
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
     paths:
       - '.github/workflows/storage.yml'
       - 'storage/**'
       - 'scripts/*'
       - 'scripts/storage.sh'
   pull_request:
-    branches: [ master ]
+    branches: [ main ]
     paths:
       - '.github/workflows/storage.yml'
       - 'storage/**'

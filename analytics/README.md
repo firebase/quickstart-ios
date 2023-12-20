@@ -9,7 +9,7 @@ versions are powered by SwiftUI. Note that Catalyst, macOS, and tvOS support for
 Analytics for Firebase are in beta as of version 8.9.0.
 
 To view the older Objective-C and Swift quickstarts, view the
-[`LegacyAnalyticsQuickstart`](https://github.com/firebase/quickstart-ios/blob/master/analytics/LegacyAnalyticsQuickstart)
+[`LegacyAnalyticsQuickstart`](https://github.com/firebase/quickstart-ios/blob/main/analytics/LegacyAnalyticsQuickstart)
 directory.
 
 ## Getting Started

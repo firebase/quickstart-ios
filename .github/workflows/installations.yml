@@ -2,14 +2,14 @@ name: Installations
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
     paths:
       - '.github/workflows/installations.yml'
       - 'installations/**'
       - 'scripts/*'
       - 'scripts/installations.sh'
   pull_request:
-    branches: [ master ]
+    branches: [ main ]
     paths:
       - '.github/workflows/installations.yml'
       - 'installations/**'

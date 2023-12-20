@@ -2,14 +2,14 @@ name: Messaging
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
     paths:
       - '.github/workflows/messaging.yml'
       - 'messaging/**'
       - 'scripts/*'
       - 'scripts/messaging.sh'
   pull_request:
-    branches: [ master ]
+    branches: [ main ]
     paths:
       - '.github/workflows/messaging.yml'
       - 'messaging/**'

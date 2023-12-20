@@ -2,14 +2,14 @@ name: InAppMessaging
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
     paths:
       - '.github/workflows/inappmessaging.yml'
       - 'inappmessaging/**'
       - 'scripts/*'
       - 'scripts/inappmessaging.sh'
   pull_request:
-    branches: [ master ]
+    branches: [ main ]
     paths:
       - '.github/workflows/inappmessaging.yml'
       - 'inappmessaging/**'

@@ -74,7 +74,7 @@ image, further demonstrating Firebase use while not relying on some other third 
 the same time, Storage provides 
 [FirebaseStorageSwift](https://firebase.google.com/docs/ios/learn-more#swift_extensions), which 
 [exposes
-](https://github.com/firebase/firebase-ios-sdk/blob/master/FirebaseStorageSwift/CHANGELOG.md) the 
+](https://github.com/firebase/firebase-ios-sdk/blob/main/FirebaseStorageSwift/CHANGELOG.md) the 
 [Result](https://developer.apple.com/documentation/swift/result) type for [better handling of 
 asynchronous code
 ](https://developer.apple.com/documentation/swift/result/writing_failable_asynchronous_apis) such 

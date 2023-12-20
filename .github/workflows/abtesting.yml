@@ -2,7 +2,7 @@ name: A/B Testing
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
     paths:
       - '.github/workflows/abtesting.yml'
       - 'abtesting/**'
@@ -11,7 +11,7 @@ on:
       - '!abtesting/*.md'
       - '!abtesting/Design/**'
   pull_request:
-    branches: [ master ]
+    branches: [ main ]
     paths:
       - '.github/workflows/abtesting.yml'
       - 'abtesting/**'

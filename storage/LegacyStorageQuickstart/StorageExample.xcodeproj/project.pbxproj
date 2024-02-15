@@ -27,6 +27,7 @@
 		B9A598CD27E3D940003BCFD0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B9A598CB27E3D940003BCFD0 /* GoogleService-Info.plist */; };
 		DE8564A823AECBB800611383 /* FIREGSignInHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DE8564A523AECBB700611383 /* FIREGSignInHelper.m */; };
 		DE8564A923AECBB800611383 /* FIREGHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DE8564A623AECBB700611383 /* FIREGHelper.m */; };
+		DEFC92E62B7D8E0F004F7638 /* Placeholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEFC92E52B7D8E0E004F7638 /* Placeholder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +84,7 @@
 		DE8564A523AECBB700611383 /* FIREGSignInHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FIREGSignInHelper.m; sourceTree = "<group>"; };
 		DE8564A623AECBB700611383 /* FIREGHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FIREGHelper.m; sourceTree = "<group>"; };
 		DE8564A723AECBB700611383 /* FIREGSignInHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FIREGSignInHelper.h; sourceTree = "<group>"; };
+		DEFC92E52B7D8E0E004F7638 /* Placeholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Placeholder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +156,7 @@
 				DE8564A323AECBB700611383 /* TestUtils */,
 				5F5A534D1ADE670C00F81DF0 /* Products */,
 				5F9961041AE0CF4F0034F503 /* Shared */,
+				9044C0653BC73B0667DE6CE1 /* Pods */,
 			);
 			sourceTree = "<group>";
 			wrapsLines = 0;
@@ -180,6 +183,7 @@
 				5F5A53561ADE670C00F81DF0 /* ViewController.h */,
 				5F5A53571ADE670C00F81DF0 /* ViewController.m */,
 				5F5A534F1ADE670C00F81DF0 /* Supporting Files */,
+				DEFC92E52B7D8E0E004F7638 /* Placeholder.swift */,
 			);
 			path = StorageExample;
 			sourceTree = "<group>";
@@ -220,6 +224,13 @@
 				5FDE055C1B0DAA090037B82F /* AppTests.m */,
 			);
 			path = StorageExampleTests;
+			sourceTree = "<group>";
+		};
+		9044C0653BC73B0667DE6CE1 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 		DE8564A323AECBB700611383 /* TestUtils */ = {
@@ -348,7 +359,7 @@
 					};
 					5F5A534B1ADE670C00F81DF0 = {
 						CreatedOnToolsVersion = 6.3;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 1530;
 						ProvisioningStyle = Automatic;
 					};
 					5F5A53781ADE67D500F81DF0 = {
@@ -456,6 +467,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5F5A53581ADE670C00F81DF0 /* ViewController.m in Sources */,
+				DEFC92E62B7D8E0F004F7638 /* Placeholder.swift in Sources */,
 				5F5A53551ADE670C00F81DF0 /* AppDelegate.m in Sources */,
 				10D187C31C8640E300D0DC91 /* DownloadViewController.m in Sources */,
 				5F5A53521ADE670C00F81DF0 /* main.m in Sources */,
@@ -565,6 +577,7 @@
 		1073488220333C27004A66D1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -587,6 +600,7 @@
 		1073488320333C27004A66D1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -719,6 +733,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
@@ -728,6 +743,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.StorageExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -736,6 +753,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
@@ -745,6 +763,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.StorageExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -790,6 +809,7 @@
 		5FDE05601B0DAA090037B82F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -819,6 +839,7 @@
 		5FDE05611B0DAA090037B82F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;

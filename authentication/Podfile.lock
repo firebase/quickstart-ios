@@ -1,9 +1,9 @@
 PODS:
-  - AppAuth (1.6.2):
-    - AppAuth/Core (= 1.6.2)
-    - AppAuth/ExternalUserAgent (= 1.6.2)
-  - AppAuth/Core (1.6.2)
-  - AppAuth/ExternalUserAgent (1.6.2):
+  - AppAuth (1.7.2):
+    - AppAuth/Core (= 1.7.2)
+    - AppAuth/ExternalUserAgent (= 1.7.2)
+  - AppAuth/Core (1.7.2)
+  - AppAuth/ExternalUserAgent (1.7.2):
     - AppAuth/Core
   - FBAEMKit (16.3.1):
     - FBSDKCoreKit_Basics (= 16.3.1)
@@ -147,7 +147,7 @@ SPEC REPOS:
     - RecaptchaInterop
 
 SPEC CHECKSUMS:
-  AppAuth: 3bb1d1cd9340bd09f5ed189fb00b1cc28e1e8570
+  AppAuth: ca2458caccec349cc1e26d8d9e8fd7d22f1d01f3
   FBAEMKit: 6c7b5eb77c96861bb59e040842c6e55bf39512ce
   FBSDKCoreKit: 5e4dd478947ab1bcc887e8cfadeae0727af1a942
   FBSDKCoreKit_Basics: cd7b5f5d1e8868c26706917919d058999ca672c3

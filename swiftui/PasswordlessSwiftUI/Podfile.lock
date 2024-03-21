@@ -37,7 +37,7 @@ PODS:
   - GoogleUtilities/Reachability (7.13.0):
     - GoogleUtilities/Logger
     - GoogleUtilities/Privacy
-  - GTMSessionFetcher/Core (3.3.1)
+  - GTMSessionFetcher/Core (3.3.2)
   - PromisesObjC (2.4.0)
   - RecaptchaInterop (100.0.0)
 
@@ -64,7 +64,7 @@ SPEC CHECKSUMS:
   FirebaseCoreInternal: 6a292e6f0bece1243a737e81556e56e5e19282e3
   FirebaseDynamicLinks: a900d2f42c1cb12e49c4a657cb1d1a307cef6396
   GoogleUtilities: d053d902a8edaa9904e1bd00c37535385b8ed152
-  GTMSessionFetcher: 8a1b34ad97ebe6f909fb8b9b77fba99943007556
+  GTMSessionFetcher: 0e876eea9782ec6462e91ab872711c357322c94f
   PromisesObjC: f5707f49cb48b9636751c5b2e7d227e43fba9f47
   RecaptchaInterop: 7d1a4a01a6b2cb1610a47ef3f85f0c411434cb21
 

@@ -62,13 +62,12 @@ if File.directory?(framework_path)
       next unless project_target.name == target
       framework_set = project_target.frameworks_build_phase.files.to_set
       puts "The following frameworks are added to #{project_target}"
-      embed_frameworks_phase = project_target.new_copy_files_build_phase("Embed Frameworks")
       framework_group.each do |framework|
         next if framework_set.size == framework_set.add(framework).size
         add_ref(project_framework_group,
                 framework,
                 source_tree,
-                embed_frameworks_phase)
+                project_target.frameworks_build_phase)
       end
     end
   end

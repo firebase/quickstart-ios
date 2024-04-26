@@ -65,6 +65,7 @@ if File.directory?(framework_path)
       framework_set = project_target.frameworks_build_phase.files.to_set
       puts "The following frameworks are added to #{project_target}"
       embed_frameworks_phase = project_target.new_copy_files_build_phase("Embed Frameworks")
+      embed_frameworks_phase.dst_subfolder_spec = "10" # `Frameworks` directory
       framework_group.each do |framework|
         next if framework_set.size == framework_set.add(framework).size
         add_ref(project_framework_group,

@@ -37,11 +37,13 @@ project_path = "#{sdk}Example.xcodeproj"
 project = Xcodeproj::Project.open(project_path)
 project_framework_group = project.frameworks_group
 
-def add_ref(group, path, source_tree, phase)
+def add_ref(group, path, source_tree, phase_list)
   ref = group.new_reference("#{path}")
   ref.name = "#{File.basename(path)}"
   ref.source_tree = source_tree
-  phase.add_file_reference(ref)
+  phase_list.each do |phase|
+    phase.add_file_reference(ref)
+  end
   puts ref
 end
 
@@ -53,7 +55,7 @@ if File.directory?(framework_path)
       add_ref(project.main_group,
               framework_path,
               source_tree,
-              project_target.resources_build_phase)
+              [project_target.resources_build_phase])
     end
   else
     framework_group = Dir.glob(File.join(framework_path, "*.{#{file_ext}}"))
@@ -62,12 +64,13 @@ if File.directory?(framework_path)
       next unless project_target.name == target
       framework_set = project_target.frameworks_build_phase.files.to_set
       puts "The following frameworks are added to #{project_target}"
+      embed_frameworks_phase = project_target.new_copy_files_build_phase("Embed Frameworks")
       framework_group.each do |framework|
         next if framework_set.size == framework_set.add(framework).size
         add_ref(project_framework_group,
                 framework,
                 source_tree,
-                project_target.frameworks_build_phase)
+                [project_target.frameworks_build_phase, embed_frameworks_phase])
       end
     end
   end
@@ -78,7 +81,7 @@ else
     add_ref(project_framework_group,
             framework_path,
             source_tree,
-            project_target.frameworks_build_phase)
+            [project_target.frameworks_build_phase])
   end
 end
 project.save()

@@ -37,11 +37,13 @@ project_path = "#{sdk}Example.xcodeproj"
 project = Xcodeproj::Project.open(project_path)
 project_framework_group = project.frameworks_group
 
-def add_ref(group, path, source_tree, phase)
+def add_ref(group, path, source_tree, phase_list)
   ref = group.new_reference("#{path}")
   ref.name = "#{File.basename(path)}"
   ref.source_tree = source_tree
-  phase.add_file_reference(ref)
+  phase_list.each do |phase|
+    phase.add_file_reference(ref)
+  end
   puts ref
 end
 
@@ -53,7 +55,7 @@ if File.directory?(framework_path)
       add_ref(project.main_group,
               framework_path,
               source_tree,
-              project_target.resources_build_phase)
+              [project_target.resources_build_phase])
     end
   else
     framework_group = Dir.glob(File.join(framework_path, "*.{#{file_ext}}"))
@@ -68,7 +70,7 @@ if File.directory?(framework_path)
         add_ref(project_framework_group,
                 framework,
                 source_tree,
-                embed_frameworks_phase)
+                [project_target.frameworks_build_phase, embed_frameworks_phase])
       end
     end
   end
@@ -79,7 +81,7 @@ else
     add_ref(project_framework_group,
             framework_path,
             source_tree,
-            project_target.frameworks_build_phase)
+            [project_target.frameworks_build_phase])
   end
 end
 project.save()

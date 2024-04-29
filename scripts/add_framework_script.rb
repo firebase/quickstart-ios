@@ -42,7 +42,16 @@ def add_ref(group, path, source_tree, phase_list)
   ref.name = "#{File.basename(path)}"
   ref.source_tree = source_tree
   phase_list.each do |phase|
-    phase.add_file_reference(ref)
+    puts phase
+    build_file = phase.add_file_reference(ref)
+    # In Xcode 15+, the following settings should be applied when embedded
+    # static frameworks. This will will enable Xcode to strip out the
+    # framework's static archive and headers, so that only the framework's
+    # resources remain.
+    if phase.isa == 'PBXCopyFilesBuildPhase' && phase.name == "Embed Frameworks"
+      build_file.settings = { 'ATTRIBUTES' => ['CodeSignOnCopy', 'RemoveHeadersOnCopy'] }
+      puts build_file
+    end
   end
   puts ref
 end

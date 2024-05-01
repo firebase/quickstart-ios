@@ -13,7 +13,6 @@
 // limitations under the License.
 
 import UIKit
-import FirebaseDynamicLinks
 import FirebaseAuth
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
@@ -58,21 +57,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
   // MARK: - Firebase 🔥
 
   private func handleIncomingDynamicLink(_ incomingURL: URL) {
-    DynamicLinks.dynamicLinks().handleUniversalLink(incomingURL) { dynamicLink, error in
-      guard error == nil else {
-        return print("ⓧ Error in \(#function): \(error!.localizedDescription)")
-      }
 
-      guard let link = dynamicLink?.url?.absoluteString else { return }
+    let link = incomingURL.absoluteString
 
-      if Auth.auth().isSignIn(withEmailLink: link) {
-        // Save the link as it will be used in the next step to complete login
-        UserDefaults.standard.set(link, forKey: "Link")
+    if Auth.auth().isSignIn(withEmailLink: link) {
+      // Save the link as it will be used in the next step to complete login
+      UserDefaults.standard.set(link, forKey: "Link")
 
-        // Post a notification to the PasswordlessViewController to resume authentication
-        NotificationCenter.default
-          .post(Notification(name: Notification.Name("PasswordlessEmailNotificationSuccess")))
-      }
+      // Post a notification to the PasswordlessViewController to resume authentication
+      NotificationCenter.default
+        .post(Notification(name: Notification.Name("PasswordlessEmailNotificationSuccess")))
     }
   }
 

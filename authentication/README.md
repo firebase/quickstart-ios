@@ -188,8 +188,6 @@ See the [Getting Started with Password-based Sign In guide](https://firebase.goo
 
 Email Link authentication, which is also referred to as Passwordless authentication, works by sending a verification email to a user requesting to sign in. This verification email contains a special **Dynamic Link** that links the user back to your app, completing authentication in the process. In order to configure this method of authentication, we will use [Firebase Dynamic Links](https://firebase.google.com/docs/dynamic-links), which we will need to set up.
 
-If this is your first time working with Dynamic Links, here's a great [introduction video](https://www.youtube.com/watch?v=KLBjAg6HvG0) from Firebase's Firecast series on YouTube. Note, we will outline most of the steps covered in this tutorial below!
-
 #### Start by going to the [Firebase Console](https://console.firebase.google.com) and navigate to your project:
   - Select the **Auth** panel and then click the **Sign In Method** tab.
   - Click **Email/Password** and ensure it is enabled.
@@ -208,14 +206,14 @@ As we mentioned above, we will need to configure dynamic links for this auth flo
     - Setup your short URL. Feel free to put whatever here, like "demo", "login, or "passwordless" for example. Click **Next**.
     - For the Deep Link URL, configure the URL to look like:
     >        https://[insert an authorized domain]/login?email=email
-    >For the authorized domain ⬆, go to the the Authentication tab, then click the "Sign-in method", and scroll down to the "Authorized domains" section. Copy the domain that looks like `[the app's name].firebaseapp.com`. Paste this entire domain into the Deep Link we are creating above. You can also instead allowlist the dynamic links URL prefix and use that here as well.
+    >For the authorized domain ⬆, go to the the Authentication tab, then click the "Settings" tab, and select the "Authorized domains" section. Copy the domain that looks like `[the app's name].firebaseapp.com`. Paste this entire domain into the Deep Link we are creating above. You can also instead allowlist the dynamic links URL prefix and use that here as well.
     - On step 3, **Define link behavior for iOS**, select **Open the deep link in your iOS App** and make sure your app is selected in the drop down.
     - Configure the following steps as you please and then hit **Create**!
 
   - Dynamic links use your app's bundle identifier as a url scheme by default. In Xcode, [add a custom URL scheme for your **bundle identifier**](https://developers.google.com/identity/sign-in/ios/start-integrating#add_a_url_scheme_to_your_project).
   - Last todo! Navigate to [`sendSignInLink()`](https://github.com/firebase/quickstart-ios/blob/main/authentication/AuthenticationExample/View%20Controllers/Other%20Auth%20Method%20Controllers/PasswordlessViewController.swift#L39) in [`PasswordlessViewController.swift`](https://github.com/firebase/quickstart-ios/blob/main/authentication/AuthenticationExample/View%20Controllers/Other%20Auth%20Method%20Controllers/PasswordlessViewController.swift). Within the method, there is a `stringURL` constant. Paste in the long deeplink you created from the steps above for the `authroizedDomain` property above the method. It should look something like:
 ```swift
-    let stringURL = "https://\(authorizedDomain).firebaseapp.com/login?email=\(email)"
+    let stringURL = "https://\(authorizedDomain)/login"
 ```
 
 - Run the app on your device or simulator.
@@ -241,11 +239,9 @@ When the user receives the verification email, they can open the link contained 
 
 private func handleIncomingDynamicLink(_ incomingURL: URL) {
 
-    DynamicLinks.dynamicLinks().handleUniversalLink(incomingURL) { (dynamicLink, error) in
-
     // Handle the potential `error`
 
-    guard let link = dynamicLink?.url?.absoluteString else { return }
+    let link = incomingURL.absoluteString
 
     // Here, we check if our dynamic link is a sign-link (the one we emailed our user!)
     if Auth.auth().isSignIn(withEmailLink: link) {
@@ -255,7 +251,6 @@ private func handleIncomingDynamicLink(_ incomingURL: URL) {
 
         // Post a notification to the PasswordlessViewController to resume authentication
         NotificationCenter.default.post(Notification(name: Notification.Name("PasswordlessEmailNotificationSuccess")))
-        }
     }
 }
 ```

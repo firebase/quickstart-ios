@@ -22,6 +22,10 @@ on:
 
   workflow_dispatch:
 
+concurrency:
+    group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}
+    cancel-in-progress: true
+
 env:
   secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}
   SAMPLE: ABTesting
@@ -61,7 +65,7 @@ jobs:
         os: [iOS, tvOS, macOS, watchOS, catalyst]
         include:
           - os: iOS
-            device: iPhone 14
+            device: iPhone 15
             test: true
           - os: tvOS
             device: Apple TV 4K (3rd generation) (at 1080p)

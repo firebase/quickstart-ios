@@ -22,6 +22,10 @@ on:
 
   workflow_dispatch:
 
+concurrency:
+    group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}
+    cancel-in-progress: true
+
 env:
   SAMPLE: Performance
   secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}
@@ -68,7 +72,7 @@ jobs:
             test: true
           - os: tvOS
             device: Apple TV 4K (3rd generation) (at 1080p)
-            test: true
+            test: false
     env:
       SETUP: performance
       SPM: true

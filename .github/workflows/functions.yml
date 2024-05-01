@@ -23,36 +23,6 @@ env:
   secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}
 
 jobs:
-  cocoapods:
-    name: cocoapods
-    runs-on: macOS-14
-    env:
-      SPM: false
-      LEGACY: true
-      OS: iOS
-      DEVICE: iPhone 14
-      TEST: true
-    steps:
-      - name: Checkout
-        uses: actions/checkout@master
-      - name: Setup
-        run: |
-          cd functions/LegacyFunctionsQuickstart
-          gem install bundler
-          bundle install
-          gem install xcpretty
-          bundle exec pod install --repo-update
-          cd ..
-          ../scripts/install_prereqs/functions.sh
-      - name: Build ObjC
-        run: ./scripts/test.sh
-        env:
-          SWIFT_SUFFIX: ""
-      - name: Build Swift
-        run: ./scripts/test.sh
-        env:
-          SWIFT_SUFFIX: Swift
-
   spm:
     name: spm (Xcode ${{ matrix.xcode }} - ${{ matrix.os }})
     runs-on: macOS-14
@@ -62,9 +32,9 @@ jobs:
         os: [iOS, tvOS, macOS]
         include:
           - os: iOS
-            device: iPhone 12
+            device: iPhone 14
           - os: tvOS
-            device: Apple TV 4K (at 1080p) (2nd generation)
+            device: Apple TV 4K (3rd generation) (at 1080p)
           - os: macOS
             device: localhost
     env:

@@ -62,9 +62,9 @@ jobs:
         os: [iOS, tvOS, macOS]
         include:
           - os: iOS
-            device: iPhone 12
+            device: iPhone 14
           - os: tvOS
-            device: Apple TV 4K (at 1080p) (2nd generation)
+            device: Apple TV 4K (3rd generation) (at 1080p)
           - os: macOS
             device: localhost
     env:

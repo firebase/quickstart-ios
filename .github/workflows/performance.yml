@@ -64,10 +64,10 @@ jobs:
         os: [iOS, tvOS]
         include:
           - os: iOS
-            device: iPhone 12
+            device: iPhone 14
             test: true
           - os: tvOS
-            device: Apple TV 4K (at 1080p) (2nd generation)
+            device: Apple TV 4K (3rd generation) (at 1080p)
             test: true
     env:
       SETUP: performance

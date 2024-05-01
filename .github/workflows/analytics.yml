@@ -32,11 +32,11 @@ jobs:
         xcode: ["15.3"]
         include:
           - os: iOS
-            device: iPhone 12
+            device: iPhone 14
           - os: catalyst
             device: localhost
           - os: tvOS
-            device: Apple TV 4K (at 1080p) (2nd generation)
+            device: Apple TV 4K (3rd generation) (at 1080p)
             scheme: AnalyticsExampleTV
           - os: macOS
             device: localhost

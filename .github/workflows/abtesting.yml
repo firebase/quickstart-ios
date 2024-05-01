@@ -66,7 +66,13 @@ jobs:
         include:
           - os: iOS
             device: iPhone 15
-            test: true
+            # Test runs locally but fails in CI with:
+            # (Underlying Error: lstat of
+            # /Users/runner/Library/Developer/CoreSimulator/Devices/
+            # 7E72AD09-C998-432D-84B1-0504177194AE/data/Library/Caches/
+            # com.apple.mobile.installd.staging/temp.WdeFLV/extracted/ABTestingExample.app
+            # /Frameworks/GoogleAppMeasurement.framework/GoogleAppMeasurement failed: No such file or directory
+            test: false
           - os: tvOS
             device: Apple TV 4K (3rd generation) (at 1080p)
             test: true

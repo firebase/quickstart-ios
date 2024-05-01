@@ -7,7 +7,7 @@ on:
 
 jobs:
   check:
-    runs-on: macOS-12
+    runs-on: macOS-14
     env:
       MINT_PATH: ${{ github.workspace }}/mint
     steps:

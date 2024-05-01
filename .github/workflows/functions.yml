@@ -25,7 +25,7 @@ env:
 jobs:
   cocoapods:
     name: cocoapods
-    runs-on: macOS-12
+    runs-on: macOS-14
     env:
       SPM: false
       LEGACY: true
@@ -55,10 +55,10 @@ jobs:
 
   spm:
     name: spm (Xcode ${{ matrix.xcode }} - ${{ matrix.os }})
-    runs-on: macOS-12
+    runs-on: macOS-14
     strategy:
       matrix:
-        xcode: ["14.2"]
+        xcode: ["15.3"]
         os: [iOS, tvOS, macOS]
         include:
           - os: iOS

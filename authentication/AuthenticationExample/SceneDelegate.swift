@@ -57,7 +57,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
   // MARK: - Firebase 🔥
 
   private func handleIncomingDynamicLink(_ incomingURL: URL) {
-
     let link = incomingURL.absoluteString
 
     if Auth.auth().isSignIn(withEmailLink: link) {

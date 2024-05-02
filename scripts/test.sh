@@ -19,7 +19,6 @@
 # also run the tests along with the decoded GoogleService-Info.plist files.
 
 set -euo pipefail
-set -x
 
 # Set default parameters
 if [[ -z "${SPM:-}" ]]; then

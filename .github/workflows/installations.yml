@@ -18,6 +18,10 @@ on:
 
   workflow_dispatch:
 
+concurrency:
+    group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}
+    cancel-in-progress: true
+
 env:
   SAMPLE: Installations
   secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}
@@ -25,7 +29,7 @@ env:
 jobs:
   cocoapods:
     name: cocoapods
-    runs-on: macOS-12
+    runs-on: macOS-14
     env:
       SPM: false
       LEGACY: false

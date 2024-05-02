@@ -22,6 +22,10 @@ on:
 
   workflow_dispatch:
 
+concurrency:
+    group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}
+    cancel-in-progress: true
+
 env:
   SAMPLE: Performance
   secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}
@@ -29,7 +33,7 @@ env:
 jobs:
   cocoapods:
     name: cocoapods
-    runs-on: macOS-12
+    runs-on: macOS-14
     env:
       SPM: false
       LEGACY: false
@@ -57,18 +61,18 @@ jobs:
           SWIFT_SUFFIX: Swift
   spm:
     name: spm (Xcode ${{ matrix.xcode }} - ${{ matrix.os }})
-    runs-on: macOS-12
+    runs-on: macOS-14
     strategy:
       matrix:
-        xcode: ["14.2"]
+        xcode: ["15.3"]
         os: [iOS, tvOS]
         include:
           - os: iOS
-            device: iPhone 12
-            test: true
+            device: iPhone 14
+            test: false
           - os: tvOS
-            device: Apple TV 4K (at 1080p) (2nd generation)
-            test: true
+            device: Apple TV 4K (3rd generation) (at 1080p)
+            test: false
     env:
       SETUP: performance
       SPM: true

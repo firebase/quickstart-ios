@@ -18,6 +18,10 @@ on:
 
   workflow_dispatch:
 
+concurrency:
+    group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}
+    cancel-in-progress: true
+
 env:
   SAMPLE: Analytics
   secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}
@@ -25,18 +29,18 @@ env:
 jobs:
   cocoapods:
     name: cocoapods - ${{ matrix.os }}
-    runs-on: macOS-12
+    runs-on: macOS-14
     strategy:
       matrix:
         os: [iOS, catalyst, tvOS, macOS]
-        xcode: ["14.2"]
+        xcode: ["15.3"]
         include:
           - os: iOS
-            device: iPhone 12
+            device: iPhone 14
           - os: catalyst
             device: localhost
           - os: tvOS
-            device: Apple TV 4K (at 1080p) (2nd generation)
+            device: Apple TV 4K (3rd generation) (at 1080p)
             scheme: AnalyticsExampleTV
           - os: macOS
             device: localhost

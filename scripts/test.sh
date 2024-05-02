@@ -43,29 +43,6 @@ fi
 # Set have_secrets to true or false.
 source scripts/check_secrets.sh
 
-# Get Xcode version
-system=$(uname -s)
-case "$system" in
-  Darwin)
-    xcode_version=$(xcodebuild -version | head -n 1)
-    xcode_version="${xcode_version/Xcode /}"
-    xcode_major="${xcode_version/.*/}"
-    ;;
-  *)
-    xcode_major="0"
-    ;;
-esac
-
-# Check Xcode version when testing watchOS
-if [[ "$TEST" == true && \
-      "$OS" == watchOS && \
-      "$xcode_major" -lt 13 && \
-      "$xcode_version" != "12.5.1" && \
-      "$xcode_version" != "12.5" ]]; then
-    echo "Xcode version does not yet supporting testing on watchOS"
-    exit 1
-fi
-
 # Initialize flags
 flags=()
 

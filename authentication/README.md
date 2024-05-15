@@ -44,7 +44,7 @@ We will need to connect our quickstart with the [Firebase Console](https://conso
 
 To enable sign in with each of the following identity providers, there are a few configuration steps required to make sure everything works properly.
 
-**When it comes to configuring most of the below identity providers**, you may have to [add a custom URL scheme](https://developers.google.com/identity/sign-in/ios/start-integrating#add_a_url_scheme_to_your_project) in your Xcode project so Firebase Auth can correctly work with the corresponding Identity Provider. This is done by selecting the app's target in Xcode and navigating to the **Info** tab. For each login flow that requires adding a custom URL scheme, be sure to add a new URL Scheme for each respective identity provider rather than replace existing schemes you have created previously. 
+**When it comes to configuring most of the below identity providers**, you may have to [add a custom URL scheme](https://firebase.google.com/docs/auth/ios/github-auth#handle_the_sign-in_flow_with_the_firebase_sdk) in your Xcode project so Firebase Auth can correctly work with the corresponding Identity Provider. This is done by selecting the app's target in Xcode and navigating to the **Info** tab. For each login flow that requires adding a custom URL scheme, be sure to add a new URL Scheme for each respective identity provider rather than replace existing schemes you have created previously. 
 
 
   
@@ -125,7 +125,7 @@ See the [Getting Started with Microsoft Sign In guide](https://firebase.google.c
   - After registering an app on GitHub's developer portal, enter your GitHub **Client ID** and **Client Secret** and then click **Save**.
   - Make sure your Firebase OAuth redirect URI (e.g. my-app-12345.firebaseapp.com/__/auth/handler) is set as your  
     Authorization callback URL in your app's settings page on your [GitHub app's config](https://developer.github.com/apps/building-oauth-apps/).
-- In Xcode, [add a custom URL scheme for your reversed client ID](https://developers.google.com/identity/sign-in/ios/start-integrating#add_a_url_scheme_to_your_project).
+- In Xcode, [add a custom URL scheme for your reversed client ID](https://firebase.google.com/docs/auth/ios/github-auth#handle_the_sign-in_flow_with_the_firebase_sdk).
   - Note that you may have already done this in a previous step
   - You can find this in the `GoogleService-Info.plist`
 - Run the app on your device or simulator.

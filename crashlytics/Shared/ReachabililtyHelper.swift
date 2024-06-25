@@ -40,9 +40,6 @@ class ReachabililtyHelper: NSObject {
       return "cellular"
     case .unavailable:
       return "unavailable"
-    case .none:
-      // Duplicate of unavailable.
-      return "unavailable"
     }
   }
 

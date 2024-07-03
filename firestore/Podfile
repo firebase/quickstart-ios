@@ -4,8 +4,8 @@ target 'FirestoreExample' do
   use_frameworks!
 
   pod 'FirebaseAuth'
-  pod 'FirebaseUI/Auth', '~> 12.0'
-  pod 'FirebaseUI/Email', '~> 12.0'
+  pod 'FirebaseUI/Auth', '~> 14.0'
+  pod 'FirebaseUI/Email', '~> 14.0'
   pod 'FirebaseFirestore'
   pod 'SDWebImage'
 

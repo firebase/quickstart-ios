@@ -1,29 +1,29 @@
 PODS:
-  - FirebaseAppCheckInterop (10.25.0)
-  - FirebaseAuth (10.25.0):
+  - FirebaseAppCheckInterop (10.28.0)
+  - FirebaseAuth (10.28.0):
     - FirebaseAppCheckInterop (~> 10.17)
     - FirebaseCore (~> 10.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 7.8)
     - GoogleUtilities/Environment (~> 7.8)
     - GTMSessionFetcher/Core (< 4.0, >= 2.1)
     - RecaptchaInterop (~> 100.0)
-  - FirebaseCore (10.25.0):
+  - FirebaseCore (10.28.1):
     - FirebaseCoreInternal (~> 10.0)
     - GoogleUtilities/Environment (~> 7.12)
     - GoogleUtilities/Logger (~> 7.12)
-  - FirebaseCoreInternal (10.25.0):
+  - FirebaseCoreInternal (10.28.0):
     - "GoogleUtilities/NSData+zlib (~> 7.8)"
-  - FirebaseDatabase (10.25.0):
+  - FirebaseDatabase (10.28.0):
     - FirebaseAppCheckInterop (~> 10.17)
     - FirebaseCore (~> 10.0)
     - FirebaseSharedSwift (~> 10.0)
     - GoogleUtilities/UserDefaults (~> 7.13)
     - leveldb-library (~> 1.22)
-  - FirebaseDatabaseUI (12.3.0):
-    - FirebaseDatabase (< 11.0, >= 8.0)
-  - FirebaseSharedSwift (10.25.0)
-  - FirebaseUI/Database (12.3.0):
-    - FirebaseDatabaseUI (~> 12.0)
+  - FirebaseDatabaseUI (14.0.0):
+    - FirebaseDatabase (< 12.0, >= 8.0)
+  - FirebaseSharedSwift (10.28.0)
+  - FirebaseUI/Database (14.0.0):
+    - FirebaseDatabaseUI (~> 14.0)
   - GoogleUtilities/AppDelegateSwizzler (7.13.3):
     - GoogleUtilities/Environment
     - GoogleUtilities/Logger
@@ -49,7 +49,7 @@ PODS:
   - GoogleUtilities/UserDefaults (7.13.3):
     - GoogleUtilities/Logger
     - GoogleUtilities/Privacy
-  - GTMSessionFetcher/Core (3.4.1)
+  - GTMSessionFetcher/Core (3.5.0)
   - leveldb-library (1.22.5)
   - PromisesObjC (2.4.0)
   - RecaptchaInterop (100.0.0)
@@ -57,7 +57,7 @@ PODS:
 DEPENDENCIES:
   - FirebaseAuth
   - FirebaseDatabase
-  - FirebaseUI/Database (~> 12.0)
+  - FirebaseUI/Database (~> 14.0)
 
 SPEC REPOS:
   trunk:
@@ -76,20 +76,20 @@ SPEC REPOS:
     - RecaptchaInterop
 
 SPEC CHECKSUMS:
-  FirebaseAppCheckInterop: 5da5ce93e8797a215e3f677fb0654b74e736c8b8
-  FirebaseAuth: c0f93dcc570c9da2bffb576969d793e95c344fbb
-  FirebaseCore: 7ec4d0484817f12c3373955bc87762d96842d483
-  FirebaseCoreInternal: 910a81992c33715fec9263ca7381d59ab3a750b7
-  FirebaseDatabase: faa489a42f5f868d23a55dd442d6e2099348458e
-  FirebaseDatabaseUI: 2549add5626d4cbfe6c038aeb6ed29d8a1402452
-  FirebaseSharedSwift: 0274086954b1b2d5fd7e829eccc587044d72a4ba
-  FirebaseUI: e9a2dd42f5b593cd8b6e64c11d30ded38f30e48c
+  FirebaseAppCheckInterop: 5315f40293191bfec04b2cfab0215760e441540a
+  FirebaseAuth: 3d872fbbfc4223edeb72769e488f325fa8b0a4a9
+  FirebaseCore: dfc33f0dffba05f76181da9cc0151171ebb3bd10
+  FirebaseCoreInternal: 58d07f1362fddeb0feb6a857d1d1d1c5e558e698
+  FirebaseDatabase: f697c0d1be5477182ecd008292a33299f5668658
+  FirebaseDatabaseUI: d3009399ff2ae9255b9ae40cf6e65ca89b3ff032
+  FirebaseSharedSwift: 48de4aec81a6b79bb30404e5e6db43ea74848fed
+  FirebaseUI: be706d8a988f3fe6df80cf106e82099dbebe0973
   GoogleUtilities: ea963c370a38a8069cc5f7ba4ca849a60b6d7d15
-  GTMSessionFetcher: 8000756fc1c19d2e5697b90311f7832d2e33f6cd
+  GTMSessionFetcher: 5aea5ba6bd522a239e236100971f10cb71b96ab6
   leveldb-library: e8eadf9008a61f9e1dde3978c086d2b6d9b9dc28
   PromisesObjC: f5707f49cb48b9636751c5b2e7d227e43fba9f47
   RecaptchaInterop: 7d1a4a01a6b2cb1610a47ef3f85f0c411434cb21
 
-PODFILE CHECKSUM: 4f86faccd20710d6b480d7ba3ac33a6dd20daed4
+PODFILE CHECKSUM: 63ad88d477c0b7246035547030c55c542a0ea557
 
 COCOAPODS: 1.15.2

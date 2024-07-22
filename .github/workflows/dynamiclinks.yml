@@ -47,10 +47,6 @@ jobs:
           gem install xcpretty
           bundle exec pod install --repo-update
           ../scripts/install_prereqs/dynamiclinks.sh
-      - name: Build ObjC
-        run: ./scripts/test.sh
-        env:
-          SWIFT_SUFFIX: ""
       - name: Build Swift
         run: ./scripts/test.sh
         env:

@@ -48,10 +48,6 @@ jobs:
           bundle exec pod install --repo-update
           cd ..
           ../scripts/install_prereqs/storage.sh
-      - name: Build ObjC
-        run: ./scripts/test.sh
-        env:
-          SWIFT_SUFFIX: ""
       - name: Build Swift
         run: ./scripts/test.sh
         env:

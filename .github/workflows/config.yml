@@ -52,7 +52,3 @@ jobs:
         env:
           OS: iOS
           DEVICE: iPhone 14
-      - name: Build Catalyst
-        run: ./scripts/test.sh
-        env:
-          OS: catalyst

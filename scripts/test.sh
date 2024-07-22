@@ -119,7 +119,7 @@ fi
 
 function xcb() {
     echo xcodebuild "$@"
-    xcodebuild "$@"
+    xcodebuild "$@" | xcpretty
 }
 
 # Run xcodebuild

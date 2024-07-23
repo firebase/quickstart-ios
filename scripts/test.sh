@@ -119,10 +119,10 @@ fi
 
 function xcb() {
     echo xcodebuild "$@"
-    xcodebuild "$@"
+    xcodebuild "$@" | xcpretty
 }
 
 # Run xcodebuild
-sudo xcode-select -s /Applications/Xcode_15.2.app/Contents/Developer
+sudo xcode-select -s /Applications/Xcode_15.4.app/Contents/Developer
 xcb "${flags[@]}"
 echo "$message"

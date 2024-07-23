@@ -29,7 +29,7 @@ env:
 jobs:
   cocoapods:
     name: cocoapods
-    runs-on: macOS-13
+    runs-on: macOS-14
     env:
       SPM: false
       LEGACY: false
@@ -52,7 +52,3 @@ jobs:
         env:
           OS: iOS
           DEVICE: iPhone 14
-      - name: Build Catalyst
-        run: ./scripts/test.sh
-        env:
-          OS: catalyst

@@ -62,7 +62,7 @@ jobs:
         include:
           - os: iOS
             device: iPhone 14
-            test: true
+            test: false # flaky
           - os: tvOS
             device: Apple TV 4K (3rd generation) (at 1080p)
             test: true

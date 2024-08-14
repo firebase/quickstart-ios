@@ -16,6 +16,7 @@
 
 import UIKit
 import FirebaseFirestore
+import FirebaseAuth
 import FirebaseAuthUI
 import FirebaseEmailAuthUI
 import SDWebImage

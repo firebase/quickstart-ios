@@ -303,6 +303,13 @@ PODS:
     - abseil/base/config
     - abseil/base/core_headers
     - abseil/xcprivacy
+  - abseil/debugging/examine_stack (1.20240116.2):
+    - abseil/base/config
+    - abseil/base/core_headers
+    - abseil/base/raw_logging_internal
+    - abseil/debugging/stacktrace
+    - abseil/debugging/symbolize
+    - abseil/xcprivacy
   - abseil/debugging/stacktrace (1.20240116.2):
     - abseil/base/config
     - abseil/base/core_headers
@@ -448,6 +455,198 @@ PODS:
     - abseil/base/endian
     - abseil/base/prefetch
     - abseil/numeric/int128
+    - abseil/xcprivacy
+  - abseil/log/absl_check (1.20240116.2):
+    - abseil/log/internal/check_impl
+    - abseil/xcprivacy
+  - abseil/log/absl_log (1.20240116.2):
+    - abseil/log/internal/log_impl
+    - abseil/xcprivacy
+  - abseil/log/absl_vlog_is_on (1.20240116.2):
+    - abseil/base/config
+    - abseil/base/core_headers
+    - abseil/log/internal/vlog_config
+    - abseil/strings/strings
+    - abseil/xcprivacy
+  - abseil/log/check (1.20240116.2):
+    - abseil/log/internal/check_impl
+    - abseil/log/internal/check_op
+    - abseil/log/internal/conditions
+    - abseil/log/internal/log_message
+    - abseil/log/internal/strip
+    - abseil/xcprivacy
+  - abseil/log/globals (1.20240116.2):
+    - abseil/base/atomic_hook
+    - abseil/base/config
+    - abseil/base/core_headers
+    - abseil/base/log_severity
+    - abseil/base/raw_logging_internal
+    - abseil/hash/hash
+    - abseil/log/internal/vlog_config
+    - abseil/strings/strings
+    - abseil/xcprivacy
+  - abseil/log/internal/append_truncated (1.20240116.2):
+    - abseil/base/config
+    - abseil/strings/strings
+    - abseil/types/span
+    - abseil/xcprivacy
+  - abseil/log/internal/check_impl (1.20240116.2):
+    - abseil/base/core_headers
+    - abseil/log/internal/check_op
+    - abseil/log/internal/conditions
+    - abseil/log/internal/log_message
+    - abseil/log/internal/strip
+    - abseil/xcprivacy
+  - abseil/log/internal/check_op (1.20240116.2):
+    - abseil/base/config
+    - abseil/base/core_headers
+    - abseil/log/internal/nullguard
+    - abseil/log/internal/nullstream
+    - abseil/log/internal/strip
+    - abseil/strings/strings
+    - abseil/xcprivacy
+  - abseil/log/internal/conditions (1.20240116.2):
+    - abseil/base/base
+    - abseil/base/config
+    - abseil/base/core_headers
+    - abseil/log/internal/voidify
+    - abseil/xcprivacy
+  - abseil/log/internal/config (1.20240116.2):
+    - abseil/base/config
+    - abseil/base/core_headers
+    - abseil/xcprivacy
+  - abseil/log/internal/fnmatch (1.20240116.2):
+    - abseil/base/config
+    - abseil/strings/strings
+    - abseil/xcprivacy
+  - abseil/log/internal/format (1.20240116.2):
+    - abseil/base/config
+    - abseil/base/core_headers
+    - abseil/base/log_severity
+    - abseil/log/internal/append_truncated
+    - abseil/log/internal/config
+    - abseil/log/internal/globals
+    - abseil/strings/str_format
+    - abseil/strings/strings
+    - abseil/time/time
+    - abseil/types/span
+    - abseil/xcprivacy
+  - abseil/log/internal/globals (1.20240116.2):
+    - abseil/base/config
+    - abseil/base/core_headers
+    - abseil/base/log_severity
+    - abseil/base/raw_logging_internal
+    - abseil/strings/strings
+    - abseil/time/time
+    - abseil/xcprivacy
+  - abseil/log/internal/log_impl (1.20240116.2):
+    - abseil/log/absl_vlog_is_on
+    - abseil/log/internal/conditions
+    - abseil/log/internal/log_message
+    - abseil/log/internal/strip
+    - abseil/xcprivacy
+  - abseil/log/internal/log_message (1.20240116.2):
+    - abseil/base/base
+    - abseil/base/config
+    - abseil/base/core_headers
+    - abseil/base/errno_saver
+    - abseil/base/log_severity
+    - abseil/base/raw_logging_internal
+    - abseil/base/strerror
+    - abseil/container/inlined_vector
+    - abseil/debugging/examine_stack
+    - abseil/log/globals
+    - abseil/log/internal/append_truncated
+    - abseil/log/internal/format
+    - abseil/log/internal/globals
+    - abseil/log/internal/log_sink_set
+    - abseil/log/internal/nullguard
+    - abseil/log/internal/proto
+    - abseil/log/log_entry
+    - abseil/log/log_sink
+    - abseil/log/log_sink_registry
+    - abseil/memory/memory
+    - abseil/strings/strings
+    - abseil/time/time
+    - abseil/types/span
+    - abseil/xcprivacy
+  - abseil/log/internal/log_sink_set (1.20240116.2):
+    - abseil/base/base
+    - abseil/base/config
+    - abseil/base/core_headers
+    - abseil/base/log_severity
+    - abseil/base/no_destructor
+    - abseil/base/raw_logging_internal
+    - abseil/cleanup/cleanup
+    - abseil/log/globals
+    - abseil/log/internal/config
+    - abseil/log/internal/globals
+    - abseil/log/log_entry
+    - abseil/log/log_sink
+    - abseil/strings/strings
+    - abseil/synchronization/synchronization
+    - abseil/types/span
+    - abseil/xcprivacy
+  - abseil/log/internal/nullguard (1.20240116.2):
+    - abseil/base/config
+    - abseil/base/core_headers
+    - abseil/xcprivacy
+  - abseil/log/internal/nullstream (1.20240116.2):
+    - abseil/base/config
+    - abseil/base/core_headers
+    - abseil/base/log_severity
+    - abseil/strings/strings
+    - abseil/xcprivacy
+  - abseil/log/internal/proto (1.20240116.2):
+    - abseil/base/base
+    - abseil/base/config
+    - abseil/base/core_headers
+    - abseil/strings/strings
+    - abseil/types/span
+    - abseil/xcprivacy
+  - abseil/log/internal/strip (1.20240116.2):
+    - abseil/base/log_severity
+    - abseil/log/internal/log_message
+    - abseil/log/internal/nullstream
+    - abseil/xcprivacy
+  - abseil/log/internal/vlog_config (1.20240116.2):
+    - abseil/base/base
+    - abseil/base/config
+    - abseil/base/core_headers
+    - abseil/base/no_destructor
+    - abseil/log/internal/fnmatch
+    - abseil/memory/memory
+    - abseil/strings/strings
+    - abseil/synchronization/synchronization
+    - abseil/types/optional
+    - abseil/xcprivacy
+  - abseil/log/internal/voidify (1.20240116.2):
+    - abseil/base/config
+    - abseil/xcprivacy
+  - abseil/log/log (1.20240116.2):
+    - abseil/log/internal/log_impl
+    - abseil/log/vlog_is_on
+    - abseil/xcprivacy
+  - abseil/log/log_entry (1.20240116.2):
+    - abseil/base/config
+    - abseil/base/core_headers
+    - abseil/base/log_severity
+    - abseil/log/internal/config
+    - abseil/strings/strings
+    - abseil/time/time
+    - abseil/types/span
+    - abseil/xcprivacy
+  - abseil/log/log_sink (1.20240116.2):
+    - abseil/base/config
+    - abseil/log/log_entry
+    - abseil/xcprivacy
+  - abseil/log/log_sink_registry (1.20240116.2):
+    - abseil/base/config
+    - abseil/log/internal/log_sink_set
+    - abseil/log/log_sink
+    - abseil/xcprivacy
+  - abseil/log/vlog_is_on (1.20240116.2):
+    - abseil/log/absl_vlog_is_on
     - abseil/xcprivacy
   - abseil/memory (1.20240116.2):
     - abseil/memory/memory (= 1.20240116.2)
@@ -946,42 +1145,45 @@ PODS:
     - abseil/meta/type_traits
     - abseil/xcprivacy
   - abseil/xcprivacy (1.20240116.2)
-  - BoringSSL-GRPC (0.0.32):
-    - BoringSSL-GRPC/Implementation (= 0.0.32)
-    - BoringSSL-GRPC/Interface (= 0.0.32)
-  - BoringSSL-GRPC/Implementation (0.0.32):
-    - BoringSSL-GRPC/Interface (= 0.0.32)
-  - BoringSSL-GRPC/Interface (0.0.32)
-  - FirebaseAppCheckInterop (10.28.0)
-  - FirebaseAuth (10.28.0):
-    - FirebaseAppCheckInterop (~> 10.17)
-    - FirebaseCore (~> 10.0)
-    - GoogleUtilities/AppDelegateSwizzler (~> 7.8)
-    - GoogleUtilities/Environment (~> 7.8)
-    - GTMSessionFetcher/Core (< 4.0, >= 2.1)
+  - BoringSSL-GRPC (0.0.36):
+    - BoringSSL-GRPC/Implementation (= 0.0.36)
+    - BoringSSL-GRPC/Interface (= 0.0.36)
+  - BoringSSL-GRPC/Implementation (0.0.36):
+    - BoringSSL-GRPC/Interface (= 0.0.36)
+  - BoringSSL-GRPC/Interface (0.0.36)
+  - FirebaseAppCheckInterop (11.3.0)
+  - FirebaseAuth (11.3.0):
+    - FirebaseAppCheckInterop (~> 11.0)
+    - FirebaseAuthInterop (~> 11.0)
+    - FirebaseCore (~> 11.0)
+    - FirebaseCoreExtension (~> 11.0)
+    - GoogleUtilities/AppDelegateSwizzler (~> 8.0)
+    - GoogleUtilities/Environment (~> 8.0)
+    - GTMSessionFetcher/Core (~> 3.4)
     - RecaptchaInterop (~> 100.0)
-  - FirebaseAuthUI (14.0.0):
+  - FirebaseAuthInterop (11.3.0)
+  - FirebaseAuthUI (14.2.4):
     - FirebaseAuth (< 12.0, >= 8.0)
     - FirebaseCore
-  - FirebaseCore (10.28.1):
-    - FirebaseCoreInternal (~> 10.0)
-    - GoogleUtilities/Environment (~> 7.12)
-    - GoogleUtilities/Logger (~> 7.12)
-  - FirebaseCoreExtension (10.28.0):
-    - FirebaseCore (~> 10.0)
-  - FirebaseCoreInternal (10.28.0):
-    - "GoogleUtilities/NSData+zlib (~> 7.8)"
-  - FirebaseEmailAuthUI (14.0.0):
+  - FirebaseCore (11.3.0):
+    - FirebaseCoreInternal (~> 11.0)
+    - GoogleUtilities/Environment (~> 8.0)
+    - GoogleUtilities/Logger (~> 8.0)
+  - FirebaseCoreExtension (11.3.0):
+    - FirebaseCore (~> 11.0)
+  - FirebaseCoreInternal (11.3.0):
+    - "GoogleUtilities/NSData+zlib (~> 8.0)"
+  - FirebaseEmailAuthUI (14.2.3):
     - FirebaseAuth
-    - FirebaseAuthUI
+    - FirebaseAuthUI (>= 14.2)
     - FirebaseCore
     - GoogleUtilities/UserDefaults
-  - FirebaseFirestore (10.28.0):
-    - FirebaseCore (~> 10.0)
-    - FirebaseCoreExtension (~> 10.0)
-    - FirebaseFirestoreInternal (= 10.28.0)
-    - FirebaseSharedSwift (~> 10.0)
-  - FirebaseFirestoreInternal (10.28.0):
+  - FirebaseFirestore (11.3.0):
+    - FirebaseCore (~> 11.0)
+    - FirebaseCoreExtension (~> 11.0)
+    - FirebaseFirestoreInternal (= 11.3.0)
+    - FirebaseSharedSwift (~> 11.0)
+  - FirebaseFirestoreInternal (11.3.0):
     - abseil/algorithm (~> 1.20240116.1)
     - abseil/base (~> 1.20240116.1)
     - abseil/container/flat_hash_map (~> 1.20240116.1)
@@ -990,50 +1192,51 @@ PODS:
     - abseil/strings/strings (~> 1.20240116.1)
     - abseil/time (~> 1.20240116.1)
     - abseil/types (~> 1.20240116.1)
-    - FirebaseAppCheckInterop (~> 10.17)
-    - FirebaseCore (~> 10.0)
-    - "gRPC-C++ (~> 1.62.0)"
-    - gRPC-Core (~> 1.62.0)
+    - FirebaseAppCheckInterop (~> 11.0)
+    - FirebaseCore (~> 11.0)
+    - "gRPC-C++ (~> 1.65.0)"
+    - gRPC-Core (~> 1.65.0)
     - leveldb-library (~> 1.22)
-    - nanopb (< 2.30911.0, >= 2.30908.0)
-  - FirebaseSharedSwift (10.28.0)
-  - FirebaseUI/Auth (14.0.0):
-    - FirebaseAuthUI (~> 14.0)
-  - FirebaseUI/Email (14.0.0):
-    - FirebaseEmailAuthUI (~> 14.0)
-  - GoogleUtilities/AppDelegateSwizzler (7.13.3):
+    - nanopb (~> 3.30910.0)
+  - FirebaseSharedSwift (11.3.0)
+  - FirebaseUI/Auth (14.2.0):
+    - FirebaseAuthUI (~> 14.2)
+  - FirebaseUI/Email (14.2.0):
+    - FirebaseEmailAuthUI (~> 14.2)
+  - GoogleUtilities/AppDelegateSwizzler (8.0.2):
     - GoogleUtilities/Environment
     - GoogleUtilities/Logger
     - GoogleUtilities/Network
     - GoogleUtilities/Privacy
-  - GoogleUtilities/Environment (7.13.3):
+  - GoogleUtilities/Environment (8.0.2):
     - GoogleUtilities/Privacy
-    - PromisesObjC (< 3.0, >= 1.2)
-  - GoogleUtilities/Logger (7.13.3):
+  - GoogleUtilities/Logger (8.0.2):
     - GoogleUtilities/Environment
     - GoogleUtilities/Privacy
-  - GoogleUtilities/Network (7.13.3):
+  - GoogleUtilities/Network (8.0.2):
     - GoogleUtilities/Logger
     - "GoogleUtilities/NSData+zlib"
     - GoogleUtilities/Privacy
     - GoogleUtilities/Reachability
-  - "GoogleUtilities/NSData+zlib (7.13.3)":
+  - "GoogleUtilities/NSData+zlib (8.0.2)":
     - GoogleUtilities/Privacy
-  - GoogleUtilities/Privacy (7.13.3)
-  - GoogleUtilities/Reachability (7.13.3):
+  - GoogleUtilities/Privacy (8.0.2)
+  - GoogleUtilities/Reachability (8.0.2):
     - GoogleUtilities/Logger
     - GoogleUtilities/Privacy
-  - GoogleUtilities/UserDefaults (7.13.3):
+  - GoogleUtilities/UserDefaults (8.0.2):
     - GoogleUtilities/Logger
     - GoogleUtilities/Privacy
-  - "gRPC-C++ (1.62.5)":
-    - "gRPC-C++/Implementation (= 1.62.5)"
-    - "gRPC-C++/Interface (= 1.62.5)"
-  - "gRPC-C++/Implementation (1.62.5)":
+  - "gRPC-C++ (1.65.5)":
+    - "gRPC-C++/Implementation (= 1.65.5)"
+    - "gRPC-C++/Interface (= 1.65.5)"
+  - "gRPC-C++/Implementation (1.65.5)":
     - abseil/algorithm/container (~> 1.20240116.2)
     - abseil/base/base (~> 1.20240116.2)
     - abseil/base/config (~> 1.20240116.2)
     - abseil/base/core_headers (~> 1.20240116.2)
+    - abseil/base/log_severity (~> 1.20240116.2)
+    - abseil/base/no_destructor (~> 1.20240116.2)
     - abseil/cleanup/cleanup (~> 1.20240116.2)
     - abseil/container/flat_hash_map (~> 1.20240116.2)
     - abseil/container/flat_hash_set (~> 1.20240116.2)
@@ -1044,6 +1247,11 @@ PODS:
     - abseil/functional/bind_front (~> 1.20240116.2)
     - abseil/functional/function_ref (~> 1.20240116.2)
     - abseil/hash/hash (~> 1.20240116.2)
+    - abseil/log/absl_check (~> 1.20240116.2)
+    - abseil/log/absl_log (~> 1.20240116.2)
+    - abseil/log/check (~> 1.20240116.2)
+    - abseil/log/globals (~> 1.20240116.2)
+    - abseil/log/log (~> 1.20240116.2)
     - abseil/memory/memory (~> 1.20240116.2)
     - abseil/meta/type_traits (~> 1.20240116.2)
     - abseil/random/bit_gen_ref (~> 1.20240116.2)
@@ -1060,19 +1268,21 @@ PODS:
     - abseil/types/span (~> 1.20240116.2)
     - abseil/types/variant (~> 1.20240116.2)
     - abseil/utility/utility (~> 1.20240116.2)
-    - "gRPC-C++/Interface (= 1.62.5)"
-    - "gRPC-C++/Privacy (= 1.62.5)"
-    - gRPC-Core (= 1.62.5)
-  - "gRPC-C++/Interface (1.62.5)"
-  - "gRPC-C++/Privacy (1.62.5)"
-  - gRPC-Core (1.62.5):
-    - gRPC-Core/Implementation (= 1.62.5)
-    - gRPC-Core/Interface (= 1.62.5)
-  - gRPC-Core/Implementation (1.62.5):
+    - "gRPC-C++/Interface (= 1.65.5)"
+    - "gRPC-C++/Privacy (= 1.65.5)"
+    - gRPC-Core (= 1.65.5)
+  - "gRPC-C++/Interface (1.65.5)"
+  - "gRPC-C++/Privacy (1.65.5)"
+  - gRPC-Core (1.65.5):
+    - gRPC-Core/Implementation (= 1.65.5)
+    - gRPC-Core/Interface (= 1.65.5)
+  - gRPC-Core/Implementation (1.65.5):
     - abseil/algorithm/container (~> 1.20240116.2)
     - abseil/base/base (~> 1.20240116.2)
     - abseil/base/config (~> 1.20240116.2)
     - abseil/base/core_headers (~> 1.20240116.2)
+    - abseil/base/log_severity (~> 1.20240116.2)
+    - abseil/base/no_destructor (~> 1.20240116.2)
     - abseil/cleanup/cleanup (~> 1.20240116.2)
     - abseil/container/flat_hash_map (~> 1.20240116.2)
     - abseil/container/flat_hash_set (~> 1.20240116.2)
@@ -1083,6 +1293,9 @@ PODS:
     - abseil/functional/bind_front (~> 1.20240116.2)
     - abseil/functional/function_ref (~> 1.20240116.2)
     - abseil/hash/hash (~> 1.20240116.2)
+    - abseil/log/check (~> 1.20240116.2)
+    - abseil/log/globals (~> 1.20240116.2)
+    - abseil/log/log (~> 1.20240116.2)
     - abseil/memory/memory (~> 1.20240116.2)
     - abseil/meta/type_traits (~> 1.20240116.2)
     - abseil/random/bit_gen_ref (~> 1.20240116.2)
@@ -1099,23 +1312,22 @@ PODS:
     - abseil/types/span (~> 1.20240116.2)
     - abseil/types/variant (~> 1.20240116.2)
     - abseil/utility/utility (~> 1.20240116.2)
-    - BoringSSL-GRPC (= 0.0.32)
-    - gRPC-Core/Interface (= 1.62.5)
-    - gRPC-Core/Privacy (= 1.62.5)
-  - gRPC-Core/Interface (1.62.5)
-  - gRPC-Core/Privacy (1.62.5)
+    - BoringSSL-GRPC (= 0.0.36)
+    - gRPC-Core/Interface (= 1.65.5)
+    - gRPC-Core/Privacy (= 1.65.5)
+  - gRPC-Core/Interface (1.65.5)
+  - gRPC-Core/Privacy (1.65.5)
   - GTMSessionFetcher/Core (3.5.0)
   - leveldb-library (1.22.5)
-  - nanopb (2.30910.0):
-    - nanopb/decode (= 2.30910.0)
-    - nanopb/encode (= 2.30910.0)
-  - nanopb/decode (2.30910.0)
-  - nanopb/encode (2.30910.0)
-  - PromisesObjC (2.4.0)
+  - nanopb (3.30910.0):
+    - nanopb/decode (= 3.30910.0)
+    - nanopb/encode (= 3.30910.0)
+  - nanopb/decode (3.30910.0)
+  - nanopb/encode (3.30910.0)
   - RecaptchaInterop (100.0.0)
-  - SDWebImage (5.19.4):
-    - SDWebImage/Core (= 5.19.4)
-  - SDWebImage/Core (5.19.4)
+  - SDWebImage (5.19.7):
+    - SDWebImage/Core (= 5.19.7)
+  - SDWebImage/Core (5.19.7)
   - SDWebImageSwiftUI (2.2.7):
     - SDWebImage (~> 5.10)
 
@@ -1133,6 +1345,7 @@ SPEC REPOS:
     - BoringSSL-GRPC
     - FirebaseAppCheckInterop
     - FirebaseAuth
+    - FirebaseAuthInterop
     - FirebaseAuthUI
     - FirebaseCore
     - FirebaseCoreExtension
@@ -1148,34 +1361,33 @@ SPEC REPOS:
     - GTMSessionFetcher
     - leveldb-library
     - nanopb
-    - PromisesObjC
     - RecaptchaInterop
     - SDWebImage
     - SDWebImageSwiftUI
 
 SPEC CHECKSUMS:
   abseil: d121da9ef7e2ff4cab7666e76c5a3e0915ae08c3
-  BoringSSL-GRPC: 1e2348957acdbcad360b80a264a90799984b2ba6
-  FirebaseAppCheckInterop: 5315f40293191bfec04b2cfab0215760e441540a
-  FirebaseAuth: 3d872fbbfc4223edeb72769e488f325fa8b0a4a9
-  FirebaseAuthUI: e43f9171f201a1ba63a46a859a28560eefcbe0b8
-  FirebaseCore: dfc33f0dffba05f76181da9cc0151171ebb3bd10
-  FirebaseCoreExtension: f63147b723e2a700fe0f34ec6fb7f358d6fe83e0
-  FirebaseCoreInternal: 58d07f1362fddeb0feb6a857d1d1d1c5e558e698
-  FirebaseEmailAuthUI: a3c22350c329d2605a41f9c7c2b8e22b2d3ae692
-  FirebaseFirestore: 55636df3da462136352b3465e26a86a988cc792c
-  FirebaseFirestoreInternal: 354755e5745ca39862218087d9f754dde20f1059
-  FirebaseSharedSwift: 48de4aec81a6b79bb30404e5e6db43ea74848fed
-  FirebaseUI: be706d8a988f3fe6df80cf106e82099dbebe0973
-  GoogleUtilities: ea963c370a38a8069cc5f7ba4ca849a60b6d7d15
-  "gRPC-C++": e725ef63c4475d7cdb7e2cf16eb0fde84bd9ee51
-  gRPC-Core: eee4be35df218649fe66d721a05a7f27a28f069b
+  BoringSSL-GRPC: ca6a8e5d04812fce8ffd6437810c2d46f925eaeb
+  FirebaseAppCheckInterop: 7789a8adfb09e905ce02a76540b94b059029ea81
+  FirebaseAuth: c7b82c8f3942c22629145c3f2972c33d1dc3ee6c
+  FirebaseAuthInterop: c453b7ba7c49b88b2f519bb8d2e29edf7ada4a2a
+  FirebaseAuthUI: 37cda3d1bd31dd71ec0c789cf1addbe0467a5aa0
+  FirebaseCore: 8542de610f35f86196ba26cdb2544565a5157c8e
+  FirebaseCoreExtension: 30bb063476ef66cd46925243d64ad8b2c8ac3264
+  FirebaseCoreInternal: ac26d09a70c730e497936430af4e60fb0c68ec4e
+  FirebaseEmailAuthUI: c448736db9fcd5895d29229a9e0aec016ece0389
+  FirebaseFirestore: e83d088457c90adb2abff42e5c0aaa592151e5ac
+  FirebaseFirestoreInternal: 6492b7efdab5085ccd674e53591d5ebf5065d7f3
+  FirebaseSharedSwift: d39c2ad64a11a8d936ce25a42b00df47078bb59c
+  FirebaseUI: 3909853fc34f316c822e195376f144b1b0c6ca15
+  GoogleUtilities: 26a3abef001b6533cf678d3eb38fd3f614b7872d
+  "gRPC-C++": 2fa52b3141e7789a28a737f251e0c45b4cb20a87
+  gRPC-Core: a27c294d6149e1c39a7d173527119cfbc3375ce4
   GTMSessionFetcher: 5aea5ba6bd522a239e236100971f10cb71b96ab6
   leveldb-library: e8eadf9008a61f9e1dde3978c086d2b6d9b9dc28
-  nanopb: 438bc412db1928dac798aa6fd75726007be04262
-  PromisesObjC: f5707f49cb48b9636751c5b2e7d227e43fba9f47
+  nanopb: fad817b59e0457d11a5dfbde799381cd727c1275
   RecaptchaInterop: 7d1a4a01a6b2cb1610a47ef3f85f0c411434cb21
-  SDWebImage: 066c47b573f408f18caa467d71deace7c0f8280d
+  SDWebImage: 8a6b7b160b4d710e2a22b6900e25301075c34cb3
   SDWebImageSwiftUI: 65a2c8b4b0d9577f2e11556cb163cc4613b9ee54
 
 PODFILE CHECKSUM: dcf06b78bbfb24e317b41df914b88a696d5c1794

@@ -66,6 +66,7 @@ class PasswordlessViewController: UIViewController {
         actionCodeSettings.url = URL(string: "https://www.example.com")
         // The sign-in operation has to always be completed in the app.
         actionCodeSettings.handleCodeInApp = true
+        actionCodeSettings.linkDomain = "your.custom.domain.com"
         actionCodeSettings.setIOSBundleID(Bundle.main.bundleIdentifier!)
         actionCodeSettings.setAndroidPackageName("com.example.android",
                                                  installIfNotAvailable: false, minimumVersion: "12")

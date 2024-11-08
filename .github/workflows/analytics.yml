@@ -33,7 +33,7 @@ jobs:
     strategy:
       matrix:
         os: [iOS, catalyst, tvOS, macOS]
-        xcode: ["15.3"]
+        xcode: ["16.1"]
         include:
           - os: iOS
             device: iPhone 16

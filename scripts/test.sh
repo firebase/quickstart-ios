@@ -31,7 +31,7 @@ if [[ -z "${SPM:-}" ]]; then
 fi
 if [[ -z "${OS:-}" ]]; then
     OS=iOS
-    DEVICE="iPhone 14"
+    DEVICE="iPhone 16"
     echo "Defaulting to OS=$OS"
     echo "Defaulting to DEVICE=$DEVICE"
 fi
@@ -77,7 +77,7 @@ elif [[ "$OS" == tvOS ]]; then
     DESTINATION="platform=tvOS Simulator,name=${DEVICE}"
     flags+=( -destination "$DESTINATION" )
 elif [[ "$OS" == macOS || "$OS" == catalyst ]]; then
-    DESTINATION="platform=macos"
+    DESTINATION="platform=macOS"
     flags+=( -destination "$DESTINATION" )
 elif [[ "$OS" == watchOS ]]; then
     DESTINATION="platform=watchOS Simulator,name=${DEVICE}"
@@ -123,6 +123,6 @@ function xcb() {
 }
 
 # Run xcodebuild
-sudo xcode-select -s /Applications/Xcode_16.app/Contents/Developer
+sudo xcode-select -s /Applications/Xcode_16.1.app/Contents/Developer
 xcb "${flags[@]}"
 echo "$message"

@@ -29,14 +29,14 @@ env:
 jobs:
   spm:
     name: spm (Xcode ${{ matrix.xcode }} - ${{ matrix.os }})
-    runs-on: macOS-14
+    runs-on: macOS-15
     strategy:
       matrix:
-        xcode: ["15.3"]
+        xcode: ["16.1"]
         os: [iOS, tvOS, macOS]
         include:
           - os: iOS
-            device: iPhone 14
+            device: iPhone 16
           - os: tvOS
             device: Apple TV 4K (3rd generation) (at 1080p)
           - os: macOS

@@ -33,7 +33,7 @@ env:
 jobs:
   cocoapods:
     name: cocoapods
-    runs-on: macOS-14
+    runs-on: macOS-15
     env:
       SPM: false
       TEST: true
@@ -55,17 +55,17 @@ jobs:
           LEGACY: true
           SWIFT_SUFFIX: ""
           OS: iOS
-          DEVICE: iPhone 14
+          DEVICE: iPhone 16
   spm:
     name: spm (Xcode ${{ matrix.xcode }} - ${{ matrix.os }})
-    runs-on: macOS-14
+    runs-on: macOS-15
     strategy:
       matrix:
-        xcode: ["15.3"]
+        xcode: ["16.1"]
         os: [iOS, tvOS, macOS, watchOS, catalyst]
         include:
           - os: iOS
-            device: iPhone 15
+            device: iPhone 16
             # Test runs locally but fails in CI with:
             # (Underlying Error: lstat of
             # /Users/runner/Library/Developer/CoreSimulator/Devices/

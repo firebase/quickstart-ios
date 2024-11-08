@@ -29,14 +29,14 @@ env:
 jobs:
   cocoapods:
     name: cocoapods - ${{ matrix.os }}
-    runs-on: macOS-14
+    runs-on: macOS-15
     strategy:
       matrix:
         os: [iOS, catalyst, tvOS, macOS]
-        xcode: ["15.3"]
+        xcode: ["16.1"]
         include:
           - os: iOS
-            device: iPhone 14
+            device: iPhone 16
           - os: catalyst
             device: localhost
           - os: tvOS

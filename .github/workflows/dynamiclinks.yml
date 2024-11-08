@@ -29,12 +29,12 @@ env:
 jobs:
   cocoapods:
     name: cocoapods
-    runs-on: macOS-14
+    runs-on: macOS-15
     env:
       SPM: false
       LEGACY: false
       OS: iOS
-      DEVICE: iPhone 14
+      DEVICE: iPhone 16
       TEST: true
     steps:
       - name: Checkout

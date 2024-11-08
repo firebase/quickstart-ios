@@ -29,7 +29,7 @@ env:
 jobs:
   cocoapods:
     name: cocoapods
-    runs-on: macOS-14
+    runs-on: macOS-15
     env:
       SPM: false
       LEGACY: false
@@ -46,9 +46,9 @@ jobs:
           gem install xcpretty
           bundle exec pod install --repo-update
           ../scripts/install_prereqs/config.sh
-          xcrun simctl boot "iPhone 14"
+          xcrun simctl boot "iPhone 16"
       - name: Build Swift
         run: ./scripts/test.sh
         env:
           OS: iOS
-          DEVICE: iPhone 14
+          DEVICE: iPhone 16

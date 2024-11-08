@@ -77,7 +77,7 @@ elif [[ "$OS" == tvOS ]]; then
     DESTINATION="platform=tvOS Simulator,name=${DEVICE}"
     flags+=( -destination "$DESTINATION" )
 elif [[ "$OS" == macOS || "$OS" == catalyst ]]; then
-    DESTINATION="platform=macos"
+    DESTINATION="platform=macOS"
     flags+=( -destination "$DESTINATION" )
 elif [[ "$OS" == watchOS ]]; then
     DESTINATION="platform=watchOS Simulator,name=${DEVICE}"

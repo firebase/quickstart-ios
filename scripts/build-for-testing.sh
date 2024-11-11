@@ -35,19 +35,6 @@ fi
 # Set have_secrets to true or false.
 source scripts/check_secrets.sh
 
-# Get Xcode version
-system=$(uname -s)
-case "$system" in
-  Darwin)
-    xcode_version=$(xcodebuild -version | head -n 1)
-    xcode_version="${xcode_version/Xcode /}"
-    xcode_major="${xcode_version/.*/}"
-    ;;
-  *)
-    xcode_major="0"
-    ;;
-esac
-
 # Initialize flags
 flags=()
 
@@ -100,11 +87,11 @@ function xcb() {
 }
 
 # Run xcodebuild
-sudo xcode-select -s /Applications/Xcode_16.1.app/Contents/Developer
+sudo xcode-select -s /Applications/Xcode_15.3.app/Contents/Developer
 xcb "${flags[@]}"
 echo "$message"
 
 # Zip build-for-testing into MyTests.zip
-cd build-for-testing/${SCHEME}/Build/Products
-zip -r MyTests.zip Debug-iphoneos *.xctestrun
+cd "build-for-testing/${SCHEME}/Build/Products"
+zip -r MyTests.zip Debug-iphoneos ./*.xctestrun
 echo "build-for-testing/${SCHEME}/Build/Products zipped into MyTests.zip"

@@ -20,8 +20,7 @@
 
 set -euo pipefail
 
-macos_version=$(sw_vers --productVersion)
-if [[ "$macos_version" -ge 15 ]]; then
+if [ -d "/Applications/Xcode_16.1.app" ]; then
     xcode_version="16.1"
     iphone_version="16"
 else

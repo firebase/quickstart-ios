@@ -20,6 +20,15 @@
 
 set -euo pipefail
 
+macos_version=$(sw_vers --productVersion)
+if [[ "$macos_version" -ge 15 ]]; then
+    xcode_version="16.1"
+    iphone_version="16"
+else
+    xcode_version="15.3"
+    iphone_version="15"
+fi
+
 # Set default parameters
 if [[ -z "${SPM:-}" ]]; then
     SPM=false
@@ -31,7 +40,7 @@ if [[ -z "${SPM:-}" ]]; then
 fi
 if [[ -z "${OS:-}" ]]; then
     OS=iOS
-    DEVICE="iPhone 16"
+    DEVICE="iPhone ${iphone_version}"
     echo "Defaulting to OS=$OS"
     echo "Defaulting to DEVICE=$DEVICE"
 fi
@@ -123,6 +132,6 @@ function xcb() {
 }
 
 # Run xcodebuild
-sudo xcode-select -s /Applications/Xcode_16.1.app/Contents/Developer
+sudo xcode-select -s "/Applications/Xcode_${xcode_version}.app/Contents/Developer"
 xcb "${flags[@]}"
 echo "$message"

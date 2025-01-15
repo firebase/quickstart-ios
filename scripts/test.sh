@@ -112,6 +112,7 @@ fi
 flags+=(
     CODE_SIGNING_REQUIRED=NO
     CODE_SIGNING_ALLOWED=NO
+    CODE_SIGN_IDENTITY=-
     build
 )
 

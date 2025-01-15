@@ -37,20 +37,23 @@ jobs:
         include:
           - os: iOS
             device: iPhone 16
+            test: true
           - os: catalyst
             device: localhost
+            test: false # disabled due to a permissions error on launch (OSStatus -54).
           - os: tvOS
             device: Apple TV 4K (3rd generation) (at 1080p)
             scheme: AnalyticsExampleTV
+            test: true
           - os: macOS
             device: localhost
             scheme: AnalyticsExampleMac
+            test: true
     env:
       SPM: false
       LEGACY: false
       OS: ${{ matrix.os }}
       DEVICE: ${{ matrix.device }}
-      TEST: true
       SCHEME: ${{ matrix.scheme }}
       DEVELOPER_DIR: /Applications/Xcode_${{ matrix.xcode }}.app/Contents/Developer
     steps:
@@ -67,6 +70,7 @@ jobs:
       - name: Build Swift
         run: ./scripts/test.sh
         env:
+          TEST: ${{ matrix.test }}
           SWIFT_SUFFIX: ""
 
   #TODO: Add `spm` job.

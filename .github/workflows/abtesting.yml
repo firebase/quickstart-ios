@@ -84,7 +84,7 @@ jobs:
             test: false
           - os: catalyst
             device: localhost
-            test: true
+            test: false # disabled due to a permissions error on launch (OSStatus -54).
     env:
       SETUP: abtesting
       SPM: true

@@ -18,7 +18,6 @@
 //
 
 import SwiftUI
-import SDWebImageSwiftUI
 
 struct RestaurantImageView: View {
   var imageURL: URL
@@ -26,13 +25,11 @@ struct RestaurantImageView: View {
 
   var body: some View {
     if isThumbnail {
-      WebImage(url: imageURL)
-        .resizable()
+      AsyncImage(url: imageURL)
         .aspectRatio(1, contentMode: .fill)
         .frame(width: 100, height: 100, alignment: .leading)
     } else {
-      WebImage(url: imageURL)
-        .resizable()
+      AsyncImage(url: imageURL)
         .aspectRatio(contentMode: .fill)
     }
   }

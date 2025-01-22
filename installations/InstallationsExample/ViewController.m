@@ -16,10 +16,6 @@
 
 #import "ViewController.h"
 
-// TODO(M61): Remove once `Firebase/Installations` released.
-#import <FirebaseInstallations/FIRInstallations.h>
-#import <FirebaseInstallations/FIRInstallationsAuthTokenResult.h>
-
 @import FirebaseInstallations;
 
 @interface ViewController ()

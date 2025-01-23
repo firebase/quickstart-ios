@@ -28,10 +28,10 @@ env:
 
 jobs:
   cocoapods:
-    name: cocoapods
+    name: spm
     runs-on: macOS-15
     env:
-      SPM: false
+      SPM: true
       LEGACY: false
       SWIFT_SUFFIX: ""
       TEST: true
@@ -41,10 +41,6 @@ jobs:
       - name: Setup
         run: |
           cd config
-          gem install bundler
-          bundle install
-          gem install xcpretty
-          bundle exec pod install --repo-update
           ../scripts/install_prereqs/config.sh
           xcrun simctl boot "iPhone 16"
       - name: Build Swift

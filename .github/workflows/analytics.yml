@@ -32,15 +32,13 @@ jobs:
     runs-on: macOS-15
     strategy:
       matrix:
-        os: [iOS, catalyst, tvOS, macOS]
+        os: [iOS, tvOS, macOS]
         xcode: ["16.1"]
         include:
           - os: iOS
             device: iPhone 16
+            scheme: AnalyticsExample
             test: true
-          - os: catalyst
-            device: localhost
-            test: false # disabled due to a permissions error on launch (OSStatus -54).
           - os: tvOS
             device: Apple TV 4K (3rd generation) (at 1080p)
             scheme: AnalyticsExampleTV
@@ -50,10 +48,13 @@ jobs:
             scheme: AnalyticsExampleMac
             test: true
     env:
+      OS: ${{ matrix.os }}
+      SETUP: analytics
       SPM: true
       LEGACY: false
-      OS: ${{ matrix.os }}
+      DIR: analytics
       DEVICE: ${{ matrix.device }}
+      TEST: ${{ matrix.test }}
       SCHEME: ${{ matrix.scheme }}
       DEVELOPER_DIR: /Applications/Xcode_${{ matrix.xcode }}.app/Contents/Developer
     steps:
@@ -61,10 +62,8 @@ jobs:
         uses: actions/checkout@master
       - name: Setup
         run: |
-          cd analytics
-          ../scripts/install_prereqs/analytics.sh
-      - name: Build Swift
+          gem install xcpretty
+          cd $SETUP
+          ../scripts/install_prereqs/${SETUP}.sh
+      - name: Build and Test SwiftUI (${{ matrix.os }})
         run: ./scripts/test.sh
-        env:
-          TEST: ${{ matrix.test }}
-          SWIFT_SUFFIX: ""

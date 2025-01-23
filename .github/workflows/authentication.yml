@@ -28,24 +28,20 @@ env:
 
 jobs:
   cocoapods:
-    name: cocoapods
+    name: spm
     runs-on: macOS-15
     env:
-      SPM: false
+      SPM: true
       LEGACY: false
       OS: iOS
       DEVICE: iPhone 16
-      TEST: false
+      TEST: true
     steps:
       - name: Checkout
         uses: actions/checkout@master
       - name: Setup
         run: |
           cd authentication
-          gem install bundler
-          bundle install
-          gem install xcpretty
-          bundle exec pod install --repo-update
           ../scripts/install_prereqs/authentication.sh
       - name: Build Swift
         run: ./scripts/test.sh

@@ -28,7 +28,7 @@ env:
 
 jobs:
   cocoapods:
-    name: cocoapods - ${{ matrix.os }}
+    name: spm - ${{ matrix.os }}
     runs-on: macOS-15
     strategy:
       matrix:
@@ -50,7 +50,7 @@ jobs:
             scheme: AnalyticsExampleMac
             test: true
     env:
-      SPM: false
+      SPM: true
       LEGACY: false
       OS: ${{ matrix.os }}
       DEVICE: ${{ matrix.device }}
@@ -62,15 +62,9 @@ jobs:
       - name: Setup
         run: |
           cd analytics
-          gem install bundler
-          bundle install
-          gem install xcpretty
-          bundle exec pod install --repo-update
           ../scripts/install_prereqs/analytics.sh
       - name: Build Swift
         run: ./scripts/test.sh
         env:
           TEST: ${{ matrix.test }}
           SWIFT_SUFFIX: ""
-
-  #TODO: Add `spm` job.

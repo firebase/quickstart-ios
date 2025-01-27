@@ -28,29 +28,27 @@ env:
 
 jobs:
   cocoapods:
-    name: cocoapods
+    name: spm (non-SwiftUI)
     runs-on: macOS-15
     env:
-      SPM: false
-      LEGACY: false
       OS: iOS
+      SPM: true
+      LEGACY: false
+      DIR: database
       DEVICE: iPhone 16
       TEST: false
+      SCHEME: DatabaseExampleSwift
     steps:
       - name: Checkout
         uses: actions/checkout@master
       - name: Setup
         run: |
-          cd database
-          gem install bundler
-          bundle install
           gem install xcpretty
-          bundle exec pod install --repo-update
+          cd database
           ../scripts/install_prereqs/database.sh
       - name: Build Swift
         run: ./scripts/test.sh
-        env:
-          SWIFT_SUFFIX: Swift
+
   spm:
     name: spm (Xcode ${{ matrix.xcode }} - ${{ matrix.os }})
     runs-on: macOS-15

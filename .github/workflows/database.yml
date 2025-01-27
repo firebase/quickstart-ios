@@ -27,7 +27,7 @@ env:
   secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}
 
 jobs:
-  cocoapods:
+  spm-buildonly:
     name: spm (non-SwiftUI)
     runs-on: macOS-15
     env:

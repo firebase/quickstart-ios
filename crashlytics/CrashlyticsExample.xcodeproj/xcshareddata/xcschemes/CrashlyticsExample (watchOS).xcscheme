@@ -76,10 +76,8 @@
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES"
       notificationPayloadFile = "CrashlyticsSwiftUIExample_(watchOS)_Extension/PushNotificationPayload.apns">
-      <RemoteRunnable
-         runnableDebuggingMode = "2"
-         BundleIdentifier = "com.apple.Carousel"
-         RemotePath = "/CrashlyticsSwiftUIExample">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C74593FA26BDDD5F00153AE3"
@@ -87,7 +85,7 @@
             BlueprintName = "CrashlyticsSwiftUIExample_(watchOS)"
             ReferencedContainer = "container:CrashlyticsExample.xcodeproj">
          </BuildableReference>
-      </RemoteRunnable>
+      </BuildableProductRunnable>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -96,10 +94,8 @@
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES"
       notificationPayloadFile = "CrashlyticsSwiftUIExample_(watchOS)_Extension/PushNotificationPayload.apns">
-      <RemoteRunnable
-         runnableDebuggingMode = "2"
-         BundleIdentifier = "com.apple.Carousel"
-         RemotePath = "/CrashlyticsSwiftUIExample">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C74593FA26BDDD5F00153AE3"
@@ -107,16 +103,7 @@
             BlueprintName = "CrashlyticsSwiftUIExample_(watchOS)"
             ReferencedContainer = "container:CrashlyticsExample.xcodeproj">
          </BuildableReference>
-      </RemoteRunnable>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "C74593FA26BDDD5F00153AE3"
-            BuildableName = "CrashlyticsSwiftUIExample_(watchOS).app"
-            BlueprintName = "CrashlyticsSwiftUIExample_(watchOS)"
-            ReferencedContainer = "container:CrashlyticsExample.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

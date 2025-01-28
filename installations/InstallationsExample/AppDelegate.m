@@ -16,8 +16,6 @@
 
 #import "AppDelegate.h"
 
-// TODO: Remove once FirebaseInstallations has released.
-#import <FirebaseInstallations/FIRInstallations.h>
 @import FirebaseCore;
 
 @interface AppDelegate ()

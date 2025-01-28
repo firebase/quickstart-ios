@@ -27,27 +27,24 @@ env:
   secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}
 
 jobs:
-  cocoapods:
+  spm:
     name: cocoapods
     runs-on: macOS-15
     env:
-      SPM: false
+      SPM: true
       LEGACY: false
       OS: iOS
+      DIR: firestore
       DEVICE: iPhone 16
       TEST: false
+      SCHEME: FirestoreExample
     steps:
       - name: Checkout
         uses: actions/checkout@master
       - name: Setup
         run: |
           cd firestore
-          gem install bundler
-          bundle install
           gem install xcpretty
-          bundle exec pod install --repo-update
           ../scripts/install_prereqs/firestore.sh
       - name: Build
         run: ./scripts/test.sh
-        env:
-          SWIFT_SUFFIX: ""

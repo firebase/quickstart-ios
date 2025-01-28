@@ -28,26 +28,25 @@ env:
 
 jobs:
   cocoapods:
-    name: cocoapods
+    name: spm
     runs-on: macOS-15
     env:
-      SPM: false
-      LEGACY: false
       OS: iOS
+      SETUP: authentication
+      SPM: true
+      LEGACY: false
+      DIR: authentication
       DEVICE: iPhone 16
       TEST: false
+      SCHEME: AuthenticationExample
+      DEVELOPER_DIR: /Applications/Xcode_16.1.app/Contents/Developer
     steps:
       - name: Checkout
         uses: actions/checkout@master
       - name: Setup
         run: |
-          cd authentication
-          gem install bundler
-          bundle install
           gem install xcpretty
-          bundle exec pod install --repo-update
-          ../scripts/install_prereqs/authentication.sh
-      - name: Build Swift
+          cd $SETUP
+          ../scripts/install_prereqs/${SETUP}.sh
+      - name: Build and Test SwiftUI (${OS})
         run: ./scripts/test.sh
-        env:
-          SWIFT_SUFFIX: ""

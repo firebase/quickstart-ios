@@ -27,13 +27,16 @@ env:
   secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}
 
 jobs:
-  cocoapods:
+  spm:
     name: spm
     runs-on: macOS-15
     env:
+      OS: iOS
+      DEVICE: iPhone 16
+      DIR: config
       SPM: true
       LEGACY: false
-      SWIFT_SUFFIX: ""
+      SCHEME: ConfigExample
       TEST: true
     steps:
       - name: Checkout
@@ -45,6 +48,3 @@ jobs:
           xcrun simctl boot "iPhone 16"
       - name: Build Swift
         run: ./scripts/test.sh
-        env:
-          OS: iOS
-          DEVICE: iPhone 16

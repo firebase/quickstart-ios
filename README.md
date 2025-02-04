@@ -37,7 +37,6 @@ mint bootstrap
 ```
 
 - [A/B Testing](abtesting/README.md) ![build](https://github.com/firebase/quickstart-ios/actions/workflows/abtesting.yml/badge.svg)
-- [Admob](admob/README.md) ![build](https://github.com/firebase/quickstart-ios/actions/workflows/admob.yml/badge.svg)
 - [Analytics](analytics/README.md) ![build](https://github.com/firebase/quickstart-ios/actions/workflows/analytics.yml/badge.svg)
 - [Authentication](authentication/README.md) ![build](https://github.com/firebase/quickstart-ios/actions/workflows/authentication.yml/badge.svg)
 - [Remote Config](config/README.md) ![build](https://github.com/firebase/quickstart-ios/actions/workflows/config.yml/badge.svg)

@@ -46,7 +46,7 @@ PODS:
   - GoogleUtilities/Reachability (8.0.2):
     - GoogleUtilities/Logger
     - GoogleUtilities/Privacy
-  - GTMSessionFetcher/Core (4.3.0)
+  - GTMSessionFetcher/Core (4.4.0)
   - RecaptchaInterop (100.0.0)
 
 DEPENDENCIES:
@@ -75,7 +75,7 @@ SPEC CHECKSUMS:
   FirebaseCoreInternal: df24ce5af28864660ecbd13596fc8dd3a8c34629
   FirebaseStorage: 8eede00081a6ce904eaa8d2daa66f1e053e8e6ea
   GoogleUtilities: 26a3abef001b6533cf678d3eb38fd3f614b7872d
-  GTMSessionFetcher: 257ead9ba8e15a2d389d79496e02b9cc5dd0c62c
+  GTMSessionFetcher: 75b671f9e551e4c49153d4c4f8659ef4f559b970
   RecaptchaInterop: 7d1a4a01a6b2cb1610a47ef3f85f0c411434cb21
 
 PODFILE CHECKSUM: e921bf81a252f9a4e72e1d1516067b7019af8a51

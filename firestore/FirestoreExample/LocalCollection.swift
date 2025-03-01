@@ -16,9 +16,22 @@
 
 import FirebaseFirestore
 
+/**
+ * A helper class that manages a local cache of Firestore documents
+ * and syncs changes from the server to the local collection.
+ *
+ * This class is generic and can work with any Codable model type.
+ * It maintains both the decoded model objects and the associated
+ * DocumentSnapshots for extended functionality.
+ */
 final class LocalCollection<T: Codable> {
+  /// The locally cached model objects
   private(set) var items: [T]
+
+  /// The Firestore document snapshots associated with items
   private(set) var documents: [DocumentSnapshot] = []
+
+  /// The Firestore query used to retrieve documents
   let query: Query
 
   private let updateHandler: ([DocumentChange]) -> Void
@@ -43,6 +56,15 @@ final class LocalCollection<T: Codable> {
     self.updateHandler = updateHandler
   }
 
+  /**
+   * Finds the index of a document in the local collection by its ID.
+   *
+   * - Parameter document: The Firestore document snapshot to locate
+   * - Returns: The index of the document in the collection if found, or nil if not present
+   *
+   * - Note: This performs a linear search through the documents array.
+   *         For large collections, consider using a dictionary-based approach instead.
+   */
   func index(of document: DocumentSnapshot) -> Int? {
     for i in 0 ..< documents.count {
       if documents[i].documentID == document.documentID {
@@ -53,6 +75,17 @@ final class LocalCollection<T: Codable> {
     return nil
   }
 
+  /**
+   * Starts real-time listening for changes to the Firestore query.
+   *
+   * This method sets up a snapshot listener that will automatically update
+   * the local collection whenever changes occur in Firestore. The listener
+   * decodes documents into model objects of type T and calls the update handler
+   * with any document changes.
+   *
+   * - Note: If a listener is already active, this method does nothing.
+   *         Call `stopListening()` first if you need to change the query.
+   */
   func listen() {
     guard listener == nil else { return }
     listener = query.addSnapshotListener { [unowned self] querySnapshot, error in
@@ -60,7 +93,7 @@ final class LocalCollection<T: Codable> {
         print("Error fetching snapshot results: \(error!)")
         return
       }
-      let models = snapshot.documents.map { (document) -> T in
+      let models = snapshot.documents.map { document -> T in
         let maybeModel: T?
         do {
           maybeModel = try document.data(as: T.self)

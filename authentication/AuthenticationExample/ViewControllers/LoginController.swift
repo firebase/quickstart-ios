@@ -12,10 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import UIKit
 import FirebaseAuth
+import UIKit
 
 class LoginController: UIViewController {
+  /// Delegate that gets notified when authentication events occur
+  /// The delegate receives a callback when a user successfully logs in or creates an account
   weak var delegate: LoginDelegate?
 
   private var loginView: LoginView { view as! LoginView }
@@ -54,7 +56,13 @@ class LoginController: UIViewController {
     navigationController?.popViewController(animated: false)
   }
 
-  // Dismisses keyboard when view is tapped
+  // MARK: - User Interaction Handling
+
+  /**
+   * Dismisses the keyboard when the user taps anywhere on the view.
+   * This improves usability by providing an easy way to dismiss the keyboard
+   * after entering text in either the email or password field.
+   */
   override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
     super.touchesBegan(touches, with: event)
     view.endEditing(true)
@@ -62,16 +70,36 @@ class LoginController: UIViewController {
 
   // MARK: - Firebase 🔥
 
+  /**
+   * Authenticates a user with Firebase using email and password
+   *
+   * - Parameters:
+   *   - email: User's email address
+   *   - password: User's password
+   * - Note: On successful login, calls `delegate?.loginDidOccur()` to notify the delegate
+   *         On failure, displays the error to the user
+   */
   private func login(with email: String, password: String) {
-    Auth.auth().signIn(withEmail: email, password: password) { result, error in
+    Auth.auth().signIn(withEmail: email, password: password) { _, error in
       guard error == nil else { return self.displayError(error) }
+      // Notify delegate that login was successful
       self.delegate?.loginDidOccur()
     }
   }
 
+  /**
+   * Creates a new user account with Firebase using email and password
+   *
+   * - Parameters:
+   *   - email: User's email address
+   *   - password: User's password
+   * - Note: On successful account creation, calls `delegate?.loginDidOccur()` to notify the delegate
+   *         On failure, displays the error to the user
+   */
   private func createUser(email: String, password: String) {
-    Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
+    Auth.auth().createUser(withEmail: email, password: password) { _, error in
       guard error == nil else { return self.displayError(error) }
+      // Notify delegate that account creation was successful
       self.delegate?.loginDidOccur()
     }
   }
@@ -108,7 +136,8 @@ class LoginController: UIViewController {
   }
 
   override func viewWillTransition(to size: CGSize,
-                                   with coordinator: UIViewControllerTransitionCoordinator) {
+                                   with coordinator: UIViewControllerTransitionCoordinator)
+  {
     super.viewWillTransition(to: size, with: coordinator)
     loginView.emailTopConstraint.constant = UIDevice.current.orientation.isLandscape ? 15 : 50
     loginView.passwordTopConstraint.constant = UIDevice.current.orientation.isLandscape ? 5 : 20

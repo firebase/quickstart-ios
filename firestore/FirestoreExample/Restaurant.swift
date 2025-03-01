@@ -92,10 +92,24 @@ extension Restaurant {
     "Mediterranean", "Mexican", "Pizza", "Ramen", "Sushi",
   ]
 
+  /**
+   * Generates a deterministic image URL based on a restaurant name.
+   *
+   * - Parameter name: The restaurant name to generate an image URL for
+   * - Returns: A URL pointing to a food image in Firebase Storage
+   *
+   * - Note: This method uses a hash of the restaurant name to select one of 22
+   *         predefined food images. The same name will always map to the same image.
+   *         This is useful for generating consistent placeholder images.
+   */
   static func imageURL(forName name: String) -> URL {
+    // Generate a number between 1-22 based on the hash of the restaurant name
     let number = (abs(name.hashValue) % 22) + 1
+
+    // Create a URL string to the corresponding image in Firebase Storage
     let URLString =
       "https://storage.googleapis.com/firestorequickstarts.appspot.com/food_\(number).png"
+
     return URL(string: URLString)!
   }
 

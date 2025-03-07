@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 60;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -33,6 +33,7 @@
 		886F95E32B17D6630036F07A /* GenerativeAIUIComponents in Frameworks */ = {isa = PBXBuildFile; productRef = 886F95E22B17D6630036F07A /* GenerativeAIUIComponents */; };
 		DEFECAA92D7B4CCD00EF9621 /* ImagenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEFECAA72D7B4CCD00EF9621 /* ImagenViewModel.swift */; };
 		DEFECAAA2D7B4CCD00EF9621 /* ImagenScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEFECAA62D7B4CCD00EF9621 /* ImagenScreen.swift */; };
+		DEFECAAD2D7BB49700EF9621 /* FirebaseVertexAI in Frameworks */ = {isa = PBXBuildFile; productRef = DEFECAAC2D7BB49700EF9621 /* FirebaseVertexAI */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -75,6 +76,7 @@
 				86D9CAB52BED3EE1007D939E /* FirebaseStorage in Frameworks */,
 				86D9CA8F2BED3EE1007D939E /* FirebaseAuth in Frameworks */,
 				86D9CA8B2BED3EE1007D939E /* FirebaseAppCheck in Frameworks */,
+				DEFECAAD2D7BB49700EF9621 /* FirebaseVertexAI in Frameworks */,
 				886F95E32B17D6630036F07A /* GenerativeAIUIComponents in Frameworks */,
 				86D9CAB92BED3EE1007D939E /* FirebaseVertexAI in Frameworks */,
 			);
@@ -316,6 +318,7 @@
 				86D9CA8E2BED3EE1007D939E /* FirebaseAuth */,
 				86D9CAB42BED3EE1007D939E /* FirebaseStorage */,
 				86D9CAB82BED3EE1007D939E /* FirebaseVertexAI */,
+				DEFECAAC2D7BB49700EF9621 /* FirebaseVertexAI */,
 			);
 			productName = GenerativeAISample;
 			productReference = 8848C82F2B0D04BC007B434F /* VertexAISample.app */;
@@ -348,7 +351,7 @@
 			packageReferences = (
 				88209C212B0FBDF700F64795 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */,
 				DEA09AC32B1FCE22001962D9 /* XCRemoteSwiftPackageReference "NetworkImage" */,
-				86D9CA892BED3EE1007D939E /* XCLocalSwiftPackageReference "../.." */,
+				DEFECAAB2D7BB49700EF9621 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = 8848C8302B0D04BC007B434F /* Products */;
 			projectDirPath = "";
@@ -602,13 +605,6 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCLocalSwiftPackageReference section */
-		86D9CA892BED3EE1007D939E /* XCLocalSwiftPackageReference "../.." */ = {
-			isa = XCLocalSwiftPackageReference;
-			relativePath = ../..;
-		};
-/* End XCLocalSwiftPackageReference section */
-
 /* Begin XCRemoteSwiftPackageReference section */
 		88209C212B0FBDF700F64795 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */ = {
 			isa = XCRemoteSwiftPackageReference;
@@ -624,6 +620,14 @@
 			requirement = {
 				kind = revision;
 				revision = 7aff8d1b31148d32c5933d75557d42f6323ee3d1;
+			};
+		};
+		DEFECAAB2D7BB49700EF9621 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.9.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -653,6 +657,11 @@
 		886F95E22B17D6630036F07A /* GenerativeAIUIComponents */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = GenerativeAIUIComponents;
+		};
+		DEFECAAC2D7BB49700EF9621 /* FirebaseVertexAI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DEFECAAB2D7BB49700EF9621 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseVertexAI;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

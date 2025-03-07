@@ -9,13 +9,12 @@ from your app, rather than server-side, using the
 ### Clone and open the sample project
 
 1. Clone this repo.
-1. Change into the `FirebaseVertexAI/Sample` directory.
+1. Change into the `vertexai` directory.
 1. Open `VertexAISample.xcodeproj` using Xcode.
 
 ```bash
-git clone https://github.com/firebase/firebase-ios-sdk.git
-cd firebase-ios-sdk
-cd FirebaseVertexAI/Sample
+git clone https://github.com/firebase/quickstart-ios.git
+cd quickstart-ios/vertexai
 open VertexAISample.xcodeproj
 ```
 

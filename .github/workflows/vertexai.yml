@@ -1,0 +1,50 @@
+name: vertexai
+
+on:
+  pull_request:
+    paths:
+    - 'vertexai/**'
+  schedule:
+    # Run every day at 11pm (PST) - cron uses UTC times
+    - cron:  '0 7 * * *'
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}
+  cancel-in-progress: true
+
+env:
+  SAMPLE: vertexai
+
+jobs:
+  spm:
+    name: spm (Xcode ${{ matrix.xcode }} - ${{ matrix.os }})
+    runs-on: macOS-15
+    strategy:
+      matrix:
+        xcode: ["16.1"]
+        os: [iOS, tvOS, macOS]
+        include:
+          - os: iOS
+            device: iPhone 16
+          - os: tvOS
+            device: Apple TV 4K (3rd generation) (at 1080p)
+          - os: macOS
+            device: localhost
+    env:
+      SETUP: vertexai
+      SPM: true
+      DIR: vertexai
+      OS: ${{ matrix.os }}
+      DEVICE: ${{ matrix.device }}
+      TEST: false
+      XCODE_VERSION: ${{ matrix.xcode }}
+      DEVELOPER_DIR: /Applications/Xcode_${{ matrix.xcode }}.app/Contents/Developer
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+      - name: Setup
+        run: |
+          gem install xcpretty
+      - name: Build and Test SwiftUI (${{ matrix.os }})
+        run: ./scripts/test.sh

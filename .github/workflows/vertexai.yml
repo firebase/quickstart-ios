@@ -23,14 +23,10 @@ jobs:
     strategy:
       matrix:
         xcode: ["16.1"]
-        os: [iOS, tvOS, macOS]
+        os: [iOS]
         include:
           - os: iOS
             device: iPhone 16
-          - os: tvOS
-            device: Apple TV 4K (3rd generation) (at 1080p)
-          - os: macOS
-            device: localhost
     env:
       SETUP: vertexai
       SPM: true

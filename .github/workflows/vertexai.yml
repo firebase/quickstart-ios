@@ -42,5 +42,7 @@ jobs:
       - name: Setup
         run: |
           gem install xcpretty
+      - name: Placeholder GoogleService-Info.plist good enough for build only testing.
+        run: cp ./mock-GoogleService-Info.plist ./vertexai/GoogleService-Info.plist
       - name: Build and Test SwiftUI (${{ matrix.os }})
         run: ./scripts/test.sh

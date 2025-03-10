@@ -30,7 +30,7 @@ struct ImagenScreen: View {
       VStack {
         InputField("Enter a prompt to generate an image", text: $viewModel.userInput) {
           Image(
-            systemName: viewModel.inProgress ? "stop.circle.fill" : "arrow.up.circle.fill"
+            systemName: viewModel.inProgress ? "stop.circle.fill" : "paperplane.circle.fill"
           )
           .font(.title)
         }

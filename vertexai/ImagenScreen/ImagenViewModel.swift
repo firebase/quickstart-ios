@@ -59,7 +59,7 @@ class ImagenViewModel: ObservableObject {
   }
 
   func generateImage(prompt: String) async {
-    generateImagesTask?.cancel()
+    stop()
 
     generateImagesTask = Task {
       inProgress = true
@@ -76,15 +76,20 @@ class ImagenViewModel: ObservableObject {
           print("Image(s) Blocked: \(filteredReason)")
         }
 
-        // 6. Convert the image data to UIImage for display in the UI
-        images = response.images.compactMap { UIImage(data: $0.data) }
+        if !Task.isCancelled {
+          // 6. Convert the image data to UIImage for display in the UI
+          images = response.images.compactMap { UIImage(data: $0.data) }
+        }
       } catch {
-        logger.error("Error generating images: \(error)")
+        if !Task.isCancelled {
+          logger.error("Error generating images: \(error)")
+        }
       }
     }
   }
 
   func stop() {
     generateImagesTask?.cancel()
+    generateImagesTask = nil
   }
 }

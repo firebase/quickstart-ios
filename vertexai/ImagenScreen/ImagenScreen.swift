@@ -75,7 +75,7 @@ struct ImagenScreen: View {
 
   private func sendOrStop() {
     if viewModel.inProgress {
-      //      viewModel.stop()
+      viewModel.stop()
     } else {
       sendMessage()
     }

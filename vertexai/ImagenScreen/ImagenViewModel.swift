@@ -35,6 +35,8 @@ class ImagenViewModel: ObservableObject {
 
   private let model: ImagenModel
 
+  private var generateImagesTask: Task<Void, Never>?
+
   // 1. Initialize the Vertex AI service
   private let vertexAI = VertexAI.vertexAI()
 
@@ -57,27 +59,37 @@ class ImagenViewModel: ObservableObject {
   }
 
   func generateImage(prompt: String) async {
-    guard !inProgress else {
-      print("Already generating images...")
-      return
-    }
-    do {
+    stop()
+
+    generateImagesTask = Task {
+      inProgress = true
       defer {
         inProgress = false
       }
-      inProgress = true
-      // 4. Call generateImages with the text prompt
-      let response = try await model.generateImages(prompt: prompt)
 
-      // 5. Print the reason images were filtered out, if any.
-      if let filteredReason = response.filteredReason {
-        print("Image(s) Blocked: \(filteredReason)")
+      do {
+        // 4. Call generateImages with the text prompt
+        let response = try await model.generateImages(prompt: prompt)
+
+        // 5. Print the reason images were filtered out, if any.
+        if let filteredReason = response.filteredReason {
+          print("Image(s) Blocked: \(filteredReason)")
+        }
+
+        if !Task.isCancelled {
+          // 6. Convert the image data to UIImage for display in the UI
+          images = response.images.compactMap { UIImage(data: $0.data) }
+        }
+      } catch {
+        if !Task.isCancelled {
+          logger.error("Error generating images: \(error)")
+        }
       }
-
-      // 6. Convert the image data to UIImage for display in the UI
-      images = response.images.compactMap { UIImage(data: $0.data) }
-    } catch {
-      logger.error("Error generating images: \(error)")
     }
+  }
+
+  func stop() {
+    generateImagesTask?.cancel()
+    generateImagesTask = nil
   }
 }

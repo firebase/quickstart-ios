@@ -13,6 +13,7 @@
 // limitations under the License.
 
 import SwiftUI
+import GenerativeAIUIComponents
 
 struct ImagenScreen: View {
   @StateObject var viewModel = ImagenViewModel()
@@ -25,29 +26,38 @@ struct ImagenScreen: View {
   var focusedField: FocusedField?
 
   var body: some View {
-    VStack {
-      TextField("Enter a prompt to generate an image", text: $viewModel.userInput)
-        .focused($focusedField, equals: .message)
-        .textFieldStyle(.roundedBorder)
-        .onSubmit {
-          onGenerateTapped()
+    ZStack {
+      VStack {
+        InputField("Enter a prompt to generate an image", text: $viewModel.userInput) {
+          Image(
+            systemName: viewModel.inProgress ? "stop.circle.fill" : "paperplane.circle.fill"
+          )
+          .font(.title)
         }
-        .padding()
+        .focused($focusedField, equals: .message)
+        .onSubmit { sendOrStop() }
 
-      Button("Generate") {
-        onGenerateTapped()
+        ScrollView {
+          let spacing: CGFloat = 10
+          LazyVGrid(columns: [
+            GridItem(.fixed(UIScreen.main.bounds.width / 2 - spacing), spacing: spacing),
+            GridItem(.fixed(UIScreen.main.bounds.width / 2 - spacing), spacing: spacing),
+          ], spacing: spacing) {
+            ForEach(viewModel.images, id: \.self) { image in
+              Image(uiImage: image)
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .frame(width: UIScreen.main.bounds.width / 2 - spacing,
+                       height: UIScreen.main.bounds.width / 2 - spacing)
+                .cornerRadius(12)
+                .clipped()
+            }
+          }
+          .padding(.horizontal, spacing)
+        }
       }
-      .padding()
       if viewModel.inProgress {
-        Text("Waiting for model response ...")
-      }
-      ForEach(viewModel.images, id: \.self) {
-        Image(uiImage: $0)
-          .resizable()
-          .scaledToFill()
-          .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
-          .aspectRatio(nil, contentMode: .fit)
-          .clipped()
+        ProgressOverlay()
       }
     }
     .navigationTitle("Imagen sample")
@@ -56,11 +66,38 @@ struct ImagenScreen: View {
     }
   }
 
-  private func onGenerateTapped() {
-    focusedField = nil
-
+  private func sendMessage() {
     Task {
       await viewModel.generateImage(prompt: viewModel.userInput)
+      focusedField = .message
+    }
+  }
+
+  private func sendOrStop() {
+    if viewModel.inProgress {
+      viewModel.stop()
+    } else {
+      sendMessage()
+    }
+  }
+}
+
+struct ProgressOverlay: View {
+  var body: some View {
+    ZStack {
+      RoundedRectangle(cornerRadius: 16)
+        .fill(Material.ultraThinMaterial)
+        .frame(width: 120, height: 100)
+        .shadow(radius: 8)
+
+      VStack(spacing: 12) {
+        ProgressView()
+          .scaleEffect(1.5)
+
+        Text("Loading...")
+          .font(.subheadline)
+          .foregroundColor(.secondary)
+      }
     }
   }
 }

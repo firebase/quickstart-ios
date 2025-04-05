@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Live Team Golf Scores</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+    }
+
+    .controls, .team {
+      background: #fff;
+      padding: 15px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .controls select, .controls input, .controls button {
+      margin-right: 10px;
+      padding: 6px;
+      font-size: 14px;
+    }
+
+    .team-name {
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 10px;
+    }
+
+    th, td {
+      border: 1px solid #ccc;
+      padding: 6px;
+      text-align: center;
+    }
+
+    .team {
+      margin-top: 10px;
+    }
+
+    .format-info {
+      margin-top: 10px;
+      font-style: italic;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <h1>Live Team Golf Scores</h1>
+  
+  <div class="controls">
+    <label>Scoring Format: 
+      <select id="format">
+        <option value="stroke">Stroke Play</option>
+        <option value="match">Match Play</option>
+        <option value="bestball">Best Ball</option>
+        <option value="scramble">Scramble</option>
+      </select>
+    </label>
+
+    <input type="number" id="teamCount" min="2" max="10" placeholder="Number of Teams (max 10)" />
+    <input type="number" id="playersPerTeam" min="1" max="6" placeholder="Players per Team" />
+    <button onclick="setupTeams()">Start</button>
+  </div>
+
+  <div id="teamsContainer"></div>
+
+  <script>
+    function setupTeams() {
+      const teamCount = parseInt(document.getElementById('teamCount').value);
+      const playersPerTeam = parseInt(document.getElementById('playersPerTeam').value);
+      const format = document.getElementById('format').value;
+      const container = document.getElementById('teamsContainer');
+      container.innerHTML = '';
+
+      if (!teamCount || teamCount < 2 || teamCount > 10 || !playersPerTeam || playersPerTeam < 1) {
+        alert('Please enter valid team and player numbers.');
+        return;
+      }
+
+      for (let t = 1; t <= teamCount; t++) {
+        const teamDiv = document.createElement('div');
+        teamDiv.className = 'team';
+        teamDiv.innerHTML = `<div class="team-name">Team ${t}</div>
+          <table>
+            <thead>
+              <tr><th>Player</th>${[...Array(18).keys()].map(h => `<th>H${h+1}</th>`).join('')}<th>Total</th></tr>
+            </thead>
+            <tbody>
+              ${[...Array(playersPerTeam)].map((_, p) => `
+                <tr data-team="${t}" data-player="${p}">
+                  <td>Player ${p + 1}</td>
+                  ${[...Array(18).keys()].map(h => `<td><input type="number" min="1" max="12" style="width:40px;" onchange="updateTotal(this)"/></td>`).join('')}
+                  <td class="total">0</td>
+                </tr>
+              `).join('')}
+            </tbody>
+          </table>
+          <div class="format-info">Format: ${format.charAt(0).toUpperCase() + format.slice(1)}</div>
+        `;
+        container.appendChild(teamDiv);
+      }
+    }
+
+    function updateTotal(input) {
+      const row = input.closest('tr');
+      const inputs = row.querySelectorAll('input');
+      let sum = 0;
+      inputs.forEach(i => {
+        const val = parseInt(i.value);
+        if (!isNaN(val)) sum += val;
+      });
+      row.querySelector('.total').textContent = sum;
+    }
+  </script>
+</body>
+</html>

@@ -87,7 +87,7 @@ function xcb() {
 }
 
 # Run xcodebuild
-sudo xcode-select -s /Applications/Xcode_15.3.app/Contents/Developer
+sudo xcode-select -s /Applications/Xcode_16.2.app/Contents/Developer
 xcb "${flags[@]}"
 echo "$message"
 

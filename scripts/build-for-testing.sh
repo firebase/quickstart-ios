@@ -75,6 +75,9 @@ flags+=(
     CODE_SIGN_IDENTITY=""
     CODE_SIGNING_REQUIRED=NO
     CODE_SIGNING_ALLOWED=NO
+    # Prevents unsigned `__preview.dylib` from being created and causing signing issues.
+    # See https://developer.apple.com/documentation/xcode/understanding-build-product-layout-changes
+    ENABLE_DEBUG_DYLIB=NO
     build-for-testing
 )
 

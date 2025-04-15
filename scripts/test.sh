@@ -20,8 +20,8 @@
 
 set -euo pipefail
 
-if [ -d "/Applications/Xcode_16.1.app" ]; then
-    xcode_version="16.1"
+if [ -d "/Applications/Xcode_16.2.app" ]; then
+    xcode_version="16.2"
     iphone_version="16"
 else
     xcode_version="15.3"

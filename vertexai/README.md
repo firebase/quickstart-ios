@@ -29,8 +29,7 @@ Firebase sample app to your Firebase project (or create a new project):
    matches the one in the sample.
      - The default bundle ID is `com.google.firebase.VertexAISample`
 3. Download the `GoogleService-Info.plist` for the app when prompted and save
-   it to the `FirebaseVertexAI/Sample` directory, overwriting the placeholder
-   file with the same name.
+   it to the `vertexai` directory.
 
 You should now be able to build and run the sample!
 

@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import FirebaseVertexAI
+import FirebaseAI
 import Foundation
 import OSLog
 
@@ -32,7 +32,7 @@ class SummarizeViewModel: ObservableObject {
   private var model: GenerativeModel?
 
   init() {
-    model = VertexAI.vertexAI().generativeModel(modelName: "gemini-2.0-flash-001")
+    model = FirebaseAI.firebaseAI(backend: .vertexAI()).generativeModel(modelName: "gemini-2.0-flash-001")
   }
 
   func summarize(inputText: String) async {

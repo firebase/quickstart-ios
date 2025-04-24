@@ -31,7 +31,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
       fatalError("""
       You must create and/or download a valid `GoogleService-Info.plist` file for \(bundleID) from \
       https://console.firebase.google.com to run this sample. Replace the existing \
-      `GoogleService-Info.plist` file in the `FirebaseVertexAI/Sample` directory with this new file.
+      `GoogleService-Info.plist` file in the `firebaseai` directory with this new file.
       """)
     }
 
@@ -40,7 +40,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 }
 
 @main
-struct VertexAISampleApp: App {
+struct FirebaseAISampleApp: App {
   @UIApplicationDelegateAdaptor var appDelegate: AppDelegate
 
   var body: some Scene {

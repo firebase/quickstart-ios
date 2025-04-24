@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import FirebaseVertexAI
+import FirebaseAI
 import Foundation
 import UIKit
 
@@ -38,7 +38,7 @@ class FunctionCallingViewModel: ObservableObject {
   private var chatTask: Task<Void, Never>?
 
   init() {
-    model = VertexAI.vertexAI().generativeModel(
+    model = FirebaseAI.firebaseAI(backend: .vertexAI()).generativeModel(
       modelName: "gemini-2.0-flash-001",
       tools: [.functionDeclarations([
         FunctionDeclaration(

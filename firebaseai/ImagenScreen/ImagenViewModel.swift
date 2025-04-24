@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import FirebaseVertexAI
+import FirebaseAI
 import Foundation
 import OSLog
 import SwiftUI
@@ -38,8 +38,7 @@ class ImagenViewModel: ObservableObject {
   private var generateImagesTask: Task<Void, Never>?
 
   // 1. Initialize the Vertex AI service
-  private let vertexAI = VertexAI.vertexAI()
-
+  private let vertexAI = FirebaseAI.firebaseAI(backend: .vertexAI())
   init() {
     // 2. Configure Imagen settings
     let modelName = "imagen-3.0-generate-002"

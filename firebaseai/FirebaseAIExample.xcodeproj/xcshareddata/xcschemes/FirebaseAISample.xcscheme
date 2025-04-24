@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1620"
+   LastUpgradeVersion = "1630"
    version = "1.7">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -16,9 +16,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "8848C82E2B0D04BC007B434F"
-               BuildableName = "VertexAISample.app"
-               BlueprintName = "VertexAISample"
-               ReferencedContainer = "container:VertexAIExample.xcodeproj">
+               BuildableName = "FirebaseAISample.app"
+               BlueprintName = "FirebaseAISample"
+               ReferencedContainer = "container:FirebaseAIExample.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -45,9 +45,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "8848C82E2B0D04BC007B434F"
-            BuildableName = "VertexAISample.app"
-            BlueprintName = "VertexAISample"
-            ReferencedContainer = "container:VertexAIExample.xcodeproj">
+            BuildableName = "FirebaseAISample.app"
+            BlueprintName = "FirebaseAISample"
+            ReferencedContainer = "container:FirebaseAIExample.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -62,9 +62,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "8848C82E2B0D04BC007B434F"
-            BuildableName = "VertexAISample.app"
-            BlueprintName = "VertexAISample"
-            ReferencedContainer = "container:VertexAIExample.xcodeproj">
+            BuildableName = "FirebaseAISample.app"
+            BlueprintName = "FirebaseAISample"
+            ReferencedContainer = "container:FirebaseAIExample.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

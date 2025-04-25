@@ -14,10 +14,18 @@
 
 import MarkdownUI
 import SwiftUI
+// Assuming AIBackend is accessible (moved to Common/AIBackend.swift)
 
 struct SummarizeScreen: View {
-  @StateObject var viewModel = SummarizeViewModel()
+  let backend: AIBackend // Receive backend from ContentView
+  @StateObject var viewModel: SummarizeViewModel // ViewModel will be initialized in init
   @State var userInput = ""
+
+  // Initializer to pass backend to ViewModel
+  init(backend: AIBackend) {
+    self.backend = backend
+    _viewModel = StateObject(wrappedValue: SummarizeViewModel(backend: backend))
+  }
 
   enum FocusedField: Hashable {
     case message
@@ -75,6 +83,7 @@ struct SummarizeScreen: View {
 
 #Preview {
   NavigationStack {
-    SummarizeScreen()
+    // Pass a default backend for the preview
+    SummarizeScreen(backend: .googleAI)
   }
 }

@@ -16,9 +16,17 @@ import GenerativeAIUIComponents
 import MarkdownUI
 import PhotosUI
 import SwiftUI
+// Assuming AIBackend is accessible (moved to Common/AIBackend.swift)
 
 struct PhotoReasoningScreen: View {
-  @StateObject var viewModel = PhotoReasoningViewModel()
+  let backend: AIBackend // Receive backend from ContentView
+  @StateObject var viewModel: PhotoReasoningViewModel // ViewModel will be initialized in init
+
+  // Initializer to pass backend to ViewModel
+  init(backend: AIBackend) {
+    self.backend = backend
+    _viewModel = StateObject(wrappedValue: PhotoReasoningViewModel(backend: backend))
+  }
 
   enum FocusedField: Hashable {
     case message
@@ -73,6 +81,7 @@ struct PhotoReasoningScreen: View {
 
 #Preview {
   NavigationStack {
-    PhotoReasoningScreen()
+    // Pass a default backend for the preview
+    PhotoReasoningScreen(backend: .googleAI)
   }
 }

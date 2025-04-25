@@ -16,9 +16,11 @@ import FirebaseAI
 import Foundation
 import OSLog
 import SwiftUI
+// Assuming AIBackend is accessible (moved to Common/AIBackend.swift)
 
 @MainActor
 class ImagenViewModel: ObservableObject {
+  private let backend: AIBackend
   private var logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "generative-ai")
 
   @Published
@@ -37,11 +39,21 @@ class ImagenViewModel: ObservableObject {
 
   private var generateImagesTask: Task<Void, Never>?
 
-  // 1. Initialize the Gemini service
-  // private let service = FirebaseAI.firebaseAI(backend: .vertexAI())
-  private let service = FirebaseAI.firebaseAI(backend: .googleAI())
-  init() {
-    // 2. Configure Imagen settings
+  // Service and Model are now initialized within init
+  private let service: FirebaseAI
+  private let model: ImagenModel
+
+  init(backend: AIBackend) {
+    self.backend = backend
+    // 1. Initialize the FirebaseAI service based on backend
+    switch backend {
+    case .googleAI:
+      service = FirebaseAI.firebaseAI(backend: .googleAI())
+    case .vertexAI:
+      service = FirebaseAI.firebaseAI(backend: .vertexAI())
+    }
+
+    // 2. Configure Imagen settings (remains the same)
     let modelName = "imagen-3.0-generate-002"
     let safetySettings = ImagenSafetySettings(
       safetyFilterLevel: .blockLowAndAbove
@@ -50,7 +62,7 @@ class ImagenViewModel: ObservableObject {
     generationConfig.numberOfImages = 4
     generationConfig.aspectRatio = .landscape4x3
 
-    // 3. Initialize the Imagen model
+    // 3. Initialize the Imagen model using the selected service
     model = service.imagenModel(
       modelName: modelName,
       generationConfig: generationConfig,

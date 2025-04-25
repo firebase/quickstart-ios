@@ -12,9 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import FirebaseAI // Assuming the backend type is here
 import FirebaseAppCheck
 import FirebaseCore
 import SwiftUI
+
+// AIBackend enum is now defined in Common/AIBackend.swift
 
 class AppDelegate: NSObject, UIApplicationDelegate {
   func application(_ application: UIApplication,
@@ -39,13 +42,22 @@ class AppDelegate: NSObject, UIApplicationDelegate {
   }
 }
 
+// Define a placeholder enum for now, will adjust if a specific type exists
+// TODO: Replace with actual type if available in FirebaseAI
+enum AIBackend {
+  case googleAI
+  case vertexAI // Assuming another potential backend
+}
+
 @main
 struct FirebaseAISampleApp: App {
   @UIApplicationDelegateAdaptor var appDelegate: AppDelegate
+  @State private var selectedBackend: AIBackend = .googleAI // Add the state variable
 
   var body: some Scene {
     WindowGroup {
-      ContentView()
+      // Pass the state variable down to ContentView
+      ContentView(selectedBackend: $selectedBackend)
     }
   }
 }

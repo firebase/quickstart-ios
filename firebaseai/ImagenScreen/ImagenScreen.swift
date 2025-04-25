@@ -14,9 +14,17 @@
 
 import SwiftUI
 import GenerativeAIUIComponents
+// Assuming AIBackend is accessible (moved to Common/AIBackend.swift)
 
 struct ImagenScreen: View {
-  @StateObject var viewModel = ImagenViewModel()
+  let backend: AIBackend // Receive backend from ContentView
+  @StateObject var viewModel: ImagenViewModel // ViewModel will be initialized in init
+
+  // Initializer to pass backend to ViewModel
+  init(backend: AIBackend) {
+    self.backend = backend
+    _viewModel = StateObject(wrappedValue: ImagenViewModel(backend: backend))
+  }
 
   enum FocusedField: Hashable {
     case message
@@ -103,5 +111,6 @@ struct ProgressOverlay: View {
 }
 
 #Preview {
-  ImagenScreen()
+  // Pass a default backend for the preview
+  ImagenScreen(backend: .googleAI)
 }

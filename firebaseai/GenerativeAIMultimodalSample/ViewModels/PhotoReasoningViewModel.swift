@@ -18,8 +18,11 @@ import OSLog
 import PhotosUI
 import SwiftUI
 
+import SwiftUI // Add import for AIBackend if needed, or assume access
+
 @MainActor
 class PhotoReasoningViewModel: ObservableObject {
+  private let backend: AIBackend
   // Maximum value for the larger of the two image dimensions (height and width) in pixels. This is
   // being used to reduce the image size in bytes.
   private static let largestImageDimension = 768.0
@@ -41,21 +44,29 @@ class PhotoReasoningViewModel: ObservableObject {
   @Published
   var inProgress = false
 
-  private var model: GenerativeModel?
+  private var model: GenerativeModel
 
-  init() {
-    // model = FirebaseAI.firebaseAI(backend: .vertexAI()).generativeModel(modelName: "gemini-2.0-flash-001")
-    model = FirebaseAI.firebaseAI(backend: .googleAI())
-      .generativeModel(modelName: "gemini-2.0-flash-001")
+  init(backend: AIBackend) {
+    self.backend = backend
+    let service: FirebaseAI
+    switch backend {
+    case .googleAI:
+      service = FirebaseAI.firebaseAI(backend: .googleAI())
+    case .vertexAI:
+      service = FirebaseAI.firebaseAI(backend: .vertexAI())
+    }
+    // Initialize the model using the selected service
+    model = service.generativeModel(modelName: "gemini-2.0-flash-001") // Adjust model name if needed per backend
   }
 
   func reason() async {
     defer {
       inProgress = false
     }
-    guard let model else {
-      return
-    }
+    // Model is now non-optional
+    // guard let model else {
+    //   return
+    // }
 
     do {
       inProgress = true

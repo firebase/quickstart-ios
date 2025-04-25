@@ -15,10 +15,14 @@
 import FirebaseAI
 import GenerativeAIUIComponents
 import SwiftUI
+// Assuming AIBackend is accessible (moved to Common/AIBackend.swift)
 
 struct ConversationScreen: View {
+  // Add backend property, though ViewModel is injected via environment
+  let backend: AIBackend
+
   @EnvironmentObject
-  var viewModel: ConversationViewModel
+  var viewModel: ConversationViewModel // ViewModel is injected, already initialized with backend
 
   @State
   private var userPrompt = ""
@@ -109,21 +113,27 @@ struct ConversationScreen: View {
 }
 
 struct ConversationScreen_Previews: PreviewProvider {
-  struct ContainerView: View {
-    @StateObject var viewModel = ConversationViewModel()
-
-    var body: some View {
-      ConversationScreen()
-        .environmentObject(viewModel)
-        .onAppear {
-          viewModel.messages = ChatMessage.samples
-        }
-    }
-  }
+  // The ContainerView is less useful now as we need to pass backend to ViewModel
+  // struct ContainerView: View {
+  //   // Initialize ViewModel with a default backend for the preview
+  //   @StateObject var viewModel = ConversationViewModel(backend: .googleAI)
+  //
+  //   var body: some View {
+  //     ConversationScreen(backend: .googleAI) // Pass backend here too
+  //       .environmentObject(viewModel)
+  //       .onAppear {
+  //         viewModel.messages = ChatMessage.samples
+  //       }
+  //   }
+  // }
 
   static var previews: some View {
     NavigationStack {
-      ConversationScreen()
+      // Initialize the screen with a backend
+      // Initialize the ViewModel with a backend and inject it
+      ConversationScreen(backend: .googleAI)
+        .environmentObject(ConversationViewModel(backend: .googleAI))
     }
   }
 }
+        }

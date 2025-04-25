@@ -21,14 +21,11 @@ enum BackendOption: String, CaseIterable, Identifiable {
   case vertexAI = "Vertex AI"
   var id: String { rawValue }
 
-  // Updated helper to return FirebaseAIBackend
-  // Ensure FirebaseAI.googleAI() and FirebaseAI.vertexAI() are correct calls
   var backendValue: FirebaseAI {
     switch self {
     case .googleAI:
       return FirebaseAI.firebaseAI(backend: .googleAI())
     case .vertexAI:
-      // Ensure VertexAI backend is available in FirebaseAI SDK
       return FirebaseAI.firebaseAI(backend: .vertexAI())
     }
   }
@@ -84,9 +81,6 @@ struct ContentView: View {
         }
       }
       .navigationTitle("Generative AI Samples")
-      .onAppear {
-        firebaseService = selectedBackend.backendValue
-      }
       .onChange(of: selectedBackend) { newBackend in
         // Update service when selection changes
         firebaseService = newBackend.backendValue

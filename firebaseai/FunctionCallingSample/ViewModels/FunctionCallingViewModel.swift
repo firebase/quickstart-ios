@@ -38,7 +38,8 @@ class FunctionCallingViewModel: ObservableObject {
   private var chatTask: Task<Void, Never>?
 
   init() {
-    model = FirebaseAI.firebaseAI(backend: .vertexAI()).generativeModel(
+    // model = FirebaseAI.firebaseAI(backend: .vertexAI()).generativeModel(
+    model = FirebaseAI.firebaseAI(backend: .googleAI()).generativeModel(
       modelName: "gemini-2.0-flash-001",
       tools: [.functionDeclarations([
         FunctionDeclaration(

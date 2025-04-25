@@ -1,4 +1,4 @@
-name: vertexai
+name: firebaseai
 
 on:
   pull_request:
@@ -14,7 +14,7 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  SAMPLE: vertexai
+  SAMPLE: firebaseai
 
 jobs:
   spm:
@@ -28,9 +28,9 @@ jobs:
           - os: iOS
             device: iPhone 16
     env:
-      SETUP: vertexai
+      SETUP: firebaseai
       SPM: true
-      DIR: vertexai
+      DIR: firebaseai
       OS: ${{ matrix.os }}
       DEVICE: ${{ matrix.device }}
       TEST: false
@@ -43,6 +43,6 @@ jobs:
         run: |
           gem install xcpretty
       - name: Placeholder GoogleService-Info.plist good enough for build only testing.
-        run: cp ./mock-GoogleService-Info.plist ./vertexai/GoogleService-Info.plist
+        run: cp ./mock-GoogleService-Info.plist ./firebaseai/GoogleService-Info.plist
       - name: Build and Test SwiftUI (${{ matrix.os }})
         run: ./scripts/test.sh

@@ -9,7 +9,7 @@ from your app, rather than server-side, using the
 ### Clone and open the sample project
 
 1. Clone this repo.
-1. Change into the `vertexai` directory.
+1. Change into the `firebaseai` directory.
 1. Open `FirebaseAISample.xcodeproj` using Xcode.
 
 ```bash

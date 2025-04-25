@@ -13,31 +13,30 @@
 // limitations under the License.
 
 import SwiftUI
-import FirebaseAI // Import FirebaseAI
+import FirebaseAI
 
 // BackendOption enum definition
 enum BackendOption: String, CaseIterable, Identifiable {
-    case googleAI = "Google AI"
-    case vertexAI = "Vertex AI"
-    var id: String { self.rawValue }
+  case googleAI = "Google AI"
+  case vertexAI = "Vertex AI"
+  var id: String { rawValue }
 
-    // Updated helper to return FirebaseAIBackend
-    // Ensure FirebaseAI.googleAI() and FirebaseAI.vertexAI() are correct calls
-    var backendValue: FirebaseAI {
-        switch self {
-        case .googleAI:
-          return FirebaseAI.firebaseAI(backend: .googleAI())
-        case .vertexAI:
-            // Ensure VertexAI backend is available in FirebaseAI SDK
-            return FirebaseAI.firebaseAI(backend: .vertexAI())
-        }
+  // Updated helper to return FirebaseAIBackend
+  // Ensure FirebaseAI.googleAI() and FirebaseAI.vertexAI() are correct calls
+  var backendValue: FirebaseAI {
+    switch self {
+    case .googleAI:
+      return FirebaseAI.firebaseAI(backend: .googleAI())
+    case .vertexAI:
+      // Ensure VertexAI backend is available in FirebaseAI SDK
+      return FirebaseAI.firebaseAI(backend: .vertexAI())
     }
+  }
 }
 
 struct ContentView: View {
   @State private var selectedBackend: BackendOption = .googleAI
-  // Add state for the FirebaseAI service instance
-  @State private var firebaseService: FirebaseAI! // Or handle optionality more robustly
+  @State private var firebaseService: FirebaseAI = FirebaseAI.firebaseAI(backend: .googleAI())
 
   var body: some View {
     NavigationStack {
@@ -51,57 +50,48 @@ struct ContentView: View {
           }
         }
 
-        // Ensure firebaseService is not nil before creating links
-        if firebaseService != nil {
-            Section("Samples") {
-               NavigationLink {
-                 // Pass the service instance
-                 SummarizeScreen(firebaseService: firebaseService)
-               } label: {
-                 Label("Text", systemImage: "doc.text")
-               }
-               NavigationLink {
-                 // Pass the service instance
-                 PhotoReasoningScreen(firebaseService: firebaseService)
-               } label: {
-                 Label("Multi-modal", systemImage: "doc.richtext")
-               }
-               NavigationLink {
-                 // Pass the service instance
-                 ConversationScreen(firebaseService: firebaseService)
-               } label: {
-                 Label("Chat", systemImage: "ellipsis.message.fill")
-               }
-               NavigationLink {
-                 // Pass the service instance
-                 FunctionCallingScreen(firebaseService: firebaseService)
-               } label: {
-                 Label("Function Calling", systemImage: "function")
-               }
-               NavigationLink {
-                 // Pass the service instance
-                 ImagenScreen(firebaseService: firebaseService)
-               } label: {
-                 Label("Imagen", systemImage: "camera.circle")
-               }
-            }
-        } else {
-            // Optional: Show a loading indicator or message
-            Text("Initializing AI Service...")
+        Section("Samples") {
+          NavigationLink {
+            // Pass the service instance
+            SummarizeScreen(firebaseService: firebaseService)
+          } label: {
+            Label("Text", systemImage: "doc.text")
+          }
+          NavigationLink {
+            // Pass the service instance
+            PhotoReasoningScreen(firebaseService: firebaseService)
+          } label: {
+            Label("Multi-modal", systemImage: "doc.richtext")
+          }
+          NavigationLink {
+            // Pass the service instance
+            ConversationScreen(firebaseService: firebaseService)
+          } label: {
+            Label("Chat", systemImage: "ellipsis.message.fill")
+          }
+          NavigationLink {
+            // Pass the service instance
+            FunctionCallingScreen(firebaseService: firebaseService)
+          } label: {
+            Label("Function Calling", systemImage: "function")
+          }
+          NavigationLink {
+            // Pass the service instance
+            ImagenScreen(firebaseService: firebaseService)
+          } label: {
+            Label("Imagen", systemImage: "camera.circle")
+          }
         }
       }
       .navigationTitle("Generative AI Samples")
       .onAppear {
-          // Initialize on appear
-          if firebaseService == nil { // Avoid re-initializing if already done
-            firebaseService = selectedBackend.backendValue
-          }
+        firebaseService = selectedBackend.backendValue
       }
       .onChange(of: selectedBackend) { newBackend in
-          // Update service when selection changes
-          firebaseService = newBackend.backendValue
-          // Note: This might cause views that hold the old service instance to misbehave
-          // unless they are also correctly updated or recreated.
+        // Update service when selection changes
+        firebaseService = newBackend.backendValue
+        // Note: This might cause views that hold the old service instance to misbehave
+        // unless they are also correctly updated or recreated.
       }
     }
   }

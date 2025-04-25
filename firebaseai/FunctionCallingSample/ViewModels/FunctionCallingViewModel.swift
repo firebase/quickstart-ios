@@ -37,9 +37,7 @@ class FunctionCallingViewModel: ObservableObject {
 
   private var chatTask: Task<Void, Never>?
 
-  // Modified initializer
   init(firebaseService: FirebaseAI) { // Accept FirebaseAI instance
-      // Use the passed service instance directly
       model = firebaseService.generativeModel(
           modelName: "gemini-2.0-flash-001",
           tools: [.functionDeclarations([

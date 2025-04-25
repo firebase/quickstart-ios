@@ -14,25 +14,19 @@
 
 import FirebaseAI
 import GenerativeAIUIComponents
-import FirebaseAI // Ensure FirebaseAI is imported
-import GenerativeAIUIComponents
-import FirebaseAI // Ensure FirebaseAI is imported
-import GenerativeAIUIComponents
 import SwiftUI
 
 struct ConversationScreen: View {
-  // Changed property type
   let firebaseService: FirebaseAI
   @StateObject var viewModel: ConversationViewModel
 
   @State
   private var userPrompt = ""
 
-  // Updated initializer parameter type
   init(firebaseService: FirebaseAI) {
-      self.firebaseService = firebaseService
-      // Pass the service instance to the ViewModel
-      _viewModel = StateObject(wrappedValue: ConversationViewModel(firebaseService: firebaseService))
+    self.firebaseService = firebaseService
+    _viewModel =
+      StateObject(wrappedValue: ConversationViewModel(firebaseService: firebaseService))
   }
 
   enum FocusedField: Hashable {
@@ -120,12 +114,10 @@ struct ConversationScreen: View {
   }
 }
 
-// Preview needs update or removal if it relies on the initializer
-/*
- struct ConversationScreen_Previews: PreviewProvider {
+struct ConversationScreen_Previews: PreviewProvider {
   struct ContainerView: View {
-    // Preview needs a FirebaseAI service instance
-    @StateObject var viewModel = ConversationViewModel(firebaseService: FirebaseAI.firebaseAI()) // Example service init
+    @StateObject var viewModel = ConversationViewModel(firebaseService: FirebaseAI
+      .firebaseAI()) // Example service init
 
     var body: some View {
       ConversationScreen(firebaseService: FirebaseAI.firebaseAI()) // Example service init
@@ -141,5 +133,4 @@ struct ConversationScreen: View {
       ConversationScreen(firebaseService: FirebaseAI.firebaseAI()) // Example service init
     }
   }
- }
- */
+}

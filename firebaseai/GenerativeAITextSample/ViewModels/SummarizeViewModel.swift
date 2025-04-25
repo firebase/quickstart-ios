@@ -31,10 +31,8 @@ class SummarizeViewModel: ObservableObject {
 
   private var model: GenerativeModel?
 
-  // Modified initializer
-  init(firebaseService: FirebaseAI) { // Accept FirebaseAI instance
-      // Use the passed service instance directly
-      model = firebaseService.generativeModel(modelName: "gemini-2.0-flash-001")
+  init(firebaseService: FirebaseAI) {
+    model = firebaseService.generativeModel(modelName: "gemini-2.0-flash-001")
   }
 
   func summarize(inputText: String) async {

@@ -37,13 +37,7 @@ class ImagenViewModel: ObservableObject {
 
   private var generateImagesTask: Task<Void, Never>?
 
-  // Removed internal service property: private let service: FirebaseAIService
-
-  // Modified initializer
-  init(firebaseService: FirebaseAI) { // Accept FirebaseAI instance
-    // Removed internal service initialization: self.service = FirebaseAI.firebaseAI(backend: backend)
-
-    // 2. Configure Imagen settings
+  init(firebaseService: FirebaseAI) {
     let modelName = "imagen-3.0-generate-002"
     let safetySettings = ImagenSafetySettings(
       safetyFilterLevel: .blockLowAndAbove
@@ -52,7 +46,6 @@ class ImagenViewModel: ObservableObject {
     generationConfig.numberOfImages = 4
     generationConfig.aspectRatio = .landscape4x3
 
-    // 3. Initialize the Imagen model using the passed firebaseService
     model = firebaseService.imagenModel(
       modelName: modelName,
       generationConfig: generationConfig,

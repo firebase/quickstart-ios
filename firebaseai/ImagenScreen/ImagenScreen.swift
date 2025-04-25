@@ -14,18 +14,15 @@
 
 import SwiftUI
 import GenerativeAIUIComponents
-import FirebaseAI // Ensure FirebaseAI is imported
+import FirebaseAI
 
 struct ImagenScreen: View {
-  // Changed property type
   let firebaseService: FirebaseAI
   @StateObject var viewModel: ImagenViewModel
 
-  // Updated initializer parameter type
   init(firebaseService: FirebaseAI) {
-      self.firebaseService = firebaseService
-      // Pass the service instance to the ViewModel
-      _viewModel = StateObject(wrappedValue: ImagenViewModel(firebaseService: firebaseService))
+    self.firebaseService = firebaseService
+    _viewModel = StateObject(wrappedValue: ImagenViewModel(firebaseService: firebaseService))
   }
 
   enum FocusedField: Hashable {
@@ -112,10 +109,7 @@ struct ProgressOverlay: View {
   }
 }
 
-// Preview needs update or removal if it relies on the initializer
-/*
- #Preview {
+#Preview {
   // Preview needs a FirebaseAI service instance
   ImagenScreen(firebaseService: FirebaseAI.firebaseAI()) // Example service init
- }
- */
+}

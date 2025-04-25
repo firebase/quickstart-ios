@@ -13,21 +13,17 @@
 // limitations under the License.
 
 import MarkdownUI
-import MarkdownUI
 import SwiftUI
-import FirebaseAI // Ensure FirebaseAI is imported
+import FirebaseAI
 
 struct SummarizeScreen: View {
-  // Changed property type
   let firebaseService: FirebaseAI
   @StateObject var viewModel: SummarizeViewModel
   @State var userInput = "" // Kept userInput state
 
-  // Updated initializer parameter type
   init(firebaseService: FirebaseAI) {
-      self.firebaseService = firebaseService
-      // Pass the service instance to the ViewModel
-      _viewModel = StateObject(wrappedValue: SummarizeViewModel(firebaseService: firebaseService))
+    self.firebaseService = firebaseService
+    _viewModel = StateObject(wrappedValue: SummarizeViewModel(firebaseService: firebaseService))
   }
 
   enum FocusedField: Hashable {
@@ -84,12 +80,8 @@ struct SummarizeScreen: View {
   }
 }
 
-// Preview needs update or removal if it relies on the initializer
-/*
- #Preview {
+#Preview {
   NavigationStack {
-    // Preview needs a FirebaseAI service instance
-    SummarizeScreen(firebaseService: FirebaseAI.firebaseAI()) // Example service init
+    SummarizeScreen(firebaseService: FirebaseAI.firebaseAI())
   }
- }
- */
+}

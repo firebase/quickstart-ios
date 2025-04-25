@@ -13,7 +13,6 @@
 		86D9CA8B2BED3EE1007D939E /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = 86D9CA8A2BED3EE1007D939E /* FirebaseAppCheck */; };
 		86D9CA8F2BED3EE1007D939E /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 86D9CA8E2BED3EE1007D939E /* FirebaseAuth */; };
 		86D9CAB52BED3EE1007D939E /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 86D9CAB42BED3EE1007D939E /* FirebaseStorage */; };
-		86D9CAB92BED3EE1007D939E /* FirebaseVertexAI in Frameworks */ = {isa = PBXBuildFile; productRef = 86D9CAB82BED3EE1007D939E /* FirebaseVertexAI */; };
 		88263BF02B239C09008AB09B /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88263BEE2B239BFE008AB09B /* ErrorView.swift */; };
 		88263BF12B239C11008AB09B /* ErrorDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889873842B208563005B4896 /* ErrorDetailsView.swift */; };
 		8848C8332B0D04BC007B434F /* FirebaseAISampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8848C8322B0D04BC007B434F /* FirebaseAISampleApp.swift */; };
@@ -31,9 +30,9 @@
 		886F95E02B17D5010036F07A /* ConversationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E10F562B1112F600C08E95 /* ConversationViewModel.swift */; };
 		886F95E12B17D5010036F07A /* ConversationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E10F542B1112CA00C08E95 /* ConversationScreen.swift */; };
 		886F95E32B17D6630036F07A /* GenerativeAIUIComponents in Frameworks */ = {isa = PBXBuildFile; productRef = 886F95E22B17D6630036F07A /* GenerativeAIUIComponents */; };
+		DE26D95F2DBB3E9F007E6668 /* FirebaseAI in Frameworks */ = {isa = PBXBuildFile; productRef = DE26D95E2DBB3E9F007E6668 /* FirebaseAI */; };
 		DEFECAA92D7B4CCD00EF9621 /* ImagenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEFECAA72D7B4CCD00EF9621 /* ImagenViewModel.swift */; };
 		DEFECAAA2D7B4CCD00EF9621 /* ImagenScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEFECAA62D7B4CCD00EF9621 /* ImagenScreen.swift */; };
-		DEFECAAD2D7BB49700EF9621 /* FirebaseVertexAI in Frameworks */ = {isa = PBXBuildFile; productRef = DEFECAAC2D7BB49700EF9621 /* FirebaseVertexAI */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,13 +71,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE26D95F2DBB3E9F007E6668 /* FirebaseAI in Frameworks */,
 				886F95D82B17BA420036F07A /* MarkdownUI in Frameworks */,
 				86D9CAB52BED3EE1007D939E /* FirebaseStorage in Frameworks */,
 				86D9CA8F2BED3EE1007D939E /* FirebaseAuth in Frameworks */,
 				86D9CA8B2BED3EE1007D939E /* FirebaseAppCheck in Frameworks */,
-				DEFECAAD2D7BB49700EF9621 /* FirebaseVertexAI in Frameworks */,
 				886F95E32B17D6630036F07A /* GenerativeAIUIComponents in Frameworks */,
-				86D9CAB92BED3EE1007D939E /* FirebaseVertexAI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -319,6 +317,7 @@
 				86D9CAB42BED3EE1007D939E /* FirebaseStorage */,
 				86D9CAB82BED3EE1007D939E /* FirebaseVertexAI */,
 				DEFECAAC2D7BB49700EF9621 /* FirebaseVertexAI */,
+				DE26D95E2DBB3E9F007E6668 /* FirebaseAI */,
 			);
 			productName = GenerativeAISample;
 			productReference = 8848C82F2B0D04BC007B434F /* FirebaseAISample.app */;
@@ -657,6 +656,11 @@
 		886F95E22B17D6630036F07A /* GenerativeAIUIComponents */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = GenerativeAIUIComponents;
+		};
+		DE26D95E2DBB3E9F007E6668 /* FirebaseAI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DEFECAAB2D7BB49700EF9621 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAI;
 		};
 		DEFECAAC2D7BB49700EF9621 /* FirebaseVertexAI */ = {
 			isa = XCSwiftPackageProductDependency;

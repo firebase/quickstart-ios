@@ -23,17 +23,16 @@ enum BackendOption: String, CaseIterable, Identifiable {
 
     // Updated helper to return FirebaseAIBackend
     // Ensure FirebaseAI.googleAI() and FirebaseAI.vertexAI() are correct calls
-    var backendValue: FirebaseAIBackend {
+    var backendValue: FirebaseAI {
         switch self {
         case .googleAI:
-            return FirebaseAI.googleAI() // Use actual SDK initializer
+          return FirebaseAI.firebaseAI(backend: .googleAI())
         case .vertexAI:
             // Ensure VertexAI backend is available in FirebaseAI SDK
-            return FirebaseAI.vertexAI() // Use actual SDK initializer
+            return FirebaseAI.firebaseAI(backend: .vertexAI())
         }
     }
 }
-
 
 struct ContentView: View {
   @State private var selectedBackend: BackendOption = .googleAI
@@ -95,12 +94,12 @@ struct ContentView: View {
       .onAppear {
           // Initialize on appear
           if firebaseService == nil { // Avoid re-initializing if already done
-            firebaseService = FirebaseAI.firebaseAI(backend: selectedBackend.backendValue)
+            firebaseService = selectedBackend.backendValue
           }
       }
       .onChange(of: selectedBackend) { newBackend in
           // Update service when selection changes
-          firebaseService = FirebaseAI.firebaseAI(backend: newBackend.backendValue)
+          firebaseService = newBackend.backendValue
           // Note: This might cause views that hold the old service instance to misbehave
           // unless they are also correctly updated or recreated.
       }

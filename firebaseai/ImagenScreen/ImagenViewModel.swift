@@ -38,7 +38,7 @@ class ImagenViewModel: ObservableObject {
   private var generateImagesTask: Task<Void, Never>?
 
   // 1. Initialize the Gemini service
-  //private let service = FirebaseAI.firebaseAI(backend: .vertexAI())
+  // private let service = FirebaseAI.firebaseAI(backend: .vertexAI())
   private let service = FirebaseAI.firebaseAI(backend: .googleAI())
   init() {
     // 2. Configure Imagen settings

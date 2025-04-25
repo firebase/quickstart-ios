@@ -14,7 +14,7 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  SAMPLE: firebaseai
+  SAMPLE: FirebaseAI
 
 jobs:
   spm:

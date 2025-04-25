@@ -16,19 +16,23 @@ import FirebaseAI
 import GenerativeAIUIComponents
 import FirebaseAI // Ensure FirebaseAI is imported
 import GenerativeAIUIComponents
+import FirebaseAI // Ensure FirebaseAI is imported
+import GenerativeAIUIComponents
 import SwiftUI
 
 struct ConversationScreen: View {
-  let backend: FirebaseAIBackend // Added property
-  @StateObject var viewModel: ConversationViewModel // Changed initialization
+  // Changed property type
+  let firebaseService: FirebaseAI
+  @StateObject var viewModel: ConversationViewModel
 
   @State
   private var userPrompt = ""
 
-  // Added initializer
-  init(backend: FirebaseAIBackend) {
-      self.backend = backend
-      _viewModel = StateObject(wrappedValue: ConversationViewModel(backend: backend))
+  // Updated initializer parameter type
+  init(firebaseService: FirebaseAI) {
+      self.firebaseService = firebaseService
+      // Pass the service instance to the ViewModel
+      _viewModel = StateObject(wrappedValue: ConversationViewModel(firebaseService: firebaseService))
   }
 
   enum FocusedField: Hashable {
@@ -120,10 +124,11 @@ struct ConversationScreen: View {
 /*
  struct ConversationScreen_Previews: PreviewProvider {
   struct ContainerView: View {
-    @StateObject var viewModel = ConversationViewModel(backend: FirebaseAI.firebaseAI(backend: .googleAI())) // Example backend
+    // Preview needs a FirebaseAI service instance
+    @StateObject var viewModel = ConversationViewModel(firebaseService: FirebaseAI.firebaseAI()) // Example service init
 
     var body: some View {
-      ConversationScreen(backend: FirebaseAI.firebaseAI(backend: .googleAI())) // Example backend
+      ConversationScreen(firebaseService: FirebaseAI.firebaseAI()) // Example service init
         // Removed .environmentObject
         .onAppear {
           viewModel.messages = ChatMessage.samples
@@ -133,7 +138,7 @@ struct ConversationScreen: View {
 
   static var previews: some View {
     NavigationStack {
-      ConversationScreen(backend: FirebaseAI.firebaseAI(backend: .googleAI())) // Example backend
+      ConversationScreen(firebaseService: FirebaseAI.firebaseAI()) // Example service init
     }
   }
  }

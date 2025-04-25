@@ -22,13 +22,15 @@ import SwiftUI
 import FirebaseAI // Ensure FirebaseAI is imported
 
 struct PhotoReasoningScreen: View {
-  let backend: FirebaseAIBackend // Added property
-  @StateObject var viewModel: PhotoReasoningViewModel // Changed initialization
+  // Changed property type
+  let firebaseService: FirebaseAI
+  @StateObject var viewModel: PhotoReasoningViewModel
 
-  // Added initializer
-  init(backend: FirebaseAIBackend) {
-      self.backend = backend
-      _viewModel = StateObject(wrappedValue: PhotoReasoningViewModel(backend: backend))
+  // Updated initializer parameter type
+  init(firebaseService: FirebaseAI) {
+      self.firebaseService = firebaseService
+      // Pass the service instance to the ViewModel
+      _viewModel = StateObject(wrappedValue: PhotoReasoningViewModel(firebaseService: firebaseService))
   }
 
   enum FocusedField: Hashable {
@@ -86,8 +88,8 @@ struct PhotoReasoningScreen: View {
 /*
  #Preview {
   NavigationStack {
-    // Preview needs a backend instance, e.g., .googleAI()
-    PhotoReasoningScreen(backend: FirebaseAI.firebaseAI(backend: .googleAI())) // Example backend
+    // Preview needs a FirebaseAI service instance
+    PhotoReasoningScreen(firebaseService: FirebaseAI.firebaseAI()) // Example service init
   }
  }
  */

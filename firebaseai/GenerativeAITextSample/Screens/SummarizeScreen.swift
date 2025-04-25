@@ -18,14 +18,16 @@ import SwiftUI
 import FirebaseAI // Ensure FirebaseAI is imported
 
 struct SummarizeScreen: View {
-  let backend: FirebaseAIBackend // Added property
-  @StateObject var viewModel: SummarizeViewModel // Changed initialization
-  @State var userInput = ""
+  // Changed property type
+  let firebaseService: FirebaseAI
+  @StateObject var viewModel: SummarizeViewModel
+  @State var userInput = "" // Kept userInput state
 
-  // Added initializer
-  init(backend: FirebaseAIBackend) {
-      self.backend = backend
-      _viewModel = StateObject(wrappedValue: SummarizeViewModel(backend: backend))
+  // Updated initializer parameter type
+  init(firebaseService: FirebaseAI) {
+      self.firebaseService = firebaseService
+      // Pass the service instance to the ViewModel
+      _viewModel = StateObject(wrappedValue: SummarizeViewModel(firebaseService: firebaseService))
   }
 
   enum FocusedField: Hashable {
@@ -86,8 +88,8 @@ struct SummarizeScreen: View {
 /*
  #Preview {
   NavigationStack {
-    // Preview needs a backend instance, e.g., .googleAI()
-    SummarizeScreen(backend: FirebaseAI.firebaseAI(backend: .googleAI())) // Example backend
+    // Preview needs a FirebaseAI service instance
+    SummarizeScreen(firebaseService: FirebaseAI.firebaseAI()) // Example service init
   }
  }
  */

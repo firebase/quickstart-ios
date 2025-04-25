@@ -37,12 +37,11 @@ class ImagenViewModel: ObservableObject {
 
   private var generateImagesTask: Task<Void, Never>?
 
-  // 1. Initialize the Gemini service - Now done using the passed backend
-  private let service: FirebaseAIService
+  // Removed internal service property: private let service: FirebaseAIService
 
-  init(backend: FirebaseAIBackend) {
-    // Store the service initialized with the passed backend
-    self.service = FirebaseAI.firebaseAI(backend: backend)
+  // Modified initializer
+  init(firebaseService: FirebaseAI) { // Accept FirebaseAI instance
+    // Removed internal service initialization: self.service = FirebaseAI.firebaseAI(backend: backend)
 
     // 2. Configure Imagen settings
     let modelName = "imagen-3.0-generate-002"
@@ -53,8 +52,8 @@ class ImagenViewModel: ObservableObject {
     generationConfig.numberOfImages = 4
     generationConfig.aspectRatio = .landscape4x3
 
-    // 3. Initialize the Imagen model
-    model = service.imagenModel(
+    // 3. Initialize the Imagen model using the passed firebaseService
+    model = firebaseService.imagenModel(
       modelName: modelName,
       generationConfig: generationConfig,
       safetySettings: safetySettings

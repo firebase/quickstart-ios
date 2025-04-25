@@ -13,38 +13,32 @@
 // limitations under the License.
 
 import SwiftUI
-import FirebaseVertexAI // Import necessary for FirebaseAIBackend type
+import FirebaseAI // Import FirebaseAI
 
-// Add this enum definition before the ContentView struct
+// BackendOption enum definition
 enum BackendOption: String, CaseIterable, Identifiable {
     case googleAI = "Google AI"
-    case vertexAI = "Vertex AI" // Assuming Vertex AI is a valid option here too
+    case vertexAI = "Vertex AI"
     var id: String { self.rawValue }
 
-    // Helper to get the actual backend type
-    // NOTE: This part might need adjustment based on the actual SDK structure for FirebaseAI
-    // It's possible the SDK might not have a direct equivalent for `FirebaseAIBackend`
-    // or the initialization might differ. This is a placeholder based on the VertexAI example.
-    var backendValue: Any { // Using Any as a placeholder, refine if possible
+    // Updated helper to return FirebaseAIBackend
+    // Ensure FirebaseAI.googleAI() and FirebaseAI.vertexAI() are correct calls
+    var backendValue: FirebaseAIBackend {
         switch self {
         case .googleAI:
-             // Placeholder: Replace with actual Firebase AI SDK initialization if available
-             // return FirebaseAI.googleAI()
-             return "GoogleAI_Backend_Placeholder" // Replace with actual backend instance/config
+            return FirebaseAI.googleAI() // Use actual SDK initializer
         case .vertexAI:
-             // Placeholder: Replace with actual Firebase AI SDK initialization for VertexAI if available
-             // return FirebaseAI.vertexAI()
-             return "VertexAI_Backend_Placeholder" // Replace with actual backend instance/config
+            // Ensure VertexAI backend is available in FirebaseAI SDK
+            return FirebaseAI.vertexAI() // Use actual SDK initializer
         }
     }
 }
 
 
 struct ContentView: View {
-  // Add this state variable
   @State private var selectedBackend: BackendOption = .googleAI
-
-  // @StateObject initializations removed as per requirement
+  // Add state for the FirebaseAI service instance
+  @State private var firebaseService: FirebaseAI! // Or handle optionality more robustly
 
   var body: some View {
     NavigationStack {
@@ -58,49 +52,58 @@ struct ContentView: View {
           }
         }
 
-        // Existing NavigationLinks...
-        Section("Samples") {
-           NavigationLink {
-             // Pass backend to the screen initializer
-             SummarizeScreen(backend: selectedBackend.backendValue)
-           } label: {
-             Label("Text", systemImage: "doc.text")
-           }
-           NavigationLink {
-             // Pass backend to the screen initializer
-             PhotoReasoningScreen(backend: selectedBackend.backendValue)
-           } label: {
-             Label("Multi-modal", systemImage: "doc.richtext")
-           }
-           NavigationLink {
-             // Pass backend to the screen initializer
-             ConversationScreen(backend: selectedBackend.backendValue)
-             // Removed .environmentObject
-           } label: {
-             Label("Chat", systemImage: "ellipsis.message.fill")
-           }
-           NavigationLink {
-             // Pass backend to the screen initializer
-             FunctionCallingScreen(backend: selectedBackend.backendValue)
-             // Removed .environmentObject
-           } label: {
-             Label("Function Calling", systemImage: "function")
-           }
-           NavigationLink {
-             // Pass backend to the screen initializer
-             ImagenScreen(backend: selectedBackend.backendValue)
-           } label: {
-             Label("Imagen", systemImage: "camera.circle")
-           }
+        // Ensure firebaseService is not nil before creating links
+        if firebaseService != nil {
+            Section("Samples") {
+               NavigationLink {
+                 // Pass the service instance
+                 SummarizeScreen(firebaseService: firebaseService)
+               } label: {
+                 Label("Text", systemImage: "doc.text")
+               }
+               NavigationLink {
+                 // Pass the service instance
+                 PhotoReasoningScreen(firebaseService: firebaseService)
+               } label: {
+                 Label("Multi-modal", systemImage: "doc.richtext")
+               }
+               NavigationLink {
+                 // Pass the service instance
+                 ConversationScreen(firebaseService: firebaseService)
+               } label: {
+                 Label("Chat", systemImage: "ellipsis.message.fill")
+               }
+               NavigationLink {
+                 // Pass the service instance
+                 FunctionCallingScreen(firebaseService: firebaseService)
+               } label: {
+                 Label("Function Calling", systemImage: "function")
+               }
+               NavigationLink {
+                 // Pass the service instance
+                 ImagenScreen(firebaseService: firebaseService)
+               } label: {
+                 Label("Imagen", systemImage: "camera.circle")
+               }
+            }
+        } else {
+            // Optional: Show a loading indicator or message
+            Text("Initializing AI Service...")
         }
       }
       .navigationTitle("Generative AI Samples")
-      // Add an onChange modifier if ViewModels need to be re-initialized
-      // when the backend changes. This depends on whether they are created
-      // directly here or passed down.
-      // .onChange(of: selectedBackend) { newBackend in
-      //    // Re-initialize ViewModels if necessary
-      // }
+      .onAppear {
+          // Initialize on appear
+          if firebaseService == nil { // Avoid re-initializing if already done
+            firebaseService = FirebaseAI.firebaseAI(backend: selectedBackend.backendValue)
+          }
+      }
+      .onChange(of: selectedBackend) { newBackend in
+          // Update service when selection changes
+          firebaseService = FirebaseAI.firebaseAI(backend: newBackend.backendValue)
+          // Note: This might cause views that hold the old service instance to misbehave
+          // unless they are also correctly updated or recreated.
+      }
     }
   }
 }

@@ -16,19 +16,23 @@ import FirebaseAI
 import GenerativeAIUIComponents
 import FirebaseAI // Ensure FirebaseAI is imported
 import GenerativeAIUIComponents
+import FirebaseAI // Ensure FirebaseAI is imported
+import GenerativeAIUIComponents
 import SwiftUI
 
 struct FunctionCallingScreen: View {
-  let backend: FirebaseAIBackend // Added property
-  @StateObject var viewModel: FunctionCallingViewModel // Changed initialization
+  // Changed property type
+  let firebaseService: FirebaseAI
+  @StateObject var viewModel: FunctionCallingViewModel
 
   @State
   private var userPrompt = "What is 100 Euros in U.S. Dollars?"
 
-  // Added initializer
-  init(backend: FirebaseAIBackend) {
-      self.backend = backend
-      _viewModel = StateObject(wrappedValue: FunctionCallingViewModel(backend: backend))
+  // Updated initializer parameter type
+  init(firebaseService: FirebaseAI) {
+      self.firebaseService = firebaseService
+      // Pass the service instance to the ViewModel
+      _viewModel = StateObject(wrappedValue: FunctionCallingViewModel(firebaseService: firebaseService))
   }
 
   enum FocusedField: Hashable {
@@ -122,11 +126,11 @@ struct FunctionCallingScreen: View {
 /*
  struct FunctionCallingScreen_Previews: PreviewProvider {
   struct ContainerView: View {
-    // Preview needs a backend instance
-    @StateObject var viewModel = FunctionCallingViewModel(backend: FirebaseAI.firebaseAI(backend: .googleAI())) // Example backend
+    // Preview needs a FirebaseAI service instance
+    @StateObject var viewModel = FunctionCallingViewModel(firebaseService: FirebaseAI.firebaseAI()) // Example service init
 
     var body: some View {
-      FunctionCallingScreen(backend: FirebaseAI.firebaseAI(backend: .googleAI())) // Example backend
+      FunctionCallingScreen(firebaseService: FirebaseAI.firebaseAI()) // Example service init
         // Removed .environmentObject
         .onAppear {
           viewModel.messages = ChatMessage.samples
@@ -136,8 +140,8 @@ struct FunctionCallingScreen: View {
 
   static var previews: some View {
     NavigationStack {
-      // Preview needs a backend instance
-      FunctionCallingScreen(backend: FirebaseAI.firebaseAI(backend: .googleAI())) // Example backend
+      // Preview needs a FirebaseAI service instance
+      FunctionCallingScreen(firebaseService: FirebaseAI.firebaseAI()) // Example service init
     }
   }
  }

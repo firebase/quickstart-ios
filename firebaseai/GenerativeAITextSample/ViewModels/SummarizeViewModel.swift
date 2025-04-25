@@ -31,10 +31,10 @@ class SummarizeViewModel: ObservableObject {
 
   private var model: GenerativeModel?
 
-  init() {
-    // model = FirebaseAI.firebaseAI(backend: .vertexAI()).generativeModel(modelName: "gemini-2.0-flash-001")
-    model = FirebaseAI.firebaseAI(backend: .googleAI())
-      .generativeModel(modelName: "gemini-2.0-flash-001")
+  // Modified initializer
+  init(firebaseService: FirebaseAI) { // Accept FirebaseAI instance
+      // Use the passed service instance directly
+      model = firebaseService.generativeModel(modelName: "gemini-2.0-flash-001")
   }
 
   func summarize(inputText: String) async {

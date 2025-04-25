@@ -18,7 +18,6 @@ import OSLog
 
 @MainActor
 class SummarizeViewModel: ObservableObject {
-  private let backend: AIBackend
   private var logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "generative-ai")
 
   @Published
@@ -30,32 +29,21 @@ class SummarizeViewModel: ObservableObject {
   @Published
   var inProgress = false
 
-  private var model: GenerativeModel
+  private var model: GenerativeModel?
 
-  init(backend: AIBackend) {
-    self.backend = backend
-    let service: FirebaseAI
-    switch backend {
-    case .googleAI:
-      service = FirebaseAI.firebaseAI(backend: .googleAI())
-    case .vertexAI:
-      // Placeholder for Vertex AI initialization if different parameters are needed
-      service = FirebaseAI.firebaseAI(backend: .vertexAI())
-    }
-    // Initialize the model using the selected service
-    // Note: Ensure model name is appropriate for both backends or adjust as needed.
-    model = service.generativeModel(modelName: "gemini-2.0-flash-001")
+  init() {
+    // model = FirebaseAI.firebaseAI(backend: .vertexAI()).generativeModel(modelName: "gemini-2.0-flash-001")
+    model = FirebaseAI.firebaseAI(backend: .googleAI())
+      .generativeModel(modelName: "gemini-2.0-flash-001")
   }
-
 
   func summarize(inputText: String) async {
     defer {
       inProgress = false
     }
-    // Model is now non-optional and initialized in init
-    // guard let model else {
-    //   return
-    // }
+    guard let model else {
+      return
+    }
 
     do {
       inProgress = true

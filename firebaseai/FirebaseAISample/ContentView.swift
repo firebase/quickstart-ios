@@ -13,71 +13,98 @@
 // limitations under the License.
 
 import SwiftUI
+import FirebaseVertexAI // Import necessary for FirebaseAIBackend type
+
+// Add this enum definition before the ContentView struct
+enum BackendOption: String, CaseIterable, Identifiable {
+    case googleAI = "Google AI"
+    case vertexAI = "Vertex AI" // Assuming Vertex AI is a valid option here too
+    var id: String { self.rawValue }
+
+    // Helper to get the actual backend type
+    // NOTE: This part might need adjustment based on the actual SDK structure for FirebaseAI
+    // It's possible the SDK might not have a direct equivalent for `FirebaseAIBackend`
+    // or the initialization might differ. This is a placeholder based on the VertexAI example.
+    var backendValue: Any { // Using Any as a placeholder, refine if possible
+        switch self {
+        case .googleAI:
+             // Placeholder: Replace with actual Firebase AI SDK initialization if available
+             // return FirebaseAI.googleAI()
+             return "GoogleAI_Backend_Placeholder" // Replace with actual backend instance/config
+        case .vertexAI:
+             // Placeholder: Replace with actual Firebase AI SDK initialization for VertexAI if available
+             // return FirebaseAI.vertexAI()
+             return "VertexAI_Backend_Placeholder" // Replace with actual backend instance/config
+        }
+    }
+}
+
 
 struct ContentView: View {
-  // Receive the binding from FirebaseAISampleApp
-  @Binding var selectedBackend: AIBackend
+  // Add this state variable
+  @State private var selectedBackend: BackendOption = .googleAI
 
-  @StateObject
-  var viewModel = ConversationViewModel()
-
-  @StateObject
-  var functionCallingViewModel = FunctionCallingViewModel()
+  // @StateObject initializations removed as per requirement
 
   var body: some View {
     NavigationStack {
       List {
-        // Section for Backend Selection Picker
+        // Add this Section for the Picker
         Section("Configuration") {
-          Picker("Select Backend", selection: $selectedBackend) {
-            ForEach(AIBackend.allCases) { backend in
-              Text(backend.rawValue).tag(backend)
+          Picker("Backend", selection: $selectedBackend) {
+            ForEach(BackendOption.allCases) { option in
+              Text(option.rawValue).tag(option)
             }
           }
         }
 
-        // Section for Sample Screens
+        // Existing NavigationLinks...
         Section("Samples") {
-          NavigationLink {
-            // Pass selected backend value to the screen
-            SummarizeScreen(backend: selectedBackend)
-          } label: {
-            Label("Text", systemImage: "doc.text")
-          }
-          NavigationLink {
-            // Pass selected backend value to the screen
-            PhotoReasoningScreen(backend: selectedBackend)
-          } label: {
-            Label("Multi-modal", systemImage: "doc.richtext")
-          }
-          NavigationLink {
-            // Pass selected backend value to the screen
-            ConversationScreen(backend: selectedBackend)
-              .environmentObject(viewModel)
-          } label: {
-          Label("Chat", systemImage: "ellipsis.message.fill")
+           NavigationLink {
+             // Pass backend to the screen initializer
+             SummarizeScreen(backend: selectedBackend.backendValue)
+           } label: {
+             Label("Text", systemImage: "doc.text")
+           }
+           NavigationLink {
+             // Pass backend to the screen initializer
+             PhotoReasoningScreen(backend: selectedBackend.backendValue)
+           } label: {
+             Label("Multi-modal", systemImage: "doc.richtext")
+           }
+           NavigationLink {
+             // Pass backend to the screen initializer
+             ConversationScreen(backend: selectedBackend.backendValue)
+             // Removed .environmentObject
+           } label: {
+             Label("Chat", systemImage: "ellipsis.message.fill")
+           }
+           NavigationLink {
+             // Pass backend to the screen initializer
+             FunctionCallingScreen(backend: selectedBackend.backendValue)
+             // Removed .environmentObject
+           } label: {
+             Label("Function Calling", systemImage: "function")
+           }
+           NavigationLink {
+             // Pass backend to the screen initializer
+             ImagenScreen(backend: selectedBackend.backendValue)
+           } label: {
+             Label("Imagen", systemImage: "camera.circle")
+           }
         }
-        NavigationLink {
-          // Pass selected backend value to the screen
-          FunctionCallingScreen(backend: selectedBackend)
-            .environmentObject(functionCallingViewModel)
-        } label: {
-          Label("Function Calling", systemImage: "function")
-        }
-        NavigationLink {
-          // Pass selected backend value to the screen
-          ImagenScreen(backend: selectedBackend)
-        } label: {
-          Label("Imagen", systemImage: "camera.circle")
-        }
-      } // End Section "Samples"
-      } // End List
+      }
       .navigationTitle("Generative AI Samples")
-    } // End NavigationStack
-  } // End body
-} // End ContentView
+      // Add an onChange modifier if ViewModels need to be re-initialized
+      // when the backend changes. This depends on whether they are created
+      // directly here or passed down.
+      // .onChange(of: selectedBackend) { newBackend in
+      //    // Re-initialize ViewModels if necessary
+      // }
+    }
+  }
+}
 
 #Preview {
-  // Provide a constant binding for the preview
-  ContentView(selectedBackend: .constant(.googleAI))
+  ContentView()
 }

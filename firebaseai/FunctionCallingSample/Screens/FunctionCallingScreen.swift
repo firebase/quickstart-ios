@@ -14,18 +14,22 @@
 
 import FirebaseAI
 import GenerativeAIUIComponents
+import FirebaseAI // Ensure FirebaseAI is imported
+import GenerativeAIUIComponents
 import SwiftUI
-// Assuming AIBackend is accessible (moved to Common/AIBackend.swift)
 
 struct FunctionCallingScreen: View {
-  // Add backend property, though ViewModel is injected via environment
-  let backend: AIBackend
-
-  @EnvironmentObject
-  var viewModel: FunctionCallingViewModel // ViewModel is injected, already initialized with backend
+  let backend: FirebaseAIBackend // Added property
+  @StateObject var viewModel: FunctionCallingViewModel // Changed initialization
 
   @State
   private var userPrompt = "What is 100 Euros in U.S. Dollars?"
+
+  // Added initializer
+  init(backend: FirebaseAIBackend) {
+      self.backend = backend
+      _viewModel = StateObject(wrappedValue: FunctionCallingViewModel(backend: backend))
+  }
 
   enum FocusedField: Hashable {
     case message
@@ -114,26 +118,27 @@ struct FunctionCallingScreen: View {
   }
 }
 
-struct FunctionCallingScreen_Previews: PreviewProvider {
-  // ContainerView is less useful now
-  // struct ContainerView: View {
-  //   @EnvironmentObject
-  //   var viewModel: FunctionCallingViewModel
-  //
-  //   var body: some View {
-  //     FunctionCallingScreen() // Need to pass backend here
-  //       .onAppear {
-  //         viewModel.messages = ChatMessage.samples
-  //       }
-  //   }
-  // }
+// Preview needs update or removal if it relies on the initializer
+/*
+ struct FunctionCallingScreen_Previews: PreviewProvider {
+  struct ContainerView: View {
+    // Preview needs a backend instance
+    @StateObject var viewModel = FunctionCallingViewModel(backend: FirebaseAI.firebaseAI(backend: .googleAI())) // Example backend
+
+    var body: some View {
+      FunctionCallingScreen(backend: FirebaseAI.firebaseAI(backend: .googleAI())) // Example backend
+        // Removed .environmentObject
+        .onAppear {
+          viewModel.messages = ChatMessage.samples
+        }
+    }
+  }
 
   static var previews: some View {
     NavigationStack {
-      // Initialize the screen with a backend
-      // Initialize the ViewModel with a backend and inject it
-      FunctionCallingScreen(backend: .googleAI)
-        .environmentObject(FunctionCallingViewModel(backend: .googleAI))
+      // Preview needs a backend instance
+      FunctionCallingScreen(backend: FirebaseAI.firebaseAI(backend: .googleAI())) // Example backend
     }
   }
-}
+ }
+ */

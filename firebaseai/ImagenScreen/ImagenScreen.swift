@@ -14,16 +14,16 @@
 
 import SwiftUI
 import GenerativeAIUIComponents
-// Assuming AIBackend is accessible (moved to Common/AIBackend.swift)
+import FirebaseAI // Ensure FirebaseAI is imported
 
 struct ImagenScreen: View {
-  let backend: AIBackend // Receive backend from ContentView
-  @StateObject var viewModel: ImagenViewModel // ViewModel will be initialized in init
+  let backend: FirebaseAIBackend // Added property
+  @StateObject var viewModel: ImagenViewModel // Changed initialization
 
-  // Initializer to pass backend to ViewModel
-  init(backend: AIBackend) {
-    self.backend = backend
-    _viewModel = StateObject(wrappedValue: ImagenViewModel(backend: backend))
+  // Added initializer
+  init(backend: FirebaseAIBackend) {
+      self.backend = backend
+      _viewModel = StateObject(wrappedValue: ImagenViewModel(backend: backend))
   }
 
   enum FocusedField: Hashable {
@@ -110,7 +110,10 @@ struct ProgressOverlay: View {
   }
 }
 
-#Preview {
-  // Pass a default backend for the preview
-  ImagenScreen(backend: .googleAI)
-}
+// Preview needs update or removal if it relies on the initializer
+/*
+ #Preview {
+  // Preview needs a backend instance
+  ImagenScreen(backend: FirebaseAI.firebaseAI(backend: .googleAI())) // Example backend
+ }
+ */

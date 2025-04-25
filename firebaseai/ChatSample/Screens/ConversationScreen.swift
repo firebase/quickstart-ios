@@ -14,18 +14,22 @@
 
 import FirebaseAI
 import GenerativeAIUIComponents
+import FirebaseAI // Ensure FirebaseAI is imported
+import GenerativeAIUIComponents
 import SwiftUI
-// Assuming AIBackend is accessible (moved to Common/AIBackend.swift)
 
 struct ConversationScreen: View {
-  // Add backend property, though ViewModel is injected via environment
-  let backend: AIBackend
-
-  @EnvironmentObject
-  var viewModel: ConversationViewModel // ViewModel is injected, already initialized with backend
+  let backend: FirebaseAIBackend // Added property
+  @StateObject var viewModel: ConversationViewModel // Changed initialization
 
   @State
   private var userPrompt = ""
+
+  // Added initializer
+  init(backend: FirebaseAIBackend) {
+      self.backend = backend
+      _viewModel = StateObject(wrappedValue: ConversationViewModel(backend: backend))
+  }
 
   enum FocusedField: Hashable {
     case message
@@ -112,28 +116,25 @@ struct ConversationScreen: View {
   }
 }
 
-struct ConversationScreen_Previews: PreviewProvider {
-  // The ContainerView is less useful now as we need to pass backend to ViewModel
-  // struct ContainerView: View {
-  //   // Initialize ViewModel with a default backend for the preview
-  //   @StateObject var viewModel = ConversationViewModel(backend: .googleAI)
-  //
-  //   var body: some View {
-  //     ConversationScreen(backend: .googleAI) // Pass backend here too
-  //       .environmentObject(viewModel)
-  //       .onAppear {
-  //         viewModel.messages = ChatMessage.samples
-  //       }
-  //   }
-  // }
+// Preview needs update or removal if it relies on the initializer
+/*
+ struct ConversationScreen_Previews: PreviewProvider {
+  struct ContainerView: View {
+    @StateObject var viewModel = ConversationViewModel(backend: FirebaseAI.firebaseAI(backend: .googleAI())) // Example backend
+
+    var body: some View {
+      ConversationScreen(backend: FirebaseAI.firebaseAI(backend: .googleAI())) // Example backend
+        // Removed .environmentObject
+        .onAppear {
+          viewModel.messages = ChatMessage.samples
+        }
+    }
+  }
 
   static var previews: some View {
     NavigationStack {
-      // Initialize the screen with a backend
-      // Initialize the ViewModel with a backend and inject it
-      ConversationScreen(backend: .googleAI)
-        .environmentObject(ConversationViewModel(backend: .googleAI))
+      ConversationScreen(backend: FirebaseAI.firebaseAI(backend: .googleAI())) // Example backend
     }
   }
-}
-        }
+ }
+ */

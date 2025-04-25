@@ -15,11 +15,9 @@
 import FirebaseAI
 import Foundation
 import UIKit
-// Assuming AIBackend is accessible (moved to Common/AIBackend.swift)
 
 @MainActor
 class FunctionCallingViewModel: ObservableObject {
-  private let backend: AIBackend
   /// This array holds both the user's and the system's chat messages
   @Published var messages = [ChatMessage]()
 
@@ -39,18 +37,10 @@ class FunctionCallingViewModel: ObservableObject {
 
   private var chatTask: Task<Void, Never>?
 
-  init(backend: AIBackend) {
-    self.backend = backend
-    let service: FirebaseAI
-    switch backend {
-    case .googleAI:
-      service = FirebaseAI.firebaseAI(backend: .googleAI())
-    case .vertexAI:
-      service = FirebaseAI.firebaseAI(backend: .vertexAI())
-    }
-    // Initialize the model using the selected service
-    model = service.generativeModel(
-      modelName: "gemini-2.0-flash-001", // Adjust model name if needed
+  init() {
+    // model = FirebaseAI.firebaseAI(backend: .vertexAI()).generativeModel(
+    model = FirebaseAI.firebaseAI(backend: .googleAI()).generativeModel(
+      modelName: "gemini-2.0-flash-001",
       tools: [.functionDeclarations([
         FunctionDeclaration(
           name: "get_exchange_rate",

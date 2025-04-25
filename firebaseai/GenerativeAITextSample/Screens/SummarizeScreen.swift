@@ -13,18 +13,19 @@
 // limitations under the License.
 
 import MarkdownUI
+import MarkdownUI
 import SwiftUI
-// Assuming AIBackend is accessible (moved to Common/AIBackend.swift)
+import FirebaseAI // Ensure FirebaseAI is imported
 
 struct SummarizeScreen: View {
-  let backend: AIBackend // Receive backend from ContentView
-  @StateObject var viewModel: SummarizeViewModel // ViewModel will be initialized in init
+  let backend: FirebaseAIBackend // Added property
+  @StateObject var viewModel: SummarizeViewModel // Changed initialization
   @State var userInput = ""
 
-  // Initializer to pass backend to ViewModel
-  init(backend: AIBackend) {
-    self.backend = backend
-    _viewModel = StateObject(wrappedValue: SummarizeViewModel(backend: backend))
+  // Added initializer
+  init(backend: FirebaseAIBackend) {
+      self.backend = backend
+      _viewModel = StateObject(wrappedValue: SummarizeViewModel(backend: backend))
   }
 
   enum FocusedField: Hashable {
@@ -81,9 +82,12 @@ struct SummarizeScreen: View {
   }
 }
 
-#Preview {
+// Preview needs update or removal if it relies on the initializer
+/*
+ #Preview {
   NavigationStack {
-    // Pass a default backend for the preview
-    SummarizeScreen(backend: .googleAI)
+    // Preview needs a backend instance, e.g., .googleAI()
+    SummarizeScreen(backend: FirebaseAI.firebaseAI(backend: .googleAI())) // Example backend
   }
-}
+ }
+ */

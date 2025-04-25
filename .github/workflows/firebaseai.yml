@@ -1,0 +1,48 @@
+name: vertexai
+
+on:
+  pull_request:
+    paths:
+    - 'firebaseai/**'
+  schedule:
+    # Run every day at 11pm (PST) - cron uses UTC times
+    - cron:  '0 7 * * *'
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}
+  cancel-in-progress: true
+
+env:
+  SAMPLE: vertexai
+
+jobs:
+  spm:
+    name: spm (Xcode ${{ matrix.xcode }} - ${{ matrix.os }})
+    runs-on: macOS-15
+    strategy:
+      matrix:
+        xcode: ["16.3"]
+        os: [iOS]
+        include:
+          - os: iOS
+            device: iPhone 16
+    env:
+      SETUP: vertexai
+      SPM: true
+      DIR: vertexai
+      OS: ${{ matrix.os }}
+      DEVICE: ${{ matrix.device }}
+      TEST: false
+      XCODE_VERSION: ${{ matrix.xcode }}
+      DEVELOPER_DIR: /Applications/Xcode_${{ matrix.xcode }}.app/Contents/Developer
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+      - name: Setup
+        run: |
+          gem install xcpretty
+      - name: Placeholder GoogleService-Info.plist good enough for build only testing.
+        run: cp ./mock-GoogleService-Info.plist ./vertexai/GoogleService-Info.plist
+      - name: Build and Test SwiftUI (${{ matrix.os }})
+        run: ./scripts/test.sh

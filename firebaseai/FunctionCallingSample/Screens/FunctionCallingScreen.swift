@@ -130,7 +130,7 @@ struct FunctionCallingScreen_Previews: PreviewProvider {
 
   static var previews: some View {
     NavigationStack {
-      FunctionCallingScreen(firebaseService: FirebaseAI.firebaseAI()) // Example service init
+      FunctionCallingScreen(firebaseService: FirebaseAI.firebaseAI())
     }
   }
 }

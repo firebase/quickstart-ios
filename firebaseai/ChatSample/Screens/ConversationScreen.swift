@@ -129,7 +129,7 @@ struct ConversationScreen_Previews: PreviewProvider {
 
   static var previews: some View {
     NavigationStack {
-      ConversationScreen(firebaseService: FirebaseAI.firebaseAI()) // Example service init
+      ConversationScreen(firebaseService: FirebaseAI.firebaseAI())
     }
   }
 }

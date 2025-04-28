@@ -13,45 +13,72 @@
 // limitations under the License.
 
 import SwiftUI
+import FirebaseAI
+
+enum BackendOption: String, CaseIterable, Identifiable {
+  case googleAI = "Google AI"
+  case vertexAI = "Vertex AI"
+  var id: String { rawValue }
+
+  var backendValue: FirebaseAI {
+    switch self {
+    case .googleAI:
+      return FirebaseAI.firebaseAI(backend: .googleAI())
+    case .vertexAI:
+      return FirebaseAI.firebaseAI(backend: .vertexAI())
+    }
+  }
+}
 
 struct ContentView: View {
-  @StateObject
-  var viewModel = ConversationViewModel()
-
-  @StateObject
-  var functionCallingViewModel = FunctionCallingViewModel()
+  @State private var selectedBackend: BackendOption = .googleAI
+  @State private var firebaseService: FirebaseAI = FirebaseAI.firebaseAI(backend: .googleAI())
 
   var body: some View {
     NavigationStack {
       List {
-        NavigationLink {
-          SummarizeScreen()
-        } label: {
-          Label("Text", systemImage: "doc.text")
+        Section("Configuration") {
+          Picker("Backend", selection: $selectedBackend) {
+            ForEach(BackendOption.allCases) { option in
+              Text(option.rawValue).tag(option)
+            }
+          }
         }
-        NavigationLink {
-          PhotoReasoningScreen()
-        } label: {
-          Label("Multi-modal", systemImage: "doc.richtext")
-        }
-        NavigationLink {
-          ConversationScreen()
-            .environmentObject(viewModel)
-        } label: {
-          Label("Chat", systemImage: "ellipsis.message.fill")
-        }
-        NavigationLink {
-          FunctionCallingScreen().environmentObject(functionCallingViewModel)
-        } label: {
-          Label("Function Calling", systemImage: "function")
-        }
-        NavigationLink {
-          ImagenScreen()
-        } label: {
-          Label("Imagen", systemImage: "camera.circle")
+
+        Section("Samples") {
+          NavigationLink {
+            SummarizeScreen(firebaseService: firebaseService)
+          } label: {
+            Label("Text", systemImage: "doc.text")
+          }
+          NavigationLink {
+            PhotoReasoningScreen(firebaseService: firebaseService)
+          } label: {
+            Label("Multi-modal", systemImage: "doc.richtext")
+          }
+          NavigationLink {
+            ConversationScreen(firebaseService: firebaseService)
+          } label: {
+            Label("Chat", systemImage: "ellipsis.message.fill")
+          }
+          NavigationLink {
+            FunctionCallingScreen(firebaseService: firebaseService)
+          } label: {
+            Label("Function Calling", systemImage: "function")
+          }
+          NavigationLink {
+            ImagenScreen(firebaseService: firebaseService)
+          } label: {
+            Label("Imagen", systemImage: "camera.circle")
+          }
         }
       }
       .navigationTitle("Generative AI Samples")
+      .onChange(of: selectedBackend) { newBackend in
+        firebaseService = newBackend.backendValue
+        // Note: This might cause views that hold the old service instance to misbehave
+        // unless they are also correctly updated or recreated.
+      }
     }
   }
 }

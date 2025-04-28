@@ -17,11 +17,17 @@ import GenerativeAIUIComponents
 import SwiftUI
 
 struct ConversationScreen: View {
-  @EnvironmentObject
-  var viewModel: ConversationViewModel
+  let firebaseService: FirebaseAI
+  @StateObject var viewModel: ConversationViewModel
 
   @State
   private var userPrompt = ""
+
+  init(firebaseService: FirebaseAI) {
+    self.firebaseService = firebaseService
+    _viewModel =
+      StateObject(wrappedValue: ConversationViewModel(firebaseService: firebaseService))
+  }
 
   enum FocusedField: Hashable {
     case message
@@ -110,11 +116,11 @@ struct ConversationScreen: View {
 
 struct ConversationScreen_Previews: PreviewProvider {
   struct ContainerView: View {
-    @StateObject var viewModel = ConversationViewModel()
+    @StateObject var viewModel = ConversationViewModel(firebaseService: FirebaseAI
+      .firebaseAI()) // Example service init
 
     var body: some View {
-      ConversationScreen()
-        .environmentObject(viewModel)
+      ConversationScreen(firebaseService: FirebaseAI.firebaseAI())
         .onAppear {
           viewModel.messages = ChatMessage.samples
         }
@@ -123,7 +129,7 @@ struct ConversationScreen_Previews: PreviewProvider {
 
   static var previews: some View {
     NavigationStack {
-      ConversationScreen()
+      ConversationScreen(firebaseService: FirebaseAI.firebaseAI())
     }
   }
 }

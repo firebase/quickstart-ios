@@ -14,10 +14,17 @@
 
 import MarkdownUI
 import SwiftUI
+import FirebaseAI
 
 struct SummarizeScreen: View {
-  @StateObject var viewModel = SummarizeViewModel()
+  let firebaseService: FirebaseAI
+  @StateObject var viewModel: SummarizeViewModel
   @State var userInput = ""
+
+  init(firebaseService: FirebaseAI) {
+    self.firebaseService = firebaseService
+    _viewModel = StateObject(wrappedValue: SummarizeViewModel(firebaseService: firebaseService))
+  }
 
   enum FocusedField: Hashable {
     case message
@@ -75,6 +82,6 @@ struct SummarizeScreen: View {
 
 #Preview {
   NavigationStack {
-    SummarizeScreen()
+    SummarizeScreen(firebaseService: FirebaseAI.firebaseAI())
   }
 }

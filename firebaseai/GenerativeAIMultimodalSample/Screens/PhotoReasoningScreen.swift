@@ -16,9 +16,17 @@ import GenerativeAIUIComponents
 import MarkdownUI
 import PhotosUI
 import SwiftUI
+import FirebaseAI
 
 struct PhotoReasoningScreen: View {
-  @StateObject var viewModel = PhotoReasoningViewModel()
+  let firebaseService: FirebaseAI
+  @StateObject var viewModel: PhotoReasoningViewModel
+
+  init(firebaseService: FirebaseAI) {
+    self.firebaseService = firebaseService
+    _viewModel =
+      StateObject(wrappedValue: PhotoReasoningViewModel(firebaseService: firebaseService))
+  }
 
   enum FocusedField: Hashable {
     case message
@@ -73,6 +81,6 @@ struct PhotoReasoningScreen: View {
 
 #Preview {
   NavigationStack {
-    PhotoReasoningScreen()
+    PhotoReasoningScreen(firebaseService: FirebaseAI.firebaseAI())
   }
 }

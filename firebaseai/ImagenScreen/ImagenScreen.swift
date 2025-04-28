@@ -14,9 +14,16 @@
 
 import SwiftUI
 import GenerativeAIUIComponents
+import FirebaseAI
 
 struct ImagenScreen: View {
-  @StateObject var viewModel = ImagenViewModel()
+  let firebaseService: FirebaseAI
+  @StateObject var viewModel: ImagenViewModel
+
+  init(firebaseService: FirebaseAI) {
+    self.firebaseService = firebaseService
+    _viewModel = StateObject(wrappedValue: ImagenViewModel(firebaseService: firebaseService))
+  }
 
   enum FocusedField: Hashable {
     case message
@@ -103,5 +110,5 @@ struct ProgressOverlay: View {
 }
 
 #Preview {
-  ImagenScreen()
+  ImagenScreen(firebaseService: FirebaseAI.firebaseAI())
 }

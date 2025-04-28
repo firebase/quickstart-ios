@@ -315,8 +315,6 @@
 				86D9CA8A2BED3EE1007D939E /* FirebaseAppCheck */,
 				86D9CA8E2BED3EE1007D939E /* FirebaseAuth */,
 				86D9CAB42BED3EE1007D939E /* FirebaseStorage */,
-				86D9CAB82BED3EE1007D939E /* FirebaseVertexAI */,
-				DEFECAAC2D7BB49700EF9621 /* FirebaseVertexAI */,
 				DE26D95E2DBB3E9F007E6668 /* FirebaseAI */,
 			);
 			productName = GenerativeAISample;
@@ -543,7 +541,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.VertexAISample;
+				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.FirebaseAIExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -573,7 +571,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.VertexAISample;
+				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.FirebaseAIExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -644,10 +642,6 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = FirebaseStorage;
 		};
-		86D9CAB82BED3EE1007D939E /* FirebaseVertexAI */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = FirebaseVertexAI;
-		};
 		886F95D72B17BA420036F07A /* MarkdownUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 88209C212B0FBDF700F64795 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */;
@@ -661,11 +655,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = DEFECAAB2D7BB49700EF9621 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAI;
-		};
-		DEFECAAC2D7BB49700EF9621 /* FirebaseVertexAI */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = DEFECAAB2D7BB49700EF9621 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseVertexAI;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

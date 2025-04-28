@@ -120,8 +120,7 @@ struct ConversationScreen_Previews: PreviewProvider {
       .firebaseAI()) // Example service init
 
     var body: some View {
-      ConversationScreen(firebaseService: FirebaseAI.firebaseAI()) // Example service init
-        // Removed .environmentObject
+      ConversationScreen(firebaseService: FirebaseAI.firebaseAI())
         .onAppear {
           viewModel.messages = ChatMessage.samples
         }

@@ -15,7 +15,6 @@
 import SwiftUI
 import FirebaseAI
 
-// BackendOption enum definition
 enum BackendOption: String, CaseIterable, Identifiable {
   case googleAI = "Google AI"
   case vertexAI = "Vertex AI"

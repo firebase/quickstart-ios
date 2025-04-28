@@ -19,7 +19,7 @@ import FirebaseAI
 struct SummarizeScreen: View {
   let firebaseService: FirebaseAI
   @StateObject var viewModel: SummarizeViewModel
-  @State var userInput = "" // Kept userInput state
+  @State var userInput = ""
 
   init(firebaseService: FirebaseAI) {
     self.firebaseService = firebaseService

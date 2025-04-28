@@ -38,7 +38,6 @@ struct ContentView: View {
   var body: some View {
     NavigationStack {
       List {
-        // Add this Section for the Picker
         Section("Configuration") {
           Picker("Backend", selection: $selectedBackend) {
             ForEach(BackendOption.allCases) { option in
@@ -49,31 +48,26 @@ struct ContentView: View {
 
         Section("Samples") {
           NavigationLink {
-            // Pass the service instance
             SummarizeScreen(firebaseService: firebaseService)
           } label: {
             Label("Text", systemImage: "doc.text")
           }
           NavigationLink {
-            // Pass the service instance
             PhotoReasoningScreen(firebaseService: firebaseService)
           } label: {
             Label("Multi-modal", systemImage: "doc.richtext")
           }
           NavigationLink {
-            // Pass the service instance
             ConversationScreen(firebaseService: firebaseService)
           } label: {
             Label("Chat", systemImage: "ellipsis.message.fill")
           }
           NavigationLink {
-            // Pass the service instance
             FunctionCallingScreen(firebaseService: firebaseService)
           } label: {
             Label("Function Calling", systemImage: "function")
           }
           NavigationLink {
-            // Pass the service instance
             ImagenScreen(firebaseService: firebaseService)
           } label: {
             Label("Imagen", systemImage: "camera.circle")
@@ -82,7 +76,6 @@ struct ContentView: View {
       }
       .navigationTitle("Generative AI Samples")
       .onChange(of: selectedBackend) { newBackend in
-        // Update service when selection changes
         firebaseService = newBackend.backendValue
         // Note: This might cause views that hold the old service instance to misbehave
         // unless they are also correctly updated or recreated.

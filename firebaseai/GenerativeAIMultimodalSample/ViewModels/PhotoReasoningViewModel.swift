@@ -43,7 +43,6 @@ class PhotoReasoningViewModel: ObservableObject {
 
   private var model: GenerativeModel?
 
-  // Modified initializer
   init(firebaseService: FirebaseAI) {
     model = firebaseService.generativeModel(modelName: "gemini-2.0-flash-001")
   }

@@ -35,11 +35,9 @@ class ConversationViewModel: ObservableObject {
 
   private var chatTask: Task<Void, Never>?
 
-  // Modified initializer
-  init(firebaseService: FirebaseAI) { // Accept FirebaseAI instance
-    // Use the passed service instance directly
+  init(firebaseService: FirebaseAI) {
     model = firebaseService.generativeModel(modelName: "gemini-2.0-flash-001")
-    chat = model.startChat() // Initialize chat with the model from the service
+    chat = model.startChat()
   }
 
   func sendMessage(_ text: String, streaming: Bool = true) async {

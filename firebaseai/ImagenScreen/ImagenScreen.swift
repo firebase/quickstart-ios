@@ -110,6 +110,5 @@ struct ProgressOverlay: View {
 }
 
 #Preview {
-  // Preview needs a FirebaseAI service instance
-  ImagenScreen(firebaseService: FirebaseAI.firebaseAI()) // Example service init
+  ImagenScreen(firebaseService: FirebaseAI.firebaseAI())
 }

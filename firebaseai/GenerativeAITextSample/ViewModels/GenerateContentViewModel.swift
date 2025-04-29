@@ -48,8 +48,6 @@ class GenerateContentViewModel: ObservableObject {
       errorMessage = nil
       outputText = ""
 
-      let prompt = "Generate content for: \(inputText)"
-
       let outputContentStream = try model.generateContentStream(inputText)
 
       // stream response

@@ -16,14 +16,15 @@ import MarkdownUI
 import SwiftUI
 import FirebaseAI
 
-struct SummarizeScreen: View {
+struct GenerateContentScreen: View {
   let firebaseService: FirebaseAI
-  @StateObject var viewModel: SummarizeViewModel
+  @StateObject var viewModel: GenerateContentViewModel
   @State var userInput = ""
 
   init(firebaseService: FirebaseAI) {
     self.firebaseService = firebaseService
-    _viewModel = StateObject(wrappedValue: SummarizeViewModel(firebaseService: firebaseService))
+    _viewModel =
+      StateObject(wrappedValue: GenerateContentViewModel(firebaseService: firebaseService))
   }
 
   enum FocusedField: Hashable {
@@ -36,17 +37,17 @@ struct SummarizeScreen: View {
   var body: some View {
     VStack {
       VStack(alignment: .leading) {
-        Text("Enter some text, then tap on _Go_ to summarize it.")
+        Text("Enter some text, then tap on _Go_ to run generateContent on it.")
           .padding(.horizontal, 6)
         HStack(alignment: .top) {
-          TextField("Enter text summarize", text: $userInput, axis: .vertical)
+          TextField("Enter generate content input", text: $userInput, axis: .vertical)
             .focused($focusedField, equals: .message)
             .textFieldStyle(.roundedBorder)
             .onSubmit {
-              onSummarizeTapped()
+              onGenerateContentTapped()
             }
           Button("Go") {
-            onSummarizeTapped()
+            onGenerateContentTapped()
           }
           .padding(.top, 4)
         }
@@ -71,17 +72,17 @@ struct SummarizeScreen: View {
     .navigationTitle("Text sample")
   }
 
-  private func onSummarizeTapped() {
+  private func onGenerateContentTapped() {
     focusedField = nil
 
     Task {
-      await viewModel.summarize(inputText: userInput)
+      await viewModel.generateContent(inputText: userInput)
     }
   }
 }
 
 #Preview {
   NavigationStack {
-    SummarizeScreen(firebaseService: FirebaseAI.firebaseAI())
+    GenerateContentScreen(firebaseService: FirebaseAI.firebaseAI())
   }
 }

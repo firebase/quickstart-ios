@@ -17,7 +17,7 @@ import Foundation
 import OSLog
 
 @MainActor
-class SummarizeViewModel: ObservableObject {
+class GenerateContentViewModel: ObservableObject {
   private var logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "generative-ai")
 
   @Published
@@ -35,7 +35,7 @@ class SummarizeViewModel: ObservableObject {
     model = firebaseService.generativeModel(modelName: "gemini-2.0-flash-001")
   }
 
-  func summarize(inputText: String) async {
+  func generateContent(inputText: String) async {
     defer {
       inProgress = false
     }
@@ -48,9 +48,9 @@ class SummarizeViewModel: ObservableObject {
       errorMessage = nil
       outputText = ""
 
-      let prompt = "Summarize the following text for me: \(inputText)"
+      let prompt = "Generate content for: \(inputText)"
 
-      let outputContentStream = try model.generateContentStream(prompt)
+      let outputContentStream = try model.generateContentStream(inputText)
 
       // stream response
       for try await outputContent in outputContentStream {

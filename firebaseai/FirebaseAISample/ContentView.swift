@@ -47,9 +47,9 @@ struct ContentView: View {
 
         Section("Samples") {
           NavigationLink {
-            SummarizeScreen(firebaseService: firebaseService)
+            GenerateContentScreen(firebaseService: firebaseService)
           } label: {
-            Label("Text", systemImage: "doc.text")
+            Label("Generate Content", systemImage: "doc.text")
           }
           NavigationLink {
             PhotoReasoningScreen(firebaseService: firebaseService)

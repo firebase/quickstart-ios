@@ -16,8 +16,8 @@ import SwiftUI
 import FirebaseAI
 
 enum BackendOption: String, CaseIterable, Identifiable {
-  case googleAI = "Google AI"
-  case vertexAI = "Vertex AI"
+  case googleAI = "Gemini Developer API"
+  case vertexAI = "Vertex AI Gemini API"
   var id: String { rawValue }
 
   var backendValue: FirebaseAI {

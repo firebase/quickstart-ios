@@ -33,6 +33,12 @@ sample app to your Firebase project (or create a new project):
 
 You should now be able to build and run the sample!
 
+### Request logging
+
+The `-FIRDebugEnabled` option is set as a command line argument in the build
+scheme to log server requests to the console. Remove the option to turn off the
+logging.
+
 ## Documentation
 
 To learn more about the Firebase AI SDK, check out the

@@ -32,14 +32,25 @@ class FunctionCallingViewModel: ObservableObject {
   /// Function calls pending processing
   private var functionCalls = [FunctionCallPart]()
 
+  private let backend: GeminiBackend // Add this
   private var model: GenerativeModel
   private var chat: Chat
 
   private var chatTask: Task<Void, Never>?
 
-  init() {
-    // model = FirebaseAI.firebaseAI(backend: .vertexAI()).generativeModel(
-    model = FirebaseAI.firebaseAI(backend: .googleAI()).generativeModel(
+  // Modify init
+  init(backend: GeminiBackend) {
+    self.backend = backend
+    let aiBackend: FirebaseAIBackend // Declare a variable for the SDK's backend type
+    switch backend {
+    case .googleAI:
+      aiBackend = .googleAI()
+    case .vertexAI:
+      // Check if .vertexAI() needs parameters, adjust if necessary
+      aiBackend = .vertexAI() // Assuming simple mapping
+    }
+    // Use the mapped backend variable
+    model = FirebaseAI.firebaseAI(backend: aiBackend).generativeModel(
       modelName: "gemini-2.0-flash-001",
       tools: [.functionDeclarations([
         FunctionDeclaration(

@@ -29,11 +29,22 @@ class SummarizeViewModel: ObservableObject {
   @Published
   var inProgress = false
 
+  private let backend: GeminiBackend // Add this
   private var model: GenerativeModel?
 
-  init() {
-    // model = FirebaseAI.firebaseAI(backend: .vertexAI()).generativeModel(modelName: "gemini-2.0-flash-001")
-    model = FirebaseAI.firebaseAI(backend: .googleAI())
+  // Modify init
+  init(backend: GeminiBackend) {
+    self.backend = backend
+    let aiBackend: FirebaseAIBackend // Declare a variable for the SDK's backend type
+    switch backend {
+    case .googleAI:
+      aiBackend = .googleAI()
+    case .vertexAI:
+      // Check if .vertexAI() needs parameters, adjust if necessary
+      aiBackend = .vertexAI() // Assuming simple mapping
+    }
+    // Use the mapped backend variable
+    model = FirebaseAI.firebaseAI(backend: aiBackend)
       .generativeModel(modelName: "gemini-2.0-flash-001")
   }
 

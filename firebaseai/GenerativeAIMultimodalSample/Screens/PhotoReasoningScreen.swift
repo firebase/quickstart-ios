@@ -14,11 +14,17 @@
 
 import GenerativeAIUIComponents
 import MarkdownUI
+import FirebaseAI // Import needed for the initializer parameter
 import PhotosUI
 import SwiftUI
 
 struct PhotoReasoningScreen: View {
-  @StateObject var viewModel = PhotoReasoningViewModel()
+  @StateObject var viewModel: PhotoReasoningViewModel
+
+  init(firebaseAI: FirebaseAI) {
+    // Initialize the StateObject with the passed firebaseAI instance
+    _viewModel = StateObject(wrappedValue: PhotoReasoningViewModel(firebaseAI: firebaseAI))
+  }
 
   enum FocusedField: Hashable {
     case message
@@ -73,6 +79,7 @@ struct PhotoReasoningScreen: View {
 
 #Preview {
   NavigationStack {
-    PhotoReasoningScreen()
+    // Provide a dummy FirebaseAI instance for the preview
+    PhotoReasoningScreen(firebaseAI: FirebaseAI.firebaseAI(backend: .googleAI()))
   }
 }

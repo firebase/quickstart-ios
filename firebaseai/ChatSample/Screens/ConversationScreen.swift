@@ -110,7 +110,8 @@ struct ConversationScreen: View {
 
 struct ConversationScreen_Previews: PreviewProvider {
   struct ContainerView: View {
-    @StateObject var viewModel = ConversationViewModel()
+    // Initialize ViewModel with a dummy FirebaseAI instance for the preview
+    @StateObject var viewModel = ConversationViewModel(firebaseAI: FirebaseAI.firebaseAI(backend: .googleAI()))
 
     var body: some View {
       ConversationScreen()
@@ -123,7 +124,8 @@ struct ConversationScreen_Previews: PreviewProvider {
 
   static var previews: some View {
     NavigationStack {
-      ConversationScreen()
+      // Use ContainerView for preview to ensure environmentObject is set up
+      ContainerView()
     }
   }
 }

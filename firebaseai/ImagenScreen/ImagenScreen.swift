@@ -13,10 +13,17 @@
 // limitations under the License.
 
 import SwiftUI
+import FirebaseAI // Import needed for the initializer parameter
 import GenerativeAIUIComponents
+import SwiftUI
 
 struct ImagenScreen: View {
-  @StateObject var viewModel = ImagenViewModel()
+  @StateObject var viewModel: ImagenViewModel
+
+  init(firebaseAI: FirebaseAI) {
+    // Initialize the StateObject with the passed firebaseAI instance
+    _viewModel = StateObject(wrappedValue: ImagenViewModel(firebaseAI: firebaseAI))
+  }
 
   enum FocusedField: Hashable {
     case message
@@ -103,5 +110,6 @@ struct ProgressOverlay: View {
 }
 
 #Preview {
-  ImagenScreen()
+  // Provide a dummy FirebaseAI instance for the preview
+  ImagenScreen(firebaseAI: FirebaseAI.firebaseAI(backend: .googleAI()))
 }

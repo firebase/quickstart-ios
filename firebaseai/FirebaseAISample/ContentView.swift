@@ -13,40 +13,55 @@
 // limitations under the License.
 
 import SwiftUI
+import FirebaseAI
 
 struct ContentView: View {
-  @StateObject
-  var viewModel = ConversationViewModel()
+  @State var selectedBackend: FirebaseAIBackend = .googleAI
 
-  @StateObject
-  var functionCallingViewModel = FunctionCallingViewModel()
+  var firebaseAI: FirebaseAI {
+    FirebaseAI.firebaseAI(backend: selectedBackend)
+  }
+
+  // Removed: @StateObject var viewModel = ConversationViewModel()
+
+  // Removed: @StateObject var functionCallingViewModel = FunctionCallingViewModel()
 
   var body: some View {
     NavigationStack {
       List {
+        Section("Backend Selection") {
+          Picker("Select Backend", selection: $selectedBackend) {
+            Text("Gemini Developer API").tag(FirebaseAIBackend.googleAI)
+            Text("Vertex AI Gemini API").tag(FirebaseAIBackend.vertexAI)
+          }
+        }
         NavigationLink {
-          SummarizeScreen()
+          SummarizeScreen(firebaseAI: firebaseAI)
         } label: {
           Label("Text", systemImage: "doc.text")
         }
         NavigationLink {
-          PhotoReasoningScreen()
+          PhotoReasoningScreen(firebaseAI: firebaseAI)
         } label: {
           Label("Multi-modal", systemImage: "doc.richtext")
         }
+        // Update Chat NavigationLink to inject the ViewModel with the selected backend
         NavigationLink {
           ConversationScreen()
-            .environmentObject(viewModel)
+            .environmentObject(ConversationViewModel(firebaseAI: firebaseAI)) // Create and inject here
         } label: {
           Label("Chat", systemImage: "ellipsis.message.fill")
         }
+        // Update Function Calling NavigationLink to inject the ViewModel with the selected backend
         NavigationLink {
-          FunctionCallingScreen().environmentObject(functionCallingViewModel)
+          FunctionCallingScreen()
+            .environmentObject(FunctionCallingViewModel(firebaseAI: firebaseAI)) // Create and inject here
         } label: {
           Label("Function Calling", systemImage: "function")
         }
+        // Update Imagen NavigationLink to pass the firebaseAI instance
         NavigationLink {
-          ImagenScreen()
+          ImagenScreen(firebaseAI: firebaseAI) // Pass firebaseAI here
         } label: {
           Label("Imagen", systemImage: "camera.circle")
         }

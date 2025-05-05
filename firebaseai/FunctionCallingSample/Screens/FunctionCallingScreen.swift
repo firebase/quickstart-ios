@@ -111,21 +111,13 @@ struct FunctionCallingScreen: View {
 }
 
 struct FunctionCallingScreen_Previews: PreviewProvider {
-  struct ContainerView: View {
-    @EnvironmentObject
-    var viewModel: FunctionCallingViewModel
-
-    var body: some View {
-      FunctionCallingScreen()
-        .onAppear {
-          viewModel.messages = ChatMessage.samples
-        }
-    }
-  }
+  // Removed ContainerView as it's no longer needed for preview setup
 
   static var previews: some View {
     NavigationStack {
-      FunctionCallingScreen().environmentObject(FunctionCallingViewModel())
+      // Initialize with a dummy FirebaseAI instance for preview
+      FunctionCallingScreen()
+        .environmentObject(FunctionCallingViewModel(firebaseAI: FirebaseAI.firebaseAI(backend: .googleAI)))
     }
   }
 }

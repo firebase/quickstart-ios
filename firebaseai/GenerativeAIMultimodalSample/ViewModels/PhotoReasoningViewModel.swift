@@ -41,12 +41,13 @@ class PhotoReasoningViewModel: ObservableObject {
   @Published
   var inProgress = false
 
+  private let firebaseAI: FirebaseAI
   private var model: GenerativeModel?
 
-  init() {
-    // model = FirebaseAI.firebaseAI(backend: .vertexAI()).generativeModel(modelName: "gemini-2.0-flash-001")
-    model = FirebaseAI.firebaseAI(backend: .googleAI())
-      .generativeModel(modelName: "gemini-2.0-flash-001")
+  init(firebaseAI: FirebaseAI) {
+    self.firebaseAI = firebaseAI
+    // Use the injected firebaseAI instance and the specified model name "gemini-1.5-flash"
+    model = firebaseAI.generativeModel(modelName: "gemini-1.5-flash")
   }
 
   func reason() async {

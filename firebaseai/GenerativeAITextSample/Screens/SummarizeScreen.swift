@@ -12,12 +12,18 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import FirebaseAI // Import needed for the initializer parameter
 import MarkdownUI
 import SwiftUI
 
 struct SummarizeScreen: View {
-  @StateObject var viewModel = SummarizeViewModel()
+  @StateObject var viewModel: SummarizeViewModel
   @State var userInput = ""
+
+  init(firebaseAI: FirebaseAI) {
+    // Initialize the StateObject with the passed firebaseAI instance
+    _viewModel = StateObject(wrappedValue: SummarizeViewModel(firebaseAI: firebaseAI))
+  }
 
   enum FocusedField: Hashable {
     case message
@@ -75,6 +81,7 @@ struct SummarizeScreen: View {
 
 #Preview {
   NavigationStack {
-    SummarizeScreen()
+    // Provide a dummy FirebaseAI instance for the preview
+    SummarizeScreen(firebaseAI: FirebaseAI.firebaseAI(backend: .googleAI()))
   }
 }

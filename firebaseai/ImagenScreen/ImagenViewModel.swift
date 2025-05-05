@@ -37,10 +37,12 @@ class ImagenViewModel: ObservableObject {
 
   private var generateImagesTask: Task<Void, Never>?
 
-  // 1. Initialize the Gemini service
-  // private let service = FirebaseAI.firebaseAI(backend: .vertexAI())
-  private let service = FirebaseAI.firebaseAI(backend: .googleAI())
-  init() {
+  private let firebaseAI: FirebaseAI
+
+  // 1. Initialize the Gemini service - Removed direct initialization
+
+  init(firebaseAI: FirebaseAI) {
+    self.firebaseAI = firebaseAI
     // 2. Configure Imagen settings
     let modelName = "imagen-3.0-generate-002"
     let safetySettings = ImagenSafetySettings(
@@ -50,8 +52,8 @@ class ImagenViewModel: ObservableObject {
     generationConfig.numberOfImages = 4
     generationConfig.aspectRatio = .landscape4x3
 
-    // 3. Initialize the Imagen model
-    model = service.imagenModel(
+    // 3. Initialize the Imagen model using the injected firebaseAI instance
+    model = firebaseAI.imagenModel(
       modelName: modelName,
       generationConfig: generationConfig,
       safetySettings: safetySettings

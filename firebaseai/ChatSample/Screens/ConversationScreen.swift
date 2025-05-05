@@ -17,11 +17,10 @@ import GenerativeAIUIComponents
 import SwiftUI
 
 struct ConversationScreen: View {
-  @EnvironmentObject
-  var viewModel: ConversationViewModel
+  // Use @StateObject and initialize via init
+  @StateObject var viewModel: ConversationViewModel
 
-  @State
-  private var userPrompt = ""
+  @State private var userPrompt = ""
 
   enum FocusedField: Hashable {
     case message
@@ -29,6 +28,11 @@ struct ConversationScreen: View {
 
   @FocusState
   var focusedField: FocusedField?
+
+  // Initializer accepting FirebaseAI
+  init(firebaseAI: FirebaseAI) {
+    _viewModel = StateObject(wrappedValue: ConversationViewModel(firebaseAI: firebaseAI))
+  }
 
   var body: some View {
     VStack {
@@ -108,24 +112,22 @@ struct ConversationScreen: View {
   }
 }
 
+// Update Preview Provider
 struct ConversationScreen_Previews: PreviewProvider {
-  struct ContainerView: View {
-    // Initialize ViewModel with a dummy FirebaseAI instance for the preview
-    @StateObject var viewModel = ConversationViewModel(firebaseAI: FirebaseAI.firebaseAI(backend: .googleAI()))
-
-    var body: some View {
-      ConversationScreen()
-        .environmentObject(viewModel)
-        .onAppear {
-          viewModel.messages = ChatMessage.samples
-        }
-    }
-  }
-
   static var previews: some View {
+    // Create a dummy FirebaseAI instance for preview
+    // Note: This preview might not fully function if FirebaseApp is not configured.
+    let dummyAI = FirebaseAI.firebaseAI(backend: .googleAI())
+
     NavigationStack {
-      // Use ContainerView for preview to ensure environmentObject is set up
-      ContainerView()
+      ConversationScreen(firebaseAI: dummyAI)
+        // You might want to add sample messages to the viewModel in the preview
+        .onAppear {
+           // Accessing viewModel directly in preview might be tricky with StateObject init pattern
+           // Consider adding sample data differently if needed for preview.
+           // For instance, modifying the ViewModel's init for preview purposes,
+           // or creating a specific preview struct.
+        }
     }
   }
 }

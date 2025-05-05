@@ -13,28 +13,32 @@
 // limitations under the License.
 
 import FirebaseAI
-import GenerativeAIUIComponents
+import GenerativeAIUIComponents // Ensure this is imported if InputField/MessageView are from here
 import SwiftUI
 
 struct FunctionCallingScreen: View {
-  @EnvironmentObject
-  var viewModel: FunctionCallingViewModel
+  // Use @StateObject and initialize via init
+  @StateObject var viewModel: FunctionCallingViewModel
 
-  @State
-  private var userPrompt = "What is 100 Euros in U.S. Dollars?"
+  @State private var userPrompt = "What is 100 Euros in U.S. Dollars?"
 
   enum FocusedField: Hashable {
     case message
   }
 
-  @FocusState
-  var focusedField: FocusedField?
+  @FocusState var focusedField: FocusedField?
+
+  // Initializer accepting FirebaseAI
+  init(firebaseAI: FirebaseAI) {
+    _viewModel = StateObject(wrappedValue: FunctionCallingViewModel(firebaseAI: firebaseAI))
+  }
 
   var body: some View {
     VStack {
       ScrollViewReader { scrollViewProxy in
         List {
-          Text("Interact with a currency conversion API using function calling in Gemini.")
+          // ... (List content remains the same) ...
+           Text("Interact with a currency conversion API using function calling in Gemini.")
           ForEach(viewModel.messages) { message in
             MessageView(message: message)
           }
@@ -45,7 +49,8 @@ struct FunctionCallingScreen: View {
         }
         .listStyle(.plain)
         .onChange(of: viewModel.messages, perform: { newValue in
-          if viewModel.hasError {
+          // ... (onChange logic remains the same) ...
+           if viewModel.hasError {
             // Wait for a short moment to make sure we can actually scroll to the bottom.
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
               withAnimation {
@@ -69,14 +74,16 @@ struct FunctionCallingScreen: View {
           focusedField = nil
         }
       }
-      InputField("Message...", text: $userPrompt) {
+      // ... (InputField remains the same) ...
+       InputField("Message...", text: $userPrompt) {
         Image(systemName: viewModel.busy ? "stop.circle.fill" : "arrow.up.circle.fill")
           .font(.title)
       }
       .focused($focusedField, equals: .message)
       .onSubmit { sendOrStop() }
     }
-    .toolbar {
+    // ... (toolbar and navigationTitle remain the same) ...
+     .toolbar {
       ToolbarItem(placement: .primaryAction) {
         Button(action: newChat) {
           Image(systemName: "square.and.pencil")
@@ -89,15 +96,18 @@ struct FunctionCallingScreen: View {
     }
   }
 
-  private func sendMessage() {
+  // ... (sendMessage, sendOrStop, newChat methods remain the same) ...
+   private func sendMessage() {
     Task {
       let prompt = userPrompt
       userPrompt = ""
-      await viewModel.sendMessage(prompt, streaming: true)
+      await viewModel.sendMessage(prompt, streaming: true) // Keep streaming true or make configurable
     }
   }
 
   private func sendOrStop() {
+     focusedField = nil // Dismiss keyboard when sending/stopping
+
     if viewModel.busy {
       viewModel.stop()
     } else {
@@ -107,17 +117,26 @@ struct FunctionCallingScreen: View {
 
   private func newChat() {
     viewModel.startNewChat()
+    userPrompt = "What is 100 Euros in U.S. Dollars?" // Reset prompt maybe?
+    focusedField = .message // Focus field after new chat
   }
 }
 
+// Update Preview Provider
 struct FunctionCallingScreen_Previews: PreviewProvider {
-  // Removed ContainerView as it's no longer needed for preview setup
-
   static var previews: some View {
+    // Create a dummy FirebaseAI instance for preview
+    let dummyAI = FirebaseAI.firebaseAI(backend: .googleAI())
+
     NavigationStack {
-      // Initialize with a dummy FirebaseAI instance for preview
-      FunctionCallingScreen()
-        .environmentObject(FunctionCallingViewModel(firebaseAI: FirebaseAI.firebaseAI(backend: .googleAI)))
+      FunctionCallingScreen(firebaseAI: dummyAI)
+         // Add sample data for preview if needed, similar to ConversationScreen
+        .onAppear {
+           // Example: Access viewModel to set sample messages if needed for preview design
+           // let vm = FunctionCallingViewModel(firebaseAI: dummyAI) // Need instance access
+           // vm.messages = ChatMessage.samples // Assuming samples exist
+           // This pattern is complex with StateObject init, consider preview-specific setup
+        }
     }
   }
 }

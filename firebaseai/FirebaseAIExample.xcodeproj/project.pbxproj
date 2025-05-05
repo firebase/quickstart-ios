@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8848C8412B0D04BD007B434F /* Backend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8848C8402B0D04BD007B434F /* Backend.swift */; };
 		869200B32B879C4F00482873 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 869200B22B879C4F00482873 /* GoogleService-Info.plist */; };
 		86C1F4832BC726150026816F /* FunctionCallingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C1F47E2BC726150026816F /* FunctionCallingScreen.swift */; };
 		86C1F4842BC726150026816F /* FunctionCallingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C1F4802BC726150026816F /* FunctionCallingViewModel.swift */; };
@@ -36,6 +37,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8848C8402B0D04BD007B434F /* Backend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Backend.swift; sourceTree = "<group>"; };
 		869200B22B879C4F00482873 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		86C1F47E2BC726150026816F /* FunctionCallingScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FunctionCallingScreen.swift; sourceTree = "<group>"; };
 		86C1F4802BC726150026816F /* FunctionCallingViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FunctionCallingViewModel.swift; sourceTree = "<group>"; };
@@ -174,6 +176,7 @@
 		8848C8312B0D04BC007B434F /* FirebaseAISample */ = {
 			isa = PBXGroup;
 			children = (
+				8848C8402B0D04BD007B434F /* Backend.swift */,
 				8848C8322B0D04BC007B434F /* FirebaseAISampleApp.swift */,
 				8848C8342B0D04BC007B434F /* ContentView.swift */,
 				8848C8362B0D04BD007B434F /* Assets.xcassets */,
@@ -377,6 +380,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8848C8412B0D04BD007B434F /* Backend.swift in Sources */,
 				86C1F4832BC726150026816F /* FunctionCallingScreen.swift in Sources */,
 				886F95DF2B17D5010036F07A /* BouncingDots.swift in Sources */,
 				86C1F4842BC726150026816F /* FunctionCallingViewModel.swift in Sources */,

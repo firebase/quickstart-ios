@@ -13,74 +13,115 @@
 // limitations under the License.
 
 import SwiftUI
-import FirebaseAI // Import needed for the initializer parameter
 import GenerativeAIUIComponents
-import SwiftUI
+import FirebaseAI // Import FirebaseAI
 
 struct ImagenScreen: View {
+  // Use @StateObject and initialize via init
   @StateObject var viewModel: ImagenViewModel
 
-  init(firebaseAI: FirebaseAI) {
-    // Initialize the StateObject with the passed firebaseAI instance
-    _viewModel = StateObject(wrappedValue: ImagenViewModel(firebaseAI: firebaseAI))
-  }
-
   enum FocusedField: Hashable {
-    case message
+    case prompt // Rename for clarity
   }
 
-  @FocusState
-  var focusedField: FocusedField?
+  @FocusState var focusedField: FocusedField?
+
+  // Initializer accepting FirebaseAI
+  init(firebaseAI: FirebaseAI) {
+     _viewModel = StateObject(wrappedValue: ImagenViewModel(firebaseAI: firebaseAI))
+  }
+
 
   var body: some View {
-    ZStack {
+    ZStack { // Use ZStack for progress overlay
       VStack {
+        // Input field using viewModel.userInput
         InputField("Enter a prompt to generate an image", text: $viewModel.userInput) {
-          Image(
-            systemName: viewModel.inProgress ? "stop.circle.fill" : "paperplane.circle.fill"
-          )
-          .font(.title)
+          Image(systemName: viewModel.inProgress ? "stop.circle.fill" : "sparkles") // Use sparkles icon
+            .font(.title)
+            .foregroundColor(viewModel.inProgress || viewModel.userInput.isEmpty ? .gray : .accentColor) // Dynamic color
         }
-        .focused($focusedField, equals: .message)
+        .focused($focusedField, equals: .prompt)
         .onSubmit { sendOrStop() }
+        .disabled(viewModel.inProgress) // Disable input field when busy
 
+
+         // Display error message if present
+         if let errorMessage = viewModel.errorMessage {
+             Text(errorMessage)
+                 .foregroundColor(.red)
+                 .padding(.horizontal)
+                 .multilineTextAlignment(.center)
+         }
+
+
+        // ScrollView for the image grid
         ScrollView {
+          // Define grid layout dynamically
+          let columns: [GridItem] = [
+             GridItem(.flexible(), spacing: 10), // Use flexible columns
+             GridItem(.flexible(), spacing: 10)
+          ]
           let spacing: CGFloat = 10
-          LazyVGrid(columns: [
-            GridItem(.fixed(UIScreen.main.bounds.width / 2 - spacing), spacing: spacing),
-            GridItem(.fixed(UIScreen.main.bounds.width / 2 - spacing), spacing: spacing),
-          ], spacing: spacing) {
+
+
+          LazyVGrid(columns: columns, spacing: spacing) {
             ForEach(viewModel.images, id: \.self) { image in
               Image(uiImage: image)
                 .resizable()
-                .aspectRatio(contentMode: .fill)
-                .frame(width: UIScreen.main.bounds.width / 2 - spacing,
-                       height: UIScreen.main.bounds.width / 2 - spacing)
+                .aspectRatio(1.0, contentMode: .fill) // Make images square (or use model's ratio)
+                .frame(minWidth: 0, maxWidth: .infinity) // Allow flexible width
+                .clipped() // Clip content to bounds
                 .cornerRadius(12)
-                .clipped()
+                // Add tap gesture for detail view or action
+                // .onTapGesture { /* Handle tap */ }
             }
           }
           .padding(.horizontal, spacing)
+          .padding(.top, spacing) // Add top padding
         }
+         // Show placeholder if no images and not loading
+         if viewModel.images.isEmpty && !viewModel.inProgress {
+            Text("Generated images will appear here.")
+               .foregroundColor(.gray)
+               .padding()
+         }
       }
+      .navigationTitle("Imagen") // Simpler title
+
+
+      // Progress Overlay
       if viewModel.inProgress {
-        ProgressOverlay()
+        ProgressOverlay() // Use the existing ProgressOverlay struct
       }
     }
-    .navigationTitle("Imagen sample")
     .onAppear {
-      focusedField = .message
+      focusedField = .prompt // Focus prompt field on appear
     }
+    // Add a toolbar button for explicit generation? Or rely on onSubmit.
+    // .toolbar {
+    //    ToolbarItem(placement: .navigationBarTrailing) {
+    //       Button("Generate", action: sendMessage)
+    //          .disabled(viewModel.inProgress || viewModel.userInput.isEmpty)
+    //    }
+    // }
   }
 
+
+  // Action triggered by onSubmit or button press
   private func sendMessage() {
     Task {
-      await viewModel.generateImage(prompt: viewModel.userInput)
-      focusedField = .message
+       focusedField = nil // Dismiss keyboard
+       await viewModel.generateImage() // Call viewModel's method
+       // Optionally re-focus after generation if needed, but usually not desired
+       // focusedField = .prompt
     }
   }
 
+
+  // Action for the input field's button (Send/Stop)
   private func sendOrStop() {
+     focusedField = nil // Dismiss keyboard
     if viewModel.inProgress {
       viewModel.stop()
     } else {
@@ -89,27 +130,47 @@ struct ImagenScreen: View {
   }
 }
 
+
+// ProgressOverlay remains the same
 struct ProgressOverlay: View {
   var body: some View {
     ZStack {
-      RoundedRectangle(cornerRadius: 16)
-        .fill(Material.ultraThinMaterial)
-        .frame(width: 120, height: 100)
-        .shadow(radius: 8)
+      // Use system background material for better adaptability
+      Rectangle()
+          .fill(.ultraThinMaterial)
+          .ignoresSafeArea() // Cover the whole screen
+
 
       VStack(spacing: 12) {
         ProgressView()
           .scaleEffect(1.5)
-
-        Text("Loading...")
+        Text("Generating...") // Updated text
           .font(.subheadline)
           .foregroundColor(.secondary)
       }
+       .padding(30)
+       .background(.regularMaterial) // Background for the content itself
+       .cornerRadius(16)
+       .shadow(radius: 8)
     }
   }
 }
 
-#Preview {
-  // Provide a dummy FirebaseAI instance for the preview
-  ImagenScreen(firebaseAI: FirebaseAI.firebaseAI(backend: .googleAI()))
+
+// Update Preview Provider
+#Preview { // Use #Preview macro
+   // Create a dummy FirebaseAI instance for preview
+   let dummyAI = FirebaseAI.firebaseAI(backend: .googleAI())
+
+
+   NavigationView { // Embed in NavigationView for title
+      ImagenScreen(firebaseAI: dummyAI)
+         .onAppear {
+             // Example: Set preview state if needed
+             // let vm = ImagenViewModel(firebaseAI: dummyAI)
+             // vm.userInput = "a cat wearing a hat"
+             // vm.images = [UIImage(systemName: "photo")!] // Placeholder image
+             // Direct access complex with StateObject init.
+         }
+   }
 }

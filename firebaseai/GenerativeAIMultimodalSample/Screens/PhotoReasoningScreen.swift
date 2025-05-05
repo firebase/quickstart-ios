@@ -14,62 +14,107 @@
 
 import GenerativeAIUIComponents
 import MarkdownUI
-import FirebaseAI // Import needed for the initializer parameter
 import PhotosUI
 import SwiftUI
+import FirebaseAI // Import FirebaseAI
 
 struct PhotoReasoningScreen: View {
+  // Use @StateObject and initialize via init
   @StateObject var viewModel: PhotoReasoningViewModel
-
-  init(firebaseAI: FirebaseAI) {
-    // Initialize the StateObject with the passed firebaseAI instance
-    _viewModel = StateObject(wrappedValue: PhotoReasoningViewModel(firebaseAI: firebaseAI))
-  }
 
   enum FocusedField: Hashable {
     case message
   }
 
-  @FocusState
-  var focusedField: FocusedField?
+  @FocusState var focusedField: FocusedField?
+
+  // Initializer accepting FirebaseAI
+  init(firebaseAI: FirebaseAI) {
+    _viewModel = StateObject(wrappedValue: PhotoReasoningViewModel(firebaseAI: firebaseAI))
+  }
+
 
   var body: some View {
     VStack {
+      // Use the specific MultimodalInputField if it's defined in GenerativeAIUIComponents
       MultimodalInputField(text: $viewModel.userInput, selection: $viewModel.selectedItems)
         .focused($focusedField, equals: .message)
         .onSubmit {
           onSendTapped()
         }
+        // Display error message if present
+         if let errorMessage = viewModel.errorMessage {
+             Text(errorMessage)
+                 .foregroundColor(.red)
+                 .padding(.horizontal)
+         }
+
 
       ScrollViewReader { scrollViewProxy in
         List {
-          if let outputText = viewModel.outputText {
-            HStack(alignment: .top) {
-              if viewModel.inProgress {
-                ProgressView()
-              } else {
-                Image(systemName: "cloud.circle.fill")
-                  .font(.title2)
-              }
+          // Display output or progress/placeholder
+          if viewModel.inProgress && (viewModel.outputText == nil || viewModel.outputText!.isEmpty) {
+             HStack {
+                 ProgressView()
+                 Text("Generating response...")
+                    .foregroundColor(.gray)
+             }
+             .listRowSeparator(.hidden)
+          } else if let outputText = viewModel.outputText, !outputText.isEmpty {
+             HStack(alignment: .top) {
+               // Keep the cloud icon or use another indicator
+               Image(systemName: "sparkles") // Use sparkles or another relevant icon
+                 .font(.title2)
+                 .foregroundColor(.accentColor) // Use accent color
 
-              Markdown("\(outputText)")
-            }
-            .listRowSeparator(.hidden)
+
+               Markdown(outputText) // Ensure MarkdownUI handles the text correctly
+                 .markdownTheme(.gitHub) // Example theme
+             }
+             .listRowSeparator(.hidden)
+             .id("output") // Add ID for scrolling
           }
+           // Optionally add a placeholder when not inProgress and no output
+           else if !viewModel.inProgress {
+              Text("Enter a question and select images to start.")
+                 .foregroundColor(.gray)
+                 .listRowSeparator(.hidden)
+           }
         }
         .listStyle(.plain)
+         // Scroll to output when it changes
+         .onChange(of: viewModel.outputText) { newValue in
+             if let newValue = newValue, !newValue.isEmpty {
+                 // Delay slightly to allow layout update
+                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                     withAnimation {
+                         scrollViewProxy.scrollTo("output", anchor: .bottom)
+                     }
+                 }
+             }
+         }
       }
     }
     .navigationTitle("Multimodal sample")
     .onAppear {
+      // Optionally clear previous state on appear
+      // viewModel.outputText = nil
+      // viewModel.errorMessage = nil
       focusedField = .message
     }
+     // Add a button to trigger sending if needed, or rely on onSubmit
+     // .toolbar {
+     //     ToolbarItem(placement: .navigationBarTrailing) {
+     //         Button("Send", action: onSendTapped)
+     //             .disabled(viewModel.inProgress || viewModel.userInput.isEmpty || viewModel.selectedItems.isEmpty)
+     //     }
+     // }
   }
 
   // MARK: - Actions
 
   private func onSendTapped() {
-    focusedField = nil
+    focusedField = nil // Dismiss keyboard
 
     Task {
       await viewModel.reason()
@@ -77,9 +122,20 @@ struct PhotoReasoningScreen: View {
   }
 }
 
-#Preview {
+// Update Preview Provider
+#Preview { // Use #Preview macro
+  // Create a dummy FirebaseAI instance for preview
+   let dummyAI = FirebaseAI.firebaseAI(backend: .googleAI()) // Use appropriate backend
+
+
   NavigationStack {
-    // Provide a dummy FirebaseAI instance for the preview
-    PhotoReasoningScreen(firebaseAI: FirebaseAI.firebaseAI(backend: .googleAI()))
+     PhotoReasoningScreen(firebaseAI: dummyAI)
+       // Add sample data for preview if needed
+       .onAppear {
+          // Example: Set some initial state for preview
+          // let vm = PhotoReasoningViewModel(firebaseAI: dummyAI)
+          // vm.outputText = "This is a preview response."
+          // This direct access is complex with StateObject init.
+       }
   }
 }

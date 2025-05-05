@@ -35,12 +35,11 @@ class ConversationViewModel: ObservableObject {
 
   private var chatTask: Task<Void, Never>?
 
-  private let firebaseAI: FirebaseAI
-
+  // Updated initializer
   init(firebaseAI: FirebaseAI) {
-    self.firebaseAI = firebaseAI
-    // Initialize model and chat using the injected firebaseAI and specified model name
-    model = firebaseAI.generativeModel(modelName: "gemini-1.5-flash")
+    // Use the injected FirebaseAI instance
+    // TODO: Make model name configurable or dynamic if needed
+    model = firebaseAI.generativeModel(modelName: "gemini-1.5-flash-latest")
     chat = model.startChat()
   }
 

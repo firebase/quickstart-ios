@@ -21,77 +21,128 @@ import SwiftUI
 class ImagenViewModel: ObservableObject {
   private var logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "generative-ai")
 
-  @Published
-  var userInput: String = ""
+  // Input and Output properties
+  @Published var userInput: String = ""
+  @Published var images = [UIImage]() // Array to hold generated images
+  @Published var errorMessage: String?
+  @Published var inProgress = false
 
-  @Published
-  var images = [UIImage]()
-
-  @Published
-  var errorMessage: String?
-
-  @Published
-  var inProgress = false
-
+  // Imagen model instance
   private let model: ImagenModel
 
+  // Task for managing image generation
   private var generateImagesTask: Task<Void, Never>?
 
-  private let firebaseAI: FirebaseAI
-
-  // 1. Initialize the Gemini service - Removed direct initialization
-
+  // Updated initializer accepting FirebaseAI instance
   init(firebaseAI: FirebaseAI) {
-    self.firebaseAI = firebaseAI
-    // 2. Configure Imagen settings
-    let modelName = "imagen-3.0-generate-002"
-    let safetySettings = ImagenSafetySettings(
-      safetyFilterLevel: .blockLowAndAbove
-    )
-    var generationConfig = ImagenGenerationConfig()
-    generationConfig.numberOfImages = 4
-    generationConfig.aspectRatio = .landscape4x3
+     // Configure Imagen settings (Keep these or make them configurable)
+     // TODO: Consider making modelName, safetySettings, generationConfig configurable
+     let modelName = "imagen-3.0-generate-002" // Or other available Imagen model
+     let safetySettings = ImagenSafetySettings(
+       safetyFilterLevel: .blockLowAndAbove // Adjust safety level as needed
+     )
+     var generationConfig = ImagenGenerationConfig()
+     generationConfig.numberOfImages = 4 // Request multiple images
+     generationConfig.aspectRatio = .landscape4x3 // Specify aspect ratio
 
-    // 3. Initialize the Imagen model using the injected firebaseAI instance
-    model = firebaseAI.imagenModel(
-      modelName: modelName,
-      generationConfig: generationConfig,
-      safetySettings: safetySettings
-    )
+
+     // Initialize the Imagen model using the injected FirebaseAI instance
+     model = firebaseAI.imagenModel(
+       modelName: modelName,
+       generationConfig: generationConfig,
+       safetySettings: safetySettings
+     )
+     logger.info("ImagenViewModel initialized with model: \(modelName)")
   }
 
-  func generateImage(prompt: String) async {
-    stop()
 
-    generateImagesTask = Task {
-      inProgress = true
-      defer {
-        inProgress = false
-      }
+  // Function to generate images based on the current userInput
+  func generateImage() async {
+     // Validate input
+     guard !userInput.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else {
+        errorMessage = "Please enter a prompt to generate an image."
+        return
+     }
 
-      do {
-        // 4. Call generateImages with the text prompt
-        let response = try await model.generateImages(prompt: prompt)
 
-        // 5. Print the reason images were filtered out, if any.
-        if let filteredReason = response.filteredReason {
-          print("Image(s) Blocked: \(filteredReason)")
-        }
+     stop() // Cancel any ongoing task
 
-        if !Task.isCancelled {
-          // 6. Convert the image data to UIImage for display in the UI
-          images = response.images.compactMap { UIImage(data: $0.data) }
-        }
-      } catch {
-        if !Task.isCancelled {
-          logger.error("Error generating images: \(error)")
-        }
-      }
-    }
+
+     generateImagesTask = Task {
+       inProgress = true
+       errorMessage = nil // Clear previous error
+       // Optionally clear previous images: images = []
+       defer {
+         inProgress = false
+       }
+
+
+       do {
+         logger.debug("Generating images for prompt: \(userInput)")
+         // Call generateImages with the text prompt from userInput
+         let response = try await model.generateImages(prompt: userInput)
+
+
+         // Check for filtered reason
+         if let filteredReason = response.filteredReason {
+            logger.warning("Image(s) Blocked: \(filteredReason)")
+            errorMessage = "Some images were blocked due to safety settings: \(filteredReason)"
+            // Keep potentially unblocked images if any:
+            if !Task.isCancelled {
+               images = response.images.compactMap { UIImage(data: $0.data) }
+            }
+            // If all were blocked, images array will be empty.
+            if images.isEmpty && errorMessage == nil { // Update error if all blocked
+               errorMessage = "All generated images were blocked due to safety settings: \(filteredReason)"
+            }
+
+
+         } else if !Task.isCancelled {
+           // Convert the image data to UIImage for display
+           let generatedImages = response.images.compactMap { imageResponse -> UIImage? in
+              if let data = imageResponse.data {
+                 return UIImage(data: data)
+              } else {
+                 logger.warning("Received image response with no data.")
+                 return nil
+              }
+           }
+
+
+           if generatedImages.isEmpty && response.images.isEmpty {
+              // Handle case where API returns success but no images (unlikely but possible)
+              logger.warning("API returned success but no image data.")
+              errorMessage = "The model did not return any images for this prompt."
+           } else {
+              images = generatedImages // Update the published array
+              logger.info("Successfully generated \(images.count) images.")
+           }
+         }
+
+
+       } catch let apiError as GenerateContentError { // Catch specific Imagen/GenerateContent errors
+           logger.error("API Error generating images: \(apiError)")
+           if !Task.isCancelled {
+              errorMessage = "Error generating images: \(apiError.localizedDescription)"
+           }
+       } catch {
+         // Catch other potential errors
+         if !Task.isCancelled {
+           logger.error("Unexpected error generating images: \(error)")
+           errorMessage = "An unexpected error occurred: \(error.localizedDescription)"
+         }
+       }
+     }
   }
 
+
+  // Function to cancel the ongoing generation task
   func stop() {
-    generateImagesTask?.cancel()
+    if let task = generateImagesTask, !task.isCancelled {
+       task.cancel()
+       logger.info("Image generation task cancelled.")
+       inProgress = false // Ensure progress stops immediately on manual stop
+    }
     generateImagesTask = nil
   }
 }

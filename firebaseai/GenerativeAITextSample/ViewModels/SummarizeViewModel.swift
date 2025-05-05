@@ -20,52 +20,94 @@ import OSLog
 class SummarizeViewModel: ObservableObject {
   private var logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "generative-ai")
 
-  @Published
-  var outputText = ""
+  // Input text managed by the ViewModel
+  @Published var userInput: String = ""
 
-  @Published
-  var errorMessage: String?
+  // Output and state properties
+  @Published var outputText: String = "" // Initialize as empty string
+  @Published var errorMessage: String?
+  @Published var inProgress = false
 
-  @Published
-  var inProgress = false
+  private var model: GenerativeModel
 
-  private let firebaseAI: FirebaseAI
-  private var model: GenerativeModel?
-
+  // Updated initializer accepting FirebaseAI
   init(firebaseAI: FirebaseAI) {
-    self.firebaseAI = firebaseAI
-    // Use the injected firebaseAI instance and the specified model name "gemini-1.5-flash"
-    model = firebaseAI.generativeModel(modelName: "gemini-1.5-flash")
+     // Use the injected FirebaseAI instance
+     // TODO: Make model name configurable or dynamic if needed
+     model = firebaseAI.generativeModel(modelName: "gemini-1.5-flash-latest") // Consistent model name
+     logger.info("SummarizeViewModel initialized with \(model.modelName)") // Log initialization
   }
 
-  func summarize(inputText: String) async {
-    defer {
-      inProgress = false
-    }
-    guard let model else {
-      return
-    }
 
-    do {
-      inProgress = true
-      errorMessage = nil
-      outputText = ""
+  // Renamed function to reflect action based on internal state (userInput)
+  func generateSummary() async {
+     // Validate input
+     guard !userInput.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else {
+        errorMessage = "Please enter text to summarize."
+        return // Don't proceed if input is empty
+     }
 
-      let prompt = "Summarize the following text for me: \(inputText)"
 
-      let outputContentStream = try model.generateContentStream(prompt)
+     // Check if model is initialized (it should be, but good practice)
+     // guard let model = self.model else { // model is non-optional now
+     //    logger.error("Model not initialized.")
+     //    errorMessage = "Model not initialized."
+     //    return
+     // }
 
-      // stream response
-      for try await outputContent in outputContentStream {
-        guard let line = outputContent.text else {
-          return
+
+     defer {
+       inProgress = false
+     }
+
+
+     do {
+       inProgress = true
+       errorMessage = nil
+       outputText = "" // Clear previous output
+
+
+       let prompt = "Summarize the following text for me: \(userInput)"
+       logger.debug("Generating summary for prompt: \(prompt)")
+
+
+       // Use structured concurrency for the API call
+       let outputContentStream = try model.generateContentStream(prompt)
+
+
+       // stream response
+       var streamedOutput = ""
+       for try await outputContent in outputContentStream {
+         guard let line = outputContent.text else {
+            logger.info("Received non-text chunk in stream.")
+            continue
+         }
+         streamedOutput += line
+         outputText = streamedOutput // Update published property progressively
+       }
+
+
+        // Handle empty response after stream
+        if streamedOutput.isEmpty && errorMessage == nil {
+           outputText = "Model did not return a summary."
+           logger.warning("Model stream finished but produced no text output.")
         }
 
-        outputText = outputText + line
-      }
-    } catch {
-      logger.error("\(error.localizedDescription)")
-      errorMessage = error.localizedDescription
-    }
-  }
+
+     } catch let decodingError as DecodingError {
+        logger.error("Decoding error: \(decodingError)")
+        errorMessage = "Error processing response from the model: \(decodingError.localizedDescription)"
+     } catch let apiError as GenerateContentError {
+         logger.error("API Error: \(apiError)")
+         errorMessage = "An error occurred while communicating with the AI model: \(apiError.localizedDescription)"
+     } catch {
+       // Catch any other unexpected errors
+       logger.error("An unexpected error occurred: \(error.localizedDescription)")
+       errorMessage = "An unexpected error occurred: \(error.localizedDescription)"
+        // Clear potentially partial output on error
+        if outputText.isEmpty {
+           outputText = "" // Ensure it's cleared or set to an error message
+        }
+     }
+   }
 }

@@ -13,57 +13,70 @@
 // limitations under the License.
 
 import SwiftUI
-import FirebaseAI
+import FirebaseAI // Import FirebaseAI
 
 struct ContentView: View {
-  @State var selectedBackend: FirebaseAIBackend = .googleAI
+  // State variable for the selected backend
+  @State private var selectedBackend: Backend = .googleAI
 
-  var firebaseAI: FirebaseAI {
-    FirebaseAI.firebaseAI(backend: selectedBackend)
+  // Computed property to initialize FirebaseAI based on selection
+  private var firebaseAI: FirebaseAI {
+    switch selectedBackend {
+    case .googleAI:
+      return FirebaseAI.firebaseAI(backend: .googleAI())
+    case .vertexAI:
+      // Make sure you have a GoogleCloud project listed in your Firebase project.
+      // Go to Project Settings -> Integrations -> Google Cloud -> Manage
+      // And add your Google Cloud project ID and number there.
+      return FirebaseAI.firebaseAI(backend: .vertexAI())
+    }
   }
-
-  // Removed: @StateObject var viewModel = ConversationViewModel()
-
-  // Removed: @StateObject var functionCallingViewModel = FunctionCallingViewModel()
 
   var body: some View {
     NavigationStack {
       List {
+        // Picker for backend selection
         Section("Backend Selection") {
           Picker("Select Backend", selection: $selectedBackend) {
-            Text("Gemini Developer API").tag(FirebaseAIBackend.googleAI)
-            Text("Vertex AI Gemini API").tag(FirebaseAIBackend.vertexAI)
+            ForEach(Backend.allCases) { backend in
+              Text(backend.description).tag(backend)
+            }
           }
+          .pickerStyle(.segmented) // Use segmented style for better UI
         }
-        NavigationLink {
-          SummarizeScreen(firebaseAI: firebaseAI)
-        } label: {
-          Label("Text", systemImage: "doc.text")
-        }
-        NavigationLink {
-          PhotoReasoningScreen(firebaseAI: firebaseAI)
-        } label: {
-          Label("Multi-modal", systemImage: "doc.richtext")
-        }
-        // Update Chat NavigationLink to inject the ViewModel with the selected backend
-        NavigationLink {
-          ConversationScreen()
-            .environmentObject(ConversationViewModel(firebaseAI: firebaseAI)) // Create and inject here
-        } label: {
-          Label("Chat", systemImage: "ellipsis.message.fill")
-        }
-        // Update Function Calling NavigationLink to inject the ViewModel with the selected backend
-        NavigationLink {
-          FunctionCallingScreen()
-            .environmentObject(FunctionCallingViewModel(firebaseAI: firebaseAI)) // Create and inject here
-        } label: {
-          Label("Function Calling", systemImage: "function")
-        }
-        // Update Imagen NavigationLink to pass the firebaseAI instance
-        NavigationLink {
-          ImagenScreen(firebaseAI: firebaseAI) // Pass firebaseAI here
-        } label: {
-          Label("Imagen", systemImage: "camera.circle")
+
+        // Navigation Links updated to pass firebaseAI instance
+        Section("Samples") {
+          NavigationLink {
+            // Pass the firebaseAI instance
+            SummarizeScreen(firebaseAI: firebaseAI)
+          } label: {
+            Label("Text", systemImage: "doc.text")
+          }
+          NavigationLink {
+            // Pass the firebaseAI instance
+            PhotoReasoningScreen(firebaseAI: firebaseAI)
+          } label: {
+            Label("Multi-modal", systemImage: "doc.richtext")
+          }
+          NavigationLink {
+            // Pass the firebaseAI instance
+            ConversationScreen(firebaseAI: firebaseAI)
+          } label: {
+            Label("Chat", systemImage: "ellipsis.message.fill")
+          }
+          NavigationLink {
+            // Pass the firebaseAI instance
+            FunctionCallingScreen(firebaseAI: firebaseAI)
+          } label: {
+            Label("Function Calling", systemImage: "function")
+          }
+          NavigationLink {
+            // Pass the firebaseAI instance
+            ImagenScreen(firebaseAI: firebaseAI)
+          } label: {
+            Label("Imagen", systemImage: "camera.circle")
+          }
         }
       }
       .navigationTitle("Generative AI Samples")

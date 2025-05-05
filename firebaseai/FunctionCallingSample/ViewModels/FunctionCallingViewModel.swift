@@ -37,10 +37,11 @@ class FunctionCallingViewModel: ObservableObject {
 
   private var chatTask: Task<Void, Never>?
 
-  init() {
-    // model = FirebaseAI.firebaseAI(backend: .vertexAI()).generativeModel(
-    model = FirebaseAI.firebaseAI(backend: .googleAI()).generativeModel(
-      modelName: "gemini-2.0-flash-001",
+  // New initializer accepting FirebaseAI instance
+  init(firebaseAI: FirebaseAI) {
+    // Use the passed-in instance, specified model name, and preserve the original tools config
+    model = firebaseAI.generativeModel(
+      modelName: "gemini-1.5-flash", // Updated model name
       tools: [.functionDeclarations([
         FunctionDeclaration(
           name: "get_exchange_rate",
@@ -60,6 +61,8 @@ class FunctionCallingViewModel: ObservableObject {
     )
     chat = model.startChat()
   }
+
+  // Original init() removed or commented out
 
   func sendMessage(_ text: String, streaming: Bool = true) async {
     error = nil

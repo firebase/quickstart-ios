@@ -70,6 +70,7 @@
     [actionCodeSettings setURL:[NSURL URLWithString:@"https://www.example.com"]];
     // The sign-in operation has to always be completed in the app.
     actionCodeSettings.handleCodeInApp = YES;
+    actionCodeSettings.linkDomain = @"your.custom.domain.com";
     [actionCodeSettings setIOSBundleID:[[NSBundle mainBundle] bundleIdentifier]];
     [actionCodeSettings setAndroidPackageName:@"com.example.android"
                         installIfNotAvailable:NO

@@ -27,7 +27,7 @@ sample app to your Firebase project (or create a new project):
    [Set up a Firebase project and connect your app to Firebase](https://firebase.google.com/docs/vertex-ai/get-started?platform=ios#set-up-firebase).
 2. Add an iOS+ app to your project. Make sure the `Bundle Identifier` you set
    matches the one in the sample.
-     - The default bundle ID is `com.google.firebase.VertexAISample`
+     - The default bundle ID is `com.google.firebase.quickstart.FirebaseAIExample`
 3. Download the `GoogleService-Info.plist` for the app when prompted and save
    it to the `firebaseai` directory.
 

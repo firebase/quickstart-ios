@@ -16,7 +16,6 @@ concurrency:
 
 env:
   SAMPLE: FirebaseAI
-  FIREBASECI_USE_LATEST_GOOGLEAPPMEASUREMENT: 1
 
 jobs:
   spm:

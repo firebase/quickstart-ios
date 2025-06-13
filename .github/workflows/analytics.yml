@@ -38,9 +38,10 @@ jobs:
           - os: iOS
             device: iPhone 16
             test: true
-          - os: catalyst
-            device: localhost
-            test: false # disabled due to a permissions error on launch (OSStatus -54).
+          # TODO: Re-enable when ODM2 catalyst support is investigated
+          # - os: catalyst
+          #   device: localhost
+          #   test: false # disabled due to a permissions error on launch (OSStatus -54).
           - os: tvOS
             device: Apple TV 4K (3rd generation) (at 1080p)
             scheme: AnalyticsExampleTV

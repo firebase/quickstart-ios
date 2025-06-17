@@ -1,0 +1,18 @@
+# DynamicLinksExample
+
+use_frameworks!
+platform :ios, '13.0'
+
+# [START pod_ddl]
+pod 'FirebaseAnalytics'
+pod 'FirebaseDynamicLinks'
+# [END pod_ddl]
+
+target 'DynamicLinksExample' do
+end
+target 'DynamicLinksExampleSwift' do
+end
+target 'DynamicLinksExampleTests' do
+end
+target 'DynamicLinksSwiftUIExample' do
+end

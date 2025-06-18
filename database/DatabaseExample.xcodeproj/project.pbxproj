@@ -695,7 +695,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = DatabaseExampleSwiftUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks \"${PODS_CONFIGURATION_BUILD_DIR}/PromisesObjC\" \"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseAuth\" \"${PODS_CONFIGURATION_BUILD_DIR}/nanopb\" \"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseCore\" \"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseCoreDiagnostics\" \"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseDatabase\" \"${PODS_CONFIGURATION_BUILD_DIR}/GTMSessionFetcher\" \"${PODS_CONFIGURATION_BUILD_DIR}/GoogleDataTransport\" \"${PODS_CONFIGURATION_BUILD_DIR}/GoogleUtilities\" \"${PODS_CONFIGURATION_BUILD_DIR}/leveldb-library\"";
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.DatabaseExampleSwiftUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -720,7 +720,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = DatabaseExampleSwiftUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks \"${PODS_CONFIGURATION_BUILD_DIR}/PromisesObjC\" \"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseAuth\" \"${PODS_CONFIGURATION_BUILD_DIR}/nanopb\" \"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseCore\" \"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseCoreDiagnostics\" \"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseDatabase\" \"${PODS_CONFIGURATION_BUILD_DIR}/GTMSessionFetcher\" \"${PODS_CONFIGURATION_BUILD_DIR}/GoogleDataTransport\" \"${PODS_CONFIGURATION_BUILD_DIR}/GoogleUtilities\" \"${PODS_CONFIGURATION_BUILD_DIR}/leveldb-library\"";
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.DatabaseExampleSwiftUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -743,7 +743,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = DatabaseExampleUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks \"${PODS_CONFIGURATION_BUILD_DIR}/PromisesObjC\" \"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseAuth\" \"${PODS_CONFIGURATION_BUILD_DIR}/nanopb\" \"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseCore\" \"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseCoreDiagnostics\" \"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseDatabase\" \"${PODS_CONFIGURATION_BUILD_DIR}/GTMSessionFetcher\" \"${PODS_CONFIGURATION_BUILD_DIR}/GoogleDataTransport\" \"${PODS_CONFIGURATION_BUILD_DIR}/GoogleUtilities\" \"${PODS_CONFIGURATION_BUILD_DIR}/leveldb-library\"";
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.DatabaseExampleUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -766,7 +766,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = DatabaseExampleUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks \"${PODS_CONFIGURATION_BUILD_DIR}/PromisesObjC\" \"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseAuth\" \"${PODS_CONFIGURATION_BUILD_DIR}/nanopb\" \"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseCore\" \"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseCoreDiagnostics\" \"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseDatabase\" \"${PODS_CONFIGURATION_BUILD_DIR}/GTMSessionFetcher\" \"${PODS_CONFIGURATION_BUILD_DIR}/GoogleDataTransport\" \"${PODS_CONFIGURATION_BUILD_DIR}/GoogleUtilities\" \"${PODS_CONFIGURATION_BUILD_DIR}/leveldb-library\"";
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.DatabaseExampleUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -823,7 +823,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -873,7 +873,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";

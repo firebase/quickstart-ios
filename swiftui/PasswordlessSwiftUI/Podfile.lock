@@ -18,8 +18,6 @@ PODS:
     - FirebaseCore (~> 11.14.0)
   - FirebaseCoreInternal (11.14.0):
     - "GoogleUtilities/NSData+zlib (~> 8.1)"
-  - FirebaseDynamicLinks (11.14.0):
-    - FirebaseCore (~> 11.14.0)
   - GoogleUtilities/AppDelegateSwizzler (8.1.0):
     - GoogleUtilities/Environment
     - GoogleUtilities/Logger
@@ -46,7 +44,6 @@ PODS:
 
 DEPENDENCIES:
   - FirebaseAuth
-  - FirebaseDynamicLinks
 
 SPEC REPOS:
   trunk:
@@ -56,7 +53,6 @@ SPEC REPOS:
     - FirebaseCore
     - FirebaseCoreExtension
     - FirebaseCoreInternal
-    - FirebaseDynamicLinks
     - GoogleUtilities
     - GTMSessionFetcher
     - RecaptchaInterop
@@ -68,11 +64,10 @@ SPEC CHECKSUMS:
   FirebaseCore: 8fb12caed934c900218ce66a419107db74214ade
   FirebaseCoreExtension: 6af88594f639c1abb127bc096da32cf2c0dd69ff
   FirebaseCoreInternal: 6a3b668197644aa858fc4127578637c6767ba123
-  FirebaseDynamicLinks: 7cfc05eb8368c1d74fed039a08ffe6212b27296f
   GoogleUtilities: 00c88b9a86066ef77f0da2fab05f65d7768ed8e1
   GTMSessionFetcher: fc75fc972958dceedee61cb662ae1da7a83a91cf
   RecaptchaInterop: 11e0b637842dfb48308d242afc3f448062325aba
 
-PODFILE CHECKSUM: c3fb5088cd06974567cf888f5d63bb24bc6a5ef7
+PODFILE CHECKSUM: e77dd1c045432c99820eae457315367b4d11d441
 
 COCOAPODS: 1.16.2

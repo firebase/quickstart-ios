@@ -7,6 +7,5 @@ target 'PasswordlessSwiftUI' do
 
   # Pods for PasswordlessSwiftUI
   pod 'FirebaseAuth'
-  pod 'FirebaseDynamicLinks'
 
 end

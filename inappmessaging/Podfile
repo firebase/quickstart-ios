@@ -6,7 +6,6 @@ use_frameworks!
 target 'InAppMessagingExample' do
   pod 'FirebaseAnalytics'
   pod 'FirebaseInAppMessaging', "> 8.11-beta"
-  pod 'FirebaseDynamicLinks'
 
   target 'InAppMessagingExampleTests' do
   end
@@ -18,7 +17,6 @@ end
 target 'InAppMessagingExampleSwift' do
   pod 'FirebaseAnalytics'
   pod 'FirebaseInAppMessaging', "> 8.11-beta"
-  pod 'FirebaseDynamicLinks'
 
   target 'InAppMessagingExampleSwiftTests' do
   end

@@ -25,8 +25,6 @@ PODS:
     - GoogleUtilities/Logger (~> 8.1)
   - FirebaseCoreInternal (11.14.0):
     - "GoogleUtilities/NSData+zlib (~> 8.1)"
-  - FirebaseDynamicLinks (11.14.0):
-    - FirebaseCore (~> 11.14.0)
   - FirebaseInAppMessaging (11.14.0-beta):
     - FirebaseABTesting (~> 11.0)
     - FirebaseCore (~> 11.14.0)
@@ -101,7 +99,6 @@ PODS:
 
 DEPENDENCIES:
   - FirebaseAnalytics
-  - FirebaseDynamicLinks
   - FirebaseInAppMessaging (> 8.11-beta)
 
 SPEC REPOS:
@@ -110,7 +107,6 @@ SPEC REPOS:
     - FirebaseAnalytics
     - FirebaseCore
     - FirebaseCoreInternal
-    - FirebaseDynamicLinks
     - FirebaseInAppMessaging
     - FirebaseInstallations
     - GoogleAdsOnDeviceConversion
@@ -124,7 +120,6 @@ SPEC CHECKSUMS:
   FirebaseAnalytics: d604dc875290f0213b9ead8a4692cf1e91e024d9
   FirebaseCore: 8fb12caed934c900218ce66a419107db74214ade
   FirebaseCoreInternal: 6a3b668197644aa858fc4127578637c6767ba123
-  FirebaseDynamicLinks: 7cfc05eb8368c1d74fed039a08ffe6212b27296f
   FirebaseInAppMessaging: 97b12807f283672acd318aa00049ecf9d22551ff
   FirebaseInstallations: 863f2846bb124331b501d29c0f17f95caa2ef6bb
   GoogleAdsOnDeviceConversion: 5c3c8de58786e7d0a4bdecbd32c16f87d815cc9f
@@ -133,6 +128,6 @@ SPEC CHECKSUMS:
   nanopb: fad817b59e0457d11a5dfbde799381cd727c1275
   PromisesObjC: f5707f49cb48b9636751c5b2e7d227e43fba9f47
 
-PODFILE CHECKSUM: ba8b289ec40d7655e30a711caf4739beade873c8
+PODFILE CHECKSUM: f817424c6ec127554db5ec38385178eb68d96f39
 
 COCOAPODS: 1.16.2

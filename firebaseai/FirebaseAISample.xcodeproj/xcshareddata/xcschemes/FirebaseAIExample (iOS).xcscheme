@@ -18,7 +18,7 @@
                BlueprintIdentifier = "8848C82E2B0D04BC007B434F"
                BuildableName = "FirebaseAISample.app"
                BlueprintName = "FirebaseAISample"
-               ReferencedContainer = "container:FirebaseAIExample.xcodeproj">
+               ReferencedContainer = "container:FirebaseAISample.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -47,7 +47,7 @@
             BlueprintIdentifier = "8848C82E2B0D04BC007B434F"
             BuildableName = "FirebaseAISample.app"
             BlueprintName = "FirebaseAISample"
-            ReferencedContainer = "container:FirebaseAIExample.xcodeproj">
+            ReferencedContainer = "container:FirebaseAISample.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <CommandLineArguments>
@@ -70,7 +70,7 @@
             BlueprintIdentifier = "8848C82E2B0D04BC007B434F"
             BuildableName = "FirebaseAISample.app"
             BlueprintName = "FirebaseAISample"
-            ReferencedContainer = "container:FirebaseAIExample.xcodeproj">
+            ReferencedContainer = "container:FirebaseAISample.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

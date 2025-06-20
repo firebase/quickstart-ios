@@ -55,7 +55,6 @@ class AppConfig: ObservableObject {
     }
   }
 
-  #if compiler(>=5.5) && canImport(_Concurrency)
     func updateFromRemoteConfigAsync() async {
       let remoteConfig = RemoteConfig.remoteConfig()
       let oldValue = remoteConfig["color_scheme"].stringValue ?? "nil"

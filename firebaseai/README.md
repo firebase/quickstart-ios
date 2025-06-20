@@ -30,7 +30,7 @@ sample app to your Firebase project (or create a new project):
      - The default bundle ID is `com.google.firebase.quickstart.FirebaseAISample`
 3. Download the `GoogleService-Info.plist` for the app when prompted and save
    it to the `firebaseai` directory.
-4. In the Firebase Console, click `AI` and select `AI Logic` to enable Gemini Developer API and Vertex AI Gemini API
+4. In the Firebase Console, click **AI** and select **AI Logic** to enable the Gemini Developer API and Vertex AI Gemini API.
 
 You should now be able to build and run the sample!
 

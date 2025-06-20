@@ -45,7 +45,6 @@ mint bootstrap
 - [Firebase AI](firebaseai/README.md) ![build](https://github.com/firebase/quickstart-ios/actions/workflows/firebaseai.yml/badge.svg)
 - [Firestore](firestore/README.md) ![build](https://github.com/firebase/quickstart-ios/actions/workflows/firestore.yml/badge.svg)
 - [Functions](functions/README.md) ![build](https://github.com/firebase/quickstart-ios/actions/workflows/functions.yml/badge.svg)
-- [Dynamic Links](dynamiclinks/README.md) ![build](https://github.com/firebase/quickstart-ios/actions/workflows/dynamiclinks.yml/badge.svg)
 - [Cloud Messaging](messaging/README.md) ![build](https://github.com/firebase/quickstart-ios/actions/workflows/messaging.yml/badge.svg)
 - [Performance](performance/README.md) ![build](https://github.com/firebase/quickstart-ios/actions/workflows/performance.yml/badge.svg)
 - [Storage](storage/README.md) ![build](https://github.com/firebase/quickstart-ios/actions/workflows/storage.yml/badge.svg)

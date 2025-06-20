@@ -32,15 +32,7 @@ struct DownloadView: View {
           .padding(.bottom)
         Button("Download Image") {
           if !process.isRunning {
-            if #available(iOS 15, tvOS 15, *) {
-              #if swift(>=5.5)
-                Task { await process.downloadImageAsync() }
-              #else
-                process.downloadImage()
-              #endif
-            } else {
-              process.downloadImage()
-            }
+            Task { await process.downloadImageAsync() }
           }
         }
         .disabled(process.isRunning)

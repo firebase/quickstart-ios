@@ -30,13 +30,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                    didFinishLaunchingWithOptions launchOptions: [UIApplication
                      .LaunchOptionsKey: Any]?) -> Bool {
     FirebaseApp.configure()
-    if #available(iOS 14, *) {
-      SKPaymentQueue.default().add(FirebaseApp.app()!)
-      print("\(SKPaymentQueue.default().transactionObservers as [AnyObject])")
+    SKPaymentQueue.default().add(FirebaseApp.app()!)
+    print("\(SKPaymentQueue.default().transactionObservers as [AnyObject])")
 
-      (SKPaymentQueue.default().transactionObservers as [AnyObject]).forEach {
-        print($0)
-      }
+    (SKPaymentQueue.default().transactionObservers as [AnyObject]).forEach {
+      print($0)
     }
     print("done")
     return true

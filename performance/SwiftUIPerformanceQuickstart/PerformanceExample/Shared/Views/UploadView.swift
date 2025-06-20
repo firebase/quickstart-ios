@@ -29,15 +29,7 @@ struct UploadView: View {
         } else {
           Button("Upload Saliency Map") {
             if !process.isRunning {
-              if #available(iOS 15, tvOS 15, *) {
-                #if swift(>=5.5)
-                  Task { await process.uploadSaliencyMapAsync() }
-                #else
-                  process.uploadSaliencyMap()
-                #endif
-              } else {
-                process.uploadSaliencyMap()
-              }
+              Task { await process.uploadSaliencyMapAsync() }
             }
           }
           .disabled(process.isRunning)

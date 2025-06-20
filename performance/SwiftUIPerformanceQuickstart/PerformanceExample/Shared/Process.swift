@@ -38,161 +38,159 @@ class Process: ObservableObject {
   let precision: Float = 0.2
   let site = "https://firebase.google.com/downloads/brand-guidelines/PNG/logo-logomark.png"
 
-  #if swift(>=5.5)
-    @MainActor @available(iOS 15, tvOS 15,*)
-    func updateStatusAsync(to newStatus: ProcessStatus, updateUploadStatus: Bool = false) {
-      status = newStatus
-      if updateUploadStatus { uploadSucceeded = newStatus == .success(.upload) }
+  @MainActor
+  func updateStatusAsync(to newStatus: ProcessStatus, updateUploadStatus: Bool = false) {
+    status = newStatus
+    if updateUploadStatus { uploadSucceeded = newStatus == .success(.upload) }
+  }
+
+  @MainActor  func updateImageAsync(to newImage: UIImage?) {
+    image = newImage
+  }
+
+  @MainActor
+  func updateSaliencyMapAsync(to newSaliencyMap: UIImage?) {
+    saliencyMap = newSaliencyMap
+  }
+
+  func downloadImageAsync() async {
+    await updateStatusAsync(to: .running(.download))
+
+    guard let url = URL(string: site) else {
+      await updateStatusAsync(to: .failure(.download))
+      print("Failure obtaining URL.")
+      return
     }
 
-    @MainActor @available(iOS 15, tvOS 15, *) func updateImageAsync(to newImage: UIImage?) {
-      image = newImage
-    }
+    do {
+      let (data, response) = try await URLSession.shared.data(from: url)
 
-    @MainActor @available(iOS 15, tvOS 15, *)
-    func updateSaliencyMapAsync(to newSaliencyMap: UIImage?) {
-      saliencyMap = newSaliencyMap
-    }
-
-    @available(iOS 15, tvOS 15, *) func downloadImageAsync() async {
-      await updateStatusAsync(to: .running(.download))
-
-      guard let url = URL(string: site) else {
+      guard let httpResponse = response as? HTTPURLResponse,
+        (200 ... 299).contains(httpResponse.statusCode) else {
+        print("Did not receive acceptable response: \(response)")
         await updateStatusAsync(to: .failure(.download))
-        print("Failure obtaining URL.")
         return
       }
 
-      do {
-        let (data, response) = try await URLSession.shared.data(from: url)
-
-        guard let httpResponse = response as? HTTPURLResponse,
-          (200 ... 299).contains(httpResponse.statusCode) else {
-          print("Did not receive acceptable response: \(response)")
-          await updateStatusAsync(to: .failure(.download))
-          return
-        }
-
-        guard let mimeType = httpResponse.mimeType, mimeType == "image/png",
-          let image = UIImage(data: data) else {
-          print("Could not create image from downloaded data.")
-          await updateStatusAsync(to: .failure(.download))
-          return
-        }
-
-        await updateStatusAsync(to: .success(.download))
-        await updateImageAsync(to: image)
-
-      } catch {
-        print("Error downloading image: \(error).")
+      guard let mimeType = httpResponse.mimeType, mimeType == "image/png",
+        let image = UIImage(data: data) else {
+        print("Could not create image from downloaded data.")
         await updateStatusAsync(to: .failure(.download))
+        return
       }
+
+      await updateStatusAsync(to: .success(.download))
+      await updateImageAsync(to: image)
+
+    } catch {
+      print("Error downloading image: \(error).")
+      await updateStatusAsync(to: .failure(.download))
+    }
+  }
+
+  func classifyImageAsync() async {
+    guard let uiImage = image, let ciImage = CIImage(image: uiImage) else {
+      print("Could not convert image into correct format.")
+      await updateStatusAsync(to: .failure(.classify))
+      return
     }
 
-    @available(iOS 15, tvOS 15, *) func classifyImageAsync() async {
-      guard let uiImage = image, let ciImage = CIImage(image: uiImage) else {
-        print("Could not convert image into correct format.")
-        await updateStatusAsync(to: .failure(.classify))
-        return
-      }
+    let handler = VNImageRequestHandler(ciImage: ciImage, options: [:])
+    let request = VNClassifyImageRequest()
+    await updateStatusAsync(to: .running(.classify))
+    let trace = makeTrace(called: "Classification")
+    trace?.start()
+    try? handler.perform([request])
+    trace?.stop()
 
-      let handler = VNImageRequestHandler(ciImage: ciImage, options: [:])
-      let request = VNClassifyImageRequest()
-      await updateStatusAsync(to: .running(.classify))
-      let trace = makeTrace(called: "Classification")
-      trace?.start()
-      try? handler.perform([request])
-      trace?.stop()
-
-      guard let observations = request.results else {
-        print("Failed to obtain classification results.")
-        await updateStatusAsync(to: .failure(.classify))
-        return
-      }
-
-      categories = observations
-        .filter { $0.hasMinimumRecall(0.01, forPrecision: precision) }
-        .map { ($0.identifier, $0.confidence) }
-
-      await updateStatusAsync(to: .success(.classify))
+    guard let observations = request.results else {
+      print("Failed to obtain classification results.")
+      await updateStatusAsync(to: .failure(.classify))
+      return
     }
 
-    @available(iOS 15, tvOS 15, *) func generateSaliencyMapAsync() async {
-      guard let uiImage = image, let ciImage = CIImage(image: uiImage) else {
-        print("Could not convert image into correct format.")
-        await updateStatusAsync(to: .failure(.saliencyMap))
-        return
-      }
+    categories = observations
+      .filter { $0.hasMinimumRecall(0.01, forPrecision: precision) }
+      .map { ($0.identifier, $0.confidence) }
 
-      let handler = VNImageRequestHandler(ciImage: ciImage, options: [:])
-      let request = VNGenerateAttentionBasedSaliencyImageRequest()
-      await updateStatusAsync(to: .running(.saliencyMap))
-      let trace = makeTrace(called: "Saliency_Map")
-      trace?.start()
-      try? handler.perform([request])
-      trace?.stop()
+    await updateStatusAsync(to: .success(.classify))
+  }
 
-      guard let observation = request.results?.first else {
-        print("Failed to generate saliency map.")
-        await updateStatusAsync(to: .failure(.saliencyMap))
-        return
-      }
-
-      let inputImage = CIImage(cvPixelBuffer: observation.pixelBuffer)
-      let scale = Double(ciImage.extent.height) / Double(inputImage.extent.height)
-      let aspectRatio = Double(ciImage.extent.width) / Double(ciImage.extent.height)
-
-      guard let scaleFilter = CIFilter(name: "CILanczosScaleTransform") else {
-        print("Failed to create scaling filter.")
-        await updateStatusAsync(to: .failure(.saliencyMap))
-        return
-      }
-
-      scaleFilter.setValue(inputImage, forKey: kCIInputImageKey)
-      scaleFilter.setValue(scale, forKey: kCIInputScaleKey)
-      scaleFilter.setValue(aspectRatio, forKey: kCIInputAspectRatioKey)
-
-      guard let scaledImage = scaleFilter.outputImage else {
-        print("Failed to scale saliency map.")
-        await updateStatusAsync(to: .failure(.saliencyMap))
-        return
-      }
-
-      let saliencyImage = context.createCGImage(scaledImage, from: scaledImage.extent)
-
-      guard let saliencyMap = saliencyImage else {
-        print("Failed to convert saliency map to correct format.")
-        await updateStatusAsync(to: .failure(.saliencyMap))
-        return
-      }
-
-      await updateSaliencyMapAsync(to: UIImage(cgImage: saliencyMap))
-      await updateStatusAsync(to: .success(.saliencyMap))
+  func generateSaliencyMapAsync() async {
+    guard let uiImage = image, let ciImage = CIImage(image: uiImage) else {
+      print("Could not convert image into correct format.")
+      await updateStatusAsync(to: .failure(.saliencyMap))
+      return
     }
 
-    @available(iOS 15, tvOS 15, *)
-    func uploadSaliencyMapAsync(compressionQuality: CGFloat = 0.5) async {
-      guard let jpg = saliencyMap?.jpegData(compressionQuality: compressionQuality) else {
-        print("Could not convert saliency map into correct format.")
-        await updateStatusAsync(to: .failure(.upload), updateUploadStatus: true)
-        return
-      }
+    let handler = VNImageRequestHandler(ciImage: ciImage, options: [:])
+    let request = VNGenerateAttentionBasedSaliencyImageRequest()
+    await updateStatusAsync(to: .running(.saliencyMap))
+    let trace = makeTrace(called: "Saliency_Map")
+    trace?.start()
+    try? handler.perform([request])
+    trace?.stop()
 
-      let metadata = StorageMetadata()
-      metadata.contentType = "image/jpeg"
-      let reference = Storage.storage().reference().child("saliency_map.jpg")
-      await updateStatusAsync(to: .running(.upload))
-
-      do {
-        let response = try await reference.putDataAsync(jpg, metadata: metadata)
-        print("Upload response metadata: \(response)")
-        await updateStatusAsync(to: .success(.upload), updateUploadStatus: true)
-      } catch {
-        print("Error uploading saliency map: \(error).")
-        await updateStatusAsync(to: .failure(.upload), updateUploadStatus: true)
-      }
+    guard let observation = request.results?.first else {
+      print("Failed to generate saliency map.")
+      await updateStatusAsync(to: .failure(.saliencyMap))
+      return
     }
-  #endif
+
+    let inputImage = CIImage(cvPixelBuffer: observation.pixelBuffer)
+    let scale = Double(ciImage.extent.height) / Double(inputImage.extent.height)
+    let aspectRatio = Double(ciImage.extent.width) / Double(ciImage.extent.height)
+
+    guard let scaleFilter = CIFilter(name: "CILanczosScaleTransform") else {
+      print("Failed to create scaling filter.")
+      await updateStatusAsync(to: .failure(.saliencyMap))
+      return
+    }
+
+    scaleFilter.setValue(inputImage, forKey: kCIInputImageKey)
+    scaleFilter.setValue(scale, forKey: kCIInputScaleKey)
+    scaleFilter.setValue(aspectRatio, forKey: kCIInputAspectRatioKey)
+
+    guard let scaledImage = scaleFilter.outputImage else {
+      print("Failed to scale saliency map.")
+      await updateStatusAsync(to: .failure(.saliencyMap))
+      return
+    }
+
+    let saliencyImage = context.createCGImage(scaledImage, from: scaledImage.extent)
+
+    guard let saliencyMap = saliencyImage else {
+      print("Failed to convert saliency map to correct format.")
+      await updateStatusAsync(to: .failure(.saliencyMap))
+      return
+    }
+
+    await updateSaliencyMapAsync(to: UIImage(cgImage: saliencyMap))
+    await updateStatusAsync(to: .success(.saliencyMap))
+  }
+
+
+  func uploadSaliencyMapAsync(compressionQuality: CGFloat = 0.5) async {
+    guard let jpg = saliencyMap?.jpegData(compressionQuality: compressionQuality) else {
+      print("Could not convert saliency map into correct format.")
+      await updateStatusAsync(to: .failure(.upload), updateUploadStatus: true)
+      return
+    }
+
+    let metadata = StorageMetadata()
+    metadata.contentType = "image/jpeg"
+    let reference = Storage.storage().reference().child("saliency_map.jpg")
+    await updateStatusAsync(to: .running(.upload))
+
+    do {
+      let response = try await reference.putDataAsync(jpg, metadata: metadata)
+      print("Upload response metadata: \(response)")
+      await updateStatusAsync(to: .success(.upload), updateUploadStatus: true)
+    } catch {
+      print("Error uploading saliency map: \(error).")
+      await updateStatusAsync(to: .failure(.upload), updateUploadStatus: true)
+    }
+  }
 
   func updateStatus(to newStatus: ProcessStatus, updateUploadStatus: Bool = false) {
     DispatchQueue.main.async {

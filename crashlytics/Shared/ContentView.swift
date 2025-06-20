@@ -34,7 +34,7 @@ struct ContentView: View {
   private var crashlyticsReference = Crashlytics.crashlytics()
 
   #if compiler(>=5.5) && canImport(_Concurrency)
-    @available(iOS 15, tvOS 15, macOS 12, watchOS 8, *) func checkForUnsentReportsAsync() async {
+    func checkForUnsentReportsAsync() async {
       let reportFound = await crashlyticsReference.checkForUnsentReports()
       if reportFound {
         crashlyticsReference.sendUnsentReports()
@@ -51,24 +51,17 @@ struct ContentView: View {
   }
 
   var body: some View {
-    if #available(iOS 15, tvOS 15, macOS 12, watchOS 8, *) {
-      #if compiler(>=5.5) && canImport(_Concurrency)
-        CrashButtonView()
-          .task {
-            await self.checkForUnsentReportsAsync()
-          }
-      #else
-        CrashButtonView()
-          .onAppear {
-            self.checkForUnsentReports()
-          }
-      #endif
-    } else {
+    #if compiler(>=5.5) && canImport(_Concurrency)
+      CrashButtonView()
+        .task {
+          await self.checkForUnsentReportsAsync()
+        }
+    #else
       CrashButtonView()
         .onAppear {
           self.checkForUnsentReports()
         }
-    }
+    #endif
   }
 }
 

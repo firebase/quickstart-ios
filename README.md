@@ -42,6 +42,7 @@ mint bootstrap
 - [Remote Config](config/README.md) ![build](https://github.com/firebase/quickstart-ios/actions/workflows/config.yml/badge.svg)
 - [Crashlytics](crashlytics/README.md) ![build](https://github.com/firebase/quickstart-ios/actions/workflows/crashlytics.yml/badge.svg)
 - [Database](database/README.md) ![build](https://github.com/firebase/quickstart-ios/actions/workflows/database.yml/badge.svg)
+- [Firebase AI](firebaseai/README.md) ![build](https://github.com/firebase/quickstart-ios/blob/main/firebaseai/README.md/badge.svg)
 - [Firestore](firestore/README.md) ![build](https://github.com/firebase/quickstart-ios/actions/workflows/firestore.yml/badge.svg)
 - [Functions](functions/README.md) ![build](https://github.com/firebase/quickstart-ios/actions/workflows/functions.yml/badge.svg)
 - [Dynamic Links](dynamiclinks/README.md) ![build](https://github.com/firebase/quickstart-ios/actions/workflows/dynamiclinks.yml/badge.svg)

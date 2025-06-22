@@ -102,7 +102,7 @@ struct MessageView_Previews: PreviewProvider {
         MessageView(message: ChatMessage(message: "Hello!", participant: .system, pending: true))
       }
       .listStyle(.plain)
-      .navigationTitle("Chat sample")
+      .navigationTitle("Chat example")
     }
   }
 }

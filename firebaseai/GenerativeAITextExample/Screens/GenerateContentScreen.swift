@@ -69,7 +69,7 @@ struct GenerateContentScreen: View {
       }
       .listStyle(.plain)
     }
-    .navigationTitle("Text sample")
+    .navigationTitle("Text example")
   }
 
   private func onGenerateContentTapped() {

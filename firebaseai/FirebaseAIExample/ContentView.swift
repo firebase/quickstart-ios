@@ -45,7 +45,7 @@ struct ContentView: View {
           }
         }
 
-        Section("Samples") {
+        Section("Examples") {
           NavigationLink {
             GenerateContentScreen(firebaseService: firebaseService)
           } label: {
@@ -73,7 +73,7 @@ struct ContentView: View {
           }
         }
       }
-      .navigationTitle("Generative AI Samples")
+      .navigationTitle("Generative AI Examples")
       .onChange(of: selectedBackend) { newBackend in
         firebaseService = newBackend.backendValue
         // Note: This might cause views that hold the old service instance to misbehave

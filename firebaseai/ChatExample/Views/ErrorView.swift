@@ -91,6 +91,6 @@ struct ErrorView: View {
       ErrorView(error: errorPromptBlocked)
     }
     .listStyle(.plain)
-    .navigationTitle("Chat sample")
+    .navigationTitle("Chat example")
   }
 }

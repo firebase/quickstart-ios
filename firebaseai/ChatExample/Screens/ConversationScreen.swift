@@ -85,7 +85,7 @@ struct ConversationScreen: View {
         }
       }
     }
-    .navigationTitle("Chat sample")
+    .navigationTitle("Chat example")
     .onAppear {
       focusedField = .message
     }

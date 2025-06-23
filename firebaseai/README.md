@@ -1,4 +1,4 @@
-# Firebase AI Sample App
+# Firebase AI Quickstart
 
 This sample demonstrates how to make calls to the Gemini API via Firebase directly
 from your app, rather than server-side, using the
@@ -10,12 +10,12 @@ from your app, rather than server-side, using the
 
 1. Clone this repo.
 1. Change into the `firebaseai` directory.
-1. Open `FirebaseAISample.xcodeproj` using Xcode.
+1. Open `FirebaseAIExample.xcodeproj` using Xcode.
 
 ```bash
 git clone https://github.com/firebase/quickstart-ios.git
 cd quickstart-ios/firebaseai
-open FirebaseAISample.xcodeproj
+open FirebaseAIExample.xcodeproj
 ```
 
 ### Connect the sample to your Firebase project

@@ -62,7 +62,7 @@ struct PhotoReasoningScreen: View {
         .listStyle(.plain)
       }
     }
-    .navigationTitle("Multimodal sample")
+    .navigationTitle("Multimodal example")
     .onAppear {
       focusedField = .message
     }

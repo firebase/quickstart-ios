@@ -472,9 +472,9 @@ extension AccountLinkingViewController: ASAuthorizationControllerDelegate,
       return
     }
 
-    let credential = OAuthProvider.credential(withProviderID: "apple.com",
-                                              idToken: idTokenString,
-                                              rawNonce: nonce)
+    let credential = OAuthProvider.credential(providerID: .apple",
+                                                 idToken: idTokenString,
+                                                rawNonce: nonce)
     // Once we have created the above `credential`, we can link accounts to it.
     linkAccount(authCredential: credential)
   }

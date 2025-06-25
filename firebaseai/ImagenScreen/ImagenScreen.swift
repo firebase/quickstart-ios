@@ -33,7 +33,7 @@ struct ImagenScreen: View {
   var focusedField: FocusedField?
 
   var body: some View {
-    ZStack {
+    ScrollView {
       VStack {
         InputField("Enter a prompt to generate an image", text: $viewModel.userInput) {
           Image(
@@ -44,28 +44,24 @@ struct ImagenScreen: View {
         .focused($focusedField, equals: .message)
         .onSubmit { sendOrStop() }
 
-        ScrollView {
-          let spacing: CGFloat = 10
-          LazyVGrid(columns: [
-            GridItem(.fixed(UIScreen.main.bounds.width / 2 - spacing), spacing: spacing),
-            GridItem(.fixed(UIScreen.main.bounds.width / 2 - spacing), spacing: spacing),
-          ], spacing: spacing) {
-            ForEach(viewModel.images, id: \.self) { image in
-              Image(uiImage: image)
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-                .frame(width: UIScreen.main.bounds.width / 2 - spacing,
-                       height: UIScreen.main.bounds.width / 2 - spacing)
-                .cornerRadius(12)
-                .clipped()
-            }
+        let spacing: CGFloat = 10
+        LazyVGrid(columns: [
+          GridItem(.fixed(UIScreen.main.bounds.width / 2 - spacing), spacing: spacing),
+          GridItem(.fixed(UIScreen.main.bounds.width / 2 - spacing), spacing: spacing),
+        ], spacing: spacing) {
+          ForEach(viewModel.images, id: \.self) { image in
+            Image(uiImage: image)
+              .resizable()
+              .aspectRatio(contentMode: .fill)
+              .frame(width: UIScreen.main.bounds.width / 2 - spacing,
+                     height: UIScreen.main.bounds.width / 2 - spacing)
+              .cornerRadius(12)
+              .clipped()
           }
-          .padding(.horizontal, spacing)
         }
+        .padding(.horizontal, spacing)
       }
-      if viewModel.inProgress {
-        ProgressOverlay()
-      }
+      .overlay(viewModel.inProgress ? ProgressOverlay() : nil)
     }
     .navigationTitle("Imagen example")
     .onAppear {

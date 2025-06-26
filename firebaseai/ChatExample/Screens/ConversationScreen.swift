@@ -78,6 +78,9 @@ struct ConversationScreen: View {
       .focused($focusedField, equals: .message)
       .onSubmit { sendOrStop() }
     }
+    .onTapGesture {
+      focusedField = nil
+    }
     .toolbar {
       ToolbarItem(placement: .primaryAction) {
         Button(action: newChat) {

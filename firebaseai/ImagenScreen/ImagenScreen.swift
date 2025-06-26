@@ -67,6 +67,9 @@ struct ImagenScreen: View {
         ProgressOverlay()
       }
     }
+    .onTapGesture {
+      focusedField = nil
+    }
     .navigationTitle("Imagen example")
     .onAppear {
       focusedField = .message

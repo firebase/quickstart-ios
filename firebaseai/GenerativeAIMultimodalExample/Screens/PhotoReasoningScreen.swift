@@ -62,6 +62,9 @@ struct PhotoReasoningScreen: View {
         .listStyle(.plain)
       }
     }
+    .onTapGesture {
+      focusedField = nil
+    }
     .navigationTitle("Multimodal example")
     .onAppear {
       focusedField = .message

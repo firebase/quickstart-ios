@@ -69,6 +69,9 @@ struct GenerateContentScreen: View {
       }
       .listStyle(.plain)
     }
+    .onTapGesture {
+      focusedField = nil
+    }
     .navigationTitle("Text example")
   }
 

@@ -46,15 +46,13 @@ struct ImagenScreen: View {
 
         let spacing: CGFloat = 10
         LazyVGrid(columns: [
-          GridItem(.fixed(UIScreen.main.bounds.width / 2 - spacing), spacing: spacing),
-          GridItem(.fixed(UIScreen.main.bounds.width / 2 - spacing), spacing: spacing),
+          GridItem(.flexible(), spacing: spacing),
+          GridItem(.flexible(), spacing: spacing),
         ], spacing: spacing) {
           ForEach(viewModel.images, id: \.self) { image in
             Image(uiImage: image)
               .resizable()
-              .aspectRatio(contentMode: .fill)
-              .frame(width: UIScreen.main.bounds.width / 2 - spacing,
-                     height: UIScreen.main.bounds.width / 2 - spacing)
+              .aspectRatio(1, contentMode: .fill)
               .cornerRadius(12)
               .clipped()
           }

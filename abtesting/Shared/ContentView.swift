@@ -39,25 +39,11 @@ struct FirebaseList: View {
   ]
   var body: some View {
     VStack {
-      #if compiler(>=5.5) && canImport(_Concurrency)
-        if #available(iOS 15, tvOS 15, macOS 12, watchOS 8, *) {
-          BasicList(data: data)
-            .preferredColorScheme(appConfig.colorScheme)
-            .foregroundColor(appConfig.colorScheme == .dark ? .orange : .primary)
-            .task { await appConfig.updateFromRemoteConfigAsync() }
-            .refreshable { await appConfig.updateFromRemoteConfigAsync() }
-        } else {
-          BasicList(data: data)
-            .preferredColorScheme(appConfig.colorScheme)
-            .foregroundColor(appConfig.colorScheme == .dark ? .orange : .primary)
-            .onAppear { appConfig.updateFromRemoteConfig() }
-        }
-      #else
         BasicList(data: data)
           .preferredColorScheme(appConfig.colorScheme)
           .foregroundColor(appConfig.colorScheme == .dark ? .orange : .primary)
-          .onAppear { appConfig.updateFromRemoteConfig() }
-      #endif
+          .task { await appConfig.updateFromRemoteConfigAsync() }
+          .refreshable { await appConfig.updateFromRemoteConfigAsync() }
       Button("Refresh") { appConfig.updateFromRemoteConfig() }
       Spacer()
     }

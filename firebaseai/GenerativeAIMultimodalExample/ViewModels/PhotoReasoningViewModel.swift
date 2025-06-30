@@ -44,7 +44,7 @@ class PhotoReasoningViewModel: ObservableObject {
   private var model: GenerativeModel?
 
   init(firebaseService: FirebaseAI) {
-    model = firebaseService.generativeModel(modelName: "gemini-2.0-flash-001")
+    model = firebaseService.generativeModel(modelName: "gemini-2.5-flash")
   }
 
   func reason() async {

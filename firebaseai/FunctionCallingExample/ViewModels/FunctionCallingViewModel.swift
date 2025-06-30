@@ -39,7 +39,7 @@ class FunctionCallingViewModel: ObservableObject {
 
   init(firebaseService: FirebaseAI) { // Accept FirebaseAI instance
       model = firebaseService.generativeModel(
-          modelName: "gemini-2.0-flash-001",
+          modelName: "gemini-2.5-flash",
           tools: [.functionDeclarations([
               FunctionDeclaration(
           name: "get_exchange_rate",

@@ -24,17 +24,6 @@ struct GroundingScreen: View {
 
   var body: some View {
     VStack(spacing: 0) {
-      // Top App Bar
-      HStack {
-        Image(systemName: "line.3.horizontal")
-        Text("Your App")
-          .frame(maxWidth: .infinity, alignment: .center)
-        Image(systemName: "person.circle.fill")
-      }
-      .font(.title2)
-      .padding()
-      .background(Color.appBackground)
-
       Divider()
 
       // Main content
@@ -45,12 +34,13 @@ struct GroundingScreen: View {
           }
 
           VStack(spacing: 20) {
-            if let response = viewModel.response,
-               let candidate = response.candidates.first {
+            if let response = viewModel.response {
+              // User Prompt turn
               UserPromptView(prompt: viewModel.sentPrompt)
                 .frame(maxWidth: .infinity, alignment: .trailing)
 
-              ModelResponseTurnView(candidate: candidate)
+              // Model Response turn (handles compliance internally)
+              ModelResponseTurnView(response: response)
                 .frame(maxWidth: .infinity, alignment: .leading)
 
             } else if let errorMessage = viewModel.errorMessage {
@@ -78,7 +68,7 @@ struct GroundingScreen: View {
       }
     }
     .navigationTitle("Grounding")
-    .navigationBarHidden(true)
+    .navigationBarTitleDisplayMode(.inline)
   }
 
   private func hideKeyboard() {
@@ -111,7 +101,6 @@ private struct GroundingInputView: View {
     .background(Color.appBackground.shadow(radius: 2, y: -1))
   }
 }
-
 
 #Preview {
   NavigationView {

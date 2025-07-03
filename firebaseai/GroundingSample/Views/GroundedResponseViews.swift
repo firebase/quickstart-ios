@@ -11,20 +11,9 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+
 import FirebaseAI
 import SwiftUI
-
-// This extension adds the missing `text` property to the Candidate model.
-extension Candidate {
-  /// A computed property to extract and join all text parts from the candidate's content.
-  var text: String? {
-    let textParts = content.parts.compactMap { $0 as? TextPart }
-    if textParts.isEmpty {
-      return nil
-    }
-    return textParts.map { $0.text }.joined()
-  }
-}
 
 /// Displays the user's prompt in a chat bubble, aligned to the right.
 struct UserPromptView: View {
@@ -74,51 +63,59 @@ struct ModelResponseContentView: View {
   }
 }
 
-/// The complete visual component for the model's turn.
+/// The complete visual component for the model's turn. It handles compliance checks internally.
 struct ModelResponseTurnView: View {
-  let candidate: Candidate
+  let response: GenerateContentResponse
 
   var body: some View {
-    // A grounded response is non-compliant if it has groundingChunks, but no search suggestions to display in searchEntrypoint.
-    let isNonCompliant = (candidate.groundingMetadata != nil && !(candidate.groundingMetadata?.groundingChunks.isEmpty)! && candidate.groundingMetadata?.searchEntryPoint == nil)
-    if isNonCompliant {
+    // Use `if-let` to safely unwrap the first candidate. This is the correct SwiftUI pattern.
+    if let candidate = response.candidates.first {
+      // A response is non-compliant ONLY if groundingMetadata exists but searchEntryPoint is nil.
+      let isNonCompliant = (candidate.groundingMetadata != nil && candidate.groundingMetadata?
+        .searchEntryPoint == nil)
+
+      if isNonCompliant {
         ComplianceErrorView()
-    } else {
-      // This view handles both compliant grounded responses and non-grounded responses.
-      HStack(alignment: .top, spacing: 8) {
-        Image(systemName: "sparkle")
-          .font(.title)
-          .foregroundColor(.secondary)
-          .padding(.top, 4)
+      } else {
+        // This branch handles both compliant grounded responses and non-grounded responses.
+        HStack(alignment: .top, spacing: 8) {
+          VStack(alignment: .leading, spacing: 8) {
+            ModelResponseContentView(
+              // Use the convenience accessor on the response object.
+              text: response.text ?? "No text in response.",
+              groundingMetadata: candidate.groundingMetadata
+            )
+            .padding(12)
+            .background(Color.modelResponseBackground)
+            .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
 
-        VStack(alignment: .leading, spacing: 8) {
-          ModelResponseContentView(
-            text: candidate.text ?? "No text in response.",
-            groundingMetadata: candidate.groundingMetadata
-          )
-          .padding(12)
-          .background(Color.modelResponseBackground)
-          .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
-
-          if let searchEntryPoint = candidate.groundingMetadata?.searchEntryPoint {
-            WebView(htmlString: searchEntryPoint.renderedContent)
-              .frame(height: 44)
-              .clipShape(RoundedRectangle(cornerRadius: 22))
+            if let searchEntryPoint = candidate.groundingMetadata?.searchEntryPoint {
+              WebView(htmlString: searchEntryPoint.renderedContent)
+                .frame(height: 44)
+                .clipShape(RoundedRectangle(cornerRadius: 22))
+            }
           }
         }
+        .frame(maxWidth: UIScreen.main.bounds.width * 0.8, alignment: .leading)
       }
-      .frame(maxWidth: UIScreen.main.bounds.width * 0.8, alignment: .leading)
+    } else {
+      // This `else` branch handles the case where the response has no candidates.
+      ComplianceErrorView(
+        message: "The response was blocked or contained no content."
+      )
     }
   }
 }
 
-/// A view to show when a response cannot be displayed due to compliance reasons.
+/// A view to show when a response cannot be displayed due to compliance or other errors.
 struct ComplianceErrorView: View {
+  var message = "Could not display the response because it was missing required attribution components."
+
   var body: some View {
     HStack {
       Image(systemName: "exclamationmark.triangle.fill")
         .foregroundColor(.orange)
-      Text("Could not display the response because it was missing required attribution components.")
+      Text(message)
     }
     .padding()
     .background(Color.modelResponseBackground)

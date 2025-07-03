@@ -20,11 +20,9 @@ struct WebView: UIViewRepresentable {
 
   // This Coordinator class will act as the web view's navigation delegate.
   class Coordinator: NSObject, WKNavigationDelegate {
-    func webView(
-      _ webView: WKWebView,
-      decidePolicyFor navigationAction: WKNavigationAction,
-      decisionHandler: @escaping (WKNavigationActionPolicy) -> Void
-    ) {
+    func webView(_ webView: WKWebView,
+                 decidePolicyFor navigationAction: WKNavigationAction,
+                 decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
       // Check if the navigation was triggered by a user clicking a link.
       if navigationAction.navigationType == .linkActivated {
         if let url = navigationAction.request.url {

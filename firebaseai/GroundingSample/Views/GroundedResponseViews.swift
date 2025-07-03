@@ -109,7 +109,8 @@ struct ModelResponseTurnView: View {
 
 /// A view to show when a response cannot be displayed due to compliance or other errors.
 struct ComplianceErrorView: View {
-  var message = "Could not display the response because it was missing required attribution components."
+  var message =
+    "Could not display the response because it was missing required attribution components."
 
   var body: some View {
     HStack {

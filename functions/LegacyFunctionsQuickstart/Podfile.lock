@@ -5,6 +5,10 @@ PODS:
   - AppAuth/Core (1.7.6)
   - AppAuth/ExternalUserAgent (1.7.6):
     - AppAuth/Core
+  - AppCheckCore (11.2.0):
+    - GoogleUtilities/Environment (~> 8.0)
+    - GoogleUtilities/UserDefaults (~> 8.0)
+    - PromisesObjC (~> 2.4)
   - FirebaseAnalytics (11.15.0):
     - FirebaseAnalytics/Default (= 11.15.0)
     - FirebaseCore (~> 11.15.0)
@@ -34,8 +38,8 @@ PODS:
     - GTMSessionFetcher/Core (< 5.0, >= 3.4)
     - RecaptchaInterop (~> 101.0)
   - FirebaseAuthInterop (11.15.0)
-  - FirebaseAuthUI (14.2.6):
-    - FirebaseAuth (< 12.0, >= 11.0)
+  - FirebaseAuthUI (15.1.0):
+    - FirebaseAuth (< 13.0, >= 11.0)
     - FirebaseCore
   - FirebaseCore (11.15.0):
     - FirebaseCoreInternal (~> 11.15.0)
@@ -53,11 +57,11 @@ PODS:
     - FirebaseMessagingInterop (~> 11.0)
     - FirebaseSharedSwift (~> 11.0)
     - GTMSessionFetcher/Core (< 5.0, >= 3.4)
-  - FirebaseGoogleAuthUI (14.2.2):
+  - FirebaseGoogleAuthUI (15.1.0):
     - FirebaseAuth
-    - FirebaseAuthUI (>= 14.2)
+    - FirebaseAuthUI (~> 15.0)
     - FirebaseCore
-    - GoogleSignIn (~> 7.0)
+    - GoogleSignIn (~> 8.0)
   - FirebaseInstallations (11.15.0):
     - FirebaseCore (~> 11.15.0)
     - GoogleUtilities/Environment (~> 8.1)
@@ -65,10 +69,10 @@ PODS:
     - PromisesObjC (~> 2.4)
   - FirebaseMessagingInterop (11.15.0)
   - FirebaseSharedSwift (11.15.0)
-  - FirebaseUI/Auth (14.2.0):
-    - FirebaseAuthUI (~> 14.2)
-  - FirebaseUI/Google (14.2.0):
-    - FirebaseGoogleAuthUI (~> 14.2)
+  - FirebaseUI/Auth (15.1.0):
+    - FirebaseAuthUI (~> 15.0)
+  - FirebaseUI/Google (15.1.0):
+    - FirebaseGoogleAuthUI (~> 15.0)
   - GoogleAdsOnDeviceConversion (2.1.0):
     - GoogleUtilities/Logger (~> 8.1)
     - GoogleUtilities/Network (~> 8.1)
@@ -95,8 +99,9 @@ PODS:
     - GoogleUtilities/Network (~> 8.1)
     - "GoogleUtilities/NSData+zlib (~> 8.1)"
     - nanopb (~> 3.30910.0)
-  - GoogleSignIn (7.1.0):
+  - GoogleSignIn (8.0.0):
     - AppAuth (< 2.0, >= 1.7.3)
+    - AppCheckCore (~> 11.0)
     - GTMAppAuth (< 5.0, >= 4.1.1)
     - GTMSessionFetcher/Core (~> 3.3)
   - GoogleUtilities/AppDelegateSwizzler (8.1.0):
@@ -239,8 +244,8 @@ DEPENDENCIES:
   - FirebaseAnalytics
   - FirebaseAuth
   - FirebaseFunctions
-  - FirebaseUI/Auth (~> 14.0)
-  - FirebaseUI/Google (~> 14.0)
+  - FirebaseUI/Auth (~> 15.0)
+  - FirebaseUI/Google (~> 15.0)
   - MaterialComponents/Buttons
   - MaterialComponents/Collections
   - MaterialComponents/TextFields
@@ -248,6 +253,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - AppAuth
+    - AppCheckCore
     - FirebaseAnalytics
     - FirebaseAppCheckInterop
     - FirebaseAuth
@@ -277,23 +283,24 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   AppAuth: d4f13a8fe0baf391b2108511793e4b479691fb73
+  AppCheckCore: cc8fd0a3a230ddd401f326489c99990b013f0c4f
   FirebaseAnalytics: 6433dfd311ba78084fc93bdfc145e8cb75740eae
   FirebaseAppCheckInterop: 06fe5a3799278ae4667e6c432edd86b1030fa3df
   FirebaseAuth: a6575e5fbf46b046c58dc211a28a5fbdd8d4c83b
   FirebaseAuthInterop: 7087d7a4ee4bc4de019b2d0c240974ed5d89e2fd
-  FirebaseAuthUI: 8e5c09b20bf11478b9fa42c7ed6575fa95807c86
+  FirebaseAuthUI: c574e8904bd14503ff47e55ba2fc9ec64aacaed6
   FirebaseCore: efb3893e5b94f32b86e331e3bd6dadf18b66568e
   FirebaseCoreExtension: edbd30474b5ccf04e5f001470bdf6ea616af2435
   FirebaseCoreInternal: 9afa45b1159304c963da48addb78275ef701c6b4
   FirebaseFunctions: 86062a3ba8c7420e6b6fe22c8a1e1150332286de
-  FirebaseGoogleAuthUI: bbfd673275e4a4a4a3d0e451884087452d088453
+  FirebaseGoogleAuthUI: 740a15519a36b4d15802c4ef1db4aaeb7f7bad0b
   FirebaseInstallations: 317270fec08a5d418fdbc8429282238cab3ac843
   FirebaseMessagingInterop: 63e504b147a7206cfe64cbe2f40c2ddd009945bd
   FirebaseSharedSwift: e17c654ef1f1a616b0b33054e663ad1035c8fd40
-  FirebaseUI: 3909853fc34f316c822e195376f144b1b0c6ca15
+  FirebaseUI: 1dfcf45d4bb4073380091394c9c555d697ecca11
   GoogleAdsOnDeviceConversion: 2be6297a4f048459e0ae17fad9bfd2844e10cf64
   GoogleAppMeasurement: 700dce7541804bec33db590a5c496b663fbe2539
-  GoogleSignIn: d4281ab6cf21542b1cfaff85c191f230b399d2db
+  GoogleSignIn: ce8c89bb9b37fb624b92e7514cc67335d1e277e4
   GoogleUtilities: 00c88b9a86066ef77f0da2fab05f65d7768ed8e1
   GTMAppAuth: f69bd07d68cd3b766125f7e072c45d7340dea0de
   GTMSessionFetcher: 5aea5ba6bd522a239e236100971f10cb71b96ab6
@@ -304,6 +311,6 @@ SPEC CHECKSUMS:
   PromisesObjC: f5707f49cb48b9636751c5b2e7d227e43fba9f47
   RecaptchaInterop: 11e0b637842dfb48308d242afc3f448062325aba
 
-PODFILE CHECKSUM: 0184ee51f477ca21b8573970813f92a89aa3cf4a
+PODFILE CHECKSUM: 56b139ff3f9ff3b9dfe39b30951b6aad99eb689e
 
 COCOAPODS: 1.16.2

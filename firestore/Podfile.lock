@@ -1205,8 +1205,8 @@ PODS:
     - GTMSessionFetcher/Core (< 5.0, >= 3.4)
     - RecaptchaInterop (~> 101.0)
   - FirebaseAuthInterop (11.15.0)
-  - FirebaseAuthUI (14.2.6):
-    - FirebaseAuth (< 12.0, >= 11.0)
+  - FirebaseAuthUI (15.1.0):
+    - FirebaseAuth (< 13.0, >= 11.0)
     - FirebaseCore
   - FirebaseCore (11.15.0):
     - FirebaseCoreInternal (~> 11.15.0)
@@ -1216,9 +1216,9 @@ PODS:
     - FirebaseCore (~> 11.15.0)
   - FirebaseCoreInternal (11.15.0):
     - "GoogleUtilities/NSData+zlib (~> 8.1)"
-  - FirebaseEmailAuthUI (14.2.3):
+  - FirebaseEmailAuthUI (15.1.0):
     - FirebaseAuth
-    - FirebaseAuthUI (>= 14.2)
+    - FirebaseAuthUI (~> 15.0)
     - FirebaseCore
     - GoogleUtilities/UserDefaults
   - FirebaseFirestore (11.15.0):
@@ -1242,10 +1242,10 @@ PODS:
     - leveldb-library (~> 1.22)
     - nanopb (~> 3.30910.0)
   - FirebaseSharedSwift (11.15.0)
-  - FirebaseUI/Auth (14.2.0):
-    - FirebaseAuthUI (~> 14.2)
-  - FirebaseUI/Email (14.2.0):
-    - FirebaseEmailAuthUI (~> 14.2)
+  - FirebaseUI/Auth (15.1.0):
+    - FirebaseAuthUI (~> 15.0)
+  - FirebaseUI/Email (15.1.0):
+    - FirebaseEmailAuthUI (~> 15.0)
   - GoogleUtilities/AppDelegateSwizzler (8.1.0):
     - GoogleUtilities/Environment
     - GoogleUtilities/Logger
@@ -1379,8 +1379,8 @@ PODS:
 DEPENDENCIES:
   - FirebaseAuth
   - FirebaseFirestore
-  - FirebaseUI/Auth (~> 14.0)
-  - FirebaseUI/Email (~> 14.0)
+  - FirebaseUI/Auth (~> 15.0)
+  - FirebaseUI/Email (~> 15.0)
   - SDWebImage
   - SDWebImageSwiftUI
 
@@ -1416,15 +1416,15 @@ SPEC CHECKSUMS:
   FirebaseAppCheckInterop: 06fe5a3799278ae4667e6c432edd86b1030fa3df
   FirebaseAuth: a6575e5fbf46b046c58dc211a28a5fbdd8d4c83b
   FirebaseAuthInterop: 7087d7a4ee4bc4de019b2d0c240974ed5d89e2fd
-  FirebaseAuthUI: 8e5c09b20bf11478b9fa42c7ed6575fa95807c86
+  FirebaseAuthUI: c574e8904bd14503ff47e55ba2fc9ec64aacaed6
   FirebaseCore: efb3893e5b94f32b86e331e3bd6dadf18b66568e
   FirebaseCoreExtension: edbd30474b5ccf04e5f001470bdf6ea616af2435
   FirebaseCoreInternal: 9afa45b1159304c963da48addb78275ef701c6b4
-  FirebaseEmailAuthUI: c448736db9fcd5895d29229a9e0aec016ece0389
+  FirebaseEmailAuthUI: b6c80ac6ae42bacf2fece92762fa79bc4ee736ed
   FirebaseFirestore: 1e5fafdac2b2ef1ffc24034460b7b4821a15be96
   FirebaseFirestoreInternal: df9ab608a59a4e8eefd0796ed7652f3c1a88473a
   FirebaseSharedSwift: e17c654ef1f1a616b0b33054e663ad1035c8fd40
-  FirebaseUI: 3909853fc34f316c822e195376f144b1b0c6ca15
+  FirebaseUI: 1dfcf45d4bb4073380091394c9c555d697ecca11
   GoogleUtilities: 00c88b9a86066ef77f0da2fab05f65d7768ed8e1
   "gRPC-C++": cc207623316fb041a7a3e774c252cf68a058b9e8
   gRPC-Core: 860978b7db482de8b4f5e10677216309b5ff6330
@@ -1435,6 +1435,6 @@ SPEC CHECKSUMS:
   SDWebImage: f29024626962457f3470184232766516dee8dfea
   SDWebImageSwiftUI: a6d7129fb68fc18c8b930b869ddcfce314e49ded
 
-PODFILE CHECKSUM: 5309ab64953f3e44ffcec5abcfcc35f11873d013
+PODFILE CHECKSUM: 2585dac1c3f679eecfb4775b842304e0377270b5
 
 COCOAPODS: 1.16.2

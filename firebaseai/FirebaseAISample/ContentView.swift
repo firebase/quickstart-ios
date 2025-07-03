@@ -62,6 +62,11 @@ struct ContentView: View {
             Label("Chat", systemImage: "ellipsis.message.fill")
           }
           NavigationLink {
+            GroundingScreen(firebaseService: firebaseService)
+          } label: {
+            Label("Grounding", systemImage: "magnifyingglass")
+          }
+          NavigationLink {
             FunctionCallingScreen(firebaseService: firebaseService)
           } label: {
             Label("Function Calling", systemImage: "function")

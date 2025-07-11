@@ -35,8 +35,14 @@ class ConversationViewModel: ObservableObject {
 
   private var chatTask: Task<Void, Never>?
 
-  init(firebaseService: FirebaseAI, model: GenerativeModel) {
-    self.model = model
+  init(firebaseService: FirebaseAI, model: GenerativeModel? = nil) {
+    if let model {
+      self.model = model
+    } else {
+      self.model = firebaseService.generativeModel(
+        modelName: "gemini-2.0-flash-001"
+      )
+    }
     chat = self.model.startChat()
   }
 

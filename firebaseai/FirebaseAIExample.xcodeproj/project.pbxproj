@@ -12,7 +12,7 @@
 		86C1F4842BC726150026816F /* FunctionCallingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C1F4802BC726150026816F /* FunctionCallingViewModel.swift */; };
 		88263BF02B239C09008AB09B /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88263BEE2B239BFE008AB09B /* ErrorView.swift */; };
 		88263BF12B239C11008AB09B /* ErrorDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889873842B208563005B4896 /* ErrorDetailsView.swift */; };
-		8848C8332B0D04BC007B434F /* FirebaseAISampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8848C8322B0D04BC007B434F /* FirebaseAISampleApp.swift */; };
+		8848C8332B0D04BC007B434F /* FirebaseAIExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8848C8322B0D04BC007B434F /* FirebaseAIExampleApp.swift */; };
 		8848C8352B0D04BC007B434F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8848C8342B0D04BC007B434F /* ContentView.swift */; };
 		8848C8372B0D04BD007B434F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8848C8362B0D04BD007B434F /* Assets.xcassets */; };
 		8848C83A2B0D04BD007B434F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8848C8392B0D04BD007B434F /* Preview Assets.xcassets */; };
@@ -43,8 +43,8 @@
 		88209C1B2B0FBDC300F64795 /* GenerateContentScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenerateContentScreen.swift; sourceTree = "<group>"; };
 		88209C1D2B0FBDC300F64795 /* GenerateContentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenerateContentViewModel.swift; sourceTree = "<group>"; };
 		88263BEE2B239BFE008AB09B /* ErrorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
-		8848C82F2B0D04BC007B434F /* FirebaseAISample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FirebaseAISample.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		8848C8322B0D04BC007B434F /* FirebaseAISampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAISampleApp.swift; sourceTree = "<group>"; };
+		8848C82F2B0D04BC007B434F /* FirebaseAIExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FirebaseAIExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8848C8322B0D04BC007B434F /* FirebaseAIExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAIExampleApp.swift; sourceTree = "<group>"; };
 		8848C8342B0D04BC007B434F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		8848C8362B0D04BD007B434F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8848C8392B0D04BD007B434F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -97,13 +97,13 @@
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
-		86C1F4822BC726150026816F /* FunctionCallingSample */ = {
+		86C1F4822BC726150026816F /* FunctionCallingExample */ = {
 			isa = PBXGroup;
 			children = (
 				86C1F4812BC726150026816F /* ViewModels */,
 				86C1F47F2BC726150026816F /* Screens */,
 			);
-			path = FunctionCallingSample;
+			path = FunctionCallingExample;
 			sourceTree = "<group>";
 		};
 		8802666E2B0FC39000CF7CB6 /* ViewModels */ = {
@@ -151,11 +151,11 @@
 				DEFECAA82D7B4CCD00EF9621 /* ImagenScreen */,
 				88B8A9352B0FCBA700424728 /* GenerativeAIUIComponents */,
 				869200B22B879C4F00482873 /* GoogleService-Info.plist */,
-				8848C8312B0D04BC007B434F /* FirebaseAISample */,
-				8848C8452B0D051E007B434F /* GenerativeAITextSample */,
-				8848C8572B0D056C007B434F /* GenerativeAIMultimodalSample */,
-				88E10F432B110D5300C08E95 /* ChatSample */,
-				86C1F4822BC726150026816F /* FunctionCallingSample */,
+				8848C8312B0D04BC007B434F /* FirebaseAIExample */,
+				8848C8452B0D051E007B434F /* GenerativeAITextExample */,
+				8848C8572B0D056C007B434F /* GenerativeAIMultimodalExample */,
+				88E10F432B110D5300C08E95 /* ChatExample */,
+				86C1F4822BC726150026816F /* FunctionCallingExample */,
 				8848C8302B0D04BC007B434F /* Products */,
 				88209C222B0FBE1700F64795 /* Frameworks */,
 				AEF66A322DF220800010A70C /* GoogleService-Info.plist */,
@@ -165,20 +165,20 @@
 		8848C8302B0D04BC007B434F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8848C82F2B0D04BC007B434F /* FirebaseAISample.app */,
+				8848C82F2B0D04BC007B434F /* FirebaseAIExample.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		8848C8312B0D04BC007B434F /* FirebaseAISample */ = {
+		8848C8312B0D04BC007B434F /* FirebaseAIExample */ = {
 			isa = PBXGroup;
 			children = (
-				8848C8322B0D04BC007B434F /* FirebaseAISampleApp.swift */,
+				8848C8322B0D04BC007B434F /* FirebaseAIExampleApp.swift */,
 				8848C8342B0D04BC007B434F /* ContentView.swift */,
 				8848C8362B0D04BD007B434F /* Assets.xcassets */,
 				8848C8382B0D04BD007B434F /* Preview Content */,
 			);
-			path = FirebaseAISample;
+			path = FirebaseAIExample;
 			sourceTree = "<group>";
 		};
 		8848C8382B0D04BD007B434F /* Preview Content */ = {
@@ -189,7 +189,7 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		8848C8452B0D051E007B434F /* GenerativeAITextSample */ = {
+		8848C8452B0D051E007B434F /* GenerativeAITextExample */ = {
 			isa = PBXGroup;
 			children = (
 				88209C1C2B0FBDC300F64795 /* ViewModels */,
@@ -197,7 +197,7 @@
 				8848C84A2B0D051F007B434F /* Assets.xcassets */,
 				8848C84C2B0D051F007B434F /* Preview Content */,
 			);
-			path = GenerativeAITextSample;
+			path = GenerativeAITextExample;
 			sourceTree = "<group>";
 		};
 		8848C84C2B0D051F007B434F /* Preview Content */ = {
@@ -208,7 +208,7 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		8848C8572B0D056C007B434F /* GenerativeAIMultimodalSample */ = {
+		8848C8572B0D056C007B434F /* GenerativeAIMultimodalExample */ = {
 			isa = PBXGroup;
 			children = (
 				8802666E2B0FC39000CF7CB6 /* ViewModels */,
@@ -216,7 +216,7 @@
 				8848C85C2B0D056D007B434F /* Assets.xcassets */,
 				8848C85E2B0D056D007B434F /* Preview Content */,
 			);
-			path = GenerativeAIMultimodalSample;
+			path = GenerativeAIMultimodalExample;
 			sourceTree = "<group>";
 		};
 		8848C85E2B0D056D007B434F /* Preview Content */ = {
@@ -227,7 +227,7 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		88E10F432B110D5300C08E95 /* ChatSample */ = {
+		88E10F432B110D5300C08E95 /* ChatExample */ = {
 			isa = PBXGroup;
 			children = (
 				88E10F522B11124A00C08E95 /* Models */,
@@ -237,7 +237,7 @@
 				88E10F482B110D5400C08E95 /* Assets.xcassets */,
 				88E10F4A2B110D5400C08E95 /* Preview Content */,
 			);
-			path = ChatSample;
+			path = ChatExample;
 			sourceTree = "<group>";
 		};
 		88E10F4A2B110D5400C08E95 /* Preview Content */ = {
@@ -296,9 +296,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		8848C82E2B0D04BC007B434F /* FirebaseAISample */ = {
+		8848C82E2B0D04BC007B434F /* FirebaseAIExample */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8848C83D2B0D04BD007B434F /* Build configuration list for PBXNativeTarget "FirebaseAISample" */;
+			buildConfigurationList = 8848C83D2B0D04BD007B434F /* Build configuration list for PBXNativeTarget "FirebaseAIExample" */;
 			buildPhases = (
 				8848C82B2B0D04BC007B434F /* Sources */,
 				8848C82C2B0D04BC007B434F /* Frameworks */,
@@ -308,14 +308,14 @@
 			);
 			dependencies = (
 			);
-			name = FirebaseAISample;
+			name = FirebaseAIExample;
 			packageProductDependencies = (
 				886F95D72B17BA420036F07A /* MarkdownUI */,
 				886F95E22B17D6630036F07A /* GenerativeAIUIComponents */,
 				AEF66A352DF222560010A70C /* FirebaseAI */,
 			);
-			productName = GenerativeAISample;
-			productReference = 8848C82F2B0D04BC007B434F /* FirebaseAISample.app */;
+			productName = GenerativeAIExample;
+			productReference = 8848C82F2B0D04BC007B434F /* FirebaseAIExample.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -351,7 +351,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				8848C82E2B0D04BC007B434F /* FirebaseAISample */,
+				8848C82E2B0D04BC007B434F /* FirebaseAIExample */,
 			);
 		};
 /* End PBXProject section */
@@ -525,7 +525,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"FirebaseAISample/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"FirebaseAIExample/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
@@ -555,7 +555,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"FirebaseAISample/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"FirebaseAIExample/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
@@ -590,7 +590,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8848C83D2B0D04BD007B434F /* Build configuration list for PBXNativeTarget "FirebaseAISample" */ = {
+		8848C83D2B0D04BD007B434F /* Build configuration list for PBXNativeTarget "FirebaseAIExample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8848C83E2B0D04BD007B434F /* Debug */,

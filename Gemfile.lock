@@ -26,7 +26,7 @@ GEM
     atomos (0.1.3)
     base64 (0.3.0)
     benchmark (0.4.1)
-    bigdecimal (3.2.0)
+    bigdecimal (3.2.2)
     claide (1.1.0)
     cocoapods (1.16.2)
       addressable (~> 2.8)

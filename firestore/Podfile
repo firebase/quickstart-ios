@@ -1,11 +1,11 @@
-platform :ios, '13.0'
+platform :ios, '15.0'
 
 target 'FirestoreExample' do
   use_frameworks!
 
   pod 'FirebaseAuth'
-  pod 'FirebaseUI/Auth', '~> 14.0'
-  pod 'FirebaseUI/Email', '~> 14.0'
+  pod 'FirebaseUI/Auth', '~> 15.0'
+  pod 'FirebaseUI/Email', '~> 15.0'
   pod 'FirebaseFirestore'
   pod 'SDWebImage'
 

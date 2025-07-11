@@ -35,9 +35,9 @@ class ConversationViewModel: ObservableObject {
 
   private var chatTask: Task<Void, Never>?
 
-  init(firebaseService: FirebaseAI) {
-    model = firebaseService.generativeModel(modelName: "gemini-2.0-flash-001")
-    chat = model.startChat()
+  init(firebaseService: FirebaseAI, model: GenerativeModel) {
+    self.model = model
+    chat = self.model.startChat()
   }
 
   func sendMessage(_ text: String, streaming: Bool = true) async {
@@ -85,7 +85,14 @@ class ConversationViewModel: ObservableObject {
           if let text = chunk.text {
             messages[messages.count - 1].message += text
           }
+
+          if let candidate = chunk.candidates.first {
+            if let groundingMetadata = candidate.groundingMetadata {
+              self.messages[self.messages.count - 1].groundingMetadata = groundingMetadata
+            }
+          }
         }
+
       } catch {
         self.error = error
         print(error.localizedDescription)
@@ -119,6 +126,12 @@ class ConversationViewModel: ObservableObject {
           // replace pending message with backend response
           messages[messages.count - 1].message = responseText
           messages[messages.count - 1].pending = false
+
+          if let candidate = response?.candidates.first {
+            if let groundingMetadata = candidate.groundingMetadata {
+              self.messages[self.messages.count - 1].groundingMetadata = groundingMetadata
+            }
+          }
         }
       } catch {
         self.error = error

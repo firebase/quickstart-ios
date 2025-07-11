@@ -18,15 +18,22 @@ import SwiftUI
 
 struct ConversationScreen: View {
   let firebaseService: FirebaseAI
+  let title: String
   @StateObject var viewModel: ConversationViewModel
 
   @State
   private var userPrompt = ""
 
-  init(firebaseService: FirebaseAI) {
+  init(firebaseService: FirebaseAI, title: String, searchGroundingEnabled: Bool = false) {
+    let model = firebaseService.generativeModel(
+      modelName: "gemini-2.0-flash-001",
+      tools: searchGroundingEnabled ? [.googleSearch()] : []
+    )
+    self.title = title
     self.firebaseService = firebaseService
     _viewModel =
-      StateObject(wrappedValue: ConversationViewModel(firebaseService: firebaseService))
+      StateObject(wrappedValue: ConversationViewModel(firebaseService: firebaseService,
+                                                      model: model))
   }
 
   enum FocusedField: Hashable {
@@ -85,7 +92,7 @@ struct ConversationScreen: View {
         }
       }
     }
-    .navigationTitle("Chat sample")
+    .navigationTitle(title)
     .onAppear {
       focusedField = .message
     }
@@ -120,7 +127,7 @@ struct ConversationScreen_Previews: PreviewProvider {
       .firebaseAI()) // Example service init
 
     var body: some View {
-      ConversationScreen(firebaseService: FirebaseAI.firebaseAI())
+      ConversationScreen(firebaseService: FirebaseAI.firebaseAI(), title: "Chat sample")
         .onAppear {
           viewModel.messages = ChatMessage.samples
         }
@@ -129,7 +136,7 @@ struct ConversationScreen_Previews: PreviewProvider {
 
   static var previews: some View {
     NavigationStack {
-      ConversationScreen(firebaseService: FirebaseAI.firebaseAI())
+      ConversationScreen(firebaseService: FirebaseAI.firebaseAI(), title: "Chat sample")
     }
   }
 }

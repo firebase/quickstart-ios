@@ -618,8 +618,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
 			requirement = {
-				branch = "CocoaPods-12.0.0";
-				kind = branch;
+				kind = revision;
+				revision = e3110da07b49112d154f68c3df2cf22e2227233c;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

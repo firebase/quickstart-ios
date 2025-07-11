@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8611DB362E21AA1600132740 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8611DB352E21AA1600132740 /* WebView.swift */; };
 		869200B32B879C4F00482873 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 869200B22B879C4F00482873 /* GoogleService-Info.plist */; };
 		86C1F4832BC726150026816F /* FunctionCallingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C1F47E2BC726150026816F /* FunctionCallingScreen.swift */; };
 		86C1F4842BC726150026816F /* FunctionCallingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C1F4802BC726150026816F /* FunctionCallingViewModel.swift */; };
@@ -33,6 +34,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8611DB352E21AA1600132740 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		869200B22B879C4F00482873 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		86C1F47E2BC726150026816F /* FunctionCallingScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FunctionCallingScreen.swift; sourceTree = "<group>"; };
 		86C1F4802BC726150026816F /* FunctionCallingViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FunctionCallingViewModel.swift; sourceTree = "<group>"; };
@@ -258,6 +260,7 @@
 				88E10F5A2B11133E00C08E95 /* MessageView.swift */,
 				88E10F5C2B11135000C08E95 /* BouncingDots.swift */,
 				889873842B208563005B4896 /* ErrorDetailsView.swift */,
+				8611DB352E21AA1600132740 /* WebView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -375,6 +378,7 @@
 				88263BF12B239C11008AB09B /* ErrorDetailsView.swift in Sources */,
 				8848C8352B0D04BC007B434F /* ContentView.swift in Sources */,
 				886F95D52B17BA010036F07A /* GenerateContentScreen.swift in Sources */,
+				8611DB362E21AA1600132740 /* WebView.swift in Sources */,
 				8848C8332B0D04BC007B434F /* FirebaseAIExampleApp.swift in Sources */,
 				886F95E02B17D5010036F07A /* ConversationViewModel.swift in Sources */,
 				886F95DD2B17D5010036F07A /* MessageView.swift in Sources */,
@@ -614,8 +618,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 11.13.0;
+				kind = revision;
+				revision = e3110da07b49112d154f68c3df2cf22e2227233c;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

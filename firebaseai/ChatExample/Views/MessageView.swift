@@ -80,49 +80,6 @@ struct ResponseTextView: View {
   }
 }
 
-struct GroundedResponseView: View {
-  var message: ChatMessage
-  var groundingMetadata: GroundingMetadata
-
-  var body: some View {
-    // We can only display a grounded response if the searchEntrypoint is non-nil.
-    // If the searchEntrypoint is nil, we can only display the response if it's not grounded.
-    let isNonCompliant = (!groundingMetadata.groundingChunks.isEmpty && groundingMetadata
-      .searchEntryPoint == nil)
-    if isNonCompliant {
-      ComplianceErrorView()
-    } else {
-      HStack(alignment: .top, spacing: 8) {
-        VStack(alignment: .leading, spacing: 8) {
-          // Message text
-          ResponseTextView(message: message)
-
-          if !groundingMetadata.groundingChunks.isEmpty {
-            Divider()
-            // Source links
-            ForEach(0 ..< groundingMetadata.groundingChunks.count, id: \.self) { index in
-              if let webChunk = groundingMetadata.groundingChunks[index].web {
-                SourceLinkView(
-                  title: webChunk.title ?? "Untitled Source",
-                  uri: webChunk.uri
-                )
-              }
-            }
-          }
-          // Search suggestions
-          if let searchEntryPoint = groundingMetadata.searchEntryPoint {
-            Divider()
-            WebView(htmlString: searchEntryPoint.renderedContent)
-              .frame(height: 44)
-              .clipShape(RoundedRectangle(cornerRadius: 22))
-          }
-        }
-      }
-      .frame(maxWidth: UIScreen.main.bounds.width * 0.8, alignment: .leading)
-    }
-  }
-}
-
 struct MessageView: View {
   var message: ChatMessage
 
@@ -162,46 +119,5 @@ struct MessageView_Previews: PreviewProvider {
       .listStyle(.plain)
       .navigationTitle("Chat example")
     }
-  }
-}
-
-/// A simplified view for a single, clickable source link.
-struct SourceLinkView: View {
-  let title: String
-  let uri: String?
-
-  var body: some View {
-    if let uri, let url = URL(string: uri) {
-      Link(destination: url) {
-        HStack(spacing: 4) {
-          Image(systemName: "link")
-            .font(.caption)
-            .foregroundColor(.secondary)
-          Text(title)
-            .font(.footnote)
-            .underline()
-            .lineLimit(1)
-            .multilineTextAlignment(.leading)
-        }
-      }
-      .buttonStyle(.plain)
-    }
-  }
-}
-
-/// A view to show when a response cannot be displayed due to compliance or other errors.
-struct ComplianceErrorView: View {
-  var message =
-    "Could not display the response because it was missing required attribution components."
-
-  var body: some View {
-    HStack {
-      Image(systemName: "exclamationmark.triangle.fill")
-        .foregroundColor(.orange)
-      Text(message)
-    }
-    .padding()
-    .background(Color(.secondarySystemBackground))
-    .clipShape(RoundedRectangle(cornerRadius: 12))
   }
 }

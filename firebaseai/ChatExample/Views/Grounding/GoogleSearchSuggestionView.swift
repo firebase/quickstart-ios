@@ -15,7 +15,7 @@
 import SwiftUI
 import WebKit
 
-struct WebView: UIViewRepresentable {
+struct GoogleSearchSuggestionView: UIViewRepresentable {
   let htmlString: String
 
   // This Coordinator class will act as the web view's navigation delegate.

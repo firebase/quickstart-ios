@@ -51,7 +51,7 @@ struct GroundedResponseView: View {
           }
         }
       }
-      .frame(maxWidth: UIScreen.main.bounds.width * 0.8, alignment: .leading)
+      .frame(maxWidth: .infinity, alignment: .leading)
     }
   }
 }

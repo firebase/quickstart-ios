@@ -68,7 +68,7 @@ struct ContentView: View {
               searchGroundingEnabled: true
             )
           } label: {
-            Label("Grounding", systemImage: "magnifyingglass")
+            Label("Grounding with Google Search", systemImage: "magnifyingglass")
           }
           NavigationLink {
             FunctionCallingScreen(firebaseService: firebaseService)

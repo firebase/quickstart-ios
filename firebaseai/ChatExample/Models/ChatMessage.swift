@@ -31,6 +31,7 @@ struct ChatMessage: Identifiable, Equatable {
     Self(message: "", participant: participant, pending: true)
   }
 
+  // TODO(andrewheard): Add Equatable conformance to GroundingMetadata and remove this
   static func == (lhs: ChatMessage, rhs: ChatMessage) -> Bool {
     lhs.id == rhs.id && lhs.message == rhs.message && lhs.participant == rhs.participant && lhs
       .pending == rhs.pending

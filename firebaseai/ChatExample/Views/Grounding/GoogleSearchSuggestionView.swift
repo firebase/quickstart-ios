@@ -15,6 +15,10 @@
 import SwiftUI
 import WebKit
 
+/// A view that renders Google Search suggestions with links that allow users
+/// to view the search results in the device's default browser.
+/// This is added to the bottom of chat messages containing results grounded
+/// in Google Search.
 struct GoogleSearchSuggestionView: UIViewRepresentable {
   let htmlString: String
 

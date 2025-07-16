@@ -38,7 +38,7 @@ class ImagenViewModel: ObservableObject {
   private var generateImagesTask: Task<Void, Never>?
 
   init(firebaseService: FirebaseAI) {
-    let modelName = "imagen-3.0-generate-002"
+    let modelName = ModelNames.imagenGenerate
     let safetySettings = ImagenSafetySettings(
       safetyFilterLevel: .blockLowAndAbove
     )

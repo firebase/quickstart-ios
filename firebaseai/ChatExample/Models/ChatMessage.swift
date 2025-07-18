@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import FirebaseAI
 import Foundation
 
 enum Participant {
@@ -22,11 +23,18 @@ enum Participant {
 struct ChatMessage: Identifiable, Equatable {
   let id = UUID().uuidString
   var message: String
+  var groundingMetadata: GroundingMetadata?
   let participant: Participant
   var pending = false
 
   static func pending(participant: Participant) -> ChatMessage {
     Self(message: "", participant: participant, pending: true)
+  }
+
+  // TODO(andrewheard): Add Equatable conformance to GroundingMetadata and remove this
+  static func == (lhs: ChatMessage, rhs: ChatMessage) -> Bool {
+    lhs.id == rhs.id && lhs.message == rhs.message && lhs.participant == rhs.participant && lhs
+      .pending == rhs.pending
   }
 }
 

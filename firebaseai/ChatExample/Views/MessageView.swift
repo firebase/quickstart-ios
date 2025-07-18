@@ -14,6 +14,7 @@
 
 import MarkdownUI
 import SwiftUI
+import FirebaseAI
 
 struct RoundedCorner: Shape {
   var radius: CGFloat = .infinity
@@ -42,26 +43,40 @@ struct MessageContentView: View {
     if message.pending {
       BouncingDots()
     } else {
-      Markdown(message.message)
-        .markdownTextStyle {
-          FontFamilyVariant(.normal)
-          FontSize(.em(0.85))
-          ForegroundColor(message.participant == .system ? Color(UIColor.label) : .white)
-        }
-        .markdownBlockStyle(\.codeBlock) { configuration in
-          configuration.label
-            .relativeLineSpacing(.em(0.25))
-            .markdownTextStyle {
-              FontFamilyVariant(.monospaced)
-              FontSize(.em(0.85))
-              ForegroundColor(Color(.label))
-            }
-            .padding()
-            .background(Color(.secondarySystemBackground))
-            .clipShape(RoundedRectangle(cornerRadius: 8))
-            .markdownMargin(top: .zero, bottom: .em(0.8))
-        }
+      // Grounded Response
+      if let groundingMetadata = message.groundingMetadata {
+        GroundedResponseView(message: message, groundingMetadata: groundingMetadata)
+      } else {
+        // Non-grounded response
+        ResponseTextView(message: message)
+      }
     }
+  }
+}
+
+struct ResponseTextView: View {
+  var message: ChatMessage
+
+  var body: some View {
+    Markdown(message.message)
+      .markdownTextStyle {
+        FontFamilyVariant(.normal)
+        FontSize(.em(0.85))
+        ForegroundColor(message.participant == .system ? Color(UIColor.label) : .white)
+      }
+      .markdownBlockStyle(\.codeBlock) { configuration in
+        configuration.label
+          .relativeLineSpacing(.em(0.25))
+          .markdownTextStyle {
+            FontFamilyVariant(.monospaced)
+            FontSize(.em(0.85))
+            ForegroundColor(Color(.label))
+          }
+          .padding()
+          .background(Color(.secondarySystemBackground))
+          .clipShape(RoundedRectangle(cornerRadius: 8))
+          .markdownMargin(top: .zero, bottom: .em(0.8))
+      }
   }
 }
 

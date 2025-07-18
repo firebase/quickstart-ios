@@ -57,9 +57,18 @@ struct ContentView: View {
             Label("Multi-modal", systemImage: "doc.richtext")
           }
           NavigationLink {
-            ConversationScreen(firebaseService: firebaseService)
+            ConversationScreen(firebaseService: firebaseService, title: "Chat")
           } label: {
             Label("Chat", systemImage: "ellipsis.message.fill")
+          }
+          NavigationLink {
+            ConversationScreen(
+              firebaseService: firebaseService,
+              title: "Grounding",
+              searchGroundingEnabled: true
+            )
+          } label: {
+            Label("Grounding with Google Search", systemImage: "magnifyingglass")
           }
           NavigationLink {
             FunctionCallingScreen(firebaseService: firebaseService)

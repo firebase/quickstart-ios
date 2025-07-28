@@ -1,27 +1,27 @@
 PODS:
-  - FirebaseABTesting (11.14.0):
-    - FirebaseCore (~> 11.14.0)
-  - FirebaseCore (11.14.0):
-    - FirebaseCoreInternal (~> 11.14.0)
+  - FirebaseABTesting (12.0.0):
+    - FirebaseCore (~> 12.0.0)
+  - FirebaseCore (12.0.0):
+    - FirebaseCoreInternal (~> 12.0.0)
     - GoogleUtilities/Environment (~> 8.1)
     - GoogleUtilities/Logger (~> 8.1)
-  - FirebaseCoreInternal (11.14.0):
+  - FirebaseCoreInternal (12.0.0):
     - "GoogleUtilities/NSData+zlib (~> 8.1)"
-  - FirebaseInstallations (11.14.0):
-    - FirebaseCore (~> 11.14.0)
+  - FirebaseInstallations (12.0.0):
+    - FirebaseCore (~> 12.0.0)
     - GoogleUtilities/Environment (~> 8.1)
     - GoogleUtilities/UserDefaults (~> 8.1)
     - PromisesObjC (~> 2.4)
-  - FirebaseRemoteConfig (11.14.0):
-    - FirebaseABTesting (~> 11.0)
-    - FirebaseCore (~> 11.14.0)
-    - FirebaseInstallations (~> 11.0)
-    - FirebaseRemoteConfigInterop (~> 11.0)
-    - FirebaseSharedSwift (~> 11.0)
+  - FirebaseRemoteConfig (12.0.0):
+    - FirebaseABTesting (~> 12.0.0)
+    - FirebaseCore (~> 12.0.0)
+    - FirebaseInstallations (~> 12.0.0)
+    - FirebaseRemoteConfigInterop (~> 12.0.0)
+    - FirebaseSharedSwift (~> 12.0.0)
     - GoogleUtilities/Environment (~> 8.1)
     - "GoogleUtilities/NSData+zlib (~> 8.1)"
-  - FirebaseRemoteConfigInterop (11.14.0)
-  - FirebaseSharedSwift (11.14.0)
+  - FirebaseRemoteConfigInterop (12.0.0)
+  - FirebaseSharedSwift (12.0.0)
   - GoogleUtilities/Environment (8.1.0):
     - GoogleUtilities/Privacy
   - GoogleUtilities/Logger (8.1.0):
@@ -51,16 +51,16 @@ SPEC REPOS:
     - PromisesObjC
 
 SPEC CHECKSUMS:
-  FirebaseABTesting: 13de5629e6d92a6a6c06429a6ddd9b19362de827
-  FirebaseCore: 8fb12caed934c900218ce66a419107db74214ade
-  FirebaseCoreInternal: 6a3b668197644aa858fc4127578637c6767ba123
-  FirebaseInstallations: 863f2846bb124331b501d29c0f17f95caa2ef6bb
-  FirebaseRemoteConfig: ded3fce28a1ba2bd339ff179e726211a06f05a0b
-  FirebaseRemoteConfigInterop: 7b74ceaa54e28863ed17fa39da8951692725eced
-  FirebaseSharedSwift: bdd5c8674c4712a98e70287c936bc5cca5d640f6
+  FirebaseABTesting: 2cad22e464cd7ef4589ae29f897bc71ff83ce83b
+  FirebaseCore: 055f4ab117d5964158c833f3d5e7ec6d91648d4a
+  FirebaseCoreInternal: dedc28e569a4be85f38f3d6af1070a2e12018d55
+  FirebaseInstallations: d4c7c958f99c8860d7fcece786314ae790e2f988
+  FirebaseRemoteConfig: 4cbbe0083474359025e7bb334b9d0cff16b78d3a
+  FirebaseRemoteConfigInterop: bfa0ea72ba3dc5af739777296424e46bd6f42613
+  FirebaseSharedSwift: 59266c22ccfcef604d725c034c568fa666ea9bda
   GoogleUtilities: 00c88b9a86066ef77f0da2fab05f65d7768ed8e1
   PromisesObjC: f5707f49cb48b9636751c5b2e7d227e43fba9f47
 
-PODFILE CHECKSUM: 016d7b4f0110bb186fd0277b0032abb8212343df
+PODFILE CHECKSUM: 71083e79bdc3ce5e9a6678499506ae36d0b7449a
 
 COCOAPODS: 1.16.2

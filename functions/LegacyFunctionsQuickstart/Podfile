@@ -5,8 +5,8 @@ platform :ios, '15.0'
 
 pod 'FirebaseAnalytics'
 pod 'FirebaseAuth'
-pod 'FirebaseUI/Auth', '~> 14.0'
-pod 'FirebaseUI/Google', '~> 14.0'
+pod 'FirebaseUI/Auth', '~> 15.0'
+pod 'FirebaseUI/Google', '~> 15.0'
 # [START functions_pod]
 pod 'FirebaseFunctions'
 # [END functions_pod]

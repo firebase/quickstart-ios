@@ -1,30 +1,30 @@
 PODS:
-  - FirebaseAppCheckInterop (11.14.0)
-  - FirebaseAuth (11.14.0):
-    - FirebaseAppCheckInterop (~> 11.0)
-    - FirebaseAuthInterop (~> 11.0)
-    - FirebaseCore (~> 11.14.0)
-    - FirebaseCoreExtension (~> 11.14.0)
+  - FirebaseAppCheckInterop (12.0.0)
+  - FirebaseAuth (12.0.0):
+    - FirebaseAppCheckInterop (~> 12.0.0)
+    - FirebaseAuthInterop (~> 12.0.0)
+    - FirebaseCore (~> 12.0.0)
+    - FirebaseCoreExtension (~> 12.0.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 8.1)
     - GoogleUtilities/Environment (~> 8.1)
-    - GTMSessionFetcher/Core (< 5.0, >= 3.4)
+    - GTMSessionFetcher/Core (< 6.0, >= 3.4)
     - RecaptchaInterop (~> 101.0)
-  - FirebaseAuthInterop (11.14.0)
-  - FirebaseCore (11.14.0):
-    - FirebaseCoreInternal (~> 11.14.0)
+  - FirebaseAuthInterop (12.0.0)
+  - FirebaseCore (12.0.0):
+    - FirebaseCoreInternal (~> 12.0.0)
     - GoogleUtilities/Environment (~> 8.1)
     - GoogleUtilities/Logger (~> 8.1)
-  - FirebaseCoreExtension (11.14.0):
-    - FirebaseCore (~> 11.14.0)
-  - FirebaseCoreInternal (11.14.0):
+  - FirebaseCoreExtension (12.0.0):
+    - FirebaseCore (~> 12.0.0)
+  - FirebaseCoreInternal (12.0.0):
     - "GoogleUtilities/NSData+zlib (~> 8.1)"
-  - FirebaseStorage (11.14.0):
-    - FirebaseAppCheckInterop (~> 11.0)
-    - FirebaseAuthInterop (~> 11.0)
-    - FirebaseCore (~> 11.14.0)
-    - FirebaseCoreExtension (~> 11.14.0)
+  - FirebaseStorage (12.0.0):
+    - FirebaseAppCheckInterop (~> 12.0.0)
+    - FirebaseAuthInterop (~> 12.0.0)
+    - FirebaseCore (~> 12.0.0)
+    - FirebaseCoreExtension (~> 12.0.0)
     - GoogleUtilities/Environment (~> 8.1)
-    - GTMSessionFetcher/Core (< 5.0, >= 3.4)
+    - GTMSessionFetcher/Core (< 6.0, >= 3.4)
   - GoogleUtilities/AppDelegateSwizzler (8.1.0):
     - GoogleUtilities/Environment
     - GoogleUtilities/Logger
@@ -46,7 +46,7 @@ PODS:
   - GoogleUtilities/Reachability (8.1.0):
     - GoogleUtilities/Logger
     - GoogleUtilities/Privacy
-  - GTMSessionFetcher/Core (4.5.0)
+  - GTMSessionFetcher/Core (5.0.0)
   - RecaptchaInterop (101.0.0)
 
 DEPENDENCIES:
@@ -67,17 +67,17 @@ SPEC REPOS:
     - RecaptchaInterop
 
 SPEC CHECKSUMS:
-  FirebaseAppCheckInterop: a92ba81d0ee3c4cddb1a2e52c668ea51dc63c3ae
-  FirebaseAuth: 657b7e792d60e9fdb87408ae5ed15f4438442c1d
-  FirebaseAuthInterop: e25b58ecb90f3285085fa2118861a3c9dfdc62ad
-  FirebaseCore: 8fb12caed934c900218ce66a419107db74214ade
-  FirebaseCoreExtension: 6af88594f639c1abb127bc096da32cf2c0dd69ff
-  FirebaseCoreInternal: 6a3b668197644aa858fc4127578637c6767ba123
-  FirebaseStorage: 4f8460506fa1d5663207a2d2073035875ca3a66f
+  FirebaseAppCheckInterop: c848d06a04030c9858ef0ae555b82035dbe470d0
+  FirebaseAuth: 654e4de84787c45d7265599a651038e854ccb439
+  FirebaseAuthInterop: 002da671896af5e8879ae117dc604ed240b86e80
+  FirebaseCore: 055f4ab117d5964158c833f3d5e7ec6d91648d4a
+  FirebaseCoreExtension: 639afb3de6abd611952be78a794c54a47fa0f361
+  FirebaseCoreInternal: dedc28e569a4be85f38f3d6af1070a2e12018d55
+  FirebaseStorage: 5603c913805b0eacc8e6853395e837ca5742e5f7
   GoogleUtilities: 00c88b9a86066ef77f0da2fab05f65d7768ed8e1
-  GTMSessionFetcher: fc75fc972958dceedee61cb662ae1da7a83a91cf
+  GTMSessionFetcher: 02d6e866e90bc236f48a703a041dfe43e6221a29
   RecaptchaInterop: 11e0b637842dfb48308d242afc3f448062325aba
 
-PODFILE CHECKSUM: e921bf81a252f9a4e72e1d1516067b7019af8a51
+PODFILE CHECKSUM: ab7e96bd254ded22f9c3af22b218999e9c2c4919
 
 COCOAPODS: 1.16.2

@@ -61,14 +61,16 @@ struct ImagenScreen: View {
           .padding(.horizontal, spacing)
         }
       }
-      .navigationTitle("Imagen example")
-      .onAppear {
-        focusedField = .message
-      }
-      
       if viewModel.inProgress {
         ProgressOverlay()
       }
+    }
+    .onTapGesture {
+      focusedField = nil
+    }
+    .navigationTitle("Imagen example")
+    .onAppear {
+      focusedField = .message
     }
   }
 

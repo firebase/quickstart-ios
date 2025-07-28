@@ -15,6 +15,7 @@
 import MarkdownUI
 import SwiftUI
 import FirebaseAI
+import GenerativeAIUIComponents
 
 struct GenerateContentScreen: View {
   let firebaseService: FirebaseAI
@@ -39,18 +40,11 @@ struct GenerateContentScreen: View {
       VStack(alignment: .leading) {
         Text("Enter some text, then tap on _Go_ to run generateContent on it.")
           .padding(.horizontal, 6)
-        HStack(alignment: .top) {
-          TextField("Enter generate content input", text: $userInput, axis: .vertical)
-            .focused($focusedField, equals: .message)
-            .textFieldStyle(.roundedBorder)
-            .onSubmit {
-              onGenerateContentTapped()
-            }
-          Button("Go") {
-            onGenerateContentTapped()
-          }
-          .padding(.top, 4)
+        InputField("Enter generate content input", text: $userInput) {
+          Text("Go")
         }
+        .focused($focusedField, equals: .message)
+        .onSubmit { onGenerateContentTapped() }
       }
       .padding(.horizontal, 16)
 
@@ -68,6 +62,9 @@ struct GenerateContentScreen: View {
         .listRowSeparator(.hidden)
       }
       .listStyle(.plain)
+    }
+    .onTapGesture {
+      focusedField = nil
     }
     .navigationTitle("Text example")
   }

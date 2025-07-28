@@ -91,11 +91,9 @@ struct ImagenScreen: View {
 struct ProgressOverlay: View {
   var body: some View {
     ZStack {
-      // half transparent background
       Color.black.opacity(0.3)
         .ignoresSafeArea()
       
-      // center progress indicator
       ZStack {
         RoundedRectangle(cornerRadius: 16)
           .fill(Material.ultraThinMaterial)

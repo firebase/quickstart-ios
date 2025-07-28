@@ -84,23 +84,20 @@ struct MessageView: View {
   var message: ChatMessage
   
   private var participantLabel: String {
-    message.participant == .user ? "USER" : "MODEL"
-  }
-  
-  private var alignment: HorizontalAlignment {
-    message.participant == .user ? .trailing : .leading
+    message.participant == .user ? "User" : "Model"
   }
 
   var body: some View {
-    VStack(alignment: alignment, spacing: 4) {
+    VStack(alignment: message.participant == .user ? .trailing : .leading, spacing: 4) {
       // Sender label
       Text(participantLabel)
         .font(.caption2)
         .fontWeight(.medium)
         .foregroundColor(.secondary)
+        .textCase(.uppercase)
         .padding(.horizontal, 8)
         .padding(.vertical, 2)
-        .frame(maxWidth: .infinity, alignment: alignment)
+        .frame(maxWidth: .infinity, alignment: message.participant == .user ? .trailing : .leading)
       
       // Message content
       HStack {

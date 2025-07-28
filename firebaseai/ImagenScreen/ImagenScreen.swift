@@ -95,7 +95,7 @@ struct ProgressOverlay: View {
     ZStack {
       Color.black.opacity(0.3)
         .ignoresSafeArea()
-      
+
       ZStack {
         RoundedRectangle(cornerRadius: 16)
           .fill(Material.ultraThinMaterial)

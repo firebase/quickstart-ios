@@ -84,23 +84,35 @@ struct MessageView: View {
   var message: ChatMessage
 
   var body: some View {
-    HStack {
-      if message.participant == .user {
-        Spacer()
-      }
-      MessageContentView(message: message)
-        .padding(10)
-        .background(message.participant == .system
-          ? Color(UIColor.systemFill)
-          : Color(UIColor.systemBlue))
-        .roundedCorner(10,
-                       corners: [
-                         .topLeft,
-                         .topRight,
-                         message.participant == .system ? .bottomRight : .bottomLeft,
-                       ])
-      if message.participant == .system {
-        Spacer()
+    VStack(alignment: message.participant == .user ? .trailing : .leading, spacing: 4) {
+      // Sender label
+      Text(message.participant == .user ? "USER" : "MODEL")
+        .font(.caption2)
+        .fontWeight(.medium)
+        .foregroundColor(.secondary)
+        .padding(.horizontal, 8)
+        .padding(.vertical, 2)
+        .frame(maxWidth: .infinity, alignment: message.participant == .user ? .trailing : .leading)
+      
+      // Message content
+      HStack {
+        if message.participant == .user {
+          Spacer()
+        }
+        MessageContentView(message: message)
+          .padding(10)
+          .background(message.participant == .system
+            ? Color(UIColor.systemFill)
+            : Color(UIColor.systemBlue))
+          .roundedCorner(10,
+                         corners: [
+                           .topLeft,
+                           .topRight,
+                           message.participant == .system ? .bottomRight : .bottomLeft,
+                         ])
+        if message.participant == .system {
+          Spacer()
+        }
       }
     }
     .listRowSeparator(.hidden)

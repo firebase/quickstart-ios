@@ -33,37 +33,42 @@ struct ImagenScreen: View {
   var focusedField: FocusedField?
 
   var body: some View {
-    ScrollView {
-      VStack {
-        InputField("Enter a prompt to generate an image", text: $viewModel.userInput) {
-          Image(
-            systemName: viewModel.inProgress ? "stop.circle.fill" : "paperplane.circle.fill"
-          )
-          .font(.title)
-        }
-        .focused($focusedField, equals: .message)
-        .onSubmit { sendOrStop() }
-
-        let spacing: CGFloat = 10
-        LazyVGrid(columns: [
-          GridItem(.flexible(), spacing: spacing),
-          GridItem(.flexible(), spacing: spacing),
-        ], spacing: spacing) {
-          ForEach(viewModel.images, id: \.self) { image in
-            Image(uiImage: image)
-              .resizable()
-              .aspectRatio(1, contentMode: .fill)
-              .cornerRadius(12)
-              .clipped()
+    ZStack {
+      ScrollView {
+        VStack {
+          InputField("Enter a prompt to generate an image", text: $viewModel.userInput) {
+            Image(
+              systemName: viewModel.inProgress ? "stop.circle.fill" : "paperplane.circle.fill"
+            )
+            .font(.title)
           }
+          .focused($focusedField, equals: .message)
+          .onSubmit { sendOrStop() }
+
+          let spacing: CGFloat = 10
+          LazyVGrid(columns: [
+            GridItem(.flexible(), spacing: spacing),
+            GridItem(.flexible(), spacing: spacing),
+          ], spacing: spacing) {
+            ForEach(viewModel.images, id: \.self) { image in
+              Image(uiImage: image)
+                .resizable()
+                .aspectRatio(1, contentMode: .fill)
+                .cornerRadius(12)
+                .clipped()
+            }
+          }
+          .padding(.horizontal, spacing)
         }
-        .padding(.horizontal, spacing)
       }
-      .overlay(viewModel.inProgress ? ProgressOverlay() : nil)
-    }
-    .navigationTitle("Imagen example")
-    .onAppear {
-      focusedField = .message
+      .navigationTitle("Imagen example")
+      .onAppear {
+        focusedField = .message
+      }
+      
+      if viewModel.inProgress {
+        ProgressOverlay()
+      }
     }
   }
 
@@ -86,18 +91,25 @@ struct ImagenScreen: View {
 struct ProgressOverlay: View {
   var body: some View {
     ZStack {
-      RoundedRectangle(cornerRadius: 16)
-        .fill(Material.ultraThinMaterial)
-        .frame(width: 120, height: 100)
-        .shadow(radius: 8)
+      // half transparent background
+      Color.black.opacity(0.3)
+        .ignoresSafeArea()
+      
+      // center progress indicator
+      ZStack {
+        RoundedRectangle(cornerRadius: 16)
+          .fill(Material.ultraThinMaterial)
+          .frame(width: 120, height: 100)
+          .shadow(radius: 8)
 
-      VStack(spacing: 12) {
-        ProgressView()
-          .scaleEffect(1.5)
+        VStack(spacing: 12) {
+          ProgressView()
+            .scaleEffect(1.5)
 
-        Text("Loading...")
-          .font(.subheadline)
-          .foregroundColor(.secondary)
+          Text("Loading...")
+            .font(.subheadline)
+            .foregroundColor(.secondary)
+        }
       }
     }
   }

@@ -82,17 +82,25 @@ struct ResponseTextView: View {
 
 struct MessageView: View {
   var message: ChatMessage
+  
+  private var participantLabel: String {
+    message.participant == .user ? "USER" : "MODEL"
+  }
+  
+  private var alignment: HorizontalAlignment {
+    message.participant == .user ? .trailing : .leading
+  }
 
   var body: some View {
-    VStack(alignment: message.participant == .user ? .trailing : .leading, spacing: 4) {
+    VStack(alignment: alignment, spacing: 4) {
       // Sender label
-      Text(message.participant == .user ? "USER" : "MODEL")
+      Text(participantLabel)
         .font(.caption2)
         .fontWeight(.medium)
         .foregroundColor(.secondary)
         .padding(.horizontal, 8)
         .padding(.vertical, 2)
-        .frame(maxWidth: .infinity, alignment: message.participant == .user ? .trailing : .leading)
+        .frame(maxWidth: .infinity, alignment: alignment)
       
       // Message content
       HStack {

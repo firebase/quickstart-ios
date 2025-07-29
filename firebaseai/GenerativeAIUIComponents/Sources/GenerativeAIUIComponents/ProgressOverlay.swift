@@ -15,7 +15,11 @@
 import SwiftUI
 
 public struct ProgressOverlay: View {
-  public init() {}
+  let message: String
+
+  public init(message: String = "Loading...") {
+    self.message = message
+  }
 
   public var body: some View {
     ZStack {
@@ -32,7 +36,7 @@ public struct ProgressOverlay: View {
           ProgressView()
             .scaleEffect(1.5)
 
-          Text("Loading...")
+          Text(message)
             .font(.subheadline)
             .foregroundColor(.secondary)
         }

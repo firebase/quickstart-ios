@@ -82,7 +82,7 @@ struct ResponseTextView: View {
 
 struct MessageView: View {
   var message: ChatMessage
-  
+
   private var participantLabel: String {
     message.participant == .user ? "User" : "Model"
   }
@@ -98,7 +98,7 @@ struct MessageView: View {
         .padding(.horizontal, 8)
         .padding(.vertical, 2)
         .frame(maxWidth: .infinity, alignment: message.participant == .user ? .trailing : .leading)
-      
+
       // Message content
       HStack {
         if message.participant == .user {

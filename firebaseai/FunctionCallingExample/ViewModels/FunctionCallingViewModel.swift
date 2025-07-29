@@ -75,7 +75,7 @@ class FunctionCallingViewModel: ObservableObject {
       messages.append(userMessage)
 
       // add a pending message while we're waiting for a response from the backend
-      let systemMessage = ChatMessage.pending(participant: .system)
+      let systemMessage = ChatMessage.pending(participant: .model)
       messages.append(systemMessage)
 
       print(messages)
@@ -224,7 +224,7 @@ private extension FunctionCallPart {
     }
     let messageText = "Function call requested by model:\n```\n\(json)\n```"
 
-    return ChatMessage(message: messageText, participant: .system)
+    return ChatMessage(message: messageText, participant: .model)
   }
 }
 

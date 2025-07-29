@@ -81,7 +81,7 @@ class ConversationViewModel: ObservableObject {
       messages.append(userMessage)
 
       // add a pending message while we're waiting for a response from the backend
-      let systemMessage = ChatMessage.pending(participant: .system)
+      let systemMessage = ChatMessage.pending(participant: .model)
       messages.append(systemMessage)
 
       do {
@@ -121,7 +121,7 @@ class ConversationViewModel: ObservableObject {
       messages.append(userMessage)
 
       // add a pending message while we're waiting for a response from the backend
-      let systemMessage = ChatMessage.pending(participant: .system)
+      let systemMessage = ChatMessage.pending(participant: .model)
       messages.append(systemMessage)
 
       do {

@@ -81,8 +81,8 @@ class ConversationViewModel: ObservableObject {
       messages.append(userMessage)
 
       // add a pending message while we're waiting for a response from the backend
-      let systemMessage = ChatMessage.pending(participant: .model)
-      messages.append(systemMessage)
+      let modelMessage = ChatMessage.pending(participant: .model)
+      messages.append(modelMessage)
 
       do {
         let responseStream = try chat.sendMessageStream(text)
@@ -121,8 +121,8 @@ class ConversationViewModel: ObservableObject {
       messages.append(userMessage)
 
       // add a pending message while we're waiting for a response from the backend
-      let systemMessage = ChatMessage.pending(participant: .model)
-      messages.append(systemMessage)
+      let modelMessage = ChatMessage.pending(participant: .model)
+      messages.append(modelMessage)
 
       do {
         var response: GenerateContentResponse?

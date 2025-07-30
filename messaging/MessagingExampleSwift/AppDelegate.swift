@@ -99,8 +99,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                    didFailToRegisterForRemoteNotificationsWithError error: Error) {
     print("Unable to register for remote notifications: \(error.localizedDescription)")
   }
-
-  // This function is added here only for debugging purposes, and can be removed if swizzling is enabled.
+	
+  // NOTE: When method swizzling is enabled (default), this method must still be explicitly declared.
+  // Firebase Messaging uses it to intercept and register the APNs device token internally.
+  // If omitted, the device token will not be received.
+  
   // If swizzling is disabled then this function must be implemented so that the APNs token can be paired to
   // the FCM registration token.
   func application(_ application: UIApplication,

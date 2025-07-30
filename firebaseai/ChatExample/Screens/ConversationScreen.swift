@@ -24,16 +24,11 @@ struct ConversationScreen: View {
   @State
   private var userPrompt = ""
 
-  init(firebaseService: FirebaseAI, title: String, searchGroundingEnabled: Bool = false) {
-    let model = firebaseService.generativeModel(
-      modelName: "gemini-2.0-flash-001",
-      tools: searchGroundingEnabled ? [.googleSearch()] : []
-    )
-    self.title = title
+  init(firebaseService: FirebaseAI, sampleId: UUID? = nil) {
     self.firebaseService = firebaseService
     _viewModel =
       StateObject(wrappedValue: ConversationViewModel(firebaseService: firebaseService,
-                                                      model: model))
+                                                      sampleId: sampleId))
   }
 
   enum FocusedField: Hashable {
@@ -89,15 +84,24 @@ struct ConversationScreen: View {
       focusedField = nil
     }
     .toolbar {
+      ToolbarItem(placement: .principal) {
+        Text(viewModel.title)
+          .font(.system(size: 24, weight: .bold))
+          .foregroundColor(.primary)
+          .padding(.top, 10)
+      }
       ToolbarItem(placement: .primaryAction) {
         Button(action: newChat) {
           Image(systemName: "square.and.pencil")
         }
       }
     }
-    .navigationTitle(title)
     .onAppear {
       focusedField = .message
+      // Set initial prompt from viewModel if available
+      if userPrompt.isEmpty && !viewModel.initialPrompt.isEmpty {
+        userPrompt = viewModel.initialPrompt
+      }
     }
   }
 
@@ -121,6 +125,7 @@ struct ConversationScreen: View {
 
   private func newChat() {
     viewModel.startNewChat()
+    userPrompt = ""
   }
 }
 

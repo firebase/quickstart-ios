@@ -20,9 +20,14 @@ struct ImagenScreen: View {
   let firebaseService: FirebaseAI
   @StateObject var viewModel: ImagenViewModel
 
-  init(firebaseService: FirebaseAI) {
+  @State
+  private var userPrompt = ""
+
+  init(firebaseService: FirebaseAI, sampleId: UUID? = nil) {
     self.firebaseService = firebaseService
-    _viewModel = StateObject(wrappedValue: ImagenViewModel(firebaseService: firebaseService))
+    _viewModel =
+      StateObject(wrappedValue: ImagenViewModel(firebaseService: firebaseService,
+                                                sampleId: sampleId))
   }
 
   enum FocusedField: Hashable {
@@ -36,7 +41,7 @@ struct ImagenScreen: View {
     ZStack {
       ScrollView {
         VStack {
-          InputField("Enter a prompt to generate an image", text: $viewModel.userInput) {
+          InputField("Enter a prompt to generate an image", text: $userPrompt) {
             Image(
               systemName: viewModel.inProgress ? "stop.circle.fill" : "paperplane.circle.fill"
             )
@@ -68,15 +73,25 @@ struct ImagenScreen: View {
     .onTapGesture {
       focusedField = nil
     }
-    .navigationTitle("Imagen example")
+    .toolbar {
+      ToolbarItem(placement: .principal) {
+        Text("Imagen example")
+          .font(.system(size: 24, weight: .bold))
+          .foregroundColor(.primary)
+          .padding(.top, 10)
+      }
+    }
     .onAppear {
       focusedField = .message
+      if userPrompt.isEmpty && !viewModel.initialPrompt.isEmpty {
+        userPrompt = viewModel.initialPrompt
+      }
     }
   }
 
   private func sendMessage() {
     Task {
-      await viewModel.generateImage(prompt: viewModel.userInput)
+      await viewModel.generateImage(prompt: userPrompt)
       focusedField = .message
     }
   }

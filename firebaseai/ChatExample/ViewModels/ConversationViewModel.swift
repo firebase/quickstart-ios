@@ -15,6 +15,7 @@
 import FirebaseAI
 import Foundation
 import UIKit
+import GenerativeAIUIComponents
 
 @MainActor
 class ConversationViewModel: ObservableObject {
@@ -29,21 +30,38 @@ class ConversationViewModel: ObservableObject {
     return error != nil
   }
 
+  @Published var initialPrompt: String = ""
+  @Published var title: String = ""
+
   private var model: GenerativeModel
   private var chat: Chat
   private var stopGenerating = false
 
   private var chatTask: Task<Void, Never>?
 
-  init(firebaseService: FirebaseAI, model: GenerativeModel? = nil) {
-    if let model {
-      self.model = model
+  private var sample: Sample?
+
+  init(firebaseService: FirebaseAI, sampleId: UUID? = nil) {
+    // retrieve sample from sampleId
+    sample = Sample.find(by: sampleId)
+
+    // create a generative model with sample data
+    model = firebaseService.generativeModel(
+      modelName: "gemini-2.0-flash-001",
+      tools: sample?.tools,
+      systemInstruction: sample?.systemInstruction
+    )
+
+    if let chatHistory = sample?.chatHistory, !chatHistory.isEmpty {
+      // Initialize with sample chat history if it's available
+      messages = ChatMessage.from(chatHistory)
+      chat = model.startChat(history: chatHistory)
     } else {
-      self.model = firebaseService.generativeModel(
-        modelName: "gemini-2.0-flash-001"
-      )
+      chat = model.startChat()
     }
-    chat = self.model.startChat()
+
+    initialPrompt = sample?.initialPrompt ?? ""
+    title = sample?.title ?? ""
   }
 
   func sendMessage(_ text: String, streaming: Bool = true) async {
@@ -60,6 +78,7 @@ class ConversationViewModel: ObservableObject {
     error = nil
     chat = model.startChat()
     messages.removeAll()
+    initialPrompt = ""
   }
 
   func stop() {

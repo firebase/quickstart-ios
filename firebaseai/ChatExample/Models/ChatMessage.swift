@@ -70,3 +70,30 @@ extension ChatMessage {
 
   static var sample = samples[0]
 }
+
+extension ChatMessage {
+  // Convert ModelContent to ChatMessage
+  static func from(_ modelContent: ModelContent) -> ChatMessage? {
+    // Extract text from parts - parts is Array<Part>
+    guard let textPart = modelContent.parts.first as? TextPart else {
+      return nil
+    }
+
+    let participant: Participant
+    switch modelContent.role {
+    case "user":
+      participant = .user
+    case "model":
+      participant = .system
+    default:
+      return nil
+    }
+
+    return ChatMessage(message: textPart.text, participant: participant)
+  }
+
+  // Convert array of ModelContent to array of ChatMessage
+  static func from(_ modelContents: [ModelContent]) -> [ChatMessage] {
+    return modelContents.compactMap { from($0) }
+  }
+}

@@ -74,8 +74,9 @@ extension ChatMessage {
 extension ChatMessage {
   // Convert ModelContent to ChatMessage
   static func from(_ modelContent: ModelContent) -> ChatMessage? {
-    // Extract text from parts - parts is Array<Part>
-    guard let textPart = modelContent.parts.first as? TextPart else {
+    // Extract text from all parts
+    let text = modelContent.parts.compactMap { ($0 as? TextPart)?.text }.joined()
+    guard !text.isEmpty else {
       return nil
     }
 
@@ -89,7 +90,7 @@ extension ChatMessage {
       return nil
     }
 
-    return ChatMessage(message: textPart.text, participant: participant)
+    return ChatMessage(message: text, participant: participant)
   }
 
   // Convert array of ModelContent to array of ChatMessage

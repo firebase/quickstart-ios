@@ -20,6 +20,7 @@ public struct Sample: Identifiable {
   public let title: String
   public let description: String
   public let useCases: [UseCase]
+  public let navRoute: String
   public let chatHistory: [ModelContent]?
   public let initialPrompt: String?
   public let systemInstruction: ModelContent?
@@ -28,6 +29,7 @@ public struct Sample: Identifiable {
   public init(title: String,
               description: String,
               useCases: [UseCase],
+              navRoute: String,
               chatHistory: [ModelContent]? = nil,
               initialPrompt: String? = nil,
               systemInstruction: ModelContent? = nil,
@@ -35,14 +37,11 @@ public struct Sample: Identifiable {
     self.title = title
     self.description = description
     self.useCases = useCases
+    self.navRoute = navRoute
     self.chatHistory = chatHistory
     self.initialPrompt = initialPrompt
     self.systemInstruction = systemInstruction
     self.tools = tools
-  }
-
-  public var useCase: UseCase {
-    return useCases.first ?? .text
   }
 
   public static func find(by id: UUID?) -> Sample? {
@@ -59,6 +58,7 @@ extension Sample {
       description: "The user wants the model to help a new traveler" +
         " with travel tips",
       useCases: [.text],
+      navRoute: "ConversationScreen",
       chatHistory: [
         ModelContent(
           role: "user",
@@ -84,6 +84,7 @@ extension Sample {
       title: "Chatbot recommendations for courses",
       description: "A chatbot suggests courses for a performing arts program.",
       useCases: [.text],
+      navRoute: "ConversationScreen",
       initialPrompt: "I am interested in Performing Arts. I have taken Theater 1A.",
       systemInstruction: ModelContent(parts: "You are a chatbot for the county's performing and fine arts" +
         " program. You help students decide what course they will" +
@@ -94,6 +95,7 @@ extension Sample {
       title: "Blog post creator",
       description: "Create a blog post from an image file stored in Cloud Storage.",
       useCases: [.image],
+      navRoute: "PhotoReasoningScreen",
       chatHistory: [
         ModelContent(role: "user", parts: "Can you help me create a blog post about this image?"),
         ModelContent(
@@ -107,12 +109,14 @@ extension Sample {
       title: "Imagen 3 - image generation",
       description: "Generate images using Imagen 3",
       useCases: [.image],
+      navRoute: "ImagenScreen",
       initialPrompt: "A photo of a modern building with water in the background"
     ),
     Sample(
       title: "Gemini 2.0 Flash - image generation",
       description: "Generate and/or edit images using Gemini 2.0 Flash",
       useCases: [.image],
+      navRoute: "PhotoReasoningScreen",
       chatHistory: [
         ModelContent(role: "user", parts: "Can you edit this image to make it brighter?"),
         ModelContent(
@@ -127,6 +131,7 @@ extension Sample {
       title: "Hashtags for a video",
       description: "Generate hashtags for a video ad stored in Cloud Storage.",
       useCases: [.video],
+      navRoute: "ConversationScreen",
       chatHistory: [
         ModelContent(role: "user", parts: "Can you suggest hashtags for my product video?"),
         ModelContent(
@@ -140,6 +145,7 @@ extension Sample {
       title: "Summarize video",
       description: "Summarize a video and extract important dialogue.",
       useCases: [.video],
+      navRoute: "ConversationScreen",
       chatHistory: [
         ModelContent(role: "user", parts: "Can you summarize this video for me?"),
         ModelContent(
@@ -154,6 +160,7 @@ extension Sample {
       title: "Audio Summarization",
       description: "Summarize an audio file",
       useCases: [.audio],
+      navRoute: "ConversationScreen",
       chatHistory: [
         ModelContent(role: "user", parts: "Can you summarize this audio recording?"),
         ModelContent(
@@ -167,6 +174,7 @@ extension Sample {
       title: "Translation from audio",
       description: "Translate an audio file stored in Cloud Storage",
       useCases: [.audio],
+      navRoute: "ConversationScreen",
       chatHistory: [
         ModelContent(role: "user", parts: "Can you translate this audio from Spanish to English?"),
         ModelContent(
@@ -182,6 +190,7 @@ extension Sample {
       description: "Compare the contents of 2 documents." +
         " Only supported by the Vertex AI Gemini API because the documents are stored in Cloud Storage",
       useCases: [.document],
+      navRoute: "ConversationScreen",
       chatHistory: [
         ModelContent(role: "user", parts: "Can you compare these two documents for me?"),
         ModelContent(
@@ -197,6 +206,7 @@ extension Sample {
       description: "Use function calling to get the weather conditions" +
         " for a specific US city on a specific date.",
       useCases: [.functionCalling, .text],
+      navRoute: "FunctionCallingScreen",
       chatHistory: [
         ModelContent(role: "user", parts: "What's the weather like in New York today?"),
         ModelContent(
@@ -211,6 +221,7 @@ extension Sample {
       title: "Grounding with Google Search",
       description: "Use Grounding with Google Search to get responses based on up-to-date information from the web.",
       useCases: [.text],
+      navRoute: "ConversationScreen",
       initialPrompt: "What's the weather in Chicago this weekend?",
       tools: [.googleSearch()]
     ),

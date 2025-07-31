@@ -104,15 +104,17 @@ struct ContentView: View {
 
   @ViewBuilder
   private func destinationView(for sample: Sample) -> some View {
-    switch sample.useCase {
-    case .text:
+    switch sample.navRoute {
+    case "ConversationScreen":
       ConversationScreen(firebaseService: firebaseService, sampleId: sample.id)
-    case .image:
+    case "ImagenScreen":
       ImagenScreen(firebaseService: firebaseService, sampleId: sample.id)
-    case .video, .audio, .document:
+    case "PhotoReasoningScreen":
       PhotoReasoningScreen(firebaseService: firebaseService)
-    case .functionCalling:
+    case "FunctionCallingScreen":
       FunctionCallingScreen(firebaseService: firebaseService)
+    default:
+      EmptyView()
     }
   }
 }

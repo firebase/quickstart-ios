@@ -18,7 +18,6 @@ import SwiftUI
 
 struct ConversationScreen: View {
   let firebaseService: FirebaseAI
-  let title: String
   @StateObject var viewModel: ConversationViewModel
 
   @State
@@ -135,7 +134,7 @@ struct ConversationScreen_Previews: PreviewProvider {
       .firebaseAI()) // Example service init
 
     var body: some View {
-      ConversationScreen(firebaseService: FirebaseAI.firebaseAI(), title: "Chat sample")
+      ConversationScreen(firebaseService: FirebaseAI.firebaseAI())
         .onAppear {
           viewModel.messages = ChatMessage.samples
         }
@@ -144,7 +143,7 @@ struct ConversationScreen_Previews: PreviewProvider {
 
   static var previews: some View {
     NavigationStack {
-      ConversationScreen(firebaseService: FirebaseAI.firebaseAI(), title: "Chat sample")
+      ConversationScreen(firebaseService: FirebaseAI.firebaseAI())
     }
   }
 }

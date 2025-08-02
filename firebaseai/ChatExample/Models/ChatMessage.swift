@@ -72,28 +72,18 @@ extension ChatMessage {
 }
 
 extension ChatMessage {
-  // Convert ModelContent to ChatMessage
   static func from(_ modelContent: ModelContent) -> ChatMessage? {
-    // Extract text from all parts
+    // TODO: add non-text parts to message when multi-model support is added
     let text = modelContent.parts.compactMap { ($0 as? TextPart)?.text }.joined()
     guard !text.isEmpty else {
       return nil
     }
 
-    let participant: Participant
-    switch modelContent.role {
-    case "user":
-      participant = .user
-    case "model":
-      participant = .system
-    default:
-      return nil
-    }
+    let participant: Participant = (modelContent.role == "user") ? .user : .system
 
     return ChatMessage(message: text, participant: participant)
   }
 
-  // Convert array of ModelContent to array of ChatMessage
   static func from(_ modelContents: [ModelContent]) -> [ChatMessage] {
     return modelContents.compactMap { from($0) }
   }

@@ -41,9 +41,8 @@ class ConversationViewModel: ObservableObject {
 
   private var sample: Sample?
 
-  init(firebaseService: FirebaseAI, sampleId: UUID? = nil) {
-    // retrieve sample from sampleId
-    sample = Sample.find(by: sampleId)
+  init(firebaseService: FirebaseAI, sample: Sample? = nil) {
+    self.sample = sample
 
     // create a generative model with sample data
     model = firebaseService.generativeModel(

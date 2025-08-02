@@ -49,15 +49,20 @@ struct ContentView: View {
       ScrollView {
         VStack(alignment: .leading, spacing: 20) {
           // Backend Configuration
-          GroupBox(label: Text("Backend Configuration").font(.system(size: 18, weight: .bold))) {
+          VStack(alignment: .leading) {
+            Text("Backend Configuration")
+              .font(.system(size: 20, weight: .bold))
+              .padding(.horizontal)
+
             Picker("Backend", selection: $selectedBackend) {
               ForEach(BackendOption.allCases) { option in
-                Text(option.rawValue).tag(option)
+                Text(option.rawValue)
+                  .tag(option)
               }
             }
             .pickerStyle(SegmentedPickerStyle())
+            .padding(.horizontal)
           }
-          .padding(.horizontal)
 
           // Use Case Filter
           VStack(alignment: .leading) {
@@ -76,6 +81,7 @@ struct ContentView: View {
               .padding(.horizontal)
             }
           }
+
           // Samples
           VStack(alignment: .leading) {
             Text("Samples")
@@ -95,6 +101,7 @@ struct ContentView: View {
         }
         .padding(.vertical)
       }
+      .background(Color(.systemGroupedBackground))
       .navigationTitle("Firebase AI Logic")
       .onChange(of: selectedBackend) { newBackend in
         firebaseService = newBackend.backendValue
@@ -106,9 +113,9 @@ struct ContentView: View {
   private func destinationView(for sample: Sample) -> some View {
     switch sample.navRoute {
     case "ConversationScreen":
-      ConversationScreen(firebaseService: firebaseService, sampleId: sample.id)
+      ConversationScreen(firebaseService: firebaseService, sample: sample)
     case "ImagenScreen":
-      ImagenScreen(firebaseService: firebaseService, sampleId: sample.id)
+      ImagenScreen(firebaseService: firebaseService, sample: sample)
     case "PhotoReasoningScreen":
       PhotoReasoningScreen(firebaseService: firebaseService)
     case "FunctionCallingScreen":

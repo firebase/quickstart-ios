@@ -23,11 +23,11 @@ struct ConversationScreen: View {
   @State
   private var userPrompt = ""
 
-  init(firebaseService: FirebaseAI, sampleId: UUID? = nil) {
+  init(firebaseService: FirebaseAI, sample: Sample? = nil) {
     self.firebaseService = firebaseService
     _viewModel =
       StateObject(wrappedValue: ConversationViewModel(firebaseService: firebaseService,
-                                                      sampleId: sampleId))
+                                                      sample: sample))
   }
 
   enum FocusedField: Hashable {
@@ -83,18 +83,13 @@ struct ConversationScreen: View {
       focusedField = nil
     }
     .toolbar {
-      ToolbarItem(placement: .principal) {
-        Text(viewModel.title)
-          .font(.system(size: 24, weight: .bold))
-          .foregroundColor(.primary)
-          .padding(.top, 10)
-      }
       ToolbarItem(placement: .primaryAction) {
         Button(action: newChat) {
           Image(systemName: "square.and.pencil")
         }
       }
     }
+    .navigationTitle(viewModel.title)
     .onAppear {
       focusedField = .message
       // Set initial prompt from viewModel if available
@@ -131,7 +126,7 @@ struct ConversationScreen: View {
 struct ConversationScreen_Previews: PreviewProvider {
   struct ContainerView: View {
     @StateObject var viewModel = ConversationViewModel(firebaseService: FirebaseAI
-      .firebaseAI()) // Example service init
+      .firebaseAI(), sample: nil) // Example service init
 
     var body: some View {
       ConversationScreen(firebaseService: FirebaseAI.firebaseAI())

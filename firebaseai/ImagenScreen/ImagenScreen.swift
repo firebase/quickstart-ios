@@ -23,11 +23,11 @@ struct ImagenScreen: View {
   @State
   private var userPrompt = ""
 
-  init(firebaseService: FirebaseAI, sampleId: UUID? = nil) {
+  init(firebaseService: FirebaseAI, sample: Sample? = nil) {
     self.firebaseService = firebaseService
     _viewModel =
       StateObject(wrappedValue: ImagenViewModel(firebaseService: firebaseService,
-                                                sampleId: sampleId))
+                                                sample: sample))
   }
 
   enum FocusedField: Hashable {
@@ -73,14 +73,7 @@ struct ImagenScreen: View {
     .onTapGesture {
       focusedField = nil
     }
-    .toolbar {
-      ToolbarItem(placement: .principal) {
-        Text("Imagen example")
-          .font(.system(size: 24, weight: .bold))
-          .foregroundColor(.primary)
-          .padding(.top, 10)
-      }
-    }
+    .navigationTitle("Imagen example")
     .onAppear {
       focusedField = .message
       if userPrompt.isEmpty && !viewModel.initialPrompt.isEmpty {

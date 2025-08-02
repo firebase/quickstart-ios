@@ -15,7 +15,7 @@
 import Foundation
 import FirebaseAI
 
-public struct Sample: Identifiable {
+public class Sample: Identifiable {
   public let id = UUID()
   public let title: String
   public let description: String
@@ -42,11 +42,6 @@ public struct Sample: Identifiable {
     self.initialPrompt = initialPrompt
     self.systemInstruction = systemInstruction
     self.tools = tools
-  }
-
-  public static func find(by id: UUID?) -> Sample? {
-    guard let id = id else { return nil }
-    return samples.first { $0.id == id }
   }
 }
 

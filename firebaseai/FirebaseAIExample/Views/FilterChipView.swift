@@ -23,11 +23,33 @@ struct FilterChipView: View {
   var body: some View {
     Button(action: action) {
       Text(useCase.rawValue)
-        .padding(.horizontal, 16)
-        .padding(.vertical, 8)
-        .background(isSelected ? Color.blue.opacity(0.8) : Color.gray.opacity(0.2))
-        .foregroundColor(isSelected ? .white : .primary)
-        .cornerRadius(12)
+        .padding(.horizontal)
     }
+    .filterChipStyle(isSelected: isSelected)
+  }
+}
+
+private struct FilterChipStyle: ViewModifier {
+  let isSelected: Bool
+
+  func body(content: Content) -> some View {
+    if isSelected {
+      content.buttonStyle(.borderedProminent)
+    } else {
+      content.buttonStyle(.bordered)
+    }
+  }
+}
+
+extension View {
+  func filterChipStyle(isSelected: Bool) -> some View {
+    modifier(FilterChipStyle(isSelected: isSelected))
+  }
+}
+
+#Preview {
+  VStack(spacing: 16) {
+    FilterChipView(useCase: .text, isSelected: true) {}
+    FilterChipView(useCase: .text, isSelected: false) {}
   }
 }

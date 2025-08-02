@@ -14,6 +14,7 @@
 
 import SwiftUI
 import FirebaseAI
+import GenerativeAIUIComponents
 
 enum BackendOption: String, CaseIterable, Identifiable {
   case googleAI = "Gemini Developer API"
@@ -33,61 +34,94 @@ enum BackendOption: String, CaseIterable, Identifiable {
 struct ContentView: View {
   @State private var selectedBackend: BackendOption = .googleAI
   @State private var firebaseService: FirebaseAI = FirebaseAI.firebaseAI(backend: .googleAI())
+  @State private var selectedUseCase: UseCase = .text
+
+  var filteredSamples: [Sample] {
+    Sample.samples.filter { $0.useCases.contains(selectedUseCase) }
+  }
+
+  let columns = [
+    GridItem(.adaptive(minimum: 150)),
+  ]
 
   var body: some View {
     NavigationStack {
-      List {
-        Section("Configuration") {
-          Picker("Backend", selection: $selectedBackend) {
-            ForEach(BackendOption.allCases) { option in
-              Text(option.rawValue).tag(option)
+      ScrollView {
+        VStack(alignment: .leading, spacing: 20) {
+          // Backend Configuration
+          VStack(alignment: .leading) {
+            Text("Backend Configuration")
+              .font(.system(size: 20, weight: .bold))
+              .padding(.horizontal)
+
+            Picker("Backend", selection: $selectedBackend) {
+              ForEach(BackendOption.allCases) { option in
+                Text(option.rawValue)
+                  .tag(option)
+              }
+            }
+            .pickerStyle(SegmentedPickerStyle())
+            .padding(.horizontal)
+          }
+
+          // Use Case Filter
+          VStack(alignment: .leading) {
+            Text("Filter by use case")
+              .font(.system(size: 20, weight: .bold))
+              .padding(.horizontal)
+
+            ScrollView(.horizontal, showsIndicators: false) {
+              HStack(spacing: 10) {
+                ForEach(UseCase.allCases) { useCase in
+                  FilterChipView(useCase: useCase, isSelected: selectedUseCase == useCase) {
+                    selectedUseCase = useCase
+                  }
+                }
+              }
+              .padding(.horizontal)
             }
           }
-        }
 
-        Section("Examples") {
-          NavigationLink {
-            GenerateContentScreen(firebaseService: firebaseService)
-          } label: {
-            Label("Generate Content", systemImage: "doc.text")
-          }
-          NavigationLink {
-            PhotoReasoningScreen(firebaseService: firebaseService)
-          } label: {
-            Label("Multi-modal", systemImage: "doc.richtext")
-          }
-          NavigationLink {
-            ConversationScreen(firebaseService: firebaseService, title: "Chat")
-          } label: {
-            Label("Chat", systemImage: "ellipsis.message.fill")
-          }
-          NavigationLink {
-            ConversationScreen(
-              firebaseService: firebaseService,
-              title: "Grounding",
-              searchGroundingEnabled: true
-            )
-          } label: {
-            Label("Grounding with Google Search", systemImage: "magnifyingglass")
-          }
-          NavigationLink {
-            FunctionCallingScreen(firebaseService: firebaseService)
-          } label: {
-            Label("Function Calling", systemImage: "function")
-          }
-          NavigationLink {
-            ImagenScreen(firebaseService: firebaseService)
-          } label: {
-            Label("Imagen", systemImage: "camera.circle")
+          // Samples
+          VStack(alignment: .leading) {
+            Text("Samples")
+              .font(.system(size: 20, weight: .bold))
+              .padding(.horizontal)
+
+            LazyVGrid(columns: columns, spacing: 20) {
+              ForEach(filteredSamples) { sample in
+                NavigationLink(destination: destinationView(for: sample)) {
+                  SampleCardView(sample: sample)
+                }
+                .buttonStyle(PlainButtonStyle())
+              }
+            }
+            .padding(.horizontal)
           }
         }
+        .padding(.vertical)
       }
-      .navigationTitle("Generative AI Examples")
+      .background(Color(.systemGroupedBackground))
+      .navigationTitle("Firebase AI Logic")
       .onChange(of: selectedBackend) { newBackend in
         firebaseService = newBackend.backendValue
-        // Note: This might cause views that hold the old service instance to misbehave
-        // unless they are also correctly updated or recreated.
       }
+    }
+  }
+
+  @ViewBuilder
+  private func destinationView(for sample: Sample) -> some View {
+    switch sample.navRoute {
+    case "ConversationScreen":
+      ConversationScreen(firebaseService: firebaseService, sample: sample)
+    case "ImagenScreen":
+      ImagenScreen(firebaseService: firebaseService, sample: sample)
+    case "PhotoReasoningScreen":
+      PhotoReasoningScreen(firebaseService: firebaseService)
+    case "FunctionCallingScreen":
+      FunctionCallingScreen(firebaseService: firebaseService)
+    default:
+      EmptyView()
     }
   }
 }

@@ -25,11 +25,11 @@ struct SampleCardView: View {
         .foregroundColor(.secondary)
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
     } label: {
-      HStack {
-        if let useCase = sample.useCases.first {
-          Image(systemName: systemName(for: useCase))
-            .foregroundColor(color(for: useCase))
-        }
+      if let useCase = sample.useCases.first {
+        Label(sample.title, systemImage: systemName(for: useCase))
+          .font(.system(size: 17, weight: .medium))
+          .foregroundColor(color(for: useCase))
+      } else {
         Text(sample.title)
           .font(.system(size: 17, weight: .medium))
       }

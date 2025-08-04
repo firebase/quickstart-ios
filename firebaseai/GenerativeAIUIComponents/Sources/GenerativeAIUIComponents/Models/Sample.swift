@@ -15,7 +15,7 @@
 import Foundation
 import FirebaseAI
 
-public class Sample: Identifiable {
+public struct Sample: Identifiable {
   public let id = UUID()
   public let title: String
   public let description: String

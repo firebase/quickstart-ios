@@ -197,19 +197,11 @@ extension Sample {
     ),
     // Function Calling
     Sample(
-      title: "Weather Chat",
-      description: "Use function calling to get the weather conditions" +
-        " for a specific US city on a specific date.",
+      title: "Currency conversion",
+      description: "Use function calling to convert currency",
       useCases: [.functionCalling, .text],
       navRoute: "FunctionCallingScreen",
-      chatHistory: [
-        ModelContent(role: "user", parts: "What's the weather like in New York today?"),
-        ModelContent(
-          role: "model",
-          parts: "I can help you get weather information using function calling. Let me check the current weather conditions for New York."
-        ),
-      ],
-      initialPrompt: ""
+      initialPrompt: "What is 100 Euros in USD?"
     ),
     // Grounding
     Sample(

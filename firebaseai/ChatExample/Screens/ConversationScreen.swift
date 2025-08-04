@@ -90,6 +90,7 @@ struct ConversationScreen: View {
       }
     }
     .navigationTitle(viewModel.title)
+    .navigationBarTitleDisplayMode(.inline)
     .onAppear {
       focusedField = .message
       // Set initial prompt from viewModel if available

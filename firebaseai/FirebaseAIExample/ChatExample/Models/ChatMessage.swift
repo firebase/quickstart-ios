@@ -74,3 +74,21 @@ extension ChatMessage {
 
   static var sample = samples[0]
 }
+
+extension ChatMessage {
+  static func from(_ modelContent: ModelContent) -> ChatMessage? {
+    // TODO: add non-text parts to message when multi-model support is added
+    let text = modelContent.parts.compactMap { ($0 as? TextPart)?.text }.joined()
+    guard !text.isEmpty else {
+      return nil
+    }
+
+    let participant: Participant = (modelContent.role == "user") ? .user : .system
+
+    return ChatMessage(message: text, participant: participant)
+  }
+
+  static func from(_ modelContents: [ModelContent]) -> [ChatMessage] {
+    return modelContents.compactMap { from($0) }
+  }
+}

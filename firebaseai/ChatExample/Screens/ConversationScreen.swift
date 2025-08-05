@@ -18,22 +18,16 @@ import SwiftUI
 
 struct ConversationScreen: View {
   let firebaseService: FirebaseAI
-  let title: String
   @StateObject var viewModel: ConversationViewModel
 
   @State
   private var userPrompt = ""
 
-  init(firebaseService: FirebaseAI, title: String, searchGroundingEnabled: Bool = false) {
-    let model = firebaseService.generativeModel(
-      modelName: "gemini-2.0-flash-001",
-      tools: searchGroundingEnabled ? [.googleSearch()] : []
-    )
-    self.title = title
+  init(firebaseService: FirebaseAI, sample: Sample? = nil) {
     self.firebaseService = firebaseService
     _viewModel =
       StateObject(wrappedValue: ConversationViewModel(firebaseService: firebaseService,
-                                                      model: model))
+                                                      sample: sample))
   }
 
   enum FocusedField: Hashable {
@@ -95,9 +89,14 @@ struct ConversationScreen: View {
         }
       }
     }
-    .navigationTitle(title)
+    .navigationTitle(viewModel.title)
+    .navigationBarTitleDisplayMode(.inline)
     .onAppear {
       focusedField = .message
+      // Set initial prompt from viewModel if available
+      if userPrompt.isEmpty && !viewModel.initialPrompt.isEmpty {
+        userPrompt = viewModel.initialPrompt
+      }
     }
   }
 
@@ -121,16 +120,17 @@ struct ConversationScreen: View {
 
   private func newChat() {
     viewModel.startNewChat()
+    userPrompt = ""
   }
 }
 
 struct ConversationScreen_Previews: PreviewProvider {
   struct ContainerView: View {
     @StateObject var viewModel = ConversationViewModel(firebaseService: FirebaseAI
-      .firebaseAI()) // Example service init
+      .firebaseAI(), sample: nil) // Example service init
 
     var body: some View {
-      ConversationScreen(firebaseService: FirebaseAI.firebaseAI(), title: "Chat sample")
+      ConversationScreen(firebaseService: FirebaseAI.firebaseAI())
         .onAppear {
           viewModel.messages = ChatMessage.samples
         }
@@ -139,7 +139,7 @@ struct ConversationScreen_Previews: PreviewProvider {
 
   static var previews: some View {
     NavigationStack {
-      ConversationScreen(firebaseService: FirebaseAI.firebaseAI(), title: "Chat sample")
+      ConversationScreen(firebaseService: FirebaseAI.firebaseAI())
     }
   }
 }

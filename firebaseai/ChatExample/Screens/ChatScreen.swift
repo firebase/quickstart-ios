@@ -13,17 +13,16 @@
 // limitations under the License.
 
 import FirebaseAI
-
 import SwiftUI
 
-struct FunctionCallingScreen: View {
+struct ChatScreen: View {
   let firebaseService: FirebaseAI
-  @StateObject var viewModel: FunctionCallingViewModel
+  @StateObject var viewModel: ChatViewModel
 
   init(firebaseService: FirebaseAI, sample: Sample? = nil) {
     self.firebaseService = firebaseService
     _viewModel =
-      StateObject(wrappedValue: FunctionCallingViewModel(firebaseService: firebaseService,
+      StateObject(wrappedValue: ChatViewModel(firebaseService: firebaseService,
                                               sample: sample))
   }
 
@@ -57,13 +56,13 @@ struct FunctionCallingScreen: View {
   }
 }
 
-struct FunctionCallingScreen_Previews: PreviewProvider {
+struct ChatScreen_Previews: PreviewProvider {
   struct ContainerView: View {
-    @StateObject var viewModel = FunctionCallingViewModel(firebaseService: FirebaseAI
+    @StateObject var viewModel = ChatViewModel(firebaseService: FirebaseAI
       .firebaseAI(), sample: nil) // Example service init
 
     var body: some View {
-      FunctionCallingScreen(firebaseService: FirebaseAI.firebaseAI())
+      ChatScreen(firebaseService: FirebaseAI.firebaseAI())
         .onAppear {
           viewModel.messages = ChatMessage.samples
         }
@@ -72,7 +71,7 @@ struct FunctionCallingScreen_Previews: PreviewProvider {
 
   static var previews: some View {
     NavigationStack {
-      FunctionCallingScreen(firebaseService: FirebaseAI.firebaseAI())
+      ChatScreen(firebaseService: FirebaseAI.firebaseAI())
     }
   }
 }

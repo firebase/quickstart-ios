@@ -15,10 +15,9 @@
 import FirebaseAI
 import Foundation
 import UIKit
-import GenerativeAIUIComponents
 
 @MainActor
-class ConversationViewModel: ObservableObject {
+class ChatViewModel: ObservableObject {
   /// This array holds both the user's and the system's chat messages
   @Published var messages = [ChatMessage]()
 

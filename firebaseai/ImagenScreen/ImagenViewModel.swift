@@ -16,7 +16,6 @@ import FirebaseAI
 import Foundation
 import OSLog
 import SwiftUI
-import GenerativeAIUIComponents
 
 @MainActor
 class ImagenViewModel: ObservableObject {

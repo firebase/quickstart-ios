@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import SwiftUI
-import GenerativeAIUIComponents
+
 import FirebaseAI
 
 struct ImagenScreen: View {
@@ -41,14 +41,11 @@ struct ImagenScreen: View {
     ZStack {
       ScrollView {
         VStack {
-          InputField("Enter a prompt to generate an image", text: $userPrompt) {
-            Image(
-              systemName: viewModel.inProgress ? "stop.circle.fill" : "paperplane.circle.fill"
-            )
-            .font(.title)
-          }
-          .focused($focusedField, equals: .message)
-          .onSubmit { sendOrStop() }
+          MessageComposerView(userPrompt: $userPrompt)
+            .padding(.bottom, 10)
+            .focused($focusedField, equals: .message)
+            .disableAttachments()
+            .onSubmitAction { sendOrStop() }
 
           let spacing: CGFloat = 10
           LazyVGrid(columns: [
@@ -74,6 +71,7 @@ struct ImagenScreen: View {
       focusedField = nil
     }
     .navigationTitle("Imagen example")
+    .navigationBarTitleDisplayMode(.inline)
     .onAppear {
       focusedField = .message
       if userPrompt.isEmpty && !viewModel.initialPrompt.isEmpty {

@@ -159,9 +159,11 @@ class FunctionCallingViewModel: ObservableObject {
     for functionCall in response.functionCalls {
       switch functionCall.name {
       case "fetchWeather":
-        guard case let .string(city) = functionCall.args["city"] else { fatalError() }
-        guard case let .string(state) = functionCall.args["state"] else { fatalError() }
-        guard case let .string(date) = functionCall.args["date"] else { fatalError() }
+        guard case let .string(city) = functionCall.args["city"],
+              case let .string(state) = functionCall.args["state"],
+              case let .string(date) = functionCall.args["date"] else {
+          throw NSError(domain: "FunctionCallingError", code: 0, userInfo: [NSLocalizedDescriptionKey: "Malformed arguments for fetchWeather: \(functionCall.args)"])
+        }
 
         functionResponses.append(
           FunctionResponsePart(
@@ -169,23 +171,25 @@ class FunctionCallingViewModel: ObservableObject {
             response: WeatherService.fetchWeather(city: city, state: state, date: date)
           )
         )
-
-        let finalResponse = try await chat.sendMessageStream([ModelContent(role: "function", parts: functionResponses)])
-
-        for try await chunk in finalResponse {
-          guard let candidate = chunk.candidates.first else {
-            fatalError("No candidate.")
-          }
-
-          for part in candidate.content.parts {
-            if let textPart = part as? TextPart {
-              messages[messages.count - 1].message += textPart.text
-              messages[messages.count - 1].pending = false
-            }
-          }
-        }
       default:
         print("Unknown function named \"\(functionCall.name)\".")
+      }
+    }
+
+    if !functionResponses.isEmpty {
+      let finalResponse = try await chat.sendMessageStream([ModelContent(role: "function", parts: functionResponses)])
+
+      for try await chunk in finalResponse {
+        guard let candidate = chunk.candidates.first else {
+          throw NSError(domain: "FunctionCallingError", code: 1, userInfo: [NSLocalizedDescriptionKey: "No candidate in response chunk"])
+        }
+
+        for part in candidate.content.parts {
+          if let textPart = part as? TextPart {
+            messages[messages.count - 1].message += textPart.text
+            messages[messages.count - 1].pending = false
+          }
+        }
       }
     }
   }
@@ -196,9 +200,11 @@ class FunctionCallingViewModel: ObservableObject {
     for functionCall in response.functionCalls {
       switch functionCall.name {
       case "fetchWeather":
-        guard case let .string(city) = functionCall.args["city"] else { fatalError() }
-        guard case let .string(state) = functionCall.args["state"] else { fatalError() }
-        guard case let .string(date) = functionCall.args["date"] else { fatalError() }
+        guard case let .string(city) = functionCall.args["city"],
+              case let .string(state) = functionCall.args["state"],
+              case let .string(date) = functionCall.args["date"] else {
+          throw NSError(domain: "FunctionCallingError", code: 0, userInfo: [NSLocalizedDescriptionKey: "Malformed arguments for fetchWeather: \(functionCall.args)"])
+        }
 
         functionResponses.append(
           FunctionResponsePart(
@@ -206,21 +212,23 @@ class FunctionCallingViewModel: ObservableObject {
             response: WeatherService.fetchWeather(city: city, state: state, date: date)
           )
         )
-
-        let finalResponse = try await chat.sendMessage([ModelContent(role: "function", parts: functionResponses)])
-
-        guard let candidate = finalResponse.candidates.first else {
-          fatalError("No candidate.")
-        }
-
-        for part in candidate.content.parts {
-          if let textPart = part as? TextPart {
-            messages[messages.count - 1].message += textPart.text
-            messages[messages.count - 1].pending = false
-          }
-        }
       default:
         print("Unknown function named \"\(functionCall.name)\".")
+      }
+    }
+
+    if !functionResponses.isEmpty {
+      let finalResponse = try await chat.sendMessage([ModelContent(role: "function", parts: functionResponses)])
+
+      guard let candidate = finalResponse.candidates.first else {
+        throw NSError(domain: "FunctionCallingError", code: 1, userInfo: [NSLocalizedDescriptionKey: "No candidate in response"])
+      }
+
+      for part in candidate.content.parts {
+        if let textPart = part as? TextPart {
+          messages[messages.count - 1].message += textPart.text
+          messages[messages.count - 1].pending = false
+        }
       }
     }
   }

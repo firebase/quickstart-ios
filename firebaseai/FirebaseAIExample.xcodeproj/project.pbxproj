@@ -94,7 +94,7 @@
 			isa = PBXGroup;
 			children = (
 				726490D42E3F39D200A92700 /* Models */,
-				726490D62E3F39D600A92700 /* VIews */,
+				726490D62E3F39D600A92700 /* Views */,
 			);
 			path = UIComponents;
 			sourceTree = "<group>";
@@ -108,7 +108,7 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		726490D62E3F39D600A92700 /* VIews */ = {
+		726490D62E3F39D600A92700 /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				725258D32E3F40FE0035FAF6 /* MessageComposerView.swift */,
@@ -116,7 +116,7 @@
 				726490D72E3F39D900A92700 /* InputField.swift */,
 				726490D82E3F39DC00A92700 /* MultimodalInputField.swift */,
 			);
-			path = VIews;
+			path = Views;
 			sourceTree = "<group>";
 		};
 		72DA044D2E385DED004FED7D /* Models */ = {

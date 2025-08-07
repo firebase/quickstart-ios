@@ -13,7 +13,6 @@
 // limitations under the License.
 
 import SwiftUI
-import GenerativeAIUIComponents
 
 struct FilterChipView: View {
   let useCase: UseCase

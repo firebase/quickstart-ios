@@ -15,30 +15,30 @@
 import FirebaseAI
 import Foundation
 
-enum Participant {
+public enum Participant {
   case system
   case user
 }
 
-struct ChatMessage: Identifiable, Equatable {
-  let id = UUID().uuidString
-  var message: String
-  var groundingMetadata: GroundingMetadata?
-  let participant: Participant
-  var pending = false
+public struct ChatMessage: Identifiable, Equatable {
+  public let id = UUID().uuidString
+  public var message: String
+  public let participant: Participant
+  public var groundingMetadata: GroundingMetadata?
+  public var pending = false
 
-  static func pending(participant: Participant) -> ChatMessage {
+  public static func pending(participant: Participant) -> ChatMessage {
     Self(message: "", participant: participant, pending: true)
   }
 
   // TODO(andrewheard): Add Equatable conformance to GroundingMetadata and remove this
-  static func == (lhs: ChatMessage, rhs: ChatMessage) -> Bool {
+  public static func == (lhs: ChatMessage, rhs: ChatMessage) -> Bool {
     lhs.id == rhs.id && lhs.message == rhs.message && lhs.participant == rhs.participant && lhs
       .pending == rhs.pending
   }
 }
 
-extension ChatMessage {
+public extension ChatMessage {
   static var samples: [ChatMessage] = [
     .init(message: "Hello. What can I do for you today?", participant: .system),
     .init(message: "Show me a simple loop in Swift.", participant: .user),
@@ -71,7 +71,7 @@ extension ChatMessage {
   static var sample = samples[0]
 }
 
-extension ChatMessage {
+public extension ChatMessage {
   static func from(_ modelContent: ModelContent) -> ChatMessage? {
     // TODO: add non-text parts to message when multi-model support is added
     let text = modelContent.parts.compactMap { ($0 as? TextPart)?.text }.joined()

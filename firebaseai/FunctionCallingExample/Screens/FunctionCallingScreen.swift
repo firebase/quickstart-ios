@@ -24,7 +24,7 @@ struct FunctionCallingScreen: View {
     self.firebaseService = firebaseService
     _viewModel =
       StateObject(wrappedValue: FunctionCallingViewModel(firebaseService: firebaseService,
-                                              sample: sample))
+                                                         sample: sample))
   }
 
   var body: some View {
@@ -57,22 +57,6 @@ struct FunctionCallingScreen: View {
   }
 }
 
-struct FunctionCallingScreen_Previews: PreviewProvider {
-  struct ContainerView: View {
-    @StateObject var viewModel = FunctionCallingViewModel(firebaseService: FirebaseAI
-      .firebaseAI(), sample: nil) // Example service init
-
-    var body: some View {
-      FunctionCallingScreen(firebaseService: FirebaseAI.firebaseAI())
-        .onAppear {
-          viewModel.messages = ChatMessage.samples
-        }
-    }
-  }
-
-  static var previews: some View {
-    NavigationStack {
-      FunctionCallingScreen(firebaseService: FirebaseAI.firebaseAI())
-    }
-  }
+#Preview {
+  FunctionCallingScreen(firebaseService: FirebaseAI.firebaseAI())
 }

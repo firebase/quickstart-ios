@@ -56,22 +56,6 @@ struct ChatScreen: View {
   }
 }
 
-struct ChatScreen_Previews: PreviewProvider {
-  struct ContainerView: View {
-    @StateObject var viewModel = ChatViewModel(firebaseService: FirebaseAI
-      .firebaseAI(), sample: nil) // Example service init
-
-    var body: some View {
-      ChatScreen(firebaseService: FirebaseAI.firebaseAI())
-        .onAppear {
-          viewModel.messages = ChatMessage.samples
-        }
-    }
-  }
-
-  static var previews: some View {
-    NavigationStack {
-      ChatScreen(firebaseService: FirebaseAI.firebaseAI())
-    }
-  }
+#Preview {
+  ChatScreen(firebaseService: FirebaseAI.firebaseAI())
 }

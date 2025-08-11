@@ -160,9 +160,15 @@ class FunctionCallingViewModel: ObservableObject {
       switch functionCall.name {
       case "fetchWeather":
         guard case let .string(city) = functionCall.args["city"],
-              case let .string(state) = functionCall.args["state"],
-              case let .string(date) = functionCall.args["date"] else {
-          throw NSError(domain: "FunctionCallingError", code: 0, userInfo: [NSLocalizedDescriptionKey: "Malformed arguments for fetchWeather: \(functionCall.args)"])
+          case let .string(state) = functionCall.args["state"],
+          case let .string(date) = functionCall.args["date"] else {
+          throw NSError(
+            domain: "FunctionCallingError",
+            code: 0,
+            userInfo: [
+              NSLocalizedDescriptionKey: "Malformed arguments for fetchWeather: \(functionCall.args)",
+            ]
+          )
         }
 
         functionResponses.append(
@@ -177,11 +183,16 @@ class FunctionCallingViewModel: ObservableObject {
     }
 
     if !functionResponses.isEmpty {
-      let finalResponse = try await chat.sendMessageStream([ModelContent(role: "function", parts: functionResponses)])
+      let finalResponse = try await chat
+        .sendMessageStream([ModelContent(role: "function", parts: functionResponses)])
 
       for try await chunk in finalResponse {
         guard let candidate = chunk.candidates.first else {
-          throw NSError(domain: "FunctionCallingError", code: 1, userInfo: [NSLocalizedDescriptionKey: "No candidate in response chunk"])
+          throw NSError(
+            domain: "FunctionCallingError",
+            code: 1,
+            userInfo: [NSLocalizedDescriptionKey: "No candidate in response chunk"]
+          )
         }
 
         for part in candidate.content.parts {
@@ -201,9 +212,15 @@ class FunctionCallingViewModel: ObservableObject {
       switch functionCall.name {
       case "fetchWeather":
         guard case let .string(city) = functionCall.args["city"],
-              case let .string(state) = functionCall.args["state"],
-              case let .string(date) = functionCall.args["date"] else {
-          throw NSError(domain: "FunctionCallingError", code: 0, userInfo: [NSLocalizedDescriptionKey: "Malformed arguments for fetchWeather: \(functionCall.args)"])
+          case let .string(state) = functionCall.args["state"],
+          case let .string(date) = functionCall.args["date"] else {
+          throw NSError(
+            domain: "FunctionCallingError",
+            code: 0,
+            userInfo: [
+              NSLocalizedDescriptionKey: "Malformed arguments for fetchWeather: \(functionCall.args)",
+            ]
+          )
         }
 
         functionResponses.append(
@@ -218,10 +235,15 @@ class FunctionCallingViewModel: ObservableObject {
     }
 
     if !functionResponses.isEmpty {
-      let finalResponse = try await chat.sendMessage([ModelContent(role: "function", parts: functionResponses)])
+      let finalResponse = try await chat
+        .sendMessage([ModelContent(role: "function", parts: functionResponses)])
 
       guard let candidate = finalResponse.candidates.first else {
-        throw NSError(domain: "FunctionCallingError", code: 1, userInfo: [NSLocalizedDescriptionKey: "No candidate in response"])
+        throw NSError(
+          domain: "FunctionCallingError",
+          code: 1,
+          userInfo: [NSLocalizedDescriptionKey: "No candidate in response"]
+        )
       }
 
       for part in candidate.content.parts {

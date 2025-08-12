@@ -58,11 +58,11 @@ struct ResponseTextView: View {
   var message: ChatMessage
 
   var body: some View {
-    Markdown(message.message)
+    Markdown(message.content ?? "")
       .markdownTextStyle {
         FontFamilyVariant(.normal)
         FontSize(.em(0.85))
-        ForegroundColor(message.participant == .system ? Color(UIColor.label) : .white)
+        ForegroundColor(message.participant == .other ? Color(UIColor.label) : .white)
       }
       .markdownBlockStyle(\.codeBlock) { configuration in
         configuration.label
@@ -106,16 +106,16 @@ struct MessageView: View {
         }
         MessageContentView(message: message)
           .padding(10)
-          .background(message.participant == .system
+          .background(message.participant == .other
             ? Color(UIColor.systemFill)
             : Color(UIColor.systemBlue))
           .roundedCorner(10,
                          corners: [
                            .topLeft,
                            .topRight,
-                           message.participant == .system ? .bottomRight : .bottomLeft,
+                           message.participant == .other ? .bottomRight : .bottomLeft,
                          ])
-        if message.participant == .system {
+        if message.participant == .other {
           Spacer()
         }
       }
@@ -131,7 +131,7 @@ struct MessageView_Previews: PreviewProvider {
         MessageView(message: ChatMessage.samples[0])
         MessageView(message: ChatMessage.samples[1])
         MessageView(message: ChatMessage.samples[2])
-        MessageView(message: ChatMessage(message: "Hello!", participant: .system, pending: true))
+        MessageView(message: ChatMessage(content: "Hello!", participant: .other, pending: true))
       }
       .listStyle(.plain)
       .navigationTitle("Chat example")

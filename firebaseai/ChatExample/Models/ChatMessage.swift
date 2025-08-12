@@ -14,35 +14,40 @@
 
 import FirebaseAI
 import Foundation
+import ConversationKit
 
-public enum Participant {
-  case system
-  case user
+public struct ChatMessage: Message {
+  
+  public let id: UUID = .init()
+  public var content: String?
+  public let imageURL: String?
+  public let participant: Participant
+  public var pending = false
+  public var groundingMetadata: GroundingMetadata?
+  
+  public init(content: String?, imageURL: String?, participant: Participant) {
+    self.content = content
+    self.imageURL = imageURL
+    self.participant = participant
+  }
+  
+  public init(content: String?, imageURL: String? = nil, participant: Participant, pending: Bool = false) {
+    self.init(content: content, imageURL: imageURL, participant: participant)
+    self.pending = pending
+  }
 }
 
-public struct ChatMessage: Identifiable, Equatable {
-  public let id = UUID().uuidString
-  public var message: String
-  public let participant: Participant
-  public var groundingMetadata: GroundingMetadata?
-  public var pending = false
-
+extension ChatMessage {
   public static func pending(participant: Participant) -> ChatMessage {
-    Self(message: "", participant: participant, pending: true)
-  }
-
-  // TODO(andrewheard): Add Equatable conformance to GroundingMetadata and remove this
-  public static func == (lhs: ChatMessage, rhs: ChatMessage) -> Bool {
-    lhs.id == rhs.id && lhs.message == rhs.message && lhs.participant == rhs.participant && lhs
-      .pending == rhs.pending
+    Self(content: "", participant: participant, pending: true)
   }
 }
 
 public extension ChatMessage {
   static var samples: [ChatMessage] = [
-    .init(message: "Hello. What can I do for you today?", participant: .system),
-    .init(message: "Show me a simple loop in Swift.", participant: .user),
-    .init(message: """
+    .init(content: "Hello. What can I do for you today?", participant: .other),
+    .init(content: "Show me a simple loop in Swift.", participant: .user),
+    .init(content: """
     Sure, here is a simple loop in Swift:
 
     # Example 1
@@ -65,7 +70,7 @@ public extension ChatMessage {
     ```
 
     This loop calculates the sum of the numbers from 1 to 100. The variable sum is initialized to 0, and then the for loop iterates over the range of numbers from 1 to 100. The variable i is assigned each number in the range, and the value of i is added to the sum variable. After the loop has finished executing, the value of sum is printed to the console.
-    """, participant: .system),
+    """, participant: .other),
   ]
 
   static var sample = samples[0]
@@ -79,9 +84,9 @@ public extension ChatMessage {
       return nil
     }
 
-    let participant: Participant = (modelContent.role == "user") ? .user : .system
+    let participant: Participant = (modelContent.role == "user") ? .user : .other
 
-    return ChatMessage(message: text, participant: participant)
+    return ChatMessage(content: text, participant: participant)
   }
 
   static func from(_ modelContents: [ModelContent]) -> [ChatMessage] {

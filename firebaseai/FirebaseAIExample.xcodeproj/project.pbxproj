@@ -3,14 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		725258D42E3F41050035FAF6 /* MessageComposerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 725258D32E3F40FE0035FAF6 /* MessageComposerView.swift */; };
 		726490D92E3F39E000A92700 /* Sample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 726490D22E3F39D200A92700 /* Sample.swift */; };
 		726490DA2E3F39E000A92701 /* UseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 726490D32E3F39D200A92700 /* UseCase.swift */; };
-		726490DB2E3F39E000A92702 /* ConversationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 726490D52E3F39D600A92700 /* ConversationView.swift */; };
 		726490DC2E3F39E000A92703 /* InputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 726490D72E3F39D900A92700 /* InputField.swift */; };
 		726490DD2E3F39E000A92704 /* MultimodalInputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 726490D82E3F39DC00A92700 /* MultimodalInputField.swift */; };
 		72DA044F2E385DF3004FED7D /* ChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72DA044E2E385DF3004FED7D /* ChatMessage.swift */; };
@@ -20,6 +18,7 @@
 		86C1F4842BC726150026816F /* FunctionCallingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C1F4802BC726150026816F /* FunctionCallingViewModel.swift */; };
 		88263BF02B239C09008AB09B /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88263BEE2B239BFE008AB09B /* ErrorView.swift */; };
 		88263BF12B239C11008AB09B /* ErrorDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889873842B208563005B4896 /* ErrorDetailsView.swift */; };
+		884298E12E4B8110005F535F /* ConversationKit in Frameworks */ = {isa = PBXBuildFile; productRef = 884298E02E4B8110005F535F /* ConversationKit */; };
 		8848C8332B0D04BC007B434F /* FirebaseAIExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8848C8322B0D04BC007B434F /* FirebaseAIExampleApp.swift */; };
 		8848C8352B0D04BC007B434F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8848C8342B0D04BC007B434F /* ContentView.swift */; };
 		8848C8372B0D04BD007B434F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8848C8362B0D04BD007B434F /* Assets.xcassets */; };
@@ -41,10 +40,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		725258D32E3F40FE0035FAF6 /* MessageComposerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageComposerView.swift; sourceTree = "<group>"; };
 		726490D22E3F39D200A92700 /* Sample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sample.swift; sourceTree = "<group>"; };
 		726490D32E3F39D200A92700 /* UseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseCase.swift; sourceTree = "<group>"; };
-		726490D52E3F39D600A92700 /* ConversationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationView.swift; sourceTree = "<group>"; };
 		726490D72E3F39D900A92700 /* InputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputField.swift; sourceTree = "<group>"; };
 		726490D82E3F39DC00A92700 /* MultimodalInputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultimodalInputField.swift; sourceTree = "<group>"; };
 		72DA044E2E385DF3004FED7D /* ChatMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessage.swift; sourceTree = "<group>"; };
@@ -82,6 +79,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				884298E12E4B8110005F535F /* ConversationKit in Frameworks */,
 				DE26D95F2DBB3E9F007E6668 /* FirebaseAI in Frameworks */,
 				886F95D82B17BA420036F07A /* MarkdownUI in Frameworks */,
 			);
@@ -111,8 +109,6 @@
 		726490D62E3F39D600A92700 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				725258D32E3F40FE0035FAF6 /* MessageComposerView.swift */,
-				726490D52E3F39D600A92700 /* ConversationView.swift */,
 				726490D72E3F39D900A92700 /* InputField.swift */,
 				726490D82E3F39DC00A92700 /* MultimodalInputField.swift */,
 			);
@@ -341,6 +337,7 @@
 			packageProductDependencies = (
 				886F95D72B17BA420036F07A /* MarkdownUI */,
 				DE26D95E2DBB3E9F007E6668 /* FirebaseAI */,
+				884298E02E4B8110005F535F /* ConversationKit */,
 			);
 			productName = GenerativeAIExample;
 			productReference = 8848C82F2B0D04BC007B434F /* FirebaseAIExample.app */;
@@ -374,6 +371,7 @@
 				88209C212B0FBDF700F64795 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */,
 				DEA09AC32B1FCE22001962D9 /* XCRemoteSwiftPackageReference "NetworkImage" */,
 				DEFECAAB2D7BB49700EF9621 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				884298DF2E4B8110005F535F /* XCLocalSwiftPackageReference "../../../../../../projects/ConversationKit-protocol" */,
 			);
 			productRefGroup = 8848C8302B0D04BC007B434F /* Products */;
 			projectDirPath = "";
@@ -422,10 +420,8 @@
 				A5E8E3CA2C3B4F388A7A4A1A /* SampleCardView.swift in Sources */,
 				AEE793DF2E256D3900708F02 /* GoogleSearchSuggestionView.swift in Sources */,
 				AEE793E02E256D3900708F02 /* GroundedResponseView.swift in Sources */,
-				725258D42E3F41050035FAF6 /* MessageComposerView.swift in Sources */,
 				726490D92E3F39E000A92700 /* Sample.swift in Sources */,
 				726490DA2E3F39E000A92701 /* UseCase.swift in Sources */,
-				726490DB2E3F39E000A92702 /* ConversationView.swift in Sources */,
 				726490DC2E3F39E000A92703 /* InputField.swift in Sources */,
 				726490DD2E3F39E000A92704 /* MultimodalInputField.swift in Sources */,
 			);
@@ -636,6 +632,13 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCLocalSwiftPackageReference section */
+		884298DF2E4B8110005F535F /* XCLocalSwiftPackageReference "../../../../../../projects/ConversationKit-protocol" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = "../../../../../../projects/ConversationKit-protocol";
+		};
+/* End XCLocalSwiftPackageReference section */
+
 /* Begin XCRemoteSwiftPackageReference section */
 		88209C212B0FBDF700F64795 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */ = {
 			isa = XCRemoteSwiftPackageReference;
@@ -664,6 +667,10 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		884298E02E4B8110005F535F /* ConversationKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = ConversationKit;
+		};
 		886F95D72B17BA420036F07A /* MarkdownUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 88209C212B0FBDF700F64795 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */;

@@ -94,11 +94,11 @@ class ChatViewModel: ObservableObject {
       }
 
       // first, add the user's message to the chat
-      let userMessage = ChatMessage(message: text, participant: .user)
+      let userMessage = ChatMessage(content: text, participant: .user)
       messages.append(userMessage)
 
       // add a pending message while we're waiting for a response from the backend
-      let systemMessage = ChatMessage.pending(participant: .system)
+      let systemMessage = ChatMessage.pending(participant: .other)
       messages.append(systemMessage)
 
       do {
@@ -106,7 +106,7 @@ class ChatViewModel: ObservableObject {
         for try await chunk in responseStream {
           messages[messages.count - 1].pending = false
           if let text = chunk.text {
-            messages[messages.count - 1].message += text
+            messages[messages.count - 1].content = (messages[messages.count - 1].content ?? "") + text
           }
 
           if let candidate = chunk.candidates.first {
@@ -134,11 +134,11 @@ class ChatViewModel: ObservableObject {
       }
 
       // first, add the user's message to the chat
-      let userMessage = ChatMessage(message: text, participant: .user)
+      let userMessage = ChatMessage(content: text, participant: .user)
       messages.append(userMessage)
 
       // add a pending message while we're waiting for a response from the backend
-      let systemMessage = ChatMessage.pending(participant: .system)
+      let systemMessage = ChatMessage.pending(participant: .other)
       messages.append(systemMessage)
 
       do {
@@ -147,7 +147,7 @@ class ChatViewModel: ObservableObject {
 
         if let responseText = response?.text {
           // replace pending message with backend response
-          messages[messages.count - 1].message = responseText
+          messages[messages.count - 1].content = responseText
           messages[messages.count - 1].pending = false
 
           if let candidate = response?.candidates.first {
@@ -164,3 +164,4 @@ class ChatViewModel: ObservableObject {
     }
   }
 }
+

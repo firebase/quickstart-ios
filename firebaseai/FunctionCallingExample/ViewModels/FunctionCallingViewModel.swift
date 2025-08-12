@@ -87,11 +87,11 @@ class FunctionCallingViewModel: ObservableObject {
       }
 
       // first, add the user's message to the chat
-      let userMessage = ChatMessage(message: text, participant: .user)
+      let userMessage = ChatMessage(content: text, participant: .user)
       messages.append(userMessage)
 
       // add a pending message while we're waiting for a response from the backend
-      let systemMessage = ChatMessage.pending(participant: .system)
+      let systemMessage = ChatMessage.pending(participant: .other)
       messages.append(systemMessage)
 
       do {
@@ -102,7 +102,7 @@ class FunctionCallingViewModel: ObservableObject {
             try await handleFunctionCallsStreaming(chunk)
           } else {
             if let text = chunk.text {
-              messages[messages.count - 1].message += text
+              messages[messages.count - 1].content = (messages[messages.count - 1].content ?? "") + text
               messages[messages.count - 1].pending = false
             }
           }
@@ -126,11 +126,11 @@ class FunctionCallingViewModel: ObservableObject {
       }
 
       // first, add the user's message to the chat
-      let userMessage = ChatMessage(message: text, participant: .user)
+      let userMessage = ChatMessage(content: text, participant: .user)
       messages.append(userMessage)
 
       // add a pending message while we're waiting for a response from the backend
-      let systemMessage = ChatMessage.pending(participant: .system)
+      let systemMessage = ChatMessage.pending(participant: .other)
       messages.append(systemMessage)
 
       do {
@@ -141,7 +141,7 @@ class FunctionCallingViewModel: ObservableObject {
         } else {
           if let responseText = response.text {
             // replace pending message with backend response
-            messages[messages.count - 1].message = responseText
+            messages[messages.count - 1].content = responseText
             messages[messages.count - 1].pending = false
           }
         }
@@ -197,7 +197,7 @@ class FunctionCallingViewModel: ObservableObject {
 
         for part in candidate.content.parts {
           if let textPart = part as? TextPart {
-            messages[messages.count - 1].message += textPart.text
+            messages[messages.count - 1].content = (messages[messages.count - 1].content ?? "") + textPart.text
             messages[messages.count - 1].pending = false
           }
         }
@@ -248,7 +248,7 @@ class FunctionCallingViewModel: ObservableObject {
 
       for part in candidate.content.parts {
         if let textPart = part as? TextPart {
-          messages[messages.count - 1].message += textPart.text
+          messages[messages.count - 1].content = (messages[messages.count - 1].content ?? "") + textPart.text
           messages[messages.count - 1].pending = false
         }
       }

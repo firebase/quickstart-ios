@@ -13,8 +13,8 @@
 // limitations under the License.
 
 import FirebaseAI
-
 import SwiftUI
+import ConversationKit
 
 struct FunctionCallingScreen: View {
   let firebaseService: FirebaseAI
@@ -29,15 +29,16 @@ struct FunctionCallingScreen: View {
 
   var body: some View {
     NavigationStack {
-      ConversationView(messages: $viewModel.messages,
-                       userPrompt: viewModel.initialPrompt) { message in
+      ConversationView(messages: $viewModel.messages
+//                       ,userPrompt: viewModel.initialPrompt
+      ) { message in
         MessageView(message: message)
       }
       .disableAttachments()
-      .errorState(viewModel.error)
-      .onSendMessage { prompt in
+//      .errorState(viewModel.error)
+      .onSendMessage { message in
         Task {
-          await viewModel.sendMessage(prompt, streaming: true)
+          await viewModel.sendMessage(message.content ?? "", streaming: true)
         }
       }
       .toolbar {

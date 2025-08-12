@@ -13,8 +13,8 @@
 // limitations under the License.
 
 import SwiftUI
-
 import FirebaseAI
+import ConversationKit
 
 struct ImagenScreen: View {
   let firebaseService: FirebaseAI
@@ -41,7 +41,7 @@ struct ImagenScreen: View {
     ZStack {
       ScrollView {
         VStack {
-          MessageComposerView(userPrompt: $userPrompt)
+          MessageComposerView(message: $userPrompt)
             .padding(.bottom, 10)
             .focused($focusedField, equals: .message)
             .disableAttachments()

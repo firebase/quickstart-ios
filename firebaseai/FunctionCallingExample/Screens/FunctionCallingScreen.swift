@@ -38,9 +38,9 @@ struct FunctionCallingScreen: View {
           await viewModel.sendMessage(message.content ?? "", streaming: true)
         }
       }
-      .environment(\.presentErrorAction, PresentErrorAction(handler: { error in
+      .onError { error in
         viewModel.presentErrorDetails = true
-      }))
+      }
       .sheet(isPresented: $viewModel.presentErrorDetails) {
         if let error = viewModel.error {
           ErrorDetailsView(error: error)

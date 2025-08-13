@@ -29,9 +29,7 @@ struct ChatScreen: View {
 
   var body: some View {
     NavigationStack {
-      ConversationView(messages: $viewModel.messages
-//                       ,userPrompt: viewModel.initialPrompt
-      ) { message in
+      ConversationView(messages: $viewModel.messages, userPrompt: viewModel.initialPrompt) { message in
         MessageView(message: message)
       }
       .disableAttachments()

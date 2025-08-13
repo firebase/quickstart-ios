@@ -35,10 +35,17 @@ struct FunctionCallingScreen: View {
         MessageView(message: message)
       }
       .disableAttachments()
-//      .errorState(viewModel.error)
       .onSendMessage { message in
         Task {
           await viewModel.sendMessage(message.content ?? "", streaming: true)
+        }
+      }
+      .environment(\.presentErrorAction, PresentErrorAction(handler: { error in
+        viewModel.presentErrorDetails = true
+      }))
+      .sheet(isPresented: $viewModel.presentErrorDetails) {
+        if let error = viewModel.error {
+          ErrorDetailsView(error: error)
         }
       }
       .toolbar {

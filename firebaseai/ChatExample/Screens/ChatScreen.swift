@@ -19,7 +19,7 @@ import ConversationKit
 struct ChatScreen: View {
   let firebaseService: FirebaseAI
   @StateObject var viewModel: ChatViewModel
-
+  
   init(firebaseService: FirebaseAI, sample: Sample? = nil) {
     self.firebaseService = firebaseService
     _viewModel =
@@ -35,10 +35,17 @@ struct ChatScreen: View {
         MessageView(message: message)
       }
       .disableAttachments()
-//      .errorState(viewModel.error)
       .onSendMessage { message in
         Task {
           await viewModel.sendMessage(message.content ?? "", streaming: true)
+        }
+      }
+      .environment(\.presentErrorAction, PresentErrorAction(handler: { error in
+        viewModel.presentErrorDetails = true
+      }))
+      .sheet(isPresented: $viewModel.presentErrorDetails) {
+        if let error = viewModel.error {
+          ErrorDetailsView(error: error)
         }
       }
       .toolbar {

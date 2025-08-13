@@ -17,23 +17,28 @@ import Foundation
 import ConversationKit
 
 public struct ChatMessage: Message {
-  
   public let id: UUID = .init()
   public var content: String?
   public let imageURL: String?
   public let participant: Participant
+  public let error: (any Error)?
   public var pending = false
   public var groundingMetadata: GroundingMetadata?
   
+  public init(content: String? = nil, imageURL: String? = nil, participant: Participant, error: (any Error)? = nil, pending: Bool = false) {
+    self.content = content
+    self.imageURL = imageURL
+    self.participant = participant
+    self.error = error
+    self.pending = pending
+  }
+  
+  // Protocol-required initializer
   public init(content: String?, imageURL: String?, participant: Participant) {
     self.content = content
     self.imageURL = imageURL
     self.participant = participant
-  }
-  
-  public init(content: String?, imageURL: String? = nil, participant: Participant, pending: Bool = false) {
-    self.init(content: content, imageURL: imageURL, participant: participant)
-    self.pending = pending
+    self.error = nil
   }
 }
 
@@ -42,6 +47,26 @@ extension ChatMessage {
     Self(content: "", participant: participant, pending: true)
   }
 }
+
+// Implement Equatable and Hashable for ChatMessage (ignore error)
+extension ChatMessage {
+  public static func == (lhs: ChatMessage, rhs: ChatMessage) -> Bool {
+    lhs.id == rhs.id &&
+    lhs.content == rhs.content &&
+    lhs.imageURL == rhs.imageURL &&
+    lhs.participant == rhs.participant
+    // intentionally ignore `error`
+  }
+
+  public func hash(into hasher: inout Hasher) {
+    hasher.combine(id)
+    hasher.combine(content)
+    hasher.combine(imageURL)
+    hasher.combine(participant)
+    // intentionally ignore `error`
+  }
+}
+
 
 public extension ChatMessage {
   static var samples: [ChatMessage] = [

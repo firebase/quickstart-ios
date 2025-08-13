@@ -28,6 +28,7 @@ class FunctionCallingViewModel: ObservableObject {
   var hasError: Bool {
     return error != nil
   }
+  @Published var presentErrorDetails: Bool = false
 
   @Published var initialPrompt: String = ""
   @Published var title: String = ""
@@ -111,7 +112,11 @@ class FunctionCallingViewModel: ObservableObject {
       } catch {
         self.error = error
         print(error.localizedDescription)
-        messages.removeLast()
+        let errorMessge = ChatMessage(content: "An error occurred. Please try again.",
+                                      participant: .other,
+                                      error: error,
+                                      pending: false)
+        messages[messages.count - 1] = errorMessge
       }
     }
   }
@@ -148,7 +153,11 @@ class FunctionCallingViewModel: ObservableObject {
       } catch {
         self.error = error
         print(error.localizedDescription)
-        messages.removeLast()
+        let errorMessge = ChatMessage(content: "An error occurred. Please try again.",
+                                      participant: .other,
+                                      error: error,
+                                      pending: false)
+        messages[messages.count - 1] = errorMessge
       }
     }
   }

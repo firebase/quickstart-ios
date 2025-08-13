@@ -37,17 +37,31 @@ extension View {
 }
 
 struct MessageContentView: View {
+  @Environment(\.presentErrorAction) var presentErrorAction
   var message: ChatMessage
 
   var body: some View {
     if message.pending {
       BouncingDots()
     } else {
+      // Error Message
+      if let error = message.error {
+        HStack {
+          Text("An error occurred.")
+          Button("More information", systemImage: "info.circle") {
+            presentErrorAction?(error)
+          }
+          .labelStyle(.iconOnly)
+        }
+      }
+      
       // Grounded Response
-      if let groundingMetadata = message.groundingMetadata {
+      else if let groundingMetadata = message.groundingMetadata {
         GroundedResponseView(message: message, groundingMetadata: groundingMetadata)
-      } else {
-        // Non-grounded response
+      }
+      
+      // Non-grounded response
+      else {
         ResponseTextView(message: message)
       }
     }

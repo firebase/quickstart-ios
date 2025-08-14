@@ -60,7 +60,7 @@ jobs:
     runs-on: macOS-15
     strategy:
       matrix:
-        xcode: ["16.1"]
+        xcode: ["16.4"]
         os: [iOS, tvOS]
         include:
           - os: iOS

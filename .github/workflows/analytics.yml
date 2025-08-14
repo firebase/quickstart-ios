@@ -35,7 +35,7 @@ jobs:
         # TODO: Re-enable when ODM2 catalyst support is investigated
         # os: [iOS, catalyst, tvOS, macOS]        
         os: [iOS, tvOS, macOS]
-        xcode: ["16.1"]
+        xcode: ["16.4"]
         include:
           - os: iOS
             device: iPhone 16

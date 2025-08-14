@@ -166,11 +166,11 @@ class ChatViewModel: ObservableObject {
       } catch {
         self.error = error
         print(error.localizedDescription)
-        let errorMessge = ChatMessage(content: "An error occurred. Please try again.",
+        let errorMessage = ChatMessage(content: "An error occurred. Please try again.",
                                       participant: .other,
                                       error: error,
                                       pending: false)
-        messages[messages.count - 1] = errorMessge
+        messages[messages.count - 1] = errorMessage
       }
     }
   }

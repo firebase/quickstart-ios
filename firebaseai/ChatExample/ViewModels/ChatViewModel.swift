@@ -28,7 +28,7 @@ class ChatViewModel: ObservableObject {
   var hasError: Bool {
     return error != nil
   }
-  
+
   @Published var presentErrorDetails: Bool = false
 
   @Published var initialPrompt: String = ""
@@ -108,7 +108,8 @@ class ChatViewModel: ObservableObject {
         for try await chunk in responseStream {
           messages[messages.count - 1].pending = false
           if let text = chunk.text {
-            messages[messages.count - 1].content = (messages[messages.count - 1].content ?? "") + text
+            messages[messages.count - 1]
+              .content = (messages[messages.count - 1].content ?? "") + text
           }
 
           if let candidate = chunk.candidates.first {
@@ -174,4 +175,3 @@ class ChatViewModel: ObservableObject {
     }
   }
 }
-

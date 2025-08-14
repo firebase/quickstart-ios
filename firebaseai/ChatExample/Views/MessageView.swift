@@ -54,12 +54,12 @@ struct MessageContentView: View {
           .labelStyle(.iconOnly)
         }
       }
-      
+
       // Grounded Response
       else if let groundingMetadata = message.groundingMetadata {
         GroundedResponseView(message: message, groundingMetadata: groundingMetadata)
       }
-      
+
       // Non-grounded response
       else {
         ResponseTextView(message: message)

@@ -28,6 +28,7 @@ class FunctionCallingViewModel: ObservableObject {
   var hasError: Bool {
     return error != nil
   }
+
   @Published var presentErrorDetails: Bool = false
 
   @Published var initialPrompt: String = ""
@@ -103,7 +104,8 @@ class FunctionCallingViewModel: ObservableObject {
             try await handleFunctionCallsStreaming(chunk)
           } else {
             if let text = chunk.text {
-              messages[messages.count - 1].content = (messages[messages.count - 1].content ?? "") + text
+              messages[messages.count - 1]
+                .content = (messages[messages.count - 1].content ?? "") + text
               messages[messages.count - 1].pending = false
             }
           }
@@ -206,7 +208,8 @@ class FunctionCallingViewModel: ObservableObject {
 
         for part in candidate.content.parts {
           if let textPart = part as? TextPart {
-            messages[messages.count - 1].content = (messages[messages.count - 1].content ?? "") + textPart.text
+            messages[messages.count - 1]
+              .content = (messages[messages.count - 1].content ?? "") + textPart.text
             messages[messages.count - 1].pending = false
           }
         }
@@ -257,7 +260,8 @@ class FunctionCallingViewModel: ObservableObject {
 
       for part in candidate.content.parts {
         if let textPart = part as? TextPart {
-          messages[messages.count - 1].content = (messages[messages.count - 1].content ?? "") + textPart.text
+          messages[messages.count - 1]
+            .content = (messages[messages.count - 1].content ?? "") + textPart.text
           messages[messages.count - 1].pending = false
         }
       }

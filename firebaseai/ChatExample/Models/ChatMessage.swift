@@ -24,21 +24,22 @@ public struct ChatMessage: Message {
   public let error: (any Error)?
   public var pending = false
   public var groundingMetadata: GroundingMetadata?
-  
-  public init(content: String? = nil, imageURL: String? = nil, participant: Participant, error: (any Error)? = nil, pending: Bool = false) {
+
+  public init(content: String? = nil, imageURL: String? = nil, participant: Participant,
+              error: (any Error)? = nil, pending: Bool = false) {
     self.content = content
     self.imageURL = imageURL
     self.participant = participant
     self.error = error
     self.pending = pending
   }
-  
+
   // Protocol-required initializer
   public init(content: String?, imageURL: String?, participant: Participant) {
     self.content = content
     self.imageURL = imageURL
     self.participant = participant
-    self.error = nil
+    error = nil
   }
 }
 
@@ -52,9 +53,9 @@ extension ChatMessage {
 extension ChatMessage {
   public static func == (lhs: ChatMessage, rhs: ChatMessage) -> Bool {
     lhs.id == rhs.id &&
-    lhs.content == rhs.content &&
-    lhs.imageURL == rhs.imageURL &&
-    lhs.participant == rhs.participant
+      lhs.content == rhs.content &&
+      lhs.imageURL == rhs.imageURL &&
+      lhs.participant == rhs.participant
     // intentionally ignore `error`
   }
 
@@ -66,7 +67,6 @@ extension ChatMessage {
     // intentionally ignore `error`
   }
 }
-
 
 public extension ChatMessage {
   static var samples: [ChatMessage] = [

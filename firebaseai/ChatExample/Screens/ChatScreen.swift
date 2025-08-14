@@ -14,11 +14,12 @@
 
 import FirebaseAI
 import SwiftUI
+import ConversationKit
 
 struct ChatScreen: View {
   let firebaseService: FirebaseAI
   @StateObject var viewModel: ChatViewModel
-
+  
   init(firebaseService: FirebaseAI, sample: Sample? = nil) {
     self.firebaseService = firebaseService
     _viewModel =
@@ -28,15 +29,21 @@ struct ChatScreen: View {
 
   var body: some View {
     NavigationStack {
-      ConversationView(messages: $viewModel.messages,
-                       userPrompt: viewModel.initialPrompt) { message in
+      ConversationView(messages: $viewModel.messages, userPrompt: viewModel.initialPrompt) { message in
         MessageView(message: message)
       }
       .disableAttachments()
-      .errorState(viewModel.error)
-      .onSendMessage { prompt in
+      .onSendMessage { message in
         Task {
-          await viewModel.sendMessage(prompt, streaming: true)
+          await viewModel.sendMessage(message.content ?? "", streaming: true)
+        }
+      }
+      .onError { error in
+        viewModel.presentErrorDetails = true
+      }
+      .sheet(isPresented: $viewModel.presentErrorDetails) {
+        if let error = viewModel.error {
+          ErrorDetailsView(error: error)
         }
       }
       .toolbar {

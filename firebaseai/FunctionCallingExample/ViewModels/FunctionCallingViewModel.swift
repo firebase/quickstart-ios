@@ -115,9 +115,9 @@ class FunctionCallingViewModel: ObservableObject {
         self.error = error
         print(error.localizedDescription)
         let errorMessage = ChatMessage(content: "An error occurred. Please try again.",
-                                      participant: .other,
-                                      error: error,
-                                      pending: false)
+                                       participant: .other,
+                                       error: error,
+                                       pending: false)
         messages[messages.count - 1] = errorMessage
       }
     }
@@ -156,9 +156,9 @@ class FunctionCallingViewModel: ObservableObject {
         self.error = error
         print(error.localizedDescription)
         let errorMessage = ChatMessage(content: "An error occurred. Please try again.",
-                                      participant: .other,
-                                      error: error,
-                                      pending: false)
+                                       participant: .other,
+                                       error: error,
+                                       pending: false)
         messages[messages.count - 1] = errorMessage
       }
     }

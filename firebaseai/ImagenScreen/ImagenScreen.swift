@@ -47,6 +47,16 @@ struct ImagenScreen: View {
             .disableAttachments()
             .onSubmitAction { sendOrStop() }
 
+          if let error = viewModel.error {
+            HStack {
+              Text("An error occurred.")
+              Button("More information", systemImage: "info.circle") {
+                viewModel.presentErrorDetails = true
+              }
+              .labelStyle(.iconOnly)
+            }
+          }
+
           let spacing: CGFloat = 10
           LazyVGrid(columns: [
             GridItem(.flexible(), spacing: spacing),
@@ -69,6 +79,11 @@ struct ImagenScreen: View {
     }
     .onTapGesture {
       focusedField = nil
+    }
+    .sheet(isPresented: $viewModel.presentErrorDetails) {
+      if let error = viewModel.error {
+        ErrorDetailsView(error: error)
+      }
     }
     .navigationTitle("Imagen example")
     .navigationBarTitleDisplayMode(.inline)

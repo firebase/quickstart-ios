@@ -20,7 +20,6 @@
 import Foundation
 import OSLog
 import SwiftUI
-import GenerativeAIUIComponents
 
 @MainActor
 class ImagenViewModel: ObservableObject {
@@ -33,7 +32,13 @@ class ImagenViewModel: ObservableObject {
   var images = [UIImage]()
 
   @Published
-  var errorMessage: String?
+  var error: Error?
+  var hasError: Bool {
+    return error != nil
+  }
+
+  @Published
+  var presentErrorDetails: Bool = false
 
   @Published
   var inProgress = false
@@ -88,6 +93,7 @@ class ImagenViewModel: ObservableObject {
         }
       } catch {
         if !Task.isCancelled {
+          self.error = error
           logger.error("Error generating images: \(error)")
         }
       }

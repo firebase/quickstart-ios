@@ -13,7 +13,6 @@
 // limitations under the License.
 
 import SwiftUI
-import GenerativeAIUIComponents
 
 struct SampleCardView: View {
   let sample: Sample

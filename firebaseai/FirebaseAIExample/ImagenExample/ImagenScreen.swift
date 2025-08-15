@@ -13,12 +13,8 @@
 // limitations under the License.
 
 import SwiftUI
-import GenerativeAIUIComponents
-#if canImport(FirebaseAILogic)
-  import FirebaseAILogic
-#else
-  import FirebaseAI
-#endif
+import FirebaseAI
+import ConversationKit
 
 struct ImagenScreen: View {
   let firebaseService: FirebaseAI
@@ -45,14 +41,21 @@ struct ImagenScreen: View {
     ZStack {
       ScrollView {
         VStack {
-          InputField("Enter a prompt to generate an image", text: $userPrompt) {
-            Image(
-              systemName: viewModel.inProgress ? "stop.circle.fill" : "paperplane.circle.fill"
-            )
-            .font(.title)
+          MessageComposerView(message: $userPrompt)
+            .padding(.bottom, 10)
+            .focused($focusedField, equals: .message)
+            .disableAttachments()
+            .onSubmitAction { sendOrStop() }
+
+          if let error = viewModel.error {
+            HStack {
+              Text("An error occurred.")
+              Button("More information", systemImage: "info.circle") {
+                viewModel.presentErrorDetails = true
+              }
+              .labelStyle(.iconOnly)
+            }
           }
-          .focused($focusedField, equals: .message)
-          .onSubmit { sendOrStop() }
 
           let spacing: CGFloat = 10
           LazyVGrid(columns: [
@@ -77,7 +80,13 @@ struct ImagenScreen: View {
     .onTapGesture {
       focusedField = nil
     }
+    .sheet(isPresented: $viewModel.presentErrorDetails) {
+      if let error = viewModel.error {
+        ErrorDetailsView(error: error)
+      }
+    }
     .navigationTitle("Imagen example")
+    .navigationBarTitleDisplayMode(.inline)
     .onAppear {
       focusedField = .message
       if userPrompt.isEmpty && !viewModel.initialPrompt.isEmpty {

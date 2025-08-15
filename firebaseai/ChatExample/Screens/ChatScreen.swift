@@ -16,15 +16,15 @@ import FirebaseAI
 import SwiftUI
 import ConversationKit
 
-struct FunctionCallingScreen: View {
+struct ChatScreen: View {
   let firebaseService: FirebaseAI
-  @StateObject var viewModel: FunctionCallingViewModel
+  @StateObject var viewModel: ChatViewModel
 
   init(firebaseService: FirebaseAI, sample: Sample? = nil) {
     self.firebaseService = firebaseService
     _viewModel =
-      StateObject(wrappedValue: FunctionCallingViewModel(firebaseService: firebaseService,
-                                                         sample: sample))
+      StateObject(wrappedValue: ChatViewModel(firebaseService: firebaseService,
+                                              sample: sample))
   }
 
   var body: some View {
@@ -65,5 +65,5 @@ struct FunctionCallingScreen: View {
 }
 
 #Preview {
-  FunctionCallingScreen(firebaseService: FirebaseAI.firebaseAI())
+  ChatScreen(firebaseService: FirebaseAI.firebaseAI())
 }

@@ -15,10 +15,9 @@
 import FirebaseAI
 import Foundation
 import UIKit
-import GenerativeAIUIComponents
 
 @MainActor
-class ConversationViewModel: ObservableObject {
+class ChatViewModel: ObservableObject {
   /// This array holds both the user's and the system's chat messages
   @Published var messages = [ChatMessage]()
 
@@ -29,6 +28,8 @@ class ConversationViewModel: ObservableObject {
   var hasError: Bool {
     return error != nil
   }
+
+  @Published var presentErrorDetails: Bool = false
 
   @Published var initialPrompt: String = ""
   @Published var title: String = ""
@@ -95,11 +96,11 @@ class ConversationViewModel: ObservableObject {
       }
 
       // first, add the user's message to the chat
-      let userMessage = ChatMessage(message: text, participant: .user)
+      let userMessage = ChatMessage(content: text, participant: .user)
       messages.append(userMessage)
 
       // add a pending message while we're waiting for a response from the backend
-      let systemMessage = ChatMessage.pending(participant: .system)
+      let systemMessage = ChatMessage.pending(participant: .other)
       messages.append(systemMessage)
 
       do {
@@ -107,7 +108,8 @@ class ConversationViewModel: ObservableObject {
         for try await chunk in responseStream {
           messages[messages.count - 1].pending = false
           if let text = chunk.text {
-            messages[messages.count - 1].message += text
+            messages[messages.count - 1]
+              .content = (messages[messages.count - 1].content ?? "") + text
           }
 
           if let candidate = chunk.candidates.first {
@@ -120,7 +122,11 @@ class ConversationViewModel: ObservableObject {
       } catch {
         self.error = error
         print(error.localizedDescription)
-        messages.removeLast()
+        let errorMessage = ChatMessage(content: "An error occurred. Please try again.",
+                                       participant: .other,
+                                       error: error,
+                                       pending: false)
+        messages[messages.count - 1] = errorMessage
       }
     }
   }
@@ -135,11 +141,11 @@ class ConversationViewModel: ObservableObject {
       }
 
       // first, add the user's message to the chat
-      let userMessage = ChatMessage(message: text, participant: .user)
+      let userMessage = ChatMessage(content: text, participant: .user)
       messages.append(userMessage)
 
       // add a pending message while we're waiting for a response from the backend
-      let systemMessage = ChatMessage.pending(participant: .system)
+      let systemMessage = ChatMessage.pending(participant: .other)
       messages.append(systemMessage)
 
       do {
@@ -148,7 +154,7 @@ class ConversationViewModel: ObservableObject {
 
         if let responseText = response?.text {
           // replace pending message with backend response
-          messages[messages.count - 1].message = responseText
+          messages[messages.count - 1].content = responseText
           messages[messages.count - 1].pending = false
 
           if let candidate = response?.candidates.first {
@@ -160,7 +166,11 @@ class ConversationViewModel: ObservableObject {
       } catch {
         self.error = error
         print(error.localizedDescription)
-        messages.removeLast()
+        let errorMessage = ChatMessage(content: "An error occurred. Please try again.",
+                                       participant: .other,
+                                       error: error,
+                                       pending: false)
+        messages[messages.count - 1] = errorMessage
       }
     }
   }

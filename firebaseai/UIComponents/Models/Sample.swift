@@ -53,7 +53,7 @@ extension Sample {
       description: "The user wants the model to help a new traveler" +
         " with travel tips",
       useCases: [.text],
-      navRoute: "ConversationScreen",
+      navRoute: "ChatScreen",
       chatHistory: [
         ModelContent(
           role: "user",
@@ -79,7 +79,7 @@ extension Sample {
       title: "Chatbot recommendations for courses",
       description: "A chatbot suggests courses for a performing arts program.",
       useCases: [.text],
-      navRoute: "ConversationScreen",
+      navRoute: "ChatScreen",
       initialPrompt: "I am interested in Performing Arts. I have taken Theater 1A.",
       systemInstruction: ModelContent(parts: "You are a chatbot for the county's performing and fine arts" +
         " program. You help students decide what course they will" +
@@ -90,7 +90,7 @@ extension Sample {
       title: "Blog post creator",
       description: "Create a blog post from an image file stored in Cloud Storage.",
       useCases: [.image],
-      navRoute: "PhotoReasoningScreen",
+      navRoute: "ChatScreen",
       chatHistory: [
         ModelContent(role: "user", parts: "Can you help me create a blog post about this image?"),
         ModelContent(
@@ -111,7 +111,7 @@ extension Sample {
       title: "Gemini 2.0 Flash - image generation",
       description: "Generate and/or edit images using Gemini 2.0 Flash",
       useCases: [.image],
-      navRoute: "PhotoReasoningScreen",
+      navRoute: "ChatScreen",
       chatHistory: [
         ModelContent(role: "user", parts: "Can you edit this image to make it brighter?"),
         ModelContent(
@@ -126,7 +126,7 @@ extension Sample {
       title: "Hashtags for a video",
       description: "Generate hashtags for a video ad stored in Cloud Storage.",
       useCases: [.video],
-      navRoute: "ConversationScreen",
+      navRoute: "ChatScreen",
       chatHistory: [
         ModelContent(role: "user", parts: "Can you suggest hashtags for my product video?"),
         ModelContent(
@@ -140,7 +140,7 @@ extension Sample {
       title: "Summarize video",
       description: "Summarize a video and extract important dialogue.",
       useCases: [.video],
-      navRoute: "ConversationScreen",
+      navRoute: "ChatScreen",
       chatHistory: [
         ModelContent(role: "user", parts: "Can you summarize this video for me?"),
         ModelContent(
@@ -155,7 +155,7 @@ extension Sample {
       title: "Audio Summarization",
       description: "Summarize an audio file",
       useCases: [.audio],
-      navRoute: "ConversationScreen",
+      navRoute: "ChatScreen",
       chatHistory: [
         ModelContent(role: "user", parts: "Can you summarize this audio recording?"),
         ModelContent(
@@ -169,7 +169,7 @@ extension Sample {
       title: "Translation from audio",
       description: "Translate an audio file stored in Cloud Storage",
       useCases: [.audio],
-      navRoute: "ConversationScreen",
+      navRoute: "ChatScreen",
       chatHistory: [
         ModelContent(role: "user", parts: "Can you translate this audio from Spanish to English?"),
         ModelContent(
@@ -185,7 +185,7 @@ extension Sample {
       description: "Compare the contents of 2 documents." +
         " Only supported by the Vertex AI Gemini API because the documents are stored in Cloud Storage",
       useCases: [.document],
-      navRoute: "ConversationScreen",
+      navRoute: "ChatScreen",
       chatHistory: [
         ModelContent(role: "user", parts: "Can you compare these two documents for me?"),
         ModelContent(
@@ -197,18 +197,31 @@ extension Sample {
     ),
     // Function Calling
     Sample(
-      title: "Currency conversion",
-      description: "Use function calling to convert currency",
+      title: "Weather Chat",
+      description: "Use function calling to get the weather conditions" +
+        " for a specific US city on a specific date.",
       useCases: [.functionCalling, .text],
       navRoute: "FunctionCallingScreen",
-      initialPrompt: "What is 100 Euros in USD?"
+      initialPrompt: "What was the weather in Boston, MA on October 17, 2024?",
+      tools: [.functionDeclarations([
+        FunctionDeclaration(
+          name: "fetchWeather",
+          description: "Get the weather conditions for a specific US city on a specific date",
+          parameters: [
+            "city": .string(description: "The US city of the location"),
+            "state": .string(description: "The US state of the location"),
+            "date": .string(description: "The date for which to get the weather." +
+              " Date must be in the format: YYYY-MM-DD"),
+          ]
+        ),
+      ])]
     ),
     // Grounding
     Sample(
       title: "Grounding with Google Search",
       description: "Use Grounding with Google Search to get responses based on up-to-date information from the web.",
       useCases: [.text],
-      navRoute: "ConversationScreen",
+      navRoute: "ChatScreen",
       initialPrompt: "What's the weather in Chicago this weekend?",
       tools: [.googleSearch()]
     ),

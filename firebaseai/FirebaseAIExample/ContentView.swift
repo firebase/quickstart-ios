@@ -14,7 +14,6 @@
 
 import SwiftUI
 import FirebaseAI
-import GenerativeAIUIComponents
 
 enum BackendOption: String, CaseIterable, Identifiable {
   case googleAI = "Gemini Developer API"
@@ -112,14 +111,14 @@ struct ContentView: View {
   @ViewBuilder
   private func destinationView(for sample: Sample) -> some View {
     switch sample.navRoute {
-    case "ConversationScreen":
-      ConversationScreen(firebaseService: firebaseService, sample: sample)
+    case "ChatScreen":
+      ChatScreen(firebaseService: firebaseService, sample: sample)
     case "ImagenScreen":
       ImagenScreen(firebaseService: firebaseService, sample: sample)
     case "PhotoReasoningScreen":
       PhotoReasoningScreen(firebaseService: firebaseService)
     case "FunctionCallingScreen":
-      FunctionCallingScreen(firebaseService: firebaseService)
+      FunctionCallingScreen(firebaseService: firebaseService, sample: sample)
     default:
       EmptyView()
     }

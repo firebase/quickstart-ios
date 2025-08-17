@@ -15,33 +15,51 @@
 import Foundation
 import FirebaseAI
 
+public struct URLMetadata {
+  public let mimeType: String
+  public let url: URL
+  public init(mimeType: String, url: URL) {
+    self.mimeType = mimeType
+    self.url = url
+  }
+}
+
 public struct Sample: Identifiable {
   public let id = UUID()
   public let title: String
   public let description: String
   public let useCases: [UseCase]
   public let navRoute: String
+  public let modelName: String
   public let chatHistory: [ModelContent]?
   public let initialPrompt: String?
   public let systemInstruction: ModelContent?
   public let tools: [Tool]?
+  public let generationConfig: GenerationConfig?
+  public let attachedURLs: [URLMetadata]?
 
   public init(title: String,
               description: String,
               useCases: [UseCase],
               navRoute: String,
+              modelName: String = "gemini-2.5-flash",
               chatHistory: [ModelContent]? = nil,
               initialPrompt: String? = nil,
               systemInstruction: ModelContent? = nil,
-              tools: [Tool]? = nil) {
+              tools: [Tool]? = nil,
+              generationConfig: GenerationConfig? = nil,
+              attachedURLs: [URLMetadata]? = nil) {
     self.title = title
     self.description = description
     self.useCases = useCases
     self.navRoute = navRoute
+    self.modelName = modelName
     self.chatHistory = chatHistory
     self.initialPrompt = initialPrompt
     self.systemInstruction = systemInstruction
     self.tools = tools
+    self.generationConfig = generationConfig
+    self.attachedURLs = attachedURLs
   }
 }
 
@@ -90,94 +108,102 @@ extension Sample {
       title: "Blog post creator",
       description: "Create a blog post from an image file stored in Cloud Storage.",
       useCases: [.image],
-      navRoute: "ChatScreen",
-      chatHistory: [
-        ModelContent(role: "user", parts: "Can you help me create a blog post about this image?"),
-        ModelContent(
-          role: "model",
-          parts: "I'd be happy to help you create a blog post! Please share the image you'd like me to analyze and write about."
+      navRoute: "MultimodalScreen",
+      initialPrompt: "Write a short, engaging blog post based on this picture." +
+        " It should include a description of the meal in the" +
+        " photo and talk about my journey meal prepping.",
+      attachedURLs: [
+        URLMetadata(
+          mimeType: "image/jpeg",
+          url: URL(
+            string: "https://storage.googleapis.com/cloud-samples-data/generative-ai/image/meal-prep.jpeg"
+          )!
         ),
-      ],
-      initialPrompt: "Please analyze this image and create an engaging blog post"
+      ]
     ),
     Sample(
-      title: "Imagen 3 - image generation",
+      title: "Imagen - image generation",
       description: "Generate images using Imagen 3",
       useCases: [.image],
       navRoute: "ImagenScreen",
       initialPrompt: "A photo of a modern building with water in the background"
     ),
     Sample(
-      title: "Gemini 2.0 Flash - image generation",
+      title: "Gemini Flash - image generation",
       description: "Generate and/or edit images using Gemini 2.0 Flash",
       useCases: [.image],
       navRoute: "ChatScreen",
-      chatHistory: [
-        ModelContent(role: "user", parts: "Can you edit this image to make it brighter?"),
-        ModelContent(
-          role: "model",
-          parts: "I can help you edit images using Gemini 2.0 Flash. Please share the image you'd like me to modify."
-        ),
-      ],
-      initialPrompt: ""
+      modelName: "gemini-2.0-flash-preview-image-generation",
+      initialPrompt: "Hi, can you create a 3d rendered image of a pig " +
+        "with wings and a top hat flying over a happy " +
+        "futuristic scifi city with lots of greenery?",
+      generationConfig: GenerationConfig(responseModalities: [.text, .image]),
     ),
     // Video
     Sample(
       title: "Hashtags for a video",
       description: "Generate hashtags for a video ad stored in Cloud Storage.",
       useCases: [.video],
-      navRoute: "ChatScreen",
-      chatHistory: [
-        ModelContent(role: "user", parts: "Can you suggest hashtags for my product video?"),
-        ModelContent(
-          role: "model",
-          parts: "I'd be happy to help you generate relevant hashtags! Please share your video or describe what it's about so I can suggest appropriate hashtags."
+      navRoute: "MultimodalScreen",
+      initialPrompt: "Generate 5-10 hashtags that relate to the video content." +
+        " Try to use more popular and engaging terms," +
+        " e.g. #Viral. Do not add content not related to" +
+        " the video.\n Start the output with 'Tags:'",
+      attachedURLs: [
+        URLMetadata(
+          mimeType: "video/mp4",
+          url: URL(
+            string: "https://storage.googleapis.com/cloud-samples-data/generative-ai/video/google_home_celebrity_ad.mp4"
+          )!
         ),
-      ],
-      initialPrompt: ""
+      ]
     ),
     Sample(
       title: "Summarize video",
       description: "Summarize a video and extract important dialogue.",
       useCases: [.video],
-      navRoute: "ChatScreen",
+      navRoute: "MultimodalScreen",
       chatHistory: [
-        ModelContent(role: "user", parts: "Can you summarize this video for me?"),
+        ModelContent(role: "user", parts: "Can you help me with the description of a video file?"),
         ModelContent(
           role: "model",
-          parts: "I can help you summarize videos and extract key dialogue. Please share the video you'd like me to analyze."
+          parts: "Sure! Click on the attach button below and choose a video file for me to describe."
         ),
       ],
-      initialPrompt: ""
+      initialPrompt: "I have attached the video file. Provide a description of" +
+        " the video. The description should also contain" +
+        " anything important which people say in the video."
     ),
     // Audio
     Sample(
       title: "Audio Summarization",
       description: "Summarize an audio file",
       useCases: [.audio],
-      navRoute: "ChatScreen",
+      navRoute: "MultimodalScreen",
       chatHistory: [
-        ModelContent(role: "user", parts: "Can you summarize this audio recording?"),
+        ModelContent(role: "user", parts: "Can you help me summarize an audio file?"),
         ModelContent(
           role: "model",
-          parts: "I can help you summarize audio files. Please share the audio recording you'd like me to analyze."
+          parts: "Of course! Click on the attach button below and choose an audio file for me to summarize."
         ),
       ],
-      initialPrompt: ""
+      initialPrompt: "I have attached the audio file. Please analyze it and summarize the contents" +
+        " of the audio as bullet points."
     ),
     Sample(
       title: "Translation from audio",
       description: "Translate an audio file stored in Cloud Storage",
       useCases: [.audio],
-      navRoute: "ChatScreen",
-      chatHistory: [
-        ModelContent(role: "user", parts: "Can you translate this audio from Spanish to English?"),
-        ModelContent(
-          role: "model",
-          parts: "I can help you translate audio files. Please share the audio file you'd like me to translate."
+      navRoute: "MultimodalScreen",
+      initialPrompt: "Please translate the audio in Mandarin.",
+      attachedURLs: [
+        URLMetadata(
+          mimeType: "audio/mp3",
+          url: URL(
+            string: "https://storage.googleapis.com/cloud-samples-data/generative-ai/audio/How_to_create_a_My_Map_in_Google_Maps.mp3"
+          )!
         ),
-      ],
-      initialPrompt: ""
+      ]
     ),
     // Document
     Sample(
@@ -185,15 +211,23 @@ extension Sample {
       description: "Compare the contents of 2 documents." +
         " Only supported by the Vertex AI Gemini API because the documents are stored in Cloud Storage",
       useCases: [.document],
-      navRoute: "ChatScreen",
-      chatHistory: [
-        ModelContent(role: "user", parts: "Can you compare these two documents for me?"),
-        ModelContent(
-          role: "model",
-          parts: "I can help you compare documents using the Vertex AI Gemini API. Please share the two documents you'd like me to compare."
+      navRoute: "MultimodalScreen",
+      initialPrompt: "The first document is from 2013, and the second document is" +
+        " from 2023. How did the standard deduction evolve?",
+      attachedURLs: [
+        URLMetadata(
+          mimeType: "application/pdf",
+          url: URL(
+            string: "https://storage.googleapis.com/cloud-samples-data/generative-ai/pdf/form_1040_2013.pdf"
+          )!,
         ),
-      ],
-      initialPrompt: ""
+        URLMetadata(
+          mimeType: "application/pdf",
+          url: URL(
+            string: "https://storage.googleapis.com/cloud-samples-data/generative-ai/pdf/form_1040_2023.pdf"
+          )!
+        ),
+      ]
     ),
     // Function Calling
     Sample(
@@ -221,7 +255,7 @@ extension Sample {
       title: "Grounding with Google Search",
       description: "Use Grounding with Google Search to get responses based on up-to-date information from the web.",
       useCases: [.text],
-      navRoute: "ChatScreen",
+      navRoute: "GroundingScreen",
       initialPrompt: "What's the weather in Chicago this weekend?",
       tools: [.googleSearch()]
     ),

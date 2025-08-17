@@ -39,6 +39,7 @@ struct SampleCardView: View {
 
   private func systemName(for useCase: UseCase) -> String {
     switch useCase {
+    case .all: "square.grid.2x2.fill"
     case .text: "text.bubble.fill"
     case .image: "photo.fill"
     case .video: "video.fill"
@@ -50,6 +51,7 @@ struct SampleCardView: View {
 
   private func color(for useCase: UseCase) -> Color {
     switch useCase {
+    case .all:.primary
     case .text:.blue
     case .image:.purple
     case .video:.red

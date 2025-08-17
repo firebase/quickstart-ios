@@ -47,7 +47,7 @@ struct ImagenScreen: View {
             .disableAttachments()
             .onSubmitAction { sendOrStop() }
 
-          if let error = viewModel.error {
+          if viewModel.error != nil {
             HStack {
               Text("An error occurred.")
               Button("More information", systemImage: "info.circle") {

@@ -14,51 +14,54 @@
 
 import FirebaseAI
 import Foundation
-import UIKit
+import OSLog
+import PhotosUI
+import SwiftUI
+import AVFoundation
+import UniformTypeIdentifiers
 
 @MainActor
-class ChatViewModel: ObservableObject {
-  /// This array holds both the user's and the system's chat messages
+class MultimodalViewModel: ObservableObject {
   @Published var messages = [ChatMessage]()
-
-  /// Indicates we're waiting for the model to finish
-  @Published var busy = false
-
+  @Published var initialPrompt: String = ""
+  @Published var title: String = ""
   @Published var error: Error?
-  var hasError: Bool {
-    return error != nil
-  }
+  @Published var inProgress = false
 
   @Published var presentErrorDetails: Bool = false
 
-  @Published var initialPrompt: String = ""
-  @Published var title: String = ""
+  @Published var attachments = [MultimodalAttachment]()
 
   private var model: GenerativeModel
   private var chat: Chat
-
   private var chatTask: Task<Void, Never>?
-
   private var sample: Sample?
+  private let logger = Logger(subsystem: "com.example.firebaseai", category: "MultimodalViewModel")
 
   init(firebaseService: FirebaseAI, sample: Sample? = nil) {
     self.sample = sample
 
     model = firebaseService.generativeModel(
-      modelName: sample?.modelName ?? "gemini-2.5-flash",
-      generationConfig: sample?.generationConfig,
+      modelName: "gemini-2.0-flash-001",
       systemInstruction: sample?.systemInstruction
     )
 
-    if let chatHistory = sample?.chatHistory, !chatHistory.isEmpty {
-      messages = ChatMessage.from(chatHistory)
-      chat = model.startChat(history: chatHistory)
-    } else {
-      chat = model.startChat()
-    }
-
+    chat = model.startChat()
     initialPrompt = sample?.initialPrompt ?? ""
     title = sample?.title ?? ""
+
+    if let urlMetas = sample?.attachedURLs {
+      Task {
+        for urlMeta in urlMetas {
+          if let attachment = await MultimodalAttachment.fromURL(
+            urlMeta.url,
+            mimeType: urlMeta.mimeType
+          ) {
+            self.addAttachment(attachment)
+          }
+        }
+      }
+    }
   }
 
   func sendMessage(_ text: String, streaming: Bool = true) async {
@@ -75,6 +78,7 @@ class ChatViewModel: ObservableObject {
     error = nil
     chat = model.startChat()
     messages.removeAll()
+    attachments.removeAll()
     initialPrompt = ""
   }
 
@@ -87,39 +91,38 @@ class ChatViewModel: ObservableObject {
     chatTask?.cancel()
 
     chatTask = Task {
-      busy = true
+      inProgress = true
       defer {
-        busy = false
+        inProgress = false
       }
 
-      // first, add the user's message to the chat
-      let userMessage = ChatMessage(content: text, participant: .user)
+      let userMessage = ChatMessage(content: text, participant: .user, attachments: attachments)
       messages.append(userMessage)
-
-      // add a pending message while we're waiting for a response from the backend
       let systemMessage = ChatMessage.pending(participant: .other)
       messages.append(systemMessage)
 
       do {
-        let responseStream = try chat.sendMessageStream(text)
+        var parts: [any PartsRepresentable] = [text]
+
+        for attachment in attachments {
+          if let inlineDataPart = attachment.toInlineDataPart() {
+            parts.append(inlineDataPart)
+          }
+        }
+
+        attachments.removeAll()
+
+        let responseStream = try chat.sendMessageStream(parts)
         for try await chunk in responseStream {
           messages[messages.count - 1].pending = false
           if let text = chunk.text {
             messages[messages.count - 1]
               .content = (messages[messages.count - 1].content ?? "") + text
           }
-
-          if let inlineDataPart = chunk.inlineDataParts.first {
-            if let uiImage = UIImage(data: inlineDataPart.data) {
-              messages[messages.count - 1].image = (messages[messages.count - 1].image ?? uiImage)
-            } else {
-              print("Failed to convert inline data to UIImage")
-            }
-          }
         }
       } catch {
         self.error = error
-        print(error.localizedDescription)
+        logger.error("\(error.localizedDescription)")
         let errorMessage = ChatMessage(content: "An error occurred. Please try again.",
                                        participant: .other,
                                        error: error,
@@ -133,39 +136,36 @@ class ChatViewModel: ObservableObject {
     chatTask?.cancel()
 
     chatTask = Task {
-      busy = true
+      inProgress = true
       defer {
-        busy = false
+        inProgress = false
       }
-
-      // first, add the user's message to the chat
-      let userMessage = ChatMessage(content: text, participant: .user)
+      let userMessage = ChatMessage(content: text, participant: .user, attachments: attachments)
       messages.append(userMessage)
 
-      // add a pending message while we're waiting for a response from the backend
       let systemMessage = ChatMessage.pending(participant: .other)
       messages.append(systemMessage)
 
       do {
-        var response: GenerateContentResponse?
-        response = try await chat.sendMessage(text)
+        var parts: [any PartsRepresentable] = [text]
 
-        if let responseText = response?.text {
-          // replace pending message with backend response
+        for attachment in attachments {
+          if let inlineDataPart = attachment.toInlineDataPart() {
+            parts.append(inlineDataPart)
+          }
+        }
+
+        attachments.removeAll()
+
+        let response = try await chat.sendMessage(parts)
+
+        if let responseText = response.text {
           messages[messages.count - 1].content = responseText
           messages[messages.count - 1].pending = false
         }
-
-        if let inlineDataPart = response?.inlineDataParts.first {
-          if let uiImage = UIImage(data: inlineDataPart.data) {
-            messages[messages.count - 1].image = uiImage
-          } else {
-            print("Failed to convert inline data to UIImage")
-          }
-        }
       } catch {
         self.error = error
-        print(error.localizedDescription)
+        logger.error("\(error.localizedDescription)")
         let errorMessage = ChatMessage(content: "An error occurred. Please try again.",
                                        participant: .other,
                                        error: error,
@@ -173,5 +173,20 @@ class ChatViewModel: ObservableObject {
         messages[messages.count - 1] = errorMessage
       }
     }
+  }
+
+  func addAttachment(_ attachment: MultimodalAttachment) {
+    var newAttachment = attachment
+    newAttachment.loadingState = .loaded
+    attachments.append(newAttachment)
+  }
+
+  func removeAttachment(_ attachment: MultimodalAttachment) {
+    attachments.removeAll { $0.id == attachment.id }
+  }
+
+  func handleError(_ error: Error) {
+    self.error = error
+    logger.error("\(error.localizedDescription)")
   }
 }

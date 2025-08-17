@@ -46,7 +46,7 @@ class FunctionCallingViewModel: ObservableObject {
 
     // create a generative model with sample data
     model = firebaseService.generativeModel(
-      modelName: "gemini-2.0-flash-001",
+      modelName: sample?.modelName ?? "gemini-2.0-flash-001",
       tools: sample?.tools,
       systemInstruction: sample?.systemInstruction
     )
@@ -194,7 +194,7 @@ class FunctionCallingViewModel: ObservableObject {
     }
 
     if !functionResponses.isEmpty {
-      let finalResponse = try await chat
+      let finalResponse = try chat
         .sendMessageStream([ModelContent(role: "function", parts: functionResponses)])
 
       for try await chunk in finalResponse {

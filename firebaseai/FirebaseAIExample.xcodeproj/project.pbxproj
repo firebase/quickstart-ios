@@ -14,7 +14,7 @@
 		7210F4A62E52317E002FE9F2 /* MultimodalScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7210F4992E52317E002FE9F2 /* MultimodalScreen.swift */; };
 		7210F4B12E525A64002FE9F2 /* ConversationKit in Frameworks */ = {isa = PBXBuildFile; productRef = 7210F4B02E525A64002FE9F2 /* ConversationKit */; };
 		7210F4BA2E526AA1002FE9F2 /* GroundingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7210F4B92E526A9B002FE9F2 /* GroundingScreen.swift */; };
-		7210F4BC2E526AB2002FE9F2 /* GroundingViewMoel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7210F4BB2E526AAA002FE9F2 /* GroundingViewMoel.swift */; };
+		7210F4BC2E526AB2002FE9F2 /* GroundingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7210F4BB2E526AAA002FE9F2 /* GroundingViewModel.swift */; };
 		7210F4C82E527A39002FE9F2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7210F4C72E527A39002FE9F2 /* GoogleService-Info.plist */; };
 		726490D92E3F39E000A92700 /* Sample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 726490D22E3F39D200A92700 /* Sample.swift */; };
 		726490DA2E3F39E000A92701 /* UseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 726490D32E3F39D200A92700 /* UseCase.swift */; };
@@ -48,7 +48,7 @@
 		7210F49B2E52317E002FE9F2 /* MultimodalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultimodalViewModel.swift; sourceTree = "<group>"; };
 		7210F49D2E52317E002FE9F2 /* AttachmentPreviewCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentPreviewCard.swift; sourceTree = "<group>"; };
 		7210F4B92E526A9B002FE9F2 /* GroundingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroundingScreen.swift; sourceTree = "<group>"; };
-		7210F4BB2E526AAA002FE9F2 /* GroundingViewMoel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroundingViewMoel.swift; sourceTree = "<group>"; };
+		7210F4BB2E526AAA002FE9F2 /* GroundingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroundingViewModel.swift; sourceTree = "<group>"; };
 		7210F4C72E527A39002FE9F2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		726490D22E3F39D200A92700 /* Sample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sample.swift; sourceTree = "<group>"; };
 		726490D32E3F39D200A92700 /* UseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseCase.swift; sourceTree = "<group>"; };
@@ -163,7 +163,7 @@
 		7210F4B62E526A69002FE9F2 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				7210F4BB2E526AAA002FE9F2 /* GroundingViewMoel.swift */,
+				7210F4BB2E526AAA002FE9F2 /* GroundingViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -449,7 +449,7 @@
 				8848C8332B0D04BC007B434F /* FirebaseAIExampleApp.swift in Sources */,
 				886F95E02B17D5010036F07A /* ChatViewModel.swift in Sources */,
 				886F95DD2B17D5010036F07A /* MessageView.swift in Sources */,
-				7210F4BC2E526AB2002FE9F2 /* GroundingViewMoel.swift in Sources */,
+				7210F4BC2E526AB2002FE9F2 /* GroundingViewModel.swift in Sources */,
 				DEFECAA92D7B4CCD00EF9621 /* ImagenViewModel.swift in Sources */,
 				7210F4A32E52317E002FE9F2 /* MultimodalViewModel.swift in Sources */,
 				7210F4A42E52317E002FE9F2 /* AttachmentPreviewCard.swift in Sources */,

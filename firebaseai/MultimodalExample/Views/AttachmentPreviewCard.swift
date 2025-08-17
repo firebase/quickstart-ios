@@ -119,16 +119,15 @@ struct AttachmentPreviewCard: View {
   }
 
   private var displayName: String {
-    if attachment.fileName.count > 30 {
-      let startIndex = attachment.fileName.startIndex
-      let endIndex = attachment.fileName.endIndex
-      let start = String(attachment
-        .fileName[startIndex ..< attachment.fileName.index(startIndex, offsetBy: 15)])
-      let end = String(attachment
-        .fileName[attachment.fileName.index(endIndex, offsetBy: -10) ..< endIndex])
-      return "\(start)...\(end)"
+    let fileName = attachment.fileName
+    let maxLength = 30
+    if fileName.count <= maxLength {
+      return fileName
     }
-    return attachment.fileName
+
+    let prefixName = fileName.prefix(15)
+    let suffixName = fileName.suffix(10)
+    return "\(prefixName)...\(suffixName)"
   }
 }
 

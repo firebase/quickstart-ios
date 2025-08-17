@@ -58,25 +58,31 @@ public struct MultimodalAttachment: Identifiable, Equatable {
   }
 
   public static func fromPhotosPickerItem(_ item: PhotosPickerItem) async -> MultimodalAttachment? {
-    guard let data = try? await item.loadTransferable(type: Data.self) else {
-      return nil
-    }
+    do {
+      guard let data = try await item.loadTransferable(type: Data.self) else {
+        print("Failed to create attachment from PhotosPickerItem: no data returned")
+        return nil
+      }
 
-    if let image = UIImage(data: data) {
-      return MultimodalAttachment(
-        type: .image,
-        fileName: "Local Image",
-        mimeType: "image/jpeg",
-        data: data,
-        thumbnailImage: image
-      )
-    } else {
-      return MultimodalAttachment(
-        type: .video,
-        fileName: "Local Video",
-        mimeType: "video/mp4",
-        data: data
-      )
+      if let image = UIImage(data: data) {
+        return MultimodalAttachment(
+          type: .image,
+          fileName: "Local Image",
+          mimeType: "image/jpeg",
+          data: data,
+          thumbnailImage: image
+        )
+      } else {
+        return MultimodalAttachment(
+          type: .video,
+          fileName: "Local Video",
+          mimeType: "video/mp4",
+          data: data
+        )
+      }
+    } catch {
+      print("Failed to create attachment from PhotosPickerItem: \(error)")
+      return nil
     }
   }
 
@@ -96,6 +102,7 @@ public struct MultimodalAttachment: Identifiable, Equatable {
         url: url
       )
     } catch {
+      print("Failed to create attachment from file at \(url): \(error)")
       return nil
     }
   }
@@ -114,6 +121,7 @@ public struct MultimodalAttachment: Identifiable, Equatable {
         url: url
       )
     } catch {
+      print("Failed to create attachment from url \(url): \(error)")
       return nil
     }
   }

@@ -111,7 +111,7 @@ class ChatViewModel: ObservableObject {
 
           if let inlineDataPart = chunk.inlineDataParts.first {
             if let uiImage = UIImage(data: inlineDataPart.data) {
-              messages[messages.count - 1].image = (messages[messages.count - 1].image ?? uiImage)
+              messages[messages.count - 1].image = uiImage
             } else {
               print("Failed to convert inline data to UIImage")
             }

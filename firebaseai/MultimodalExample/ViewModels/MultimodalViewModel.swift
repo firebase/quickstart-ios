@@ -18,7 +18,6 @@ import OSLog
 import PhotosUI
 import SwiftUI
 import AVFoundation
-import UniformTypeIdentifiers
 
 @MainActor
 class MultimodalViewModel: ObservableObject {

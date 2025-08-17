@@ -57,7 +57,8 @@ extension ChatMessage {
   public static func == (lhs: ChatMessage, rhs: ChatMessage) -> Bool {
     lhs.id == rhs.id &&
       lhs.content == rhs.content &&
-      lhs.participant == rhs.participant
+      lhs.participant == rhs.participant &&
+      lhs.image == rhs.image
     // intentionally ignore `error`
   }
 

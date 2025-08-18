@@ -41,11 +41,17 @@ class MultimodalViewModel: ObservableObject {
     self.sample = sample
 
     model = firebaseService.generativeModel(
-      modelName: "gemini-2.0-flash-001",
+      modelName: sample?.modelName ?? "gemini-2.5-flash",
       systemInstruction: sample?.systemInstruction
     )
 
-    chat = model.startChat()
+    if let chatHistory = sample?.chatHistory, !chatHistory.isEmpty {
+      messages = ChatMessage.from(chatHistory)
+      chat = model.startChat(history: chatHistory)
+    } else {
+      chat = model.startChat()
+    }
+
     initialPrompt = sample?.initialPrompt ?? ""
     title = sample?.title ?? ""
 

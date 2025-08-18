@@ -66,6 +66,7 @@ extension ChatMessage {
     hasher.combine(id)
     hasher.combine(content)
     hasher.combine(participant)
+    hasher.combine(image)
     // intentionally ignore `error`
   }
 }

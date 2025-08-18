@@ -40,13 +40,23 @@ class ImagenViewModel: ObservableObject {
   var inProgress = false
 
   private let model: ImagenModel
+  private var backendType: BackendOption
 
   private var generateImagesTask: Task<Void, Never>?
 
   private var sample: Sample?
 
-  init(firebaseService: FirebaseAI, sample: Sample? = nil) {
+  init(backendType: BackendOption, sample: Sample? = nil) {
     self.sample = sample
+    self.backendType = backendType
+
+    let firebaseService: FirebaseAI
+    switch backendType {
+    case .googleAI:
+      firebaseService = FirebaseAI.firebaseAI(backend: .googleAI())
+    case .vertexAI:
+      firebaseService = FirebaseAI.firebaseAI(backend: .vertexAI())
+    }
 
     let modelName = "imagen-3.0-generate-002"
     let safetySettings = ImagenSafetySettings(

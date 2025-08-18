@@ -18,7 +18,7 @@ import PhotosUI
 import ConversationKit
 
 struct MultimodalScreen: View {
-  let firebaseService: FirebaseAI
+  let backendType: BackendOption
   @StateObject var viewModel: MultimodalViewModel
 
   @State private var showingPhotoPicker = false
@@ -28,10 +28,10 @@ struct MultimodalScreen: View {
   @State private var linkMimeType = ""
   @State private var selectedPhotoItems = [PhotosPickerItem]()
 
-  init(firebaseService: FirebaseAI, sample: Sample? = nil) {
-    self.firebaseService = firebaseService
+  init(backendType: BackendOption, sample: Sample? = nil) {
+    self.backendType = backendType
     _viewModel =
-      StateObject(wrappedValue: MultimodalViewModel(firebaseService: firebaseService,
+      StateObject(wrappedValue: MultimodalViewModel(backendType: backendType,
                                                     sample: sample))
   }
 
@@ -156,7 +156,7 @@ struct MultimodalScreen: View {
         }
       }
     case let .failure(error):
-      viewModel.handleError(error)
+      viewModel.error = error
     }
   }
 
@@ -181,5 +181,5 @@ struct MultimodalScreen: View {
 }
 
 #Preview {
-  MultimodalScreen(firebaseService: FirebaseAI.firebaseAI())
+  MultimodalScreen(backendType: .googleAI)
 }

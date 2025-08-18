@@ -40,9 +40,19 @@ class ChatViewModel: ObservableObject {
   private var chatTask: Task<Void, Never>?
 
   private var sample: Sample?
+  private var backendType: BackendOption
 
-  init(firebaseService: FirebaseAI, sample: Sample? = nil) {
+  init(backendType: BackendOption, sample: Sample? = nil) {
     self.sample = sample
+    self.backendType = backendType
+
+    let firebaseService: FirebaseAI
+    switch backendType {
+    case .googleAI:
+      firebaseService = FirebaseAI.firebaseAI(backend: .googleAI())
+    case .vertexAI:
+      firebaseService = FirebaseAI.firebaseAI(backend: .vertexAI())
+    }
 
     model = firebaseService.generativeModel(
       modelName: sample?.modelName ?? "gemini-2.5-flash",

@@ -17,13 +17,13 @@ import SwiftUI
 import ConversationKit
 
 struct FunctionCallingScreen: View {
-  let firebaseService: FirebaseAI
+  let backendType: BackendOption
   @StateObject var viewModel: FunctionCallingViewModel
 
-  init(firebaseService: FirebaseAI, sample: Sample? = nil) {
-    self.firebaseService = firebaseService
+  init(backendType: BackendOption, sample: Sample? = nil) {
+    self.backendType = backendType
     _viewModel =
-      StateObject(wrappedValue: FunctionCallingViewModel(firebaseService: firebaseService,
+      StateObject(wrappedValue: FunctionCallingViewModel(backendType: backendType,
                                                          sample: sample))
   }
 
@@ -65,5 +65,5 @@ struct FunctionCallingScreen: View {
 }
 
 #Preview {
-  FunctionCallingScreen(firebaseService: FirebaseAI.firebaseAI())
+  FunctionCallingScreen(backendType: .googleAI)
 }

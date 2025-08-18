@@ -17,44 +17,27 @@ import SwiftUI
 import PhotosUI
 import FirebaseAI
 
-public enum AttachmentType: String, CaseIterable {
-  case image = "IMAGE"
-  case video = "VIDEO"
-  case audio = "AUDIO"
-  case pdf = "PDF"
-  case link = "LINK"
-  case unknown = "UNKNOWN"
-}
-
-public enum AttachmentLoadingState {
-  case idle
-  case loading
-  case loaded
-  case failed(Error)
-}
-
+// MultimodalAttachment is a struct used for transporting data between ViewModels and AttachmentPreviewCard
 public struct MultimodalAttachment: Identifiable, Equatable {
   public let id = UUID()
-  public let type: AttachmentType
-  public let fileName: String
   public let mimeType: String
-  public let data: Data
+  public let data: Data?
   public let url: URL?
-  public let thumbnailImage: UIImage?
-  public var loadingState: AttachmentLoadingState = .idle
 
   public static func == (lhs: MultimodalAttachment, rhs: MultimodalAttachment) -> Bool {
     return lhs.id == rhs.id
   }
 
-  public init(type: AttachmentType, fileName: String, mimeType: String, data: Data,
-              url: URL? = nil, thumbnailImage: UIImage? = nil) {
-    self.type = type
-    self.fileName = fileName
+  public init(mimeType: String, data: Data? = nil, url: URL? = nil) {
     self.mimeType = mimeType
     self.data = data
     self.url = url
-    self.thumbnailImage = thumbnailImage
+  }
+
+  public init(fileDataPart: FileDataPart) {
+    mimeType = fileDataPart.mimeType
+    data = nil
+    url = URL(string: fileDataPart.uri)
   }
 
   public static func fromPhotosPickerItem(_ item: PhotosPickerItem) async -> MultimodalAttachment? {
@@ -64,22 +47,12 @@ public struct MultimodalAttachment: Identifiable, Equatable {
         return nil
       }
 
-      if let image = UIImage(data: data) {
-        return MultimodalAttachment(
-          type: .image,
-          fileName: "Local Image",
-          mimeType: "image/jpeg",
-          data: data,
-          thumbnailImage: image
-        )
-      } else {
-        return MultimodalAttachment(
-          type: .video,
-          fileName: "Local Video",
-          mimeType: "video/mp4",
-          data: data
-        )
-      }
+      let mimeType = UIImage(data: data) != nil ? "image/jpg" : "video/mp4"
+
+      return MultimodalAttachment(
+        mimeType: mimeType,
+        data: data
+      )
     } catch {
       print("Failed to create attachment from PhotosPickerItem: \(error)")
       return nil
@@ -91,12 +64,10 @@ public struct MultimodalAttachment: Identifiable, Equatable {
       let data = try await Task.detached(priority: .utility) {
         try Data(contentsOf: url)
       }.value
-      let fileName = url.lastPathComponent
+
       let mimeType = Self.getMimeType(for: url)
-      let fileType = Self.getAttachmentType(for: mimeType)
+
       return MultimodalAttachment(
-        type: fileType,
-        fileName: fileName,
         mimeType: mimeType,
         data: data,
         url: url
@@ -109,13 +80,11 @@ public struct MultimodalAttachment: Identifiable, Equatable {
 
   public static func fromURL(_ url: URL, mimeType: String) async -> MultimodalAttachment? {
     do {
-      var data: Data
-      data = try await Task.detached(priority: .utility) {
+      let data = try await Task.detached(priority: .utility) {
         try Data(contentsOf: url)
       }.value
+
       return MultimodalAttachment(
-        type: .link,
-        fileName: url.lastPathComponent,
         mimeType: mimeType,
         data: data,
         url: url
@@ -127,7 +96,7 @@ public struct MultimodalAttachment: Identifiable, Equatable {
   }
 
   public func toInlineDataPart() -> InlineDataPart? {
-    guard !data.isEmpty else { return nil }
+    guard let data = data, !data.isEmpty else { return nil }
     return InlineDataPart(data: data, mimeType: mimeType)
   }
 
@@ -193,20 +162,6 @@ public struct MultimodalAttachment: Identifiable, Equatable {
 
     default:
       return "application/octet-stream"
-    }
-  }
-
-  private static func getAttachmentType(for mimeType: String) -> AttachmentType {
-    if mimeType.starts(with: "image/") {
-      return .image
-    } else if mimeType.starts(with: "video/") {
-      return .video
-    } else if mimeType.starts(with: "audio/") {
-      return .audio
-    } else if mimeType == "application/pdf" {
-      return .pdf
-    } else {
-      return .unknown
     }
   }
 }

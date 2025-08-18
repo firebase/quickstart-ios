@@ -14,28 +14,65 @@
 
 import SwiftUI
 
+private enum AttachmentType: String {
+  case image, video, audio, pdf, other
+
+  init(mimeType: String) {
+    let mt = mimeType.lowercased()
+    if mt.hasPrefix("image/") { self = .image }
+    else if mt.hasPrefix("video/") { self = .video }
+    else if mt.hasPrefix("audio/") { self = .audio }
+    else if mt == "application/pdf" { self = .pdf }
+    else { self = .other }
+  }
+
+  var systemImageName: String {
+    switch self {
+    case .image: return "photo"
+    case .video: return "video"
+    case .audio: return "waveform"
+    case .pdf: return "doc.text"
+    case .other: return "questionmark"
+    }
+  }
+
+  var typeTagColor: Color {
+    switch self {
+    case .image: return .green
+    case .video: return .purple
+    case .audio: return .orange
+    case .pdf: return .red
+    case .other: return .blue
+    }
+  }
+
+  var displayFileType: String {
+    switch self {
+    case .image: return "IMAGE"
+    case .video: return "VIDEO"
+    case .audio: return "AUDIO"
+    case .pdf: return "PDF"
+    case .other: return "UNKNOWN"
+    }
+  }
+}
+
 struct AttachmentPreviewCard: View {
   let attachment: MultimodalAttachment
   let onRemove: (() -> Void)?
 
+  private var attachmentType: AttachmentType {
+    AttachmentType(mimeType: attachment.mimeType)
+  }
+
   var body: some View {
     HStack(spacing: 12) {
-      Group {
-        if let thumbnailImage = attachment.thumbnailImage {
-          Image(uiImage: thumbnailImage)
-            .resizable()
-            .aspectRatio(contentMode: .fill)
-            .frame(width: 40, height: 40)
-            .clipShape(RoundedRectangle(cornerRadius: 6))
-        } else {
-          Image(systemName: systemImageName)
-            .font(.system(size: 20))
-            .foregroundColor(.blue)
-            .frame(width: 40, height: 40)
-            .background(Color.blue.opacity(0.1))
-            .clipShape(RoundedRectangle(cornerRadius: 6))
-        }
-      }
+      Image(systemName: attachmentType.systemImageName)
+        .font(.system(size: 20))
+        .foregroundColor(.blue)
+        .frame(width: 40, height: 40)
+        .background(Color.blue.opacity(0.1))
+        .clipShape(RoundedRectangle(cornerRadius: 6))
 
       VStack(alignment: .leading, spacing: 4) {
         Text(displayName)
@@ -45,23 +82,14 @@ struct AttachmentPreviewCard: View {
           .foregroundColor(.primary)
 
         HStack(spacing: 8) {
-          Text(attachment.type.rawValue)
+          Text(attachmentType.displayFileType)
             .font(.system(size: 10, weight: .semibold))
             .padding(.horizontal, 6)
             .padding(.vertical, 2)
-            .background(typeTagColor)
+            .background(attachmentType.typeTagColor)
             .foregroundColor(.white)
             .clipShape(Capsule())
 
-          if case .loading = attachment.loadingState {
-            ProgressView()
-              .scaleEffect(0.7)
-              .progressViewStyle(CircularProgressViewStyle(tint: .blue))
-          } else if case .failed = attachment.loadingState {
-            Image(systemName: "exclamationmark.triangle.fill")
-              .font(.system(size: 12))
-              .foregroundColor(.red)
-          }
           Spacer()
         }
       }
@@ -84,42 +112,8 @@ struct AttachmentPreviewCard: View {
     )
   }
 
-  private var typeTagColor: Color {
-    switch attachment.type {
-    case .image:
-      return .green
-    case .video:
-      return .purple
-    case .audio:
-      return .orange
-    case .pdf:
-      return .red
-    case .link:
-      return .blue
-    case .unknown:
-      return .gray
-    }
-  }
-
-  private var systemImageName: String {
-    switch attachment.type {
-    case .image:
-      return "photo"
-    case .video:
-      return "video"
-    case .audio:
-      return "waveform"
-    case .pdf:
-      return "doc.text"
-    case .link:
-      return "link"
-    case .unknown:
-      return "questionmark"
-    }
-  }
-
   private var displayName: String {
-    let fileName = attachment.fileName
+    let fileName = attachment.url?.lastPathComponent ?? "Default"
     let maxLength = 30
     if fileName.count <= maxLength {
       return fileName
@@ -144,7 +138,7 @@ struct AttachmentPreviewScrollView: View {
               attachment: attachment,
               onRemove: onAttachmentRemove == nil ? nil : { onAttachmentRemove?(attachment) }
             )
-            .frame(width: 200)
+            .frame(width: 180)
           }
         }
         .padding(.horizontal, 16)
@@ -160,50 +154,33 @@ struct AttachmentPreviewScrollView: View {
   VStack(spacing: 20) {
     AttachmentPreviewCard(
       attachment: MultimodalAttachment(
-        type: .image,
-        fileName: "IMG_1234_very_long_filename_example.jpg",
         mimeType: "image/jpeg",
-        data: Data(),
-        thumbnailImage: UIImage(systemName: "photo"),
+        data: Data()
       ),
       onRemove: { print("Image removed") }
     )
 
     AttachmentPreviewCard(
       attachment: MultimodalAttachment(
-        type: .pdf,
-        fileName: "Document.pdf",
         mimeType: "application/pdf",
-        data: Data(),
+        data: Data()
       ),
       onRemove: { print("PDF removed") }
     )
 
     AttachmentPreviewCard(
-      attachment: {
-        var attachment = MultimodalAttachment(
-          type: .video,
-          fileName: "video.mp4",
-          mimeType: "video/mp4",
-          data: Data(),
-        )
-        attachment.loadingState = .loading
-        return attachment
-      }(),
+      attachment: MultimodalAttachment(
+        mimeType: "video/mp4",
+        data: Data()
+      ),
       onRemove: { print("Video removed") }
     )
 
     AttachmentPreviewCard(
-      attachment: {
-        var attachment = MultimodalAttachment(
-          type: .audio,
-          fileName: "audio.mp3",
-          mimeType: "audio/mpeg",
-          data: Data(),
-        )
-        attachment.loadingState = .failed(NSError(domain: "TestError", code: 1, userInfo: nil))
-        return attachment
-      }(),
+      attachment: MultimodalAttachment(
+        mimeType: "audio/mpeg",
+        data: Data()
+      ),
       onRemove: { print("Audio removed") }
     )
   }

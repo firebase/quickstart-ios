@@ -17,13 +17,13 @@ import SwiftUI
 import ConversationKit
 
 struct ChatScreen: View {
-  let firebaseService: FirebaseAI
+  let backendType: BackendOption
   @StateObject var viewModel: ChatViewModel
 
-  init(firebaseService: FirebaseAI, sample: Sample? = nil) {
-    self.firebaseService = firebaseService
+  init(backendType: BackendOption, sample: Sample? = nil) {
+    self.backendType = backendType
     _viewModel =
-      StateObject(wrappedValue: ChatViewModel(firebaseService: firebaseService,
+      StateObject(wrappedValue: ChatViewModel(backendType: backendType,
                                               sample: sample))
   }
 
@@ -65,5 +65,5 @@ struct ChatScreen: View {
 }
 
 #Preview {
-  ChatScreen(firebaseService: FirebaseAI.firebaseAI())
+  ChatScreen(backendType: .googleAI)
 }

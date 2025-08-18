@@ -17,13 +17,13 @@ import SwiftUI
 import ConversationKit
 
 struct GroundingScreen: View {
-  let firebaseService: FirebaseAI
+  let backendType: BackendOption
   @StateObject var viewModel: GroundingViewModel
 
-  init(firebaseService: FirebaseAI, sample: Sample? = nil) {
-    self.firebaseService = firebaseService
+  init(backendType: BackendOption, sample: Sample? = nil) {
+    self.backendType = backendType
     _viewModel =
-      StateObject(wrappedValue: GroundingViewModel(firebaseService: firebaseService,
+      StateObject(wrappedValue: GroundingViewModel(backendType: backendType,
                                                    sample: sample))
   }
 
@@ -65,5 +65,5 @@ struct GroundingScreen: View {
 }
 
 #Preview {
-  GroundingScreen(firebaseService: FirebaseAI.firebaseAI())
+  GroundingScreen(backendType: .googleAI)
 }

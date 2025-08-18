@@ -34,11 +34,23 @@ class MultimodalViewModel: ObservableObject {
   private var model: GenerativeModel
   private var chat: Chat
   private var chatTask: Task<Void, Never>?
-  private var sample: Sample?
   private let logger = Logger(subsystem: "com.example.firebaseai", category: "MultimodalViewModel")
 
-  init(firebaseService: FirebaseAI, sample: Sample? = nil) {
+  private var sample: Sample?
+  private var backendType: BackendOption
+  private var fileDataParts: [FileDataPart]?
+
+  init(backendType: BackendOption, sample: Sample? = nil) {
     self.sample = sample
+    self.backendType = backendType
+
+    let firebaseService: FirebaseAI
+    switch backendType {
+    case .googleAI:
+      firebaseService = FirebaseAI.firebaseAI(backend: .googleAI())
+    case .vertexAI:
+      firebaseService = FirebaseAI.firebaseAI(backend: .vertexAI())
+    }
 
     model = firebaseService.generativeModel(
       modelName: sample?.modelName ?? "gemini-2.5-flash",
@@ -55,16 +67,10 @@ class MultimodalViewModel: ObservableObject {
     initialPrompt = sample?.initialPrompt ?? ""
     title = sample?.title ?? ""
 
-    if let urlMetas = sample?.attachedURLs {
-      Task {
-        for urlMeta in urlMetas {
-          if let attachment = await MultimodalAttachment.fromURL(
-            urlMeta.url,
-            mimeType: urlMeta.mimeType
-          ) {
-            self.addAttachment(attachment)
-          }
-        }
+    fileDataParts = sample?.fileDataParts
+    if let fileDataParts = fileDataParts, !fileDataParts.isEmpty {
+      for fileDataPart in fileDataParts {
+        attachments.append(MultimodalAttachment(fileDataPart: fileDataPart))
       }
     }
   }
@@ -110,8 +116,12 @@ class MultimodalViewModel: ObservableObject {
         var parts: [any PartsRepresentable] = [text]
 
         for attachment in attachments {
-          if let inlineDataPart = attachment.toInlineDataPart() {
+          if backendType == .googleAI, let inlineDataPart = attachment.toInlineDataPart() {
             parts.append(inlineDataPart)
+          } else if backendType == .vertexAI, let fileDataParts = fileDataParts {
+            for fileDataPart in fileDataParts {
+              parts.append(fileDataPart)
+            }
           }
         }
 
@@ -155,8 +165,12 @@ class MultimodalViewModel: ObservableObject {
         var parts: [any PartsRepresentable] = [text]
 
         for attachment in attachments {
-          if let inlineDataPart = attachment.toInlineDataPart() {
+          if backendType == .googleAI, let inlineDataPart = attachment.toInlineDataPart() {
             parts.append(inlineDataPart)
+          } else if backendType == .vertexAI, let fileDataParts = fileDataParts {
+            for fileDataPart in fileDataParts { // using Cloud Storage for Vertex AI
+              parts.append(fileDataPart)
+            }
           }
         }
 
@@ -181,17 +195,10 @@ class MultimodalViewModel: ObservableObject {
   }
 
   func addAttachment(_ attachment: MultimodalAttachment) {
-    var newAttachment = attachment
-    newAttachment.loadingState = .loaded
-    attachments.append(newAttachment)
+    attachments.append(attachment)
   }
 
   func removeAttachment(_ attachment: MultimodalAttachment) {
     attachments.removeAll { $0.id == attachment.id }
-  }
-
-  func handleError(_ error: Error) {
-    self.error = error
-    logger.error("\(error.localizedDescription)")
   }
 }

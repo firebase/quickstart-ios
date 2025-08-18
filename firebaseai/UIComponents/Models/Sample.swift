@@ -15,15 +15,6 @@
 import Foundation
 import FirebaseAI
 
-public struct URLMetadata {
-  public let mimeType: String
-  public let url: URL
-  public init(mimeType: String, url: URL) {
-    self.mimeType = mimeType
-    self.url = url
-  }
-}
-
 public struct Sample: Identifiable {
   public let id = UUID()
   public let title: String
@@ -36,7 +27,7 @@ public struct Sample: Identifiable {
   public let systemInstruction: ModelContent?
   public let tools: [Tool]?
   public let generationConfig: GenerationConfig?
-  public let attachedURLs: [URLMetadata]?
+  public let fileDataParts: [FileDataPart]?
 
   public init(title: String,
               description: String,
@@ -48,7 +39,7 @@ public struct Sample: Identifiable {
               systemInstruction: ModelContent? = nil,
               tools: [Tool]? = nil,
               generationConfig: GenerationConfig? = nil,
-              attachedURLs: [URLMetadata]? = nil) {
+              fileDataParts: [FileDataPart]? = nil) {
     self.title = title
     self.description = description
     self.useCases = useCases
@@ -59,7 +50,7 @@ public struct Sample: Identifiable {
     self.systemInstruction = systemInstruction
     self.tools = tools
     self.generationConfig = generationConfig
-    self.attachedURLs = attachedURLs
+    self.fileDataParts = fileDataParts
   }
 }
 
@@ -112,12 +103,10 @@ extension Sample {
       initialPrompt: "Write a short, engaging blog post based on this picture." +
         " It should include a description of the meal in the" +
         " photo and talk about my journey meal prepping.",
-      attachedURLs: [
-        URLMetadata(
-          mimeType: "image/jpeg",
-          url: URL(
-            string: "https://storage.googleapis.com/cloud-samples-data/generative-ai/image/meal-prep.jpeg"
-          )!
+      fileDataParts: [
+        FileDataPart(
+          uri: "https://storage.googleapis.com/cloud-samples-data/generative-ai/image/meal-prep.jpeg",
+          mimeType: "image/jpeg"
         ),
       ]
     ),
@@ -149,12 +138,10 @@ extension Sample {
         " Try to use more popular and engaging terms," +
         " e.g. #Viral. Do not add content not related to" +
         " the video.\n Start the output with 'Tags:'",
-      attachedURLs: [
-        URLMetadata(
-          mimeType: "video/mp4",
-          url: URL(
-            string: "https://storage.googleapis.com/cloud-samples-data/generative-ai/video/google_home_celebrity_ad.mp4"
-          )!
+      fileDataParts: [
+        FileDataPart(
+          uri: "https://storage.googleapis.com/cloud-samples-data/generative-ai/video/google_home_celebrity_ad.mp4",
+          mimeType: "video/mp4"
         ),
       ]
     ),
@@ -196,12 +183,10 @@ extension Sample {
       useCases: [.audio],
       navRoute: "MultimodalScreen",
       initialPrompt: "Please translate the audio in Mandarin.",
-      attachedURLs: [
-        URLMetadata(
-          mimeType: "audio/mp3",
-          url: URL(
-            string: "https://storage.googleapis.com/cloud-samples-data/generative-ai/audio/How_to_create_a_My_Map_in_Google_Maps.mp3"
-          )!
+      fileDataParts: [
+        FileDataPart(
+          uri: "https://storage.googleapis.com/cloud-samples-data/generative-ai/audio/How_to_create_a_My_Map_in_Google_Maps.mp3",
+          mimeType: "audio/mp3"
         ),
       ]
     ),
@@ -209,23 +194,19 @@ extension Sample {
     Sample(
       title: "Document comparison",
       description: "Compare the contents of 2 documents." +
-        " Only supported by the Vertex AI Gemini API because the documents are stored in Cloud Storage",
+        " Supported by the Vertex AI Gemini API because the documents are stored in Cloud Storage",
       useCases: [.document],
       navRoute: "MultimodalScreen",
       initialPrompt: "The first document is from 2013, and the second document is" +
         " from 2023. How did the standard deduction evolve?",
-      attachedURLs: [
-        URLMetadata(
-          mimeType: "application/pdf",
-          url: URL(
-            string: "https://storage.googleapis.com/cloud-samples-data/generative-ai/pdf/form_1040_2013.pdf"
-          )!,
+      fileDataParts: [
+        FileDataPart(
+          uri: "https://storage.googleapis.com/cloud-samples-data/generative-ai/pdf/form_1040_2013.pdf",
+          mimeType: "application/pdf"
         ),
-        URLMetadata(
-          mimeType: "application/pdf",
-          url: URL(
-            string: "https://storage.googleapis.com/cloud-samples-data/generative-ai/pdf/form_1040_2023.pdf"
-          )!
+        FileDataPart(
+          uri: "https://storage.googleapis.com/cloud-samples-data/generative-ai/pdf/form_1040_2023.pdf",
+          mimeType: "application/pdf"
         ),
       ]
     ),

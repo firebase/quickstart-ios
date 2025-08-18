@@ -168,7 +168,7 @@ class MultimodalViewModel: ObservableObject {
           if backendType == .googleAI, let inlineDataPart = attachment.toInlineDataPart() {
             parts.append(inlineDataPart)
           } else if backendType == .vertexAI, let fileDataParts = fileDataParts {
-            for fileDataPart in fileDataParts { // using Cloud Storage for Vertex AI
+            for fileDataPart in fileDataParts {
               parts.append(fileDataPart)
             }
           }

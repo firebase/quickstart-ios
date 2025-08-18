@@ -131,6 +131,11 @@ function xcb() {
     xcodebuild "$@" | xcpretty
 }
 
+# Point SPM CI to the tip of `main` of
+# https://github.com/google/GoogleAppMeasurement so that the release process
+# can defer publishing the `GoogleAppMeasurement` tag until after testing.
+export FIREBASECI_USE_LATEST_GOOGLEAPPMEASUREMENT=1
+
 # Run xcodebuild
 sudo xcode-select -s "/Applications/Xcode_${xcode_version}.app/Contents/Developer"
 xcb "${flags[@]}"

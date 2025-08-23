@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>REDIRECT</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      --bg: #f4f7fb;
+      --card: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --brand: #4CAF50;
+      --brand-2: #16a34a;
+      --border: #e5e7eb;
+    }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      overflow-x: hidden;
+    }
+    .container {
+      max-width: 960px;
+      margin: 40px auto;
+      padding: 0 16px;
+    }
+    .section {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px;
+      margin: 18px 0;
+      box-shadow: 0 8px 22px rgba(0,0,0,.05);
+      animation: fadeUp 0.8s ease forwards;
+    }
+    .section h3 {
+      margin: 0 0 12px 0;
+      padding-bottom: 8px;
+      border-bottom: 2px dashed #eef2f7;
+      font-size: 1.1rem;
+    }
+    a { text-decoration: none; color: inherit; }
+    a li {
+      list-style: none;
+      background: #f5f5f5;
+      margin: 8px 0;
+      padding: 10px;
+      border-radius: 8px;
+      transition: 0.3s;
+      font-weight: 500;
+    }
+    a li:hover {
+      background: var(--brand);
+      color: white;
+      transform: translateX(5px);
+    }
+    @keyframes fadeUp { 
+      from{opacity:0; transform:translateY(20px);} 
+      to{opacity:1; transform:translateY(0);} 
+    }
+  </style>
+</head>
+<body class="min-h-screen flex items-center justify-center bg-gradient-to-r from-indigo-500 to-purple-600">
+
+  <!-- Admin login button top right -->
+  <div class="absolute top-4 right-6">
+    <button onclick="showPage('admin')" class="px-4 py-2 bg-red-600 text-white rounded-xl hover:bg-red-700">Admin Login</button>
+  </div>
+
+  <!-- Home Page -->
+  <div id="home" class="bg-white rounded-2xl shadow-xl p-8 w-96 text-center">
+    <h1 class="text-2xl font-bold mb-6">Welcome</h1>
+    <button onclick="showPage('signup')" class="w-full py-2 mb-3 bg-indigo-600 text-white rounded-xl hover:bg-indigo-700">Sign Up</button>
+    <button onclick="showPage('login')" class="w-full py-2 bg-purple-600 text-white rounded-xl hover:bg-purple-700">Login</button>
+  </div>
+
+  <!-- Sign Up -->
+  <div id="signup" class="hidden bg-white rounded-2xl shadow-xl p-8 w-96">
+    <h2 class="text-xl font-bold mb-4">Sign Up</h2>
+    <input id="su_email" placeholder="Email" class="w-full mb-1 p-2 border rounded" oninput="validateEmail(this,'err_su_email')"/>
+    <small id="err_su_email" class="text-red-600 text-xs hidden">Email must end with @gmail.com</small>
+
+    <input id="su_password" type="password" placeholder="Password (min 8 characters)" class="w-full mb-1 p-2 border rounded" oninput="validatePassword(this,'err_su_pass')"/>
+    <small id="err_su_pass" class="text-red-600 text-xs hidden">Password must be at least 8 characters</small>
+
+    <div class="flex items-center mb-3 mt-2">
+      <span id="captchaSU" class="font-bold text-lg mr-2"></span>
+      <input id="su_captcha_input" placeholder="Enter captcha" class="flex-1 p-2 border rounded" />
+    </div>
+
+    <button onclick="signUp()" class="w-full py-2 bg-indigo-600 text-white rounded-xl hover:bg-indigo-700">Register</button>
+    <p onclick="backHome()" class="mt-4 text-center text-blue-600 cursor-pointer">⬅ Back</p>
+  </div>
+
+  <!-- Login -->
+  <div id="login" class="hidden bg-white rounded-2xl shadow-xl p-8 w-96">
+    <h2 class="text-xl font-bold mb-4">Login</h2>
+    <input id="li_email" placeholder="Email" class="w-full mb-1 p-2 border rounded" oninput="validateEmail(this,'err_li_email')"/>
+    <small id="err_li_email" class="text-red-600 text-xs hidden">Email must end with @gmail.com</small>
+
+    <input id="li_password" type="password" placeholder="Password" class="w-full mb-1 p-2 border rounded"/>
+
+    <div class="flex items-center mb-3 mt-2">
+      <span id="captchaLI" class="font-bold text-lg mr-2"></span>
+      <input id="li_captcha_input" placeholder="Enter captcha" class="flex-1 p-2 border rounded" />
+    </div>
+
+    <button onclick="login()" class="w-full py-2 bg-purple-600 text-white rounded-xl hover:bg-purple-700">Login</button>
+    <p onclick="backHome()" class="mt-4 text-center text-blue-600 cursor-pointer">⬅ Back</p>
+  </div>
+
+  <!-- Admin Login -->
+  <div id="admin" class="hidden bg-white rounded-2xl shadow-xl p-8 w-96">
+    <h2 class="text-xl font-bold mb-4">Admin Login</h2>
+    <input id="ad_email" placeholder="Admin Email" class="w-full mb-1 p-2 border rounded" />
+    <input id="ad_password" type="password" placeholder="Password" class="w-full mb-1 p-2 border rounded" />
+    <button onclick="adminLogin()" class="w-full py-2 bg-red-600 text-white rounded-xl hover:bg-red-700">Login</button>
+    <p onclick="backHome()" class="mt-4 text-center text-blue-600 cursor-pointer">⬅ Back</p>
+  </div>
+
+  <!-- Admin Panel -->
+  <div id="adminPanel" class="hidden bg-white rounded-2xl shadow-xl p-8 w-[50rem] max-h-[30rem] overflow-y-auto">
+    <h2 class="text-xl font-bold mb-4">Registered Users</h2>
+    <ul id="userList" class="list-disc pl-5 space-y-2"></ul>
+    <p onclick="backHome()" class="mt-4 text-center text-blue-600 cursor-pointer">⬅ Logout</p>
+  </div>
+
+  <!-- Services Page (after login) -->
+  <div id="services" class="hidden container">
+    <h1 class="text-center text-2xl mb-6 font-bold"> APPLY FOR NEW SERVISE AND DOWLOAD </h1>
+
+    <div class="section"><h3>AADHAR</h3>
+      <a href="https://myaadhaar.uidai.gov.in/en_IN"><li>AADHAR MAIN WEB</li></a>
+      <a href="https://myaadhaar.uidai.gov.in/genricDownloadAadhaar/en"><li>AADHAR DOWNLOAD</li></a>
+      <a href="https://myaadhaar.uidai.gov.in/retrieve-eid-uid/en"><li>FIND AADHAR CARD</li></a>
+      <a href="https://abha.abdm.gov.in/abha/v3/register/aadhaar"><li>FIND MOBILE NUMBER</li></a>
+    </div>
+
+    <div class="section"><h3>PARIWAR PEHCHAN PATRA</h3>
+      <a href="https://ppp-office.haryana.gov.in/FamilyDirect?var=CitizenLogin"><li>DOWNLOAD Family ID</li></a>
+      <a href="https://ppp-office.haryana.gov.in/ExclusionGrievance"><li>Family ID Exclusion Grievance</li></a>
+    </div>
+
+    <div class="section"><h3>RATION CARD</h3>
+      <a href="https://epds.haryanafood.gov.in/search-rc"><li>DOWNLOAD RATION CARD</li></a>
+    </div>
+
+    <div class="section"><h3>SARAL HARYANA</h3>
+      <a href="https://saralharyana.gov.in/"><li>HOME PAGE SARAL</li></a>
+      <a href="https://edisha.gov.in/eForms/Status"><li>TRACK APPLICATION</li></a>
+    </div>
+
+    <div class="section"><h3>DHBVN BILL DOWNLOAD</h3>
+      <a href="https://kapilsh.epizy.com/ViewBillRapdrp.php?i=3"><li>DHBVN BILL DOWNLOAD</li></a>
+    </div>
+
+    <div class="section"><h3> VOTER ID </h3>
+      <a href="https://voters.eci.gov.in/"><li>VOTER HOME PAGE</li></a>
+      <a href="https://voters.eci.gov.in/login"><li>VOTER LOGIN </LI></a>
+    </div>
+
+
+    <p onclick="backHome()" class="mt-6 text-center text-blue-600 cursor-pointer">⬅ Logout</p>
+  </div>
+
+<script>
+let users = JSON.parse(localStorage.getItem('users')) || [];
+let currentCaptcha="";
+
+function showPage(page){
+  document.querySelectorAll("#home,#signup,#login,#admin,#adminPanel,#services").forEach(el=>el.classList.add("hidden"));
+  document.getElementById(page).classList.remove("hidden");
+  if(page==="signup") generateCaptcha("SU");
+  if(page==="login") generateCaptcha("LI");
+}
+
+function backHome(){
+  document.querySelectorAll("#signup,#login,#admin,#adminPanel,#services").forEach(el=>el.classList.add("hidden"));
+  document.getElementById("home").classList.remove("hidden");
+}
+
+function validateEmail(input,errId){
+  let err=document.getElementById(errId);
+  if(input.value && !input.value.endsWith("@gmail.com")){
+    err.classList.remove("hidden");
+  } else {
+    err.classList.add("hidden");
+  }
+}
+
+function validatePassword(input,errId){
+  let err=document.getElementById(errId);
+  if(input.value && input.value.length<8){
+    err.classList.remove("hidden");
+  } else {
+    err.classList.add("hidden");
+  }
+}
+
+function generateCaptcha(type){
+  let a=Math.floor(Math.random()*9)+1;
+  let b=Math.floor(Math.random()*9)+1;
+  currentCaptcha=(a*b).toString();
+  document.getElementById("captcha"+type).textContent=`${a} × ${b} = ?`;
+}
+
+function signUp(){
+  let e=document.getElementById('su_email').value.trim();
+  let p=document.getElementById('su_password').value.trim();
+  let c=document.getElementById('su_captcha_input').value.trim();
+  if(!e.endsWith("@gmail.com")) return alert("Email must be Gmail");
+  if(p.length<8) return alert("Password min 8 chars");
+  if(c!==currentCaptcha) return alert("Captcha wrong");
+  if(users.find(u=>u.email===e)) return alert("Already registered");
+  users.push({email:e,password:p,approved:false,lastAccess:null});
+  localStorage.setItem("users",JSON.stringify(users));
+  alert("Registered successfully! Wait for Admin approval.");
+  document.getElementById('su_email').value="";
+  document.getElementById('su_password').value="";
+  document.getElementById('su_captcha_input').value="";
+  backHome();
+}
+
+function login(){
+  let e=document.getElementById('li_email').value.trim();
+  let p=document.getElementById('li_password').value.trim();
+  let c=document.getElementById('li_captcha_input').value.trim();
+  if(!e.endsWith("@gmail.com")) return alert("Email must be Gmail");
+  if(c!==currentCaptcha) return alert("Captcha wrong");
+  let u=users.find(u=>u.email===e && u.password===p);
+  if(!u) return alert("Invalid credentials");
+  if(!u.approved) return alert("Your account is pending for Admin approval.");
+  u.lastAccess = new Date().toLocaleString();
+  localStorage.setItem("users",JSON.stringify(users));
+  alert("Login success! ✅");
+  document.getElementById('li_email').value="";
+  document.getElementById('li_password').value="";
+  document.getElementById('li_captcha_input').value="";
+  showPage("services");
+}
+
+function adminLogin(){
+  let e=document.getElementById('ad_email').value.trim();
+  let p=document.getElementById('ad_password').value.trim();
+  if(e!=="admin" || p!=="admin123") return alert("Wrong admin credentials");
+  showPage("adminPanel");
+  renderUsers();
+}
+
+function renderUsers(){
+  let list=document.getElementById("userList");
+  list.innerHTML="";
+  users.forEach((u,i)=>{
+    let li=document.createElement("li");
+    li.innerHTML = `
+      <span class="font-semibold">${u.email}</span> 
+      | Password: ${u.password} 
+      | Status: ${u.approved ? "✅ Approved" : "⏳ Pending"} 
+      | Last Access: ${u.lastAccess ? u.lastAccess : "Never"}
+    `;
+    if(!u.approved){
+      let btn=document.createElement("button");
+      btn.textContent="Approve";
+      btn.className="ml-2 px-2 py-1 bg-green-600 text-white rounded";
+      btn.onclick=function(){
+        users[i].approved=true;
+        localStorage.setItem("users",JSON.stringify(users));
+        renderUsers();
+      };
+      li.appendChild(btn);
+    }
+    let delBtn=document.createElement("button");
+    delBtn.textContent="Delete";
+    delBtn.className="ml-2 px-2 py-1 bg-red-600 text-white rounded";
+    delBtn.onclick=function(){
+      users.splice(i,1);
+      localStorage.setItem("users",JSON.stringify(users));
+      renderUsers();
+    };
+    li.appendChild(delBtn);
+    list.appendChild(li);
+  });
+}
+</script>
+
+</body>
+</html>

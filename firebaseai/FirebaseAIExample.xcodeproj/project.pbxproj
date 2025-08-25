@@ -32,6 +32,10 @@
 		DE26D95F2DBB3E9F007E6668 /* FirebaseAI in Frameworks */ = {isa = PBXBuildFile; productRef = DE26D95E2DBB3E9F007E6668 /* FirebaseAI */; };
 		DEFECAA92D7B4CCD00EF9621 /* ImagenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEFECAA72D7B4CCD00EF9621 /* ImagenViewModel.swift */; };
 		DEFECAAA2D7B4CCD00EF9621 /* ImagenScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEFECAA62D7B4CCD00EF9621 /* ImagenScreen.swift */; };
+		DND00006 /* DnDCharacterCreatorScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = DND00004 /* DnDCharacterCreatorScreen.swift */; };
+		DND00007 /* DnDCharacterCreatorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DND00005 /* DnDCharacterCreatorViewModel.swift */; };
+		DND00008 /* Snapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = DND00009 /* Snapshot.swift */; };
+		ED7C90E52E5CB8550050825A /* DnDCharacter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7C90E32E5CB8550050825A /* DnDCharacter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -65,6 +69,11 @@
 		AEE793DD2E256D3900708F02 /* GroundedResponseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroundedResponseView.swift; sourceTree = "<group>"; };
 		DEFECAA62D7B4CCD00EF9621 /* ImagenScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagenScreen.swift; sourceTree = "<group>"; };
 		DEFECAA72D7B4CCD00EF9621 /* ImagenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagenViewModel.swift; sourceTree = "<group>"; };
+		DND00004 /* DnDCharacterCreatorScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DnDCharacterCreatorScreen.swift; sourceTree = "<group>"; };
+		DND00005 /* DnDCharacterCreatorViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DnDCharacterCreatorViewModel.swift; sourceTree = "<group>"; };
+		DND00009 /* Snapshot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Snapshot.swift; sourceTree = "<group>"; };
+		DND00010 /* DnDCharacter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DnDCharacter.swift; sourceTree = "<group>"; };
+		ED7C90E32E5CB8550050825A /* DnDCharacter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DnDCharacter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +157,7 @@
 		8848C8262B0D04BC007B434F = {
 			isa = PBXGroup;
 			children = (
+				DND00001 /* DnDCharacterCreatorExample */,
 				DEFECAA82D7B4CCD00EF9621 /* ImagenScreen */,
 				88B8A9352B0FCBA700424728 /* GenerativeAIUIComponents */,
 				869200B22B879C4F00482873 /* GoogleService-Info.plist */,
@@ -158,6 +168,7 @@
 				86C1F4822BC726150026816F /* FunctionCallingExample */,
 				8848C8302B0D04BC007B434F /* Products */,
 				88209C222B0FBE1700F64795 /* Frameworks */,
+				ED7C90E22E5CB8250050825A /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -301,6 +312,49 @@
 			path = ImagenScreen;
 			sourceTree = "<group>";
 		};
+		DND00001 /* DnDCharacterCreatorExample */ = {
+			isa = PBXGroup;
+			children = (
+				ED7C90E42E5CB8550050825A /* Models */,
+				DND00009 /* Snapshot.swift */,
+				DND00003 /* ViewModels */,
+				DND00002 /* Screens */,
+			);
+			path = DnDCharacterCreatorExample;
+			sourceTree = "<group>";
+		};
+		DND00002 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				DND00004 /* DnDCharacterCreatorScreen.swift */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		DND00003 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				DND00005 /* DnDCharacterCreatorViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		ED7C90E22E5CB8250050825A /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				DND00010 /* DnDCharacter.swift */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
+		ED7C90E42E5CB8550050825A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				ED7C90E32E5CB8550050825A /* DnDCharacter.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -382,10 +436,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DND00008 /* Snapshot.swift in Sources */,
+				DND00006 /* DnDCharacterCreatorScreen.swift in Sources */,
+				DND00007 /* DnDCharacterCreatorViewModel.swift in Sources */,
 				86C1F4832BC726150026816F /* FunctionCallingScreen.swift in Sources */,
 				886F95DF2B17D5010036F07A /* BouncingDots.swift in Sources */,
 				86C1F4842BC726150026816F /* FunctionCallingViewModel.swift in Sources */,
 				886F95DE2B17D5010036F07A /* ChatMessage.swift in Sources */,
+				ED7C90E52E5CB8550050825A /* DnDCharacter.swift in Sources */,
 				88263BF12B239C11008AB09B /* ErrorDetailsView.swift in Sources */,
 				8848C8352B0D04BC007B434F /* ContentView.swift in Sources */,
 				886F95D52B17BA010036F07A /* GenerateContentScreen.swift in Sources */,

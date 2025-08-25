@@ -80,6 +80,11 @@ struct ContentView: View {
           } label: {
             Label("Imagen", systemImage: "camera.circle")
           }
+          NavigationLink {
+            DnDCharacterCreatorScreen(firebaseService: firebaseService)
+          } label: {
+            Label("DnD Character Creator", systemImage: "person.crop.circle.badge.questionmark")
+          }
         }
       }
       .navigationTitle("Generative AI Examples")

@@ -26,11 +26,14 @@ public struct ChatMessage: Message {
   public var groundingMetadata: GroundingMetadata?
   public var attachments: [MultimodalAttachment] = []
   public var image: UIImage?
+  // required by the Message protocol, but not used in this app
+  public var imageURL: String?
 
-  public init(content: String? = nil, participant: Participant,
+  public init(content: String? = nil, imageURL: String? = nil, participant: Participant,
               error: (any Error)? = nil, pending: Bool = false,
               attachments: [MultimodalAttachment] = [], image: UIImage? = nil) {
     self.content = content
+    self.imageURL = imageURL
     self.participant = participant
     self.error = error
     self.pending = pending
@@ -39,8 +42,9 @@ public struct ChatMessage: Message {
   }
 
   // Protocol-required initializer
-  public init(content: String?, participant: Participant) {
+  public init(content: String?, imageURL: String? = nil, participant: Participant) {
     self.content = content
+    self.imageURL = imageURL
     self.participant = participant
     error = nil
   }

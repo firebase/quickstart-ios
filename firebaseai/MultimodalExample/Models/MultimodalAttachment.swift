@@ -17,12 +17,33 @@ import SwiftUI
 import PhotosUI
 import FirebaseAI
 
+public enum MultimodalAttachmentError: LocalizedError {
+  case unsupportedFileType(extension: String)
+  case noDataAvailable
+  case loadingFailed(Error)
+  case mimeTypeMismatch(expected: String, provided: String, extension: String)
+
+  public var errorDescription: String? {
+    switch self {
+    case let .unsupportedFileType(ext):
+      return "Unsupported file format: .\(ext). Please select a supported format file."
+    case .noDataAvailable:
+      return "File data is not available"
+    case let .loadingFailed(error):
+      return "File loading failed: \(error.localizedDescription)"
+    case let .mimeTypeMismatch(expected, provided, ext):
+      return "MIME type mismatch for .\(ext) file: expected '\(expected)', got '\(provided)'"
+    }
+  }
+}
+
 // MultimodalAttachment is a struct used for transporting data between ViewModels and AttachmentPreviewCard
 public struct MultimodalAttachment: Identifiable, Equatable {
   public let id = UUID()
   public let mimeType: String
   public let data: Data?
   public let url: URL?
+  public var isCloudStorage: Bool = false
 
   public static func == (lhs: MultimodalAttachment, rhs: MultimodalAttachment) -> Bool {
     return lhs.id == rhs.id
@@ -38,28 +59,88 @@ public struct MultimodalAttachment: Identifiable, Equatable {
     mimeType = fileDataPart.mimeType
     data = nil
     url = URL(string: fileDataPart.uri)
+    isCloudStorage = true
   }
+}
 
-  public static func fromPhotosPickerItem(_ item: PhotosPickerItem) async -> MultimodalAttachment? {
-    do {
-      guard let data = try await item.loadTransferable(type: Data.self) else {
-        print("Failed to create attachment from PhotosPickerItem: no data returned")
-        return nil
-      }
+// validate file type & mime type
+extension MultimodalAttachment {
+  public static let supportedFileExtensions: Set<String> = [
+    // Documents / text
+    "pdf", "txt", "text",
+    // Images
+    "jpg", "jpeg", "png", "webp",
+    // Video
+    "flv", "mov", "qt", "mpeg", "mpg", "ps", "mp4", "webm", "wmv", "3gp", "3gpp",
+    // Audio
+    "aac", "flac", "mp3", "m4a", "mpga", "mp4a", "opus", "pcm", "raw", "wav", "weba",
+  ]
 
-      let mimeType = UIImage(data: data) != nil ? "image/jpg" : "video/mp4"
+  public static func validateFileType(url: URL) throws {
+    let fileExtension = url.pathExtension.lowercased()
+    guard !fileExtension.isEmpty else {
+      throw MultimodalAttachmentError.unsupportedFileType(extension: "No extension")
+    }
 
-      return MultimodalAttachment(
-        mimeType: mimeType,
-        data: data
-      )
-    } catch {
-      print("Failed to create attachment from PhotosPickerItem: \(error)")
-      return nil
+    guard supportedFileExtensions.contains(fileExtension) else {
+      throw MultimodalAttachmentError.unsupportedFileType(extension: fileExtension)
     }
   }
 
-  public static func fromFilePickerItem(from url: URL) async -> MultimodalAttachment? {
+  public static func validateMimeTypeMatch(url: URL, mimeType: String) throws {
+    let expectedMimeType = getMimeType(for: url)
+
+    guard mimeType == expectedMimeType else {
+      throw MultimodalAttachmentError.mimeTypeMismatch(
+        expected: expectedMimeType,
+        provided: mimeType,
+        extension: url.pathExtension
+      )
+    }
+  }
+
+  public static func validatePhotoType(_ item: PhotosPickerItem) throws -> String {
+    guard let fileExtension = item.supportedContentTypes.first?.preferredFilenameExtension else {
+      throw MultimodalAttachmentError.unsupportedFileType(extension: "No extension")
+    }
+
+    guard supportedFileExtensions.contains(fileExtension) else {
+      throw MultimodalAttachmentError.unsupportedFileType(extension: fileExtension)
+    }
+
+    guard let fileMimeType = item.supportedContentTypes.first?.preferredMIMEType else {
+      throw MultimodalAttachmentError.unsupportedFileType(extension: "No MIME type")
+    }
+
+    return fileMimeType
+  }
+}
+
+// load data from picker item or url
+extension MultimodalAttachment {
+  public static func fromPhotosPickerItem(_ item: PhotosPickerItem) async throws
+    -> MultimodalAttachment {
+    let fileMimeType = try validatePhotoType(item)
+
+    do {
+      guard let data = try await item.loadTransferable(type: Data.self) else {
+        throw MultimodalAttachmentError.noDataAvailable
+      }
+
+      return MultimodalAttachment(
+        mimeType: fileMimeType,
+        data: data
+      )
+    } catch let error as MultimodalAttachmentError {
+      throw error
+    } catch {
+      throw MultimodalAttachmentError.loadingFailed(error)
+    }
+  }
+
+  public static func fromFilePickerItem(from url: URL) async throws -> MultimodalAttachment {
+    try validateFileType(url: url)
+
     do {
       let data = try await Task.detached(priority: .utility) {
         try Data(contentsOf: url)
@@ -73,12 +154,14 @@ public struct MultimodalAttachment: Identifiable, Equatable {
         url: url
       )
     } catch {
-      print("Failed to create attachment from file at \(url): \(error)")
-      return nil
+      throw MultimodalAttachmentError.loadingFailed(error)
     }
   }
 
-  public static func fromURL(_ url: URL, mimeType: String) async -> MultimodalAttachment? {
+  public static func fromURL(_ url: URL, mimeType: String) async throws -> MultimodalAttachment {
+    try validateFileType(url: url)
+    try validateMimeTypeMatch(url: url, mimeType: mimeType)
+
     do {
       let data = try await Task.detached(priority: .utility) {
         try Data(contentsOf: url)
@@ -90,14 +173,27 @@ public struct MultimodalAttachment: Identifiable, Equatable {
         url: url
       )
     } catch {
-      print("Failed to create attachment from url \(url): \(error)")
-      return nil
+      throw MultimodalAttachmentError.loadingFailed(error)
     }
   }
 
-  public func toInlineDataPart() -> InlineDataPart? {
-    guard let data = data, !data.isEmpty else { return nil }
-    return InlineDataPart(data: data, mimeType: mimeType)
+  public func toInlineDataPart() async -> InlineDataPart? {
+    if let data = data, !data.isEmpty {
+      return InlineDataPart(data: data, mimeType: mimeType)
+    }
+
+    // If the data is not available, try to read it from the url.
+    guard let url = url else { return nil }
+    do {
+      let data = try await Task.detached(priority: .utility) {
+        try Data(contentsOf: url)
+      }.value
+
+      guard !data.isEmpty else { return nil }
+      return InlineDataPart(data: data, mimeType: mimeType)
+    } catch {
+      return nil
+    }
   }
 
   private static func getMimeType(for url: URL) -> String {

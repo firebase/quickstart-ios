@@ -46,13 +46,9 @@ class ChatViewModel: ObservableObject {
     self.sample = sample
     self.backendType = backendType
 
-    let firebaseService: FirebaseAI
-    switch backendType {
-    case .googleAI:
-      firebaseService = FirebaseAI.firebaseAI(backend: .googleAI())
-    case .vertexAI:
-      firebaseService = FirebaseAI.firebaseAI(backend: .vertexAI())
-    }
+    let firebaseService = backendType == .googleAI
+      ? FirebaseAI.firebaseAI(backend: .googleAI())
+      : FirebaseAI.firebaseAI(backend: .vertexAI())
 
     model = firebaseService.generativeModel(
       modelName: sample?.modelName ?? "gemini-2.5-flash",

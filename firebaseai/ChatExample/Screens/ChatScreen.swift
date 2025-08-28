@@ -35,9 +35,7 @@ struct ChatScreen: View {
       }
       .disableAttachments()
       .onSendMessage { message in
-        Task {
-          await viewModel.sendMessage(message.content ?? "", streaming: true)
-        }
+        await viewModel.sendMessage(message.content ?? "", streaming: true)
       }
       .onError { error in
         viewModel.presentErrorDetails = true

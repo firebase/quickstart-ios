@@ -1,4 +1,4 @@
-// Copyright 2023 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -61,9 +61,7 @@ struct MultimodalScreen: View {
       }
       .attachmentPreview { attachmentPreviewScrollView }
       .onSendMessage { message in
-        Task {
-          await viewModel.sendMessage(message.content ?? "", streaming: true)
-        }
+        await viewModel.sendMessage(message.content ?? "", streaming: true)
       }
       .onError { error in
         viewModel.presentErrorDetails = true
@@ -131,9 +129,15 @@ struct MultimodalScreen: View {
   private func handlePhotoSelection(_ items: [PhotosPickerItem]) {
     Task {
       for item in items {
-        if let attachment = await MultimodalAttachment.fromPhotosPickerItem(item) {
+        do {
+          let attachment = try await MultimodalAttachment.fromPhotosPickerItem(item)
           await MainActor.run {
             viewModel.addAttachment(attachment)
+          }
+        } catch {
+          await MainActor.run {
+            viewModel.error = error
+            viewModel.presentErrorDetails = true
           }
         }
       }
@@ -148,15 +152,22 @@ struct MultimodalScreen: View {
     case let .success(urls):
       Task {
         for url in urls {
-          if let attachment = await MultimodalAttachment.fromFilePickerItem(from: url) {
+          do {
+            let attachment = try await MultimodalAttachment.fromFilePickerItem(from: url)
             await MainActor.run {
               viewModel.addAttachment(attachment)
+            }
+          } catch {
+            await MainActor.run {
+              viewModel.error = error
+              viewModel.presentErrorDetails = true
             }
           }
         }
       }
     case let .failure(error):
       viewModel.error = error
+      viewModel.presentErrorDetails = true
     }
   }
 
@@ -165,11 +176,17 @@ struct MultimodalScreen: View {
       return
     }
 
-    let trimmedMime = linkMimeType.trimmingCharacters(in: .whitespacesAndNewlines)
+    let trimmedMime = linkMimeType.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
     Task {
-      if let attachment = await MultimodalAttachment.fromURL(url, mimeType: trimmedMime) {
+      do {
+        let attachment = try await MultimodalAttachment.fromURL(url, mimeType: trimmedMime)
         await MainActor.run {
           viewModel.addAttachment(attachment)
+        }
+      } catch {
+        await MainActor.run {
+          viewModel.error = error
+          viewModel.presentErrorDetails = true
         }
       }
       await MainActor.run {

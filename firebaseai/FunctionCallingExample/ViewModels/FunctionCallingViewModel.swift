@@ -46,13 +46,9 @@ class FunctionCallingViewModel: ObservableObject {
     self.sample = sample
     self.backendType = backendType
 
-    let firebaseService: FirebaseAI
-    switch backendType {
-    case .googleAI:
-      firebaseService = FirebaseAI.firebaseAI(backend: .googleAI())
-    case .vertexAI:
-      firebaseService = FirebaseAI.firebaseAI(backend: .vertexAI())
-    }
+    let firebaseService = backendType == .googleAI
+      ? FirebaseAI.firebaseAI(backend: .googleAI())
+      : FirebaseAI.firebaseAI(backend: .vertexAI())
 
     // create a generative model with sample data
     model = firebaseService.generativeModel(
@@ -109,18 +105,23 @@ class FunctionCallingViewModel: ObservableObject {
       do {
         let responseStream = try chat.sendMessageStream(text)
 
+        var functionCalls = [FunctionCallPart]()
+
         for try await chunk in responseStream {
-          if !chunk.functionCalls.isEmpty {
-            try await handleFunctionCallsStreaming(chunk)
-          } else {
-            if let text = chunk.text {
-              messages[messages.count - 1]
-                .content = (messages[messages.count - 1].content ?? "") + text
-              messages[messages.count - 1].pending = false
-            }
+          if let functionCallPart = chunk.functionCalls.first {
+            functionCalls.append(functionCallPart)
+          } else if let text = chunk.text {
+            messages[messages.count - 1]
+              .content = (messages[messages.count - 1].content ?? "") + text
+            messages[messages.count - 1].pending = false
           }
         }
 
+        // On functionCalls, never keep reading the old stream or call the second API inside the first for-loop.
+        // Start a NEW stream only after the function response turn is sent.
+        if !functionCalls.isEmpty {
+          try await handleFunctionCallsStreaming(functionCalls)
+        }
       } catch {
         self.error = error
         print(error.localizedDescription)
@@ -174,10 +175,10 @@ class FunctionCallingViewModel: ObservableObject {
     }
   }
 
-  private func handleFunctionCallsStreaming(_ response: GenerateContentResponse) async throws {
+  private func handleFunctionCallsStreaming(_ functionCalls: [FunctionCallPart]) async throws {
     var functionResponses = [FunctionResponsePart]()
 
-    for functionCall in response.functionCalls {
+    for functionCall in functionCalls {
       switch functionCall.name {
       case "fetchWeather":
         guard case let .string(city) = functionCall.args["city"],

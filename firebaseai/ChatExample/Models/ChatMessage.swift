@@ -62,7 +62,8 @@ extension ChatMessage {
     lhs.id == rhs.id &&
       lhs.content == rhs.content &&
       lhs.participant == rhs.participant &&
-      lhs.image == rhs.image
+      lhs.image == rhs.image &&
+      lhs.attachments == rhs.attachments
     // intentionally ignore `error`
   }
 
@@ -71,6 +72,7 @@ extension ChatMessage {
     hasher.combine(content)
     hasher.combine(participant)
     hasher.combine(image)
+    hasher.combine(attachments)
     // intentionally ignore `error`
   }
 }

@@ -108,9 +108,10 @@ class FunctionCallingViewModel: ObservableObject {
         var functionCalls = [FunctionCallPart]()
 
         for try await chunk in responseStream {
-          if let functionCallPart = chunk.functionCalls.first {
-            functionCalls.append(functionCallPart)
-          } else if let text = chunk.text {
+          if !chunk.functionCalls.isEmpty {
+            functionCalls.append(contentsOf: chunk.functionCalls)
+          }
+          if let text = chunk.text {
             messages[messages.count - 1]
               .content = (messages[messages.count - 1].content ?? "") + text
             messages[messages.count - 1].pending = false

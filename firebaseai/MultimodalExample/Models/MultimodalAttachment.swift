@@ -38,7 +38,7 @@ public enum MultimodalAttachmentError: LocalizedError {
 }
 
 // MultimodalAttachment is a struct used for transporting data between ViewModels and AttachmentPreviewCard
-public struct MultimodalAttachment: Identifiable, Equatable {
+public struct MultimodalAttachment: Identifiable, Equatable, Hashable {
   public let id = UUID()
   public let mimeType: String
   public let data: Data?
@@ -47,6 +47,10 @@ public struct MultimodalAttachment: Identifiable, Equatable {
 
   public static func == (lhs: MultimodalAttachment, rhs: MultimodalAttachment) -> Bool {
     return lhs.id == rhs.id
+  }
+
+  public func hash(into hasher: inout Hasher) {
+    hasher.combine(id)
   }
 
   public init(mimeType: String, data: Data? = nil, url: URL? = nil) {

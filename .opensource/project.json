@@ -14,13 +14,11 @@
     // Other markdown pages that should be rendered nicely
     "pages" : [
       "abtesting/README.md",
-      "admob/README.md",
       "analytics/README.md",
       "authentication/README.md",
       "config/README.md",
       "crashlytics/README.md",
       "database/README.md",
-      "dynamiclinks/README.md",
       "firestore/README.md",
       "messaging/README.md",
       "performance/README.md",

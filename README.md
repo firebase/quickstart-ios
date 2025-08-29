@@ -37,15 +37,15 @@ mint bootstrap
 ```
 
 - [A/B Testing](abtesting/README.md) ![build](https://github.com/firebase/quickstart-ios/actions/workflows/abtesting.yml/badge.svg)
-- [Admob](admob/README.md) ![build](https://github.com/firebase/quickstart-ios/actions/workflows/admob.yml/badge.svg)
 - [Analytics](analytics/README.md) ![build](https://github.com/firebase/quickstart-ios/actions/workflows/analytics.yml/badge.svg)
 - [Authentication](authentication/README.md) ![build](https://github.com/firebase/quickstart-ios/actions/workflows/authentication.yml/badge.svg)
 - [Remote Config](config/README.md) ![build](https://github.com/firebase/quickstart-ios/actions/workflows/config.yml/badge.svg)
 - [Crashlytics](crashlytics/README.md) ![build](https://github.com/firebase/quickstart-ios/actions/workflows/crashlytics.yml/badge.svg)
 - [Database](database/README.md) ![build](https://github.com/firebase/quickstart-ios/actions/workflows/database.yml/badge.svg)
+- [Firebase AI](firebaseai/README.md) ![build](https://github.com/firebase/quickstart-ios/actions/workflows/firebaseai.yml/badge.svg)
+- [Firebase Data Connect](https://github.com/firebase/data-connect-ios-sdk/blob/main/Examples/FriendlyFlix/README.md)
 - [Firestore](firestore/README.md) ![build](https://github.com/firebase/quickstart-ios/actions/workflows/firestore.yml/badge.svg)
 - [Functions](functions/README.md) ![build](https://github.com/firebase/quickstart-ios/actions/workflows/functions.yml/badge.svg)
-- [Dynamic Links](dynamiclinks/README.md) ![build](https://github.com/firebase/quickstart-ios/actions/workflows/dynamiclinks.yml/badge.svg)
 - [Cloud Messaging](messaging/README.md) ![build](https://github.com/firebase/quickstart-ios/actions/workflows/messaging.yml/badge.svg)
 - [Performance](performance/README.md) ![build](https://github.com/firebase/quickstart-ios/actions/workflows/performance.yml/badge.svg)
 - [Storage](storage/README.md) ![build](https://github.com/firebase/quickstart-ios/actions/workflows/storage.yml/badge.svg)

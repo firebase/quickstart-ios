@@ -18,25 +18,20 @@ import FirebaseAI
 enum BackendOption: String, CaseIterable, Identifiable {
   case googleAI = "Gemini Developer API"
   case vertexAI = "Vertex AI Gemini API"
-  var id: String { rawValue }
 
-  var backendValue: FirebaseAI {
-    switch self {
-    case .googleAI:
-      return FirebaseAI.firebaseAI(backend: .googleAI())
-    case .vertexAI:
-      return FirebaseAI.firebaseAI(backend: .vertexAI())
-    }
-  }
+  var id: String { rawValue }
 }
 
 struct ContentView: View {
   @State private var selectedBackend: BackendOption = .googleAI
-  @State private var firebaseService: FirebaseAI = FirebaseAI.firebaseAI(backend: .googleAI())
-  @State private var selectedUseCase: UseCase = .text
+  @State private var selectedUseCase: UseCase = .all
 
   var filteredSamples: [Sample] {
-    Sample.samples.filter { $0.useCases.contains(selectedUseCase) }
+    if selectedUseCase == .all {
+      return Sample.samples
+    } else {
+      return Sample.samples.filter { $0.useCases.contains(selectedUseCase) }
+    }
   }
 
   let columns = [
@@ -102,9 +97,6 @@ struct ContentView: View {
       }
       .background(Color(.systemGroupedBackground))
       .navigationTitle("Firebase AI Logic")
-      .onChange(of: selectedBackend) { newBackend in
-        firebaseService = newBackend.backendValue
-      }
     }
   }
 
@@ -112,13 +104,15 @@ struct ContentView: View {
   private func destinationView(for sample: Sample) -> some View {
     switch sample.navRoute {
     case "ChatScreen":
-      ChatScreen(firebaseService: firebaseService, sample: sample)
+      ChatScreen(backendType: selectedBackend, sample: sample)
     case "ImagenScreen":
-      ImagenScreen(firebaseService: firebaseService, sample: sample)
-    case "PhotoReasoningScreen":
-      PhotoReasoningScreen(firebaseService: firebaseService)
+      ImagenScreen(backendType: selectedBackend, sample: sample)
+    case "MultimodalScreen":
+      MultimodalScreen(backendType: selectedBackend, sample: sample)
     case "FunctionCallingScreen":
-      FunctionCallingScreen(firebaseService: firebaseService, sample: sample)
+      FunctionCallingScreen(backendType: selectedBackend, sample: sample)
+    case "GroundingScreen":
+      GroundingScreen(backendType: selectedBackend, sample: sample)
     default:
       EmptyView()
     }

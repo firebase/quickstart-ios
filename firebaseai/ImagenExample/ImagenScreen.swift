@@ -17,16 +17,16 @@ import FirebaseAI
 import ConversationKit
 
 struct ImagenScreen: View {
-  let firebaseService: FirebaseAI
+  let backendType: BackendOption
   @StateObject var viewModel: ImagenViewModel
 
   @State
   private var userPrompt = ""
 
-  init(firebaseService: FirebaseAI, sample: Sample? = nil) {
-    self.firebaseService = firebaseService
+  init(backendType: BackendOption, sample: Sample? = nil) {
+    self.backendType = backendType
     _viewModel =
-      StateObject(wrappedValue: ImagenViewModel(firebaseService: firebaseService,
+      StateObject(wrappedValue: ImagenViewModel(backendType: backendType,
                                                 sample: sample))
   }
 
@@ -47,7 +47,7 @@ struct ImagenScreen: View {
             .disableAttachments()
             .onSubmitAction { sendOrStop() }
 
-          if let error = viewModel.error {
+          if viewModel.error != nil {
             HStack {
               Text("An error occurred.")
               Button("More information", systemImage: "info.circle") {
@@ -137,5 +137,5 @@ struct ProgressOverlay: View {
 }
 
 #Preview {
-  ImagenScreen(firebaseService: FirebaseAI.firebaseAI())
+  ImagenScreen(backendType: .googleAI)
 }

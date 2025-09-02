@@ -1,4 +1,4 @@
-// Copyright 2023 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -16,15 +16,15 @@ import FirebaseAI
 import SwiftUI
 import ConversationKit
 
-struct ChatScreen: View {
+struct GroundingScreen: View {
   let backendType: BackendOption
-  @StateObject var viewModel: ChatViewModel
+  @StateObject var viewModel: GroundingViewModel
 
   init(backendType: BackendOption, sample: Sample? = nil) {
     self.backendType = backendType
     _viewModel =
-      StateObject(wrappedValue: ChatViewModel(backendType: backendType,
-                                              sample: sample))
+      StateObject(wrappedValue: GroundingViewModel(backendType: backendType,
+                                                   sample: sample))
   }
 
   var body: some View {
@@ -63,5 +63,5 @@ struct ChatScreen: View {
 }
 
 #Preview {
-  ChatScreen(backendType: .googleAI)
+  GroundingScreen(backendType: .googleAI)
 }

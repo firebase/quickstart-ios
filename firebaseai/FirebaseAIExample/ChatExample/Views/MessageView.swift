@@ -57,16 +57,28 @@ struct MessageContentView: View {
           }
           .labelStyle(.iconOnly)
         }
-      }
+      } else {
+        VStack(alignment: .leading, spacing: 8) {
+          if message.participant == .user && !message.attachments.isEmpty {
+            AttachmentPreviewScrollView(attachments: message.attachments)
+          }
 
-      // Grounded Response
-      else if let groundingMetadata = message.groundingMetadata {
-        GroundedResponseView(message: message, groundingMetadata: groundingMetadata)
-      }
+          if let image = message.image {
+            Image(uiImage: image)
+              .resizable()
+              .aspectRatio(contentMode: .fit)
+              .frame(maxWidth: 300, maxHeight: 300)
+              .clipShape(RoundedRectangle(cornerRadius: 8))
+          }
 
-      // Non-grounded response
-      else {
-        ResponseTextView(message: message)
+          // Grounded Response
+          if let groundingMetadata = message.groundingMetadata {
+            GroundedResponseView(message: message, groundingMetadata: groundingMetadata)
+          } else {
+            // Non-grounded response
+            ResponseTextView(message: message)
+          }
+        }
       }
     }
   }

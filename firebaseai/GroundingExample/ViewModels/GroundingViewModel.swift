@@ -1,4 +1,4 @@
-// Copyright 2023 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,16 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#if canImport(FirebaseAILogic)
-  import FirebaseAILogic
-#else
-  import FirebaseAI
-#endif
+import FirebaseAI
 import Foundation
 import UIKit
 
 @MainActor
-class ChatViewModel: ObservableObject {
+class GroundingViewModel: ObservableObject {
   /// This array holds both the user's and the system's chat messages
   @Published var messages = [ChatMessage]()
 
@@ -44,6 +40,7 @@ class ChatViewModel: ObservableObject {
   private var chatTask: Task<Void, Never>?
 
   private var sample: Sample?
+
   private var backendType: BackendOption
 
   init(backendType: BackendOption, sample: Sample? = nil) {
@@ -56,16 +53,11 @@ class ChatViewModel: ObservableObject {
 
     model = firebaseService.generativeModel(
       modelName: sample?.modelName ?? "gemini-2.5-flash",
-      generationConfig: sample?.generationConfig,
+      tools: sample?.tools,
       systemInstruction: sample?.systemInstruction
     )
 
-    if let chatHistory = sample?.chatHistory, !chatHistory.isEmpty {
-      messages = ChatMessage.from(chatHistory)
-      chat = model.startChat(history: chatHistory)
-    } else {
-      chat = model.startChat()
-    }
+    chat = model.startChat()
 
     initialPrompt = sample?.initialPrompt ?? ""
     title = sample?.title ?? ""
@@ -119,14 +111,13 @@ class ChatViewModel: ObservableObject {
               .content = (messages[messages.count - 1].content ?? "") + text
           }
 
-          if let inlineDataPart = chunk.inlineDataParts.first {
-            if let uiImage = UIImage(data: inlineDataPart.data) {
-              messages[messages.count - 1].image = uiImage
-            } else {
-              print("Failed to convert inline data to UIImage")
+          if let candidate = chunk.candidates.first {
+            if let groundingMetadata = candidate.groundingMetadata {
+              self.messages[self.messages.count - 1].groundingMetadata = groundingMetadata
             }
           }
         }
+
       } catch {
         self.error = error
         print(error.localizedDescription)
@@ -164,15 +155,14 @@ class ChatViewModel: ObservableObject {
           // replace pending message with backend response
           messages[messages.count - 1].content = responseText
           messages[messages.count - 1].pending = false
-        }
 
-        if let inlineDataPart = response?.inlineDataParts.first {
-          if let uiImage = UIImage(data: inlineDataPart.data) {
-            messages[messages.count - 1].image = uiImage
-          } else {
-            print("Failed to convert inline data to UIImage")
+          if let candidate = response?.candidates.first {
+            if let groundingMetadata = candidate.groundingMetadata {
+              self.messages[self.messages.count - 1].groundingMetadata = groundingMetadata
+            }
           }
         }
+
       } catch {
         self.error = error
         print(error.localizedDescription)

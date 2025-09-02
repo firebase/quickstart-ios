@@ -44,13 +44,19 @@ class ImagenViewModel: ObservableObject {
   var inProgress = false
 
   private let model: ImagenModel
+  private var backendType: BackendOption
 
   private var generateImagesTask: Task<Void, Never>?
 
   private var sample: Sample?
 
-  init(firebaseService: FirebaseAI, sample: Sample? = nil) {
+  init(backendType: BackendOption, sample: Sample? = nil) {
     self.sample = sample
+    self.backendType = backendType
+
+    let firebaseService = backendType == .googleAI
+      ? FirebaseAI.firebaseAI(backend: .googleAI())
+      : FirebaseAI.firebaseAI(backend: .vertexAI())
 
     let modelName = "imagen-3.0-generate-002"
     let safetySettings = ImagenSafetySettings(
@@ -79,16 +85,16 @@ class ImagenViewModel: ObservableObject {
       }
 
       do {
-        // 4. Call generateImages with the text prompt
+        // 1. Call generateImages with the text prompt
         let response = try await model.generateImages(prompt: prompt)
 
-        // 5. Print the reason images were filtered out, if any.
+        // 2. Print the reason images were filtered out, if any.
         if let filteredReason = response.filteredReason {
           print("Image(s) Blocked: \(filteredReason)")
         }
 
         if !Task.isCancelled {
-          // 6. Convert the image data to UIImage for display in the UI
+          // 3. Convert the image data to UIImage for display in the UI
           images = response.images.compactMap { UIImage(data: $0.data) }
         }
       } catch {

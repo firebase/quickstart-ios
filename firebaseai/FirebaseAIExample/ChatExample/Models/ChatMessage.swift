@@ -19,27 +19,34 @@
 #endif
 import Foundation
 import ConversationKit
+import UIKit
 
 public struct ChatMessage: Message {
   public let id: UUID = .init()
   public var content: String?
-  public let imageURL: String?
   public let participant: Participant
   public let error: (any Error)?
   public var pending = false
   public var groundingMetadata: GroundingMetadata?
+  public var attachments: [MultimodalAttachment] = []
+  public var image: UIImage?
+  // required by the Message protocol, but not used in this app
+  public var imageURL: String?
 
   public init(content: String? = nil, imageURL: String? = nil, participant: Participant,
-              error: (any Error)? = nil, pending: Bool = false) {
+              error: (any Error)? = nil, pending: Bool = false,
+              attachments: [MultimodalAttachment] = [], image: UIImage? = nil) {
     self.content = content
     self.imageURL = imageURL
     self.participant = participant
     self.error = error
     self.pending = pending
+    self.attachments = attachments
+    self.image = image
   }
 
   // Protocol-required initializer
-  public init(content: String?, imageURL: String?, participant: Participant) {
+  public init(content: String?, imageURL: String? = nil, participant: Participant) {
     self.content = content
     self.imageURL = imageURL
     self.participant = participant
@@ -58,16 +65,18 @@ extension ChatMessage {
   public static func == (lhs: ChatMessage, rhs: ChatMessage) -> Bool {
     lhs.id == rhs.id &&
       lhs.content == rhs.content &&
-      lhs.imageURL == rhs.imageURL &&
-      lhs.participant == rhs.participant
+      lhs.participant == rhs.participant &&
+      lhs.image == rhs.image &&
+      lhs.attachments == rhs.attachments
     // intentionally ignore `error`
   }
 
   public func hash(into hasher: inout Hasher) {
     hasher.combine(id)
     hasher.combine(content)
-    hasher.combine(imageURL)
     hasher.combine(participant)
+    hasher.combine(image)
+    hasher.combine(attachments)
     // intentionally ignore `error`
   }
 }

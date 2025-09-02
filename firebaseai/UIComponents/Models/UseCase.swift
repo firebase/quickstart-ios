@@ -15,6 +15,7 @@
 import Foundation
 
 public enum UseCase: String, CaseIterable, Identifiable {
+  case all = "All"
   case text = "Text"
   case image = "Image"
   case video = "Video"

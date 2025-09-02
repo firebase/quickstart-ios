@@ -20,6 +20,7 @@
 
 set -euo pipefail
 
+<<<<<<< HEAD
 xcode_version=$(xcodebuild -version | grep Xcode)
 xcode_version="${xcode_version/Xcode /}"
 xcode_major="${xcode_version/.*/}"
@@ -28,6 +29,14 @@ if [[ "$xcode_major" -ge 26 ]]; then
   iphone_version="17"
 elif [[ "$xcode_major" -ge 16 ]]; then
   iphone_version="16"
+=======
+if [[ "${SAMPLE:-}" == "FirebaseAI" && -d "/Applications/Xcode_26.0.app" ]]; then
+	xcode_version="26.0"
+	iphone_version="16"
+elif [ -d "/Applications/Xcode_16.2.app" ]; then
+    xcode_version="16.2"
+    iphone_version="16"
+>>>>>>> 59705805 ([FirebaseAI] Add Multimodal Analysis demos (#1750))
 else
   echo "Unsupported Xcode version $xcode_version; exiting." 1>&2
   exit 1

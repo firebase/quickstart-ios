@@ -677,7 +677,7 @@
 /* Begin XCRemoteSwiftPackageReference section */
 		7210F4AF2E525A64002FE9F2 /* XCRemoteSwiftPackageReference "ConversationKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/YoungHypo/ConversationKit";
+			repositoryURL = "https://github.com/peterfriese/ConversationKit";
 			requirement = {
 				branch = main;
 				kind = branch;

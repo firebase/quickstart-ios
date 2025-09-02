@@ -20,9 +20,9 @@
 
 set -euo pipefail
 
-if [ -d "/Applications/Xcode_26_beta_5.app" ]; then
-    xcode_version="26_beta_5"
-    iphone_version="16"
+if [[ "${SAMPLE:-}" == "FirebaseAI" && -d "/Applications/Xcode_26.0.app" ]]; then
+	xcode_version="26.0"
+	iphone_version="16"
 elif [ -d "/Applications/Xcode_16.2.app" ]; then
     xcode_version="16.2"
     iphone_version="16"

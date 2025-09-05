@@ -1,32 +1,32 @@
 PODS:
-  - FirebaseAppCheckInterop (12.1.0)
-  - FirebaseAuth (12.1.0):
-    - FirebaseAppCheckInterop (~> 12.1.0)
-    - FirebaseAuthInterop (~> 12.1.0)
-    - FirebaseCore (~> 12.1.0)
-    - FirebaseCoreExtension (~> 12.1.0)
+  - FirebaseAppCheckInterop (12.2.0)
+  - FirebaseAuth (12.2.0):
+    - FirebaseAppCheckInterop (~> 12.2.0)
+    - FirebaseAuthInterop (~> 12.2.0)
+    - FirebaseCore (~> 12.2.0)
+    - FirebaseCoreExtension (~> 12.2.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 8.1)
     - GoogleUtilities/Environment (~> 8.1)
     - GTMSessionFetcher/Core (< 6.0, >= 3.4)
     - RecaptchaInterop (~> 101.0)
-  - FirebaseAuthInterop (12.1.0)
-  - FirebaseCore (12.1.0):
-    - FirebaseCoreInternal (~> 12.1.0)
+  - FirebaseAuthInterop (12.2.0)
+  - FirebaseCore (12.2.0):
+    - FirebaseCoreInternal (~> 12.2.0)
     - GoogleUtilities/Environment (~> 8.1)
     - GoogleUtilities/Logger (~> 8.1)
-  - FirebaseCoreExtension (12.1.0):
-    - FirebaseCore (~> 12.1.0)
-  - FirebaseCoreInternal (12.1.0):
+  - FirebaseCoreExtension (12.2.0):
+    - FirebaseCore (~> 12.2.0)
+  - FirebaseCoreInternal (12.2.0):
     - "GoogleUtilities/NSData+zlib (~> 8.1)"
-  - FirebaseDatabase (12.1.0):
-    - FirebaseAppCheckInterop (~> 12.1.0)
-    - FirebaseCore (~> 12.1.0)
-    - FirebaseSharedSwift (~> 12.1.0)
+  - FirebaseDatabase (12.2.0):
+    - FirebaseAppCheckInterop (~> 12.2.0)
+    - FirebaseCore (~> 12.2.0)
+    - FirebaseSharedSwift (~> 12.2.0)
     - GoogleUtilities/UserDefaults (~> 8.1)
     - leveldb-library (~> 1.22)
   - FirebaseDatabaseUI (15.1.0):
     - FirebaseDatabase (< 13.0, >= 8.0)
-  - FirebaseSharedSwift (12.1.0)
+  - FirebaseSharedSwift (12.2.0)
   - FirebaseUI/Database (15.1.0):
     - FirebaseDatabaseUI (~> 15.0)
   - GoogleUtilities/AppDelegateSwizzler (8.1.0):
@@ -80,15 +80,15 @@ SPEC REPOS:
     - RecaptchaInterop
 
 SPEC CHECKSUMS:
-  FirebaseAppCheckInterop: de890554a81967f16a0eb8d3def541c2bb42dece
-  FirebaseAuth: 6d0f2d449195c401e6d6ef1a891fff22bc60356d
-  FirebaseAuthInterop: ede927b03baf02453e6e9de2df513cc28d3eb742
-  FirebaseCore: 5a452ffa66f37c8e281076996837626c5d08c090
-  FirebaseCoreExtension: dd89d73548ee9be5d8dc60e5c76bc421b965853b
-  FirebaseCoreInternal: ff526c22671bb564d1b34a47615e29ba99389dee
-  FirebaseDatabase: 05bc094f88aa59eeadab7e30a62a6bb8ee76bf13
+  FirebaseAppCheckInterop: a1b2598c64c5a8c42fd6f6a1c3d0938ae4324678
+  FirebaseAuth: 059c11702bdb759bb49b6c7ec6ff67abf21f39c4
+  FirebaseAuthInterop: 217702acd4cc6baa98ba9d6c054532e0de0b8a16
+  FirebaseCore: 311c48a147ad4a0ab7febbaed89e8025c67510cd
+  FirebaseCoreExtension: 73af080c22a2f7b44cefa391dc08f7e4ee162cb5
+  FirebaseCoreInternal: 56ea29f3dad2894f81b060f706f9d53509b6ed3b
+  FirebaseDatabase: d7f6b8dc187fe7e72db1c1e2b03a7611d8ec2813
   FirebaseDatabaseUI: 5280abb5536ee0947e23ab8aaf009342b78a5eb2
-  FirebaseSharedSwift: ee4344de8a4d5b5290de3600667307a44f85fd40
+  FirebaseSharedSwift: 52d868d4c269fcb4e4e1310c548435a9c1f46e25
   FirebaseUI: 1dfcf45d4bb4073380091394c9c555d697ecca11
   GoogleUtilities: 00c88b9a86066ef77f0da2fab05f65d7768ed8e1
   GTMSessionFetcher: 02d6e866e90bc236f48a703a041dfe43e6221a29

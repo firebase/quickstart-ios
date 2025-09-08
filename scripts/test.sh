@@ -69,7 +69,23 @@ fi
 # Set scheme
 if [[ -z "${SCHEME:-}" ]]; then
     if [[ "$SPM" == true ]];then
-        SCHEME="${SAMPLE}Example (${OS})"
+        # Get the list of schemes
+        schemes=$(xcodebuild -list -project "${DIR}/${SAMPLE}Example.xcodeproj" |
+            grep -E '^\s+' |
+            sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')
+
+        # Check for the base scheme name
+        if echo "$schemes" | grep -q "^${SAMPLE}Example$"; then
+            SCHEME="${SAMPLE}Example"
+        # Check for the OS-suffixed scheme name
+        elif echo "$schemes" | grep -q "^${SAMPLE}Example (${OS})$"; then
+            SCHEME="${SAMPLE}Example (${OS})"
+        else
+            echo "Error: Could not find a suitable scheme for ${SAMPLE}Example in ${OS}."
+            echo "Available schemes:"
+            echo "$schemes"
+            exit 1
+        fi
     else
         SCHEME="${SAMPLE}Example${SWIFT_SUFFIX:-}"
     fi

@@ -365,7 +365,7 @@
 			);
 			name = Shared;
 			path = ../shared;
-			sourceTree = SOURCE_ROOT;
+			sourceTree = "<group>";
 		};
 		5FDE05591B0DAA090037B82F /* DatabaseExampleTests */ = {
 			isa = PBXGroup;

@@ -296,7 +296,7 @@ If you wish to setup a custom auth system. The below steps can help in its confi
     - Click **New credentials** and select **Service account key**. Select **New service account**,
     pick any name, and select **JSON** as the key type. Then click **Create**.
     - You should now have a new JSON file for your service account in your Downloads directory.
-- Open the file `web/auth.html` in your computer's web browser. The `auth.html` file can now be found in the current directory's `LegacyAuthQuickstart` subdirectory.
+- Open the file `web/auth.html` in your computer's web browser. The `auth.html` file can now be found in the current directory's `web` subdirectory.
     - Click **Choose File** and upload the JSON file you just downloaded.
     - Enter any User ID and click **Generate**.
     - Copy the token link displayed.

@@ -3,11 +3,7 @@ Firebase Crashlytics Quickstart
 
 The Firebase Crashlytics iOS quickstart demonstrates how to report crashes and log events leading up
 to those crashes. You can read more about Firebase Crashlytics
-[here](https://firebase.google.com/docs/crashlytics/)! 
-
-To view the older Objective-C and Swift quickstarts, view the
-[`LegacyCrashlyticsQuickstart`](https://github.com/firebase/quickstart-ios/tree/main/crashlytics/LegacyCrashlyticsQuickstart)
-directory.
+[here](https://firebase.google.com/docs/crashlytics/)!
 
 Getting Started
 ---------------

@@ -24,11 +24,11 @@ jobs:
       matrix:
         include:
           - os: macos-15
-            xcode: 16.4
+            xcode: "16.4"
             platform: iOS
             device: iPhone 16
           - os: macos-26
-            xcode: 26.0
+            xcode: "26.0"
             platform: iOS
             device: iPhone 16e
     runs-on: ${{ matrix.os }}

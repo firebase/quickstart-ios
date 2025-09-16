@@ -155,7 +155,7 @@ function xcb() {
 # Run xcodebuild
 sudo xcode-select -s "/Applications/Xcode_${xcode_version}.app/Contents/Developer"
 echo "mango start"
-xcodebuild -showdestinations
+xcodebuild -project storage/StorageExample.xcodeproj -scheme "StorageExample (tvOS)" -showdestinations
 echo "mango end"
 xcb "${flags[@]}"
 echo "$message"

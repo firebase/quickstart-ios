@@ -20,12 +20,17 @@
 
 set -euo pipefail
 
-if [ -d "/Applications/Xcode_16.4.app" ]; then
-    xcode_version="16.4"
-    iphone_version="16"
+xcode_version=$(xcodebuild -version | grep Xcode)
+xcode_version="${xcode_version/Xcode /}"
+xcode_major="${xcode_version/.*/}"
+
+if [[ "$xcode_major" -ge 26 ]]; then
+  iphone_version="17"
+elif [[ "$xcode_major" -ge 16 ]]; then
+  iphone_version="16"
 else
-    xcode_version="15.3"
-    iphone_version="15"
+  echo "Unsupported Xcode version $xcode_version; exiting." 1>&2
+  exit 1
 fi
 
 # Set default parameters

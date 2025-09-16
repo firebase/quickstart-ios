@@ -154,5 +154,8 @@ function xcb() {
 
 # Run xcodebuild
 sudo xcode-select -s "/Applications/Xcode_${xcode_version}.app/Contents/Developer"
+echo "mango start"
+xcodebuild -showdestinations
+echo "mango end"
 xcb "${flags[@]}"
 echo "$message"

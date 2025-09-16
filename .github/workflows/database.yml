@@ -1,5 +1,8 @@
 name: Database
 
+permissions:
+  contents: read
+
 on:
   push:
     branches: [ main ]

@@ -73,7 +73,7 @@ jobs:
     env:
       SETUP: storage
       SPM: true
-      DIR: storage/StorageExample
+      DIR: storage
       OS: ${{ matrix.os }}
       DEVICE: ${{ matrix.device }}
       TEST: false

@@ -27,8 +27,8 @@ env:
   secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}
 
 jobs:
-  cocoapods:
-    name: cocoapods - ${{ matrix.os }}
+  spm:
+    name: spm - ${{ matrix.os }}
     runs-on: macOS-15
     strategy:
       matrix:
@@ -52,28 +52,27 @@ jobs:
             device: localhost
             scheme: AnalyticsExampleMac
             test: true
+
     env:
-      SPM: false
+      SPM: true
       LEGACY: false
       OS: ${{ matrix.os }}
       DEVICE: ${{ matrix.device }}
       SCHEME: ${{ matrix.scheme }}
       DEVELOPER_DIR: /Applications/Xcode_${{ matrix.xcode }}.app/Contents/Developer
+      DIR: analytics
     steps:
       - name: Checkout
         uses: actions/checkout@master
       - name: Setup
         run: |
           cd analytics
-          gem install bundler
-          bundle install
           gem install xcpretty
-          bundle exec pod install --repo-update
           ../scripts/install_prereqs/analytics.sh
       - name: Build Swift
         run: ./scripts/test.sh
         env:
           TEST: ${{ matrix.test }}
-          SWIFT_SUFFIX: ""
+          SCHEME: AnalyticsExample
 
   #TODO: Add `spm` job.

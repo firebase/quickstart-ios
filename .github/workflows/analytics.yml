@@ -61,7 +61,7 @@ jobs:
       LEGACY: false
       OS: ${{ matrix.os }}
       DEVICE: ${{ matrix.device }}
-      SCHEME: ${{ matrix.scheme }}
+      SCHEME: ${{ matrix.scheme || 'AnalyticsExample' }}
       DIR: analytics
     steps:
       - name: Checkout
@@ -77,6 +77,5 @@ jobs:
         run: ./scripts/test.sh
         env:
           TEST: ${{ matrix.test }}
-          SCHEME: AnalyticsExample
 
   #TODO: Add `spm` job.

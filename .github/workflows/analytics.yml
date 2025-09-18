@@ -63,7 +63,6 @@ jobs:
       DEVICE: ${{ matrix.device }}
       SCHEME: ${{ matrix.scheme }}
       DIR: analytics
-      XCODE_VERSION: ${{ matrix.xcode }}
     steps:
       - name: Checkout
         uses: actions/checkout@master

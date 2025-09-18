@@ -77,11 +77,6 @@ jobs:
       OS: ${{ matrix.os }}
       DEVICE: ${{ matrix.device }}
       TEST: false
-<<<<<<< Updated upstream
-      XCODE_VERSION: ${{ matrix.xcode }}
-=======
-      DEVELOPER_DIR: /Applications/Xcode_${{ matrix.xcode }}.app/Contents/Developer
->>>>>>> Stashed changes
     steps:
       - name: Checkout
         uses: actions/checkout@master

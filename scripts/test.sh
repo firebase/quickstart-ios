@@ -79,12 +79,12 @@ if [[ -z "${SCHEME:-}" ]]; then
             grep -E '^\s+' |
             sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')
 
-        # Check for the base scheme name
-        if echo "$schemes" | grep -q "^${SAMPLE}Example$"; then
-            SCHEME="${SAMPLE}Example"
         # Check for the OS-suffixed scheme name
-        elif echo "$schemes" | grep -q "^${SAMPLE}Example (${OS})$"; then
+        if echo "$schemes" | grep -q "^${SAMPLE}Example (${OS})$"; then
             SCHEME="${SAMPLE}Example (${OS})"
+        # Check for the base scheme name
+        elif echo "$schemes" | grep -q "^${SAMPLE}Example$"; then
+            SCHEME="${SAMPLE}Example"
         else
             echo "Error: Could not find a suitable scheme for ${SAMPLE}Example in ${OS}."
             echo "Available schemes:"

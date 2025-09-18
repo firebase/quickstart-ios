@@ -82,7 +82,6 @@ jobs:
       OS: ${{ matrix.os }}
       DEVICE: ${{ matrix.device }}
       TEST: ${{ matrix.test }}
-      DEVELOPER_DIR: /Applications/Xcode_${{ matrix.xcode }}.app/Contents/Developer
     steps:
       - name: Checkout
         uses: actions/checkout@master

@@ -37,10 +37,10 @@ fi
 if [[ -z "${SPM:-}" ]]; then
     SPM=false
     echo "Defaulting to SPM=$SPM"
-fi
-if [[ -z "${LEGACY:-}" ]]; then
-    LEGACY=false
-    echo "Defaulting to LEGACY=$LEGACY"
+    if [[ -z "${LEGACY:-}" ]]; then
+        LEGACY=false
+        echo "Defaulting to LEGACY=$LEGACY"
+    fi
 fi
 if [[ -z "${OS:-}" ]]; then
     OS=iOS
@@ -56,29 +56,49 @@ fi
 # Set have_secrets to true or false.
 source scripts/check_secrets.sh
 
-# Determine Project Path and OS based on LEGACY flag.
-if [[ "$LEGACY" == true ]]; then
-    echo "Configuring for LEGACY build."
-    if [[ "$SPM" == true ]]; then
-      PROJECT_PATH="${SAMPLE}/Legacy${SAMPLE}Quickstart/${SAMPLE}Example.xcodeproj"
-    else
-      WORKSPACE_PATH="${SAMPLE}/Legacy${SAMPLE}Quickstart/${SAMPLE}Example.xcworkspace"
-    fi
-else
-    echo "Configuring for NON-LEGACY build."
-    if [[ "$SPM" == true ]]; then
-      # For non-legacy, DIR is passed from the workflow and is the product name.
-      # This is the same as SAMPLE.
-      PROJECT_PATH="${DIR}/${SAMPLE}Example.xcodeproj"
-    else
-      WORKSPACE_PATH="${SAMPLE}/${SAMPLE}Example.xcworkspace"
-    fi
-fi
-
 # Initialize flags
 flags=()
 
-# Set destination (now uses the potentially overridden OS variable)
+# Set project / workspace
+if [[ "$SPM" == true ]];then
+    flags+=( -project "${DIR}/${SAMPLE}Example.xcodeproj" )
+else
+    if [[ "$LEGACY" == true ]]; then
+        WORKSPACE="${SAMPLE}/Legacy${SAMPLE}Quickstart/${SAMPLE}Example.xcworkspace"
+    else
+        WORKSPACE="${SAMPLE}/${SAMPLE}Example.xcworkspace"
+    fi
+    flags+=( -workspace "$WORKSPACE" )
+fi
+
+# Set scheme
+if [[ -z "${SCHEME:-}" ]]; then
+    if [[ "$SPM" == true ]];then
+        # Get the list of schemes
+        schemes=$(xcodebuild -list -project "${DIR}/${SAMPLE}Example.xcodeproj" |
+            grep -E '^\s+' |
+            sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')
+
+        # Check for the OS-suffixed scheme name
+        if echo "$schemes" | grep -q "^${SAMPLE}Example (${OS})$"; then
+            SCHEME="${SAMPLE}Example (${OS})"
+        # Check for the base scheme name
+        elif echo "$schemes" | grep -q "^${SAMPLE}Example$"; then
+            SCHEME="${SAMPLE}Example"
+        else
+            echo "Error: Could not find a suitable scheme for ${SAMPLE}Example in ${OS}."
+            echo "Available schemes:"
+            echo "$schemes"
+            exit 1
+        fi
+    else
+        SCHEME="${SAMPLE}Example${SWIFT_SUFFIX:-}"
+    fi
+fi
+
+flags+=( -scheme "$SCHEME" )
+
+# Set destination
 if [[ "$OS" == iOS ]]; then
     DESTINATION="platform=iOS Simulator,name=${DEVICE}"
     flags+=( -destination "$DESTINATION" )
@@ -96,6 +116,7 @@ else
 fi
 
 # Add extra flags
+
 if [[ "$SAMPLE" == Config ]];then
     flags+=( -configuration Debug )
 fi
@@ -127,52 +148,11 @@ else
 fi
 
 function xcb() {
-    echo "xcodebuild $@"
+    echo xcodebuild "$@"
     xcodebuild "$@" | xcpretty
 }
 
 # Run xcodebuild
 sudo xcode-select -s "/Applications/Xcode_${xcode_version}.app/Contents/Developer"
-
-if [[ "$SPM" == true ]]; then
-    if [ ! -d "$PROJECT_PATH" ]; then
-        echo "Project path does not exist: $PROJECT_PATH"
-        exit 1
-    fi
-    # Get all schemes from the project, excluding test bundles.
-    all_schemes=$(xcodebuild -list -project "$PROJECT_PATH" |
-              grep -E '^\s+' |
-              sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//' |
-              grep -v "Tests")
-
-    # Filter for schemes that are relevant to the current OS.
-    # This includes schemes with the OS in their name (e.g., "VisionProExample (visionOS)")
-    # and generic schemes that don't specify any OS.
-    filtered_schemes=$(echo "$all_schemes" | grep -E "(\(${OS}\)$)|(^((?!iOS|tvOS|macOS|watchOS|catalyst|visionOS).)*$)")
-
-    if [ -z "$filtered_schemes" ]; then
-        echo "Error: Could not find any suitable schemes for ${SAMPLE}Example in ${OS}."
-        echo "Available schemes:"
-        echo "$all_schemes"
-        exit 1
-    fi
-
-    echo "Found schemes to build for OS ${OS}: $filtered_schemes"
-    for scheme in $filtered_schemes; do
-        echo "Building scheme: $scheme"
-        # Create a temporary flags array for this build
-        local_flags=("${flags[@]}")
-        local_flags+=( -project "$PROJECT_PATH" )
-        local_flags+=( -scheme "$scheme" )
-        xcb "${local_flags[@]}"
-    done
-else
-    # Legacy workspace logic
-    SCHEME="${SAMPLE}Example${SWIFT_SUFFIX:-}"
-    local_flags=("${flags[@]}")
-    local_flags+=( -workspace "$WORKSPACE_PATH" )
-    local_flags+=( -scheme "$SCHEME" )
-    xcb "${local_flags[@]}"
-fi
-
+xcb "${flags[@]}"
 echo "$message"

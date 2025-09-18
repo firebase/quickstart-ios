@@ -31,7 +31,7 @@ env:
 
 jobs:
   spm:
-    name: spm - ${{ matrix.os }}
+    name: spm (Xcode ${{ matrix.xcode }} - ${{ matrix.os }})
     runs-on: macOS-15
     strategy:
       matrix:
@@ -63,9 +63,12 @@ jobs:
       DEVICE: ${{ matrix.device }}
       SCHEME: ${{ matrix.scheme }}
       DIR: analytics
+      XCODE_VERSION: ${{ matrix.xcode }}
     steps:
       - name: Checkout
         uses: actions/checkout@master
+      - name: Xcode
+        run: sudo xcode-select -s /Applications/Xcode_${{ matrix.xcode }}.app/Contents/Developer
       - name: Setup
         run: |
           cd analytics

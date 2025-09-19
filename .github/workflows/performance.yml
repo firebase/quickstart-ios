@@ -34,39 +34,49 @@ env:
   secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}
 
 jobs:
+  spm-buildonly:
+    name: spm
+    runs-on: macOS-15
+    env:
+      SPM: true
+      LEGACY: false
+      OS: iOS
+      DEVICE: iPhone 16
+      TEST: true
+      DIR: performance
+      SCHEME: PerformanceExampleSwift
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+      - name: Setup
+        run: |
+          cd performance
+          gem install xcpretty
+          ../scripts/install_prereqs/performance.sh
+      - name: Build Swift
+        run: ./scripts/test.sh
+          
   spm:
-    name: spm (Xcode ${{ matrix.xcode }} - ${{ matrix.name }})
+    name: spm (Xcode ${{ matrix.xcode }} - ${{ matrix.os }})
     runs-on: macOS-15
     strategy:
       matrix:
         xcode: ["16.4"]
+        os: [iOS, tvOS]
         include:
-          - name: "non-SwiftUI"
-            os: iOS
-            device: "iPhone 16"
-            test: true
-            dir: "performance"
-            scheme: "PerformanceExampleSwift"
-            legacy: false
-          - name: "iOS"
-            os: iOS
-            device: "iPhone 16"
+          - os: iOS
+            device: iPhone 16
             test: false
-            dir: "performance/SwiftUIPerformanceQuickstart/PerformanceExample"
-          - name: "tvOS"
-            os: tvOS
-            device: "Apple TV 4K (3rd generation) (at 1080p)"
+          - os: tvOS
+            device: Apple TV 4K (3rd generation) (at 1080p)
             test: false
-            dir: "performance/SwiftUIPerformanceQuickstart/PerformanceExample"
     env:
       SETUP: performance
       SPM: true
-      DIR: ${{ matrix.dir }}
+      DIR: performance/SwiftUIPerformanceQuickstart/PerformanceExample
       OS: ${{ matrix.os }}
       DEVICE: ${{ matrix.device }}
       TEST: ${{ matrix.test }}
-      SCHEME: ${{ matrix.scheme }}
-      LEGACY: ${{ matrix.legacy }}
     steps:
       - name: Checkout
         uses: actions/checkout@master
@@ -75,5 +85,5 @@ jobs:
           gem install xcpretty
           cd $SETUP
           ../scripts/install_prereqs/${SETUP}.sh
-      - name: Build and Test
+      - name: Build and Test SwiftUI (${{ matrix.os }})
         run: ./scripts/test.sh

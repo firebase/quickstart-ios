@@ -1,5 +1,8 @@
 name: InAppMessaging
 
+permissions:
+  contents: read
+
 on:
   push:
     branches: [ main ]
@@ -27,12 +30,12 @@ env:
   secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}
 
 jobs:
-  cocoapods:
-    name: cocoapods
+  spm:
     runs-on: macOS-15
     env:
-      SPM: false
+      SPM: true
       LEGACY: false
+      DIR: inappmessaging
       OS: iOS
       DEVICE: iPhone 16
       TEST: true
@@ -42,16 +45,13 @@ jobs:
       - name: Setup
         run: |
           cd inappmessaging
-          gem install bundler
-          bundle install
           gem install xcpretty
-          bundle exec pod install --repo-update
           ../scripts/install_prereqs/inappmessaging.sh
       - name: Build ObjC
         run: ./scripts/test.sh
         env:
-          SWIFT_SUFFIX: ""
+          SCHEME: InAppMessagingExample
       - name: Build Swift
         run: ./scripts/test.sh
         env:
-          SWIFT_SUFFIX: Swift
+          SCHEME: InAppMessagingExampleSwift

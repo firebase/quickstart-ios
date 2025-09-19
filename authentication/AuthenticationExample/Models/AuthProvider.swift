@@ -97,7 +97,7 @@ enum AuthProvider: String {
 
 // MARK: DataSourceProvidable
 
-extension AuthProvider: DataSourceProvidable {
+@MainActor extension AuthProvider: DataSourceProvidable {
   private static var providers: [AuthProvider] {
     [.google, .apple, .twitter, .microsoft, .gitHub, .yahoo, .facebook]
   }

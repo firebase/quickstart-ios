@@ -43,6 +43,7 @@ mint bootstrap
 - [Crashlytics](crashlytics/README.md) ![build](https://github.com/firebase/quickstart-ios/actions/workflows/crashlytics.yml/badge.svg)
 - [Database](database/README.md) ![build](https://github.com/firebase/quickstart-ios/actions/workflows/database.yml/badge.svg)
 - [Firebase AI](firebaseai/README.md) ![build](https://github.com/firebase/quickstart-ios/actions/workflows/firebaseai.yml/badge.svg)
+- [Firebase Data Connect](https://github.com/firebase/data-connect-ios-sdk/blob/main/Examples/FriendlyFlix/README.md)
 - [Firestore](firestore/README.md) ![build](https://github.com/firebase/quickstart-ios/actions/workflows/firestore.yml/badge.svg)
 - [Functions](functions/README.md) ![build](https://github.com/firebase/quickstart-ios/actions/workflows/functions.yml/badge.svg)
 - [Cloud Messaging](messaging/README.md) ![build](https://github.com/firebase/quickstart-ios/actions/workflows/messaging.yml/badge.svg)

@@ -31,7 +31,6 @@ env:
 
 jobs:
   spm:
-    name: spm
     runs-on: macOS-15
     env:
       SPM: true

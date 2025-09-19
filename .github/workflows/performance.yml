@@ -34,7 +34,7 @@ env:
   secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}
 
 jobs:
-  spm:
+  spm-buildonly:
     name: spm
     runs-on: macOS-15
     env:

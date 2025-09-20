@@ -35,16 +35,10 @@ struct MultimodalScreen: View {
                                                     sample: sample))
   }
 
-  private var attachmentPreviewScrollView: some View {
-    AttachmentPreviewScrollView(
-      attachments: viewModel.attachments,
-      onAttachmentRemove: viewModel.removeAttachment
-    )
-  }
-
   var body: some View {
     NavigationStack {
       ConversationView(messages: $viewModel.messages,
+                       attachments: $viewModel.attachments,
                        userPrompt: viewModel.initialPrompt) { message in
         MessageView(message: message)
       }
@@ -59,7 +53,6 @@ struct MultimodalScreen: View {
           Label("Photo", systemImage: "photo.on.rectangle.angled")
         }
       }
-      .attachmentPreview { attachmentPreviewScrollView }
       .onSendMessage { message in
         await viewModel.sendMessage(message.content ?? "", streaming: true)
       }

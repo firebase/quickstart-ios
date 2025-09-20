@@ -16,6 +16,7 @@ import Foundation
 import SwiftUI
 import PhotosUI
 import FirebaseAI
+import ConversationKit
 
 public enum MultimodalAttachmentError: LocalizedError {
   case unsupportedFileType(extension: String)
@@ -38,7 +39,7 @@ public enum MultimodalAttachmentError: LocalizedError {
 }
 
 // MultimodalAttachment is a struct used for transporting data between ViewModels and AttachmentPreviewCard
-public struct MultimodalAttachment: Identifiable, Equatable, Hashable {
+public struct MultimodalAttachment: Attachment, Equatable {
   public let id = UUID()
   public let mimeType: String
   public let data: Data?

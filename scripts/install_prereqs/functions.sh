@@ -16,4 +16,5 @@ DIRECTORY=functions \
 PROJECT=Functions \
 . ../scripts/prereq_core.sh
 
-sed -i '' 's/REVERSED_CLIENT_ID/com.googleusercontent.apps.1025801074639-6p6ebi8amuklcjrto20gvpe295smm8u6/' FunctionsExample/Info.plist
+# TODO(ncooke3): FunctionsExample/Info.plist path DNE.
+# sed -i '' 's/REVERSED_CLIENT_ID/com.googleusercontent.apps.1025801074639-6p6ebi8amuklcjrto20gvpe295smm8u6/' FunctionsExample/Info.plist

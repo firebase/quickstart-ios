@@ -5,14 +5,14 @@ permissions:
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, nc/quickstarts ]
     paths:
       - '.github/workflows/functions.yml'
       - 'functions/**'
       - 'scripts/*'
       - 'scripts/functions.sh'
   pull_request:
-    branches: [ main ]
+    branches: [ main, nc/quickstarts ]
     paths:
       - '.github/workflows/functions.yml'
       - 'functions/**'

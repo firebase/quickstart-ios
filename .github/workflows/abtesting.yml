@@ -5,7 +5,7 @@ permissions:
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, nc/quickstarts ]
     paths:
       - '.github/workflows/abtesting.yml'
       - 'abtesting/**'
@@ -14,7 +14,7 @@ on:
       - '!abtesting/*.md'
       - '!abtesting/Design/**'
   pull_request:
-    branches: [ main ]
+    branches: [ main, nc/quickstarts ]
     paths:
       - '.github/workflows/abtesting.yml'
       - 'abtesting/**'

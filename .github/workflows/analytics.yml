@@ -1,0 +1,79 @@
+name: Analytics
+
+permissions:
+  contents: read
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - '.github/workflows/analytics.yml'
+      - 'analytics/**'
+      - 'scripts/*'
+      - 'scripts/analytics.sh'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - '.github/workflows/analytics.yml'
+      - 'analytics/**'
+      - 'scripts/*'
+      - 'scripts/analytics.sh'
+
+  workflow_dispatch:
+
+concurrency:
+    group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}
+    cancel-in-progress: true
+
+env:
+  SAMPLE: Analytics
+  secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}
+
+jobs:
+  spm:
+    name: spm (Xcode ${{ matrix.xcode }} - ${{ matrix.os }})
+    runs-on: macOS-15
+    strategy:
+      matrix:
+        # TODO: Re-enable when ODM2 catalyst support is investigated
+        # os: [iOS, catalyst, tvOS, macOS]        
+        os: [iOS, tvOS, macOS]
+        xcode: ["16.4"]
+        include:
+          - os: iOS
+            device: iPhone 16
+            test: true
+          # TODO: Re-enable when ODM2 catalyst support is investigated
+          # - os: catalyst
+          #   device: localhost
+          #   test: false # disabled due to a permissions error on launch (OSStatus -54).
+          - os: tvOS
+            device: Apple TV 4K (3rd generation) (at 1080p)
+            scheme: AnalyticsExampleTV
+            test: true
+          - os: macOS
+            device: localhost
+            scheme: AnalyticsExampleMac
+            test: true
+
+    env:
+      SPM: true
+      LEGACY: false
+      OS: ${{ matrix.os }}
+      DEVICE: ${{ matrix.device }}
+      SCHEME: ${{ matrix.scheme || 'AnalyticsExample' }}
+      DIR: analytics
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+      - name: Xcode
+        run: sudo xcode-select -s /Applications/Xcode_${{ matrix.xcode }}.app/Contents/Developer
+      - name: Setup
+        run: |
+          cd analytics
+          gem install xcpretty
+          ../scripts/install_prereqs/analytics.sh
+      - name: Build Swift
+        run: ./scripts/test.sh
+        env:
+          TEST: ${{ matrix.test }}

@@ -1,5 +1,8 @@
 name: Storage
 
+permissions:
+  contents: read
+
 on:
   push:
     branches: [ main ]
@@ -27,32 +30,32 @@ env:
   secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}
 
 jobs:
-  # TODO(ncooke3): Consider synthesizing Podfile for CocoaPods based test.
-  # cocoapods:
-  #   name: cocoapods
-  #   runs-on: macOS-15
-  #   env:
-  #     SPM: false
-  #     LEGACY: true
-  #     OS: iOS
-  #     DEVICE: iPhone 16
-  #     TEST: true
-  #   steps:
-  #     - name: Checkout
-  #       uses: actions/checkout@master
-  #     - name: Setup
-  #       run: |
-  #         cd storage/LegacyStorageQuickstart
-  #         gem install bundler
-  #         bundle install
-  #         gem install xcpretty
-  #         bundle exec pod install --repo-update
-  #         cd ..
-  #         ../scripts/install_prereqs/storage.sh
-  #     - name: Build Swift
-  #       run: ./scripts/test.sh
-  #       env:
-  #         SWIFT_SUFFIX: Swift
+  cocoapods:
+    runs-on: macOS-15
+    env:
+      SPM: false
+      LEGACY: true
+      OS: iOS
+      DEVICE: iPhone 16
+      TEST: true
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+      - name: Xcode 
+        run: sudo xcode-select -s /Applications/Xcode_16.4.app/Contents/Developer
+      - name: Setup
+        run: |
+          cd storage/LegacyStorageQuickstart
+          gem install bundler
+          bundle install
+          gem install xcpretty
+          bundle exec pod install --repo-update
+          cd ..
+          ../scripts/install_prereqs/storage.sh
+      - name: Build Swift
+        run: ./scripts/test.sh
+        env:
+          SWIFT_SUFFIX: Swift
 
   spm:
     name: spm (Xcode ${{ matrix.xcode }} - ${{ matrix.os }})
@@ -71,12 +74,10 @@ jobs:
     env:
       SETUP: storage
       SPM: true
-      DIR: storage/StorageExample
+      DIR: storage
       OS: ${{ matrix.os }}
       DEVICE: ${{ matrix.device }}
       TEST: false
-      XCODE_VERSION: ${{ matrix.xcode }}
-      DEVELOPER_DIR: /Applications/Xcode_${{ matrix.xcode }}.app/Contents/Developer
     steps:
       - name: Checkout
         uses: actions/checkout@master

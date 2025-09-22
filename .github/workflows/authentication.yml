@@ -1,5 +1,8 @@
 name: Authentication
 
+permissions:
+  contents: read
+
 on:
   push:
     branches: [ main ]
@@ -27,8 +30,7 @@ env:
   secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}
 
 jobs:
-  cocoapods:
-    name: spm
+  spm:
     runs-on: macOS-15
     env:
       OS: iOS
@@ -39,7 +41,6 @@ jobs:
       DEVICE: iPhone 16
       TEST: false
       SCHEME: AuthenticationExample
-      DEVELOPER_DIR: /Applications/Xcode_16.1.app/Contents/Developer
     steps:
       - name: Checkout
         uses: actions/checkout@master

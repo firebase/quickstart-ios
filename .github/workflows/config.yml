@@ -37,7 +37,6 @@ jobs:
       DEVICE: iPhone 16
       DIR: config
       SPM: true
-      LEGACY: false
       SCHEME: ConfigExample
       TEST: true
     steps:

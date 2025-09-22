@@ -36,7 +36,6 @@ jobs:
       OS: iOS
       SETUP: authentication
       SPM: true
-      LEGACY: false
       DIR: authentication
       DEVICE: iPhone 16
       TEST: false

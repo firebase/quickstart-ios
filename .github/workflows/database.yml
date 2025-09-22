@@ -36,7 +36,6 @@ jobs:
     env:
       OS: iOS
       SPM: true
-      LEGACY: false
       DIR: database
       DEVICE: iPhone 16
       TEST: false

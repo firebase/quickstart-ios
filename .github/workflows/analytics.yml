@@ -58,7 +58,6 @@ jobs:
 
     env:
       SPM: true
-      LEGACY: false
       OS: ${{ matrix.os }}
       DEVICE: ${{ matrix.device }}
       SCHEME: ${{ matrix.scheme || 'AnalyticsExample' }}

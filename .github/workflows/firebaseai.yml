@@ -1,5 +1,8 @@
 name: firebaseai
 
+permissions:
+  contents: read
+
 on:
   pull_request:
     paths:
@@ -19,31 +22,35 @@ env:
 
 jobs:
   spm:
-    name: spm (Xcode ${{ matrix.xcode }} - ${{ matrix.os }})
-    runs-on: macOS-15
+    name: spm (Xcode ${{ matrix.xcode }} - ${{ matrix.platform }})
     strategy:
       matrix:
-        xcode: ["16.4"]
-        os: [iOS]
         include:
-          - os: iOS
+          - os: macos-15
+            xcode: "16.4"
+            platform: iOS
             device: iPhone 16
+          - os: macos-26
+            xcode: "26.0"
+            platform: iOS
+            device: iPhone 16e
+    runs-on: ${{ matrix.os }}
     env:
       SETUP: firebaseai
       SPM: true
       DIR: firebaseai
-      OS: ${{ matrix.os }}
+      OS: ${{ matrix.platform }}
       DEVICE: ${{ matrix.device }}
       TEST: false
-      XCODE_VERSION: ${{ matrix.xcode }}
-      DEVELOPER_DIR: /Applications/Xcode_${{ matrix.xcode }}.app/Contents/Developer
     steps:
       - name: Checkout
         uses: actions/checkout@master
+      - name: Xcode
+        run: sudo xcode-select -s /Applications/Xcode_${{ matrix.xcode }}.app/Contents/Developer
       - name: Setup
         run: |
           gem install xcpretty
       - name: Placeholder GoogleService-Info.plist good enough for build only testing.
         run: cp ./mock-GoogleService-Info.plist ./firebaseai/GoogleService-Info.plist
-      - name: Build and Test SwiftUI (${{ matrix.os }})
+      - name: Build and Test SwiftUI (${{ matrix.platform }})
         run: ./scripts/test.sh

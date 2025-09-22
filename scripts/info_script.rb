@@ -16,7 +16,6 @@
 
 require 'xcodeproj'
 sample = ARGV[0]
-legacy = ARGV[1]
 project_path = "#{sample}Example.xcodeproj"
 file_name = 'GoogleService-Info.plist'
 project = Xcodeproj::Project.open(project_path)

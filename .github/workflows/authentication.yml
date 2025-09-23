@@ -5,14 +5,14 @@ permissions:
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, nc/quickstarts ]
     paths:
       - '.github/workflows/authentication.yml'
       - 'authentication/**'
       - 'scripts/*'
       - 'scripts/authentication.sh'
   pull_request:
-    branches: [ main ]
+    branches: [ main, nc/quickstarts ]
     paths:
       - '.github/workflows/authentication.yml'
       - 'authentication/**'
@@ -36,7 +36,6 @@ jobs:
       OS: iOS
       SETUP: authentication
       SPM: true
-      LEGACY: false
       DIR: authentication
       DEVICE: iPhone 16
       TEST: false

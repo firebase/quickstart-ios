@@ -5,14 +5,14 @@ permissions:
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, nc/quickstarts ]
     paths:
       - '.github/workflows/database.yml'
       - 'database/**'
       - 'scripts/*'
       - 'scripts/database.sh'
   pull_request:
-    branches: [ main ]
+    branches: [ main, nc/quickstarts ]
     paths:
       - '.github/workflows/database.yml'
       - 'database/**'
@@ -36,7 +36,6 @@ jobs:
     env:
       OS: iOS
       SPM: true
-      LEGACY: false
       DIR: database
       DEVICE: iPhone 16
       TEST: false

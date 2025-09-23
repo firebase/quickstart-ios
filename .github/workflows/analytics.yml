@@ -5,14 +5,14 @@ permissions:
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, nc/quickstarts ]
     paths:
       - '.github/workflows/analytics.yml'
       - 'analytics/**'
       - 'scripts/*'
       - 'scripts/analytics.sh'
   pull_request:
-    branches: [ main ]
+    branches: [ main, nc/quickstarts ]
     paths:
       - '.github/workflows/analytics.yml'
       - 'analytics/**'
@@ -58,7 +58,6 @@ jobs:
 
     env:
       SPM: true
-      LEGACY: false
       OS: ${{ matrix.os }}
       DEVICE: ${{ matrix.device }}
       SCHEME: ${{ matrix.scheme || 'AnalyticsExample' }}

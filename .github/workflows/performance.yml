@@ -5,7 +5,7 @@ permissions:
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, nc/quickstarts ]
     paths:
       - '.github/workflows/performance.yml'
       - 'performance/**'
@@ -14,7 +14,7 @@ on:
       - '!performance/SwiftUIPerformanceQuickstart/PerformanceExample/*.md'
       - '!performance/SwiftUIPerformanceQuickstart/PerformanceExample/Design/**'
   pull_request:
-    branches: [ main ]
+    branches: [ main, nc/quickstarts ]
     paths:
       - '.github/workflows/performance.yml'
       - 'performance/**'
@@ -39,7 +39,6 @@ jobs:
     runs-on: macOS-15
     env:
       SPM: true
-      LEGACY: false
       OS: iOS
       DEVICE: iPhone 16
       TEST: true

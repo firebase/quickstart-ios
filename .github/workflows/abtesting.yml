@@ -5,7 +5,8 @@ permissions:
 
 on:
   push:
-    branches: [ main ]
+    # TODO: Before merging into main, remove nc/quickstarts from all workflows.
+    branches: [ main, nc/quickstarts ]
     paths:
       - '.github/workflows/abtesting.yml'
       - 'abtesting/**'
@@ -14,7 +15,7 @@ on:
       - '!abtesting/*.md'
       - '!abtesting/Design/**'
   pull_request:
-    branches: [ main ]
+    branches: [ main, nc/quickstarts ]
     paths:
       - '.github/workflows/abtesting.yml'
       - 'abtesting/**'
@@ -34,32 +35,6 @@ env:
   SAMPLE: ABTesting
 
 jobs:
-  cocoapods:
-    runs-on: macOS-15
-    env:
-      SPM: false
-      TEST: true
-    steps:
-      - name: Checkout
-        uses: actions/checkout@master
-      - name: Xcode
-        run: sudo xcode-select -s /Applications/Xcode_16.4.app/Contents/Developer
-      - name: Setup
-        run: |
-          cd abtesting/LegacyABTestingQuickstart
-          gem install bundler
-          bundle install
-          gem install xcpretty
-          bundle exec pod install --repo-update
-          cd ..
-          ../scripts/install_prereqs/abtesting.sh
-      - name: Build Swift
-        run: ./scripts/test.sh
-        env:
-          LEGACY: true
-          SWIFT_SUFFIX: ""
-          OS: iOS
-          DEVICE: iPhone 16
   spm:
     name: spm (Xcode ${{ matrix.xcode }} - ${{ matrix.os }})
     runs-on: macOS-15

@@ -5,6 +5,7 @@ permissions:
 
 on:
   push:
+    # TODO: Before merging into main, remove nc/quickstarts from all workflows.
     branches: [ main, nc/quickstarts ]
     paths:
       - '.github/workflows/abtesting.yml'

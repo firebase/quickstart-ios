@@ -22,7 +22,7 @@ class AppConfig: ObservableObject {
   @Published var colorScheme: ColorScheme
 
   init() {
-    let value = RemoteConfig.remoteConfig()["color_scheme"].stringValue ?? ""
+    let value = RemoteConfig.remoteConfig()["color_scheme"].stringValue
     colorScheme = ColorScheme(value)
     #if !targetEnvironment(macCatalyst) && DEBUG
       NotificationCenter.default.addObserver(self,
@@ -38,13 +38,13 @@ class AppConfig: ObservableObject {
 
   func updateFromRemoteConfig() {
     let remoteConfig = RemoteConfig.remoteConfig()
-    let oldValue = remoteConfig["color_scheme"].stringValue ?? ""
+    let oldValue = remoteConfig["color_scheme"].stringValue
     remoteConfig.fetchAndActivate { status, error in
       print("Fetch-and-activate completed with status: \(status.debugDescription)")
       if let error = error {
         print("Error fetching and activating config: \(error)")
       } else {
-        let newValue = remoteConfig["color_scheme"].stringValue ?? ""
+        let newValue = remoteConfig["color_scheme"].stringValue
         if newValue != oldValue {
           print("Remote Config changed to: \(newValue)")
           DispatchQueue.main.async { self.colorScheme = ColorScheme(newValue) }
@@ -59,11 +59,11 @@ class AppConfig: ObservableObject {
     @available(iOS 15, tvOS 15, macOS 12, watchOS 8, *)
     func updateFromRemoteConfigAsync() async {
       let remoteConfig = RemoteConfig.remoteConfig()
-      let oldValue = remoteConfig["color_scheme"].stringValue ?? ""
+      let oldValue = remoteConfig["color_scheme"].stringValue
       do {
         let status = try await remoteConfig.fetchAndActivate()
         print("Fetch-and-activate completed with status: \(status.debugDescription)")
-        let newValue = remoteConfig["color_scheme"].stringValue ?? ""
+        let newValue = remoteConfig["color_scheme"].stringValue
         if newValue != oldValue {
           print("Remote Config changed to: \(newValue)")
           Task.detached { @MainActor in self.colorScheme = ColorScheme(newValue) }

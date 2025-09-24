@@ -35,7 +35,7 @@ fi
 
 # Set default parameters
 if [[ -z "${SPM:-}" ]]; then
-    SPM=false
+    SPM=true
     echo "Defaulting to SPM=$SPM"
 fi
 if [[ -z "${OS:-}" ]]; then

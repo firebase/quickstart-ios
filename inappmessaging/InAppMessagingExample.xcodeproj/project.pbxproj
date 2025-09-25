@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		1CAA5060E4A9D8B55A15EB4E /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = 81A2FB070295F56CC0B2D523 /* GoogleService-Info.plist */; };
-		804A5BC592C150CEBA9CE261 /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = 81A2FB070295F56CC0B2D523 /* GoogleService-Info.plist */; };
 		8DB25F8F20BE0C29000ABEE2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB25F8E20BE0C29000ABEE2 /* AppDelegate.swift */; };
 		8DB25F9120BE0C29000ABEE2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB25F9020BE0C29000ABEE2 /* ViewController.swift */; };
 		8DB25F9420BE0C29000ABEE2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8DB25F9220BE0C29000ABEE2 /* Main.storyboard */; };
@@ -16,27 +15,7 @@
 		8DB25F9920BE0C2A000ABEE2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8DB25F9720BE0C2A000ABEE2 /* LaunchScreen.storyboard */; };
 		8DC73D7A2D41A90B0092B6EE /* FirebaseInAppMessaging-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 8DC73D792D41A90B0092B6EE /* FirebaseInAppMessaging-Beta */; };
 		8DC73D7E2D41AA540092B6EE /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 8DC73D7D2D41AA540092B6EE /* FirebaseAnalytics */; };
-		8DECFE83211CC15F00DC99BD /* InAppMessagingExampleSwiftTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DECFE82211CC15F00DC99BD /* InAppMessagingExampleSwiftTests.m */; };
-		8DECFE91211CC16F00DC99BD /* InAppMessagingExampleSwiftUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DECFE90211CC16F00DC99BD /* InAppMessagingExampleSwiftUITests.m */; };
-		EC3960AA137BC0A6EF185169 /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = 81A2FB070295F56CC0B2D523 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		8DECFE85211CC15F00DC99BD /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 8DB25F8320BE0C29000ABEE2 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 8DB25F8A20BE0C29000ABEE2;
-			remoteInfo = InAppMessagingExampleSwift;
-		};
-		8DECFE93211CC16F00DC99BD /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 8DB25F8320BE0C29000ABEE2 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 8DB25F8A20BE0C29000ABEE2;
-			remoteInfo = InAppMessagingExampleSwift;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		81A2FB070295F56CC0B2D523 /* GoogleService-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -47,12 +26,6 @@
 		8DB25F9520BE0C2A000ABEE2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8DB25F9820BE0C2A000ABEE2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8DB25F9A20BE0C2A000ABEE2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8DECFE80211CC15F00DC99BD /* InAppMessagingExampleSwiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InAppMessagingExampleSwiftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		8DECFE82211CC15F00DC99BD /* InAppMessagingExampleSwiftTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InAppMessagingExampleSwiftTests.m; sourceTree = "<group>"; };
-		8DECFE84211CC15F00DC99BD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8DECFE8E211CC16F00DC99BD /* InAppMessagingExampleSwiftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InAppMessagingExampleSwiftUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		8DECFE90211CC16F00DC99BD /* InAppMessagingExampleSwiftUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InAppMessagingExampleSwiftUITests.m; sourceTree = "<group>"; };
-		8DECFE92211CC16F00DC99BD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,20 +38,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		8DECFE7D211CC15F00DC99BD /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8DECFE8B211CC16F00DC99BD /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -86,8 +45,6 @@
 			isa = PBXGroup;
 			children = (
 				8DB25F8D20BE0C29000ABEE2 /* InAppMessagingExampleSwift */,
-				8DECFE81211CC15F00DC99BD /* InAppMessagingExampleSwiftTests */,
-				8DECFE8F211CC16F00DC99BD /* InAppMessagingExampleSwiftUITests */,
 				8DB25F8C20BE0C29000ABEE2 /* Products */,
 				81A2FB070295F56CC0B2D523 /* GoogleService-Info.plist */,
 				8DC73D782D41A90B0092B6EE /* Frameworks */,
@@ -98,8 +55,6 @@
 			isa = PBXGroup;
 			children = (
 				8DB25F8B20BE0C29000ABEE2 /* InAppMessagingExampleSwift.app */,
-				8DECFE80211CC15F00DC99BD /* InAppMessagingExampleSwiftTests.xctest */,
-				8DECFE8E211CC16F00DC99BD /* InAppMessagingExampleSwiftUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -124,24 +79,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		8DECFE81211CC15F00DC99BD /* InAppMessagingExampleSwiftTests */ = {
-			isa = PBXGroup;
-			children = (
-				8DECFE82211CC15F00DC99BD /* InAppMessagingExampleSwiftTests.m */,
-				8DECFE84211CC15F00DC99BD /* Info.plist */,
-			);
-			path = InAppMessagingExampleSwiftTests;
-			sourceTree = "<group>";
-		};
-		8DECFE8F211CC16F00DC99BD /* InAppMessagingExampleSwiftUITests */ = {
-			isa = PBXGroup;
-			children = (
-				8DECFE90211CC16F00DC99BD /* InAppMessagingExampleSwiftUITests.m */,
-				8DECFE92211CC16F00DC99BD /* Info.plist */,
-			);
-			path = InAppMessagingExampleSwiftUITests;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -162,42 +99,6 @@
 			productReference = 8DB25F8B20BE0C29000ABEE2 /* InAppMessagingExampleSwift.app */;
 			productType = "com.apple.product-type.application";
 		};
-		8DECFE7F211CC15F00DC99BD /* InAppMessagingExampleSwiftTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 8DECFE87211CC15F00DC99BD /* Build configuration list for PBXNativeTarget "InAppMessagingExampleSwiftTests" */;
-			buildPhases = (
-				8DECFE7C211CC15F00DC99BD /* Sources */,
-				8DECFE7D211CC15F00DC99BD /* Frameworks */,
-				8DECFE7E211CC15F00DC99BD /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				8DECFE86211CC15F00DC99BD /* PBXTargetDependency */,
-			);
-			name = InAppMessagingExampleSwiftTests;
-			productName = InAppMessagingExampleSwiftTests;
-			productReference = 8DECFE80211CC15F00DC99BD /* InAppMessagingExampleSwiftTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		8DECFE8D211CC16F00DC99BD /* InAppMessagingExampleSwiftUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 8DECFE95211CC16F00DC99BD /* Build configuration list for PBXNativeTarget "InAppMessagingExampleSwiftUITests" */;
-			buildPhases = (
-				8DECFE8A211CC16F00DC99BD /* Sources */,
-				8DECFE8B211CC16F00DC99BD /* Frameworks */,
-				8DECFE8C211CC16F00DC99BD /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				8DECFE94211CC16F00DC99BD /* PBXTargetDependency */,
-			);
-			name = InAppMessagingExampleSwiftUITests;
-			productName = InAppMessagingExampleSwiftUITests;
-			productReference = 8DECFE8E211CC16F00DC99BD /* InAppMessagingExampleSwiftUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -212,14 +113,6 @@
 					8DB25F8A20BE0C29000ABEE2 = {
 						CreatedOnToolsVersion = 9.3;
 						LastSwiftMigration = 1110;
-					};
-					8DECFE7F211CC15F00DC99BD = {
-						CreatedOnToolsVersion = 9.4.1;
-						TestTargetID = 8DB25F8A20BE0C29000ABEE2;
-					};
-					8DECFE8D211CC16F00DC99BD = {
-						CreatedOnToolsVersion = 9.4.1;
-						TestTargetID = 8DB25F8A20BE0C29000ABEE2;
 					};
 				};
 			};
@@ -240,8 +133,6 @@
 			projectRoot = "";
 			targets = (
 				8DB25F8A20BE0C29000ABEE2 /* InAppMessagingExampleSwift */,
-				8DECFE7F211CC15F00DC99BD /* InAppMessagingExampleSwiftTests */,
-				8DECFE8D211CC16F00DC99BD /* InAppMessagingExampleSwiftUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -254,20 +145,6 @@
 				8DB25F9920BE0C2A000ABEE2 /* LaunchScreen.storyboard in Resources */,
 				8DB25F9620BE0C2A000ABEE2 /* Assets.xcassets in Resources */,
 				8DB25F9420BE0C29000ABEE2 /* Main.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8DECFE7E211CC15F00DC99BD /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8DECFE8C211CC16F00DC99BD /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -284,38 +161,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		8DECFE7C211CC15F00DC99BD /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				8DECFE83211CC15F00DC99BD /* InAppMessagingExampleSwiftTests.m in Sources */,
-				804A5BC592C150CEBA9CE261 /* GoogleService-Info.plist in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8DECFE8A211CC16F00DC99BD /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				8DECFE91211CC16F00DC99BD /* InAppMessagingExampleSwiftUITests.m in Sources */,
-				EC3960AA137BC0A6EF185169 /* GoogleService-Info.plist in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		8DECFE86211CC15F00DC99BD /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 8DB25F8A20BE0C29000ABEE2 /* InAppMessagingExampleSwift */;
-			targetProxy = 8DECFE85211CC15F00DC99BD /* PBXContainerItemProxy */;
-		};
-		8DECFE94211CC16F00DC99BD /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 8DB25F8A20BE0C29000ABEE2 /* InAppMessagingExampleSwift */;
-			targetProxy = 8DECFE93211CC16F00DC99BD /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		8DB25F9220BE0C29000ABEE2 /* Main.storyboard */ = {
@@ -489,80 +335,6 @@
 			};
 			name = Release;
 		};
-		8DECFE88211CC15F00DC99BD /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = InAppMessagingExampleSwiftTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.firebase.InAppMessagingExampleSwiftTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/InAppMessagingExampleSwift.app/InAppMessagingExampleSwift";
-			};
-			name = Debug;
-		};
-		8DECFE89211CC15F00DC99BD /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = InAppMessagingExampleSwiftTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.firebase.InAppMessagingExampleSwiftTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/InAppMessagingExampleSwift.app/InAppMessagingExampleSwift";
-			};
-			name = Release;
-		};
-		8DECFE96211CC16F00DC99BD /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = InAppMessagingExampleSwiftUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.firebase.InAppMessagingExampleSwiftUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = InAppMessagingExampleSwift;
-			};
-			name = Debug;
-		};
-		8DECFE97211CC16F00DC99BD /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = InAppMessagingExampleSwiftUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.firebase.InAppMessagingExampleSwiftUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = InAppMessagingExampleSwift;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -580,24 +352,6 @@
 			buildConfigurations = (
 				8DB25F9E20BE0C2A000ABEE2 /* Debug */,
 				8DB25F9F20BE0C2A000ABEE2 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		8DECFE87211CC15F00DC99BD /* Build configuration list for PBXNativeTarget "InAppMessagingExampleSwiftTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				8DECFE88211CC15F00DC99BD /* Debug */,
-				8DECFE89211CC15F00DC99BD /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		8DECFE95211CC16F00DC99BD /* Build configuration list for PBXNativeTarget "InAppMessagingExampleSwiftUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				8DECFE96211CC16F00DC99BD /* Debug */,
-				8DECFE97211CC16F00DC99BD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

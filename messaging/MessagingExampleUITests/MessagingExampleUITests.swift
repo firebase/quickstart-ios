@@ -15,7 +15,7 @@
 
 import XCTest
 
-class MessagingExampleSwiftUITests: XCTestCase {
+class MessagingExampleUITests: XCTestCase {
   override func setUp() {
     super.setUp()
 

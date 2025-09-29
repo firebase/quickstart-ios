@@ -14,7 +14,7 @@
 
 import MarkdownUI
 import SwiftUI
-import FirebaseAI
+import FirebaseAILogic
 
 struct RoundedCorner: Shape {
   var radius: CGFloat = .infinity

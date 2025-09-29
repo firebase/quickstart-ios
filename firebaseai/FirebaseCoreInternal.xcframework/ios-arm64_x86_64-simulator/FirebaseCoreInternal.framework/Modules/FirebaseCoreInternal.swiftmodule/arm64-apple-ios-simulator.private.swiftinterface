@@ -1,0 +1,84 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.0.3 effective-5.10 (swiftlang-6.0.3.1.10 clang-1600.0.30.1)
+// swift-module-flags: -target arm64-apple-ios15.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -enable-bare-slash-regex -module-name FirebaseCoreInternal
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface
+@_exported import FirebaseCoreInternal
+import Foundation
+import Swift
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+@objc(FIRHeartbeatController) @objcMembers public class _ObjC_HeartbeatController : ObjectiveC.NSObject {
+  @objc public init(id: Swift.String)
+  @objc public func log(_ agent: Swift.String)
+  @objc public func flush() -> FirebaseCoreInternal._ObjC_HeartbeatsPayload
+  @objc public func flushAsync(completionHandler: @escaping @Sendable (FirebaseCoreInternal._ObjC_HeartbeatsPayload) -> Swift.Void)
+  @objc public func flushHeartbeatFromToday() -> FirebaseCoreInternal._ObjC_HeartbeatsPayload
+  @objc deinit
+}
+@objc(FIRHeartbeatsPayload) public class _ObjC_HeartbeatsPayload : ObjectiveC.NSObject, FirebaseCoreInternal.HTTPHeaderRepresentable {
+  public init(_ heartbeatsPayload: FirebaseCoreInternal.HeartbeatsPayload)
+  @objc public func headerValue() -> Swift.String
+  @objc public var isEmpty: Swift.Bool {
+    @objc get
+  }
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers final public class HeartbeatController : Swift.Sendable {
+  convenience public init(id: Swift.String)
+  final public func log(_ agent: Swift.String)
+  @discardableResult
+  final public func flush() -> FirebaseCoreInternal.HeartbeatsPayload
+  final public func flushAsync(completionHandler: @escaping @Sendable (FirebaseCoreInternal.HeartbeatsPayload) -> Swift.Void)
+  @discardableResult
+  final public func flushHeartbeatFromToday() -> FirebaseCoreInternal.HeartbeatsPayload
+  @objc deinit
+}
+public protocol HTTPHeaderRepresentable {
+  func headerValue() -> Swift.String
+}
+public struct HeartbeatsPayload : Swift.Codable, Swift.Sendable {
+  public var isEmpty: Swift.Bool {
+    get
+  }
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+extension FirebaseCoreInternal.HeartbeatsPayload : FirebaseCoreInternal.HTTPHeaderRepresentable {
+  public func headerValue() -> Swift.String
+}
+extension FirebaseCoreInternal.HeartbeatsPayload {
+  public static let dateFormatter: Foundation.DateFormatter
+}
+extension FirebaseCoreInternal.HeartbeatsPayload : Swift.Equatable {
+  public static func == (a: FirebaseCoreInternal.HeartbeatsPayload, b: FirebaseCoreInternal.HeartbeatsPayload) -> Swift.Bool
+}
+extension Foundation.Data {
+  public func base64URLEncodedString(options: Foundation.Data.Base64EncodingOptions = []) -> Swift.String
+  public init?(base64URLEncoded base64URLString: Swift.String, options: Foundation.Data.Base64DecodingOptions = [])
+  public func zipped() throws -> Foundation.Data
+  public func unzipped() throws -> Foundation.Data
+}
+final public class UnfairLock<Value> : @unchecked Swift.Sendable {
+  #if compiler(>=5.3) && $SendingArgsAndResults
+  public init(_ value: consuming sending Value)
+  #else
+  public init(_ value: consuming Value)
+  #endif
+  @objc deinit
+  final public func value() -> Value
+  #if compiler(>=5.3) && $SendingArgsAndResults
+  @discardableResult
+  final public borrowing func withLock<Result>(_ body: (inout sending Value) throws -> sending Result) rethrows -> sending Result
+  #else
+  @discardableResult
+  final public borrowing func withLock<Result>(_ body: (inout Value) throws -> Result) rethrows -> Result
+  #endif
+  #if compiler(>=5.3) && $SendingArgsAndResults
+  @discardableResult
+  final public borrowing func withLock<Result>(_ body: (inout sending Value) -> sending Result) -> sending Result
+  #else
+  @discardableResult
+  final public borrowing func withLock<Result>(_ body: (inout Value) -> Result) -> Result
+  #endif
+}

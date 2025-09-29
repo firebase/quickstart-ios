@@ -856,8 +856,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 12.0.0;
+				branch = "ah/ai-logic-rename";
+				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

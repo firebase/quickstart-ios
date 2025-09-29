@@ -65,7 +65,6 @@
 		86BB55D42E8B16DC0054B8B5 /* GenerateContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88209C1D2B0FBDC300F64795 /* GenerateContentViewModel.swift */; };
 		86BB55D52E8B16DC0054B8B5 /* GoogleSearchSuggestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE793DC2E256D3900708F02 /* GoogleSearchSuggestionView.swift */; };
 		86BB55D62E8B16DC0054B8B5 /* GroundedResponseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE793DD2E256D3900708F02 /* GroundedResponseView.swift */; };
-		86BB55D82E8B16DC0054B8B5 /* FirebaseAI in Frameworks */ = {isa = PBXBuildFile; productRef = 86BB55C12E8B16DC0054B8B5 /* FirebaseAI */; };
 		86BB55D92E8B16DC0054B8B5 /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = 86BB55BE2E8B16DC0054B8B5 /* MarkdownUI */; };
 		86BB55DA2E8B16DC0054B8B5 /* GenerativeAIUIComponents in Frameworks */ = {isa = PBXBuildFile; productRef = 86BB55C02E8B16DC0054B8B5 /* GenerativeAIUIComponents */; };
 		86BB55DC2E8B16DC0054B8B5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8848C8392B0D04BD007B434F /* Preview Assets.xcassets */; };
@@ -180,7 +179,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				86BB55D82E8B16DC0054B8B5 /* FirebaseAI in Frameworks */,
 				86BB55D92E8B16DC0054B8B5 /* MarkdownUI in Frameworks */,
 				86BB55DA2E8B16DC0054B8B5 /* GenerativeAIUIComponents in Frameworks */,
 			);
@@ -469,7 +467,6 @@
 			packageProductDependencies = (
 				86BB55BE2E8B16DC0054B8B5 /* MarkdownUI */,
 				86BB55C02E8B16DC0054B8B5 /* GenerativeAIUIComponents */,
-				86BB55C12E8B16DC0054B8B5 /* FirebaseAI */,
 			);
 			productName = GenerativeAIExample;
 			productReference = 86BB55E22E8B16DC0054B8B5 /* FirebaseAIExample-CocoaPods.app */;
@@ -1009,14 +1006,6 @@
 				revision = 55441810c0f678c78ed7e2ebd46dde89228e02fc;
 			};
 		};
-		86BB55C22E8B16DC0054B8B5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
-			requirement = {
-				branch = "ah/ai-logic-rename";
-				kind = branch;
-			};
-		};
 		88209C212B0FBDF700F64795 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/gonzalezreal/swift-markdown-ui";
@@ -1061,11 +1050,6 @@
 		86BB55C02E8B16DC0054B8B5 /* GenerativeAIUIComponents */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = GenerativeAIUIComponents;
-		};
-		86BB55C12E8B16DC0054B8B5 /* FirebaseAI */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 86BB55C22E8B16DC0054B8B5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAI;
 		};
 		886F95D72B17BA420036F07A /* MarkdownUI */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -72,6 +72,7 @@ jobs:
     env:
       SETUP: firebaseai
       SPM: false
+      LEGACY: false
       DIR: firebaseai
       OS: ${{ matrix.platform }}
       DEVICE: ${{ matrix.device }}

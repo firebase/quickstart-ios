@@ -113,7 +113,7 @@ jobs:
     runs-on: macOS-15
     env:
       SETUP: firebaseai
-      SPM: false
+      SPM: true
       LEGACY: false
       DIR: firebaseai
       OS: ${{ matrix.platform }}

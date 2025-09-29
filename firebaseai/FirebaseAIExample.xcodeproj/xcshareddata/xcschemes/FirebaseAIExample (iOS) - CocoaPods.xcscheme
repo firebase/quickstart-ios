@@ -15,9 +15,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "86BB55332E8AE4240054B8B5"
-               BuildableName = "FirebaseAIExample-Zip.app"
-               BlueprintName = "FirebaseAIExample-Zip"
+               BlueprintIdentifier = "86BB55BD2E8B16DC0054B8B5"
+               BuildableName = "FirebaseAIExample-CocoaPods.app"
+               BlueprintName = "FirebaseAIExample-CocoaPods"
                ReferencedContainer = "container:FirebaseAIExample.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -44,9 +44,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "86BB55332E8AE4240054B8B5"
-            BuildableName = "FirebaseAIExample-Zip.app"
-            BlueprintName = "FirebaseAIExample-Zip"
+            BlueprintIdentifier = "86BB55BD2E8B16DC0054B8B5"
+            BuildableName = "FirebaseAIExample-CocoaPods.app"
+            BlueprintName = "FirebaseAIExample-CocoaPods"
             ReferencedContainer = "container:FirebaseAIExample.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -61,9 +61,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "86BB55332E8AE4240054B8B5"
-            BuildableName = "FirebaseAIExample-Zip.app"
-            BlueprintName = "FirebaseAIExample-Zip"
+            BlueprintIdentifier = "86BB55BD2E8B16DC0054B8B5"
+            BuildableName = "FirebaseAIExample-CocoaPods.app"
+            BlueprintName = "FirebaseAIExample-CocoaPods"
             ReferencedContainer = "container:FirebaseAIExample.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import SwiftUI
-import FirebaseAI
+import FirebaseAILogic
 
 enum BackendOption: String, CaseIterable, Identifiable {
   case googleAI = "Gemini Developer API"

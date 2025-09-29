@@ -54,3 +54,82 @@ jobs:
         run: cp ./mock-GoogleService-Info.plist ./firebaseai/GoogleService-Info.plist
       - name: Build and Test SwiftUI (${{ matrix.platform }})
         run: ./scripts/test.sh
+
+  cocoapods:
+    name: cocoapods (Xcode ${{ matrix.xcode }} - ${{ matrix.platform }})
+    strategy:
+      matrix:
+        include:
+          - os: macos-15
+            xcode: "16.4"
+            platform: iOS
+            device: iPhone 16
+          - os: macos-26
+            xcode: "26.0"
+            platform: iOS
+            device: iPhone 16e
+    runs-on: macOS-15
+    env:
+      SETUP: firebaseai
+      SPM: false
+      LEGACY: false
+      DIR: firebaseai
+      OS: ${{ matrix.platform }}
+      DEVICE: ${{ matrix.device }}
+      TEST: false
+      XCODE_VERSION: ${{ matrix.xcode }}
+      DEVELOPER_DIR: /Applications/Xcode_${{ matrix.xcode }}.app/Contents/Developer
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+      - name: Setup
+        run: |
+          cd firebaseai/
+          gem install bundler
+          bundle install
+          gem install xcpretty
+          bundle exec pod install --repo-update
+          ../scripts/install_prereqs/firebaseai.sh
+      - name: Placeholder GoogleService-Info.plist good enough for build only testing.
+        run: cp ./mock-GoogleService-Info.plist ./firebaseai/GoogleService-Info.plist
+      - name: Build Swift
+        run: ./scripts/test.sh
+        env:
+          SCHEME: "FirebaseAIExample (iOS) - CocoaPods"
+
+  zip:
+    name: zip (Xcode ${{ matrix.xcode }} - ${{ matrix.platform }})
+    strategy:
+      matrix:
+        include:
+          - os: macos-15
+            xcode: "16.4"
+            platform: iOS
+            device: iPhone 16
+          - os: macos-26
+            xcode: "26.0"
+            platform: iOS
+            device: iPhone 16e
+    runs-on: macOS-15
+    env:
+      SETUP: firebaseai
+      SPM: true
+      LEGACY: false
+      DIR: firebaseai
+      OS: ${{ matrix.platform }}
+      DEVICE: ${{ matrix.device }}
+      TEST: false
+      XCODE_VERSION: ${{ matrix.xcode }}
+      DEVELOPER_DIR: /Applications/Xcode_${{ matrix.xcode }}.app/Contents/Developer
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+      - name: Setup
+        run: |
+          gem install xcpretty
+      - name: Placeholder GoogleService-Info.plist good enough for build only testing.
+        run: cp ./mock-GoogleService-Info.plist ./firebaseai/GoogleService-Info.plist
+      - name: Build Swift
+        run: ./scripts/test.sh
+        env:
+          SCHEME: "FirebaseAIExample (iOS) - Zip"

@@ -1,0 +1,10 @@
+source 'https://github.com/firebase/SpecsStaging.git'
+source 'https://cdn.cocoapods.org/'
+
+platform :ios, '16.0'
+
+target 'FirebaseAIExample-CocoaPods' do
+  use_frameworks!
+
+  pod 'FirebaseAILogic'
+end

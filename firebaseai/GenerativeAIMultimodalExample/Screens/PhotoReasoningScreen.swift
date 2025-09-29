@@ -16,7 +16,7 @@ import GenerativeAIUIComponents
 import MarkdownUI
 import PhotosUI
 import SwiftUI
-import FirebaseAI
+import FirebaseAILogic
 
 struct PhotoReasoningScreen: View {
   let firebaseService: FirebaseAI

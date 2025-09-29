@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import FirebaseAI
+import FirebaseAILogic
 import SwiftUI
 
 /// A view that displays a chat message that is grounded in Google Search.

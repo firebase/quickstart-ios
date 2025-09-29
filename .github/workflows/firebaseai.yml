@@ -90,6 +90,8 @@ jobs:
           gem install xcpretty
           bundle exec pod install --repo-update
           ../scripts/install_prereqs/firebaseai.sh
+      - name: Placeholder GoogleService-Info.plist good enough for build only testing.
+        run: cp ./mock-GoogleService-Info.plist ./firebaseai/GoogleService-Info.plist
       - name: Build Swift
         run: ./scripts/test.sh
         env:

@@ -14,7 +14,11 @@
 
 import MarkdownUI
 import SwiftUI
-import FirebaseAI
+#if canImport(FirebaseAILogic)
+  import FirebaseAILogic
+#else
+  import FirebaseAI
+#endif
 import GenerativeAIUIComponents
 
 struct GenerateContentScreen: View {

@@ -16,7 +16,11 @@ import GenerativeAIUIComponents
 import MarkdownUI
 import PhotosUI
 import SwiftUI
-import FirebaseAI
+#if canImport(FirebaseAILogic)
+  import FirebaseAILogic
+#else
+  import FirebaseAI
+#endif
 
 struct PhotoReasoningScreen: View {
   let firebaseService: FirebaseAI

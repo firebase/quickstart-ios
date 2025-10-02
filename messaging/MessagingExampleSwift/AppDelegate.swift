@@ -53,25 +53,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     return true
   }
 
-  func application(_ application: UIApplication,
-                   didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
-    // If you are receiving a notification message while your app is in the background,
-    // this callback will not be fired till the user taps on the notification launching the application.
-    // TODO: Handle data of notification
-
-    // With swizzling disabled you must let Messaging know about the message, for Analytics
-    // Messaging.messaging().appDidReceiveMessage(userInfo)
-
-    // Print message ID.
-    if let messageID = userInfo[gcmMessageIDKey] {
-      print("Message ID: \(messageID)")
-    }
-
-    // Print full message.
-    print(userInfo)
-  }
-
   // [START receive_message]
+  @MainActor
   func application(_ application: UIApplication,
                    didReceiveRemoteNotification userInfo: [AnyHashable: Any]) async
     -> UIBackgroundFetchResult {
@@ -89,12 +72,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     // Print full message.
     print(userInfo)
-
+    print("Call exportDeliveryMetricsToBigQuery() from AppDelegate")
+    Messaging.serviceExtension().exportDeliveryMetricsToBigQuery(withMessageInfo: userInfo)
     return UIBackgroundFetchResult.newData
   }
 
   // [END receive_message]
-
   func application(_ application: UIApplication,
                    didFailToRegisterForRemoteNotificationsWithError error: Error) {
     print("Unable to register for remote notifications: \(error.localizedDescription)")
@@ -105,8 +88,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   // the FCM registration token.
   func application(_ application: UIApplication,
                    didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-    print("APNs token retrieved: \(deviceToken)")
-
+    let tokenParts = deviceToken.map { data in String(format: "%02.2hhx", data) }
+    let token = tokenParts.joined()
+    print("APNs token retrieved: \(token)")
     // With swizzling disabled you must set the APNs token here.
     // Messaging.messaging().apnsToken = deviceToken
   }

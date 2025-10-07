@@ -141,6 +141,9 @@ class TranscriptViewModel: ObservableObject {
 }
 
 extension Character {
+  /// Marker for punctuation that dictates the end of a sentence.
+  ///
+  /// Namely, this checks for `.`, `!` and `?`.
   var isEndOfSentence: Bool {
     self == "." || self == "!" || self == "?"
   }

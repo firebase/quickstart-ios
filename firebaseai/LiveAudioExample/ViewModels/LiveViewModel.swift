@@ -17,7 +17,6 @@ import Foundation
 import OSLog
 import AVFoundation
 import SwiftUI
-import AVFoundation
 import AVKit
 
 enum LiveViewModelState {
@@ -71,11 +70,12 @@ class LiveViewModel: ObservableObject {
             name: "clearBackgroundColor",
             description: "Removes the background color.",
             parameters: [:]
-          )
+          ),
         ]),
       ]
     )
   }
+
   /// Start a connection to the model.
   ///
   /// If a connection is already active, you'll need to call ``LiveViewModel/disconnect()`` first.
@@ -93,8 +93,8 @@ class LiveViewModel: ObservableObject {
     transcriptViewModel.restart()
 
     do {
-      self.liveSession = try await model.connect()
-      self.audioController = try AudioController()
+      liveSession = try await model.connect()
+      audioController = try AudioController()
 
       try startRecording()
 
@@ -169,14 +169,14 @@ class LiveViewModel: ObservableObject {
 
   private func processServerMessage(_ message: LiveServerMessage) async {
     switch message.payload {
-    case .content(let content):
+    case let .content(content):
       await processServerContent(content)
-    case .toolCall(let toolCall):
+    case let .toolCall(toolCall):
       await processFunctionCalls(functionCalls: toolCall.functionCalls ?? [])
-    case .toolCallCancellation(_):
+    case .toolCallCancellation:
       // we don't have any long running functions to cancel
       return
-    case .goingAwayNotice(let goingAwayNotice):
+    case let .goingAwayNotice(goingAwayNotice):
       let time = goingAwayNotice.timeLeft?.description ?? "soon"
       logger.warning("Going away in: \(time)")
     }
@@ -219,9 +219,9 @@ class LiveViewModel: ObservableObject {
     let responses = functionCalls.map { functionCall in
       switch functionCall.name {
       case "changeBackgroundColor":
-      return changeBackgroundColor(args: functionCall.args, id: functionCall.functionId)
+        return changeBackgroundColor(args: functionCall.args, id: functionCall.functionId)
       case "clearBackgroundColor":
-      return clearBackgroundColor(id: functionCall.functionId)
+        return clearBackgroundColor(id: functionCall.functionId)
       default:
         logger.debug("Function call: \(String(describing: functionCall))")
         fatalError("Unknown function named \"\(functionCall.name)\".")
@@ -256,7 +256,7 @@ class LiveViewModel: ObservableObject {
     )
   }
 
-  private func clearBackgroundColor(id: String?) -> FunctionResponsePart  {
+  private func clearBackgroundColor(id: String?) -> FunctionResponsePart {
     withAnimation {
       backgroundColor = nil
     }
@@ -286,10 +286,10 @@ extension Color {
       g = CGFloat((rgb & 0x00FF00) >> 8) / 255.0
       b = CGFloat(rgb & 0x0000FF) / 255.0
     } else if hex.count == 8 {
-      r = CGFloat((rgb & 0xFF000000) >> 24) / 255.0
-      g = CGFloat((rgb & 0x00FF0000) >> 16) / 255.0
-      b = CGFloat((rgb & 0x0000FF00) >> 8) / 255.0
-      a = CGFloat(rgb & 0x000000FF) / 255.0
+      r = CGFloat((rgb & 0xFF00_0000) >> 24) / 255.0
+      g = CGFloat((rgb & 0x00FF_0000) >> 16) / 255.0
+      b = CGFloat((rgb & 0x0000_FF00) >> 8) / 255.0
+      a = CGFloat(rgb & 0x0000_00FF) / 255.0
     } else {
       return nil
     }

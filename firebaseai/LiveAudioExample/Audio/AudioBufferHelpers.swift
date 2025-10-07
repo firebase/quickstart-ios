@@ -23,7 +23,8 @@ extension AVAudioPCMBuffer {
       fatalError("Only interleaved data is supported")
     }
 
-    let frameCapacity = AVAudioFrameCount(data.count / Int(format.streamDescription.pointee.mBytesPerFrame))
+    let frameCapacity = AVAudioFrameCount(data
+      .count / Int(format.streamDescription.pointee.mBytesPerFrame))
     guard let buffer = AVAudioPCMBuffer(pcmFormat: format, frameCapacity: frameCapacity) else {
       return nil
     }

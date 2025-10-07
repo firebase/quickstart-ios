@@ -36,7 +36,7 @@ struct LiveErrorView: View {
 
 #Preview {
   let cause = NSError(domain: "network.api", code: 1, userInfo: [
-    NSLocalizedDescriptionKey: "Network timed out."
+    NSLocalizedDescriptionKey: "Network timed out.",
   ])
   let error = LiveSessionLostConnectionError(underlyingError: cause)
 

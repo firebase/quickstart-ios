@@ -60,7 +60,7 @@ class AudioPlayer {
 
     guard let inputBuffer = AVAudioPCMBuffer.fromInterleavedData(
       data: audio,
-      format: self.inputFormat
+      format: inputFormat
     ) else {
       fatalError("Failed to create input buffer for playback")
     }

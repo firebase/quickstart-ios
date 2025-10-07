@@ -69,7 +69,7 @@ private extension Error {
 
 #Preview("Live error") {
   let cause = NSError(domain: "network.api", code: 1, userInfo: [
-    NSLocalizedDescriptionKey: "Network timed out."
+    NSLocalizedDescriptionKey: "Network timed out.",
   ])
   let error = LiveSessionLostConnectionError(underlyingError: cause)
 
@@ -78,7 +78,7 @@ private extension Error {
 
 #Preview("Unexpected error") {
   let error = NSError(domain: "network.api", code: 1, userInfo: [
-    NSLocalizedDescriptionKey: "Network timed out."
+    NSLocalizedDescriptionKey: "Network timed out.",
   ])
 
   LiveErrorDetailsView(error: error)

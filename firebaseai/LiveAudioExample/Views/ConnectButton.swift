@@ -16,8 +16,8 @@ import SwiftUI
 
 struct ConnectButton: View {
   var state: LiveViewModelState
-  var onConnect: () async -> ()
-  var onDisconnect: () async -> ()
+  var onConnect: () async -> Void
+  var onDisconnect: () async -> Void
 
   @State private var gradientAngle: Angle = .zero
 
@@ -51,7 +51,7 @@ struct ConnectButton: View {
     switch state {
     case .connected: []
     case .connecting: [.secondary, .white]
-    case .idle:  [.red, .blue, .green, .yellow, .red]
+    case .idle: [.red, .blue, .green, .yellow, .red]
     }
   }
 

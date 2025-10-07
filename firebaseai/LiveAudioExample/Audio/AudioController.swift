@@ -19,10 +19,10 @@ class AudioController {
   /// Data processed from the microphone.
   private let microphoneData: AsyncStream<AVAudioPCMBuffer>
   private let microphoneDataQueue: AsyncStream<AVAudioPCMBuffer>.Continuation
-  private var audioPlayer: AudioPlayer? = nil
-  private var audioEngine: AVAudioEngine? = nil
-  private var microphone: Microphone? = nil
-  private var listenTask: Task<Void, Never>? = nil
+  private var audioPlayer: AudioPlayer?
+  private var audioEngine: AVAudioEngine?
+  private var microphone: Microphone?
+  private var listenTask: Task<Void, Never>?
 
   /// Port types that are considered "headphones" for our use-case.
   ///
@@ -32,7 +32,7 @@ class AudioController {
     .headphones,
     .bluetoothA2DP,
     .bluetoothLE,
-    .bluetoothHFP
+    .bluetoothHFP,
   ]
 
   private let modelInputFormat: AVAudioFormat
@@ -42,13 +42,18 @@ class AudioController {
 
   public init() throws {
     let session = AVAudioSession.sharedInstance()
-    try session.setCategory(.playAndRecord, mode: .voiceChat, options: [.defaultToSpeaker, .allowBluetooth, .duckOthers, .interruptSpokenAudioAndMixWithOthers, .allowBluetoothA2DP])
+    try session.setCategory(
+      .playAndRecord,
+      mode: .voiceChat,
+      options: [.defaultToSpeaker, .allowBluetooth, .duckOthers,
+                .interruptSpokenAudioAndMixWithOthers, .allowBluetoothA2DP]
+    )
     try session.setPreferredIOBufferDuration(0.01)
     try session.setActive(true)
 
     guard let modelInputFormat = AVAudioFormat(
       commonFormat: .pcmFormatInt16,
-      sampleRate: 16_000,
+      sampleRate: 16000,
       channels: 1,
       interleaved: false
     ) else {
@@ -57,7 +62,7 @@ class AudioController {
 
     guard let modelOutputFormat = AVAudioFormat(
       commonFormat: .pcmFormatInt16,
-      sampleRate: 24_000,
+      sampleRate: 24000,
       channels: 1,
       interleaved: true
     ) else {
@@ -68,8 +73,8 @@ class AudioController {
     self.modelOutputFormat = modelOutputFormat
 
     let (processedData, dataQueue) = AsyncStream<AVAudioPCMBuffer>.makeStream()
-    self.microphoneData = processedData
-    self.microphoneDataQueue = dataQueue
+    microphoneData = processedData
+    microphoneDataQueue = dataQueue
 
     listenForRouteChange()
   }
@@ -175,9 +180,9 @@ class AudioController {
 
   private func setupAudioPlayback(_ engine: AVAudioEngine) {
     let playbackFormat = engine.outputNode.outputFormat(forBus: 0)
-    self.audioPlayer = AudioPlayer(
+    audioPlayer = AudioPlayer(
       engine: engine,
-      inputFormat: self.modelOutputFormat,
+      inputFormat: modelOutputFormat,
       outputFormat: playbackFormat
     )
   }
@@ -188,9 +193,9 @@ class AudioController {
       let headphonesConnected = headphonesConnected()
       let vpEnabled = engine.inputNode.isVoiceProcessingEnabled
 
-      if !vpEnabled && !headphonesConnected {
+      if !vpEnabled, !headphonesConnected {
         try engine.inputNode.setVoiceProcessingEnabled(true)
-      } else if headphonesConnected && vpEnabled {
+      } else if headphonesConnected, vpEnabled {
         // bluetooth headphones have integrated AEC, so if we don't disable VP IO we get muted output
         try engine.inputNode.setVoiceProcessingEnabled(false)
       }
@@ -211,8 +216,8 @@ class AudioController {
 
   @objc private func handleRouteChange(notification: Notification) {
     guard let userInfo = notification.userInfo,
-          let reasonValue = userInfo[AVAudioSessionRouteChangeReasonKey] as? UInt,
-          let reason = AVAudioSession.RouteChangeReason(rawValue: reasonValue) else {
+      let reasonValue = userInfo[AVAudioSessionRouteChangeReasonKey] as? UInt,
+      let reason = AVAudioSession.RouteChangeReason(rawValue: reasonValue) else {
       return
     }
 

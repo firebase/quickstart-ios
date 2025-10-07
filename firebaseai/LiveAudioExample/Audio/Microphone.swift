@@ -31,8 +31,8 @@ class Microphone {
 
     self.audio = audio
     self.audioQueue = audioQueue
-    self.inputNode = engine.inputNode
-    self.audioEngine = engine
+    inputNode = engine.inputNode
+    audioEngine = engine
   }
 
   deinit {
@@ -45,10 +45,11 @@ class Microphone {
 
     // 50ms buffer size for balancing latency and cpu overhead
     let targetBufferSize = UInt32(inputNode.outputFormat(forBus: 0).sampleRate / 20)
-    inputNode.installTap(onBus: 0, bufferSize: targetBufferSize, format: nil) { [weak self] buffer, _ in
-      guard let self else { return }
-      audioQueue.yield(buffer)
-    }
+    inputNode
+      .installTap(onBus: 0, bufferSize: targetBufferSize, format: nil) { [weak self] buffer, _ in
+        guard let self else { return }
+        audioQueue.yield(buffer)
+      }
   }
 
   public func stop() {

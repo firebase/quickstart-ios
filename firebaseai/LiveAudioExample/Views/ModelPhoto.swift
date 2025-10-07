@@ -16,7 +16,7 @@ import SwiftUI
 
 struct ModelPhoto: View {
   var isConnected = false
-  
+
   @State private var gradientAngle: Angle = .zero
 
   var colors: [Color] {

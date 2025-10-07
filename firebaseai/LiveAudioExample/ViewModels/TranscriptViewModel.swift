@@ -34,7 +34,7 @@ class TranscriptViewModel: ObservableObject {
   var audioTranscripts: [TranscriptLine] = []
 
   private var pendingText = [Character]()
-  private var processTextTask: Task<Void, Never>? = nil
+  private var processTextTask: Task<Void, Never>?
 
   init() {
     processTask()
@@ -80,7 +80,7 @@ class TranscriptViewModel: ObservableObject {
 
   private func processNextCharacter() -> Int {
     guard !pendingText.isEmpty else {
-        return CharDelayMS // Default delay if no text is pending
+      return CharDelayMS // Default delay if no text is pending
     }
 
     let char = pendingText.removeFirst()
@@ -102,7 +102,8 @@ class TranscriptViewModel: ObservableObject {
   /// punctuation; as this helps avoid weird situations where words are split across lines.
   ///
   ///   - Returns: The MS delay before working on the next character in the queue.
-  private func determineNextDelayAndFinalize(for char: Character, in line: inout TranscriptLine) -> Int {
+  private func determineNextDelayAndFinalize(for char: Character,
+                                             in line: inout TranscriptLine) -> Int {
     if char.isWhitespace || char.isEndOfSentence {
       if line.message.count >= LineCharacterLength {
         line.isFinal = true
@@ -123,7 +124,7 @@ class TranscriptViewModel: ObservableObject {
     if audioTranscripts.count > MaxLines {
       // fade out the removal; makes it less jumpy during rendering when lines are moved up
       withAnimation {
-        let _ = audioTranscripts.removeFirst()
+        _ = audioTranscripts.removeFirst()
       }
     }
   }

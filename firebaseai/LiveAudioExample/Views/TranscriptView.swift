@@ -33,7 +33,10 @@ struct TranscriptView: View {
 
 #Preview {
   let vm = TranscriptViewModel()
-  TranscriptView(vm: vm).onAppear() {
-    vm.appendTranscript("The sky is blue primarily because of a phenomenon called Rayleigh scattering, where tiny molecules of gas (mainly nitrogen and oxygen) in Earth's atmosphere scatter sunlight in all directions.")
+  TranscriptView(vm: vm).onAppear {
+    vm
+      .appendTranscript(
+        "The sky is blue primarily because of a phenomenon called Rayleigh scattering, where tiny molecules of gas (mainly nitrogen and oxygen) in Earth's atmosphere scatter sunlight in all directions."
+      )
   }
 }

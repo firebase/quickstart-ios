@@ -26,7 +26,8 @@ struct LiveAudioScreen: View {
 
   init(firebaseService: FirebaseAI, backend: BackendOption) {
     self.firebaseService = firebaseService
-    _viewModel = StateObject(wrappedValue: LiveViewModel(firebaseService: firebaseService, backend: backend))
+    _viewModel =
+      StateObject(wrappedValue: LiveViewModel(firebaseService: firebaseService, backend: backend))
   }
 
   var body: some View {
@@ -38,14 +39,17 @@ struct LiveAudioScreen: View {
       if let error = viewModel.error {
         LiveErrorView(error: error)
       }
-      ConnectButton(state: viewModel.state, onConnect: viewModel.connect, onDisconnect: viewModel.disconnect)
+      ConnectButton(
+        state: viewModel.state,
+        onConnect: viewModel.connect,
+        onDisconnect: viewModel.disconnect
+      )
     }
     .padding()
     .navigationTitle("Live Audio")
     .background(viewModel.backgroundColor ?? .clear)
   }
 }
-
 
 #Preview {
   LiveAudioScreen(firebaseService: FirebaseAI.firebaseAI(), backend: .googleAI)

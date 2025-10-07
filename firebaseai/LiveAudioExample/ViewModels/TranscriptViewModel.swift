@@ -20,7 +20,7 @@ private let CharDelayMS = 65
 
 /// The intended amount of characters in a line.
 ///
-/// Can exceed this if the line doesn't end in a space of punctuation.
+/// Can exceed this if the line doesn't end in a space or punctuation.
 private let LineCharacterLength = 20
 
 /// The max amount of lines to hold references for at a time.

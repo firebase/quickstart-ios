@@ -13,6 +13,7 @@
 // limitations under the License.
 
 import FirebaseCore
+import FirebaseAppCheck
 import SwiftUI
 
 class AppDelegate: NSObject, UIApplicationDelegate {
@@ -21,6 +22,9 @@ class AppDelegate: NSObject, UIApplicationDelegate {
                      .LaunchOptionsKey: Any]? = nil) -> Bool {
     // Recommendation: Protect your Vertex AI API resources from abuse by preventing unauthorized
     // clients using App Check; see https://firebase.google.com/docs/app-check#get_started.
+
+    // let providerFactor = AppCheckDebugProviderFactory()
+    // AppCheck.setAppCheckProviderFactory(providerFactor)
 
     FirebaseApp.configure()
 

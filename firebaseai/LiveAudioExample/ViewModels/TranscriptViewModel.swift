@@ -64,7 +64,6 @@ class TranscriptViewModel: ObservableObject {
   func restart() {
     clearPending()
     audioTranscripts.removeAll()
-    processTask()
   }
 
   /// Long running task for processing characters.

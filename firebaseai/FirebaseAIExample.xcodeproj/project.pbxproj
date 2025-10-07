@@ -7,6 +7,34 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0EE94F252E9599B800CEFD69 /* TranscriptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE94F212E9599B800CEFD69 /* TranscriptView.swift */; };
+		0EE94F262E9599B800CEFD69 /* ConnectButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE94F1D2E9599B800CEFD69 /* ConnectButton.swift */; };
+		0EE94F272E9599B800CEFD69 /* TranscriptViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE94F1B2E9599B800CEFD69 /* TranscriptViewModel.swift */; };
+		0EE94F282E9599B800CEFD69 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE94F132E9599B800CEFD69 /* AudioPlayer.swift */; };
+		0EE94F292E9599B800CEFD69 /* LiveAudioScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE94F182E9599B800CEFD69 /* LiveAudioScreen.swift */; };
+		0EE94F2A2E9599B800CEFD69 /* LiveViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE94F1A2E9599B800CEFD69 /* LiveViewModel.swift */; };
+		0EE94F2B2E9599B800CEFD69 /* TranscriptLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE94F162E9599B800CEFD69 /* TranscriptLine.swift */; };
+		0EE94F2C2E9599B800CEFD69 /* ModelPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE94F202E9599B800CEFD69 /* ModelPhoto.swift */; };
+		0EE94F2D2E9599B800CEFD69 /* LiveErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE94F1F2E9599B800CEFD69 /* LiveErrorView.swift */; };
+		0EE94F2E2E9599B800CEFD69 /* Microphone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE94F142E9599B800CEFD69 /* Microphone.swift */; };
+		0EE94F2F2E9599B800CEFD69 /* LiveErrorDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE94F1E2E9599B800CEFD69 /* LiveErrorDetailsView.swift */; };
+		0EE94F302E9599B800CEFD69 /* AudioController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE94F122E9599B800CEFD69 /* AudioController.swift */; };
+		0EE94F312E9599B800CEFD69 /* AudioBufferHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE94F112E9599B800CEFD69 /* AudioBufferHelpers.swift */; };
+		0EE94F322E9599B800CEFD69 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0EE94F232E9599B800CEFD69 /* Assets.xcassets */; };
+		0EE94F332E9599B800CEFD69 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0EE94F232E9599B800CEFD69 /* Assets.xcassets */; };
+		0EE94F342E9599B800CEFD69 /* TranscriptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE94F212E9599B800CEFD69 /* TranscriptView.swift */; };
+		0EE94F352E9599B800CEFD69 /* ConnectButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE94F1D2E9599B800CEFD69 /* ConnectButton.swift */; };
+		0EE94F362E9599B800CEFD69 /* TranscriptViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE94F1B2E9599B800CEFD69 /* TranscriptViewModel.swift */; };
+		0EE94F372E9599B800CEFD69 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE94F132E9599B800CEFD69 /* AudioPlayer.swift */; };
+		0EE94F382E9599B800CEFD69 /* LiveAudioScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE94F182E9599B800CEFD69 /* LiveAudioScreen.swift */; };
+		0EE94F392E9599B800CEFD69 /* LiveViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE94F1A2E9599B800CEFD69 /* LiveViewModel.swift */; };
+		0EE94F3A2E9599B800CEFD69 /* TranscriptLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE94F162E9599B800CEFD69 /* TranscriptLine.swift */; };
+		0EE94F3B2E9599B800CEFD69 /* ModelPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE94F202E9599B800CEFD69 /* ModelPhoto.swift */; };
+		0EE94F3C2E9599B800CEFD69 /* LiveErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE94F1F2E9599B800CEFD69 /* LiveErrorView.swift */; };
+		0EE94F3D2E9599B800CEFD69 /* Microphone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE94F142E9599B800CEFD69 /* Microphone.swift */; };
+		0EE94F3E2E9599B800CEFD69 /* LiveErrorDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE94F1E2E9599B800CEFD69 /* LiveErrorDetailsView.swift */; };
+		0EE94F3F2E9599B800CEFD69 /* AudioController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE94F122E9599B800CEFD69 /* AudioController.swift */; };
+		0EE94F402E9599B800CEFD69 /* AudioBufferHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE94F112E9599B800CEFD69 /* AudioBufferHelpers.swift */; };
 		860F09212E8C4179002D85D0 /* FirebaseAILogic.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 860F09142E8C4171002D85D0 /* FirebaseAILogic.xcframework */; };
 		860F09222E8C4179002D85D0 /* FirebaseAILogic.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 860F09142E8C4171002D85D0 /* FirebaseAILogic.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		860F09242E8C417A002D85D0 /* FirebaseAppCheckInterop.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 860F09152E8C4171002D85D0 /* FirebaseAppCheckInterop.xcframework */; };
@@ -93,6 +121,20 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0EE94F112E9599B800CEFD69 /* AudioBufferHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioBufferHelpers.swift; sourceTree = "<group>"; };
+		0EE94F122E9599B800CEFD69 /* AudioController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioController.swift; sourceTree = "<group>"; };
+		0EE94F132E9599B800CEFD69 /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
+		0EE94F142E9599B800CEFD69 /* Microphone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Microphone.swift; sourceTree = "<group>"; };
+		0EE94F162E9599B800CEFD69 /* TranscriptLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscriptLine.swift; sourceTree = "<group>"; };
+		0EE94F182E9599B800CEFD69 /* LiveAudioScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveAudioScreen.swift; sourceTree = "<group>"; };
+		0EE94F1A2E9599B800CEFD69 /* LiveViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveViewModel.swift; sourceTree = "<group>"; };
+		0EE94F1B2E9599B800CEFD69 /* TranscriptViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscriptViewModel.swift; sourceTree = "<group>"; };
+		0EE94F1D2E9599B800CEFD69 /* ConnectButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectButton.swift; sourceTree = "<group>"; };
+		0EE94F1E2E9599B800CEFD69 /* LiveErrorDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveErrorDetailsView.swift; sourceTree = "<group>"; };
+		0EE94F1F2E9599B800CEFD69 /* LiveErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveErrorView.swift; sourceTree = "<group>"; };
+		0EE94F202E9599B800CEFD69 /* ModelPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelPhoto.swift; sourceTree = "<group>"; };
+		0EE94F212E9599B800CEFD69 /* TranscriptView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscriptView.swift; sourceTree = "<group>"; };
+		0EE94F232E9599B800CEFD69 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		860F09142E8C4171002D85D0 /* FirebaseAILogic.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = FirebaseAILogic.xcframework; sourceTree = "<group>"; };
 		860F09152E8C4171002D85D0 /* FirebaseAppCheckInterop.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = FirebaseAppCheckInterop.xcframework; sourceTree = "<group>"; };
 		860F09162E8C4171002D85D0 /* FirebaseAuthInterop.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = FirebaseAuthInterop.xcframework; sourceTree = "<group>"; };
@@ -163,6 +205,67 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0EE94F152E9599B800CEFD69 /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				0EE94F112E9599B800CEFD69 /* AudioBufferHelpers.swift */,
+				0EE94F122E9599B800CEFD69 /* AudioController.swift */,
+				0EE94F132E9599B800CEFD69 /* AudioPlayer.swift */,
+				0EE94F142E9599B800CEFD69 /* Microphone.swift */,
+			);
+			path = Audio;
+			sourceTree = "<group>";
+		};
+		0EE94F172E9599B800CEFD69 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0EE94F162E9599B800CEFD69 /* TranscriptLine.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		0EE94F192E9599B800CEFD69 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				0EE94F182E9599B800CEFD69 /* LiveAudioScreen.swift */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		0EE94F1C2E9599B800CEFD69 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				0EE94F1A2E9599B800CEFD69 /* LiveViewModel.swift */,
+				0EE94F1B2E9599B800CEFD69 /* TranscriptViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		0EE94F222E9599B800CEFD69 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				0EE94F1D2E9599B800CEFD69 /* ConnectButton.swift */,
+				0EE94F1E2E9599B800CEFD69 /* LiveErrorDetailsView.swift */,
+				0EE94F1F2E9599B800CEFD69 /* LiveErrorView.swift */,
+				0EE94F202E9599B800CEFD69 /* ModelPhoto.swift */,
+				0EE94F212E9599B800CEFD69 /* TranscriptView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		0EE94F242E9599B800CEFD69 /* LiveAudioExample */ = {
+			isa = PBXGroup;
+			children = (
+				0EE94F152E9599B800CEFD69 /* Audio */,
+				0EE94F172E9599B800CEFD69 /* Models */,
+				0EE94F192E9599B800CEFD69 /* Screens */,
+				0EE94F1C2E9599B800CEFD69 /* ViewModels */,
+				0EE94F222E9599B800CEFD69 /* Views */,
+				0EE94F232E9599B800CEFD69 /* Assets.xcassets */,
+			);
+			path = LiveAudioExample;
+			sourceTree = "<group>";
+		};
 		860F091A2E8C4171002D85D0 /* Firebase */ = {
 			isa = PBXGroup;
 			children = (
@@ -244,6 +347,7 @@
 		8848C8262B0D04BC007B434F = {
 			isa = PBXGroup;
 			children = (
+				0EE94F242E9599B800CEFD69 /* LiveAudioExample */,
 				DEFECAA82D7B4CCD00EF9621 /* ImagenScreen */,
 				88B8A9352B0FCBA700424728 /* GenerativeAIUIComponents */,
 				869200B22B879C4F00482873 /* GoogleService-Info.plist */,
@@ -492,6 +596,7 @@
 			files = (
 				86BB56022E8B2D6D0054B8B5 /* Preview Assets.xcassets in Resources */,
 				86BB56032E8B2D6D0054B8B5 /* Assets.xcassets in Resources */,
+				0EE94F322E9599B800CEFD69 /* Assets.xcassets in Resources */,
 				86BB56042E8B2D6D0054B8B5 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -502,6 +607,7 @@
 			files = (
 				8848C83A2B0D04BD007B434F /* Preview Assets.xcassets in Resources */,
 				8848C8372B0D04BD007B434F /* Assets.xcassets in Resources */,
+				0EE94F332E9599B800CEFD69 /* Assets.xcassets in Resources */,
 				869200B32B879C4F00482873 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -519,6 +625,19 @@
 				86BB55ED2E8B2D6D0054B8B5 /* ChatMessage.swift in Sources */,
 				86BB55EE2E8B2D6D0054B8B5 /* ErrorDetailsView.swift in Sources */,
 				86BB55EF2E8B2D6D0054B8B5 /* ContentView.swift in Sources */,
+				0EE94F252E9599B800CEFD69 /* TranscriptView.swift in Sources */,
+				0EE94F262E9599B800CEFD69 /* ConnectButton.swift in Sources */,
+				0EE94F272E9599B800CEFD69 /* TranscriptViewModel.swift in Sources */,
+				0EE94F282E9599B800CEFD69 /* AudioPlayer.swift in Sources */,
+				0EE94F292E9599B800CEFD69 /* LiveAudioScreen.swift in Sources */,
+				0EE94F2A2E9599B800CEFD69 /* LiveViewModel.swift in Sources */,
+				0EE94F2B2E9599B800CEFD69 /* TranscriptLine.swift in Sources */,
+				0EE94F2C2E9599B800CEFD69 /* ModelPhoto.swift in Sources */,
+				0EE94F2D2E9599B800CEFD69 /* LiveErrorView.swift in Sources */,
+				0EE94F2E2E9599B800CEFD69 /* Microphone.swift in Sources */,
+				0EE94F2F2E9599B800CEFD69 /* LiveErrorDetailsView.swift in Sources */,
+				0EE94F302E9599B800CEFD69 /* AudioController.swift in Sources */,
+				0EE94F312E9599B800CEFD69 /* AudioBufferHelpers.swift in Sources */,
 				86BB55F02E8B2D6D0054B8B5 /* GenerateContentScreen.swift in Sources */,
 				86BB55F12E8B2D6D0054B8B5 /* FirebaseAIExampleApp.swift in Sources */,
 				86BB55F22E8B2D6D0054B8B5 /* ConversationViewModel.swift in Sources */,
@@ -545,6 +664,19 @@
 				886F95DE2B17D5010036F07A /* ChatMessage.swift in Sources */,
 				88263BF12B239C11008AB09B /* ErrorDetailsView.swift in Sources */,
 				8848C8352B0D04BC007B434F /* ContentView.swift in Sources */,
+				0EE94F342E9599B800CEFD69 /* TranscriptView.swift in Sources */,
+				0EE94F352E9599B800CEFD69 /* ConnectButton.swift in Sources */,
+				0EE94F362E9599B800CEFD69 /* TranscriptViewModel.swift in Sources */,
+				0EE94F372E9599B800CEFD69 /* AudioPlayer.swift in Sources */,
+				0EE94F382E9599B800CEFD69 /* LiveAudioScreen.swift in Sources */,
+				0EE94F392E9599B800CEFD69 /* LiveViewModel.swift in Sources */,
+				0EE94F3A2E9599B800CEFD69 /* TranscriptLine.swift in Sources */,
+				0EE94F3B2E9599B800CEFD69 /* ModelPhoto.swift in Sources */,
+				0EE94F3C2E9599B800CEFD69 /* LiveErrorView.swift in Sources */,
+				0EE94F3D2E9599B800CEFD69 /* Microphone.swift in Sources */,
+				0EE94F3E2E9599B800CEFD69 /* LiveErrorDetailsView.swift in Sources */,
+				0EE94F3F2E9599B800CEFD69 /* AudioController.swift in Sources */,
+				0EE94F402E9599B800CEFD69 /* AudioBufferHelpers.swift in Sources */,
 				886F95D52B17BA010036F07A /* GenerateContentScreen.swift in Sources */,
 				8848C8332B0D04BC007B434F /* FirebaseAIExampleApp.swift in Sources */,
 				886F95E02B17D5010036F07A /* ConversationViewModel.swift in Sources */,

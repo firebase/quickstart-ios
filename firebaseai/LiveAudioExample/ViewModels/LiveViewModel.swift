@@ -130,11 +130,7 @@ class LiveViewModel: ObservableObject {
     let stream = try audioController.listenToMic()
     microphoneTask = Task {
       for await audioBuffer in stream {
-        guard let data = audioBuffer.int16Data() else {
-          logger.error("Failed to convert audio buffer to int16 Data.")
-          continue
-        }
-        await liveSession.sendAudioRealtime(data)
+        await liveSession.sendAudioRealtime(audioBuffer.int16Data())
       }
     }
   }

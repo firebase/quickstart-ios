@@ -42,7 +42,7 @@ extension AVAudioPCMBuffer {
   /// Gets the underlying `Data` in this buffer.
   ///
   /// Will throw an error if this buffer doesn't hold int16 data.
-  func int16Data() -> Data? {
+  func int16Data() -> Data {
     guard let bufferPtr = audioBufferList.pointee.mBuffers.mData else {
       fatalError("Missing audio buffer list")
     }

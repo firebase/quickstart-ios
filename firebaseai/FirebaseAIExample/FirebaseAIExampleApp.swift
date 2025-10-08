@@ -13,7 +13,6 @@
 // limitations under the License.
 
 import FirebaseCore
-import FirebaseAppCheck
 import SwiftUI
 
 class AppDelegate: NSObject, UIApplicationDelegate {

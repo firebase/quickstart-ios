@@ -94,9 +94,9 @@ class LiveViewModel: ObservableObject {
 
     do {
       liveSession = try await model.connect()
-      audioController = try AudioController()
+      audioController = try await AudioController()
 
-      try startRecording()
+      try await startRecording()
 
       state = .connected
       try await startProcessingResponses()
@@ -111,7 +111,7 @@ class LiveViewModel: ObservableObject {
   ///
   /// Will stop any pending playback, and the recording of the mic.
   func disconnect() async {
-    audioController?.stop()
+    await audioController?.stop()
     await liveSession?.close()
     microphoneTask.cancel()
     state = .idle
@@ -124,10 +124,10 @@ class LiveViewModel: ObservableObject {
   }
 
   /// Starts recording data from the user's microphone, and sends it to the model.
-  private func startRecording() throws {
+  private func startRecording() async throws {
     guard let audioController, let liveSession else { return }
 
-    let stream = try audioController.listenToMic()
+    let stream = try await audioController.listenToMic()
     microphoneTask = Task {
       for await audioBuffer in stream {
         await liveSession.sendAudioRealtime(audioBuffer.int16Data())
@@ -190,7 +190,7 @@ class LiveViewModel: ObservableObject {
 
     if content.wasInterrupted {
       logger.warning("Model was interrupted")
-      audioController?.interrupt()
+      await audioController?.interrupt()
       transcriptViewModel.clearPending()
       // adds an em dash to indiciate that the model was cutoff
       transcriptViewModel.appendTranscript("— ")
@@ -203,7 +203,7 @@ class LiveViewModel: ObservableObject {
     for part in content.parts {
       if let part = part as? InlineDataPart {
         if part.mimeType.starts(with: "audio/pcm") {
-          audioController?.playAudio(audio: part.data)
+          await audioController?.playAudio(audio: part.data)
         } else {
           logger.warning("Received non audio inline data part: \(part.mimeType)")
         }

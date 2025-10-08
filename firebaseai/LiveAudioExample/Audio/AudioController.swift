@@ -15,7 +15,7 @@
 import AVFoundation
 
 /// Controls audio playback and recording.
-class AudioController {
+actor AudioController {
   /// Data processed from the microphone.
   private let microphoneData: AsyncStream<AVAudioPCMBuffer>
   private let microphoneDataQueue: AsyncStream<AVAudioPCMBuffer>.Continuation
@@ -23,6 +23,7 @@ class AudioController {
   private var audioEngine: AVAudioEngine?
   private var microphone: Microphone?
   private var listenTask: Task<Void, Never>?
+  private var routeTask: Task<Void, Never>?
 
   /// Port types that are considered "headphones" for our use-case.
   ///
@@ -40,7 +41,7 @@ class AudioController {
 
   private var stopped = false
 
-  public init() throws {
+  public init() async throws {
     let session = AVAudioSession.sharedInstance()
     try session.setCategory(
       .playAndRecord,
@@ -80,7 +81,25 @@ class AudioController {
   }
 
   deinit {
-    stop()
+    stopped = true
+    listenTask?.cancel()
+    // audio engine needs to be stopped before disconnecting nodes
+    audioEngine?.pause()
+    audioEngine?.stop()
+    if let audioEngine {
+      do {
+        // the VP IO leaves behind artifacts, so we need to disable it to properly clean up
+        if audioEngine.inputNode.isVoiceProcessingEnabled {
+          try audioEngine.inputNode.setVoiceProcessingEnabled(false)
+        }
+      } catch {
+        print("Failed to disable voice processing: \(error.localizedDescription)")
+      }
+    }
+    microphone?.stop()
+    audioPlayer?.stop()
+    microphoneDataQueue.finish()
+    routeTask?.cancel()
   }
 
   /// Kicks off audio processing, and returns a stream of recorded microphone audio data.
@@ -96,11 +115,7 @@ class AudioController {
     stopped = true
     stopListeningAndPlayback()
     microphoneDataQueue.finish()
-    NotificationCenter.default.removeObserver(
-      self,
-      name: AVAudioSession.routeChangeNotification,
-      object: nil
-    )
+    routeTask?.cancel()
   }
 
   /// Queues audio for playback.
@@ -206,15 +221,17 @@ class AudioController {
 
   /// When the output device changes, ensure the audio playback and recording classes are properly restarted.
   private func listenForRouteChange() {
-    NotificationCenter.default.addObserver(
-      self,
-      selector: #selector(handleRouteChange),
-      name: AVAudioSession.routeChangeNotification,
-      object: nil
-    )
+    routeTask?.cancel()
+    routeTask = Task { [weak self] in
+      for await notification in NotificationCenter.default.notifications(
+        named: AVAudioSession.routeChangeNotification
+      ) {
+        await self?.handleRouteChange(notification: notification)
+      }
+    }
   }
 
-  @objc private func handleRouteChange(notification: Notification) {
+  private func handleRouteChange(notification: Notification) {
     guard let userInfo = notification.userInfo,
       let reasonValue = userInfo[AVAudioSessionRouteChangeReasonKey] as? UInt,
       let reason = AVAudioSession.RouteChangeReason(rawValue: reasonValue) else {

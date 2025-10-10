@@ -1,22 +1,22 @@
 PODS:
-  - FirebaseAppCheckInterop (12.3.0)
-  - FirebaseAuth (12.3.0):
-    - FirebaseAppCheckInterop (~> 12.3.0)
-    - FirebaseAuthInterop (~> 12.3.0)
-    - FirebaseCore (~> 12.3.0)
-    - FirebaseCoreExtension (~> 12.3.0)
+  - FirebaseAppCheckInterop (12.4.0)
+  - FirebaseAuth (12.4.0):
+    - FirebaseAppCheckInterop (~> 12.4.0)
+    - FirebaseAuthInterop (~> 12.4.0)
+    - FirebaseCore (~> 12.4.0)
+    - FirebaseCoreExtension (~> 12.4.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 8.1)
     - GoogleUtilities/Environment (~> 8.1)
     - GTMSessionFetcher/Core (< 6.0, >= 3.4)
     - RecaptchaInterop (~> 101.0)
-  - FirebaseAuthInterop (12.3.0)
-  - FirebaseCore (12.3.0):
-    - FirebaseCoreInternal (~> 12.3.0)
+  - FirebaseAuthInterop (12.4.0)
+  - FirebaseCore (12.4.0):
+    - FirebaseCoreInternal (~> 12.4.0)
     - GoogleUtilities/Environment (~> 8.1)
     - GoogleUtilities/Logger (~> 8.1)
-  - FirebaseCoreExtension (12.3.0):
-    - FirebaseCore (~> 12.3.0)
-  - FirebaseCoreInternal (12.3.0):
+  - FirebaseCoreExtension (12.4.0):
+    - FirebaseCore (~> 12.4.0)
+  - FirebaseCoreInternal (12.4.0):
     - "GoogleUtilities/NSData+zlib (~> 8.1)"
   - GoogleUtilities/AppDelegateSwizzler (8.1.0):
     - GoogleUtilities/Environment
@@ -58,12 +58,12 @@ SPEC REPOS:
     - RecaptchaInterop
 
 SPEC CHECKSUMS:
-  FirebaseAppCheckInterop: 3a8527abb8bb89fb1bd2bd3d1d7b463c0ceb0cbf
-  FirebaseAuth: 4fdd7ee2da745f79145124f5191639d2ea756a77
-  FirebaseAuthInterop: a7c394818a93d374c543ca085f3a46ab7c71372e
-  FirebaseCore: ff47fe1ad3ab9ef66edd3e8bc4647b493d2067f8
-  FirebaseCoreExtension: 898ca55c7cb126f83747b32cb0daa95394b10853
-  FirebaseCoreInternal: a9e1ff270f217489d9258563b693d11a312903bf
+  FirebaseAppCheckInterop: f734c802f21fe1da0837708f0f9a27218c8a4ed0
+  FirebaseAuth: 4a2aed737c84114a9d9b33d11ae1b147d6b94889
+  FirebaseAuthInterop: 858e6b754966e70740a4370dd1503dfffe6dbb49
+  FirebaseCore: bb595f3114953664e3c1dc032f008a244147cfd3
+  FirebaseCoreExtension: 7e1f7118ee970e001a8013719fb90950ee5e0018
+  FirebaseCoreInternal: d7f5a043c2cd01a08103ab586587c1468047bca6
   GoogleUtilities: 00c88b9a86066ef77f0da2fab05f65d7768ed8e1
   GTMSessionFetcher: 02d6e866e90bc236f48a703a041dfe43e6221a29
   RecaptchaInterop: 11e0b637842dfb48308d242afc3f448062325aba

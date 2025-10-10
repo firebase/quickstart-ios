@@ -202,9 +202,9 @@
 			productReference = B94D0ABC27F5060C00753EEA /* StorageExample (macOS).app */;
 			productType = "com.apple.product-type.application";
 		};
-		B9A598B927E3D169003BCFD0 /* StorageExample (iOS) */ = {
+		B9A598B927E3D169003BCFD0 /* StorageExample */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B9A598C827E3D16A003BCFD0 /* Build configuration list for PBXNativeTarget "StorageExample (iOS)" */;
+			buildConfigurationList = B9A598C827E3D16A003BCFD0 /* Build configuration list for PBXNativeTarget "StorageExample" */;
 			buildPhases = (
 				B9A598B627E3D169003BCFD0 /* Sources */,
 				B9A598B727E3D169003BCFD0 /* Frameworks */,
@@ -214,7 +214,7 @@
 			);
 			dependencies = (
 			);
-			name = "StorageExample (iOS)";
+			name = StorageExample;
 			packageProductDependencies = (
 				B9380F7527E3EEBD00B5C769 /* FirebaseAuth */,
 				864F1AB72A964D11009743F2 /* FirebaseStorage */,
@@ -282,7 +282,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				B9A598B927E3D169003BCFD0 /* StorageExample (iOS) */,
+				B9A598B927E3D169003BCFD0 /* StorageExample */,
 				B94D0ABB27F5060C00753EEA /* StorageExample (macOS) */,
 				B9EABE2027FB82B200E055FD /* StorageExample (tvOS) */,
 			);
@@ -673,7 +673,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B9A598C827E3D16A003BCFD0 /* Build configuration list for PBXNativeTarget "StorageExample (iOS)" */ = {
+		B9A598C827E3D16A003BCFD0 /* Build configuration list for PBXNativeTarget "StorageExample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B9A598C927E3D16A003BCFD0 /* Debug */,

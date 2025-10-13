@@ -1496,7 +1496,7 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 3;
-				TEST_TARGET_NAME = CrashlyticsSwiftUIExample;
+				TEST_TARGET_NAME = "CrashlyticsExample (tvOS)";
 				TVOS_DEPLOYMENT_TARGET = 15.0;
 			};
 			name = Debug;
@@ -1527,7 +1527,7 @@
 				SDKROOT = appletvos;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 3;
-				TEST_TARGET_NAME = CrashlyticsSwiftUIExample;
+				TEST_TARGET_NAME = "CrashlyticsExample (tvOS)";
 				TVOS_DEPLOYMENT_TARGET = 15.0;
 			};
 			name = Release;

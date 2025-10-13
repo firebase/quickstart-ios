@@ -22,13 +22,13 @@
 		C73C89AD26845908003E5C2C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C73C899926845908003E5C2C /* Assets.xcassets */; };
 		C73C89AE26845908003E5C2C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C73C899926845908003E5C2C /* Assets.xcassets */; };
 		C74593FE26BDDD6100153AE3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C74593FD26BDDD6100153AE3 /* Assets.xcassets */; };
-		C745940526BDDD6200153AE3 /* CrashlyticsSwiftUIExample_(watchOS)_Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C745940426BDDD6200153AE3 /* CrashlyticsSwiftUIExample_(watchOS)_Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		C745940526BDDD6200153AE3 /* CrashlyticsExample_(watchOS)_Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C745940426BDDD6200153AE3 /* CrashlyticsExample_(watchOS)_Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C745940E26BDDD6200153AE3 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C745940D26BDDD6200153AE3 /* NotificationController.swift */; };
 		C745941026BDDD6200153AE3 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C745940F26BDDD6200153AE3 /* NotificationView.swift */; };
 		C745941226BDDD6200153AE3 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C745941126BDDD6200153AE3 /* ComplicationController.swift */; };
 		C745941426BDDD6300153AE3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C745941326BDDD6300153AE3 /* Assets.xcassets */; };
 		C745941726BDDD6300153AE3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C745941626BDDD6300153AE3 /* Preview Assets.xcassets */; };
-		C745941C26BDDD6300153AE3 /* CrashlyticsSwiftUIExample_(watchOS).app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = C74593FB26BDDD5F00153AE3 /* CrashlyticsSwiftUIExample_(watchOS).app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		C745941C26BDDD6300153AE3 /* CrashlyticsExample_(watchOS).app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = C74593FB26BDDD5F00153AE3 /* CrashlyticsExample_(watchOS).app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C745942726BDDDEF00153AE3 /* CrashlyticsSwiftUIExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73C899726845907003E5C2C /* CrashlyticsSwiftUIExampleApp.swift */; };
 		C745942826BDDDF500153AE3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73C899826845907003E5C2C /* ContentView.swift */; };
 		C74C554726B377F20043B835 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C74C554626B377F20043B835 /* Assets.xcassets */; };
@@ -100,7 +100,7 @@
 			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
 			dstSubfolderSpec = 16;
 			files = (
-				C745941C26BDDD6300153AE3 /* CrashlyticsSwiftUIExample_(watchOS).app in Embed Watch Content */,
+				C745941C26BDDD6300153AE3 /* CrashlyticsExample_(watchOS).app in Embed Watch Content */,
 			);
 			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -111,7 +111,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				C745940526BDDD6200153AE3 /* CrashlyticsSwiftUIExample_(watchOS)_Extension.appex in Embed App Extensions */,
+				C745940526BDDD6200153AE3 /* CrashlyticsExample_(watchOS)_Extension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -130,10 +130,10 @@
 		C73C89A526845908003E5C2C /* CrashlyticsSwiftUIExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CrashlyticsSwiftUIExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C73C89A726845908003E5C2C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C73C89A826845908003E5C2C /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
-		C74593FB26BDDD5F00153AE3 /* CrashlyticsSwiftUIExample_(watchOS).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CrashlyticsSwiftUIExample_(watchOS).app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C74593FB26BDDD5F00153AE3 /* CrashlyticsExample_(watchOS).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CrashlyticsExample_(watchOS).app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C74593FD26BDDD6100153AE3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C74593FF26BDDD6100153AE3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C745940426BDDD6200153AE3 /* CrashlyticsSwiftUIExample_(watchOS)_Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "CrashlyticsSwiftUIExample_(watchOS)_Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C745940426BDDD6200153AE3 /* CrashlyticsExample_(watchOS)_Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "CrashlyticsExample_(watchOS)_Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C745940D26BDDD6200153AE3 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
 		C745940F26BDDD6200153AE3 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		C745941126BDDD6200153AE3 /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
@@ -141,7 +141,7 @@
 		C745941626BDDD6300153AE3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		C745941826BDDD6300153AE3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C745941926BDDD6300153AE3 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
-		C74C554026B377EF0043B835 /* CrashlyticsSwiftUIExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CrashlyticsSwiftUIExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C74C554026B377EF0043B835 /* CrashlyticsExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CrashlyticsExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C74C554626B377F20043B835 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C74C554926B377F20043B835 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		C74C554B26B377F20043B835 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -242,9 +242,9 @@
 			children = (
 				C73C899E26845908003E5C2C /* CrashlyticsSwiftUIExample.app */,
 				C73C89A526845908003E5C2C /* CrashlyticsSwiftUIExample.app */,
-				C74C554026B377EF0043B835 /* CrashlyticsSwiftUIExample.app */,
-				C74593FB26BDDD5F00153AE3 /* CrashlyticsSwiftUIExample_(watchOS).app */,
-				C745940426BDDD6200153AE3 /* CrashlyticsSwiftUIExample_(watchOS)_Extension.appex */,
+				C74C554026B377EF0043B835 /* CrashlyticsExample.app */,
+				C74593FB26BDDD5F00153AE3 /* CrashlyticsExample_(watchOS).app */,
+				C745940426BDDD6200153AE3 /* CrashlyticsExample_(watchOS)_Extension.appex */,
 				C726B81926D84D51000991C1 /* UITests_iOS.xctest */,
 				C7F8A31726D95CF700F5D9FE /* UITests_macOS.xctest */,
 				C7F8A33526D95D3600F5D9FE /* UITests_tvOS.xctest */,
@@ -360,9 +360,9 @@
 			productReference = C726B81926D84D51000991C1 /* UITests_iOS.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
-		C73C899D26845908003E5C2C /* CrashlyticsSwiftUIExample (iOS) */ = {
+		C73C899D26845908003E5C2C /* CrashlyticsExample (iOS) */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C73C89B326845908003E5C2C /* Build configuration list for PBXNativeTarget "CrashlyticsSwiftUIExample (iOS)" */;
+			buildConfigurationList = C73C89B326845908003E5C2C /* Build configuration list for PBXNativeTarget "CrashlyticsExample (iOS)" */;
 			buildPhases = (
 				C73C899A26845908003E5C2C /* Sources */,
 				C73C899B26845908003E5C2C /* Frameworks */,
@@ -375,7 +375,7 @@
 			dependencies = (
 				C745941B26BDDD6300153AE3 /* PBXTargetDependency */,
 			);
-			name = "CrashlyticsSwiftUIExample (iOS)";
+			name = "CrashlyticsExample (iOS)";
 			packageProductDependencies = (
 				8D96F5DD2685440700F1A2B7 /* Reachability */,
 				8D00BB762D3B0AFF00F6F6DD /* FirebaseCrashlytics */,
@@ -384,9 +384,9 @@
 			productReference = C73C899E26845908003E5C2C /* CrashlyticsSwiftUIExample.app */;
 			productType = "com.apple.product-type.application";
 		};
-		C73C89A426845908003E5C2C /* CrashlyticsSwiftUIExample (macOS) */ = {
+		C73C89A426845908003E5C2C /* CrashlyticsExample (macOS) */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C73C89B426845908003E5C2C /* Build configuration list for PBXNativeTarget "CrashlyticsSwiftUIExample (macOS)" */;
+			buildConfigurationList = C73C89B426845908003E5C2C /* Build configuration list for PBXNativeTarget "CrashlyticsExample (macOS)" */;
 			buildPhases = (
 				C73C89A126845908003E5C2C /* Sources */,
 				C73C89A226845908003E5C2C /* Frameworks */,
@@ -396,7 +396,7 @@
 			);
 			dependencies = (
 			);
-			name = "CrashlyticsSwiftUIExample (macOS)";
+			name = "CrashlyticsExample (macOS)";
 			packageProductDependencies = (
 				C77AC00426BB151000BDE919 /* Reachability */,
 				8D00BB742D3B0AF400F6F6DD /* FirebaseCrashlytics */,
@@ -405,9 +405,9 @@
 			productReference = C73C89A526845908003E5C2C /* CrashlyticsSwiftUIExample.app */;
 			productType = "com.apple.product-type.application";
 		};
-		C74593FA26BDDD5F00153AE3 /* CrashlyticsSwiftUIExample_(watchOS) */ = {
+		C74593FA26BDDD5F00153AE3 /* CrashlyticsExample_(watchOS) */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C745942426BDDD6300153AE3 /* Build configuration list for PBXNativeTarget "CrashlyticsSwiftUIExample_(watchOS)" */;
+			buildConfigurationList = C745942426BDDD6300153AE3 /* Build configuration list for PBXNativeTarget "CrashlyticsExample_(watchOS)" */;
 			buildPhases = (
 				C74593F926BDDD5F00153AE3 /* Resources */,
 				C745942026BDDD6300153AE3 /* Embed App Extensions */,
@@ -417,14 +417,14 @@
 			dependencies = (
 				C745940726BDDD6200153AE3 /* PBXTargetDependency */,
 			);
-			name = "CrashlyticsSwiftUIExample_(watchOS)";
+			name = "CrashlyticsExample_(watchOS)";
 			productName = "CrashlyticsSwiftUIExample (watchOS)";
-			productReference = C74593FB26BDDD5F00153AE3 /* CrashlyticsSwiftUIExample_(watchOS).app */;
+			productReference = C74593FB26BDDD5F00153AE3 /* CrashlyticsExample_(watchOS).app */;
 			productType = "com.apple.product-type.application.watchapp2";
 		};
-		C745940326BDDD6200153AE3 /* CrashlyticsSwiftUIExample_(watchOS)_Extension */ = {
+		C745940326BDDD6200153AE3 /* CrashlyticsExample_(watchOS)_Extension */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C745942326BDDD6300153AE3 /* Build configuration list for PBXNativeTarget "CrashlyticsSwiftUIExample_(watchOS)_Extension" */;
+			buildConfigurationList = C745942326BDDD6300153AE3 /* Build configuration list for PBXNativeTarget "CrashlyticsExample_(watchOS)_Extension" */;
 			buildPhases = (
 				C745940026BDDD6200153AE3 /* Sources */,
 				C745940126BDDD6200153AE3 /* Frameworks */,
@@ -434,17 +434,17 @@
 			);
 			dependencies = (
 			);
-			name = "CrashlyticsSwiftUIExample_(watchOS)_Extension";
+			name = "CrashlyticsExample_(watchOS)_Extension";
 			packageProductDependencies = (
 				8D00BB702D3B0ADE00F6F6DD /* FirebaseCrashlytics */,
 			);
 			productName = "CrashlyticsSwiftUIExample (watchOS) Extension";
-			productReference = C745940426BDDD6200153AE3 /* CrashlyticsSwiftUIExample_(watchOS)_Extension.appex */;
+			productReference = C745940426BDDD6200153AE3 /* CrashlyticsExample_(watchOS)_Extension.appex */;
 			productType = "com.apple.product-type.watchkit2-extension";
 		};
-		C74C553F26B377EF0043B835 /* CrashlyticsSwiftUIExample */ = {
+		C74C553F26B377EF0043B835 /* CrashlyticsExample */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C74C554C26B377F20043B835 /* Build configuration list for PBXNativeTarget "CrashlyticsSwiftUIExample" */;
+			buildConfigurationList = C74C554C26B377F20043B835 /* Build configuration list for PBXNativeTarget "CrashlyticsExample" */;
 			buildPhases = (
 				C74C553C26B377EF0043B835 /* Sources */,
 				C74C553D26B377EF0043B835 /* Frameworks */,
@@ -454,13 +454,13 @@
 			);
 			dependencies = (
 			);
-			name = CrashlyticsSwiftUIExample;
+			name = CrashlyticsExample;
 			packageProductDependencies = (
 				C77AC00B26BB16E300BDE919 /* Reachability */,
 				8D00BB722D3B0AED00F6F6DD /* FirebaseCrashlytics */,
 			);
 			productName = CrashlyticsSwiftUIExample;
-			productReference = C74C554026B377EF0043B835 /* CrashlyticsSwiftUIExample.app */;
+			productReference = C74C554026B377EF0043B835 /* CrashlyticsExample.app */;
 			productType = "com.apple.product-type.application";
 		};
 		C7E7BA7626DDF34C00EC8D24 /* UITests_watchOS */ = {
@@ -581,11 +581,11 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				C73C899D26845908003E5C2C /* CrashlyticsSwiftUIExample (iOS) */,
-				C73C89A426845908003E5C2C /* CrashlyticsSwiftUIExample (macOS) */,
-				C74C553F26B377EF0043B835 /* CrashlyticsSwiftUIExample */,
-				C74593FA26BDDD5F00153AE3 /* CrashlyticsSwiftUIExample_(watchOS) */,
-				C745940326BDDD6200153AE3 /* CrashlyticsSwiftUIExample_(watchOS)_Extension */,
+				C73C899D26845908003E5C2C /* CrashlyticsExample (iOS) */,
+				C73C89A426845908003E5C2C /* CrashlyticsExample (macOS) */,
+				C74C553F26B377EF0043B835 /* CrashlyticsExample */,
+				C74593FA26BDDD5F00153AE3 /* CrashlyticsExample_(watchOS) */,
+				C745940326BDDD6200153AE3 /* CrashlyticsExample_(watchOS)_Extension */,
 				C726B81826D84D51000991C1 /* UITests_iOS */,
 				C7F8A31626D95CF700F5D9FE /* UITests_macOS */,
 				C7F8A33426D95D3600F5D9FE /* UITests_tvOS */,
@@ -775,32 +775,32 @@
 /* Begin PBXTargetDependency section */
 		C726B81F26D84D51000991C1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = C73C899D26845908003E5C2C /* CrashlyticsSwiftUIExample (iOS) */;
+			target = C73C899D26845908003E5C2C /* CrashlyticsExample (iOS) */;
 			targetProxy = C726B81E26D84D51000991C1 /* PBXContainerItemProxy */;
 		};
 		C745940726BDDD6200153AE3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = C745940326BDDD6200153AE3 /* CrashlyticsSwiftUIExample_(watchOS)_Extension */;
+			target = C745940326BDDD6200153AE3 /* CrashlyticsExample_(watchOS)_Extension */;
 			targetProxy = C745940626BDDD6200153AE3 /* PBXContainerItemProxy */;
 		};
 		C745941B26BDDD6300153AE3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = C74593FA26BDDD5F00153AE3 /* CrashlyticsSwiftUIExample_(watchOS) */;
+			target = C74593FA26BDDD5F00153AE3 /* CrashlyticsExample_(watchOS) */;
 			targetProxy = C745941A26BDDD6300153AE3 /* PBXContainerItemProxy */;
 		};
 		C7E7BA7E26DDF34C00EC8D24 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = C74593FA26BDDD5F00153AE3 /* CrashlyticsSwiftUIExample_(watchOS) */;
+			target = C74593FA26BDDD5F00153AE3 /* CrashlyticsExample_(watchOS) */;
 			targetProxy = C7E7BA7D26DDF34C00EC8D24 /* PBXContainerItemProxy */;
 		};
 		C7F8A31D26D95CF700F5D9FE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = C73C89A426845908003E5C2C /* CrashlyticsSwiftUIExample (macOS) */;
+			target = C73C89A426845908003E5C2C /* CrashlyticsExample (macOS) */;
 			targetProxy = C7F8A31C26D95CF700F5D9FE /* PBXContainerItemProxy */;
 		};
 		C7F8A33B26D95D3600F5D9FE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = C74C553F26B377EF0043B835 /* CrashlyticsSwiftUIExample */;
+			target = C74C553F26B377EF0043B835 /* CrashlyticsExample */;
 			targetProxy = C7F8A33A26D95D3600F5D9FE /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -1553,7 +1553,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C73C89B326845908003E5C2C /* Build configuration list for PBXNativeTarget "CrashlyticsSwiftUIExample (iOS)" */ = {
+		C73C89B326845908003E5C2C /* Build configuration list for PBXNativeTarget "CrashlyticsExample (iOS)" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C73C89AF26845908003E5C2C /* Debug */,
@@ -1562,7 +1562,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C73C89B426845908003E5C2C /* Build configuration list for PBXNativeTarget "CrashlyticsSwiftUIExample (macOS)" */ = {
+		C73C89B426845908003E5C2C /* Build configuration list for PBXNativeTarget "CrashlyticsExample (macOS)" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C73C89B126845908003E5C2C /* Debug */,
@@ -1571,7 +1571,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C745942326BDDD6300153AE3 /* Build configuration list for PBXNativeTarget "CrashlyticsSwiftUIExample_(watchOS)_Extension" */ = {
+		C745942326BDDD6300153AE3 /* Build configuration list for PBXNativeTarget "CrashlyticsExample_(watchOS)_Extension" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C745942126BDDD6300153AE3 /* Debug */,
@@ -1580,7 +1580,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C745942426BDDD6300153AE3 /* Build configuration list for PBXNativeTarget "CrashlyticsSwiftUIExample_(watchOS)" */ = {
+		C745942426BDDD6300153AE3 /* Build configuration list for PBXNativeTarget "CrashlyticsExample_(watchOS)" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C745941E26BDDD6300153AE3 /* Debug */,
@@ -1589,7 +1589,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C74C554C26B377F20043B835 /* Build configuration list for PBXNativeTarget "CrashlyticsSwiftUIExample" */ = {
+		C74C554C26B377F20043B835 /* Build configuration list for PBXNativeTarget "CrashlyticsExample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C74C554D26B377F20043B835 /* Debug */,

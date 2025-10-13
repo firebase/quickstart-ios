@@ -141,7 +141,7 @@
 		C745941626BDDD6300153AE3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		C745941826BDDD6300153AE3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C745941926BDDD6300153AE3 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
-		C74C554026B377EF0043B835 /* CrashlyticsExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CrashlyticsExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C74C554026B377EF0043B835 /* CrashlyticsExample (tvOS).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CrashlyticsExample (tvOS).app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C74C554626B377F20043B835 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C74C554926B377F20043B835 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		C74C554B26B377F20043B835 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -242,7 +242,7 @@
 			children = (
 				C73C899E26845908003E5C2C /* CrashlyticsSwiftUIExample.app */,
 				C73C89A526845908003E5C2C /* CrashlyticsSwiftUIExample.app */,
-				C74C554026B377EF0043B835 /* CrashlyticsExample.app */,
+				C74C554026B377EF0043B835 /* CrashlyticsExample (tvOS).app */,
 				C74593FB26BDDD5F00153AE3 /* CrashlyticsExample_(watchOS).app */,
 				C745940426BDDD6200153AE3 /* CrashlyticsExample_(watchOS)_Extension.appex */,
 				C726B81926D84D51000991C1 /* UITests_iOS.xctest */,
@@ -442,9 +442,9 @@
 			productReference = C745940426BDDD6200153AE3 /* CrashlyticsExample_(watchOS)_Extension.appex */;
 			productType = "com.apple.product-type.watchkit2-extension";
 		};
-		C74C553F26B377EF0043B835 /* CrashlyticsExample */ = {
+		C74C553F26B377EF0043B835 /* CrashlyticsExample (tvOS) */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C74C554C26B377F20043B835 /* Build configuration list for PBXNativeTarget "CrashlyticsExample" */;
+			buildConfigurationList = C74C554C26B377F20043B835 /* Build configuration list for PBXNativeTarget "CrashlyticsExample (tvOS)" */;
 			buildPhases = (
 				C74C553C26B377EF0043B835 /* Sources */,
 				C74C553D26B377EF0043B835 /* Frameworks */,
@@ -454,13 +454,13 @@
 			);
 			dependencies = (
 			);
-			name = CrashlyticsExample;
+			name = "CrashlyticsExample (tvOS)";
 			packageProductDependencies = (
 				C77AC00B26BB16E300BDE919 /* Reachability */,
 				8D00BB722D3B0AED00F6F6DD /* FirebaseCrashlytics */,
 			);
 			productName = CrashlyticsSwiftUIExample;
-			productReference = C74C554026B377EF0043B835 /* CrashlyticsExample.app */;
+			productReference = C74C554026B377EF0043B835 /* CrashlyticsExample (tvOS).app */;
 			productType = "com.apple.product-type.application";
 		};
 		C7E7BA7626DDF34C00EC8D24 /* UITests_watchOS */ = {
@@ -583,7 +583,7 @@
 			targets = (
 				C73C899D26845908003E5C2C /* CrashlyticsExample (iOS) */,
 				C73C89A426845908003E5C2C /* CrashlyticsExample (macOS) */,
-				C74C553F26B377EF0043B835 /* CrashlyticsExample */,
+				C74C553F26B377EF0043B835 /* CrashlyticsExample (tvOS) */,
 				C74593FA26BDDD5F00153AE3 /* CrashlyticsExample_(watchOS) */,
 				C745940326BDDD6200153AE3 /* CrashlyticsExample_(watchOS)_Extension */,
 				C726B81826D84D51000991C1 /* UITests_iOS */,
@@ -800,7 +800,7 @@
 		};
 		C7F8A33B26D95D3600F5D9FE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = C74C553F26B377EF0043B835 /* CrashlyticsExample */;
+			target = C74C553F26B377EF0043B835 /* CrashlyticsExample (tvOS) */;
 			targetProxy = C7F8A33A26D95D3600F5D9FE /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -1589,7 +1589,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C74C554C26B377F20043B835 /* Build configuration list for PBXNativeTarget "CrashlyticsExample" */ = {
+		C74C554C26B377F20043B835 /* Build configuration list for PBXNativeTarget "CrashlyticsExample (tvOS)" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C74C554D26B377F20043B835 /* Debug */,

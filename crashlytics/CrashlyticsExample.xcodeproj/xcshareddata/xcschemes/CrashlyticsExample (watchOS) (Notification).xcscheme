@@ -30,7 +30,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C73C899D26845908003E5C2C"
                BuildableName = "CrashlyticsSwiftUIExample.app"
-               BlueprintName = "CrashlyticsExample (iOS)"
+               BlueprintName = "CrashlyticsExample"
                ReferencedContainer = "container:CrashlyticsExample.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

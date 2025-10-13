@@ -360,9 +360,9 @@
 			productReference = C726B81926D84D51000991C1 /* UITests_iOS.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
-		C73C899D26845908003E5C2C /* CrashlyticsExample (iOS) */ = {
+		C73C899D26845908003E5C2C /* CrashlyticsExample */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C73C89B326845908003E5C2C /* Build configuration list for PBXNativeTarget "CrashlyticsExample (iOS)" */;
+			buildConfigurationList = C73C89B326845908003E5C2C /* Build configuration list for PBXNativeTarget "CrashlyticsExample" */;
 			buildPhases = (
 				C73C899A26845908003E5C2C /* Sources */,
 				C73C899B26845908003E5C2C /* Frameworks */,
@@ -375,7 +375,7 @@
 			dependencies = (
 				C745941B26BDDD6300153AE3 /* PBXTargetDependency */,
 			);
-			name = "CrashlyticsExample (iOS)";
+			name = CrashlyticsExample;
 			packageProductDependencies = (
 				8D96F5DD2685440700F1A2B7 /* Reachability */,
 				8D00BB762D3B0AFF00F6F6DD /* FirebaseCrashlytics */,
@@ -581,7 +581,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				C73C899D26845908003E5C2C /* CrashlyticsExample (iOS) */,
+				C73C899D26845908003E5C2C /* CrashlyticsExample */,
 				C73C89A426845908003E5C2C /* CrashlyticsExample (macOS) */,
 				C74C553F26B377EF0043B835 /* CrashlyticsExample (tvOS) */,
 				C74593FA26BDDD5F00153AE3 /* CrashlyticsExample_(watchOS) */,
@@ -775,7 +775,7 @@
 /* Begin PBXTargetDependency section */
 		C726B81F26D84D51000991C1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = C73C899D26845908003E5C2C /* CrashlyticsExample (iOS) */;
+			target = C73C899D26845908003E5C2C /* CrashlyticsExample */;
 			targetProxy = C726B81E26D84D51000991C1 /* PBXContainerItemProxy */;
 		};
 		C745940726BDDD6200153AE3 /* PBXTargetDependency */ = {
@@ -1553,7 +1553,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C73C89B326845908003E5C2C /* Build configuration list for PBXNativeTarget "CrashlyticsExample (iOS)" */ = {
+		C73C89B326845908003E5C2C /* Build configuration list for PBXNativeTarget "CrashlyticsExample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C73C89AF26845908003E5C2C /* Debug */,

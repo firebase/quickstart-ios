@@ -16,7 +16,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C73C899D26845908003E5C2C"
                BuildableName = "CrashlyticsSwiftUIExample.app"
-               BlueprintName = "CrashlyticsSwiftUIExample (iOS)"
+               BlueprintName = "CrashlyticsExample"
                ReferencedContainer = "container:CrashlyticsExample.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -61,7 +61,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C73C899D26845908003E5C2C"
             BuildableName = "CrashlyticsSwiftUIExample.app"
-            BlueprintName = "CrashlyticsSwiftUIExample (iOS)"
+            BlueprintName = "CrashlyticsExample"
             ReferencedContainer = "container:CrashlyticsExample.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -78,7 +78,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C73C899D26845908003E5C2C"
             BuildableName = "CrashlyticsSwiftUIExample.app"
-            BlueprintName = "CrashlyticsSwiftUIExample (iOS)"
+            BlueprintName = "CrashlyticsExample"
             ReferencedContainer = "container:CrashlyticsExample.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

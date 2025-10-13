@@ -1433,7 +1433,7 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				TEST_TARGET_NAME = "CrashlyticsSwiftUIExample (macOS)";
+				TEST_TARGET_NAME = "CrashlyticsExample (macOS)";
 			};
 			name = Debug;
 		};
@@ -1464,7 +1464,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SWIFT_VERSION = 5.0;
-				TEST_TARGET_NAME = "CrashlyticsSwiftUIExample (macOS)";
+				TEST_TARGET_NAME = "CrashlyticsExample (macOS)";
 			};
 			name = Release;
 		};

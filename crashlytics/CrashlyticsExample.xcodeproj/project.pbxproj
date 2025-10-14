@@ -11,7 +11,6 @@
 		8D00BB732D3B0AED00F6F6DD /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 8D00BB722D3B0AED00F6F6DD /* FirebaseCrashlytics */; };
 		8D00BB752D3B0AF400F6F6DD /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 8D00BB742D3B0AF400F6F6DD /* FirebaseCrashlytics */; };
 		8D00BB772D3B0AFF00F6F6DD /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 8D00BB762D3B0AFF00F6F6DD /* FirebaseCrashlytics */; };
-		8D96F5E62685442800F1A2B7 /* ReachabilityHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C723B78C26853A1700AD34CD /* ReachabilityHelper.swift */; };
 		8D96F5EE2685442C00F1A2B7 /* ReachabilityHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C723B78C26853A1700AD34CD /* ReachabilityHelper.swift */; };
 		C726B81C26D84D51000991C1 /* UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C726B81B26D84D51000991C1 /* UITests.swift */; };
 		C73C89A926845908003E5C2C /* CrashlyticsSwiftUIExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73C899726845907003E5C2C /* CrashlyticsSwiftUIExampleApp.swift */; };

@@ -16,9 +16,16 @@
 
 import Foundation
 import FirebaseCrashlytics
-import Reachability
+import Network
 
 class ReachabililtyHelper: NSObject {
+  private let monitor: NWPathMonitor
+
+  override init() {
+    monitor = NWPathMonitor()
+    super.init()
+  }
+
   /**
    * Retrieve the locale information for the app.
    */
@@ -30,15 +37,21 @@ class ReachabililtyHelper: NSObject {
    * Retrieve the network status for the app.
    */
   func getNetworkStatus() -> String {
-    guard let reachability = try? Reachability() else {
-      return "unknown"
-    }
-    switch reachability.connection {
-    case .wifi:
-      return "wifi"
-    case .cellular:
-      return "cellular"
-    case .unavailable:
+    return networkStatus(from: monitor.currentPath)
+  }
+
+  private func networkStatus(from path: NWPath) -> String {
+    if path.status == .satisfied {
+      if path.usesInterfaceType(.wifi) {
+        return "wifi"
+      } else if path.usesInterfaceType(.cellular) {
+        return "cellular"
+      } else if path.usesInterfaceType(.wiredEthernet) {
+        return "wired"
+      } else {
+        return "other"
+      }
+    } else {
       return "unavailable"
     }
   }
@@ -47,19 +60,11 @@ class ReachabililtyHelper: NSObject {
    * Add a hook to update network status going forward.
    */
   func updateAndTrackNetworkStatus() {
-    NotificationCenter.default.addObserver(self,
-                                           selector: #selector(reachabilityChanged(note:)),
-                                           name: .reachabilityChanged,
-                                           object: nil)
-    do {
-      let reachability = try Reachability()
-      try reachability.startNotifier()
-    } catch {
-      print("Could not start reachability notifier: \(error)")
+    monitor.pathUpdateHandler = { path in
+      let status = self.networkStatus(from: path)
+      Crashlytics.crashlytics().setCustomValue(status, forKey: "network_connection")
     }
-  }
-
-  @objc func reachabilityChanged(note: Notification) {
-    Crashlytics.crashlytics().setCustomValue(getNetworkStatus(), forKey: "network_connection")
+    let queue = DispatchQueue(label: "NetworkMonitor")
+    monitor.start(queue: queue)
   }
 }

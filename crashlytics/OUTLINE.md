@@ -69,8 +69,4 @@ Below are the screenshots for selected build schemes:
 <br><img src="./Design/Screenshots/crashlytics_tvos.png" alt="tvOS Screenshot" width=400>
 
 ### CrashlyticsExample (watchOS)
-<br><img src="./Design/Screenshots/crashlytics_watchos.png" alt="watchOS Screenshot" width=200>mple (tvOS)
-<br><img src="./Design/Screenshots/crashlytics_tvos.png" alt="tvOS Screenshot" width=400>
-
-### CrashlyticsExample (watchOS)
 <br><img src="./Design/Screenshots/crashlytics_watchos.png" alt="watchOS Screenshot" width=200>

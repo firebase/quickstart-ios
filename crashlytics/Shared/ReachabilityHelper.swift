@@ -18,7 +18,7 @@ import FirebaseCrashlytics
 import Foundation
 import Network
 
-class ReachabililtyHelper: NSObject {
+class ReachabilityHelper: NSObject {
     private let monitor: NWPathMonitor
 
     override init() {

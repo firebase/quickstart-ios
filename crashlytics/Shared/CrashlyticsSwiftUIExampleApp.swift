@@ -21,7 +21,7 @@ import SwiftUI
 @main
 struct CrashlyticsSwiftUIExampleApp: App {
     private var crashlyticsReference = Crashlytics.crashlytics()
-    let reachabilityHelper = ReachabililtyHelper()
+    let reachabilityHelper = ReachabilityHelper()
 
     func setUserInfo() {
         let userInfo = [

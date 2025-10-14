@@ -11,8 +11,8 @@
 		8D00BB732D3B0AED00F6F6DD /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 8D00BB722D3B0AED00F6F6DD /* FirebaseCrashlytics */; };
 		8D00BB752D3B0AF400F6F6DD /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 8D00BB742D3B0AF400F6F6DD /* FirebaseCrashlytics */; };
 		8D00BB772D3B0AFF00F6F6DD /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 8D00BB762D3B0AFF00F6F6DD /* FirebaseCrashlytics */; };
-		8D96F5E62685442800F1A2B7 /* ReachabililtyHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C723B78C26853A1700AD34CD /* ReachabililtyHelper.swift */; };
-		8D96F5EE2685442C00F1A2B7 /* ReachabililtyHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C723B78C26853A1700AD34CD /* ReachabililtyHelper.swift */; };
+		8D96F5E62685442800F1A2B7 /* ReachabilityHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C723B78C26853A1700AD34CD /* ReachabilityHelper.swift */; };
+		8D96F5EE2685442C00F1A2B7 /* ReachabilityHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C723B78C26853A1700AD34CD /* ReachabilityHelper.swift */; };
 		C726B81C26D84D51000991C1 /* UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C726B81B26D84D51000991C1 /* UITests.swift */; };
 		C73C89A926845908003E5C2C /* CrashlyticsSwiftUIExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73C899726845907003E5C2C /* CrashlyticsSwiftUIExampleApp.swift */; };
 		C73C89AA26845908003E5C2C /* CrashlyticsSwiftUIExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73C899726845907003E5C2C /* CrashlyticsSwiftUIExampleApp.swift */; };
@@ -34,7 +34,7 @@
 		C74C554A26B377F20043B835 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C74C554926B377F20043B835 /* Preview Assets.xcassets */; };
 		C77AC00526BB151000BDE919 /* Reachability in Frameworks */ = {isa = PBXBuildFile; productRef = C77AC00426BB151000BDE919 /* Reachability */; };
 		C77AC00626BB16C200BDE919 /* CrashlyticsSwiftUIExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73C899726845907003E5C2C /* CrashlyticsSwiftUIExampleApp.swift */; };
-		C77AC00726BB16C500BDE919 /* ReachabililtyHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C723B78C26853A1700AD34CD /* ReachabililtyHelper.swift */; };
+		C77AC00726BB16C500BDE919 /* ReachabilityHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C723B78C26853A1700AD34CD /* ReachabilityHelper.swift */; };
 		C77AC00826BB16CA00BDE919 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73C899826845907003E5C2C /* ContentView.swift */; };
 		C79FD3BA26C728D800FE0261 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C79FD3B926C728D800FE0261 /* GoogleService-Info.plist */; };
 		C79FD3BB26C728D800FE0261 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C79FD3B926C728D800FE0261 /* GoogleService-Info.plist */; };
@@ -117,7 +117,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		C723B78C26853A1700AD34CD /* ReachabililtyHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabililtyHelper.swift; sourceTree = "<group>"; };
+		C723B78C26853A1700AD34CD /* ReachabilityHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabilityHelper.swift; sourceTree = "<group>"; };
 		C726B81926D84D51000991C1 /* UITests_iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UITests_iOS.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C726B81B26D84D51000991C1 /* UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITests.swift; sourceTree = "<group>"; };
 		C73C899726845907003E5C2C /* CrashlyticsSwiftUIExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrashlyticsSwiftUIExampleApp.swift; sourceTree = "<group>"; };
@@ -261,7 +261,7 @@
 			isa = PBXGroup;
 			children = (
 				C73C899726845907003E5C2C /* CrashlyticsSwiftUIExampleApp.swift */,
-				C723B78C26853A1700AD34CD /* ReachabililtyHelper.swift */,
+				C723B78C26853A1700AD34CD /* ReachabilityHelper.swift */,
 				C73C899826845907003E5C2C /* ContentView.swift */,
 				C726B81B26D84D51000991C1 /* UITests.swift */,
 				C73C899926845908003E5C2C /* Assets.xcassets */,
@@ -703,7 +703,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8D96F5E62685442800F1A2B7 /* ReachabililtyHelper.swift in Sources */,
+				8D96F5E62685442800F1A2B7 /* ReachabilityHelper.swift in Sources */,
 				C73C89AB26845908003E5C2C /* ContentView.swift in Sources */,
 				C73C89A926845908003E5C2C /* CrashlyticsSwiftUIExampleApp.swift in Sources */,
 			);
@@ -713,7 +713,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8D96F5EE2685442C00F1A2B7 /* ReachabililtyHelper.swift in Sources */,
+				8D96F5EE2685442C00F1A2B7 /* ReachabilityHelper.swift in Sources */,
 				C73C89AC26845908003E5C2C /* ContentView.swift in Sources */,
 				C73C89AA26845908003E5C2C /* CrashlyticsSwiftUIExampleApp.swift in Sources */,
 			);
@@ -728,6 +728,7 @@
 				C745941226BDDD6200153AE3 /* ComplicationController.swift in Sources */,
 				C745942726BDDDEF00153AE3 /* CrashlyticsSwiftUIExampleApp.swift in Sources */,
 				C745941026BDDD6200153AE3 /* NotificationView.swift in Sources */,
+				8D96F5E62685442800F1A2B7 /* ReachabilityHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -736,7 +737,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C77AC00626BB16C200BDE919 /* CrashlyticsSwiftUIExampleApp.swift in Sources */,
-				C77AC00726BB16C500BDE919 /* ReachabililtyHelper.swift in Sources */,
+				C77AC00726BB16C500BDE919 /* ReachabilityHelper.swift in Sources */,
 				C77AC00826BB16CA00BDE919 /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

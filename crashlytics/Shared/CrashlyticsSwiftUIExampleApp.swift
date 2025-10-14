@@ -14,55 +14,55 @@
 // limitations under the License.
 //
 
-import SwiftUI
 import FirebaseCore
 import FirebaseCrashlytics
+import SwiftUI
 
 @main
 struct CrashlyticsSwiftUIExampleApp: App {
-  private var crashlyticsReference = Crashlytics.crashlytics()
-  let reachabilityHelper = ReachabililtyHelper()
+    private var crashlyticsReference = Crashlytics.crashlytics()
+    let reachabilityHelper = ReachabililtyHelper()
 
-  func setUserInfo() {
-    let userInfo = [
-      NSLocalizedDescriptionKey: NSLocalizedString("The request failed.", comment: ""),
-      NSLocalizedFailureReasonErrorKey: NSLocalizedString(
-        "The response returned a 404.",
-        comment: ""
-      ),
-      NSLocalizedRecoverySuggestionErrorKey: NSLocalizedString(
-        "Does this page exist?",
-        comment: ""
-      ),
-      "ProductID": "123456",
-      "UserID": "Jane Smith",
-    ]
-    let error = NSError(domain: NSURLErrorDomain, code: -1001, userInfo: userInfo)
-    Crashlytics.crashlytics().record(error: error)
-  }
-
-  func setCustomValues() {
-    crashlyticsReference.setCustomValue(42, forKey: "MeaningOfLife")
-    crashlyticsReference.setCustomValue("Test value", forKey: "last_UI_action")
-    let customKeysObject = [
-      "locale": reachabilityHelper.getLocale(),
-      "network_connection": reachabilityHelper.getNetworkStatus(),
-    ] as [String: Any]
-    crashlyticsReference.setCustomKeysAndValues(customKeysObject)
-    reachabilityHelper.updateAndTrackNetworkStatus()
-    Crashlytics.crashlytics().setUserID("123456789")
-  }
-
-  init() {
-    FirebaseApp.configure()
-    Crashlytics.crashlytics().log("App loaded")
-    setCustomValues()
-    setUserInfo()
-  }
-
-  var body: some Scene {
-    WindowGroup {
-      ContentView()
+    func setUserInfo() {
+        let userInfo = [
+            NSLocalizedDescriptionKey: NSLocalizedString("The request failed.", comment: ""),
+            NSLocalizedFailureReasonErrorKey: NSLocalizedString(
+                "The response returned a 404.",
+                comment: ""
+            ),
+            NSLocalizedRecoverySuggestionErrorKey: NSLocalizedString(
+                "Does this page exist?",
+                comment: ""
+            ),
+            "ProductID": "123456",
+            "UserID": "Jane Smith",
+        ]
+        let error = NSError(domain: NSURLErrorDomain, code: -1001, userInfo: userInfo)
+        Crashlytics.crashlytics().record(error: error)
     }
-  }
+
+    func setCustomValues() {
+        crashlyticsReference.setCustomValue(42, forKey: "MeaningOfLife")
+        crashlyticsReference.setCustomValue("Test value", forKey: "last_UI_action")
+        let customKeysObject = [
+            "locale": reachabilityHelper.getLocale(),
+            "network_connection": reachabilityHelper.getNetworkStatus(),
+        ] as [String: Any]
+        crashlyticsReference.setCustomKeysAndValues(customKeysObject)
+        reachabilityHelper.updateAndTrackNetworkStatus()
+        Crashlytics.crashlytics().setUserID("123456789")
+    }
+
+    init() {
+        FirebaseApp.configure()
+        Crashlytics.crashlytics().log("App loaded")
+        setCustomValues()
+        setUserInfo()
+    }
+
+    var body: some Scene {
+        WindowGroup {
+            ContentView()
+        }
+    }
 }

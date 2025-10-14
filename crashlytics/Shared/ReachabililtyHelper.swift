@@ -60,11 +60,11 @@ class ReachabililtyHelper: NSObject {
      * Add a hook to update network status going forward.
      */
     func updateAndTrackNetworkStatus() {
-    monitor.pathUpdateHandler = { [weak self] path in
-      guard let self = self else { return }
-      let status = self.networkStatus(from: path)
-      Crashlytics.crashlytics().setCustomValue(status, forKey: "network_connection")
-    }
+        monitor.pathUpdateHandler = { [weak self] path in
+            guard let self = self else { return }
+            let status = self.networkStatus(from: path)
+            Crashlytics.crashlytics().setCustomValue(status, forKey: "network_connection")
+        }
         let queue = DispatchQueue(label: "NetworkMonitor")
         monitor.start(queue: queue)
     }

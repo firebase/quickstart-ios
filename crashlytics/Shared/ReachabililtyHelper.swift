@@ -14,57 +14,57 @@
 // limitations under the License.
 //
 
-import Foundation
 import FirebaseCrashlytics
+import Foundation
 import Network
 
 class ReachabililtyHelper: NSObject {
-  private let monitor: NWPathMonitor
+    private let monitor: NWPathMonitor
 
-  override init() {
-    monitor = NWPathMonitor()
-    super.init()
-  }
-
-  /**
-   * Retrieve the locale information for the app.
-   */
-  func getLocale() -> String {
-    return Locale.preferredLanguages[0]
-  }
-
-  /**
-   * Retrieve the network status for the app.
-   */
-  func getNetworkStatus() -> String {
-    return networkStatus(from: monitor.currentPath)
-  }
-
-  private func networkStatus(from path: NWPath) -> String {
-    if path.status == .satisfied {
-      if path.usesInterfaceType(.wifi) {
-        return "wifi"
-      } else if path.usesInterfaceType(.cellular) {
-        return "cellular"
-      } else if path.usesInterfaceType(.wiredEthernet) {
-        return "wired"
-      } else {
-        return "other"
-      }
-    } else {
-      return "unavailable"
+    override init() {
+        monitor = NWPathMonitor()
+        super.init()
     }
-  }
 
-  /**
-   * Add a hook to update network status going forward.
-   */
-  func updateAndTrackNetworkStatus() {
-    monitor.pathUpdateHandler = { path in
-      let status = self.networkStatus(from: path)
-      Crashlytics.crashlytics().setCustomValue(status, forKey: "network_connection")
+    /**
+     * Retrieve the locale information for the app.
+     */
+    func getLocale() -> String {
+        return Locale.preferredLanguages[0]
     }
-    let queue = DispatchQueue(label: "NetworkMonitor")
-    monitor.start(queue: queue)
-  }
+
+    /**
+     * Retrieve the network status for the app.
+     */
+    func getNetworkStatus() -> String {
+        return networkStatus(from: monitor.currentPath)
+    }
+
+    private func networkStatus(from path: NWPath) -> String {
+        if path.status == .satisfied {
+            if path.usesInterfaceType(.wifi) {
+                return "wifi"
+            } else if path.usesInterfaceType(.cellular) {
+                return "cellular"
+            } else if path.usesInterfaceType(.wiredEthernet) {
+                return "wired"
+            } else {
+                return "other"
+            }
+        } else {
+            return "unavailable"
+        }
+    }
+
+    /**
+     * Add a hook to update network status going forward.
+     */
+    func updateAndTrackNetworkStatus() {
+        monitor.pathUpdateHandler = { path in
+            let status = self.networkStatus(from: path)
+            Crashlytics.crashlytics().setCustomValue(status, forKey: "network_connection")
+        }
+        let queue = DispatchQueue(label: "NetworkMonitor")
+        monitor.start(queue: queue)
+    }
 }

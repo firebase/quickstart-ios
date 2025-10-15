@@ -31,7 +31,6 @@
 		C745942826BDDDF500153AE3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73C899826845907003E5C2C /* ContentView.swift */; };
 		C74C554726B377F20043B835 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C74C554626B377F20043B835 /* Assets.xcassets */; };
 		C74C554A26B377F20043B835 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C74C554926B377F20043B835 /* Preview Assets.xcassets */; };
-		C77AC00526BB151000BDE919 /* Reachability in Frameworks */ = {isa = PBXBuildFile; productRef = C77AC00426BB151000BDE919 /* Reachability */; };
 		C77AC00626BB16C200BDE919 /* CrashlyticsSwiftUIExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73C899726845907003E5C2C /* CrashlyticsSwiftUIExampleApp.swift */; };
 		C77AC00726BB16C500BDE919 /* ReachabilityHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C723B78C26853A1700AD34CD /* ReachabilityHelper.swift */; };
 		C77AC00826BB16CA00BDE919 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73C899826845907003E5C2C /* ContentView.swift */; };
@@ -43,6 +42,8 @@
 		C7E7BA8626DDF54400EC8D24 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C79FD3B226C6E75000FE0261 /* GoogleService-Info.plist */; };
 		C7F8A32126D95D0000F5D9FE /* UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C726B81B26D84D51000991C1 /* UITests.swift */; };
 		C7F8A33F26D95DBF00F5D9FE /* UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C726B81B26D84D51000991C1 /* UITests.swift */; };
+		EAC899832E9FDEE5004DA35E /* ReachabilityHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C723B78C26853A1700AD34CD /* ReachabilityHelper.swift */; };
+		EAC899842E9FDEFF004DA35E /* ReachabilityHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C723B78C26853A1700AD34CD /* ReachabilityHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -162,7 +163,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8D96F5DE2685440700F1A2B7 /* Reachability in Frameworks */,
 				8D00BB772D3B0AFF00F6F6DD /* FirebaseCrashlytics in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -187,7 +187,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C77AC00C26BB16E300BDE919 /* Reachability in Frameworks */,
 				8D00BB732D3B0AED00F6F6DD /* FirebaseCrashlytics in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -373,7 +372,6 @@
 			);
 			name = CrashlyticsExample;
 			packageProductDependencies = (
-				8D96F5DD2685440700F1A2B7 /* Reachability */,
 				8D00BB762D3B0AFF00F6F6DD /* FirebaseCrashlytics */,
 			);
 			productName = "CrashlyticsSwiftUIExample (iOS)";
@@ -451,7 +449,6 @@
 			);
 			name = "CrashlyticsExample (tvOS)";
 			packageProductDependencies = (
-				C77AC00B26BB16E300BDE919 /* Reachability */,
 				8D00BB722D3B0AED00F6F6DD /* FirebaseCrashlytics */,
 			);
 			productName = CrashlyticsSwiftUIExample;
@@ -702,8 +699,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8D96F5E62685442800F1A2B7 /* ReachabilityHelper.swift in Sources */,
 				C73C89AB26845908003E5C2C /* ContentView.swift in Sources */,
+				EAC899842E9FDEFF004DA35E /* ReachabilityHelper.swift in Sources */,
 				C73C89A926845908003E5C2C /* CrashlyticsSwiftUIExampleApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -726,8 +723,8 @@
 				C745942826BDDDF500153AE3 /* ContentView.swift in Sources */,
 				C745941226BDDD6200153AE3 /* ComplicationController.swift in Sources */,
 				C745942726BDDDEF00153AE3 /* CrashlyticsSwiftUIExampleApp.swift in Sources */,
+				EAC899832E9FDEE5004DA35E /* ReachabilityHelper.swift in Sources */,
 				C745941026BDDD6200153AE3 /* NotificationView.swift in Sources */,
-				8D96F5E62685442800F1A2B7 /* ReachabilityHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

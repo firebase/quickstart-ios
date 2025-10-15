@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		869200B32B879C4F00482873 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 869200B22B879C4F00482873 /* GoogleService-Info.plist */; };
+		86A67E8D2E9FECCF00EDFB8A /* cmark-gfm in Frameworks */ = {isa = PBXBuildFile; productRef = 86A67E8C2E9FECCF00EDFB8A /* cmark-gfm */; };
+		86A67E8F2E9FECCF00EDFB8A /* cmark-gfm-extensions in Frameworks */ = {isa = PBXBuildFile; productRef = 86A67E8E2E9FECCF00EDFB8A /* cmark-gfm-extensions */; };
+		86A67E912E9FED0600EDFB8A /* NetworkImage in Frameworks */ = {isa = PBXBuildFile; productRef = 86A67E902E9FED0600EDFB8A /* NetworkImage */; };
+		86A67E932E9FED1700EDFB8A /* NetworkImage in Frameworks */ = {isa = PBXBuildFile; productRef = 86A67E922E9FED1700EDFB8A /* NetworkImage */; };
+		86A67E952E9FED2200EDFB8A /* cmark-gfm in Frameworks */ = {isa = PBXBuildFile; productRef = 86A67E942E9FED2200EDFB8A /* cmark-gfm */; };
+		86A67E972E9FED2200EDFB8A /* cmark-gfm-extensions in Frameworks */ = {isa = PBXBuildFile; productRef = 86A67E962E9FED2200EDFB8A /* cmark-gfm-extensions */; };
 		86BB55EA2E8B2D6D0054B8B5 /* FunctionCallingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C1F47E2BC726150026816F /* FunctionCallingScreen.swift */; };
 		86BB55EB2E8B2D6D0054B8B5 /* BouncingDots.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E10F5C2B11135000C08E95 /* BouncingDots.swift */; };
 		86BB55EC2E8B2D6D0054B8B5 /* FunctionCallingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C1F4802BC726150026816F /* FunctionCallingViewModel.swift */; };
@@ -104,7 +110,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				86A67E932E9FED1700EDFB8A /* NetworkImage in Frameworks */,
 				86BB55FF2E8B2D6D0054B8B5 /* MarkdownUI in Frameworks */,
+				86A67E952E9FED2200EDFB8A /* cmark-gfm in Frameworks */,
+				86A67E972E9FED2200EDFB8A /* cmark-gfm-extensions in Frameworks */,
 				86BB56002E8B2D6D0054B8B5 /* GenerativeAIUIComponents in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -115,6 +124,9 @@
 			files = (
 				DE26D95F2DBB3E9F007E6668 /* FirebaseAI in Frameworks */,
 				886F95D82B17BA420036F07A /* MarkdownUI in Frameworks */,
+				86A67E8D2E9FECCF00EDFB8A /* cmark-gfm in Frameworks */,
+				86A67E912E9FED0600EDFB8A /* NetworkImage in Frameworks */,
+				86A67E8F2E9FECCF00EDFB8A /* cmark-gfm-extensions in Frameworks */,
 				886F95E32B17D6630036F07A /* GenerativeAIUIComponents in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -377,6 +389,9 @@
 			packageProductDependencies = (
 				86BB55E42E8B2D6D0054B8B5 /* MarkdownUI */,
 				86BB55E62E8B2D6D0054B8B5 /* GenerativeAIUIComponents */,
+				86A67E922E9FED1700EDFB8A /* NetworkImage */,
+				86A67E942E9FED2200EDFB8A /* cmark-gfm */,
+				86A67E962E9FED2200EDFB8A /* cmark-gfm-extensions */,
 			);
 			productName = GenerativeAIExample;
 			productReference = 86BB56082E8B2D6D0054B8B5 /* FirebaseAIExampleZip.app */;
@@ -399,6 +414,9 @@
 				886F95D72B17BA420036F07A /* MarkdownUI */,
 				886F95E22B17D6630036F07A /* GenerativeAIUIComponents */,
 				DE26D95E2DBB3E9F007E6668 /* FirebaseAI */,
+				86A67E8C2E9FECCF00EDFB8A /* cmark-gfm */,
+				86A67E8E2E9FECCF00EDFB8A /* cmark-gfm-extensions */,
+				86A67E902E9FED0600EDFB8A /* NetworkImage */,
 			);
 			productName = GenerativeAIExample;
 			productReference = 8848C82F2B0D04BC007B434F /* FirebaseAIExample.app */;
@@ -432,6 +450,7 @@
 				88209C212B0FBDF700F64795 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */,
 				DEA09AC32B1FCE22001962D9 /* XCRemoteSwiftPackageReference "NetworkImage" */,
 				DEFECAAB2D7BB49700EF9621 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				86A67E8B2E9FECCF00EDFB8A /* XCRemoteSwiftPackageReference "swift-cmark" */,
 			);
 			productRefGroup = 8848C8302B0D04BC007B434F /* Products */;
 			projectDirPath = "";
@@ -794,6 +813,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		86A67E8B2E9FECCF00EDFB8A /* XCRemoteSwiftPackageReference "swift-cmark" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/swiftlang/swift-cmark";
+			requirement = {
+				kind = revision;
+				revision = 3ccff77b2dc5b96b77db3da0d68d28068593fa53;
+			};
+		};
 		86BB55E52E8B2D6D0054B8B5 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/gonzalezreal/swift-markdown-ui";
@@ -829,6 +856,36 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		86A67E8C2E9FECCF00EDFB8A /* cmark-gfm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 86A67E8B2E9FECCF00EDFB8A /* XCRemoteSwiftPackageReference "swift-cmark" */;
+			productName = "cmark-gfm";
+		};
+		86A67E8E2E9FECCF00EDFB8A /* cmark-gfm-extensions */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 86A67E8B2E9FECCF00EDFB8A /* XCRemoteSwiftPackageReference "swift-cmark" */;
+			productName = "cmark-gfm-extensions";
+		};
+		86A67E902E9FED0600EDFB8A /* NetworkImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DEA09AC32B1FCE22001962D9 /* XCRemoteSwiftPackageReference "NetworkImage" */;
+			productName = NetworkImage;
+		};
+		86A67E922E9FED1700EDFB8A /* NetworkImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DEA09AC32B1FCE22001962D9 /* XCRemoteSwiftPackageReference "NetworkImage" */;
+			productName = NetworkImage;
+		};
+		86A67E942E9FED2200EDFB8A /* cmark-gfm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 86A67E8B2E9FECCF00EDFB8A /* XCRemoteSwiftPackageReference "swift-cmark" */;
+			productName = "cmark-gfm";
+		};
+		86A67E962E9FED2200EDFB8A /* cmark-gfm-extensions */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 86A67E8B2E9FECCF00EDFB8A /* XCRemoteSwiftPackageReference "swift-cmark" */;
+			productName = "cmark-gfm-extensions";
+		};
 		86BB55E42E8B2D6D0054B8B5 /* MarkdownUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 86BB55E52E8B2D6D0054B8B5 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */;

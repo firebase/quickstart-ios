@@ -122,9 +122,9 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     // Note: UNNotificationPresentationOptions.alert has been deprecated.
     let options: UNNotificationPresentationOptions
     if #available(iOS 14.0, *) {
-        option = [.list, .banner, .sound]
+        options = [.list, .banner, .sound]
     } else {
-        option = [.alert, .sound]
+        options = [.alert, .sound]
     }
     
     return options

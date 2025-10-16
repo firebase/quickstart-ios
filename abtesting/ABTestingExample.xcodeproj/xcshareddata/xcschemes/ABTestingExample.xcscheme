@@ -16,7 +16,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "4125B7C6268E2E7C00232B67"
                BuildableName = "ABTestingExample.app"
-               BlueprintName = "ABTestingExample (iOS)"
+               BlueprintName = "ABTestingExample"
                ReferencedContainer = "container:ABTestingExample.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -61,7 +61,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4125B7C6268E2E7C00232B67"
             BuildableName = "ABTestingExample.app"
-            BlueprintName = "ABTestingExample (iOS)"
+            BlueprintName = "ABTestingExample"
             ReferencedContainer = "container:ABTestingExample.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -78,7 +78,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4125B7C6268E2E7C00232B67"
             BuildableName = "ABTestingExample.app"
-            BlueprintName = "ABTestingExample (iOS)"
+            BlueprintName = "ABTestingExample"
             ReferencedContainer = "container:ABTestingExample.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

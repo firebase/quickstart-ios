@@ -20,7 +20,7 @@
 import Foundation
 
 enum Participant {
-  case system
+  case model
   case user
 }
 
@@ -44,7 +44,7 @@ struct ChatMessage: Identifiable, Equatable {
 
 extension ChatMessage {
   static var samples: [ChatMessage] = [
-    .init(message: "Hello. What can I do for you today?", participant: .system),
+    .init(message: "Hello. What can I do for you today?", participant: .model),
     .init(message: "Show me a simple loop in Swift.", participant: .user),
     .init(message: """
     Sure, here is a simple loop in Swift:
@@ -69,7 +69,7 @@ extension ChatMessage {
     ```
 
     This loop calculates the sum of the numbers from 1 to 100. The variable sum is initialized to 0, and then the for loop iterates over the range of numbers from 1 to 100. The variable i is assigned each number in the range, and the value of i is added to the sum variable. After the loop has finished executing, the value of sum is printed to the console.
-    """, participant: .system),
+    """, participant: .model),
   ]
 
   static var sample = samples[0]

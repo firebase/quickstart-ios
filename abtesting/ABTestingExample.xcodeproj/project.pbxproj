@@ -266,9 +266,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		4125B7C6268E2E7C00232B67 /* ABTestingExample (iOS) */ = {
+		4125B7C6268E2E7C00232B67 /* ABTestingExample */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4125B7EA268E2E7C00232B67 /* Build configuration list for PBXNativeTarget "ABTestingExample (iOS)" */;
+			buildConfigurationList = 4125B7EA268E2E7C00232B67 /* Build configuration list for PBXNativeTarget "ABTestingExample" */;
 			buildPhases = (
 				4125B7C3268E2E7C00232B67 /* Sources */,
 				4125B7C4268E2E7C00232B67 /* Frameworks */,
@@ -278,7 +278,7 @@
 			);
 			dependencies = (
 			);
-			name = "ABTestingExample (iOS)";
+			name = ABTestingExample;
 			packageProductDependencies = (
 				4125B7F9268E319D00232B67 /* FirebaseInstallations */,
 				4125B7FB268E319D00232B67 /* FirebaseRemoteConfig */,
@@ -544,7 +544,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				4125B7C6268E2E7C00232B67 /* ABTestingExample (iOS) */,
+				4125B7C6268E2E7C00232B67 /* ABTestingExample */,
 				4125B7D1268E2E7C00232B67 /* Tests (iOS) */,
 				4174272226D89C7E00966D7D /* ABTestingExample (tvOS) */,
 				4174273926D89E1B00966D7D /* Tests (tvOS) */,
@@ -740,7 +740,7 @@
 /* Begin PBXTargetDependency section */
 		4125B7D4268E2E7C00232B67 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 4125B7C6268E2E7C00232B67 /* ABTestingExample (iOS) */;
+			target = 4125B7C6268E2E7C00232B67 /* ABTestingExample */;
 			targetProxy = 4125B7D3268E2E7C00232B67 /* PBXContainerItemProxy */;
 		};
 		41394CE826DF75D200C54DAE /* PBXTargetDependency */ = {
@@ -1423,7 +1423,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4125B7EA268E2E7C00232B67 /* Build configuration list for PBXNativeTarget "ABTestingExample (iOS)" */ = {
+		4125B7EA268E2E7C00232B67 /* Build configuration list for PBXNativeTarget "ABTestingExample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4125B7EB268E2E7C00232B67 /* Debug */,

@@ -21,9 +21,7 @@ import SwiftUI
 @main
 struct CrashlyticsSwiftUIExampleApp: App {
   private var crashlyticsReference = Crashlytics.crashlytics()
-  #if !os(watchOS)
-    let reachabilityHelper = ReachabililtyHelper()
-  #endif
+  let reachabilityHelper = ReachabilityHelper()
 
   func setUserInfo() {
     let userInfo = [
@@ -46,15 +44,12 @@ struct CrashlyticsSwiftUIExampleApp: App {
   func setCustomValues() {
     crashlyticsReference.setCustomValue(42, forKey: "MeaningOfLife")
     crashlyticsReference.setCustomValue("Test value", forKey: "last_UI_action")
-    // Reachability is not compatible with watchOS
-    #if !os(watchOS)
-      let customKeysObject = [
-        "locale": reachabilityHelper.getLocale(),
-        "network_connection": reachabilityHelper.getNetworkStatus(),
-      ] as [String: Any]
-      crashlyticsReference.setCustomKeysAndValues(customKeysObject)
-      reachabilityHelper.updateAndTrackNetworkStatus()
-    #endif
+    let customKeysObject = [
+      "locale": reachabilityHelper.getLocale(),
+      "network_connection": reachabilityHelper.getNetworkStatus(),
+    ] as [String: Any]
+    crashlyticsReference.setCustomKeysAndValues(customKeysObject)
+    reachabilityHelper.updateAndTrackNetworkStatus()
     Crashlytics.crashlytics().setUserID("123456789")
   }
 

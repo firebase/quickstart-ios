@@ -46,11 +46,7 @@ jobs:
           cd messaging
           gem install xcpretty
           ../scripts/install_prereqs/messaging.sh
-      - name: Build ObjC
+      - name: Build
         run: ./scripts/test.sh
         env:
           SCHEME: MessagingExample
-      - name: Build Swift
-        run: ./scripts/test.sh
-        env:
-          SCHEME: MessagingExampleSwift

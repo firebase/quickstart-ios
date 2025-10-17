@@ -37,7 +37,7 @@ jobs:
       DIR: inappmessaging
       OS: iOS
       DEVICE: iPhone 16
-      TEST: true
+      TEST: false
     steps:
       - name: Checkout
         uses: actions/checkout@master
@@ -46,10 +46,6 @@ jobs:
           cd inappmessaging
           gem install xcpretty
           ../scripts/install_prereqs/inappmessaging.sh
-      - name: Build ObjC
-        run: ./scripts/test.sh
-        env:
-          SCHEME: InAppMessagingExample
       - name: Build Swift
         run: ./scripts/test.sh
         env:

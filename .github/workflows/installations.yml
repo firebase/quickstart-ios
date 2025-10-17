@@ -50,7 +50,3 @@ jobs:
         run: ./scripts/test.sh
         env:
           SCHEME: InstallationsExampleSwift
-      - name: Build Swift
-        run: ./scripts/test.sh
-        env:
-          SCHEME: InstallationsExample

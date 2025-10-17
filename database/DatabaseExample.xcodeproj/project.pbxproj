@@ -7,23 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		100116CE1CDD16F100C9256E /* UIViewController+Alerts.m in Sources */ = {isa = PBXBuildFile; fileRef = 100116CD1CDD16F100C9256E /* UIViewController+Alerts.m */; };
 		100116CF1CDD16F100C9256E /* UIViewController+Alerts.m in Sources */ = {isa = PBXBuildFile; fileRef = 100116CD1CDD16F100C9256E /* UIViewController+Alerts.m */; };
-		100116D21CDD1CDC00C9256E /* PostDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100116D11CDD1CDC00C9256E /* PostDetailTableViewController.m */; };
-		100A95E81FCF8AB1009B0140 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 100A95E71FCF8AB1009B0140 /* Images.xcassets */; };
 		100A95E91FCF8AD6009B0140 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 100A95E71FCF8AB1009B0140 /* Images.xcassets */; };
 		103685821CDD3B13004DC149 /* PostDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 103685811CDD3B13004DC149 /* PostDetailTableViewController.swift */; };
-		1056D9491CD815040061ED72 /* PostListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1056D9481CD815040061ED72 /* PostListViewController.m */; };
-		1056D94C1CD817790061ED72 /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = 1056D94B1CD817790061ED72 /* Comment.m */; };
-		1056D9521CD8179F0061ED72 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 1056D9511CD8179F0061ED72 /* User.m */; };
-		1056D9581CD81E300061ED72 /* PostTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1056D9561CD81E300061ED72 /* PostTableViewCell.m */; };
-		1056D95C1CD824C60061ED72 /* PostDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 1056D95B1CD824C60061ED72 /* PostDataSource.m */; };
-		1056D95F1CD829FE0061ED72 /* MyTopPostsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1056D95E1CD829FE0061ED72 /* MyTopPostsViewController.m */; };
-		1056D9621CD82C740061ED72 /* MyPostsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1056D9611CD82C740061ED72 /* MyPostsViewController.m */; };
-		1056D9651CD82CC10061ED72 /* RecentPostsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1056D9641CD82CC10061ED72 /* RecentPostsViewController.m */; };
-		107347492031598A004A66D1 /* DatabaseExampleSwiftUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107347482031598A004A66D1 /* DatabaseExampleSwiftUITests.swift */; };
 		1073483720333B8C004A66D1 /* DatabaseExampleUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1073483620333B8C004A66D1 /* DatabaseExampleUITests.m */; };
-		1073FE0C1CE2742000E2F73F /* TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1073FE0B1CE2742000E2F73F /* TabBarController.m */; };
 		1073FE101CE2D27700E2F73F /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1073FE0F1CE2D27700E2F73F /* TabBarController.swift */; };
 		10B872AE1CDBFB1F00C7D214 /* MyPostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B872AD1CDBFB1F00C7D214 /* MyPostsViewController.swift */; };
 		10B872B11CDBFB7300C7D214 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B872B01CDBFB7300C7D214 /* SignInViewController.swift */; };
@@ -35,93 +22,30 @@
 		10B872C21CDC0AC200C7D214 /* PostDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B872C11CDC0AC200C7D214 /* PostDataSource.swift */; };
 		10B872C41CDC11F200C7D214 /* RecentPostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B872C31CDC11F200C7D214 /* RecentPostsViewController.swift */; };
 		10B872C61CDC14C800C7D214 /* MyTopPostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B872C51CDC14C800C7D214 /* MyTopPostsViewController.swift */; };
-		10F2262F1CDBEE7C005205F2 /* SignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10F2262E1CDBEE7C005205F2 /* SignInViewController.m */; };
-		10F226321CDBEE95005205F2 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = 10F226311CDBEE95005205F2 /* Post.m */; };
-		310C987B3EF0599519449023 /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = F644C72A588FB44DD666857B /* GoogleService-Info.plist */; };
 		4022DB8C90CB216288A52649 /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = F644C72A588FB44DD666857B /* GoogleService-Info.plist */; };
-		5F5A53521ADE670C00F81DF0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5A53511ADE670C00F81DF0 /* main.m */; };
-		5F5A53551ADE670C00F81DF0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5A53541ADE670C00F81DF0 /* AppDelegate.m */; };
-		5F5A53581ADE670C00F81DF0 /* NewPostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5A53571ADE670C00F81DF0 /* NewPostViewController.m */; };
-		5F5A535B1ADE670C00F81DF0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F5A53591ADE670C00F81DF0 /* Main.storyboard */; };
 		5F5A537E1ADE67D500F81DF0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5A537D1ADE67D500F81DF0 /* AppDelegate.swift */; };
 		5F5A53801ADE67D500F81DF0 /* NewPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5A537F1ADE67D500F81DF0 /* NewPostViewController.swift */; };
 		5F5A539C1ADE69AA00F81DF0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F5A53591ADE670C00F81DF0 /* Main.storyboard */; };
-		5F99610A1AE0CF4F0034F503 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F9961061AE0CF4F0034F503 /* Images.xcassets */; };
 		5F99610B1AE0CF4F0034F503 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F9961061AE0CF4F0034F503 /* Images.xcassets */; };
-		5F99610C1AE0CF4F0034F503 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F9961071AE0CF4F0034F503 /* LaunchScreen.xib */; };
 		5F99610D1AE0CF4F0034F503 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F9961071AE0CF4F0034F503 /* LaunchScreen.xib */; };
-		5FDE055D1B0DAA090037B82F /* AppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FDE055C1B0DAA090037B82F /* AppTests.m */; };
-		67FFF4C737099E866B972B36 /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = F644C72A588FB44DD666857B /* GoogleService-Info.plist */; };
-		8D00BB7B2D3B0BE000F6F6DD /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 8D00BB7A2D3B0BE000F6F6DD /* FirebaseAuth */; };
-		8D00BB7D2D3B0BE000F6F6DD /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 8D00BB7C2D3B0BE000F6F6DD /* FirebaseDatabase */; };
-		8D00BB802D3B0C1200F6F6DD /* FirebaseDatabaseUI in Frameworks */ = {isa = PBXBuildFile; productRef = 8D00BB7F2D3B0C1200F6F6DD /* FirebaseDatabaseUI */; };
 		8D00BB822D3B0C1F00F6F6DD /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 8D00BB812D3B0C1F00F6F6DD /* FirebaseAuth */; };
 		8D00BB842D3B0C1F00F6F6DD /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 8D00BB832D3B0C1F00F6F6DD /* FirebaseDatabase */; };
 		8D00BB862D3B0C1F00F6F6DD /* FirebaseDatabaseUI in Frameworks */ = {isa = PBXBuildFile; productRef = 8D00BB852D3B0C1F00F6F6DD /* FirebaseDatabaseUI */; };
 		A18EF550576A3F1E297EFB56 /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = F644C72A588FB44DD666857B /* GoogleService-Info.plist */; };
 		DEC82E5523AD38E4000EA7B1 /* FIREGSignInHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DEC82E5223AD38E4000EA7B1 /* FIREGSignInHelper.m */; };
 		DEC82E5623AD38E4000EA7B1 /* FIREGHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DEC82E5323AD38E4000EA7B1 /* FIREGHelper.m */; };
-		ED9F3B135B98B01518169AD0 /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = F644C72A588FB44DD666857B /* GoogleService-Info.plist */; };
 		EF94DD7B1CE533AC009A635D /* PostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EFDCBD531CE4FCC800F68D48 /* PostTableViewCell.xib */; };
-		EFDCBD541CE4FCC800F68D48 /* PostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EFDCBD531CE4FCC800F68D48 /* PostTableViewCell.xib */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		1073474B2031598A004A66D1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5F5A53441ADE670C00F81DF0 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 5F5A53781ADE67D500F81DF0;
-			remoteInfo = DatabaseExampleSwift;
-		};
-		1073483920333B8C004A66D1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5F5A53441ADE670C00F81DF0 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 5F5A534B1ADE670C00F81DF0;
-			remoteInfo = DatabaseExample;
-		};
-		5FDE055E1B0DAA090037B82F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5F5A53441ADE670C00F81DF0 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 5F5A534B1ADE670C00F81DF0;
-			remoteInfo = DatabaseExample;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		100116CB1CDD16F100C9256E /* DatabaseExampleSwift-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DatabaseExampleSwift-Bridging-Header.h"; sourceTree = "<group>"; };
 		100116CC1CDD16F100C9256E /* UIViewController+Alerts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Alerts.h"; sourceTree = "<group>"; };
 		100116CD1CDD16F100C9256E /* UIViewController+Alerts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Alerts.m"; sourceTree = "<group>"; };
-		100116D01CDD1CDC00C9256E /* PostDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostDetailTableViewController.h; sourceTree = "<group>"; };
-		100116D11CDD1CDC00C9256E /* PostDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostDetailTableViewController.m; sourceTree = "<group>"; };
 		100A95E71FCF8AB1009B0140 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		103685811CDD3B13004DC149 /* PostDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostDetailTableViewController.swift; sourceTree = "<group>"; };
-		1056D9471CD815040061ED72 /* PostListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostListViewController.h; sourceTree = "<group>"; };
-		1056D9481CD815040061ED72 /* PostListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostListViewController.m; sourceTree = "<group>"; };
-		1056D94A1CD817790061ED72 /* Comment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Comment.h; sourceTree = "<group>"; };
-		1056D94B1CD817790061ED72 /* Comment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Comment.m; sourceTree = "<group>"; };
-		1056D9501CD8179F0061ED72 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
-		1056D9511CD8179F0061ED72 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
-		1056D9551CD81E300061ED72 /* PostTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostTableViewCell.h; sourceTree = "<group>"; };
-		1056D9561CD81E300061ED72 /* PostTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostTableViewCell.m; sourceTree = "<group>"; };
-		1056D95A1CD824C60061ED72 /* PostDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostDataSource.h; sourceTree = "<group>"; };
-		1056D95B1CD824C60061ED72 /* PostDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostDataSource.m; sourceTree = "<group>"; };
-		1056D95D1CD829FE0061ED72 /* MyTopPostsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTopPostsViewController.h; sourceTree = "<group>"; };
-		1056D95E1CD829FE0061ED72 /* MyTopPostsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTopPostsViewController.m; sourceTree = "<group>"; };
-		1056D9601CD82C740061ED72 /* MyPostsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyPostsViewController.h; sourceTree = "<group>"; };
-		1056D9611CD82C740061ED72 /* MyPostsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPostsViewController.m; sourceTree = "<group>"; };
-		1056D9631CD82CC10061ED72 /* RecentPostsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecentPostsViewController.h; sourceTree = "<group>"; };
-		1056D9641CD82CC10061ED72 /* RecentPostsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecentPostsViewController.m; sourceTree = "<group>"; };
-		107347462031598A004A66D1 /* DatabaseExampleSwiftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DatabaseExampleSwiftUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		107347482031598A004A66D1 /* DatabaseExampleSwiftUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseExampleSwiftUITests.swift; sourceTree = "<group>"; };
-		1073474A2031598A004A66D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1073483420333B8C004A66D1 /* DatabaseExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DatabaseExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1073483620333B8C004A66D1 /* DatabaseExampleUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DatabaseExampleUITests.m; sourceTree = "<group>"; };
 		1073483820333B8C004A66D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1073FE0A1CE2742000E2F73F /* TabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarController.h; sourceTree = "<group>"; };
-		1073FE0B1CE2742000E2F73F /* TabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarController.m; sourceTree = "<group>"; };
 		1073FE0F1CE2D27700E2F73F /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		10B872AD1CDBFB1F00C7D214 /* MyPostsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPostsViewController.swift; sourceTree = "<group>"; };
 		10B872B01CDBFB7300C7D214 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
@@ -133,25 +57,13 @@
 		10B872C11CDC0AC200C7D214 /* PostDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostDataSource.swift; sourceTree = "<group>"; };
 		10B872C31CDC11F200C7D214 /* RecentPostsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentPostsViewController.swift; sourceTree = "<group>"; };
 		10B872C51CDC14C800C7D214 /* MyTopPostsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyTopPostsViewController.swift; sourceTree = "<group>"; };
-		10F2262D1CDBEE7C005205F2 /* SignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInViewController.h; sourceTree = "<group>"; };
-		10F2262E1CDBEE7C005205F2 /* SignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignInViewController.m; sourceTree = "<group>"; };
-		10F226301CDBEE95005205F2 /* Post.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Post.h; sourceTree = "<group>"; };
-		10F226311CDBEE95005205F2 /* Post.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
-		5F5A534C1ADE670C00F81DF0 /* DatabaseExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DatabaseExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F5A53501ADE670C00F81DF0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5F5A53511ADE670C00F81DF0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		5F5A53531ADE670C00F81DF0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		5F5A53541ADE670C00F81DF0 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		5F5A53561ADE670C00F81DF0 /* NewPostViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewPostViewController.h; sourceTree = "<group>"; };
-		5F5A53571ADE670C00F81DF0 /* NewPostViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewPostViewController.m; sourceTree = "<group>"; };
 		5F5A535A1ADE670C00F81DF0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5F5A53791ADE67D500F81DF0 /* DatabaseExampleSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DatabaseExampleSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F5A537D1ADE67D500F81DF0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5F5A537F1ADE67D500F81DF0 /* NewPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPostViewController.swift; sourceTree = "<group>"; };
 		5F9961061AE0CF4F0034F503 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		5F9961071AE0CF4F0034F503 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
-		5FDE05581B0DAA090037B82F /* DatabaseExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DatabaseExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		5FDE055C1B0DAA090037B82F /* AppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppTests.m; sourceTree = "<group>"; };
 		DEC82E5123AD38E4000EA7B1 /* FIREGHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FIREGHelper.h; sourceTree = "<group>"; };
 		DEC82E5223AD38E4000EA7B1 /* FIREGSignInHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FIREGSignInHelper.m; sourceTree = "<group>"; };
 		DEC82E5323AD38E4000EA7B1 /* FIREGHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FIREGHelper.m; sourceTree = "<group>"; };
@@ -162,27 +74,10 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		107347432031598A004A66D1 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		1073483120333B8C004A66D1 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		5F5A53491ADE670C00F81DF0 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				8D00BB7D2D3B0BE000F6F6DD /* FirebaseDatabase in Frameworks */,
-				8D00BB7B2D3B0BE000F6F6DD /* FirebaseAuth in Frameworks */,
-				8D00BB802D3B0C1200F6F6DD /* FirebaseDatabaseUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -196,25 +91,9 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		5FDE05551B0DAA090037B82F /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		107347472031598A004A66D1 /* DatabaseExampleSwiftUITests */ = {
-			isa = PBXGroup;
-			children = (
-				107347482031598A004A66D1 /* DatabaseExampleSwiftUITests.swift */,
-				1073474A2031598A004A66D1 /* Info.plist */,
-			);
-			path = DatabaseExampleSwiftUITests;
-			sourceTree = "<group>";
-		};
 		1073483520333B8C004A66D1 /* DatabaseExampleUITests */ = {
 			isa = PBXGroup;
 			children = (
@@ -249,50 +128,12 @@
 			name = Models;
 			sourceTree = "<group>";
 		};
-		10F2262B1CDBE72B005205F2 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				10F226301CDBEE95005205F2 /* Post.h */,
-				10F226311CDBEE95005205F2 /* Post.m */,
-				1056D94A1CD817790061ED72 /* Comment.h */,
-				1056D94B1CD817790061ED72 /* Comment.m */,
-				1056D9501CD8179F0061ED72 /* User.h */,
-				1056D9511CD8179F0061ED72 /* User.m */,
-			);
-			name = Models;
-			sourceTree = "<group>";
-		};
-		10F2262C1CDBE76D005205F2 /* ViewControllers */ = {
-			isa = PBXGroup;
-			children = (
-				1056D9601CD82C740061ED72 /* MyPostsViewController.h */,
-				1056D9611CD82C740061ED72 /* MyPostsViewController.m */,
-				1056D9631CD82CC10061ED72 /* RecentPostsViewController.h */,
-				1056D9641CD82CC10061ED72 /* RecentPostsViewController.m */,
-				1056D9471CD815040061ED72 /* PostListViewController.h */,
-				1056D9481CD815040061ED72 /* PostListViewController.m */,
-				10F2262D1CDBEE7C005205F2 /* SignInViewController.h */,
-				10F2262E1CDBEE7C005205F2 /* SignInViewController.m */,
-				1056D95D1CD829FE0061ED72 /* MyTopPostsViewController.h */,
-				1056D95E1CD829FE0061ED72 /* MyTopPostsViewController.m */,
-				5F5A53561ADE670C00F81DF0 /* NewPostViewController.h */,
-				5F5A53571ADE670C00F81DF0 /* NewPostViewController.m */,
-				100116D01CDD1CDC00C9256E /* PostDetailTableViewController.h */,
-				100116D11CDD1CDC00C9256E /* PostDetailTableViewController.m */,
-				1073FE0A1CE2742000E2F73F /* TabBarController.h */,
-				1073FE0B1CE2742000E2F73F /* TabBarController.m */,
-			);
-			name = ViewControllers;
-			sourceTree = "<group>";
-		};
 		5F5A53431ADE670C00F81DF0 = {
 			isa = PBXGroup;
 			children = (
 				DEC82E5023AD38E4000EA7B1 /* TestUtils */,
 				5F5A534E1ADE670C00F81DF0 /* DatabaseExample */,
 				5F5A537A1ADE67D500F81DF0 /* DatabaseExampleSwift */,
-				5FDE05591B0DAA090037B82F /* DatabaseExampleTests */,
-				107347472031598A004A66D1 /* DatabaseExampleSwiftUITests */,
 				1073483520333B8C004A66D1 /* DatabaseExampleUITests */,
 				5F5A534D1ADE670C00F81DF0 /* Products */,
 				5F9961041AE0CF4F0034F503 /* Shared */,
@@ -305,10 +146,7 @@
 		5F5A534D1ADE670C00F81DF0 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				5F5A534C1ADE670C00F81DF0 /* DatabaseExample.app */,
 				5F5A53791ADE67D500F81DF0 /* DatabaseExampleSwift.app */,
-				5FDE05581B0DAA090037B82F /* DatabaseExampleTests.xctest */,
-				107347462031598A004A66D1 /* DatabaseExampleSwiftUITests.xctest */,
 				1073483420333B8C004A66D1 /* DatabaseExampleUITests.xctest */,
 			);
 			name = Products;
@@ -317,15 +155,7 @@
 		5F5A534E1ADE670C00F81DF0 /* DatabaseExample */ = {
 			isa = PBXGroup;
 			children = (
-				10F2262C1CDBE76D005205F2 /* ViewControllers */,
-				10F2262B1CDBE72B005205F2 /* Models */,
-				5F5A53531ADE670C00F81DF0 /* AppDelegate.h */,
-				5F5A53541ADE670C00F81DF0 /* AppDelegate.m */,
 				5F5A534F1ADE670C00F81DF0 /* Supporting Files */,
-				1056D9551CD81E300061ED72 /* PostTableViewCell.h */,
-				1056D9561CD81E300061ED72 /* PostTableViewCell.m */,
-				1056D95A1CD824C60061ED72 /* PostDataSource.h */,
-				1056D95B1CD824C60061ED72 /* PostDataSource.m */,
 			);
 			path = DatabaseExample;
 			sourceTree = "<group>";
@@ -338,7 +168,6 @@
 				5F5A53591ADE670C00F81DF0 /* Main.storyboard */,
 				EFDCBD531CE4FCC800F68D48 /* PostTableViewCell.xib */,
 				5F5A53501ADE670C00F81DF0 /* Info.plist */,
-				5F5A53511ADE670C00F81DF0 /* main.m */,
 				100116CB1CDD16F100C9256E /* DatabaseExampleSwift-Bridging-Header.h */,
 				100A95E71FCF8AB1009B0140 /* Images.xcassets */,
 			);
@@ -367,14 +196,6 @@
 			path = ../shared;
 			sourceTree = "<group>";
 		};
-		5FDE05591B0DAA090037B82F /* DatabaseExampleTests */ = {
-			isa = PBXGroup;
-			children = (
-				5FDE055C1B0DAA090037B82F /* AppTests.m */,
-			);
-			path = DatabaseExampleTests;
-			sourceTree = "<group>";
-		};
 		8D00BB792D3B0BE000F6F6DD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -398,24 +219,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		107347452031598A004A66D1 /* DatabaseExampleSwiftUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 1073474D2031598A004A66D1 /* Build configuration list for PBXNativeTarget "DatabaseExampleSwiftUITests" */;
-			buildPhases = (
-				107347422031598A004A66D1 /* Sources */,
-				107347432031598A004A66D1 /* Frameworks */,
-				107347442031598A004A66D1 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				1073474C2031598A004A66D1 /* PBXTargetDependency */,
-			);
-			name = DatabaseExampleSwiftUITests;
-			productName = DatabaseExampleSwiftUITests;
-			productReference = 107347462031598A004A66D1 /* DatabaseExampleSwiftUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 		1073483320333B8C004A66D1 /* DatabaseExampleUITests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1073483B20333B8C004A66D1 /* Build configuration list for PBXNativeTarget "DatabaseExampleUITests" */;
@@ -427,29 +230,11 @@
 			buildRules = (
 			);
 			dependencies = (
-				1073483A20333B8C004A66D1 /* PBXTargetDependency */,
 			);
 			name = DatabaseExampleUITests;
 			productName = DatabaseExampleUITests;
 			productReference = 1073483420333B8C004A66D1 /* DatabaseExampleUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
-		};
-		5F5A534B1ADE670C00F81DF0 /* DatabaseExample */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 5F5A536F1ADE670C00F81DF0 /* Build configuration list for PBXNativeTarget "DatabaseExample" */;
-			buildPhases = (
-				5F5A53481ADE670C00F81DF0 /* Sources */,
-				5F5A53491ADE670C00F81DF0 /* Frameworks */,
-				5F5A534A1ADE670C00F81DF0 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = DatabaseExample;
-			productName = DatabaseExample;
-			productReference = 5F5A534C1ADE670C00F81DF0 /* DatabaseExample.app */;
-			productType = "com.apple.product-type.application";
 		};
 		5F5A53781ADE67D500F81DF0 /* DatabaseExampleSwift */ = {
 			isa = PBXNativeTarget;
@@ -468,24 +253,6 @@
 			productReference = 5F5A53791ADE67D500F81DF0 /* DatabaseExampleSwift.app */;
 			productType = "com.apple.product-type.application";
 		};
-		5FDE05571B0DAA090037B82F /* DatabaseExampleTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 5FDE05621B0DAA090037B82F /* Build configuration list for PBXNativeTarget "DatabaseExampleTests" */;
-			buildPhases = (
-				5FDE05541B0DAA090037B82F /* Sources */,
-				5FDE05551B0DAA090037B82F /* Frameworks */,
-				5FDE05561B0DAA090037B82F /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				5FDE055F1B0DAA090037B82F /* PBXTargetDependency */,
-			);
-			name = DatabaseExampleTests;
-			productName = DatabaseExampleTests;
-			productReference = 5FDE05581B0DAA090037B82F /* DatabaseExampleTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -497,30 +264,15 @@
 				LastUpgradeCheck = 1610;
 				ORGANIZATIONNAME = "Google Inc.";
 				TargetAttributes = {
-					107347452031598A004A66D1 = {
-						CreatedOnToolsVersion = 9.2;
-						LastSwiftMigration = 1110;
-						ProvisioningStyle = Automatic;
-						TestTargetID = 5F5A53781ADE67D500F81DF0;
-					};
 					1073483320333B8C004A66D1 = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 5F5A534B1ADE670C00F81DF0;
 					};
-					5F5A534B1ADE670C00F81DF0 = {
-						CreatedOnToolsVersion = 6.3;
-						ProvisioningStyle = Automatic;
-					};
 					5F5A53781ADE67D500F81DF0 = {
 						CreatedOnToolsVersion = 6.3;
 						LastSwiftMigration = 1110;
 						ProvisioningStyle = Automatic;
-					};
-					5FDE05571B0DAA090037B82F = {
-						CreatedOnToolsVersion = 6.3.2;
-						ProvisioningStyle = Automatic;
-						TestTargetID = 5F5A534B1ADE670C00F81DF0;
 					};
 				};
 			};
@@ -541,39 +293,17 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				5F5A534B1ADE670C00F81DF0 /* DatabaseExample */,
 				5F5A53781ADE67D500F81DF0 /* DatabaseExampleSwift */,
-				5FDE05571B0DAA090037B82F /* DatabaseExampleTests */,
-				107347452031598A004A66D1 /* DatabaseExampleSwiftUITests */,
 				1073483320333B8C004A66D1 /* DatabaseExampleUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		107347442031598A004A66D1 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		1073483220333B8C004A66D1 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		5F5A534A1ADE670C00F81DF0 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				5F99610C1AE0CF4F0034F503 /* LaunchScreen.xib in Resources */,
-				100A95E81FCF8AB1009B0140 /* Images.xcassets in Resources */,
-				EFDCBD541CE4FCC800F68D48 /* PostTableViewCell.xib in Resources */,
-				5F99610A1AE0CF4F0034F503 /* Images.xcassets in Resources */,
-				5F5A535B1ADE670C00F81DF0 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -589,25 +319,9 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		5FDE05561B0DAA090037B82F /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		107347422031598A004A66D1 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				107347492031598A004A66D1 /* DatabaseExampleSwiftUITests.swift in Sources */,
-				67FFF4C737099E866B972B36 /* GoogleService-Info.plist in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		1073483020333B8C004A66D1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -616,30 +330,6 @@
 				DEC82E5523AD38E4000EA7B1 /* FIREGSignInHelper.m in Sources */,
 				DEC82E5623AD38E4000EA7B1 /* FIREGHelper.m in Sources */,
 				A18EF550576A3F1E297EFB56 /* GoogleService-Info.plist in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		5F5A53481ADE670C00F81DF0 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				10F226321CDBEE95005205F2 /* Post.m in Sources */,
-				100116CE1CDD16F100C9256E /* UIViewController+Alerts.m in Sources */,
-				1056D9491CD815040061ED72 /* PostListViewController.m in Sources */,
-				1056D9521CD8179F0061ED72 /* User.m in Sources */,
-				5F5A53581ADE670C00F81DF0 /* NewPostViewController.m in Sources */,
-				10F2262F1CDBEE7C005205F2 /* SignInViewController.m in Sources */,
-				5F5A53551ADE670C00F81DF0 /* AppDelegate.m in Sources */,
-				1056D95C1CD824C60061ED72 /* PostDataSource.m in Sources */,
-				100116D21CDD1CDC00C9256E /* PostDetailTableViewController.m in Sources */,
-				1056D94C1CD817790061ED72 /* Comment.m in Sources */,
-				1056D9651CD82CC10061ED72 /* RecentPostsViewController.m in Sources */,
-				5F5A53521ADE670C00F81DF0 /* main.m in Sources */,
-				1056D9621CD82C740061ED72 /* MyPostsViewController.m in Sources */,
-				1073FE0C1CE2742000E2F73F /* TabBarController.m in Sources */,
-				1056D95F1CD829FE0061ED72 /* MyTopPostsViewController.m in Sources */,
-				1056D9581CD81E300061ED72 /* PostTableViewCell.m in Sources */,
-				310C987B3EF0599519449023 /* GoogleService-Info.plist in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -666,34 +356,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		5FDE05541B0DAA090037B82F /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				5FDE055D1B0DAA090037B82F /* AppTests.m in Sources */,
-				ED9F3B135B98B01518169AD0 /* GoogleService-Info.plist in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		1073474C2031598A004A66D1 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 5F5A53781ADE67D500F81DF0 /* DatabaseExampleSwift */;
-			targetProxy = 1073474B2031598A004A66D1 /* PBXContainerItemProxy */;
-		};
-		1073483A20333B8C004A66D1 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 5F5A534B1ADE670C00F81DF0 /* DatabaseExample */;
-			targetProxy = 1073483920333B8C004A66D1 /* PBXContainerItemProxy */;
-		};
-		5FDE055F1B0DAA090037B82F /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 5F5A534B1ADE670C00F81DF0 /* DatabaseExample */;
-			targetProxy = 5FDE055E1B0DAA090037B82F /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		5F5A53591ADE670C00F81DF0 /* Main.storyboard */ = {
@@ -707,82 +370,6 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		1073474E2031598A004A66D1 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = DatabaseExampleSwiftUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/PromisesObjC\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseAuth\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/nanopb\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseCore\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseCoreDiagnostics\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseDatabase\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/GTMSessionFetcher\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/GoogleDataTransport\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/GoogleUtilities\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/leveldb-library\"",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.DatabaseExampleSwiftUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = DatabaseExampleSwift;
-			};
-			name = Debug;
-		};
-		1073474F2031598A004A66D1 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = DatabaseExampleSwiftUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/PromisesObjC\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseAuth\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/nanopb\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseCore\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseCoreDiagnostics\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseDatabase\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/GTMSessionFetcher\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/GoogleDataTransport\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/GoogleUtilities\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/leveldb-library\"",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.DatabaseExampleSwiftUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = DatabaseExampleSwift;
-			};
-			name = Release;
-		};
 		1073483C20333B8C004A66D1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -968,44 +555,6 @@
 			};
 			name = Release;
 		};
-		5F5A53701ADE670C00F81DF0 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
-				ENABLE_BITCODE = NO;
-				INFOPLIST_FILE = DatabaseExample/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.google.firebase.quickstart.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-			};
-			name = Debug;
-		};
-		5F5A53711ADE670C00F81DF0 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
-				ENABLE_BITCODE = NO;
-				INFOPLIST_FILE = DatabaseExample/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.google.firebase.quickstart.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-			};
-			name = Release;
-		};
 		5F5A53951ADE67D500F81DF0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1053,89 +602,9 @@
 			};
 			name = Release;
 		};
-		5FDE05601B0DAA090037B82F /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = "";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					DatabaseExample,
-				);
-				INFOPLIST_FILE = DatabaseExample/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-ObjC",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.google.firebase.quickstart.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DatabaseExample.app/DatabaseExample";
-			};
-			name = Debug;
-		};
-		5FDE05611B0DAA090037B82F /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = "";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					DatabaseExample,
-				);
-				INFOPLIST_FILE = DatabaseExample/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-ObjC",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.google.firebase.quickstart.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DatabaseExample.app/DatabaseExample";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1073474D2031598A004A66D1 /* Build configuration list for PBXNativeTarget "DatabaseExampleSwiftUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				1073474E2031598A004A66D1 /* Debug */,
-				1073474F2031598A004A66D1 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		1073483B20333B8C004A66D1 /* Build configuration list for PBXNativeTarget "DatabaseExampleUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1154,29 +623,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5F5A536F1ADE670C00F81DF0 /* Build configuration list for PBXNativeTarget "DatabaseExample" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				5F5A53701ADE670C00F81DF0 /* Debug */,
-				5F5A53711ADE670C00F81DF0 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		5F5A53991ADE67D500F81DF0 /* Build configuration list for PBXNativeTarget "DatabaseExampleSwift" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5F5A53951ADE67D500F81DF0 /* Debug */,
 				5F5A53961ADE67D500F81DF0 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		5FDE05621B0DAA090037B82F /* Build configuration list for PBXNativeTarget "DatabaseExampleTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				5FDE05601B0DAA090037B82F /* Debug */,
-				5FDE05611B0DAA090037B82F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1203,21 +654,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		8D00BB7A2D3B0BE000F6F6DD /* FirebaseAuth */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8D00BB782D3B0BD500F6F6DD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAuth;
-		};
-		8D00BB7C2D3B0BE000F6F6DD /* FirebaseDatabase */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8D00BB782D3B0BD500F6F6DD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseDatabase;
-		};
-		8D00BB7F2D3B0C1200F6F6DD /* FirebaseDatabaseUI */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8D00BB7E2D3B0C0200F6F6DD /* XCRemoteSwiftPackageReference "FirebaseUI-iOS" */;
-			productName = FirebaseDatabaseUI;
-		};
 		8D00BB812D3B0C1F00F6F6DD /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 8D00BB782D3B0BD500F6F6DD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

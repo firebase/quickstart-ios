@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "5F5A534B1ADE670C00F81DF0"
+               BlueprintIdentifier = "5F5A53781ADE67D500F81DF0"
                BuildableName = "MessagingExample.app"
                BlueprintName = "MessagingExample"
                ReferencedContainer = "container:MessagingExample.xcodeproj">
@@ -30,7 +30,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "5F5A534B1ADE670C00F81DF0"
+            BlueprintIdentifier = "5F5A53781ADE67D500F81DF0"
             BuildableName = "MessagingExample.app"
             BlueprintName = "MessagingExample"
             ReferencedContainer = "container:MessagingExample.xcodeproj">
@@ -41,17 +41,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "5FDE05571B0DAA090037B82F"
-               BuildableName = "MessagingExampleTests.xctest"
-               BlueprintName = "MessagingExampleTests"
-               ReferencedContainer = "container:MessagingExample.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "1073485D20333BF5004A66D1"
+               BlueprintIdentifier = "107347A720315A3A004A66D1"
                BuildableName = "MessagingExampleUITests.xctest"
                BlueprintName = "MessagingExampleUITests"
                ReferencedContainer = "container:MessagingExample.xcodeproj">
@@ -69,16 +59,15 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "5F5A534B1ADE670C00F81DF0"
+            BlueprintIdentifier = "5F5A53781ADE67D500F81DF0"
             BuildableName = "MessagingExample.app"
             BlueprintName = "MessagingExample"
             ReferencedContainer = "container:MessagingExample.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -86,16 +75,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "5F5A534B1ADE670C00F81DF0"
+            BlueprintIdentifier = "5F5A53781ADE67D500F81DF0"
             BuildableName = "MessagingExample.app"
             BlueprintName = "MessagingExample"
             ReferencedContainer = "container:MessagingExample.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

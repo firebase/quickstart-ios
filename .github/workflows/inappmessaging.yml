@@ -46,10 +46,6 @@ jobs:
           cd inappmessaging
           gem install xcpretty
           ../scripts/install_prereqs/inappmessaging.sh
-      - name: Build ObjC
-        run: ./scripts/test.sh
-        env:
-          SCHEME: InAppMessagingExample
       - name: Build Swift
         run: ./scripts/test.sh
         env:

@@ -125,7 +125,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     } else {
       return [.alert, .sound]
     }
-}
+  }
 
   func userNotificationCenter(_ center: UNUserNotificationCenter,
                               didReceive response: UNNotificationResponse) async {

@@ -119,8 +119,13 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     print(userInfo)
 
     // Change this to your preferred presentation option
-    return [[.alert, .sound]]
-  }
+    // Note: UNNotificationPresentationOptions.alert has been deprecated.
+    if #available(iOS 14.0, *) {
+      return [.list, .banner, .sound]
+    } else {
+      return [.alert, .sound]
+    }
+}
 
   func userNotificationCenter(_ center: UNUserNotificationCenter,
                               didReceive response: UNNotificationResponse) async {

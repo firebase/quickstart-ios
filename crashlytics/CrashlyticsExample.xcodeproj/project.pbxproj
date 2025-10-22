@@ -52,7 +52,7 @@
 			containerPortal = 5F5A53441ADE670C00F81DF0 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = C73C899D26845908003E5C2C;
-			remoteInfo = "CrashlyticsSwiftUIExample (iOS)";
+			remoteInfo = "CrashlyticsExample";
 		};
 		C745940626BDDD6200153AE3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -374,7 +374,7 @@
 			packageProductDependencies = (
 				8D00BB762D3B0AFF00F6F6DD /* FirebaseCrashlytics */,
 			);
-			productName = "CrashlyticsSwiftUIExample (iOS)";
+			productName = "CrashlyticsExample";
 			productReference = C73C899E26845908003E5C2C /* CrashlyticsSwiftUIExample.app */;
 			productType = "com.apple.product-type.application";
 		};
@@ -933,7 +933,7 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "CrashlyticsSwiftUIExample (iOS)";
+				TEST_TARGET_NAME = "CrashlyticsExample";
 			};
 			name = Debug;
 		};
@@ -963,7 +963,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "CrashlyticsSwiftUIExample (iOS)";
+				TEST_TARGET_NAME = "CrashlyticsExample";
 			};
 			name = Release;
 		};
@@ -1356,7 +1356,7 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				TEST_TARGET_NAME = "CrashlyticsSwiftUIExample_(watchOS)";
+				TEST_TARGET_NAME = "CrashlyticsExample (watchOS)";
 				WATCHOS_DEPLOYMENT_TARGET = 7.4;
 			};
 			name = Debug;
@@ -1391,7 +1391,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				TEST_TARGET_NAME = "CrashlyticsSwiftUIExample_(watchOS)";
+				TEST_TARGET_NAME = "CrashlyticsExample (watchOS)";
 				WATCHOS_DEPLOYMENT_TARGET = 7.4;
 			};
 			name = Release;

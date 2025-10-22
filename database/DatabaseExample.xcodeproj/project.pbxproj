@@ -38,7 +38,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		100116CB1CDD16F100C9256E /* DatabaseExampleSwift-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DatabaseExampleSwift-Bridging-Header.h"; sourceTree = "<group>"; };
+		100116CB1CDD16F100C9256E /* DatabaseExample-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DatabaseExample-Bridging-Header.h"; sourceTree = "<group>"; };
 		100116CC1CDD16F100C9256E /* UIViewController+Alerts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Alerts.h"; sourceTree = "<group>"; };
 		100116CD1CDD16F100C9256E /* UIViewController+Alerts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Alerts.m"; sourceTree = "<group>"; };
 		100A95E71FCF8AB1009B0140 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -59,7 +59,7 @@
 		10B872C51CDC14C800C7D214 /* MyTopPostsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyTopPostsViewController.swift; sourceTree = "<group>"; };
 		5F5A53501ADE670C00F81DF0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5F5A535A1ADE670C00F81DF0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		5F5A53791ADE67D500F81DF0 /* DatabaseExampleSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DatabaseExampleSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5F5A53791ADE67D500F81DF0 /* DatabaseExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DatabaseExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F5A537D1ADE67D500F81DF0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5F5A537F1ADE67D500F81DF0 /* NewPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPostViewController.swift; sourceTree = "<group>"; };
 		5F9961061AE0CF4F0034F503 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -133,7 +133,7 @@
 			children = (
 				DEC82E5023AD38E4000EA7B1 /* TestUtils */,
 				5F5A534E1ADE670C00F81DF0 /* DatabaseExample */,
-				5F5A537A1ADE67D500F81DF0 /* DatabaseExampleSwift */,
+				5F5A537A1ADE67D500F81DF0 /* DatabaseExample */,
 				1073483520333B8C004A66D1 /* DatabaseExampleUITests */,
 				5F5A534D1ADE670C00F81DF0 /* Products */,
 				5F9961041AE0CF4F0034F503 /* Shared */,
@@ -146,7 +146,7 @@
 		5F5A534D1ADE670C00F81DF0 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				5F5A53791ADE67D500F81DF0 /* DatabaseExampleSwift.app */,
+				5F5A53791ADE67D500F81DF0 /* DatabaseExample.app */,
 				1073483420333B8C004A66D1 /* DatabaseExampleUITests.xctest */,
 			);
 			name = Products;
@@ -168,13 +168,13 @@
 				5F5A53591ADE670C00F81DF0 /* Main.storyboard */,
 				EFDCBD531CE4FCC800F68D48 /* PostTableViewCell.xib */,
 				5F5A53501ADE670C00F81DF0 /* Info.plist */,
-				100116CB1CDD16F100C9256E /* DatabaseExampleSwift-Bridging-Header.h */,
+				100116CB1CDD16F100C9256E /* DatabaseExample-Bridging-Header.h */,
 				100A95E71FCF8AB1009B0140 /* Images.xcassets */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		5F5A537A1ADE67D500F81DF0 /* DatabaseExampleSwift */ = {
+		5F5A537A1ADE67D500F81DF0 /* DatabaseExample */ = {
 			isa = PBXGroup;
 			children = (
 				5F5A537D1ADE67D500F81DF0 /* AppDelegate.swift */,
@@ -236,9 +236,9 @@
 			productReference = 1073483420333B8C004A66D1 /* DatabaseExampleUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
-		5F5A53781ADE67D500F81DF0 /* DatabaseExampleSwift */ = {
+		5F5A53781ADE67D500F81DF0 /* DatabaseExample */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5F5A53991ADE67D500F81DF0 /* Build configuration list for PBXNativeTarget "DatabaseExampleSwift" */;
+			buildConfigurationList = 5F5A53991ADE67D500F81DF0 /* Build configuration list for PBXNativeTarget "DatabaseExample" */;
 			buildPhases = (
 				5F5A53751ADE67D500F81DF0 /* Sources */,
 				5F5A53761ADE67D500F81DF0 /* Frameworks */,
@@ -248,9 +248,9 @@
 			);
 			dependencies = (
 			);
-			name = DatabaseExampleSwift;
-			productName = DatabaseExampleSwift;
-			productReference = 5F5A53791ADE67D500F81DF0 /* DatabaseExampleSwift.app */;
+			name = DatabaseExample;
+			productName = DatabaseExample;
+			productReference = 5F5A53791ADE67D500F81DF0 /* DatabaseExample.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -293,7 +293,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				5F5A53781ADE67D500F81DF0 /* DatabaseExampleSwift */,
+				5F5A53781ADE67D500F81DF0 /* DatabaseExample */,
 				1073483320333B8C004A66D1 /* DatabaseExampleUITests */,
 			);
 		};
@@ -623,7 +623,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5F5A53991ADE67D500F81DF0 /* Build configuration list for PBXNativeTarget "DatabaseExampleSwift" */ = {
+		5F5A53991ADE67D500F81DF0 /* Build configuration list for PBXNativeTarget "DatabaseExample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5F5A53951ADE67D500F81DF0 /* Debug */,

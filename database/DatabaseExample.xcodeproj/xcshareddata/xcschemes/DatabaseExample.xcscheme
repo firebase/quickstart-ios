@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "5F5A53781ADE67D500F81DF0"
-               BuildableName = "DatabaseExampleSwift.app"
-               BlueprintName = "DatabaseExampleSwift"
+               BuildableName = "DatabaseExample.app"
+               BlueprintName = "DatabaseExample"
                ReferencedContainer = "container:DatabaseExample.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -31,8 +31,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5F5A53781ADE67D500F81DF0"
-            BuildableName = "DatabaseExampleSwift.app"
-            BlueprintName = "DatabaseExampleSwift"
+            BuildableName = "DatabaseExample.app"
+            BlueprintName = "DatabaseExample"
             ReferencedContainer = "container:DatabaseExample.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -42,8 +42,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "107347452031598A004A66D1"
-               BuildableName = "DatabaseExampleSwiftUITests.xctest"
-               BlueprintName = "DatabaseExampleSwiftUITests"
+               BuildableName = "DatabaseExampleUITests.xctest"
+               BlueprintName = "DatabaseExampleUITests"
                ReferencedContainer = "container:DatabaseExample.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -64,8 +64,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5F5A53781ADE67D500F81DF0"
-            BuildableName = "DatabaseExampleSwift.app"
-            BlueprintName = "DatabaseExampleSwift"
+            BuildableName = "DatabaseExample.app"
+            BlueprintName = "DatabaseExample"
             ReferencedContainer = "container:DatabaseExample.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -81,8 +81,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5F5A53781ADE67D500F81DF0"
-            BuildableName = "DatabaseExampleSwift.app"
-            BlueprintName = "DatabaseExampleSwift"
+            BuildableName = "DatabaseExample.app"
+            BlueprintName = "DatabaseExample"
             ReferencedContainer = "container:DatabaseExample.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

@@ -29,7 +29,9 @@ struct GenerateContentFromTemplateScreen: View {
   init(firebaseService: FirebaseAI) {
     self.firebaseService = firebaseService
     _viewModel =
-      StateObject(wrappedValue: GenerateContentFromTemplateViewModel(firebaseService: firebaseService))
+      StateObject(
+        wrappedValue: GenerateContentFromTemplateViewModel(firebaseService: firebaseService)
+      )
   }
 
   enum FocusedField: Hashable {

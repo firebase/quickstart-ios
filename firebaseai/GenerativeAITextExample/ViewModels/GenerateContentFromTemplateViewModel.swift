@@ -37,7 +37,7 @@ class GenerateContentFromTemplateViewModel: ObservableObject {
 
   init(firebaseService: FirebaseAI) {
     model = firebaseService.templateGenerativeModel()
-   // model = firebaseService.generativeModel(modelName: "gemini-2.0-flash-001")
+    // model = firebaseService.generativeModel(modelName: "gemini-2.0-flash-001")
   }
 
   func generateContentFromTemplate(name: String) async {

@@ -26,7 +26,8 @@ struct ImagenFromTemplateScreen: View {
 
   init(firebaseService: FirebaseAI) {
     self.firebaseService = firebaseService
-    _viewModel = StateObject(wrappedValue: ImagenFromTemplateViewModel(firebaseService: firebaseService))
+    _viewModel =
+      StateObject(wrappedValue: ImagenFromTemplateViewModel(firebaseService: firebaseService))
   }
 
   enum FocusedField: Hashable {
@@ -40,7 +41,10 @@ struct ImagenFromTemplateScreen: View {
     ZStack {
       ScrollView {
         VStack {
-          InputField("Enter a prompt to generate an image from template", text: $viewModel.userInput) {
+          InputField(
+            "Enter a prompt to generate an image from template",
+            text: $viewModel.userInput
+          ) {
             Image(
               systemName: viewModel.inProgress ? "stop.circle.fill" : "paperplane.circle.fill"
             )

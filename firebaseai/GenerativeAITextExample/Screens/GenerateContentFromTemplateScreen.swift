@@ -70,7 +70,7 @@ struct GenerateContentFromTemplateScreen: View {
     .onTapGesture {
       focusedField = nil
     }
-    .navigationTitle("Template Text example")
+    .navigationTitle("Template Generate Content")
   }
 
   private func onGenerateContentTapped() {

@@ -41,18 +41,20 @@ class ConversationFromTemplateViewModel: ObservableObject {
 
   init(firebaseService: FirebaseAI) {
     model = firebaseService.templateGenerativeModel()
-    chat = model.startChat(templateID: "chat-history")
+    chat = model.startChat(templateID: "apple-qs-chat")
   }
 
-  func sendMessage(_ text: String) async {
+  func sendMessage(_ text: String, name: String, language: String) async {
     error = nil
-    await internalSendMessage(text)
+    let name = name.isEmpty ? nil : name
+    let language = language.isEmpty ? nil : language
+    await internalSendMessage(text, name: name, language: language)
   }
 
   func startNewChat() {
     stop()
     error = nil
-    chat = model.startChat(templateID: "chat-history")
+    chat = model.startChat(templateID: "apple-qs-chat")
     messages.removeAll()
   }
 
@@ -61,7 +63,7 @@ class ConversationFromTemplateViewModel: ObservableObject {
     error = nil
   }
 
-  private func internalSendMessage(_ text: String) async {
+  private func internalSendMessage(_ text: String, name: String?, language: String?) async {
     chatTask?.cancel()
 
     chatTask = Task {
@@ -79,7 +81,14 @@ class ConversationFromTemplateViewModel: ObservableObject {
       messages.append(systemMessage)
 
       do {
-        let response = try await chat.sendMessage(text, inputs: ["message": text])
+        var inputs = ["message": text]
+        if let name {
+          inputs["name"] = name
+        }
+        if let language {
+          inputs["language"] = language
+        }
+        let response = try await chat.sendMessage(text, inputs: inputs)
 
         if let responseText = response.text {
           // replace pending message with backend response

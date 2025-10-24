@@ -28,6 +28,12 @@ struct ConversationFromTemplateScreen: View {
   @State
   private var userPrompt = ""
 
+  @State
+  private var userName = ""
+
+  @State
+  private var preferredLanguage = ""
+
   init(firebaseService: FirebaseAI, title: String) {
     self.title = title
     self.firebaseService = firebaseService
@@ -44,6 +50,17 @@ struct ConversationFromTemplateScreen: View {
 
   var body: some View {
     VStack {
+      VStack {
+        HStack {
+          Text("Name:")
+          TextField("Your name", text: $userName)
+        }
+        HStack {
+          Text("Language:")
+          TextField("Your preferred response language", text: $preferredLanguage)
+        }
+      }.padding()
+
       ScrollViewReader { scrollViewProxy in
         List {
           ForEach(viewModel.messages) { message in
@@ -104,7 +121,7 @@ struct ConversationFromTemplateScreen: View {
     Task {
       let prompt = userPrompt
       userPrompt = ""
-      await viewModel.sendMessage(prompt)
+      await viewModel.sendMessage(prompt, name: userName, language: preferredLanguage)
     }
   }
 

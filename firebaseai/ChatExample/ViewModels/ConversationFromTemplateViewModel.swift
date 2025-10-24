@@ -68,8 +68,8 @@ class ConversationFromTemplateViewModel: ObservableObject {
 
   func sendMessage(_ text: String, name: String, language: String) async {
     error = nil
-    let name = name.isEmpty ? nil : name
-    let language = language.isEmpty ? nil : language
+    let name = name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? nil : name
+    let language = language.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? nil : language
     await internalSendMessage(text, name: name, language: language)
   }
 

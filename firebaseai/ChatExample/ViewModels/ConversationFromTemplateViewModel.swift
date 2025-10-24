@@ -20,6 +20,28 @@
 import Foundation
 import UIKit
 
+// Template Details
+//
+//  Configuration
+//
+//    input:
+//      default:
+//        language: "English"
+//      schema:
+//        name?: string
+//        language?: string
+//        message: string
+//
+//  Prompt and system instructions
+//
+//      {{role "system"}}
+//      {{#if name}}The user's name is {{name}}.{{/if}}
+//      The user prefers to communicate in {{language}}.
+//      {{history}}
+//      {{role "user"}}
+//      {{message}}
+//
+
 @MainActor
 class ConversationFromTemplateViewModel: ObservableObject {
   /// This array holds both the user's and the system's chat messages

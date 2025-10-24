@@ -54,7 +54,7 @@ class GenerateContentFromTemplateViewModel: ObservableObject {
       outputText = ""
 
       let response = try await model.generateContent(
-        templateID: "new-greeting",
+        templateID: "apple-qs-greeting-u6mr",
         inputs: [
           "name": name,
           "language": "English",

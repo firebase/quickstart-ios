@@ -71,6 +71,11 @@ struct ContentView: View {
             Label("Chat", systemImage: "ellipsis.message.fill")
           }
           NavigationLink {
+            ConversationFromTemplateScreen(firebaseService: firebaseService, title: "Chat from Template")
+          } label: {
+            Label("Chat from Template", systemImage: "ellipsis.message")
+          }
+          NavigationLink {
             ConversationScreen(
               firebaseService: firebaseService,
               title: "Grounding",
@@ -88,6 +93,11 @@ struct ContentView: View {
             ImagenScreen(firebaseService: firebaseService)
           } label: {
             Label("Imagen", systemImage: "camera.circle")
+          }
+          NavigationLink {
+            ImagenFromTemplateScreen(firebaseService: firebaseService)
+          } label: {
+            Label("Imagen from Template", systemImage: "camera.circle.fill")
           }
         }
       }

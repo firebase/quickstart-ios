@@ -71,7 +71,10 @@ struct ContentView: View {
             Label("Chat", systemImage: "ellipsis.message.fill")
           }
           NavigationLink {
-            ConversationFromTemplateScreen(firebaseService: firebaseService, title: "Chat from Template")
+            ConversationFromTemplateScreen(
+              firebaseService: firebaseService,
+              title: "Chat from Template"
+            )
           } label: {
             Label("Chat from Template", systemImage: "ellipsis.message")
           }

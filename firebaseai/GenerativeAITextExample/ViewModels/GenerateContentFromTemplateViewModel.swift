@@ -20,6 +20,25 @@
 import Foundation
 import OSLog
 
+// Template Details
+//
+//  Configuration
+//
+// input:
+//  default:
+//    language: english
+//  schema:
+//    name: string
+//    language?: string
+//
+//  Prompt and system instructions
+//
+//    {{role "system"}}
+//    The user's name is {{name}}. They prefer to communicate in {{language}}.
+//    {{role "user"}}
+//    Say hello.
+//
+
 @MainActor
 class GenerateContentFromTemplateViewModel: ObservableObject {
   private var logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "generative-ai")
@@ -37,7 +56,6 @@ class GenerateContentFromTemplateViewModel: ObservableObject {
 
   init(firebaseService: FirebaseAI) {
     model = firebaseService.templateGenerativeModel()
-    // model = firebaseService.generativeModel(modelName: "gemini-2.0-flash-001")
   }
 
   func generateContentFromTemplate(name: String) async {

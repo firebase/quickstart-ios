@@ -21,6 +21,19 @@ import Foundation
 import OSLog
 import SwiftUI
 
+// Template Details
+//
+//  Configuration
+//
+//    input:
+//      schema:
+//        prompt: 'string'
+//
+//  Prompt and system instructions
+//
+//    Create an image containing {{prompt}}
+//
+
 @MainActor
 class ImagenFromTemplateViewModel: ObservableObject {
   private var logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "generative-ai")

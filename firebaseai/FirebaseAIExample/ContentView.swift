@@ -56,6 +56,11 @@ struct ContentView: View {
             Label("Generate Content", systemImage: "doc.text")
           }
           NavigationLink {
+            GenerateContentFromTemplateScreen(firebaseService: firebaseService)
+          } label: {
+            Label("Generate Content from Template", systemImage: "doc.text.fill")
+          }
+          NavigationLink {
             PhotoReasoningScreen(firebaseService: firebaseService)
           } label: {
             Label("Multi-modal", systemImage: "doc.richtext")
@@ -64,6 +69,14 @@ struct ContentView: View {
             ConversationScreen(firebaseService: firebaseService, title: "Chat")
           } label: {
             Label("Chat", systemImage: "ellipsis.message.fill")
+          }
+          NavigationLink {
+            ConversationFromTemplateScreen(
+              firebaseService: firebaseService,
+              title: "Chat from Template"
+            )
+          } label: {
+            Label("Chat from Template", systemImage: "ellipsis.message")
           }
           NavigationLink {
             ConversationScreen(
@@ -83,6 +96,11 @@ struct ContentView: View {
             ImagenScreen(firebaseService: firebaseService)
           } label: {
             Label("Imagen", systemImage: "camera.circle")
+          }
+          NavigationLink {
+            ImagenFromTemplateScreen(firebaseService: firebaseService)
+          } label: {
+            Label("Imagen from Template", systemImage: "camera.circle.fill")
           }
         }
       }

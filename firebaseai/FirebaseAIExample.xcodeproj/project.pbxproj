@@ -65,13 +65,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		860F09142E8C4171002D85D0 /* FirebaseAILogic.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = FirebaseAILogic.xcframework; sourceTree = "<group>"; };
-		860F09152E8C4171002D85D0 /* FirebaseAppCheckInterop.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = FirebaseAppCheckInterop.xcframework; sourceTree = "<group>"; };
-		860F09162E8C4171002D85D0 /* FirebaseAuthInterop.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = FirebaseAuthInterop.xcframework; sourceTree = "<group>"; };
-		860F09172E8C4171002D85D0 /* FirebaseCore.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = FirebaseCore.xcframework; sourceTree = "<group>"; };
-		860F09182E8C4171002D85D0 /* FirebaseCoreExtension.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = FirebaseCoreExtension.xcframework; sourceTree = "<group>"; };
-		860F09192E8C4171002D85D0 /* FirebaseCoreInternal.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = FirebaseCoreInternal.xcframework; sourceTree = "<group>"; };
-		860F092E2E8C4210002D85D0 /* GoogleUtilities.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = GoogleUtilities.xcframework; sourceTree = "<group>"; };
 		869200B22B879C4F00482873 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		86BB56082E8B2D6D0054B8B5 /* FirebaseAIExampleZip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FirebaseAIExampleZip.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		86C1F47E2BC726150026816F /* FunctionCallingScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FunctionCallingScreen.swift; sourceTree = "<group>"; };
@@ -134,20 +127,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		860F091A2E8C4171002D85D0 /* Firebase */ = {
-			isa = PBXGroup;
-			children = (
-				860F09142E8C4171002D85D0 /* FirebaseAILogic.xcframework */,
-				860F09152E8C4171002D85D0 /* FirebaseAppCheckInterop.xcframework */,
-				860F09162E8C4171002D85D0 /* FirebaseAuthInterop.xcframework */,
-				860F09172E8C4171002D85D0 /* FirebaseCore.xcframework */,
-				860F09182E8C4171002D85D0 /* FirebaseCoreExtension.xcframework */,
-				860F09192E8C4171002D85D0 /* FirebaseCoreInternal.xcframework */,
-				860F092E2E8C4210002D85D0 /* GoogleUtilities.xcframework */,
-			);
-			path = Firebase;
-			sourceTree = "<group>";
-		};
 		86C1F47F2BC726150026816F /* Screens */ = {
 			isa = PBXGroup;
 			children = (
@@ -225,7 +204,6 @@
 				86C1F4822BC726150026816F /* FunctionCallingExample */,
 				8848C8302B0D04BC007B434F /* Products */,
 				88209C222B0FBE1700F64795 /* Frameworks */,
-				860F091A2E8C4171002D85D0 /* Firebase */,
 			);
 			sourceTree = "<group>";
 		};

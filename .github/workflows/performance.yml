@@ -43,7 +43,7 @@ jobs:
       DEVICE: iPhone 16
       TEST: true
       DIR: performance
-      SCHEME: PerformanceExampleSwift
+      SCHEME: PerformanceExample
     steps:
       - name: Checkout
         uses: actions/checkout@master

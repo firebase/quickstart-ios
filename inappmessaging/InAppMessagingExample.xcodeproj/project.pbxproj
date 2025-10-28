@@ -44,7 +44,7 @@
 		8DB25F8220BE0C29000ABEE2 = {
 			isa = PBXGroup;
 			children = (
-				8DB25F8D20BE0C29000ABEE2 /* InAppMessagingExampleSwift */,
+				8DB25F8D20BE0C29000ABEE2 /* InAppMessagingExample */,
 				8DB25F8C20BE0C29000ABEE2 /* Products */,
 				81A2FB070295F56CC0B2D523 /* GoogleService-Info.plist */,
 				8DC73D782D41A90B0092B6EE /* Frameworks */,
@@ -59,7 +59,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		8DB25F8D20BE0C29000ABEE2 /* InAppMessagingExampleSwift */ = {
+		8DB25F8D20BE0C29000ABEE2 /* InAppMessagingExample */ = {
 			isa = PBXGroup;
 			children = (
 				8DB25F8E20BE0C29000ABEE2 /* AppDelegate.swift */,
@@ -69,7 +69,7 @@
 				8DB25F9720BE0C2A000ABEE2 /* LaunchScreen.storyboard */,
 				8DB25F9A20BE0C2A000ABEE2 /* Info.plist */,
 			);
-			path = InAppMessagingExampleSwift;
+			path = InAppMessagingExample;
 			sourceTree = "<group>";
 		};
 		8DC73D782D41A90B0092B6EE /* Frameworks */ = {

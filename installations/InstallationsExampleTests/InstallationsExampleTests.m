@@ -16,11 +16,11 @@
 
 #import <XCTest/XCTest.h>
 
-@interface InstallationsExampleSwiftTests : XCTestCase
+@interface InstallationsExampleTests : XCTestCase
 
 @end
 
-@implementation InstallationsExampleSwiftTests
+@implementation InstallationsExampleTests
 
 - (void)setUp {
     // Put setup code here. This method is called before the invocation of each test method in the class.

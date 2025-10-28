@@ -19,7 +19,7 @@
 
 /* Begin PBXFileReference section */
 		81A2FB070295F56CC0B2D523 /* GoogleService-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		8DB25F8B20BE0C29000ABEE2 /* InAppMessagingExampleSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InAppMessagingExampleSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8DB25F8B20BE0C29000ABEE2 /* InAppMessagingExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InAppMessagingExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DB25F8E20BE0C29000ABEE2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8DB25F9020BE0C29000ABEE2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		8DB25F9320BE0C29000ABEE2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -54,7 +54,7 @@
 		8DB25F8C20BE0C29000ABEE2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8DB25F8B20BE0C29000ABEE2 /* InAppMessagingExampleSwift.app */,
+				8DB25F8B20BE0C29000ABEE2 /* InAppMessagingExample.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -82,9 +82,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		8DB25F8A20BE0C29000ABEE2 /* InAppMessagingExampleSwift */ = {
+		8DB25F8A20BE0C29000ABEE2 /* InAppMessagingExample */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8DB25F9D20BE0C2A000ABEE2 /* Build configuration list for PBXNativeTarget "InAppMessagingExampleSwift" */;
+			buildConfigurationList = 8DB25F9D20BE0C2A000ABEE2 /* Build configuration list for PBXNativeTarget "InAppMessagingExample" */;
 			buildPhases = (
 				8DB25F8720BE0C29000ABEE2 /* Sources */,
 				8DB25F8820BE0C29000ABEE2 /* Frameworks */,
@@ -94,9 +94,9 @@
 			);
 			dependencies = (
 			);
-			name = InAppMessagingExampleSwift;
+			name = InAppMessagingExample;
 			productName = InAppMessagingExampleSwift;
-			productReference = 8DB25F8B20BE0C29000ABEE2 /* InAppMessagingExampleSwift.app */;
+			productReference = 8DB25F8B20BE0C29000ABEE2 /* InAppMessagingExample.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -132,7 +132,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				8DB25F8A20BE0C29000ABEE2 /* InAppMessagingExampleSwift */,
+				8DB25F8A20BE0C29000ABEE2 /* InAppMessagingExample */,
 			);
 		};
 /* End PBXProject section */
@@ -347,7 +347,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8DB25F9D20BE0C2A000ABEE2 /* Build configuration list for PBXNativeTarget "InAppMessagingExampleSwift" */ = {
+		8DB25F9D20BE0C2A000ABEE2 /* Build configuration list for PBXNativeTarget "InAppMessagingExample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8DB25F9E20BE0C2A000ABEE2 /* Debug */,

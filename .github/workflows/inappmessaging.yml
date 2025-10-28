@@ -49,4 +49,4 @@ jobs:
       - name: Build Swift
         run: ./scripts/test.sh
         env:
-          SCHEME: InAppMessagingExampleSwift
+          SCHEME: InAppMessagingExample

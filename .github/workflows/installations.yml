@@ -49,4 +49,4 @@ jobs:
       - name: Build ObjC
         run: ./scripts/test.sh
         env:
-          SCHEME: InstallationsExampleSwift
+          SCHEME: InstallationsExample

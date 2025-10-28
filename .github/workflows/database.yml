@@ -39,7 +39,7 @@ jobs:
       DIR: database
       DEVICE: iPhone 16
       TEST: false
-      SCHEME: DatabaseExampleSwift
+      SCHEME: DatabaseExample
     steps:
       - name: Checkout
         uses: actions/checkout@master

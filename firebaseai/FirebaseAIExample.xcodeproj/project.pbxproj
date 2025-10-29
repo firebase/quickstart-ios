@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0ECE3A982EB286120072EC6A /* Color+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ECE3A972EB2860C0072EC6A /* Color+Hex.swift */; };
+		0ECE3A992EB286120072EC6A /* Color+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ECE3A972EB2860C0072EC6A /* Color+Hex.swift */; };
 		0EE94F252E9599B800CEFD69 /* TranscriptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE94F212E9599B800CEFD69 /* TranscriptView.swift */; };
 		0EE94F262E9599B800CEFD69 /* ConnectButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE94F1D2E9599B800CEFD69 /* ConnectButton.swift */; };
 		0EE94F272E9599B800CEFD69 /* TranscriptViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE94F1B2E9599B800CEFD69 /* TranscriptViewModel.swift */; };
@@ -121,6 +123,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0ECE3A972EB2860C0072EC6A /* Color+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Hex.swift"; sourceTree = "<group>"; };
 		0EE94F112E9599B800CEFD69 /* AudioBufferHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioBufferHelpers.swift; sourceTree = "<group>"; };
 		0EE94F122E9599B800CEFD69 /* AudioController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioController.swift; sourceTree = "<group>"; };
 		0EE94F132E9599B800CEFD69 /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
@@ -256,6 +259,7 @@
 		0EE94F242E9599B800CEFD69 /* LiveAudioExample */ = {
 			isa = PBXGroup;
 			children = (
+				0ECE3A972EB2860C0072EC6A /* Color+Hex.swift */,
 				0EE94F152E9599B800CEFD69 /* Audio */,
 				0EE94F172E9599B800CEFD69 /* Models */,
 				0EE94F192E9599B800CEFD69 /* Screens */,
@@ -639,6 +643,7 @@
 				0EE94F302E9599B800CEFD69 /* AudioController.swift in Sources */,
 				0EE94F312E9599B800CEFD69 /* AudioBufferHelpers.swift in Sources */,
 				86BB55F02E8B2D6D0054B8B5 /* GenerateContentScreen.swift in Sources */,
+				0ECE3A992EB286120072EC6A /* Color+Hex.swift in Sources */,
 				86BB55F12E8B2D6D0054B8B5 /* FirebaseAIExampleApp.swift in Sources */,
 				86BB55F22E8B2D6D0054B8B5 /* ConversationViewModel.swift in Sources */,
 				86BB55F32E8B2D6D0054B8B5 /* MessageView.swift in Sources */,
@@ -678,6 +683,7 @@
 				0EE94F3F2E9599B800CEFD69 /* AudioController.swift in Sources */,
 				0EE94F402E9599B800CEFD69 /* AudioBufferHelpers.swift in Sources */,
 				886F95D52B17BA010036F07A /* GenerateContentScreen.swift in Sources */,
+				0ECE3A982EB286120072EC6A /* Color+Hex.swift in Sources */,
 				8848C8332B0D04BC007B434F /* FirebaseAIExampleApp.swift in Sources */,
 				886F95E02B17D5010036F07A /* ConversationViewModel.swift in Sources */,
 				886F95DD2B17D5010036F07A /* MessageView.swift in Sources */,

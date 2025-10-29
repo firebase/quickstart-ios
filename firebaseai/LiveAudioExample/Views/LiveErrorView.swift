@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@testable import FirebaseAI
+import FirebaseAI
 import SwiftUI
 
 struct LiveErrorView: View {
@@ -35,10 +35,5 @@ struct LiveErrorView: View {
 }
 
 #Preview {
-  let cause = NSError(domain: "network.api", code: 1, userInfo: [
-    NSLocalizedDescriptionKey: "Network timed out.",
-  ])
-  let error = LiveSessionLostConnectionError(underlyingError: cause)
-
-  LiveErrorView(error: error)
+  LiveErrorView(error: ExampleLiveSessionError())
 }

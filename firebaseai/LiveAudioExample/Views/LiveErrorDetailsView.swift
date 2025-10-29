@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@testable import FirebaseAI
+import FirebaseAI
 import MarkdownUI
 import SwiftUI
 
@@ -22,10 +22,8 @@ struct LiveErrorDetailsView: View {
   var body: some View {
     NavigationView {
       Form {
-        if let title = error.title {
-          Section("Error type") {
-            Text(title)
-          }
+        Section("Error type") {
+          Text("\(error.self)")
         }
 
         Section("Details") {
@@ -50,36 +48,14 @@ private struct SubtitleFormRow: View {
   }
 }
 
-private extension Error {
-  var title: String? {
-    switch self {
-    case _ as LiveSessionSetupError:
-      "Failed to set up live session"
-    case _ as LiveSessionLostConnectionError:
-      "Lost connection to the model"
-    case _ as LiveSessionUnexpectedClosureError:
-      "Session was closed"
-    case _ as LiveSessionUnsupportedMessageError:
-      "Unsupported model message"
-    default:
-      nil
-    }
+struct ExampleLiveSessionError: Error, CustomNSError {
+  public var errorUserInfo: [String: Any] {
+    [
+      NSLocalizedDescriptionKey: "The live session lost connection to the server."
+    ]
   }
 }
 
 #Preview("Live error") {
-  let cause = NSError(domain: "network.api", code: 1, userInfo: [
-    NSLocalizedDescriptionKey: "Network timed out.",
-  ])
-  let error = LiveSessionLostConnectionError(underlyingError: cause)
-
-  LiveErrorDetailsView(error: error)
-}
-
-#Preview("Unexpected error") {
-  let error = NSError(domain: "network.api", code: 1, userInfo: [
-    NSLocalizedDescriptionKey: "Network timed out.",
-  ])
-
-  LiveErrorDetailsView(error: error)
+  LiveErrorDetailsView(error: ExampleLiveSessionError())
 }

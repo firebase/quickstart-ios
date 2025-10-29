@@ -87,6 +87,10 @@ class LiveViewModel: ObservableObject {
       return
     }
 
+    #if targetEnvironment(simulator)
+    logger.warning("Playback audio is disabled on the simulator.")
+    #endif
+
     guard await requestRecordPermission() else {
       logger.warning("The user denied us permission to record the microphone.")
       return
@@ -213,7 +217,9 @@ class LiveViewModel: ObservableObject {
     for part in content.parts {
       if let part = part as? InlineDataPart {
         if part.mimeType.starts(with: "audio/pcm") {
+          #if !targetEnvironment(simulator)
           try await audioController?.playAudio(audio: part.data)
+          #endif
         } else {
           logger.warning("Received non audio inline data part: \(part.mimeType)")
         }

@@ -18,9 +18,9 @@ extension AVAudioPCMBuffer {
   /// Creates a new `AVAudioPCMBuffer` from a `Data` struct.
   ///
   /// Only works with interleaved data.
-  static func fromInterleavedData(data: Data, format: AVAudioFormat) -> AVAudioPCMBuffer? {
+  static func fromInterleavedData(data: Data, format: AVAudioFormat) throws -> AVAudioPCMBuffer? {
     guard format.isInterleaved else {
-      fatalError("Only interleaved data is supported")
+      throw ApplicationError("Only interleaved data is supported")
     }
 
     let frameCapacity = AVAudioFrameCount(data
@@ -42,9 +42,9 @@ extension AVAudioPCMBuffer {
   /// Gets the underlying `Data` in this buffer.
   ///
   /// Will throw an error if this buffer doesn't hold int16 data.
-  func int16Data() -> Data {
+  func int16Data() throws -> Data {
     guard let bufferPtr = audioBufferList.pointee.mBuffers.mData else {
-      fatalError("Missing audio buffer list")
+      throw ApplicationError("Missing audio buffer list")
     }
 
     let audioBufferLenth = Int(audioBufferList.pointee.mBuffers.mDataByteSize)
@@ -58,10 +58,10 @@ extension AVAudioConverter {
   /// Will handle determining the proper frame capacity, ensuring formats align, and propogating any errors that occur.
   ///
   ///   - Returns: A new buffer, with the converted data.
-  func convertBuffer(_ buffer: AVAudioPCMBuffer) -> AVAudioPCMBuffer {
+  func convertBuffer(_ buffer: AVAudioPCMBuffer) throws -> AVAudioPCMBuffer {
     if buffer.format == outputFormat { return buffer }
     guard buffer.format == inputFormat else {
-      fatalError("The buffer's format was different than the converter's input format")
+      throw ApplicationError("The buffer's format was different than the converter's input format")
     }
 
     let frameCapacity = AVAudioFrameCount(
@@ -72,7 +72,7 @@ extension AVAudioConverter {
       pcmFormat: outputFormat,
       frameCapacity: frameCapacity
     ) else {
-      fatalError("Failed to create output buffer")
+      throw ApplicationError("Failed to create output buffer")
     }
 
     var error: NSError?
@@ -82,7 +82,7 @@ extension AVAudioConverter {
     }
 
     if let error {
-      fatalError("Failed to convert buffer: \(error.localizedDescription)")
+      throw ApplicationError("Failed to convert buffer: \(error.localizedDescription)")
     }
 
     return output

@@ -22,7 +22,7 @@ actor AudioController {
   private var audioPlayer: AudioPlayer?
   private var audioEngine: AVAudioEngine?
   private var microphone: Microphone?
-  private var listenTask: Task<Void, Never>?
+  private var listenTask: Task<Void, Error>?
   private var routeTask: Task<Void, Never>?
 
   /// Port types that are considered "headphones" for our use-case.
@@ -58,7 +58,7 @@ actor AudioController {
       channels: 1,
       interleaved: false
     ) else {
-      fatalError("Failed to create model input format")
+      throw ApplicationError("Failed to create model input format")
     }
 
     guard let modelOutputFormat = AVAudioFormat(
@@ -67,7 +67,7 @@ actor AudioController {
       channels: 1,
       interleaved: true
     ) else {
-      fatalError("Failed to create model output format")
+      throw ApplicationError("Failed to create model output format")
     }
 
     self.modelInputFormat = modelInputFormat
@@ -104,7 +104,7 @@ actor AudioController {
 
   /// Kicks off audio processing, and returns a stream of recorded microphone audio data.
   public func listenToMic() throws -> AsyncStream<AVAudioPCMBuffer> {
-    spawnAudioProcessingThread()
+    try spawnAudioProcessingThread()
     return microphoneData
   }
 
@@ -119,8 +119,8 @@ actor AudioController {
   }
 
   /// Queues audio for playback.
-  public func playAudio(audio: Data) {
-    audioPlayer?.play(audio)
+  public func playAudio(audio: Data) throws {
+    try audioPlayer?.play(audio)
   }
 
   /// Interrupts and clears the currently pending audio playback queue.
@@ -154,7 +154,7 @@ actor AudioController {
   /// This function is also called whenever the input or output device change,
   /// so it needs to be able to setup the audio processing without disrupting
   /// the consumer of the microphone data.
-  private func spawnAudioProcessingThread() {
+  private func spawnAudioProcessingThread() throws {
     if stopped { return }
 
     stopListeningAndPlayback()
@@ -163,19 +163,19 @@ actor AudioController {
     let audioEngine = AVAudioEngine()
     self.audioEngine = audioEngine
 
-    setupAudioPlayback(audioEngine)
-    setupVoiceProcessing(audioEngine)
+    try setupAudioPlayback(audioEngine)
+    try setupVoiceProcessing(audioEngine)
 
     do {
       try audioEngine.start()
     } catch {
-      fatalError("Failed to start audio engine: \(error.localizedDescription)")
+      throw ApplicationError("Failed to start audio engine: \(error.localizedDescription)")
     }
 
-    setupMicrophone(audioEngine)
+    try setupMicrophone(audioEngine)
   }
 
-  private func setupMicrophone(_ engine: AVAudioEngine) {
+  private func setupMicrophone(_ engine: AVAudioEngine) throws {
     let microphone = Microphone(engine: engine)
     self.microphone = microphone
 
@@ -183,19 +183,19 @@ actor AudioController {
 
     let micFormat = engine.inputNode.outputFormat(forBus: 0)
     guard let converter = AVAudioConverter(from: micFormat, to: modelInputFormat) else {
-      fatalError("Failed to create audio converter")
+      throw ApplicationError("Failed to create audio converter")
     }
 
     listenTask = Task {
       for await audio in microphone.audio {
-        microphoneDataQueue.yield(converter.convertBuffer(audio))
+        try microphoneDataQueue.yield(converter.convertBuffer(audio))
       }
     }
   }
 
-  private func setupAudioPlayback(_ engine: AVAudioEngine) {
+  private func setupAudioPlayback(_ engine: AVAudioEngine) throws {
     let playbackFormat = engine.outputNode.outputFormat(forBus: 0)
-    audioPlayer = AudioPlayer(
+    audioPlayer = try AudioPlayer(
       engine: engine,
       inputFormat: modelOutputFormat,
       outputFormat: playbackFormat
@@ -203,7 +203,7 @@ actor AudioController {
   }
 
   /// Sets up the voice processing I/O, if it needs to be setup.
-  private func setupVoiceProcessing(_ engine: AVAudioEngine) {
+  private func setupVoiceProcessing(_ engine: AVAudioEngine) throws {
     do {
       let headphonesConnected = headphonesConnected()
       let vpEnabled = engine.inputNode.isVoiceProcessingEnabled
@@ -215,7 +215,7 @@ actor AudioController {
         try engine.inputNode.setVoiceProcessingEnabled(false)
       }
     } catch {
-      fatalError("Failed to enable voice processing: \(error.localizedDescription)")
+      throw ApplicationError("Failed to enable voice processing: \(error.localizedDescription)")
     }
   }
 
@@ -240,7 +240,11 @@ actor AudioController {
 
     switch reason {
     case .newDeviceAvailable, .oldDeviceUnavailable:
-      spawnAudioProcessingThread()
+      do {
+        try spawnAudioProcessingThread()
+      } catch {
+        print("Failed to spawn audio processing thread: \(String(describing: error))")
+      }
     default: ()
     }
   }

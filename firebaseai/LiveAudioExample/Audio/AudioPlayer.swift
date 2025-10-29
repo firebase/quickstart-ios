@@ -23,11 +23,11 @@ class AudioPlayer {
   private let playbackNode: AVAudioPlayerNode
   private var formatConverter: AVAudioConverter
 
-  init(engine: AVAudioEngine, inputFormat: AVAudioFormat, outputFormat: AVAudioFormat) {
+  init(engine: AVAudioEngine, inputFormat: AVAudioFormat, outputFormat: AVAudioFormat) throws {
     self.engine = engine
 
     guard let formatConverter = AVAudioConverter(from: inputFormat, to: outputFormat) else {
-      fatalError("Failed to create the audio converter")
+      throw ApplicationError("Failed to create the audio converter")
     }
 
     let playbackNode = AVAudioPlayerNode()
@@ -52,20 +52,20 @@ class AudioPlayer {
   ///
   /// For the sake of simplicity, that is not implemented here; a route change will prevent the currently queued conversation from
   /// being played through the output device.
-  public func play(_ audio: Data) {
+  public func play(_ audio: Data) throws {
     guard engine.isRunning else {
       print("Audio engine needs to be running to play audio.")
       return
     }
 
-    guard let inputBuffer = AVAudioPCMBuffer.fromInterleavedData(
+    guard let inputBuffer = try AVAudioPCMBuffer.fromInterleavedData(
       data: audio,
       format: inputFormat
     ) else {
-      fatalError("Failed to create input buffer for playback")
+      throw ApplicationError("Failed to create input buffer for playback")
     }
 
-    let buffer = formatConverter.convertBuffer(inputBuffer)
+    let buffer = try formatConverter.convertBuffer(inputBuffer)
 
     playbackNode.scheduleBuffer(buffer, at: nil)
     playbackNode.play()

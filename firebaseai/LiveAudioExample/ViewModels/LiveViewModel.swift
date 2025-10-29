@@ -129,8 +129,14 @@ class LiveViewModel: ObservableObject {
 
     let stream = try await audioController.listenToMic()
     microphoneTask = Task {
-      for await audioBuffer in stream {
-        await liveSession.sendAudioRealtime(audioBuffer.int16Data())
+      do {
+        for await audioBuffer in stream {
+          await liveSession.sendAudioRealtime(try audioBuffer.int16Data())
+        }
+      } catch {
+        logger.error("\(String(describing: error))")
+        self.error = error
+        await disconnect()
       }
     }
   }
@@ -140,7 +146,7 @@ class LiveViewModel: ObservableObject {
     guard let liveSession else { return }
 
     for try await response in liveSession.responses {
-      await processServerMessage(response)
+      try await processServerMessage(response)
     }
   }
 
@@ -163,12 +169,12 @@ class LiveViewModel: ObservableObject {
     }
   }
 
-  private func processServerMessage(_ message: LiveServerMessage) async {
+  private func processServerMessage(_ message: LiveServerMessage) async throws {
     switch message.payload {
     case let .content(content):
-      await processServerContent(content)
+      try await processServerContent(content)
     case let .toolCall(toolCall):
-      await processFunctionCalls(functionCalls: toolCall.functionCalls ?? [])
+      try await processFunctionCalls(functionCalls: toolCall.functionCalls ?? [])
     case .toolCallCancellation:
       // we don't have any long running functions to cancel
       return
@@ -178,9 +184,9 @@ class LiveViewModel: ObservableObject {
     }
   }
 
-  private func processServerContent(_ content: LiveServerContent) async {
+  private func processServerContent(_ content: LiveServerContent) async throws {
     if let message = content.modelTurn {
-      await processAudioMessages(message)
+      try await processAudioMessages(message)
     }
 
     if content.isTurnComplete {
@@ -199,11 +205,11 @@ class LiveViewModel: ObservableObject {
     }
   }
 
-  private func processAudioMessages(_ content: ModelContent) async {
+  private func processAudioMessages(_ content: ModelContent) async throws {
     for part in content.parts {
       if let part = part as? InlineDataPart {
         if part.mimeType.starts(with: "audio/pcm") {
-          await audioController?.playAudio(audio: part.data)
+          try await audioController?.playAudio(audio: part.data)
         } else {
           logger.warning("Received non audio inline data part: \(part.mimeType)")
         }
@@ -211,16 +217,16 @@ class LiveViewModel: ObservableObject {
     }
   }
 
-  private func processFunctionCalls(functionCalls: [FunctionCallPart]) async {
-    let responses = functionCalls.map { functionCall in
+  private func processFunctionCalls(functionCalls: [FunctionCallPart]) async throws {
+    let responses = try functionCalls.map { functionCall in
       switch functionCall.name {
       case "changeBackgroundColor":
-        return changeBackgroundColor(args: functionCall.args, id: functionCall.functionId)
+        return try changeBackgroundColor(args: functionCall.args, id: functionCall.functionId)
       case "clearBackgroundColor":
         return clearBackgroundColor(id: functionCall.functionId)
       default:
         logger.debug("Function call: \(String(describing: functionCall))")
-        fatalError("Unknown function named \"\(functionCall.name)\".")
+        throw ApplicationError("Unknown function named \"\(functionCall.name)\".")
       }
     }
 
@@ -231,10 +237,10 @@ class LiveViewModel: ObservableObject {
     transcriptViewModel.appendTranscript(transcript)
   }
 
-  private func changeBackgroundColor(args: JSONObject, id: String?) -> FunctionResponsePart {
+  private func changeBackgroundColor(args: JSONObject, id: String?) throws -> FunctionResponsePart {
     guard case let .string(color) = args["color"] else {
       logger.debug("Function arguments: \(String(describing: args))")
-      fatalError("Missing `color` parameter.")
+      throw ApplicationError("Missing `color` parameter.")
     }
 
     withAnimation {

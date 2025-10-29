@@ -14,7 +14,7 @@
 
 import SwiftUI
 
-struct ModelPhoto: View {
+struct ModelAvatar: View {
   var isConnected = false
 
   @State private var gradientAngle: Angle = .zero
@@ -59,7 +59,7 @@ extension View {
 
 #Preview {
   VStack {
-    ModelPhoto(isConnected: true)
-    ModelPhoto(isConnected: false)
+    ModelAvatar(isConnected: true)
+    ModelAvatar(isConnected: false)
   }
 }

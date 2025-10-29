@@ -32,7 +32,7 @@ struct LiveAudioScreen: View {
 
   var body: some View {
     VStack(spacing: 20) {
-      ModelPhoto(isConnected: viewModel.state == .connected)
+      ModelAvatar(isConnected: viewModel.state == .connected)
       TranscriptView(vm: viewModel.transcriptViewModel)
 
       Spacer()

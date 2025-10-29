@@ -14,7 +14,7 @@
 		0EE94F292E9599B800CEFD69 /* LiveAudioScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE94F182E9599B800CEFD69 /* LiveAudioScreen.swift */; };
 		0EE94F2A2E9599B800CEFD69 /* LiveViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE94F1A2E9599B800CEFD69 /* LiveViewModel.swift */; };
 		0EE94F2B2E9599B800CEFD69 /* TranscriptLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE94F162E9599B800CEFD69 /* TranscriptLine.swift */; };
-		0EE94F2C2E9599B800CEFD69 /* ModelPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE94F202E9599B800CEFD69 /* ModelPhoto.swift */; };
+		0EE94F2C2E9599B800CEFD69 /* ModelAvatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE94F202E9599B800CEFD69 /* ModelAvatar.swift */; };
 		0EE94F2D2E9599B800CEFD69 /* LiveErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE94F1F2E9599B800CEFD69 /* LiveErrorView.swift */; };
 		0EE94F2E2E9599B800CEFD69 /* Microphone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE94F142E9599B800CEFD69 /* Microphone.swift */; };
 		0EE94F2F2E9599B800CEFD69 /* LiveErrorDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE94F1E2E9599B800CEFD69 /* LiveErrorDetailsView.swift */; };
@@ -29,7 +29,7 @@
 		0EE94F382E9599B800CEFD69 /* LiveAudioScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE94F182E9599B800CEFD69 /* LiveAudioScreen.swift */; };
 		0EE94F392E9599B800CEFD69 /* LiveViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE94F1A2E9599B800CEFD69 /* LiveViewModel.swift */; };
 		0EE94F3A2E9599B800CEFD69 /* TranscriptLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE94F162E9599B800CEFD69 /* TranscriptLine.swift */; };
-		0EE94F3B2E9599B800CEFD69 /* ModelPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE94F202E9599B800CEFD69 /* ModelPhoto.swift */; };
+		0EE94F3B2E9599B800CEFD69 /* ModelAvatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE94F202E9599B800CEFD69 /* ModelAvatar.swift */; };
 		0EE94F3C2E9599B800CEFD69 /* LiveErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE94F1F2E9599B800CEFD69 /* LiveErrorView.swift */; };
 		0EE94F3D2E9599B800CEFD69 /* Microphone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE94F142E9599B800CEFD69 /* Microphone.swift */; };
 		0EE94F3E2E9599B800CEFD69 /* LiveErrorDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE94F1E2E9599B800CEFD69 /* LiveErrorDetailsView.swift */; };
@@ -132,7 +132,7 @@
 		0EE94F1D2E9599B800CEFD69 /* ConnectButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectButton.swift; sourceTree = "<group>"; };
 		0EE94F1E2E9599B800CEFD69 /* LiveErrorDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveErrorDetailsView.swift; sourceTree = "<group>"; };
 		0EE94F1F2E9599B800CEFD69 /* LiveErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveErrorView.swift; sourceTree = "<group>"; };
-		0EE94F202E9599B800CEFD69 /* ModelPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelPhoto.swift; sourceTree = "<group>"; };
+		0EE94F202E9599B800CEFD69 /* ModelAvatar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelAvatar.swift; sourceTree = "<group>"; };
 		0EE94F212E9599B800CEFD69 /* TranscriptView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscriptView.swift; sourceTree = "<group>"; };
 		0EE94F232E9599B800CEFD69 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		860F09142E8C4171002D85D0 /* FirebaseAILogic.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = FirebaseAILogic.xcframework; sourceTree = "<group>"; };
@@ -247,7 +247,7 @@
 				0EE94F1D2E9599B800CEFD69 /* ConnectButton.swift */,
 				0EE94F1E2E9599B800CEFD69 /* LiveErrorDetailsView.swift */,
 				0EE94F1F2E9599B800CEFD69 /* LiveErrorView.swift */,
-				0EE94F202E9599B800CEFD69 /* ModelPhoto.swift */,
+				0EE94F202E9599B800CEFD69 /* ModelAvatar.swift */,
 				0EE94F212E9599B800CEFD69 /* TranscriptView.swift */,
 			);
 			path = Views;
@@ -632,7 +632,7 @@
 				0EE94F292E9599B800CEFD69 /* LiveAudioScreen.swift in Sources */,
 				0EE94F2A2E9599B800CEFD69 /* LiveViewModel.swift in Sources */,
 				0EE94F2B2E9599B800CEFD69 /* TranscriptLine.swift in Sources */,
-				0EE94F2C2E9599B800CEFD69 /* ModelPhoto.swift in Sources */,
+				0EE94F2C2E9599B800CEFD69 /* ModelAvatar.swift in Sources */,
 				0EE94F2D2E9599B800CEFD69 /* LiveErrorView.swift in Sources */,
 				0EE94F2E2E9599B800CEFD69 /* Microphone.swift in Sources */,
 				0EE94F2F2E9599B800CEFD69 /* LiveErrorDetailsView.swift in Sources */,
@@ -671,7 +671,7 @@
 				0EE94F382E9599B800CEFD69 /* LiveAudioScreen.swift in Sources */,
 				0EE94F392E9599B800CEFD69 /* LiveViewModel.swift in Sources */,
 				0EE94F3A2E9599B800CEFD69 /* TranscriptLine.swift in Sources */,
-				0EE94F3B2E9599B800CEFD69 /* ModelPhoto.swift in Sources */,
+				0EE94F3B2E9599B800CEFD69 /* ModelAvatar.swift in Sources */,
 				0EE94F3C2E9599B800CEFD69 /* LiveErrorView.swift in Sources */,
 				0EE94F3D2E9599B800CEFD69 /* Microphone.swift in Sources */,
 				0EE94F3E2E9599B800CEFD69 /* LiveErrorDetailsView.swift in Sources */,

@@ -41,6 +41,9 @@ class LiveViewModel: ObservableObject {
   @Published
   var backgroundColor: Color? = nil
 
+  @Published
+  var hasTranscripts: Bool = false
+
   private var model: LiveGenerativeModel?
   private var liveSession: LiveSession?
 
@@ -91,6 +94,7 @@ class LiveViewModel: ObservableObject {
 
     state = .connecting
     transcriptViewModel.restart()
+    hasTranscripts = false
 
     do {
       liveSession = try await model.connect()
@@ -234,6 +238,7 @@ class LiveViewModel: ObservableObject {
   }
 
   private func appendAudioTranscript(_ transcript: String) {
+    hasTranscripts = true
     transcriptViewModel.appendTranscript(transcript)
   }
 

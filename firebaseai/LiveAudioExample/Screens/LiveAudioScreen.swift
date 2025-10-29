@@ -39,6 +39,9 @@ struct LiveAudioScreen: View {
       if let error = viewModel.error {
         LiveErrorView(error: error)
       }
+      if !viewModel.hasTranscripts {
+        TipView(text: "Try asking the model to change the background color")
+      }
       ConnectButton(
         state: viewModel.state,
         onConnect: viewModel.connect,

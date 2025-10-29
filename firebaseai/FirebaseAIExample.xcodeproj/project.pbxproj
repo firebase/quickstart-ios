@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E5E76732EB2B47400E6B3CF /* TipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E5E76722EB2B47000E6B3CF /* TipView.swift */; };
+		0E5E76742EB2B47400E6B3CF /* TipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E5E76722EB2B47000E6B3CF /* TipView.swift */; };
 		0ECE3A982EB286120072EC6A /* Color+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ECE3A972EB2860C0072EC6A /* Color+Hex.swift */; };
 		0ECE3A992EB286120072EC6A /* Color+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ECE3A972EB2860C0072EC6A /* Color+Hex.swift */; };
 		0ECE3A9B2EB286B90072EC6A /* ApplicationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ECE3A9A2EB286AD0072EC6A /* ApplicationError.swift */; };
@@ -125,6 +127,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0E5E76722EB2B47000E6B3CF /* TipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipView.swift; sourceTree = "<group>"; };
 		0ECE3A972EB2860C0072EC6A /* Color+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Hex.swift"; sourceTree = "<group>"; };
 		0ECE3A9A2EB286AD0072EC6A /* ApplicationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationError.swift; sourceTree = "<group>"; };
 		0EE94F112E9599B800CEFD69 /* AudioBufferHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioBufferHelpers.swift; sourceTree = "<group>"; };
@@ -250,6 +253,7 @@
 		0EE94F222E9599B800CEFD69 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				0E5E76722EB2B47000E6B3CF /* TipView.swift */,
 				0EE94F1D2E9599B800CEFD69 /* ConnectButton.swift */,
 				0EE94F1E2E9599B800CEFD69 /* LiveErrorDetailsView.swift */,
 				0EE94F1F2E9599B800CEFD69 /* LiveErrorView.swift */,
@@ -644,6 +648,7 @@
 				0EE94F2D2E9599B800CEFD69 /* LiveErrorView.swift in Sources */,
 				0EE94F2E2E9599B800CEFD69 /* Microphone.swift in Sources */,
 				0EE94F2F2E9599B800CEFD69 /* LiveErrorDetailsView.swift in Sources */,
+				0E5E76742EB2B47400E6B3CF /* TipView.swift in Sources */,
 				0EE94F302E9599B800CEFD69 /* AudioController.swift in Sources */,
 				0EE94F312E9599B800CEFD69 /* AudioBufferHelpers.swift in Sources */,
 				86BB55F02E8B2D6D0054B8B5 /* GenerateContentScreen.swift in Sources */,
@@ -685,6 +690,7 @@
 				0EE94F3C2E9599B800CEFD69 /* LiveErrorView.swift in Sources */,
 				0EE94F3D2E9599B800CEFD69 /* Microphone.swift in Sources */,
 				0EE94F3E2E9599B800CEFD69 /* LiveErrorDetailsView.swift in Sources */,
+				0E5E76732EB2B47400E6B3CF /* TipView.swift in Sources */,
 				0EE94F3F2E9599B800CEFD69 /* AudioController.swift in Sources */,
 				0EE94F402E9599B800CEFD69 /* AudioBufferHelpers.swift in Sources */,
 				886F95D52B17BA010036F07A /* GenerateContentScreen.swift in Sources */,

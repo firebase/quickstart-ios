@@ -21,8 +21,7 @@ struct TranscriptView: View {
     VStack {
       ForEach(vm.audioTranscripts) { transcript in
         Text(transcript.message)
-          .bold()
-          .font(.title)
+          .font(.title3)
           .frame(maxWidth: .infinity, alignment: .leading)
           .transition(.opacity)
           .padding(.horizontal)

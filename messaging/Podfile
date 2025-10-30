@@ -14,6 +14,9 @@ end
 target 'MessagingExampleSwift' do
   firebase_pods
 end
+target 'NotificationServiceExtension' do
+  firebase_pods
+end
 
 target 'MessagingExampleTests' do
 end

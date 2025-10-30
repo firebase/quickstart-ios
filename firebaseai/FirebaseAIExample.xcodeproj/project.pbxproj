@@ -54,6 +54,12 @@
 		860F09302E8C422B002D85D0 /* GoogleUtilities.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 860F092E2E8C4210002D85D0 /* GoogleUtilities.xcframework */; };
 		860F09312E8C422B002D85D0 /* GoogleUtilities.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 860F092E2E8C4210002D85D0 /* GoogleUtilities.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		869200B32B879C4F00482873 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 869200B22B879C4F00482873 /* GoogleService-Info.plist */; };
+		86A67E8D2E9FECCF00EDFB8A /* cmark-gfm in Frameworks */ = {isa = PBXBuildFile; productRef = 86A67E8C2E9FECCF00EDFB8A /* cmark-gfm */; };
+		86A67E8F2E9FECCF00EDFB8A /* cmark-gfm-extensions in Frameworks */ = {isa = PBXBuildFile; productRef = 86A67E8E2E9FECCF00EDFB8A /* cmark-gfm-extensions */; };
+		86A67E912E9FED0600EDFB8A /* NetworkImage in Frameworks */ = {isa = PBXBuildFile; productRef = 86A67E902E9FED0600EDFB8A /* NetworkImage */; };
+		86A67E932E9FED1700EDFB8A /* NetworkImage in Frameworks */ = {isa = PBXBuildFile; productRef = 86A67E922E9FED1700EDFB8A /* NetworkImage */; };
+		86A67E952E9FED2200EDFB8A /* cmark-gfm in Frameworks */ = {isa = PBXBuildFile; productRef = 86A67E942E9FED2200EDFB8A /* cmark-gfm */; };
+		86A67E972E9FED2200EDFB8A /* cmark-gfm-extensions in Frameworks */ = {isa = PBXBuildFile; productRef = 86A67E962E9FED2200EDFB8A /* cmark-gfm-extensions */; };
 		86BB55EA2E8B2D6D0054B8B5 /* FunctionCallingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C1F47E2BC726150026816F /* FunctionCallingScreen.swift */; };
 		86BB55EB2E8B2D6D0054B8B5 /* BouncingDots.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E10F5C2B11135000C08E95 /* BouncingDots.swift */; };
 		86BB55EC2E8B2D6D0054B8B5 /* FunctionCallingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C1F4802BC726150026816F /* FunctionCallingViewModel.swift */; };
@@ -103,26 +109,6 @@
 		DEFECAA92D7B4CCD00EF9621 /* ImagenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEFECAA72D7B4CCD00EF9621 /* ImagenViewModel.swift */; };
 		DEFECAAA2D7B4CCD00EF9621 /* ImagenScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEFECAA62D7B4CCD00EF9621 /* ImagenScreen.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		860F09232E8C4179002D85D0 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				860F092B2E8C417E002D85D0 /* FirebaseCoreExtension.xcframework in Embed Frameworks */,
-				860F09272E8C417B002D85D0 /* FirebaseAuthInterop.xcframework in Embed Frameworks */,
-				860F09312E8C422B002D85D0 /* GoogleUtilities.xcframework in Embed Frameworks */,
-				860F092D2E8C417F002D85D0 /* FirebaseCoreInternal.xcframework in Embed Frameworks */,
-				860F09292E8C417C002D85D0 /* FirebaseCore.xcframework in Embed Frameworks */,
-				860F09222E8C4179002D85D0 /* FirebaseAILogic.xcframework in Embed Frameworks */,
-				860F09252E8C417A002D85D0 /* FirebaseAppCheckInterop.xcframework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		0E5E76722EB2B47000E6B3CF /* TipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipView.swift; sourceTree = "<group>"; };
@@ -186,14 +172,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				86A67E932E9FED1700EDFB8A /* NetworkImage in Frameworks */,
 				86BB55FF2E8B2D6D0054B8B5 /* MarkdownUI in Frameworks */,
-				860F09282E8C417C002D85D0 /* FirebaseCore.xcframework in Frameworks */,
-				860F09262E8C417B002D85D0 /* FirebaseAuthInterop.xcframework in Frameworks */,
-				860F09212E8C4179002D85D0 /* FirebaseAILogic.xcframework in Frameworks */,
-				860F092C2E8C417F002D85D0 /* FirebaseCoreInternal.xcframework in Frameworks */,
-				860F09302E8C422B002D85D0 /* GoogleUtilities.xcframework in Frameworks */,
-				860F09242E8C417A002D85D0 /* FirebaseAppCheckInterop.xcframework in Frameworks */,
-				860F092A2E8C417E002D85D0 /* FirebaseCoreExtension.xcframework in Frameworks */,
+				86A67E952E9FED2200EDFB8A /* cmark-gfm in Frameworks */,
+				86A67E972E9FED2200EDFB8A /* cmark-gfm-extensions in Frameworks */,
 				86BB56002E8B2D6D0054B8B5 /* GenerativeAIUIComponents in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -204,6 +186,9 @@
 			files = (
 				DE26D95F2DBB3E9F007E6668 /* FirebaseAI in Frameworks */,
 				886F95D82B17BA420036F07A /* MarkdownUI in Frameworks */,
+				86A67E8D2E9FECCF00EDFB8A /* cmark-gfm in Frameworks */,
+				86A67E912E9FED0600EDFB8A /* NetworkImage in Frameworks */,
+				86A67E8F2E9FECCF00EDFB8A /* cmark-gfm-extensions in Frameworks */,
 				886F95E32B17D6630036F07A /* GenerativeAIUIComponents in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -358,7 +343,6 @@
 				86C1F4822BC726150026816F /* FunctionCallingExample */,
 				8848C8302B0D04BC007B434F /* Products */,
 				88209C222B0FBE1700F64795 /* Frameworks */,
-				860F091A2E8C4171002D85D0 /* Firebase */,
 			);
 			sourceTree = "<group>";
 		};
@@ -513,7 +497,6 @@
 				86BB55E92E8B2D6D0054B8B5 /* Sources */,
 				86BB55FD2E8B2D6D0054B8B5 /* Frameworks */,
 				86BB56012E8B2D6D0054B8B5 /* Resources */,
-				860F09232E8C4179002D85D0 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -523,6 +506,9 @@
 			packageProductDependencies = (
 				86BB55E42E8B2D6D0054B8B5 /* MarkdownUI */,
 				86BB55E62E8B2D6D0054B8B5 /* GenerativeAIUIComponents */,
+				86A67E922E9FED1700EDFB8A /* NetworkImage */,
+				86A67E942E9FED2200EDFB8A /* cmark-gfm */,
+				86A67E962E9FED2200EDFB8A /* cmark-gfm-extensions */,
 			);
 			productName = GenerativeAIExample;
 			productReference = 86BB56082E8B2D6D0054B8B5 /* FirebaseAIExampleZip.app */;
@@ -545,6 +531,9 @@
 				886F95D72B17BA420036F07A /* MarkdownUI */,
 				886F95E22B17D6630036F07A /* GenerativeAIUIComponents */,
 				DE26D95E2DBB3E9F007E6668 /* FirebaseAI */,
+				86A67E8C2E9FECCF00EDFB8A /* cmark-gfm */,
+				86A67E8E2E9FECCF00EDFB8A /* cmark-gfm-extensions */,
+				86A67E902E9FED0600EDFB8A /* NetworkImage */,
 			);
 			productName = GenerativeAIExample;
 			productReference = 8848C82F2B0D04BC007B434F /* FirebaseAIExample.app */;
@@ -578,6 +567,7 @@
 				88209C212B0FBDF700F64795 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */,
 				DEA09AC32B1FCE22001962D9 /* XCRemoteSwiftPackageReference "NetworkImage" */,
 				DEFECAAB2D7BB49700EF9621 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				86A67E8B2E9FECCF00EDFB8A /* XCRemoteSwiftPackageReference "swift-cmark" */,
 			);
 			productRefGroup = 8848C8302B0D04BC007B434F /* Products */;
 			projectDirPath = "";
@@ -974,6 +964,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		86A67E8B2E9FECCF00EDFB8A /* XCRemoteSwiftPackageReference "swift-cmark" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/swiftlang/swift-cmark";
+			requirement = {
+				kind = revision;
+				revision = 3ccff77b2dc5b96b77db3da0d68d28068593fa53;
+			};
+		};
 		86BB55E52E8B2D6D0054B8B5 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/gonzalezreal/swift-markdown-ui";
@@ -1009,6 +1007,36 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		86A67E8C2E9FECCF00EDFB8A /* cmark-gfm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 86A67E8B2E9FECCF00EDFB8A /* XCRemoteSwiftPackageReference "swift-cmark" */;
+			productName = "cmark-gfm";
+		};
+		86A67E8E2E9FECCF00EDFB8A /* cmark-gfm-extensions */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 86A67E8B2E9FECCF00EDFB8A /* XCRemoteSwiftPackageReference "swift-cmark" */;
+			productName = "cmark-gfm-extensions";
+		};
+		86A67E902E9FED0600EDFB8A /* NetworkImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DEA09AC32B1FCE22001962D9 /* XCRemoteSwiftPackageReference "NetworkImage" */;
+			productName = NetworkImage;
+		};
+		86A67E922E9FED1700EDFB8A /* NetworkImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DEA09AC32B1FCE22001962D9 /* XCRemoteSwiftPackageReference "NetworkImage" */;
+			productName = NetworkImage;
+		};
+		86A67E942E9FED2200EDFB8A /* cmark-gfm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 86A67E8B2E9FECCF00EDFB8A /* XCRemoteSwiftPackageReference "swift-cmark" */;
+			productName = "cmark-gfm";
+		};
+		86A67E962E9FED2200EDFB8A /* cmark-gfm-extensions */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 86A67E8B2E9FECCF00EDFB8A /* XCRemoteSwiftPackageReference "swift-cmark" */;
+			productName = "cmark-gfm-extensions";
+		};
 		86BB55E42E8B2D6D0054B8B5 /* MarkdownUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 86BB55E52E8B2D6D0054B8B5 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */;

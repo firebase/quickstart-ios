@@ -122,7 +122,15 @@ NSString *const kGCMMessageIDKey = @"gcm.message_id";
   NSLog(@"%@", userInfo);
 
   // Change this to your preferred presentation option
-  completionHandler(UNNotificationPresentationOptionBadge | UNNotificationPresentationOptionAlert);
+  // Note: UNNotificationPresentationOptionAlert has been deprecated.
+  if (@available(iOS 14.0, *)) {
+    completionHandler(UNNotificationPresentationOptionList |
+                      UNNotificationPresentationOptionBanner |
+                      UNNotificationPresentationOptionSound);
+  } else {
+    completionHandler(UNNotificationPresentationOptionAlert |
+                      UNNotificationPresentationOptionSound);
+  }
 }
 
 // Handle notification messages after display notification is tapped by the user.

@@ -36,7 +36,7 @@ class LiveViewModel: ObservableObject {
   var state: LiveViewModelState = .idle
 
   @Published
-  var transcriptViewModel: TranscriptViewModel = TranscriptViewModel()
+  var transcriptTypewriter: TypeWriterViewModel = TypeWriterViewModel()
 
   @Published
   var backgroundColor: Color? = nil
@@ -97,7 +97,7 @@ class LiveViewModel: ObservableObject {
     }
 
     state = .connecting
-    transcriptViewModel.restart()
+    transcriptTypewriter.restart()
     hasTranscripts = false
 
     do {
@@ -124,7 +124,7 @@ class LiveViewModel: ObservableObject {
     microphoneTask.cancel()
     state = .idle
     liveSession = nil
-    transcriptViewModel.clearPending()
+    transcriptTypewriter.clearPending()
 
     withAnimation {
       backgroundColor = nil
@@ -199,15 +199,15 @@ class LiveViewModel: ObservableObject {
 
     if content.isTurnComplete {
       // add a space, so the next time a transcript comes in, it's not squished with the previous one
-      transcriptViewModel.appendTranscript(" ")
+      transcriptTypewriter.appendText(" ")
     }
 
     if content.wasInterrupted {
       logger.warning("Model was interrupted")
       await audioController?.interrupt()
-      transcriptViewModel.clearPending()
+      transcriptTypewriter.clearPending()
       // adds an em dash to indiciate that the model was cutoff
-      transcriptViewModel.appendTranscript("— ")
+      transcriptTypewriter.appendText("— ")
     } else if let transcript = content.outputAudioTranscription?.text {
       appendAudioTranscript(transcript)
     }
@@ -245,7 +245,7 @@ class LiveViewModel: ObservableObject {
 
   private func appendAudioTranscript(_ transcript: String) {
     hasTranscripts = true
-    transcriptViewModel.appendTranscript(transcript)
+    transcriptTypewriter.appendText(transcript)
   }
 
   private func changeBackgroundColor(args: JSONObject, id: String?) throws -> FunctionResponsePart {

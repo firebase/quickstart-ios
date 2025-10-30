@@ -15,11 +15,10 @@
 		0ECE3A9C2EB286B90072EC6A /* ApplicationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ECE3A9A2EB286AD0072EC6A /* ApplicationError.swift */; };
 		0EE94F252E9599B800CEFD69 /* TranscriptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE94F212E9599B800CEFD69 /* TranscriptView.swift */; };
 		0EE94F262E9599B800CEFD69 /* ConnectButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE94F1D2E9599B800CEFD69 /* ConnectButton.swift */; };
-		0EE94F272E9599B800CEFD69 /* TranscriptViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE94F1B2E9599B800CEFD69 /* TranscriptViewModel.swift */; };
+		0EE94F272E9599B800CEFD69 /* TypeWriterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE94F1B2E9599B800CEFD69 /* TypeWriterViewModel.swift */; };
 		0EE94F282E9599B800CEFD69 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE94F132E9599B800CEFD69 /* AudioPlayer.swift */; };
 		0EE94F292E9599B800CEFD69 /* LiveAudioScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE94F182E9599B800CEFD69 /* LiveAudioScreen.swift */; };
 		0EE94F2A2E9599B800CEFD69 /* LiveViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE94F1A2E9599B800CEFD69 /* LiveViewModel.swift */; };
-		0EE94F2B2E9599B800CEFD69 /* TranscriptLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE94F162E9599B800CEFD69 /* TranscriptLine.swift */; };
 		0EE94F2C2E9599B800CEFD69 /* ModelAvatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE94F202E9599B800CEFD69 /* ModelAvatar.swift */; };
 		0EE94F2D2E9599B800CEFD69 /* LiveErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE94F1F2E9599B800CEFD69 /* LiveErrorView.swift */; };
 		0EE94F2E2E9599B800CEFD69 /* Microphone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE94F142E9599B800CEFD69 /* Microphone.swift */; };
@@ -30,11 +29,10 @@
 		0EE94F332E9599B800CEFD69 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0EE94F232E9599B800CEFD69 /* Assets.xcassets */; };
 		0EE94F342E9599B800CEFD69 /* TranscriptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE94F212E9599B800CEFD69 /* TranscriptView.swift */; };
 		0EE94F352E9599B800CEFD69 /* ConnectButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE94F1D2E9599B800CEFD69 /* ConnectButton.swift */; };
-		0EE94F362E9599B800CEFD69 /* TranscriptViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE94F1B2E9599B800CEFD69 /* TranscriptViewModel.swift */; };
+		0EE94F362E9599B800CEFD69 /* TypeWriterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE94F1B2E9599B800CEFD69 /* TypeWriterViewModel.swift */; };
 		0EE94F372E9599B800CEFD69 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE94F132E9599B800CEFD69 /* AudioPlayer.swift */; };
 		0EE94F382E9599B800CEFD69 /* LiveAudioScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE94F182E9599B800CEFD69 /* LiveAudioScreen.swift */; };
 		0EE94F392E9599B800CEFD69 /* LiveViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE94F1A2E9599B800CEFD69 /* LiveViewModel.swift */; };
-		0EE94F3A2E9599B800CEFD69 /* TranscriptLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE94F162E9599B800CEFD69 /* TranscriptLine.swift */; };
 		0EE94F3B2E9599B800CEFD69 /* ModelAvatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE94F202E9599B800CEFD69 /* ModelAvatar.swift */; };
 		0EE94F3C2E9599B800CEFD69 /* LiveErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE94F1F2E9599B800CEFD69 /* LiveErrorView.swift */; };
 		0EE94F3D2E9599B800CEFD69 /* Microphone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE94F142E9599B800CEFD69 /* Microphone.swift */; };
@@ -134,10 +132,9 @@
 		0EE94F122E9599B800CEFD69 /* AudioController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioController.swift; sourceTree = "<group>"; };
 		0EE94F132E9599B800CEFD69 /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
 		0EE94F142E9599B800CEFD69 /* Microphone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Microphone.swift; sourceTree = "<group>"; };
-		0EE94F162E9599B800CEFD69 /* TranscriptLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscriptLine.swift; sourceTree = "<group>"; };
 		0EE94F182E9599B800CEFD69 /* LiveAudioScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveAudioScreen.swift; sourceTree = "<group>"; };
 		0EE94F1A2E9599B800CEFD69 /* LiveViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveViewModel.swift; sourceTree = "<group>"; };
-		0EE94F1B2E9599B800CEFD69 /* TranscriptViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscriptViewModel.swift; sourceTree = "<group>"; };
+		0EE94F1B2E9599B800CEFD69 /* TypeWriterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeWriterViewModel.swift; sourceTree = "<group>"; };
 		0EE94F1D2E9599B800CEFD69 /* ConnectButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectButton.swift; sourceTree = "<group>"; };
 		0EE94F1E2E9599B800CEFD69 /* LiveErrorDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveErrorDetailsView.swift; sourceTree = "<group>"; };
 		0EE94F1F2E9599B800CEFD69 /* LiveErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveErrorView.swift; sourceTree = "<group>"; };
@@ -245,7 +242,7 @@
 			isa = PBXGroup;
 			children = (
 				0EE94F1A2E9599B800CEFD69 /* LiveViewModel.swift */,
-				0EE94F1B2E9599B800CEFD69 /* TranscriptViewModel.swift */,
+				0EE94F1B2E9599B800CEFD69 /* TypeWriterViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -269,7 +266,6 @@
 				0ECE3A9A2EB286AD0072EC6A /* ApplicationError.swift */,
 				0ECE3A972EB2860C0072EC6A /* Color+Hex.swift */,
 				0EE94F152E9599B800CEFD69 /* Audio */,
-				0EE94F172E9599B800CEFD69 /* Models */,
 				0EE94F192E9599B800CEFD69 /* Screens */,
 				0EE94F1C2E9599B800CEFD69 /* ViewModels */,
 				0EE94F222E9599B800CEFD69 /* Views */,
@@ -639,11 +635,10 @@
 				86BB55EF2E8B2D6D0054B8B5 /* ContentView.swift in Sources */,
 				0EE94F252E9599B800CEFD69 /* TranscriptView.swift in Sources */,
 				0EE94F262E9599B800CEFD69 /* ConnectButton.swift in Sources */,
-				0EE94F272E9599B800CEFD69 /* TranscriptViewModel.swift in Sources */,
+				0EE94F272E9599B800CEFD69 /* TypeWriterViewModel.swift in Sources */,
 				0EE94F282E9599B800CEFD69 /* AudioPlayer.swift in Sources */,
 				0EE94F292E9599B800CEFD69 /* LiveAudioScreen.swift in Sources */,
 				0EE94F2A2E9599B800CEFD69 /* LiveViewModel.swift in Sources */,
-				0EE94F2B2E9599B800CEFD69 /* TranscriptLine.swift in Sources */,
 				0EE94F2C2E9599B800CEFD69 /* ModelAvatar.swift in Sources */,
 				0EE94F2D2E9599B800CEFD69 /* LiveErrorView.swift in Sources */,
 				0EE94F2E2E9599B800CEFD69 /* Microphone.swift in Sources */,
@@ -681,11 +676,10 @@
 				8848C8352B0D04BC007B434F /* ContentView.swift in Sources */,
 				0EE94F342E9599B800CEFD69 /* TranscriptView.swift in Sources */,
 				0EE94F352E9599B800CEFD69 /* ConnectButton.swift in Sources */,
-				0EE94F362E9599B800CEFD69 /* TranscriptViewModel.swift in Sources */,
+				0EE94F362E9599B800CEFD69 /* TypeWriterViewModel.swift in Sources */,
 				0EE94F372E9599B800CEFD69 /* AudioPlayer.swift in Sources */,
 				0EE94F382E9599B800CEFD69 /* LiveAudioScreen.swift in Sources */,
 				0EE94F392E9599B800CEFD69 /* LiveViewModel.swift in Sources */,
-				0EE94F3A2E9599B800CEFD69 /* TranscriptLine.swift in Sources */,
 				0EE94F3B2E9599B800CEFD69 /* ModelAvatar.swift in Sources */,
 				0EE94F3C2E9599B800CEFD69 /* LiveErrorView.swift in Sources */,
 				0EE94F3D2E9599B800CEFD69 /* Microphone.swift in Sources */,

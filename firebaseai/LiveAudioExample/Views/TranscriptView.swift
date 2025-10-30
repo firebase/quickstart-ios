@@ -15,26 +15,28 @@
 import SwiftUI
 
 struct TranscriptView: View {
-  @ObservedObject var vm: TranscriptViewModel
+  @ObservedObject var typewriter: TypeWriterViewModel
 
   var body: some View {
-    VStack {
-      ForEach(vm.audioTranscripts) { transcript in
-        Text(transcript.message)
-          .font(.title3)
+    ScrollViewReader { proxy in
+      ScrollView {
+        Text(typewriter.text).font(.title3)
           .frame(maxWidth: .infinity, alignment: .leading)
           .transition(.opacity)
           .padding(.horizontal)
+          .id("transcript")
+      }.onChange(of: typewriter.text) { new in
+        proxy.scrollTo("transcript", anchor: .bottom)
       }
     }
   }
 }
 
 #Preview {
-  let vm = TranscriptViewModel()
-  TranscriptView(vm: vm).onAppear {
+  let vm = TypeWriterViewModel()
+  TranscriptView(typewriter: vm).onAppear {
     vm
-      .appendTranscript(
+      .appendText(
         "The sky is blue primarily because of a phenomenon called Rayleigh scattering, where tiny molecules of gas (mainly nitrogen and oxygen) in Earth's atmosphere scatter sunlight in all directions."
       )
   }

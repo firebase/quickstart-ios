@@ -33,7 +33,7 @@ struct LiveAudioScreen: View {
   var body: some View {
     VStack(spacing: 20) {
       ModelAvatar(isConnected: viewModel.state == .connected)
-      TranscriptView(vm: viewModel.transcriptViewModel)
+      TranscriptView(typewriter: viewModel.transcriptTypewriter)
 
       Spacer()
       if let error = viewModel.error {

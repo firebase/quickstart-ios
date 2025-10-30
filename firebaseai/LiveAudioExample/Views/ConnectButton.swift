@@ -61,11 +61,8 @@ struct ConnectButton: View {
         .font(.title2.bold())
         .frame(maxWidth: .infinity)
         .padding()
-        .background(color)
-        .foregroundStyle(.white)
-        .clipShape(RoundedRectangle(cornerRadius: 12))
     }.disabled(state == .connecting).overlay(
-      RoundedRectangle(cornerRadius: 12)
+      RoundedRectangle(cornerRadius: 35)
         .stroke(
           AngularGradient(
             gradient: Gradient(colors: gradientColors),
@@ -75,7 +72,7 @@ struct ConnectButton: View {
           ),
           lineWidth: 3
         )
-    )
+    ).tint(color)
     .onAppear {
       withAnimation(.linear(duration: 5).repeatForever(autoreverses: false)) {
         self.gradientAngle = .degrees(360)

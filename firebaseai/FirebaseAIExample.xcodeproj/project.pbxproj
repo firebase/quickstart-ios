@@ -222,14 +222,6 @@
 			path = Audio;
 			sourceTree = "<group>";
 		};
-		0EE94F172E9599B800CEFD69 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				0EE94F162E9599B800CEFD69 /* TranscriptLine.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
 		0EE94F192E9599B800CEFD69 /* Screens */ = {
 			isa = PBXGroup;
 			children = (

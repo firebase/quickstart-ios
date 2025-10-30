@@ -51,6 +51,11 @@ struct ContentView: View {
 
         Section("Examples") {
           NavigationLink {
+            LiveAudioScreen(firebaseService: firebaseService, backend: selectedBackend)
+          } label: {
+            Label("Live Audio", systemImage: "microphone")
+          }
+          NavigationLink {
             GenerateContentScreen(firebaseService: firebaseService)
           } label: {
             Label("Generate Content", systemImage: "doc.text")

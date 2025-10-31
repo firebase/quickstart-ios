@@ -56,6 +56,11 @@ struct ContentView: View {
             Label("Generate Content", systemImage: "doc.text")
           }
           NavigationLink {
+            GenerateContentFromTemplateScreen(firebaseService: firebaseService)
+          } label: {
+            Label("Generate Content from Template", systemImage: "doc.text.fill")
+          }
+          NavigationLink {
             PhotoReasoningScreen(firebaseService: firebaseService)
           } label: {
             Label("Multi-modal", systemImage: "doc.richtext")
@@ -83,6 +88,11 @@ struct ContentView: View {
             ImagenScreen(firebaseService: firebaseService)
           } label: {
             Label("Imagen", systemImage: "camera.circle")
+          }
+          NavigationLink {
+            ImagenFromTemplateScreen(firebaseService: firebaseService)
+          } label: {
+            Label("Imagen from Template", systemImage: "camera.circle.fill")
           }
         }
       }

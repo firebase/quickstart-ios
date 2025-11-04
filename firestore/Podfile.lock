@@ -1373,8 +1373,8 @@ PODS:
   - SDWebImage (5.21.3):
     - SDWebImage/Core (= 5.21.3)
   - SDWebImage/Core (5.21.3)
-  - SDWebImageSwiftUI (3.1.3):
-    - SDWebImage (~> 5.10)
+  - SDWebImageSwiftUI (3.1.4):
+    - SDWebImage (~> 5.21.1)
 
 DEPENDENCIES:
   - FirebaseAuth
@@ -1433,7 +1433,7 @@ SPEC CHECKSUMS:
   nanopb: fad817b59e0457d11a5dfbde799381cd727c1275
   RecaptchaInterop: 11e0b637842dfb48308d242afc3f448062325aba
   SDWebImage: 16309af6d214ba3f77a7c6f6fdda888cb313a50a
-  SDWebImageSwiftUI: a6d7129fb68fc18c8b930b869ddcfce314e49ded
+  SDWebImageSwiftUI: 965cdad5a7210b7ec06aaa1a3d17180d0a152250
 
 PODFILE CHECKSUM: 2585dac1c3f679eecfb4775b842304e0377270b5
 

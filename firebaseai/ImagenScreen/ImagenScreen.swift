@@ -94,31 +94,6 @@ struct ImagenScreen: View {
   }
 }
 
-struct ProgressOverlay: View {
-  var body: some View {
-    ZStack {
-      Color.black.opacity(0.3)
-        .ignoresSafeArea()
-
-      ZStack {
-        RoundedRectangle(cornerRadius: 16)
-          .fill(Material.ultraThinMaterial)
-          .frame(width: 120, height: 100)
-          .shadow(radius: 8)
-
-        VStack(spacing: 12) {
-          ProgressView()
-            .scaleEffect(1.5)
-
-          Text("Loading...")
-            .font(.subheadline)
-            .foregroundColor(.secondary)
-        }
-      }
-    }
-  }
-}
-
 #Preview {
   ImagenScreen(firebaseService: FirebaseAI.firebaseAI())
 }

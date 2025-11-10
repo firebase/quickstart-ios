@@ -143,11 +143,13 @@ else
 fi
 
 function xcb() {
-    echo xcodebuild "$@"
-    xcodebuild "$@" | xcpretty
+    echo xcodebuild -quiet "$@"
+    xcodebuild -quiet "$@" | xcpretty
 }
 
 # Run xcodebuild
-sudo xcode-select -s "/Applications/Xcode_${xcode_version}.app/Contents/Developer"
+if [[ "${GITHUB_ACTIONS:-}" == "true" ]]; then
+  sudo xcode-select -s "/Applications/Xcode_${xcode_version}.app/Contents/Developer"
+fi
 xcb "${flags[@]}"
 echo "$message"

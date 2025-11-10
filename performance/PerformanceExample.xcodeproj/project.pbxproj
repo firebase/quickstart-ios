@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		107347C720315A61004A66D1 /* PerformanceExampleSwiftUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107347C620315A61004A66D1 /* PerformanceExampleSwiftUITests.swift */; };
+		107347C720315A61004A66D1 /* PerformanceExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107347C620315A61004A66D1 /* PerformanceExampleUITests.swift */; };
 		3AC4EE8864CD2D8B6ADE0A2D /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = 664D51F1D2849F1D6A5F39A3 /* GoogleService-Info.plist */; };
 		5F5A537E1ADE67D500F81DF0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5A537D1ADE67D500F81DF0 /* AppDelegate.swift */; };
 		5F5A53801ADE67D500F81DF0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5A537F1ADE67D500F81DF0 /* ViewController.swift */; };
@@ -24,13 +24,13 @@
 			containerPortal = 5F5A53441ADE670C00F81DF0 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 5F5A53781ADE67D500F81DF0;
-			remoteInfo = PerformanceExampleSwift;
+			remoteInfo = PerformanceExample;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		107347C420315A61004A66D1 /* PerformanceExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PerformanceExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		107347C620315A61004A66D1 /* PerformanceExampleSwiftUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceExampleSwiftUITests.swift; sourceTree = "<group>"; };
+		107347C620315A61004A66D1 /* PerformanceExampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceExampleUITests.swift; sourceTree = "<group>"; };
 		107347C820315A61004A66D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5F5A53791ADE67D500F81DF0 /* PerformanceExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PerformanceExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F5A537D1ADE67D500F81DF0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -60,20 +60,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		107347C520315A61004A66D1 /* PerformanceExampleSwiftUITests */ = {
+		107347C520315A61004A66D1 /* PerformanceExampleUITests */ = {
 			isa = PBXGroup;
 			children = (
-				107347C620315A61004A66D1 /* PerformanceExampleSwiftUITests.swift */,
+				107347C620315A61004A66D1 /* PerformanceExampleUITests.swift */,
 				107347C820315A61004A66D1 /* Info.plist */,
 			);
-			path = PerformanceExampleSwiftUITests;
+			path = PerformanceExampleUITests;
 			sourceTree = "<group>";
 		};
 		5F5A53431ADE670C00F81DF0 = {
 			isa = PBXGroup;
 			children = (
 				5F5A537A1ADE67D500F81DF0 /* PerformanceExample */,
-				107347C520315A61004A66D1 /* PerformanceExampleSwiftUITests */,
+				107347C520315A61004A66D1 /* PerformanceExampleUITests */,
 				5F5A534D1ADE670C00F81DF0 /* Products */,
 				5F9961041AE0CF4F0034F503 /* Shared */,
 				664D51F1D2849F1D6A5F39A3 /* GoogleService-Info.plist */,
@@ -134,7 +134,7 @@
 				107347CA20315A61004A66D1 /* PBXTargetDependency */,
 			);
 			name = PerformanceExampleUITests;
-			productName = PerformanceExampleSwiftUITests;
+			productName = PerformanceExampleUITests;
 			productReference = 107347C420315A61004A66D1 /* PerformanceExampleUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
@@ -151,7 +151,7 @@
 			dependencies = (
 			);
 			name = PerformanceExample;
-			productName = PerformanceExampleSwift;
+			productName = PerformanceExample;
 			productReference = 5F5A53791ADE67D500F81DF0 /* PerformanceExample.app */;
 			productType = "com.apple.product-type.application";
 		};
@@ -225,7 +225,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				107347C720315A61004A66D1 /* PerformanceExampleSwiftUITests.swift in Sources */,
+				107347C720315A61004A66D1 /* PerformanceExampleUITests.swift in Sources */,
 				3AC4EE8864CD2D8B6ADE0A2D /* GoogleService-Info.plist in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -263,14 +263,14 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = PerformanceExampleSwiftUITests/Info.plist;
+				INFOPLIST_FILE = PerformanceExampleUITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.PerformanceExampleSwiftUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.PerformanceExampleUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
@@ -293,14 +293,14 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = PerformanceExampleSwiftUITests/Info.plist;
+				INFOPLIST_FILE = PerformanceExampleUITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.PerformanceExampleSwiftUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.PerformanceExampleUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 5.0;

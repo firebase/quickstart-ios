@@ -24,7 +24,7 @@
 			containerPortal = 5F5A53441ADE670C00F81DF0 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 5F5A53781ADE67D500F81DF0;
-			remoteInfo = PerformanceExampleSwift;
+			remoteInfo = PerformanceExample;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -134,7 +134,7 @@
 				107347CA20315A61004A66D1 /* PBXTargetDependency */,
 			);
 			name = PerformanceExampleUITests;
-			productName = PerformanceExampleSwiftUITests;
+			productName = PerformanceExampleUITests;
 			productReference = 107347C420315A61004A66D1 /* PerformanceExampleUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
@@ -151,7 +151,7 @@
 			dependencies = (
 			);
 			name = PerformanceExample;
-			productName = PerformanceExampleSwift;
+			productName = PerformanceExample;
 			productReference = 5F5A53791ADE67D500F81DF0 /* PerformanceExample.app */;
 			productType = "com.apple.product-type.application";
 		};
@@ -263,14 +263,14 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = PerformanceExampleSwiftUITests/Info.plist;
+				INFOPLIST_FILE = PerformanceExampleUITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.PerformanceExampleSwiftUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.PerformanceExampleUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
@@ -293,14 +293,14 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = PerformanceExampleSwiftUITests/Info.plist;
+				INFOPLIST_FILE = PerformanceExampleUITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.PerformanceExampleSwiftUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.PerformanceExampleUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 5.0;

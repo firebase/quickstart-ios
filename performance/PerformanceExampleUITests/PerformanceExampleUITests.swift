@@ -16,7 +16,7 @@
 
 import XCTest
 
-class PerformanceExampleSwiftUITests: XCTestCase {
+class PerformanceExampleUITests: XCTestCase {
   override func setUp() {
     super.setUp()
 

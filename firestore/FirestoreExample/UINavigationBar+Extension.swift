@@ -20,7 +20,6 @@ extension UINavigationBar {
   static let firebaseTitleTextAttributes =
     [NSAttributedString.Key.foregroundColor: UIColor.white]
 
-  @available(iOS 13.0, *)
   var firebaseNavigationBarAppearance: UINavigationBarAppearance {
     let navBarAppearance = UINavigationBarAppearance()
     navBarAppearance.configureWithOpaqueBackground()
@@ -29,14 +28,11 @@ extension UINavigationBar {
     return navBarAppearance
   }
 
-  @available(iOS 13.0, *)
   func applyAppearance(_ appearance: UINavigationBarAppearance) {
     standardAppearance = appearance
     compactAppearance = appearance
     scrollEdgeAppearance = appearance
-    if #available(iOS 15.0, *) {
-      compactScrollEdgeAppearance = appearance
-    }
+    compactScrollEdgeAppearance = appearance
   }
 
   func applyFirebaseAppearance() {
@@ -44,8 +40,6 @@ extension UINavigationBar {
     isTranslucent = false
     titleTextAttributes = UINavigationBar.firebaseTitleTextAttributes
 
-    if #available(iOS 13.0, *) {
-      applyAppearance(firebaseNavigationBarAppearance)
-    }
+    applyAppearance(firebaseNavigationBarAppearance)
   }
 }

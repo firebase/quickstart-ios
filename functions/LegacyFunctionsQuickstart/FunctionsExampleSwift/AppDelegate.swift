@@ -41,7 +41,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     return true
   }
 
-  @available(iOS 9.0, *)
   func application(_ app: UIApplication, open url: URL,
                    options: [UIApplication.OpenURLOptionsKey: Any]) -> Bool {
     guard let sourceApplication =
@@ -51,7 +50,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     return handleOpenUrl(url, sourceApplication: sourceApplication)
   }
 
-  @available(iOS 8.0, *)
   func application(_ application: UIApplication, open url: URL, sourceApplication: String?,
                    annotation: Any) -> Bool {
     return handleOpenUrl(url, sourceApplication: sourceApplication)

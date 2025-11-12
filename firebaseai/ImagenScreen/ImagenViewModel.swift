@@ -12,7 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import FirebaseAI
+#if canImport(FirebaseAILogic)
+  import FirebaseAILogic
+#else
+  import FirebaseAI
+#endif
 import Foundation
 import OSLog
 import SwiftUI

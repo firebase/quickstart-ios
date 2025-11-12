@@ -11,12 +11,13 @@ from your app, rather than server-side, using the
 1. Clone this repo.
 1. Change into the `firebaseai` directory.
 1. Open `FirebaseAIExample.xcodeproj` using Xcode.
-
-```bash
-git clone https://github.com/firebase/quickstart-ios.git
-cd quickstart-ios/firebaseai
-open FirebaseAIExample.xcodeproj
-```
+   ```bash
+   git clone https://github.com/firebase/quickstart-ios.git
+   cd quickstart-ios/firebaseai
+   open FirebaseAIExample.xcodeproj
+   ```
+1. Select the `FirebaseAIExample (iOS)` scheme in Xcode to build the app using
+   the Swift Package Manager distribution.
 
 ### Connect the sample to your Firebase project
 

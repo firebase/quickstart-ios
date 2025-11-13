@@ -5,7 +5,7 @@ permissions:
 
 on:
   push:
-    branches: [ main, nc/quickstarts ]
+    branches: [ main ]
     paths:
       - '.github/workflows/analytics.yml'
       - 'analytics/**'

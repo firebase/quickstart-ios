@@ -17,6 +17,7 @@
 		5F99610D1AE0CF4F0034F503 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F9961071AE0CF4F0034F503 /* LaunchScreen.xib */; };
 		8DC73D8C2D41AE850092B6EE /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 8DC73D8B2D41AE850092B6EE /* FirebaseMessaging */; };
 		978E6F2CAAC2AD673D158985 /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = 82E79B6D15A982EAE7B0E31B /* GoogleService-Info.plist */; };
+		EAC902A32EC6849A000761B8 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = EAC902A22EC6849A000761B8 /* FirebaseMessaging */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +77,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EAC902A32EC6849A000761B8 /* FirebaseMessaging in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -135,7 +137,6 @@
 			children = (
 				5F5A53791ADE67D500F81DF0 /* MessagingExample.app */,
 				107347A820315A3A004A66D1 /* MessagingExampleUITests.xctest */,
-				1073485E20333BF5004A66D1 /* MessagingExampleUITests.xctest */,
 				0718C8B62E8F256800AA7788 /* NotificationServiceExtension.appex */,
 			);
 			name = Products;
@@ -390,7 +391,11 @@
 				INFOPLIST_KEY_CFBundleDisplayName = NotificationServiceExtension;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2025 Google Inc. All rights reserved.";
 				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MARKETING_VERSION = 1.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -430,7 +435,11 @@
 				INFOPLIST_KEY_CFBundleDisplayName = NotificationServiceExtension;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2025 Google Inc. All rights reserved.";
 				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MARKETING_VERSION = 1.0;
 				MTL_FAST_MATH = YES;
@@ -714,6 +723,11 @@
 
 /* Begin XCSwiftPackageProductDependency section */
 		8DC73D8B2D41AE850092B6EE /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8DC73D872D41ADE00092B6EE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
+		};
+		EAC902A22EC6849A000761B8 /* FirebaseMessaging */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 8DC73D872D41ADE00092B6EE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseMessaging;

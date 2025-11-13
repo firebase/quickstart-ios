@@ -29,6 +29,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Use Firebase library to configure APIs
     FirebaseApp.configure()
     // [END firebase_configure]
+    window = UIWindow(frame: UIScreen.main.bounds)
+    window?.rootViewController = ViewController()
+    window?.makeKeyAndVisible()
     return true
   }
 }

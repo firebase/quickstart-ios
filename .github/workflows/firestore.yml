@@ -5,14 +5,14 @@ permissions:
 
 on:
   push:
-    branches: [ main, nc/quickstarts ]
+    branches: [ main ]
     paths:
       - '.github/workflows/firestore.yml'
       - 'firestore/**'
       - 'scripts/*'
       - 'scripts/firestore.sh'
   pull_request:
-    branches: [ main, nc/quickstarts ]
+    branches: [ main ]
     paths:
       - '.github/workflows/firestore.yml'
       - 'firestore/**'

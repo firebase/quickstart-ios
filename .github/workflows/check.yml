@@ -6,7 +6,7 @@ permissions:
 on:
   pull_request:
   push:
-    branches: main, nc/quickstarts
+    branches: main
 
 concurrency:
     group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}

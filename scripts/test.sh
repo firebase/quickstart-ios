@@ -143,8 +143,8 @@ else
 fi
 
 function xcb() {
-    echo xcodebuild -quiet "$@"
-    xcodebuild -quiet "$@" | xcpretty
+    echo xcodebuild "$@"
+    xcodebuild "$@" | xcpretty
 }
 
 # Run xcodebuild

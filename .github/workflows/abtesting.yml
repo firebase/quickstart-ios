@@ -15,7 +15,7 @@ on:
       - '!abtesting/*.md'
       - '!abtesting/Design/**'
   pull_request:
-    branches: [ main, nc/quickstarts ]
+    branches: [ main ]
     paths:
       - '.github/workflows/abtesting.yml'
       - 'abtesting/**'

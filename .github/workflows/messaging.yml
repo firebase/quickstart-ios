@@ -12,7 +12,7 @@ on:
       - 'scripts/*'
       - 'scripts/messaging.sh'
   pull_request:
-    branches: [ main, nc/quickstarts ]
+    branches: [ main ]
     paths:
       - '.github/workflows/messaging.yml'
       - 'messaging/**'

@@ -44,7 +44,7 @@ class ConversationViewModel: ObservableObject {
       self.model = model
     } else {
       self.model = firebaseService.generativeModel(
-        modelName: "gemini-2.0-flash-001"
+        modelName: "gemini-2.5-flash-lite"
       )
     }
     chat = self.model.startChat()

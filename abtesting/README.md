@@ -9,6 +9,9 @@ multiple color schemes within an app.
 See [OUTLINE.md](OUTLINE.md) for information on the design of the app, screenshots, and symbol 
 references.
 
+To view the older Objective-C and Swift quickstarts, view the 
+[LegacyABTestingQuickstart](LegacyABTestingQuickstart) directory.
+
 ## Getting Started
 
 - [Add Firebase to your iOS Project](https://firebase.google.com/docs/ios/setup)

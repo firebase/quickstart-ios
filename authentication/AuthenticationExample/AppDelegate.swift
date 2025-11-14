@@ -17,7 +17,7 @@ import FirebaseCore
 import FBSDKCoreKit
 import GoogleSignIn
 
-@main
+@UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
   func application(_ application: UIApplication,
                    didFinishLaunchingWithOptions launchOptions: [UIApplication

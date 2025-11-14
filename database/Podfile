@@ -1,0 +1,33 @@
+# DatabaseExample
+
+use_frameworks!
+platform :ios, '15.0'
+
+def firebase_pods
+  pod 'FirebaseAuth'
+  pod 'FirebaseDatabase'
+  pod 'FirebaseUI/Database', '~> 15.0'
+end
+
+target 'DatabaseExample' do
+  firebase_pods
+
+  target 'DatabaseExampleTests' do
+    inherit! :search_paths
+  end
+
+  target 'DatabaseExampleUITests' do
+    inherit! :complete
+  end
+
+end
+
+target 'DatabaseExampleSwift' do
+  firebase_pods
+
+  target 'DatabaseExampleSwiftUITests' do
+    inherit! :complete
+  end
+
+end
+

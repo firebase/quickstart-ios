@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 77;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -425,6 +425,7 @@
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1510;
 				LastUpgradeCheck = 1510;
+				ORGANIZATIONNAME = "Google LLC";
 				TargetAttributes = {
 					8848C82E2B0D04BC007B434F = {
 						CreatedOnToolsVersion = 15.1;
@@ -432,7 +433,6 @@
 				};
 			};
 			buildConfigurationList = 8848C82A2B0D04BC007B434F /* Build configuration list for PBXProject "FirebaseAIExample" */;
-			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -446,6 +446,7 @@
 				DEFECAAB2D7BB49700EF9621 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				86A67E8B2E9FECCF00EDFB8A /* XCRemoteSwiftPackageReference "swift-cmark" */,
 			);
+			preferredProjectObjectVersion = 77;
 			productRefGroup = 8848C8302B0D04BC007B434F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";

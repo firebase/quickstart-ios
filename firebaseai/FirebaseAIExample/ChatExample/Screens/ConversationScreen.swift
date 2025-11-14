@@ -30,7 +30,7 @@ struct ConversationScreen: View {
 
   init(firebaseService: FirebaseAI, title: String, searchGroundingEnabled: Bool = false) {
     let model = firebaseService.generativeModel(
-      modelName: "gemini-2.0-flash-001",
+      modelName: "gemini-2.5-flash-lite",
       tools: searchGroundingEnabled ? [.googleSearch()] : []
     )
     self.title = title

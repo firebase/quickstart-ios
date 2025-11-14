@@ -42,13 +42,13 @@ class ImagenViewModel: ObservableObject {
   private var generateImagesTask: Task<Void, Never>?
 
   init(firebaseService: FirebaseAI) {
-    let modelName = "imagen-3.0-generate-002"
+    let modelName = "imagen-4.0-fast-generate-001"
     let safetySettings = ImagenSafetySettings(
       safetyFilterLevel: .blockLowAndAbove
     )
     var generationConfig = ImagenGenerationConfig()
     generationConfig.numberOfImages = 4
-    generationConfig.aspectRatio = .landscape4x3
+    generationConfig.aspectRatio = .square1x1
 
     model = firebaseService.imagenModel(
       modelName: modelName,

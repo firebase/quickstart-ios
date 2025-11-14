@@ -1,31 +1,31 @@
 PODS:
-  - FirebaseCore (12.5.0):
-    - FirebaseCoreInternal (~> 12.5.0)
+  - FirebaseCore (12.6.0):
+    - FirebaseCoreInternal (~> 12.6.0)
     - GoogleUtilities/Environment (~> 8.1)
     - GoogleUtilities/Logger (~> 8.1)
-  - FirebaseCoreExtension (12.5.0):
-    - FirebaseCore (~> 12.5.0)
-  - FirebaseCoreInternal (12.5.0):
+  - FirebaseCoreExtension (12.6.0):
+    - FirebaseCore (~> 12.6.0)
+  - FirebaseCoreInternal (12.6.0):
     - "GoogleUtilities/NSData+zlib (~> 8.1)"
-  - FirebaseCrashlytics (12.5.0):
-    - FirebaseCore (~> 12.5.0)
-    - FirebaseInstallations (~> 12.5.0)
-    - FirebaseRemoteConfigInterop (~> 12.5.0)
-    - FirebaseSessions (~> 12.5.0)
+  - FirebaseCrashlytics (12.6.0):
+    - FirebaseCore (~> 12.6.0)
+    - FirebaseInstallations (~> 12.6.0)
+    - FirebaseRemoteConfigInterop (~> 12.6.0)
+    - FirebaseSessions (~> 12.6.0)
     - GoogleDataTransport (~> 10.1)
     - GoogleUtilities/Environment (~> 8.1)
     - nanopb (~> 3.30910.0)
     - PromisesObjC (~> 2.4)
-  - FirebaseInstallations (12.5.0):
-    - FirebaseCore (~> 12.5.0)
+  - FirebaseInstallations (12.6.0):
+    - FirebaseCore (~> 12.6.0)
     - GoogleUtilities/Environment (~> 8.1)
     - GoogleUtilities/UserDefaults (~> 8.1)
     - PromisesObjC (~> 2.4)
-  - FirebaseRemoteConfigInterop (12.5.0)
-  - FirebaseSessions (12.5.0):
-    - FirebaseCore (~> 12.5.0)
-    - FirebaseCoreExtension (~> 12.5.0)
-    - FirebaseInstallations (~> 12.5.0)
+  - FirebaseRemoteConfigInterop (12.6.0)
+  - FirebaseSessions (12.6.0):
+    - FirebaseCore (~> 12.6.0)
+    - FirebaseCoreExtension (~> 12.6.0)
+    - FirebaseInstallations (~> 12.6.0)
     - GoogleDataTransport (~> 10.1)
     - GoogleUtilities/Environment (~> 8.1)
     - GoogleUtilities/UserDefaults (~> 8.1)
@@ -76,13 +76,13 @@ SPEC REPOS:
     - ReachabilitySwift
 
 SPEC CHECKSUMS:
-  FirebaseCore: dcadd790e70df14d689525ee56657bf4a6305b54
-  FirebaseCoreExtension: e335e93725d552124eb2e0c1487e8445764ddcc2
-  FirebaseCoreInternal: 67715d38ba28c92c10750de9367f4f2120d763cf
-  FirebaseCrashlytics: be824626a530baa927899090599312ab98949c75
-  FirebaseInstallations: a3208cb8ada31c7cc3e69d8fa9653561d9861169
-  FirebaseRemoteConfigInterop: 8d988e0ee2fd9b974dd4aaa78fc0aedf9860b1c3
-  FirebaseSessions: 97d8c339113069e39988184a1335a0852a05c2b4
+  FirebaseCore: 0e38ad5d62d980a47a64b8e9301ffa311457be04
+  FirebaseCoreExtension: 032fd6f8509e591fda8cb76f6651f20d926b121f
+  FirebaseCoreInternal: 69bf1306a05b8ac43004f6cc1f804bb7b05b229e
+  FirebaseCrashlytics: 3d6248c50726ee7832aef0e53cb84c9e64d9fa7e
+  FirebaseInstallations: 631b38da2e11a83daa4bfb482f79d286a5dfa7ad
+  FirebaseRemoteConfigInterop: 3443b8cb8fffd76bb3e03b2a84bfd3db952fcda4
+  FirebaseSessions: 2e8f808347e665dff3e5843f275715f07045297d
   GoogleDataTransport: aae35b7ea0c09004c3797d53c8c41f66f219d6a7
   GoogleUtilities: 00c88b9a86066ef77f0da2fab05f65d7768ed8e1
   nanopb: fad817b59e0457d11a5dfbde799381cd727c1275

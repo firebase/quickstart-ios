@@ -26,10 +26,6 @@ set -euo pipefail
 if [[ -z "${SPM:-}" ]]; then
     SPM=false
     echo "Defaulting to SPM=$SPM"
-    if [[ -z "${LEGACY:-}" ]]; then
-        LEGACY=false
-        echo "Defaulting to LEGACY=$LEGACY"
-    fi
 fi
 
 # Set have_secrets to true or false.
@@ -42,11 +38,7 @@ flags=()
 if [[ "$SPM" == true ]];then
     flags+=( -project "${DIR}/${SAMPLE}Example.xcodeproj" )
 else
-    if [[ "$LEGACY" == true ]]; then
-        WORKSPACE="${SAMPLE}/Legacy${SAMPLE}Quickstart/${SAMPLE}Example.xcworkspace"
-    else
-        WORKSPACE="${SAMPLE}/${SAMPLE}Example.xcworkspace"
-    fi
+    WORKSPACE="${SAMPLE}/${SAMPLE}Example.xcworkspace"
     flags+=( -workspace "$WORKSPACE" )
 fi
 

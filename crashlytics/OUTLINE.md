@@ -22,16 +22,14 @@ operating system, time of crash), the crash report contains custom keys and logs
 network status) which can help developers to debug the crash as well as illustrate how to add custom
 data to their own crashes. 
 
-### Reachability
+### Network Status
 There are many reasons behind a crash, and developers are challenged to understand the root cause
 behind the crash in order to apply the proper fix. Thus, receiving different types of information
-from the crash can help developers to understand the crash. Reachability gives information about a
+from the crash can help developers to understand the crash. Network status gives information about a
 device’s network configuration settings.
-[Reachability.swift](https://github.com/ashleymills/Reachability.swift) uses the [System
-Configuration](https://developer.apple.com/documentation/systemconfiguration) framework to monitor
-the network state of a device. It is a replacement for [Apple's
-Reachability](https://developer.apple.com/library/archive/samplecode/Reachability/Introduction/Intro.html#//apple_ref/doc/uid/DTS40007324)
-(written in Objective-C) re-written in Swift with closures. 
+This quickstart uses Apple's [Network](https://developer.apple.com/documentation/network)
+framework to monitor the network state of a device. Specifically, it uses `NWPathMonitor` to get
+network status changes. 
 
 ### Cross Platform
 This Quickstart supports all Apple platforms including iOS, macOS, tvOS and watchOS. The SwiftUI

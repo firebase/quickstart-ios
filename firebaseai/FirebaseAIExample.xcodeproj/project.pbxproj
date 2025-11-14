@@ -76,9 +76,9 @@
 		8848C8262B0D04BC007B434F = {
 			isa = PBXGroup;
 			children = (
+				863E95812EC7B70200BE4F4E /* FirebaseAIExample */,
 				88B8A9352B0FCBA700424728 /* GenerativeAIUIComponents */,
 				869200B22B879C4F00482873 /* GoogleService-Info.plist */,
-				863E95812EC7B70200BE4F4E /* FirebaseAIExample */,
 				8848C8302B0D04BC007B434F /* Products */,
 				88209C222B0FBE1700F64795 /* Frameworks */,
 			);

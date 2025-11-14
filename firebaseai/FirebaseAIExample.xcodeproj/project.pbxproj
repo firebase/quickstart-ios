@@ -14,8 +14,6 @@
 		86A67E932E9FED1700EDFB8A /* NetworkImage in Frameworks */ = {isa = PBXBuildFile; productRef = 86A67E922E9FED1700EDFB8A /* NetworkImage */; };
 		86A67E952E9FED2200EDFB8A /* cmark-gfm in Frameworks */ = {isa = PBXBuildFile; productRef = 86A67E942E9FED2200EDFB8A /* cmark-gfm */; };
 		86A67E972E9FED2200EDFB8A /* cmark-gfm-extensions in Frameworks */ = {isa = PBXBuildFile; productRef = 86A67E962E9FED2200EDFB8A /* cmark-gfm-extensions */; };
-		86BB55EA2E8B2D6D0054B8B5 /* FunctionCallingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C1F47E2BC726150026816F /* FunctionCallingScreen.swift */; };
-		86BB55EC2E8B2D6D0054B8B5 /* FunctionCallingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C1F4802BC726150026816F /* FunctionCallingViewModel.swift */; };
 		86BB55F02E8B2D6D0054B8B5 /* GenerateContentScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88209C1B2B0FBDC300F64795 /* GenerateContentScreen.swift */; };
 		86BB55F42E8B2D6D0054B8B5 /* PhotoReasoningScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880266752B0FC39000CF7CB6 /* PhotoReasoningScreen.swift */; };
 		86BB55F52E8B2D6D0054B8B5 /* ImagenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEFECAA72D7B4CCD00EF9621 /* ImagenViewModel.swift */; };
@@ -25,8 +23,6 @@
 		86BB55FF2E8B2D6D0054B8B5 /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = 86BB55E42E8B2D6D0054B8B5 /* MarkdownUI */; };
 		86BB56002E8B2D6D0054B8B5 /* GenerativeAIUIComponents in Frameworks */ = {isa = PBXBuildFile; productRef = 86BB55E62E8B2D6D0054B8B5 /* GenerativeAIUIComponents */; };
 		86BB56042E8B2D6D0054B8B5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 869200B22B879C4F00482873 /* GoogleService-Info.plist */; };
-		86C1F4832BC726150026816F /* FunctionCallingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C1F47E2BC726150026816F /* FunctionCallingScreen.swift */; };
-		86C1F4842BC726150026816F /* FunctionCallingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C1F4802BC726150026816F /* FunctionCallingViewModel.swift */; };
 		886F95D52B17BA010036F07A /* GenerateContentScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88209C1B2B0FBDC300F64795 /* GenerateContentScreen.swift */; };
 		886F95D62B17BA010036F07A /* GenerateContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88209C1D2B0FBDC300F64795 /* GenerateContentViewModel.swift */; };
 		886F95D82B17BA420036F07A /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = 886F95D72B17BA420036F07A /* MarkdownUI */; };
@@ -49,8 +45,6 @@
 /* Begin PBXFileReference section */
 		869200B22B879C4F00482873 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		86BB56082E8B2D6D0054B8B5 /* FirebaseAIExampleZip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FirebaseAIExampleZip.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		86C1F47E2BC726150026816F /* FunctionCallingScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FunctionCallingScreen.swift; sourceTree = "<group>"; };
-		86C1F4802BC726150026816F /* FunctionCallingViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FunctionCallingViewModel.swift; sourceTree = "<group>"; };
 		8802666F2B0FC39000CF7CB6 /* PhotoReasoningViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoReasoningViewModel.swift; sourceTree = "<group>"; };
 		880266752B0FC39000CF7CB6 /* PhotoReasoningScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoReasoningScreen.swift; sourceTree = "<group>"; };
 		88209C1B2B0FBDC300F64795 /* GenerateContentScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenerateContentScreen.swift; sourceTree = "<group>"; };
@@ -106,31 +100,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		86C1F47F2BC726150026816F /* Screens */ = {
-			isa = PBXGroup;
-			children = (
-				86C1F47E2BC726150026816F /* FunctionCallingScreen.swift */,
-			);
-			path = Screens;
-			sourceTree = "<group>";
-		};
-		86C1F4812BC726150026816F /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-				86C1F4802BC726150026816F /* FunctionCallingViewModel.swift */,
-			);
-			path = ViewModels;
-			sourceTree = "<group>";
-		};
-		86C1F4822BC726150026816F /* FunctionCallingExample */ = {
-			isa = PBXGroup;
-			children = (
-				86C1F4812BC726150026816F /* ViewModels */,
-				86C1F47F2BC726150026816F /* Screens */,
-			);
-			path = FunctionCallingExample;
-			sourceTree = "<group>";
-		};
 		8802666E2B0FC39000CF7CB6 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
@@ -181,7 +150,6 @@
 				863E95812EC7B70200BE4F4E /* FirebaseAIExample */,
 				8848C8452B0D051E007B434F /* GenerativeAITextExample */,
 				8848C8572B0D056C007B434F /* GenerativeAIMultimodalExample */,
-				86C1F4822BC726150026816F /* FunctionCallingExample */,
 				8848C8302B0D04BC007B434F /* Products */,
 				88209C222B0FBE1700F64795 /* Frameworks */,
 			);
@@ -371,8 +339,6 @@
 			files = (
 				DE907A852EAAE55600AE56CE /* GenerateContentFromTemplateViewModel.swift in Sources */,
 				DE907A812EAAE53E00AE56CE /* GenerateContentFromTemplateScreen.swift in Sources */,
-				86BB55EA2E8B2D6D0054B8B5 /* FunctionCallingScreen.swift in Sources */,
-				86BB55EC2E8B2D6D0054B8B5 /* FunctionCallingViewModel.swift in Sources */,
 				86BB55F02E8B2D6D0054B8B5 /* GenerateContentScreen.swift in Sources */,
 				86BB55F42E8B2D6D0054B8B5 /* PhotoReasoningScreen.swift in Sources */,
 				86BB55F52E8B2D6D0054B8B5 /* ImagenViewModel.swift in Sources */,
@@ -390,8 +356,6 @@
 			files = (
 				DE907A842EAAE55600AE56CE /* GenerateContentFromTemplateViewModel.swift in Sources */,
 				DE907A822EAAE53E00AE56CE /* GenerateContentFromTemplateScreen.swift in Sources */,
-				86C1F4832BC726150026816F /* FunctionCallingScreen.swift in Sources */,
-				86C1F4842BC726150026816F /* FunctionCallingViewModel.swift in Sources */,
 				886F95D52B17BA010036F07A /* GenerateContentScreen.swift in Sources */,
 				886F95DC2B17BAEF0036F07A /* PhotoReasoningScreen.swift in Sources */,
 				DEFECAA92D7B4CCD00EF9621 /* ImagenViewModel.swift in Sources */,

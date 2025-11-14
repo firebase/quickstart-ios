@@ -42,7 +42,7 @@ import OSLog
 @MainActor
 class GenerateContentFromTemplateViewModel: ObservableObject {
   private var logger = Logger(
-    subsystem: Bundle.main.bundleIdentifier ?? "com.google.firebase.VertexAISample",
+    subsystem: Bundle.main.bundleIdentifier ?? "com.google.firebase.quickstart.FirebaseAIExample",
     category: "generative-ai"
   )
 

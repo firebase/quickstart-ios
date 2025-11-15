@@ -15,7 +15,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8848C82E2B0D04BC007B434F"
+               BlueprintIdentifier = "88779D342EC8A9CF0080D023"
                BuildableName = "FirebaseAIExample.app"
                BlueprintName = "FirebaseAIExample"
                ReferencedContainer = "container:FirebaseAIExample.xcodeproj">
@@ -44,7 +44,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8848C82E2B0D04BC007B434F"
+            BlueprintIdentifier = "88779D342EC8A9CF0080D023"
             BuildableName = "FirebaseAIExample.app"
             BlueprintName = "FirebaseAIExample"
             ReferencedContainer = "container:FirebaseAIExample.xcodeproj">
@@ -67,7 +67,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8848C82E2B0D04BC007B434F"
+            BlueprintIdentifier = "88779D342EC8A9CF0080D023"
             BuildableName = "FirebaseAIExample.app"
             BlueprintName = "FirebaseAIExample"
             ReferencedContainer = "container:FirebaseAIExample.xcodeproj">

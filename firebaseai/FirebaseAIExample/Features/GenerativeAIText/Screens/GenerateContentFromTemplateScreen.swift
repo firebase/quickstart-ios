@@ -29,7 +29,7 @@ struct GenerateContentFromTemplateScreen: View {
     self.backendType = backendType
     _viewModel =
       StateObject(wrappedValue: GenerateContentFromTemplateViewModel(backendType: backendType,
-                                                            sample: sample))
+                                                                     sample: sample))
   }
 
   enum FocusedField: Hashable {

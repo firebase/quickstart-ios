@@ -60,7 +60,7 @@ class GenerateContentFromTemplateViewModel: ObservableObject {
       : FirebaseAI.firebaseAI(backend: .vertexAI())
 
     model = firebaseService.templateGenerativeModel()
-    
+
     if let sample {
       userInput = sample.initialPrompt ?? ""
     }
@@ -74,7 +74,7 @@ class GenerateContentFromTemplateViewModel: ObservableObject {
       defer {
         inProgress = false
       }
-      
+
       // Clear previous content before generating new content
       content = ""
 

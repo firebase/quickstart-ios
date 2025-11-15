@@ -115,7 +115,6 @@ struct ImagenScreen: View {
   }
 }
 
-
 #Preview {
   ImagenScreen(backendType: .googleAI)
 }

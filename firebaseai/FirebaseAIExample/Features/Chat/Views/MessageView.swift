@@ -16,7 +16,7 @@ import MarkdownUI
 import SwiftUI
 #if canImport(FirebaseAILogic)
   import FirebaseAILogic
-import ConversationKit
+  import ConversationKit
 #else
   import FirebaseAI
 #endif

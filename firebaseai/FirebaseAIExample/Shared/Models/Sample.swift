@@ -94,7 +94,9 @@ extension Sample {
       useCases: [.text],
       navRoute: "GenerateContentFromTemplateScreen",
       initialPrompt: "Peter",
-      systemInstruction: ModelContent(parts: "The user's name is {{name}}. They prefer to communicate in {{language}}.")
+      systemInstruction: ModelContent(
+        parts: "The user's name is {{name}}. They prefer to communicate in {{language}}."
+      )
     ),
     Sample(
       title: "Chatbot recommendations for courses",

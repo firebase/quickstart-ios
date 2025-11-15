@@ -50,10 +50,10 @@ class ImagenFromTemplateViewModel: ObservableObject {
   var hasError: Bool {
     return error != nil
   }
-  
+
   @Published
   var presentErrorDetails: Bool = false
-  
+
   @Published
   var inProgress = false
 
@@ -61,17 +61,17 @@ class ImagenFromTemplateViewModel: ObservableObject {
   private var backendType: BackendOption
 
   private var generateImagesTask: Task<Void, Never>?
-  
+
   private var sample: Sample?
 
   init(backendType: BackendOption, sample: Sample? = nil) {
     self.sample = sample
-        self.backendType = backendType
+    self.backendType = backendType
 
-        let firebaseService = backendType == .googleAI
-          ? FirebaseAI.firebaseAI(backend: .googleAI())
-          : FirebaseAI.firebaseAI(backend: .vertexAI())
-    
+    let firebaseService = backendType == .googleAI
+      ? FirebaseAI.firebaseAI(backend: .googleAI())
+      : FirebaseAI.firebaseAI(backend: .vertexAI())
+
     model = firebaseService.templateImagenModel()
   }
 

@@ -13,14 +13,7 @@
 // limitations under the License.
 
 import SwiftUI
-import FirebaseAI
-
-enum BackendOption: String, CaseIterable, Identifiable {
-  case googleAI = "Gemini Developer API"
-  case vertexAI = "Vertex AI Gemini API"
-
-  var id: String { rawValue }
-}
+import FirebaseAILogic
 
 struct ContentView: View {
   @State private var selectedBackend: BackendOption = .googleAI
@@ -107,6 +100,10 @@ struct ContentView: View {
       ChatScreen(backendType: selectedBackend, sample: sample)
     case "ImagenScreen":
       ImagenScreen(backendType: selectedBackend, sample: sample)
+    case "ImagenFromTemplateScreen":
+      ImagenFromTemplateScreen(backendType: selectedBackend, sample: sample)
+    case "GenerateContentFromTemplateScreen":
+      GenerateContentFromTemplateScreen(backendType: selectedBackend, sample: sample)
     case "MultimodalScreen":
       MultimodalScreen(backendType: selectedBackend, sample: sample)
     case "FunctionCallingScreen":

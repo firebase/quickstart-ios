@@ -30,7 +30,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "4125B7C6268E2E7C00232B67"
                BuildableName = "ABTestingExample.app"
-               BlueprintName = "ABTestingExample"
+               BlueprintName = "ABTestingExample (iOS)"
                ReferencedContainer = "container:ABTestingExample.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

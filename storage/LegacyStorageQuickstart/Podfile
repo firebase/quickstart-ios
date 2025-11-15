@@ -1,0 +1,14 @@
+# StorageExample
+
+use_frameworks!
+platform :ios, '15.0'
+
+pod 'FirebaseAuth'
+pod 'FirebaseStorage'
+
+target 'StorageExample' do
+end
+target 'StorageExampleSwift' do
+end
+target 'StorageExampleTests' do
+end

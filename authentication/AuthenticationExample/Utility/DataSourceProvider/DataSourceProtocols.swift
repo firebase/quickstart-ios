@@ -15,7 +15,7 @@
 import UIKit
 
 /// Models an object that can be used as an item in a tableview
-@MainActor protocol Itemable {
+protocol Itemable {
   var title: String? { get }
   var detailTitle: String? { get }
   var image: UIImage? { get set }
@@ -26,7 +26,7 @@ import UIKit
 }
 
 /// Models an object that can be used as a section in a tableview
-@MainActor protocol Sectionable {
+protocol Sectionable {
   associatedtype Item: Itemable
   var headerDescription: String? { get }
   var footerDescription: String? { get }
@@ -34,18 +34,18 @@ import UIKit
 }
 
 /// Delegate Protocol to handle cell selection and tableview scrolling
-@MainActor protocol DataSourceProviderDelegate: AnyObject {
+protocol DataSourceProviderDelegate: AnyObject {
   func didSelectRowAt(_ indexPath: IndexPath, on tableView: UITableView)
   func tableViewDidScroll(_ tableView: UITableView)
 }
 
-@MainActor extension DataSourceProviderDelegate {
+extension DataSourceProviderDelegate {
   /// Provide default implementation to prevent a required implementation when conforming to this protocol
   func tableViewDidScroll(_ tableView: UITableView) {}
 }
 
 /// Models a type that can be used for the datasource in a DataSourceProvider
-@MainActor protocol DataSourceProvidable {
+protocol DataSourceProvidable {
   associatedtype Section: Sectionable
   var sections: [Section] { get }
 }

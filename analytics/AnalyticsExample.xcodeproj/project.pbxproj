@@ -3,13 +3,10 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8D7951DB2D39BE24000FD694 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 8D7951DA2D39BE24000FD694 /* FirebaseAnalytics */; };
-		8D7951DD2D39BE29000FD694 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 8D7951DC2D39BE29000FD694 /* FirebaseAnalytics */; };
-		8D7951DF2D39BE2E000FD694 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 8D7951DE2D39BE2E000FD694 /* FirebaseAnalytics */; };
 		EA11716F24C6AB3D0085BD17 /* BlogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA11716E24C6AB3D0085BD17 /* BlogViewController.swift */; };
 		EA5C0BC624C5D2060010FDF6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA5C0BC524C5D2060010FDF6 /* AppDelegate.swift */; };
 		EA5C0BC824C5D2060010FDF6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA5C0BC724C5D2060010FDF6 /* SceneDelegate.swift */; };
@@ -91,7 +88,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8D7951DB2D39BE24000FD694 /* FirebaseAnalytics in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -106,7 +102,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8D7951DD2D39BE29000FD694 /* FirebaseAnalytics in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -121,7 +116,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8D7951DF2D39BE2E000FD694 /* FirebaseAnalytics in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -135,11 +129,11 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		8D7951D92D39BE24000FD694 /* Frameworks */ = {
+		2B283AC81B12C877411DB212 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			name = Frameworks;
+			path = Pods;
 			sourceTree = "<group>";
 		};
 		EA5C0BB924C5D2060010FDF6 = {
@@ -153,8 +147,8 @@
 				EDF987902715E41D008840FA /* AnalyticsExampleMac */,
 				EDF987A22715E421008840FA /* AnalyticsExampleMacTests */,
 				EA5C0BC324C5D2060010FDF6 /* Products */,
+				2B283AC81B12C877411DB212 /* Pods */,
 				EDF987FB2719C791008840FA /* GoogleService-Info.plist */,
-				8D7951D92D39BE24000FD694 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -395,9 +389,6 @@
 				Base,
 			);
 			mainGroup = EA5C0BB924C5D2060010FDF6;
-			packageReferences = (
-				8D7951D82D39BE12000FD694 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
-			);
 			productRefGroup = EA5C0BC324C5D2060010FDF6 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -1061,35 +1052,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		8D7951D82D39BE12000FD694 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 11.7.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		8D7951DA2D39BE24000FD694 /* FirebaseAnalytics */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8D7951D82D39BE12000FD694 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAnalytics;
-		};
-		8D7951DC2D39BE29000FD694 /* FirebaseAnalytics */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8D7951D82D39BE12000FD694 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAnalytics;
-		};
-		8D7951DE2D39BE2E000FD694 /* FirebaseAnalytics */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8D7951D82D39BE12000FD694 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAnalytics;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = EA5C0BBA24C5D2060010FDF6 /* Project object */;
 }

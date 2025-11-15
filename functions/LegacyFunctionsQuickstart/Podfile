@@ -1,0 +1,21 @@
+# FunctionsExample
+
+use_frameworks!
+platform :ios, '15.0'
+
+pod 'FirebaseAnalytics'
+pod 'FirebaseAuth'
+pod 'FirebaseUI/Auth', '~> 15.0'
+pod 'FirebaseUI/Google', '~> 15.0'
+# [START functions_pod]
+pod 'FirebaseFunctions'
+# [END functions_pod]
+
+pod 'MaterialComponents/Buttons'
+pod 'MaterialComponents/Collections'
+pod 'MaterialComponents/TextFields'
+
+target 'FunctionsExample' do
+end
+target 'FunctionsExampleSwift' do
+end

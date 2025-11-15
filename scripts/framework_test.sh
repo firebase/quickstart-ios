@@ -29,6 +29,10 @@ EXIT_STATUS=0
 
 cd "${SAMPLE}"
 
+if [[ ! -z "$LEGACY" ]]; then
+  cd "Legacy${SAMPLE}Quickstart"
+fi
+
 if [[ "$have_secrets" == true ]]; then
     (
     xcodebuild \

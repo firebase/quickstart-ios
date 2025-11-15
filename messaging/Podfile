@@ -1,0 +1,22 @@
+# Firebase Cloud Messaging (FCM)
+
+use_frameworks!
+platform :ios, '15.0'
+
+def firebase_pods
+  pod 'FirebaseAnalytics'
+  pod 'FirebaseMessaging'
+end 
+
+target 'MessagingExample' do
+  firebase_pods
+end
+target 'MessagingExampleSwift' do
+  firebase_pods
+end
+target 'NotificationServiceExtension' do
+  firebase_pods
+end
+
+target 'MessagingExampleTests' do
+end

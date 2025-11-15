@@ -19,6 +19,7 @@ import FirebaseFirestore
 import FirebaseAuth
 import FirebaseAuthUI
 import FirebaseEmailAuthUI
+import SDWebImage
 
 func priceString(from price: Int) -> String {
   let priceText: String
@@ -141,8 +142,7 @@ class RestaurantsTableViewController: UIViewController, UITableViewDataSource, U
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
     let auth = FUIAuth.defaultAuthUI()!
-    let underlyingAuth = Auth.auth()
-    if underlyingAuth.currentUser == nil {
+    if auth.auth?.currentUser == nil {
       let emailAuthProvider = FUIEmailAuth()
       auth.providers = [emailAuthProvider]
       present(auth.authViewController(), animated: true, completion: nil)

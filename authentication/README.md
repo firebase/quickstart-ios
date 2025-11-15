@@ -5,6 +5,8 @@
 
 This Firebase quickstart is written in Swift and aims to showcase how Firebase Auth can help manage user authentication. You can read more about Firebase Auth [here](https://firebase.google.com/docs/auth)!
 
+To view the older Objective-C and Swift quickstarts, view the [`LegacyAuthQuickstart`](https://github.com/firebase/quickstart-ios/blob/main/authentication/LegacyAuthQuickstart) directory.
+
 ## Getting Started
 
 Firebase Auth offers multiple ways to authenticate users. In this quickstart, we demonstrate how you can use Firebase Auth to authenticate users by providing implementations for the various authentication flows. Since each Firebase Auth flow is different, each may require a few extra steps to set everything up. Feel free to follow along and configure as many authentication flows as you would like to demo!  
@@ -296,7 +298,7 @@ If you wish to setup a custom auth system. The below steps can help in its confi
     - Click **New credentials** and select **Service account key**. Select **New service account**,
     pick any name, and select **JSON** as the key type. Then click **Create**.
     - You should now have a new JSON file for your service account in your Downloads directory.
-- Open the file `web/auth.html` in your computer's web browser. The `auth.html` file can now be found in the current directory's `web` subdirectory.
+- Open the file `web/auth.html` in your computer's web browser. The `auth.html` file can now be found in the current directory's `LegacyAuthQuickstart` subdirectory.
     - Click **Choose File** and upload the JSON file you just downloaded.
     - Enter any User ID and click **Generate**.
     - Copy the token link displayed.

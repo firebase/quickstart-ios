@@ -65,7 +65,7 @@ class ImagenViewModel: ObservableObject {
     )
     var generationConfig = ImagenGenerationConfig()
     generationConfig.numberOfImages = 4
-    generationConfig.aspectRatio = .landscape4x3
+    generationConfig.aspectRatio = .square1x1
 
     model = firebaseService.imagenModel(
       modelName: modelName,

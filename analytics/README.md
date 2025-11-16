@@ -5,7 +5,12 @@ Analytics can provide insight on app usage and user engagement. You can read mor
 about Google Analytics for Firebase [here](https://firebase.google.com/docs/analytics)!
 
 The iOS, iPadOS, and Catalyst versions are powered by UIKit. The tvOS and macOS
-versions are powered by SwiftUI.
+versions are powered by SwiftUI. Note that Catalyst, macOS, and tvOS support for Google
+Analytics for Firebase are in beta as of version 8.9.0.
+
+To view the older Objective-C and Swift quickstarts, view the
+[`LegacyAnalyticsQuickstart`](https://github.com/firebase/quickstart-ios/blob/main/analytics/LegacyAnalyticsQuickstart)
+directory.
 
 ## Getting Started
 

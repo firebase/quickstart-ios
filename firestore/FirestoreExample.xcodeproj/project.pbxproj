@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 77;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -19,13 +19,6 @@
 		8D9BBC381EE2200900194E9A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D9BBC371EE2200900194E9A /* Assets.xcassets */; };
 		8D9BBC3B1EE2200900194E9A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D9BBC391EE2200900194E9A /* LaunchScreen.storyboard */; };
 		8D9BBC461EE2200900194E9A /* FirestoreExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9BBC451EE2200900194E9A /* FirestoreExampleTests.swift */; };
-		8DC73D692D41A3AD0092B6EE /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 8DC73D682D41A3AD0092B6EE /* FirebaseAuth */; };
-		8DC73D6B2D41A3AD0092B6EE /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 8DC73D6A2D41A3AD0092B6EE /* FirebaseFirestore */; };
-		8DC73D6D2D41A3B60092B6EE /* FirebaseAuthUI in Frameworks */ = {isa = PBXBuildFile; productRef = 8DC73D6C2D41A3B60092B6EE /* FirebaseAuthUI */; };
-		8DC73D6F2D41A3B60092B6EE /* FirebaseEmailAuthUI in Frameworks */ = {isa = PBXBuildFile; productRef = 8DC73D6E2D41A3B60092B6EE /* FirebaseEmailAuthUI */; };
-		8DC73D722D41A4330092B6EE /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 8DC73D712D41A4330092B6EE /* SDWebImage */; };
-		8DC73D742D41A5BF0092B6EE /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 8DC73D732D41A5BF0092B6EE /* FirebaseAuth */; };
-		8DC73D762D41A5BF0092B6EE /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 8DC73D752D41A5BF0092B6EE /* FirebaseFirestore */; };
 		8DD9ACDA1F7B166900C2DD24 /* pizza-monster.png in Resources */ = {isa = PBXBuildFile; fileRef = 8DD9ACD91F7B166900C2DD24 /* pizza-monster.png */; };
 		8DF1E3131EE5CFF900192CDE /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF1E3121EE5CFF900192CDE /* Restaurant.swift */; };
 		8DF1E3151EE72C4600192CDE /* LocalCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF1E3141EE72C4600192CDE /* LocalCollection.swift */; };
@@ -141,11 +134,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8DC73D6F2D41A3B60092B6EE /* FirebaseEmailAuthUI in Frameworks */,
-				8DC73D692D41A3AD0092B6EE /* FirebaseAuth in Frameworks */,
-				8DC73D6D2D41A3B60092B6EE /* FirebaseAuthUI in Frameworks */,
-				8DC73D6B2D41A3AD0092B6EE /* FirebaseFirestore in Frameworks */,
-				8DC73D722D41A4330092B6EE /* SDWebImage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -160,8 +148,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8DC73D742D41A5BF0092B6EE /* FirebaseAuth in Frameworks */,
-				8DC73D762D41A5BF0092B6EE /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -189,7 +175,6 @@
 				8E4C62CF25E9CFE0001678A1 /* FirestoreSwiftUIExample */,
 				8D9BBC2E1EE2200900194E9A /* Products */,
 				6AA80A371E484FE3095D24C4 /* GoogleService-Info.plist */,
-				8DC73D672D41A3AD0092B6EE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -232,13 +217,6 @@
 				8D9BBC471EE2200900194E9A /* Info.plist */,
 			);
 			path = FirestoreExampleTests;
-			sourceTree = "<group>";
-		};
-		8DC73D672D41A3AD0092B6EE /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		8E1E43AB25F9604B00BC64D3 /* Extensions */ = {
@@ -401,9 +379,8 @@
 		8D9BBC251EE2200800194E9A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1230;
-				LastUpgradeCheck = 1610;
+				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = Firebase;
 				TargetAttributes = {
 					1073476F203159E3004A66D1 = {
@@ -430,6 +407,7 @@
 				};
 			};
 			buildConfigurationList = 8D9BBC281EE2200800194E9A /* Build configuration list for PBXProject "FirestoreExample" */;
+			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -437,12 +415,6 @@
 				Base,
 			);
 			mainGroup = 8D9BBC241EE2200800194E9A;
-			packageReferences = (
-				8DC73D652D41A3040092B6EE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
-				8DC73D662D41A3410092B6EE /* XCRemoteSwiftPackageReference "FirebaseUI-iOS" */,
-				8DC73D702D41A42A0092B6EE /* XCRemoteSwiftPackageReference "SDWebImage" */,
-			);
-			preferredProjectObjectVersion = 77;
 			productRefGroup = 8D9BBC2E1EE2200900194E9A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -609,11 +581,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = FirestoreExampleUITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.FirestoreExampleUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "FirestoreExampleUITests/FirestoreExampleUITests-Bridging-Header.h";
@@ -641,11 +609,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = FirestoreExampleUITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.FirestoreExampleUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "FirestoreExampleUITests/FirestoreExampleUITests-Bridging-Header.h";
@@ -681,7 +645,6 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -692,7 +655,6 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -707,7 +669,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -743,7 +705,6 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -754,7 +715,6 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -763,11 +723,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -781,10 +740,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "$(SRCROOT)/FirestoreExample/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.firebase.FirestoreExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -802,10 +758,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "$(SRCROOT)/FirestoreExample/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.firebase.FirestoreExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -817,13 +770,10 @@
 		8D9BBC4E1EE2200900194E9A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = FirestoreExampleTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.firebase.FirestoreExampleTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -834,13 +784,10 @@
 		8D9BBC4F1EE2200900194E9A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = FirestoreExampleTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.firebase.FirestoreExampleTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -861,11 +808,8 @@
 				ENABLE_PREVIEWS = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = FirestoreSwiftUIExample/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.firebase.FirestoreSwiftUIExample;
@@ -888,11 +832,8 @@
 				ENABLE_PREVIEWS = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = FirestoreSwiftUIExample/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.firebase.FirestoreSwiftUIExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -950,71 +891,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		8DC73D652D41A3040092B6EE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 11.7.0;
-			};
-		};
-		8DC73D662D41A3410092B6EE /* XCRemoteSwiftPackageReference "FirebaseUI-iOS" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/firebase/FirebaseUI-iOS";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 15.0.0;
-			};
-		};
-		8DC73D702D41A42A0092B6EE /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SDWebImage/SDWebImage.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.20.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		8DC73D682D41A3AD0092B6EE /* FirebaseAuth */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8DC73D652D41A3040092B6EE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAuth;
-		};
-		8DC73D6A2D41A3AD0092B6EE /* FirebaseFirestore */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8DC73D652D41A3040092B6EE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseFirestore;
-		};
-		8DC73D6C2D41A3B60092B6EE /* FirebaseAuthUI */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8DC73D662D41A3410092B6EE /* XCRemoteSwiftPackageReference "FirebaseUI-iOS" */;
-			productName = FirebaseAuthUI;
-		};
-		8DC73D6E2D41A3B60092B6EE /* FirebaseEmailAuthUI */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8DC73D662D41A3410092B6EE /* XCRemoteSwiftPackageReference "FirebaseUI-iOS" */;
-			productName = FirebaseEmailAuthUI;
-		};
-		8DC73D712D41A4330092B6EE /* SDWebImage */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8DC73D702D41A42A0092B6EE /* XCRemoteSwiftPackageReference "SDWebImage" */;
-			productName = SDWebImage;
-		};
-		8DC73D732D41A5BF0092B6EE /* FirebaseAuth */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8DC73D652D41A3040092B6EE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAuth;
-		};
-		8DC73D752D41A5BF0092B6EE /* FirebaseFirestore */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8DC73D652D41A3040092B6EE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseFirestore;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 8D9BBC251EE2200800194E9A /* Project object */;
 }

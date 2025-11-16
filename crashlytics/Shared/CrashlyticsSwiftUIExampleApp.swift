@@ -14,14 +14,16 @@
 // limitations under the License.
 //
 
+import SwiftUI
 import FirebaseCore
 import FirebaseCrashlytics
-import SwiftUI
 
 @main
 struct CrashlyticsSwiftUIExampleApp: App {
   private var crashlyticsReference = Crashlytics.crashlytics()
-  let reachabilityHelper = ReachabilityHelper()
+  #if !os(watchOS)
+    let reachabilityHelper = ReachabililtyHelper()
+  #endif
 
   func setUserInfo() {
     let userInfo = [
@@ -44,12 +46,15 @@ struct CrashlyticsSwiftUIExampleApp: App {
   func setCustomValues() {
     crashlyticsReference.setCustomValue(42, forKey: "MeaningOfLife")
     crashlyticsReference.setCustomValue("Test value", forKey: "last_UI_action")
-    let customKeysObject = [
-      "locale": reachabilityHelper.getLocale(),
-      "network_connection": reachabilityHelper.getNetworkStatus(),
-    ] as [String: Any]
-    crashlyticsReference.setCustomKeysAndValues(customKeysObject)
-    reachabilityHelper.updateAndTrackNetworkStatus()
+    // Reachability is not compatible with watchOS
+    #if !os(watchOS)
+      let customKeysObject = [
+        "locale": reachabilityHelper.getLocale(),
+        "network_connection": reachabilityHelper.getNetworkStatus(),
+      ] as [String: Any]
+      crashlyticsReference.setCustomKeysAndValues(customKeysObject)
+      reachabilityHelper.updateAndTrackNetworkStatus()
+    #endif
     Crashlytics.crashlytics().setUserID("123456789")
   }
 

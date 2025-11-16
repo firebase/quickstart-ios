@@ -25,11 +25,11 @@ xcode_version="${xcode_version/Xcode /}"
 xcode_major="${xcode_version/.*/}"
 
 if [[ "$xcode_major" -ge 26 ]]; then
-  iphone_version="17"
-  ios_version="26"
+  iphone_version="17 Pro"
+  ios_version="26.1"
 elif [[ "$xcode_major" -ge 16 ]]; then
-  iphone_version="16"
-  ios_version="18"
+  iphone_version="16 Pro"
+  ios_version="18.6"
 else
   echo "Unsupported Xcode version $xcode_version; exiting." 1>&2
   exit 1

@@ -58,7 +58,7 @@ class FunctionCallingViewModel: ObservableObject {
 
     // create a generative model with sample data
     model = firebaseService.generativeModel(
-      modelName: sample?.modelName ?? "gemini-2.0-flash-001",
+      modelName: sample?.modelName ?? "gemini-2.5-flash-lite",
       tools: sample?.tools,
       systemInstruction: sample?.systemInstruction
     )

@@ -26,8 +26,10 @@ xcode_major="${xcode_version/.*/}"
 
 if [[ "$xcode_major" -ge 26 ]]; then
   iphone_version="17"
+  ios_version: "26"
 elif [[ "$xcode_major" -ge 16 ]]; then
   iphone_version="16"
+  ios_version: "18"
 else
   echo "Unsupported Xcode version $xcode_version; exiting." 1>&2
   exit 1
@@ -39,7 +41,7 @@ if [[ -z "${SPM:-}" ]]; then
     echo "Defaulting to SPM=$SPM"
 fi
 if [[ -z "${OS:-}" ]]; then
-    OS=iOS
+    OS="iOS ${ios_version}"
     DEVICE="iPhone ${iphone_version}"
     echo "Defaulting to OS=$OS"
     echo "Defaulting to DEVICE=$DEVICE"

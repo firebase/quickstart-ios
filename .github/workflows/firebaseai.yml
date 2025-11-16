@@ -30,10 +30,12 @@ jobs:
             xcode: "16.4"
             platform: iOS
             device: iPhone 16
+            ios_version: "18"
           - os: macos-26
             xcode: "26.0"
             platform: iOS
             device: iPhone 16e
+            ios_version: "26"
     runs-on: ${{ matrix.os }}
     env:
       SETUP: firebaseai

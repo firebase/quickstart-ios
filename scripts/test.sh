@@ -97,7 +97,7 @@ flags+=( -scheme "$SCHEME" )
 
 # Set destination
 if [[ "$OS" == iOS ]]; then
-    DESTINATION="platform=iOS Simulator,name=${DEVICE}"
+    DESTINATION="platform=iOS Simulator,name=${DEVICE},OS=${{ matrix.ios_version }}"
     flags+=( -destination "$DESTINATION" )
 elif [[ "$OS" == tvOS ]]; then
     DESTINATION="platform=tvOS Simulator,name=${DEVICE}"

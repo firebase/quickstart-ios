@@ -72,17 +72,24 @@ public struct MultimodalAttachment: Attachment, Equatable {
   }
 }
 
+extension MultimodalAttachment {
+  @ViewBuilder
+  public func previewView() -> any View {
+    AttachmentPreviewCard(attachment: self)
+  }
+}
+
 // validate file type & mime type
 extension MultimodalAttachment {
   public static let supportedFileExtensions: Set<String> = [
-    // Documents / text
-    "pdf", "txt", "text",
     // Images
-    "jpg", "jpeg", "png", "webp",
+    "png", "jpeg", "webp",
     // Video
-    "flv", "mov", "qt", "mpeg", "mpg", "ps", "mp4", "webm", "wmv", "3gp", "3gpp",
+    "flv", "mov", "mpeg", "mpegps", "mpg", "mp4", "webm", "wmv", "3gpp",
     // Audio
-    "aac", "flac", "mp3", "m4a", "mpga", "mp4a", "opus", "pcm", "raw", "wav", "weba",
+    "aac", "flac", "mp3", "mpa", "mpeg", "mpga", "mp4", "opus", "pcm", "wav", "webm",
+    // Documents
+    "pdf", "txt",
   ]
 
   public static func validateFileType(url: URL) throws {
@@ -209,38 +216,32 @@ extension MultimodalAttachment {
     let fileExtension = url.pathExtension.lowercased()
 
     switch fileExtension {
-    // Documents / text
-    case "pdf":
-      return "application/pdf"
-    case "txt", "text":
-      return "text/plain"
-
     // Images
-    case "jpg", "jpeg":
-      return "image/jpeg"
     case "png":
       return "image/png"
+    case "jpeg":
+      return "image/jpeg"
     case "webp":
       return "image/webp"
 
     // Video
     case "flv":
       return "video/x-flv"
-    case "mov", "qt":
+    case "mov":
       return "video/quicktime"
     case "mpeg":
       return "video/mpeg"
+    case "mpegps":
+      return "video/mpegps"
     case "mpg":
       return "video/mpg"
-    case "ps":
-      return "video/mpegps"
     case "mp4":
       return "video/mp4"
     case "webm":
       return "video/webm"
     case "wmv":
       return "video/wmv"
-    case "3gp", "3gpp":
+    case "3gpp":
       return "video/3gpp"
 
     // Audio
@@ -249,21 +250,27 @@ extension MultimodalAttachment {
     case "flac":
       return "audio/flac"
     case "mp3":
-      return "audio/mpeg"
-    case "m4a":
+      return "audio/mp3"
+    case "mpa":
       return "audio/m4a"
+    case "mpeg":
+      return "audio/mpeg"
     case "mpga":
       return "audio/mpga"
-    case "mp4a":
+    case "mp4":
       return "audio/mp4"
     case "opus":
       return "audio/opus"
-    case "pcm", "raw":
-      return "audio/pcm"
     case "wav":
       return "audio/wav"
-    case "weba":
+    case "webm":
       return "audio/webm"
+
+    // Documents / text
+    case "pdf":
+      return "application/pdf"
+    case "txt":
+      return "text/plain"
 
     default:
       return "application/octet-stream"

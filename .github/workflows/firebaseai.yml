@@ -42,6 +42,7 @@ jobs:
       SPM: true
       DIR: firebaseai
       OS: ${{ matrix.platform }}
+      VERSION: ${{ matrix.ios_version }}
       DEVICE: ${{ matrix.device }}
       TEST: false
     steps:

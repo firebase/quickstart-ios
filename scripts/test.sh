@@ -98,6 +98,9 @@ flags+=( -scheme "$SCHEME" )
 # Set destination
 if [[ "$OS" == iOS ]]; then
     DESTINATION="platform=iOS Simulator,name=${DEVICE}"
+    if [[ -n "${VERSION:-}" ]]; then
+        DESTINATION+=",OS=${VERSION}"
+    fi
     flags+=( -destination "$DESTINATION" )
 elif [[ "$OS" == tvOS ]]; then
     DESTINATION="platform=tvOS Simulator,name=${DEVICE}"

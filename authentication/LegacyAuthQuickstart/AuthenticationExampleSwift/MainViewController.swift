@@ -160,12 +160,8 @@ class MainViewController: UITableViewController {
           }
         }
       case .authApple:
-        if #available(iOS 13, *) {
-          action = UIAlertAction(title: "Apple", style: .default) { UIAlertAction in
-            self.startSignInWithAppleFlow()
-          }
-        } else {
-          continue
+        action = UIAlertAction(title: "Apple", style: .default) { UIAlertAction in
+          self.startSignInWithAppleFlow()
         }
       case .authFacebook:
         action = UIAlertAction(title: "Facebook", style: .default) { UIAlertAction in
@@ -1026,7 +1022,6 @@ class MainViewController: UITableViewController {
   // Unhashed nonce.
   fileprivate var currentNonce: String?
 
-  @available(iOS 13, *)
   func startSignInWithAppleFlow() {
     let nonce = randomNonceString()
     currentNonce = nonce
@@ -1066,7 +1061,6 @@ class MainViewController: UITableViewController {
   // [END random_nonce]
 
   // [START sha_256]
-  @available(iOS 13, *)
   private func sha256(_ input: String) -> String {
     let inputData = Data(input.utf8)
     let hashedData = SHA256.hash(data: inputData)
@@ -1080,7 +1074,6 @@ class MainViewController: UITableViewController {
   // [END sha_256]
 }
 
-@available(iOS 13.0, *)
 extension MainViewController: ASAuthorizationControllerDelegate {
   func authorizationController(controller: ASAuthorizationController,
                                didCompleteWithAuthorization authorization: ASAuthorization) {
@@ -1113,7 +1106,6 @@ extension MainViewController: ASAuthorizationControllerDelegate {
   }
 }
 
-@available(iOS 13.0, *)
 extension MainViewController: ASAuthorizationControllerPresentationContextProviding {
   func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
     return view.window!

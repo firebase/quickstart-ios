@@ -48,7 +48,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   }
 
   // [START new_delegate]
-  @available(iOS 9.0, *)
   func application(_ application: UIApplication, open url: URL,
                    options: [UIApplication.OpenURLOptionsKey: Any])
     -> Bool {

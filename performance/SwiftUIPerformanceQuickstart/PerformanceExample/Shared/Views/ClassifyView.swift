@@ -37,15 +37,7 @@ struct ClassifyView: View {
         } else {
           Button("Classify Image") {
             if !process.isRunning {
-              if #available(iOS 15, tvOS 15, *) {
-                #if swift(>=5.5)
-                  Task { await process.classifyImageAsync() }
-                #else
-                  process.classifyImage()
-                #endif
-              } else {
-                process.classifyImage()
-              }
+              Task { await process.classifyImageAsync() }
             }
           }
           .disabled(process.isRunning)

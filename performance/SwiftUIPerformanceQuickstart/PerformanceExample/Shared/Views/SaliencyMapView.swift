@@ -30,15 +30,7 @@ struct SaliencyMapView: View {
           Image(uiImage: image).padding(.bottom)
           Button("Generate Saliency Map") {
             if !process.isRunning {
-              if #available(iOS 15, tvOS 15, *) {
-                #if swift(>=5.5)
-                  Task { await process.generateSaliencyMapAsync() }
-                #else
-                  process.generateSaliencyMap()
-                #endif
-              } else {
-                process.generateSaliencyMap()
-              }
+              Task { await process.generateSaliencyMapAsync() }
             }
           }
           .disabled(process.isRunning)

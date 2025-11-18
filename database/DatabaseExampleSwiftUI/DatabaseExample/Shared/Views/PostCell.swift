@@ -31,17 +31,9 @@ struct PostCell: View {
             #if os(iOS) || os(macOS)
               starButton
                 .onTapGesture {
-                  if #available(iOS 15, macOS 12, *) {
-                    #if compiler(>=5.5) && canImport(_Concurrency)
-                      Task { await
-                        post.didTapStarButtonAsync()
-                      }
-                    #else
-                      post.didTapStarButton()
-                    #endif
-                  } else {
-                    post.didTapStarButton()
-                  }
+                    Task { await
+                      post.didTapStarButtonAsync()
+                    }
                 }
             #elseif os(tvOS)
               starButton

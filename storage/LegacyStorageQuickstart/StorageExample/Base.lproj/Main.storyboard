@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="byF-jG-Fga">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="Jha-lQ-9P1">
+            <objects>
+                <navigationController id="byF-jG-Fga" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="X7b-cS-vli">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.0" green="0.52156862745098043" blue="0.88627450980392153" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="ewu-8n-6qh"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rl1-zC-HKJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-133" y="-207"/>
+        </scene>
+        <!--Firebase Storage-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController title="Firebase Storage" id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kNe-hA-Ajt">
+                                <rect key="frame" x="240" y="157" width="121" height="30"/>
+                                <state key="normal" title="Download Picture"/>
+                                <connections>
+                                    <segue destination="dTy-Zw-dam" kind="show" id="7Pz-m3-3O8"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g4V-CR-dck">
+                                <rect key="frame" x="111" y="95" width="378" height="44"/>
+                                <color key="backgroundColor" red="1" green="0.5607843137254902" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <state key="normal" title="Take Picture">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="didTapTakePicture:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ydh-qg-AYm"/>
+                                </connections>
+                            </button>
+                            <textView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" editable="NO" text=" " textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="H8c-gN-cFS">
+                                <rect key="frame" x="24" y="209" width="552" height="200"/>
+                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="H8c-gN-cFS" secondAttribute="bottom" constant="191" id="5Cr-MM-HS0"/>
+                            <constraint firstItem="H8c-gN-cFS" firstAttribute="top" secondItem="kNe-hA-Ajt" secondAttribute="bottom" constant="22" id="76q-3a-oNi"/>
+                            <constraint firstItem="g4V-CR-dck" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="91" id="K40-c3-OD9"/>
+                            <constraint firstItem="g4V-CR-dck" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="31" id="LPh-gJ-WG5"/>
+                            <constraint firstItem="H8c-gN-cFS" firstAttribute="centerX" secondItem="kNe-hA-Ajt" secondAttribute="centerX" id="UUY-dX-PoC"/>
+                            <constraint firstItem="kNe-hA-Ajt" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="c2T-4e-hHN"/>
+                            <constraint firstItem="H8c-gN-cFS" firstAttribute="centerX" secondItem="g4V-CR-dck" secondAttribute="centerX" id="c6q-jM-VbM"/>
+                            <constraint firstItem="H8c-gN-cFS" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="4" id="ozp-TW-qjG"/>
+                            <constraint firstItem="kNe-hA-Ajt" firstAttribute="top" secondItem="g4V-CR-dck" secondAttribute="bottom" constant="18" id="qyw-y9-N56"/>
+                            <constraint firstItem="kNe-hA-Ajt" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="157" id="sfl-pR-oEs"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Cloud Storage for Firebase Example" id="lX3-oi-C1r"/>
+                    <connections>
+                        <outlet property="downloadPicButton" destination="kNe-hA-Ajt" id="PEn-5w-PhG"/>
+                        <outlet property="takePicButton" destination="g4V-CR-dck" id="p2o-E3-Yit"/>
+                        <outlet property="urlTextView" destination="H8c-gN-cFS" id="zDa-Jb-SGK"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="584.79999999999995" y="-208.24587706146929"/>
+        </scene>
+        <!--Download View Controller-->
+        <scene sceneID="gJX-AO-jHQ">
+            <objects>
+                <viewController id="dTy-Zw-dam" customClass="DownloadViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="zic-HH-UQ7"/>
+                        <viewControllerLayoutGuide type="bottom" id="8dZ-Gi-AVY"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="27f-X7-nNm">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YWo-Xi-oCi">
+                                <rect key="frame" x="0.0" y="0.0" width="0.0" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" id="XH4-qK-JPp"/>
+                                </constraints>
+                                <items>
+                                    <navigationItem title="Title" id="Rfx-OL-UUJ"/>
+                                </items>
+                            </navigationBar>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0ot-gz-oeU">
+                                <rect key="frame" x="87" y="113" width="426" height="240"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="240" id="E7b-0Z-Dbc"/>
+                                </constraints>
+                            </imageView>
+                            <textView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" editable="NO" text=" " textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Ujz-6e-2KW">
+                                <rect key="frame" x="40" y="452" width="520" height="13"/>
+                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="0ot-gz-oeU" firstAttribute="centerX" secondItem="27f-X7-nNm" secondAttribute="centerX" id="1CB-kJ-mAN"/>
+                            <constraint firstItem="8dZ-Gi-AVY" firstAttribute="top" secondItem="Ujz-6e-2KW" secondAttribute="bottom" constant="135" id="Ogn-V7-KmS"/>
+                            <constraint firstItem="YWo-Xi-oCi" firstAttribute="leading" secondItem="27f-X7-nNm" secondAttribute="leading" id="SWQ-pM-gNV"/>
+                            <constraint firstItem="Ujz-6e-2KW" firstAttribute="centerX" secondItem="0ot-gz-oeU" secondAttribute="centerX" id="Tep-nB-TTL"/>
+                            <constraint firstItem="0ot-gz-oeU" firstAttribute="top" secondItem="zic-HH-UQ7" secondAttribute="bottom" constant="49" id="ajS-1F-3xL"/>
+                            <constraint firstItem="YWo-Xi-oCi" firstAttribute="top" secondItem="27f-X7-nNm" secondAttribute="top" id="fXH-ja-hPT"/>
+                            <constraint firstItem="0ot-gz-oeU" firstAttribute="leading" secondItem="27f-X7-nNm" secondAttribute="leadingMargin" constant="67" id="sTV-yN-nMb"/>
+                            <constraint firstItem="Ujz-6e-2KW" firstAttribute="top" secondItem="0ot-gz-oeU" secondAttribute="bottom" constant="99" id="t9B-Ev-REG"/>
+                            <constraint firstItem="Ujz-6e-2KW" firstAttribute="leading" secondItem="27f-X7-nNm" secondAttribute="leadingMargin" constant="20" id="un2-ew-JOr"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="0ot-gz-oeU" id="5Ui-Hy-FqL"/>
+                        <outlet property="statusTextView" destination="Ujz-6e-2KW" id="9n2-zt-t3g"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NZ8-1l-AS2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1322" y="-208"/>
+        </scene>
+    </scenes>
+</document>

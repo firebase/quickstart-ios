@@ -1,8 +1,5 @@
 name: Crashlytics
 
-permissions:
-  contents: read
-
 on:
   push:
     branches: [ main ]
@@ -30,6 +27,31 @@ env:
   secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}
 
 jobs:
+  cocoapods:
+    name: cocoapods
+    runs-on: macOS-15
+    env:
+      SPM: false
+      LEGACY: true
+      OS: iOS
+      DEVICE: iPhone 16
+      TEST: true
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+      - name: Setup
+        run: |
+          cd crashlytics/LegacyCrashlyticsQuickstart
+          gem install bundler
+          bundle install
+          gem install xcpretty
+          bundle exec pod install --repo-update
+          cd ..
+          ../scripts/install_prereqs/crashlytics.sh
+      - name: Build Swift
+        run: ./scripts/test.sh
+        env:
+          SWIFT_SUFFIX: Swift
   spm:
     name: spm (Xcode ${{ matrix.xcode }} - ${{ matrix.os }})
     runs-on: macOS-15
@@ -57,6 +79,7 @@ jobs:
       OS: ${{ matrix.os }}
       DEVICE: ${{ matrix.device }}
       TEST: ${{ matrix.test }}
+      DEVELOPER_DIR: /Applications/Xcode_${{ matrix.xcode }}.app/Contents/Developer
     steps:
       - name: Checkout
         uses: actions/checkout@master

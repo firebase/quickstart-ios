@@ -1,8 +1,5 @@
 name: Performance
 
-permissions:
-  contents: read
-
 on:
   push:
     branches: [ main ]
@@ -34,27 +31,30 @@ env:
   secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}
 
 jobs:
-  spm-buildonly:
-    name: spm
+  cocoapods:
+    name: cocoapods
     runs-on: macOS-15
     env:
-      SPM: true
+      SPM: false
+      LEGACY: false
       OS: iOS
       DEVICE: iPhone 16
       TEST: true
-      DIR: performance
-      SCHEME: PerformanceExample
     steps:
       - name: Checkout
         uses: actions/checkout@master
       - name: Setup
         run: |
           cd performance
+          gem install bundler
+          bundle install
           gem install xcpretty
+          bundle exec pod install --repo-update
           ../scripts/install_prereqs/performance.sh
       - name: Build Swift
         run: ./scripts/test.sh
-          
+        env:
+          SWIFT_SUFFIX: Swift
   spm:
     name: spm (Xcode ${{ matrix.xcode }} - ${{ matrix.os }})
     runs-on: macOS-15
@@ -76,6 +76,8 @@ jobs:
       OS: ${{ matrix.os }}
       DEVICE: ${{ matrix.device }}
       TEST: ${{ matrix.test }}
+      XCODE_VERSION: ${{ matrix.xcode }}
+      DEVELOPER_DIR: /Applications/Xcode_${{ matrix.xcode }}.app/Contents/Developer
     steps:
       - name: Checkout
         uses: actions/checkout@master

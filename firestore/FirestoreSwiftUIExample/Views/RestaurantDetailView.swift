@@ -18,6 +18,7 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct RestaurantDetailView: View {
   var restaurant: Restaurant

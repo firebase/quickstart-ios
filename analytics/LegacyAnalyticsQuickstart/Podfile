@@ -1,0 +1,16 @@
+# AnalyticsExample
+
+use_frameworks!
+platform :ios, '15.0'
+
+target 'AnalyticsExample' do
+  pod 'FirebaseAnalytics'
+
+  target 'AnalyticsExampleTests' do
+    inherit! :search_paths
+  end
+end
+
+target 'AnalyticsExampleSwift' do
+  pod 'FirebaseAnalytics'
+end

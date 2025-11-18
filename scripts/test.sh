@@ -37,8 +37,12 @@ xcode_major="${xcode_version/.*/}"
 
 # Set default parameters
 if [[ -z "${SPM:-}" ]]; then
-    SPM=true
+    SPM=false
     echo "Defaulting to SPM=$SPM"
+    if [[ -z "${LEGACY:-}" ]]; then
+        LEGACY=false
+        echo "Defaulting to LEGACY=$LEGACY"
+    fi
 fi
 if [[ -z "${OS:-}" ]]; then
     OS=iOS
@@ -61,33 +65,18 @@ flags=()
 if [[ "$SPM" == true ]];then
     flags+=( -project "${DIR}/${SAMPLE}Example.xcodeproj" )
 else
-    WORKSPACE="${SAMPLE}/${SAMPLE}Example.xcworkspace"
+    if [[ "$LEGACY" == true ]]; then
+        WORKSPACE="${SAMPLE}/Legacy${SAMPLE}Quickstart/${SAMPLE}Example.xcworkspace"
+    else
+        WORKSPACE="${SAMPLE}/${SAMPLE}Example.xcworkspace"
+    fi
     flags+=( -workspace "$WORKSPACE" )
 fi
 
 # Set scheme
 if [[ -z "${SCHEME:-}" ]]; then
     if [[ "$SPM" == true ]];then
-        # Get the list of schemes
-        schemes=$(xcodebuild -list -project "${DIR}/${SAMPLE}Example.xcodeproj" |
-            grep -E '^\s+' |
-            sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')
-
-        # Check for the OS-suffixed scheme name
-        if echo "$schemes" | grep -q "^${SAMPLE}Example (${OS})$"; then
-            SCHEME="${SAMPLE}Example (${OS})"
-        # Check for the Swift-suffixed scheme
-        elif echo "$schemes" | grep -q "^${SAMPLE}ExampleSwift$"; then
-            SCHEME="${SAMPLE}ExampleSwift"
-        # Check for the base scheme name
-        elif echo "$schemes" | grep -q "^${SAMPLE}Example$"; then
-            SCHEME="${SAMPLE}Example"
-        else
-            echo "Error: Could not find a suitable scheme for ${SAMPLE}Example in ${OS}."
-            echo "Available schemes:"
-            echo "$schemes"
-            exit 1
-        fi
+        SCHEME="${SAMPLE}Example (${OS})"
     else
         SCHEME="${SAMPLE}Example${SWIFT_SUFFIX:-}"
     fi
@@ -153,8 +142,6 @@ function xcb() {
 }
 
 # Run xcodebuild
-if [[ "${GITHUB_ACTIONS:-}" == "true" ]]; then
-  sudo xcode-select -s "/Applications/Xcode_${xcode_version}.app/Contents/Developer"
-fi
+sudo xcode-select -s "/Applications/Xcode_${xcode_version}.app/Contents/Developer"
 xcb "${flags[@]}"
 echo "$message"

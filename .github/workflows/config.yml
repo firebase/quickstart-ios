@@ -1,8 +1,5 @@
 name: Remote Config
 
-permissions:
-  contents: read
-
 on:
   push:
     branches: [ main ]
@@ -30,14 +27,13 @@ env:
   secrets_passphrase: ${{ secrets.GHASECRETSGPGPASSPHRASE1 }}
 
 jobs:
-  spm:
+  cocoapods:
+    name: cocoapods
     runs-on: macOS-15
     env:
-      OS: iOS
-      DEVICE: iPhone 16
-      DIR: config
-      SPM: true
-      SCHEME: ConfigExample
+      SPM: false
+      LEGACY: false
+      SWIFT_SUFFIX: ""
       TEST: true
     steps:
       - name: Checkout
@@ -45,7 +41,14 @@ jobs:
       - name: Setup
         run: |
           cd config
+          gem install bundler
+          bundle install
+          gem install xcpretty
+          bundle exec pod install --repo-update
           ../scripts/install_prereqs/config.sh
           xcrun simctl boot "iPhone 16"
       - name: Build Swift
         run: ./scripts/test.sh
+        env:
+          OS: iOS
+          DEVICE: iPhone 16

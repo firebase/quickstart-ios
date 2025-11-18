@@ -1,0 +1,23 @@
+platform :ios, '15.0'
+
+target 'FirestoreExample' do
+  use_frameworks!
+
+  pod 'FirebaseAuth'
+  pod 'FirebaseUI/Auth', '~> 15.0'
+  pod 'FirebaseUI/Email', '~> 15.0'
+  pod 'FirebaseFirestore'
+  pod 'SDWebImage'
+
+  target 'FirestoreExampleTests' do
+    inherit! :search_paths
+  end
+end
+
+target 'FirestoreSwiftUIExample' do
+  use_frameworks!
+
+  pod 'FirebaseAuth'
+  pod 'FirebaseFirestore'
+  pod 'SDWebImageSwiftUI'
+end

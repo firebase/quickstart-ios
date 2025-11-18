@@ -72,9 +72,8 @@ public struct MultimodalAttachment: Attachment, Equatable {
   }
 }
 
-extension MultimodalAttachment {
-  @ViewBuilder
-  public func previewView() -> any View {
+extension MultimodalAttachment: View {
+  public var body: some View {
     AttachmentPreviewCard(attachment: self)
   }
 }

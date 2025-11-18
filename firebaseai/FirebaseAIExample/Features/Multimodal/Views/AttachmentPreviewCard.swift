@@ -59,7 +59,6 @@ private enum AttachmentType: String {
 
 struct AttachmentPreviewCard: View {
   let attachment: MultimodalAttachment
-  let onRemove: (() -> Void)?
 
   private var attachmentType: AttachmentType {
     AttachmentType(mimeType: attachment.mimeType)
@@ -93,16 +92,8 @@ struct AttachmentPreviewCard: View {
           Spacer()
         }
       }
-
-      if let onRemove = onRemove {
-        Button(action: onRemove) {
-          Image(systemName: "xmark.circle.fill")
-            .font(.system(size: 16))
-            .foregroundColor(.gray)
-        }
-        .buttonStyle(PlainButtonStyle())
-      }
     }
+    .frame(width: 180)
     .padding(12)
     .background(Color(.systemGray6))
     .clipShape(RoundedRectangle(cornerRadius: 12))
@@ -127,23 +118,19 @@ struct AttachmentPreviewCard: View {
 
 struct AttachmentPreviewScrollView: View {
   let attachments: [MultimodalAttachment]
-  var onAttachmentRemove: ((MultimodalAttachment) -> Void)? = nil
 
   var body: some View {
     if !attachments.isEmpty {
       ScrollView(.horizontal, showsIndicators: false) {
-        LazyHStack(spacing: 8) {
+        HStack {
           ForEach(attachments) { attachment in
             AttachmentPreviewCard(
               attachment: attachment,
-              onRemove: onAttachmentRemove == nil ? nil : { onAttachmentRemove?(attachment) }
             )
-            .frame(width: 180)
           }
         }
-        .padding(.horizontal, 16)
+        .padding(.horizontal, 8)
       }
-      .frame(height: 80)
     } else {
       EmptyView()
     }
@@ -157,7 +144,6 @@ struct AttachmentPreviewScrollView: View {
         mimeType: "image/jpeg",
         data: Data()
       ),
-      onRemove: { print("Image removed") }
     )
 
     AttachmentPreviewCard(
@@ -165,7 +151,6 @@ struct AttachmentPreviewScrollView: View {
         mimeType: "application/pdf",
         data: Data()
       ),
-      onRemove: { print("PDF removed") }
     )
 
     AttachmentPreviewCard(
@@ -173,7 +158,6 @@ struct AttachmentPreviewScrollView: View {
         mimeType: "video/mp4",
         data: Data()
       ),
-      onRemove: { print("Video removed") }
     )
 
     AttachmentPreviewCard(
@@ -181,7 +165,6 @@ struct AttachmentPreviewScrollView: View {
         mimeType: "audio/mpeg",
         data: Data()
       ),
-      onRemove: { print("Audio removed") }
     )
   }
   .padding()

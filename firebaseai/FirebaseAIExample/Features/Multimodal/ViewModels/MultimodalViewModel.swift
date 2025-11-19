@@ -55,7 +55,7 @@ class MultimodalViewModel: ObservableObject {
       : FirebaseAI.firebaseAI(backend: .vertexAI())
 
     model = firebaseService.generativeModel(
-      modelName: sample?.modelName ?? "gemini-2.5-flash",
+      modelName: sample?.modelName ?? "gemini-2.5-flash-lite",
       systemInstruction: sample?.systemInstruction
     )
 

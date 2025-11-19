@@ -15,6 +15,6 @@
 import Foundation
 
 /// Delegate for signaling that a successful login with Firebase Auth has occurred
-@MainActor protocol LoginDelegate: NSObject {
+protocol LoginDelegate: NSObject {
   func loginDidOccur()
 }

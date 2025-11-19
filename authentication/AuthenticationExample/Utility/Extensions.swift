@@ -17,7 +17,7 @@ import FirebaseAuth
 
 // MARK: - Extending a `Firebase User` to conform to `DataSourceProvidable`
 
-@MainActor extension User: DataSourceProvidable {
+extension User: DataSourceProvidable {
   private var infoSection: Section {
     let items = [Item(title: providerID, detailTitle: "Provider ID"),
                  Item(title: uid, detailTitle: "UUID"),
@@ -163,7 +163,7 @@ extension UIColor {
 
 // MARK: UINavigationBar + UserDisplayable Protocol
 
-@MainActor protocol UserDisplayable {
+protocol UserDisplayable {
   func addProfilePic(_ imageView: UIImageView)
 }
 
@@ -185,7 +185,7 @@ extension UINavigationBar: UserDisplayable {
 
 // MARK: Extending UITabBarController to work with custom transition animator
 
-extension UITabBarController: @retroactive UITabBarControllerDelegate {
+extension UITabBarController: UITabBarControllerDelegate {
   public func tabBarController(_ tabBarController: UITabBarController,
                                animationControllerForTransitionFrom fromVC: UIViewController,
                                to toVC: UIViewController)

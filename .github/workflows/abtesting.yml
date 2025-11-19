@@ -1,8 +1,5 @@
 name: A/B Testing
 
-permissions:
-  contents: read
-
 on:
   push:
     branches: [ main ]
@@ -34,6 +31,31 @@ env:
   SAMPLE: ABTesting
 
 jobs:
+  cocoapods:
+    name: cocoapods
+    runs-on: macOS-15
+    env:
+      SPM: false
+      TEST: true
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+      - name: Setup
+        run: |
+          cd abtesting/LegacyABTestingQuickstart
+          gem install bundler
+          bundle install
+          gem install xcpretty
+          bundle exec pod install --repo-update
+          cd ..
+          ../scripts/install_prereqs/abtesting.sh
+      - name: Build Swift
+        run: ./scripts/test.sh
+        env:
+          LEGACY: true
+          SWIFT_SUFFIX: ""
+          OS: iOS
+          DEVICE: iPhone 16
   spm:
     name: spm (Xcode ${{ matrix.xcode }} - ${{ matrix.os }})
     runs-on: macOS-15
@@ -70,6 +92,7 @@ jobs:
       OS: ${{ matrix.os }}
       DEVICE: ${{ matrix.device }}
       TEST: ${{ matrix.test }}
+      DEVELOPER_DIR: /Applications/Xcode_${{ matrix.xcode }}.app/Contents/Developer
     steps:
       - name: Checkout
         uses: actions/checkout@master

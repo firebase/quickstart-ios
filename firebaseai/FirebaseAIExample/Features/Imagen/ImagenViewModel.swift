@@ -59,7 +59,7 @@ class ImagenViewModel: ObservableObject {
       ? FirebaseAI.firebaseAI(backend: .googleAI())
       : FirebaseAI.firebaseAI(backend: .vertexAI())
 
-    let modelName = "imagen-4.0-generate-001"
+    let modelName = "imagen-4.0-fast-generate-001"
     let safetySettings = ImagenSafetySettings(
       safetyFilterLevel: .blockLowAndAbove
     )

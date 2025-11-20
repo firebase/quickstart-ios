@@ -1,7 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    CFPropertyList (3.0.8)
+    CFPropertyList (3.0.9)
     activesupport (7.1.6)
       base64
       benchmark (>= 0.3)

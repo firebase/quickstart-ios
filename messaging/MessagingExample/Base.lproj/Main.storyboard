@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18121" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="dvH-Ce-6yG">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18091"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--FCM Example-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S9T-hp-Ka1">
+                                <rect key="frame" x="107.5" y="311.5" width="160" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="Grv-Ur-3qm"/>
+                                    <constraint firstAttribute="width" constant="160" id="ggk-PO-zor"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <state key="normal" title="Log Token"/>
+                                <connections>
+                                    <action selector="handleLogTokenTouch:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3NM-R6-4A4"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HgF-jF-1NC">
+                                <rect key="frame" x="204" y="233" width="192" height="44"/>
+                                <color key="backgroundColor" red="1" green="0.56078431370000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="192" id="4Yd-c9-aCb"/>
+                                    <constraint firstAttribute="height" constant="44" id="gyc-AL-1xz"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <state key="normal" title="Subscribe To Weather">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="handleSubscribeTouch:" destination="BYZ-38-t0r" eventType="touchUpInside" id="meX-vb-HDO"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No FCM token" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RBg-uJ-gCV">
+                                <rect key="frame" x="67.5" y="459" width="240" height="14"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="R9g-We-nKc"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No FCM Registration token" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1wF-0v-e01">
+                                <rect key="frame" x="67.5" y="565" width="240" height="13.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="FXq-Tm-sRh"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="1wF-0v-e01" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="0wR-rN-VBn"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="RBg-uJ-gCV" secondAttribute="bottom" constant="194" id="4Cj-3x-9JW"/>
+                            <constraint firstItem="RBg-uJ-gCV" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="7XG-os-4BL"/>
+                            <constraint firstItem="RBg-uJ-gCV" firstAttribute="top" secondItem="S9T-hp-Ka1" secondAttribute="bottom" constant="103.5" id="dJ0-an-jgk"/>
+                            <constraint firstItem="S9T-hp-Ka1" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="eqV-Gc-7aa"/>
+                            <constraint firstItem="S9T-hp-Ka1" firstAttribute="top" secondItem="HgF-jF-1NC" secondAttribute="bottom" constant="8" id="izK-fQ-Uu7"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="1wF-0v-e01" secondAttribute="bottom" constant="88.5" id="p2q-F9-Mpu"/>
+                            <constraint firstItem="HgF-jF-1NC" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="st1-B5-WH3"/>
+                            <constraint firstItem="S9T-hp-Ka1" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="wHX-8g-0MB"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="FCM Example" id="uI5-jL-nrY"/>
+                    <connections>
+                        <outlet property="fcmTokenMessage" destination="RBg-uJ-gCV" id="FUs-GZ-mfF"/>
+                        <outlet property="remoteFCMTokenMessage" destination="1wF-0v-e01" id="nDz-D9-60k"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="311.19999999999999" y="445.72713643178412"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="BBa-0w-b0R">
+            <objects>
+                <navigationController id="dvH-Ce-6yG" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="FZU-Jb-Wzn">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.0" green="0.52156862745098043" blue="0.88627450980392153" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="Sil-bt-Y94"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cPh-2w-0HS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-381" y="451"/>
+        </scene>
+    </scenes>
+</document>

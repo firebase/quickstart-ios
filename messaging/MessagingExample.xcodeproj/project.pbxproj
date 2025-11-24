@@ -17,6 +17,8 @@
 		5F99610D1AE0CF4F0034F503 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F9961071AE0CF4F0034F503 /* LaunchScreen.xib */; };
 		8DC73D8C2D41AE850092B6EE /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 8DC73D8B2D41AE850092B6EE /* FirebaseMessaging */; };
 		978E6F2CAAC2AD673D158985 /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = 82E79B6D15A982EAE7B0E31B /* GoogleService-Info.plist */; };
+		EA2B4E6C2ED4F571003F9A40 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA2B4E662ED4F571003F9A40 /* Main.storyboard */; };
+		EA2B4E752ED4F571003F9A40 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA2B4E662ED4F571003F9A40 /* Main.storyboard */; };
 		EAC902A32EC6849A000761B8 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = EAC902A22EC6849A000761B8 /* FirebaseMessaging */; };
 /* End PBXBuildFile section */
 
@@ -69,6 +71,7 @@
 		DEB13BC723AEC9DF0066A6F3 /* FIREGHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FIREGHelper.m; sourceTree = "<group>"; };
 		DEB13BC823AEC9DF0066A6F3 /* FIREGSignInHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FIREGSignInHelper.h; sourceTree = "<group>"; };
 		DED65CF723E9DE6400461312 /* FIREGSignInInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FIREGSignInInfo.h; sourceTree = "<group>"; };
+		EA2B4E652ED4F571003F9A40 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EAE93A8D2E86E558005ABAF0 /* MessagingExample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MessagingExample.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -175,6 +178,7 @@
 		EAE93A8A2E86E465005ABAF0 /* MessagingExample */ = {
 			isa = PBXGroup;
 			children = (
+				EA2B4E662ED4F571003F9A40 /* Main.storyboard */,
 				EAE93A8D2E86E558005ABAF0 /* MessagingExample.entitlements */,
 				5F5A537D1ADE67D500F81DF0 /* AppDelegate.swift */,
 				5F5A537F1ADE67D500F81DF0 /* ViewController.swift */,
@@ -310,6 +314,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA2B4E6C2ED4F571003F9A40 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -319,6 +324,7 @@
 			files = (
 				5F99610D1AE0CF4F0034F503 /* LaunchScreen.xib in Resources */,
 				5F99610B1AE0CF4F0034F503 /* Images.xcassets in Resources */,
+				EA2B4E752ED4F571003F9A40 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -366,6 +372,17 @@
 			targetProxy = 107347AD20315A3A004A66D1 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		EA2B4E662ED4F571003F9A40 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EA2B4E652ED4F571003F9A40 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		0718C8C02E8F256800AA7788 /* Debug */ = {

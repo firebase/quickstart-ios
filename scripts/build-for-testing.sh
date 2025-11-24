@@ -22,6 +22,19 @@
 
 set -euo pipefail
 
+xcode_version=$(xcodebuild -version | grep Xcode)
+xcode_version="${xcode_version/Xcode /}"
+xcode_major="${xcode_version/.*/}"
+
+if [[ "$xcode_major" -ge 26 ]]; then
+  iphone_version="17"
+elif [[ "$xcode_major" -ge 16 ]]; then
+  iphone_version="16"
+else
+  echo "Unsupported Xcode version $xcode_version; exiting." 1>&2
+  exit 1
+fi
+
 # Set default parameters
 if [[ -z "${SPM:-}" ]]; then
     SPM=false

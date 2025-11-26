@@ -47,7 +47,7 @@ To enable sign in with each of the following identity providers, there are a few
   
 ### Google Sign In
 
-We have already included the **`GoogleSignIn`** CocoaPod in the quickstart's `Podfile`. This CocoaPod is **required** for **Google Sign In**.
+The **`GoogleSignIn`** dependency is required for **Google Sign In** and is included in the `Package.swift` file.
 
 #### Start by going to the [Firebase Console](https://console.firebase.google.com) and navigate to your project:
 
@@ -148,7 +148,7 @@ See the [Getting Started with Yahoo Sign In guide](https://firebase.google.com/d
 
 ### Facebook
 
-We have already included the **`FBSDKLoginKit`** CocoaPod in the quickstart's `Podfile`. This CocoaPod is **required** for **Sign In with Facebook**.
+The **`FBSDKLoginKit`** dependency is required for **Sign In with Facebook** and is included in the `Package.swift` file.
 
 - Go to the [Facebook Developers Site](https://developers.facebook.com) and follow all
   instructions to set up a new iOS app. When asked for a bundle ID, use

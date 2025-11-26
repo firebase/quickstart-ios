@@ -4,8 +4,7 @@ Firebase In-App messaging is a service allowing developers to send targeted
 messages to users. To learn more, take a look at [the docs](https://firebase.google.com/docs/ios/setup).
 ## Setup
   * [Add Firebase to your iOS app][setup-ios].
-  * In the root of the project, run `pod install --repo-update`.
-  * Open the resulting `xcworkspace` and run the app on an iOS device or simulator.
+  * Open `InAppMessagingExample.xcodeproj` and run the app on an iOS device or simulator.
 
 ## Getting Started
   * Open the In-App Messaging tab of [Firebase Console][firebase-console].

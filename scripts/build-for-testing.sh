@@ -93,7 +93,7 @@ flags+=( -scheme "$SCHEME" )
 
 # Set derivedDataPath
 DERIVEDDATAPATH="build-for-testing/${SCHEME}"
-flags+=( -sdk "iphoneos" -derivedDataPath "$DERIVEDDATAPATH")
+flags+=( -destination "generic/platform=iOS" -derivedDataPath "$DERIVEDDATAPATH")
 
 # Add extra flags
 if [[ "$SAMPLE" == Config ]];then
@@ -120,7 +120,7 @@ function xcb() {
 }
 
 # Run xcodebuild
-sudo xcode-select -p
+xcode-select -p
 xcb "${flags[@]}"
 echo "$message"
 

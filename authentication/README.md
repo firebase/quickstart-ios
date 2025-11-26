@@ -11,7 +11,7 @@ Firebase Auth offers multiple ways to authenticate users. In this quickstart, we
 
 Ready? Let's get started! 🏎💨
 
-Clone this project and `cd` into the `AuthenticationExample` directory. Run `pod install`. This command will install all of the required CocoaPods for this quickstart and generate a `.xcworkspace` project. Go ahead and open the `AuthenticationExample.xcworkspace` project.
+Clone this project and `cd` into the `AuthenticationExample` directory. Open the `AuthenticationExample.xcodeproj` project.
 
 ### Terminal commands to clone and open the project!
 ```bash
@@ -20,9 +20,7 @@ $ git clone https://github.com/firebase/quickstart-ios.git
 
 $ cd authentication/
 
-$ pod install --repo-update
-
-$ open AuthenticationExample.xcworkspace
+$ open AuthenticationExample.xcodeproj
 
 ```
 

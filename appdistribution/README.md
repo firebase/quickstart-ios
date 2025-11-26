@@ -8,9 +8,7 @@ about Firebase App Distribution [here](https://firebase.google.com/docs/app-dist
 Ready? Let's get started! 🚀
 
 Clone this project and `cd` into the `AppDistributionExample` directory. 
-Run `pod install`. This command will install all of the required cocoapods
-for this quickstart and generate a `.xcworkspace` project. Go ahead and
-open the `AppDistributionExample.xcworkspace` project.
+Open the `AppDistributionExample.xcodeproj` project.
 
 ### Terminal commands to clone and open the project!
 ```bash
@@ -19,9 +17,7 @@ $ git clone https://github.com/firebase/quickstart-ios.git
 
 $ cd appdistribution/
 
-$ pod install
-
-$ open AppDistributionExample.xcworkspace
+$ open AppDistributionExample.xcodeproj
 
 ```
 

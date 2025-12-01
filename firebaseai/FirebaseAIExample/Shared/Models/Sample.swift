@@ -37,7 +37,7 @@ public struct Sample: Identifiable {
               description: String,
               useCases: [UseCase],
               navRoute: String,
-              modelName: String = "gemini-2.5-flash",
+              modelName: String = "gemini-2.5-flash-lite",
               chatHistory: [ModelContent]? = nil,
               initialPrompt: String? = nil,
               systemInstruction: ModelContent? = nil,
@@ -126,24 +126,24 @@ extension Sample {
     ),
     Sample(
       title: "Imagen - image generation",
-      description: "Generate images using Imagen 3",
+      description: "Generate images using Imagen 4",
       useCases: [.image],
       navRoute: "ImagenScreen",
       initialPrompt: "A photo of a modern building with water in the background"
     ),
     Sample(
       title: "[T] Imagen - image generation",
-      description: "[T] Generate images using Imagen 3",
+      description: "[T] Generate images using Imagen 4",
       useCases: [.image],
       navRoute: "ImagenFromTemplateScreen",
       initialPrompt: "A photo of a modern building with water in the background"
     ),
     Sample(
       title: "Gemini Flash - image generation",
-      description: "Generate and/or edit images using Gemini 2.0 Flash",
+      description: "Generate and/or edit images using Gemini 2.5 Flash Image",
       useCases: [.image],
       navRoute: "ChatScreen",
-      modelName: "gemini-2.0-flash-preview-image-generation",
+      modelName: "gemini-2.5-flash-image",
       initialPrompt: "Hi, can you create a 3d rendered image of a pig " +
         "with wings and a top hat flying over a happy " +
         "futuristic scifi city with lots of greenery?",

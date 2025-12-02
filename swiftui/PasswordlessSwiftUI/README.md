@@ -13,13 +13,12 @@ example of how to build modern apps with Firebase and SwiftUI.
 
 Getting this project up and running is similar to the other quickstarts 
 found in this repo. The following steps will clone the project, 
-install its dependencies, and open the `.xcworkspace` project in Xcode.
+and open the `.xcodeproj` project in Xcode.
 
 ```bash
 $ git clone https://github.com/firebase/quickstart-ios.git
 $ cd swiftui/PasswordlessSwiftUI/
-$ pod install --repo-update
-$ open PasswordlessSwiftUI.xcworkspace
+$ open PasswordlessSwiftUI.xcodeproj
 ```
 
 # Finished Demo

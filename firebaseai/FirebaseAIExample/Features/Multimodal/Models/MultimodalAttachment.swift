@@ -252,18 +252,35 @@ extension MultimodalAttachment {
       return "audio/mp3"
     case "mpa":
       return "audio/m4a"
-    case "mpeg":
-      return "audio/mpeg"
+    // TODO: Find a more accurate way to determine the MIME type.
+    // Commented out to silence the warning "Literal value is already handled by previous pattern;
+    // consider removing it".
+    // Context: .mpeg files are more likely to be video since MP3 files are more likely to use the
+    //          .mp3 file extension.
+    // case "mpeg":
+    //   return "audio/mpeg"
     case "mpga":
       return "audio/mpga"
-    case "mp4":
-      return "audio/mp4"
+    // TODO: Find a more accurate way to determine the MIME type.
+    // Commented out to silence the warning "Literal value is already handled by previous pattern;
+    // consider removing it".
+    // Context: .mp4 files are potentially more likely to be video since AAC and ALAC files
+    //          frequently use the .m4a file extension within the Apple ecosystem, though it is
+    //          still ambiguous whether it is audio or video from the file extension alone.
+    // case "mp4":
+    //    return "audio/mp4"
     case "opus":
       return "audio/opus"
     case "wav":
       return "audio/wav"
-    case "webm":
-      return "audio/webm"
+    // TODO: Find a more accurate way to determine the MIME type.
+    // Commented out to silence the warning "Literal value is already handled by previous pattern;
+    // consider removing it".
+    // Context: .webm files are potentially more likely to be video since WebM files frequently use
+    //          the .weba file extension when they only contain audio (Ogg Vorbis / Opus), though it
+    //          is still ambiguous whether it is audio or video based on the file extension alone.
+    // case "webm":
+    //   return "audio/webm"
 
     // Documents / text
     case "pdf":

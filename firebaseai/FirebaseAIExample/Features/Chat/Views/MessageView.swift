@@ -12,11 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import ConversationKit
 import MarkdownUI
 import SwiftUI
 #if canImport(FirebaseAILogic)
   import FirebaseAILogic
-  import ConversationKit
 #else
   import FirebaseAI
 #endif

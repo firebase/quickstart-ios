@@ -279,8 +279,6 @@ extension MultimodalAttachment {
     // Context: .webm files are potentially more likely to be video since WebM files frequently use
     //          the .weba file extension when they only contain audio (Ogg Vorbis / Opus), though it
     //          is still ambiguous whether it is audio or video based on the file extension alone.
-    // case "mp4":
-    //    return "audio/mp4"
     // case "webm":
     //   return "audio/webm"
 

@@ -25,9 +25,11 @@ xcode_version="${xcode_version/Xcode /}"
 xcode_major="${xcode_version/.*/}"
 
 if [[ "$xcode_major" -ge 26 ]]; then
-  iphone_version="17"
+  iphone_version="17 Pro"
+  ios_version="26.1"
 elif [[ "$xcode_major" -ge 16 ]]; then
-  iphone_version="16"
+  iphone_version="16 Pro"
+  ios_version="18.6"
 else
   echo "Unsupported Xcode version $xcode_version; exiting." 1>&2
   exit 1
@@ -35,12 +37,8 @@ fi
 
 # Set default parameters
 if [[ -z "${SPM:-}" ]]; then
-    SPM=false
+    SPM=true
     echo "Defaulting to SPM=$SPM"
-    if [[ -z "${LEGACY:-}" ]]; then
-        LEGACY=false
-        echo "Defaulting to LEGACY=$LEGACY"
-    fi
 fi
 if [[ -z "${OS:-}" ]]; then
     OS=iOS
@@ -63,18 +61,33 @@ flags=()
 if [[ "$SPM" == true ]];then
     flags+=( -project "${DIR}/${SAMPLE}Example.xcodeproj" )
 else
-    if [[ "$LEGACY" == true ]]; then
-        WORKSPACE="${SAMPLE}/Legacy${SAMPLE}Quickstart/${SAMPLE}Example.xcworkspace"
-    else
-        WORKSPACE="${SAMPLE}/${SAMPLE}Example.xcworkspace"
-    fi
+    WORKSPACE="${SAMPLE}/${SAMPLE}Example.xcworkspace"
     flags+=( -workspace "$WORKSPACE" )
 fi
 
 # Set scheme
 if [[ -z "${SCHEME:-}" ]]; then
     if [[ "$SPM" == true ]];then
-        SCHEME="${SAMPLE}Example (${OS})"
+        # Get the list of schemes
+        schemes=$(xcodebuild -list -project "${DIR}/${SAMPLE}Example.xcodeproj" |
+            grep -E '^\s+' |
+            sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')
+
+        # Check for the OS-suffixed scheme name
+        if echo "$schemes" | grep -q "^${SAMPLE}Example (${OS})$"; then
+            SCHEME="${SAMPLE}Example (${OS})"
+        # Check for the Swift-suffixed scheme
+        elif echo "$schemes" | grep -q "^${SAMPLE}ExampleSwift$"; then
+            SCHEME="${SAMPLE}ExampleSwift"
+        # Check for the base scheme name
+        elif echo "$schemes" | grep -q "^${SAMPLE}Example$"; then
+            SCHEME="${SAMPLE}Example"
+        else
+            echo "Error: Could not find a suitable scheme for ${SAMPLE}Example in ${OS}."
+            echo "Available schemes:"
+            echo "$schemes"
+            exit 1
+        fi
     else
         SCHEME="${SAMPLE}Example${SWIFT_SUFFIX:-}"
     fi
@@ -85,6 +98,9 @@ flags+=( -scheme "$SCHEME" )
 # Set destination
 if [[ "$OS" == iOS ]]; then
     DESTINATION="platform=iOS Simulator,name=${DEVICE}"
+    if [[ -n "${VERSION:-}" ]]; then
+        DESTINATION+=",OS=${VERSION}"
+    fi
     flags+=( -destination "$DESTINATION" )
 elif [[ "$OS" == tvOS ]]; then
     DESTINATION="platform=tvOS Simulator,name=${DEVICE}"
@@ -137,6 +153,8 @@ function xcb() {
 }
 
 # Run xcodebuild
-sudo xcode-select -s "/Applications/Xcode_${xcode_version}.app/Contents/Developer"
+if [[ "${GITHUB_ACTIONS:-}" == "true" ]]; then
+  sudo xcode-select -s "/Applications/Xcode_${xcode_version}.app/Contents/Developer"
+fi
 xcb "${flags[@]}"
 echo "$message"

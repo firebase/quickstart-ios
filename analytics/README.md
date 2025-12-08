@@ -5,12 +5,7 @@ Analytics can provide insight on app usage and user engagement. You can read mor
 about Google Analytics for Firebase [here](https://firebase.google.com/docs/analytics)!
 
 The iOS, iPadOS, and Catalyst versions are powered by UIKit. The tvOS and macOS
-versions are powered by SwiftUI. Note that Catalyst, macOS, and tvOS support for Google
-Analytics for Firebase are in beta as of version 8.9.0.
-
-To view the older Objective-C and Swift quickstarts, view the
-[`LegacyAnalyticsQuickstart`](https://github.com/firebase/quickstart-ios/blob/main/analytics/LegacyAnalyticsQuickstart)
-directory.
+versions are powered by SwiftUI.
 
 ## Getting Started
 
@@ -21,9 +16,7 @@ Google Analytics for Firebase to log in-app events and set user properties.
 Ready? Let's get started! 🚀
 
 Clone this project and `cd` into the `AnalyticsExample` directory.
-Run `pod install`. This command will install all of the required cocoapods
-for this quickstart and generate a `.xcworkspace` project. Go ahead and
-open the `AnalyticsExample.xcworkspace` project.
+Open the `AnalyticsExample.xcodeproj` project.
 
 ### Terminal commands to clone and open the project!
 ```terminal
@@ -32,9 +25,7 @@ git clone https://github.com/firebase/quickstart-ios.git
 
 cd analytics/
 
-pod install --repo-update
-
-open AnalyticsExample.xcworkspace
+open AnalyticsExample.xcodeproj
 ```
 
 ## Connecting to the Firebase Console

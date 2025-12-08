@@ -5,15 +5,13 @@
 
 This Firebase quickstart is written in Swift and aims to showcase how Firebase Auth can help manage user authentication. You can read more about Firebase Auth [here](https://firebase.google.com/docs/auth)!
 
-To view the older Objective-C and Swift quickstarts, view the [`LegacyAuthQuickstart`](https://github.com/firebase/quickstart-ios/blob/main/authentication/LegacyAuthQuickstart) directory.
-
 ## Getting Started
 
 Firebase Auth offers multiple ways to authenticate users. In this quickstart, we demonstrate how you can use Firebase Auth to authenticate users by providing implementations for the various authentication flows. Since each Firebase Auth flow is different, each may require a few extra steps to set everything up. Feel free to follow along and configure as many authentication flows as you would like to demo!  
 
 Ready? Let's get started! 🏎💨
 
-Clone this project and `cd` into the `AuthenticationExample` directory. Run `pod install`. This command will install all of the required CocoaPods for this quickstart and generate a `.xcworkspace` project. Go ahead and open the `AuthenticationExample.xcworkspace` project.
+Clone this project and `cd` into the `AuthenticationExample` directory. Open the `AuthenticationExample.xcodeproj` project.
 
 ### Terminal commands to clone and open the project!
 ```bash
@@ -22,9 +20,7 @@ $ git clone https://github.com/firebase/quickstart-ios.git
 
 $ cd authentication/
 
-$ pod install --repo-update
-
-$ open AuthenticationExample.xcworkspace
+$ open AuthenticationExample.xcodeproj
 
 ```
 
@@ -51,7 +47,7 @@ To enable sign in with each of the following identity providers, there are a few
   
 ### Google Sign In
 
-We have already included the **`GoogleSignIn`** CocoaPod in the quickstart's `Podfile`. This CocoaPod is **required** for **Google Sign In**.
+The **`GoogleSignIn`** dependency is required for **Google Sign In** and is included in the `Package.swift` file.
 
 #### Start by going to the [Firebase Console](https://console.firebase.google.com) and navigate to your project:
 
@@ -152,7 +148,7 @@ See the [Getting Started with Yahoo Sign In guide](https://firebase.google.com/d
 
 ### Facebook
 
-We have already included the **`FBSDKLoginKit`** CocoaPod in the quickstart's `Podfile`. This CocoaPod is **required** for **Sign In with Facebook**.
+The **`FBSDKLoginKit`** dependency is required for **Sign In with Facebook** and is included in the `Package.swift` file.
 
 - Go to the [Facebook Developers Site](https://developers.facebook.com) and follow all
   instructions to set up a new iOS app. When asked for a bundle ID, use
@@ -298,7 +294,7 @@ If you wish to setup a custom auth system. The below steps can help in its confi
     - Click **New credentials** and select **Service account key**. Select **New service account**,
     pick any name, and select **JSON** as the key type. Then click **Create**.
     - You should now have a new JSON file for your service account in your Downloads directory.
-- Open the file `web/auth.html` in your computer's web browser. The `auth.html` file can now be found in the current directory's `LegacyAuthQuickstart` subdirectory.
+- Open the file `web/auth.html` in your computer's web browser. The `auth.html` file can now be found in the current directory's `web` subdirectory.
     - Click **Choose File** and upload the JSON file you just downloaded.
     - Enter any User ID and click **Generate**.
     - Copy the token link displayed.

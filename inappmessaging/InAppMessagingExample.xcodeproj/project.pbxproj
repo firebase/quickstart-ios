@@ -3,95 +3,29 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		1CAA5060E4A9D8B55A15EB4E /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = 81A2FB070295F56CC0B2D523 /* GoogleService-Info.plist */; };
-		25D462F3CEB6AC4FB7A56DDA /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = 81A2FB070295F56CC0B2D523 /* GoogleService-Info.plist */; };
-		37502D98408718BEFDD46841 /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = 81A2FB070295F56CC0B2D523 /* GoogleService-Info.plist */; };
-		804A5BC592C150CEBA9CE261 /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = 81A2FB070295F56CC0B2D523 /* GoogleService-Info.plist */; };
 		8DB25F8F20BE0C29000ABEE2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB25F8E20BE0C29000ABEE2 /* AppDelegate.swift */; };
 		8DB25F9120BE0C29000ABEE2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB25F9020BE0C29000ABEE2 /* ViewController.swift */; };
 		8DB25F9420BE0C29000ABEE2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8DB25F9220BE0C29000ABEE2 /* Main.storyboard */; };
 		8DB25F9620BE0C2A000ABEE2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8DB25F9520BE0C2A000ABEE2 /* Assets.xcassets */; };
 		8DB25F9920BE0C2A000ABEE2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8DB25F9720BE0C2A000ABEE2 /* LaunchScreen.storyboard */; };
-		8DECFE4E211CC14500DC99BD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DECFE4D211CC14500DC99BD /* AppDelegate.m */; };
-		8DECFE51211CC14600DC99BD /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DECFE50211CC14600DC99BD /* ViewController.m */; };
-		8DECFE54211CC14600DC99BD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8DECFE52211CC14600DC99BD /* Main.storyboard */; };
-		8DECFE56211CC14700DC99BD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8DECFE55211CC14700DC99BD /* Assets.xcassets */; };
-		8DECFE59211CC14700DC99BD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8DECFE57211CC14700DC99BD /* LaunchScreen.storyboard */; };
-		8DECFE5C211CC14700DC99BD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DECFE5B211CC14700DC99BD /* main.m */; };
-		8DECFE66211CC14700DC99BD /* InAppMessagingExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DECFE65211CC14700DC99BD /* InAppMessagingExampleTests.m */; };
-		8DECFE71211CC14700DC99BD /* InAppMessagingExampleUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DECFE70211CC14700DC99BD /* InAppMessagingExampleUITests.m */; };
-		8DECFE83211CC15F00DC99BD /* InAppMessagingExampleSwiftTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DECFE82211CC15F00DC99BD /* InAppMessagingExampleSwiftTests.m */; };
-		8DECFE91211CC16F00DC99BD /* InAppMessagingExampleSwiftUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DECFE90211CC16F00DC99BD /* InAppMessagingExampleSwiftUITests.m */; };
-		9670A39716204A41D8E0057C /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = 81A2FB070295F56CC0B2D523 /* GoogleService-Info.plist */; };
-		EC3960AA137BC0A6EF185169 /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = 81A2FB070295F56CC0B2D523 /* GoogleService-Info.plist */; };
+		8DC73D7A2D41A90B0092B6EE /* FirebaseInAppMessaging-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 8DC73D792D41A90B0092B6EE /* FirebaseInAppMessaging-Beta */; };
+		8DC73D7E2D41AA540092B6EE /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 8DC73D7D2D41AA540092B6EE /* FirebaseAnalytics */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		8DECFE62211CC14700DC99BD /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 8DB25F8320BE0C29000ABEE2 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 8DECFE49211CC14500DC99BD;
-			remoteInfo = InAppMessagingExample;
-		};
-		8DECFE6D211CC14700DC99BD /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 8DB25F8320BE0C29000ABEE2 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 8DECFE49211CC14500DC99BD;
-			remoteInfo = InAppMessagingExample;
-		};
-		8DECFE85211CC15F00DC99BD /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 8DB25F8320BE0C29000ABEE2 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 8DB25F8A20BE0C29000ABEE2;
-			remoteInfo = InAppMessagingExampleSwift;
-		};
-		8DECFE93211CC16F00DC99BD /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 8DB25F8320BE0C29000ABEE2 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 8DB25F8A20BE0C29000ABEE2;
-			remoteInfo = InAppMessagingExampleSwift;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		81A2FB070295F56CC0B2D523 /* GoogleService-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		8DB25F8B20BE0C29000ABEE2 /* InAppMessagingExampleSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InAppMessagingExampleSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8DB25F8B20BE0C29000ABEE2 /* InAppMessagingExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InAppMessagingExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DB25F8E20BE0C29000ABEE2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8DB25F9020BE0C29000ABEE2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		8DB25F9320BE0C29000ABEE2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8DB25F9520BE0C2A000ABEE2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8DB25F9820BE0C2A000ABEE2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8DB25F9A20BE0C2A000ABEE2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8DECFE4A211CC14500DC99BD /* InAppMessagingExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InAppMessagingExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		8DECFE4C211CC14500DC99BD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		8DECFE4D211CC14500DC99BD /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		8DECFE4F211CC14500DC99BD /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		8DECFE50211CC14600DC99BD /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		8DECFE53211CC14600DC99BD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		8DECFE55211CC14700DC99BD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		8DECFE58211CC14700DC99BD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		8DECFE5A211CC14700DC99BD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8DECFE5B211CC14700DC99BD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		8DECFE61211CC14700DC99BD /* InAppMessagingExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InAppMessagingExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		8DECFE65211CC14700DC99BD /* InAppMessagingExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InAppMessagingExampleTests.m; sourceTree = "<group>"; };
-		8DECFE67211CC14700DC99BD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8DECFE6C211CC14700DC99BD /* InAppMessagingExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InAppMessagingExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		8DECFE70211CC14700DC99BD /* InAppMessagingExampleUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InAppMessagingExampleUITests.m; sourceTree = "<group>"; };
-		8DECFE72211CC14700DC99BD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8DECFE80211CC15F00DC99BD /* InAppMessagingExampleSwiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InAppMessagingExampleSwiftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		8DECFE82211CC15F00DC99BD /* InAppMessagingExampleSwiftTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InAppMessagingExampleSwiftTests.m; sourceTree = "<group>"; };
-		8DECFE84211CC15F00DC99BD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8DECFE8E211CC16F00DC99BD /* InAppMessagingExampleSwiftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InAppMessagingExampleSwiftUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		8DECFE90211CC16F00DC99BD /* InAppMessagingExampleSwiftUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InAppMessagingExampleSwiftUITests.m; sourceTree = "<group>"; };
-		8DECFE92211CC16F00DC99BD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,41 +33,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8DECFE47211CC14500DC99BD /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8DECFE5E211CC14700DC99BD /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8DECFE69211CC14700DC99BD /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8DECFE7D211CC15F00DC99BD /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8DECFE8B211CC16F00DC99BD /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				8DC73D7E2D41AA540092B6EE /* FirebaseAnalytics in Frameworks */,
+				8DC73D7A2D41A90B0092B6EE /* FirebaseInAppMessaging-Beta in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -143,31 +44,22 @@
 		8DB25F8220BE0C29000ABEE2 = {
 			isa = PBXGroup;
 			children = (
-				8DB25F8D20BE0C29000ABEE2 /* InAppMessagingExampleSwift */,
-				8DECFE4B211CC14500DC99BD /* InAppMessagingExample */,
-				8DECFE64211CC14700DC99BD /* InAppMessagingExampleTests */,
-				8DECFE6F211CC14700DC99BD /* InAppMessagingExampleUITests */,
-				8DECFE81211CC15F00DC99BD /* InAppMessagingExampleSwiftTests */,
-				8DECFE8F211CC16F00DC99BD /* InAppMessagingExampleSwiftUITests */,
+				8DB25F8D20BE0C29000ABEE2 /* InAppMessagingExample */,
 				8DB25F8C20BE0C29000ABEE2 /* Products */,
 				81A2FB070295F56CC0B2D523 /* GoogleService-Info.plist */,
+				8DC73D782D41A90B0092B6EE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
 		8DB25F8C20BE0C29000ABEE2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8DB25F8B20BE0C29000ABEE2 /* InAppMessagingExampleSwift.app */,
-				8DECFE4A211CC14500DC99BD /* InAppMessagingExample.app */,
-				8DECFE61211CC14700DC99BD /* InAppMessagingExampleTests.xctest */,
-				8DECFE6C211CC14700DC99BD /* InAppMessagingExampleUITests.xctest */,
-				8DECFE80211CC15F00DC99BD /* InAppMessagingExampleSwiftTests.xctest */,
-				8DECFE8E211CC16F00DC99BD /* InAppMessagingExampleSwiftUITests.xctest */,
+				8DB25F8B20BE0C29000ABEE2 /* InAppMessagingExample.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		8DB25F8D20BE0C29000ABEE2 /* InAppMessagingExampleSwift */ = {
+		8DB25F8D20BE0C29000ABEE2 /* InAppMessagingExample */ = {
 			isa = PBXGroup;
 			children = (
 				8DB25F8E20BE0C29000ABEE2 /* AppDelegate.swift */,
@@ -177,67 +69,22 @@
 				8DB25F9720BE0C2A000ABEE2 /* LaunchScreen.storyboard */,
 				8DB25F9A20BE0C2A000ABEE2 /* Info.plist */,
 			);
-			path = InAppMessagingExampleSwift;
-			sourceTree = "<group>";
-		};
-		8DECFE4B211CC14500DC99BD /* InAppMessagingExample */ = {
-			isa = PBXGroup;
-			children = (
-				8DECFE4C211CC14500DC99BD /* AppDelegate.h */,
-				8DECFE4D211CC14500DC99BD /* AppDelegate.m */,
-				8DECFE4F211CC14500DC99BD /* ViewController.h */,
-				8DECFE50211CC14600DC99BD /* ViewController.m */,
-				8DECFE52211CC14600DC99BD /* Main.storyboard */,
-				8DECFE55211CC14700DC99BD /* Assets.xcassets */,
-				8DECFE57211CC14700DC99BD /* LaunchScreen.storyboard */,
-				8DECFE5A211CC14700DC99BD /* Info.plist */,
-				8DECFE5B211CC14700DC99BD /* main.m */,
-			);
 			path = InAppMessagingExample;
 			sourceTree = "<group>";
 		};
-		8DECFE64211CC14700DC99BD /* InAppMessagingExampleTests */ = {
+		8DC73D782D41A90B0092B6EE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				8DECFE65211CC14700DC99BD /* InAppMessagingExampleTests.m */,
-				8DECFE67211CC14700DC99BD /* Info.plist */,
 			);
-			path = InAppMessagingExampleTests;
-			sourceTree = "<group>";
-		};
-		8DECFE6F211CC14700DC99BD /* InAppMessagingExampleUITests */ = {
-			isa = PBXGroup;
-			children = (
-				8DECFE70211CC14700DC99BD /* InAppMessagingExampleUITests.m */,
-				8DECFE72211CC14700DC99BD /* Info.plist */,
-			);
-			path = InAppMessagingExampleUITests;
-			sourceTree = "<group>";
-		};
-		8DECFE81211CC15F00DC99BD /* InAppMessagingExampleSwiftTests */ = {
-			isa = PBXGroup;
-			children = (
-				8DECFE82211CC15F00DC99BD /* InAppMessagingExampleSwiftTests.m */,
-				8DECFE84211CC15F00DC99BD /* Info.plist */,
-			);
-			path = InAppMessagingExampleSwiftTests;
-			sourceTree = "<group>";
-		};
-		8DECFE8F211CC16F00DC99BD /* InAppMessagingExampleSwiftUITests */ = {
-			isa = PBXGroup;
-			children = (
-				8DECFE90211CC16F00DC99BD /* InAppMessagingExampleSwiftUITests.m */,
-				8DECFE92211CC16F00DC99BD /* Info.plist */,
-			);
-			path = InAppMessagingExampleSwiftUITests;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		8DB25F8A20BE0C29000ABEE2 /* InAppMessagingExampleSwift */ = {
+		8DB25F8A20BE0C29000ABEE2 /* InAppMessagingExample */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8DB25F9D20BE0C2A000ABEE2 /* Build configuration list for PBXNativeTarget "InAppMessagingExampleSwift" */;
+			buildConfigurationList = 8DB25F9D20BE0C2A000ABEE2 /* Build configuration list for PBXNativeTarget "InAppMessagingExample" */;
 			buildPhases = (
 				8DB25F8720BE0C29000ABEE2 /* Sources */,
 				8DB25F8820BE0C29000ABEE2 /* Frameworks */,
@@ -247,99 +94,10 @@
 			);
 			dependencies = (
 			);
-			name = InAppMessagingExampleSwift;
-			productName = InAppMessagingExampleSwift;
-			productReference = 8DB25F8B20BE0C29000ABEE2 /* InAppMessagingExampleSwift.app */;
-			productType = "com.apple.product-type.application";
-		};
-		8DECFE49211CC14500DC99BD /* InAppMessagingExample */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 8DECFE79211CC14700DC99BD /* Build configuration list for PBXNativeTarget "InAppMessagingExample" */;
-			buildPhases = (
-				8DECFE46211CC14500DC99BD /* Sources */,
-				8DECFE47211CC14500DC99BD /* Frameworks */,
-				8DECFE48211CC14500DC99BD /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
 			name = InAppMessagingExample;
 			productName = InAppMessagingExample;
-			productReference = 8DECFE4A211CC14500DC99BD /* InAppMessagingExample.app */;
+			productReference = 8DB25F8B20BE0C29000ABEE2 /* InAppMessagingExample.app */;
 			productType = "com.apple.product-type.application";
-		};
-		8DECFE60211CC14700DC99BD /* InAppMessagingExampleTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 8DECFE7A211CC14700DC99BD /* Build configuration list for PBXNativeTarget "InAppMessagingExampleTests" */;
-			buildPhases = (
-				8DECFE5D211CC14700DC99BD /* Sources */,
-				8DECFE5E211CC14700DC99BD /* Frameworks */,
-				8DECFE5F211CC14700DC99BD /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				8DECFE63211CC14700DC99BD /* PBXTargetDependency */,
-			);
-			name = InAppMessagingExampleTests;
-			productName = InAppMessagingExampleTests;
-			productReference = 8DECFE61211CC14700DC99BD /* InAppMessagingExampleTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		8DECFE6B211CC14700DC99BD /* InAppMessagingExampleUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 8DECFE7B211CC14700DC99BD /* Build configuration list for PBXNativeTarget "InAppMessagingExampleUITests" */;
-			buildPhases = (
-				8DECFE68211CC14700DC99BD /* Sources */,
-				8DECFE69211CC14700DC99BD /* Frameworks */,
-				8DECFE6A211CC14700DC99BD /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				8DECFE6E211CC14700DC99BD /* PBXTargetDependency */,
-			);
-			name = InAppMessagingExampleUITests;
-			productName = InAppMessagingExampleUITests;
-			productReference = 8DECFE6C211CC14700DC99BD /* InAppMessagingExampleUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
-		8DECFE7F211CC15F00DC99BD /* InAppMessagingExampleSwiftTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 8DECFE87211CC15F00DC99BD /* Build configuration list for PBXNativeTarget "InAppMessagingExampleSwiftTests" */;
-			buildPhases = (
-				8DECFE7C211CC15F00DC99BD /* Sources */,
-				8DECFE7D211CC15F00DC99BD /* Frameworks */,
-				8DECFE7E211CC15F00DC99BD /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				8DECFE86211CC15F00DC99BD /* PBXTargetDependency */,
-			);
-			name = InAppMessagingExampleSwiftTests;
-			productName = InAppMessagingExampleSwiftTests;
-			productReference = 8DECFE80211CC15F00DC99BD /* InAppMessagingExampleSwiftTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		8DECFE8D211CC16F00DC99BD /* InAppMessagingExampleSwiftUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 8DECFE95211CC16F00DC99BD /* Build configuration list for PBXNativeTarget "InAppMessagingExampleSwiftUITests" */;
-			buildPhases = (
-				8DECFE8A211CC16F00DC99BD /* Sources */,
-				8DECFE8B211CC16F00DC99BD /* Frameworks */,
-				8DECFE8C211CC16F00DC99BD /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				8DECFE94211CC16F00DC99BD /* PBXTargetDependency */,
-			);
-			name = InAppMessagingExampleSwiftUITests;
-			productName = InAppMessagingExampleSwiftUITests;
-			productReference = 8DECFE8E211CC16F00DC99BD /* InAppMessagingExampleSwiftUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
@@ -347,32 +105,14 @@
 		8DB25F8320BE0C29000ABEE2 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 0930;
-				LastUpgradeCheck = 0930;
+				LastUpgradeCheck = 1610;
 				ORGANIZATIONNAME = Firebase;
 				TargetAttributes = {
 					8DB25F8A20BE0C29000ABEE2 = {
 						CreatedOnToolsVersion = 9.3;
 						LastSwiftMigration = 1110;
-					};
-					8DECFE49211CC14500DC99BD = {
-						CreatedOnToolsVersion = 9.4.1;
-					};
-					8DECFE60211CC14700DC99BD = {
-						CreatedOnToolsVersion = 9.4.1;
-						TestTargetID = 8DECFE49211CC14500DC99BD;
-					};
-					8DECFE6B211CC14700DC99BD = {
-						CreatedOnToolsVersion = 9.4.1;
-						TestTargetID = 8DECFE49211CC14500DC99BD;
-					};
-					8DECFE7F211CC15F00DC99BD = {
-						CreatedOnToolsVersion = 9.4.1;
-						TestTargetID = 8DB25F8A20BE0C29000ABEE2;
-					};
-					8DECFE8D211CC16F00DC99BD = {
-						CreatedOnToolsVersion = 9.4.1;
-						TestTargetID = 8DB25F8A20BE0C29000ABEE2;
 					};
 				};
 			};
@@ -385,16 +125,14 @@
 				Base,
 			);
 			mainGroup = 8DB25F8220BE0C29000ABEE2;
+			packageReferences = (
+				8DC73D772D41A89A0092B6EE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = 8DB25F8C20BE0C29000ABEE2 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				8DB25F8A20BE0C29000ABEE2 /* InAppMessagingExampleSwift */,
-				8DECFE7F211CC15F00DC99BD /* InAppMessagingExampleSwiftTests */,
-				8DECFE8D211CC16F00DC99BD /* InAppMessagingExampleSwiftUITests */,
-				8DECFE49211CC14500DC99BD /* InAppMessagingExample */,
-				8DECFE60211CC14700DC99BD /* InAppMessagingExampleTests */,
-				8DECFE6B211CC14700DC99BD /* InAppMessagingExampleUITests */,
+				8DB25F8A20BE0C29000ABEE2 /* InAppMessagingExample */,
 			);
 		};
 /* End PBXProject section */
@@ -407,44 +145,6 @@
 				8DB25F9920BE0C2A000ABEE2 /* LaunchScreen.storyboard in Resources */,
 				8DB25F9620BE0C2A000ABEE2 /* Assets.xcassets in Resources */,
 				8DB25F9420BE0C29000ABEE2 /* Main.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8DECFE48211CC14500DC99BD /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				8DECFE59211CC14700DC99BD /* LaunchScreen.storyboard in Resources */,
-				8DECFE56211CC14700DC99BD /* Assets.xcassets in Resources */,
-				8DECFE54211CC14600DC99BD /* Main.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8DECFE5F211CC14700DC99BD /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8DECFE6A211CC14700DC99BD /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8DECFE7E211CC15F00DC99BD /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8DECFE8C211CC16F00DC99BD /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -461,77 +161,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		8DECFE46211CC14500DC99BD /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				8DECFE51211CC14600DC99BD /* ViewController.m in Sources */,
-				8DECFE5C211CC14700DC99BD /* main.m in Sources */,
-				8DECFE4E211CC14500DC99BD /* AppDelegate.m in Sources */,
-				37502D98408718BEFDD46841 /* GoogleService-Info.plist in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8DECFE5D211CC14700DC99BD /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				8DECFE66211CC14700DC99BD /* InAppMessagingExampleTests.m in Sources */,
-				25D462F3CEB6AC4FB7A56DDA /* GoogleService-Info.plist in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8DECFE68211CC14700DC99BD /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				8DECFE71211CC14700DC99BD /* InAppMessagingExampleUITests.m in Sources */,
-				9670A39716204A41D8E0057C /* GoogleService-Info.plist in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8DECFE7C211CC15F00DC99BD /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				8DECFE83211CC15F00DC99BD /* InAppMessagingExampleSwiftTests.m in Sources */,
-				804A5BC592C150CEBA9CE261 /* GoogleService-Info.plist in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8DECFE8A211CC16F00DC99BD /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				8DECFE91211CC16F00DC99BD /* InAppMessagingExampleSwiftUITests.m in Sources */,
-				EC3960AA137BC0A6EF185169 /* GoogleService-Info.plist in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		8DECFE63211CC14700DC99BD /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 8DECFE49211CC14500DC99BD /* InAppMessagingExample */;
-			targetProxy = 8DECFE62211CC14700DC99BD /* PBXContainerItemProxy */;
-		};
-		8DECFE6E211CC14700DC99BD /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 8DECFE49211CC14500DC99BD /* InAppMessagingExample */;
-			targetProxy = 8DECFE6D211CC14700DC99BD /* PBXContainerItemProxy */;
-		};
-		8DECFE86211CC15F00DC99BD /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 8DB25F8A20BE0C29000ABEE2 /* InAppMessagingExampleSwift */;
-			targetProxy = 8DECFE85211CC15F00DC99BD /* PBXContainerItemProxy */;
-		};
-		8DECFE94211CC16F00DC99BD /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 8DB25F8A20BE0C29000ABEE2 /* InAppMessagingExampleSwift */;
-			targetProxy = 8DECFE93211CC16F00DC99BD /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		8DB25F9220BE0C29000ABEE2 /* Main.storyboard */ = {
@@ -546,22 +176,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				8DB25F9820BE0C2A000ABEE2 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-		8DECFE52211CC14600DC99BD /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				8DECFE53211CC14600DC99BD /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		8DECFE57211CC14700DC99BD /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				8DECFE58211CC14700DC99BD /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -595,6 +209,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -606,6 +221,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -655,6 +271,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -666,6 +283,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -688,12 +306,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = InAppMessagingExampleSwift/Info.plist;
+				INFOPLIST_FILE = InAppMessagingExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.firebase.InAppMessagingExampleSwift;
+				PRODUCT_BUNDLE_IDENTIFIER = com.firebase.InAppMessagingExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -705,201 +323,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = InAppMessagingExampleSwift/Info.plist;
+				INFOPLIST_FILE = InAppMessagingExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.firebase.InAppMessagingExampleSwift;
+				PRODUCT_BUNDLE_IDENTIFIER = com.firebase.InAppMessagingExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
-		8DECFE73211CC14700DC99BD /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = InAppMessagingExample/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.firebase.InAppMessagingExample;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		8DECFE74211CC14700DC99BD /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = InAppMessagingExample/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.firebase.InAppMessagingExample;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
-		8DECFE75211CC14700DC99BD /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = InAppMessagingExampleTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.firebase.InAppMessagingExampleTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/InAppMessagingExample.app/InAppMessagingExample";
-			};
-			name = Debug;
-		};
-		8DECFE76211CC14700DC99BD /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = InAppMessagingExampleTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.firebase.InAppMessagingExampleTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/InAppMessagingExample.app/InAppMessagingExample";
-			};
-			name = Release;
-		};
-		8DECFE77211CC14700DC99BD /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = InAppMessagingExampleUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.firebase.InAppMessagingExampleUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = InAppMessagingExample;
-			};
-			name = Debug;
-		};
-		8DECFE78211CC14700DC99BD /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = InAppMessagingExampleUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.firebase.InAppMessagingExampleUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = InAppMessagingExample;
-			};
-			name = Release;
-		};
-		8DECFE88211CC15F00DC99BD /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = InAppMessagingExampleSwiftTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.firebase.InAppMessagingExampleSwiftTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/InAppMessagingExampleSwift.app/InAppMessagingExampleSwift";
-			};
-			name = Debug;
-		};
-		8DECFE89211CC15F00DC99BD /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = InAppMessagingExampleSwiftTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.firebase.InAppMessagingExampleSwiftTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/InAppMessagingExampleSwift.app/InAppMessagingExampleSwift";
-			};
-			name = Release;
-		};
-		8DECFE96211CC16F00DC99BD /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = InAppMessagingExampleSwiftUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.firebase.InAppMessagingExampleSwiftUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = InAppMessagingExampleSwift;
-			};
-			name = Debug;
-		};
-		8DECFE97211CC16F00DC99BD /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = InAppMessagingExampleSwiftUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.firebase.InAppMessagingExampleSwiftUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = InAppMessagingExampleSwift;
 			};
 			name = Release;
 		};
@@ -915,7 +347,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8DB25F9D20BE0C2A000ABEE2 /* Build configuration list for PBXNativeTarget "InAppMessagingExampleSwift" */ = {
+		8DB25F9D20BE0C2A000ABEE2 /* Build configuration list for PBXNativeTarget "InAppMessagingExample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8DB25F9E20BE0C2A000ABEE2 /* Debug */,
@@ -924,52 +356,31 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8DECFE79211CC14700DC99BD /* Build configuration list for PBXNativeTarget "InAppMessagingExample" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				8DECFE73211CC14700DC99BD /* Debug */,
-				8DECFE74211CC14700DC99BD /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		8DECFE7A211CC14700DC99BD /* Build configuration list for PBXNativeTarget "InAppMessagingExampleTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				8DECFE75211CC14700DC99BD /* Debug */,
-				8DECFE76211CC14700DC99BD /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		8DECFE7B211CC14700DC99BD /* Build configuration list for PBXNativeTarget "InAppMessagingExampleUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				8DECFE77211CC14700DC99BD /* Debug */,
-				8DECFE78211CC14700DC99BD /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		8DECFE87211CC15F00DC99BD /* Build configuration list for PBXNativeTarget "InAppMessagingExampleSwiftTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				8DECFE88211CC15F00DC99BD /* Debug */,
-				8DECFE89211CC15F00DC99BD /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		8DECFE95211CC16F00DC99BD /* Build configuration list for PBXNativeTarget "InAppMessagingExampleSwiftUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				8DECFE96211CC16F00DC99BD /* Debug */,
-				8DECFE97211CC16F00DC99BD /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8DC73D772D41A89A0092B6EE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.7.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8DC73D792D41A90B0092B6EE /* FirebaseInAppMessaging-Beta */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8DC73D772D41A89A0092B6EE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = "FirebaseInAppMessaging-Beta";
+		};
+		8DC73D7D2D41AA540092B6EE /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8DC73D772D41A89A0092B6EE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 8DB25F8320BE0C29000ABEE2 /* Project object */;
 }

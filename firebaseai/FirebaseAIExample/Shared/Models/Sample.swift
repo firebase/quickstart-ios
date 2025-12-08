@@ -31,7 +31,9 @@ public struct Sample: Identifiable {
   public let systemInstruction: ModelContent?
   public let tools: [Tool]?
   public let generationConfig: GenerationConfig?
+  public let liveGenerationConfig: LiveGenerationConfig?
   public let fileDataParts: [FileDataPart]?
+  public let tip: String?
 
   public init(title: String,
               description: String,
@@ -43,7 +45,9 @@ public struct Sample: Identifiable {
               systemInstruction: ModelContent? = nil,
               tools: [Tool]? = nil,
               generationConfig: GenerationConfig? = nil,
-              fileDataParts: [FileDataPart]? = nil) {
+              liveGenerationConfig: LiveGenerationConfig? = nil,
+              fileDataParts: [FileDataPart]? = nil,
+              tip: String? = nil) {
     self.title = title
     self.description = description
     self.useCases = useCases
@@ -54,7 +58,9 @@ public struct Sample: Identifiable {
     self.systemInstruction = systemInstruction
     self.tools = tools
     self.generationConfig = generationConfig
+    self.liveGenerationConfig = liveGenerationConfig
     self.fileDataParts = fileDataParts
+    self.tip = tip
   }
 }
 
@@ -261,6 +267,49 @@ extension Sample {
       initialPrompt: "What's the weather in Chicago this weekend?",
       tools: [.googleSearch()]
     ),
+    // Live API
+    Sample(
+      title: "Live native audio",
+      description: "Use the Live API to talk with the model via native audio.",
+      useCases: [.audio],
+      navRoute: "LiveScreen",
+      liveGenerationConfig: LiveGenerationConfig(
+        responseModalities: [.audio],
+        speech: SpeechConfig(voiceName: "Zephyr", languageCode: "en-US"),
+        outputAudioTranscription: AudioTranscriptionConfig()
+      )
+    ),
+    Sample(
+      title: "Live function calling",
+      description: "Use function calling with the Live API to ask the model to change the background color.",
+      useCases: [.functionCalling, .audio],
+      navRoute: "LiveScreen",
+      tools: [
+        .functionDeclarations([
+          FunctionDeclaration(
+            name: "changeBackgroundColor",
+            description: "Changes the background color to the specified hex color.",
+            parameters: [
+              "color": .string(
+                description: "Hex code of the color to change to. (eg, #F54927)"
+              ),
+            ],
+          ),
+          FunctionDeclaration(
+            name: "clearBackgroundColor",
+            description: "Removes the background color.",
+            parameters: [:]
+          ),
+        ]),
+      ],
+      liveGenerationConfig: LiveGenerationConfig(
+        responseModalities: [.audio],
+        speech: SpeechConfig(voiceName: "Zephyr", languageCode: "en-US"),
+        outputAudioTranscription: AudioTranscriptionConfig()
+      ),
+      tip: "Try asking the model to change the background color",
+
+    )
   ]
 
   public static var sample = samples[0]

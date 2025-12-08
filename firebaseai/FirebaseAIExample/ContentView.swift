@@ -110,6 +110,8 @@ struct ContentView: View {
       FunctionCallingScreen(backendType: selectedBackend, sample: sample)
     case "GroundingScreen":
       GroundingScreen(backendType: selectedBackend, sample: sample)
+    case "LiveScreen":
+      LiveScreen(backendType: selectedBackend, sample: sample)
     default:
       EmptyView()
     }

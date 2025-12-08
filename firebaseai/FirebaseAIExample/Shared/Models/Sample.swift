@@ -308,8 +308,7 @@ extension Sample {
         outputAudioTranscription: AudioTranscriptionConfig()
       ),
       tip: "Try asking the model to change the background color",
-
-    )
+    ),
   ]
 
   public static var sample = samples[0]

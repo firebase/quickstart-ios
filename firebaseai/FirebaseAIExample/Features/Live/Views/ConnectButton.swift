@@ -73,11 +73,11 @@ struct ConnectButton: View {
           lineWidth: 3
         )
     ).tint(color)
-    .onAppear {
-      withAnimation(.linear(duration: 5).repeatForever(autoreverses: false)) {
-        self.gradientAngle = .degrees(360)
+      .onAppear {
+        withAnimation(.linear(duration: 5).repeatForever(autoreverses: false)) {
+          self.gradientAngle = .degrees(360)
+        }
       }
-    }
   }
 
   private func onClick() {

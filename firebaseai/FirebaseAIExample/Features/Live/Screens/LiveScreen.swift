@@ -28,7 +28,7 @@ struct LiveScreen: View {
     self.backendType = backendType
     _viewModel =
       StateObject(wrappedValue: LiveViewModel(backendType: backendType,
-                                                   sample: sample))
+                                              sample: sample))
   }
 
   var body: some View {
@@ -50,11 +50,11 @@ struct LiveScreen: View {
       )
     }
     .padding()
-      .navigationTitle(viewModel.title)
-      .navigationBarTitleDisplayMode(.inline)
-      .background(viewModel.backgroundColor ?? .clear)
-    }
+    .navigationTitle(viewModel.title)
+    .navigationBarTitleDisplayMode(.inline)
+    .background(viewModel.backgroundColor ?? .clear)
   }
+}
 
 #Preview {
   LiveScreen(backendType: .googleAI)

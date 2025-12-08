@@ -63,7 +63,8 @@ class LiveViewModel: ObservableObject {
       : FirebaseAI.firebaseAI(backend: .vertexAI())
 
     model = firebaseService.liveModel(
-      modelName: (backendType == .googleAI) ? "gemini-2.5-flash-native-audio-preview-09-2025" : "gemini-live-2.5-flash-preview-native-audio-09-2025",
+      modelName: (backendType == .googleAI) ? "gemini-2.5-flash-native-audio-preview-09-2025" :
+        "gemini-live-2.5-flash-preview-native-audio-09-2025",
       generationConfig: sample?.liveGenerationConfig,
       tools: sample?.tools,
       systemInstruction: sample?.systemInstruction
@@ -81,7 +82,7 @@ class LiveViewModel: ObservableObject {
     }
 
     #if targetEnvironment(simulator)
-    logger.warning("Playback audio is disabled on the simulator.")
+      logger.warning("Playback audio is disabled on the simulator.")
     #endif
 
     guard await requestRecordPermission() else {
@@ -211,7 +212,7 @@ class LiveViewModel: ObservableObject {
       if let part = part as? InlineDataPart {
         if part.mimeType.starts(with: "audio/pcm") {
           #if !targetEnvironment(simulator)
-          try await audioController?.playAudio(audio: part.data)
+            try await audioController?.playAudio(audio: part.data)
           #endif
         } else {
           logger.warning("Received non audio inline data part: \(part.mimeType)")

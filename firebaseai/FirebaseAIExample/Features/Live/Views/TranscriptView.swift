@@ -25,7 +25,7 @@ struct TranscriptView: View {
           .transition(.opacity)
           .padding(.horizontal)
           .id("transcript")
-      }.onChange(of: typewriter.text, initial: false) { (old, new) in
+      }.onChange(of: typewriter.text, initial: false) { old, new in
         proxy.scrollTo("transcript", anchor: .bottom)
       }
     }

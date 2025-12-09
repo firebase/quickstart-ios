@@ -209,7 +209,7 @@ class LiveViewModel: ObservableObject {
       logger.warning("Model was interrupted")
       await audioController?.interrupt()
       transcriptTypewriter.clearPending()
-      // adds an em dash to indiciate that the model was cutoff
+      // adds an em dash to indicate that the model was cutoff
       transcriptTypewriter.appendText("— ")
     } else if let transcript = content.outputAudioTranscription?.text {
       appendAudioTranscript(transcript)

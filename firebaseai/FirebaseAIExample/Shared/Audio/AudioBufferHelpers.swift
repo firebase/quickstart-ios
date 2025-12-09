@@ -55,7 +55,8 @@ extension AVAudioPCMBuffer {
 extension AVAudioConverter {
   /// Uses the converter to convert the provided `buffer`.
   ///
-  /// Will handle determining the proper frame capacity, ensuring formats align, and propogating any errors that occur.
+  /// Will handle determining the proper frame capacity, ensuring formats align, and propagating any
+  /// errors that occur.
   ///
   ///   - Returns: A new buffer, with the converted data.
   func convertBuffer(_ buffer: AVAudioPCMBuffer) throws -> AVAudioPCMBuffer {

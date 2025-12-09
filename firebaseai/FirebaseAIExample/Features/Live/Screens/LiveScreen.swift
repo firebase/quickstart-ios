@@ -18,7 +18,6 @@
   import FirebaseAI
 #endif
 import SwiftUI
-import ConversationKit
 
 struct LiveScreen: View {
   let backendType: BackendOption
@@ -48,6 +47,12 @@ struct LiveScreen: View {
         onConnect: viewModel.connect,
         onDisconnect: viewModel.disconnect
       )
+
+      #if targetEnvironment(simulator)
+        if viewModel.state == .idle {
+          AudioOutputToggle(isEnabled: $viewModel.isAudioOutputEnabled)
+        }
+      #endif
     }
     .padding()
     .navigationTitle(viewModel.title)

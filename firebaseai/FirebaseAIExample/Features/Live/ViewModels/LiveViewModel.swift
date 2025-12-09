@@ -51,6 +51,15 @@ class LiveViewModel: ObservableObject {
   @Published
   var tip: String?
 
+  @Published
+  var isAudioOutputEnabled: Bool = {
+    #if targetEnvironment(simulator)
+      return false
+    #else
+      return true
+    #endif
+  }()
+
   private var model: LiveGenerativeModel?
   private var liveSession: LiveSession?
 
@@ -81,9 +90,9 @@ class LiveViewModel: ObservableObject {
       return
     }
 
-    #if targetEnvironment(simulator)
-      logger.warning("Playback audio is disabled on the simulator.")
-    #endif
+    if !isAudioOutputEnabled {
+      logger.warning("Playback audio is disabled.")
+    }
 
     guard await requestRecordPermission() else {
       logger.warning("The user denied us permission to record the microphone.")
@@ -200,7 +209,7 @@ class LiveViewModel: ObservableObject {
       logger.warning("Model was interrupted")
       await audioController?.interrupt()
       transcriptTypewriter.clearPending()
-      // adds an em dash to indiciate that the model was cutoff
+      // adds an em dash to indicate that the model was cutoff
       transcriptTypewriter.appendText("— ")
     } else if let transcript = content.outputAudioTranscription?.text {
       appendAudioTranscript(transcript)
@@ -211,9 +220,9 @@ class LiveViewModel: ObservableObject {
     for part in content.parts {
       if let part = part as? InlineDataPart {
         if part.mimeType.starts(with: "audio/pcm") {
-          #if !targetEnvironment(simulator)
+          if isAudioOutputEnabled {
             try await audioController?.playAudio(audio: part.data)
-          #endif
+          }
         } else {
           logger.warning("Received non audio inline data part: \(part.mimeType)")
         }

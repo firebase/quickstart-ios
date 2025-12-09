@@ -49,16 +49,18 @@ struct LiveScreen: View {
       )
 
       #if targetEnvironment(simulator)
-        VStack(alignment: .leading, spacing: 5) {
-          Toggle("Audio Output", isOn: $viewModel.isAudioOutputEnabled)
-            .toggleStyle(.switch)
+        if viewModel.state == .idle {
+          VStack(alignment: .leading, spacing: 5) {
+            Toggle("Audio Output", isOn: $viewModel.isAudioOutputEnabled)
+              .toggleStyle(.switch)
 
-          Text("""
-          Audio output works best on physical devices. Enable this to test playback in the \
-          simulator. Headphones are recommended.
-          """)
-            .font(.caption)
-            .foregroundStyle(.secondary)
+            Text("""
+            Audio output works best on physical devices. Enable this to test playback in the \
+            simulator. Headphones are recommended.
+            """)
+              .font(.caption)
+              .foregroundStyle(.secondary)
+          }
         }
       #endif
     }

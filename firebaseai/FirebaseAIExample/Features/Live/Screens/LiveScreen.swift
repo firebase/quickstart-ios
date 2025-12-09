@@ -18,7 +18,6 @@
   import FirebaseAI
 #endif
 import SwiftUI
-import ConversationKit
 
 struct LiveScreen: View {
   let backendType: BackendOption

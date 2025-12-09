@@ -48,7 +48,7 @@ struct LiveScreen: View {
         onDisconnect: viewModel.disconnect
       )
 
-      #if !targetEnvironment(simulator)
+      #if targetEnvironment(simulator)
         VStack(alignment: .leading, spacing: 5) {
           Toggle("Audio Output", isOn: $viewModel.isAudioOutputEnabled)
             .toggleStyle(.switch)

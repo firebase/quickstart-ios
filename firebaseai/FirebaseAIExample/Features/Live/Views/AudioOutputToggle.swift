@@ -28,7 +28,7 @@ struct AudioOutputToggle: View {
       """)
         .font(.caption)
         .foregroundStyle(.secondary)
-    }.padding(.horizontal)
+    }
   }
 }
 

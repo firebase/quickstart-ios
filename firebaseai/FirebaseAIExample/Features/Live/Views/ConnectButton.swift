@@ -49,7 +49,7 @@ struct ConnectButton: View {
 
   private var gradientColors: [Color] {
     switch state {
-    case .connected: []
+    case .connected: [.red]
     case .connecting: [.secondary, .white]
     case .idle: [.red, .blue, .green, .yellow, .red]
     }

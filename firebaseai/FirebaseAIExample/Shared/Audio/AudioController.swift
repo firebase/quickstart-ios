@@ -96,39 +96,41 @@ actor AudioController {
         print("Failed to disable voice processing: \(error.localizedDescription)")
       }
     }
-    microphone?.stop()
-    audioPlayer?.stop()
+    Task { @MainActor [audioPlayer, microphone] in
+      microphone?.stop()
+      audioPlayer?.stop()
+    }
     microphoneDataQueue.finish()
     routeTask?.cancel()
   }
 
   /// Kicks off audio processing, and returns a stream of recorded microphone audio data.
-  public func listenToMic() throws -> AsyncStream<AVAudioPCMBuffer> {
-    try spawnAudioProcessingThread()
+  public func listenToMic() async throws -> AsyncStream<AVAudioPCMBuffer> {
+    try await spawnAudioProcessingThread()
     return microphoneData
   }
 
   /// Permanently stop all audio processing.
   ///
   /// To start again, create a new instance of ``AudioController``.
-  public func stop() {
+  public func stop() async {
     stopped = true
-    stopListeningAndPlayback()
+    await stopListeningAndPlayback()
     microphoneDataQueue.finish()
     routeTask?.cancel()
   }
 
   /// Queues audio for playback.
-  public func playAudio(audio: Data) throws {
-    try audioPlayer?.play(audio)
+  public func playAudio(audio: Data) async throws {
+    try await audioPlayer?.play(audio)
   }
 
   /// Interrupts and clears the currently pending audio playback queue.
-  public func interrupt() {
-    audioPlayer?.interrupt()
+  public func interrupt() async {
+    await audioPlayer?.interrupt()
   }
 
-  private func stopListeningAndPlayback() {
+  private func stopListeningAndPlayback() async {
     listenTask?.cancel()
     // audio engine needs to be stopped before disconnecting nodes
     audioEngine?.pause()
@@ -143,8 +145,8 @@ actor AudioController {
         print("Failed to disable voice processing: \(error.localizedDescription)")
       }
     }
-    microphone?.stop()
-    audioPlayer?.stop()
+    await microphone?.stop()
+    await audioPlayer?.stop()
   }
 
   /// Start audio processing functionality.
@@ -154,16 +156,16 @@ actor AudioController {
   /// This function is also called whenever the input or output device change,
   /// so it needs to be able to setup the audio processing without disrupting
   /// the consumer of the microphone data.
-  private func spawnAudioProcessingThread() throws {
+  private func spawnAudioProcessingThread() async throws {
     if stopped { return }
 
-    stopListeningAndPlayback()
+    await stopListeningAndPlayback()
 
     // we need to start a new audio engine if the output device changed, so we might as well do it regardless
     let audioEngine = AVAudioEngine()
     self.audioEngine = audioEngine
 
-    try setupAudioPlayback(audioEngine)
+    try await setupAudioPlayback(audioEngine)
     try setupVoiceProcessing(audioEngine)
 
     do {
@@ -172,14 +174,14 @@ actor AudioController {
       throw ApplicationError("Failed to start audio engine: \(error.localizedDescription)")
     }
 
-    try setupMicrophone(audioEngine)
+    try await setupMicrophone(audioEngine)
   }
 
-  private func setupMicrophone(_ engine: AVAudioEngine) throws {
-    let microphone = Microphone(engine: engine)
+  private func setupMicrophone(_ engine: AVAudioEngine) async throws {
+    let microphone = await Microphone(engine: engine)
     self.microphone = microphone
 
-    microphone.start()
+    await microphone.start()
 
     let micFormat = engine.inputNode.outputFormat(forBus: 0)
     guard let converter = AVAudioConverter(from: micFormat, to: modelInputFormat) else {
@@ -187,15 +189,15 @@ actor AudioController {
     }
 
     listenTask = Task {
-      for await audio in microphone.audio {
-        try microphoneDataQueue.yield(converter.convertBuffer(audio))
+      for await audio in await microphone.audio {
+        try microphoneDataQueue.yield(await converter.convertBuffer(audio))
       }
     }
   }
 
-  private func setupAudioPlayback(_ engine: AVAudioEngine) throws {
+  private func setupAudioPlayback(_ engine: AVAudioEngine) async throws {
     let playbackFormat = engine.outputNode.outputFormat(forBus: 0)
-    audioPlayer = try AudioPlayer(
+    audioPlayer = try await AudioPlayer(
       engine: engine,
       inputFormat: modelOutputFormat,
       outputFormat: playbackFormat
@@ -240,10 +242,12 @@ actor AudioController {
 
     switch reason {
     case .newDeviceAvailable, .oldDeviceUnavailable:
-      do {
-        try spawnAudioProcessingThread()
-      } catch {
-        print("Failed to spawn audio processing thread: \(String(describing: error))")
+      Task { @MainActor in
+        do {
+          try await spawnAudioProcessingThread()
+        } catch {
+          print("Failed to spawn audio processing thread: \(String(describing: error))")
+        }
       }
     default: ()
     }

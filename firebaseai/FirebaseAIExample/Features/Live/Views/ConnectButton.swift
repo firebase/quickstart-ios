@@ -57,9 +57,10 @@ struct ConnectButton: View {
 
   var body: some View {
     Button(action: onClick) {
-      Label(title, systemImage: image)
-        .padding()
-    }.disabled(state == .connecting).overlay(
+      Label(title, systemImage: image).padding()
+    }
+    .disabled(state == .connecting)
+    .overlay(
       RoundedRectangle(cornerRadius: 35)
         .stroke(
           AngularGradient(

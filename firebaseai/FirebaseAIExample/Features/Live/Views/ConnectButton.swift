@@ -39,6 +39,33 @@ struct ConnectButton: View {
     }
   }
 
+  var body: some View {
+    Button(action: onClick) {
+      Label(title, systemImage: image).padding()
+    }
+    .buttonStyle(.connect(state: state, gradiantAngle: gradientAngle))
+    .onAppear {
+      withAnimation(.linear(duration: 5).repeatForever(autoreverses: false)) {
+        self.gradientAngle = .degrees(360)
+      }
+    }
+  }
+
+  private func onClick() {
+    Task {
+      if isConnected {
+        await onDisconnect()
+      } else {
+        await onConnect()
+      }
+    }
+  }
+}
+
+struct ConnectButtonStyle: ButtonStyle {
+  var state: LiveViewModelState
+  var gradientAngle: Angle
+
   private var color: Color {
     switch state {
     case .connected: Color(.systemRed)
@@ -55,38 +82,28 @@ struct ConnectButton: View {
     }
   }
 
-  var body: some View {
-    Button(action: onClick) {
-      Label(title, systemImage: image).padding()
-    }
-    .disabled(state == .connecting)
-    .overlay(
-      RoundedRectangle(cornerRadius: 35)
-        .stroke(
-          AngularGradient(
-            gradient: Gradient(colors: gradientColors),
-            center: .center,
-            startAngle: gradientAngle,
-            endAngle: gradientAngle + .degrees(360)
-          ),
-          lineWidth: 3
-        )
-    ).tint(color)
-      .onAppear {
-        withAnimation(.linear(duration: 5).repeatForever(autoreverses: false)) {
-          self.gradientAngle = .degrees(360)
-        }
-      }
+  func makeBody(configuration: Configuration) -> some View {
+    configuration.label
+      .disabled(state == .connecting)
+      .overlay(
+        RoundedRectangle(cornerRadius: 35)
+          .stroke(
+            AngularGradient(
+              gradient: Gradient(colors: gradientColors),
+              center: .center,
+              startAngle: gradientAngle,
+              endAngle: gradientAngle + .degrees(360)
+            ),
+            lineWidth: 3
+          )
+      )
+      .foregroundStyle(color)
   }
+}
 
-  private func onClick() {
-    Task {
-      if isConnected {
-        await onDisconnect()
-      } else {
-        await onConnect()
-      }
-    }
+extension ButtonStyle where Self == ConnectButtonStyle {
+  static func connect(state: LiveViewModelState, gradiantAngle: Angle) -> ConnectButtonStyle {
+    ConnectButtonStyle(state: state, gradientAngle: gradiantAngle)
   }
 }
 

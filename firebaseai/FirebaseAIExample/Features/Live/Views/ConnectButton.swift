@@ -33,9 +33,9 @@ struct ConnectButton: View {
 
   private var image: String {
     switch state {
-    case .connected: "stop.fill"
-    case .connecting: "wifi.square.fill"
-    case .idle: "play.square.fill"
+    case .connected: "stop"
+    case .connecting: "wifi"
+    case .idle: "play"
     }
   }
 

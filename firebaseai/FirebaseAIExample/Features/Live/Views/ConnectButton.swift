@@ -78,7 +78,13 @@ struct ConnectButtonStyle: ButtonStyle {
     switch state {
     case .connected: [Color(.systemRed)]
     case .connecting: [.secondary, .white]
-    case .idle: [Color(.systemRed), Color(.systemBlue), Color(.systemGreen), Color(.systemYellow), Color(.systemRed)]
+    case .idle: [
+      Color(.systemRed),
+      Color(.systemBlue),
+      Color(.systemGreen),
+      Color(.systemYellow),
+      Color(.systemRed),
+    ]
     }
   }
 

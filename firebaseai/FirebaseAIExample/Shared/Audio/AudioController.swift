@@ -225,7 +225,8 @@ actor AudioController {
         do {
           try await spawnAudioProcessingThread()
         } catch {
-          await logger.error("Failed to spawn audio processing thread: \(String(describing: error))")
+          await logger
+            .error("Failed to spawn audio processing thread: \(String(describing: error))")
         }
       }
     default: ()

@@ -83,30 +83,6 @@ actor AudioController {
     listenForRouteChange()
   }
 
-  deinit {
-    stopped = true
-    listenTask?.cancel()
-    // audio engine needs to be stopped before disconnecting nodes
-    audioEngine?.pause()
-    audioEngine?.stop()
-    if let audioEngine {
-      do {
-        // the VP IO leaves behind artifacts, so we need to disable it to properly clean up
-        if audioEngine.inputNode.isVoiceProcessingEnabled {
-          try audioEngine.inputNode.setVoiceProcessingEnabled(false)
-        }
-      } catch {
-        logger.error("Failed to disable voice processing: \(error.localizedDescription)")
-      }
-    }
-    Task { @MainActor [audioPlayer, microphone] in
-      microphone?.stop()
-      audioPlayer?.stop()
-    }
-    microphoneDataQueue.finish()
-    routeTask?.cancel()
-  }
-
   /// Kicks off audio processing, and returns a stream of recorded microphone audio data.
   public func listenToMic() async throws -> AsyncStream<AVAudioPCMBuffer> {
     try await spawnAudioProcessingThread()

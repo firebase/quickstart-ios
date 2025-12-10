@@ -57,7 +57,11 @@ struct LiveScreen: View {
     .padding()
     .navigationTitle(viewModel.title)
     .navigationBarTitleDisplayMode(.inline)
-    .background(viewModel.backgroundColor ?? .clear)
+    .background(viewModel.backgroundColor ?? .clear).onDisappear {
+      Task {
+        await viewModel.disconnect()
+      }
+    }
   }
 }
 

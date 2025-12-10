@@ -14,9 +14,12 @@
 
 import AVFoundation
 import Foundation
+import OSLog
 
 /// Plays back audio through the primary output device.
 class AudioPlayer {
+  private var logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "generative-ai")
+
   private let engine: AVAudioEngine
   private let inputFormat: AVAudioFormat
   private let outputFormat: AVAudioFormat
@@ -54,7 +57,7 @@ class AudioPlayer {
   /// being played through the output device.
   public func play(_ audio: Data) throws {
     guard engine.isRunning else {
-      print("Audio engine needs to be running to play audio.")
+      logger.warning("Audio engine needs to be running to play audio.")
       return
     }
 

@@ -13,9 +13,12 @@
 // limitations under the License.
 
 import AVFoundation
+import OSLog
 
 /// Controls audio playback and recording.
 actor AudioController {
+  private var logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "generative-ai")
+
   /// Data processed from the microphone.
   private let microphoneData: AsyncStream<AVAudioPCMBuffer>
   private let microphoneDataQueue: AsyncStream<AVAudioPCMBuffer>.Continuation
@@ -93,7 +96,7 @@ actor AudioController {
           try audioEngine.inputNode.setVoiceProcessingEnabled(false)
         }
       } catch {
-        print("Failed to disable voice processing: \(error.localizedDescription)")
+        logger.error("Failed to disable voice processing: \(error.localizedDescription)")
       }
     }
     Task { @MainActor [audioPlayer, microphone] in
@@ -142,7 +145,7 @@ actor AudioController {
           try audioEngine.inputNode.setVoiceProcessingEnabled(false)
         }
       } catch {
-        print("Failed to disable voice processing: \(error.localizedDescription)")
+        logger.error("Failed to disable voice processing: \(error.localizedDescription)")
       }
     }
     await microphone?.stop()
@@ -246,7 +249,7 @@ actor AudioController {
         do {
           try await spawnAudioProcessingThread()
         } catch {
-          print("Failed to spawn audio processing thread: \(String(describing: error))")
+          await logger.error("Failed to spawn audio processing thread: \(String(describing: error))")
         }
       }
     default: ()

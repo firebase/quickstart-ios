@@ -41,7 +41,9 @@ struct ConnectButton: View {
 
   var body: some View {
     Button(action: onClick) {
-      Label(title, systemImage: image).padding()
+      Label(title, systemImage: image)
+        .frame(maxWidth: .infinity)
+        .padding()
     }
     .buttonStyle(.connect(state: state, gradientAngle: gradientAngle))
     .onAppear {

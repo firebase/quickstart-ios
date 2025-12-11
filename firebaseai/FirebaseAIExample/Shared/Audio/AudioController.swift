@@ -107,12 +107,12 @@ actor AudioController {
 
   /// Queues audio for playback.
   public func playAudio(audio: Data) async throws {
-    try await audioPlayer?.play(audio)
+    try audioPlayer?.play(audio)
   }
 
   /// Interrupts and clears the currently pending audio playback queue.
   public func interrupt() async {
-    await audioPlayer?.interrupt()
+    audioPlayer?.interrupt()
   }
 
   private func stopListeningAndPlayback() async {
@@ -130,8 +130,8 @@ actor AudioController {
         logger.error("Failed to disable voice processing: \(error.localizedDescription)")
       }
     }
-    await microphone?.stop()
-    await audioPlayer?.stop()
+    microphone?.stop()
+    audioPlayer?.stop()
   }
 
   /// Start audio processing functionality.
@@ -163,10 +163,10 @@ actor AudioController {
   }
 
   private func setupMicrophone(_ engine: AVAudioEngine) async throws {
-    let microphone = await Microphone(engine: engine)
+    let microphone = Microphone(engine: engine)
     self.microphone = microphone
 
-    await microphone.start()
+    microphone.start()
 
     let micFormat = engine.inputNode.outputFormat(forBus: 0)
     guard let converter = AVAudioConverter(from: micFormat, to: modelInputFormat) else {
@@ -174,15 +174,15 @@ actor AudioController {
     }
 
     listenTask = Task {
-      for await audio in await microphone.audio {
-        try microphoneDataQueue.yield(await converter.convertBuffer(audio))
+      for await audio in microphone.audio {
+        try microphoneDataQueue.yield(converter.convertBuffer(audio))
       }
     }
   }
 
   private func setupAudioPlayback(_ engine: AVAudioEngine) async throws {
     let playbackFormat = engine.outputNode.outputFormat(forBus: 0)
-    audioPlayer = try await AudioPlayer(
+    audioPlayer = try AudioPlayer(
       engine: engine,
       inputFormat: modelOutputFormat,
       outputFormat: playbackFormat

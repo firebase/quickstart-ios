@@ -13,177 +13,177 @@
 // limitations under the License.
 
 #if canImport(FirebaseAILogic)
-    import FirebaseAILogic
+  import FirebaseAILogic
 #else
-    import FirebaseAI
+  import FirebaseAI
 #endif
-import Combine
-import ConversationKit
 import Foundation
 import UIKit
+import Combine
+import ConversationKit
 
 @MainActor
 class ChatViewModel: ObservableObject {
-    /// This array holds both the user's and the system's chat messages
-    @Published var messages = [ChatMessage]()
+  /// This array holds both the user's and the system's chat messages
+  @Published var messages = [ChatMessage]()
 
-    /// Indicates we're waiting for the model to finish
-    @Published var busy = false
+  /// Indicates we're waiting for the model to finish
+  @Published var busy = false
 
-    @Published var error: Error?
-    var hasError: Bool {
-        return error != nil
+  @Published var error: Error?
+  var hasError: Bool {
+    return error != nil
+  }
+
+  @Published var presentErrorDetails: Bool = false
+
+  @Published var initialPrompt: String = ""
+  @Published var title: String = ""
+
+  private var model: GenerativeModel
+  private var chat: Chat
+
+  private var chatTask: Task<Void, Never>?
+
+  private var sample: Sample?
+  private var backendType: BackendOption
+
+  init(backendType: BackendOption, sample: Sample? = nil) {
+    self.sample = sample
+    self.backendType = backendType
+
+    let firebaseService = backendType == .googleAI
+      ? FirebaseAI.firebaseAI(backend: .googleAI())
+      : FirebaseAI.firebaseAI(backend: .vertexAI())
+
+    model = firebaseService.generativeModel(
+      modelName: sample?.modelName ?? "gemini-2.5-flash",
+      generationConfig: sample?.generationConfig,
+      systemInstruction: sample?.systemInstruction
+    )
+
+    if let chatHistory = sample?.chatHistory, !chatHistory.isEmpty {
+      messages = ChatMessage.from(chatHistory)
+      chat = model.startChat(history: chatHistory)
+    } else {
+      chat = model.startChat()
     }
 
-    @Published var presentErrorDetails: Bool = false
+    initialPrompt = sample?.initialPrompt ?? ""
+    title = sample?.title ?? ""
+  }
 
-    @Published var initialPrompt: String = ""
-    @Published var title: String = ""
+  func sendMessage(_ text: String, streaming: Bool = true) async {
+    error = nil
+    if streaming {
+      await internalSendMessageStreaming(text)
+    } else {
+      await internalSendMessage(text)
+    }
+  }
 
-    private var model: GenerativeModel
-    private var chat: Chat
+  func startNewChat() {
+    stop()
+    error = nil
+    chat = model.startChat()
+    messages.removeAll()
+    initialPrompt = ""
+  }
 
-    private var chatTask: Task<Void, Never>?
+  func stop() {
+    chatTask?.cancel()
+    error = nil
+  }
 
-    private var sample: Sample?
-    private var backendType: BackendOption
+  private func internalSendMessageStreaming(_ text: String) async {
+    chatTask?.cancel()
 
-    init(backendType: BackendOption, sample: Sample? = nil) {
-        self.sample = sample
-        self.backendType = backendType
+    chatTask = Task {
+      busy = true
+      defer {
+        busy = false
+      }
 
-        let firebaseService = backendType == .googleAI
-            ? FirebaseAI.firebaseAI(backend: .googleAI())
-            : FirebaseAI.firebaseAI(backend: .vertexAI())
+      // first, add the user's message to the chat
+      let userMessage = ChatMessage(content: text, participant: .user)
+      messages.append(userMessage)
 
-        model = firebaseService.generativeModel(
-            modelName: sample?.modelName ?? "gemini-2.5-flash",
-            generationConfig: sample?.generationConfig,
-            systemInstruction: sample?.systemInstruction
-        )
+      // add a pending message while we're waiting for a response from the backend
+      let systemMessage = ChatMessage.pending(participant: .other)
+      messages.append(systemMessage)
 
-        if let chatHistory = sample?.chatHistory, !chatHistory.isEmpty {
-            messages = ChatMessage.from(chatHistory)
-            chat = model.startChat(history: chatHistory)
-        } else {
-            chat = model.startChat()
+      do {
+        let responseStream = try chat.sendMessageStream(text)
+        for try await chunk in responseStream {
+          messages[messages.count - 1].pending = false
+          if let text = chunk.text {
+            messages[messages.count - 1]
+              .content = (messages[messages.count - 1].content ?? "") + text
+          }
+
+          if let inlineDataPart = chunk.inlineDataParts.first {
+            if let uiImage = UIImage(data: inlineDataPart.data) {
+              messages[messages.count - 1].image = uiImage
+            } else {
+              print("Failed to convert inline data to UIImage")
+            }
+          }
+        }
+      } catch {
+        self.error = error
+        print(error.localizedDescription)
+        let errorMessage = ChatMessage(content: "An error occurred. Please try again.",
+                                       participant: .other,
+                                       error: error,
+                                       pending: false)
+        messages[messages.count - 1] = errorMessage
+      }
+    }
+  }
+
+  private func internalSendMessage(_ text: String) async {
+    chatTask?.cancel()
+
+    chatTask = Task {
+      busy = true
+      defer {
+        busy = false
+      }
+
+      // first, add the user's message to the chat
+      let userMessage = ChatMessage(content: text, participant: .user)
+      messages.append(userMessage)
+
+      // add a pending message while we're waiting for a response from the backend
+      let systemMessage = ChatMessage.pending(participant: .other)
+      messages.append(systemMessage)
+
+      do {
+        var response: GenerateContentResponse?
+        response = try await chat.sendMessage(text)
+
+        if let responseText = response?.text {
+          // replace pending message with backend response
+          messages[messages.count - 1].content = responseText
+          messages[messages.count - 1].pending = false
         }
 
-        initialPrompt = sample?.initialPrompt ?? ""
-        title = sample?.title ?? ""
-    }
-
-    func sendMessage(_ text: String, streaming: Bool = true) async {
-        error = nil
-        if streaming {
-            await internalSendMessageStreaming(text)
-        } else {
-            await internalSendMessage(text)
+        if let inlineDataPart = response?.inlineDataParts.first {
+          if let uiImage = UIImage(data: inlineDataPart.data) {
+            messages[messages.count - 1].image = uiImage
+          } else {
+            print("Failed to convert inline data to UIImage")
+          }
         }
+      } catch {
+        self.error = error
+        print(error.localizedDescription)
+        let errorMessage = ChatMessage(content: "An error occurred. Please try again.",
+                                       participant: .other,
+                                       error: error,
+                                       pending: false)
+        messages[messages.count - 1] = errorMessage
+      }
     }
-
-    func startNewChat() {
-        stop()
-        error = nil
-        chat = model.startChat()
-        messages.removeAll()
-        initialPrompt = ""
-    }
-
-    func stop() {
-        chatTask?.cancel()
-        error = nil
-    }
-
-    private func internalSendMessageStreaming(_ text: String) async {
-        chatTask?.cancel()
-
-        chatTask = Task {
-            busy = true
-            defer {
-                busy = false
-            }
-
-            // first, add the user's message to the chat
-            let userMessage = ChatMessage(content: text, participant: .user)
-            messages.append(userMessage)
-
-            // add a pending message while we're waiting for a response from the backend
-            let systemMessage = ChatMessage.pending(participant: .other)
-            messages.append(systemMessage)
-
-            do {
-                let responseStream = try chat.sendMessageStream(text)
-                for try await chunk in responseStream {
-                    messages[messages.count - 1].pending = false
-                    if let text = chunk.text {
-                        messages[messages.count - 1]
-                            .content = (messages[messages.count - 1].content ?? "") + text
-                    }
-
-                    if let inlineDataPart = chunk.inlineDataParts.first {
-                        if let uiImage = UIImage(data: inlineDataPart.data) {
-                            messages[messages.count - 1].image = uiImage
-                        } else {
-                            print("Failed to convert inline data to UIImage")
-                        }
-                    }
-                }
-            } catch {
-                self.error = error
-                print(error.localizedDescription)
-                let errorMessage = ChatMessage(content: "An error occurred. Please try again.",
-                                               participant: .other,
-                                               error: error,
-                                               pending: false)
-                messages[messages.count - 1] = errorMessage
-            }
-        }
-    }
-
-    private func internalSendMessage(_ text: String) async {
-        chatTask?.cancel()
-
-        chatTask = Task {
-            busy = true
-            defer {
-                busy = false
-            }
-
-            // first, add the user's message to the chat
-            let userMessage = ChatMessage(content: text, participant: .user)
-            messages.append(userMessage)
-
-            // add a pending message while we're waiting for a response from the backend
-            let systemMessage = ChatMessage.pending(participant: .other)
-            messages.append(systemMessage)
-
-            do {
-                var response: GenerateContentResponse?
-                response = try await chat.sendMessage(text)
-
-                if let responseText = response?.text {
-                    // replace pending message with backend response
-                    messages[messages.count - 1].content = responseText
-                    messages[messages.count - 1].pending = false
-                }
-
-                if let inlineDataPart = response?.inlineDataParts.first {
-                    if let uiImage = UIImage(data: inlineDataPart.data) {
-                        messages[messages.count - 1].image = uiImage
-                    } else {
-                        print("Failed to convert inline data to UIImage")
-                    }
-                }
-            } catch {
-                self.error = error
-                print(error.localizedDescription)
-                let errorMessage = ChatMessage(content: "An error occurred. Please try again.",
-                                               participant: .other,
-                                               error: error,
-                                               pending: false)
-                messages[messages.count - 1] = errorMessage
-            }
-        }
-    }
+  }
 }

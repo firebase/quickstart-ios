@@ -17,43 +17,42 @@ import SwiftUI
 import TipKit
 
 class AppDelegate: NSObject, UIApplicationDelegate {
-    func application(_: UIApplication,
-                     didFinishLaunchingWithOptions _: [UIApplication
-                         .LaunchOptionsKey: Any]? = nil) -> Bool
-    {
-        // Recommendation: Protect your Vertex AI API resources from abuse by preventing unauthorized
-        // clients using App Check; see https://firebase.google.com/docs/app-check#get_started.
+  func application(_ application: UIApplication,
+                   didFinishLaunchingWithOptions launchOptions: [UIApplication
+                     .LaunchOptionsKey: Any]? = nil) -> Bool {
+    // Recommendation: Protect your Vertex AI API resources from abuse by preventing unauthorized
+    // clients using App Check; see https://firebase.google.com/docs/app-check#get_started.
 
-        FirebaseApp.configure()
+    FirebaseApp.configure()
 
-        if let firebaseApp = FirebaseApp.app(), firebaseApp.options.projectID == "mockproject-1234" {
-            guard let bundleID = Bundle.main.bundleIdentifier else { fatalError() }
-            fatalError("""
-            You must create and/or download a valid `GoogleService-Info.plist` file for \(bundleID) from \
-            https://console.firebase.google.com to run this example. Replace the existing \
-            `GoogleService-Info.plist` file in the `firebaseai` directory with this new file.
-            """)
-        }
-
-        return true
+    if let firebaseApp = FirebaseApp.app(), firebaseApp.options.projectID == "mockproject-1234" {
+      guard let bundleID = Bundle.main.bundleIdentifier else { fatalError() }
+      fatalError("""
+      You must create and/or download a valid `GoogleService-Info.plist` file for \(bundleID) from \
+      https://console.firebase.google.com to run this example. Replace the existing \
+      `GoogleService-Info.plist` file in the `firebaseai` directory with this new file.
+      """)
     }
+
+    return true
+  }
 }
 
 @main
 struct FirebaseAIExampleApp: App {
-    @UIApplicationDelegateAdaptor var appDelegate: AppDelegate
+  @UIApplicationDelegateAdaptor var appDelegate: AppDelegate
 
-    init() {
-        do {
-            try Tips.configure()
-        } catch {
-            print("Error initializing tips: \(error)")
-        }
+  init() {
+    do {
+      try Tips.configure()
+    } catch {
+      print("Error initializing tips: \(error)")
     }
+  }
 
-    var body: some Scene {
-        WindowGroup {
-            ContentView()
-        }
+  var body: some Scene {
+    WindowGroup {
+      ContentView()
     }
+  }
 }

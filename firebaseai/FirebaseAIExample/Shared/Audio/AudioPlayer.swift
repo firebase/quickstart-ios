@@ -18,71 +18,71 @@ import OSLog
 
 /// Plays back audio through the primary output device.
 class AudioPlayer {
-    private var logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "generative-ai")
+  private var logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "generative-ai")
 
-    private let engine: AVAudioEngine
-    private let inputFormat: AVAudioFormat
-    private let outputFormat: AVAudioFormat
-    private let playbackNode: AVAudioPlayerNode
-    private var formatConverter: AVAudioConverter
+  private let engine: AVAudioEngine
+  private let inputFormat: AVAudioFormat
+  private let outputFormat: AVAudioFormat
+  private let playbackNode: AVAudioPlayerNode
+  private var formatConverter: AVAudioConverter
 
-    init(engine: AVAudioEngine, inputFormat: AVAudioFormat, outputFormat: AVAudioFormat) throws {
-        self.engine = engine
+  init(engine: AVAudioEngine, inputFormat: AVAudioFormat, outputFormat: AVAudioFormat) throws {
+    self.engine = engine
 
-        guard let formatConverter = AVAudioConverter(from: inputFormat, to: outputFormat) else {
-            throw ApplicationError("Failed to create the audio converter")
-        }
-
-        let playbackNode = AVAudioPlayerNode()
-
-        engine.attach(playbackNode)
-        engine.connect(playbackNode, to: engine.mainMixerNode, format: outputFormat)
-
-        self.inputFormat = inputFormat
-        self.outputFormat = outputFormat
-        self.formatConverter = formatConverter
-        self.playbackNode = playbackNode
+    guard let formatConverter = AVAudioConverter(from: inputFormat, to: outputFormat) else {
+      throw ApplicationError("Failed to create the audio converter")
     }
 
-    deinit {
-        stop()
+    let playbackNode = AVAudioPlayerNode()
+
+    engine.attach(playbackNode)
+    engine.connect(playbackNode, to: engine.mainMixerNode, format: outputFormat)
+
+    self.inputFormat = inputFormat
+    self.outputFormat = outputFormat
+    self.formatConverter = formatConverter
+    self.playbackNode = playbackNode
+  }
+
+  deinit {
+    stop()
+  }
+
+  /// Queue audio to be played through the output device.
+  ///
+  /// Note that in a real app, you'd ideally schedule the data before converting it, and then mark data as consumed after its been played
+  /// back. That way, if the audio route changes during playback, you can requeue the buffer on the new output device.
+  ///
+  /// For the sake of simplicity, that is not implemented here; a route change will prevent the currently queued conversation from
+  /// being played through the output device.
+  public func play(_ audio: Data) throws {
+    guard engine.isRunning else {
+      logger.warning("Audio engine needs to be running to play audio.")
+      return
     }
 
-    /// Queue audio to be played through the output device.
-    ///
-    /// Note that in a real app, you'd ideally schedule the data before converting it, and then mark data as consumed after its been played
-    /// back. That way, if the audio route changes during playback, you can requeue the buffer on the new output device.
-    ///
-    /// For the sake of simplicity, that is not implemented here; a route change will prevent the currently queued conversation from
-    /// being played through the output device.
-    public func play(_ audio: Data) throws {
-        guard engine.isRunning else {
-            logger.warning("Audio engine needs to be running to play audio.")
-            return
-        }
-
-        guard let inputBuffer = try AVAudioPCMBuffer.fromInterleavedData(
-            data: audio,
-            format: inputFormat
-        ) else {
-            throw ApplicationError("Failed to create input buffer for playback")
-        }
-
-        let buffer = try formatConverter.convertBuffer(inputBuffer)
-
-        playbackNode.scheduleBuffer(buffer, at: nil)
-        playbackNode.play()
+    guard let inputBuffer = try AVAudioPCMBuffer.fromInterleavedData(
+      data: audio,
+      format: inputFormat
+    ) else {
+      throw ApplicationError("Failed to create input buffer for playback")
     }
 
-    /// Stops the current audio playing.
-    public func interrupt() {
-        playbackNode.stop()
-    }
+    let buffer = try formatConverter.convertBuffer(inputBuffer)
 
-    /// Permanently stop all audio playback.
-    public func stop() {
-        interrupt()
-        engine.disconnectNodeInput(playbackNode)
-        engine.disconnectNodeOutput(playbackNode)
-    }
+    playbackNode.scheduleBuffer(buffer, at: nil)
+    playbackNode.play()
+  }
+
+  /// Stops the current audio playing.
+  public func interrupt() {
+    playbackNode.stop()
+  }
+
+  /// Permanently stop all audio playback.
+  public func stop() {
+    interrupt()
+    engine.disconnectNodeInput(playbackNode)
+    engine.disconnectNodeOutput(playbackNode)
+  }
 }

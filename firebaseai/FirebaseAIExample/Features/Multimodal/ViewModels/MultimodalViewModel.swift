@@ -13,211 +13,211 @@
 // limitations under the License.
 
 #if canImport(FirebaseAILogic)
-    import FirebaseAILogic
+  import FirebaseAILogic
 #else
-    import FirebaseAI
+  import FirebaseAI
 #endif
-import AVFoundation
-import Combine
-import ConversationKit
 import Foundation
 import OSLog
 import PhotosUI
 import SwiftUI
+import AVFoundation
+import Combine
+import ConversationKit
 
 @MainActor
 class MultimodalViewModel: ObservableObject {
-    @Published var messages = [ChatMessage]()
-    @Published var initialPrompt: String = ""
-    @Published var title: String = ""
-    @Published var error: Error?
-    @Published var inProgress = false
+  @Published var messages = [ChatMessage]()
+  @Published var initialPrompt: String = ""
+  @Published var title: String = ""
+  @Published var error: Error?
+  @Published var inProgress = false
 
-    @Published var presentErrorDetails: Bool = false
+  @Published var presentErrorDetails: Bool = false
 
-    @Published var attachments = [MultimodalAttachment]()
+  @Published var attachments = [MultimodalAttachment]()
 
-    private var model: GenerativeModel
-    private var chat: Chat
-    private var chatTask: Task<Void, Never>?
-    private let logger = Logger(subsystem: "com.example.firebaseai", category: "MultimodalViewModel")
+  private var model: GenerativeModel
+  private var chat: Chat
+  private var chatTask: Task<Void, Never>?
+  private let logger = Logger(subsystem: "com.example.firebaseai", category: "MultimodalViewModel")
 
-    private var sample: Sample?
-    private var backendType: BackendOption
-    private var fileDataParts: [FileDataPart]?
+  private var sample: Sample?
+  private var backendType: BackendOption
+  private var fileDataParts: [FileDataPart]?
 
-    init(backendType: BackendOption, sample: Sample? = nil) {
-        self.sample = sample
-        self.backendType = backendType
+  init(backendType: BackendOption, sample: Sample? = nil) {
+    self.sample = sample
+    self.backendType = backendType
 
-        let firebaseService = backendType == .googleAI
-            ? FirebaseAI.firebaseAI(backend: .googleAI())
-            : FirebaseAI.firebaseAI(backend: .vertexAI())
+    let firebaseService = backendType == .googleAI
+      ? FirebaseAI.firebaseAI(backend: .googleAI())
+      : FirebaseAI.firebaseAI(backend: .vertexAI())
 
-        model = firebaseService.generativeModel(
-            modelName: sample?.modelName ?? "gemini-2.5-flash",
-            systemInstruction: sample?.systemInstruction
-        )
+    model = firebaseService.generativeModel(
+      modelName: sample?.modelName ?? "gemini-2.5-flash",
+      systemInstruction: sample?.systemInstruction
+    )
 
-        if let chatHistory = sample?.chatHistory, !chatHistory.isEmpty {
-            messages = ChatMessage.from(chatHistory)
-            chat = model.startChat(history: chatHistory)
+    if let chatHistory = sample?.chatHistory, !chatHistory.isEmpty {
+      messages = ChatMessage.from(chatHistory)
+      chat = model.startChat(history: chatHistory)
+    } else {
+      chat = model.startChat()
+    }
+
+    initialPrompt = sample?.initialPrompt ?? ""
+    title = sample?.title ?? ""
+
+    fileDataParts = sample?.fileDataParts
+    if let fileDataParts = fileDataParts, !fileDataParts.isEmpty {
+      for fileDataPart in fileDataParts {
+        attachments.append(MultimodalAttachment(fileDataPart: fileDataPart))
+      }
+    }
+  }
+
+  func sendMessage(_ text: String, streaming: Bool = true) async {
+    error = nil
+    if streaming {
+      await internalSendMessageStreaming(text)
+    } else {
+      await internalSendMessage(text)
+    }
+  }
+
+  func startNewChat() {
+    stop()
+    error = nil
+    chat = model.startChat()
+    messages.removeAll()
+    attachments.removeAll()
+    initialPrompt = ""
+  }
+
+  func stop() {
+    chatTask?.cancel()
+    error = nil
+  }
+
+  private func internalSendMessageStreaming(_ text: String) async {
+    chatTask?.cancel()
+
+    chatTask = Task {
+      inProgress = true
+      defer {
+        inProgress = false
+      }
+
+      let userMessage = ChatMessage(content: text, participant: .user, attachments: attachments)
+      messages.append(userMessage)
+      let systemMessage = ChatMessage.pending(participant: .other)
+      messages.append(systemMessage)
+
+      do {
+        var parts: [any PartsRepresentable] = [text]
+
+        if backendType == .vertexAI, let fileDataParts = fileDataParts {
+          // This is a patch for Cloud Storage support. Only available when using Vertex AI Gemini API.
+          // For non-text inputs (e.g., media files), you can attach files from Cloud Storage to the request.
+          // if you do not want to use Cloud Storage, you can remove this `if` statement.
+          // Reference: https://firebase.google.com/docs/ai-logic/solutions/cloud-storage
+          for fileDataPart in fileDataParts {
+            parts.append(fileDataPart)
+          }
         } else {
-            chat = model.startChat()
-        }
-
-        initialPrompt = sample?.initialPrompt ?? ""
-        title = sample?.title ?? ""
-
-        fileDataParts = sample?.fileDataParts
-        if let fileDataParts = fileDataParts, !fileDataParts.isEmpty {
-            for fileDataPart in fileDataParts {
-                attachments.append(MultimodalAttachment(fileDataPart: fileDataPart))
+          for attachment in attachments {
+            if let inlineDataPart = await attachment.toInlineDataPart() {
+              parts.append(inlineDataPart)
             }
+          }
         }
-    }
 
-    func sendMessage(_ text: String, streaming: Bool = true) async {
-        error = nil
-        if streaming {
-            await internalSendMessageStreaming(text)
-        } else {
-            await internalSendMessage(text)
-        }
-    }
-
-    func startNewChat() {
-        stop()
-        error = nil
-        chat = model.startChat()
-        messages.removeAll()
         attachments.removeAll()
-        initialPrompt = ""
-    }
 
-    func stop() {
-        chatTask?.cancel()
-        error = nil
-    }
-
-    private func internalSendMessageStreaming(_ text: String) async {
-        chatTask?.cancel()
-
-        chatTask = Task {
-            inProgress = true
-            defer {
-                inProgress = false
-            }
-
-            let userMessage = ChatMessage(content: text, participant: .user, attachments: attachments)
-            messages.append(userMessage)
-            let systemMessage = ChatMessage.pending(participant: .other)
-            messages.append(systemMessage)
-
-            do {
-                var parts: [any PartsRepresentable] = [text]
-
-                if backendType == .vertexAI, let fileDataParts = fileDataParts {
-                    // This is a patch for Cloud Storage support. Only available when using Vertex AI Gemini API.
-                    // For non-text inputs (e.g., media files), you can attach files from Cloud Storage to the request.
-                    // if you do not want to use Cloud Storage, you can remove this `if` statement.
-                    // Reference: https://firebase.google.com/docs/ai-logic/solutions/cloud-storage
-                    for fileDataPart in fileDataParts {
-                        parts.append(fileDataPart)
-                    }
-                } else {
-                    for attachment in attachments {
-                        if let inlineDataPart = await attachment.toInlineDataPart() {
-                            parts.append(inlineDataPart)
-                        }
-                    }
-                }
-
-                attachments.removeAll()
-
-                let responseStream = try chat.sendMessageStream(parts)
-                for try await chunk in responseStream {
-                    messages[messages.count - 1].pending = false
-                    if let text = chunk.text {
-                        messages[messages.count - 1]
-                            .content = (messages[messages.count - 1].content ?? "") + text
-                    }
-                }
-            } catch {
-                self.error = error
-                logger.error("\(error.localizedDescription)")
-                let errorMessage = ChatMessage(content: "An error occurred. Please try again.",
-                                               participant: .other,
-                                               error: error,
-                                               pending: false)
-                messages[messages.count - 1] = errorMessage
-            }
+        let responseStream = try chat.sendMessageStream(parts)
+        for try await chunk in responseStream {
+          messages[messages.count - 1].pending = false
+          if let text = chunk.text {
+            messages[messages.count - 1]
+              .content = (messages[messages.count - 1].content ?? "") + text
+          }
         }
+      } catch {
+        self.error = error
+        logger.error("\(error.localizedDescription)")
+        let errorMessage = ChatMessage(content: "An error occurred. Please try again.",
+                                       participant: .other,
+                                       error: error,
+                                       pending: false)
+        messages[messages.count - 1] = errorMessage
+      }
     }
+  }
 
-    private func internalSendMessage(_ text: String) async {
-        chatTask?.cancel()
+  private func internalSendMessage(_ text: String) async {
+    chatTask?.cancel()
 
-        chatTask = Task {
-            inProgress = true
-            defer {
-                inProgress = false
+    chatTask = Task {
+      inProgress = true
+      defer {
+        inProgress = false
+      }
+      let userMessage = ChatMessage(content: text, participant: .user, attachments: attachments)
+      messages.append(userMessage)
+
+      let systemMessage = ChatMessage.pending(participant: .other)
+      messages.append(systemMessage)
+
+      do {
+        var parts: [any PartsRepresentable] = [text]
+
+        if backendType == .vertexAI, let fileDataParts = fileDataParts {
+          // This is a patch for Cloud Storage support. Only available when using Vertex AI Gemini API.
+          // For non-text inputs (e.g., media files), you can attach files from Cloud Storage to the request.
+          // if you do not want to use Cloud Storage, you can remove this `if` statement.
+          // Reference: https://firebase.google.com/docs/ai-logic/solutions/cloud-storage
+          for fileDataPart in fileDataParts {
+            parts.append(fileDataPart)
+          }
+        } else {
+          for attachment in attachments {
+            if let inlineDataPart = await attachment.toInlineDataPart() {
+              parts.append(inlineDataPart)
             }
-            let userMessage = ChatMessage(content: text, participant: .user, attachments: attachments)
-            messages.append(userMessage)
-
-            let systemMessage = ChatMessage.pending(participant: .other)
-            messages.append(systemMessage)
-
-            do {
-                var parts: [any PartsRepresentable] = [text]
-
-                if backendType == .vertexAI, let fileDataParts = fileDataParts {
-                    // This is a patch for Cloud Storage support. Only available when using Vertex AI Gemini API.
-                    // For non-text inputs (e.g., media files), you can attach files from Cloud Storage to the request.
-                    // if you do not want to use Cloud Storage, you can remove this `if` statement.
-                    // Reference: https://firebase.google.com/docs/ai-logic/solutions/cloud-storage
-                    for fileDataPart in fileDataParts {
-                        parts.append(fileDataPart)
-                    }
-                } else {
-                    for attachment in attachments {
-                        if let inlineDataPart = await attachment.toInlineDataPart() {
-                            parts.append(inlineDataPart)
-                        }
-                    }
-                }
-
-                attachments.removeAll()
-
-                let response = try await chat.sendMessage(parts)
-
-                if let responseText = response.text {
-                    messages[messages.count - 1].content = responseText
-                    messages[messages.count - 1].pending = false
-                }
-            } catch {
-                self.error = error
-                logger.error("\(error.localizedDescription)")
-                let errorMessage = ChatMessage(content: "An error occurred. Please try again.",
-                                               participant: .other,
-                                               error: error,
-                                               pending: false)
-                messages[messages.count - 1] = errorMessage
-            }
-        }
-    }
-
-    func addAttachment(_ attachment: MultimodalAttachment) {
-        attachments.append(attachment)
-    }
-
-    func removeAttachment(_ attachment: MultimodalAttachment) {
-        if attachment.isCloudStorage {
-            // Remove corresponding fileDataPart when attachment is deleted.
-            fileDataParts?.removeAll { $0.uri == attachment.url?.absoluteString }
+          }
         }
 
-        attachments.removeAll { $0.id == attachment.id }
+        attachments.removeAll()
+
+        let response = try await chat.sendMessage(parts)
+
+        if let responseText = response.text {
+          messages[messages.count - 1].content = responseText
+          messages[messages.count - 1].pending = false
+        }
+      } catch {
+        self.error = error
+        logger.error("\(error.localizedDescription)")
+        let errorMessage = ChatMessage(content: "An error occurred. Please try again.",
+                                       participant: .other,
+                                       error: error,
+                                       pending: false)
+        messages[messages.count - 1] = errorMessage
+      }
     }
+  }
+
+  func addAttachment(_ attachment: MultimodalAttachment) {
+    attachments.append(attachment)
+  }
+
+  func removeAttachment(_ attachment: MultimodalAttachment) {
+    if attachment.isCloudStorage {
+      // Remove corresponding fileDataPart when attachment is deleted.
+      fileDataParts?.removeAll { $0.uri == attachment.url?.absoluteString }
+    }
+
+    attachments.removeAll { $0.id == attachment.id }
+  }
 }

@@ -15,40 +15,40 @@
 import SwiftUI
 
 struct FilterChipView: View {
-    let useCase: UseCase
-    let isSelected: Bool
-    let action: () -> Void
+  let useCase: UseCase
+  let isSelected: Bool
+  let action: () -> Void
 
-    var body: some View {
-        Button(action: action) {
-            Text(useCase.rawValue)
-                .padding(.horizontal)
-        }
-        .filterChipStyle(isSelected: isSelected)
+  var body: some View {
+    Button(action: action) {
+      Text(useCase.rawValue)
+        .padding(.horizontal)
     }
+    .filterChipStyle(isSelected: isSelected)
+  }
 }
 
 private struct FilterChipStyle: ViewModifier {
-    let isSelected: Bool
+  let isSelected: Bool
 
-    func body(content: Content) -> some View {
-        if isSelected {
-            content.buttonStyle(.borderedProminent)
-        } else {
-            content.buttonStyle(.bordered)
-        }
+  func body(content: Content) -> some View {
+    if isSelected {
+      content.buttonStyle(.borderedProminent)
+    } else {
+      content.buttonStyle(.bordered)
     }
+  }
 }
 
 extension View {
-    func filterChipStyle(isSelected: Bool) -> some View {
-        modifier(FilterChipStyle(isSelected: isSelected))
-    }
+  func filterChipStyle(isSelected: Bool) -> some View {
+    modifier(FilterChipStyle(isSelected: isSelected))
+  }
 }
 
 #Preview {
-    VStack(spacing: 16) {
-        FilterChipView(useCase: .text, isSelected: true) {}
-        FilterChipView(useCase: .text, isSelected: false) {}
-    }
+  VStack(spacing: 16) {
+    FilterChipView(useCase: .text, isSelected: true) {}
+    FilterChipView(useCase: .text, isSelected: false) {}
+  }
 }

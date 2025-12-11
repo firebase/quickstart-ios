@@ -14,101 +14,101 @@
 
 import SwiftUI
 #if canImport(FirebaseAILogic)
-    import FirebaseAILogic
+  import FirebaseAILogic
 #else
-    import FirebaseAI
+  import FirebaseAI
 #endif
 import ConversationKit
 
 struct ImagenFromTemplateScreen: View {
-    let backendType: BackendOption
-    @StateObject var viewModel: ImagenFromTemplateViewModel
+  let backendType: BackendOption
+  @StateObject var viewModel: ImagenFromTemplateViewModel
 
-    init(backendType: BackendOption, sample: Sample? = nil) {
-        self.backendType = backendType
-        _viewModel =
-            StateObject(wrappedValue: ImagenFromTemplateViewModel(backendType: backendType,
-                                                                  sample: sample))
-    }
+  init(backendType: BackendOption, sample: Sample? = nil) {
+    self.backendType = backendType
+    _viewModel =
+      StateObject(wrappedValue: ImagenFromTemplateViewModel(backendType: backendType,
+                                                            sample: sample))
+  }
 
-    enum FocusedField: Hashable {
-        case message
-    }
+  enum FocusedField: Hashable {
+    case message
+  }
 
-    @FocusState
-    var focusedField: FocusedField?
+  @FocusState
+  var focusedField: FocusedField?
 
-    var body: some View {
-        ZStack {
-            ScrollView {
-                VStack {
-                    MessageComposerView(message: $viewModel.userInput)
-                        .padding(.bottom, 10)
-                        .focused($focusedField, equals: .message)
-                        .disableAttachments()
-                        .onSubmitAction { sendOrStop() }
+  var body: some View {
+    ZStack {
+      ScrollView {
+        VStack {
+          MessageComposerView(message: $viewModel.userInput)
+            .padding(.bottom, 10)
+            .focused($focusedField, equals: .message)
+            .disableAttachments()
+            .onSubmitAction { sendOrStop() }
 
-                    if viewModel.error != nil {
-                        HStack {
-                            Text("An error occurred.")
-                            Button("More information", systemImage: "info.circle") {
-                                viewModel.presentErrorDetails = true
-                            }
-                            .labelStyle(.iconOnly)
-                        }
-                    }
-
-                    let spacing: CGFloat = 10
-                    LazyVGrid(columns: [
-                        GridItem(.flexible(), spacing: spacing),
-                        GridItem(.flexible(), spacing: spacing),
-                    ], spacing: spacing) {
-                        ForEach(viewModel.images, id: \.self) { image in
-                            Image(uiImage: image)
-                                .resizable()
-                                .aspectRatio(1, contentMode: .fill)
-                                .cornerRadius(12)
-                                .clipped()
-                        }
-                    }
-                    .padding(.horizontal, spacing)
-                }
+          if viewModel.error != nil {
+            HStack {
+              Text("An error occurred.")
+              Button("More information", systemImage: "info.circle") {
+                viewModel.presentErrorDetails = true
+              }
+              .labelStyle(.iconOnly)
             }
-            if viewModel.inProgress {
-                ProgressOverlay()
-            }
-        }
-        .onTapGesture {
-            focusedField = nil
-        }
-        .sheet(isPresented: $viewModel.presentErrorDetails) {
-            if let error = viewModel.error {
-                ErrorDetailsView(error: error)
-            }
-        }
-        .navigationTitle("Imagen Template")
-        .navigationBarTitleDisplayMode(.inline)
-        .onAppear {
-            focusedField = .message
-        }
-    }
+          }
 
-    private func sendMessage() {
-        Task {
-            await viewModel.generateImageFromTemplate(prompt: viewModel.userInput)
-            focusedField = .message
+          let spacing: CGFloat = 10
+          LazyVGrid(columns: [
+            GridItem(.flexible(), spacing: spacing),
+            GridItem(.flexible(), spacing: spacing),
+          ], spacing: spacing) {
+            ForEach(viewModel.images, id: \.self) { image in
+              Image(uiImage: image)
+                .resizable()
+                .aspectRatio(1, contentMode: .fill)
+                .cornerRadius(12)
+                .clipped()
+            }
+          }
+          .padding(.horizontal, spacing)
         }
+      }
+      if viewModel.inProgress {
+        ProgressOverlay()
+      }
     }
+    .onTapGesture {
+      focusedField = nil
+    }
+    .sheet(isPresented: $viewModel.presentErrorDetails) {
+      if let error = viewModel.error {
+        ErrorDetailsView(error: error)
+      }
+    }
+    .navigationTitle("Imagen Template")
+    .navigationBarTitleDisplayMode(.inline)
+    .onAppear {
+      focusedField = .message
+    }
+  }
 
-    private func sendOrStop() {
-        if viewModel.inProgress {
-            viewModel.stop()
-        } else {
-            sendMessage()
-        }
+  private func sendMessage() {
+    Task {
+      await viewModel.generateImageFromTemplate(prompt: viewModel.userInput)
+      focusedField = .message
     }
+  }
+
+  private func sendOrStop() {
+    if viewModel.inProgress {
+      viewModel.stop()
+    } else {
+      sendMessage()
+    }
+  }
 }
 
 #Preview {
-    ImagenFromTemplateScreen(backendType: .googleAI)
+  ImagenFromTemplateScreen(backendType: .googleAI)
 }

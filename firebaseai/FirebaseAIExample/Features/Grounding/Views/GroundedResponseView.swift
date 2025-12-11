@@ -13,73 +13,73 @@
 // limitations under the License.
 
 #if canImport(FirebaseAILogic)
-    import FirebaseAILogic
+  import FirebaseAILogic
 #else
-    import FirebaseAI
+  import FirebaseAI
 #endif
 import SwiftUI
 
 /// A view that displays a chat message that is grounded in Google Search.
 struct GroundedResponseView: View {
-    var message: ChatMessage
-    var groundingMetadata: GroundingMetadata
+  var message: ChatMessage
+  var groundingMetadata: GroundingMetadata
 
-    var body: some View {
-        // We can only display a response grounded in Google Search if the searchEntrypoint is non-nil.
-        let isCompliant = (groundingMetadata.groundingChunks.isEmpty || groundingMetadata
-            .searchEntryPoint != nil)
-        if isCompliant {
-            HStack(alignment: .top, spacing: 8) {
-                VStack(alignment: .leading, spacing: 8) {
-                    // Message text
-                    ResponseTextView(message: message)
+  var body: some View {
+    // We can only display a response grounded in Google Search if the searchEntrypoint is non-nil.
+    let isCompliant = (groundingMetadata.groundingChunks.isEmpty || groundingMetadata
+      .searchEntryPoint != nil)
+    if isCompliant {
+      HStack(alignment: .top, spacing: 8) {
+        VStack(alignment: .leading, spacing: 8) {
+          // Message text
+          ResponseTextView(message: message)
 
-                    if !groundingMetadata.groundingChunks.isEmpty {
-                        Divider()
-                        // Source links
-                        ForEach(0 ..< groundingMetadata.groundingChunks.count, id: \.self) { index in
-                            if let webChunk = groundingMetadata.groundingChunks[index].web {
-                                SourceLinkView(
-                                    title: webChunk.title ?? "Untitled Source",
-                                    uri: webChunk.uri
-                                )
-                            }
-                        }
-                    }
-                    // Search suggestions
-                    if let searchEntryPoint = groundingMetadata.searchEntryPoint {
-                        Divider()
-                        GoogleSearchSuggestionView(htmlString: searchEntryPoint.renderedContent)
-                            .frame(height: 44)
-                            .clipShape(RoundedRectangle(cornerRadius: 22))
-                    }
-                }
+          if !groundingMetadata.groundingChunks.isEmpty {
+            Divider()
+            // Source links
+            ForEach(0 ..< groundingMetadata.groundingChunks.count, id: \.self) { index in
+              if let webChunk = groundingMetadata.groundingChunks[index].web {
+                SourceLinkView(
+                  title: webChunk.title ?? "Untitled Source",
+                  uri: webChunk.uri
+                )
+              }
             }
-            .frame(maxWidth: .infinity, alignment: .leading)
+          }
+          // Search suggestions
+          if let searchEntryPoint = groundingMetadata.searchEntryPoint {
+            Divider()
+            GoogleSearchSuggestionView(htmlString: searchEntryPoint.renderedContent)
+              .frame(height: 44)
+              .clipShape(RoundedRectangle(cornerRadius: 22))
+          }
         }
+      }
+      .frame(maxWidth: .infinity, alignment: .leading)
     }
+  }
 }
 
 /// A  view for a single, clickable source link.
 struct SourceLinkView: View {
-    let title: String
-    let uri: String?
+  let title: String
+  let uri: String?
 
-    var body: some View {
-        if let uri, let url = URL(string: uri) {
-            Link(destination: url) {
-                HStack(spacing: 4) {
-                    Image(systemName: "link")
-                        .font(.caption)
-                        .foregroundColor(.secondary)
-                    Text(title)
-                        .font(.footnote)
-                        .underline()
-                        .lineLimit(1)
-                        .multilineTextAlignment(.leading)
-                }
-            }
-            .buttonStyle(.plain)
+  var body: some View {
+    if let uri, let url = URL(string: uri) {
+      Link(destination: url) {
+        HStack(spacing: 4) {
+          Image(systemName: "link")
+            .font(.caption)
+            .foregroundColor(.secondary)
+          Text(title)
+            .font(.footnote)
+            .underline()
+            .lineLimit(1)
+            .multilineTextAlignment(.leading)
         }
+      }
+      .buttonStyle(.plain)
     }
+  }
 }

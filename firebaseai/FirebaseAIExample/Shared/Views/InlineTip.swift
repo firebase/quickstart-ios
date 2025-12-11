@@ -15,43 +15,43 @@
 import TipKit
 
 public struct InlineTip: Tip {
-    private let _text: String
-    private let _title: String
-    private let _icon: Image
+  private let _text: String
+  private let _title: String
+  private let _icon: Image
 
-    public init(text: String, title: String = "Tip", icon: Image = Image(systemName: "info.circle")) {
-        _text = text
-        _title = title
-        _icon = icon
-    }
+  public init(text: String, title: String = "Tip", icon: Image = Image(systemName: "info.circle")) {
+    _text = text
+    _title = title
+    _icon = icon
+  }
 
-    public var title: Text {
-        Text(_title)
-    }
+  public var title: Text {
+    Text(_title)
+  }
 
-    public var message: Text? {
-        Text(_text)
-    }
+  public var message: Text? {
+    Text(_text)
+  }
 
-    public var image: Image? {
-        _icon
-    }
+  public var image: Image? {
+    _icon
+  }
 }
 
 #Preview {
-    TipView(InlineTip(text: "Try asking the model to change the background color"))
-    TipView(
-        InlineTip(
-            text: "You shouldn't do that.",
-            title: "Warning",
-            icon: Image(systemName: "exclamationmark.circle")
-        )
+  TipView(InlineTip(text: "Try asking the model to change the background color"))
+  TipView(
+    InlineTip(
+      text: "You shouldn't do that.",
+      title: "Warning",
+      icon: Image(systemName: "exclamationmark.circle")
     )
-    TipView(
-        InlineTip(
-            text: "Oops, try again!",
-            title: "Error",
-            icon: Image(systemName: "x.circle")
-        )
+  )
+  TipView(
+    InlineTip(
+      text: "Oops, try again!",
+      title: "Error",
+      icon: Image(systemName: "x.circle")
     )
+  )
 }

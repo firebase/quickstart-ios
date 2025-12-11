@@ -16,95 +16,95 @@ import ConversationKit
 import MarkdownUI
 import SwiftUI
 #if canImport(FirebaseAILogic)
-    import FirebaseAILogic
+  import FirebaseAILogic
 #else
-    import FirebaseAI
+  import FirebaseAI
 #endif
 
 struct GenerateContentFromTemplateScreen: View {
-    let backendType: BackendOption
-    @StateObject var viewModel: GenerateContentFromTemplateViewModel
+  let backendType: BackendOption
+  @StateObject var viewModel: GenerateContentFromTemplateViewModel
 
-    init(backendType: BackendOption, sample: Sample? = nil) {
-        self.backendType = backendType
-        _viewModel =
-            StateObject(wrappedValue: GenerateContentFromTemplateViewModel(backendType: backendType,
-                                                                           sample: sample))
-    }
+  init(backendType: BackendOption, sample: Sample? = nil) {
+    self.backendType = backendType
+    _viewModel =
+      StateObject(wrappedValue: GenerateContentFromTemplateViewModel(backendType: backendType,
+                                                                     sample: sample))
+  }
 
-    enum FocusedField: Hashable {
-        case message
-    }
+  enum FocusedField: Hashable {
+    case message
+  }
 
-    @FocusState
-    var focusedField: FocusedField?
+  @FocusState
+  var focusedField: FocusedField?
 
-    var body: some View {
-        ZStack {
-            ScrollView {
-                VStack {
-                    MessageComposerView(message: $viewModel.userInput)
-                        .padding(.bottom, 10)
-                        .focused($focusedField, equals: .message)
-                        .disableAttachments()
-                        .onSubmitAction { sendOrStop() }
+  var body: some View {
+    ZStack {
+      ScrollView {
+        VStack {
+          MessageComposerView(message: $viewModel.userInput)
+            .padding(.bottom, 10)
+            .focused($focusedField, equals: .message)
+            .disableAttachments()
+            .onSubmitAction { sendOrStop() }
 
-                    if viewModel.error != nil {
-                        HStack {
-                            Text("An error occurred.")
-                            Button("More information", systemImage: "info.circle") {
-                                viewModel.presentErrorDetails = true
-                            }
-                            .labelStyle(.iconOnly)
-                        }
-                    }
-
-                    HStack(alignment: .top) {
-                        Image(systemName: "text.bubble.fill")
-                            .font(.title2)
-
-                        Markdown(viewModel.content)
-                    }
-                    .padding()
-                }
+          if viewModel.error != nil {
+            HStack {
+              Text("An error occurred.")
+              Button("More information", systemImage: "info.circle") {
+                viewModel.presentErrorDetails = true
+              }
+              .labelStyle(.iconOnly)
             }
-            if viewModel.inProgress {
-                ProgressOverlay()
-            }
-        }
-        .onTapGesture {
-            focusedField = nil
-        }
-        .sheet(isPresented: $viewModel.presentErrorDetails) {
-            if let error = viewModel.error {
-                ErrorDetailsView(error: error)
-            }
-        }
-        .navigationTitle("Story teller")
-        .navigationBarTitleDisplayMode(.inline)
-        .onAppear {
-            focusedField = .message
-        }
-    }
+          }
 
-    private func sendMessage() {
-        Task {
-            await viewModel.generateContent(prompt: viewModel.userInput)
-            focusedField = .message
-        }
-    }
+          HStack(alignment: .top) {
+            Image(systemName: "text.bubble.fill")
+              .font(.title2)
 
-    private func sendOrStop() {
-        if viewModel.inProgress {
-            viewModel.stop()
-        } else {
-            sendMessage()
+            Markdown(viewModel.content)
+          }
+          .padding()
         }
+      }
+      if viewModel.inProgress {
+        ProgressOverlay()
+      }
     }
+    .onTapGesture {
+      focusedField = nil
+    }
+    .sheet(isPresented: $viewModel.presentErrorDetails) {
+      if let error = viewModel.error {
+        ErrorDetailsView(error: error)
+      }
+    }
+    .navigationTitle("Story teller")
+    .navigationBarTitleDisplayMode(.inline)
+    .onAppear {
+      focusedField = .message
+    }
+  }
+
+  private func sendMessage() {
+    Task {
+      await viewModel.generateContent(prompt: viewModel.userInput)
+      focusedField = .message
+    }
+  }
+
+  private func sendOrStop() {
+    if viewModel.inProgress {
+      viewModel.stop()
+    } else {
+      sendMessage()
+    }
+  }
 }
 
 #Preview {
-    NavigationStack {
-        GenerateContentFromTemplateScreen(backendType: .googleAI)
-    }
+  NavigationStack {
+    GenerateContentFromTemplateScreen(backendType: .googleAI)
+  }
 }

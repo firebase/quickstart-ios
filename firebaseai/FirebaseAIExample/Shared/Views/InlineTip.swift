@@ -39,5 +39,19 @@ public struct InlineTip: Tip {
 }
 
 #Preview {
-  //TipView(text: "Try asking the model to change the background color")
+  TipView(InlineTip(text: "Try asking the model to change the background color"))
+  TipView(
+    InlineTip(
+      text: "You shouldn't do that.",
+      title: "Warning",
+      icon: Image(systemName: "exclamationmark.circle")
+    )
+  )
+  TipView(
+    InlineTip(
+      text: "Oops, try again!",
+      title: "Error",
+      icon: Image(systemName: "x.circle")
+    )
+  )
 }

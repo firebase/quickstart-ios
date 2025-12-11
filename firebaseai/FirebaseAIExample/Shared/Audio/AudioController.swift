@@ -50,7 +50,7 @@ actor AudioController {
 
     private var stopped = false
 
-    public init() async throws {
+    init() async throws {
         let session = AVAudioSession.sharedInstance()
         try session.setCategory(
             .playAndRecord,
@@ -90,7 +90,7 @@ actor AudioController {
     }
 
     /// Kicks off audio processing, and returns a stream of recorded microphone audio data.
-    public func listenToMic() async throws -> AsyncStream<AVAudioPCMBuffer> {
+    func listenToMic() async throws -> AsyncStream<AVAudioPCMBuffer> {
         try await spawnAudioProcessingThread()
         return microphoneData
     }
@@ -98,7 +98,7 @@ actor AudioController {
     /// Permanently stop all audio processing.
     ///
     /// To start again, create a new instance of ``AudioController``.
-    public func stop() async {
+    func stop() async {
         stopped = true
         await stopListeningAndPlayback()
         microphoneDataQueue.finish()
@@ -106,12 +106,12 @@ actor AudioController {
     }
 
     /// Queues audio for playback.
-    public func playAudio(audio: Data) async throws {
+    func playAudio(audio: Data) async throws {
         try audioPlayer?.play(audio)
     }
 
     /// Interrupts and clears the currently pending audio playback queue.
-    public func interrupt() async {
+    func interrupt() async {
         audioPlayer?.interrupt()
     }
 

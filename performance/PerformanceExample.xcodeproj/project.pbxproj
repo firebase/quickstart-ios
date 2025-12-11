@@ -22,8 +22,6 @@
 		4131675026CD7FB30022392A /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 4131674F26CD7FB30022392A /* FirebaseStorage */; };
 		419700ED26C30DA500F186C3 /* UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419700EC26C30DA500F186C3 /* UITests.swift */; };
 		419700EE26C30DA500F186C3 /* UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419700EC26C30DA500F186C3 /* UITests.swift */; };
-		419AADCE26B86A94005C4817 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 419AADCD26B86A94005C4817 /* GoogleService-Info.plist */; };
-		419AADCF26B86A94005C4817 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 419AADCD26B86A94005C4817 /* GoogleService-Info.plist */; };
 		41BFA1EA26B1D36C0013EB90 /* PerformanceExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4102055626A631F4004B24B3 /* PerformanceExampleApp.swift */; };
 		41BFA1F026B1D8B80013EB90 /* Process.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41BFA1EF26B1D8B80013EB90 /* Process.swift */; };
 		41BFA1F326B1D8B80013EB90 /* Process.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41BFA1EF26B1D8B80013EB90 /* Process.swift */; };
@@ -33,6 +31,8 @@
 		41C3EC1326D05538009DCA8B /* ProcessDerivatives.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C3EC1126D05538009DCA8B /* ProcessDerivatives.swift */; };
 		41C3EC1426D05538009DCA8B /* ProcessDerivatives.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C3EC1126D05538009DCA8B /* ProcessDerivatives.swift */; };
 		41C3EC1526D05538009DCA8B /* ProcessDerivatives.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C3EC1126D05538009DCA8B /* ProcessDerivatives.swift */; };
+		EAB2DF212EEB61880077EBD1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EAB2DF202EEB61880077EBD1 /* GoogleService-Info.plist */; };
+		EAB2DF222EEB61880077EBD1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EAB2DF202EEB61880077EBD1 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,11 +64,11 @@
 		41292EA526CB63B300747458 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		414C55A426B87EFB00114089 /* Tests tvOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests tvOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		419700EC26C30DA500F186C3 /* UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITests.swift; sourceTree = "<group>"; };
-		419AADCD26B86A94005C4817 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		41BFA1EF26B1D8B80013EB90 /* Process.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Process.swift; sourceTree = "<group>"; };
 		41C3EC0C26D0100F009DCA8B /* SaliencyMapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SaliencyMapView.swift; path = Shared/Views/SaliencyMapView.swift; sourceTree = "<group>"; };
 		41C3EC1126D05538009DCA8B /* ProcessDerivatives.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessDerivatives.swift; sourceTree = "<group>"; };
 		41E4794526DF482500DB6471 /* PerformanceExample (iOS) Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "PerformanceExample (iOS) Info.plist"; sourceTree = "<group>"; };
+		EAB2DF202EEB61880077EBD1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,7 +112,7 @@
 			children = (
 				41E4794526DF482500DB6471 /* PerformanceExample (iOS) Info.plist */,
 				41292EA526CB63B300747458 /* README.md */,
-				419AADCD26B86A94005C4817 /* GoogleService-Info.plist */,
+				EAB2DF202EEB61880077EBD1 /* GoogleService-Info.plist */,
 				4102055526A631F4004B24B3 /* Shared */,
 				4102055E26A631F5004B24B3 /* Products */,
 				4131674C26CD7FB30022392A /* Frameworks */,
@@ -300,7 +300,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				419AADCE26B86A94005C4817 /* GoogleService-Info.plist in Resources */,
+				EAB2DF212EEB61880077EBD1 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -315,7 +315,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				419AADCF26B86A94005C4817 /* GoogleService-Info.plist in Resources */,
+				EAB2DF222EEB61880077EBD1 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

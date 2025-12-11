@@ -41,5 +41,5 @@ struct TranscriptView: View {
       vm.appendText(
         "The sky is blue primarily because of a phenomenon called Rayleigh scattering, where tiny molecules of gas (mainly nitrogen and oxygen) in Earth's atmosphere scatter sunlight in all directions."
       )
-  }
+    }
 }

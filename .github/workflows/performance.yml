@@ -20,8 +20,6 @@ on:
       - 'performance/**'
       - 'scripts/*'
       - 'scripts/performance.sh'
-      - '!performance/SwiftUIPerformanceQuickstart/PerformanceExample/*.md'
-      - '!performance/SwiftUIPerformanceQuickstart/PerformanceExample/Design/**'
 
   workflow_dispatch:
 
@@ -72,7 +70,7 @@ jobs:
     env:
       SETUP: performance
       SPM: true
-      DIR: performance/SwiftUIPerformanceQuickstart/PerformanceExample
+      DIR: performance/PerformanceExample
       OS: ${{ matrix.os }}
       DEVICE: ${{ matrix.device }}
       TEST: ${{ matrix.test }}

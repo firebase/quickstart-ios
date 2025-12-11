@@ -50,9 +50,11 @@ struct LiveScreen: View {
       )
 
       #if targetEnvironment(simulator)
-        if viewModel.state == .idle {
-          AudioOutputToggle(isEnabled: $viewModel.isAudioOutputEnabled)
-        }
+        AudioOutputToggle(isEnabled: $viewModel.isAudioOutputEnabled, onChange: {
+          Task {
+            await viewModel.onAudioPlaybackChanged()
+          }
+        })
       #endif
     }
     .padding()

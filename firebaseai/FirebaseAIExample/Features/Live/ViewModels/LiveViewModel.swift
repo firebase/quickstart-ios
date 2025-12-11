@@ -96,6 +96,7 @@ class LiveViewModel: ObservableObject {
 
     guard await requestRecordPermission() else {
       logger.warning("The user denied us permission to record the microphone.")
+      isAudioOutputEnabled = false
       return
     }
 
@@ -115,6 +116,16 @@ class LiveViewModel: ObservableObject {
       logger.error("\(String(describing: error))")
       self.error = error
       await disconnect()
+    }
+  }
+
+  func onAudioPlaybackChanged() async {
+    if isAudioOutputEnabled {
+      guard await requestRecordPermission() else {
+        logger.warning("The user denied us permission to record the microphone.")
+        isAudioOutputEnabled = false
+        return
+      }
     }
   }
 

@@ -16,11 +16,13 @@ import SwiftUI
 
 struct AudioOutputToggle: View {
   @Binding var isEnabled: Bool
+  var onChange: (Bool) -> Void = { _ in }
 
   var body: some View {
     VStack(alignment: .leading, spacing: 5) {
-      Toggle("Audio Output", isOn: $isEnabled)
-        .toggleStyle(.switch)
+      Toggle("Audio Output", isOn: $isEnabled).onChange(of: isEnabled) { _, new in
+        onChange(new)
+      }
 
       Text("""
       Audio output works best on physical devices. Enable this to test playback in the \

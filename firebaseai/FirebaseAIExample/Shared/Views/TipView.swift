@@ -21,7 +21,7 @@ struct TipView: View {
     VStack(alignment: .leading, spacing: 5) {
       Label("Tip", systemImage: "info.circle")
         .bold()
-        .foregroundStyle(.blue)
+        .foregroundStyle(Color.accentColor)
       Text(text)
         .font(.caption)
         .italic()

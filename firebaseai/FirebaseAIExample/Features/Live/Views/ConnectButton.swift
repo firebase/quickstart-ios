@@ -43,7 +43,7 @@ struct ConnectButton: View {
     Button(action: onClick) {
       Label(title, systemImage: image).padding()
     }
-    .buttonStyle(.connect(state: state, gradiantAngle: gradientAngle))
+    .buttonStyle(.connect(state: state, gradientAngle: gradientAngle))
     .onAppear {
       withAnimation(.linear(duration: 5).repeatForever(autoreverses: false)) {
         self.gradientAngle = .degrees(360)
@@ -108,8 +108,8 @@ struct ConnectButtonStyle: ButtonStyle {
 }
 
 extension ButtonStyle where Self == ConnectButtonStyle {
-  static func connect(state: LiveViewModelState, gradiantAngle: Angle) -> ConnectButtonStyle {
-    ConnectButtonStyle(state: state, gradientAngle: gradiantAngle)
+  static func connect(state: LiveViewModelState, gradientAngle: Angle) -> ConnectButtonStyle {
+    ConnectButtonStyle(state: state, gradientAngle: gradientAngle)
   }
 }
 

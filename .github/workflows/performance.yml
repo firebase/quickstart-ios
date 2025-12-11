@@ -70,7 +70,7 @@ jobs:
     env:
       SETUP: performance
       SPM: true
-      DIR: performance/PerformanceExample
+      DIR: performance
       OS: ${{ matrix.os }}
       DEVICE: ${{ matrix.device }}
       TEST: ${{ matrix.test }}

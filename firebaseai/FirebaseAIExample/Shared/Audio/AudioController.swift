@@ -15,6 +15,12 @@
 import AVFoundation
 import OSLog
 
+#if compiler(<6.2)
+    extension AVAudioSession.CategoryOptions {
+        static let allowBluetoothHFP = AVAudioSession.CategoryOptions.allowBluetooth
+    }
+#endif
+
 /// Controls audio playback and recording.
 actor AudioController {
   private var logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "generative-ai")

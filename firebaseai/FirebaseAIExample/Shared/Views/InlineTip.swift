@@ -12,23 +12,32 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import SwiftUI
+import TipKit
 
-struct TipView: View {
-  let text: String
+public struct InlineTip: Tip {
+  private let _text: String
+  private let _title: String
+  private let _icon: Image
 
-  var body: some View {
-    VStack(alignment: .leading, spacing: 5) {
-      Label("Tip", systemImage: "info.circle")
-        .bold()
-        .foregroundStyle(Color.accentColor)
-      Text(text)
-        .font(.caption)
-        .italic()
-    }
+  public init(text: String, title: String = "Tip", icon: Image = Image(systemName: "info.circle")) {
+    _text = text
+    _title = title
+    _icon = icon
+  }
+
+  public var title: Text {
+    Text(_title)
+  }
+
+  public var message: Text? {
+    Text(_text)
+  }
+
+  public var image: Image? {
+    _icon
   }
 }
 
 #Preview {
-  TipView(text: "Try asking the model to change the background color")
+  //TipView(text: "Try asking the model to change the background color")
 }

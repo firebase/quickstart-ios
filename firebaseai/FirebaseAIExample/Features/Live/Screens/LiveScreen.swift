@@ -18,6 +18,7 @@
   import FirebaseAI
 #endif
 import SwiftUI
+import TipKit
 
 struct LiveScreen: View {
   let backendType: BackendOption
@@ -40,7 +41,7 @@ struct LiveScreen: View {
         ErrorDetailsView(error: error)
       }
       if let tip = viewModel.tip, !viewModel.hasTranscripts {
-        TipView(text: tip)
+        TipView(tip)
       }
       ConnectButton(
         state: viewModel.state,

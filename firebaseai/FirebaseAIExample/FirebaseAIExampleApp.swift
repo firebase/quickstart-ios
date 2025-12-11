@@ -14,6 +14,7 @@
 
 import FirebaseCore
 import SwiftUI
+import TipKit
 
 class AppDelegate: NSObject, UIApplicationDelegate {
   func application(_ application: UIApplication,
@@ -40,6 +41,14 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 @main
 struct FirebaseAIExampleApp: App {
   @UIApplicationDelegateAdaptor var appDelegate: AppDelegate
+
+  init() {
+    do {
+      try Tips.configure()
+    } catch {
+      print("Error initializing tips: \(error)")
+    }
+  }
 
   var body: some Scene {
     WindowGroup {

@@ -33,7 +33,7 @@ public struct Sample: Identifiable {
   public let generationConfig: GenerationConfig?
   public let liveGenerationConfig: LiveGenerationConfig?
   public let fileDataParts: [FileDataPart]?
-  public let tip: String?
+  public let tip: InlineTip?
 
   public init(title: String,
               description: String,
@@ -47,7 +47,7 @@ public struct Sample: Identifiable {
               generationConfig: GenerationConfig? = nil,
               liveGenerationConfig: LiveGenerationConfig? = nil,
               fileDataParts: [FileDataPart]? = nil,
-              tip: String? = nil) {
+              tip: InlineTip? = nil) {
     self.title = title
     self.description = description
     self.useCases = useCases
@@ -307,7 +307,7 @@ extension Sample {
         speech: SpeechConfig(voiceName: "Zephyr", languageCode: "en-US"),
         outputAudioTranscription: AudioTranscriptionConfig()
       ),
-      tip: "Try asking the model to change the background color",
+      tip: InlineTip(text: "Try asking the model to change the background color"),
     ),
   ]
 

@@ -49,7 +49,7 @@ class LiveViewModel: ObservableObject {
   var title: String
 
   @Published
-  var tip: String?
+  var tip: InlineTip?
 
   @Published
   var isAudioOutputEnabled: Bool = {

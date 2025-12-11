@@ -13,59 +13,60 @@
 // limitations under the License.
 
 #if canImport(FirebaseAILogic)
-  import FirebaseAILogic
+    import FirebaseAILogic
 #else
-  import FirebaseAI
+    import FirebaseAI
 #endif
-import SwiftUI
 import ConversationKit
+import SwiftUI
 
 struct FunctionCallingScreen: View {
-  let backendType: BackendOption
-  @StateObject var viewModel: FunctionCallingViewModel
+    let backendType: BackendOption
+    @StateObject var viewModel: FunctionCallingViewModel
 
-  init(backendType: BackendOption, sample: Sample? = nil) {
-    self.backendType = backendType
-    _viewModel =
-      StateObject(wrappedValue: FunctionCallingViewModel(backendType: backendType,
-                                                         sample: sample))
-  }
-
-  var body: some View {
-    NavigationStack {
-      ConversationView(messages: $viewModel.messages,
-                       userPrompt: viewModel.initialPrompt) { message in
-        MessageView(message: message)
-      }
-      .disableAttachments()
-      .onSendMessage { message in
-        await viewModel.sendMessage(message.content ?? "", streaming: true)
-      }
-      .onError { error in
-        viewModel.presentErrorDetails = true
-      }
-      .sheet(isPresented: $viewModel.presentErrorDetails) {
-        if let error = viewModel.error {
-          ErrorDetailsView(error: error)
-        }
-      }
-      .toolbar {
-        ToolbarItem(placement: .primaryAction) {
-          Button(action: newChat) {
-            Image(systemName: "square.and.pencil")
-          }
-        }
-      }
-      .navigationTitle(viewModel.title)
-      .navigationBarTitleDisplayMode(.inline)
+    init(backendType: BackendOption, sample: Sample? = nil) {
+        self.backendType = backendType
+        _viewModel =
+            StateObject(wrappedValue: FunctionCallingViewModel(backendType: backendType,
+                                                               sample: sample))
     }
-  }
 
-  private func newChat() {
-    viewModel.startNewChat()
-  }
+    var body: some View {
+        NavigationStack {
+            ConversationView(messages: $viewModel.messages,
+                             userPrompt: viewModel.initialPrompt)
+            { message in
+                MessageView(message: message)
+            }
+            .disableAttachments()
+            .onSendMessage { message in
+                await viewModel.sendMessage(message.content ?? "", streaming: true)
+            }
+            .onError { _ in
+                viewModel.presentErrorDetails = true
+            }
+            .sheet(isPresented: $viewModel.presentErrorDetails) {
+                if let error = viewModel.error {
+                    ErrorDetailsView(error: error)
+                }
+            }
+            .toolbar {
+                ToolbarItem(placement: .primaryAction) {
+                    Button(action: newChat) {
+                        Image(systemName: "square.and.pencil")
+                    }
+                }
+            }
+            .navigationTitle(viewModel.title)
+            .navigationBarTitleDisplayMode(.inline)
+        }
+    }
+
+    private func newChat() {
+        viewModel.startNewChat()
+    }
 }
 
 #Preview {
-  FunctionCallingScreen(backendType: .googleAI)
+    FunctionCallingScreen(backendType: .googleAI)
 }

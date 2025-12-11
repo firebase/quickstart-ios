@@ -16,15 +16,15 @@ import Foundation
 
 /// Generic error for issues that occur within the application.
 public struct ApplicationError: Error, Sendable, CustomNSError {
-  let localizedDescription: String
+    let localizedDescription: String
 
-  init(_ localizedDescription: String) {
-    self.localizedDescription = localizedDescription
-  }
+    init(_ localizedDescription: String) {
+        self.localizedDescription = localizedDescription
+    }
 
-  public var errorUserInfo: [String: Any] {
-    [
-      NSLocalizedDescriptionKey: localizedDescription,
-    ]
-  }
+    public var errorUserInfo: [String: Any] {
+        [
+            NSLocalizedDescriptionKey: localizedDescription,
+        ]
+    }
 }

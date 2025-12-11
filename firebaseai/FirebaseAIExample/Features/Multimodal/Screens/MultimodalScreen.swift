@@ -13,187 +13,188 @@
 // limitations under the License.
 
 #if canImport(FirebaseAILogic)
-  import FirebaseAILogic
+    import FirebaseAILogic
 #else
-  import FirebaseAI
+    import FirebaseAI
 #endif
-import SwiftUI
-import PhotosUI
 import ConversationKit
+import PhotosUI
+import SwiftUI
 
 struct MultimodalScreen: View {
-  let backendType: BackendOption
-  @StateObject var viewModel: MultimodalViewModel
+    let backendType: BackendOption
+    @StateObject var viewModel: MultimodalViewModel
 
-  @State private var showingPhotoPicker = false
-  @State private var showingFilePicker = false
-  @State private var showingLinkDialog = false
-  @State private var linkText = ""
-  @State private var linkMimeType = ""
-  @State private var selectedPhotoItems = [PhotosPickerItem]()
+    @State private var showingPhotoPicker = false
+    @State private var showingFilePicker = false
+    @State private var showingLinkDialog = false
+    @State private var linkText = ""
+    @State private var linkMimeType = ""
+    @State private var selectedPhotoItems = [PhotosPickerItem]()
 
-  init(backendType: BackendOption, sample: Sample? = nil) {
-    self.backendType = backendType
-    _viewModel =
-      StateObject(wrappedValue: MultimodalViewModel(backendType: backendType,
-                                                    sample: sample))
-  }
-
-  var body: some View {
-    NavigationStack {
-      ConversationView(messages: $viewModel.messages,
-                       attachments: $viewModel.attachments,
-                       userPrompt: viewModel.initialPrompt) { message in
-        MessageView(message: message)
-      }
-      .attachmentActions {
-        Button(action: showLinkDialog) {
-          Label("Link", systemImage: "link")
-        }
-        Button(action: showFilePicker) {
-          Label("File", systemImage: "doc.text")
-        }
-        Button(action: showPhotoPicker) {
-          Label("Photo", systemImage: "photo.on.rectangle.angled")
-        }
-      }
-      .onSendMessage { message in
-        await viewModel.sendMessage(message.content ?? "", streaming: true)
-      }
-      .onError { error in
-        viewModel.presentErrorDetails = true
-      }
-      .sheet(isPresented: $viewModel.presentErrorDetails) {
-        if let error = viewModel.error {
-          ErrorDetailsView(error: error)
-        }
-      }
-      .photosPicker(
-        isPresented: $showingPhotoPicker,
-        selection: $selectedPhotoItems,
-        maxSelectionCount: 5,
-        matching: .any(of: [.images, .videos])
-      )
-      .fileImporter(
-        isPresented: $showingFilePicker,
-        allowedContentTypes: [.pdf, .audio],
-        allowsMultipleSelection: true
-      ) { result in
-        handleFileImport(result)
-      }
-      .alert("Add Web URL", isPresented: $showingLinkDialog) {
-        TextField("Enter URL", text: $linkText)
-        TextField("Enter mimeType", text: $linkMimeType)
-        Button("Add") {
-          handleLinkAttachment()
-        }
-        Button("Cancel", role: .cancel) {
-          linkText = ""
-          linkMimeType = ""
-        }
-      }
+    init(backendType: BackendOption, sample: Sample? = nil) {
+        self.backendType = backendType
+        _viewModel =
+            StateObject(wrappedValue: MultimodalViewModel(backendType: backendType,
+                                                          sample: sample))
     }
-    .onChange(of: selectedPhotoItems) { _, newItems in
-      handlePhotoSelection(newItems)
-    }
-    .toolbar {
-      ToolbarItem(placement: .primaryAction) {
-        Button(action: newChat) {
-          Image(systemName: "square.and.pencil")
+
+    var body: some View {
+        NavigationStack {
+            ConversationView(messages: $viewModel.messages,
+                             attachments: $viewModel.attachments,
+                             userPrompt: viewModel.initialPrompt)
+            { message in
+                MessageView(message: message)
+            }
+            .attachmentActions {
+                Button(action: showLinkDialog) {
+                    Label("Link", systemImage: "link")
+                }
+                Button(action: showFilePicker) {
+                    Label("File", systemImage: "doc.text")
+                }
+                Button(action: showPhotoPicker) {
+                    Label("Photo", systemImage: "photo.on.rectangle.angled")
+                }
+            }
+            .onSendMessage { message in
+                await viewModel.sendMessage(message.content ?? "", streaming: true)
+            }
+            .onError { _ in
+                viewModel.presentErrorDetails = true
+            }
+            .sheet(isPresented: $viewModel.presentErrorDetails) {
+                if let error = viewModel.error {
+                    ErrorDetailsView(error: error)
+                }
+            }
+            .photosPicker(
+                isPresented: $showingPhotoPicker,
+                selection: $selectedPhotoItems,
+                maxSelectionCount: 5,
+                matching: .any(of: [.images, .videos])
+            )
+            .fileImporter(
+                isPresented: $showingFilePicker,
+                allowedContentTypes: [.pdf, .audio],
+                allowsMultipleSelection: true
+            ) { result in
+                handleFileImport(result)
+            }
+            .alert("Add Web URL", isPresented: $showingLinkDialog) {
+                TextField("Enter URL", text: $linkText)
+                TextField("Enter mimeType", text: $linkMimeType)
+                Button("Add") {
+                    handleLinkAttachment()
+                }
+                Button("Cancel", role: .cancel) {
+                    linkText = ""
+                    linkMimeType = ""
+                }
+            }
         }
-      }
+        .onChange(of: selectedPhotoItems) { _, newItems in
+            handlePhotoSelection(newItems)
+        }
+        .toolbar {
+            ToolbarItem(placement: .primaryAction) {
+                Button(action: newChat) {
+                    Image(systemName: "square.and.pencil")
+                }
+            }
+        }
+        .navigationTitle(viewModel.title)
+        .navigationBarTitleDisplayMode(.inline)
     }
-    .navigationTitle(viewModel.title)
-    .navigationBarTitleDisplayMode(.inline)
-  }
 
-  private func newChat() {
-    viewModel.startNewChat()
-  }
+    private func newChat() {
+        viewModel.startNewChat()
+    }
 
-  private func showPhotoPicker() {
-    showingPhotoPicker = true
-  }
+    private func showPhotoPicker() {
+        showingPhotoPicker = true
+    }
 
-  private func showFilePicker() {
-    showingFilePicker = true
-  }
+    private func showFilePicker() {
+        showingFilePicker = true
+    }
 
-  private func showLinkDialog() {
-    showingLinkDialog = true
-  }
+    private func showLinkDialog() {
+        showingLinkDialog = true
+    }
 
-  private func handlePhotoSelection(_ items: [PhotosPickerItem]) {
-    Task {
-      for item in items {
-        do {
-          let attachment = try await MultimodalAttachment.fromPhotosPickerItem(item)
-          await MainActor.run {
-            viewModel.addAttachment(attachment)
-          }
-        } catch {
-          await MainActor.run {
+    private func handlePhotoSelection(_ items: [PhotosPickerItem]) {
+        Task {
+            for item in items {
+                do {
+                    let attachment = try await MultimodalAttachment.fromPhotosPickerItem(item)
+                    await MainActor.run {
+                        viewModel.addAttachment(attachment)
+                    }
+                } catch {
+                    await MainActor.run {
+                        viewModel.error = error
+                        viewModel.presentErrorDetails = true
+                    }
+                }
+            }
+            await MainActor.run {
+                selectedPhotoItems = []
+            }
+        }
+    }
+
+    private func handleFileImport(_ result: Result<[URL], Error>) {
+        switch result {
+        case let .success(urls):
+            Task {
+                for url in urls {
+                    do {
+                        let attachment = try await MultimodalAttachment.fromFilePickerItem(from: url)
+                        await MainActor.run {
+                            viewModel.addAttachment(attachment)
+                        }
+                    } catch {
+                        await MainActor.run {
+                            viewModel.error = error
+                            viewModel.presentErrorDetails = true
+                        }
+                    }
+                }
+            }
+        case let .failure(error):
             viewModel.error = error
             viewModel.presentErrorDetails = true
-          }
         }
-      }
-      await MainActor.run {
-        selectedPhotoItems = []
-      }
     }
-  }
 
-  private func handleFileImport(_ result: Result<[URL], Error>) {
-    switch result {
-    case let .success(urls):
-      Task {
-        for url in urls {
-          do {
-            let attachment = try await MultimodalAttachment.fromFilePickerItem(from: url)
-            await MainActor.run {
-              viewModel.addAttachment(attachment)
+    private func handleLinkAttachment() {
+        guard !linkText.isEmpty, let url = URL(string: linkText) else {
+            return
+        }
+
+        let trimmedMime = linkMimeType.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
+        Task {
+            do {
+                let attachment = try await MultimodalAttachment.fromURL(url, mimeType: trimmedMime)
+                await MainActor.run {
+                    viewModel.addAttachment(attachment)
+                }
+            } catch {
+                await MainActor.run {
+                    viewModel.error = error
+                    viewModel.presentErrorDetails = true
+                }
             }
-          } catch {
             await MainActor.run {
-              viewModel.error = error
-              viewModel.presentErrorDetails = true
+                linkText = ""
+                linkMimeType = ""
             }
-          }
         }
-      }
-    case let .failure(error):
-      viewModel.error = error
-      viewModel.presentErrorDetails = true
     }
-  }
-
-  private func handleLinkAttachment() {
-    guard !linkText.isEmpty, let url = URL(string: linkText) else {
-      return
-    }
-
-    let trimmedMime = linkMimeType.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
-    Task {
-      do {
-        let attachment = try await MultimodalAttachment.fromURL(url, mimeType: trimmedMime)
-        await MainActor.run {
-          viewModel.addAttachment(attachment)
-        }
-      } catch {
-        await MainActor.run {
-          viewModel.error = error
-          viewModel.presentErrorDetails = true
-        }
-      }
-      await MainActor.run {
-        linkText = ""
-        linkMimeType = ""
-      }
-    }
-  }
 }
 
 #Preview {
-  MultimodalScreen(backendType: .googleAI)
+    MultimodalScreen(backendType: .googleAI)
 }

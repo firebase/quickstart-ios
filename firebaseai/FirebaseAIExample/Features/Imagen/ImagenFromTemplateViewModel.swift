@@ -13,14 +13,14 @@
 // limitations under the License.
 
 #if canImport(FirebaseAILogic)
-  import FirebaseAILogic
+    import FirebaseAILogic
 #else
-  import FirebaseAI
+    import FirebaseAI
 #endif
+import Combine
 import Foundation
 import OSLog
 import SwiftUI
-import Combine
 
 // Template Details
 //
@@ -37,82 +37,82 @@ import Combine
 
 @MainActor
 class ImagenFromTemplateViewModel: ObservableObject {
-  private var logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "generative-ai")
+    private var logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "generative-ai")
 
-  @Published
-  var userInput: String = ""
+    @Published
+    var userInput: String = ""
 
-  @Published
-  var images = [UIImage]()
+    @Published
+    var images = [UIImage]()
 
-  @Published
-  var error: Error?
-  var hasError: Bool {
-    return error != nil
-  }
-
-  @Published
-  var presentErrorDetails: Bool = false
-
-  @Published
-  var inProgress = false
-
-  private let model: TemplateImagenModel
-  private var backendType: BackendOption
-
-  private var generateImagesTask: Task<Void, Never>?
-
-  private var sample: Sample?
-
-  init(backendType: BackendOption, sample: Sample? = nil) {
-    self.sample = sample
-    self.backendType = backendType
-
-    let firebaseService = backendType == .googleAI
-      ? FirebaseAI.firebaseAI(backend: .googleAI())
-      : FirebaseAI.firebaseAI(backend: .vertexAI())
-
-    model = firebaseService.templateImagenModel()
-  }
-
-  func generateImageFromTemplate(prompt: String) async {
-    stop()
-
-    generateImagesTask = Task {
-      inProgress = true
-      defer {
-        inProgress = false
-      }
-
-      do {
-        // 1. Call generateImages with the text prompt
-        let response = try await model.generateImages(
-          templateID: "imagen-generation-basic",
-          inputs: [
-            "prompt": prompt,
-          ]
-        )
-
-        // 2. Print the reason images were filtered out, if any.
-        if let filteredReason = response.filteredReason {
-          print("Image(s) Blocked: \(filteredReason)")
-        }
-
-        if !Task.isCancelled {
-          // 3. Convert the image data to UIImage for display in the UI
-          images = response.images.compactMap { UIImage(data: $0.data) }
-        }
-      } catch {
-        if !Task.isCancelled {
-          self.error = error
-          logger.error("Error generating images from template: \(error)")
-        }
-      }
+    @Published
+    var error: Error?
+    var hasError: Bool {
+        return error != nil
     }
-  }
 
-  func stop() {
-    generateImagesTask?.cancel()
-    generateImagesTask = nil
-  }
+    @Published
+    var presentErrorDetails: Bool = false
+
+    @Published
+    var inProgress = false
+
+    private let model: TemplateImagenModel
+    private var backendType: BackendOption
+
+    private var generateImagesTask: Task<Void, Never>?
+
+    private var sample: Sample?
+
+    init(backendType: BackendOption, sample: Sample? = nil) {
+        self.sample = sample
+        self.backendType = backendType
+
+        let firebaseService = backendType == .googleAI
+            ? FirebaseAI.firebaseAI(backend: .googleAI())
+            : FirebaseAI.firebaseAI(backend: .vertexAI())
+
+        model = firebaseService.templateImagenModel()
+    }
+
+    func generateImageFromTemplate(prompt: String) async {
+        stop()
+
+        generateImagesTask = Task {
+            inProgress = true
+            defer {
+                inProgress = false
+            }
+
+            do {
+                // 1. Call generateImages with the text prompt
+                let response = try await model.generateImages(
+                    templateID: "imagen-generation-basic",
+                    inputs: [
+                        "prompt": prompt,
+                    ]
+                )
+
+                // 2. Print the reason images were filtered out, if any.
+                if let filteredReason = response.filteredReason {
+                    print("Image(s) Blocked: \(filteredReason)")
+                }
+
+                if !Task.isCancelled {
+                    // 3. Convert the image data to UIImage for display in the UI
+                    images = response.images.compactMap { UIImage(data: $0.data) }
+                }
+            } catch {
+                if !Task.isCancelled {
+                    self.error = error
+                    logger.error("Error generating images from template: \(error)")
+                }
+            }
+        }
+    }
+
+    func stop() {
+        generateImagesTask?.cancel()
+        generateImagesTask = nil
+    }
 }

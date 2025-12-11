@@ -15,25 +15,25 @@
 import SwiftUI
 
 struct AudioOutputToggle: View {
-  @Binding var isEnabled: Bool
-  var onChange: () -> Void = {}
+    @Binding var isEnabled: Bool
+    var onChange: () -> Void = {}
 
-  var body: some View {
-    VStack(alignment: .leading, spacing: 5) {
-      Toggle("Audio Output", isOn: $isEnabled).onChange(of: isEnabled) { _, _ in
-        onChange()
-      }
+    var body: some View {
+        VStack(alignment: .leading, spacing: 5) {
+            Toggle("Audio Output", isOn: $isEnabled).onChange(of: isEnabled) { _, _ in
+                onChange()
+            }
 
-      Text("""
-      Audio output works best on physical devices. Enable this to test playback in the \
-      simulator. Headphones recommended.
-      """)
-        .font(.caption)
-        .foregroundStyle(.secondary)
+            Text("""
+            Audio output works best on physical devices. Enable this to test playback in the \
+            simulator. Headphones recommended.
+            """)
+            .font(.caption)
+            .foregroundStyle(.secondary)
+        }
     }
-  }
 }
 
 #Preview {
-  AudioOutputToggle(isEnabled: .constant(false))
+    AudioOutputToggle(isEnabled: .constant(false))
 }

@@ -15,111 +15,111 @@
 import SwiftUI
 
 struct ConnectButton: View {
-  var state: LiveViewModelState
-  var onConnect: () async -> Void
-  var onDisconnect: () async -> Void
+    var state: LiveViewModelState
+    var onConnect: () async -> Void
+    var onDisconnect: () async -> Void
 
-  @State private var gradientAngle: Angle = .zero
+    @State private var gradientAngle: Angle = .zero
 
-  private var isConnected: Bool { state == .connected }
+    private var isConnected: Bool { state == .connected }
 
-  private var title: String {
-    switch state {
-    case .connected: "Stop"
-    case .connecting: "Connecting..."
-    case .idle: "Start"
+    private var title: String {
+        switch state {
+        case .connected: "Stop"
+        case .connecting: "Connecting..."
+        case .idle: "Start"
+        }
     }
-  }
 
-  private var image: String {
-    switch state {
-    case .connected: "stop"
-    case .connecting: "wifi"
-    case .idle: "play"
+    private var image: String {
+        switch state {
+        case .connected: "stop"
+        case .connecting: "wifi"
+        case .idle: "play"
+        }
     }
-  }
 
-  var body: some View {
-    Button(action: onClick) {
-      Label(title, systemImage: image)
-        .frame(maxWidth: .infinity)
-        .padding()
+    var body: some View {
+        Button(action: onClick) {
+            Label(title, systemImage: image)
+                .frame(maxWidth: .infinity)
+                .padding()
+        }
+        .buttonStyle(.connect(state: state, gradientAngle: gradientAngle))
+        .onAppear {
+            withAnimation(.linear(duration: 5).repeatForever(autoreverses: false)) {
+                self.gradientAngle = .degrees(360)
+            }
+        }
     }
-    .buttonStyle(.connect(state: state, gradientAngle: gradientAngle))
-    .onAppear {
-      withAnimation(.linear(duration: 5).repeatForever(autoreverses: false)) {
-        self.gradientAngle = .degrees(360)
-      }
-    }
-  }
 
-  private func onClick() {
-    Task {
-      if isConnected {
-        await onDisconnect()
-      } else {
-        await onConnect()
-      }
+    private func onClick() {
+        Task {
+            if isConnected {
+                await onDisconnect()
+            } else {
+                await onConnect()
+            }
+        }
     }
-  }
 }
 
 struct ConnectButtonStyle: ButtonStyle {
-  var state: LiveViewModelState
-  var gradientAngle: Angle
+    var state: LiveViewModelState
+    var gradientAngle: Angle
 
-  private var color: Color {
-    switch state {
-    case .connected: Color(.systemRed)
-    case .connecting: Color.secondary
-    case .idle: Color.accentColor
+    private var color: Color {
+        switch state {
+        case .connected: Color(.systemRed)
+        case .connecting: Color.secondary
+        case .idle: Color.accentColor
+        }
     }
-  }
 
-  private var gradientColors: [Color] {
-    switch state {
-    case .connected: [Color(.systemRed)]
-    case .connecting: [.secondary, .white]
-    case .idle: [
-      Color(.systemRed),
-      Color(.systemBlue),
-      Color(.systemGreen),
-      Color(.systemYellow),
-      Color(.systemRed),
-    ]
+    private var gradientColors: [Color] {
+        switch state {
+        case .connected: [Color(.systemRed)]
+        case .connecting: [.secondary, .white]
+        case .idle: [
+                Color(.systemRed),
+                Color(.systemBlue),
+                Color(.systemGreen),
+                Color(.systemYellow),
+                Color(.systemRed),
+            ]
+        }
     }
-  }
 
-  func makeBody(configuration: Configuration) -> some View {
-    configuration.label
-      .disabled(state == .connecting)
-      .overlay(
-        RoundedRectangle(cornerRadius: 35)
-          .stroke(
-            AngularGradient(
-              gradient: Gradient(colors: gradientColors),
-              center: .center,
-              startAngle: gradientAngle,
-              endAngle: gradientAngle + .degrees(360)
-            ),
-            lineWidth: 3
-          )
-      )
-      .foregroundStyle(color)
-  }
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .disabled(state == .connecting)
+            .overlay(
+                RoundedRectangle(cornerRadius: 35)
+                    .stroke(
+                        AngularGradient(
+                            gradient: Gradient(colors: gradientColors),
+                            center: .center,
+                            startAngle: gradientAngle,
+                            endAngle: gradientAngle + .degrees(360)
+                        ),
+                        lineWidth: 3
+                    )
+            )
+            .foregroundStyle(color)
+    }
 }
 
 extension ButtonStyle where Self == ConnectButtonStyle {
-  static func connect(state: LiveViewModelState, gradientAngle: Angle) -> ConnectButtonStyle {
-    ConnectButtonStyle(state: state, gradientAngle: gradientAngle)
-  }
+    static func connect(state: LiveViewModelState, gradientAngle: Angle) -> ConnectButtonStyle {
+        ConnectButtonStyle(state: state, gradientAngle: gradientAngle)
+    }
 }
 
 #Preview {
-  VStack(spacing: 30) {
-    ConnectButton(state: .idle, onConnect: {}, onDisconnect: {})
-    ConnectButton(state: .connecting, onConnect: {}, onDisconnect: {})
-    ConnectButton(state: .connected, onConnect: {}, onDisconnect: {})
-  }
-  .padding(.horizontal)
+    VStack(spacing: 30) {
+        ConnectButton(state: .idle, onConnect: {}, onDisconnect: {})
+        ConnectButton(state: .connecting, onConnect: {}, onDisconnect: {})
+        ConnectButton(state: .connected, onConnect: {}, onDisconnect: {})
+    }
+    .padding(.horizontal)
 }

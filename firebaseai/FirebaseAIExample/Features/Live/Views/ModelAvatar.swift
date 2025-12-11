@@ -15,57 +15,57 @@
 import SwiftUI
 
 struct ModelAvatar: View {
-  var isConnected = false
+    var isConnected = false
 
-  @State private var gradientAngle: Angle = .zero
+    @State private var gradientAngle: Angle = .zero
 
-  var colors: [Color] {
-    if isConnected {
-      [.red, .blue, .green, .yellow, .red]
-    } else {
-      [Color(red: 0.5, green: 0.5, blue: 0.5, opacity: 0.3)]
-    }
-  }
-
-  var body: some View {
-    Image("gemini-logo")
-      .resizable()
-      .aspectRatio(contentMode: .fit)
-      .padding()
-      .colorMultiply(.black)
-      .maskedOverlay {
-        AngularGradient(
-          gradient: Gradient(colors: colors),
-          center: .leading,
-          startAngle: gradientAngle,
-          endAngle: gradientAngle + .degrees(360)
-        )
-      }
-      .onAppear {
-        withAnimation(.linear(duration: 10).repeatForever(autoreverses: false)) {
-          self.gradientAngle = .degrees(360)
+    var colors: [Color] {
+        if isConnected {
+            [.red, .blue, .green, .yellow, .red]
+        } else {
+            [Color(red: 0.5, green: 0.5, blue: 0.5, opacity: 0.3)]
         }
-      }
-  }
+    }
+
+    var body: some View {
+        Image("gemini-logo")
+            .resizable()
+            .aspectRatio(contentMode: .fit)
+            .padding()
+            .colorMultiply(.black)
+            .maskedOverlay {
+                AngularGradient(
+                    gradient: Gradient(colors: colors),
+                    center: .leading,
+                    startAngle: gradientAngle,
+                    endAngle: gradientAngle + .degrees(360)
+                )
+            }
+            .onAppear {
+                withAnimation(.linear(duration: 10).repeatForever(autoreverses: false)) {
+                    self.gradientAngle = .degrees(360)
+                }
+            }
+    }
 }
 
 extension View {
-  /// Creates an overlay which takes advantage of a mask to respect the size of the view.
-  ///
-  /// Especially useful when you want to create an overlay of an view with a non standard
-  /// size.
-  @ViewBuilder
-  func maskedOverlay(mask: () -> some View) -> some View {
-    overlay {
-      mask()
-        .mask { self }
+    /// Creates an overlay which takes advantage of a mask to respect the size of the view.
+    ///
+    /// Especially useful when you want to create an overlay of an view with a non standard
+    /// size.
+    @ViewBuilder
+    func maskedOverlay(mask: () -> some View) -> some View {
+        overlay {
+            mask()
+                .mask { self }
+        }
     }
-  }
 }
 
 #Preview {
-  VStack {
-    ModelAvatar(isConnected: true)
-    ModelAvatar(isConnected: false)
-  }
+    VStack {
+        ModelAvatar(isConnected: true)
+        ModelAvatar(isConnected: false)
+    }
 }

@@ -15,30 +15,30 @@
 import SwiftUI
 
 extension Color {
-  /// Creates a new `Color` instance from a hex string.
-  ///
-  /// Supports both RGB and RGBA hex strings.
-  init?(hex: String) {
-    let hex = hex.replacingOccurrences(of: "#", with: "").uppercased()
+    /// Creates a new `Color` instance from a hex string.
+    ///
+    /// Supports both RGB and RGBA hex strings.
+    init?(hex: String) {
+        let hex = hex.replacingOccurrences(of: "#", with: "").uppercased()
 
-    var rgb: UInt64 = 0
-    guard Scanner(string: hex).scanHexInt64(&rgb) else { return nil }
+        var rgb: UInt64 = 0
+        guard Scanner(string: hex).scanHexInt64(&rgb) else { return nil }
 
-    var r: CGFloat = 0, g: CGFloat = 0, b: CGFloat = 0, a: CGFloat = 1
+        var r: CGFloat = 0, g: CGFloat = 0, b: CGFloat = 0, a: CGFloat = 1
 
-    if hex.count == 6 {
-      r = CGFloat((rgb & 0xFF0000) >> 16) / 255.0
-      g = CGFloat((rgb & 0x00FF00) >> 8) / 255.0
-      b = CGFloat(rgb & 0x0000FF) / 255.0
-    } else if hex.count == 8 {
-      r = CGFloat((rgb & 0xFF00_0000) >> 24) / 255.0
-      g = CGFloat((rgb & 0x00FF_0000) >> 16) / 255.0
-      b = CGFloat((rgb & 0x0000_FF00) >> 8) / 255.0
-      a = CGFloat(rgb & 0x0000_00FF) / 255.0
-    } else {
-      return nil
+        if hex.count == 6 {
+            r = CGFloat((rgb & 0xFF0000) >> 16) / 255.0
+            g = CGFloat((rgb & 0x00FF00) >> 8) / 255.0
+            b = CGFloat(rgb & 0x0000FF) / 255.0
+        } else if hex.count == 8 {
+            r = CGFloat((rgb & 0xFF00_0000) >> 24) / 255.0
+            g = CGFloat((rgb & 0x00FF_0000) >> 16) / 255.0
+            b = CGFloat((rgb & 0x0000_FF00) >> 8) / 255.0
+            a = CGFloat(rgb & 0x0000_00FF) / 255.0
+        } else {
+            return nil
+        }
+
+        self.init(red: r, green: g, blue: b, opacity: a)
     }
-
-    self.init(red: r, green: g, blue: b, opacity: a)
-  }
 }

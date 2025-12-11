@@ -13,276 +13,278 @@
 // limitations under the License.
 
 #if canImport(FirebaseAILogic)
-  import FirebaseAILogic
+    import FirebaseAILogic
 #else
-  import FirebaseAI
+    import FirebaseAI
 #endif
-import Foundation
-import UIKit
 import Combine
 import ConversationKit
+import Foundation
+import UIKit
 
 @MainActor
 class FunctionCallingViewModel: ObservableObject {
-  /// This array holds both the user's and the system's chat messages
-  @Published var messages = [ChatMessage]()
+    /// This array holds both the user's and the system's chat messages
+    @Published var messages = [ChatMessage]()
 
-  /// Indicates we're waiting for the model to finish
-  @Published var busy = false
+    /// Indicates we're waiting for the model to finish
+    @Published var busy = false
 
-  @Published var error: Error?
-  var hasError: Bool {
-    return error != nil
-  }
-
-  @Published var presentErrorDetails: Bool = false
-
-  @Published var initialPrompt: String = ""
-  @Published var title: String = ""
-
-  private var model: GenerativeModel
-  private var chat: Chat
-
-  private var chatTask: Task<Void, Never>?
-
-  private var sample: Sample?
-  private var backendType: BackendOption
-
-  init(backendType: BackendOption, sample: Sample? = nil) {
-    self.sample = sample
-    self.backendType = backendType
-
-    let firebaseService = backendType == .googleAI
-      ? FirebaseAI.firebaseAI(backend: .googleAI())
-      : FirebaseAI.firebaseAI(backend: .vertexAI())
-
-    // create a generative model with sample data
-    model = firebaseService.generativeModel(
-      modelName: sample?.modelName ?? "gemini-2.5-flash-lite",
-      tools: sample?.tools,
-      systemInstruction: sample?.systemInstruction
-    )
-
-    chat = model.startChat()
-
-    initialPrompt = sample?.initialPrompt ?? ""
-    title = sample?.title ?? ""
-  }
-
-  func sendMessage(_ text: String, streaming: Bool = true) async {
-    error = nil
-    if streaming {
-      await internalSendMessageStreaming(text)
-    } else {
-      await internalSendMessage(text)
+    @Published var error: Error?
+    var hasError: Bool {
+        return error != nil
     }
-  }
 
-  func startNewChat() {
-    stop()
-    error = nil
-    chat = model.startChat()
-    messages.removeAll()
-    initialPrompt = ""
-  }
+    @Published var presentErrorDetails: Bool = false
 
-  func stop() {
-    chatTask?.cancel()
-    error = nil
-  }
+    @Published var initialPrompt: String = ""
+    @Published var title: String = ""
 
-  private func internalSendMessageStreaming(_ text: String) async {
-    chatTask?.cancel()
+    private var model: GenerativeModel
+    private var chat: Chat
 
-    chatTask = Task {
-      busy = true
-      defer {
-        busy = false
-      }
+    private var chatTask: Task<Void, Never>?
 
-      // first, add the user's message to the chat
-      let userMessage = ChatMessage(content: text, participant: .user)
-      messages.append(userMessage)
+    private var sample: Sample?
+    private var backendType: BackendOption
 
-      // add a pending message while we're waiting for a response from the backend
-      let systemMessage = ChatMessage.pending(participant: .other)
-      messages.append(systemMessage)
+    init(backendType: BackendOption, sample: Sample? = nil) {
+        self.sample = sample
+        self.backendType = backendType
 
-      do {
-        let responseStream = try chat.sendMessageStream(text)
+        let firebaseService = backendType == .googleAI
+            ? FirebaseAI.firebaseAI(backend: .googleAI())
+            : FirebaseAI.firebaseAI(backend: .vertexAI())
 
-        var functionCalls = [FunctionCallPart]()
+        // create a generative model with sample data
+        model = firebaseService.generativeModel(
+            modelName: sample?.modelName ?? "gemini-2.5-flash-lite",
+            tools: sample?.tools,
+            systemInstruction: sample?.systemInstruction
+        )
 
-        for try await chunk in responseStream {
-          if !chunk.functionCalls.isEmpty {
-            functionCalls.append(contentsOf: chunk.functionCalls)
-          }
-          if let text = chunk.text {
-            messages[messages.count - 1]
-              .content = (messages[messages.count - 1].content ?? "") + text
-            messages[messages.count - 1].pending = false
-          }
-        }
+        chat = model.startChat()
 
-        // On functionCalls, never keep reading the old stream or call the second API inside the first for-loop.
-        // Start a NEW stream only after the function response turn is sent.
-        if !functionCalls.isEmpty {
-          try await handleFunctionCallsStreaming(functionCalls)
-        }
-      } catch {
-        self.error = error
-        print(error.localizedDescription)
-        let errorMessage = ChatMessage(content: "An error occurred. Please try again.",
-                                       participant: .other,
-                                       error: error,
-                                       pending: false)
-        messages[messages.count - 1] = errorMessage
-      }
+        initialPrompt = sample?.initialPrompt ?? ""
+        title = sample?.title ?? ""
     }
-  }
 
-  private func internalSendMessage(_ text: String) async {
-    chatTask?.cancel()
-
-    chatTask = Task {
-      busy = true
-      defer {
-        busy = false
-      }
-
-      // first, add the user's message to the chat
-      let userMessage = ChatMessage(content: text, participant: .user)
-      messages.append(userMessage)
-
-      // add a pending message while we're waiting for a response from the backend
-      let systemMessage = ChatMessage.pending(participant: .other)
-      messages.append(systemMessage)
-
-      do {
-        let response = try await chat.sendMessage(text)
-
-        if !response.functionCalls.isEmpty {
-          try await handleFunctionCalls(response)
+    func sendMessage(_ text: String, streaming: Bool = true) async {
+        error = nil
+        if streaming {
+            await internalSendMessageStreaming(text)
         } else {
-          if let responseText = response.text {
-            // replace pending message with backend response
-            messages[messages.count - 1].content = responseText
-            messages[messages.count - 1].pending = false
-          }
+            await internalSendMessage(text)
         }
-      } catch {
-        self.error = error
-        print(error.localizedDescription)
-        let errorMessage = ChatMessage(content: "An error occurred. Please try again.",
-                                       participant: .other,
-                                       error: error,
-                                       pending: false)
-        messages[messages.count - 1] = errorMessage
-      }
-    }
-  }
-
-  private func handleFunctionCallsStreaming(_ functionCalls: [FunctionCallPart]) async throws {
-    var functionResponses = [FunctionResponsePart]()
-
-    for functionCall in functionCalls {
-      switch functionCall.name {
-      case "fetchWeather":
-        guard case let .string(city) = functionCall.args["city"],
-          case let .string(state) = functionCall.args["state"],
-          case let .string(date) = functionCall.args["date"] else {
-          throw NSError(
-            domain: "FunctionCallingError",
-            code: 0,
-            userInfo: [
-              NSLocalizedDescriptionKey: "Malformed arguments for fetchWeather: \(functionCall.args)",
-            ]
-          )
-        }
-
-        functionResponses.append(
-          FunctionResponsePart(
-            name: functionCall.name,
-            response: WeatherService.fetchWeather(city: city, state: state, date: date)
-          )
-        )
-      default:
-        print("Unknown function named \"\(functionCall.name)\".")
-      }
     }
 
-    if !functionResponses.isEmpty {
-      let finalResponse = try chat
-        .sendMessageStream([ModelContent(role: "function", parts: functionResponses)])
-
-      for try await chunk in finalResponse {
-        guard let candidate = chunk.candidates.first else {
-          throw NSError(
-            domain: "FunctionCallingError",
-            code: 1,
-            userInfo: [NSLocalizedDescriptionKey: "No candidate in response chunk"]
-          )
-        }
-
-        for part in candidate.content.parts {
-          if let textPart = part as? TextPart {
-            messages[messages.count - 1]
-              .content = (messages[messages.count - 1].content ?? "") + textPart.text
-            messages[messages.count - 1].pending = false
-          }
-        }
-      }
-    }
-  }
-
-  private func handleFunctionCalls(_ response: GenerateContentResponse) async throws {
-    var functionResponses = [FunctionResponsePart]()
-
-    for functionCall in response.functionCalls {
-      switch functionCall.name {
-      case "fetchWeather":
-        guard case let .string(city) = functionCall.args["city"],
-          case let .string(state) = functionCall.args["state"],
-          case let .string(date) = functionCall.args["date"] else {
-          throw NSError(
-            domain: "FunctionCallingError",
-            code: 0,
-            userInfo: [
-              NSLocalizedDescriptionKey: "Malformed arguments for fetchWeather: \(functionCall.args)",
-            ]
-          )
-        }
-
-        functionResponses.append(
-          FunctionResponsePart(
-            name: functionCall.name,
-            response: WeatherService.fetchWeather(city: city, state: state, date: date)
-          )
-        )
-      default:
-        print("Unknown function named \"\(functionCall.name)\".")
-      }
+    func startNewChat() {
+        stop()
+        error = nil
+        chat = model.startChat()
+        messages.removeAll()
+        initialPrompt = ""
     }
 
-    if !functionResponses.isEmpty {
-      let finalResponse = try await chat
-        .sendMessage([ModelContent(role: "function", parts: functionResponses)])
-
-      guard let candidate = finalResponse.candidates.first else {
-        throw NSError(
-          domain: "FunctionCallingError",
-          code: 1,
-          userInfo: [NSLocalizedDescriptionKey: "No candidate in response"]
-        )
-      }
-
-      for part in candidate.content.parts {
-        if let textPart = part as? TextPart {
-          messages[messages.count - 1]
-            .content = (messages[messages.count - 1].content ?? "") + textPart.text
-          messages[messages.count - 1].pending = false
-        }
-      }
+    func stop() {
+        chatTask?.cancel()
+        error = nil
     }
-  }
+
+    private func internalSendMessageStreaming(_ text: String) async {
+        chatTask?.cancel()
+
+        chatTask = Task {
+            busy = true
+            defer {
+                busy = false
+            }
+
+            // first, add the user's message to the chat
+            let userMessage = ChatMessage(content: text, participant: .user)
+            messages.append(userMessage)
+
+            // add a pending message while we're waiting for a response from the backend
+            let systemMessage = ChatMessage.pending(participant: .other)
+            messages.append(systemMessage)
+
+            do {
+                let responseStream = try chat.sendMessageStream(text)
+
+                var functionCalls = [FunctionCallPart]()
+
+                for try await chunk in responseStream {
+                    if !chunk.functionCalls.isEmpty {
+                        functionCalls.append(contentsOf: chunk.functionCalls)
+                    }
+                    if let text = chunk.text {
+                        messages[messages.count - 1]
+                            .content = (messages[messages.count - 1].content ?? "") + text
+                        messages[messages.count - 1].pending = false
+                    }
+                }
+
+                // On functionCalls, never keep reading the old stream or call the second API inside the first for-loop.
+                // Start a NEW stream only after the function response turn is sent.
+                if !functionCalls.isEmpty {
+                    try await handleFunctionCallsStreaming(functionCalls)
+                }
+            } catch {
+                self.error = error
+                print(error.localizedDescription)
+                let errorMessage = ChatMessage(content: "An error occurred. Please try again.",
+                                               participant: .other,
+                                               error: error,
+                                               pending: false)
+                messages[messages.count - 1] = errorMessage
+            }
+        }
+    }
+
+    private func internalSendMessage(_ text: String) async {
+        chatTask?.cancel()
+
+        chatTask = Task {
+            busy = true
+            defer {
+                busy = false
+            }
+
+            // first, add the user's message to the chat
+            let userMessage = ChatMessage(content: text, participant: .user)
+            messages.append(userMessage)
+
+            // add a pending message while we're waiting for a response from the backend
+            let systemMessage = ChatMessage.pending(participant: .other)
+            messages.append(systemMessage)
+
+            do {
+                let response = try await chat.sendMessage(text)
+
+                if !response.functionCalls.isEmpty {
+                    try await handleFunctionCalls(response)
+                } else {
+                    if let responseText = response.text {
+                        // replace pending message with backend response
+                        messages[messages.count - 1].content = responseText
+                        messages[messages.count - 1].pending = false
+                    }
+                }
+            } catch {
+                self.error = error
+                print(error.localizedDescription)
+                let errorMessage = ChatMessage(content: "An error occurred. Please try again.",
+                                               participant: .other,
+                                               error: error,
+                                               pending: false)
+                messages[messages.count - 1] = errorMessage
+            }
+        }
+    }
+
+    private func handleFunctionCallsStreaming(_ functionCalls: [FunctionCallPart]) async throws {
+        var functionResponses = [FunctionResponsePart]()
+
+        for functionCall in functionCalls {
+            switch functionCall.name {
+            case "fetchWeather":
+                guard case let .string(city) = functionCall.args["city"],
+                      case let .string(state) = functionCall.args["state"],
+                      case let .string(date) = functionCall.args["date"]
+                else {
+                    throw NSError(
+                        domain: "FunctionCallingError",
+                        code: 0,
+                        userInfo: [
+                            NSLocalizedDescriptionKey: "Malformed arguments for fetchWeather: \(functionCall.args)",
+                        ]
+                    )
+                }
+
+                functionResponses.append(
+                    FunctionResponsePart(
+                        name: functionCall.name,
+                        response: WeatherService.fetchWeather(city: city, state: state, date: date)
+                    )
+                )
+            default:
+                print("Unknown function named \"\(functionCall.name)\".")
+            }
+        }
+
+        if !functionResponses.isEmpty {
+            let finalResponse = try chat
+                .sendMessageStream([ModelContent(role: "function", parts: functionResponses)])
+
+            for try await chunk in finalResponse {
+                guard let candidate = chunk.candidates.first else {
+                    throw NSError(
+                        domain: "FunctionCallingError",
+                        code: 1,
+                        userInfo: [NSLocalizedDescriptionKey: "No candidate in response chunk"]
+                    )
+                }
+
+                for part in candidate.content.parts {
+                    if let textPart = part as? TextPart {
+                        messages[messages.count - 1]
+                            .content = (messages[messages.count - 1].content ?? "") + textPart.text
+                        messages[messages.count - 1].pending = false
+                    }
+                }
+            }
+        }
+    }
+
+    private func handleFunctionCalls(_ response: GenerateContentResponse) async throws {
+        var functionResponses = [FunctionResponsePart]()
+
+        for functionCall in response.functionCalls {
+            switch functionCall.name {
+            case "fetchWeather":
+                guard case let .string(city) = functionCall.args["city"],
+                      case let .string(state) = functionCall.args["state"],
+                      case let .string(date) = functionCall.args["date"]
+                else {
+                    throw NSError(
+                        domain: "FunctionCallingError",
+                        code: 0,
+                        userInfo: [
+                            NSLocalizedDescriptionKey: "Malformed arguments for fetchWeather: \(functionCall.args)",
+                        ]
+                    )
+                }
+
+                functionResponses.append(
+                    FunctionResponsePart(
+                        name: functionCall.name,
+                        response: WeatherService.fetchWeather(city: city, state: state, date: date)
+                    )
+                )
+            default:
+                print("Unknown function named \"\(functionCall.name)\".")
+            }
+        }
+
+        if !functionResponses.isEmpty {
+            let finalResponse = try await chat
+                .sendMessage([ModelContent(role: "function", parts: functionResponses)])
+
+            guard let candidate = finalResponse.candidates.first else {
+                throw NSError(
+                    domain: "FunctionCallingError",
+                    code: 1,
+                    userInfo: [NSLocalizedDescriptionKey: "No candidate in response"]
+                )
+            }
+
+            for part in candidate.content.parts {
+                if let textPart = part as? TextPart {
+                    messages[messages.count - 1]
+                        .content = (messages[messages.count - 1].content ?? "") + textPart.text
+                    messages[messages.count - 1].pending = false
+                }
+            }
+        }
+    }
 }

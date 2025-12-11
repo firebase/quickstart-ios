@@ -15,13 +15,13 @@
 import Foundation
 
 public enum UseCase: String, CaseIterable, Identifiable {
-  case all = "All"
-  case text = "Text"
-  case image = "Image"
-  case video = "Video"
-  case audio = "Audio"
-  case document = "Document"
-  case functionCalling = "Function Calling"
+    case all = "All"
+    case text = "Text"
+    case image = "Image"
+    case video = "Video"
+    case audio = "Audio"
+    case document = "Document"
+    case functionCalling = "Function Calling"
 
-  public var id: String { rawValue }
+    public var id: String { rawValue }
 }

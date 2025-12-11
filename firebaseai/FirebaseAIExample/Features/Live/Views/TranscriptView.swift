@@ -15,31 +15,31 @@
 import SwiftUI
 
 struct TranscriptView: View {
-  @ObservedObject var typewriter: TypeWriterViewModel
+    @ObservedObject var typewriter: TypeWriterViewModel
 
-  var body: some View {
-    ScrollViewReader { proxy in
-      ScrollView {
-        Text(typewriter.text)
-          .font(.title3)
-          .frame(maxWidth: .infinity, alignment: .leading)
-          .transition(.opacity)
-          .padding(.horizontal)
-          .id("transcript")
-      }
-      .onChange(of: typewriter.text, initial: false) { old, new in
-        proxy.scrollTo("transcript", anchor: .bottom)
-      }
+    var body: some View {
+        ScrollViewReader { proxy in
+            ScrollView {
+                Text(typewriter.text)
+                    .font(.title3)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .transition(.opacity)
+                    .padding(.horizontal)
+                    .id("transcript")
+            }
+            .onChange(of: typewriter.text, initial: false) { _, _ in
+                proxy.scrollTo("transcript", anchor: .bottom)
+            }
+        }
     }
-  }
 }
 
 #Preview {
-  let vm = TypeWriterViewModel()
-  TranscriptView(typewriter: vm)
-    .onAppear {
-      vm.appendText(
-        "The sky is blue primarily because of a phenomenon called Rayleigh scattering, where tiny molecules of gas (mainly nitrogen and oxygen) in Earth's atmosphere scatter sunlight in all directions."
-      )
-    }
+    let vm = TypeWriterViewModel()
+    TranscriptView(typewriter: vm)
+        .onAppear {
+            vm.appendText(
+                "The sky is blue primarily because of a phenomenon called Rayleigh scattering, where tiny molecules of gas (mainly nitrogen and oxygen) in Earth's atmosphere scatter sunlight in all directions."
+            )
+        }
 }

@@ -13,19 +13,19 @@
 // limitations under the License.
 
 #if canImport(FirebaseAILogic)
-  import FirebaseAILogic
+    import FirebaseAILogic
 #else
-  import FirebaseAI
+    import FirebaseAI
 #endif
 import Foundation
 import UIKit
 
 class WeatherService {
-  public static func fetchWeather(city: String, state: String, date: String) -> JSONObject {
-    return [
-      "temperature": .number(38),
-      "chancePrecipitation": .string("56%"),
-      "cloudCover": .string("partlyCloudy"),
-    ]
-  }
+    public static func fetchWeather(city _: String, state _: String, date _: String) -> JSONObject {
+        return [
+            "temperature": .number(38),
+            "chancePrecipitation": .string("56%"),
+            "cloudCover": .string("partlyCloudy"),
+        ]
+    }
 }

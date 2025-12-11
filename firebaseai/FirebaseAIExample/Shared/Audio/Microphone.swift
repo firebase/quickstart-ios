@@ -12,51 +12,51 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Foundation
 import AVFoundation
+import Foundation
 
 /// Microphone bindings using Apple's AudioEngine API.
 class Microphone {
-  /// Data recorded from the microphone.
-  public let audio: AsyncStream<AVAudioPCMBuffer>
-  private let audioQueue: AsyncStream<AVAudioPCMBuffer>.Continuation
+    /// Data recorded from the microphone.
+    public let audio: AsyncStream<AVAudioPCMBuffer>
+    private let audioQueue: AsyncStream<AVAudioPCMBuffer>.Continuation
 
-  private let inputNode: AVAudioInputNode
-  private let audioEngine: AVAudioEngine
+    private let inputNode: AVAudioInputNode
+    private let audioEngine: AVAudioEngine
 
-  private var isRunning = false
+    private var isRunning = false
 
-  init(engine: AVAudioEngine) {
-    let (audio, audioQueue) = AsyncStream<AVAudioPCMBuffer>.makeStream()
+    init(engine: AVAudioEngine) {
+        let (audio, audioQueue) = AsyncStream<AVAudioPCMBuffer>.makeStream()
 
-    self.audio = audio
-    self.audioQueue = audioQueue
-    inputNode = engine.inputNode
-    audioEngine = engine
-  }
-
-  deinit {
-    stop()
-  }
-
-  public func start() {
-    guard !isRunning else { return }
-    isRunning = true
-
-    // 50ms buffer size for balancing latency and cpu overhead
-    let targetBufferSize = UInt32(inputNode.outputFormat(forBus: 0).sampleRate / 20)
-    inputNode
-      .installTap(onBus: 0, bufferSize: targetBufferSize, format: nil) { [weak self] buffer, _ in
-        guard let self else { return }
-        audioQueue.yield(buffer)
-      }
-  }
-
-  public func stop() {
-    audioQueue.finish()
-    if isRunning {
-      isRunning = false
-      inputNode.removeTap(onBus: 0)
+        self.audio = audio
+        self.audioQueue = audioQueue
+        inputNode = engine.inputNode
+        audioEngine = engine
     }
-  }
+
+    deinit {
+        stop()
+    }
+
+    public func start() {
+        guard !isRunning else { return }
+        isRunning = true
+
+        // 50ms buffer size for balancing latency and cpu overhead
+        let targetBufferSize = UInt32(inputNode.outputFormat(forBus: 0).sampleRate / 20)
+        inputNode
+            .installTap(onBus: 0, bufferSize: targetBufferSize, format: nil) { [weak self] buffer, _ in
+                guard let self else { return }
+                audioQueue.yield(buffer)
+            }
+    }
+
+    public func stop() {
+        audioQueue.finish()
+        if isRunning {
+            isRunning = false
+            inputNode.removeTap(onBus: 0)
+        }
+    }
 }

@@ -15,77 +15,77 @@
 import AVFoundation
 
 extension AVAudioPCMBuffer {
-  /// Creates a new `AVAudioPCMBuffer` from a `Data` struct.
-  ///
-  /// Only works with interleaved data.
-  static func fromInterleavedData(data: Data, format: AVAudioFormat) throws -> AVAudioPCMBuffer? {
-    guard format.isInterleaved else {
-      throw ApplicationError("Only interleaved data is supported")
+    /// Creates a new `AVAudioPCMBuffer` from a `Data` struct.
+    ///
+    /// Only works with interleaved data.
+    static func fromInterleavedData(data: Data, format: AVAudioFormat) throws -> AVAudioPCMBuffer? {
+        guard format.isInterleaved else {
+            throw ApplicationError("Only interleaved data is supported")
+        }
+
+        let frameCapacity = AVAudioFrameCount(data
+            .count / Int(format.streamDescription.pointee.mBytesPerFrame))
+        guard let buffer = AVAudioPCMBuffer(pcmFormat: format, frameCapacity: frameCapacity) else {
+            return nil
+        }
+
+        buffer.frameLength = frameCapacity
+        data.withUnsafeBytes { bytes in
+            guard let baseAddress = bytes.baseAddress else { return }
+            let dst = buffer.mutableAudioBufferList.pointee.mBuffers
+            dst.mData?.copyMemory(from: baseAddress, byteCount: Int(dst.mDataByteSize))
+        }
+
+        return buffer
     }
 
-    let frameCapacity = AVAudioFrameCount(data
-      .count / Int(format.streamDescription.pointee.mBytesPerFrame))
-    guard let buffer = AVAudioPCMBuffer(pcmFormat: format, frameCapacity: frameCapacity) else {
-      return nil
+    /// Gets the underlying `Data` in this buffer.
+    ///
+    /// Will throw an error if this buffer doesn't hold int16 data.
+    func int16Data() throws -> Data {
+        guard let bufferPtr = audioBufferList.pointee.mBuffers.mData else {
+            throw ApplicationError("Missing audio buffer list")
+        }
+
+        let audioBufferLenth = Int(audioBufferList.pointee.mBuffers.mDataByteSize)
+        return Data(bytes: bufferPtr, count: audioBufferLenth)
     }
-
-    buffer.frameLength = frameCapacity
-    data.withUnsafeBytes { bytes in
-      guard let baseAddress = bytes.baseAddress else { return }
-      let dst = buffer.mutableAudioBufferList.pointee.mBuffers
-      dst.mData?.copyMemory(from: baseAddress, byteCount: Int(dst.mDataByteSize))
-    }
-
-    return buffer
-  }
-
-  /// Gets the underlying `Data` in this buffer.
-  ///
-  /// Will throw an error if this buffer doesn't hold int16 data.
-  func int16Data() throws -> Data {
-    guard let bufferPtr = audioBufferList.pointee.mBuffers.mData else {
-      throw ApplicationError("Missing audio buffer list")
-    }
-
-    let audioBufferLenth = Int(audioBufferList.pointee.mBuffers.mDataByteSize)
-    return Data(bytes: bufferPtr, count: audioBufferLenth)
-  }
 }
 
 extension AVAudioConverter {
-  /// Uses the converter to convert the provided `buffer`.
-  ///
-  /// Will handle determining the proper frame capacity, ensuring formats align, and propagating any
-  /// errors that occur.
-  ///
-  ///   - Returns: A new buffer, with the converted data.
-  func convertBuffer(_ buffer: AVAudioPCMBuffer) throws -> AVAudioPCMBuffer {
-    if buffer.format == outputFormat { return buffer }
-    guard buffer.format == inputFormat else {
-      throw ApplicationError("The buffer's format was different than the converter's input format")
+    /// Uses the converter to convert the provided `buffer`.
+    ///
+    /// Will handle determining the proper frame capacity, ensuring formats align, and propagating any
+    /// errors that occur.
+    ///
+    ///   - Returns: A new buffer, with the converted data.
+    func convertBuffer(_ buffer: AVAudioPCMBuffer) throws -> AVAudioPCMBuffer {
+        if buffer.format == outputFormat { return buffer }
+        guard buffer.format == inputFormat else {
+            throw ApplicationError("The buffer's format was different than the converter's input format")
+        }
+
+        let frameCapacity = AVAudioFrameCount(
+            ceil(Double(buffer.frameLength) * outputFormat.sampleRate / inputFormat.sampleRate)
+        )
+
+        guard let output = AVAudioPCMBuffer(
+            pcmFormat: outputFormat,
+            frameCapacity: frameCapacity
+        ) else {
+            throw ApplicationError("Failed to create output buffer")
+        }
+
+        var error: NSError?
+        convert(to: output, error: &error) { _, status in
+            status.pointee = .haveData
+            return buffer
+        }
+
+        if let error {
+            throw ApplicationError("Failed to convert buffer: \(error.localizedDescription)")
+        }
+
+        return output
     }
-
-    let frameCapacity = AVAudioFrameCount(
-      ceil(Double(buffer.frameLength) * outputFormat.sampleRate / inputFormat.sampleRate)
-    )
-
-    guard let output = AVAudioPCMBuffer(
-      pcmFormat: outputFormat,
-      frameCapacity: frameCapacity
-    ) else {
-      throw ApplicationError("Failed to create output buffer")
-    }
-
-    var error: NSError?
-    convert(to: output, error: &error) { _, status in
-      status.pointee = .haveData
-      return buffer
-    }
-
-    if let error {
-      throw ApplicationError("Failed to convert buffer: \(error.localizedDescription)")
-    }
-
-    return output
-  }
 }

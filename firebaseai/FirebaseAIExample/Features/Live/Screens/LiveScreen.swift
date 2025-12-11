@@ -13,62 +13,62 @@
 // limitations under the License.
 
 #if canImport(FirebaseAILogic)
-  import FirebaseAILogic
+    import FirebaseAILogic
 #else
-  import FirebaseAI
+    import FirebaseAI
 #endif
 import SwiftUI
 import TipKit
 
 struct LiveScreen: View {
-  let backendType: BackendOption
-  @StateObject var viewModel: LiveViewModel
+    let backendType: BackendOption
+    @StateObject var viewModel: LiveViewModel
 
-  init(backendType: BackendOption, sample: Sample? = nil) {
-    self.backendType = backendType
-    _viewModel =
-      StateObject(wrappedValue: LiveViewModel(backendType: backendType,
-                                              sample: sample))
-  }
-
-  var body: some View {
-    VStack(spacing: 20) {
-      ModelAvatar(isConnected: viewModel.state == .connected)
-      TranscriptView(typewriter: viewModel.transcriptTypewriter)
-
-      Spacer()
-      if let error = viewModel.error {
-        ErrorDetailsView(error: error)
-      }
-      if let tip = viewModel.tip, !viewModel.hasTranscripts {
-        TipView(tip)
-      }
-      ConnectButton(
-        state: viewModel.state,
-        onConnect: viewModel.connect,
-        onDisconnect: viewModel.disconnect
-      )
-
-      #if targetEnvironment(simulator)
-        AudioOutputToggle(isEnabled: $viewModel.isAudioOutputEnabled, onChange: {
-          Task {
-            await viewModel.onAudioPlaybackChanged()
-          }
-        })
-      #endif
+    init(backendType: BackendOption, sample: Sample? = nil) {
+        self.backendType = backendType
+        _viewModel =
+            StateObject(wrappedValue: LiveViewModel(backendType: backendType,
+                                                    sample: sample))
     }
-    .padding()
-    .navigationTitle(viewModel.title)
-    .navigationBarTitleDisplayMode(.inline)
-    .background(viewModel.backgroundColor ?? .clear)
-    .onDisappear {
-      Task {
-        await viewModel.disconnect()
-      }
+
+    var body: some View {
+        VStack(spacing: 20) {
+            ModelAvatar(isConnected: viewModel.state == .connected)
+            TranscriptView(typewriter: viewModel.transcriptTypewriter)
+
+            Spacer()
+            if let error = viewModel.error {
+                ErrorDetailsView(error: error)
+            }
+            if let tip = viewModel.tip, !viewModel.hasTranscripts {
+                TipView(tip)
+            }
+            ConnectButton(
+                state: viewModel.state,
+                onConnect: viewModel.connect,
+                onDisconnect: viewModel.disconnect
+            )
+
+            #if targetEnvironment(simulator)
+                AudioOutputToggle(isEnabled: $viewModel.isAudioOutputEnabled, onChange: {
+                    Task {
+                        await viewModel.onAudioPlaybackChanged()
+                    }
+                })
+            #endif
+        }
+        .padding()
+        .navigationTitle(viewModel.title)
+        .navigationBarTitleDisplayMode(.inline)
+        .background(viewModel.backgroundColor ?? .clear)
+        .onDisappear {
+            Task {
+                await viewModel.disconnect()
+            }
+        }
     }
-  }
 }
 
 #Preview {
-  LiveScreen(backendType: .googleAI)
+    LiveScreen(backendType: .googleAI)
 }

@@ -19,9 +19,12 @@ struct TipView: View {
 
   var body: some View {
     VStack(alignment: .leading, spacing: 5) {
-      Label("Tip", systemImage: "info.circle").bold().foregroundStyle(.blue)
+      Label("Tip", systemImage: "info.circle")
+        .bold()
+        .foregroundStyle(.blue)
       Text(text)
-        .font(.caption).italic()
+        .font(.caption)
+        .italic()
     }
   }
 }

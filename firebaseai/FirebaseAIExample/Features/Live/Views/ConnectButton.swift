@@ -120,5 +120,6 @@ extension ButtonStyle where Self == ConnectButtonStyle {
     ConnectButton(state: .idle, onConnect: {}, onDisconnect: {})
     ConnectButton(state: .connecting, onConnect: {}, onDisconnect: {})
     ConnectButton(state: .connected, onConnect: {}, onDisconnect: {})
-  }.padding(.horizontal)
+  }
+  .padding(.horizontal)
 }

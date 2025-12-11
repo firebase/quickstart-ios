@@ -28,7 +28,11 @@ struct ModelAvatar: View {
   }
 
   var body: some View {
-    Image("gemini-logo").resizable().aspectRatio(contentMode: .fit).padding().colorMultiply(.black)
+    Image("gemini-logo")
+      .resizable()
+      .aspectRatio(contentMode: .fit)
+      .padding()
+      .colorMultiply(.black)
       .maskedOverlay {
         AngularGradient(
           gradient: Gradient(colors: colors),
@@ -36,7 +40,8 @@ struct ModelAvatar: View {
           startAngle: gradientAngle,
           endAngle: gradientAngle + .degrees(360)
         )
-      }.onAppear {
+      }
+      .onAppear {
         withAnimation(.linear(duration: 10).repeatForever(autoreverses: false)) {
           self.gradientAngle = .degrees(360)
         }
@@ -52,7 +57,8 @@ extension View {
   @ViewBuilder
   func maskedOverlay(mask: () -> some View) -> some View {
     overlay {
-      mask().mask { self }
+      mask()
+        .mask { self }
     }
   }
 }

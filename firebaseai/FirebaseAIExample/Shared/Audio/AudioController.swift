@@ -16,9 +16,9 @@ import AVFoundation
 import OSLog
 
 #if compiler(<6.2)
-    extension AVAudioSession.CategoryOptions {
-        static let allowBluetoothHFP = AVAudioSession.CategoryOptions.allowBluetooth
-    }
+extension AVAudioSession.CategoryOptions {
+  static let allowBluetoothHFP = AVAudioSession.CategoryOptions.allowBluetooth
+}
 #endif
 
 /// Controls audio playback and recording.

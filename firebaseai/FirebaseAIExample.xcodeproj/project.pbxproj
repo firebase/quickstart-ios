@@ -364,7 +364,7 @@
 			repositoryURL = "https://github.com/peterfriese/ConversationKit";
 			requirement = {
 				kind = exactVersion;
-				version = 0.0.3;
+				version = 0.0.4;
 			};
 		};
 		88779D912EC8AC460080D023 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {

@@ -61,12 +61,12 @@
 		B9EABE2127FB82B200E055FD /* StorageExample (tvOS).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "StorageExample (tvOS).app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9EABE2727FB82B300E055FD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B9EABE2A27FB82B300E055FD /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		EA2B4E7B2ED64431003F9A40 /* StorageExample (iOS) UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "StorageExample (iOS) UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA2B4E7B2ED64431003F9A40 /* StorageExample_iOS_UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StorageExample_iOS_UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA4A29E72E6F543800B647BC /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		EA2B4E7C2ED64431003F9A40 /* StorageExample (iOS) UITests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = "StorageExample (iOS) UITests"; sourceTree = "<group>"; };
+		EA2B4E7C2ED64431003F9A40 /* StorageExample_iOS_UITests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = StorageExample_iOS_UITests; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,7 +144,7 @@
 				B9A598BC27E3D169003BCFD0 /* StorageExample (iOS) */,
 				B94D0ABD27F5060C00753EEA /* StorageExample (macOS) */,
 				B9EABE2227FB82B200E055FD /* StorageExample (tvOS) */,
-				EA2B4E7C2ED64431003F9A40 /* StorageExample (iOS) UITests */,
+				EA2B4E7C2ED64431003F9A40 /* StorageExample_iOS_UITests */,
 				B9A598BB27E3D169003BCFD0 /* Products */,
 				B9EABE2F27FB82CD00E055FD /* Frameworks */,
 			);
@@ -156,7 +156,7 @@
 				B9A598BA27E3D169003BCFD0 /* StorageExample (iOS).app */,
 				B94D0ABC27F5060C00753EEA /* StorageExample (macOS).app */,
 				B9EABE2127FB82B200E055FD /* StorageExample (tvOS).app */,
-				EA2B4E7B2ED64431003F9A40 /* StorageExample (iOS) UITests.xctest */,
+				EA2B4E7B2ED64431003F9A40 /* StorageExample_iOS_UITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -268,9 +268,9 @@
 			productReference = B9EABE2127FB82B200E055FD /* StorageExample (tvOS).app */;
 			productType = "com.apple.product-type.application";
 		};
-		EA2B4E7A2ED64431003F9A40 /* StorageExample (iOS) UITests */ = {
+		EA2B4E7A2ED64431003F9A40 /* StorageExample_iOS_UITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EA2B4E852ED64431003F9A40 /* Build configuration list for PBXNativeTarget "StorageExample (iOS) UITests" */;
+			buildConfigurationList = EA2B4E852ED64431003F9A40 /* Build configuration list for PBXNativeTarget "StorageExample_iOS_UITests" */;
 			buildPhases = (
 				EA2B4E772ED64431003F9A40 /* Sources */,
 				EA2B4E782ED64431003F9A40 /* Frameworks */,
@@ -282,13 +282,13 @@
 				EA2B4E822ED64431003F9A40 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				EA2B4E7C2ED64431003F9A40 /* StorageExample (iOS) UITests */,
+				EA2B4E7C2ED64431003F9A40 /* StorageExample_iOS_UITests */,
 			);
-			name = "StorageExample (iOS) UITests";
+			name = StorageExample_iOS_UITests;
 			packageProductDependencies = (
 			);
 			productName = "StorageExample (iOS) UITests";
-			productReference = EA2B4E7B2ED64431003F9A40 /* StorageExample (iOS) UITests.xctest */;
+			productReference = EA2B4E7B2ED64431003F9A40 /* StorageExample_iOS_UITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -336,7 +336,7 @@
 				B9A598B927E3D169003BCFD0 /* StorageExample */,
 				B94D0ABB27F5060C00753EEA /* StorageExample (macOS) */,
 				B9EABE2027FB82B200E055FD /* StorageExample (tvOS) */,
-				EA2B4E7A2ED64431003F9A40 /* StorageExample (iOS) UITests */,
+				EA2B4E7A2ED64431003F9A40 /* StorageExample_iOS_UITests */,
 			);
 		};
 /* End PBXProject section */
@@ -816,7 +816,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		EA2B4E852ED64431003F9A40 /* Build configuration list for PBXNativeTarget "StorageExample (iOS) UITests" */ = {
+		EA2B4E852ED64431003F9A40 /* Build configuration list for PBXNativeTarget "StorageExample_iOS_UITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EA2B4E832ED64431003F9A40 /* Debug */,

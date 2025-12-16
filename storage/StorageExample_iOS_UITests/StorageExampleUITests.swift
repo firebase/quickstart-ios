@@ -14,7 +14,7 @@
 
 import XCTest
 
-final class StorageExample__iOS__UITests: XCTestCase {
+final class StorageExample_iOS_UITests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.

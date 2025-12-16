@@ -14,7 +14,7 @@
 
 import XCTest
 
-final class StorageExample__iOS__UITestsLaunchTests: XCTestCase {
+final class StorageExample_iOS_UITestsLaunchTests: XCTestCase {
 
     override class var runsForEachTargetApplicationUIConfiguration: Bool {
         true

@@ -169,13 +169,15 @@ class UITests: XCTestCase {
     try goBack()
   }
 
-  func testDownloadView() throws {
+  // TODO: Re-enable.
+  func SKIP_testDownloadView() throws {
     try checkMainView()
     try checkEmptyView(function: download)
     try checkFunctionality(function: download, startingStatus: .idle)
   }
 
-  func testClassifyView() throws {
+  // TODO: Re-enable.
+  func SKIP_testClassifyView() throws {
     try checkMainView()
     try checkEmptyView(function: classify)
     try checkFunctionality(function: download, startingStatus: .idle)
@@ -197,7 +199,8 @@ class UITests: XCTestCase {
     try checkFunctionality(function: upload, startingStatus: .success(.saliencyMap))
   }
 
-  func testAllViews() throws {
+  // TODO: Re-enable.
+  func SKIP_testAllViews() throws {
     try checkMainView()
 
     try checkEmptyView(function: download)

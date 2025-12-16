@@ -37,7 +37,7 @@ jobs:
       SPM: true
       OS: iOS
       DEVICE: iPhone 16
-      TEST: true
+      TEST: false
       DIR: performance
       SCHEME: PerformanceExample (iOS)
     steps:

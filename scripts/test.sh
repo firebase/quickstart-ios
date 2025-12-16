@@ -25,9 +25,11 @@ xcode_version="${xcode_version/Xcode /}"
 xcode_major="${xcode_version/.*/}"
 
 if [[ "$xcode_major" -ge 26 ]]; then
-  iphone_version="17"
+  iphone_version="17 Pro"
+  ios_version="26.1"
 elif [[ "$xcode_major" -ge 16 ]]; then
-  iphone_version="16"
+  iphone_version="16 Pro"
+  ios_version="18.6"
 else
   echo "Unsupported Xcode version $xcode_version; exiting." 1>&2
   exit 1
@@ -96,6 +98,9 @@ flags+=( -scheme "$SCHEME" )
 # Set destination
 if [[ "$OS" == iOS ]]; then
     DESTINATION="platform=iOS Simulator,name=${DEVICE}"
+    if [[ -n "${VERSION:-}" ]]; then
+        DESTINATION+=",OS=${VERSION}"
+    fi
     flags+=( -destination "$DESTINATION" )
 elif [[ "$OS" == tvOS ]]; then
     DESTINATION="platform=tvOS Simulator,name=${DEVICE}"

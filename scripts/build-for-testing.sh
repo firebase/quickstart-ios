@@ -91,9 +91,16 @@ fi
 
 flags+=( -scheme "$SCHEME" )
 
+# Sanitize SCHEME to be used in file paths
+SCHEME_PATH=$(echo "${SCHEME}" | tr -d '()' | tr ' ' '_')
+
+if [[ "$SCHEME" != "$SCHEME_PATH" ]]; then
+  echo "Sanitized scheme '$SCHEME' to '$SCHEME_PATH' for file paths."
+fi
+
 # Set derivedDataPath
-DERIVEDDATAPATH="build-for-testing/${SCHEME}"
-flags+=( -sdk "iphoneos" -derivedDataPath "$DERIVEDDATAPATH")
+DERIVEDDATAPATH="build-for-testing/${SCHEME_PATH}"
+flags+=( -destination "generic/platform=iOS" -derivedDataPath "$DERIVEDDATAPATH")
 
 # Add extra flags
 if [[ "$SAMPLE" == Config ]];then
@@ -120,11 +127,11 @@ function xcb() {
 }
 
 # Run xcodebuild
-sudo xcode-select -p
+xcode-select -p
 xcb "${flags[@]}"
 echo "$message"
 
 # Zip build-for-testing into MyTests.zip
-cd "build-for-testing/${SCHEME}/Build/Products"
+cd "build-for-testing/${SCHEME_PATH}/Build/Products"
 zip -r MyTests.zip Debug-iphoneos ./*.xctestrun
-echo "build-for-testing/${SCHEME}/Build/Products zipped into MyTests.zip"
+echo "build-for-testing/${SCHEME_PATH}/Build/Products zipped into MyTests.zip"

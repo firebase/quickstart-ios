@@ -1,4 +1,4 @@
-// Copyright 2023 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -13,95 +13,107 @@
 // limitations under the License.
 
 import SwiftUI
-#if canImport(FirebaseAILogic)
-  import FirebaseAILogic
-#else
-  import FirebaseAI
-#endif
-
-enum BackendOption: String, CaseIterable, Identifiable {
-  case googleAI = "Gemini Developer API"
-  case vertexAI = "Vertex AI Gemini API"
-  var id: String { rawValue }
-
-  var backendValue: FirebaseAI {
-    switch self {
-    case .googleAI:
-      return FirebaseAI.firebaseAI(backend: .googleAI())
-    case .vertexAI:
-      return FirebaseAI.firebaseAI(backend: .vertexAI())
-    }
-  }
-}
+import FirebaseAILogic
 
 struct ContentView: View {
   @State private var selectedBackend: BackendOption = .googleAI
-  @State private var firebaseService: FirebaseAI = FirebaseAI.firebaseAI(backend: .googleAI())
+  @State private var selectedUseCase: UseCase = .all
+
+  var filteredSamples: [Sample] {
+    if selectedUseCase == .all {
+      return Sample.samples
+    } else {
+      return Sample.samples.filter { $0.useCases.contains(selectedUseCase) }
+    }
+  }
+
+  let columns = [
+    GridItem(.adaptive(minimum: 150)),
+  ]
 
   var body: some View {
     NavigationStack {
-      List {
-        Section("Configuration") {
-          Picker("Backend", selection: $selectedBackend) {
-            ForEach(BackendOption.allCases) { option in
-              Text(option.rawValue).tag(option)
+      ScrollView {
+        VStack(alignment: .leading, spacing: 20) {
+          // Backend Configuration
+          VStack(alignment: .leading) {
+            Text("Backend Configuration")
+              .font(.system(size: 20, weight: .bold))
+              .padding(.horizontal)
+
+            Picker("Backend", selection: $selectedBackend) {
+              ForEach(BackendOption.allCases) { option in
+                Text(option.rawValue)
+                  .tag(option)
+              }
+            }
+            .pickerStyle(SegmentedPickerStyle())
+            .padding(.horizontal)
+          }
+
+          // Use Case Filter
+          VStack(alignment: .leading) {
+            Text("Filter by use case")
+              .font(.system(size: 20, weight: .bold))
+              .padding(.horizontal)
+
+            ScrollView(.horizontal, showsIndicators: false) {
+              HStack(spacing: 10) {
+                ForEach(UseCase.allCases) { useCase in
+                  FilterChipView(useCase: useCase, isSelected: selectedUseCase == useCase) {
+                    selectedUseCase = useCase
+                  }
+                }
+              }
+              .padding(.horizontal)
             }
           }
-        }
 
-        Section("Examples") {
-          NavigationLink {
-            GenerateContentScreen(firebaseService: firebaseService)
-          } label: {
-            Label("Generate Content", systemImage: "doc.text")
-          }
-          NavigationLink {
-            GenerateContentFromTemplateScreen(firebaseService: firebaseService)
-          } label: {
-            Label("Generate Content from Template", systemImage: "doc.text.fill")
-          }
-          NavigationLink {
-            PhotoReasoningScreen(firebaseService: firebaseService)
-          } label: {
-            Label("Multi-modal", systemImage: "doc.richtext")
-          }
-          NavigationLink {
-            ConversationScreen(firebaseService: firebaseService, title: "Chat")
-          } label: {
-            Label("Chat", systemImage: "ellipsis.message.fill")
-          }
-          NavigationLink {
-            ConversationScreen(
-              firebaseService: firebaseService,
-              title: "Grounding",
-              searchGroundingEnabled: true
-            )
-          } label: {
-            Label("Grounding with Google Search", systemImage: "magnifyingglass")
-          }
-          NavigationLink {
-            FunctionCallingScreen(firebaseService: firebaseService)
-          } label: {
-            Label("Function Calling", systemImage: "function")
-          }
-          NavigationLink {
-            ImagenScreen(firebaseService: firebaseService)
-          } label: {
-            Label("Imagen", systemImage: "camera.circle")
-          }
-          NavigationLink {
-            ImagenFromTemplateScreen(firebaseService: firebaseService)
-          } label: {
-            Label("Imagen from Template", systemImage: "camera.circle.fill")
+          // Samples
+          VStack(alignment: .leading) {
+            Text("Samples")
+              .font(.system(size: 20, weight: .bold))
+              .padding(.horizontal)
+
+            LazyVGrid(columns: columns, spacing: 20) {
+              ForEach(filteredSamples) { sample in
+                NavigationLink(destination: destinationView(for: sample)) {
+                  SampleCardView(sample: sample)
+                }
+                .buttonStyle(PlainButtonStyle())
+              }
+            }
+            .padding(.horizontal)
           }
         }
+        .padding(.vertical)
       }
-      .navigationTitle("Generative AI Examples")
-      .onChange(of: selectedBackend) { newBackend in
-        firebaseService = newBackend.backendValue
-        // Note: This might cause views that hold the old service instance to misbehave
-        // unless they are also correctly updated or recreated.
-      }
+      .background(Color(.systemGroupedBackground))
+      .navigationTitle("Firebase AI Logic")
+    }
+  }
+
+  @ViewBuilder
+  private func destinationView(for sample: Sample) -> some View {
+    switch sample.navRoute {
+    case "ChatScreen":
+      ChatScreen(backendType: selectedBackend, sample: sample)
+    case "ImagenScreen":
+      ImagenScreen(backendType: selectedBackend, sample: sample)
+    case "ImagenFromTemplateScreen":
+      ImagenFromTemplateScreen(backendType: selectedBackend, sample: sample)
+    case "GenerateContentFromTemplateScreen":
+      GenerateContentFromTemplateScreen(backendType: selectedBackend, sample: sample)
+    case "MultimodalScreen":
+      MultimodalScreen(backendType: selectedBackend, sample: sample)
+    case "FunctionCallingScreen":
+      FunctionCallingScreen(backendType: selectedBackend, sample: sample)
+    case "GroundingScreen":
+      GroundingScreen(backendType: selectedBackend, sample: sample)
+    case "LiveScreen":
+      LiveScreen(backendType: selectedBackend, sample: sample)
+    default:
+      EmptyView()
     }
   }
 }

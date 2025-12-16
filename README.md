@@ -6,12 +6,8 @@ for both Objective-C and Swift. For more information, see https://firebase.googl
 ## Samples
 
 You can open each of the following samples as an Xcode project, and run
-them on a mobile device or a simulator. Simply install the pods and open
-the .xcworkspace file to see the project in Xcode.
-```
-$ pod install --repo-update
-$ open your-project.xcworkspace
-```
+them on a mobile device or a simulator. Simply open
+the .xcodeproj file to see the project in Xcode.
 When doing so you need to add each sample app you wish to try to a Firebase
 project on the [Firebase console](https://console.firebase.google.com).
 You can add multiple sample apps to the same Firebase project.

@@ -204,8 +204,8 @@ class UITests: XCTestCase {
     try checkEmptyView(function: classify)
     try checkEmptyView(function: saliencyMap)
     try checkEmptyView(function: upload)
-
-    try checkFunctionality(function: download, startingStatus: .idle)
+    // TODO: Re-enable once iOS 18.4 sims are dropped.
+    // try checkFunctionality(function: download, startingStatus: .idle)
     try checkFunctionality(function: classify, startingStatus: .success(.download))
     try checkFunctionality(function: saliencyMap, startingStatus: .success(.classify))
     try checkFunctionality(function: upload, startingStatus: .success(.saliencyMap))

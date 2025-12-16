@@ -271,6 +271,7 @@
 				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "The app needs access to your microphone to enable live voice conversations with Gemini.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -304,6 +305,7 @@
 				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "The app needs access to your microphone to enable live voice conversations with Gemini.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -364,7 +366,7 @@
 			repositoryURL = "https://github.com/peterfriese/ConversationKit";
 			requirement = {
 				kind = exactVersion;
-				version = 0.0.3;
+				version = 0.0.4;
 			};
 		};
 		88779D912EC8AC460080D023 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {

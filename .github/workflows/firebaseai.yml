@@ -36,6 +36,11 @@ jobs:
             platform: iOS
             device: iPhone 17 Pro
             ios_version: "26.1"
+          - os: macos-15
+            xcode: "16.4"
+            platform: iOS
+            device: iPhone 16
+            ios_version: "18.4"
     runs-on: ${{ matrix.os }}
     env:
       SETUP: firebaseai

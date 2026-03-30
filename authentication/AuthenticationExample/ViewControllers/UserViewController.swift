@@ -297,7 +297,7 @@ extension UserViewController: ASAuthorizationControllerDelegate,
       return
     }
 
-    Task {
+    Task { @MainActor in
       do {
         try await Auth.auth().revokeToken(withAuthorizationCode: authCodeString)
         try await user?.delete()

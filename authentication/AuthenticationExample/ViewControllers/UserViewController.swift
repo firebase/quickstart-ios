@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import UIKit
-import FirebaseAuth
+@preconcurrency import FirebaseAuth
 import AuthenticationServices
 import CryptoKit
 

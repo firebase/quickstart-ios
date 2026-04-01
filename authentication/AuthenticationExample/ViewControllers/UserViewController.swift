@@ -13,6 +13,7 @@
 // limitations under the License.
 
 import UIKit
+// TODO: Remove @preconcurrency once `FirebaseAuth.User` is Sendable
 @preconcurrency import FirebaseAuth
 import AuthenticationServices
 import CryptoKit

@@ -1,37 +1,29 @@
-name: check
-
-permissions:
-  contents: read
-
+name: Mi Prueba de Humo iOS
 on:
-  pull_request:
-  push:
-    branches: main
-
-concurrency:
-    group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}
-    cancel-in-progress: true
+  workflow_dispatch:
 
 jobs:
-  check:
-    runs-on: macOS-15
-    env:
-      MINT_PATH: ${{ github.workspace }}/mint
+  build_ios:
+    runs-on: macos-latest
     steps:
-    - uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v4
 
-    - name: Cache Mint packages
-      uses: actions/cache@v4
-      with:
-        path: ${{ env.MINT_PATH }}
-        key: ${{ runner.os }}-mint-${{ hashFiles('**/Mintfile') }}
-        restore-keys: ${{ runner.os }}-mint-
+      - name: Instalar pods
+        run: |
+          cd analytics
+          pod install
 
-    - name: Install mint
-      run:  brew install mint
+      - name: Compilar
+        run: |
+          xcodebuild -workspace analytics/AnalyticsExample.xcworkspace \
+            -scheme AnalyticsExample \
+            -configuration Debug \
+            -sdk iphonesimulator \
+            -derivedDataPath build
 
-    - name: Bootstrap mint with swiftformat
-      run: mint bootstrap
-
-    - name: Check
-      run:  scripts/style.sh test-only
+      - name: Guardar App para Appetize
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-simulador
+          path: build/Build/Products/Debug-iphonesimulator/AnalyticsExample.app

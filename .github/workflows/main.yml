@@ -1,0 +1,47 @@
+name: Prueba Final Caro - Victoria Total
+on:
+  workflow_dispatch:
+
+jobs:
+  build_ios:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Preparar, Instalar y Compilar
+        run: |
+          # 1. Encontrar el proyecto de analytics
+          PROYECTO_PATH=$(find ./analytics -name "*.xcodeproj" | head -n 1)
+          DIRECTORIO=$(dirname "$PROYECTO_PATH")
+          NOMBRE_TARGET=$(basename "$PROYECTO_PATH" .xcodeproj)
+          
+          echo "Trabajando en: $DIRECTORIO"
+          cd "$DIRECTORIO"
+          
+          # 2. Crear Podfile
+          cat <<EOF > Podfile
+          platform :ios, '15.0'
+          project '$NOMBRE_TARGET.xcodeproj'
+          use_frameworks!
+          target '$NOMBRE_TARGET' do
+            pod 'FirebaseAnalytics'
+          end
+          EOF
+          
+          # 3. Instalar
+          pod install
+          
+          # 4. Compilar (usando el workspace recién creado)
+          xcodebuild -workspace "$NOMBRE_TARGET.xcworkspace" \
+            -scheme "$NOMBRE_TARGET" \
+            -configuration Debug \
+            -sdk iphonesimulator \
+            -derivedDataPath build \
+            -quiet
+
+      - name: Guardar App para Appetize
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-simulador
+          path: "**/build/Build/Products/Debug-iphonesimulator/*.app"

@@ -31,7 +31,7 @@ struct NanoBananaScreen: View {
     self.backendType = backendType
     _viewModel =
       StateObject(wrappedValue: NanoBananaViewModel(backendType: backendType,
-                                                sample: sample))
+                                                    sample: sample))
   }
 
   enum FocusedField: Hashable {

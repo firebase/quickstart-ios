@@ -80,7 +80,7 @@ class NanoBananaViewModel: ObservableObject {
       SafetySetting(
         harmCategory: .sexuallyExplicit,
         threshold: .blockLowAndAbove
-      )
+      ),
     ]
 
     model = firebaseService.generativeModel(

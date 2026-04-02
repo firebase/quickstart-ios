@@ -28,7 +28,7 @@ struct NanoBananaFromTemplateScreen: View {
     self.backendType = backendType
     _viewModel =
       StateObject(wrappedValue: NanoBananaFromTemplateViewModel(backendType: backendType,
-                                                            sample: sample))
+                                                                sample: sample))
   }
 
   enum FocusedField: Hashable {

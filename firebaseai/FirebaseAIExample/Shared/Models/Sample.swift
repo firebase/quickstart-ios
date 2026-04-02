@@ -131,17 +131,17 @@ extension Sample {
       ]
     ),
     Sample(
-      title: "Imagen - image generation",
-      description: "Generate images using Imagen 3",
+      title: "Nanao Banana - image generation",
+      description: "Generate images using Nano Banana 2",
       useCases: [.image],
-      navRoute: "ImagenScreen",
+      navRoute: "NanoBananaScreen",
       initialPrompt: "A photo of a modern building with water in the background"
     ),
     Sample(
-      title: "[T] Imagen - image generation",
-      description: "[T] Generate images using Imagen 3",
+      title: "[T] Nano Banana - image generation",
+      description: "[T] Generate images using Nano Banana 2",
       useCases: [.image],
-      navRoute: "ImagenFromTemplateScreen",
+      navRoute: "NanoBananaFromTemplateScreen",
       initialPrompt: "A photo of a modern building with water in the background"
     ),
     Sample(

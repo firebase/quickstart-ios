@@ -1,4 +1,4 @@
-// Copyright 2025 Google LLC
+// Copyright 2026 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -20,15 +20,18 @@ import SwiftUI
 #endif
 import ConversationKit
 
-struct ImagenFromTemplateScreen: View {
+struct NanoBananaScreen: View {
   let backendType: BackendOption
-  @StateObject var viewModel: ImagenFromTemplateViewModel
+  @StateObject var viewModel: NanoBananaViewModel
+
+  @State
+  private var userPrompt = ""
 
   init(backendType: BackendOption, sample: Sample? = nil) {
     self.backendType = backendType
     _viewModel =
-      StateObject(wrappedValue: ImagenFromTemplateViewModel(backendType: backendType,
-                                                            sample: sample))
+      StateObject(wrappedValue: NanoBananaViewModel(backendType: backendType,
+                                                sample: sample))
   }
 
   enum FocusedField: Hashable {
@@ -42,7 +45,7 @@ struct ImagenFromTemplateScreen: View {
     ZStack {
       ScrollView {
         VStack {
-          MessageComposerView(message: $viewModel.userInput)
+          MessageComposerView(message: $userPrompt)
             .padding(.bottom, 10)
             .focused($focusedField, equals: .message)
             .disableAttachments()
@@ -86,16 +89,19 @@ struct ImagenFromTemplateScreen: View {
         ErrorDetailsView(error: error)
       }
     }
-    .navigationTitle("Imagen Template")
+    .navigationTitle("Nano Banana example")
     .navigationBarTitleDisplayMode(.inline)
     .onAppear {
       focusedField = .message
+      if userPrompt.isEmpty && !viewModel.initialPrompt.isEmpty {
+        userPrompt = viewModel.initialPrompt
+      }
     }
   }
 
   private func sendMessage() {
     Task {
-      await viewModel.generateImageFromTemplate(prompt: viewModel.userInput)
+      await viewModel.generateImage(prompt: userPrompt)
       focusedField = .message
     }
   }
@@ -110,5 +116,5 @@ struct ImagenFromTemplateScreen: View {
 }
 
 #Preview {
-  ImagenFromTemplateScreen(backendType: .googleAI)
+  NanoBananaScreen(backendType: .googleAI)
 }

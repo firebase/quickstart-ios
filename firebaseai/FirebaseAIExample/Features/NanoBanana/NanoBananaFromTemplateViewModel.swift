@@ -1,4 +1,4 @@
-// Copyright 2025 Google LLC
+// Copyright 2026 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -18,16 +18,29 @@
   import FirebaseAI
 #endif
 import Foundation
-import Combine
 import OSLog
 import SwiftUI
+import Combine
+
+// Template Details
+//
+//  Configuration
+//
+//    input:
+//      schema:
+//        prompt: 'string'
+//
+//  Prompt and system instructions
+//
+//    Create an image containing {{prompt}}
+//
 
 @MainActor
-class ImagenViewModel: ObservableObject {
+class NanoBananaFromTemplateViewModel: ObservableObject {
   private var logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "generative-ai")
 
   @Published
-  var initialPrompt: String = ""
+  var userInput: String = ""
 
   @Published
   var images = [UIImage]()
@@ -44,7 +57,7 @@ class ImagenViewModel: ObservableObject {
   @Published
   var inProgress = false
 
-  private let model: ImagenModel
+  private let model: TemplateGenerativeModel
   private var backendType: BackendOption
 
   private var generateImagesTask: Task<Void, Never>?
@@ -59,24 +72,10 @@ class ImagenViewModel: ObservableObject {
       ? FirebaseAI.firebaseAI(backend: .googleAI())
       : FirebaseAI.firebaseAI(backend: .vertexAI())
 
-    let modelName = "imagen-4.0-generate-001"
-    let safetySettings = ImagenSafetySettings(
-      safetyFilterLevel: .blockLowAndAbove
-    )
-    var generationConfig = ImagenGenerationConfig()
-    generationConfig.numberOfImages = 4
-    generationConfig.aspectRatio = .square1x1
-
-    model = firebaseService.imagenModel(
-      modelName: modelName,
-      generationConfig: generationConfig,
-      safetySettings: safetySettings
-    )
-
-    initialPrompt = sample?.initialPrompt ?? ""
+    model = firebaseService.templateGenerativeModel()
   }
 
-  func generateImage(prompt: String) async {
+  func generateImageFromTemplate(prompt: String) async {
     stop()
 
     generateImagesTask = Task {
@@ -86,22 +85,27 @@ class ImagenViewModel: ObservableObject {
       }
 
       do {
-        // 1. Call generateImages with the text prompt
-        let response = try await model.generateImages(prompt: prompt)
+        // 1. Call generateContent with the text prompt
+        let response = try await model.generateContent(
+          templateID: "nanobanana-generation-basic",
+          inputs: [
+            "prompt": prompt,
+          ]
+        )
 
-        // 2. Print the reason images were filtered out, if any.
-        if let filteredReason = response.filteredReason {
-          print("Image(s) Blocked: \(filteredReason)")
+        // 2. Print the reason images were blocked, if any.
+        if let blockReason = response.promptFeedback?.blockReason {
+          print("Image(s) Blocked: \(blockReason)")
         }
 
         if !Task.isCancelled {
           // 3. Convert the image data to UIImage for display in the UI
-          images = response.images.compactMap { UIImage(data: $0.data) }
+          images = response.inlineDataParts.compactMap { UIImage(data: $0.data) }
         }
       } catch {
         if !Task.isCancelled {
           self.error = error
-          logger.error("Error generating images: \(error)")
+          logger.error("Error generating images from template: \(error)")
         }
       }
     }

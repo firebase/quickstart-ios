@@ -131,7 +131,7 @@ extension Sample {
       ]
     ),
     Sample(
-      title: "Nanao Banana - image generation",
+      title: "Nano Banana - image generation",
       description: "Generate images using Nano Banana 2",
       useCases: [.image],
       navRoute: "NanoBananaScreen",

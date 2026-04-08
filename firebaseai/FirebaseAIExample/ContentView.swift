@@ -98,10 +98,10 @@ struct ContentView: View {
     switch sample.navRoute {
     case "ChatScreen":
       ChatScreen(backendType: selectedBackend, sample: sample)
-    case "ImagenScreen":
-      ImagenScreen(backendType: selectedBackend, sample: sample)
-    case "ImagenFromTemplateScreen":
-      ImagenFromTemplateScreen(backendType: selectedBackend, sample: sample)
+    case "NanoBananaScreen":
+      NanoBananaScreen(backendType: selectedBackend, sample: sample)
+    case "NanoBananaFromTemplateScreen":
+      NanoBananaFromTemplateScreen(backendType: selectedBackend, sample: sample)
     case "GenerateContentFromTemplateScreen":
       GenerateContentFromTemplateScreen(backendType: selectedBackend, sample: sample)
     case "MultimodalScreen":

@@ -203,6 +203,9 @@ class LiveViewModel: ObservableObject {
     case let .goingAwayNotice(goingAwayNotice):
       let time = goingAwayNotice.timeLeft?.description ?? "soon"
       logger.warning("Going away in: \(time)")
+    default:
+      // TODO: Remove default case after merging #1852
+      return
     }
   }
 

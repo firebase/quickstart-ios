@@ -200,7 +200,7 @@ class LiveViewModel: ObservableObject {
     case .toolCallCancellation:
       // we don't have any long running functions to cancel
       return
-    case .sessionResumptionUpdate:
+    case .sessionResumptionUpdate(_):
       // we don't do any session resumption here
       return
     case let .goingAwayNotice(goingAwayNotice):

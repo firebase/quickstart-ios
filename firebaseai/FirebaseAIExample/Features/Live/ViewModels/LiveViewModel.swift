@@ -200,6 +200,9 @@ class LiveViewModel: ObservableObject {
     case .toolCallCancellation:
       // we don't have any long running functions to cancel
       return
+    case .sessionResumptionUpdate:
+      // we don't do any session resumption here
+      return
     case let .goingAwayNotice(goingAwayNotice):
       let time = goingAwayNotice.timeLeft?.description ?? "soon"
       logger.warning("Going away in: \(time)")

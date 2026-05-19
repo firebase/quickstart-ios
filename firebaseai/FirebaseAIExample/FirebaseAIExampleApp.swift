@@ -13,6 +13,7 @@
 // limitations under the License.
 
 import FirebaseCore
+import FirebaseAppCheck // Bug bash.
 import SwiftUI
 import TipKit
 
@@ -23,6 +24,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     // Recommendation: Protect your Vertex AI API resources from abuse by preventing unauthorized
     // clients using App Check; see https://firebase.google.com/docs/app-check#get_started.
 
+    AppCheck.setAppCheckProviderFactory(AppCheckDebugProviderFactory()) // Bug bash.
     FirebaseApp.configure()
 
     if let firebaseApp = FirebaseApp.app(), firebaseApp.options.projectID == "mockproject-1234" {

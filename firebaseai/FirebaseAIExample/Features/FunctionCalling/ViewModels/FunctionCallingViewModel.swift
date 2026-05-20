@@ -53,8 +53,8 @@ class FunctionCallingViewModel: ObservableObject {
     self.backendType = backendType
 
     let firebaseService = backendType == .googleAI
-      ? FirebaseAI.firebaseAI(backend: .googleAI())
-      : FirebaseAI.firebaseAI(backend: .vertexAI())
+      ? FirebaseAI.firebaseAI(backend: .googleAI(), useLimitedUseAppCheckTokens: true) // Bug bash.
+      : FirebaseAI.firebaseAI(backend: .vertexAI(), useLimitedUseAppCheckTokens: true) // Bug bash.
 
     // create a generative model with sample data
     model = firebaseService.generativeModel(

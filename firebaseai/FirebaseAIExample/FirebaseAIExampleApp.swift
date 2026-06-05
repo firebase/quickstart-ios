@@ -24,7 +24,14 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     // Recommendation: Protect your Vertex AI API resources from abuse by preventing unauthorized
     // clients using App Check; see https://firebase.google.com/docs/app-check#get_started.
 
-    AppCheck.setAppCheckProviderFactory(RecaptchaProviderFactory()) // Bug bash.
+    #if targetEnvironment(simulator)
+      fatalError("The bug bash requires a physical device.") // Bug bash.
+    #endif
+
+    // By default, App Check should automatically configure the reCAPTCHA
+    // provider since the reCAPTCHA SDK is linked.
+    // Uncomment to explicitly enable the recaptcha provider.
+//    AppCheck.setAppCheckProviderFactory(RecaptchaProviderFactory()) // Bug bash.
     FirebaseApp.configure()
 
     if let firebaseApp = FirebaseApp.app(), firebaseApp.options.projectID == "mockproject-1234" {

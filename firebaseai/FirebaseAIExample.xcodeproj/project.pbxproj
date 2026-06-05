@@ -11,6 +11,7 @@
 		88779D902EC8AA920080D023 /* ConversationKit in Frameworks */ = {isa = PBXBuildFile; productRef = 88779D8F2EC8AA920080D023 /* ConversationKit */; };
 		88779D932EC8AC460080D023 /* FirebaseAILogic in Frameworks */ = {isa = PBXBuildFile; productRef = 88779D922EC8AC460080D023 /* FirebaseAILogic */; };
 		EA71682E2FBD28AC009E2938 /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = EA71682D2FBD28AC009E2938 /* FirebaseAppCheck */; };
+		EABC61022FD3415800DDED2C /* RecaptchaEnterprise in Frameworks */ = {isa = PBXBuildFile; productRef = EABC61012FD3415800DDED2C /* RecaptchaEnterprise */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EABC61022FD3415800DDED2C /* RecaptchaEnterprise in Frameworks */,
 				EA71682E2FBD28AC009E2938 /* FirebaseAppCheck in Frameworks */,
 				88151ADC2EC9345700775CFB /* MarkdownUI in Frameworks */,
 				88779D932EC8AC460080D023 /* FirebaseAILogic in Frameworks */,
@@ -88,6 +90,7 @@
 				88779D922EC8AC460080D023 /* FirebaseAILogic */,
 				88151ADB2EC9345700775CFB /* MarkdownUI */,
 				EA71682D2FBD28AC009E2938 /* FirebaseAppCheck */,
+				EABC61012FD3415800DDED2C /* RecaptchaEnterprise */,
 			);
 			productName = FirebaseAIExample;
 			productReference = 88779D352EC8A9CF0080D023 /* FirebaseAIExample.app */;
@@ -121,6 +124,7 @@
 				88779D8E2EC8AA920080D023 /* XCRemoteSwiftPackageReference "ConversationKit" */,
 				88779D912EC8AC460080D023 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				88151ADA2EC9345700775CFB /* XCRemoteSwiftPackageReference "swift-markdown-ui" */,
+				EABC61002FD3415800DDED2C /* XCRemoteSwiftPackageReference "recaptcha-enterprise-mobile-sdk" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 88779D362EC8A9CF0080D023 /* Products */;
@@ -384,8 +388,16 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
 			requirement = {
-				branch = ailimiteduse;
+				branch = nc.ailogic.recaptcha;
 				kind = branch;
+			};
+		};
+		EABC61002FD3415800DDED2C /* XCRemoteSwiftPackageReference "recaptcha-enterprise-mobile-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/GoogleCloudPlatform/recaptcha-enterprise-mobile-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 18.9.1;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -410,6 +422,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 88779D912EC8AC460080D023 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAppCheck;
+		};
+		EABC61012FD3415800DDED2C /* RecaptchaEnterprise */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EABC61002FD3415800DDED2C /* XCRemoteSwiftPackageReference "recaptcha-enterprise-mobile-sdk" */;
+			productName = RecaptchaEnterprise;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

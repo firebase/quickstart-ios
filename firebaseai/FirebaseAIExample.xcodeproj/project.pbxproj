@@ -9,7 +9,10 @@
 /* Begin PBXBuildFile section */
 		88151ADC2EC9345700775CFB /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = 88151ADB2EC9345700775CFB /* MarkdownUI */; };
 		88779D902EC8AA920080D023 /* ConversationKit in Frameworks */ = {isa = PBXBuildFile; productRef = 88779D8F2EC8AA920080D023 /* ConversationKit */; };
-		88779D932EC8AC460080D023 /* FirebaseAILogic in Frameworks */ = {isa = PBXBuildFile; productRef = 88779D922EC8AC460080D023 /* FirebaseAILogic */; };
+		88862D5D2FD7C19F003702C7 /* FirebaseAI in Frameworks */ = {isa = PBXBuildFile; productRef = 88862D5C2FD7C19F003702C7 /* FirebaseAI */; };
+		88862D5F2FD7C19F003702C7 /* FirebaseAILogic in Frameworks */ = {isa = PBXBuildFile; productRef = 88862D5E2FD7C19F003702C7 /* FirebaseAILogic */; };
+		88862D612FD7C19F003702C7 /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = 88862D602FD7C19F003702C7 /* FirebaseAppCheck */; };
+		88862D632FD7C19F003702C7 /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 88862D622FD7C19F003702C7 /* FirebaseCore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,9 +32,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88862D5F2FD7C19F003702C7 /* FirebaseAILogic in Frameworks */,
 				88151ADC2EC9345700775CFB /* MarkdownUI in Frameworks */,
-				88779D932EC8AC460080D023 /* FirebaseAILogic in Frameworks */,
 				88779D902EC8AA920080D023 /* ConversationKit in Frameworks */,
+				88862D612FD7C19F003702C7 /* FirebaseAppCheck in Frameworks */,
+				88862D632FD7C19F003702C7 /* FirebaseCore in Frameworks */,
+				88862D5D2FD7C19F003702C7 /* FirebaseAI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,8 +81,11 @@
 			name = FirebaseAIExample;
 			packageProductDependencies = (
 				88779D8F2EC8AA920080D023 /* ConversationKit */,
-				88779D922EC8AC460080D023 /* FirebaseAILogic */,
 				88151ADB2EC9345700775CFB /* MarkdownUI */,
+				88862D5C2FD7C19F003702C7 /* FirebaseAI */,
+				88862D5E2FD7C19F003702C7 /* FirebaseAILogic */,
+				88862D602FD7C19F003702C7 /* FirebaseAppCheck */,
+				88862D622FD7C19F003702C7 /* FirebaseCore */,
 			);
 			productName = FirebaseAIExample;
 			productReference = 88779D352EC8A9CF0080D023 /* FirebaseAIExample.app */;
@@ -108,8 +117,8 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				88779D8E2EC8AA920080D023 /* XCRemoteSwiftPackageReference "ConversationKit" */,
-				88779D912EC8AC460080D023 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				88151ADA2EC9345700775CFB /* XCRemoteSwiftPackageReference "swift-markdown-ui" */,
+				88862D5B2FD7C19F003702C7 /* XCLocalSwiftPackageReference "../../firebase-ios-sdk" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 88779D362EC8A9CF0080D023 /* Products */;
@@ -268,7 +277,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = YGAZHQXHH4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "The app needs access to your microphone to enable live voice conversations with Gemini.";
@@ -302,7 +311,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = YGAZHQXHH4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "The app needs access to your microphone to enable live voice conversations with Gemini.";
@@ -352,6 +361,13 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCLocalSwiftPackageReference section */
+		88862D5B2FD7C19F003702C7 /* XCLocalSwiftPackageReference "../../firebase-ios-sdk" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = "../../firebase-ios-sdk";
+		};
+/* End XCLocalSwiftPackageReference section */
+
 /* Begin XCRemoteSwiftPackageReference section */
 		88151ADA2EC9345700775CFB /* XCRemoteSwiftPackageReference "swift-markdown-ui" */ = {
 			isa = XCRemoteSwiftPackageReference;
@@ -365,16 +381,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/peterfriese/ConversationKit";
 			requirement = {
-				kind = exactVersion;
-				version = 0.0.4;
-			};
-		};
-		88779D912EC8AC460080D023 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
-			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 12.13.0;
+				minimumVersion = 0.0.4;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -390,10 +398,21 @@
 			package = 88779D8E2EC8AA920080D023 /* XCRemoteSwiftPackageReference "ConversationKit" */;
 			productName = ConversationKit;
 		};
-		88779D922EC8AC460080D023 /* FirebaseAILogic */ = {
+		88862D5C2FD7C19F003702C7 /* FirebaseAI */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 88779D912EC8AC460080D023 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAI;
+		};
+		88862D5E2FD7C19F003702C7 /* FirebaseAILogic */ = {
+			isa = XCSwiftPackageProductDependency;
 			productName = FirebaseAILogic;
+		};
+		88862D602FD7C19F003702C7 /* FirebaseAppCheck */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = FirebaseAppCheck;
+		};
+		88862D622FD7C19F003702C7 /* FirebaseCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = FirebaseCore;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

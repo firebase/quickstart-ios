@@ -257,7 +257,31 @@ struct AppleAIScreen: View {
                         }
                     }
                     
-
+                    if let attributions = itinerary.attributions, !attributions.isEmpty {
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text("Sources & Maps Links")
+                                .font(.headline)
+                            
+                            ForEach(attributions, id: \.url) { attribution in
+                                if let urlString = attribution.url, let url = URL(string: urlString), let title = attribution.title {
+                                    Link(destination: url) {
+                                        HStack {
+                                            Image(systemName: "mappin.and.ellipse")
+                                            Text(title)
+                                                .underline()
+                                            Spacer()
+                                        }
+                                        .font(.caption)
+                                        .foregroundColor(.blue)
+                                    }
+                                    .padding(.vertical, 2)
+                                }
+                            }
+                        }
+                        .padding()
+                        .background(Color(.secondarySystemGroupedBackground))
+                        .cornerRadius(10)
+                    }
                 }
             }
         }

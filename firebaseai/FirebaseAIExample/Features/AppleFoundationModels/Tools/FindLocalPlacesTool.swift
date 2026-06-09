@@ -26,6 +26,7 @@ public struct PlacesResponse: Codable {
 @Generable
 public struct ToolResult: Codable {
     public let summary: String
+    public let attributions: [Attribution]
 }
 
 @available(iOS 26.0, *)
@@ -48,14 +49,14 @@ public final class FindLocalPlacesTool {
     public func call(arguments: Arguments) async throws -> ToolResult {
         print("FindLocalPlacesTool: call called with destination: \(arguments.destination), category: \(arguments.category)")
         
-        // Setup Firebase AI with Google Search grounding
+        // Setup Firebase AI with Google Maps grounding
         let ai = FirebaseAI.firebaseAI(backend: .vertexAI(location: "global"))
         let session = ai.generativeModelSession(
             model: "gemini-3.1-flash-lite",
-            tools: [Tool.googleSearch()]
+            tools: [Tool.googleMaps()]
         )
         
-        let prompt = "Find 3 real popular \(arguments.category) in \(arguments.destination). Use Google Search to make sure the places are real and currently open."
+        let prompt = "Find 3 real popular \(arguments.category) in \(arguments.destination). Use Google Maps to make sure the places are real and currently open."
         
         do {
             let response = try await session.respond(
@@ -63,10 +64,22 @@ public final class FindLocalPlacesTool {
                 generating: PlacesResponse.self
             )
             
+            var attributions: [Attribution] = []
+            if let metadata = response.rawResponse.candidates.first?.groundingMetadata {
+                for chunk in metadata.groundingChunks {
+                    if let maps = chunk.maps, let title = maps.title, let url = maps.url?.absoluteString {
+                        attributions.append(Attribution(title: title, url: url))
+                    }
+                }
+            }
+            
             let results = response.content.places
             print("FindLocalPlacesTool: found places: \(results.joined(separator: ", "))")
             
-            return ToolResult(summary: "Here are some popular \(arguments.category) in \(arguments.destination): \(results.joined(separator: ", "))")
+            return ToolResult(
+                summary: "Here are some popular \(arguments.category) in \(arguments.destination): \(results.joined(separator: ", "))",
+                attributions: attributions
+            )
         } catch {
             print("FindLocalPlacesTool error: \(error.localizedDescription)")
             throw error

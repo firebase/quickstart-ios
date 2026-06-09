@@ -309,6 +309,12 @@ extension Sample {
       ),
       tip: InlineTip(text: "Try asking the model to change the background color"),
     ),
+    Sample(
+      title: "Apple Foundation Models",
+      description: "Demonstrates how to integrate Firebase AI Logic (Gemini) with Apple's Foundation Models framework (Apple Intelligence).",
+      useCases: [.text, .image, .functionCalling],
+      navRoute: "AppleAIScreen"
+    ),
   ]
 
   public static var sample = samples[0]

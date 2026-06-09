@@ -112,6 +112,12 @@ struct ContentView: View {
       GroundingScreen(backendType: selectedBackend, sample: sample)
     case "LiveScreen":
       LiveScreen(backendType: selectedBackend, sample: sample)
+    case "AppleAIScreen":
+      if #available(iOS 27.0, *) {
+        AppleAIScreen()
+      } else {
+        Text("Apple Intelligence is only available on iOS 27 or newer.")
+      }
     default:
       EmptyView()
     }

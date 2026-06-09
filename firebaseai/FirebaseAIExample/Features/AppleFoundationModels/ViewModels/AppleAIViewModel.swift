@@ -146,7 +146,7 @@ public final class AppleAIViewModel: ObservableObject {
                 }
             )
             
-            let promptText = "Generate a structured 1-day itinerary for \(destination) focused on \(interests). Include exactly 3 activities (morning, afternoon, evening) with real recommendations."
+            let promptText = "Generate a structured 1-day itinerary for \(destination) focused on \(interests). Include exactly 3 activities (morning, afternoon, evening) with real recommendations. For any place returned by the findLocalPlaces tool, populate the 'attributions' array in the response with the exact name (title) and Google Maps URL (url) returned by the tool."
             
             let stream = session.streamResponse(
                 to: promptText,

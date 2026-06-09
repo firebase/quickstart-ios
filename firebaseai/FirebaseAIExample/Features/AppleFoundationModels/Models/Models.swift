@@ -32,6 +32,16 @@ public struct Itinerary: Equatable, Codable {
     
     @Guide(description: "A list of day plans.")
     public let days: [DayPlan]
+    
+    @Guide(description: "Any source attributions or links for the recommended places.")
+    public let attributions: [Attribution]?
+}
+
+@available(iOS 26.0, *)
+@Generable
+public struct Attribution: Equatable, Codable {
+    public let title: String
+    public let url: String
 }
 
 @available(iOS 26.0, *)

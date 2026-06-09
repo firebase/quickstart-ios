@@ -57,8 +57,13 @@ public final class AppleAIViewModel: ObservableObject {
         outputSummary = nil
         
         activeTask = Task {
+            defer { self.inProgress = false }
+            
+            let instructions = Instructions {
+                "Your job is to summarize the provided text in exactly 2 bullet points."
+            }
+            
             let availability = SystemLanguageModel.default.availability
-            let ai = FirebaseAI.firebaseAI(backend: .vertexAI(location: "global"))
             
             // Try local model first if it reports available
             if availability == .available {
@@ -66,15 +71,12 @@ public final class AppleAIViewModel: ObservableObject {
                 do {
                     let session = LanguageModelSession(
                         model: SystemLanguageModel.default,
-                        instructions: Instructions {
-                            "Your job is to summarize the provided text in exactly 2 bullet points."
-                        }
+                        instructions: instructions
                     )
                     let response = try await session.respond(to: inputText, generating: TextSummary.self)
                     if !Task.isCancelled {
                         self.outputSummary = response.content
                     }
-                    inProgress = false
                     return
                 } catch {
                     // Fall back to cloud model if local model fails (e.g. assets not downloaded on simulator)
@@ -89,12 +91,11 @@ public final class AppleAIViewModel: ObservableObject {
             // Fallback to cloud model
             isUsingLocalModel = false
             do {
+                let ai = FirebaseAI.firebaseAI(backend: .vertexAI(location: "global"))
                 let model = ai.geminiLanguageModel(name: "gemini-3.1-flash-lite")
                 let session = LanguageModelSession(
                     model: model,
-                    instructions: Instructions {
-                        "Your job is to summarize the provided text in exactly 2 bullet points."
-                    }
+                    instructions: instructions
                 )
                 let response = try await session.respond(to: inputText, generating: TextSummary.self)
                 if !Task.isCancelled {
@@ -116,7 +117,6 @@ public final class AppleAIViewModel: ObservableObject {
                     }
                 }
             }
-            inProgress = false
         }
     }
     
@@ -128,6 +128,8 @@ public final class AppleAIViewModel: ObservableObject {
         itinerary = nil
         
         activeTask = Task {
+            defer { self.inProgress = false }
+            
             let localPlacesTool = FindLocalPlacesToolWrapper(tool: FindLocalPlacesTool())
             let ai = FirebaseAI.firebaseAI(backend: .vertexAI(location: "global"))
             
@@ -161,7 +163,6 @@ public final class AppleAIViewModel: ObservableObject {
                     self.error = error
                 }
             }
-            inProgress = false
         }
     }
     
@@ -174,13 +175,12 @@ public final class AppleAIViewModel: ObservableObject {
         identifiedObject = nil
         
         activeTask = Task {
+            defer { self.inProgress = false }
+            
+            guard let cgImage = image.cgImage else { return }
+            
             let ai = FirebaseAI.firebaseAI(backend: .vertexAI(location: "global"))
             let model = ai.geminiLanguageModel(name: "gemini-3.5-flash")
-            
-            guard let cgImage = image.cgImage else {
-                inProgress = false
-                return
-            }
             
             let session = LanguageModelSession(
                 model: model,
@@ -205,7 +205,6 @@ public final class AppleAIViewModel: ObservableObject {
                     self.error = error
                 }
             }
-            inProgress = false
         }
     }
 }

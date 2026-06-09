@@ -148,11 +148,20 @@ struct ErrorDetailsView: View {
 
         default:
           Section("Error Type") {
-            Text("Some other error")
+            if error.isMLAssetUnavailable {
+              Text("Apple Intelligence Assets Missing")
+                .foregroundColor(.orange)
+            } else {
+              Text("Some other error")
+            }
           }
 
           Section("Details") {
-            SubtitleFormRow(title: "Error description", value: error.localizedDescription)
+            if let mlMessage = error.mlAssetErrorMessage {
+              SubtitleFormRow(title: "How to fix", value: mlMessage)
+            } else {
+              SubtitleFormRow(title: "Error description", value: error.localizedDescription)
+            }
           }
         }
       }

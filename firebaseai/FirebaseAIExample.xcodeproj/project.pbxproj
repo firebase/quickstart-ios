@@ -392,8 +392,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
 			requirement = {
-				branch = ailogic.recaptcha;
-				kind = branch;
+				kind = upToNextMajorVersion;
+				minimumVersion = 12.15.0;
 			};
 		};
 		EABC61002FD3415800DDED2C /* XCRemoteSwiftPackageReference "recaptcha-enterprise-mobile-sdk" */ = {

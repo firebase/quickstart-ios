@@ -25,7 +25,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     // clients using App Check; see https://firebase.google.com/docs/app-check#get_started.
 
     #if targetEnvironment(simulator)
-      fatalError("The bug bash requires a physical device.") // Bug bash.
+      #warning("Some bug bash test cases may require a physical device.") // Bug bash.
     #endif
 
     // By default, App Check should automatically configure the reCAPTCHA

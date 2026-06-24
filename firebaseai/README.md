@@ -45,9 +45,14 @@ logging.
 This sample app has Firebase App Check enabled by default using the `AppCheckDebugProviderFactory` to protect your Vertex AI / Gemini API resources from abuse during local development.
 
 To make successful API requests when running the app:
-1. Locate the generated local debug token in your Xcode console output (look for a line like: `[Firebase/AppCheck] App Check debug token: <YOUR_TOKEN>`).
+1. Locate the generated local debug token in your Xcode console output (look
+   for a line like:
+   `<Warning> [AppCheckCore][I-GAC004001] App Check debug token: '<YOUR_TOKEN>'`).
 2. Copy this token.
-3. Register the token in the [Firebase Console](https://console.firebase.google.com/) under **App Check** > **Apps** > **Manage debug tokens** for your app.
+3. Register the token in the
+   [Firebase Console](https://console.firebase.google.com/) under **App Check**
+   > [**Apps**](https://console.firebase.google.com/project/_/appcheck/apps/)
+   > **Manage debug tokens** from your app's overflow menu (vertical dots).
 
 For more details, see the official guide: [Use the App Check debug provider on iOS](https://firebase.google.com/docs/app-check/ios/debug-provider).
 
@@ -56,7 +61,8 @@ To avoid registering a new random debug token every time you restart/reset a sim
 1. In the Firebase Console, generate a custom debug token.
 2. In Xcode, edit your active build scheme (**Product** > **Scheme** > **Edit Scheme...**).
 3. Under the **Run** section, select the **Arguments** tab.
-4. Add `-AppCheckDebugToken <YOUR_CUSTOM_TOKEN>` to the **Arguments Passed On Launch** section.
+4. In the **Environment Variables** section, add a variable with the name
+   `AppCheckDebugToken` and the value `<YOUR_CUSTOM_TOKEN>`.
 
 #### WARNING: Production Deployment
 The App Check debug provider is only intended for development/testing environments. Before distributing your app to the App Store, you must migrate to a production-grade provider (such as **AppAttest** or **DeviceCheck**). Refer to the following guides:

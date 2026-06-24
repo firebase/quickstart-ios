@@ -12,10 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import FirebaseAppCheck
 import FirebaseCore
 import SwiftUI
 import TipKit
-import FirebaseAppCheck
 
 class AppDelegate: NSObject, UIApplicationDelegate {
   func application(_ application: UIApplication,

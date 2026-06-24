@@ -40,6 +40,29 @@ The `-FIRDebugEnabled` option is set as a command line argument in the build
 scheme to log server requests to the console. Remove the option to turn off the
 logging.
 
+### Firebase App Check
+
+This sample app has Firebase App Check enabled by default using the `AppCheckDebugProviderFactory` to protect your Vertex AI / Gemini API resources from abuse during local development.
+
+To make successful API requests when running the app:
+1. Locate the generated local debug token in your Xcode console output (look for a line like: `[Firebase/AppCheck] App Check debug token: <YOUR_TOKEN>`).
+2. Copy this token.
+3. Register the token in the [Firebase Console](https://console.firebase.google.com/) under **App Check** > **Apps** > **Manage debug tokens** for your app.
+
+For more details, see the official guide: [Use the App Check debug provider on iOS](https://firebase.google.com/docs/app-check/ios/debug-provider).
+
+#### Usability Tip: Pinned Debug Token for Simulators
+To avoid registering a new random debug token every time you restart/reset a simulator, you can configure a fixed (pinned) debug token in Xcode:
+1. In the Firebase Console, generate a custom debug token.
+2. In Xcode, edit your active build scheme (**Product** > **Scheme** > **Edit Scheme...**).
+3. Under the **Run** section, select the **Arguments** tab.
+4. Add `-AppCheckDebugToken <YOUR_CUSTOM_TOKEN>` to the **Arguments Passed On Launch** section.
+
+#### WARNING: Production Deployment
+The App Check debug provider is only intended for development/testing environments. Before distributing your app to the App Store, you must migrate to a production-grade provider (such as **AppAttest** or **DeviceCheck**). Refer to the following guides:
+- [Use App Attest on iOS](https://firebase.google.com/docs/app-check/ios/app-attest-provider)
+- [Use DeviceCheck on iOS](https://firebase.google.com/docs/app-check/ios/devicecheck-provider)
+
 ## Documentation
 
 To learn more about the Firebase AI SDK, check out the

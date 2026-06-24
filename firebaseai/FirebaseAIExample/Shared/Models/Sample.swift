@@ -39,7 +39,7 @@ public struct Sample: Identifiable {
               description: String,
               useCases: [UseCase],
               navRoute: String,
-              modelName: String = "gemini-2.5-flash",
+              modelName: String = "gemini-3.1-flash-lite",
               chatHistory: [ModelContent]? = nil,
               initialPrompt: String? = nil,
               systemInstruction: ModelContent? = nil,

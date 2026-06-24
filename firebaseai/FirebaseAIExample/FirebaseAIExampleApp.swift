@@ -29,8 +29,10 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     // WARNING: Before publishing your app to the App Store, you must configure a production-ready
     // provider such as AppAttest or DeviceCheck.
     // For more details, see: https://firebase.google.com/docs/app-check/ios/debug-provider
-    let providerFactory = AppCheckDebugProviderFactory()
-    AppCheck.setAppCheckProviderFactory(providerFactory)
+    #if DEBUG
+      let providerFactory = AppCheckDebugProviderFactory()
+      AppCheck.setAppCheckProviderFactory(providerFactory)
+    #endif
 
     FirebaseApp.configure()
 

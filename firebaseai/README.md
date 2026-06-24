@@ -42,7 +42,12 @@ logging.
 
 ### Firebase App Check
 
-This sample app has Firebase App Check enabled by default using the `AppCheckDebugProviderFactory` to protect your Vertex AI / Gemini API resources from abuse during local development.
+Firebase App Check protects your Vertex AI / Gemini API resources from abuse.
+To simplify getting started, and to support Simulators, this sample app is
+configured to use the Firebase App Check debug provider
+`AppCheckDebugProviderFactory`. If you've configured a different provider in the
+Firebase Console, update `AppCheck.setAppCheckProviderFactory(...)` in the
+sample code to match your configured App Check provider.
 
 To make successful API requests when running the app:
 1. Locate the generated local debug token in your Xcode console output (look

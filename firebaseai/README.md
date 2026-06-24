@@ -54,7 +54,7 @@ To make successful API requests when running the app:
    > [**Apps**](https://console.firebase.google.com/project/_/appcheck/apps/)
    > **Manage debug tokens** from your app's overflow menu (vertical dots).
 
-For more details, see the official guide: [Use the App Check debug provider on iOS](https://firebase.google.com/docs/app-check/ios/debug-provider).
+For more details, see the official guide: [Use the App Check debug provider on Apple platforms](https://firebase.google.com/docs/app-check/ios/debug-provider).
 
 #### Usability Tip: Pinned Debug Token for Simulators
 To avoid registering a new random debug token every time you restart/reset a simulator, you can configure a fixed (pinned) debug token in Xcode:
@@ -66,8 +66,8 @@ To avoid registering a new random debug token every time you restart/reset a sim
 
 #### WARNING: Production Deployment
 The App Check debug provider is only intended for development/testing environments. Before distributing your app to the App Store, you must migrate to a production-grade provider (such as **AppAttest** or **DeviceCheck**). Refer to the following guides:
-- [Use App Attest on iOS](https://firebase.google.com/docs/app-check/ios/app-attest-provider)
-- [Use DeviceCheck on iOS](https://firebase.google.com/docs/app-check/ios/devicecheck-provider)
+- [Use App Attest on Apple platforms](https://firebase.google.com/docs/app-check/ios/app-attest-provider)
+- [Use DeviceCheck on Apple platforms](https://firebase.google.com/docs/app-check/ios/devicecheck-provider)
 
 ## Documentation
 

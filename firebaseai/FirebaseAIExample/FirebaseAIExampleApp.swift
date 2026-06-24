@@ -24,11 +24,14 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     // Protect Vertex AI / Gemini API resources from abuse using Firebase App Check.
     // For development, we set up the App Check Debug Provider. On app launch, look
     // for the generated debug token in the Xcode console (e.g. "App Check debug token: <TOKEN>")
-    // and register it in the Firebase Console under App Check > Apps > Manage debug tokens.
+    // and register it in the Firebase Console under App Check > Apps > Manage debug
+    // tokens (https://console.firebase.google.com/project/_/appcheck/apps/).
+    // For more details, see: https://firebase.google.com/docs/app-check/ios/debug-provider
     //
     // WARNING: Before publishing your app to the App Store, you must configure a production-ready
-    // provider such as AppAttest or DeviceCheck.
-    // For more details, see: https://firebase.google.com/docs/app-check/ios/debug-provider
+    // provider such as AppAttest or DeviceCheck. See
+    // https://firebase.google.com/docs/app-check#apple_platforms
+
     #if DEBUG
       let providerFactory = AppCheckDebugProviderFactory()
       AppCheck.setAppCheckProviderFactory(providerFactory)

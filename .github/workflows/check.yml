@@ -18,7 +18,7 @@ jobs:
     env:
       MINT_PATH: ${{ github.workspace }}/mint
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
 
     - name: Cache Mint packages
       uses: actions/cache@v4

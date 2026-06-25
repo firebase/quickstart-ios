@@ -35,6 +35,8 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     #if DEBUG
       let providerFactory = AppCheckDebugProviderFactory()
       AppCheck.setAppCheckProviderFactory(providerFactory)
+    #else
+      Provision a production ready provider for publishing
     #endif
 
     FirebaseApp.configure()

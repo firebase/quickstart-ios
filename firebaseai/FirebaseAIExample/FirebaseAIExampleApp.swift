@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import FirebaseAppCheck
 import FirebaseCore
 import SwiftUI
 import TipKit
@@ -20,8 +21,23 @@ class AppDelegate: NSObject, UIApplicationDelegate {
   func application(_ application: UIApplication,
                    didFinishLaunchingWithOptions launchOptions: [UIApplication
                      .LaunchOptionsKey: Any]? = nil) -> Bool {
-    // Recommendation: Protect your Vertex AI API resources from abuse by preventing unauthorized
-    // clients using App Check; see https://firebase.google.com/docs/app-check#get_started.
+    // Protect Vertex AI / Gemini API resources from abuse using Firebase App Check.
+    // For development, we set up the App Check Debug Provider. On app launch, look
+    // for the generated debug token in the Xcode console (e.g. "App Check debug token: <TOKEN>")
+    // and register it in the Firebase Console under App Check > Apps > Manage debug
+    // tokens (https://console.firebase.google.com/project/_/appcheck/apps/).
+    // For more details, see: https://firebase.google.com/docs/app-check/ios/debug-provider
+    //
+    // WARNING: Before publishing your app to the App Store, you must configure a production-ready
+    // provider such as AppAttest or DeviceCheck. See
+    // https://firebase.google.com/docs/app-check#apple_platforms
+
+    #if DEBUG
+      let providerFactory = AppCheckDebugProviderFactory()
+      AppCheck.setAppCheckProviderFactory(providerFactory)
+    #else
+      // Provision a production ready provider for publishing
+    #endif
 
     FirebaseApp.configure()
 

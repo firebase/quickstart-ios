@@ -84,6 +84,19 @@ struct AppleAIScreen: View {
     
     // MARK: - Subviews
     
+    private var modelIndicatorView: some View {
+        HStack(spacing: 4) {
+            Image(systemName: viewModel.isUsingLocalModel ? "iphone" : "cloud.fill")
+            Text(viewModel.isUsingLocalModel ? "Local (Apple)" : "Cloud (Gemini)")
+        }
+        .font(.caption)
+        .padding(.horizontal, 8)
+        .padding(.vertical, 4)
+        .background(viewModel.isUsingLocalModel ? Color.green.opacity(0.2) : Color.purple.opacity(0.2))
+        .foregroundColor(viewModel.isUsingLocalModel ? .green : .purple)
+        .cornerRadius(8)
+    }
+
     // Feature 1: Hybrid AI
     private var hybridAIView: some View {
         VStack(alignment: .leading, spacing: 16) {
@@ -122,17 +135,7 @@ struct AppleAIScreen: View {
                             .font(.headline)
                         Spacer()
                         
-                        // Badge indicating where it was executed
-                        HStack(spacing: 4) {
-                            Image(systemName: viewModel.isUsingLocalModel ? "iphone" : "cloud.fill")
-                            Text(viewModel.isUsingLocalModel ? "Local (Apple)" : "Cloud (Gemini)")
-                        }
-                        .font(.caption)
-                        .padding(.horizontal, 8)
-                        .padding(.vertical, 4)
-                        .background(viewModel.isUsingLocalModel ? Color.green.opacity(0.2) : Color.purple.opacity(0.2))
-                        .foregroundColor(viewModel.isUsingLocalModel ? .green : .purple)
-                        .cornerRadius(8)
+                        modelIndicatorView
                     }
                     
                     VStack(alignment: .leading, spacing: 8) {
@@ -196,9 +199,13 @@ struct AppleAIScreen: View {
             
             if let itinerary = viewModel.itinerary {
                 VStack(alignment: .leading, spacing: 12) {
-                    Text(itinerary.title ?? "Generating plan...")
-                        .font(.title3)
-                        .bold()
+                    HStack {
+                        Text(itinerary.title ?? "Generating plan...")
+                            .font(.title3)
+                            .bold()
+                        Spacer()
+                        modelIndicatorView
+                    }
                     
                     if let desc = itinerary.description {
                         Text(desc)
@@ -326,8 +333,12 @@ struct AppleAIScreen: View {
             
             if let identified = viewModel.identifiedObject {
                 VStack(alignment: .leading, spacing: 12) {
-                    Text("Identification Result")
-                        .font(.headline)
+                    HStack {
+                        Text("Identification Result")
+                            .font(.headline)
+                        Spacer()
+                        modelIndicatorView
+                    }
                     
                     VStack(alignment: .leading, spacing: 8) {
                         HStack {

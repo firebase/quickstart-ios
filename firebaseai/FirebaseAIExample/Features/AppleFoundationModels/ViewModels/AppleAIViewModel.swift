@@ -126,6 +126,7 @@ public final class AppleAIViewModel: ObservableObject {
         inProgress = true
         error = nil
         itinerary = nil
+        isUsingLocalModel = false
         
         activeTask = Task {
             defer { self.inProgress = false }
@@ -173,6 +174,7 @@ public final class AppleAIViewModel: ObservableObject {
         inProgress = true
         error = nil
         identifiedObject = nil
+        isUsingLocalModel = false
         
         activeTask = Task {
             defer { self.inProgress = false }

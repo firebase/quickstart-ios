@@ -132,29 +132,59 @@ public final class AppleAIViewModel: ObservableObject {
             defer { self.inProgress = false }
             
             let localPlacesTool = FindLocalPlacesToolWrapper(tool: FindLocalPlacesTool())
-            let ai = FirebaseAI.firebaseAI(backend: .vertexAI(location: "global"))
-            
-            let model = ai.geminiLanguageModel(
-                name: "gemini-3.5-flash"
-            )
-            
-            let session = LanguageModelSession(
-                model: model,
-                tools: [localPlacesTool],
-                instructions: Instructions {
-                    "Your job is to create a structured 1-day itinerary for the user."
-                    "Ensure you use the findLocalPlaces tool to search for real places and recommendations in the destination city."
-                }
-            )
-            
+            let instructions = Instructions {
+                "Your job is to create a structured 1-day itinerary for the user."
+                "Ensure you use the findLocalPlaces tool to search for real places and recommendations in the destination city."
+            }
             let promptText = "Generate a structured 1-day itinerary for \(destination) focused on \(interests). Include exactly 3 activities (morning, afternoon, evening) with real recommendations. For any place returned by the findLocalPlaces tool, populate the 'attributions' array in the response with the exact name (title) and Google Maps URL (url) returned by the tool."
             
-            let stream = session.streamResponse(
-                to: promptText,
-                generating: Itinerary.self
-            )
+            let availability = SystemLanguageModel.default.availability
             
+            // Try local model first if it reports available
+            if availability == .available {
+                isUsingLocalModel = true
+                do {
+                    let session = LanguageModelSession(
+                        model: SystemLanguageModel.default,
+                        tools: [localPlacesTool],
+                        instructions: instructions
+                    )
+                    let stream = session.streamResponse(
+                        to: promptText,
+                        generating: Itinerary.self
+                    )
+                    for try await response in stream {
+                        if Task.isCancelled { break }
+                        self.itinerary = response.content
+                        print(response.content)
+                    }
+                    return
+                } catch {
+                    // Fall back to cloud model if local model fails (e.g. assets not downloaded on simulator)
+                    if error.isMLAssetUnavailable {
+                        print("Local ML assets unavailable for Planner. Falling back to cloud model...")
+                    } else {
+                        print("Local model failed for Planner: \(error.localizedDescription). Falling back to cloud model...")
+                    }
+                }
+            }
+            
+            // Fallback to cloud model
+            isUsingLocalModel = false
             do {
+                let ai = FirebaseAI.firebaseAI(backend: .vertexAI(location: "global"))
+                let model = ai.geminiLanguageModel(
+                    name: "gemini-3.5-flash"
+                )
+                let session = LanguageModelSession(
+                    model: model,
+                    tools: [localPlacesTool],
+                    instructions: instructions
+                )
+                let stream = session.streamResponse(
+                    to: promptText,
+                    generating: Itinerary.self
+                )
                 for try await response in stream {
                     if Task.isCancelled { break }
                     self.itinerary = response.content
@@ -181,17 +211,49 @@ public final class AppleAIViewModel: ObservableObject {
             
             guard let cgImage = image.cgImage else { return }
             
-            let ai = FirebaseAI.firebaseAI(backend: .vertexAI(location: "global"))
-            let model = ai.geminiLanguageModel(name: "gemini-3.5-flash")
+            let instructions = Instructions {
+                "You are a visual object identifier."
+            }
             
-            let session = LanguageModelSession(
-                model: model,
-                instructions: Instructions {
-                    "You are a visual object identifier."
+            let availability = SystemLanguageModel.default.availability
+            
+            // Try local model first if it reports available
+            if availability == .available {
+                isUsingLocalModel = true
+                do {
+                    let session = LanguageModelSession(
+                        model: SystemLanguageModel.default,
+                        instructions: instructions
+                    )
+                    let response = try await session.respond(
+                        generating: IdentifiedObject.self
+                    ) {
+                        "Identify the primary object in this image. Be as specific as possible, categorize it, and provide a short 2-sentence description."
+                        Attachment(cgImage)
+                    }
+                    if !Task.isCancelled {
+                        self.identifiedObject = response.content
+                    }
+                    return
+                } catch {
+                    // Fall back to cloud model if local model fails (e.g. assets not downloaded on simulator)
+                    if error.isMLAssetUnavailable {
+                        print("Local ML assets unavailable for Vision ID. Falling back to cloud model...")
+                    } else {
+                        print("Local model failed for Vision ID: \(error.localizedDescription). Falling back to cloud model...")
+                    }
                 }
-            )
+            }
             
+            // Fallback to cloud model
+            isUsingLocalModel = false
             do {
+                let ai = FirebaseAI.firebaseAI(backend: .vertexAI(location: "global"))
+                let model = ai.geminiLanguageModel(name: "gemini-3.5-flash")
+                let session = LanguageModelSession(
+                    model: model,
+                    instructions: instructions
+                )
                 let response = try await session.respond(
                     generating: IdentifiedObject.self
                 ) {

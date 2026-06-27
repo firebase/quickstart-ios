@@ -39,6 +39,8 @@ public final class AppleAIViewModel: ObservableObject {
     @Published public var selectedImage: UIImage?
     @Published public var identifiedObject: IdentifiedObject?
     
+    @Published public var forceCloudModel: Bool = false
+    
     private var activeTask: Task<Void, Never>?
     
     public init() {}
@@ -65,8 +67,8 @@ public final class AppleAIViewModel: ObservableObject {
             
             let availability = SystemLanguageModel.default.availability
             
-            // Try local model first if it reports available
-            if availability == .available {
+            // Try local model first if it reports available and not forced to cloud
+            if !forceCloudModel && availability == .available {
                 isUsingLocalModel = true
                 do {
                     let session = LanguageModelSession(
@@ -140,8 +142,8 @@ public final class AppleAIViewModel: ObservableObject {
             
             let availability = SystemLanguageModel.default.availability
             
-            // Try local model first if it reports available
-            if availability == .available {
+            // Try local model first if it reports available and not forced to cloud
+            if !forceCloudModel && availability == .available {
                 isUsingLocalModel = true
                 do {
                     let session = LanguageModelSession(
@@ -209,7 +211,8 @@ public final class AppleAIViewModel: ObservableObject {
         activeTask = Task {
             defer { self.inProgress = false }
             
-            guard let cgImage = image.cgImage else { return }
+            guard let cgImage = image.cgImage,
+                  let imageData = image.jpegData(compressionQuality: 0.8) else { return }
             
             let instructions = Instructions {
                 "You are a visual object identifier."
@@ -217,8 +220,8 @@ public final class AppleAIViewModel: ObservableObject {
             
             let availability = SystemLanguageModel.default.availability
             
-            // Try local model first if it reports available
-            if availability == .available {
+            // Try local model first if it reports available and not forced to cloud
+            if !forceCloudModel && availability == .available {
                 isUsingLocalModel = true
                 do {
                     let session = LanguageModelSession(
@@ -258,7 +261,7 @@ public final class AppleAIViewModel: ObservableObject {
                     generating: IdentifiedObject.self
                 ) {
                     "Identify the primary object in this image. Be as specific as possible, categorize it, and provide a short 2-sentence description."
-                    Attachment(cgImage)
+                    InlineDataPart(data: imageData, mimeType: "image/jpeg")
                 }
                 
                 if !Task.isCancelled {

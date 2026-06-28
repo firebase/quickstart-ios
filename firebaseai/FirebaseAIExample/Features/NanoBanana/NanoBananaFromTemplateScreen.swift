@@ -18,7 +18,6 @@ import SwiftUI
 #else
   import FirebaseAI
 #endif
-import ConversationKit
 
 struct NanoBananaFromTemplateScreen: View {
   let backendType: BackendOption
@@ -43,10 +42,10 @@ struct NanoBananaFromTemplateScreen: View {
       ScrollView {
         VStack {
           MessageComposerView(message: $viewModel.userInput)
-            .padding(.bottom, 10)
-            .focused($focusedField, equals: .message)
             .disableAttachments()
             .onSubmitAction { sendOrStop() }
+            .padding(.bottom, 10)
+            .focused($focusedField, equals: .message)
 
           if viewModel.error != nil {
             HStack {

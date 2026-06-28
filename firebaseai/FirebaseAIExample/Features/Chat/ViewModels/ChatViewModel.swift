@@ -20,7 +20,6 @@
 import Foundation
 import UIKit
 import Combine
-import ConversationKit
 
 @MainActor
 class ChatViewModel: ObservableObject {
@@ -57,7 +56,7 @@ class ChatViewModel: ObservableObject {
       : FirebaseAI.firebaseAI(backend: .vertexAI())
 
     model = firebaseService.generativeModel(
-      modelName: sample?.modelName ?? "gemini-3.1-flash-lite",
+      modelName: sample?.modelName ?? "gemini-2.5-flash-lite",
       generationConfig: sample?.generationConfig,
       systemInstruction: sample?.systemInstruction
     )

@@ -12,7 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import ConversationKit
 import MarkdownUI
 import SwiftUI
 #if canImport(FirebaseAILogic)
@@ -144,7 +143,7 @@ struct MessageView: View {
                          corners: [
                            .topLeft,
                            .topRight,
-                           message.participant == .other ? .bottomRight : .bottomLeft,
+                           message.participant == .other ? UIRectCorner.bottomRight : UIRectCorner.bottomLeft,
                          ])
         if message.participant == .other {
           Spacer()

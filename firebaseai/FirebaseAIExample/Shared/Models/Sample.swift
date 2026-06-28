@@ -39,7 +39,7 @@ public struct Sample: Identifiable {
               description: String,
               useCases: [UseCase],
               navRoute: String,
-              modelName: String = "gemini-3.1-flash-lite",
+              modelName: String = "gemini-2.5-flash-lite",
               chatHistory: [ModelContent]? = nil,
               initialPrompt: String? = nil,
               systemInstruction: ModelContent? = nil,
@@ -308,6 +308,12 @@ extension Sample {
         outputAudioTranscription: AudioTranscriptionConfig()
       ),
       tip: InlineTip(text: "Try asking the model to change the background color"),
+    ),
+    Sample(
+      title: "Apple Foundation Models",
+      description: "Demonstrates how to integrate Firebase AI Logic (Gemini) with Apple's Foundation Models framework (Apple Intelligence).",
+      useCases: [.text, .image, .functionCalling],
+      navRoute: "AppleAIScreen"
     ),
   ]
 

@@ -12,7 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import ConversationKit
 import MarkdownUI
 import SwiftUI
 #if canImport(FirebaseAILogic)
@@ -44,10 +43,10 @@ struct GenerateContentFromTemplateScreen: View {
       ScrollView {
         VStack {
           MessageComposerView(message: $viewModel.userInput)
-            .padding(.bottom, 10)
-            .focused($focusedField, equals: .message)
             .disableAttachments()
             .onSubmitAction { sendOrStop() }
+            .padding(.bottom, 10)
+            .focused($focusedField, equals: .message)
 
           if viewModel.error != nil {
             HStack {

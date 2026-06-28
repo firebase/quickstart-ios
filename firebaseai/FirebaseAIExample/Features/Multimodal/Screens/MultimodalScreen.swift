@@ -19,7 +19,6 @@
 #endif
 import SwiftUI
 import PhotosUI
-import ConversationKit
 
 struct MultimodalScreen: View {
   let backendType: BackendOption

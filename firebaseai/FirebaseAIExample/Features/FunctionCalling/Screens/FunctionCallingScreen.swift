@@ -18,7 +18,6 @@
   import FirebaseAI
 #endif
 import SwiftUI
-import ConversationKit
 
 struct FunctionCallingScreen: View {
   let backendType: BackendOption

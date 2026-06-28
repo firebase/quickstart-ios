@@ -18,10 +18,14 @@
   import FirebaseAI
 #endif
 import Foundation
-import ConversationKit
 import UIKit
 
-public struct ChatMessage: Message {
+public enum Participant: Equatable, Hashable {
+  case user
+  case other
+}
+
+public struct ChatMessage: Identifiable, Equatable, Hashable {
   public let id: UUID = .init()
   public var content: String?
   public let participant: Participant
@@ -30,7 +34,7 @@ public struct ChatMessage: Message {
   public var groundingMetadata: GroundingMetadata?
   public var attachments: [MultimodalAttachment] = []
   public var image: UIImage?
-  // required by the Message protocol, but not used in this app
+  // Not used in this app, but kept for compatibility
   public var imageURL: String?
 
   public init(content: String? = nil, imageURL: String? = nil, participant: Participant,
@@ -45,7 +49,6 @@ public struct ChatMessage: Message {
     self.image = image
   }
 
-  // Protocol-required initializer
   public init(content: String?, imageURL: String? = nil, participant: Participant) {
     self.content = content
     self.imageURL = imageURL

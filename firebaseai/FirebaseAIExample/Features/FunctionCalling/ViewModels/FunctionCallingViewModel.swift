@@ -20,7 +20,6 @@
 import Foundation
 import UIKit
 import Combine
-import ConversationKit
 
 @MainActor
 class FunctionCallingViewModel: ObservableObject {

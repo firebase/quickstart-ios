@@ -23,7 +23,6 @@ import PhotosUI
 import SwiftUI
 import AVFoundation
 import Combine
-import ConversationKit
 
 @MainActor
 class MultimodalViewModel: ObservableObject {

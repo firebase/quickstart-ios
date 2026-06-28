@@ -92,7 +92,7 @@ public final class AppleAIViewModel: ObservableObject {
             isUsingLocalModel = false
             do {
                 let ai = FirebaseAI.firebaseAI(backend: .vertexAI(location: "global"))
-                let model = ai.geminiLanguageModel(name: "gemini-3.1-flash-lite")
+                let model = ai.geminiLanguageModel(name: "gemini-2.5-flash-lite")
                 let session = LanguageModelSession(
                     model: model,
                     instructions: instructions

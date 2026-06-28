@@ -20,7 +20,6 @@
 import Foundation
 import Combine
 import UIKit
-import ConversationKit
 
 @MainActor
 class GroundingViewModel: ObservableObject {

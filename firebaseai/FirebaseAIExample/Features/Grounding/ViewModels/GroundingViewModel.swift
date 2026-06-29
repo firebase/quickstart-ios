@@ -55,7 +55,7 @@ class GroundingViewModel: ObservableObject {
 
     let firebaseService = backendType == .googleAI
       ? FirebaseAI.firebaseAI(backend: .googleAI())
-      : FirebaseAI.firebaseAI(backend: .vertexAI())
+      : FirebaseAI.firebaseAI(backend: .vertexAI(location: "global"))
 
     model = firebaseService.generativeModel(
       modelName: sample?.modelName ?? "gemini-3.1-flash-lite",

@@ -54,7 +54,7 @@ class FunctionCallingViewModel: ObservableObject {
 
     let firebaseService = backendType == .googleAI
       ? FirebaseAI.firebaseAI(backend: .googleAI())
-      : FirebaseAI.firebaseAI(backend: .vertexAI())
+      : FirebaseAI.firebaseAI(backend: .vertexAI(location: "global"))
 
     // create a generative model with sample data
     model = firebaseService.generativeModel(

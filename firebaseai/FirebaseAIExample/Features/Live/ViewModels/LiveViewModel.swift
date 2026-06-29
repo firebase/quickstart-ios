@@ -69,11 +69,11 @@ class LiveViewModel: ObservableObject {
   init(backendType: BackendOption, sample: Sample? = nil) {
     let firebaseService = backendType == .googleAI
       ? FirebaseAI.firebaseAI(backend: .googleAI())
-      : FirebaseAI.firebaseAI(backend: .vertexAI(location: "global"))
+      : FirebaseAI.firebaseAI(backend: .vertexAI(location: "us-central1"))
 
     model = firebaseService.liveModel(
-      modelName: (backendType == .googleAI) ? "gemini-2.5-flash-native-audio-preview-09-2025" :
-        "gemini-live-2.5-flash-preview-native-audio-09-2025",
+      modelName: (backendType == .googleAI) ? "gemini-3.1-flash-live-preview" :
+        "gemini-live-2.5-flash-native-audio",
       generationConfig: sample?.liveGenerationConfig,
       tools: sample?.tools,
       systemInstruction: sample?.systemInstruction
@@ -206,9 +206,6 @@ class LiveViewModel: ObservableObject {
     case let .goingAwayNotice(goingAwayNotice):
       let time = goingAwayNotice.timeLeft?.description ?? "soon"
       logger.warning("Going away in: \(time)")
-    default:
-      // TODO: Remove default case after merging #1852
-      return
     }
   }
 

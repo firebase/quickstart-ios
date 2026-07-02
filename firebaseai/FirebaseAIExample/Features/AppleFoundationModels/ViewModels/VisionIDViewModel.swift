@@ -20,11 +20,11 @@ import FirebaseAILogic
 
 @available(iOS 27.0, *)
 @MainActor
-public final class VisionIDViewModel: FoundationModelsBaseViewModel {
-  @Published public var selectedImage: UIImage?
-  @Published public var identifiedObject: IdentifiedObject?
+final class VisionIDViewModel: FoundationModelsBaseViewModel {
+  @Published var selectedImage: UIImage?
+  @Published var identifiedObject: IdentifiedObject?
 
-  public func identifySelectedImage() {
+  func identifySelectedImage() {
     guard let image = selectedImage else { return }
     stopActiveTask()
     inProgress = true

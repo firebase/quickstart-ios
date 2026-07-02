@@ -18,29 +18,29 @@ import Combine
 import FoundationModels
 import FirebaseAILogic
 
-public enum ModelPreference: String, CaseIterable, Identifiable {
+enum ModelPreference: String, CaseIterable, Identifiable {
   case auto = "Auto (Local First)"
   case cloud = "Cloud Only"
 
-  public var id: String { rawValue }
+  var id: String { rawValue }
 }
 
 @available(iOS 27.0, *)
 @MainActor
-public class FoundationModelsBaseViewModel: ObservableObject {
-  @Published public var inProgress = false
-  @Published public var error: Error?
-  @Published public var modelPreference: ModelPreference = .auto
-  @Published public var isUsingLocalModel: Bool = false
+class FoundationModelsBaseViewModel: ObservableObject {
+  @Published var inProgress = false
+  @Published var error: Error?
+  @Published var modelPreference: ModelPreference = .auto
+  @Published var isUsingLocalModel: Bool = false
 
   internal var activeTask: Task<Void, Never>?
-  public let backendType: BackendOption
+  let backendType: BackendOption
 
-  public init(backendType: BackendOption) {
+  init(backendType: BackendOption) {
     self.backendType = backendType
   }
 
-  public func stopActiveTask() {
+  func stopActiveTask() {
     activeTask?.cancel()
     activeTask = nil
     inProgress = false

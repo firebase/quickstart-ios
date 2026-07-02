@@ -20,12 +20,12 @@ import FirebaseAILogic
 
 @available(iOS 27.0, *)
 @MainActor
-public final class HybridAIViewModel: FoundationModelsBaseViewModel {
-  @Published public var inputText: String =
+final class HybridAIViewModel: FoundationModelsBaseViewModel {
+  @Published var inputText: String =
     "It is the quintessential autumn harvest fruit, famously baked into warm cinnamon pastries, dipped in sticky caramel on Halloween, and traditionally rumored to keep medical professionals at bay if eaten once a day."
-  @Published public var outputSummary: TextSummary?
+  @Published var outputSummary: TextSummary?
 
-  public func runSummarization() {
+  func runSummarization() {
     stopActiveTask()
     inProgress = true
     error = nil

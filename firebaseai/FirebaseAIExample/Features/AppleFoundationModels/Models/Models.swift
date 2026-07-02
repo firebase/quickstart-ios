@@ -17,22 +17,22 @@ import FoundationModels
 
 @available(iOS 26.0, *)
 @Generable
-public struct IdentifiedObject: Equatable, Codable {
+struct IdentifiedObject: Equatable, Codable {
   @Guide(description: "The name of the primary object or landmark detected.")
-  public let name: String
+  let name: String
 
   @Guide(
     description: "The category of the object (e.g. Landmark, Plant, Food, Animal, Device, Clothing)."
   )
-  public let category: String
+  let category: String
 
   @Guide(description: "A short, 2-sentence description of the object and interesting facts.")
-  public let description: String
+  let description: String
 }
 
 @available(iOS 26.0, *)
 @Generable
-public struct TextSummary: Equatable, Codable {
+struct TextSummary: Equatable, Codable {
   @Guide(description: "A list of exactly 2 key summary points.")
-  public let summaryPoints: [String]
+  let summaryPoints: [String]
 }

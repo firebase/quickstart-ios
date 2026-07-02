@@ -55,7 +55,7 @@ struct VisionIDView: View {
           if let data = try? await newItem?.loadTransferable(type: Data.self),
             let image = UIImage(data: data) {
             viewModel.selectedImage = image
-            await viewModel.identifySelectedImage()
+            viewModel.identifySelectedImage()
           }
         }
       }

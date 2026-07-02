@@ -25,7 +25,7 @@ public final class HybridAIViewModel: FoundationModelsBaseViewModel {
     "It is the quintessential autumn harvest fruit, famously baked into warm cinnamon pastries, dipped in sticky caramel on Halloween, and traditionally rumored to keep medical professionals at bay if eaten once a day."
   @Published public var outputSummary: TextSummary?
 
-  public func runSummarization() async {
+  public func runSummarization() {
     stopActiveTask()
     inProgress = true
     error = nil

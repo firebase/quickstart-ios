@@ -31,9 +31,7 @@ struct HybridAIView: View {
       }
 
       Button(action: {
-        Task {
-          await viewModel.runSummarization()
-        }
+        viewModel.runSummarization()
       }) {
         HStack {
           Spacer()

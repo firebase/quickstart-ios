@@ -24,7 +24,7 @@ public final class VisionIDViewModel: FoundationModelsBaseViewModel {
   @Published public var selectedImage: UIImage?
   @Published public var identifiedObject: IdentifiedObject?
 
-  public func identifySelectedImage() async {
+  public func identifySelectedImage() {
     guard let image = selectedImage else { return }
     stopActiveTask()
     inProgress = true

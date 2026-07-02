@@ -77,7 +77,7 @@ struct ContentView: View {
 
             LazyVGrid(columns: columns, spacing: 20) {
               ForEach(filteredSamples.filter { !$0.isFoundationModel }) { sample in
-                NavigationLink(destination: destinationView(for: sample)) {
+                NavigationLink(destination: destinationView(for: sample).id(selectedBackend)) {
                   SampleCardView(sample: sample)
                 }
                 .buttonStyle(PlainButtonStyle())
@@ -94,7 +94,7 @@ struct ContentView: View {
 
             LazyVGrid(columns: columns, spacing: 20) {
               ForEach(filteredSamples.filter { $0.isFoundationModel }) { sample in
-                NavigationLink(destination: destinationView(for: sample)) {
+                NavigationLink(destination: destinationView(for: sample).id(selectedBackend)) {
                   SampleCardView(sample: sample)
                 }
                 .buttonStyle(PlainButtonStyle())

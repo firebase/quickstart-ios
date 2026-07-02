@@ -76,8 +76,25 @@ struct ContentView: View {
               .padding(.horizontal)
 
             LazyVGrid(columns: columns, spacing: 20) {
-              ForEach(filteredSamples) { sample in
-                NavigationLink(destination: destinationView(for: sample)) {
+              ForEach(filteredSamples.filter { !$0.isFoundationModel }) { sample in
+                NavigationLink(destination: destinationView(for: sample).id(selectedBackend)) {
+                  SampleCardView(sample: sample)
+                }
+                .buttonStyle(PlainButtonStyle())
+              }
+            }
+            .padding(.horizontal)
+          }
+
+          // Foundation Models
+          VStack(alignment: .leading) {
+            Text("Foundation Models")
+              .font(.system(size: 20, weight: .bold))
+              .padding(.horizontal)
+
+            LazyVGrid(columns: columns, spacing: 20) {
+              ForEach(filteredSamples.filter { $0.isFoundationModel }) { sample in
+                NavigationLink(destination: destinationView(for: sample).id(selectedBackend)) {
                   SampleCardView(sample: sample)
                 }
                 .buttonStyle(PlainButtonStyle())
@@ -112,6 +129,18 @@ struct ContentView: View {
       GroundingScreen(backendType: selectedBackend, sample: sample)
     case "LiveScreen":
       LiveScreen(backendType: selectedBackend, sample: sample)
+    case "FoundationModelsHybrid":
+      if #available(iOS 27.0, *) {
+        HybridAIScreen(backendType: selectedBackend)
+      } else {
+        Text("Foundation Models are only available on iOS 27 or newer.")
+      }
+    case "FoundationModelsVisionID":
+      if #available(iOS 27.0, *) {
+        VisionIDScreen(backendType: selectedBackend)
+      } else {
+        Text("Foundation Models are only available on iOS 27 or newer.")
+      }
     default:
       EmptyView()
     }

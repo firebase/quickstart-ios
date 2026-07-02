@@ -34,6 +34,7 @@ public struct Sample: Identifiable {
   public let liveGenerationConfig: LiveGenerationConfig?
   public let fileDataParts: [FileDataPart]?
   public let tip: InlineTip?
+  public let isFoundationModel: Bool
 
   public init(title: String,
               description: String,
@@ -47,7 +48,8 @@ public struct Sample: Identifiable {
               generationConfig: GenerationConfig? = nil,
               liveGenerationConfig: LiveGenerationConfig? = nil,
               fileDataParts: [FileDataPart]? = nil,
-              tip: InlineTip? = nil) {
+              tip: InlineTip? = nil,
+              isFoundationModel: Bool = false) {
     self.title = title
     self.description = description
     self.useCases = useCases
@@ -61,6 +63,7 @@ public struct Sample: Identifiable {
     self.liveGenerationConfig = liveGenerationConfig
     self.fileDataParts = fileDataParts
     self.tip = tip
+    self.isFoundationModel = isFoundationModel
   }
 }
 
@@ -308,6 +311,20 @@ extension Sample {
         outputAudioTranscription: AudioTranscriptionConfig()
       ),
       tip: InlineTip(text: "Try asking the model to change the background color"),
+    ),
+    Sample(
+      title: "Hybrid AI",
+      description: "Summarize and translate text using local Foundation Models (Apple Intelligence) with automatic cloud fallback.",
+      useCases: [.text],
+      navRoute: "FoundationModelsHybrid",
+      isFoundationModel: true
+    ),
+    Sample(
+      title: "Vision ID",
+      description: "Identify objects and landmarks in images using multimodal Foundation Models.",
+      useCases: [.image],
+      navRoute: "FoundationModelsVisionID",
+      isFoundationModel: true
     ),
   ]
 

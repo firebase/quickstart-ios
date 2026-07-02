@@ -35,8 +35,7 @@ public final class VisionIDViewModel: FoundationModelsBaseViewModel {
     activeTask = Task {
       defer { self.inProgress = false }
 
-      guard let cgImage = image.cgImage,
-        let imageData = image.jpegData(compressionQuality: 0.8) else { return }
+      guard let cgImage = image.cgImage else { return }
 
       let instructions = Instructions {
         "You are a visual object identifier."
@@ -56,7 +55,7 @@ public final class VisionIDViewModel: FoundationModelsBaseViewModel {
             generating: IdentifiedObject.self
           ) {
             "Identify the primary object in this image. Be as specific as possible, categorize it, and provide a short 2-sentence description."
-            Attachment(cgImage)
+            Attachment(cgImage).label("image")
           }
           if !Task.isCancelled {
             self.identifiedObject = response.content
@@ -88,7 +87,7 @@ public final class VisionIDViewModel: FoundationModelsBaseViewModel {
           generating: IdentifiedObject.self
         ) {
           "Identify the primary object in this image. Be as specific as possible, categorize it, and provide a short 2-sentence description."
-          InlineDataPart(data: imageData, mimeType: "image/jpeg")
+          Attachment(cgImage).label("image")
         }
 
         if !Task.isCancelled {

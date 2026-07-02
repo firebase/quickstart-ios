@@ -86,13 +86,7 @@ public final class HybridAIViewModel: FoundationModelsBaseViewModel {
         }
       } catch {
         if !Task.isCancelled {
-          if let mlMessage = error.mlAssetErrorMessage {
-            self.error = NSError(domain: "FirebaseAIExample",
-                                 code: 1,
-                                 userInfo: [NSLocalizedDescriptionKey: mlMessage])
-          } else {
-            self.error = error
-          }
+          self.error = error
         }
       }
     }

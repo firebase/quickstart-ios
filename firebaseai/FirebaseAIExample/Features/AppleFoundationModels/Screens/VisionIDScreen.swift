@@ -1,4 +1,4 @@
-// Copyright 2025 Google LLC
+// Copyright 2026 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,11 +12,21 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Foundation
+import SwiftUI
+import PhotosUI
 
-public enum BackendOption: String, CaseIterable, Identifiable {
-  case googleAI = "Google AI"
-  case vertexAI = "Firebase Vertex AI"
+@available(iOS 27.0, *)
+struct VisionIDScreen: View {
+  @StateObject private var viewModel: VisionIDViewModel
+  @State private var photosPickerItem: PhotosPickerItem? = nil
 
-  public var id: String { rawValue }
+  init(backendType: BackendOption) {
+    _viewModel = StateObject(wrappedValue: VisionIDViewModel(backendType: backendType))
+  }
+
+  var body: some View {
+    FoundationModelsContainer(viewModel: viewModel, title: "Vision ID") { vm in
+      VisionIDView(viewModel: vm, photosPickerItem: $photosPickerItem)
+    }
+  }
 }

@@ -1,4 +1,4 @@
-// Copyright 2025 Google LLC
+// Copyright 2026 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,11 +12,21 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Foundation
+import SwiftUI
 
-public enum BackendOption: String, CaseIterable, Identifiable {
-  case googleAI = "Google AI"
-  case vertexAI = "Firebase Vertex AI"
+struct ModelIndicatorView: View {
+  let isUsingLocalModel: Bool
 
-  public var id: String { rawValue }
+  var body: some View {
+    HStack(spacing: 4) {
+      Image(systemName: isUsingLocalModel ? "iphone" : "cloud.fill")
+      Text(isUsingLocalModel ? "Local (Apple)" : "Cloud (Gemini)")
+    }
+    .font(.caption)
+    .padding(.horizontal, 8)
+    .padding(.vertical, 4)
+    .background(isUsingLocalModel ? Color.green.opacity(0.2) : Color.purple.opacity(0.2))
+    .foregroundColor(isUsingLocalModel ? .green : .purple)
+    .cornerRadius(8)
+  }
 }

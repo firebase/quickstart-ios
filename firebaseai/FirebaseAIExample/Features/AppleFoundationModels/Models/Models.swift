@@ -17,89 +17,22 @@ import FoundationModels
 
 @available(iOS 26.0, *)
 @Generable
-public struct Itinerary: Equatable, Codable {
-    @Guide(description: "An exciting name for the trip.")
-    public let title: String
-    
-    @Guide(description: "The name of the destination.")
-    public let destinationName: String
-    
-    @Guide(description: "A brief, catchy description of the trip.")
-    public let description: String
-    
-    @Guide(description: "An explanation of why this plan fits the user's request.")
-    public let rationale: String
-    
-    @Guide(description: "A list of day plans.")
-    public let days: [DayPlan]
-    
-    @Guide(description: "Any source attributions or links for the recommended places.")
-    public let attributions: [Attribution]?
-}
-
-@available(iOS 26.0, *)
-@Generable
-public struct Attribution: Equatable, Codable {
-    public let title: String
-    public let url: String
-}
-
-@available(iOS 26.0, *)
-@Generable
-public struct DayPlan: Equatable, Codable {
-    @Guide(description: "A unique title for this day.")
-    public let title: String
-    
-    public let subtitle: String
-    
-    @Guide(description: "A list of activities planned for this day.")
-    public let activities: [Activity]
-}
-
-@available(iOS 26.0, *)
-@Generable
-public struct Activity: Equatable, Codable {
-    public let type: ActivityKind
-    public let title: String
-    public let description: String
-    public let latitude: Double?
-    public let longitude: Double?
-}
-
-@available(iOS 26.0, *)
-@Generable
-public enum ActivityKind: String, Codable {
-    case sightseeing
-    case foodAndDining
-    case shopping
-    case hotelAndLodging
-    
-    public var displayName: String {
-        switch self {
-        case .sightseeing: return "Sightseeing"
-        case .foodAndDining: return "Food & Dining"
-        case .shopping: return "Shopping"
-        case .hotelAndLodging: return "Hotel & Lodging"
-        }
-    }
-}
-
-@available(iOS 26.0, *)
-@Generable
 public struct IdentifiedObject: Equatable, Codable {
-    @Guide(description: "The name of the primary object or landmark detected.")
-    public let name: String
-    
-    @Guide(description: "The category of the object (e.g. Landmark, Plant, Food, Animal, Device, Clothing).")
-    public let category: String
-    
-    @Guide(description: "A short, 2-sentence description of the object and interesting facts.")
-    public let description: String
+  @Guide(description: "The name of the primary object or landmark detected.")
+  public let name: String
+
+  @Guide(
+    description: "The category of the object (e.g. Landmark, Plant, Food, Animal, Device, Clothing)."
+  )
+  public let category: String
+
+  @Guide(description: "A short, 2-sentence description of the object and interesting facts.")
+  public let description: String
 }
 
 @available(iOS 26.0, *)
 @Generable
 public struct TextSummary: Equatable, Codable {
-    @Guide(description: "A list of exactly 2 key summary points.")
-    public let summaryPoints: [String]
+  @Guide(description: "A list of exactly 2 key summary points.")
+  public let summaryPoints: [String]
 }

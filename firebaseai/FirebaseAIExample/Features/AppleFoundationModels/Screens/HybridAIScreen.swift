@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#if canImport(FoundationModels)
 import SwiftUI
 
 @available(iOS 27.0, *)
@@ -28,3 +29,4 @@ struct HybridAIScreen: View {
     }
   }
 }
+#endif

@@ -13,13 +13,16 @@
 // limitations under the License.
 
 import Foundation
+#if canImport(FoundationModels)
 import FoundationModels
+#endif
 
 extension Error {
   /// Returns true if this error indicates that required ML assets (like safety guardrails)
   /// are missing from the device or simulator.
   var isMLAssetUnavailable: Bool {
     // 1. Check for LanguageModelSession.GenerationError.assetsUnavailable
+    #if canImport(FoundationModels)
     if #available(iOS 26.0, *) {
       if let genError = self as? LanguageModelSession.GenerationError {
         if case .assetsUnavailable = genError {
@@ -27,6 +30,7 @@ extension Error {
         }
       }
     }
+    #endif
 
     let nsError = self as NSError
 

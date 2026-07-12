@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#if canImport(FoundationModels)
 import Foundation
 import FoundationModels
 
@@ -36,3 +37,4 @@ struct TextSummary: Equatable, Codable {
   @Guide(description: "A list of exactly 2 key summary points.")
   let summaryPoints: [String]
 }
+#endif

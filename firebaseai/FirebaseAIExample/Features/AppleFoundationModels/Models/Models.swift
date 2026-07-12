@@ -13,28 +13,28 @@
 // limitations under the License.
 
 #if canImport(FoundationModels)
-import Foundation
-import FoundationModels
+  import Foundation
+  import FoundationModels
 
-@available(iOS 26.0, *)
-@Generable
-struct IdentifiedObject: Equatable, Codable {
-  @Guide(description: "The name of the primary object or landmark detected.")
-  let name: String
+  @available(iOS 26.0, *)
+  @Generable
+  struct IdentifiedObject: Equatable, Codable {
+    @Guide(description: "The name of the primary object or landmark detected.")
+    let name: String
 
-  @Guide(
-    description: "The category of the object (e.g. Landmark, Plant, Food, Animal, Device, Clothing)."
-  )
-  let category: String
+    @Guide(
+      description: "The category of the object (e.g. Landmark, Plant, Food, Animal, Device, Clothing)."
+    )
+    let category: String
 
-  @Guide(description: "A short, 2-sentence description of the object and interesting facts.")
-  let description: String
-}
+    @Guide(description: "A short, 2-sentence description of the object and interesting facts.")
+    let description: String
+  }
 
-@available(iOS 26.0, *)
-@Generable
-struct TextSummary: Equatable, Codable {
-  @Guide(description: "A list of exactly 2 key summary points.")
-  let summaryPoints: [String]
-}
+  @available(iOS 26.0, *)
+  @Generable
+  struct TextSummary: Equatable, Codable {
+    @Guide(description: "A list of exactly 2 key summary points.")
+    let summaryPoints: [String]
+  }
 #endif

@@ -13,43 +13,75 @@
 // limitations under the License.
 
 #if canImport(FoundationModels)
-import Foundation
-import SwiftUI
-import Combine
-import FoundationModels
-import FirebaseAILogic
+  import Foundation
+  import SwiftUI
+  import Combine
+  import FoundationModels
+  import FirebaseAILogic
 
-@available(iOS 27.0, *)
-@MainActor
-final class VisionIDViewModel: FoundationModelsBaseViewModel {
-  @Published var selectedImage: UIImage?
-  @Published var identifiedObject: IdentifiedObject?
+  @available(iOS 27.0, *)
+  @MainActor
+  final class VisionIDViewModel: FoundationModelsBaseViewModel {
+    @Published var selectedImage: UIImage?
+    @Published var identifiedObject: IdentifiedObject?
 
-  func identifySelectedImage() {
-    guard let image = selectedImage else { return }
-    stopActiveTask()
-    inProgress = true
-    error = nil
-    identifiedObject = nil
-    isUsingLocalModel = false
+    func identifySelectedImage() {
+      guard let image = selectedImage else { return }
+      stopActiveTask()
+      inProgress = true
+      error = nil
+      identifiedObject = nil
+      isUsingLocalModel = false
 
-    activeTask = Task {
-      defer { self.inProgress = false }
+      activeTask = Task {
+        defer { self.inProgress = false }
 
-      guard let cgImage = image.cgImage else { return }
+        guard let cgImage = image.cgImage else { return }
 
-      let instructions = Instructions {
-        "You are a visual object identifier."
-      }
+        let instructions = Instructions {
+          "You are a visual object identifier."
+        }
 
-      let availability = SystemLanguageModel.default.availability
+        let availability = SystemLanguageModel.default.availability
 
-      // Try local model first if it reports available and not forced to cloud
-      if modelPreference == .auto, availability == .available {
-        isUsingLocalModel = true
+        // Try local model first if it reports available and not forced to cloud
+        if modelPreference == .auto, availability == .available {
+          isUsingLocalModel = true
+          do {
+            let session = LanguageModelSession(
+              model: SystemLanguageModel.default,
+              instructions: instructions
+            )
+            let response = try await session.respond(
+              generating: IdentifiedObject.self
+            ) {
+              "Identify the primary object in this image. Be as specific as possible, categorize it, and provide a short 2-sentence description."
+              Attachment(cgImage).label("image")
+            }
+            if !Task.isCancelled {
+              self.identifiedObject = response.content
+            }
+            return
+          } catch {
+            if error.isMLAssetUnavailable {
+              print(
+                "Local ML assets unavailable for Vision ID. Falling back to cloud model..."
+              )
+            } else {
+              print(
+                "Local model failed for Vision ID: \(error.localizedDescription). Falling back to cloud model..."
+              )
+            }
+          }
+        }
+
+        // Fallback to cloud model
+        isUsingLocalModel = false
         do {
+          let ai = getFirebaseAI()
+          let model = ai.geminiLanguageModel(name: "gemini-3.5-flash")
           let session = LanguageModelSession(
-            model: SystemLanguageModel.default,
+            model: model,
             instructions: instructions
           )
           let response = try await session.respond(
@@ -58,48 +90,16 @@ final class VisionIDViewModel: FoundationModelsBaseViewModel {
             "Identify the primary object in this image. Be as specific as possible, categorize it, and provide a short 2-sentence description."
             Attachment(cgImage).label("image")
           }
+
           if !Task.isCancelled {
             self.identifiedObject = response.content
           }
-          return
         } catch {
-          if error.isMLAssetUnavailable {
-            print(
-              "Local ML assets unavailable for Vision ID. Falling back to cloud model..."
-            )
-          } else {
-            print(
-              "Local model failed for Vision ID: \(error.localizedDescription). Falling back to cloud model..."
-            )
+          if !Task.isCancelled {
+            self.error = error
           }
-        }
-      }
-
-      // Fallback to cloud model
-      isUsingLocalModel = false
-      do {
-        let ai = getFirebaseAI()
-        let model = ai.geminiLanguageModel(name: "gemini-3.5-flash")
-        let session = LanguageModelSession(
-          model: model,
-          instructions: instructions
-        )
-        let response = try await session.respond(
-          generating: IdentifiedObject.self
-        ) {
-          "Identify the primary object in this image. Be as specific as possible, categorize it, and provide a short 2-sentence description."
-          Attachment(cgImage).label("image")
-        }
-
-        if !Task.isCancelled {
-          self.identifiedObject = response.content
-        }
-      } catch {
-        if !Task.isCancelled {
-          self.error = error
         }
       }
     }
   }
-}
 #endif

@@ -13,20 +13,20 @@
 // limitations under the License.
 
 #if canImport(FoundationModels)
-import SwiftUI
+  import SwiftUI
 
-@available(iOS 27.0, *)
-struct HybridAIScreen: View {
-  @StateObject private var viewModel: HybridAIViewModel
+  @available(iOS 27.0, *)
+  struct HybridAIScreen: View {
+    @StateObject private var viewModel: HybridAIViewModel
 
-  init(backendType: BackendOption) {
-    _viewModel = StateObject(wrappedValue: HybridAIViewModel(backendType: backendType))
-  }
+    init(backendType: BackendOption) {
+      _viewModel = StateObject(wrappedValue: HybridAIViewModel(backendType: backendType))
+    }
 
-  var body: some View {
-    FoundationModelsContainer(viewModel: viewModel, title: "Hybrid AI") { vm in
-      HybridAIView(viewModel: vm)
+    var body: some View {
+      FoundationModelsContainer(viewModel: viewModel, title: "Hybrid AI") { vm in
+        HybridAIView(viewModel: vm)
+      }
     }
   }
-}
 #endif

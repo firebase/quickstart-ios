@@ -13,68 +13,68 @@
 // limitations under the License.
 
 #if canImport(FoundationModels)
-import SwiftUI
+  import SwiftUI
 
-@available(iOS 27.0, *)
-struct HybridAIView: View {
-  @ObservedObject var viewModel: HybridAIViewModel
+  @available(iOS 27.0, *)
+  struct HybridAIView: View {
+    @ObservedObject var viewModel: HybridAIViewModel
 
-  var body: some View {
-    VStack(alignment: .leading, spacing: 16) {
-      VStack(alignment: .leading, spacing: 8) {
-        Text("Input Text")
-          .font(.headline)
-        TextEditor(text: $viewModel.inputText)
-          .frame(height: 120)
-          .padding(4)
-          .background(Color(.secondarySystemGroupedBackground))
-          .cornerRadius(8)
-      }
-
-      Button(action: {
-        viewModel.runSummarization()
-      }) {
-        HStack {
-          Spacer()
-          Image(systemName: "sparkles")
-          Text("Summarise")
-          Spacer()
+    var body: some View {
+      VStack(alignment: .leading, spacing: 16) {
+        VStack(alignment: .leading, spacing: 8) {
+          Text("Input Text")
+            .font(.headline)
+          TextEditor(text: $viewModel.inputText)
+            .frame(height: 120)
+            .padding(4)
+            .background(Color(.secondarySystemGroupedBackground))
+            .cornerRadius(8)
         }
-        .padding()
-        .foregroundColor(.white)
-        .background(Color.blue)
-        .cornerRadius(10)
-      }
-      .disabled(viewModel.inProgress)
 
-      if let summary = viewModel.outputSummary {
-        VStack(alignment: .leading, spacing: 12) {
+        Button(action: {
+          viewModel.runSummarization()
+        }) {
           HStack {
-            Text("Summary Points")
-              .font(.headline)
             Spacer()
-
-            ModelIndicatorView(isUsingLocalModel: viewModel.isUsingLocalModel)
-          }
-
-          VStack(alignment: .leading, spacing: 8) {
-            ForEach(summary.summaryPoints, id: \.self) { point in
-              HStack(alignment: .top, spacing: 6) {
-                Text("•")
-                  .bold()
-                Text(point)
-                  .font(.subheadline)
-              }
-            }
+            Image(systemName: "sparkles")
+            Text("Summarise")
+            Spacer()
           }
           .padding()
-          .frame(maxWidth: .infinity, alignment: .leading)
-          .background(Color(.secondarySystemGroupedBackground))
+          .foregroundColor(.white)
+          .background(Color.blue)
           .cornerRadius(10)
         }
-        .transition(.opacity.combined(with: .slide))
+        .disabled(viewModel.inProgress)
+
+        if let summary = viewModel.outputSummary {
+          VStack(alignment: .leading, spacing: 12) {
+            HStack {
+              Text("Summary Points")
+                .font(.headline)
+              Spacer()
+
+              ModelIndicatorView(isUsingLocalModel: viewModel.isUsingLocalModel)
+            }
+
+            VStack(alignment: .leading, spacing: 8) {
+              ForEach(summary.summaryPoints, id: \.self) { point in
+                HStack(alignment: .top, spacing: 6) {
+                  Text("•")
+                    .bold()
+                  Text(point)
+                    .font(.subheadline)
+                }
+              }
+            }
+            .padding()
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .background(Color(.secondarySystemGroupedBackground))
+            .cornerRadius(10)
+          }
+          .transition(.opacity.combined(with: .slide))
+        }
       }
     }
   }
-}
 #endif

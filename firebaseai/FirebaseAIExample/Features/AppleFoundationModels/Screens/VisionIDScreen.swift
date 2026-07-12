@@ -13,22 +13,22 @@
 // limitations under the License.
 
 #if canImport(FoundationModels)
-import SwiftUI
-import PhotosUI
+  import SwiftUI
+  import PhotosUI
 
-@available(iOS 27.0, *)
-struct VisionIDScreen: View {
-  @StateObject private var viewModel: VisionIDViewModel
-  @State private var photosPickerItem: PhotosPickerItem? = nil
+  @available(iOS 27.0, *)
+  struct VisionIDScreen: View {
+    @StateObject private var viewModel: VisionIDViewModel
+    @State private var photosPickerItem: PhotosPickerItem? = nil
 
-  init(backendType: BackendOption) {
-    _viewModel = StateObject(wrappedValue: VisionIDViewModel(backendType: backendType))
-  }
+    init(backendType: BackendOption) {
+      _viewModel = StateObject(wrappedValue: VisionIDViewModel(backendType: backendType))
+    }
 
-  var body: some View {
-    FoundationModelsContainer(viewModel: viewModel, title: "Vision ID") { vm in
-      VisionIDView(viewModel: vm, photosPickerItem: $photosPickerItem)
+    var body: some View {
+      FoundationModelsContainer(viewModel: viewModel, title: "Vision ID") { vm in
+        VisionIDView(viewModel: vm, photosPickerItem: $photosPickerItem)
+      }
     }
   }
-}
 #endif

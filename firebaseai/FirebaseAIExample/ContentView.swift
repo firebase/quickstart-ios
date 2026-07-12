@@ -131,23 +131,23 @@ struct ContentView: View {
       LiveScreen(backendType: selectedBackend, sample: sample)
     case "FoundationModelsHybrid":
       #if canImport(FoundationModels)
-      if #available(iOS 27.0, *) {
-        HybridAIScreen(backendType: selectedBackend)
-      } else {
-        Text("Foundation Models are only available on iOS 27 or newer.")
-      }
+        if #available(iOS 27.0, *) {
+          HybridAIScreen(backendType: selectedBackend)
+        } else {
+          Text("Foundation Models are only available on iOS 27 or newer.")
+        }
       #else
-      Text("Foundation Models are not supported on this platform/SDK.")
+        Text("Foundation Models are not supported on this platform/SDK.")
       #endif
     case "FoundationModelsVisionID":
       #if canImport(FoundationModels)
-      if #available(iOS 27.0, *) {
-        VisionIDScreen(backendType: selectedBackend)
-      } else {
-        Text("Foundation Models are only available on iOS 27 or newer.")
-      }
+        if #available(iOS 27.0, *) {
+          VisionIDScreen(backendType: selectedBackend)
+        } else {
+          Text("Foundation Models are only available on iOS 27 or newer.")
+        }
       #else
-      Text("Foundation Models are not supported on this platform/SDK.")
+        Text("Foundation Models are not supported on this platform/SDK.")
       #endif
     default:
       EmptyView()

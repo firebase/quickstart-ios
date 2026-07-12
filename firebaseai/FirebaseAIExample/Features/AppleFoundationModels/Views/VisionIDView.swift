@@ -13,89 +13,89 @@
 // limitations under the License.
 
 #if canImport(FoundationModels)
-import SwiftUI
-import PhotosUI
+  import SwiftUI
+  import PhotosUI
 
-@available(iOS 27.0, *)
-@MainActor
-struct VisionIDView: View {
-  @ObservedObject var viewModel: VisionIDViewModel
-  @Binding var photosPickerItem: PhotosPickerItem?
-
+  @available(iOS 27.0, *)
   @MainActor
-  var body: some View {
-    let selectedImage = viewModel.selectedImage
+  struct VisionIDView: View {
+    @ObservedObject var viewModel: VisionIDViewModel
+    @Binding var photosPickerItem: PhotosPickerItem?
 
-    VStack(alignment: .leading, spacing: 16) {
-      Text("Select or Snap a Photo to Identify")
-        .font(.headline)
+    @MainActor
+    var body: some View {
+      let selectedImage = viewModel.selectedImage
 
-      PhotosPicker(selection: $photosPickerItem, matching: .images) {
-        VStack(spacing: 12) {
-          if let image = selectedImage {
-            Image(uiImage: image)
-              .resizable()
-              .aspectRatio(contentMode: .fit)
-              .frame(maxHeight: 200)
+      VStack(alignment: .leading, spacing: 16) {
+        Text("Select or Snap a Photo to Identify")
+          .font(.headline)
+
+        PhotosPicker(selection: $photosPickerItem, matching: .images) {
+          VStack(spacing: 12) {
+            if let image = selectedImage {
+              Image(uiImage: image)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(maxHeight: 200)
+                .cornerRadius(12)
+            } else {
+              VStack(spacing: 8) {
+                Image(systemName: "photo.badge.plus")
+                  .font(.system(size: 40))
+                Text("Select an Image")
+              }
+              .frame(maxWidth: .infinity)
+              .frame(height: 180)
+              .background(Color(.secondarySystemGroupedBackground))
               .cornerRadius(12)
-          } else {
-            VStack(spacing: 8) {
-              Image(systemName: "photo.badge.plus")
-                .font(.system(size: 40))
-              Text("Select an Image")
             }
-            .frame(maxWidth: .infinity)
-            .frame(height: 180)
+          }
+        }
+        .onChange(of: photosPickerItem) { oldItem, newItem in
+          Task {
+            if let data = try? await newItem?.loadTransferable(type: Data.self),
+              let image = UIImage(data: data) {
+              viewModel.selectedImage = image
+              viewModel.identifySelectedImage()
+            }
+          }
+        }
+
+        if let identified = viewModel.identifiedObject {
+          VStack(alignment: .leading, spacing: 12) {
+            HStack {
+              Text("Identification Result")
+                .font(.headline)
+              Spacer()
+              ModelIndicatorView(isUsingLocalModel: viewModel.isUsingLocalModel)
+            }
+
+            VStack(alignment: .leading, spacing: 8) {
+              HStack {
+                Text("Name:")
+                  .bold()
+                Text(identified.name)
+              }
+              HStack {
+                Text("Category:")
+                  .bold()
+                Text(identified.category)
+              }
+              VStack(alignment: .leading, spacing: 4) {
+                Text("Description:")
+                  .bold()
+                Text(identified.description)
+                  .foregroundColor(.secondary)
+              }
+            }
+            .padding()
+            .frame(maxWidth: .infinity, alignment: .leading)
             .background(Color(.secondarySystemGroupedBackground))
-            .cornerRadius(12)
+            .cornerRadius(10)
           }
+          .transition(.opacity)
         }
-      }
-      .onChange(of: photosPickerItem) { oldItem, newItem in
-        Task {
-          if let data = try? await newItem?.loadTransferable(type: Data.self),
-            let image = UIImage(data: data) {
-            viewModel.selectedImage = image
-            viewModel.identifySelectedImage()
-          }
-        }
-      }
-
-      if let identified = viewModel.identifiedObject {
-        VStack(alignment: .leading, spacing: 12) {
-          HStack {
-            Text("Identification Result")
-              .font(.headline)
-            Spacer()
-            ModelIndicatorView(isUsingLocalModel: viewModel.isUsingLocalModel)
-          }
-
-          VStack(alignment: .leading, spacing: 8) {
-            HStack {
-              Text("Name:")
-                .bold()
-              Text(identified.name)
-            }
-            HStack {
-              Text("Category:")
-                .bold()
-              Text(identified.category)
-            }
-            VStack(alignment: .leading, spacing: 4) {
-              Text("Description:")
-                .bold()
-              Text(identified.description)
-                .foregroundColor(.secondary)
-            }
-          }
-          .padding()
-          .frame(maxWidth: .infinity, alignment: .leading)
-          .background(Color(.secondarySystemGroupedBackground))
-          .cornerRadius(10)
-        }
-        .transition(.opacity)
       }
     }
   }
-}
 #endif

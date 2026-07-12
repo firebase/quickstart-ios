@@ -13,40 +13,69 @@
 // limitations under the License.
 
 #if canImport(FoundationModels)
-import Foundation
-import SwiftUI
-import Combine
-import FoundationModels
-import FirebaseAILogic
+  import Foundation
+  import SwiftUI
+  import Combine
+  import FoundationModels
+  import FirebaseAILogic
 
-@available(iOS 27.0, *)
-@MainActor
-final class HybridAIViewModel: FoundationModelsBaseViewModel {
-  @Published var inputText: String =
-    "It is the quintessential autumn harvest fruit, famously baked into warm cinnamon pastries, dipped in sticky caramel on Halloween, and traditionally rumored to keep medical professionals at bay if eaten once a day."
-  @Published var outputSummary: TextSummary?
+  @available(iOS 27.0, *)
+  @MainActor
+  final class HybridAIViewModel: FoundationModelsBaseViewModel {
+    @Published var inputText: String =
+      "It is the quintessential autumn harvest fruit, famously baked into warm cinnamon pastries, dipped in sticky caramel on Halloween, and traditionally rumored to keep medical professionals at bay if eaten once a day."
+    @Published var outputSummary: TextSummary?
 
-  func runSummarization() {
-    stopActiveTask()
-    inProgress = true
-    error = nil
-    outputSummary = nil
+    func runSummarization() {
+      stopActiveTask()
+      inProgress = true
+      error = nil
+      outputSummary = nil
 
-    activeTask = Task {
-      defer { self.inProgress = false }
+      activeTask = Task {
+        defer { self.inProgress = false }
 
-      let instructions = Instructions {
-        "Your job is to summarize the provided text in exactly 2 bullet points."
-      }
+        let instructions = Instructions {
+          "Your job is to summarize the provided text in exactly 2 bullet points."
+        }
 
-      let availability = SystemLanguageModel.default.availability
+        let availability = SystemLanguageModel.default.availability
 
-      // Try local model first if it reports available and not forced to cloud
-      if modelPreference == .auto, availability == .available {
-        isUsingLocalModel = true
+        // Try local model first if it reports available and not forced to cloud
+        if modelPreference == .auto, availability == .available {
+          isUsingLocalModel = true
+          do {
+            let session = LanguageModelSession(
+              model: SystemLanguageModel.default,
+              instructions: instructions
+            )
+            let response = try await session.respond(
+              to: inputText,
+              generating: TextSummary.self
+            )
+            if !Task.isCancelled {
+              self.outputSummary = response.content
+            }
+            return
+          } catch {
+            // Fall back to cloud model if local model fails
+            if error.isMLAssetUnavailable {
+              print("Local ML assets unavailable. Falling back to cloud model...")
+            } else {
+              print(
+                "Local model failed: \(error.localizedDescription). Falling back to cloud model..."
+              )
+            }
+          }
+        }
+
+        // Fallback to cloud model
+        isUsingLocalModel = false
         do {
+          let ai = getFirebaseAI()
+          let model = ai.geminiLanguageModel(name: "gemini-3.1-flash-lite")
           let session = LanguageModelSession(
-            model: SystemLanguageModel.default,
+            model: model,
             instructions: instructions
           )
           let response = try await session.respond(
@@ -56,41 +85,12 @@ final class HybridAIViewModel: FoundationModelsBaseViewModel {
           if !Task.isCancelled {
             self.outputSummary = response.content
           }
-          return
         } catch {
-          // Fall back to cloud model if local model fails
-          if error.isMLAssetUnavailable {
-            print("Local ML assets unavailable. Falling back to cloud model...")
-          } else {
-            print(
-              "Local model failed: \(error.localizedDescription). Falling back to cloud model..."
-            )
+          if !Task.isCancelled {
+            self.error = error
           }
-        }
-      }
-
-      // Fallback to cloud model
-      isUsingLocalModel = false
-      do {
-        let ai = getFirebaseAI()
-        let model = ai.geminiLanguageModel(name: "gemini-3.1-flash-lite")
-        let session = LanguageModelSession(
-          model: model,
-          instructions: instructions
-        )
-        let response = try await session.respond(
-          to: inputText,
-          generating: TextSummary.self
-        )
-        if !Task.isCancelled {
-          self.outputSummary = response.content
-        }
-      } catch {
-        if !Task.isCancelled {
-          self.error = error
         }
       }
     }
   }
-}
 #endif

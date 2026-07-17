@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#if canImport(FoundationModels)
+#if canImport(FoundationModels) && compiler(>=6.4)
   import SwiftUI
 
   @available(iOS 27.0, *)

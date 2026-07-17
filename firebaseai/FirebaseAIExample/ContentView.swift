@@ -130,7 +130,7 @@ struct ContentView: View {
     case "LiveScreen":
       LiveScreen(backendType: selectedBackend, sample: sample)
     case "FoundationModelsHybrid":
-      #if canImport(FoundationModels)
+      #if canImport(FoundationModels) && compiler(>=6.4)
         if #available(iOS 27.0, *) {
           HybridAIScreen(backendType: selectedBackend)
         } else {
@@ -140,7 +140,7 @@ struct ContentView: View {
         Text("Foundation Models are not supported on this platform/SDK.")
       #endif
     case "FoundationModelsVisionID":
-      #if canImport(FoundationModels)
+      #if canImport(FoundationModels) && compiler(>=6.4)
         if #available(iOS 27.0, *) {
           VisionIDScreen(backendType: selectedBackend)
         } else {

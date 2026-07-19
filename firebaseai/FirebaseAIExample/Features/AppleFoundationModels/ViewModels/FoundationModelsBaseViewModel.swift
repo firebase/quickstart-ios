@@ -12,47 +12,49 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Foundation
-import SwiftUI
-import Combine
-import FoundationModels
-import FirebaseAILogic
+#if canImport(FoundationModels) && compiler(>=6.4)
+  import Foundation
+  import SwiftUI
+  import Combine
+  import FoundationModels
+  import FirebaseAILogic
 
-enum ModelPreference: String, CaseIterable, Identifiable {
-  case auto = "Auto (Local First)"
-  case cloud = "Cloud Only"
+  enum ModelPreference: String, CaseIterable, Identifiable {
+    case auto = "Auto (Local First)"
+    case cloud = "Cloud Only"
 
-  var id: String { rawValue }
-}
-
-@available(iOS 27.0, *)
-@MainActor
-class FoundationModelsBaseViewModel: ObservableObject {
-  @Published var inProgress = false
-  @Published var error: Error?
-  @Published var modelPreference: ModelPreference = .auto
-  @Published var isUsingLocalModel: Bool = false
-
-  internal var activeTask: Task<Void, Never>?
-  let backendType: BackendOption
-
-  init(backendType: BackendOption) {
-    self.backendType = backendType
+    var id: String { rawValue }
   }
 
-  func stopActiveTask() {
-    activeTask?.cancel()
-    activeTask = nil
-    inProgress = false
-  }
+  @available(iOS 27.0, *)
+  @MainActor
+  class FoundationModelsBaseViewModel: ObservableObject {
+    @Published var inProgress = false
+    @Published var error: Error?
+    @Published var modelPreference: ModelPreference = .auto
+    @Published var isUsingLocalModel: Bool = false
 
-  internal func getFirebaseAI() -> FirebaseAI {
-    switch backendType {
-    case .googleAI:
-      return FirebaseAI.firebaseAI(backend: .googleAI())
-    case .vertexAI:
-      // Using "global" as location for Foundation Models fallback compatibility
-      return FirebaseAI.firebaseAI(backend: .vertexAI(location: "global"))
+    internal var activeTask: Task<Void, Never>?
+    let backendType: BackendOption
+
+    init(backendType: BackendOption) {
+      self.backendType = backendType
+    }
+
+    func stopActiveTask() {
+      activeTask?.cancel()
+      activeTask = nil
+      inProgress = false
+    }
+
+    internal func getFirebaseAI() -> FirebaseAI {
+      switch backendType {
+      case .googleAI:
+        return FirebaseAI.firebaseAI(backend: .googleAI())
+      case .vertexAI:
+        // Using "global" as location for Foundation Models fallback compatibility
+        return FirebaseAI.firebaseAI(backend: .vertexAI(location: "global"))
+      }
     }
   }
-}
+#endif

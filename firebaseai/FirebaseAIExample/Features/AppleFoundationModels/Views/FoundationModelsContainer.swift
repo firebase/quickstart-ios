@@ -12,61 +12,63 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import SwiftUI
+#if canImport(FoundationModels) && compiler(>=6.4)
+  import SwiftUI
 
-@available(iOS 27.0, *)
-struct FoundationModelsContainer<Content: View, VM: FoundationModelsBaseViewModel>: View {
-  @ObservedObject var viewModel: VM
-  @State private var presentErrorDetails = false
-  let title: String
-  let content: (VM) -> Content
+  @available(iOS 27.0, *)
+  struct FoundationModelsContainer<Content: View, VM: FoundationModelsBaseViewModel>: View {
+    @ObservedObject var viewModel: VM
+    @State private var presentErrorDetails = false
+    let title: String
+    let content: (VM) -> Content
 
-  var body: some View {
-    ZStack {
-      ScrollView {
-        content(viewModel)
-          .padding()
-          .frame(maxWidth: .infinity, alignment: .topLeading)
-      }
-
-      if viewModel.inProgress {
-        ProgressOverlay()
-      }
-    }
-    .background(Color(.systemGroupedBackground))
-    .navigationTitle(title)
-    .navigationBarTitleDisplayMode(.inline)
-    .toolbar {
-      ToolbarItemGroup(placement: .topBarTrailing) {
-        if viewModel.inProgress {
-          Button(action: {
-            viewModel.stopActiveTask()
-          }) {
-            Image(systemName: "stop.circle")
-              .font(.title3)
-          }
+    var body: some View {
+      ZStack {
+        ScrollView {
+          content(viewModel)
+            .padding()
+            .frame(maxWidth: .infinity, alignment: .topLeading)
         }
 
-        Menu {
-          Picker("Model Preference", selection: $viewModel.modelPreference) {
-            ForEach(ModelPreference.allCases) { pref in
-              Text(pref.rawValue).tag(pref)
+        if viewModel.inProgress {
+          ProgressOverlay()
+        }
+      }
+      .background(Color(.systemGroupedBackground))
+      .navigationTitle(title)
+      .navigationBarTitleDisplayMode(.inline)
+      .toolbar {
+        ToolbarItemGroup(placement: .topBarTrailing) {
+          if viewModel.inProgress {
+            Button(action: {
+              viewModel.stopActiveTask()
+            }) {
+              Image(systemName: "stop.circle")
+                .font(.title3)
             }
           }
-        } label: {
-          Image(systemName: "cpu")
+
+          Menu {
+            Picker("Model Preference", selection: $viewModel.modelPreference) {
+              ForEach(ModelPreference.allCases) { pref in
+                Text(pref.rawValue).tag(pref)
+              }
+            }
+          } label: {
+            Image(systemName: "cpu")
+          }
         }
       }
-    }
-    .sheet(isPresented: $presentErrorDetails) {
-      if let error = viewModel.error {
-        ErrorDetailsView(error: error)
+      .sheet(isPresented: $presentErrorDetails, onDismiss: { viewModel.error = nil }) {
+        if let error = viewModel.error {
+          ErrorDetailsView(error: error)
+        }
       }
-    }
-    .onChange(of: viewModel.error != nil) { oldValue, newValue in
-      if newValue {
-        presentErrorDetails = true
+      .onChange(of: viewModel.error != nil) { oldValue, newValue in
+        if newValue {
+          presentErrorDetails = true
+        }
       }
     }
   }
-}
+#endif

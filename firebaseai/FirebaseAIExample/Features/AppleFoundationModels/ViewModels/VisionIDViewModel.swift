@@ -63,6 +63,7 @@
             }
             return
           } catch {
+            guard !Task.isCancelled else { return }
             if error.isMLAssetUnavailable {
               print(
                 "Local ML assets unavailable for Vision ID. Falling back to cloud model..."

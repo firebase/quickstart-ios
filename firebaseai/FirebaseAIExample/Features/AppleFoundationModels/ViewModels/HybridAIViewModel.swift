@@ -58,6 +58,7 @@
             }
             return
           } catch {
+            guard !Task.isCancelled else { return }
             // Fall back to cloud model if local model fails
             if error.isMLAssetUnavailable {
               print("Local ML assets unavailable. Falling back to cloud model...")

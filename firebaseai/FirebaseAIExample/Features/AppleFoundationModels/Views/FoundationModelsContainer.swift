@@ -59,7 +59,7 @@
           }
         }
       }
-      .sheet(isPresented: $presentErrorDetails) {
+      .sheet(isPresented: $presentErrorDetails, onDismiss: { viewModel.error = nil }) {
         if let error = viewModel.error {
           ErrorDetailsView(error: error)
         }

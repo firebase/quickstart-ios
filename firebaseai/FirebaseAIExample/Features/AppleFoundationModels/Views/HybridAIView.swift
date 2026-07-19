@@ -26,6 +26,7 @@
             .font(.headline)
           TextEditor(text: $viewModel.inputText)
             .frame(height: 120)
+            .scrollContentBackground(.hidden)
             .padding(4)
             .background(Color(.secondarySystemGroupedBackground))
             .cornerRadius(8)

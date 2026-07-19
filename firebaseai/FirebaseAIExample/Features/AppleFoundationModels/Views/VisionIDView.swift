@@ -51,13 +51,12 @@
             }
           }
         }
-        .onChange(of: photosPickerItem) { oldItem, newItem in
-          Task {
-            if let data = try? await newItem?.loadTransferable(type: Data.self),
-              let image = UIImage(data: data) {
-              viewModel.selectedImage = image
-              viewModel.identifySelectedImage()
-            }
+        .task(id: photosPickerItem) {
+          guard let photosPickerItem else { return }
+          if let data = try? await photosPickerItem.loadTransferable(type: Data.self),
+            let image = UIImage(data: data) {
+            viewModel.selectedImage = image
+            viewModel.identifySelectedImage()
           }
         }
 

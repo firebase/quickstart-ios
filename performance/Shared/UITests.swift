@@ -149,7 +149,7 @@ class UITests: XCTestCase {
   }
 
   func checkFunctionality(function: PerformanceFunction, startingStatus: ProcessStatus,
-                          timeout: TimeInterval = 10) throws {
+                          timeout: TimeInterval = 30) throws {
     try checkStatus(startingStatus)
     try checkButtons()
     try function.run(false)

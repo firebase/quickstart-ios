@@ -57,7 +57,7 @@ class NanoBananaViewModel: ObservableObject {
 
     let firebaseService = backendType == .googleAI
       ? FirebaseAI.firebaseAI(backend: .googleAI())
-      : FirebaseAI.firebaseAI(backend: .vertexAI(location: "global"))
+      : FirebaseAI.firebaseAI(backend: .agentPlatform(location: "global"))
 
     let modelName = "gemini-2.5-flash-image"
     let safetySettings = [

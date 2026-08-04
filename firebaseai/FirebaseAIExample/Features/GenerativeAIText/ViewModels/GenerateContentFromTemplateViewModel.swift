@@ -57,7 +57,7 @@ class GenerateContentFromTemplateViewModel: ObservableObject {
 
     let firebaseService = backendType == .googleAI
       ? FirebaseAI.firebaseAI(backend: .googleAI())
-      : FirebaseAI.firebaseAI(backend: .vertexAI(location: "global"))
+      : FirebaseAI.firebaseAI(backend: .agentPlatform(location: "global"))
 
     model = firebaseService.templateGenerativeModel()
 

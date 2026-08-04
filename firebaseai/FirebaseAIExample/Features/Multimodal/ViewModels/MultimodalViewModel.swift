@@ -52,7 +52,7 @@ class MultimodalViewModel: ObservableObject {
 
     let firebaseService = backendType == .googleAI
       ? FirebaseAI.firebaseAI(backend: .googleAI())
-      : FirebaseAI.firebaseAI(backend: .vertexAI(location: "global"))
+      : FirebaseAI.firebaseAI(backend: .agentPlatform(location: "global"))
 
     model = firebaseService.generativeModel(
       modelName: sample?.modelName ?? "gemini-3.1-flash-lite",
@@ -117,8 +117,8 @@ class MultimodalViewModel: ObservableObject {
       do {
         var parts: [any PartsRepresentable] = [text]
 
-        if backendType == .vertexAI, let fileDataParts = fileDataParts {
-          // This is a patch for Cloud Storage support. Only available when using Vertex AI Gemini API.
+        if backendType == .agentPlatform, let fileDataParts = fileDataParts {
+          // This is a patch for Cloud Storage support. Only available when using Agent Platform Gemini API.
           // For non-text inputs (e.g., media files), you can attach files from Cloud Storage to the request.
           // if you do not want to use Cloud Storage, you can remove this `if` statement.
           // Reference: https://firebase.google.com/docs/ai-logic/solutions/cloud-storage
@@ -172,8 +172,8 @@ class MultimodalViewModel: ObservableObject {
       do {
         var parts: [any PartsRepresentable] = [text]
 
-        if backendType == .vertexAI, let fileDataParts = fileDataParts {
-          // This is a patch for Cloud Storage support. Only available when using Vertex AI Gemini API.
+        if backendType == .agentPlatform, let fileDataParts = fileDataParts {
+          // This is a patch for Cloud Storage support. Only available when using Agent Platform Gemini API.
           // For non-text inputs (e.g., media files), you can attach files from Cloud Storage to the request.
           // if you do not want to use Cloud Storage, you can remove this `if` statement.
           // Reference: https://firebase.google.com/docs/ai-logic/solutions/cloud-storage

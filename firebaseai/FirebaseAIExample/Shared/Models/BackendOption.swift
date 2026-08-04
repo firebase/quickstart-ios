@@ -16,7 +16,7 @@ import Foundation
 
 enum BackendOption: String, CaseIterable, Identifiable {
   case googleAI = "Google AI"
-  case vertexAI = "Firebase Vertex AI"
+  case agentPlatform = "Agent Platform Gemini API"
 
   var id: String { rawValue }
 }

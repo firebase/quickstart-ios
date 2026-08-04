@@ -69,7 +69,7 @@ class LiveViewModel: ObservableObject {
   init(backendType: BackendOption, sample: Sample? = nil) {
     let firebaseService = backendType == .googleAI
       ? FirebaseAI.firebaseAI(backend: .googleAI())
-      : FirebaseAI.firebaseAI(backend: .vertexAI(location: "us-central1"))
+      : FirebaseAI.firebaseAI(backend: .agentPlatform(location: "us-central1"))
 
     model = firebaseService.liveModel(
       modelName: (backendType == .googleAI) ? "gemini-3.1-flash-live-preview" :

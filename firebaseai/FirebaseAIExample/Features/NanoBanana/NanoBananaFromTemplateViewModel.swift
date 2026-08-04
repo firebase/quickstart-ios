@@ -70,7 +70,7 @@ class NanoBananaFromTemplateViewModel: ObservableObject {
 
     let firebaseService = backendType == .googleAI
       ? FirebaseAI.firebaseAI(backend: .googleAI())
-      : FirebaseAI.firebaseAI(backend: .agentPlatform(location: "global"))
+      : FirebaseAI.firebaseAI(backend: .agentPlatform())
 
     model = firebaseService.templateGenerativeModel()
   }

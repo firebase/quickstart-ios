@@ -117,7 +117,8 @@ class MultimodalViewModel: ObservableObject {
       do {
         var parts: [any PartsRepresentable] = [text]
 
-        if backendType == .agentPlatform, let fileDataParts = fileDataParts, !fileDataParts.isEmpty {
+        if backendType == .agentPlatform, let fileDataParts = fileDataParts,
+          !fileDataParts.isEmpty {
           // This is a patch for Cloud Storage support. Only available when using Agent Platform Gemini API.
           // For non-text inputs (e.g., media files), you can attach files from Cloud Storage to the request.
           // if you do not want to use Cloud Storage, you can remove this `if` statement.
@@ -172,7 +173,8 @@ class MultimodalViewModel: ObservableObject {
       do {
         var parts: [any PartsRepresentable] = [text]
 
-        if backendType == .agentPlatform, let fileDataParts = fileDataParts, !fileDataParts.isEmpty {
+        if backendType == .agentPlatform, let fileDataParts = fileDataParts,
+          !fileDataParts.isEmpty {
           // This is a patch for Cloud Storage support. Only available when using Agent Platform Gemini API.
           // For non-text inputs (e.g., media files), you can attach files from Cloud Storage to the request.
           // if you do not want to use Cloud Storage, you can remove this `if` statement.

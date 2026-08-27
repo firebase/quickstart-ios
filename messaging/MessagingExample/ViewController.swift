@@ -33,7 +33,8 @@ class ViewController: UIViewController {
 
   @IBAction func handleLogTokenTouch(_ sender: UIButton) {
     if Messaging.messaging().isInstallationIdEnabled {
-      Messaging.messaging().register { error in
+      Messaging.messaging().register { [weak self] error in
+        guard let self = self else { return }
         if let error = error {
           print("Error registering FCM: \(error)")
           self.remoteFCMTokenMessage.text = "Error registering: \(error.localizedDescription)"

@@ -32,22 +32,34 @@ class ViewController: UIViewController {
   }
 
   @IBAction func handleLogTokenTouch(_ sender: UIButton) {
-    // [START log_fcm_reg_token]
-    let token = Messaging.messaging().fcmToken
-    print("FCM token: \(token ?? "")")
-    // [END log_fcm_reg_token]
-    fcmTokenMessage.text = "Logged FCM token: \(token ?? "")"
-
-    // [START log_iid_reg_token]
-    Messaging.messaging().token { token, error in
-      if let error = error {
-        print("Error fetching remote FCM registration token: \(error)")
-      } else if let token = token {
-        print("Remote instance ID token: \(token)")
-        self.remoteFCMTokenMessage.text = "Remote FCM registration token: \(token)"
+    if Messaging.messaging().isInstallationIdEnabled {
+      Messaging.messaging().register { error in
+        if let error = error {
+          print("Error registering FCM: \(error)")
+          self.remoteFCMTokenMessage.text = "Error registering: \(error.localizedDescription)"
+        } else {
+          print("Successfully registered with FCM")
+          self.remoteFCMTokenMessage.text = "Successfully registered with FCM."
+        }
       }
+    } else {
+      // [START log_fcm_reg_token]
+      let token = Messaging.messaging().fcmToken
+      print("FCM token: \(token ?? "")")
+      // [END log_fcm_reg_token]
+      fcmTokenMessage.text = "Logged FCM token: \(token ?? "")"
+
+      // [START log_iid_reg_token]
+      Messaging.messaging().token { token, error in
+        if let error = error {
+          print("Error fetching remote FCM registration token: \(error)")
+        } else if let token = token {
+          print("Remote instance ID token: \(token)")
+          self.remoteFCMTokenMessage.text = "Remote FCM registration token: \(token)"
+        }
+      }
+      // [END log_iid_reg_token]
     }
-    // [END log_iid_reg_token]
   }
 
   @IBAction func handleSubscribeTouch(_ sender: UIButton) {
@@ -61,7 +73,7 @@ class ViewController: UIViewController {
   @objc func displayFCMToken(notification: NSNotification) {
     guard let userInfo = notification.userInfo else { return }
     if let fcmToken = userInfo["token"] as? String {
-      fcmTokenMessage.text = "Received FCM token: \(fcmToken)"
+      fcmTokenMessage.text = "Received FCM registration: \(fcmToken)"
     }
   }
 }

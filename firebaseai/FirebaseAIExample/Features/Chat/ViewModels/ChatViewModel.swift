@@ -57,7 +57,7 @@ class ChatViewModel: ObservableObject {
       : FirebaseAI.firebaseAI(backend: .agentPlatform())
 
     model = firebaseService.generativeModel(
-      modelName: sample?.modelName ?? "gemini-3.1-flash-lite",
+      modelName: sample?.modelName ?? "gemini-3.5-flash-lite",
       generationConfig: sample?.generationConfig,
       systemInstruction: sample?.systemInstruction
     )

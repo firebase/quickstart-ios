@@ -39,7 +39,7 @@ public struct Sample: Identifiable {
               description: String,
               useCases: [UseCase],
               navRoute: String,
-              modelName: String = "gemini-3.1-flash-lite",
+              modelName: String = "gemini-3.5-flash-lite",
               chatHistory: [ModelContent]? = nil,
               initialPrompt: String? = nil,
               systemInstruction: ModelContent? = nil,
@@ -146,10 +146,10 @@ extension Sample {
     ),
     Sample(
       title: "Gemini Flash - image generation",
-      description: "Generate and/or edit images using Gemini 2.0 Flash",
+      description: "Generate and/or edit images using Gemini 3.1 Flash",
       useCases: [.image],
       navRoute: "ChatScreen",
-      modelName: "gemini-2.0-flash-preview-image-generation",
+      modelName: "gemini-3.1-flash-image",
       initialPrompt: "Hi, can you create a 3d rendered image of a pig " +
         "with wings and a top hat flying over a happy " +
         "futuristic scifi city with lots of greenery?",

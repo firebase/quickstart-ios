@@ -213,7 +213,7 @@ class FunctionCallingViewModel: ObservableObject {
 
     if !functionResponses.isEmpty {
       let finalResponse = try chat
-        .sendMessageStream([ModelContent(role: "function", parts: functionResponses)])
+        .sendMessageStream([ModelContent(role: "user", parts: functionResponses)])
 
       for try await chunk in finalResponse {
         guard let candidate = chunk.candidates.first else {
@@ -266,7 +266,7 @@ class FunctionCallingViewModel: ObservableObject {
 
     if !functionResponses.isEmpty {
       let finalResponse = try await chat
-        .sendMessage([ModelContent(role: "function", parts: functionResponses)])
+        .sendMessage([ModelContent(role: "user", parts: functionResponses)])
 
       guard let candidate = finalResponse.candidates.first else {
         throw NSError(

@@ -648,7 +648,7 @@
 			repositoryURL = "https://github.com/firebase/FirebaseUI-iOS";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 15.0.0;
+				minimumVersion = 16.0.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

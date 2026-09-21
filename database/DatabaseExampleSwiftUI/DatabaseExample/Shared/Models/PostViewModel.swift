@@ -98,6 +98,11 @@ class PostViewModel: ObservableObject, Identifiable {
 
   func fetchComments() {
     let commentRef = ref.child("post-comments").child(id)
+    // onAppear fires again every time the view comes back, bail out of the
+    // previous listener first so we don't stack them up.
+    if let commentsHandle = commentsHandle {
+      commentRef.removeObserver(withHandle: commentsHandle)
+    }
     commentsHandle = commentRef.observe(DataEventType.value, with: { snapshot in
       guard let comments = snapshot.value as? [String: [String: Any]] else { return }
       let sortedComments = comments.sorted(by: { $0.key > $1.key })
@@ -141,6 +146,9 @@ class PostViewModel: ObservableObject, Identifiable {
 
   private func updateStars() {
     let postListRef = ref.child("posts").child(id)
+    if let postHandle = postHandle {
+      postListRef.removeObserver(withHandle: postHandle)
+    }
     postHandle = postListRef.observe(DataEventType.value, with: { snapshot in
       guard let post = snapshot.value as? [String: AnyObject] else { return }
       self.starCount = post["starCount"] as? Int ?? 0

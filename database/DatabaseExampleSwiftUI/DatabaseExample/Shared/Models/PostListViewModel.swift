@@ -26,6 +26,8 @@ class PostListViewModel: ObservableObject {
   // setup instance of FIRDatabaseReference for reading and writing data
   private var ref = Database.root
   private var refHandle: DatabaseHandle?
+  // The handle has to be handed back to the same reference it came from.
+  private var observedRef: DatabaseReference?
 
   // function called when error occurs
   private func showAlertMessage(message: String) {
@@ -76,7 +78,10 @@ class PostListViewModel: ObservableObject {
   }
 
   private func fetchPosts(from ref: DatabaseReference, for postsType: PostsType) {
+    // getPosts() runs on every onAppear, so don't stack up listeners
+    removeObserver()
     // read data by listening for value events
+    observedRef = ref
     refHandle = ref.observe(DataEventType.value, with: { snapshot in
       // retrieved data is of type dictionary of dictionary
       guard let value = snapshot.value as? [String: [String: Any]] else { return }
@@ -96,6 +101,14 @@ class PostListViewModel: ObservableObject {
   }
 
   func onViewDisappear() {
-    ref.removeAllObservers()
+    removeObserver()
+  }
+
+  private func removeObserver() {
+    if let refHandle = refHandle, let observedRef = observedRef {
+      observedRef.removeObserver(withHandle: refHandle)
+    }
+    refHandle = nil
+    observedRef = nil
   }
 }

@@ -27,12 +27,12 @@ jobs:
       matrix:
         include:
           - os: macos-26
-            xcode: "26.2"
+            xcode: "26.6"
             platform: iOS
             device: iPhone 17 Pro
-            ios_version: "26.2"
+            ios_version: "26.5"
           - os: macos-15
-            xcode: "16.4"
+            xcode: "26.2"
             platform: iOS
             device: iPhone 16
             ios_version: "18.5"

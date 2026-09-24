@@ -138,9 +138,7 @@ class AccountLinkingViewController: UIViewController, DataSourceProviderDelegate
   // MARK: - Sign in with Google Account Linking 🔥
 
   #if canImport(GoogleSignIn)
-    /// This method will initate the Google Sign In flow.
-    /// See this class's conformance to `GIDSignInDelegate` below for
-    /// context on how the linking is made.
+    /// This method will initiate the Google Sign In flow.
     private func performGoogleAccountLink() {
       guard let clientID = FirebaseApp.app()?.options.clientID else { return }
 

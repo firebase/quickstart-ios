@@ -17,7 +17,9 @@ import FirebaseCore
 import FirebaseAuth
 
 // For Account Linking with Sign in with Google.
-import GoogleSignIn
+#if canImport(GoogleSignIn)
+  import GoogleSignIn
+#endif
 
 // For Account Linking with Sign in with Facebook.
 import FBSDKLoginKit
@@ -81,8 +83,10 @@ class AccountLinkingViewController: UIViewController, DataSourceProviderDelegate
     }
 
     switch provider {
-    case .google:
-      performGoogleAccountLink()
+    #if canImport(GoogleSignIn)
+      case .google:
+        performGoogleAccountLink()
+    #endif
 
     case .apple:
       performAppleAccountLink()
@@ -133,43 +137,45 @@ class AccountLinkingViewController: UIViewController, DataSourceProviderDelegate
 
   // MARK: - Sign in with Google Account Linking 🔥
 
-  /// This method will initate the Google Sign In flow.
-  /// See this class's conformance to `GIDSignInDelegate` below for
-  /// context on how the linking is made.
-  private func performGoogleAccountLink() {
-    guard let clientID = FirebaseApp.app()?.options.clientID else { return }
+  #if canImport(GoogleSignIn)
+    /// This method will initate the Google Sign In flow.
+    /// See this class's conformance to `GIDSignInDelegate` below for
+    /// context on how the linking is made.
+    private func performGoogleAccountLink() {
+      guard let clientID = FirebaseApp.app()?.options.clientID else { return }
 
-    // Create Google Sign In configuration object.
-    // TODO: Move configuration to Info.plist
-    let config = GIDConfiguration(clientID: clientID)
-    GIDSignIn.sharedInstance.configuration = config
+      // Create Google Sign In configuration object.
+      // TODO: Move configuration to Info.plist
+      let config = GIDConfiguration(clientID: clientID)
+      GIDSignIn.sharedInstance.configuration = config
 
-    // Start the sign in flow!
-    GIDSignIn.sharedInstance.signIn(withPresenting: self) { [unowned self] result, error in
+      // Start the sign in flow!
+      GIDSignIn.sharedInstance.signIn(withPresenting: self) { [unowned self] result, error in
 
-      guard error == nil else { return displayError(error) }
+        guard error == nil else { return displayError(error) }
 
-      guard
-        let user = result?.user,
-        let idToken = user.idToken?.tokenString
-      else {
-        let error = NSError(
-          domain: "GIDSignInError",
-          code: -1,
-          userInfo: [
-            NSLocalizedDescriptionKey: "Unexpected sign in result: required authentication data is missing.",
-          ]
-        )
-        return displayError(error)
+        guard
+          let user = result?.user,
+          let idToken = user.idToken?.tokenString
+        else {
+          let error = NSError(
+            domain: "GIDSignInError",
+            code: -1,
+            userInfo: [
+              NSLocalizedDescriptionKey: "Unexpected sign in result: required authentication data is missing.",
+            ]
+          )
+          return displayError(error)
+        }
+
+        let credential = GoogleAuthProvider.credential(withIDToken: idToken,
+                                                       accessToken: user.accessToken.tokenString)
+
+        // Rather than use the credential to sign in the user, we will use it to link to the currently signed in user's account.
+        linkAccount(authCredential: credential)
       }
-
-      let credential = GoogleAuthProvider.credential(withIDToken: idToken,
-                                                     accessToken: user.accessToken.tokenString)
-
-      // Rather than use the credential to sign in the user, we will use it to link to the currently signed in user's account.
-      linkAccount(authCredential: credential)
     }
-  }
+  #endif
 
   // MARK: - Sign in with Apple Account Linking 🔥
 

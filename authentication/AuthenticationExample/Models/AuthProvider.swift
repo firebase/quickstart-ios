@@ -99,7 +99,12 @@ enum AuthProvider: String {
 
 @MainActor extension AuthProvider: DataSourceProvidable {
   private static var providers: [AuthProvider] {
-    [.google, .apple, .twitter, .microsoft, .gitHub, .yahoo, .facebook]
+    #if canImport(GoogleSignIn)
+      [.google, .apple, .twitter, .microsoft, .gitHub, .yahoo, .facebook]
+    #else
+      // GoogleSignIn is not linked, so don't offer Sign in with Google.
+      [.apple, .twitter, .microsoft, .gitHub, .yahoo, .facebook]
+    #endif
   }
 
   static var providerSection: Section {

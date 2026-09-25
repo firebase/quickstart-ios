@@ -15,7 +15,9 @@
 import UIKit
 import FirebaseCore
 import FBSDKCoreKit
-import GoogleSignIn
+#if canImport(GoogleSignIn)
+  import GoogleSignIn
+#endif
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -41,9 +43,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                    open url: URL,
                    options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
     // [END application_open]
-    if GIDSignIn.sharedInstance.handle(url) {
-      return true
-    }
+    #if canImport(GoogleSignIn)
+      if GIDSignIn.sharedInstance.handle(url) {
+        return true
+      }
+    #endif
     return ApplicationDelegate.shared.application(
       app,
       open: url,

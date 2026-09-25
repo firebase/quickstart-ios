@@ -29,7 +29,7 @@ public struct Sample: Identifiable {
   public let chatHistory: [ModelContent]?
   public let initialPrompt: String?
   public let systemInstruction: ModelContent?
-  public let tools: [Tool]?
+  public let tools: [GenerativeModel.Tool]?
   public let generationConfig: GenerationConfig?
   public let liveGenerationConfig: LiveGenerationConfig?
   public let fileDataParts: [FileDataPart]?
@@ -43,7 +43,7 @@ public struct Sample: Identifiable {
               chatHistory: [ModelContent]? = nil,
               initialPrompt: String? = nil,
               systemInstruction: ModelContent? = nil,
-              tools: [Tool]? = nil,
+              tools: [GenerativeModel.Tool]? = nil,
               generationConfig: GenerationConfig? = nil,
               liveGenerationConfig: LiveGenerationConfig? = nil,
               fileDataParts: [FileDataPart]? = nil,

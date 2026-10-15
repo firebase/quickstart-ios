@@ -24,13 +24,7 @@ xcode_version=$(xcodebuild -version | grep Xcode)
 xcode_version="${xcode_version/Xcode /}"
 xcode_major="${xcode_version/.*/}"
 
-if [[ "$xcode_major" -ge 26 ]]; then
-  iphone_version="17 Pro"
-  ios_version="26.1"
-elif [[ "$xcode_major" -ge 16 ]]; then
-  iphone_version="16 Pro"
-  ios_version="18.6"
-else
+if [[ "$xcode_major" -lt 26 ]]; then
   echo "Unsupported Xcode version $xcode_version; exiting." 1>&2
   exit 1
 fi
@@ -42,8 +36,10 @@ if [[ -z "${SPM:-}" ]]; then
 fi
 if [[ -z "${OS:-}" ]]; then
     OS=iOS
-    DEVICE="iPhone ${iphone_version}"
     echo "Defaulting to OS=$OS"
+fi
+if [[ -z "${DEVICE:-}" && "$OS" == "iOS" ]]; then
+    DEVICE="iPhone 17 Pro"
     echo "Defaulting to DEVICE=$DEVICE"
 fi
 if [[ -z "${TEST:-}" ]]; then
@@ -153,8 +149,6 @@ function xcb() {
 }
 
 # Run xcodebuild
-if [[ "${GITHUB_ACTIONS:-}" == "true" ]]; then
-  sudo xcode-select -s "/Applications/Xcode_${xcode_version}.app/Contents/Developer"
-fi
+xcode-select -p
 xcb "${flags[@]}"
 echo "$message"

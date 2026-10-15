@@ -36,8 +36,10 @@ if [[ -z "${SPM:-}" ]]; then
 fi
 if [[ -z "${OS:-}" ]]; then
     OS=iOS
-    DEVICE="iPhone 17 Pro"
     echo "Defaulting to OS=$OS"
+fi
+if [[ -z "${DEVICE:-}" && "$OS" == "iOS" ]]; then
+    DEVICE="iPhone 17 Pro"
     echo "Defaulting to DEVICE=$DEVICE"
 fi
 if [[ -z "${TEST:-}" ]]; then

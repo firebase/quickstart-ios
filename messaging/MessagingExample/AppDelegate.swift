@@ -164,4 +164,21 @@ extension AppDelegate: MessagingDelegate {
   }
 
   // [END refresh_token]
+
+  func messaging(_ messaging: Messaging, didReceiveRegistration installationId: String?) {
+    print("FCM registration: \(String(describing: installationId))")
+
+    let dataDict: [String: String] = ["token": installationId ?? ""]
+    NotificationCenter.default.post(
+      name: Notification.Name("FCMToken"),
+      object: nil,
+      userInfo: dataDict
+    )
+    // TODO: If necessary send installation ID to application server.
+    // Note: This callback is fired at each app startup and whenever a new registration is generated.
+  }
+
+  func messaging(_ messaging: Messaging, didUnregister installationId: String) {
+    print("Did unregister FCM registration: \(installationId)")
+  }
 }

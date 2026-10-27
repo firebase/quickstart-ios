@@ -31,19 +31,19 @@ env:
 
 jobs:
   spm:
-    runs-on: macOS-15
+    runs-on: macos-26
     env:
       SPM: true
       OS: iOS
       DIR: firestore
-      DEVICE: iPhone 16
+      DEVICE: iPhone 17 Pro
       TEST: false
       SCHEME: FirestoreExample
     steps:
       - name: Checkout
         uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
       - name: Xcode
-        run: sudo xcode-select -s /Applications/Xcode_26.2.app/Contents/Developer
+        run: sudo xcode-select -s /Applications/Xcode_26.4.app/Contents/Developer
       - name: Setup
         run: |
           cd firestore

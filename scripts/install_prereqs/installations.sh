@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # Copyright 2019 Google
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,5 +15,4 @@
 # limitations under the License.
 
 cp ../mock-GoogleService-Info.plist ./GoogleService-Info.plist
-ruby ../scripts/info_script.rb Installations
 sed -i '' '/<key>BUNDLE_ID</{n;s/id/com.google.firebase.quickstart.Installations/;}' GoogleService-Info.plist

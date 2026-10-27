@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1D96FE8F5661BCC40ADE48D3 /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = AF38C66CDB0155B6F2BDE0FD /* GoogleService-Info.plist */; };
 		8DC73D842D41ABC00092B6EE /* FirebaseInstallations in Frameworks */ = {isa = PBXBuildFile; productRef = 8DC73D832D41ABC00092B6EE /* FirebaseInstallations */; };
 		9A0A6EE922CE55B2004CF0FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0A6EE822CE55B2004CF0FF /* AppDelegate.swift */; };
 		9A0A6EEB22CE55B2004CF0FF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0A6EEA22CE55B2004CF0FF /* ViewController.swift */; };
@@ -15,7 +14,7 @@
 		9A5908BF23AD479B000CD3B9 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A5908BA23AD479B000CD3B9 /* LaunchScreen.xib */; };
 		9A5908C323AD479B000CD3B9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A5908BC23AD479B000CD3B9 /* Images.xcassets */; };
 		9A76AE3122E20A0C0024E473 /* InstallationsExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A76AE3022E20A0C0024E473 /* InstallationsExampleTests.m */; };
-		B2B6F60F66458C91106FE457 /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = AF38C66CDB0155B6F2BDE0FD /* GoogleService-Info.plist */; };
+		B2B6F60F66458C91106FE457 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AF38C66CDB0155B6F2BDE0FD /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -208,6 +207,8 @@
 				9A5908C323AD479B000CD3B9 /* Images.xcassets in Resources */,
 				9A5908BF23AD479B000CD3B9 /* LaunchScreen.xib in Resources */,
 				9A0A6EEE22CE55B2004CF0FF /* Main.storyboard in Resources */,
+			
+				B2B6F60F66458C91106FE457 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -227,7 +228,6 @@
 			files = (
 				9A0A6EEB22CE55B2004CF0FF /* ViewController.swift in Sources */,
 				9A0A6EE922CE55B2004CF0FF /* AppDelegate.swift in Sources */,
-				B2B6F60F66458C91106FE457 /* GoogleService-Info.plist in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -236,7 +236,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A76AE3122E20A0C0024E473 /* InstallationsExampleTests.m in Sources */,
-				1D96FE8F5661BCC40ADE48D3 /* GoogleService-Info.plist in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -490,7 +489,7 @@
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 11.7.0;
+				minimumVersion = 13.1.1;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

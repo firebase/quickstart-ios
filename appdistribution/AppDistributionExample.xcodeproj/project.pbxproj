@@ -7,9 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1E5FA399E68EEC6A1CC9D4F9 /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = 7B7A16FC609E3AE1BA2F8E93 /* GoogleService-Info.plist */; };
-		4C5B56DE60EC55CE980B3E35 /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = 7B7A16FC609E3AE1BA2F8E93 /* GoogleService-Info.plist */; };
-		64A8AA8B04202E42604E1B50 /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = 7B7A16FC609E3AE1BA2F8E93 /* GoogleService-Info.plist */; };
+		1E5FA399E68EEC6A1CC9D4F9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7B7A16FC609E3AE1BA2F8E93 /* GoogleService-Info.plist */; };
 		8D7951E32D3B02BA000FD694 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 8D7951E22D3B02BA000FD694 /* FirebaseAnalytics */; };
 		8D7951E52D3B02BA000FD694 /* FirebaseAppDistribution-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 8D7951E42D3B02BA000FD694 /* FirebaseAppDistribution-Beta */; };
 		EA5C0BC624C5D2060010FDF6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA5C0BC524C5D2060010FDF6 /* AppDelegate.swift */; };
@@ -250,6 +248,8 @@
 			files = (
 				EA5C0BD224C5D2070010FDF6 /* LaunchScreen.storyboard in Resources */,
 				EA5C0BCF24C5D2070010FDF6 /* Assets.xcassets in Resources */,
+			
+				1E5FA399E68EEC6A1CC9D4F9 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,7 +277,6 @@
 				EA5C0BCA24C5D2060010FDF6 /* AppDistributionViewController.swift in Sources */,
 				EA5C0BC624C5D2060010FDF6 /* AppDelegate.swift in Sources */,
 				EA5C0BC824C5D2060010FDF6 /* SceneDelegate.swift in Sources */,
-				1E5FA399E68EEC6A1CC9D4F9 /* GoogleService-Info.plist in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -286,7 +285,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA5C0BDD24C5D2070010FDF6 /* AppDistributionExampleTests.swift in Sources */,
-				64A8AA8B04202E42604E1B50 /* GoogleService-Info.plist in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -295,7 +293,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA5C0BE824C5D2070010FDF6 /* AppDistributionExampleUITests.swift in Sources */,
-				4C5B56DE60EC55CE980B3E35 /* GoogleService-Info.plist in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -492,7 +489,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = AppDistributionExampleTests/Info.plist;
+				INFOPLIST_FILE = AppDistributionTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -513,7 +510,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = AppDistributionExampleTests/Info.plist;
+				INFOPLIST_FILE = AppDistributionTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -533,7 +530,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = AppDistributionExampleUITests/Info.plist;
+				INFOPLIST_FILE = AppDistributionUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -552,7 +549,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = AppDistributionExampleUITests/Info.plist;
+				INFOPLIST_FILE = AppDistributionUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -613,7 +610,7 @@
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 11.7.0;
+				minimumVersion = 13.1.1;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

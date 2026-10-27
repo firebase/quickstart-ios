@@ -14,6 +14,7 @@
 
 import XCTest
 
+@MainActor
 class AuthenticationExampleUITests: XCTestCase {
   var app: XCUIApplication!
 
@@ -249,6 +250,7 @@ class AuthenticationExampleUITests: XCTestCase {
 }
 
 extension XCTestCase {
+  @MainActor
   func wait(forElement element: XCUIElement, timeout: TimeInterval) {
     let predicate = NSPredicate(format: "exists == 1")
     expectation(for: predicate, evaluatedWith: element)

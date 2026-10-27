@@ -14,11 +14,9 @@
 //  limitations under the License.
 //
 
-import UIKit
-import FirebaseFirestore
 import FirebaseAuth
-import FirebaseAuthUI
-import FirebaseEmailAuthUI
+import FirebaseFirestore
+import UIKit
 
 func priceString(from price: Int) -> String {
   let priceText: String
@@ -86,7 +84,9 @@ class RestaurantsTableViewController: UIViewController, UITableViewDataSource, U
           return model
         } else {
           // Don't use fatalError here in a real app.
-          fatalError("Missing document of type \(Restaurant.self) at \(document.reference.path)")
+          fatalError(
+            "Missing document of type \(Restaurant.self) at \(document.reference.path)"
+          )
         }
       }
       self.restaurants = models
@@ -140,12 +140,9 @@ class RestaurantsTableViewController: UIViewController, UITableViewDataSource, U
 
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
-    let auth = FUIAuth.defaultAuthUI()!
     let underlyingAuth = Auth.auth()
     if underlyingAuth.currentUser == nil {
-      let emailAuthProvider = FUIEmailAuth()
-      auth.providers = [emailAuthProvider]
-      present(auth.authViewController(), animated: true, completion: nil)
+      underlyingAuth.signInAnonymously()
     }
   }
 
@@ -154,8 +151,18 @@ class RestaurantsTableViewController: UIViewController, UITableViewDataSource, U
     stopObserving()
   }
 
-  @IBAction func didTapPopulateButton(_ sender: Any) {
-    let words = ["Bar", "Fire", "Grill", "Drive Thru", "Place", "Best", "Spot", "Prime", "Eatin'"]
+  @IBAction func didTapPopulateButton(_: Any) {
+    let words = [
+      "Bar",
+      "Fire",
+      "Grill",
+      "Drive Thru",
+      "Place",
+      "Best",
+      "Spot",
+      "Prime",
+      "Eatin'",
+    ]
 
     let cities = Restaurant.cities
     let categories = Restaurant.categories
@@ -217,7 +224,7 @@ class RestaurantsTableViewController: UIViewController, UITableViewDataSource, U
     }
   }
 
-  @IBAction func didTapClearButton(_ sender: Any) {
+  @IBAction func didTapClearButton(_: Any) {
     filters.filtersController.clearFilters()
     controller(
       filters.filtersController,
@@ -228,7 +235,7 @@ class RestaurantsTableViewController: UIViewController, UITableViewDataSource, U
     )
   }
 
-  @IBAction func didTapFilterButton(_ sender: Any) {
+  @IBAction func didTapFilterButton(_: Any) {
     present(filters.navigationController, animated: true, completion: nil)
   }
 
@@ -253,7 +260,7 @@ class RestaurantsTableViewController: UIViewController, UITableViewDataSource, U
     return cell
   }
 
-  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+  func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
     return restaurants.count
   }
 
@@ -270,7 +277,8 @@ class RestaurantsTableViewController: UIViewController, UITableViewDataSource, U
 }
 
 extension RestaurantsTableViewController: FiltersViewControllerDelegate {
-  func query(withCategory category: String?, city: String?, price: Int?, sortBy: String?) -> Query {
+  func query(withCategory category: String?, city: String?, price: Int?,
+             sortBy: String?) -> Query {
     var filtered = baseQuery()
 
     if category == nil, city == nil, price == nil, sortBy == nil {
@@ -302,7 +310,7 @@ extension RestaurantsTableViewController: FiltersViewControllerDelegate {
     return filtered
   }
 
-  func controller(_ controller: FiltersViewController,
+  func controller(_: FiltersViewController,
                   didSelectCategory category: String?,
                   city: String?,
                   price: Int?,

@@ -48,6 +48,8 @@ if [[ -z "${TEST:-}" ]]; then
 fi
 
 # Set have_secrets to true or false.
+have_secrets=false
+# shellcheck disable=SC1091
 source scripts/check_secrets.sh
 
 # Initialize flags
@@ -126,6 +128,14 @@ if [[ "$OS" == catalyst ]];then
     )
 fi
 
+
+if [[ "$xcode_major" -ge 27 ]]; then
+    flags+=(
+        MACOSX_DEPLOYMENT_TARGET=12.0
+        WATCHOS_DEPLOYMENT_TARGET=9.0
+    )
+fi
+
 flags+=(
     CODE_SIGNING_REQUIRED=NO
     CODE_SIGNING_ALLOWED=NO
@@ -145,7 +155,12 @@ fi
 
 function xcb() {
     echo xcodebuild "$@"
-    xcodebuild "$@" | xcpretty
+    xcrun simctl list devices > /dev/null 2>&1 || true
+    if ! xcodebuild "$@" | xcpretty; then
+        echo "xcodebuild failed; retrying once..."
+        xcrun simctl list devices > /dev/null 2>&1 || true
+        xcodebuild "$@" | xcpretty
+    fi
 }
 
 # Run xcodebuild

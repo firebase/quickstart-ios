@@ -48,6 +48,8 @@ if [[ -z "${TEST:-}" ]]; then
 fi
 
 # Set have_secrets to true or false.
+have_secrets=false
+# shellcheck disable=SC1091
 source scripts/check_secrets.sh
 
 # Initialize flags
@@ -153,7 +155,12 @@ fi
 
 function xcb() {
     echo xcodebuild "$@"
-    xcodebuild "$@" | xcpretty
+    xcrun simctl list devices > /dev/null 2>&1 || true
+    if ! xcodebuild "$@" | xcpretty; then
+        echo "xcodebuild failed; retrying once..."
+        xcrun simctl list devices > /dev/null 2>&1 || true
+        xcodebuild "$@" | xcpretty
+    fi
 }
 
 # Run xcodebuild

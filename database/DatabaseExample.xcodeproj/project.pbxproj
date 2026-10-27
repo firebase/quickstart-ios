@@ -22,7 +22,7 @@
 		10B872C21CDC0AC200C7D214 /* PostDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B872C11CDC0AC200C7D214 /* PostDataSource.swift */; };
 		10B872C41CDC11F200C7D214 /* RecentPostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B872C31CDC11F200C7D214 /* RecentPostsViewController.swift */; };
 		10B872C61CDC14C800C7D214 /* MyTopPostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B872C51CDC14C800C7D214 /* MyTopPostsViewController.swift */; };
-		4022DB8C90CB216288A52649 /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = F644C72A588FB44DD666857B /* GoogleService-Info.plist */; };
+		4022DB8C90CB216288A52649 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F644C72A588FB44DD666857B /* GoogleService-Info.plist */; };
 		5F5A537E1ADE67D500F81DF0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5A537D1ADE67D500F81DF0 /* AppDelegate.swift */; };
 		5F5A53801ADE67D500F81DF0 /* NewPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5A537F1ADE67D500F81DF0 /* NewPostViewController.swift */; };
 		5F5A539C1ADE69AA00F81DF0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F5A53591ADE670C00F81DF0 /* Main.storyboard */; };
@@ -31,7 +31,6 @@
 		8D00BB822D3B0C1F00F6F6DD /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 8D00BB812D3B0C1F00F6F6DD /* FirebaseAuth */; };
 		8D00BB842D3B0C1F00F6F6DD /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 8D00BB832D3B0C1F00F6F6DD /* FirebaseDatabase */; };
 		8D00BB862D3B0C1F00F6F6DD /* FirebaseDatabaseUI in Frameworks */ = {isa = PBXBuildFile; productRef = 8D00BB852D3B0C1F00F6F6DD /* FirebaseDatabaseUI */; };
-		A18EF550576A3F1E297EFB56 /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = F644C72A588FB44DD666857B /* GoogleService-Info.plist */; };
 		DEC82E5523AD38E4000EA7B1 /* FIREGSignInHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DEC82E5223AD38E4000EA7B1 /* FIREGSignInHelper.m */; };
 		DEC82E5623AD38E4000EA7B1 /* FIREGHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DEC82E5323AD38E4000EA7B1 /* FIREGHelper.m */; };
 		EF94DD7B1CE533AC009A635D /* PostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EFDCBD531CE4FCC800F68D48 /* PostTableViewCell.xib */; };
@@ -316,6 +315,8 @@
 				5F5A539C1ADE69AA00F81DF0 /* Main.storyboard in Resources */,
 				5F99610B1AE0CF4F0034F503 /* Images.xcassets in Resources */,
 				EF94DD7B1CE533AC009A635D /* PostTableViewCell.xib in Resources */,
+			
+				4022DB8C90CB216288A52649 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -329,7 +330,6 @@
 				1073483720333B8C004A66D1 /* DatabaseExampleUITests.m in Sources */,
 				DEC82E5523AD38E4000EA7B1 /* FIREGSignInHelper.m in Sources */,
 				DEC82E5623AD38E4000EA7B1 /* FIREGHelper.m in Sources */,
-				A18EF550576A3F1E297EFB56 /* GoogleService-Info.plist in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -352,7 +352,6 @@
 				10B872AE1CDBFB1F00C7D214 /* MyPostsViewController.swift in Sources */,
 				1073FE101CE2D27700E2F73F /* TabBarController.swift in Sources */,
 				10B872B91CDC056B00C7D214 /* User.swift in Sources */,
-				4022DB8C90CB216288A52649 /* GoogleService-Info.plist in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -640,7 +639,7 @@
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 11.7.0;
+				minimumVersion = 13.1.1;
 			};
 		};
 		8D00BB7E2D3B0C0200F6F6DD /* XCRemoteSwiftPackageReference "FirebaseUI-iOS" */ = {
@@ -648,7 +647,7 @@
 			repositoryURL = "https://github.com/firebase/FirebaseUI-iOS";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 16.0.0;
+				minimumVersion = 16.2.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1CAA5060E4A9D8B55A15EB4E /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = 81A2FB070295F56CC0B2D523 /* GoogleService-Info.plist */; };
+		1CAA5060E4A9D8B55A15EB4E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 81A2FB070295F56CC0B2D523 /* GoogleService-Info.plist */; };
 		8DB25F8F20BE0C29000ABEE2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB25F8E20BE0C29000ABEE2 /* AppDelegate.swift */; };
 		8DB25F9120BE0C29000ABEE2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB25F9020BE0C29000ABEE2 /* ViewController.swift */; };
 		8DB25F9420BE0C29000ABEE2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8DB25F9220BE0C29000ABEE2 /* Main.storyboard */; };
@@ -145,6 +145,8 @@
 				8DB25F9920BE0C2A000ABEE2 /* LaunchScreen.storyboard in Resources */,
 				8DB25F9620BE0C2A000ABEE2 /* Assets.xcassets in Resources */,
 				8DB25F9420BE0C29000ABEE2 /* Main.storyboard in Resources */,
+			
+				1CAA5060E4A9D8B55A15EB4E /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -157,7 +159,6 @@
 			files = (
 				8DB25F9120BE0C29000ABEE2 /* ViewController.swift in Sources */,
 				8DB25F8F20BE0C29000ABEE2 /* AppDelegate.swift in Sources */,
-				1CAA5060E4A9D8B55A15EB4E /* GoogleService-Info.plist in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -364,7 +365,7 @@
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 11.7.0;
+				minimumVersion = 13.1.1;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

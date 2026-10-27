@@ -126,6 +126,14 @@ if [[ "$OS" == catalyst ]];then
     )
 fi
 
+
+if [[ "$xcode_major" -ge 27 ]]; then
+    flags+=(
+        MACOSX_DEPLOYMENT_TARGET=12.0
+        WATCHOS_DEPLOYMENT_TARGET=9.0
+    )
+fi
+
 flags+=(
     CODE_SIGNING_REQUIRED=NO
     CODE_SIGNING_ALLOWED=NO

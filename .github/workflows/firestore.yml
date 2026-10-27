@@ -33,18 +33,20 @@ jobs:
   spm:
     name: spm (Xcode ${{ matrix.xcode }} - iOS)
     runs-on: ${{ matrix.runner }}
-    # TODO: Remove continue-on-error once firebase-ios-sdk 13.2.0 is released
+    # TODO: Remove 26.2 from continue-on-error once firebase-ios-sdk 13.2.0 is released
     # with the Xcode 26.2 package traits workaround (firebase/firebase-ios-sdk#16944).
-    continue-on-error: ${{ matrix.xcode == '26.2' }}
+    continue-on-error: ${{ matrix.xcode == '26.2' || matrix.xcode == '27.1' }}
     strategy:
       fail-fast: false
       matrix:
-        xcode: ["26.2", "26.4"]
+        xcode: ["26.2", "26.4", "27.1"]
         include:
           - xcode: "26.2"
             runner: macos-15
           - xcode: "26.4"
             runner: macos-26
+          - xcode: "27.1"
+            runner: xcode-27
     env:
       SPM: true
       OS: iOS

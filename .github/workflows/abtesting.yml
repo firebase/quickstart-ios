@@ -37,16 +37,19 @@ jobs:
   spm:
     name: spm (Xcode ${{ matrix.xcode }} - ${{ matrix.os }})
     runs-on: ${{ matrix.runner }}
+    continue-on-error: ${{ matrix.xcode == '27.1' }}
     strategy:
       fail-fast: false
       matrix:
-        xcode: ["26.2", "26.4"]
+        xcode: ["26.2", "26.4", "27.1"]
         os: [iOS, tvOS, macOS, watchOS, catalyst]
         include:
           - xcode: "26.2"
             runner: macos-15
           - xcode: "26.4"
             runner: macos-26
+          - xcode: "27.1"
+            runner: xcode-27
           - os: iOS
             # Test runs locally but fails in CI with:
             # (Underlying Error: lstat of

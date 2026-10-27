@@ -33,18 +33,21 @@ jobs:
   spm:
     name: spm (Xcode ${{ matrix.xcode }} - ${{ matrix.os }})
     runs-on: ${{ matrix.runner }}
+    continue-on-error: ${{ matrix.xcode == '27.1' }}
     strategy:
       fail-fast: false
       matrix:
         # TODO: Re-enable when ODM2 catalyst support is investigated
         # os: [iOS, catalyst, tvOS, macOS]
         os: [iOS, tvOS, macOS]
-        xcode: ["26.2", "26.4"]
+        xcode: ["26.2", "26.4", "27.1"]
         include:
           - xcode: "26.2"
             runner: macos-15
           - xcode: "26.4"
             runner: macos-26
+          - xcode: "27.1"
+            runner: xcode-27
           - os: iOS
             test: true
           # TODO: Re-enable when ODM2 catalyst support is investigated

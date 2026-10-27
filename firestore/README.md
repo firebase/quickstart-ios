@@ -5,16 +5,14 @@ For more information about Firestore visit [the docs][firestore-docs].
 ## Setup
   * [Set up your iOS app for Firestore][setup-ios]
   * In the Authentication tab of the Firebase console go to the
-    [Sign-in Method][auth-providers] page and enable 'Email/Password'.
-    * This app uses [FirebaseUI][firebaseui] for authentication.
+    [Sign-in Method][auth-providers] page and enable 'Anonymous'.
   * Run the app on an iOS device or emulator.
 
 ## Getting Started
-  * When you open the app you will be prompted to sign in, choose
-    any email and password.
   * When you first open the app it will be empty, press the
     **Populate** button in the top left.
-  * Modify your Firestore security rules to allow reading and writing reviews and restaurants. Take a look at the rules below for reference.
+  * Modify your Firestore security rules to allow reading and writing reviews
+    and restaurants. Take a look at the rules below for reference.
 
 ## Rules
 
@@ -26,7 +24,7 @@ service cloud.firestore {
     match /restaurants/{restaurant} {
       match /ratings/{rating} {
         allow read: if request.auth != null;
-        allow write: if request.auth != null 
+        allow write: if request.auth != null
                      && request.auth.uid == request.resource.data.userId;
       }
 
@@ -56,4 +54,3 @@ with the correct parameters filled in.
 [firestore-docs]: https://firebase.google.com/docs/firestore/
 [setup-ios]: https://firebase.google.com/docs/firestore/client/setup-ios
 [auth-providers]: https://console.firebase.google.com/project/_/authentication/providers
-[firebaseui]: https://github.com/firebase/FirebaseUI-iOS

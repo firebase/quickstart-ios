@@ -22,45 +22,36 @@ env:
 
 jobs:
   spm:
-    name: spm (Xcode ${{ matrix.xcode }} - ${{ matrix.platform }})
+    name: spm (Xcode ${{ matrix.xcode }} - iOS)
+    runs-on: ${{ matrix.runner }}
     strategy:
+      fail-fast: false
       matrix:
+        xcode: ["26.2", "26.4"]
         include:
-          - os: macos-26
-            xcode: "26.6"
-            platform: iOS
-            device: iPhone 17 Pro
-            ios_version: "26.5"
-          - os: macos-15
-            xcode: "26.2"
-            platform: iOS
-            device: iPhone 16
-            ios_version: "18.5"
-    runs-on: ${{ matrix.os }}
+          - xcode: "26.2"
+            runner: macos-15
+          - xcode: "26.4"
+            runner: macos-26
     env:
       SETUP: firebaseai
       SPM: true
       DIR: firebaseai
-      OS: ${{ matrix.platform }}
-      VERSION: ${{ matrix.ios_version }}
-      DEVICE: ${{ matrix.device }}
+      OS: iOS
       TEST: false
     steps:
       - name: Checkout
         uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
       - name: Xcode
         run: sudo xcode-select -s /Applications/Xcode_${{ matrix.xcode }}.app/Contents/Developer
-      - name: Install simulators in case they are missing.
-        uses: nick-fields/retry@ce71cc2ab81d554ebbe88c79ab5975992d79ba08 # v3
+      - name: Setup simulator
+        uses: ./.github/actions/setup_simulator
         with:
-          timeout_minutes: 15
-          max_attempts: 5
-          retry_wait_seconds: 120
-          command: sudo xcodebuild -downloadPlatform iOS
+          platform: iOS
       - name: Setup
         run: |
           gem install xcpretty
       - name: Placeholder GoogleService-Info.plist good enough for build only testing.
         run: cp ./mock-GoogleService-Info.plist ./firebaseai/GoogleService-Info.plist
-      - name: Build and Test SwiftUI (${{ matrix.platform }})
+      - name: Build and Test SwiftUI (iOS)
         run: ./scripts/test.sh

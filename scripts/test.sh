@@ -38,13 +38,24 @@ if [[ -z "${OS:-}" ]]; then
     OS=iOS
     echo "Defaulting to OS=$OS"
 fi
-if [[ -z "${DEVICE:-}" && "$OS" == "iOS" ]]; then
-    DEVICE="iPhone 17 Pro"
-    echo "Defaulting to DEVICE=$DEVICE"
+if [[ -z "${DEVICE:-}" ]]; then
+    case "$OS" in
+        iOS) DEVICE="Firebase-iPhone-15-Pro" ;;
+        tvOS) DEVICE="Firebase-Apple-TV-4K-Gen-2" ;;
+        watchOS) DEVICE="Firebase-Apple-Watch-Ultra-2" ;;
+        macOS|catalyst) DEVICE="localhost" ;;
+    esac
+    echo "Defaulting to DEVICE=${DEVICE:-}"
 fi
 if [[ -z "${TEST:-}" ]]; then
     TEST=true
     echo "Defaulting to TEST=$TEST"
+fi
+
+if [[ "$OS" == "iOS" || "$OS" == "tvOS" || "$OS" == "watchOS" ]]; then
+    if ! xcrun simctl list devices available | grep -q "${DEVICE} ("; then
+        ./scripts/setup_simulator.sh "$OS"
+    fi
 fi
 
 # Set have_secrets to true or false.

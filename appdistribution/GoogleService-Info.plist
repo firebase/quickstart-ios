@@ -3,13 +3,13 @@
 <plist version="1.0">
 <dict>
 	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
-	<string>ca-app-pub-0000000000000000/0000000000</string>
+	<string>ca-app-pub-3940256099942544/2934735716</string>
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
-	<string>ca-app-pub-0000000000000000/0000000000</string>
+	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>API_KEY</key>
-	<string>AIzaSyDummyApiKeyForTesting000000000000</string>
+	<string>AIzaSyPlaceholderApiKeyForTesting000000</string>
 	<key>BUNDLE_ID</key>
-	<string>com.google.firebase.quickstart.AppdistributionExample</string>
+	<string>id</string>
 	<key>CLIENT_ID</key>
 	<string>123456789000-00000000000000000000000000000000.apps.googleusercontent.com</string>
 	<key>DATABASE_URL</key>

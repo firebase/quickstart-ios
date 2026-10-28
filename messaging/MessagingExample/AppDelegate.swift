@@ -22,7 +22,6 @@ import FirebaseMessaging
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-  var window: UIWindow?
   let gcmMessageIDKey = "gcm.message_id"
 
   func application(_ application: UIApplication,

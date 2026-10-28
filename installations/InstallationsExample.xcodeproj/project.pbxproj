@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		8DC73D842D41ABC00092B6EE /* FirebaseInstallations in Frameworks */ = {isa = PBXBuildFile; productRef = 8DC73D832D41ABC00092B6EE /* FirebaseInstallations */; };
 		9A0A6EE922CE55B2004CF0FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0A6EE822CE55B2004CF0FF /* AppDelegate.swift */; };
+		9A0A6F0122CE55B2004CF0FF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0A6F0022CE55B2004CF0FF /* SceneDelegate.swift */; };
 		9A0A6EEB22CE55B2004CF0FF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0A6EEA22CE55B2004CF0FF /* ViewController.swift */; };
 		9A0A6EEE22CE55B2004CF0FF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A0A6EEC22CE55B2004CF0FF /* Main.storyboard */; };
 		9A5908BF23AD479B000CD3B9 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A5908BA23AD479B000CD3B9 /* LaunchScreen.xib */; };
@@ -30,6 +31,7 @@
 /* Begin PBXFileReference section */
 		9A0A6EE522CE55B2004CF0FF /* InstallationsExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstallationsExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A0A6EE822CE55B2004CF0FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		9A0A6F0022CE55B2004CF0FF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		9A0A6EEA22CE55B2004CF0FF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		9A0A6EED22CE55B2004CF0FF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9A5908BA23AD479B000CD3B9 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
@@ -94,6 +96,7 @@
 				9A76AE2922E207640024E473 /* Info.plist */,
 				9A0A6EEC22CE55B2004CF0FF /* Main.storyboard */,
 				9A0A6EE822CE55B2004CF0FF /* AppDelegate.swift */,
+				9A0A6F0022CE55B2004CF0FF /* SceneDelegate.swift */,
 				9A0A6EEA22CE55B2004CF0FF /* ViewController.swift */,
 			);
 			path = InstallationsExample;
@@ -228,6 +231,7 @@
 			files = (
 				9A0A6EEB22CE55B2004CF0FF /* ViewController.swift in Sources */,
 				9A0A6EE922CE55B2004CF0FF /* AppDelegate.swift in Sources */,
+				9A0A6F0122CE55B2004CF0FF /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

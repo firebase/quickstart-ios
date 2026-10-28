@@ -31,19 +31,35 @@ env:
 
 jobs:
   spm:
-    runs-on: macos-26
+    name: spm (Xcode ${{ matrix.xcode }} - iOS)
+    runs-on: ${{ matrix.runner }}
+    # TODO: Remove continue-on-error once firebase-ios-sdk 13.2.0 is released
+    # with the Xcode 26.2 package traits workaround (firebase/firebase-ios-sdk#16944).
+    continue-on-error: ${{ matrix.xcode == '26.2' }}
+    strategy:
+      fail-fast: false
+      matrix:
+        xcode: ["26.2", "26.4"]
+        include:
+          - xcode: "26.2"
+            runner: macos-15
+          - xcode: "26.4"
+            runner: macos-26
     env:
       SPM: true
       OS: iOS
       DIR: firestore
-      DEVICE: iPhone 17 Pro
       TEST: false
       SCHEME: FirestoreExample
     steps:
       - name: Checkout
         uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
       - name: Xcode
-        run: sudo xcode-select -s /Applications/Xcode_26.4.app/Contents/Developer
+        run: sudo xcode-select -s /Applications/Xcode_${{ matrix.xcode }}.app/Contents/Developer
+      - name: Setup simulator
+        uses: ./.github/actions/setup_simulator
+        with:
+          platform: iOS
       - name: Setup
         run: |
           cd firestore

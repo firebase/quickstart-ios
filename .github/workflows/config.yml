@@ -31,10 +31,19 @@ env:
 
 jobs:
   spm:
-    runs-on: macOS-15
+    name: spm (Xcode ${{ matrix.xcode }} - iOS)
+    runs-on: ${{ matrix.runner }}
+    strategy:
+      fail-fast: false
+      matrix:
+        xcode: ["26.2", "26.4"]
+        include:
+          - xcode: "26.2"
+            runner: macos-15
+          - xcode: "26.4"
+            runner: macos-26
     env:
       OS: iOS
-      DEVICE: iPhone 16
       DIR: config
       SPM: true
       SCHEME: ConfigExample
@@ -43,11 +52,15 @@ jobs:
       - name: Checkout
         uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
       - name: Xcode
-        run: sudo xcode-select -s /Applications/Xcode_26.2.app/Contents/Developer
+        run: sudo xcode-select -s /Applications/Xcode_${{ matrix.xcode }}.app/Contents/Developer
+      - name: Setup simulator
+        uses: ./.github/actions/setup_simulator
+        with:
+          platform: iOS
       - name: Setup
         run: |
           cd config
           ../scripts/install_prereqs/config.sh
-          xcrun simctl boot "iPhone 16"
+          xcrun simctl boot "Firebase-iPhone-15-Pro"
       - name: Build Swift
         run: ./scripts/test.sh

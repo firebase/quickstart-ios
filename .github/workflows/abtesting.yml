@@ -36,14 +36,18 @@ env:
 jobs:
   spm:
     name: spm (Xcode ${{ matrix.xcode }} - ${{ matrix.os }})
-    runs-on: macOS-15
+    runs-on: ${{ matrix.runner }}
     strategy:
+      fail-fast: false
       matrix:
-        xcode: ["26.2"]
+        xcode: ["26.2", "26.4"]
         os: [iOS, tvOS, macOS, watchOS, catalyst]
         include:
+          - xcode: "26.2"
+            runner: macos-15
+          - xcode: "26.4"
+            runner: macos-26
           - os: iOS
-            device: iPhone 16
             # Test runs locally but fails in CI with:
             # (Underlying Error: lstat of
             # /Users/runner/Library/Developer/CoreSimulator/Devices/
@@ -52,29 +56,28 @@ jobs:
             # /Frameworks/GoogleAppMeasurement.framework/GoogleAppMeasurement failed: No such file or directory
             test: false
           - os: tvOS
-            device: Apple TV 4K (3rd generation) (at 1080p)
             test: true
           - os: macOS
-            device: localhost
             test: true
           - os: watchOS
-            device: Apple Watch Series 5 - 44m
             test: false
           - os: catalyst
-            device: localhost
             test: false # disabled due to a permissions error on launch (OSStatus -54).
     env:
       SETUP: abtesting
       SPM: true
       DIR: abtesting
       OS: ${{ matrix.os }}
-      DEVICE: ${{ matrix.device }}
       TEST: ${{ matrix.test }}
     steps:
       - name: Checkout
         uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
       - name: Xcode
         run: sudo xcode-select -s /Applications/Xcode_${{ matrix.xcode }}.app/Contents/Developer
+      - name: Setup simulator
+        uses: ./.github/actions/setup_simulator
+        with:
+          platform: ${{ matrix.os }}
       - name: Setup
         run: |
           gem install xcpretty

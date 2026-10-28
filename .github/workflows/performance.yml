@@ -31,12 +31,20 @@ env:
 
 jobs:
   spm-buildonly:
-    name: spm
-    runs-on: macOS-15
+    name: spm (Xcode ${{ matrix.xcode }})
+    runs-on: ${{ matrix.runner }}
+    strategy:
+      fail-fast: false
+      matrix:
+        xcode: ["26.2", "26.4"]
+        include:
+          - xcode: "26.2"
+            runner: macos-15
+          - xcode: "26.4"
+            runner: macos-26
     env:
       SPM: true
       OS: iOS
-      DEVICE: iPhone 16
       TEST: false
       DIR: performance
       SCHEME: PerformanceExample (iOS)
@@ -44,7 +52,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
       - name: Xcode
-        run: sudo xcode-select -s /Applications/Xcode_26.2.app/Contents/Developer
+        run: sudo xcode-select -s /Applications/Xcode_${{ matrix.xcode }}.app/Contents/Developer
+      - name: Setup simulator
+        uses: ./.github/actions/setup_simulator
+        with:
+          platform: iOS
       - name: Setup
         run: |
           cd performance
@@ -52,21 +64,24 @@ jobs:
           ../scripts/install_prereqs/performance.sh
       - name: Build Swift
         run: ./scripts/test.sh
-          
+
   spm:
     name: spm (Xcode ${{ matrix.xcode }} - ${{ matrix.os }})
-    runs-on: macOS-15
+    runs-on: ${{ matrix.runner }}
     strategy:
+      fail-fast: false
       matrix:
-        xcode: ["26.2"]
+        xcode: ["26.2", "26.4"]
         os: [iOS, tvOS]
         include:
+          - xcode: "26.2"
+            runner: macos-15
+          - xcode: "26.4"
+            runner: macos-26
           - os: iOS
-            device: iPhone 16
             test: false
             scheme: PerformanceExample (iOS)
           - os: tvOS
-            device: Apple TV 4K (3rd generation) (at 1080p)
             test: false
             scheme: PerformanceExample (tvOS)
     env:
@@ -74,7 +89,6 @@ jobs:
       SPM: true
       DIR: performance
       OS: ${{ matrix.os }}
-      DEVICE: ${{ matrix.device }}
       TEST: ${{ matrix.test }}
       SCHEME: ${{ matrix.scheme }}
     steps:
@@ -82,6 +96,10 @@ jobs:
         uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
       - name: Xcode
         run: sudo xcode-select -s /Applications/Xcode_${{ matrix.xcode }}.app/Contents/Developer
+      - name: Setup simulator
+        uses: ./.github/actions/setup_simulator
+        with:
+          platform: ${{ matrix.os }}
       - name: Setup
         run: |
           gem install xcpretty

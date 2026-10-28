@@ -9,7 +9,7 @@
 	<key>API_KEY</key>
 	<string>AIzaSyPlaceholderApiKeyForTesting000000</string>
 	<key>BUNDLE_ID</key>
-	<string>id</string>
+	<string>com.google.firebase.quickstart.StorageExample</string>
 	<key>CLIENT_ID</key>
 	<string>123456789000-00000000000000000000000000000000.apps.googleusercontent.com</string>
 	<key>DATABASE_URL</key>

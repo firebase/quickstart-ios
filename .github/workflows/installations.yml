@@ -33,7 +33,6 @@ jobs:
   spm:
     name: spm (Xcode ${{ matrix.xcode }} - iOS)
     runs-on: ${{ matrix.runner }}
-    continue-on-error: ${{ matrix.xcode == '27.1' }}
     strategy:
       fail-fast: false
       matrix:

@@ -12,6 +12,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# TODO: Temporary local copy of firebase/firebase-ios-sdk's setup_simulator
+# composite action. Consolidate to reference
+# `firebase/firebase-ios-sdk/.github/actions/setup_simulator` once upstream
+# resolves its script path via `$GITHUB_ACTION_PATH` instead of
+# `github.workspace` and supports `macOS|catalyst` as a no-op.
+
 name: 'Setup Simulator'
 description: 'Creates a standardized simulator matching the active Xcode runtime.'
 inputs:

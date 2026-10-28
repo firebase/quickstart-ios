@@ -14,6 +14,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# TODO: Temporary local copy of firebase/firebase-ios-sdk/scripts/setup_simulator.sh
+# (with SDK-major runtime matching and `macOS|catalyst` no-op support).
+# Consolidate once upstream `firebase-ios-sdk` supports cross-repo composite
+# action invocation.
+
 set -euo pipefail
 
 PLATFORM="${1:-all}"

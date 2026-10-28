@@ -45,13 +45,15 @@ get_runtime() {
     sdk_ver=$(xcrun --sdk "$sdk_name" --show-sdk-version 2>/dev/null || true)
     if [[ -n "$sdk_ver" ]]; then
       target_major="${sdk_ver%%.*}"
-      target_major_minor=$(echo "$sdk_ver" | grep -oE '^[0-9]+\.[0-9]+' || true)
+      if [[ "$sdk_ver" =~ ^[0-9]+\.[0-9]+ ]]; then
+        target_major_minor="${BASH_REMATCH[0]}"
+      fi
     fi
   fi
 
   local runtime=""
   if [[ -n "$target_major_minor" ]]; then
-    runtime=$(xcrun simctl list runtimes available | grep -E "^[[:space:]]*${platform_prefix} ${target_major_minor//./\.}([^0-9]|$)" | grep -o "com\.apple\.CoreSimulator\.SimRuntime\.${platform_prefix}-[0-9-]*" | tail -n 1 || true)
+    runtime=$(xcrun simctl list runtimes available | grep -E "^[[:space:]]*${platform_prefix} ${target_major_minor//./\\.}([^0-9]|$)" | grep -o "com\.apple\.CoreSimulator\.SimRuntime\.${platform_prefix}-[0-9-]*" | tail -n 1 || true)
   fi
 
   if [[ -z "$runtime" && -n "$target_major" ]]; then
@@ -80,10 +82,10 @@ create_sim() {
     echo "✅ Simulator '$sim_name' already exists and is available."
   else
     # Clean up any existing (but unavailable) simulators with the same name to avoid duplicates
-    xcrun simctl list devices | grep -F "${sim_name} (" | grep -oE '[0-9A-F]{8}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{12}' | while read -r uuid; do
+    xcrun simctl list devices | grep -F "${sim_name} (" | grep -oE '[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}' | while read -r uuid; do
       echo "🧹 Removing existing/unavailable simulator $uuid..."
       xcrun simctl delete "$uuid" || true
-    done
+    done || true
 
     local created=false
     for device_type in "${device_types[@]}"; do

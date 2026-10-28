@@ -34,4 +34,4 @@ runs:
       env:
         PLATFORM: ${{ inputs.platform }}
       run: |
-        "$GITHUB_WORKSPACE/scripts/setup_simulator.sh" "$PLATFORM"
+        bash "$GITHUB_WORKSPACE/scripts/setup_simulator.sh" "$PLATFORM"

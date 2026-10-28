@@ -38,22 +38,28 @@ get_runtime() {
     visionOS) sdk_name="xrsimulator" ;;
   esac
 
+  local target_major_minor=""
   local target_major=""
   if [[ -n "$sdk_name" ]]; then
     local sdk_ver
     sdk_ver=$(xcrun --sdk "$sdk_name" --show-sdk-version 2>/dev/null || true)
     if [[ -n "$sdk_ver" ]]; then
       target_major="${sdk_ver%%.*}"
+      target_major_minor=$(echo "$sdk_ver" | grep -oE '^[0-9]+\.[0-9]+' || true)
     fi
   fi
 
   local runtime=""
-  if [[ -n "$target_major" ]]; then
-    runtime=$(xcrun simctl list runtimes available | grep "^${platform_prefix} ${target_major}\." | grep -o "com\.apple\.CoreSimulator\.SimRuntime\.${platform_prefix}-[0-9-]*" | tail -n 1 || true)
+  if [[ -n "$target_major_minor" ]]; then
+    runtime=$(xcrun simctl list runtimes available | grep -E "^[[:space:]]*${platform_prefix} ${target_major_minor//./\.}([^0-9]|$)" | grep -o "com\.apple\.CoreSimulator\.SimRuntime\.${platform_prefix}-[0-9-]*" | tail -n 1 || true)
+  fi
+
+  if [[ -z "$runtime" && -n "$target_major" ]]; then
+    runtime=$(xcrun simctl list runtimes available | grep "^[[:space:]]*${platform_prefix} ${target_major}\." | grep -o "com\.apple\.CoreSimulator\.SimRuntime\.${platform_prefix}-[0-9-]*" | tail -n 1 || true)
   fi
 
   if [[ -z "$runtime" ]]; then
-    runtime=$(xcrun simctl list runtimes available | grep "^${platform_prefix}" | grep -o "com\.apple\.CoreSimulator\.SimRuntime\.${platform_prefix}-[0-9-]*" | tail -n 1 || true)
+    runtime=$(xcrun simctl list runtimes available | grep "^[[:space:]]*${platform_prefix}" | grep -o "com\.apple\.CoreSimulator\.SimRuntime\.${platform_prefix}-[0-9-]*" | tail -n 1 || true)
   fi
 
   echo "$runtime"
@@ -70,9 +76,15 @@ create_sim() {
     return 0
   fi
 
-  if xcrun simctl list devices available | grep -q "${sim_name} ("; then
+  if xcrun simctl list devices available | grep -Fq "${sim_name} ("; then
     echo "✅ Simulator '$sim_name' already exists and is available."
   else
+    # Clean up any existing (but unavailable) simulators with the same name to avoid duplicates
+    xcrun simctl list devices | grep -F "${sim_name} (" | grep -oE '[0-9A-F]{8}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{12}' | while read -r uuid; do
+      echo "🧹 Removing existing/unavailable simulator $uuid..."
+      xcrun simctl delete "$uuid" || true
+    done
+
     local created=false
     for device_type in "${device_types[@]}"; do
       echo "📲 Attempting to create '$sim_name' with type '$device_type' and runtime '$runtime'..."

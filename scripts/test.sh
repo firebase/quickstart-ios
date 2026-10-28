@@ -53,8 +53,8 @@ if [[ -z "${TEST:-}" ]]; then
 fi
 
 if [[ "$OS" == "iOS" || "$OS" == "tvOS" || "$OS" == "watchOS" ]]; then
-    if ! xcrun simctl list devices available | grep -q "${DEVICE} ("; then
-        ./scripts/setup_simulator.sh "$OS"
+    if [[ "$DEVICE" == Firebase-* ]] && ! xcrun simctl list devices available | grep -Fq "${DEVICE} ("; then
+        bash ./scripts/setup_simulator.sh "$OS"
     fi
 fi
 

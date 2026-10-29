@@ -35,7 +35,10 @@ class PostViewModel: ObservableObject, Identifiable {
 
   // setup instance of FIRDatabaseReference for reading and writing data
   private var ref = Database.root
-  private var refHandle: DatabaseHandle?
+  // One handle per listener. The stars listener watches `posts/<id>` and the
+  // comments listener watches `post-comments/<id>`, so they can't share a slot.
+  private var postHandle: DatabaseHandle?
+  private var commentsHandle: DatabaseHandle?
 
   init(id: String, uid: String, author: String, title: String, body: String) {
     self.id = id
@@ -95,7 +98,12 @@ class PostViewModel: ObservableObject, Identifiable {
 
   func fetchComments() {
     let commentRef = ref.child("post-comments").child(id)
-    refHandle = commentRef.observe(DataEventType.value, with: { snapshot in
+    // onAppear fires again every time the view comes back, bail out of the
+    // previous listener first so we don't stack them up.
+    if let commentsHandle = commentsHandle {
+      commentRef.removeObserver(withHandle: commentsHandle)
+    }
+    commentsHandle = commentRef.observe(DataEventType.value, with: { snapshot in
       guard let comments = snapshot.value as? [String: [String: Any]] else { return }
       let sortedComments = comments.sorted(by: { $0.key > $1.key })
       self.comments = sortedComments.compactMap { Comment(id: $0, dict: $1) }
@@ -138,7 +146,10 @@ class PostViewModel: ObservableObject, Identifiable {
 
   private func updateStars() {
     let postListRef = ref.child("posts").child(id)
-    refHandle = postListRef.observe(DataEventType.value, with: { snapshot in
+    if let postHandle = postHandle {
+      postListRef.removeObserver(withHandle: postHandle)
+    }
+    postHandle = postListRef.observe(DataEventType.value, with: { snapshot in
       guard let post = snapshot.value as? [String: AnyObject] else { return }
       self.starCount = post["starCount"] as? Int ?? 0
       self.userIDsStarredBy = post["userIDsStarredBy"] as? [String: Bool] ?? [:]
@@ -182,14 +193,16 @@ class PostViewModel: ObservableObject, Identifiable {
 
   // remove all handlers when current view disappears
   func onViewDisappear() {
-    if let refHandle = refHandle {
-      ref.child("posts").child(id).removeObserver(withHandle: refHandle)
+    if let postHandle = postHandle {
+      ref.child("posts").child(id).removeObserver(withHandle: postHandle)
+      self.postHandle = nil
     }
   }
 
   func onDetailViewDisappear() {
-    if let refHandle = refHandle {
-      ref.child("post-comments").child(id).removeObserver(withHandle: refHandle)
+    if let commentsHandle = commentsHandle {
+      ref.child("post-comments").child(id).removeObserver(withHandle: commentsHandle)
+      self.commentsHandle = nil
     }
   }
 }

@@ -38,6 +38,9 @@ get_runtime() {
     visionOS) sdk_name="xrsimulator" ;;
   esac
 
+  # Match the latest installed runtime for the active SDK's major version so it
+  # aligns with xcodebuild's implicit `OS:latest` destination resolution (e.g.,
+  # selecting iOS 26.5 on macos-26 when 26.2, 26.4, and 26.5 are installed).
   local target_major=""
   if [[ -n "$sdk_name" ]]; then
     local sdk_ver
@@ -49,11 +52,11 @@ get_runtime() {
 
   local runtime=""
   if [[ -n "$target_major" ]]; then
-    runtime=$(xcrun simctl list runtimes available | grep "^${platform_prefix} ${target_major}\." | grep -o "com\.apple\.CoreSimulator\.SimRuntime\.${platform_prefix}-[0-9-]*" | tail -n 1 || true)
+    runtime=$(xcrun simctl list runtimes available | grep "^[[:space:]]*${platform_prefix} ${target_major}\." | grep -o "com\.apple\.CoreSimulator\.SimRuntime\.${platform_prefix}-[0-9-]*" | tail -n 1 || true)
   fi
 
   if [[ -z "$runtime" ]]; then
-    runtime=$(xcrun simctl list runtimes available | grep "^${platform_prefix}" | grep -o "com\.apple\.CoreSimulator\.SimRuntime\.${platform_prefix}-[0-9-]*" | tail -n 1 || true)
+    runtime=$(xcrun simctl list runtimes available | grep "^[[:space:]]*${platform_prefix}" | grep -o "com\.apple\.CoreSimulator\.SimRuntime\.${platform_prefix}-[0-9-]*" | tail -n 1 || true)
   fi
 
   echo "$runtime"
@@ -70,9 +73,15 @@ create_sim() {
     return 0
   fi
 
-  if xcrun simctl list devices available | grep -q "${sim_name} ("; then
+  if xcrun simctl list devices available | grep -Fq "${sim_name} ("; then
     echo "✅ Simulator '$sim_name' already exists and is available."
   else
+    # Clean up any existing (but unavailable) simulators with the same name to avoid duplicates
+    xcrun simctl list devices | grep -F "${sim_name} (" | grep -oE '[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}' | while read -r uuid; do
+      echo "🧹 Removing existing/unavailable simulator $uuid..."
+      xcrun simctl delete "$uuid" || true
+    done || true
+
     local created=false
     for device_type in "${device_types[@]}"; do
       echo "📲 Attempting to create '$sim_name' with type '$device_type' and runtime '$runtime'..."

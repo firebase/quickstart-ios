@@ -38,25 +38,20 @@ get_runtime() {
     visionOS) sdk_name="xrsimulator" ;;
   esac
 
-  local target_major_minor=""
+  # Match the latest installed runtime for the active SDK's major version so it
+  # aligns with xcodebuild's implicit `OS:latest` destination resolution (e.g.,
+  # selecting iOS 26.5 on macos-26 when 26.2, 26.4, and 26.5 are installed).
   local target_major=""
   if [[ -n "$sdk_name" ]]; then
     local sdk_ver
     sdk_ver=$(xcrun --sdk "$sdk_name" --show-sdk-version 2>/dev/null || true)
     if [[ -n "$sdk_ver" ]]; then
       target_major="${sdk_ver%%.*}"
-      if [[ "$sdk_ver" =~ ^[0-9]+\.[0-9]+ ]]; then
-        target_major_minor="${BASH_REMATCH[0]}"
-      fi
     fi
   fi
 
   local runtime=""
-  if [[ -n "$target_major_minor" ]]; then
-    runtime=$(xcrun simctl list runtimes available | grep -E "^[[:space:]]*${platform_prefix} ${target_major_minor//./\\.}([^0-9]|$)" | grep -o "com\.apple\.CoreSimulator\.SimRuntime\.${platform_prefix}-[0-9-]*" | tail -n 1 || true)
-  fi
-
-  if [[ -z "$runtime" && -n "$target_major" ]]; then
+  if [[ -n "$target_major" ]]; then
     runtime=$(xcrun simctl list runtimes available | grep "^[[:space:]]*${platform_prefix} ${target_major}\." | grep -o "com\.apple\.CoreSimulator\.SimRuntime\.${platform_prefix}-[0-9-]*" | tail -n 1 || true)
   fi
 

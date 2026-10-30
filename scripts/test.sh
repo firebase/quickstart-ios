@@ -52,12 +52,6 @@ if [[ -z "${TEST:-}" ]]; then
     echo "Defaulting to TEST=$TEST"
 fi
 
-if [[ "$OS" == "iOS" || "$OS" == "tvOS" || "$OS" == "watchOS" ]]; then
-    if [[ "$DEVICE" == Firebase-* ]] && ! xcrun simctl list devices available | grep -Fq "${DEVICE} ("; then
-        bash ./scripts/setup_simulator.sh "$OS"
-    fi
-fi
-
 # Set have_secrets to true or false.
 have_secrets=false
 # shellcheck disable=SC1091

@@ -47,7 +47,7 @@ jobs:
       - name: Xcode
         run: sudo xcode-select -s /Applications/Xcode_${{ matrix.xcode }}.app/Contents/Developer
       - name: Setup simulator
-        uses: ./.github/actions/setup_simulator
+        uses: firebase/firebase-ios-sdk/.github/actions/setup_simulator@e1e760d7ab3a985cd590f284ad632afc7d192924 # main
         with:
           platform: iOS
       - name: Setup
